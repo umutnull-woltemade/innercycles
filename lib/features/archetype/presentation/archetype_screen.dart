@@ -53,7 +53,7 @@ class ArchetypeScreen extends ConsumerWidget {
                         child: Text(
                           isEn
                               ? 'Could not load data'
-                              : 'Veri yuklenemedi',
+                              : 'Veri yüklenemedi',
                           style: TextStyle(
                             color: isDark
                                 ? AppColors.textMuted
@@ -72,7 +72,7 @@ class ArchetypeScreen extends ConsumerWidget {
                             child: Text(
                               isEn
                                   ? 'Could not load journal'
-                                  : 'Gunluk yuklenemedi',
+                                  : 'Günlük yüklenemedi',
                               style: TextStyle(
                                 color: isDark
                                     ? AppColors.textMuted
@@ -314,7 +314,7 @@ class _StrengthsShadowSection extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                isEn ? 'Strengths' : 'Guclu Yonler',
+                isEn ? 'Strengths' : 'Güçlü Yönler',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -344,7 +344,7 @@ class _StrengthsShadowSection extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                isEn ? 'Shadow Side' : 'Golge Yonu',
+                isEn ? 'Shadow Side' : 'Gölge Yönü',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -453,7 +453,7 @@ class _GrowthTipCard extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                isEn ? 'Growth Insight' : 'Buyume Icgorsu',
+                isEn ? 'Growth Insight' : 'Büyüme İçgörüsü',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -523,7 +523,7 @@ class _EvolutionTimeline extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                isEn ? 'Evolution Timeline' : 'Gelisim Zaman Cizgisi',
+                isEn ? 'Evolution Timeline' : 'Gelişim Zaman Çizgisi',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -603,8 +603,8 @@ class _EvolutionTimeline extends StatelessWidget {
       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
     ];
     const tr = [
-      'Oca', 'Sub', 'Mar', 'Nis', 'May', 'Haz',
-      'Tem', 'Agu', 'Eyl', 'Eki', 'Kas', 'Ara'
+      'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
+      'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'
     ];
     return isEn ? en[month - 1] : tr[month - 1];
   }
@@ -656,7 +656,7 @@ class _BreakdownChart extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                isEn ? 'Full Archetype Breakdown' : 'Tam Arketip Dagilimi',
+                isEn ? 'Full Archetype Breakdown' : 'Tam Arketip Dağılımı',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -833,10 +833,10 @@ class _DisclaimerCard extends StatelessWidget {
                   ? 'Your archetype is based on your journal patterns and '
                     'is meant as a self-reflection tool, not a personality '
                     'test. It may shift as your entries evolve over time.'
-                  : 'Arketipin gunluk kaliplarina dayaniyor ve bir '
-                    'kisilik testi degil, oz-yansitma araci olarak '
-                    'tasarlanmistir. Kayitlarin zaman icinde '
-                    'degistikce degisebilir.',
+                  : 'Arketipin günlük kalıplarına dayanıyor ve bir '
+                    'kişilik testi değil, öz-yansıtma aracı olarak '
+                    'tasarlanmıştır. Kayıtların zaman içinde '
+                    'değiştikçe değişebilir.',
               style: TextStyle(
                 fontSize: 12,
                 height: 1.5,
@@ -876,7 +876,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            isEn ? 'Not enough data yet' : 'Henuz yeterli veri yok',
+            isEn ? 'Not enough data yet' : 'Henüz yeterli veri yok',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -890,8 +890,8 @@ class _EmptyState extends StatelessWidget {
             isEn
                 ? 'Log at least 3 journal entries to discover your '
                   'dominant archetype'
-                : 'Baskin arketipini kesfetmek icin en az 3 '
-                  'gunluk kaydi olustur',
+                : 'Baskın arketipini keşfetmek için en az 3 '
+                  'günlük kaydı oluştur',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,

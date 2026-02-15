@@ -182,7 +182,7 @@ class CycleSummaryCard extends StatelessWidget {
               child: Text(
                 isEn
                     ? 'No entries yet for $areaName'
-                    : '$areaName icin henuz kayit yok',
+                    : '$areaName için henüz kayıt yok',
                 style: TextStyle(
                   fontSize: 12,
                   color: isDark

@@ -157,95 +157,95 @@ class ArchetypeService {
     Archetype(
       id: 'creator',
       nameEn: 'The Creator',
-      nameTr: 'Yaratici',
+      nameTr: 'Yaratıcı',
       emoji: '\u{1F3A8}',
       descriptionEn:
           'Your entries suggest a drive to bring new ideas to life. '
           'You may resonate with building, designing, and transforming '
           'raw thoughts into something meaningful.',
       descriptionTr:
-          'Kayitlarin yeni fikirleri hayata gecirme durtusune isaret '
-          'ediyor. Insa etmek, tasarlamak ve ham dusunceleri anlamli '
-          'bir seye donusturmekle uyum icinde olabilirsin.',
+          'Kayıtların yeni fikirleri hayata geçirme dürtüsüne işaret '
+          'ediyor. İnşa etmek, tasarlamak ve ham düşünceleri anlamlı '
+          'bir şeye dönüştürmekle uyum içinde olabilirsin.',
       strengthsEn: ['Innovation', 'Vision', 'Self-expression', 'Imagination'],
-      strengthsTr: ['Yenilik', 'Vizyon', 'Kendini ifade', 'Hayal gucu'],
+      strengthsTr: ['Yenilik', 'Vizyon', 'Kendini ifade', 'Hayal gücü'],
       shadowEn:
           'Perfectionism or creative blocks may surface when you feel '
           'your output does not match your inner vision.',
       shadowTr:
-          'Ciktin ic vizyonunla eslesmedigi hissettigi zamanlarda '
-          'mukemmeliyetcilik veya yaratici ticaniklar ortaya cikabilir.',
+          'Çıktın iç vizyonunla eşleşmediği hissettirdiği zamanlarda '
+          'mükemmeliyetçilik veya yaratıcı tıkanıklar ortaya çıkabilir.',
       growthTipEn:
           'Allow yourself to create imperfectly. Your journal entries '
           'suggest growth comes when you release the need for a '
           'flawless result.',
       growthTipTr:
-          'Kendine kusurlu yaratma izni ver. Kayitlarin, kusursuz '
-          'sonuc ihtiyacini biraktigin zaman buyumenin geldigine '
-          'isaret ediyor.',
+          'Kendine kusurlu yaratma izni ver. Kayıtların, kusursuz '
+          'sonuç ihtiyacını bıraktığın zaman büyümenin geldiğine '
+          'işaret ediyor.',
       growthAreasEn: [
         'Finishing projects before starting new ones',
         'Accepting constructive feedback with openness',
         'Sharing work before it feels perfectly ready',
       ],
       growthAreasTr: [
-        'Yeni baslamadan projeleri bitirmek',
-        'Yapici geri bildirimi aciklikla kabul etmek',
-        'Isini mukemmel hissetmeden once paylasmak',
+        'Yeni başlamadan projeleri bitirmek',
+        'Yapıcı geri bildirimi açıklıkla kabul etmek',
+        'İşini mükemmel hissetmeden önce paylaşmak',
       ],
       dailyIntentionStyleEn:
           'Set a creative micro-goal each morning — even a single '
           'sketch, sentence, or idea counts as progress.',
       dailyIntentionStyleTr:
-          'Her sabah yaratici bir mikro hedef belirle — tek bir cizim, '
-          'cumle veya fikir bile ilerleme sayilir.',
+          'Her sabah yaratıcı bir mikro hedef belirle — tek bir çizim, '
+          'cümle veya fikir bile ilerleme sayılır.',
       compatibleArchetypes: ['explorer', 'magician', 'sage'],
     ),
     Archetype(
       id: 'explorer',
       nameEn: 'The Explorer',
-      nameTr: 'Kasif',
+      nameTr: 'Kaşif',
       emoji: '\u{1F9ED}',
       descriptionEn:
           'Your patterns tend to align with curiosity and a desire '
           'for new experiences. You may find meaning in pushing '
           'beyond familiar boundaries.',
       descriptionTr:
-          'Kaliplarin merak ve yeni deneyimler arzusuyla uyum icinde '
-          'olma egiliminde. Bilindik sinirlarin otesine gecmekte '
+          'Kalıpların merak ve yeni deneyimler arzusuyla uyum içinde '
+          'olma eğiliminde. Bilindik sınırların ötesine geçmekte '
           'anlam bulabilirsin.',
       strengthsEn: ['Curiosity', 'Adaptability', 'Courage', 'Independence'],
-      strengthsTr: ['Merak', 'Uyum saglama', 'Cesaret', 'Bagimsizlik'],
+      strengthsTr: ['Merak', 'Uyum sağlama', 'Cesaret', 'Bağımsızlık'],
       shadowEn:
           'Restlessness or chronic dissatisfaction may appear when '
           'the current moment feels too confining.',
       shadowTr:
-          'Mevcut an cok kisitlayici hissettirdiginde huzursuzluk '
-          'veya kronik memnuniyetsizlik ortaya cikabilir.',
+          'Mevcut an çok kısıtlayıcı hissettirdiğinde huzursuzluk '
+          'veya kronik memnuniyetsizlik ortaya çıkabilir.',
       growthTipEn:
           'Balance exploration with presence. Your journal suggests '
           'that grounding practices help you integrate new '
           'discoveries more deeply.',
       growthTipTr:
-          'Kesfi mevcudiyetle dengele. Kayitlarin topraklama '
-          'pratiklerinin yeni kesileri daha derinden entegre etmene '
-          'yardimci olduguna isaret ediyor.',
+          'Keşfi mevcudiyetle dengele. Kayıtların topraklama '
+          'pratiklerinin yeni keşifleri daha derinden entegre etmene '
+          'yardımcı olduğuna işaret ediyor.',
       growthAreasEn: [
         'Committing to a path long enough to see results',
         'Finding depth in familiar routines',
         'Building lasting roots alongside new adventures',
       ],
       growthAreasTr: [
-        'Sonuclari gormek icin bir yola yeterince baglanmak',
+        'Sonuçları görmek için bir yola yeterince bağlanmak',
         'Bilindik rutinlerde derinlik bulmak',
-        'Yeni maceralarla birlikte kalici kokler olusturmak',
+        'Yeni maceralarla birlikte kalıcı kökler oluşturmak',
       ],
       dailyIntentionStyleEn:
           'Choose one new perspective or micro-adventure to explore today, '
           'then journal what you discovered.',
       dailyIntentionStyleTr:
-          'Bugun kesfetmek icin yeni bir bakis acisi veya mikro-macera sec, '
-          'sonra kesfettiklerini kaydet.',
+          'Bugün keşfetmek için yeni bir bakış açısı veya mikro-macera seç, '
+          'sonra keşfettiklerini kaydet.',
       compatibleArchetypes: ['creator', 'hero', 'rebel'],
     ),
     Archetype(
@@ -258,41 +258,41 @@ class ArchetypeService {
           'through reflection and knowledge. You may value clarity '
           'and truth above all else.',
       descriptionTr:
-          'Kayitlarin dunyayi dusunce ve bilgi yoluyla anlama '
-          'konusunda derin bir durtiye isaret ediyor. Netligi ve '
-          'geregi her seyden cok degerlendiriyor olabilirsin.',
+          'Kayıtların dünyayı düşünce ve bilgi yoluyla anlama '
+          'konusunda derin bir dürtüye işaret ediyor. Netliği ve '
+          'gerçeği her şeyden çok değerlendiriyor olabilirsin.',
       strengthsEn: ['Wisdom', 'Analytical mind', 'Objectivity', 'Insight'],
-      strengthsTr: ['Bilgelik', 'Analitik dusunce', 'Objektivite', 'Icgoru'],
+      strengthsTr: ['Bilgelik', 'Analitik düşünce', 'Objektivite', 'İçgörü'],
       shadowEn:
           'Over-analysis or emotional detachment may arise when you '
           'retreat too deeply into the mind.',
       shadowTr:
-          'Zihne cok derine cekildigin zamanlarda asiri analiz veya '
-          'duygusal kopukluk ortaya cikabilir.',
+          'Zihne çok derine çekildiğin zamanlarda aşırı analiz veya '
+          'duygusal kopukluk ortaya çıkabilir.',
       growthTipEn:
           'Let feeling guide you alongside thought. Your patterns '
           'suggest that emotional engagement enriches your '
           'understanding.',
       growthTipTr:
-          'Duygunun dusuncenin yaninda sana rehberlik etmesine izin '
-          'ver. Kaliplarin duygusal katilimin anlavisini '
-          'zenginlestirdigine isaret ediyor.',
+          'Duygunun düşüncenin yanında sana rehberlik etmesine izin '
+          'ver. Kalıpların duygusal katılımın anlayışını '
+          'zenginleştirdiğine işaret ediyor.',
       growthAreasEn: [
         'Trusting intuition alongside logic',
         'Taking action before having all the answers',
         'Expressing emotions without intellectualizing them',
       ],
       growthAreasTr: [
-        'Mantik yaninda sezgiye guven duymak',
-        'Tum cevaplara sahip olmadan harekete gecmek',
-        'Duyguslari entelektuellestirmeden ifade etmek',
+        'Mantık yanında sezgiye güven duymak',
+        'Tüm cevaplara sahip olmadan harekete geçmek',
+        'Duyguları entelektüelleştirmeden ifade etmek',
       ],
       dailyIntentionStyleEn:
           'Begin the day with a single question you want to sit with '
           '— not solve, just observe throughout the day.',
       dailyIntentionStyleTr:
-          'Gune birlikte oturmak istedigin tek bir soruyla basla '
-          '— cozmek degil, sadece gun boyunca gozlemlemek.',
+          'Güne birlikte oturmak istediğin tek bir soruyla başla '
+          '— çözmek değil, sadece gün boyunca gözlemlemek.',
       compatibleArchetypes: ['creator', 'ruler', 'magician'],
     ),
     Archetype(
@@ -305,42 +305,42 @@ class ArchetypeService {
           'willingness to face challenges head-on. You may find '
           'strength in overcoming obstacles.',
       descriptionTr:
-          'Gunluk kaliplarin kararlilik ve zorluklarla yuzyuze gelme '
-          'istegini yansitma egiliminde. Engelleri asmakta guc '
+          'Günlük kalıpların kararlılık ve zorluklarla yüzyüze gelme '
+          'isteğini yansıtma eğiliminde. Engelleri aşmakta güç '
           'buluyor olabilirsin.',
       strengthsEn: ['Courage', 'Discipline', 'Resilience', 'Determination'],
-      strengthsTr: ['Cesaret', 'Disiplin', 'Dayaniklilik', 'Kararlilik'],
+      strengthsTr: ['Cesaret', 'Disiplin', 'Dayanıklılık', 'Kararlılık'],
       shadowEn:
           'Burnout or an inability to ask for help may surface when '
           'the drive to prove yourself becomes relentless.',
       shadowTr:
-          'Kendini kanitlama durtusunun durmak bilmez hale geldigi '
-          'zamanlarda tukenmislik veya yardim isteyememe ortaya '
-          'cikabilir.',
+          'Kendini kanıtlama dürtüsünün durmak bilmez hale geldiği '
+          'zamanlarda tükenmişlik veya yardım isteyememe ortaya '
+          'çıkabilir.',
       growthTipEn:
           'Rest is not retreat. Your entries suggest that recovery '
           'periods actually strengthen your capacity for future '
           'challenges.',
       growthTipTr:
-          'Dinlenmek geri cekilme degildir. Kayitlarin toparlanma '
-          'donemlerinin gelecek zorluklar icin kapasiteni '
-          'guclendigine isaret ediyor.',
+          'Dinlenmek geri çekilme değildir. Kayıtların toparlanma '
+          'dönemlerinin gelecek zorluklar için kapasiteni '
+          'güçlendirdiğine işaret ediyor.',
       growthAreasEn: [
         'Accepting vulnerability as a form of strength',
         'Delegating instead of carrying everything alone',
         'Celebrating small wins, not only major victories',
       ],
       growthAreasTr: [
-        'Savunmasizligi bir guc formu olarak kabul etmek',
-        'Her seyi tek basina tasimak yerine yetki devretmek',
-        'Sadece buyuk zaferler degil, kucuk kazanimlari kutlamak',
+        'Savunmasızlığı bir güç formu olarak kabul etmek',
+        'Her şeyi tek başına taşımak yerine yetki devretmek',
+        'Sadece büyük zaferler değil, küçük kazanımları kutlamak',
       ],
       dailyIntentionStyleEn:
           'Identify one challenge to face today and one way to '
           'recover afterward — strength needs rhythm.',
       dailyIntentionStyleTr:
-          'Bugun yuzlesecek bir zorluk ve sonrasinda toparlanacak '
-          'bir yol belirle — gucun ritme ihtiyaci var.',
+          'Bugün yüzleşecek bir zorluk ve sonrasında toparlanacak '
+          'bir yol belirle — gücün ritme ihtiyacı var.',
       compatibleArchetypes: ['explorer', 'ruler', 'rebel'],
     ),
     Archetype(
@@ -353,27 +353,27 @@ class ArchetypeService {
           'and forge your own path. You may resonate with disrupting '
           'the status quo to create meaningful change.',
       descriptionTr:
-          'Kayitlarin normlari sorgulama ve kendi yolunu acma '
-          'konusunda guclu bir arzuya isaret ediyor. Anlamli '
-          'degisim yaratmak icin mevcut durumu sarsmakla uyum '
-          'icinde olabilirsin.',
+          'Kayıtların normları sorgulama ve kendi yolunu açma '
+          'konusunda güçlü bir arzuya işaret ediyor. Anlamlı '
+          'değişim yaratmak için mevcut durumu sarsmakla uyum '
+          'içinde olabilirsin.',
       strengthsEn: ['Independence', 'Bravery', 'Authenticity', 'Conviction'],
-      strengthsTr: ['Bagimsizlik', 'Yureklili', 'Otantiklik', 'Inanc'],
+      strengthsTr: ['Bağımsızlık', 'Yüreklilik', 'Otantiklik', 'İnanç'],
       shadowEn:
           'Isolation or self-sabotage may emerge when rebellion '
           'becomes its own end rather than a path to something '
           'constructive.',
       shadowTr:
-          'Isyan yapici bir seye giden yol yerine kendi amaci haline '
-          'geldiginde izolasyon veya kendine zarar verme ortaya '
-          'cikabilir.',
+          'İsyan yapıcı bir şeye giden yol yerine kendi amacı haline '
+          'geldiğinde izolasyon veya kendine zarar verme ortaya '
+          'çıkabilir.',
       growthTipEn:
           'Channel disruption into creation. Your journal suggests '
           'that your rebellious energy is most powerful when it '
           'builds something new.',
       growthTipTr:
-          'Bozmayi yaratmaya kanalize et. Kayitlarin asi enerjinin '
-          'yeni bir sey insa ettiginde en guclu olduguna isaret '
+          'Bozmayı yaratmaya kanalize et. Kayıtların asi enerjinin '
+          'yeni bir şey inşa ettiğinde en güçlü olduğuna işaret '
           'ediyor.',
       growthAreasEn: [
         'Choosing battles that truly matter',
@@ -381,31 +381,31 @@ class ArchetypeService {
         'Channeling anger into constructive vision',
       ],
       growthAreasTr: [
-        'Gercekten onemli olan savaslari secmek',
-        'Bariyerleri kirarken kopruler de kurmak',
-        'Ofkeyi yapici bir vizyona kanalize etmek',
+        'Gerçekten önemli olan savaşları seçmek',
+        'Bariyerleri kırarken köprüler de kurmak',
+        'Öfkeyi yapıcı bir vizyona kanalize etmek',
       ],
       dailyIntentionStyleEn:
           'Ask yourself: "What do I want to change today, and what '
           'will I create in its place?"',
       dailyIntentionStyleTr:
-          'Kendine sor: "Bugun neyi degistirmek istiyorum ve yerine '
-          'ne yaratacagim?"',
+          'Kendine sor: "Bugün neyi değiştirmek istiyorum ve yerine '
+          'ne yaratacağım?"',
       compatibleArchetypes: ['explorer', 'hero', 'magician'],
     ),
     Archetype(
       id: 'magician',
       nameEn: 'The Magician',
-      nameTr: 'Buyucu',
+      nameTr: 'Büyücü',
       emoji: '\u{2728}',
       descriptionEn:
           'Your patterns suggest a gift for transformation and '
           'seeing connections others miss. You may resonate with '
           'turning vision into reality through inner work.',
       descriptionTr:
-          'Kaliplarin donusum ve baskalarin kacirdigi baglantilari '
-          'gorme konusunda bir yetenegine isaret ediyor. Ic calisma '
-          'yoluyla vizyonu gerceklige cevirmeyle uyum icinde '
+          'Kalıpların dönüşüm ve başkalarının kaçırdığı bağlantıları '
+          'görme konusunda bir yeteneğine işaret ediyor. İç çalışma '
+          'yoluyla vizyonu gerçekliğe çevirmeyle uyum içinde '
           'olabilirsin.',
       strengthsEn: [
         'Transformation',
@@ -414,24 +414,24 @@ class ArchetypeService {
         'Awareness'
       ],
       strengthsTr: [
-        'Donusum',
+        'Dönüşüm',
         'Sezgi',
         'Beceriklilik',
-        'Farkindalik'
+        'Farkındalık'
       ],
       shadowEn:
           'Manipulation or disconnection from reality may arise when '
           'the desire for control overrides authentic connection.',
       shadowTr:
-          'Kontrol arzusu otantik baglantinin onune gectiginde '
-          'manipulasyon veya gerceklikten kopma ortaya cikabilir.',
+          'Kontrol arzusu otantik bağlantının önüne geçtiğinde '
+          'manipülasyon veya gerçeklikten kopma ortaya çıkabilir.',
       growthTipEn:
           'Ground your vision in everyday action. Your entries '
           'suggest that small, consistent steps create the most '
           'lasting transformation.',
       growthTipTr:
-          'Vizyonunu gundelik eyleme temelle. Kayitlarin kucuk, '
-          'tutarli adimlarin en kalici donusumu yarattigina isaret '
+          'Vizyonunu gündelik eyleme temelle. Kayıtların küçük, '
+          'tutarlı adımların en kalıcı dönüşümü yarattığına işaret '
           'ediyor.',
       growthAreasEn: [
         'Staying grounded while pursuing transformation',
@@ -439,155 +439,155 @@ class ArchetypeService {
         'Accepting that some things cannot be changed by will alone',
       ],
       growthAreasTr: [
-        'Donusumu takip ederken ayaklarini yere basmak',
-        'Surecini gizli tutmak yerine acikca paylasmak',
-        'Bazi seylerin sadece irade ile degistirilemeyecegini kabul etmek',
+        'Dönüşümü takip ederken ayaklarını yere basmak',
+        'Sürecini gizli tutmak yerine açıkça paylaşmak',
+        'Bazı şeylerin sadece irade ile değiştirilemeyeceğini kabul etmek',
       ],
       dailyIntentionStyleEn:
           'Set a single transformative intention: "Today I will shift '
           'one small pattern that no longer serves me."',
       dailyIntentionStyleTr:
-          'Tek bir donusturucu niyet belirle: "Bugun bana artik hizmet '
-          'etmeyen kucuk bir kaliibi degistirecegim."',
+          'Tek bir dönüştürücü niyet belirle: "Bugün bana artık hizmet '
+          'etmeyen küçük bir kalıbı değiştireceğim."',
       compatibleArchetypes: ['sage', 'creator', 'rebel'],
     ),
     Archetype(
       id: 'lover',
       nameEn: 'The Lover',
-      nameTr: 'Asik',
+      nameTr: 'Aşık',
       emoji: '\u{1F49C}',
       descriptionEn:
           'Your journal entries tend to reflect deep emotional '
           'sensitivity and a desire for authentic connection. You '
           'may find meaning in intimacy, beauty, and passion.',
       descriptionTr:
-          'Gunluk kayitlarin derin duygusal hassasiyet ve otantik '
-          'baglanti arzusunu yansitma egiliminde. Yakinlik, guzellik '
+          'Günlük kayıtların derin duygusal hassasiyet ve otantik '
+          'bağlantı arzusunu yansıtma eğiliminde. Yakınlık, güzellik '
           've tutkuda anlam buluyor olabilirsin.',
       strengthsEn: ['Empathy', 'Passion', 'Devotion', 'Appreciation'],
-      strengthsTr: ['Empati', 'Tutku', 'Adanmislik', 'Takdir'],
+      strengthsTr: ['Empati', 'Tutku', 'Adanmışlık', 'Takdir'],
       shadowEn:
           'People-pleasing or losing yourself in others may surface '
           'when the need for connection overshadows self-care.',
       shadowTr:
-          'Baglanti ihtiyaci oz bakimin onune gectiginde baskalarini '
-          'memnun etme veya baskalari icinde kaybolma ortaya '
-          'cikabilir.',
+          'Bağlantı ihtiyacı öz bakımın önüne geçtiğinde başkalarını '
+          'memnun etme veya başkaları içinde kaybolma ortaya '
+          'çıkabilir.',
       growthTipEn:
           'Love yourself first. Your patterns suggest that the '
           'deepest connections grow from a place of inner '
           'wholeness.',
       growthTipTr:
-          'Once kendini sev. Kaliplarin en derin baglantilarin ic '
-          'butunluk yerinden buyudugune isaret ediyor.',
+          'Önce kendini sev. Kalıpların en derin bağlantıların iç '
+          'bütünlük yerinden büyüdüğüne işaret ediyor.',
       growthAreasEn: [
         'Setting healthy boundaries in close relationships',
         'Distinguishing your emotions from those of others',
         'Allowing silence and solitude to nourish you',
       ],
       growthAreasTr: [
-        'Yakin iliskilerde saglikli sinirlar koymak',
-        'Kendi duygularini baskalarininkinenden ayirt etmek',
-        'Sessizlik ve yalnizligin seni beslemesine izin vermek',
+        'Yakın ilişkilerde sağlıklı sınırlar koymak',
+        'Kendi duygularını başkalarınınkinden ayırt etmek',
+        'Sessizlik ve yalnızlığın seni beslemesine izin vermek',
       ],
       dailyIntentionStyleEn:
           'Begin the day by naming one relationship you want to '
           'nurture and one way you will nurture yourself.',
       dailyIntentionStyleTr:
-          'Gune beslemek istedigin bir iliskiyi ve kendini '
-          'besleyecek bir yolu adlandirarak basla.',
+          'Güne beslemek istediğin bir ilişkiyi ve kendini '
+          'besleyecek bir yolu adlandırarak başla.',
       compatibleArchetypes: ['caregiver', 'creator', 'innocent'],
     ),
     Archetype(
       id: 'caregiver',
       nameEn: 'The Caregiver',
-      nameTr: 'Bakici',
+      nameTr: 'Bakıcı',
       emoji: '\u{1F49A}',
       descriptionEn:
           'Your entries suggest a natural orientation toward '
           'nurturing and supporting others. You may find deep '
           'fulfillment in service and compassion.',
       descriptionTr:
-          'Kayitlarin baskalarina bakma ve destek olma konusunda '
-          'dogal bir yonelime isaret ediyor. Hizmet ve merhamette '
+          'Kayıtların başkalarına bakma ve destek olma konusunda '
+          'doğal bir yönelime işaret ediyor. Hizmet ve merhamette '
           'derin tatmin buluyor olabilirsin.',
       strengthsEn: ['Compassion', 'Generosity', 'Nurturing', 'Loyalty'],
-      strengthsTr: ['Merhamet', 'Comertlik', 'Besleyicilik', 'Sadakat'],
+      strengthsTr: ['Merhamet', 'Cömertlik', 'Besleyicilik', 'Sadakat'],
       shadowEn:
           'Martyrdom or resentment may build when giving becomes '
           'depleting rather than fulfilling.',
       shadowTr:
-          'Vermek tatmin edici olmaktan cikip tuketen hale '
-          'geldiginde sehitlik veya kizginlik birikebilir.',
+          'Vermek tatmin edici olmaktan çıkıp tüketen hale '
+          'geldiğinde şehitlik veya kızgınlık birikebilir.',
       growthTipEn:
           'Fill your own cup first. Your journal suggests that '
           'boundaries actually deepen your ability to care for '
           'others authentically.',
       growthTipTr:
-          'Once kendi kabini doldur. Kayitlarin sinirlarin aslinda '
-          'baskalarina otantik bir sekilde bakma yetenegini '
-          'derinlestirdigine isaret ediyor.',
+          'Önce kendi kabını doldur. Kayıtların sınırların aslında '
+          'başkalarına otantik bir şekilde bakma yeteneğini '
+          'derinleştirdiğine işaret ediyor.',
       growthAreasEn: [
         'Saying no without guilt when your energy is low',
         'Receiving care as readily as you give it',
         'Recognizing when helping becomes enabling',
       ],
       growthAreasTr: [
-        'Enerjin dusukken sucluluk duymadan hayir demek',
-        'Verdigin kadar kolaylikla bakim almak',
-        'Yardim etmenin bagimlilik yaratmaya donustugunu fark etmek',
+        'Enerjin düşükken suçluluk duymadan hayır demek',
+        'Verdiğin kadar kolaylıkla bakım almak',
+        'Yardım etmenin bağımlılık yaratmaya dönüştüğünü fark etmek',
       ],
       dailyIntentionStyleEn:
           'Choose one act of care for someone else and one equal '
           'act of care for yourself today.',
       dailyIntentionStyleTr:
-          'Bugun baskasi icin bir bakim eylemi ve kendin icin esit '
-          'bir bakim eylemi sec.',
+          'Bugün başkası için bir bakım eylemi ve kendin için eşit '
+          'bir bakım eylemi seç.',
       compatibleArchetypes: ['lover', 'sage', 'innocent'],
     ),
     Archetype(
       id: 'ruler',
       nameEn: 'The Ruler',
-      nameTr: 'Hukumdar',
+      nameTr: 'Hükümdar',
       emoji: '\u{1F451}',
       descriptionEn:
           'Your patterns tend to reflect a desire for order, '
           'structure, and responsibility. You may resonate with '
           'taking charge and creating stability around you.',
       descriptionTr:
-          'Kaliplarin duzen, yapi ve sorumluluk arzusunu yansitma '
-          'egiliminde. Kontrolu ele alma ve cevrenizde istikrar '
-          'yaratmayla uyum icinde olabilirsin.',
+          'Kalıpların düzen, yapı ve sorumluluk arzusunu yansıtma '
+          'eğiliminde. Kontrolü ele alma ve çevrenizde istikrar '
+          'yaratmayla uyum içinde olabilirsin.',
       strengthsEn: ['Leadership', 'Organization', 'Confidence', 'Stability'],
-      strengthsTr: ['Liderlik', 'Organizasyon', 'Guven', 'Istikrar'],
+      strengthsTr: ['Liderlik', 'Organizasyon', 'Güven', 'İstikrar'],
       shadowEn:
           'Rigidity or controlling behavior may emerge when '
           'uncertainty threatens your sense of order.',
       shadowTr:
-          'Belirsizlik duzen hissini tehdit ettiginde katilk veya '
-          'kontrolcu davranis ortaya cikabilir.',
+          'Belirsizlik düzen hissini tehdit ettiğinde katılık veya '
+          'kontrolcü davranış ortaya çıkabilir.',
       growthTipEn:
           'Lead by letting go. Your entries suggest that true '
           'authority comes from flexibility, not control.',
       growthTipTr:
-          'Birakarak liderlik et. Kayitlarin gercek otoritenin '
-          'kontrolden degil esneklikten geldigine isaret ediyor.',
+          'Bırakarak liderlik et. Kayıtların gerçek otoritenin '
+          'kontrolden değil esneklikten geldiğine işaret ediyor.',
       growthAreasEn: [
         'Allowing plans to shift without seeing it as failure',
         'Listening to others perspectives before deciding',
         'Embracing uncertainty as a source of possibility',
       ],
       growthAreasTr: [
-        'Planlarin degismesini basarisizlik olarak gormeden izin vermek',
-        'Karar vermeden once baskalarin bakis acilarini dinlemek',
-        'Belirsizligi bir olasilik kaynagi olarak kucaklamak',
+        'Planların değişmesini başarısızlık olarak görmeden izin vermek',
+        'Karar vermeden önce başkalarının bakış açılarını dinlemek',
+        'Belirsizliği bir olasılık kaynağı olarak kucaklamak',
       ],
       dailyIntentionStyleEn:
           'Set your top three priorities for the day, then release '
           'attachment to how they unfold.',
       dailyIntentionStyleTr:
-          'Gunun ilk uc oncelligini belirle, sonra nasil '
-          'geliseceklerine olan bagliligini birak.',
+          'Günün ilk üç önceliğini belirle, sonra nasıl '
+          'gelişeceklerine olan bağlılığını bırak.',
       compatibleArchetypes: ['hero', 'sage', 'caregiver'],
     ),
     Archetype(
@@ -600,90 +600,90 @@ class ArchetypeService {
           'for simplicity and safety. You may resonate with finding '
           'joy in the present moment and trusting the process.',
       descriptionTr:
-          'Kayitlarin iyimser bir bakis acisi ve sadelik ve guvenlik '
-          'arzusuna isaret ediyor. Anda mutluluk bulmak ve surece '
-          'guvenmeyle uyum icinde olabilirsin.',
+          'Kayıtların iyimser bir bakış açısı ve sadelik ve güvenlik '
+          'arzusuna işaret ediyor. Anda mutluluk bulmak ve sürece '
+          'güvenmeyle uyum içinde olabilirsin.',
       strengthsEn: ['Optimism', 'Trust', 'Simplicity', 'Joy'],
-      strengthsTr: ['Iyimserlik', 'Guven', 'Sadelik', 'Nese'],
+      strengthsTr: ['İyimserlik', 'Güven', 'Sadelik', 'Neşe'],
       shadowEn:
           'Naivety or denial may surface when avoiding difficult '
           'truths feels safer than confronting them.',
       shadowTr:
-          'Zor gerceklerden kacinmak onlarla yuzlesmekten daha '
-          'guvenli hissettirdiginde saflk veya inkar ortaya '
-          'cikabilir.',
+          'Zor gerçeklerden kaçınmak onlarla yüzleşmekten daha '
+          'güvenli hissettirdiğinde saflık veya inkâr ortaya '
+          'çıkabilir.',
       growthTipEn:
           'Hold your optimism and your awareness together. Your '
           'journal suggests that acknowledging shadows actually '
           'strengthens your light.',
       growthTipTr:
-          'Iyimserligini ve farkindaligini birlikte tut. Kayitlarin '
-          'golgeleri kabul etmenin aslinda isigini guclendigine '
-          'isaret ediyor.',
+          'İyimserliğini ve farkındalığını birlikte tut. Kayıtların '
+          'gölgeleri kabul etmenin aslında ışığını güçlendirdiğine '
+          'işaret ediyor.',
       growthAreasEn: [
         'Facing uncomfortable truths with gentle courage',
         'Building resilience through small challenges',
         'Balancing hope with practical preparedness',
       ],
       growthAreasTr: [
-        'Rahatssiz edici gerceklerle nazik cesaretle yuzlesmek',
-        'Kucuk zorluklar yoluyla dayaniklilik olusturmak',
-        'Umudu pratik hazirlikla dengelemek',
+        'Rahatsız edici gerçeklerle nazik cesaretle yüzleşmek',
+        'Küçük zorluklar yoluyla dayanıklılık oluşturmak',
+        'Umudu pratik hazırlıkla dengelemek',
       ],
       dailyIntentionStyleEn:
           'Start the day with gratitude for three simple things, '
           'then name one small discomfort you are willing to sit with.',
       dailyIntentionStyleTr:
-          'Gune uc basit sey icin minnettarlikla basla, sonra '
-          'birlikte oturmaya istekli oldugun kucuk bir rahatsizligi adlandir.',
+          'Güne üç basit şey için minnettarlıkla başla, sonra '
+          'birlikte oturmaya istekli olduğun küçük bir rahatsızlığı adlandır.',
       compatibleArchetypes: ['caregiver', 'lover', 'jester'],
     ),
     Archetype(
       id: 'jester',
       nameEn: 'The Jester',
-      nameTr: 'Soytari',
+      nameTr: 'Soytarı',
       emoji: '\u{1F3AD}',
       descriptionEn:
           'Your patterns suggest a gift for lightness and finding '
           'humor even in difficulty. You may resonate with using '
           'playfulness as a path to deeper truth.',
       descriptionTr:
-          'Kaliplarin hafiflik ve zorlukta bile mizah bulma '
-          'konusunda bir yetenegine isaret ediyor. Eglenceyi daha '
-          'derin gercegin yolu olarak kullanmakla uyum icinde '
+          'Kalıpların hafiflik ve zorlukta bile mizah bulma '
+          'konusunda bir yeteneğine işaret ediyor. Eğlenceyi daha '
+          'derin gerçeğin yolu olarak kullanmakla uyum içinde '
           'olabilirsin.',
       strengthsEn: ['Humor', 'Playfulness', 'Perspective', 'Resilience'],
-      strengthsTr: ['Mizah', 'Oyunculuk', 'Perspektif', 'Dayaniklilik'],
+      strengthsTr: ['Mizah', 'Oyunculuk', 'Perspektif', 'Dayanıklılık'],
       shadowEn:
           'Avoidance through humor or difficulty being taken '
           'seriously may emerge when vulnerability feels unsafe.',
       shadowTr:
-          'Savunmasizlik guvensi hissettirdiginde mizah yoluyla '
-          'kacinma veya ciddiye alinmama zorlugu ortaya cikabilir.',
+          'Savunmasızlık güvensiz hissettirdiğinde mizah yoluyla '
+          'kaçınma veya ciddiye alınmama zorluğu ortaya çıkabilir.',
       growthTipEn:
           'Let yourself be seen beyond the humor. Your entries '
           'suggest that your most meaningful connections happen '
           'when you lower the mask.',
       growthTipTr:
-          'Kendini mizahin otesinde gostermeye izin ver. Kayitlarin '
-          'en anlamli baglantilarin maskeyi indirdigin zaman '
-          'olduguna isaret ediyor.',
+          'Kendini mizahın ötesinde göstermeye izin ver. Kayıtların '
+          'en anlamlı bağlantıların maskeyi indirdiğin zaman '
+          'olduğuna işaret ediyor.',
       growthAreasEn: [
         'Allowing yourself to feel sadness without deflecting it',
         'Sharing a sincere thought without humor as a shield',
         'Sitting with silence instead of filling it with laughter',
       ],
       growthAreasTr: [
-        'Huznu saptirmadan hissetmenize izin vermek',
-        'Mizahi kalkan olarak kullanmadan samimi bir dusunce paylasmak',
+        'Hüznü saptırmadan hissetmenize izin vermek',
+        'Mizahı kalkan olarak kullanmadan samimi bir düşünce paylaşmak',
         'Kahkahayla doldurmak yerine sessizlikle oturmak',
       ],
       dailyIntentionStyleEn:
           'Start the day with something that makes you smile, '
           'then write one honest sentence about how you really feel.',
       dailyIntentionStyleTr:
-          'Gune seni gulduren bir seyle basla, sonra gercekten '
-          'nasil hissettigin hakkinda samimi bir cumle yaz.',
+          'Güne seni güldüren bir şeyle başla, sonra gerçekten '
+          'nasıl hissettiğin hakkında samimi bir cümle yaz.',
       compatibleArchetypes: ['innocent', 'explorer', 'lover'],
     ),
     Archetype(
@@ -697,43 +697,43 @@ class ArchetypeService {
           'with building authentic belonging through shared '
           'experience.',
       descriptionTr:
-          'Kayitlarin hayatin zorluklarin derin farkindaligiina ve '
-          'zor kazanilmis bir dayanikliliga isaret ediyor. Paylasilan '
-          'deneyim yoluyla otantik aidiyet insa etmeyle uyum icinde '
+          'Kayıtların hayatın zorluklarının derin farkındalığına ve '
+          'zor kazanılmış bir dayanıklılığa işaret ediyor. Paylaşılan '
+          'deneyim yoluyla otantik aidiyet inşa etmeyle uyum içinde '
           'olabilirsin.',
       strengthsEn: ['Empathy', 'Realism', 'Resilience', 'Solidarity'],
-      strengthsTr: ['Empati', 'Gercekcilik', 'Dayaniklilik', 'Dayanisma'],
+      strengthsTr: ['Empati', 'Gerçekçilik', 'Dayanıklılık', 'Dayanışma'],
       shadowEn:
           'Victimhood or cynicism may arise when past wounds become '
           'the lens through which all new experiences are filtered.',
       shadowTr:
-          'Gecmis yaralar tum yeni deneyimlerin filtrelendigi '
-          'mercek haline geldiginde magdurluk veya kinizm ortaya '
-          'cikabilir.',
+          'Geçmiş yaralar tüm yeni deneyimlerin filtrelendiği '
+          'mercek haline geldiğinde mağdurluk veya kinizm ortaya '
+          'çıkabilir.',
       growthTipEn:
           'Your wounds are your wisdom. Your journal suggests that '
           'sharing your story with trusted others transforms pain '
           'into connection.',
       growthTipTr:
-          'Yaralarin bilgelgindir. Kayitlarin hikayeni guvendiin '
-          'insanlarla paylamasinin aciyi baglantyia donusturdugune '
-          'isaret ediyor.',
+          'Yaraların bilgeliğindir. Kayıtların hikâyeni güvendiğin '
+          'insanlarla paylaşmanın acıyı bağlantıya dönüştürdüğüne '
+          'işaret ediyor.',
       growthAreasEn: [
         'Trusting new experiences without projecting past hurt',
         'Accepting support without feeling like a burden',
         'Separating current reality from old patterns of pain',
       ],
       growthAreasTr: [
-        'Gecmis aciyi yansitmadan yeni deneyimlere guvenmek',
-        'Yuk gibi hissetmeden destek kabul etmek',
-        'Mevcut gercekligi eski aci kaliplardan ayirmak',
+        'Geçmiş acıyı yansıtmadan yeni deneyimlere güvenmek',
+        'Yük gibi hissetmeden destek kabul etmek',
+        'Mevcut gerçekliği eski acı kalıplardan ayırmak',
       ],
       dailyIntentionStyleEn:
           'Name one thing from the past you are ready to release '
           'and one new experience you are open to receiving today.',
       dailyIntentionStyleTr:
-          'Gecmisten birakamaya hazir oldugun bir seyi ve bugun '
-          'almaya acik oldugun yeni bir deneyimi adlandir.',
+          'Geçmişten bırakmaya hazır olduğun bir şeyi ve bugün '
+          'almaya açık olduğun yeni bir deneyimi adlandır.',
       compatibleArchetypes: ['caregiver', 'hero', 'sage'],
     ),
   ];

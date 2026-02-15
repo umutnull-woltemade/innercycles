@@ -30,11 +30,11 @@ const List<HabitSuggestion> allHabitSuggestions = [
     id: 'mor_01',
     category: 'morning',
     titleEn: 'Three Deep Breaths',
-    titleTr: 'Uc Derin Nefes',
+    titleTr: 'Üç Derin Nefes',
     descriptionEn:
         'Take 3 deep breaths before checking your phone. Inhale for 4 counts, hold for 4, exhale for 6.',
     descriptionTr:
-        'Telefonunuzu kontrol etmeden once 3 derin nefes alin. 4 sayarak nefes alin, 4 tutun, 6 sayarak verin.',
+        'Telefonunuzu kontrol etmeden önce 3 derin nefes alın. 4 sayarak nefes alın, 4 tutun, 6 sayarak verin.',
     durationMinutes: 1,
   ),
   HabitSuggestion(
@@ -45,73 +45,73 @@ const List<HabitSuggestion> allHabitSuggestions = [
     descriptionEn:
         'Before getting out of bed, set one simple intention for the day. It does not need to be big.',
     descriptionTr:
-        'Yataktan kalkmadan once gun icin basit bir niyet belirleyin. Buyuk olmasi gerekmiyor.',
+        'Yataktan kalkmadan önce gün için basit bir niyet belirleyin. Büyük olması gerekmiyor.',
     durationMinutes: 2,
   ),
   HabitSuggestion(
     id: 'mor_03',
     category: 'morning',
     titleEn: 'Hydrate First',
-    titleTr: 'Once Su Ic',
+    titleTr: 'Önce Su İç',
     descriptionEn:
         'Drink a full glass of water within the first 15 minutes of waking up, before any other beverage.',
     descriptionTr:
-        'Uyandiktan sonraki ilk 15 dakika icinde, baska bir icecekten once dolu bir bardak su icin.',
+        'Uyandıktan sonraki ilk 15 dakika içinde, başka bir içecekten önce dolu bir bardak su için.',
     durationMinutes: 1,
   ),
   HabitSuggestion(
     id: 'mor_04',
     category: 'morning',
     titleEn: 'Sunlight Exposure',
-    titleTr: 'Gunes Isigi Maruziyeti',
+    titleTr: 'Güneş Işığı Maruziyeti',
     descriptionEn:
         'Spend 2 minutes near a window or outdoors within the first hour. Natural light tends to support alertness.',
     descriptionTr:
-        'Ilk saat icinde 2 dakika bir pencerenin yaninida veya disarida gecirin. Dogal isik dikkatlilige destek olma egilimindedir.',
+        'İlk saat içinde 2 dakika bir pencerenin yanında veya dışarıda geçirin. Doğal ışık dikkatliliğe destek olma eğilimindedir.',
     durationMinutes: 2,
   ),
   HabitSuggestion(
     id: 'mor_05',
     category: 'morning',
     titleEn: 'Gratitude Note',
-    titleTr: 'Sukran Notu',
+    titleTr: 'Şükran Notu',
     descriptionEn:
         'Write down one thing you are grateful for this morning. Keep it specific and personal.',
     descriptionTr:
-        'Bu sabah minnettar oldugunuz bir seyi yazin. Spesifik ve kisisel tutun.',
+        'Bu sabah minnettar olduğunuz bir şeyi yazın. Spesifik ve kişisel tutun.',
     durationMinutes: 2,
   ),
   HabitSuggestion(
     id: 'mor_06',
     category: 'morning',
     titleEn: 'Body Stretch',
-    titleTr: 'Vucud Esnemesi',
+    titleTr: 'Vücut Esnemesi',
     descriptionEn:
         'Do a 2-minute full-body stretch before starting your routine. Reach overhead, touch your toes, twist gently.',
     descriptionTr:
-        'Rutininize baslamadan once 2 dakikalik tam vucut esnemesi yapin. Yukariya uzanin, ayak parmaklariniza dokunun, hafifce donun.',
+        'Rutininize başlamadan önce 2 dakikalık tam vücut esnemesi yapın. Yukarıya uzanın, ayak parmaklarınıza dokunun, hafifçe dönün.',
     durationMinutes: 2,
   ),
   HabitSuggestion(
     id: 'mor_07',
     category: 'morning',
     titleEn: 'Phone-Free First 10',
-    titleTr: 'Telefonsuz Ilk 10 Dakika',
+    titleTr: 'Telefonsuz İlk 10 Dakika',
     descriptionEn:
         'Keep your phone in another room for the first 10 minutes after waking. Notice how the quiet start feels.',
     descriptionTr:
-        'Uyandiktan sonraki ilk 10 dakika telefonunuzu baska bir odada birakn. Sessiz baslangiicin nasil hissettirdigini fark edin.',
+        'Uyandıktan sonraki ilk 10 dakika telefonunuzu başka bir odada bırakın. Sessiz başlangıcın nasıl hissettirdiğini fark edin.',
     durationMinutes: 10,
   ),
   HabitSuggestion(
     id: 'mor_08',
     category: 'morning',
     titleEn: 'One-Sentence Journal',
-    titleTr: 'Tek Cumleli Gunluk',
+    titleTr: 'Tek Cümleli Günlük',
     descriptionEn:
         'Write a single sentence about how you feel right now. One sentence is enough to start the habit.',
     descriptionTr:
-        'Su anda nasil hissettiginiz hakkinda tek bir cumle yazin. Bir cumle aliskanligi baslatmak icin yeterli.',
+        'Şu anda nasıl hissettiğiniz hakkında tek bir cümle yazın. Bir cümle alışkanlığı başlatmak için yeterli.',
     durationMinutes: 1,
   ),
 
@@ -122,66 +122,66 @@ const List<HabitSuggestion> allHabitSuggestions = [
     id: 'eve_01',
     category: 'evening',
     titleEn: 'Screen Sunset',
-    titleTr: 'Ekran Batisi',
+    titleTr: 'Ekran Batışı',
     descriptionEn:
         'Put screens away 30 minutes before bed. Read, stretch, or talk instead.',
     descriptionTr:
-        'Yatmadan 30 dakika once ekranlari kaldirin. Bunun yerine okuyun, esnin veya sohbet edin.',
+        'Yatmadan 30 dakika önce ekranları kaldırın. Bunun yerine okuyun, esnin veya sohbet edin.',
     durationMinutes: 30,
   ),
   HabitSuggestion(
     id: 'eve_02',
     category: 'evening',
     titleEn: 'Day Review',
-    titleTr: 'Gun Degerlendirmesi',
+    titleTr: 'Gün Değerlendirmesi',
     descriptionEn:
         'Spend 3 minutes reviewing your day. What went well? What would you do differently?',
     descriptionTr:
-        'Gununuzu degerlendirmek icin 3 dakika ayirin. Ne iyi gitti? Neyi farkli yapardiniz?',
+        'Gününüzü değerlendirmek için 3 dakika ayırın. Ne iyi gitti? Neyi farklı yapardınız?',
     durationMinutes: 3,
   ),
   HabitSuggestion(
     id: 'eve_03',
     category: 'evening',
     titleEn: 'Tomorrow Prep',
-    titleTr: 'Yarin Hazirligi',
+    titleTr: 'Yarın Hazırlığı',
     descriptionEn:
         'Write down 1-3 priorities for tomorrow before bed. Free your mind from carrying them overnight.',
     descriptionTr:
-        'Yatmadan once yarin icin 1-3 oncelik yazin. Zihninizi gece boyunca tasimasinindan kurtarin.',
+        'Yatmadan önce yarın için 1-3 öncelik yazın. Zihninizi gece boyunca taşımasından kurtarın.',
     durationMinutes: 3,
   ),
   HabitSuggestion(
     id: 'eve_04',
     category: 'evening',
     titleEn: 'Warm Wind-Down',
-    titleTr: 'Sicak Rahatlama',
+    titleTr: 'Sıcak Rahatlama',
     descriptionEn:
         'Have a warm, caffeine-free drink 45 minutes before bed. Notice the warmth as a signal to relax.',
     descriptionTr:
-        'Yatmadan 45 dakika once sicak, kafeinsiz bir icecek icin. Sicakligi rahatlama sinyali olarak fark edin.',
+        'Yatmadan 45 dakika önce sıcak, kafeinsiz bir içecek için. Sıcaklığı rahatlama sinyali olarak fark edin.',
     durationMinutes: 5,
   ),
   HabitSuggestion(
     id: 'eve_05',
     category: 'evening',
     titleEn: 'Body Scan',
-    titleTr: 'Beden Tarami',
+    titleTr: 'Beden Taraması',
     descriptionEn:
         'Lie down and scan your body from toes to head. Notice tension without trying to fix it.',
     descriptionTr:
-        'Uzanin ve vucudunuzu ayak parmaklarindan basliniza tara. Gerginligi duzeltmeye calismadan fark edin.',
+        'Uzanın ve vücudunuzu ayak parmaklarından başınıza tarayın. Gerginliği düzeltmeye çalışmadan fark edin.',
     durationMinutes: 5,
   ),
   HabitSuggestion(
     id: 'eve_06',
     category: 'evening',
     titleEn: 'Three Good Things',
-    titleTr: 'Uc Iyi Sey',
+    titleTr: 'Üç İyi Şey',
     descriptionEn:
         'Before sleep, name three good things that happened today, no matter how small.',
     descriptionTr:
-        'Uyumadan once, ne kadar kucuk olursa olsun bugun olan uc iyi seyi sayln.',
+        'Uyumadan önce, ne kadar küçük olursa olsun bugün olan üç iyi şeyi sayın.',
     durationMinutes: 2,
   ),
   HabitSuggestion(
@@ -192,18 +192,18 @@ const List<HabitSuggestion> allHabitSuggestions = [
     descriptionEn:
         'Practice the 4-7-8 breathing pattern: inhale 4 counts, hold 7, exhale 8. Repeat 3 times.',
     descriptionTr:
-        '4-7-8 nefes kalibi uygualyin: 4 sayarak nefes alin, 7 tutun, 8 sayarak verin. 3 kez tekrarlayin.',
+        '4-7-8 nefes kalıbı uygulayın: 4 sayarak nefes alın, 7 tutun, 8 sayarak verin. 3 kez tekrarlayın.',
     durationMinutes: 2,
   ),
   HabitSuggestion(
     id: 'eve_08',
     category: 'evening',
     titleEn: 'Dream Intention',
-    titleTr: 'Ruya Niyeti',
+    titleTr: 'Rüya Niyeti',
     descriptionEn:
         'As you fall asleep, silently set an intention to remember your dreams. Keep a notebook nearby.',
     descriptionTr:
-        'Uykuya dalarken, ruyalarinizi hatirlamak icin sessizce bir niyet belirleyin. Yaninizda bir defter bulundurun.',
+        'Uykuya dalarken, rüyalarınızı hatırlamak için sessizce bir niyet belirleyin. Yanınızda bir defter bulundurun.',
     durationMinutes: 1,
   ),
 
@@ -218,62 +218,62 @@ const List<HabitSuggestion> allHabitSuggestions = [
     descriptionEn:
         'Eat the first bite of one meal today with full attention. Notice flavor, texture, and temperature.',
     descriptionTr:
-        'Bugun bir ogunun ilk lokmasini tam dikkatle yiyin. Lezzeti, dokuyu ve sicakligi fark edin.',
+        'Bugün bir öğünün ilk lokmasını tam dikkatle yiyin. Lezzeti, dokuyu ve sıcaklığı fark edin.',
     durationMinutes: 2,
   ),
   HabitSuggestion(
     id: 'min_02',
     category: 'mindfulness',
     titleEn: 'Pause Before Reacting',
-    titleTr: 'Tepki Vermeden Duraklin',
+    titleTr: 'Tepki Vermeden Durakla',
     descriptionEn:
         'When you feel a strong reaction, pause for 3 seconds before responding. Notice what shifts.',
     descriptionTr:
-        'Guclu bir tepki hissettiginizde, karsilik vermeden once 3 saniye durun. Neyin degistigini fark edin.',
+        'Güçlü bir tepki hissettiğinizde, karşılık vermeden önce 3 saniye durun. Neyin değiştiğini fark edin.',
     durationMinutes: 1,
   ),
   HabitSuggestion(
     id: 'min_03',
     category: 'mindfulness',
     titleEn: 'Five Senses Check',
-    titleTr: 'Bes Duyu Kontrolu',
+    titleTr: 'Beş Duyu Kontrolü',
     descriptionEn:
         'Name 5 things you see, 4 you hear, 3 you feel, 2 you smell, 1 you taste. Grounds you in the present.',
     descriptionTr:
-        'Gordugunuz 5, duydugunuz 4, hissettiginiz 3, kokladiginiz 2, tattiginiz 1 sey sayinin. Sizi ana baglar.',
+        'Gördüğünüz 5, duyduğunuz 4, hissettiğiniz 3, kokladığınız 2, tattığınız 1 şey sayın. Sizi ana bağlar.',
     durationMinutes: 2,
   ),
   HabitSuggestion(
     id: 'min_04',
     category: 'mindfulness',
     titleEn: 'Mindful Walking',
-    titleTr: 'Bilinçli Yuruyus',
+    titleTr: 'Bilinçli Yürüyüş',
     descriptionEn:
         'During a short walk, focus entirely on the sensation of your feet touching the ground.',
     descriptionTr:
-        'Kisa bir yuruyus sirasinda, tamamen ayaklarinizin yere temas hissine odaklanin.',
+        'Kısa bir yürüyüş sırasında, tamamen ayaklarınızın yere temas hissine odaklanın.',
     durationMinutes: 5,
   ),
   HabitSuggestion(
     id: 'min_05',
     category: 'mindfulness',
     titleEn: 'Emotion Naming',
-    titleTr: 'Duygu Adlandirma',
+    titleTr: 'Duygu Adlandırma',
     descriptionEn:
         'Three times today, pause and name the exact emotion you are feeling. Naming tends to reduce its intensity.',
     descriptionTr:
-        'Bugun uc kez durun ve hissettiginiz tam duyguyu adlandirin. Adlandirmak yogunlugu azaltma egilimindedir.',
+        'Bugün üç kez durun ve hissettiğiniz tam duyguyu adlandırın. Adlandırmak yoğunluğu azaltma eğilimindedir.',
     durationMinutes: 1,
   ),
   HabitSuggestion(
     id: 'min_06',
     category: 'mindfulness',
     titleEn: 'Breathing Anchor',
-    titleTr: 'Nefes Capasi',
+    titleTr: 'Nefes Çapası',
     descriptionEn:
         'Set 3 reminders today. When each one goes off, take one slow, full breath. That is all.',
     descriptionTr:
-        'Bugun 3 hatirlatici kurun. Her biri caldiginda, yavas ve tam bir nefes alin. Bu kadar.',
+        'Bugün 3 hatırlatıcı kurun. Her biri çaldığında, yavaş ve tam bir nefes alın. Bu kadar.',
     durationMinutes: 1,
   ),
   HabitSuggestion(
@@ -284,18 +284,18 @@ const List<HabitSuggestion> allHabitSuggestions = [
     descriptionEn:
         'In your next conversation, listen without planning your response. Just receive.',
     descriptionTr:
-        'Bir sonraki konusmanizda, cevabnizi planlamadan dinleyin. Sadece alin.',
+        'Bir sonraki konuşmanızda, cevabınızı planlamadan dinleyin. Sadece alın.',
     durationMinutes: 5,
   ),
   HabitSuggestion(
     id: 'min_08',
     category: 'mindfulness',
     titleEn: 'Transition Pause',
-    titleTr: 'Gecis Molasi',
+    titleTr: 'Geçiş Molası',
     descriptionEn:
         'Between activities, take one conscious breath before starting the next thing.',
     descriptionTr:
-        'Aktiviteler arasinda, bir sonraki seye baslamadan once bilinçli bir nefes alin.',
+        'Aktiviteler arasında, bir sonraki şeye başlamadan önce bilinçli bir nefes alın.',
     durationMinutes: 1,
   ),
 
@@ -306,88 +306,88 @@ const List<HabitSuggestion> allHabitSuggestions = [
     id: 'soc_01',
     category: 'social',
     titleEn: 'Genuine Compliment',
-    titleTr: 'Icten Iltifat',
+    titleTr: 'İçten İltifat',
     descriptionEn:
         'Give one genuine, specific compliment to someone today. Notice how it feels for both of you.',
     descriptionTr:
-        'Bugun birine gercek, spesifik bir iltifat yapin. Ikiniz icin de nasil hissettirdigini fark edin.',
+        'Bugün birine gerçek, spesifik bir iltifat yapın. İkiniz için de nasıl hissettirdiğini fark edin.',
     durationMinutes: 1,
   ),
   HabitSuggestion(
     id: 'soc_02',
     category: 'social',
     titleEn: 'Check-In Text',
-    titleTr: 'Hal Hatir Mesaji',
+    titleTr: 'Hal Hatır Mesajı',
     descriptionEn:
         'Send a short message to someone you care about, just to say you are thinking of them. No favor, no agenda.',
     descriptionTr:
-        'Onemsediginiz birine, sadece onu dusundugunuzu soyleyen kisa bir mesaj gonderin. Iyilik yok, gundem yok.',
+        'Önemsediğiniz birine, sadece onu düşündüğünüzü söyleyen kısa bir mesaj gönderin. İyilik yok, gündem yok.',
     durationMinutes: 2,
   ),
   HabitSuggestion(
     id: 'soc_03',
     category: 'social',
     titleEn: 'Eye Contact',
-    titleTr: 'Goz Temasi',
+    titleTr: 'Göz Teması',
     descriptionEn:
         'During one conversation today, maintain gentle eye contact. Notice how it deepens the connection.',
     descriptionTr:
-        'Bugun bir konusma sirasinda nazik goz temasi surduru. Baglantyi nasil derinlestirdigini fark edin.',
+        'Bugün bir konuşma sırasında nazik göz teması sürdürün. Bağlantıyı nasıl derinleştirdiğini fark edin.',
     durationMinutes: 5,
   ),
   HabitSuggestion(
     id: 'soc_04',
     category: 'social',
     titleEn: 'Express Gratitude',
-    titleTr: 'Minnettarligini Ifade Et',
+    titleTr: 'Minnettarlığını İfade Et',
     descriptionEn:
         'Tell someone specifically what you appreciate about them. Be concrete: "I noticed when you..." works well.',
     descriptionTr:
-        'Birine onlar hakkinda neyi takdir ettiginizi ozellikle soyleylin. Somut olun: "Farkettiginizde..." iyi calisr.',
+        'Birine onlar hakkında neyi takdir ettiğinizi özellikle söyleyin. Somut olun: "Fark ettiğimde..." iyi çalışır.',
     durationMinutes: 2,
   ),
   HabitSuggestion(
     id: 'soc_05',
     category: 'social',
     titleEn: 'Ask a Real Question',
-    titleTr: 'Gercek Bir Soru Sor',
+    titleTr: 'Gerçek Bir Soru Sor',
     descriptionEn:
         'In a conversation, ask one open-ended question and truly listen to the answer.',
     descriptionTr:
-        'Bir konusmada, acik uclu bir soru sorun ve ceveabia gercekten dinleyin.',
+        'Bir konuşmada, açık uçlu bir soru sorun ve cevabı gerçekten dinleyin.',
     durationMinutes: 3,
   ),
   HabitSuggestion(
     id: 'soc_06',
     category: 'social',
     titleEn: 'Boundary Practice',
-    titleTr: 'Sinir Pratigi',
+    titleTr: 'Sınır Pratiği',
     descriptionEn:
         'Say "no" to one small request today that you would normally agree to out of obligation.',
     descriptionTr:
-        'Bugun normalde zorunluluktan kabul edeceginiz kucuk bir istege "hayir" deyin.',
+        'Bugün normalde zorunluluktan kabul edeceğiniz küçük bir isteğe "hayır" deyin.',
     durationMinutes: 1,
   ),
   HabitSuggestion(
     id: 'soc_07',
     category: 'social',
     titleEn: 'Shared Silence',
-    titleTr: 'Paylasilan Sessizlik',
+    titleTr: 'Paylaşılan Sessizlik',
     descriptionEn:
         'Spend a few minutes in comfortable silence with someone you trust. Not all connection needs words.',
     descriptionTr:
-        'Guvendiginiz biriyle birkaç dakika rahat sessizlikte gecirin. Her baglanti sozculklere ihtiyac duymaz.',
+        'Güvendiğiniz biriyle birkaç dakika rahat sessizlikte geçirin. Her bağlantı sözcüklere ihtiyaç duymaz.',
     durationMinutes: 5,
   ),
   HabitSuggestion(
     id: 'soc_08',
     category: 'social',
     titleEn: 'Name Your Need',
-    titleTr: 'Ihtiyacini Adlandir',
+    titleTr: 'İhtiyacını Adlandır',
     descriptionEn:
         'When feeling disconnected, tell someone what you need: "I could use a conversation" or "I need some quiet."',
     descriptionTr:
-        'Kopuk hissettiginizde, birine ihtiyacinizi soyleylin: "Bir sohbete ihtiyacim var" veya "Biraz sessizlige ihtiyacim var."',
+        'Kopuk hissettiğinizde, birine ihtiyacınızı söyleyin: "Bir sohbete ihtiyacım var" veya "Biraz sessizliğe ihtiyacım var."',
     durationMinutes: 2,
   ),
 
@@ -398,11 +398,11 @@ const List<HabitSuggestion> allHabitSuggestions = [
     id: 'cre_01',
     category: 'creative',
     titleEn: 'Doodle Break',
-    titleTr: 'Karalama Molasi',
+    titleTr: 'Karalama Molası',
     descriptionEn:
         'Spend 3 minutes doodling freely on paper. No goal, no judgment, just let the pen move.',
     descriptionTr:
-        'Kagit uzerinde 3 dakika serbestce karalama yapin. Hedef yok, yargi yok, sadece kalemin hareket etmesine izin verin.',
+        'Kağıt üzerinde 3 dakika serbestçe karalama yapın. Hedef yok, yargı yok, sadece kalemin hareket etmesine izin verin.',
     durationMinutes: 3,
   ),
   HabitSuggestion(
@@ -413,62 +413,62 @@ const List<HabitSuggestion> allHabitSuggestions = [
     descriptionEn:
         'Take a different path on your commute or walk today. New surroundings tend to spark new thoughts.',
     descriptionTr:
-        'Bugun isine giderken veya yururken farkli bir yol kullanin. Yeni cevreler yeni dusunceleri atesleyebilir.',
+        'Bugün işe giderken veya yürürken farklı bir yol kullanın. Yeni çevreler yeni düşünceleri ateşleyebilir.',
     durationMinutes: 5,
   ),
   HabitSuggestion(
     id: 'cre_03',
     category: 'creative',
     titleEn: 'Write Three Ideas',
-    titleTr: 'Uc Fikir Yaz',
+    titleTr: 'Üç Fikir Yaz',
     descriptionEn:
         'Write down 3 ideas about anything — silly, practical, impossible. The goal is quantity, not quality.',
     descriptionTr:
-        'Herhangi bir konuda 3 fikir yazan — sacma, pratik, imkansiz. Amac kalite degil, miktardir.',
+        'Herhangi bir konuda 3 fikir yazın — saçma, pratik, imkansız. Amaç kalite değil, miktardır.',
     durationMinutes: 3,
   ),
   HabitSuggestion(
     id: 'cre_04',
     category: 'creative',
     titleEn: 'Photograph Something Beautiful',
-    titleTr: 'Guzel Bir Sey Fotografla',
+    titleTr: 'Güzel Bir Şey Fotoğrafla',
     descriptionEn:
         'Take one photo today of something you find beautiful or interesting. Look closely at ordinary things.',
     descriptionTr:
-        'Bugun guzel veya ilginc buldugunuz bir seyin fotografini cekin. Siradan seylere yakindan bakin.',
+        'Bugün güzel veya ilginç bulduğunuz bir şeyin fotoğrafını çekin. Sıradan şeylere yakından bakın.',
     durationMinutes: 2,
   ),
   HabitSuggestion(
     id: 'cre_05',
     category: 'creative',
     titleEn: 'Rearrange Something',
-    titleTr: 'Bir Seyi Yeniden Duzenle',
+    titleTr: 'Bir Şeyi Yeniden Düzenle',
     descriptionEn:
         'Move something in your space — a book, a plant, a chair. Small changes in environment tend to shift perspective.',
     descriptionTr:
-        'Mekaninizdaki bir seyi tasyin — bir kitap, bir bitki, bir sandalye. Cevredeki kucuk degisiklikler bakis acisini degistirebilir.',
+        'Mekanınızdaki bir şeyi taşıyın — bir kitap, bir bitki, bir sandalye. Çevredeki küçük değişiklikler bakış açısını değiştirebilir.',
     durationMinutes: 3,
   ),
   HabitSuggestion(
     id: 'cre_06',
     category: 'creative',
     titleEn: 'Listen to Something New',
-    titleTr: 'Yeni Bir Sey Dinle',
+    titleTr: 'Yeni Bir Şey Dinle',
     descriptionEn:
         'Listen to a genre of music you have never tried. Notice what emotions it stirs.',
     descriptionTr:
-        'Hic denemedigniz bir muzik turunu dinleyin. Hangi duygulari uyandirdigini fark edin.',
+        'Hiç denemediğiniz bir müzik türünü dinleyin. Hangi duyguları uyandırdığını fark edin.',
     durationMinutes: 5,
   ),
   HabitSuggestion(
     id: 'cre_07',
     category: 'creative',
     titleEn: 'Cook Without a Recipe',
-    titleTr: 'Tarifsiz Pisir',
+    titleTr: 'Tarifsiz Pişir',
     descriptionEn:
         'Prepare one meal or snack without following a recipe. Trust your instincts and improvise.',
     descriptionTr:
-        'Tarif izlemeden bir ogun veya atistirmalik hazirlayin. Icguduelerinize guvenin ve dogaclama yapin.',
+        'Tarif izlemeden bir öğün veya atıştırmalık hazırlayın. İçgüdülerinize güvenin ve doğaçlama yapın.',
     durationMinutes: 15,
   ),
   HabitSuggestion(
@@ -479,7 +479,7 @@ const List<HabitSuggestion> allHabitSuggestions = [
     descriptionEn:
         'Pick a random word and write a short poem, haiku, or sentence with it. Playfulness opens creativity.',
     descriptionTr:
-        'Rastgele bir kelime secin ve onunla kisa bir siir, haiku veya cumle yazin. Oyunculuk yaraticiligi acar.',
+        'Rastgele bir kelime seçin ve onunla kısa bir şiir, haiku veya cümle yazın. Oyunculuk yaratıcılığı açar.',
     durationMinutes: 3,
   ),
 
@@ -494,84 +494,84 @@ const List<HabitSuggestion> allHabitSuggestions = [
     descriptionEn:
         'Every 90 minutes, stand up and stretch your arms overhead for 30 seconds. Your body tends to appreciate the reset.',
     descriptionTr:
-        'Her 90 dakikada bir ayaga kalkin ve 30 saniye kollarinizi yukari dogru esnetin. Vucudunuz sifirlamayi takdir etme egilimindedir.',
+        'Her 90 dakikada bir ayağa kalkın ve 30 saniye kollarınızı yukarı doğru esnetin. Vücudunuz sıfırlamayı takdir etme eğilimindedir.',
     durationMinutes: 1,
   ),
   HabitSuggestion(
     id: 'phy_02',
     category: 'physical',
     titleEn: 'Walking Meeting',
-    titleTr: 'Yuruyus Toplantisi',
+    titleTr: 'Yürüyüş Toplantısı',
     descriptionEn:
         'Take one phone call or conversation while walking instead of sitting. Movement tends to boost thinking.',
     descriptionTr:
-        'Bir telefon gorusmesini veya sohbeti otumak yerine yururken yapin. Hareket dusunmeyi destekleme egilimindedir.',
+        'Bir telefon görüşmesini veya sohbeti oturmak yerine yürürken yapın. Hareket düşünmeyi destekleme eğilimindedir.',
     durationMinutes: 10,
   ),
   HabitSuggestion(
     id: 'phy_03',
     category: 'physical',
     titleEn: 'Posture Check',
-    titleTr: 'Durus Kontrolu',
+    titleTr: 'Duruş Kontrolü',
     descriptionEn:
         'Set 3 reminders to check your posture today. Roll your shoulders back and lengthen your spine.',
     descriptionTr:
-        'Bugun durusunuzu kontrol etmek icin 3 hatirlatici kurun. Omuzlarinizi arkaya kivirin ve omurganizi uzatin.',
+        'Bugün duruşunuzu kontrol etmek için 3 hatırlatıcı kurun. Omuzlarınızı arkaya kıvırın ve omurganızı uzatın.',
     durationMinutes: 1,
   ),
   HabitSuggestion(
     id: 'phy_04',
     category: 'physical',
     titleEn: 'Stairs Over Elevator',
-    titleTr: 'Asansor Yerine Merdiven',
+    titleTr: 'Asansör Yerine Merdiven',
     descriptionEn:
         'Choose stairs at least once today. Even one flight tends to give your circulation a boost.',
     descriptionTr:
-        'Bugun en az bir kez merdivenleri secin. Tek bir kat bile kan dolisminize destek olma egilimindedir.',
+        'Bugün en az bir kez merdivenleri seçin. Tek bir kat bile kan dolaşımınıza destek olma eğilimindedir.',
     durationMinutes: 2,
   ),
   HabitSuggestion(
     id: 'phy_05',
     category: 'physical',
     titleEn: 'Gentle Neck Rolls',
-    titleTr: 'Nazik Boyun Cirpinmalari',
+    titleTr: 'Nazik Boyun Çırpınmaları',
     descriptionEn:
         'Slowly roll your neck in circles, 5 times each direction. Release the tension you did not know you were holding.',
     descriptionTr:
-        'Yavaca boynnuzu daireler cizerek dondurun, her yonde 5 kez. Tuttugunuzu bilmediginiz gerginligi birakn.',
+        'Yavaşça boynunuzu daireler çizerek döndürün, her yönde 5 kez. Tuttuğunuzu bilmediğiniz gerginliği bırakın.',
     durationMinutes: 1,
   ),
   HabitSuggestion(
     id: 'phy_06',
     category: 'physical',
     titleEn: 'Dance for One Song',
-    titleTr: 'Bir Sarki Boyunca Dans Et',
+    titleTr: 'Bir Şarkı Boyunca Dans Et',
     descriptionEn:
         'Put on a favorite song and move freely for its full duration. Nobody is watching.',
     descriptionTr:
-        'Sevdiginiz bir sarkiyi acin ve tam suresi boyunca serbestce hareket edin. Kimse izlemiyor.',
+        'Sevdiğiniz bir şarkıyı açın ve tam süresi boyunca serbestçe hareket edin. Kimse izlemiyor.',
     durationMinutes: 4,
   ),
   HabitSuggestion(
     id: 'phy_07',
     category: 'physical',
     titleEn: 'Cold Water Splash',
-    titleTr: 'Soguk Su Serpintisi',
+    titleTr: 'Soğuk Su Serpintisi',
     descriptionEn:
         'Splash cold water on your face when you feel afternoon drowsiness. A quick reset for alertness.',
     descriptionTr:
-        'Oleden sonra uyuklama hissettiginizde yuzunuze soguk su serpin. Dikkatlilik icin hizli bir sifirlama.',
+        'Öğleden sonra uyuklama hissettiğinizde yüzünüze soğuk su serpin. Dikkatlilik için hızlı bir sıfırlama.',
     durationMinutes: 1,
   ),
   HabitSuggestion(
     id: 'phy_08',
     category: 'physical',
     titleEn: 'Evening Walk',
-    titleTr: 'Aksam Yuruyusu',
+    titleTr: 'Akşam Yürüyüşü',
     descriptionEn:
         'Take a 10-minute walk after dinner. Gentle movement after eating tends to support digestion and mood.',
     descriptionTr:
-        'Aksam yemeginden sonra 10 dakikalik bir yuruyus yapin. Yemekten sonra hafif hareket sindirime ve ruh haline destek olma egilimindedir.',
+        'Akşam yemeğinden sonra 10 dakikalık bir yürüyüş yapın. Yemekten sonra hafif hareket sindirime ve ruh haline destek olma eğilimindedir.',
     durationMinutes: 10,
   ),
 
@@ -582,33 +582,33 @@ const List<HabitSuggestion> allHabitSuggestions = [
     id: 'ref_01',
     category: 'reflective',
     titleEn: 'Midday Pause',
-    titleTr: 'Oglen Molasi',
+    titleTr: 'Öğlen Molası',
     descriptionEn:
         'At noon, stop for 60 seconds and ask yourself: How am I actually feeling right now?',
     descriptionTr:
-        'Ogle saatinde 60 saniye durun ve kendinize sorun: Su anda aslinda nasil hissediyorum?',
+        'Öğle saatinde 60 saniye durun ve kendinize sorun: Şu anda aslında nasıl hissediyorum?',
     durationMinutes: 1,
   ),
   HabitSuggestion(
     id: 'ref_02',
     category: 'reflective',
     titleEn: 'Pattern Spotting',
-    titleTr: 'Orunatu Farketme',
+    titleTr: 'Örüntü Fark Etme',
     descriptionEn:
         'At the end of the day, look at your journal and notice one recurring theme. Name it.',
     descriptionTr:
-        'Gunun sonunda gunlugunuze bakin ve tekrarlayan bir temayi fark edin. Onu adlandirin.',
+        'Günün sonunda günlüğünüze bakın ve tekrarlayan bir temayı fark edin. Onu adlandırın.',
     durationMinutes: 3,
   ),
   HabitSuggestion(
     id: 'ref_03',
     category: 'reflective',
     titleEn: 'What If Question',
-    titleTr: 'Ya Olsaydi Sorusu',
+    titleTr: 'Ya Olsaydı Sorusu',
     descriptionEn:
         'Ask yourself one "what if" question today. "What if I said yes?" or "What if I let go?"',
     descriptionTr:
-        'Bugun kendinize bir "ya olsaydi" sorusu sorun. "Ya evet deseyidim?" veya "Ya birakaydim?"',
+        'Bugün kendinize bir "ya olsaydı" sorusu sorun. "Ya evet deseydim?" veya "Ya bıraksaydım?"',
     durationMinutes: 2,
   ),
   HabitSuggestion(
@@ -619,7 +619,7 @@ const List<HabitSuggestion> allHabitSuggestions = [
     descriptionEn:
         'Write 2-3 sentences to your future self, one month from now. What do you hope they feel?',
     descriptionTr:
-        'Bir ay sonraki kendinize 2-3 cumle yazin. Ne hissetmelerini umuyorsunuz?',
+        'Bir ay sonraki kendinize 2-3 cümle yazın. Ne hissetmelerini umuyorsunuz?',
     durationMinutes: 3,
   ),
   HabitSuggestion(
@@ -630,18 +630,18 @@ const List<HabitSuggestion> allHabitSuggestions = [
     descriptionEn:
         'Rate your energy 1-5 at three points today: morning, afternoon, evening. Notice the shape of your day.',
     descriptionTr:
-        'Bugun uc noktada enerjinizi 1-5 arasinda puanlayin: sabah, ogle, aksam. Gununuzun seklini fark edin.',
+        'Bugün üç noktada enerjinizi 1-5 arasında puanlayın: sabah, öğle, akşam. Gününüzün şeklini fark edin.',
     durationMinutes: 2,
   ),
   HabitSuggestion(
     id: 'ref_06',
     category: 'reflective',
     titleEn: 'Highlight Reel',
-    titleTr: 'Onemli Anlar',
+    titleTr: 'Önemli Anlar',
     descriptionEn:
         'Before bed, identify the single best moment of the day. Relive it for 30 seconds.',
     descriptionTr:
-        'Yatmadan once gunun en iyi tekk anini belirleyin. 30 saniye boyunca yeniden yasin.',
+        'Yatmadan önce günün en iyi tek anını belirleyin. 30 saniye boyunca yeniden yaşayın.',
     durationMinutes: 1,
   ),
   HabitSuggestion(
@@ -652,18 +652,18 @@ const List<HabitSuggestion> allHabitSuggestions = [
     descriptionEn:
         'Choose a color that represents how you feel right now. Write one sentence about why.',
     descriptionTr:
-        'Su anda nasil hissettiginizi temsil eden bir renk secin. Nedenini tek cumle olarak yazin.',
+        'Şu anda nasıl hissettiğinizi temsil eden bir renk seçin. Nedenini tek cümle olarak yazın.',
     durationMinutes: 2,
   ),
   HabitSuggestion(
     id: 'ref_08',
     category: 'reflective',
     titleEn: 'Week Theme',
-    titleTr: 'Hafta Temasi',
+    titleTr: 'Hafta Teması',
     descriptionEn:
         'On Sunday or Monday, choose a single-word theme for the week. Let it guide you without forcing.',
     descriptionTr:
-        'Pazar veya Pazartesi, hafta icin tek kelimelik bir tema secin. Zorlamadan rehberlik etmesine izin verin.',
+        'Pazar veya Pazartesi, hafta için tek kelimelik bir tema seçin. Zorlamadan rehberlik etmesine izin verin.',
     durationMinutes: 2,
   ),
 ];

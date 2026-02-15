@@ -467,7 +467,7 @@ class PatternsScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            isEn ? 'Connections' : 'Baglantlar',
+            isEn ? 'Connections' : 'Bağlantılar',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: isDark
                   ? AppColors.textSecondary
@@ -541,7 +541,7 @@ class PatternsScreen extends ConsumerWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                isEn ? 'Cross-Dimension Insights' : 'Boyutlar Arasi Icgoruler',
+                isEn ? 'Cross-Dimension Insights' : 'Boyutlar Arası İçgörüler',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: isDark
                       ? AppColors.textSecondary
@@ -614,7 +614,7 @@ class PatternsScreen extends ConsumerWidget {
                           child: Text(
                             isEn
                                 ? '${cc.sampleSize} days'
-                                : '${cc.sampleSize} gun',
+                                : '${cc.sampleSize} gün',
                             style: TextStyle(
                               fontSize: 11,
                               color: isDark
@@ -649,7 +649,7 @@ class PatternsScreen extends ConsumerWidget {
           Text(
             isEn
                 ? 'Based on your personal journal entries. Not a clinical assessment.'
-                : 'Kisisel gunluk kayitlariniza dayanmaktadir. Klinik bir degerlendirme degildir.',
+                : 'Kişisel günlük kayıtlarınıza dayanmaktadır. Klinik bir değerlendirme değildir.',
             style: TextStyle(
               fontSize: 11,
               fontStyle: FontStyle.italic,

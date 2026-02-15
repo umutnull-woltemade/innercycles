@@ -39,11 +39,11 @@ enum RelationshipType {
       case RelationshipType.partner:
         return 'Partner';
       case RelationshipType.friend:
-        return 'Arkadas';
+        return 'Arkadaş';
       case RelationshipType.family:
         return 'Aile';
       case RelationshipType.colleague:
-        return 'Is Arkadasi';
+        return 'İş Arkadaşı';
     }
   }
 
@@ -252,37 +252,37 @@ class CompatibilityService {
       questionEn:
           'When you need to share something difficult with this person, how do you usually feel?',
       questionTr:
-          'Bu kisiyle zor bir seyi paylasmaniz gerektiginde genellikle nasil hissediyorsunuz?',
+          'Bu kişiyle zor bir şeyi paylaşmanız gerektiğinde genellikle nasıl hissediyorsunuz?',
       dimension: 'Communication',
       options: [
         ReflectionOption(
           textEn: 'I feel safe and heard — they listen without judgment',
           textTr:
-              'Guvende ve duyulmus hissediyorum — yargilamadan dinliyorlar',
+              'Güvende ve duyulmuş hissediyorum — yargılamadan dinliyorlar',
           score: 5,
         ),
         ReflectionOption(
           textEn: 'Mostly comfortable, though some topics feel harder',
-          textTr: 'Cogunlukla rahat, ama bazi konular daha zor geliyor',
+          textTr: 'Çoğunlukla rahat, ama bazı konular daha zor geliyor',
           score: 4,
         ),
         ReflectionOption(
           textEn: 'I tend to hold back — I am not sure how they will react',
           textTr:
-              'Kendimi tutma egilimindeyim — nasil tepki vereceklerinden emin degilim',
+              'Kendimi tutma eğilimindeyim — nasıl tepki vereceklerinden emin değilim',
           score: 3,
         ),
         ReflectionOption(
           textEn: 'I often avoid it — conversations tend to escalate',
           textTr:
-              'Genellikle kacinirim — konusmalar genellikle tirmanir',
+              'Genellikle kaçınırım — konuşmalar genellikle tırmanır',
           score: 2,
         ),
         ReflectionOption(
           textEn:
               'I rarely bring things up — it does not feel worth the effort',
           textTr:
-              'Nadiren gundeme getiririm — cabaya degmez gibi geliyor',
+              'Nadiren gündeme getiririm — çabaya değmez gibi geliyor',
           score: 1,
         ),
       ],
@@ -292,38 +292,38 @@ class CompatibilityService {
       questionEn:
           'How well do you feel this person understands your communication style?',
       questionTr:
-          'Bu kisinin iletisim tarzinizi ne kadar iyi anladigini hissediyorsunuz?',
+          'Bu kişinin iletişim tarzınızı ne kadar iyi anladığını hissediyorsunuz?',
       dimension: 'Communication',
       options: [
         ReflectionOption(
           textEn:
               'Very well — they adapt and we find common ground easily',
           textTr:
-              'Cok iyi — uyum sagliyorlar ve ortak noktayi kolayca buluyoruz',
+              'Çok iyi — uyum sağlıyorlar ve ortak noktayı kolayca buluyoruz',
           score: 5,
         ),
         ReflectionOption(
           textEn: 'Fairly well — we have learned each other over time',
           textTr:
-              'Oldukca iyi — zamanla birbirimizi ogrendik',
+              'Oldukça iyi — zamanla birbirimizi öğrendik',
           score: 4,
         ),
         ReflectionOption(
           textEn: 'Sometimes — there are misunderstandings but we work through them',
           textTr:
-              'Bazen — yanlisanlamalar oluyor ama ustesinden geliyoruz',
+              'Bazen — yanlış anlamalar oluyor ama üstesinden geliyoruz',
           score: 3,
         ),
         ReflectionOption(
           textEn: 'Not really — we often talk past each other',
           textTr:
-              'Pek degil — genellikle birbirimizi anlayamiyoruz',
+              'Pek değil — genellikle birbirimizi anlayamıyoruz',
           score: 2,
         ),
         ReflectionOption(
           textEn: 'Poorly — our styles clash and it creates friction',
           textTr:
-              'Kotu — tarzlarimiz catisiyor ve surtusmeler yaratiyoruz',
+              'Kötü — tarzlarımız çatışıyor ve sürtüşmeler yaratıyoruz',
           score: 1,
         ),
       ],
@@ -335,39 +335,39 @@ class CompatibilityService {
       questionEn:
           'When you are going through a hard time, how does this person typically respond?',
       questionTr:
-          'Zor bir donemden gecerken, bu kisi genellikle nasil karsilik verir?',
+          'Zor bir dönemden geçerken, bu kişi genellikle nasıl karşılık verir?',
       dimension: 'Emotional',
       options: [
         ReflectionOption(
           textEn:
               'They show up — emotionally present and supportive',
           textTr:
-              'Yaninda olurlar — duygusal olarak mevcut ve destekci',
+              'Yanında olurlar — duygusal olarak mevcut ve destekçi',
           score: 5,
         ),
         ReflectionOption(
           textEn: 'They try their best, even if their way differs from mine',
           textTr:
-              'Ellerinden gelenin en iyisini yaparlar, tarzi benimkinden farkli olsa bile',
+              'Ellerinden gelenin en iyisini yaparlar, tarzı benimkinden farklı olsa bile',
           score: 4,
         ),
         ReflectionOption(
           textEn: 'It depends on the situation — sometimes present, sometimes not',
           textTr:
-              'Duruma bagli — bazen mevcut, bazen degil',
+              'Duruma bağlı — bazen mevcut, bazen değil',
           score: 3,
         ),
         ReflectionOption(
           textEn:
               'They tend to withdraw or minimize my feelings',
           textTr:
-              'Geri cekilme veya duygularimi kucumseme egilimindeler',
+              'Geri çekilme veya duygularımı küçümseme eğilimindeler',
           score: 2,
         ),
         ReflectionOption(
           textEn: 'I usually do not turn to them during hard times',
           textTr:
-              'Zor zamanlarda genellikle onlara yonelmiyorum',
+              'Zor zamanlarda genellikle onlara yönelmiyorum',
           score: 1,
         ),
       ],
@@ -377,38 +377,38 @@ class CompatibilityService {
       questionEn:
           'How balanced do you feel the emotional effort is in this relationship?',
       questionTr:
-          'Bu iliskideki duygusal cabanin ne kadar dengeli oldugunu hissediyorsunuz?',
+          'Bu ilişkideki duygusal çabanın ne kadar dengeli olduğunu hissediyorsunuz?',
       dimension: 'Emotional',
       options: [
         ReflectionOption(
           textEn: 'Very balanced — we both give and receive equally',
           textTr:
-              'Cok dengeli — ikimiz de esit olarak veriyoruz ve aliyoruz',
+              'Çok dengeli — ikimiz de eşit olarak veriyoruz ve alıyoruz',
           score: 5,
         ),
         ReflectionOption(
           textEn: 'Mostly balanced — small imbalances are normal',
           textTr:
-              'Cogunlukla dengeli — kucuk dengesizlikler normal',
+              'Çoğunlukla dengeli — küçük dengesizlikler normal',
           score: 4,
         ),
         ReflectionOption(
           textEn: 'Somewhat uneven — I notice one of us gives more',
           textTr:
-              'Biraz esitsiz — birimizin daha fazla verdigini fark ediyorum',
+              'Biraz eşitsiz — birimizin daha fazla verdiğini fark ediyorum',
           score: 3,
         ),
         ReflectionOption(
           textEn: 'Quite unbalanced — I feel drained at times',
           textTr:
-              'Oldukca dengesiz — bazen tukendigimi hissediyorum',
+              'Oldukça dengesiz — bazen tükendiğimi hissediyorum',
           score: 2,
         ),
         ReflectionOption(
           textEn:
               'One-sided — the effort mostly comes from one direction',
           textTr:
-              'Tek tarafli — caba cogunlukla bir yonden geliyor',
+              'Tek taraflı — çaba çoğunlukla bir yönden geliyor',
           score: 1,
         ),
       ],
@@ -420,41 +420,41 @@ class CompatibilityService {
       questionEn:
           'How aligned do you feel your core values are with this person?',
       questionTr:
-          'Temel degerlerinizin bu kisiyle ne kadar uyumlu oldugunu hissediyorsunuz?',
+          'Temel değerlerinizin bu kişiyle ne kadar uyumlu olduğunu hissediyorsunuz?',
       dimension: 'Values',
       options: [
         ReflectionOption(
           textEn:
               'Strongly aligned — we share the same priorities in life',
           textTr:
-              'Guclu bir uyum — hayatta ayni oncelikleri paylasiyoruz',
+              'Güçlü bir uyum — hayatta aynı öncelikleri paylaşıyoruz',
           score: 5,
         ),
         ReflectionOption(
           textEn:
               'Mostly aligned — differences are enriching, not divisive',
           textTr:
-              'Cogunlukla uyumlu — farkliliklar bolucur degil zenginlestiricidir',
+              'Çoğunlukla uyumlu — farklılıklar bölücü değil zenginleştiricidir',
           score: 4,
         ),
         ReflectionOption(
           textEn:
               'Some overlap — but there are areas where we diverge clearly',
           textTr:
-              'Biraz ortusme var — ama acikca ayristigimiz alanlar var',
+              'Biraz örtüşme var — ama açıkça ayrıştığımız alanlar var',
           score: 3,
         ),
         ReflectionOption(
           textEn: 'Limited alignment — we see the world quite differently',
           textTr:
-              'Sinirli uyum — dunyayi oldukca farkli goruyoruz',
+              'Sınırlı uyum — dünyayı oldukça farklı görüyoruz',
           score: 2,
         ),
         ReflectionOption(
           textEn:
               'Fundamentally different — our values often clash',
           textTr:
-              'Temelden farkli — degerlerimiz siklikla catisiyor',
+              'Temelden farklı — değerlerimiz sıklıkla çatışıyor',
           score: 1,
         ),
       ],
@@ -464,42 +464,42 @@ class CompatibilityService {
       questionEn:
           'When you think about how you each spend time and energy, how aligned does it feel?',
       questionTr:
-          'Her birinizin zamanini ve enerjisini nasil harcadigini dusundugunde, ne kadar uyumlu hissediyorsun?',
+          'Her birinizin zamanını ve enerjisini nasıl harcadığını düşündüğünde, ne kadar uyumlu hissediyorsun?',
       dimension: 'Values',
       options: [
         ReflectionOption(
           textEn:
               'Very aligned — we invest in similar things that matter to us',
           textTr:
-              'Cok uyumlu — ikimiz icin onemli olan benzer seylere yatirim yapiyoruz',
+              'Çok uyumlu — ikimiz için önemli olan benzer şeylere yatırım yapıyoruz',
           score: 5,
         ),
         ReflectionOption(
           textEn:
               'Mostly — we respect each other\'s priorities even when different',
           textTr:
-              'Cogunlukla — farkli olsa da birbirimizin onceliklerine saygi duyuyoruz',
+              'Çoğunlukla — farklı olsa da birbirimizin önceliklerine saygı duyuyoruz',
           score: 4,
         ),
         ReflectionOption(
           textEn:
               'Partially — we sometimes struggle to find shared interests',
           textTr:
-              'Kismen — bazen ortak ilgi alanlari bulmakta zorlaniyoruz',
+              'Kısmen — bazen ortak ilgi alanları bulmakta zorlanıyoruz',
           score: 3,
         ),
         ReflectionOption(
           textEn:
               'Rarely — our priorities feel like they pull us apart',
           textTr:
-              'Nadiren — onceliklerimiz bizi ayiriyormus gibi hissediyorum',
+              'Nadiren — önceliklerimiz bizi ayırıyormuş gibi hissediyorum',
           score: 2,
         ),
         ReflectionOption(
           textEn:
               'Not at all — we live in very separate worlds',
           textTr:
-              'Hic degil — cok ayri dunya larda yasiyoruz',
+              'Hiç değil — çok ayrı dünyalarda yaşıyoruz',
           score: 1,
         ),
       ],
@@ -511,38 +511,38 @@ class CompatibilityService {
       questionEn:
           'Does this relationship encourage your personal growth?',
       questionTr:
-          'Bu iliski kisisel gelisiminizi tesvik ediyor mu?',
+          'Bu ilişki kişisel gelişiminizi teşvik ediyor mu?',
       dimension: 'Growth',
       options: [
         ReflectionOption(
           textEn:
               'Absolutely — I feel inspired and challenged in healthy ways',
           textTr:
-              'Kesinlikle — saglikli yollarla ilham ve meydan okunmus hissediyorum',
+              'Kesinlikle — sağlıklı yollarla ilham ve meydan okunmuş hissediyorum',
           score: 5,
         ),
         ReflectionOption(
           textEn: 'Yes — they support my goals and celebrate wins with me',
           textTr:
-              'Evet — hedeflerimi destekliyorlar ve basarilari benimle kutluyorlar',
+              'Evet — hedeflerimi destekliyorlar ve başarıları benimle kutluyorlar',
           score: 4,
         ),
         ReflectionOption(
           textEn: 'Sometimes — growth happens but it is not a focus of ours',
           textTr:
-              'Bazen — gelisim oluyor ama odagimiz bu degil',
+              'Bazen — gelişim oluyor ama odağımız bu değil',
           score: 3,
         ),
         ReflectionOption(
           textEn: 'Rarely — I feel stuck or held back in this dynamic',
           textTr:
-              'Nadiren — bu dinamikte takili kalmis veya geri tutulmus hissediyorum',
+              'Nadiren — bu dinamikte takılı kalmış veya geri tutulmuş hissediyorum',
           score: 2,
         ),
         ReflectionOption(
           textEn: 'No — this relationship limits who I can become',
           textTr:
-              'Hayir — bu iliski olabilecegim kisiyi sinirliyor',
+              'Hayır — bu ilişki olabileceğim kişiyi sınırlıyor',
           score: 1,
         ),
       ],
@@ -552,42 +552,42 @@ class CompatibilityService {
       questionEn:
           'How do you and this person handle change and new challenges together?',
       questionTr:
-          'Siz ve bu kisi degisiklikleri ve yeni zorluklari birlikte nasil ele aliyorsunuz?',
+          'Siz ve bu kişi değişiklikleri ve yeni zorlukları birlikte nasıl ele alıyorsunuz?',
       dimension: 'Growth',
       options: [
         ReflectionOption(
           textEn:
               'We adapt together — change brings us closer',
           textTr:
-              'Birlikte uyum sagliyoruz — degisim bizi yakinlastiriyor',
+              'Birlikte uyum sağlıyoruz — değişim bizi yakınlaştırıyor',
           score: 5,
         ),
         ReflectionOption(
           textEn:
               'We manage — it takes effort but we get through it',
           textTr:
-              'Idare ediyoruz — caba gerektiriyor ama ustesinden geliyoruz',
+              'İdare ediyoruz — çaba gerektiriyor ama üstesinden geliyoruz',
           score: 4,
         ),
         ReflectionOption(
           textEn:
               'Mixed — sometimes we grow together, sometimes we drift',
           textTr:
-              'Karisik — bazen birlikte buyuyoruz, bazen uzaklasiyoruz',
+              'Karışık — bazen birlikte büyüyoruz, bazen uzaklaşıyoruz',
           score: 3,
         ),
         ReflectionOption(
           textEn:
               'Difficult — change tends to create conflict between us',
           textTr:
-              'Zor — degisim aramizda catisma yaratma egiliminde',
+              'Zor — değişim aramızda çatışma yaratma eğiliminde',
           score: 2,
         ),
         ReflectionOption(
           textEn:
               'Poorly — we resist change and avoid hard conversations',
           textTr:
-              'Kotu — degisime direnc gosteriyoruz ve zor konusmalardan kaciniyoruz',
+              'Kötü — değişime direnç gösteriyoruz ve zor konuşmalardan kaçınıyoruz',
           score: 1,
         ),
       ],
@@ -599,38 +599,38 @@ class CompatibilityService {
       questionEn:
           'How much do you trust this person with your vulnerabilities?',
       questionTr:
-          'Kirilganliklariniz konusunda bu kisiye ne kadar guveniyor sunuz?',
+          'Kırılganlıklarınız konusunda bu kişiye ne kadar güveniyorsunuz?',
       dimension: 'Trust',
       options: [
         ReflectionOption(
           textEn:
               'Completely — I can be my fullest self without masks',
           textTr:
-              'Tamamen — maskeler olmadan en oz halimle olabiliyorum',
+              'Tamamen — maskeler olmadan en öz halimle olabiliyorum',
           score: 5,
         ),
         ReflectionOption(
           textEn: 'Mostly — I share deeply but keep some walls',
           textTr:
-              'Cogunlukla — derinden paylasiyorum ama bazi duvarlarim var',
+              'Çoğunlukla — derinden paylaşıyorum ama bazı duvarlarım var',
           score: 4,
         ),
         ReflectionOption(
           textEn: 'Somewhat — I am selective about what I reveal',
           textTr:
-              'Biraz — neyi acigla vuracagim konusunda seciciyim',
+              'Biraz — neyi açığa vuracağım konusunda seçiciyim',
           score: 3,
         ),
         ReflectionOption(
           textEn: 'Not much — past experiences have made me cautious',
           textTr:
-              'Cok degil — gecmis deneyimler beni temkinli kildi',
+              'Çok değil — geçmiş deneyimler beni temkinli kıldı',
           score: 2,
         ),
         ReflectionOption(
           textEn: 'Very little — I guard myself carefully around them',
           textTr:
-              'Cok az — yanlarinda kendimi dikkatle koruyorum',
+              'Çok az — yanlarında kendimi dikkatle koruyorum',
           score: 1,
         ),
       ],
@@ -640,39 +640,39 @@ class CompatibilityService {
       questionEn:
           'When conflicts arise, do you trust that this person has good intentions toward you?',
       questionTr:
-          'Catismalar ortaya ciktiginda, bu kisinin size karsi iyi niyetli olduguna guveniyormusunuz?',
+          'Çatışmalar ortaya çıktığında, bu kişinin size karşı iyi niyetli olduğuna güveniyor musunuz?',
       dimension: 'Trust',
       options: [
         ReflectionOption(
           textEn:
               'Always — even in disagreement, I know they care about us',
           textTr:
-              'Her zaman — anlasamadigimizda bile, bize deger verdiklerini biliyorum',
+              'Her zaman — anlaşamadığımızda bile, bize değer verdiklerini biliyorum',
           score: 5,
         ),
         ReflectionOption(
           textEn: 'Usually — though heated moments can shake that briefly',
           textTr:
-              'Genellikle — gergin anlar bunu kisa sureligine sarsabilse de',
+              'Genellikle — gergin anlar bunu kısa süreliğine sarsabilse de',
           score: 4,
         ),
         ReflectionOption(
           textEn: 'Sometimes — it depends on the nature of the conflict',
           textTr:
-              'Bazen — catismanin niteliklerine bagli',
+              'Bazen — çatışmanın niteliklerine bağlı',
           score: 3,
         ),
         ReflectionOption(
           textEn: 'Rarely — conflicts often feel personal or attacking',
           textTr:
-              'Nadiren — catismalar genellikle kisisel veya saldirgan hissediyorum',
+              'Nadiren — çatışmalar genellikle kişisel veya saldırgan hissettiriyor',
           score: 2,
         ),
         ReflectionOption(
           textEn:
               'No — I question their motives during disagreements',
           textTr:
-              'Hayir — anlasamazliklar sirasinda niyetlerini sorguluyorum',
+              'Hayır — anlaşmazlıklar sırasında niyetlerini sorguluyorum',
           score: 1,
         ),
       ],
@@ -882,13 +882,13 @@ class CompatibilityService {
 
   String _communicationInsightTr(double score) {
     if (score >= 75) {
-      return 'Yansimalariniz guclu bir iletisim uyumu oldugunu gosteriyor. Bu iliskide duyuldugunuzu ve anlasildiginizi hissediyor gorunuyorsunuz.';
+      return 'Yansımalarınız güçlü bir iletişim uyumu olduğunu gösteriyor. Bu ilişkide duyulduğunuzu ve anlaşıldığınızı hissediyor görünüyorsunuz.';
     } else if (score >= 50) {
-      return 'Girdiginiz yanitlar iletisimde saglam bir temel oldugunu, ancak daha derin diyalogdan fayda gorebilecek alanlar oldugunu gosteriyor.';
+      return 'Girdiğiniz yanıtlar iletişimde sağlam bir temel olduğunu, ancak daha derin diyalogdan fayda görebilecek alanlar olduğunu gösteriyor.';
     } else if (score >= 25) {
-      return 'Iletisimde bazi surtunmeler fark edebilirsiniz. Ihtiyaclari ifade etmenin farkli yollarini kesfetmek anlamli bir gelisim alani olabilir.';
+      return 'İletişimde bazı sürtünmeler fark edebilirsiniz. İhtiyaçları ifade etmenin farklı yollarını keşfetmek anlamlı bir gelişim alanı olabilir.';
     }
-    return 'Yansimalariniz iletisimin birlikte buyumek icin onemli bir alan olduguna isaret ediyor. Acikliga dogru kucuk adimlar fark yaratabilir.';
+    return 'Yansımalarınız iletişimin birlikte büyümek için önemli bir alan olduğuna işaret ediyor. Açıklığa doğru küçük adımlar fark yaratabilir.';
   }
 
   // ─── Emotional ────────────────────────────────────────────────
@@ -905,13 +905,13 @@ class CompatibilityService {
 
   String _emotionalInsightTr(double score) {
     if (score >= 75) {
-      return 'Bu iliskideki duygusal varligi degerli buluyorsunuz. Yansimalariniz besleyici ve dengeli bir duygusal baglanti oldugunu gosteriyor.';
+      return 'Bu ilişkideki duygusal varlığı değerli buluyorsunuz. Yansımalarınız besleyici ve dengeli bir duygusal bağlantı olduğunu gösteriyor.';
     } else if (score >= 50) {
-      return 'Burada ilgili bir temel var gibi gorunuyor, ancak duygusal denge kosullara bagli olarak degisebilir.';
+      return 'Burada ilgili bir temel var gibi görünüyor, ancak duygusal denge koşullara bağlı olarak değişebilir.';
     } else if (score >= 25) {
-      return 'Zaman zaman esit olmayan duygusal yatirim fark edebilirsiniz. Duygusal olarak neye ihtiyaciniz oldugunu yansitmak netlik kazanmaniza yardimci olabilir.';
+      return 'Zaman zaman eşit olmayan duygusal yatırım fark edebilirsiniz. Duygusal olarak neye ihtiyacınız olduğunu yansıtmak netlik kazanmanıza yardımcı olabilir.';
     }
-    return 'Yansimalariniz duygusal baglantiyi dikkat gerektiren bir alan oldugunu gosteriyor. Birbirinizin duygusal dilini anlamak bir baslangic noktasi olabilir.';
+    return 'Yansımalarınız duygusal bağlantıyı dikkat gerektiren bir alan olduğunu gösteriyor. Birbirinizin duygusal dilini anlamak bir başlangıç noktası olabilir.';
   }
 
   // ─── Values ───────────────────────────────────────────────────
@@ -928,13 +928,13 @@ class CompatibilityService {
 
   String _valuesInsightTr(double score) {
     if (score >= 75) {
-      return 'Yansimalariniz ikiniz icin de en onemli konularda derin bir uyum gosteriyor. Paylasilan degerler guclu bir capa olabilir.';
+      return 'Yansımalarınız ikiniz için de en önemli konularda derin bir uyum gösteriyor. Paylaşılan değerler güçlü bir çapa olabilir.';
     } else if (score >= 50) {
-      return 'Degerlerde anlamli bir ortusme paylasiyorsunuz, farkliliklaninizi buyume kaynaklari olarak takdir etmeye yer var.';
+      return 'Değerlerde anlamlı bir örtüşme paylaşıyorsunuz, farklılıklarınızı büyüme kaynakları olarak takdir etmeye yer var.';
     } else if (score >= 25) {
-      return 'Degerleriniz bazi onemli alanlarda farklilik gosterebilir. Nerede baglandiginizi ve nerede ayristiginizi kesfetmek anlayis getirebilir.';
+      return 'Değerleriniz bazı önemli alanlarda farklılık gösterebilir. Nerede bağlandığınızı ve nerede ayrıştığınızı keşfetmek anlayış getirebilir.';
     }
-    return 'Yansimalariniz onemli hissedilebilecek bir deger farkliligi vurguluyor. Birbirinizin dunya gorusune acik merak degerli olabilir.';
+    return 'Yansımalarınız önemli hissedilebilecek bir değer farklılığı vurguluyor. Birbirinizin dünya görüşüne açık merak değerli olabilir.';
   }
 
   // ─── Growth ───────────────────────────────────────────────────
@@ -951,13 +951,13 @@ class CompatibilityService {
 
   String _growthInsightTr(double score) {
     if (score >= 75) {
-      return 'Bu iliskiyi buyume icin bir katalizor olarak deneyimliyorsunuz. Yanitlariniz karsilikli ilham ve saglikli meydan okumayi gosteriyor.';
+      return 'Bu ilişkiyi büyüme için bir katalizör olarak deneyimliyorsunuz. Yanıtlarınız karşılıklı ilham ve sağlıklı meydan okumayı gösteriyor.';
     } else if (score >= 50) {
-      return 'Bu iliskide buyume yasiyor, ancak her zaman kasitli hissetmeyebilir. Daha kasitli olmak bunu guclendirebilir.';
+      return 'Bu ilişkide büyüme yaşanıyor, ancak her zaman kasıtlı hissetmeyebilir. Daha kasıtlı olmak bunu güçlendirebilir.';
     } else if (score >= 25) {
-      return 'Bu dinamikte buyumenin sinirli oldugunu fark edebilirsiniz. Ikinizin de gelismesine neyin yardimci olacagini yansitmak yeni yollar acabilir.';
+      return 'Bu dinamikte büyümenin sınırlı olduğunu fark edebilirsiniz. İkinizin de gelişmesine neyin yardımcı olacağını yansıtmak yeni yollar açabilir.';
     }
-    return 'Yansimalariniz bu iliskinin zaman zaman durgun hissedilebilecegini gosteriyor. Ortak hedefler veya yeni deneyimler tanimak yardimci olabilir.';
+    return 'Yansımalarınız bu ilişkinin zaman zaman durgun hissedilebileceğini gösteriyor. Ortak hedefler veya yeni deneyimler tanımak yardımcı olabilir.';
   }
 
   // ─── Trust ────────────────────────────────────────────────────
@@ -974,13 +974,13 @@ class CompatibilityService {
 
   String _trustInsightTr(double score) {
     if (score >= 75) {
-      return 'Yansimalariniz derin bir guven ve guvenlik duygusu oldugunu gosteriyor. Kirilgan ve ozgun olmakta kendinizi ozgur hissediyorsunuz.';
+      return 'Yansımalarınız derin bir güven ve güvenlik duygusu olduğunu gösteriyor. Kırılgan ve özgün olmakta kendinizi özgür hissediyorsunuz.';
     } else if (score >= 50) {
-      return 'Burada makul bir guven seviyesi var. Ozgun bir sekilde var olmaya devam etmek bunu zamanla derinlestirebilir.';
+      return 'Burada makul bir güven seviyesi var. Özgün bir şekilde var olmaya devam etmek bunu zamanla derinleştirebilir.';
     } else if (score >= 25) {
-      return 'Guven buyume icin yer olan bir alan gibi gorunuyor. Kucuk, tutarli guvenilirlik eylemleri yeniden insa etmeye veya guclendirmeye yardimci olabilir.';
+      return 'Güven büyüme için yer olan bir alan gibi görünüyor. Küçük, tutarlı güvenilirlik eylemleri yeniden inşa etmeye veya güçlendirmeye yardımcı olabilir.';
     }
-    return 'Yansimalariniz guvenin dikkat gerektiren temel bir alan oldugunu gosteriyor. Ihtiyaclar ve sinirlar hakkinda durustce konusmalar yardimci olabilir.';
+    return 'Yansımalarınız güvenin dikkat gerektiren temel bir alan olduğunu gösteriyor. İhtiyaçlar ve sınırlar hakkında dürüstçe konuşmalar yardımcı olabilir.';
   }
 
   // ─── Overall Summary ─────────────────────────────────────────
@@ -997,13 +997,13 @@ class CompatibilityService {
 
   String _overallSummaryTr(double score, String name) {
     if (score >= 75) {
-      return '$name hakkindaki yansimalariniz derinden tatmin edici bir iliski resmini ciziyor. Baglanti, guven ve karsilikli buyumeye deger veriyorsunuz.';
+      return '$name hakkındaki yansımalarınız derinden tatmin edici bir ilişki resmini çiziyor. Bağlantı, güven ve karşılıklı büyümeye değer veriyorsunuz.';
     } else if (score >= 50) {
-      return '$name hakkindaki yansimalariniz guclu temellere ve daha derin baglanti icin acik alanlara sahip anlamli bir iliski oldugunu gosteriyor.';
+      return '$name hakkındaki yansımalarınız güçlü temellere ve daha derin bağlantı için açık alanlara sahip anlamlı bir ilişki olduğunu gösteriyor.';
     } else if (score >= 25) {
-      return '$name hakkindaki yansimalariniz hem guclu yanlari hem de kasitli ilgiden fayda gorebilecek alanlari olan bir iliskiyi ortaya koyuyor.';
+      return '$name hakkındaki yansımalarınız hem güçlü yanları hem de kasıtlı ilgiden fayda görebilecek alanları olan bir ilişkiyi ortaya koyuyor.';
     }
-    return '$name hakkindaki yansimalariniz birlikte buyume icin onemli alanlari vurguluyor. Her iki kisi de yatirim yapmaya istekli oldugunda her iliskinin potansiyeli vardir.';
+    return '$name hakkındaki yansımalarınız birlikte büyüme için önemli alanları vurguluyor. Her iki kişi de yatırım yapmaya istekli olduğunda her ilişkinin potansiyeli vardır.';
   }
 
   // ══════════════════════════════════════════════════════════════════════════

@@ -70,7 +70,7 @@ class ReferralService {
 
     final shareText = isEn
         ? 'I\'m discovering my emotional patterns with InnerCycles! Track moods, decode dreams, and see what your inner cycles reveal. Try it free:'
-        : 'InnerCycles ile duygusal kaliplarimi kesifediyorum! Ruh halini takip et, ruyalarini coz ve ic dongulerin ne anlatiyor gor. Ucretsiz dene:';
+        : 'InnerCycles ile duygusal kalıplarımı keşfediyorum! Ruh halini takip et, rüyalarını çöz ve iç döngülerinin ne anlattığını gör. Ücretsiz dene:';
 
     // App Store URL placeholder — update with real URL
     const appUrl = 'https://apps.apple.com/app/innercycles/id0000000000';
@@ -129,7 +129,7 @@ class ReferralService {
             : 'Premium Deneme Aktif!',
         subtitle: isEn
             ? '$daysLeft days remaining'
-            : '$daysLeft gun kaldi',
+            : '$daysLeft gün kaldı',
         progress: 1.0,
         isUnlocked: true,
       );
@@ -137,10 +137,10 @@ class ReferralService {
 
     if (trialGranted && !isTrialActive) {
       return ReferralStatus(
-        headline: isEn ? 'Trial Expired' : 'Deneme Suresi Doldu',
+        headline: isEn ? 'Trial Expired' : 'Deneme Süresi Doldu',
         subtitle: isEn
             ? 'Upgrade to keep premium features'
-            : 'Premium ozellikleri korumak icin yukselt',
+            : 'Premium özellikleri korumak için yükselt',
         progress: 1.0,
         isUnlocked: false,
         isExpired: true,
@@ -150,10 +150,10 @@ class ReferralService {
     return ReferralStatus(
       headline: isEn
           ? 'Share & Unlock Premium'
-          : 'Paylas ve Premium Ac',
+          : 'Paylaş ve Premium Aç',
       subtitle: isEn
           ? 'Share $sharesRemaining more times to unlock 7 days free'
-          : '$sharesRemaining kez daha paylas, 7 gun ucretsiz kazan',
+          : '$sharesRemaining kez daha paylaş, 7 gün ücretsiz kazan',
       progress: shareCount / sharesToUnlock,
       isUnlocked: false,
     );

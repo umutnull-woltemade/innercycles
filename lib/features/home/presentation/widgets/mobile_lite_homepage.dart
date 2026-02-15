@@ -166,7 +166,7 @@ class _AboveTheFold extends ConsumerWidget {
                     Text(
                       language == AppLanguage.en
                           ? 'Personal Reflection Journal'
-                          : 'Kisisel Yansima Günlügü',
+                          : 'Kişisel Yansıma Günlüğü',
                       style: TextStyle(
                         fontSize: 13,
                         color: isDark
@@ -213,7 +213,7 @@ class _AboveTheFold extends ConsumerWidget {
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
                   icon: '📊',
-                  label: language == AppLanguage.en ? 'Patterns' : 'Kaliplar',
+                  label: language == AppLanguage.en ? 'Patterns' : 'Kalıplar',
                   onTap: () => context.push(Routes.journalPatterns),
                   isDark: isDark,
                 ),
@@ -227,7 +227,7 @@ class _AboveTheFold extends ConsumerWidget {
                 const SizedBox(width: 8),
                 _QuickDiscoveryChip(
                   icon: '✨',
-                  label: language == AppLanguage.en ? 'Insight' : 'Icgörü',
+                  label: language == AppLanguage.en ? 'Insight' : 'İçgörü',
                   onTap: () => context.push(Routes.insight),
                   isDark: isDark,
                 ),
@@ -287,7 +287,7 @@ class _AboveTheFold extends ConsumerWidget {
                     child: Text(
                       language == AppLanguage.en
                           ? 'Start Today\'s Entry'
-                          : 'Bugünün Kaydini Baslat',
+                          : 'Bugünün Kaydını Başlat',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -318,12 +318,12 @@ class _AboveTheFold extends ConsumerWidget {
             'Find clarity in stillness',
           ]
         : [
-            'Bugün hangi kaliplari fark ediyorsun?',
-            'Kendine yansima için bir an al',
-            'Ic bilgeligin seni bekliyor',
-            'Kendin hakkinda yeni bir sey kesfet',
+            'Bugün hangi kalıpları fark ediyorsun?',
+            'Kendine yansıma için bir an al',
+            'İç bilgeliğin seni bekliyor',
+            'Kendin hakkında yeni bir şey keşfet',
             'Bugün büyüme günü',
-            'Kisisel yolculugunu kucakla',
+            'Kişisel yolculuğunu kucakla',
             'Sessizlikte netlik bul',
           ];
 
@@ -345,13 +345,13 @@ class _AboveTheFold extends ConsumerWidget {
             'Your journey of self-discovery continues.',
           ]
         : [
-            'Her yansima ani seni kendini anlamaya yaklastirir.',
-            'Düsüncelerin ve duyularin degerli icgörüler tasir.',
-            'Bugün ic dünyanı kesfetmek için zaman ayir.',
-            'Öz farkindalik kisisel büyümenin ilk adimidir.',
+            'Her yansıma anı seni kendini anlamaya yaklaştırır.',
+            'Düşüncelerin ve duyuların değerli içgörüler taşır.',
+            'Bugün iç dünyânı keşfetmek için zaman ayır.',
+            'Öz farkındalık kişisel büyümenin ilk adımıdır.',
             'Sezgilerin bugün sana ne söylüyor?',
-            'Düsüncelerindeki ve duygularindaki kaliplari fark et.',
-            'Kendini kesfif yolculugun devam ediyor.',
+            'Düşüncelerindeki ve duygularındaki kalıpları fark et.',
+            'Kendini keşfetme yolculuğun devam ediyor.',
           ];
 
     final dayOfYear = DateTime.now()
@@ -424,7 +424,7 @@ class _BelowTheFold extends ConsumerWidget {
           Text(
             language == AppLanguage.en
                 ? 'Journal & Patterns'
-                : 'Günlük ve Kaliplar',
+                : 'Günlük ve Kalıplar',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -439,10 +439,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.edit_note_outlined,
             title: language == AppLanguage.en
                 ? 'Daily Journal'
-                : 'Günlük Kayit',
+                : 'Günlük Kayıt',
             subtitle: language == AppLanguage.en
                 ? 'Track your energy, focus & emotions'
-                : 'Enerji, odak ve duygularini takip et',
+                : 'Enerji, odak ve duygularını takip et',
             route: Routes.journal,
             isDark: isDark,
             isHighlighted: true,
@@ -452,10 +452,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.insights_outlined,
             title: language == AppLanguage.en
                 ? 'Your Patterns'
-                : 'Kaliplarin',
+                : 'Kalıpların',
             subtitle: language == AppLanguage.en
                 ? 'Trends & correlations from your entries'
-                : 'Kayitlarindaki egilimler ve baglantilar',
+                : 'Kayıtlarındaki eğilimler ve bağlantılar',
             route: Routes.journalPatterns,
             isDark: isDark,
           ),
@@ -467,7 +467,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Duygusal Döngüler',
             subtitle: language == AppLanguage.en
                 ? 'Visualize your emotional wave patterns'
-                : 'Duygusal dalga kaliplarini görsellestin',
+                : 'Duygusal dalga kalıplarını görselleştir',
             route: Routes.emotionalCycles,
             isDark: isDark,
           ),
@@ -476,10 +476,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.calendar_month_outlined,
             title: language == AppLanguage.en
                 ? 'Monthly Reflection'
-                : 'Aylik Yansima',
+                : 'Aylık Yansıma',
             subtitle: language == AppLanguage.en
                 ? 'Review your month at a glance'
-                : 'Ayina bir bakista göz at',
+                : 'Ayına bir bakışta göz at',
             route: Routes.journalMonthly,
             isDark: isDark,
           ),
@@ -488,10 +488,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.favorite_border_outlined,
             title: language == AppLanguage.en
                 ? 'Gratitude Journal'
-                : 'Sükran Günlügü',
+                : 'Şükran Günlüğü',
             subtitle: language == AppLanguage.en
                 ? 'Capture what you\'re thankful for'
-                : 'Minnettar oldugun seyleri kaydet',
+                : 'Minnettar olduğun şeyleri kaydet',
             route: Routes.gratitudeJournal,
             isDark: isDark,
           ),
@@ -503,7 +503,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Soru Kütüphanesi',
             subtitle: language == AppLanguage.en
                 ? 'Curated prompts to spark reflection'
-                : 'Yansima baslatacak secilmis sorular',
+                : 'Yansıma başlatacak seçilmiş sorular',
             route: Routes.promptLibrary,
             isDark: isDark,
           ),
@@ -514,7 +514,7 @@ class _BelowTheFold extends ConsumerWidget {
           Text(
             language == AppLanguage.en
                 ? 'Dream Journal'
-                : 'Rüya Günlügü',
+                : 'Rüya Günlüğü',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -532,7 +532,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Rüya Yorumu',
             subtitle: language == AppLanguage.en
                 ? 'Explore your dream symbols'
-                : 'Rüya sembollerini kesfet',
+                : 'Rüya sembollerini keşfet',
             route: Routes.dreamInterpretation,
             isDark: isDark,
             isHighlighted: true,
@@ -542,10 +542,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.book_outlined,
             title: language == AppLanguage.en
                 ? 'Dream Dictionary'
-                : 'Rüya Sözlügü',
+                : 'Rüya Sözlüğü',
             subtitle: language == AppLanguage.en
                 ? '1000+ symbols with meanings'
-                : '1000+ sembol ve anlami',
+                : '1000+ sembol ve anlamı',
             route: Routes.dreamGlossary,
             isDark: isDark,
           ),
@@ -556,7 +556,7 @@ class _BelowTheFold extends ConsumerWidget {
           Text(
             language == AppLanguage.en
                 ? 'Growth & Self-Discovery'
-                : 'Büyüme ve Kendini Kesfetme',
+                : 'Büyüme ve Kendini Keşfetme',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -574,7 +574,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Büyüme Paneli',
             subtitle: language == AppLanguage.en
                 ? 'Your wellness score, streaks & milestones'
-                : 'Saglik skorun, serilerin ve kilometre taslarin',
+                : 'Sağlık skorun, serilerin ve kilometre taşların',
             route: Routes.growthDashboard,
             isDark: isDark,
             isHighlighted: true,
@@ -584,10 +584,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.psychology_outlined,
             title: language == AppLanguage.en
                 ? 'Attachment Style Quiz'
-                : 'Baglanma Stili Testi',
+                : 'Bağlanma Stili Testi',
             subtitle: language == AppLanguage.en
                 ? 'Discover your relationship patterns'
-                : 'Iliski kaliplarini kesfet',
+                : 'İlişki kalıplarını keşfet',
             route: Routes.attachmentQuiz,
             isDark: isDark,
           ),
@@ -596,10 +596,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.auto_awesome_outlined,
             title: language == AppLanguage.en
                 ? 'Personal Insight'
-                : 'Kisisel Icgörü',
+                : 'Kişisel İçgörü',
             subtitle: language == AppLanguage.en
                 ? 'AI-powered self-reflection assistant'
-                : 'Yapay zeka destekli öz-yansima asistani',
+                : 'Yapay zeka destekli öz-yansıma asistanı',
             route: Routes.insight,
             isDark: isDark,
           ),
@@ -611,7 +611,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Test Merkezi',
             subtitle: language == AppLanguage.en
                 ? 'All self-discovery quizzes in one place'
-                : 'Tüm kendini kesfetme testleri tek yerde',
+                : 'Tüm kendini keşfetme testleri tek yerde',
             route: Routes.quizHub,
             isDark: isDark,
           ),
@@ -623,7 +623,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Rehberli Programlar',
             subtitle: language == AppLanguage.en
                 ? 'Structured growth journeys'
-                : 'Yapilandirilmis büyüme yolculuklari',
+                : 'Yapılandırılmış büyüme yolculukları',
             route: Routes.programs,
             isDark: isDark,
           ),
@@ -635,7 +635,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Meydan Okumalar',
             subtitle: language == AppLanguage.en
                 ? 'Build better habits with guided challenges'
-                : 'Rehberli meydan okumalarla daha iyi aliskanliklar edin',
+                : 'Rehberli meydan okumalarla daha iyi alışkanlıklar edin',
             route: Routes.challenges,
             isDark: isDark,
           ),
@@ -644,10 +644,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.share_outlined,
             title: language == AppLanguage.en
                 ? 'Share Cards'
-                : 'Paylasim Kartlari',
+                : 'Paylaşım Kartları',
             subtitle: language == AppLanguage.en
                 ? 'Create & share beautiful insight cards'
-                : 'Güzel icgörü kartlari olustur ve paylas',
+                : 'Güzel içgörü kartları oluştur ve paylaş',
             route: Routes.shareCardGallery,
             isDark: isDark,
           ),
@@ -658,7 +658,7 @@ class _BelowTheFold extends ConsumerWidget {
           Text(
             language == AppLanguage.en
                 ? 'Wellness & Mindfulness'
-                : 'Saglik ve Farkindalik',
+                : 'Sağlık ve Farkındalık',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -676,7 +676,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Nefes Egzersizleri',
             subtitle: language == AppLanguage.en
                 ? 'Guided breathing for calm & focus'
-                : 'Sakinlik ve odak icin rehberli nefes',
+                : 'Sakinlik ve odak için rehberli nefes',
             route: Routes.breathing,
             isDark: isDark,
           ),
@@ -685,10 +685,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.self_improvement_outlined,
             title: language == AppLanguage.en
                 ? 'Meditation Timer'
-                : 'Meditasyon Zamanlayici',
+                : 'Meditasyon Zamanlayıcı',
             subtitle: language == AppLanguage.en
                 ? 'Timed sessions for mindfulness'
-                : 'Farkindalik icin zamanli oturumlar',
+                : 'Farkındalık için zamanlı oturumlar',
             route: Routes.meditation,
             isDark: isDark,
           ),
@@ -697,10 +697,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.spa_outlined,
             title: language == AppLanguage.en
                 ? 'Rituals & Habits'
-                : 'Ritüeller ve Aliskanliklar',
+                : 'Ritüeller ve Alışkanlıklar',
             subtitle: language == AppLanguage.en
                 ? 'Build daily wellness routines'
-                : 'Günlük saglik rutinleri olustur',
+                : 'Günlük sağlık rutinleri oluştur',
             route: Routes.rituals,
             isDark: isDark,
           ),
@@ -709,10 +709,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.park_outlined,
             title: language == AppLanguage.en
                 ? 'Seasonal Reflection'
-                : 'Mevsimsel Yansima',
+                : 'Mevsimsel Yansıma',
             subtitle: language == AppLanguage.en
                 ? 'Align with nature\'s rhythms'
-                : 'Doganin ritimleriyle uyum sagla',
+                : 'Doğanın ritimleriyle uyum sağla',
             route: Routes.seasonal,
             isDark: isDark,
           ),
@@ -724,7 +724,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Ay Takvimi',
             subtitle: language == AppLanguage.en
                 ? 'Track lunar phases & reflections'
-                : 'Ay evrelerini ve yansimalarini takip et',
+                : 'Ay evrelerini ve yansımalarını takip et',
             route: Routes.moonCalendar,
             isDark: isDark,
           ),
@@ -750,10 +750,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.archive_outlined,
             title: language == AppLanguage.en
                 ? 'Journal Archive'
-                : 'Günlük Arsivi',
+                : 'Günlük Arşivi',
             subtitle: language == AppLanguage.en
                 ? 'Search & browse all entries'
-                : 'Tüm kayitlari ara ve gözat',
+                : 'Tüm kayıtları ara ve gözat',
             route: Routes.journalArchive,
             isDark: isDark,
           ),
@@ -762,10 +762,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.file_download_outlined,
             title: language == AppLanguage.en
                 ? 'Export Data'
-                : 'Verileri Disa Aktar',
+                : 'Verileri Dışa Aktar',
             subtitle: language == AppLanguage.en
                 ? 'Download your journal as text, CSV, or JSON'
-                : 'Günlügünüzü metin, CSV veya JSON olarak indirin',
+                : 'Günlüğünüzü metin, CSV veya JSON olarak indirin',
             route: Routes.exportData,
             isDark: isDark,
           ),
@@ -774,10 +774,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.auto_stories_outlined,
             title: language == AppLanguage.en
                 ? 'Year in Review'
-                : 'Yillik Özet',
+                : 'Yıllık Özet',
             subtitle: language == AppLanguage.en
                 ? 'Your complete emotional story arc'
-                : 'Tam duygusal hikaye arkin',
+                : 'Tam duygusal hikaye arkın',
             route: Routes.yearReview,
             isDark: isDark,
           ),
@@ -786,10 +786,10 @@ class _BelowTheFold extends ConsumerWidget {
             icon: Icons.summarize_outlined,
             title: language == AppLanguage.en
                 ? 'Weekly Digest'
-                : 'Haftalik Özet',
+                : 'Haftalık Özet',
             subtitle: language == AppLanguage.en
                 ? 'Your week\'s insights at a glance'
-                : 'Haftanin icgörüleri bir bakista',
+                : 'Haftanın içgörüleri bir bakışta',
             route: Routes.weeklyDigest,
             isDark: isDark,
           ),

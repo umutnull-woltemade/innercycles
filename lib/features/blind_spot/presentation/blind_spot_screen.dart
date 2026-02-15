@@ -33,7 +33,7 @@ class BlindSpotScreen extends ConsumerWidget {
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (e, s) => Center(
               child: Text(
-                isEn ? 'Could not load data' : 'Veri yuklenemedi',
+                isEn ? 'Could not load data' : 'Veri yüklenemedi',
                 style: TextStyle(
                   color: isDark
                       ? AppColors.textMuted
@@ -46,7 +46,7 @@ class BlindSpotScreen extends ConsumerWidget {
                   const Center(child: CircularProgressIndicator()),
               error: (e, s) => Center(
                 child: Text(
-                  isEn ? 'Could not load data' : 'Veri yuklenemedi',
+                  isEn ? 'Could not load data' : 'Veri yüklenemedi',
                   style: TextStyle(
                     color: isDark
                         ? AppColors.textMuted
@@ -152,7 +152,7 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
           GlassSliverAppBar(
             title: widget.isEn
                 ? 'What Your Journal Reveals'
-                : 'Gunlugun Ne Ortaya Cikariyor',
+                : 'Günlüğün Ne Ortaya Çıkarıyor',
           ),
           if (!widget.hasEnough)
             SliverFillRemaining(
@@ -240,7 +240,7 @@ class _NotEnoughData extends StatelessWidget {
           Text(
             isEn
                 ? 'A little more journaling to go'
-                : 'Biraz daha gunluk tutmaya devam',
+                : 'Biraz daha günlük tutmaya devam',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,
@@ -256,9 +256,9 @@ class _NotEnoughData extends StatelessWidget {
                 ? 'You have $entryCount entries so far. After $remaining more, '
                     'your journal will have enough data to reveal patterns '
                     'you might not notice on your own.'
-                : 'Su ana kadar $entryCount kaydin var. $remaining kayit daha '
-                    'sonra, gunlugun kendi basina fark edemeyebilecegin '
-                    'oruntuleri ortaya cikarmak icin yeterli veriye sahip olacak.',
+                : 'Şu ana kadar $entryCount kaydın var. $remaining kayıt daha '
+                    'sonra, günlüğün kendi başına fark edemeyebileceğin '
+                    'örüntüleri ortaya çıkarmak için yeterli veriye sahip olacak.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 15,
@@ -295,7 +295,7 @@ class _NotEnoughData extends StatelessWidget {
                 Text(
                   isEn
                       ? '$entryCount / 14 entries'
-                      : '$entryCount / 14 kayit',
+                      : '$entryCount / 14 kayıt',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -386,7 +386,7 @@ class _OverallInsightCard extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  isEn ? 'Your Overview' : 'Genel Bakis',
+                  isEn ? 'Your Overview' : 'Genel Bakış',
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
@@ -490,7 +490,7 @@ class _BlindSpotsList extends StatelessWidget {
               child: Text(
                 isEn
                     ? 'No blind spots detected at this time. Keep journaling!'
-                    : 'Su anda bir kor nokta tespit edilmedi. Gunluk tutmaya devam et!',
+                    : 'Şu anda bir kör nokta tespit edilmedi. Günlük tutmaya devam et!',
                 style: TextStyle(
                   fontSize: 14,
                   color: isDark
@@ -508,7 +508,7 @@ class _BlindSpotsList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          isEn ? 'Blind Spots' : 'Kor Noktalar',
+          isEn ? 'Blind Spots' : 'Kör Noktalar',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,
@@ -771,7 +771,7 @@ class _SeverityIndicator extends StatelessWidget {
       case BlindSpotSeverity.low:
         return isEn ? 'Subtle' : 'Hafif';
       case BlindSpotSeverity.medium:
-        return isEn ? 'Notable' : 'Dikkat Cekici';
+        return isEn ? 'Notable' : 'Dikkat Çekici';
       case BlindSpotSeverity.high:
         return isEn ? 'Significant' : 'Belirgin';
     }
@@ -830,7 +830,7 @@ class _GrowthSuggestionsCard extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Text(
-                isEn ? 'Growth Suggestions' : 'Gelisim Onerileri',
+                isEn ? 'Growth Suggestions' : 'Gelişim Önerileri',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
@@ -918,7 +918,7 @@ class _DisclaimerFooter extends StatelessWidget {
             child: Text(
               isEn
                   ? 'Based on your journal patterns. These observations are not professional advice and are meant for personal reflection only.'
-                  : 'Gunluk oruntulerini temel aliyor. Bu gozlemler profesyonel tavsiye degildir ve yalnizca kisisel dusunce icin tasarlanmistir.',
+                  : 'Günlük örüntülerini temel alıyor. Bu gözlemler profesyonel tavsiye değildir ve yalnızca kişisel düşünce için tasarlanmıştır.',
               style: TextStyle(
                 fontSize: 11,
                 height: 1.4,

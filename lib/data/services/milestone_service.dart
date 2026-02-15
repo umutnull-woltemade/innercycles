@@ -44,15 +44,15 @@ enum MilestoneCategory {
       case MilestoneCategory.streak:
         return 'Seri';
       case MilestoneCategory.entries:
-        return 'Kayitlar';
+        return 'Kayıtlar';
       case MilestoneCategory.exploration:
-        return 'Kesif';
+        return 'Keşif';
       case MilestoneCategory.depth:
         return 'Derinlik';
       case MilestoneCategory.social:
         return 'Sosyal';
       case MilestoneCategory.growth:
-        return 'Gelisim';
+        return 'Gelişim';
     }
   }
 }
@@ -143,9 +143,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'streak_3',
     nameEn: 'Spark',
-    nameTr: 'Kivilcim',
+    nameTr: 'Kıvılcım',
     descriptionEn: 'Maintained a 3-day journaling streak.',
-    descriptionTr: '3 gunluk bir kayit serisi olusturdun.',
+    descriptionTr: '3 günlük bir kayıt serisi oluşturdun.',
     emoji: '\u{1F525}',
     category: MilestoneCategory.streak,
     requirement: 'streak >= 3',
@@ -153,9 +153,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'streak_7',
     nameEn: 'Week Warrior',
-    nameTr: 'Hafta Savascisi',
+    nameTr: 'Hafta Savaşçısı',
     descriptionEn: 'Kept a full 7-day journaling streak.',
-    descriptionTr: '7 gunluk bir kayit serisi olusturdun.',
+    descriptionTr: '7 günlük bir kayıt serisi oluşturdun.',
     emoji: '\u{26A1}',
     category: MilestoneCategory.streak,
     requirement: 'streak >= 7',
@@ -163,9 +163,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'streak_14',
     nameEn: 'Fortnight Flow',
-    nameTr: 'Iki Haftalik Akis',
+    nameTr: 'İki Haftalık Akış',
     descriptionEn: 'Achieved a 14-day journaling streak.',
-    descriptionTr: '14 gunluk bir kayit serisi olusturdun.',
+    descriptionTr: '14 günlük bir kayıt serisi oluşturdun.',
     emoji: '\u{1F30A}',
     category: MilestoneCategory.streak,
     requirement: 'streak >= 14',
@@ -173,9 +173,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'streak_30',
     nameEn: 'Month Master',
-    nameTr: 'Ay Ustasi',
+    nameTr: 'Ay Ustası',
     descriptionEn: 'Completed an incredible 30-day journaling streak.',
-    descriptionTr: '30 gunluk bir kayit serisi olusturdun.',
+    descriptionTr: '30 günlük bir kayıt serisi oluşturdun.',
     emoji: '\u{1F451}',
     category: MilestoneCategory.streak,
     requirement: 'streak >= 30',
@@ -185,7 +185,7 @@ const List<Milestone> _allMilestones = [
     nameEn: 'Eternal Flame',
     nameTr: 'Sonsuz Alev',
     descriptionEn: 'Sustained a legendary 60-day journaling streak.',
-    descriptionTr: '60 gunluk bir kayit serisi olusturdun.',
+    descriptionTr: '60 günlük bir kayıt serisi oluşturdun.',
     emoji: '\u{1F31F}',
     category: MilestoneCategory.streak,
     requirement: 'streak >= 60',
@@ -195,9 +195,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'entries_1',
     nameEn: 'First Step',
-    nameTr: 'Ilk Adim',
+    nameTr: 'İlk Adım',
     descriptionEn: 'Created your very first journal entry.',
-    descriptionTr: 'Ilk kayidini olusturdun.',
+    descriptionTr: 'İlk kaydını oluşturdun.',
     emoji: '\u{270F}\u{FE0F}',
     category: MilestoneCategory.entries,
     requirement: 'entries >= 1',
@@ -205,9 +205,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'entries_10',
     nameEn: 'Getting Started',
-    nameTr: 'Yola Cikis',
+    nameTr: 'Yola Çıkış',
     descriptionEn: 'Reached 10 journal entries.',
-    descriptionTr: '10 kayda ulastin.',
+    descriptionTr: '10 kayda ulaştın.',
     emoji: '\u{1F4D3}',
     category: MilestoneCategory.entries,
     requirement: 'entries >= 10',
@@ -215,9 +215,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'entries_25',
     nameEn: 'Quarter Century',
-    nameTr: 'Ceyrek Yuzyil',
+    nameTr: 'Çeyrek Yüzyıl',
     descriptionEn: 'Reached 25 journal entries.',
-    descriptionTr: '25 kayda ulastin.',
+    descriptionTr: '25 kayda ulaştın.',
     emoji: '\u{1F4DA}',
     category: MilestoneCategory.entries,
     requirement: 'entries >= 25',
@@ -225,9 +225,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'entries_50',
     nameEn: 'Chronicler',
-    nameTr: 'Tarihci',
+    nameTr: 'Tarihçi',
     descriptionEn: 'Reached 50 journal entries.',
-    descriptionTr: '50 kayda ulastin.',
+    descriptionTr: '50 kayda ulaştın.',
     emoji: '\u{1F4DC}',
     category: MilestoneCategory.entries,
     requirement: 'entries >= 50',
@@ -235,9 +235,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'entries_100',
     nameEn: 'Centurion',
-    nameTr: 'Yuzbasi',
+    nameTr: 'Yüzbaşı',
     descriptionEn: 'Reached 100 journal entries. True dedication.',
-    descriptionTr: '100 kayda ulastin. Gercek bir baglilik.',
+    descriptionTr: '100 kayda ulaştın. Gerçek bir bağlılık.',
     emoji: '\u{1F3C6}',
     category: MilestoneCategory.entries,
     requirement: 'entries >= 100',
@@ -247,9 +247,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'explore_all_focus',
     nameEn: 'Well-Rounded',
-    nameTr: 'Cok Yonlu',
+    nameTr: 'Çok Yönlü',
     descriptionEn: 'Used all 5 focus areas at least once.',
-    descriptionTr: '5 odak alaninin hepsini en az bir kez kullandin.',
+    descriptionTr: '5 odak alanının hepsini en az bir kez kullandın.',
     emoji: '\u{1F308}',
     category: MilestoneCategory.exploration,
     requirement: 'focusAreas == 5',
@@ -257,9 +257,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'explore_quiz',
     nameEn: 'Quiz Taker',
-    nameTr: 'Test Meraklisi',
+    nameTr: 'Test Meraklısı',
     descriptionEn: 'Completed your first self-discovery quiz.',
-    descriptionTr: 'Ilk oz-kesif testini tamamladin.',
+    descriptionTr: 'İlk öz-keşif testini tamamladın.',
     emoji: '\u{1F9E0}',
     category: MilestoneCategory.exploration,
     requirement: 'completedQuiz',
@@ -277,9 +277,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'explore_dream',
     nameEn: 'Dream Catcher',
-    nameTr: 'Ruya Avcisi',
+    nameTr: 'Rüya Avcısı',
     descriptionEn: 'Recorded your first dream in the journal.',
-    descriptionTr: 'Ilk ruyani kaydettin.',
+    descriptionTr: 'İlk rüyanı kaydettin.',
     emoji: '\u{1F319}',
     category: MilestoneCategory.exploration,
     requirement: 'wroteDream',
@@ -289,7 +289,7 @@ const List<Milestone> _allMilestones = [
     nameEn: 'Focus Hopper',
     nameTr: 'Odak Gezgini',
     descriptionEn: 'Used at least 3 different focus areas.',
-    descriptionTr: 'En az 3 farkli odak alani kullandin.',
+    descriptionTr: 'En az 3 farklı odak alanı kullandın.',
     emoji: '\u{1F50D}',
     category: MilestoneCategory.exploration,
     requirement: 'focusAreas >= 3',
@@ -299,9 +299,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'depth_deep_5',
     nameEn: 'Soul Diver',
-    nameTr: 'Ruh Dalgici',
+    nameTr: 'Ruh Dalgıcı',
     descriptionEn: 'Wrote 5 deep entries with a rating of 8 or higher.',
-    descriptionTr: '8 ve uzeri puanla 5 derin kayit yazdin.',
+    descriptionTr: '8 ve üzeri puanla 5 derin kayıt yazdın.',
     emoji: '\u{1F30A}',
     category: MilestoneCategory.depth,
     requirement: 'deepEntries >= 5',
@@ -309,9 +309,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'depth_monthly',
     nameEn: 'Reflector',
-    nameTr: 'Yansitici',
+    nameTr: 'Yansıtıcı',
     descriptionEn: 'Completed a monthly reflection.',
-    descriptionTr: 'Bir aylik yansitma tamamladin.',
+    descriptionTr: 'Bir aylık yansıtma tamamladın.',
     emoji: '\u{1FA9E}',
     category: MilestoneCategory.depth,
     requirement: 'completedMonthlyReflection',
@@ -319,9 +319,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'depth_patterns',
     nameEn: 'Pattern Seeker',
-    nameTr: 'Kalip Arayici',
+    nameTr: 'Kalıp Arayıcı',
     descriptionEn: 'Visited the patterns screen to explore trends.',
-    descriptionTr: 'Trendleri kesfetmek icin kaliplar ekranini ziyaret ettin.',
+    descriptionTr: 'Trendleri keşfetmek için kalıplar ekranını ziyaret ettin.',
     emoji: '\u{1F52E}',
     category: MilestoneCategory.depth,
     requirement: 'usedPatternScreen',
@@ -329,9 +329,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'depth_deep_1',
     nameEn: 'First Depth',
-    nameTr: 'Ilk Derinlik',
+    nameTr: 'İlk Derinlik',
     descriptionEn: 'Wrote your first deep entry (rating 8+).',
-    descriptionTr: 'Ilk derin kaydini yazdin (puan 8+).',
+    descriptionTr: 'İlk derin kaydını yazdın (puan 8+).',
     emoji: '\u{1F4A7}',
     category: MilestoneCategory.depth,
     requirement: 'deepEntries >= 1',
@@ -339,9 +339,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'depth_consistent_notes',
     nameEn: 'Thoughtful Writer',
-    nameTr: 'Dusunce Yazari',
+    nameTr: 'Düşünce Yazarı',
     descriptionEn: 'Wrote notes in at least 10 entries.',
-    descriptionTr: 'En az 10 kayida not yazdin.',
+    descriptionTr: 'En az 10 kayda not yazdın.',
     emoji: '\u{1F58A}\u{FE0F}',
     category: MilestoneCategory.depth,
     requirement: 'entries >= 10 with notes',
@@ -351,9 +351,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'social_share',
     nameEn: 'Story Teller',
-    nameTr: 'Hikaye Anlaticisi',
+    nameTr: 'Hikaye Anlatıcısı',
     descriptionEn: 'Shared an insight card with others.',
-    descriptionTr: 'Bir icerik kartini baskalariyla paylastin.',
+    descriptionTr: 'Bir içerik kartını başkalarıyla paylaştın.',
     emoji: '\u{1F4E4}',
     category: MilestoneCategory.social,
     requirement: 'sharedInsight',
@@ -361,9 +361,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'social_compatibility',
     nameEn: 'Connection Seeker',
-    nameTr: 'Baglanti Arayici',
+    nameTr: 'Bağlantı Arayıcı',
     descriptionEn: 'Completed a compatibility reflection.',
-    descriptionTr: 'Bir uyumluluk yansitmasi tamamladin.',
+    descriptionTr: 'Bir uyumluluk yansıtması tamamladın.',
     emoji: '\u{1F91D}',
     category: MilestoneCategory.social,
     requirement: 'completedCompatibility',
@@ -373,7 +373,7 @@ const List<Milestone> _allMilestones = [
     nameEn: 'Proud Streak',
     nameTr: 'Gurur Serisi',
     descriptionEn: 'Shared your streak progress with a friend.',
-    descriptionTr: 'Seri ilerlemeni bir arkadasinla paylastin.',
+    descriptionTr: 'Seri ilerlemeni bir arkadaşınla paylaştın.',
     emoji: '\u{1F4AA}',
     category: MilestoneCategory.social,
     requirement: 'sharedInsight && streak >= 3',
@@ -381,9 +381,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'social_profile_duo',
     nameEn: 'Dynamic Duo',
-    nameTr: 'Dinamik Ikili',
+    nameTr: 'Dinamik İkili',
     descriptionEn: 'Added a second profile for comparison.',
-    descriptionTr: 'Karsilastirma icin ikinci bir profil ekledin.',
+    descriptionTr: 'Karşılaştırma için ikinci bir profil ekledin.',
     emoji: '\u{1F46B}',
     category: MilestoneCategory.social,
     requirement: 'completedCompatibility',
@@ -393,7 +393,7 @@ const List<Milestone> _allMilestones = [
     nameEn: 'Community Voice',
     nameTr: 'Topluluk Sesi',
     descriptionEn: 'Shared your growth journey externally.',
-    descriptionTr: 'Gelisim yolculugunu dis dunyayla paylastin.',
+    descriptionTr: 'Gelişim yolculuğunu dış dünyayla paylaştın.',
     emoji: '\u{1F4E3}',
     category: MilestoneCategory.social,
     requirement: 'sharedInsight',
@@ -405,7 +405,7 @@ const List<Milestone> _allMilestones = [
     nameEn: 'Season Keeper',
     nameTr: 'Mevsim Koruyucusu',
     descriptionEn: 'Completed all seasonal reflection prompts.',
-    descriptionTr: 'Tum mevsimsel yansitma sorularini tamamladin.',
+    descriptionTr: 'Tüm mevsimsel yansıtma sorularını tamamladın.',
     emoji: '\u{1F343}',
     category: MilestoneCategory.growth,
     requirement: 'completedSeasonalPrompts',
@@ -413,9 +413,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'growth_energy_map',
     nameEn: 'Energy Mapper',
-    nameTr: 'Enerji Haritacisi',
+    nameTr: 'Enerji Haritacısı',
     descriptionEn: 'Filled in your personal energy map.',
-    descriptionTr: 'Kisisel enerji haritani doldurdun.',
+    descriptionTr: 'Kişisel enerji haritanı doldurdun.',
     emoji: '\u{1F5FA}\u{FE0F}',
     category: MilestoneCategory.growth,
     requirement: 'filledEnergyMap',
@@ -423,9 +423,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'growth_wellness_80',
     nameEn: 'Wellness Champion',
-    nameTr: 'Saglik Sampiyonu',
+    nameTr: 'Sağlık Şampiyonu',
     descriptionEn: 'Reached a wellness score of 80 or higher.',
-    descriptionTr: '80 ve uzeri saglik puanina ulastin.',
+    descriptionTr: '80 ve üzeri sağlık puanına ulaştın.',
     emoji: '\u{1F3AF}',
     category: MilestoneCategory.growth,
     requirement: 'wellnessScore >= 80',
@@ -433,9 +433,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'growth_all_milestones',
     nameEn: 'Completionist',
-    nameTr: 'Tamamlayici',
+    nameTr: 'Tamamlayıcı',
     descriptionEn: 'Earned 25 other milestones. Incredible!',
-    descriptionTr: '25 diger rozeti kazandin. Inanilmaz!',
+    descriptionTr: '25 diğer rozeti kazandın. İnanılmaz!',
     emoji: '\u{1F48E}',
     category: MilestoneCategory.growth,
     requirement: 'earned >= 25 other milestones',
@@ -443,9 +443,9 @@ const List<Milestone> _allMilestones = [
   Milestone(
     id: 'growth_half',
     nameEn: 'Halfway There',
-    nameTr: 'Yaridayiz',
+    nameTr: 'Yarıdayız',
     descriptionEn: 'Earned 15 milestones. Keep going!',
-    descriptionTr: '15 rozet kazandin. Devam et!',
+    descriptionTr: '15 rozet kazandın. Devam et!',
     emoji: '\u{2B50}',
     category: MilestoneCategory.growth,
     requirement: 'earned >= 15 milestones',

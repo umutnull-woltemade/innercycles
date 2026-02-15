@@ -79,7 +79,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
             ),
             error: (_, _) => Center(
               child: Text(
-                isEn ? 'Unable to load data' : 'Veri yuklenemedi',
+                isEn ? 'Unable to load data' : 'Veri yüklenemedi',
                 style: TextStyle(
                   color: isDark
                       ? AppColors.textSecondary
@@ -134,7 +134,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Your Inner Cycles' : 'Ic Dongulerin',
+            title: isEn ? 'Your Inner Cycles' : 'İç Döngülerin',
           ),
           SliverFillRemaining(
             hasScrollBody: false,
@@ -154,7 +154,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     Text(
                       isEn
                           ? 'Your Cycles Are Forming'
-                          : 'Dongulerin Olusturuluyor',
+                          : 'Döngülerin Oluşturuluyor',
                       style:
                           Theme.of(context).textTheme.headlineSmall?.copyWith(
                         color: isDark
@@ -168,7 +168,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     Text(
                       isEn
                           ? 'Log $needed more entries to discover your emotional patterns. You have $current so far.'
-                          : '$needed kayit daha yap ve duygusal kaliplarini kesfet. Su ana kadar $current kaydin var.',
+                          : '$needed kayıt daha yap ve duygusal kalıplarını keşfet. Şu ana kadar $current kaydın var.',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: isDark
                             ? AppColors.textSecondary
@@ -216,7 +216,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                       ),
                       icon: const Icon(Icons.edit_note, size: 20),
                       label: Text(
-                        isEn ? 'Start Journaling' : 'Kayit Yapmaya Basla',
+                        isEn ? 'Start Journaling' : 'Kayıt Yapmaya Başla',
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -264,7 +264,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Your Inner Cycles' : 'Ic Dongulerin',
+            title: isEn ? 'Your Inner Cycles' : 'İç Döngülerin',
             largeTitleMode: true,
           ),
 
@@ -296,7 +296,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 // CYCLE SUMMARY CARDS
                 // ══════════════════════════════════════════════════════════
                 Text(
-                  isEn ? 'Your Dimensions' : 'Boyutlarin',
+                  isEn ? 'Your Dimensions' : 'Boyutların',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: isDark
                         ? AppColors.textPrimary
@@ -338,7 +338,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 // ══════════════════════════════════════════════════════════
                 if (analysis.insights.isNotEmpty) ...[
                   Text(
-                    isEn ? 'Cycle Insights' : 'Dongu Icgoruleri',
+                    isEn ? 'Cycle Insights' : 'Döngü İçgörüleri',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: isDark
                           ? AppColors.textPrimary
@@ -444,7 +444,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
               Text(
                 isEn
                     ? 'Last $displayDays Days'
-                    : 'Son $displayDays Gun',
+                    : 'Son $displayDays Gün',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: isDark
                       ? AppColors.textSecondary
@@ -475,7 +475,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     Text(
                       isEn
                           ? 'Start journaling to see your cycles'
-                          : 'Dongulerni gormek icin kayit yapmaya basla',
+                          : 'Döngüleri görmek için kayıt yapmaya başla',
                       style: TextStyle(
                         color: isDark
                             ? AppColors.textMuted
@@ -522,7 +522,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                   Text(
                     isEn
                         ? '$displayDays days ago'
-                        : '$displayDays gun once',
+                        : '$displayDays gün önce',
                     style: TextStyle(
                       fontSize: 10,
                       color: isDark
@@ -531,7 +531,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     ),
                   ),
                   Text(
-                    isEn ? 'Today' : 'Bugun',
+                    isEn ? 'Today' : 'Bugün',
                     style: TextStyle(
                       fontSize: 10,
                       color: isDark
@@ -807,7 +807,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 Text(
                   isEn
                       ? 'Share My Inner Cycles'
-                      : 'Ic Dongullerimi Paylas',
+                      : 'İç Döngülerimi Paylaş',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -857,7 +857,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            isEn ? 'Unlock Full 30-Day View' : 'Tam 30 Gunluk Gorunumu Ac',
+            isEn ? 'Unlock Full 30-Day View' : 'Tam 30 Günlük Görünümü Aç',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: AppColors.starGold,
               fontWeight: FontWeight.w600,
@@ -867,7 +867,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           Text(
             isEn
                 ? 'You have $totalEntries entries. Log 30+ days for the full cycle view, or go premium.'
-                : '$totalEntries kaydin var. Tam dongu gorunumu icin 30+ gun kayit yap veya premium\'a gec.',
+                : '$totalEntries kaydın var. Tam döngü görünümü için 30+ gün kayıt yap veya premium\'a geç.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
@@ -891,7 +891,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 ),
               ),
               child: Text(
-                isEn ? 'Go Premium' : 'Premium\'a Gec',
+                isEn ? 'Go Premium' : 'Premium\'a Geç',
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

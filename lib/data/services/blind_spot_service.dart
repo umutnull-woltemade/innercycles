@@ -229,7 +229,7 @@ class BlindSpotService {
         spots.add(BlindSpot(
           id: 'avoided_${area.name}',
           typeEn: 'Rarely Explored Area',
-          typeTr: 'Nadiren Kesfedilen Alan',
+          typeTr: 'Nadiren Keşfedilen Alan',
           insightEn: count == 0
               ? 'You have never selected ${area.displayNameEn} as a focus area. '
                   'This might be an area worth exploring when you feel ready.'
@@ -237,11 +237,11 @@ class BlindSpotService {
                   '(only $count out of $total entries). This could be an area '
                   'you might explore for new insights.',
           insightTr: count == 0
-              ? '${area.displayNameTr} alanini hic odak olarak secmedin. '
-                  'Hazir hissettiginde kesfetmeye deger bir alan olabilir.'
-              : 'Kayitlarin ${area.displayNameTr} alanina nadiren '
-                  'odaklandigini gosteriyor ($total kayittan sadece $count). '
-                  'Yeni bakis acilari icin kesfedebilecegin bir alan olabilir.',
+              ? '${area.displayNameTr} alanını hiç odak olarak seçmedin. '
+                  'Hazır hissettiğinde keşfetmeye değer bir alan olabilir.'
+              : 'Kayıtların ${area.displayNameTr} alanına nadiren '
+                  'odaklandığını gösteriyor ($total kayıttan sadece $count). '
+                  'Yeni bakış açıları için keşfedebileceğin bir alan olabilir.',
           severity: severity,
           category: BlindSpotCategory.avoidedArea,
           discoveredDate: now,
@@ -276,15 +276,15 @@ class BlindSpotService {
       spots.add(BlindSpot(
         id: 'bias_positivity',
         typeEn: 'Positivity Tendency',
-        typeTr: 'Pozitiflik Egilimi',
+        typeTr: 'Pozitiflik Eğilimi',
         insightEn: 'Your entries tend to have consistently high ratings '
             '(average ${avg.toStringAsFixed(1)}/5). While that can reflect '
             'genuine well-being, you may find value in noticing subtler '
             'fluctuations in how you feel day to day.',
-        insightTr: 'Kayitlarin genellikle yuksek puanlara sahip '
-            '(ortalama ${avg.toStringAsFixed(1)}/5). Bu gercek bir iyi olus '
-            'halini yansitabilir, ancak gun icindeki ince dalgalanmalari '
-            'fark etmekte de deger bulabilirsin.',
+        insightTr: 'Kayıtların genellikle yüksek puanlara sahip '
+            '(ortalama ${avg.toStringAsFixed(1)}/5). Bu gerçek bir iyi oluş '
+            'halini yansıtabilir, ancak gün içindeki ince dalgalanmaları '
+            'fark etmekte de değer bulabilirsin.',
         severity: BlindSpotSeverity.low,
         category: BlindSpotCategory.ratingBias,
         discoveredDate: now,
@@ -296,15 +296,15 @@ class BlindSpotService {
       spots.add(BlindSpot(
         id: 'bias_negativity',
         typeEn: 'Self-Critical Tendency',
-        typeTr: 'Oz Elestiri Egilimi',
+        typeTr: 'Öz Eleştiri Eğilimi',
         insightEn: 'Your entries suggest you may rate yourself lower than '
             'average (${avg.toStringAsFixed(1)}/5). Remember that journaling '
             'captures moments, not your full picture. You might consider '
             'noting small wins alongside challenges.',
-        insightTr: 'Kayitlarin kendini ortalamadan daha dusuk puanladigini '
-            'gosteriyor (${avg.toStringAsFixed(1)}/5). Gunlugun anlari '
-            'yakaliyor, tum resmini degil. Zorluklarin yaninda kucuk '
-            'basarilari da not etmeyi dusunebilirsin.',
+        insightTr: 'Kayıtların kendini ortalamadan daha düşük puanladığını '
+            'gösteriyor (${avg.toStringAsFixed(1)}/5). Günlüğün anları '
+            'yakalıyor, tüm resmini değil. Zorlukların yanında küçük '
+            'başarıları da not etmeyi düşünebilirsin.',
         severity: BlindSpotSeverity.medium,
         category: BlindSpotCategory.ratingBias,
         discoveredDate: now,
@@ -320,13 +320,13 @@ class BlindSpotService {
       spots.add(BlindSpot(
         id: 'bias_flat',
         typeEn: 'Narrow Rating Range',
-        typeTr: 'Dar Puanlama Araligi',
+        typeTr: 'Dar Puanlama Aralığı',
         insightEn: 'Your ratings tend to stay very close together. '
             'Allowing yourself to use the full range might help you '
             'notice patterns that are currently hidden in similar scores.',
-        insightTr: 'Puanlarin birbirine cok yakin kalma egiliminde. '
-            'Tam aralik kullanmak, benzer puanlarin arkasina gizlenen '
-            'oruntuleri fark etmene yardimci olabilir.',
+        insightTr: 'Puanların birbirine çok yakın kalma eğiliminde. '
+            'Tam aralık kullanmak, benzer puanların arkasına gizlenen '
+            'örüntüleri fark etmene yardımcı olabilir.',
         severity: BlindSpotSeverity.low,
         category: BlindSpotCategory.ratingBias,
         discoveredDate: now,
@@ -384,16 +384,16 @@ class BlindSpotService {
       spots.add(BlindSpot(
         id: 'day_low_$lowestDay',
         typeEn: 'Recurring Low Day',
-        typeTr: 'Tekrarlayan Dusuk Gun',
+        typeTr: 'Tekrarlayan Düşük Gün',
         insightEn: 'Your entries suggest that ${dayNameEn}s tend to feel '
             'more challenging (average ${lowestAvg.toStringAsFixed(1)} '
             'vs your overall ${overallAvg.toStringAsFixed(1)}). '
             'You might explore what typically happens on that day.',
-        insightTr: 'Kayitlarin $dayNameTr gunlerinin daha zorlu '
-            'hissettirdigini gosteriyor (ortalama '
+        insightTr: 'Kayıtların $dayNameTr günlerinin daha zorlu '
+            'hissettirdiğini gösteriyor (ortalama '
             '${lowestAvg.toStringAsFixed(1)}, genel '
-            '${overallAvg.toStringAsFixed(1)}). O gun tipik olarak '
-            'neler oldugunu kesfetmek isteyebilirsin.',
+            '${overallAvg.toStringAsFixed(1)}). O gün tipik olarak '
+            'neler olduğunu keşfetmek isteyebilirsin.',
         severity: (overallAvg - lowestAvg) >= 1.5
             ? BlindSpotSeverity.high
             : BlindSpotSeverity.medium,
@@ -420,14 +420,14 @@ class BlindSpotService {
       spots.add(BlindSpot(
         id: 'day_high_$highestDay',
         typeEn: 'Peak Day Pattern',
-        typeTr: 'Zirve Gunu Oruntusi',
+        typeTr: 'Zirve Günü Örüntüsü',
         insightEn: 'You may notice that ${dayNameEn}s tend to feel better '
             'than other days (average ${highestAvg.toStringAsFixed(1)}). '
             'Understanding what makes that day work could help other days too.',
-        insightTr: '$dayNameTr gunlerinin diger gunlerden daha iyi '
-            'hissettirdigini fark edebilirsin (ortalama '
-            '${highestAvg.toStringAsFixed(1)}). O gunu iyi yapan seyi '
-            'anlamak diger gunlere de yardimci olabilir.',
+        insightTr: '$dayNameTr günlerinin diğer günlerden daha iyi '
+            'hissettirdiğini fark edebilirsin (ortalama '
+            '${highestAvg.toStringAsFixed(1)}). O günü iyi yapan şeyi '
+            'anlamak diğer günlere de yardımcı olabilir.',
         severity: BlindSpotSeverity.low,
         category: BlindSpotCategory.dayPattern,
         discoveredDate: now,
@@ -469,15 +469,15 @@ class BlindSpotService {
       now: now,
       idSuffix: 'social_energy',
       typeEn: 'Social-Energy Pattern',
-      typeTr: 'Sosyal-Enerji Oruntusi',
+      typeTr: 'Sosyal-Enerji Örüntüsü',
       insightEn: 'Your entries suggest that after days with high Social '
           'ratings, your Energy tends to dip the following day. '
           'You might consider building in recovery time after '
           'socially active days.',
-      insightTr: 'Kayitlarin yuksek Sosyal puanli gunlerden sonra '
-          'Enerji\'nin dusme egiliminde oldugunu gosteriyor. '
-          'Sosyal olarak aktif gunlerden sonra toparlanma zamani '
-          'planlamayi dusunebilirsin.',
+      insightTr: 'Kayıtların yüksek Sosyal puanlı günlerden sonra '
+          'Enerji\'nin düşme eğiliminde olduğunu gösteriyor. '
+          'Sosyal olarak aktif günlerden sonra toparlanma zamanı '
+          'planlamayı düşünebilirsin.',
     );
 
     // Check: does low focus correlate with low decisions on the same day?
@@ -591,14 +591,14 @@ class BlindSpotService {
       spots.add(BlindSpot(
         id: 'corr_${area1.name}_${area2.name}',
         typeEn: '${area1.displayNameEn}-${area2.displayNameEn} Link',
-        typeTr: '${area1.displayNameTr}-${area2.displayNameTr} Baglantisi',
+        typeTr: '${area1.displayNameTr}-${area2.displayNameTr} Bağlantısı',
         insightEn: 'When your ${area1.displayNameEn} is low, your '
             '${area2.displayNameEn} tends to be low on the same day. '
             'Addressing one of these areas might naturally lift the other.',
-        insightTr: '${area1.displayNameTr} dusuk oldugunda, '
-            '${area2.displayNameTr} de ayni gun dusuk olma egiliminde. '
-            'Bu alanlardan birini ele almak digerni dogal olarak '
-            'yukselitebilir.',
+        insightTr: '${area1.displayNameTr} düşük olduğunda, '
+            '${area2.displayNameTr} de aynı gün düşük olma eğiliminde. '
+            'Bu alanlardan birini ele almak diğerini doğal olarak '
+            'yükseltebilir.',
         severity: BlindSpotSeverity.medium,
         category: BlindSpotCategory.moodCorrelation,
         discoveredDate: now,
@@ -641,15 +641,15 @@ class BlindSpotService {
         spots.add(BlindSpot(
           id: 'subrating_$key',
           typeEn: 'Consistently Low: $displayNameEn',
-          typeTr: 'Surekli Dusuk: $displayNameTr',
+          typeTr: 'Sürekli Düşük: $displayNameTr',
           insightEn: 'Your $displayNameEn sub-rating has averaged '
               '${avg.toStringAsFixed(1)}/5 across $count entries. '
               'This could be something worth gently exploring '
               'or giving extra attention to.',
-          insightTr: '$displayNameTr alt puanin $count kayit boyunca '
-              'ortalama ${avg.toStringAsFixed(1)}/5 olmus. Bu, '
-              'nazikce kesfetmeye veya ekstra dikkat gostermeye '
-              'deger bir sey olabilir.',
+          insightTr: '$displayNameTr alt puanın $count kayıt boyunca '
+              'ortalama ${avg.toStringAsFixed(1)}/5 olmuş. Bu, '
+              'nazikçe keşfetmeye veya ekstra dikkat göstermeye '
+              'değer bir şey olabilir.',
           severity:
               avg <= 1.5 ? BlindSpotSeverity.high : BlindSpotSeverity.medium,
           category: BlindSpotCategory.neglectedSubRating,
@@ -694,15 +694,15 @@ class BlindSpotService {
         spots.add(BlindSpot(
           id: 'stagnation_${area.name}',
           typeEn: '${area.displayNameEn}: Holding Steady',
-          typeTr: '${area.displayNameTr}: Sabit Kaliyor',
+          typeTr: '${area.displayNameTr}: Sabit Kalıyor',
           insightEn: 'Your ${area.displayNameEn} ratings have stayed around '
               '${firstAvg.toStringAsFixed(1)}/5 over time. If you feel ready '
               'for change in this area, trying a new approach might help '
               'shift the pattern.',
-          insightTr: '${area.displayNameTr} puanlarin zaman icinde '
-              '${firstAvg.toStringAsFixed(1)}/5 civarinda kaldi. '
-              'Bu alanda degisime hazir hissediyorsan, yeni bir yaklasim '
-              'denemek oruntunu degistirmeye yardimci olabilir.',
+          insightTr: '${area.displayNameTr} puanların zaman içinde '
+              '${firstAvg.toStringAsFixed(1)}/5 civarında kaldı. '
+              'Bu alanda değişime hazır hissediyorsan, yeni bir yaklaşım '
+              'denemek örüntünü değiştirmeye yardımcı olabilir.',
           severity: firstAvg <= 2.0
               ? BlindSpotSeverity.high
               : BlindSpotSeverity.medium,
@@ -765,11 +765,11 @@ class BlindSpotService {
   String _buildOverallInsightTr(
       List<BlindSpot> spots, List<JournalEntry> entries) {
     if (spots.isEmpty) {
-      return '${entries.length} gunluk kaydin incelenmesinde belirgin bir '
-          'kör nokta tespit edilmedi. Bu, oz farkindaliginin dengeli '
-          'oldugu anlamina gelebilir veya daha fazla kayit zamanla daha '
-          'ince oruntuleri ortaya cikarabilir. Anlamani derinlestirmek '
-          'icin gunluk tutmaya devam et.';
+      return '${entries.length} günlük kaydın incelenmesinde belirgin bir '
+          'kör nokta tespit edilmedi. Bu, öz farkındalığının dengeli '
+          'olduğu anlamına gelebilir veya daha fazla kayıt zamanla daha '
+          'ince örüntüleri ortaya çıkarabilir. Anlamanı derinleştirmek '
+          'için günlük tutmaya devam et.';
     }
 
     final highCount = spots.where((s) =>
@@ -777,28 +777,28 @@ class BlindSpotService {
     final categories = spots.map((s) => s.category).toSet();
 
     final buffer = StringBuffer();
-    buffer.write('${entries.length} gunluk kaydin incelenmesinin ardindan, ');
+    buffer.write('${entries.length} günlük kaydın incelenmesinin ardından, ');
 
     if (highCount > 0) {
-      buffer.write('dikkatini cekmesi gereken $highCount alan var. ');
+      buffer.write('dikkatini çekmesi gereken $highCount alan var. ');
     } else {
-      buffer.write('ilginc bulabilecegin birkac ince oruntuler ortaya cikti. ');
+      buffer.write('ilginç bulabileceğin birkaç ince örüntüler ortaya çıktı. ');
     }
 
     if (categories.contains(BlindSpotCategory.avoidedArea)) {
       buffer.write(
-          'Bazi odak alanlari digerlerinden daha az kesfedilmis gorunuyor. ');
+          'Bazı odak alanları diğerlerinden daha az keşfedilmiş görünüyor. ');
     }
     if (categories.contains(BlindSpotCategory.ratingBias)) {
       buffer.write(
-          'Puanlama oruntulerin fark etmeye deger bazi egilimler gosteriyor. ');
+          'Puanlama örüntülerin fark etmeye değer bazı eğilimler gösteriyor. ');
     }
     if (categories.contains(BlindSpotCategory.dayPattern)) {
-      buffer.write('Haftanin bazi gunleri one cikiyor gibi gorunuyor. ');
+      buffer.write('Haftanın bazı günleri öne çıkıyor gibi görünüyor. ');
     }
 
-    buffer.write('Bu gozlemler kayitlarindaki oruntulere dayanmaktadir '
-        've sonuc degil, dusunme baslangic noktalari olarak tasarlanmistir.');
+    buffer.write('Bu gözlemler kayıtlarındaki örüntülere dayanmaktadır '
+        've sonuç değil, düşünme başlangıç noktaları olarak tasarlanmıştır.');
 
     return buffer.toString();
   }
@@ -876,34 +876,34 @@ class BlindSpotService {
 
     if (hasAvoided) {
       suggestions.add(
-          'Bu hafta nadiren sectigin bir odak alaninida dene. Oz farkindaligini genisletmeye yardimci olabilir.');
+          'Bu hafta nadiren seçtiğin bir odak alanını da dene. Öz farkındalığını genişletmeye yardımcı olabilir.');
     }
     if (hasBias) {
       suggestions.add(
-          'Puanlamadan once bir an dur ve bedeninin nasil hissettigini kontrol et. Daha nüansli bir resim yakalamana yardimci olabilir.');
+          'Puanlamadan önce bir an dur ve bedeninin nasıl hissettiğini kontrol et. Daha nüanslı bir resim yakalamanıza yardımcı olabilir.');
     }
     if (hasDayPattern) {
       suggestions.add(
-          'Dusuk puanli gunlerinde gunun erken saatlerinde kisa bir kontrol dene. Farkindalik deneyimi degistirebilir.');
+          'Düşük puanlı günlerinde günün erken saatlerinde kısa bir kontrol dene. Farkındalık deneyimi değiştirebilir.');
     }
     if (hasCorrelation) {
       suggestions.add(
-          'Iki alan arasinda bir orunti farkettiginde, birine ekstra ozen gostermeyi dene ve digerinin degisip degismedigini gozlemle.');
+          'İki alan arasında bir örüntü farkettiğinde, birine ekstra özen göstermeyi dene ve diğerinin değişip değişmediğini gözlemle.');
     }
     if (hasNeglected) {
       suggestions.add(
-          'Dusuk alt puanlarina biraz bilinçli dikkat gostermeyi dusun. Kucuk adimlar bile fark edilir degisimler yaratabilir.');
+          'Düşük alt puanlarına biraz bilinçli dikkat göstermeyi düşün. Küçük adımlar bile fark edilir değişimler yaratabilir.');
     }
     if (hasStagnation) {
       suggestions.add(
-          'Sabit kalan alanlar icin kucuk bir aliskanlik veya rutin degisikligi dene ve hareket yaratip yaratmadigini gor.');
+          'Sabit kalan alanlar için küçük bir alışkanlık veya rutin değişikliği dene ve hareket yaratıp yaratmadığını gör.');
     }
 
     if (suggestions.isEmpty) {
       suggestions.add(
-          'Duzenli gunluk tutmaya devam et. Zaman icindeki tutarlilik, daha derin oruntuleri ortaya cikarmanin en iyi yoludur.');
+          'Düzenli günlük tutmaya devam et. Zaman içindeki tutarlılık, daha derin örüntüleri ortaya çıkarmanın en iyi yoludur.');
       suggestions.add(
-          'Kayitlarina notlar eklemeyi dene. Yazili dusunceler, sayilarin tek basina ortaya cikaramadigi icgoruleri siklila ortaya cikarir.');
+          'Kayıtlarına notlar eklemeyi dene. Yazılı düşünceler, sayıların tek başına ortaya çıkaramadığı içgörüleri sıklıkla ortaya çıkarır.');
     }
 
     return suggestions;
@@ -923,7 +923,7 @@ class BlindSpotService {
 
   String _dayNameTr(int weekday) {
     const days = [
-      'Pazartesi', 'Sali', 'Carsamba', 'Persembe',
+      'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe',
       'Cuma', 'Cumartesi', 'Pazar',
     ];
     return days[weekday - 1];
@@ -963,16 +963,16 @@ class BlindSpotService {
       'motivation': 'Motivasyon',
       'clarity': 'Netlik',
       'productivity': 'Verimlilik',
-      'distractibility': 'Dikkat Daginkligi',
+      'distractibility': 'Dikkat Dağınıklığı',
       'mood': 'Ruh Hali',
       'stress': 'Stres',
       'calm': 'Huzur',
-      'confidence': 'Guven',
+      'confidence': 'Güven',
       'certainty': 'Kesinlik',
-      'regret': 'Pismanlik',
-      'connection': 'Baglanti',
-      'isolation': 'Yalnizlik',
-      'communication': 'Iletisim',
+      'regret': 'Pişmanlık',
+      'connection': 'Bağlantı',
+      'isolation': 'Yalnızlık',
+      'communication': 'İletişim',
     };
     return map[key] ?? key;
   }

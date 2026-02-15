@@ -125,7 +125,7 @@ class _GrowthDashboardScreenState
             ),
             slivers: [
               GlassSliverAppBar(
-                title: isEn ? 'Your Growth' : 'Buyumen',
+                title: isEn ? 'Your Growth' : 'Büyümen',
               ),
             SliverPadding(
               padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -337,7 +337,7 @@ class _GrowthDashboardScreenState
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          isEn ? 'Growth Score' : 'Buyume Puani',
+                          isEn ? 'Growth Score' : 'Büyüme Puanı',
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,
@@ -371,19 +371,19 @@ class _GrowthDashboardScreenState
     if (score >= 80) {
       return isEn
           ? 'Outstanding! You are deeply committed to your growth.'
-          : 'Muhteseml Buyumene cok baglisin.';
+          : 'Muhteşem! Büyümene çok bağlısın.';
     } else if (score >= 60) {
       return isEn
           ? 'Great progress! Keep building your habits.'
-          : 'Harika ilerleme! Aliskanliklarini gelistirmeye devam et.';
+          : 'Harika ilerleme! Alışkanlıklarını geliştirmeye devam et.';
     } else if (score >= 30) {
       return isEn
           ? 'Good start! Every entry brings you closer.'
-          : 'Iyi bir baslangic! Her kayit seni yaklastiriyor.';
+          : 'İyi bir başlangıç! Her kayıt seni yaklaştırıyor.';
     } else {
       return isEn
           ? 'Begin your journey. One entry at a time.'
-          : 'Yolculuguna basla. Her seferinde bir kayit.';
+          : 'Yolculuğuna başla. Her seferinde bir kayıt.';
     }
   }
 
@@ -436,7 +436,7 @@ class _GrowthDashboardScreenState
               ),
               const SizedBox(width: 8),
               Text(
-                isEn ? 'Days' : 'Gun',
+                isEn ? 'Days' : 'Gün',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -452,7 +452,7 @@ class _GrowthDashboardScreenState
           Text(
             isEn
                 ? 'Best: $longestStreak days'
-                : 'En iyi: $longestStreak gun',
+                : 'En iyi: $longestStreak gün',
             style: TextStyle(
               fontSize: 14,
               color: isDark
@@ -553,7 +553,7 @@ class _GrowthDashboardScreenState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          isEn ? 'Milestones' : 'Kilometre Taslari',
+          isEn ? 'Milestones' : 'Kilometre Taşları',
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: isDark
                     ? AppColors.textPrimary
@@ -711,73 +711,73 @@ class _GrowthDashboardScreenState
     return [
       _Milestone(
         icon: Icons.edit_note,
-        title: isEn ? 'First Entry' : 'Ilk Kayit',
+        title: isEn ? 'First Entry' : 'İlk Kayıt',
         unlocked: entries.isNotEmpty,
-        progressHint: isEn ? '1 entry to unlock' : '1 kayit gerekli',
+        progressHint: isEn ? '1 entry to unlock' : '1 kayıt gerekli',
       ),
       _Milestone(
         icon: Icons.local_fire_department,
-        title: isEn ? 'Week Warrior' : 'Hafta Savascisi',
+        title: isEn ? 'Week Warrior' : 'Hafta Savaşçısı',
         unlocked: maxStreak >= 7,
         progressHint: maxStreak < 7
             ? isEn
                 ? '${7 - maxStreak} more to unlock'
-                : '${7 - maxStreak} gun daha'
+                : '${7 - maxStreak} gün daha'
             : '',
       ),
       _Milestone(
         icon: Icons.auto_graph,
-        title: isEn ? 'Pattern Seeker' : 'Kalip Arayici',
+        title: isEn ? 'Pattern Seeker' : 'Kalıp Arayıcı',
         unlocked: entries.length >= 7,
         progressHint: entries.length < 7
             ? isEn
                 ? '${7 - entries.length} more entries'
-                : '${7 - entries.length} kayit daha'
+                : '${7 - entries.length} kayıt daha'
             : '',
       ),
       _Milestone(
         icon: Icons.nights_stay,
-        title: isEn ? 'Dream Explorer' : 'Ruya Kasifi',
+        title: isEn ? 'Dream Explorer' : 'Rüya Kaşifi',
         unlocked: dreamCount >= 3,
         progressHint: dreamCount < 3
             ? isEn
                 ? '${3 - dreamCount} more dreams'
-                : '${3 - dreamCount} ruya daha'
+                : '${3 - dreamCount} rüya daha'
             : '',
       ),
       _Milestone(
         icon: Icons.emoji_events,
-        title: isEn ? 'Challenge Champion' : 'Gorev Sampiyonu',
+        title: isEn ? 'Challenge Champion' : 'Görev Şampiyonu',
         unlocked: completedChallenges >= 3,
         progressHint: completedChallenges < 3
             ? isEn
                 ? '${3 - completedChallenges} challenges left'
-                : '${3 - completedChallenges} gorev kaldi'
+                : '${3 - completedChallenges} görev kaldı'
             : '',
       ),
       _Milestone(
         icon: Icons.favorite,
-        title: isEn ? 'Gratitude Guru' : 'Sukran Ustasi',
+        title: isEn ? 'Gratitude Guru' : 'Şükran Ustası',
         unlocked: gratitudeCount >= 7,
         progressHint: gratitudeCount < 7
             ? isEn
                 ? '${7 - gratitudeCount} gratitude entries'
-                : '${7 - gratitudeCount} sukran kaydi'
+                : '${7 - gratitudeCount} şükran kaydı'
             : '',
       ),
       _Milestone(
         icon: Icons.emoji_events,
-        title: isEn ? 'Month Master' : 'Ay Ustasi',
+        title: isEn ? 'Month Master' : 'Ay Ustası',
         unlocked: maxStreak >= 30,
         progressHint: maxStreak < 30
             ? isEn
                 ? '${30 - maxStreak} more to unlock'
-                : '${30 - maxStreak} gun daha'
+                : '${30 - maxStreak} gün daha'
             : '',
       ),
       _Milestone(
         icon: Icons.psychology,
-        title: isEn ? 'Self Aware' : 'Oz Farkindalik',
+        title: isEn ? 'Self Aware' : 'Öz Farkındalık',
         unlocked: focusAreasCoveredThisMonth >= 5,
         progressHint: focusAreasCoveredThisMonth < 5
             ? isEn
@@ -787,10 +787,10 @@ class _GrowthDashboardScreenState
       ),
       _Milestone(
         icon: Icons.share,
-        title: isEn ? 'Story Teller' : 'Hikaye Anlaticisi',
+        title: isEn ? 'Story Teller' : 'Hikaye Anlatıcısı',
         unlocked: false,
         progressHint:
-            isEn ? 'Share your progress' : 'Ilerlemeni paylas',
+            isEn ? 'Share your progress' : 'İlerlemeni paylaş',
       ),
     ];
   }
@@ -854,7 +854,7 @@ class _GrowthDashboardScreenState
           const SizedBox(height: AppConstants.spacingLg),
           _buildSummaryRow(
             icon: Icons.edit_note,
-            label: isEn ? 'Entries this month' : 'Bu ayin kayitlari',
+            label: isEn ? 'Entries this month' : 'Bu ayın kayıtları',
             value: '${monthEntries.length}',
             color: AppColors.auroraStart,
             isDark: isDark,
@@ -862,12 +862,12 @@ class _GrowthDashboardScreenState
           const SizedBox(height: AppConstants.spacingMd),
           _buildSummaryRow(
             icon: Icons.category,
-            label: isEn ? 'Most tracked area' : 'En cok takip edilen alan',
+            label: isEn ? 'Most tracked area' : 'En çok takip edilen alan',
             value: mostTracked != null
                 ? (isEn
                     ? mostTracked.displayNameEn
                     : mostTracked.displayNameTr)
-                : (isEn ? 'None yet' : 'Henuz yok'),
+                : (isEn ? 'None yet' : 'Henüz yok'),
             color: AppColors.starGold,
             isDark: isDark,
           ),
@@ -884,7 +884,7 @@ class _GrowthDashboardScreenState
           const SizedBox(height: AppConstants.spacingMd),
           _buildSummaryRow(
             icon: Icons.nights_stay,
-            label: isEn ? 'Dreams logged' : 'Kaydedilen ruyalar',
+            label: isEn ? 'Dreams logged' : 'Kaydedilen rüyalar',
             value: '$dreamCount',
             color: AppColors.amethyst,
             isDark: isDark,
@@ -892,7 +892,7 @@ class _GrowthDashboardScreenState
           const SizedBox(height: AppConstants.spacingMd),
           _buildSummaryRow(
             icon: Icons.emoji_events,
-            label: isEn ? 'Challenges completed' : 'Tamamlanan gorevler',
+            label: isEn ? 'Challenges completed' : 'Tamamlanan görevler',
             value: '$completedChallenges',
             color: AppColors.celestialGold,
             isDark: isDark,
@@ -900,7 +900,7 @@ class _GrowthDashboardScreenState
           const SizedBox(height: AppConstants.spacingMd),
           _buildSummaryRow(
             icon: Icons.favorite,
-            label: isEn ? 'Gratitude entries' : 'Sukran kayitlari',
+            label: isEn ? 'Gratitude entries' : 'Şükran kayıtları',
             value: '$gratitudeCount',
             color: AppColors.softCoral,
             isDark: isDark,
@@ -965,7 +965,7 @@ class _GrowthDashboardScreenState
         onPressed: () => _shareProgress(score, streak, totalEntries, isEn),
         icon: const Icon(Icons.share, size: 20),
         label: Text(
-          isEn ? 'Share Your Progress' : 'Ilerlemeni Paylas',
+          isEn ? 'Share Your Progress' : 'İlerlemeni Paylaş',
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -989,10 +989,10 @@ class _GrowthDashboardScreenState
             'Current streak: $streak days\n'
             'Total entries: $totalEntries\n\n'
             'Track your personal growth with InnerCycles!'
-        : 'InnerCycles Buyume Puanim: $score/100\n'
-            'Mevcut seri: $streak gun\n'
-            'Toplam kayit: $totalEntries\n\n'
-            'InnerCycles ile kisisel buyumeni takip et!';
+        : 'InnerCycles Büyüme Puanım: $score/100\n'
+            'Mevcut seri: $streak gün\n'
+            'Toplam kayıt: $totalEntries\n\n'
+            'InnerCycles ile kişisel büyümeni takip et!';
 
     Share.share(text);
   }

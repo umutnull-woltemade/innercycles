@@ -33,31 +33,31 @@ class ShareCardTemplates {
     id: 'attachment_style',
     category: ShareCardCategory.identity,
     titleEn: 'My Attachment Style',
-    titleTr: 'Baglanma Stilim',
+    titleTr: 'Bağlanma Stilim',
     gradientColors: [Color(0xFF2D1B3D), Color(0xFF4A2040), Color(0xFF1A0A1E)],
     layoutType: ShareCardLayout.centered,
     icon: Icons.favorite_rounded,
     badgeEn: 'ATTACHMENT',
-    badgeTr: 'BAGLANMA',
+    badgeTr: 'BAĞLANMA',
   );
 
   static const dreamPersonality = ShareCardTemplate(
     id: 'dream_personality',
     category: ShareCardCategory.identity,
     titleEn: 'Dream Personality',
-    titleTr: 'Ruya Kisiligim',
+    titleTr: 'Rüya Kişiliğim',
     gradientColors: [Color(0xFF0F2027), Color(0xFF203A43), Color(0xFF2C5364)],
     layoutType: ShareCardLayout.centered,
     icon: Icons.nights_stay_rounded,
     badgeEn: 'DREAM',
-    badgeTr: 'RUYA',
+    badgeTr: 'RÜYA',
   );
 
   static const energyProfile = ShareCardTemplate(
     id: 'energy_profile',
     category: ShareCardCategory.identity,
     titleEn: 'My Energy Pattern',
-    titleTr: 'Enerji Oruntum',
+    titleTr: 'Enerji Örüntüm',
     gradientColors: [Color(0xFF1A1508), Color(0xFF2D2410), Color(0xFF3D3018)],
     layoutType: ShareCardLayout.centered,
     icon: Icons.bolt_rounded,
@@ -85,7 +85,7 @@ class ShareCardTemplates {
     id: 'weekly_mood_wave',
     category: ShareCardCategory.pattern,
     titleEn: 'My Week in Feelings',
-    titleTr: 'Duygularla Gecen Haftam',
+    titleTr: 'Duygularla Geçen Haftam',
     gradientColors: [Color(0xFF1A0A2E), Color(0xFF2E1065), Color(0xFF1A0530)],
     layoutType: ShareCardLayout.miniChart,
     icon: Icons.waves_rounded,
@@ -97,7 +97,7 @@ class ShareCardTemplates {
     id: 'focus_area_radar',
     category: ShareCardCategory.pattern,
     titleEn: 'Focus Area Balance',
-    titleTr: 'Odak Alani Dengesi',
+    titleTr: 'Odak Alanı Dengesi',
     gradientColors: [Color(0xFF0D1B2A), Color(0xFF1B2838), Color(0xFF0A1628)],
     layoutType: ShareCardLayout.miniChart,
     icon: Icons.radar_rounded,
@@ -109,7 +109,7 @@ class ShareCardTemplates {
     id: 'streak_flame',
     category: ShareCardCategory.pattern,
     titleEn: 'Journal Streak',
-    titleTr: 'Gunluk Serisi',
+    titleTr: 'Günlük Serisi',
     gradientColors: [Color(0xFF1A1508), Color(0xFF2D2410), Color(0xFF1A1208)],
     layoutType: ShareCardLayout.badgeHero,
     icon: Icons.local_fire_department_rounded,
@@ -121,7 +121,7 @@ class ShareCardTemplates {
     id: 'top_emotion',
     category: ShareCardCategory.pattern,
     titleEn: 'Dominant Emotion',
-    titleTr: 'Baskin Duygu',
+    titleTr: 'Baskın Duygu',
     gradientColors: [Color(0xFF2D1B3D), Color(0xFF3D2050), Color(0xFF1A0A2E)],
     layoutType: ShareCardLayout.badgeHero,
     icon: Icons.emoji_emotions_rounded,
@@ -149,43 +149,43 @@ class ShareCardTemplates {
     id: 'journal_milestone',
     category: ShareCardCategory.achievement,
     titleEn: 'Journaling Milestone',
-    titleTr: 'Gunluk Kilometre Tasi',
+    titleTr: 'Günlük Kilometre Taşı',
     gradientColors: [Color(0xFF1A1508), Color(0xFF3D3018), Color(0xFF1A1208)],
     layoutType: ShareCardLayout.badgeHero,
     icon: Icons.menu_book_rounded,
     badgeEn: 'MILESTONE',
-    badgeTr: 'BASARI',
+    badgeTr: 'BAŞARI',
   );
 
   static const dreamExplorer = ShareCardTemplate(
     id: 'dream_explorer',
     category: ShareCardCategory.achievement,
     titleEn: 'Dream Explorer',
-    titleTr: 'Ruya Kasyifi',
+    titleTr: 'Rüya Kâşifi',
     gradientColors: [Color(0xFF0F2027), Color(0xFF203A43), Color(0xFF0F2027)],
     layoutType: ShareCardLayout.badgeHero,
     icon: Icons.explore_rounded,
     badgeEn: 'EXPLORER',
-    badgeTr: 'KASIF',
+    badgeTr: 'KÂŞİF',
   );
 
   static const patternDiscoverer = ShareCardTemplate(
     id: 'pattern_discoverer',
     category: ShareCardCategory.achievement,
     titleEn: 'Pattern Discoverer',
-    titleTr: 'Oruntu Kesfedici',
+    titleTr: 'Örüntü Keşfedici',
     gradientColors: [Color(0xFF1A1A3E), Color(0xFF2A2A5E), Color(0xFF0D0D1F)],
     layoutType: ShareCardLayout.badgeHero,
     icon: Icons.hub_rounded,
     badgeEn: 'PATTERNS',
-    badgeTr: 'ORUNTU',
+    badgeTr: 'ÖRÜNTÜ',
   );
 
   static const consistencyStar = ShareCardTemplate(
     id: 'consistency_star',
     category: ShareCardCategory.achievement,
     titleEn: 'Consistency Star',
-    titleTr: 'Tutarlilik Yildizi',
+    titleTr: 'Tutarlılık Yıldızı',
     gradientColors: [Color(0xFF1A1508), Color(0xFF2D2208), Color(0xFF0D0A04)],
     layoutType: ShareCardLayout.statRow,
     icon: Icons.star_rounded,
@@ -197,12 +197,12 @@ class ShareCardTemplates {
     id: 'growth_journey',
     category: ShareCardCategory.achievement,
     titleEn: 'Growth Journey',
-    titleTr: 'Gelisim Yolculugu',
+    titleTr: 'Gelişim Yolculuğu',
     gradientColors: [Color(0xFF0A1F0A), Color(0xFF1A3A1A), Color(0xFF0A1F0A)],
     layoutType: ShareCardLayout.statRow,
     icon: Icons.trending_up_rounded,
     badgeEn: 'GROWTH',
-    badgeTr: 'GELISIM',
+    badgeTr: 'GELİŞİM',
   );
 
   // =========================================================================
@@ -213,43 +213,43 @@ class ShareCardTemplates {
     id: 'daily_reflection',
     category: ShareCardCategory.wisdom,
     titleEn: 'Daily Reflection',
-    titleTr: 'Gunluk Dusunce',
+    titleTr: 'Günlük Düşünce',
     gradientColors: [Color(0xFF1A0A2E), Color(0xFF16082A), Color(0xFF0D0517)],
     layoutType: ShareCardLayout.quoteBlock,
     icon: Icons.format_quote_rounded,
     badgeEn: 'REFLECTION',
-    badgeTr: 'DUSUNCE',
+    badgeTr: 'DÜŞÜNCE',
   );
 
   static const dreamInsight = ShareCardTemplate(
     id: 'dream_insight',
     category: ShareCardCategory.wisdom,
     titleEn: 'Dream Insight',
-    titleTr: 'Ruya Icgorusu',
+    titleTr: 'Rüya İçgörüsü',
     gradientColors: [Color(0xFF0F2027), Color(0xFF1A3040), Color(0xFF0F2027)],
     layoutType: ShareCardLayout.quoteBlock,
     icon: Icons.auto_fix_high_rounded,
     badgeEn: 'INSIGHT',
-    badgeTr: 'ICGORU',
+    badgeTr: 'İÇGÖRÜ',
   );
 
   static const patternWisdom = ShareCardTemplate(
     id: 'pattern_wisdom',
     category: ShareCardCategory.wisdom,
     titleEn: 'Pattern Wisdom',
-    titleTr: 'Oruntu Bilgeligi',
+    titleTr: 'Örüntü Bilgeliği',
     gradientColors: [Color(0xFF1A1A3E), Color(0xFF252550), Color(0xFF0D0D1F)],
     layoutType: ShareCardLayout.quoteBlock,
     icon: Icons.psychology_rounded,
     badgeEn: 'WISDOM',
-    badgeTr: 'BILGELIK',
+    badgeTr: 'BİLGELİK',
   );
 
   static const seasonalMessage = ShareCardTemplate(
     id: 'seasonal_message',
     category: ShareCardCategory.wisdom,
     titleEn: 'Seasonal Reflection',
-    titleTr: 'Mevsimsel Dusunce',
+    titleTr: 'Mevsimsel Düşünce',
     gradientColors: [Color(0xFF1A2A1A), Color(0xFF2A3A2A), Color(0xFF0A1A0A)],
     layoutType: ShareCardLayout.quoteBlock,
     icon: Icons.eco_rounded,
@@ -261,7 +261,7 @@ class ShareCardTemplates {
     id: 'affirmation',
     category: ShareCardCategory.wisdom,
     titleEn: 'Daily Affirmation',
-    titleTr: 'Gunluk Olumlama',
+    titleTr: 'Günlük Olumlama',
     gradientColors: [Color(0xFF2D1B3D), Color(0xFF3D2850), Color(0xFF1A0A2E)],
     layoutType: ShareCardLayout.quoteBlock,
     icon: Icons.spa_rounded,
@@ -348,25 +348,25 @@ class ShareCardTemplates {
       // ── Identity ──────────────────────────────────────────────────────
       case 'archetype_reveal':
         return ShareCardData(
-          headline: archetypeName ?? (isEn ? 'The Reflector' : 'Yansitici'),
+          headline: archetypeName ?? (isEn ? 'The Reflector' : 'Yansıtıcı'),
           subtitle: isEn
               ? 'Your entries suggest this archetype pattern'
-              : 'Kayitlarin bu arketip oruntusunu gosteriyor',
+              : 'Kayıtların bu arketip örüntüsünü gösteriyor',
           detail: isEn
               ? 'Based on your recent journal entries'
-              : 'Son kayitlarina dayanarak',
+              : 'Son kayıtlarına dayanarak',
         );
 
       case 'attachment_style':
         return ShareCardData(
           headline: attachmentResult ??
-              (isEn ? 'Secure-Leaning' : 'Guvenli Egilimli'),
+              (isEn ? 'Secure-Leaning' : 'Güvenli Eğilimli'),
           subtitle: isEn
               ? 'Your entries suggest this attachment pattern'
-              : 'Kayitlarin bu baglanma oruntusunu gosteriyor',
+              : 'Kayıtların bu bağlanma örüntüsünü gösteriyor',
           detail: isEn
               ? 'Drawn from your self-reflection quiz'
-              : 'Oz-dusunce testinden cikarildi',
+              : 'Öz-düşünce testinden çıkarıldı',
         );
 
       case 'dream_personality':
@@ -375,40 +375,40 @@ class ShareCardTemplates {
               dreamType ?? (isEn ? 'The Voyager' : 'Gezgin'),
           subtitle: isEn
               ? 'Your dream journal suggests this personality type'
-              : 'Ruya guncen bu kisilik tipini gosteriyor',
+              : 'Rüya güncen bu kişilik tipini gösteriyor',
           detail: isEn
               ? 'Based on recurring dream themes'
-              : 'Tekrarlayan ruya temalarina dayanarak',
+              : 'Tekrarlayan rüya temalarına dayanarak',
         );
 
       case 'energy_profile':
         return ShareCardData(
           headline:
-              energyType ?? (isEn ? 'Steady Flow' : 'Duzenli Akis'),
+              energyType ?? (isEn ? 'Steady Flow' : 'Düzenli Akış'),
           subtitle: isEn
               ? 'Your entries suggest this energy rhythm'
-              : 'Kayitlarin bu enerji ritmini gosteriyor',
+              : 'Kayıtların bu enerji ritmini gösteriyor',
           detail: isEn
               ? 'Patterns drawn from your daily entries'
-              : 'Gunluk kayitlarindan cikarildi',
+              : 'Günlük kayıtlarından çıkarıldı',
         );
 
       case 'emotional_archetype':
         return ShareCardData(
           headline: emotionalStyle ??
-              (isEn ? 'Deep Processor' : 'Derin Isleyici'),
+              (isEn ? 'Deep Processor' : 'Derin İşleyici'),
           subtitle: isEn
               ? 'You tend to process feelings with depth and care'
-              : 'Duyguları derinlik ve ozenle isleme egiliminde olabilirsin',
+              : 'Duyguları derinlik ve özenle işleme eğiliminde olabilirsin',
         );
 
       // ── Pattern ───────────────────────────────────────────────────────
       case 'weekly_mood_wave':
         return ShareCardData(
-          headline: isEn ? 'My Week in Feelings' : 'Duygularla Gecen Haftam',
+          headline: isEn ? 'My Week in Feelings' : 'Duygularla Geçen Haftam',
           subtitle: isEn
               ? 'Patterns drawn from 7-day mood data'
-              : 'Son 7 gunluk duygu verisinden cikarildi',
+              : 'Son 7 günlük duygu verisinden çıkarıldı',
           chartValues: moodValues ?? [3, 4, 3, 5, 4, 3, 4],
           chartLabels: isEn
               ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
@@ -418,10 +418,10 @@ class ShareCardTemplates {
       case 'focus_area_radar':
         return ShareCardData(
           headline:
-              isEn ? 'Focus Area Balance' : 'Odak Alani Dengesi',
+              isEn ? 'Focus Area Balance' : 'Odak Alanı Dengesi',
           subtitle: isEn
               ? 'How your attention spreads across areas'
-              : 'Dikkatinin alanlara nasil dagildigini gosteriyor',
+              : 'Dikkatinin alanlara nasıl dağıldığını gösteriyor',
           chartValues: focusValues ?? [4, 3, 5, 2, 4],
           chartLabels: isEn
               ? ['Mind', 'Body', 'Heart', 'Soul', 'Social']
@@ -431,12 +431,12 @@ class ShareCardTemplates {
       case 'streak_flame':
         final streakText = streak > 0 ? '$streak' : '0';
         return ShareCardData(
-          headline: isEn ? 'Day $streakText' : '$streakText Gun',
+          headline: isEn ? 'Day $streakText' : '$streakText Gün',
           subtitle: isEn
               ? 'Consistency builds self-awareness'
-              : 'Tutarlilik oz-farkindaligin temelidir',
+              : 'Tutarlılık öz-farkındalığın temelidir',
           statValue: streakText,
-          statLabel: isEn ? 'day streak' : 'gunluk seri',
+          statLabel: isEn ? 'day streak' : 'günlük seri',
         );
 
       case 'top_emotion':
@@ -444,9 +444,9 @@ class ShareCardTemplates {
           headline: topEmotionName ?? (isEn ? 'Calm' : 'Sakin'),
           subtitle: isEn
               ? 'Your most frequent emotion this month'
-              : 'Bu ayin en sik duygun',
+              : 'Bu ayın en sık duygun',
           statValue: topEmotionEmoji ?? '\u{1F60C}',
-          statLabel: isEn ? 'dominant this month' : 'bu ay baskin',
+          statLabel: isEn ? 'dominant this month' : 'bu ay baskın',
         );
 
       case 'sleep_pattern':
@@ -455,7 +455,7 @@ class ShareCardTemplates {
               isEn ? 'My Sleep Quality' : 'Uyku Kalitem',
           subtitle: isEn
               ? 'How your rest has been this week'
-              : 'Bu hafta uyku durumun nasil gecti',
+              : 'Bu hafta uyku durumun nasıl geçti',
           chartValues: sleepValues ?? [3, 4, 4, 5, 3, 4, 4],
           chartLabels: isEn
               ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
@@ -466,12 +466,12 @@ class ShareCardTemplates {
       case 'journal_milestone':
         final days = journalDays > 0 ? journalDays : 30;
         return ShareCardData(
-          headline: isEn ? '$days Days of Journaling' : '$days Gun Gunluk',
+          headline: isEn ? '$days Days of Journaling' : '$days Gün Günlük',
           subtitle: isEn
               ? 'Another milestone of showing up for yourself'
-              : 'Kendin icin var oldugun bir basamak daha',
+              : 'Kendin için var olduğun bir basamak daha',
           statValue: '$days',
-          statLabel: isEn ? 'days' : 'gun',
+          statLabel: isEn ? 'days' : 'gün',
         );
 
       case 'dream_explorer':
@@ -479,12 +479,12 @@ class ShareCardTemplates {
         return ShareCardData(
           headline: isEn
               ? 'Explored $count Dreams'
-              : '$count Ruya Kesfedildi',
+              : '$count Rüya Keşfedildi',
           subtitle: isEn
               ? 'Your dream world keeps revealing insights'
-              : 'Ruya dunyan icgorular sunmeye devam ediyor',
+              : 'Rüya dünyan içgörüler sunmaya devam ediyor',
           statValue: '$count',
-          statLabel: isEn ? 'dreams' : 'ruya',
+          statLabel: isEn ? 'dreams' : 'rüya',
         );
 
       case 'pattern_discoverer':
@@ -492,12 +492,12 @@ class ShareCardTemplates {
         return ShareCardData(
           headline: isEn
               ? 'Found $count Patterns'
-              : '$count Oruntu Bulundu',
+              : '$count Örüntü Bulundu',
           subtitle: isEn
               ? 'Self-awareness grows with each discovery'
-              : 'Her kesfle oz-farkindalik buyuyor',
+              : 'Her keşifle öz-farkındalık büyüyor',
           statValue: '$count',
-          statLabel: isEn ? 'patterns' : 'oruntu',
+          statLabel: isEn ? 'patterns' : 'örüntü',
         );
 
       case 'consistency_star':
@@ -505,12 +505,12 @@ class ShareCardTemplates {
         return ShareCardData(
           headline: isEn
               ? 'Journaled $days Days This Month'
-              : 'Bu Ay $days Gun Yazildi',
+              : 'Bu Ay $days Gün Yazıldı',
           subtitle: isEn
               ? 'Showing up consistently for yourself'
-              : 'Kendin icin duzenli olarak var oluyorsun',
+              : 'Kendin için düzenli olarak var oluyorsun',
           statValue: '$days',
-          statLabel: isEn ? 'days this month' : 'gun bu ay',
+          statLabel: isEn ? 'days this month' : 'gün bu ay',
         );
 
       case 'growth_journey':
@@ -519,12 +519,12 @@ class ShareCardTemplates {
         return ShareCardData(
           headline: isEn
               ? 'Growth: $from \u{2192} $to'
-              : 'Gelisim: $from \u{2192} $to',
+              : 'Gelişim: $from \u{2192} $to',
           subtitle: isEn
               ? 'Your growth score has been rising steadily'
-              : 'Gelisim puanin istikrarli bir sekilde yukseliyor',
+              : 'Gelişim puanın istikrarlı bir şekilde yükseliyor',
           statValue: '+${to - from}',
-          statLabel: isEn ? 'points gained' : 'puan kazanildi',
+          statLabel: isEn ? 'points gained' : 'puan kazanıldı',
         );
 
       // ── Wisdom ────────────────────────────────────────────────────────
@@ -533,8 +533,8 @@ class ShareCardTemplates {
           headline: reflectionText ??
               (isEn
                   ? 'Every moment of stillness is a step inward.'
-                  : 'Her sessizlik ani, iceride atilan bir adimdir.'),
-          subtitle: isEn ? 'Daily Reflection' : 'Gunluk Dusunce',
+                  : 'Her sessizlik anı, içeride atılan bir adımdır.'),
+          subtitle: isEn ? 'Daily Reflection' : 'Günlük Düşünce',
         );
 
       case 'dream_insight':
@@ -542,8 +542,8 @@ class ShareCardTemplates {
           headline: dreamInsightText ??
               (isEn
                   ? 'Your dreams may be pointing toward unresolved feelings.'
-                  : 'Ruyalarin cozulmemis duygulara isaret ediyor olabilir.'),
-          subtitle: isEn ? 'From your dream journal' : 'Ruya guncenden',
+                  : 'Rüyaların çözülmemiş duygulara işaret ediyor olabilir.'),
+          subtitle: isEn ? 'From your dream journal' : 'Rüya güncenden',
         );
 
       case 'pattern_wisdom':
@@ -551,20 +551,20 @@ class ShareCardTemplates {
           headline: patternInsightText ??
               (isEn
                   ? 'Your entries suggest you tend to find clarity after rest.'
-                  : 'Kayitlarin, dinlendikten sonra netlestigi gosteriyor.'),
+                  : 'Kayıtların, dinlendikten sonra netleştiği gösteriyor.'),
           subtitle: isEn
               ? 'Drawn from your patterns'
-              : 'Oruntulerinizden cikarildi',
+              : 'Örüntülerinizden çıkarıldı',
         );
 
       case 'seasonal_message':
-        final season = seasonName ?? (isEn ? 'Winter' : 'Kis');
+        final season = seasonName ?? (isEn ? 'Winter' : 'Kış');
         return ShareCardData(
           headline: seasonMessage ??
               (isEn
                   ? 'A season for rest, reflection, and inner renewal.'
-                  : 'Dinlenme, dusunme ve ic yenilenme mevsimi.'),
-          subtitle: '$season ${isEn ? 'Reflection' : 'Dusuncesi'}',
+                  : 'Dinlenme, düşünme ve iç yenilenme mevsimi.'),
+          subtitle: '$season ${isEn ? 'Reflection' : 'Düşüncesi'}',
         );
 
       case 'affirmation':
@@ -572,14 +572,14 @@ class ShareCardTemplates {
           headline: affirmationText ??
               (isEn
                   ? 'I trust the process of my own growth.'
-                  : 'Kendi gelisim surecime guveniyorum.'),
-          subtitle: isEn ? 'Daily Affirmation' : 'Gunluk Olumlama',
+                  : 'Kendi gelişim sürecime güveniyorum.'),
+          subtitle: isEn ? 'Daily Affirmation' : 'Günlük Olumlama',
         );
 
       default:
         return ShareCardData(
           headline: isEn ? 'InnerCycles' : 'InnerCycles',
-          subtitle: isEn ? 'Personal Reflection' : 'Kisisel Yansitma',
+          subtitle: isEn ? 'Personal Reflection' : 'Kişisel Yansıtma',
         );
     }
   }

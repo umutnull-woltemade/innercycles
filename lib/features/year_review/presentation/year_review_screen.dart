@@ -79,7 +79,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Year in Review' : 'Yillik Degerlendirme',
+                  title: isEn ? 'Year in Review' : 'Yıllık Değerlendirme',
                 ),
                 // Year selector
                 SliverToBoxAdapter(
@@ -122,7 +122,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                           child: Text(
                             isEn
                                 ? 'Could not load review'
-                                : 'Degerlendirme yuklenemedi',
+                                : 'Değerlendirme yüklenemedi',
                             style: TextStyle(
                               color: isDark
                                   ? AppColors.textMuted
@@ -338,7 +338,7 @@ class _EmptyState extends StatelessWidget {
           Text(
             isEn
                 ? 'Your Year in Review awaits'
-                : 'Yillik degerlendirmeniz sizi bekliyor',
+                : 'Yıllık değerlendirmeniz sizi bekliyor',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
@@ -351,7 +351,7 @@ class _EmptyState extends StatelessWidget {
           Text(
             isEn
                 ? 'Keep journaling to unlock your annual summary. You need at least 7 entries in a year.'
-                : 'Yillik ozet icin gunluk tutmaya devam edin. Bir yilda en az 7 kayit gerekli.',
+                : 'Yıllık özet için günlük tutmaya devam edin. Bir yılda en az 7 kayıt gerekli.',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: isDark
                       ? AppColors.textMuted
@@ -388,7 +388,7 @@ class _NotEnoughData extends StatelessWidget {
           Text(
             isEn
                 ? 'Not enough entries for this year'
-                : 'Bu yil icin yeterli kayit yok',
+                : 'Bu yıl için yeterli kayıt yok',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
@@ -401,7 +401,7 @@ class _NotEnoughData extends StatelessWidget {
           Text(
             isEn
                 ? 'You need at least 7 journal entries to generate a review.'
-                : 'Degerlendirme olusturmak icin en az 7 kayit gerekli.',
+                : 'Değerlendirme oluşturmak için en az 7 kayıt gerekli.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: isDark
                       ? AppColors.textMuted
@@ -472,7 +472,7 @@ class _HeroCard extends StatelessWidget {
           Text(
             isEn
                 ? 'Your ${review.year} in Review'
-                : '${review.year} Yili Degerlendirmesi',
+                : '${review.year} Yılı Değerlendirmesi',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   color: AppColors.starGold,
                   fontWeight: FontWeight.w700,
@@ -485,7 +485,7 @@ class _HeroCard extends StatelessWidget {
             children: [
               _StatColumn(
                 value: '${review.totalEntries}',
-                label: isEn ? 'Entries' : 'Kayit',
+                label: isEn ? 'Entries' : 'Kayıt',
                 isDark: isDark,
               ),
               Container(
@@ -497,7 +497,7 @@ class _HeroCard extends StatelessWidget {
               ),
               _StatColumn(
                 value: '${review.totalJournalingDays}',
-                label: isEn ? 'Days' : 'Gun',
+                label: isEn ? 'Days' : 'Gün',
                 isDark: isDark,
               ),
               Container(
@@ -521,7 +521,7 @@ class _HeroCard extends StatelessWidget {
               ),
               _StatColumn(
                 value: '${review.streakBest}',
-                label: isEn ? 'Best Streak' : 'En Iyi Seri',
+                label: isEn ? 'Best Streak' : 'En İyi Seri',
                 isDark: isDark,
               ),
             ],
@@ -615,7 +615,7 @@ class _MoodJourneyCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            isEn ? 'Mood Journey' : 'Ruh Hali Yolculugu',
+            isEn ? 'Mood Journey' : 'Ruh Hali Yolculuğu',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
@@ -627,7 +627,7 @@ class _MoodJourneyCard extends StatelessWidget {
           Text(
             isEn
                 ? 'Monthly average mood (1-5)'
-                : 'Aylik ortalama ruh hali (1-5)',
+                : 'Aylık ortalama ruh hali (1-5)',
             style: TextStyle(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -761,7 +761,7 @@ class _FocusAreasCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            isEn ? 'Focus Areas' : 'Odak Alanlari',
+            isEn ? 'Focus Areas' : 'Odak Alanları',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
@@ -773,7 +773,7 @@ class _FocusAreasCard extends StatelessWidget {
           Text(
             isEn
                 ? 'Time spent per area'
-                : 'Alan basina harcanan zaman',
+                : 'Alan başına harcanan zaman',
             style: TextStyle(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -859,10 +859,10 @@ class _GrowthScoreCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final score = review.growthScore;
     final label = score >= 70
-        ? (isEn ? 'Strong Growth' : 'Guclu Gelisim')
+        ? (isEn ? 'Strong Growth' : 'Güçlü Gelişim')
         : score >= 50
-            ? (isEn ? 'Steady Progress' : 'Istikrarli Ilerleme')
-            : (isEn ? 'Room to Grow' : 'Gelisim Alani');
+            ? (isEn ? 'Steady Progress' : 'İstikrarlı İlerleme')
+            : (isEn ? 'Room to Grow' : 'Gelişim Alanı');
 
     return Container(
       padding: const EdgeInsets.all(24),
@@ -880,7 +880,7 @@ class _GrowthScoreCard extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            isEn ? 'Growth Score' : 'Gelisim Skoru',
+            isEn ? 'Growth Score' : 'Gelişim Skoru',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
@@ -892,7 +892,7 @@ class _GrowthScoreCard extends StatelessWidget {
           Text(
             isEn
                 ? 'Based on your mood improvement trend'
-                : 'Ruh hali iyilesme egilimi bazinda',
+                : 'Ruh hali iyileşme eğilimi bazında',
             style: TextStyle(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -1052,7 +1052,7 @@ class _HighlightsCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            isEn ? 'Highlights' : 'One Cikanlar',
+            isEn ? 'Highlights' : 'Öne Çıkanlar',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
@@ -1117,8 +1117,8 @@ class _HighlightsCard extends StatelessWidget {
       'July', 'August', 'September', 'October', 'November', 'December',
     ];
     final monthNamesTr = [
-      '', 'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-      'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik',
+      '', 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık',
     ];
 
     for (final p in patterns) {
@@ -1138,7 +1138,7 @@ class _HighlightsCard extends StatelessWidget {
               icon: Icons.center_focus_strong,
               text: isEn
                   ? '${area.displayNameEn} was your top focus area ($pct% of entries)'
-                  : '${area.displayNameTr} en cok odaklandiginiz alan oldu (kayitlarin %$pct\'i)',
+                  : '${area.displayNameTr} en çok odaklandığınız alan oldu (kayıtların %$pct\'i)',
               color: AppColors.starGold,
             ));
           }
@@ -1151,7 +1151,7 @@ class _HighlightsCard extends StatelessWidget {
               icon: Icons.emoji_events,
               text: isEn
                   ? '$name was your best month (avg $avg)'
-                  : '$name en iyi ayiniz oldu (ort $avg)',
+                  : '$name en iyi ayınız oldu (ort $avg)',
               color: AppColors.celestialGold,
             ));
           }
@@ -1164,7 +1164,7 @@ class _HighlightsCard extends StatelessWidget {
               icon: Icons.local_fire_department,
               text: isEn
                   ? 'Your longest streak was $days days!'
-                  : 'En uzun seriniz $days gun oldu!',
+                  : 'En uzun seriniz $days gün oldu!',
               color: AppColors.venusPink,
             ));
           }
@@ -1174,7 +1174,7 @@ class _HighlightsCard extends StatelessWidget {
               icon: Icons.sentiment_very_satisfied,
               text: isEn
                   ? 'You maintained a high average mood of ${parts[1]}'
-                  : '${parts[1]} gibi yuksek bir ortalama ruh haliniz oldu',
+                  : '${parts[1]} gibi yüksek bir ortalama ruh haliniz oldu',
               color: AppColors.success,
             ));
           }
@@ -1184,7 +1184,7 @@ class _HighlightsCard extends StatelessWidget {
               icon: Icons.explore,
               text: isEn
                   ? 'You explored ${parts[1]} different focus areas'
-                  : '${parts[1]} farkli odak alanini kesfettiniz',
+                  : '${parts[1]} farklı odak alanını keşfettiniz',
               color: AppColors.auroraStart,
             ));
           }
@@ -1193,7 +1193,7 @@ class _HighlightsCard extends StatelessWidget {
             icon: Icons.star,
             text: isEn
                 ? 'You journaled every single day!'
-                : 'Her gun gunluk tuttunuz!',
+                : 'Her gün günlük tuttunuz!',
             color: AppColors.starGold,
           ));
         case 'dedicated_journaler':
@@ -1203,7 +1203,7 @@ class _HighlightsCard extends StatelessWidget {
               icon: Icons.auto_stories,
               text: isEn
                   ? 'You logged an impressive ${parts[1]} entries'
-                  : 'Etkileyici bir sekilde ${parts[1]} kayit olusturdunuz',
+                  : 'Etkileyici bir şekilde ${parts[1]} kayıt oluşturdunuz',
               color: AppColors.cosmicPurple.withValues(alpha: 1.0),
             ));
           }
@@ -1266,7 +1266,7 @@ class _ShareableSummaryCard extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            isEn ? 'My ${review.year} Summary' : '${review.year} Ozetim',
+            isEn ? 'My ${review.year} Summary' : '${review.year} Özetim',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
@@ -1281,10 +1281,10 @@ class _ShareableSummaryCard extends StatelessWidget {
                   'Top focus: $topAreaName\n'
                   'Growth score: ${review.growthScore}/100\n'
                   'Best streak: ${review.streakBest} days'
-                : '${review.totalJournalingDays} gunde ${review.totalEntries} kayit\n'
-                  'En cok odak: $topAreaName\n'
-                  'Gelisim skoru: ${review.growthScore}/100\n'
-                  'En iyi seri: ${review.streakBest} gun',
+                : '${review.totalJournalingDays} günde ${review.totalEntries} kayıt\n'
+                  'En çok odak: $topAreaName\n'
+                  'Gelişim skoru: ${review.growthScore}/100\n'
+                  'En iyi seri: ${review.streakBest} gün',
             style: TextStyle(
               fontSize: 15,
               height: 1.7,
@@ -1315,13 +1315,13 @@ class _ShareableSummaryCard extends StatelessWidget {
                     content: Text(
                       isEn
                           ? 'Share feature coming soon!'
-                          : 'Paylasim ozelligi yakinda!',
+                          : 'Paylaşım özelliği yakında!',
                     ),
                   ),
                 );
               },
               icon: const Icon(Icons.share, size: 18),
-              label: Text(isEn ? 'Share Summary' : 'Ozeti Paylas'),
+              label: Text(isEn ? 'Share Summary' : 'Özeti Paylaş'),
               style: OutlinedButton.styleFrom(
                 foregroundColor:
                     isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,

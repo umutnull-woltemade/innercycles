@@ -297,7 +297,7 @@ class SettingsScreen extends ConsumerWidget {
                       _SectionHeader(
                         title: (language == AppLanguage.en
                                 ? 'Share & Earn'
-                                : 'Paylas ve Kazan')
+                                : 'Paylaş ve Kazan')
                             .toUpperCase(),
                         isDark: isDark,
                       ),
@@ -331,7 +331,7 @@ class SettingsScreen extends ConsumerWidget {
                             icon: Icons.self_improvement_outlined,
                             title: language == AppLanguage.en
                                 ? 'Meditation Timer'
-                                : 'Meditasyon Zamanlayici',
+                                : 'Meditasyon Zamanlayıcı',
                             isDark: isDark,
                             onTap: () => context.push(Routes.meditation),
                           ),
@@ -349,7 +349,7 @@ class SettingsScreen extends ConsumerWidget {
                             icon: Icons.eco_outlined,
                             title: language == AppLanguage.en
                                 ? 'Seasonal Reflections'
-                                : 'Mevsimsel Yansimalar',
+                                : 'Mevsimsel Yansımalar',
                             isDark: isDark,
                             onTap: () => context.push(Routes.seasonal),
                           ),
@@ -367,7 +367,7 @@ class SettingsScreen extends ConsumerWidget {
                             icon: Icons.file_download_outlined,
                             title: language == AppLanguage.en
                                 ? 'Export Data'
-                                : 'Verileri Disa Aktar',
+                                : 'Verileri Dışa Aktar',
                             isDark: isDark,
                             onTap: () => context.push(Routes.exportData),
                           ),
@@ -972,7 +972,7 @@ class _ReferralCard extends ConsumerWidget {
                             content: Text(
                               isEn
                                   ? 'Premium trial unlocked for 7 days!'
-                                  : 'Premium deneme 7 gun icin acildi!',
+                                  : 'Premium deneme 7 gün için açıldı!',
                             ),
                             behavior: SnackBarBehavior.floating,
                           ),
@@ -989,7 +989,7 @@ class _ReferralCard extends ConsumerWidget {
                       ),
                     ),
                     child: Text(
-                      isEn ? 'Share InnerCycles' : 'InnerCycles\'i Paylas',
+                      isEn ? 'Share InnerCycles' : 'InnerCycles\'ı Paylaş',
                       style: TextStyle(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.w600,
