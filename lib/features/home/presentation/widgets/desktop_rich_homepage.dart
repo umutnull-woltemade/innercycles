@@ -399,8 +399,8 @@ class _HeroSection extends StatelessWidget {
             'Bugün iç dünyanı keşfetmek için zaman ayır.',
             'Öz farkındalık kişisel büyümenin ilk adımıdır.',
             'Sezgilerin bugün sana ne söylüyor?',
-            'Düsüncelerindeki ve duygularindaki kaliplari fark et.',
-            'Kendini kesfif yolculugun devam ediyor.',
+            'Düşüncelerindeki ve duygularındaki kalıpları fark et.',
+            'Kendini keşfetme yolculuğun devam ediyor.',
           ];
 
     final dayOfYear = DateTime.now()
@@ -458,10 +458,10 @@ class _FeatureCategoriesSection extends StatelessWidget {
             _FeatureCard(
               title: language == AppLanguage.en
                   ? 'Personal Insight'
-                  : 'Kisisel Icgörü',
+                  : 'Kişisel İçgörü',
               subtitle: language == AppLanguage.en
                   ? 'AI-powered self-discovery'
-                  : 'Yapay zeka destekli öz-kesfif',
+                  : 'Yapay zeka destekli öz-keşif',
               icon: Icons.auto_awesome,
               color: AppColors.starGold,
               route: Routes.insight,
@@ -469,10 +469,10 @@ class _FeatureCategoriesSection extends StatelessWidget {
             _FeatureCard(
               title: language == AppLanguage.en
                   ? 'Dream Journal'
-                  : 'Rüya Günlügü',
+                  : 'Rüya Günlüğü',
               subtitle: language == AppLanguage.en
                   ? 'Explore your subconscious'
-                  : 'Bilinçaltini kesfet',
+                  : 'Bilinçaltını keşfet',
               icon: Icons.nights_stay,
               color: AppColors.purpleAccent,
               route: Routes.dreamInterpretation,

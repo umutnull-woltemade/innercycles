@@ -759,7 +759,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
           final pct = (_result!.percentageFor(style) * 100).toStringAsFixed(0);
           final text = isEn
               ? 'I discovered my attachment style: ${style.displayNameEn} ($pct%)\n\nUnderstanding your patterns is the first step to growth.\n\nExplore yours with InnerCycles'
-              : 'Baglanma stilimi kesfettim: ${style.displayNameTr} (%$pct)\n\nKaliplarini anlamak buyumenin ilk adimidir.\n\nInnerCycles ile kesfet';
+              : 'Bağlanma stilimi keşfettim: ${style.displayNameTr} (%$pct)\n\nKalıplarını anlamak büyümenin ilk adımıdır.\n\nInnerCycles ile keşfet';
           Share.share(text);
         },
         icon: const Icon(Icons.share_rounded, size: 20),

@@ -65,7 +65,7 @@ class _ShareCardGalleryScreenState
 
     final shareText = isEn
         ? 'Check out my InnerCycles card! #InnerCycles #SelfGrowth'
-        : 'InnerCycles kartimi kesfet! #InnerCycles #KendiniFarkEt';
+        : 'InnerCycles kartımı keşfet! #InnerCycles #KendiniFarkEt';
 
     final result = await InstagramShareService.shareCosmicContent(
       boundary: boundary,

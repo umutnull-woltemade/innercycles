@@ -97,7 +97,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Prompt Library' : 'Ilham Kutuphanesi',
+            title: isEn ? 'Prompt Library' : 'İlham Kütüphanesi',
           ),
           SliverToBoxAdapter(
             child: Padding(
@@ -273,7 +273,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  isEn ? "Today's Prompt" : 'Gunun Ilhami',
+                  isEn ? "Today's Prompt" : 'Günün İlhamı',
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
