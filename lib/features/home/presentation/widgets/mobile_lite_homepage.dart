@@ -177,14 +177,18 @@ class _AboveTheFold extends ConsumerWidget {
                   ],
                 ),
               ),
-              IconButton(
-                onPressed: () => context.push(Routes.settings),
-                icon: Icon(
-                  Icons.settings_outlined,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                  size: 22,
+              Semantics(
+                label: isEn ? 'Settings' : 'Ayarlar',
+                button: true,
+                child: IconButton(
+                  onPressed: () => context.push(Routes.settings),
+                  icon: Icon(
+                    Icons.settings_outlined,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                    size: 22,
+                  ),
                 ),
               ),
             ],
@@ -838,40 +842,46 @@ class _QuickDiscoveryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(20),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.cosmicPurple.withValues(alpha: 0.3)
-                : AppColors.lightSurfaceVariant,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
+    return Semantics(
+      label: label,
+      button: true,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(20),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+            decoration: BoxDecoration(
               color: isDark
-                  ? AppColors.starGold.withValues(alpha: 0.3)
-                  : AppColors.lightStarGold.withValues(alpha: 0.3),
-            ),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(icon, style: const TextStyle(fontSize: 16)),
-              const SizedBox(width: 6),
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                ),
+                  ? AppColors.cosmicPurple.withValues(alpha: 0.3)
+                  : AppColors.lightSurfaceVariant,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: isDark
+                    ? AppColors.starGold.withValues(alpha: 0.3)
+                    : AppColors.lightStarGold.withValues(alpha: 0.3),
               ),
-            ],
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ExcludeSemantics(
+                  child: Text(icon, style: const TextStyle(fontSize: 16)),
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -902,7 +912,10 @@ class _EntryPointTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Semantics(
+      label: '$title. $subtitle',
+      button: true,
+      child: Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Material(
         color: Colors.transparent,
@@ -978,18 +991,21 @@ class _EntryPointTile extends StatelessWidget {
                     ],
                   ),
                 ),
-                Icon(
+                ExcludeSemantics(
+                child: Icon(
                   Icons.chevron_right_rounded,
                   size: 20,
                   color: isDark
                       ? AppColors.textMuted
                       : AppColors.lightTextMuted,
                 ),
+              ),
               ],
             ),
           ),
         ),
       ),
+    ),
     );
   }
 }

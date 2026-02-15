@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
@@ -1309,16 +1310,20 @@ class _ShareableSummaryCard extends StatelessWidget {
             width: double.infinity,
             child: OutlinedButton.icon(
               onPressed: () {
-                // Share functionality placeholder
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      isEn
-                          ? 'Share feature coming soon!'
-                          : 'Paylaşım özelliği yakında!',
-                    ),
-                  ),
-                );
+                final shareText = isEn
+                    ? 'My ${review.year} in Review\n\n'
+                      '${review.totalEntries} entries across ${review.totalJournalingDays} days\n'
+                      'Top focus: $topAreaName\n'
+                      'Growth score: ${review.growthScore}/100\n'
+                      'Best streak: ${review.streakBest} days\n\n'
+                      'Reflected with InnerCycles'
+                    : '${review.year} Yılı Değerlendirmem\n\n'
+                      '${review.totalJournalingDays} günde ${review.totalEntries} kayıt\n'
+                      'En çok odak: $topAreaName\n'
+                      'Gelişim skoru: ${review.growthScore}/100\n'
+                      'En iyi seri: ${review.streakBest} gün\n\n'
+                      'InnerCycles ile yansıma yaptım';
+                Share.share(shareText);
               },
               icon: const Icon(Icons.share, size: 18),
               label: Text(isEn ? 'Share Summary' : 'Özeti Paylaş'),

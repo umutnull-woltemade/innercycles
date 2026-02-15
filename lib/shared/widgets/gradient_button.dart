@@ -21,7 +21,11 @@ class GradientButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Semantics(
+      label: label,
+      button: true,
+      enabled: onPressed != null && !isLoading,
+      child: SizedBox(
       width: width,
       child: Material(
         color: Colors.transparent,
@@ -78,6 +82,7 @@ class GradientButton extends StatelessWidget {
           ),
         ),
       ),
+    ),
     );
   }
 }

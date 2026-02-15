@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'core/theme/app_theme.dart';
 import 'shared/services/router_service.dart';
 import 'shared/widgets/interpretive_text.dart';
@@ -248,6 +249,21 @@ class _AppInitializerState extends State<AppInitializer> {
       } catch (e) {
         if (kDebugMode) {
           debugPrint('⚠️ NotificationLifecycleService init failed: $e');
+        }
+      }
+    }
+
+    // Request App Tracking Transparency (MOBILE ONLY - required for ads)
+    if (!kIsWeb) {
+      try {
+        final attStatus =
+            await AppTrackingTransparency.requestTrackingAuthorization();
+        if (kDebugMode) {
+          debugPrint('✓ ATT status: $attStatus');
+        }
+      } catch (e) {
+        if (kDebugMode) {
+          debugPrint('⚠️ ATT request failed: $e');
         }
       }
     }

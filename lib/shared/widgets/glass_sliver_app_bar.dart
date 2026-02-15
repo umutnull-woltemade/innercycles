@@ -124,12 +124,16 @@ class GlassSliverAppBar extends StatelessWidget {
   }
 
   Widget _buildBackButton(BuildContext context, Color color) {
-    return IconButton(
-      onPressed: () => Navigator.of(context).pop(),
-      icon: Icon(
-        Icons.chevron_left,
-        color: color,
-        size: 28,
+    return Semantics(
+      label: 'Back',
+      button: true,
+      child: IconButton(
+        onPressed: () => Navigator.of(context).pop(),
+        icon: Icon(
+          Icons.chevron_left,
+          color: color,
+          size: 28,
+        ),
       ),
     );
   }

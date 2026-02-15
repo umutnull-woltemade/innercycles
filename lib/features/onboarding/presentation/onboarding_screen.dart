@@ -14,6 +14,7 @@ import '../../../data/models/user_profile.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/auth_service.dart';
 import '../../../data/services/l10n_service.dart';
+import '../../../data/services/notification_service.dart';
 import '../../../data/services/storage_service.dart';
 import '../../../shared/widgets/birth_date_picker.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -64,6 +65,25 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       // Persist to local storage
       await StorageService.saveUserProfile(profile);
       await StorageService.saveOnboardingComplete(true);
+
+      // Request notification permissions and set default schedule (mobile only)
+      if (!kIsWeb) {
+        try {
+          final notifService = NotificationService();
+          await notifService.initialize();
+          final granted = await notifService.requestPermissions();
+          if (granted) {
+            // Schedule default daily reflection at 9:00 AM
+            await notifService.scheduleDailyReflection(hour: 9, minute: 0);
+            // Enable moon phase notifications
+            await notifService.scheduleMoonPhaseNotifications();
+          }
+        } catch (e) {
+          if (kDebugMode) {
+            debugPrint('⚠️ Onboarding notification setup failed: $e');
+          }
+        }
+      }
 
       // Wait for state to propagate before navigation
       await Future.delayed(const Duration(milliseconds: 100));
