@@ -233,7 +233,7 @@ class _AffirmationCardState extends ConsumerState<AffirmationCard> {
 
                         // Tap hint
                         Text(
-                          isEn ? 'Tap for more' : 'Daha fazlasi icin dokun',
+                          isEn ? 'Tap for more' : 'Daha fazlası için dokun',
                           style: TextStyle(
                             fontSize: 10,
                             color: isDark

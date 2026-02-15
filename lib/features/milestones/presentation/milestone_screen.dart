@@ -450,17 +450,17 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   String _getCategoryHint(MilestoneCategory category) {
     switch (category) {
       case MilestoneCategory.streak:
-        return isEn ? 'Keep logging' : 'Kayit tutmaya devam';
+        return isEn ? 'Keep logging' : 'Kayıt tutmaya devam';
       case MilestoneCategory.entries:
         return isEn ? 'Write more' : 'Daha fazla yaz';
       case MilestoneCategory.exploration:
-        return isEn ? 'Try new features' : 'Yeni ozellikler dene';
+        return isEn ? 'Try new features' : 'Yeni özellikleri dene';
       case MilestoneCategory.depth:
         return isEn ? 'Go deeper' : 'Daha derine dal';
       case MilestoneCategory.social:
-        return isEn ? 'Share & connect' : 'Paylas ve baglan';
+        return isEn ? 'Share & connect' : 'Paylaş ve bağlan';
       case MilestoneCategory.growth:
-        return isEn ? 'Keep growing' : 'Gelismeye devam';
+        return isEn ? 'Keep growing' : 'Gelişmeye devam';
     }
   }
 

@@ -574,7 +574,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     ),
                     const SizedBox(width: AppConstants.spacingSm),
                     Text(
-                      isEn ? 'Tap to speak' : 'Konusmak icin dokun',
+                      isEn ? 'Tap to speak' : 'Konuşmak için dokun',
                       style: TextStyle(
                         fontSize: 12,
                         color: isDark

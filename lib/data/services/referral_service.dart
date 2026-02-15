@@ -72,8 +72,7 @@ class ReferralService {
         ? 'I\'m discovering my emotional patterns with InnerCycles! Track moods, decode dreams, and see what your inner cycles reveal. Try it free:'
         : 'InnerCycles ile duygusal kalıplarımı keşfediyorum! Ruh halini takip et, rüyalarını çöz ve iç döngülerinin ne anlattığını gör. Ücretsiz dene:';
 
-    // App Store URL placeholder — update with real URL
-    const appUrl = 'https://apps.apple.com/app/innercycles/id0000000000';
+    const appUrl = 'https://apps.apple.com/app/innercycles/id6758612716';
 
     await Share.share('$shareText\n\n$appUrl');
 

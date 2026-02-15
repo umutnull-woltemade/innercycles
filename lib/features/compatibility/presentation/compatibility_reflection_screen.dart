@@ -318,7 +318,7 @@ class _CompatibilityReflectionScreenState
           Text(
             isEn
                 ? 'Create a reflection profile for someone in your life and explore how you experience the relationship through 10 guided questions.'
-                : 'Hayatinizdaki biri icin bir yansima profili olusturun ve 10 rehberli soru araciligiyla iliskiyi nasil deneyimlediginizi kesfedin.',
+                : 'Hayatınızdaki biri için bir yansıma profili oluşturun ve 10 rehberli soru aracılığıyla ilişkiyi nasıl deneyimlediğinizi keşfedin.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: isDark
                       ? AppColors.textSecondary
@@ -512,7 +512,7 @@ class _CompatibilityReflectionScreenState
                       child: Text(
                         isEn
                             ? 'This is a personal reflection tool. It helps you explore how you experience this relationship — not a judgment of the other person.'
-                            : 'Bu kisisel bir yansitma aracidir. Bu iliskiyi nasil deneyimlediginizi kesfetmenize yardimci olur — diger kisinin bir yargilamasi degil.',
+                            : 'Bu kişisel bir yansıtma aracıdır. Bu ilişkiyi nasıl deneyimlediğinizi keşfetmenize yardımcı olur — diğer kişinin bir yargılaması değil.',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: AppColors.textSecondary
                                   .withValues(alpha: 0.7),

@@ -47,13 +47,13 @@ class _ShareInsightScreenState extends ConsumerState<ShareInsightScreen> {
       case InsightCardType.archetype:
         return InsightCardData(
           type: type,
-          headline: isEn ? 'The Reflector' : 'Yansitici',
+          headline: isEn ? 'The Reflector' : 'Yansıtıcı',
           subtitle: isEn
               ? 'You process the world by looking inward first.'
-              : 'Dunyayi once icine bakarak islersin.',
+              : 'Dünyayı önce içine bakarak işlersin.',
           detail: isEn
               ? 'Based on your recent entries'
-              : 'Son kayitlarina dayanarak',
+              : 'Son kayıtlarına dayanarak',
           accentColor: AppColors.amethyst,
           badgeText: isEn ? 'ARCHETYPE' : 'ARKETIP',
         );
@@ -61,13 +61,13 @@ class _ShareInsightScreenState extends ConsumerState<ShareInsightScreen> {
       case InsightCardType.moodPattern:
         return InsightCardData(
           type: type,
-          headline: isEn ? 'My Week in Feelings' : 'Duygularla Gecen Haftam',
+          headline: isEn ? 'My Week in Feelings' : 'Duygularla Geçen Haftam',
           subtitle: isEn
               ? 'Calm mid-week, energised on weekends'
-              : 'Hafta ortasi sakin, hafta sonu enerjik',
+              : 'Hafta ortası sakin, hafta sonu enerjik',
           detail: isEn
               ? 'Patterns drawn from 7-day mood data'
-              : 'Son 7 gunluk duygu verisinden cikarildi',
+              : 'Son 7 günlük duygu verisinden çıkarıldı',
           accentColor: AppColors.sunriseStart,
           badgeText: isEn ? 'MOOD' : 'DUYGU',
         );
@@ -78,10 +78,10 @@ class _ShareInsightScreenState extends ConsumerState<ShareInsightScreen> {
           type: type,
           headline: isEn
               ? 'Day $streakText Streak'
-              : '$streakText Gun Serisi',
+              : '$streakText Gün Serisi',
           subtitle: isEn
               ? 'Consistency builds self-awareness.'
-              : 'Tutarlilik oz-farkindaligin temelidir.',
+              : 'Tutarlılık öz-farkındalığın temelidir.',
           accentColor: AppColors.starGold,
           badgeText: isEn ? 'STREAK' : 'SERI',
         );
@@ -89,49 +89,49 @@ class _ShareInsightScreenState extends ConsumerState<ShareInsightScreen> {
       case InsightCardType.dreamSymbol:
         return InsightCardData(
           type: type,
-          headline: isEn ? 'My Dream Personality' : 'Ruya Kisiligim',
+          headline: isEn ? 'My Dream Personality' : 'Rüya Kişiliğim',
           subtitle: isEn
               ? 'Water themes appear often in your dreams.'
-              : 'Ruyalarinda su temalari sik gorunuyor.',
+              : 'Rüyalarında su temaları sık görünüyor.',
           detail: isEn
               ? 'Drawn from your dream journal'
-              : 'Ruya guncenden cikarildi',
+              : 'Rüya günlüğünden çıkarıldı',
           accentColor: AppColors.blueAccent,
-          badgeText: isEn ? 'DREAM' : 'RUYA',
+          badgeText: isEn ? 'DREAM' : 'RÜYA',
         );
 
       case InsightCardType.attachmentStyle:
         return InsightCardData(
           type: type,
-          headline: isEn ? 'My Attachment Style' : 'Baglanma Stilim',
+          headline: isEn ? 'My Attachment Style' : 'Bağlanma Stilim',
           subtitle: isEn
               ? 'Your entries suggest a secure-leaning pattern.'
-              : 'Kayitlarin guvenli bir egilim gosteriyor.',
+              : 'Kayıtların güvenli bir eğilim gösteriyor.',
           accentColor: AppColors.softPink,
-          badgeText: isEn ? 'ATTACHMENT' : 'BAGLANMA',
+          badgeText: isEn ? 'ATTACHMENT' : 'BAĞLANMA',
         );
 
       case InsightCardType.emotionalCycle:
         return InsightCardData(
           type: type,
-          headline: isEn ? 'Inner Cycle Phase' : 'Ic Dongu Evresi',
+          headline: isEn ? 'Inner Cycle Phase' : 'İç Döngü Evresi',
           subtitle: isEn
               ? 'You may be in a reflective phase right now.'
-              : 'Su an yansitici bir evrede olabilirsin.',
+              : 'Şu an yansıtıcı bir evrede olabilirsin.',
           detail: isEn
               ? 'Past entries suggest a recurring pattern'
-              : 'Gecmis kayitlar tekrarlayan bir oruntu gosteriyor',
+              : 'Geçmiş kayıtlar tekrarlayan bir örüntü gösteriyor',
           accentColor: AppColors.twilightEnd,
-          badgeText: isEn ? 'CYCLE' : 'DONGU',
+          badgeText: isEn ? 'CYCLE' : 'DÖNGÜ',
         );
 
       case InsightCardType.monthlyReview:
         return InsightCardData(
           type: type,
-          headline: isEn ? 'Monthly Milestone' : 'Aylik Kilometre Tasi',
+          headline: isEn ? 'Monthly Milestone' : 'Aylık Kilometre Taşı',
           subtitle: isEn
               ? 'Another month of showing up for yourself.'
-              : 'Kendin icin var oldugun bir ay daha.',
+              : 'Kendin için var olduğun bir ay daha.',
           accentColor: AppColors.celestialGold,
           badgeText: isEn ? 'MONTHLY' : 'AYLIK',
         );
@@ -139,24 +139,24 @@ class _ShareInsightScreenState extends ConsumerState<ShareInsightScreen> {
       case InsightCardType.growthScore:
         return InsightCardData(
           type: type,
-          headline: isEn ? 'Growth Score: 78' : 'Gelisim Puani: 78',
+          headline: isEn ? 'Growth Score: 78' : 'Gelişim Puanı: 78',
           subtitle: isEn
               ? 'You have been making steady progress.'
-              : 'Istikrarli bir ilerleme gosteriyorsun.',
+              : 'İstikrarlı bir ilerleme gösteriyorsun.',
           detail: isEn
               ? 'Composite of consistency, depth & variety'
-              : 'Tutarlilik, derinlik ve cesitlilik bilesimi',
+              : 'Tutarlılık, derinlik ve çeşitlilik bileşimi',
           accentColor: AppColors.success,
-          badgeText: isEn ? 'GROWTH' : 'GELISIM',
+          badgeText: isEn ? 'GROWTH' : 'GELİŞİM',
         );
 
       case InsightCardType.weeklyTheme:
         return InsightCardData(
           type: type,
-          headline: isEn ? 'Weekly Theme' : 'Haftalik Tema',
+          headline: isEn ? 'Weekly Theme' : 'Haftalık Tema',
           subtitle: isEn
               ? 'This week you tended to focus on clarity.'
-              : 'Bu hafta netlesmek uzerine yogunlastin.',
+              : 'Bu hafta netleşmek üzerine yoğunlaştın.',
           accentColor: AppColors.auroraStart,
           badgeText: isEn ? 'THEME' : 'TEMA',
         );
@@ -164,13 +164,13 @@ class _ShareInsightScreenState extends ConsumerState<ShareInsightScreen> {
       case InsightCardType.moonPhase:
         return InsightCardData(
           type: type,
-          headline: isEn ? 'Moon Phase Wisdom' : 'Ay Evresi Bilgeligi',
+          headline: isEn ? 'Moon Phase Wisdom' : 'Ay Evresi Bilgeliği',
           subtitle: isEn
               ? 'A good time for rest and introspection.'
-              : 'Dinlenme ve ic gozlem icin iyi bir zaman.',
+              : 'Dinlenme ve iç gözlem için iyi bir zaman.',
           detail: isEn
               ? 'Aligned with your emotional patterns'
-              : 'Duygusal oruntulerinle uyumlu',
+              : 'Duygusal örüntülerinle uyumlu',
           accentColor: AppColors.moonSilver,
           badgeText: isEn ? 'MOON' : 'AY',
         );
@@ -411,15 +411,15 @@ class _ShareInsightScreenState extends ConsumerState<ShareInsightScreen> {
       case InsightCardType.streak:
         return isEn ? 'Streak' : 'Seri';
       case InsightCardType.dreamSymbol:
-        return isEn ? 'Dream' : 'Ruya';
+        return isEn ? 'Dream' : 'Rüya';
       case InsightCardType.attachmentStyle:
-        return isEn ? 'Attachment' : 'Baglanma';
+        return isEn ? 'Attachment' : 'Bağlanma';
       case InsightCardType.emotionalCycle:
-        return isEn ? 'Cycle' : 'Dongu';
+        return isEn ? 'Cycle' : 'Döngü';
       case InsightCardType.monthlyReview:
-        return isEn ? 'Monthly' : 'Aylik';
+        return isEn ? 'Monthly' : 'Aylık';
       case InsightCardType.growthScore:
-        return isEn ? 'Growth' : 'Gelisim';
+        return isEn ? 'Growth' : 'Gelişim';
       case InsightCardType.weeklyTheme:
         return isEn ? 'Theme' : 'Tema';
       case InsightCardType.moonPhase:

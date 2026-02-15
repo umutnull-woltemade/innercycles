@@ -131,7 +131,7 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
     final isEn = language == AppLanguage.en;
     return isEn
         ? 'Voice input is not available on this device.'
-        : 'Sesli giris bu cihazda kullanilamiyor.';
+        : 'Sesli giriş bu cihazda kullanılamıyor.';
   }
 
   String _getPermissionMessage() {
@@ -139,7 +139,7 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
     final isEn = language == AppLanguage.en;
     return isEn
         ? 'Microphone permission is required for voice input. Please enable it in Settings.'
-        : 'Sesli giris icin mikrofon izni gerekli. Lutfen Ayarlar\'dan etkinlestirin.';
+        : 'Sesli giriş için mikrofon izni gerekli. Lütfen Ayarlar\'dan etkinleştirin.';
   }
 
   void _showError(String message) {

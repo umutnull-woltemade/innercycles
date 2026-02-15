@@ -6,8 +6,7 @@ class AppConstants {
 
   // App IDs and Links
   static const String appStoreId = '6758612716';
-  static const String playStoreId =
-      'com.venusone'; // Update with your package name
+  static const String playStoreId = 'com.venusone.innercycles';
   static const String privacyPolicyUrl = 'https://venusone.com/privacy';
   static const String termsOfServiceUrl = 'https://venusone.com/terms';
   static const String supportEmail = 'support@venusone.com';

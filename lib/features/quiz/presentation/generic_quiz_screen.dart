@@ -490,8 +490,8 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
               isEn
                   ? 'This is a self-reflection tool for personal awareness, '
                       'not a clinical assessment.'
-                  : 'Bu, klinik bir degerlendirme degil, kisisel farkindalik '
-                      'icin bir oz yansitma aracidir.',
+                  : 'Bu, klinik bir değerlendirme değil, kişisel farkındalık '
+                      'için bir öz yansıtma aracıdır.',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.textSecondary.withValues(alpha: 0.7),
                     fontStyle: FontStyle.italic,

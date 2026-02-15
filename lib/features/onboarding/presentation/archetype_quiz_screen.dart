@@ -47,42 +47,42 @@ class _QuizOption {
 const List<_QuizQuestion> _questions = [
   _QuizQuestion(
     questionEn: 'When you have free time, you tend to...',
-    questionTr: 'Bos zamanin oldugunda genellikle...',
+    questionTr: 'Boş zamanın olduğunda genellikle...',
     options: [
       _QuizOption(
         textEn: 'Create something new',
-        textTr: 'Yeni bir sey yaratirsin',
+        textTr: 'Yeni bir şey yaratırsın',
         scores: {'creator': 3, 'magician': 1},
       ),
       _QuizOption(
         textEn: 'Explore somewhere unfamiliar',
-        textTr: 'Tanimadigin bir yeri kesfedersin',
+        textTr: 'Tanımadığın bir yeri keşfedersin',
         scores: {'explorer': 3, 'hero': 1},
       ),
       _QuizOption(
         textEn: 'Learn or read something deep',
-        textTr: 'Derin bir sey ogrenirsin',
+        textTr: 'Derin bir şey öğrenirsin',
         scores: {'sage': 3, 'ruler': 1},
       ),
       _QuizOption(
         textEn: 'Spend time with people you love',
-        textTr: 'Sevdigin insanlarla vakit gecirirsin',
+        textTr: 'Sevdiğin insanlarla vakit geçirirsin',
         scores: {'lover': 2, 'caregiver': 2},
       ),
     ],
   ),
   _QuizQuestion(
     questionEn: 'In a group, you naturally become the person who...',
-    questionTr: 'Bir grupta dogal olarak... olan kisi olursun',
+    questionTr: 'Bir grupta doğal olarak... olan kişi olursun',
     options: [
       _QuizOption(
         textEn: 'Takes charge and organizes',
-        textTr: 'Kontrolu alir ve organize eder',
+        textTr: 'Kontrolü alır ve organize eder',
         scores: {'ruler': 3, 'hero': 1},
       ),
       _QuizOption(
         textEn: 'Makes everyone laugh',
-        textTr: 'Herkesi guldurur',
+        textTr: 'Herkesi güldürür',
         scores: {'jester': 3, 'innocent': 1},
       ),
       _QuizOption(
@@ -92,85 +92,85 @@ const List<_QuizQuestion> _questions = [
       ),
       _QuizOption(
         textEn: 'Challenges the usual way of thinking',
-        textTr: 'Alisildik dusunce tarzini sorgular',
+        textTr: 'Alışıldık düşünce tarzını sorgular',
         scores: {'rebel': 3, 'magician': 1},
       ),
     ],
   ),
   _QuizQuestion(
     questionEn: 'When facing a difficult situation, your first instinct is to...',
-    questionTr: 'Zor bir durumla karsilastiginda ilk icgudun...',
+    questionTr: 'Zor bir durumla karşılaştığında ilk içgüdün...',
     options: [
       _QuizOption(
         textEn: 'Face it head-on with courage',
-        textTr: 'Cesaretle yuzyuze gelmek',
+        textTr: 'Cesaretle yüzyüze gelmek',
         scores: {'hero': 3, 'rebel': 1},
       ),
       _QuizOption(
         textEn: 'Analyze and find a clever solution',
-        textTr: 'Analiz edip akillica bir cozum bulmak',
+        textTr: 'Analiz edip akıllıca bir çözüm bulmak',
         scores: {'sage': 2, 'magician': 2},
       ),
       _QuizOption(
         textEn: 'Support others through it first',
-        textTr: 'Once baskalarini desteklemek',
+        textTr: 'Önce başkalarını desteklemek',
         scores: {'caregiver': 3, 'lover': 1},
       ),
       _QuizOption(
         textEn: 'Trust that things will work out',
-        textTr: 'Islerin yoluna girecegine guven',
+        textTr: 'İşlerin yoluna gireceğine güven',
         scores: {'innocent': 3, 'orphan': 1},
       ),
     ],
   ),
   _QuizQuestion(
     questionEn: 'What drives you most in life?',
-    questionTr: 'Hayatta seni en cok ne motive eder?',
+    questionTr: 'Hayatta seni en çok ne motive eder?',
     options: [
       _QuizOption(
         textEn: 'Freedom and self-expression',
-        textTr: 'Ozgurluk ve kendini ifade etmek',
+        textTr: 'Özgürlük ve kendini ifade etmek',
         scores: {'creator': 2, 'explorer': 2},
       ),
       _QuizOption(
         textEn: 'Making a meaningful impact',
-        textTr: 'Anlamli bir etki birakmak',
+        textTr: 'Anlamlı bir etki bırakmak',
         scores: {'hero': 2, 'ruler': 2},
       ),
       _QuizOption(
         textEn: 'Deep connections with others',
-        textTr: 'Baskalarla derin baglar kurmak',
+        textTr: 'Başkalarla derin bağlar kurmak',
         scores: {'lover': 3, 'orphan': 1},
       ),
       _QuizOption(
         textEn: 'Transforming and reinventing yourself',
-        textTr: 'Donusmek ve kendini yeniden kesfetmek',
+        textTr: 'Dönüşmek ve kendini yeniden keşfetmek',
         scores: {'magician': 3, 'rebel': 1},
       ),
     ],
   ),
   _QuizQuestion(
     questionEn: 'Your happiest moments tend to be when...',
-    questionTr: 'En mutlu anlarin genellikle...',
+    questionTr: 'En mutlu anların genellikle...',
     options: [
       _QuizOption(
         textEn: 'You achieve something challenging',
-        textTr: 'Zor bir seyi basardigin zamanlar',
+        textTr: 'Zor bir şeyi başardığın zamanlar',
         scores: {'hero': 2, 'ruler': 2},
       ),
       _QuizOption(
         textEn: 'You feel completely at peace',
-        textTr: 'Tamamen huzurlu hissettigin zamanlar',
+        textTr: 'Tamamen huzurlu hissettiğin zamanlar',
         scores: {'innocent': 2, 'sage': 2},
       ),
       _QuizOption(
         textEn: 'You help someone in a real way',
-        textTr: 'Birine gercekten yardim ettigin zamanlar',
+        textTr: 'Birine gerçekten yardım ettiğin zamanlar',
         scores: {'caregiver': 3, 'orphan': 1},
       ),
       _QuizOption(
         textEn: 'You discover something new about yourself',
-        textTr: 'Kendinde yeni bir sey kesfettigin zamanlar',
+        textTr: 'Kendinde yeni bir şey keşfettiğin zamanlar',
         scores: {'explorer': 2, 'magician': 2},
       ),
     ],

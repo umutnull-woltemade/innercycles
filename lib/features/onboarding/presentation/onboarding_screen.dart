@@ -877,7 +877,7 @@ class _BirthDataPage extends StatelessWidget {
           Text(
             language == AppLanguage.en
                 ? 'Optional — helps personalize your experience'
-                : 'Istege bagli — deneyiminizi kisisellestirmeye yardimci olur',
+                : 'İsteğe bağlı — deneyiminizi kişiselleştirmeye yardımcı olur',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: Theme.of(context).brightness == Brightness.dark
                   ? AppColors.textMuted
