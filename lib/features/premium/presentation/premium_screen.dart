@@ -1,11 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/liquid_glass/glass_animations.dart';
+import '../../../core/theme/liquid_glass/glass_panel.dart';
+import '../../../core/theme/mystical_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/services/paywall_service.dart';
@@ -150,20 +152,16 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             ],
           ),
         )
-        .animate()
-        .fadeIn(duration: 600.ms)
-        .scale(begin: const Offset(0.8, 0.8), curve: Curves.elasticOut);
+        .glassReveal(context: context);
   }
 
   Widget _buildPremiumStatus(BuildContext context, PremiumState premiumState) {
     final language = ref.watch(languageProvider);
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g3,
+      borderRadius: BorderRadius.circular(AppConstants.radiusMd),
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        gradient: AppColors.cardGradient,
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
-      ),
+      glowColor: AppColors.starGold.withValues(alpha: 0.2),
       child: Column(
         children: [
           Text(
@@ -190,7 +188,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             ),
         ],
       ),
-    ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
+    ).glassListItem(context: context, index: 1);
   }
 
   Widget _buildManageSubscriptionButton(BuildContext context) {
@@ -211,7 +209,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           padding: const EdgeInsets.symmetric(vertical: 16),
         ),
       ),
-    ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
+    ).glassListItem(context: context, index: 2);
   }
 
   String _formatDate(DateTime date) {
@@ -233,11 +231,13 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         ),
         Text(
           L10nService.get('app.name', language),
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-            color: AppColors.starGold,
-            fontWeight: FontWeight.bold,
+          style: MysticalTypography.elegantAccent(
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 3.0,
+            color: AppColors.starGold.withValues(alpha: 0.7),
           ),
-        ).animate().fadeIn(duration: 400.ms),
+        ).glassReveal(context: context),
         const SizedBox(height: 8),
         Text(
           L10nService.get('premium.success_message', language),
@@ -245,7 +245,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           style: Theme.of(
             context,
           ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
-        ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
+        ).glassListItem(context: context, index: 1),
       ],
     );
   }
@@ -271,19 +271,14 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           ),
           child: const Text('✨', style: TextStyle(fontSize: 64)),
         )
-        .animate()
-        .fadeIn(delay: 200.ms, duration: 400.ms)
-        .scale(begin: const Offset(0.8, 0.8), curve: Curves.elasticOut);
+        .glassReveal(context: context);
   }
 
   Widget _buildPaywallToggle(BuildContext context) {
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g1,
+      borderRadius: BorderRadius.circular(AppConstants.radiusSm),
       padding: const EdgeInsets.all(AppConstants.spacingMd),
-      decoration: BoxDecoration(
-        color: Colors.orange.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-        border: Border.all(color: Colors.orange.withValues(alpha: 0.3)),
-      ),
       child: Row(
         children: [
           const Icon(Icons.science, color: Colors.orange, size: 20),
@@ -388,7 +383,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
               ),
             ),
           ),
-        ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+        ).glassListItem(context: context, index: 2),
       ],
     );
   }
@@ -396,13 +391,11 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   Widget _buildFeaturesList(BuildContext context) {
     final features = PremiumTier.yearly.features;
 
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g3,
+      borderRadius: BorderRadius.circular(AppConstants.radiusMd),
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        gradient: AppColors.cardGradient,
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
-      ),
+      glowColor: AppColors.starGold.withValues(alpha: 0.2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -419,7 +412,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           ...features.map((feature) => _FeatureItem(feature: feature)),
         ],
       ),
-    ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
+    ).glassListItem(context: context, index: 1);
   }
 
   Widget _buildPlanSelection(BuildContext context) {
@@ -450,7 +443,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           isLifetime: true,
         ),
       ],
-    ).animate().fadeIn(delay: 400.ms, duration: 400.ms);
+    ).glassListItem(context: context, index: 2);
   }
 
   Widget _buildPurchaseButton(BuildContext context, PremiumState premiumState) {
@@ -511,7 +504,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           ),
         ),
       ),
-    ).animate().fadeIn(delay: 500.ms, duration: 400.ms);
+    ).glassListItem(context: context, index: 3);
   }
 
   Widget _buildRestoreButton(BuildContext context, PremiumState premiumState) {
@@ -663,24 +656,13 @@ class _PlanCard extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            gradient: isSelected
-                ? LinearGradient(
-                    colors: [
-                      AppColors.starGold.withValues(alpha: 0.2),
-                      AppColors.auroraStart.withValues(alpha: 0.1),
-                    ],
-                  )
-                : AppColors.cardGradient,
-            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-            border: Border.all(
-              color: isSelected
-                  ? AppColors.starGold
-                  : AppColors.textMuted.withValues(alpha: 0.3),
-              width: isSelected ? 2 : 1,
-            ),
-          ),
+        GlassPanel(
+          elevation: isSelected ? GlassElevation.g3 : GlassElevation.g2,
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+          padding: EdgeInsets.zero,
+          glowColor: isSelected
+              ? AppColors.starGold.withValues(alpha: 0.2)
+              : null,
           child: Material(
             color: Colors.transparent,
             child: InkWell(

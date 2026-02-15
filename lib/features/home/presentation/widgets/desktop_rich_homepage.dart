@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/liquid_glass/glass_animations.dart';
+import '../../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/cosmic_background.dart';
 import '../../../../shared/widgets/page_bottom_navigation.dart';
@@ -53,26 +54,23 @@ class DesktopRichHomepage extends ConsumerWidget {
                   _DesktopHeader(
                     userName: userProfile.name ?? '',
                     language: language,
-                  ).animate().fadeIn(duration: 500.ms).slideY(begin: -0.1),
+                  ).glassEntrance(context: context),
 
                   const SizedBox(height: 16),
 
                   _QuickDiscoveryBar(
                     language: language,
-                  ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
+                  ).glassListItem(context: context, index: 1),
 
                   const SizedBox(height: 24),
 
                   _HeroSection(language: language)
-                      .animate()
-                      .fadeIn(duration: 600.ms, delay: 200.ms)
-                      .scale(begin: const Offset(0.95, 0.95)),
+                      .glassReveal(context: context),
 
                   const SizedBox(height: 40),
 
                   _FeatureCategoriesSection(language: language)
-                      .animate()
-                      .fadeIn(duration: 500.ms, delay: 400.ms),
+                      .glassListItem(context: context, index: 2),
 
                   const SizedBox(height: 40),
 
@@ -107,15 +105,10 @@ class _DesktopHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g2,
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.05),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.15),
-        ),
-      ),
+      borderRadius: BorderRadius.circular(20),
       child: Row(
         children: [
           Expanded(
@@ -262,15 +255,11 @@ class _QuickDiscoveryChip extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(20),
-        child: Container(
+        child: GlassPanel(
+          elevation: GlassElevation.g2,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          decoration: BoxDecoration(
-            color: AppColors.cosmicPurple.withValues(alpha: 0.3),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: AppColors.starGold.withValues(alpha: 0.3),
-            ),
-          ),
+          borderRadius: BorderRadius.circular(20),
+          glowColor: AppColors.starGold.withValues(alpha: 0.15),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -303,25 +292,12 @@ class _HeroSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g3,
       width: double.infinity,
       padding: const EdgeInsets.all(32),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.cosmicPurple.withValues(alpha: 0.4),
-            AppColors.starGold.withValues(alpha: 0.2),
-            const Color(0xFF1A1A2E).withValues(alpha: 0.9),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.3),
-          width: 1.5,
-        ),
-      ),
+      borderRadius: BorderRadius.circular(24),
+      glowColor: AppColors.starGold.withValues(alpha: 0.25),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -552,15 +528,11 @@ class _FeatureCard extends StatelessWidget {
       child: InkWell(
         onTap: () => context.push(route),
         borderRadius: BorderRadius.circular(20),
-        child: Container(
+        child: GlassPanel(
+          elevation: GlassElevation.g2,
           padding: const EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            color: color.withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: color.withValues(alpha: 0.3),
-            ),
-          ),
+          borderRadius: BorderRadius.circular(20),
+          glowColor: color.withValues(alpha: 0.15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,

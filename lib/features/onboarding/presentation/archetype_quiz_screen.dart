@@ -7,11 +7,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/liquid_glass/glass_animations.dart';
+import '../../../core/theme/liquid_glass/glass_panel.dart';
+import '../../../core/theme/liquid_glass/glass_tokens.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/archetype_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -332,7 +334,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                   : AppColors.lightTextPrimary,
               height: 1.3,
             ),
-          ).animate().fadeIn(duration: 300.ms).slideX(begin: 0.05, end: 0),
+          ).glassEntrance(context: context),
 
           const SizedBox(height: 32),
 
@@ -343,20 +345,11 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
               padding: const EdgeInsets.only(bottom: 12),
               child: GestureDetector(
                 onTap: () => _selectOption(option),
-                child: Container(
+                child: GlassPanel(
+                  elevation: GlassElevation.g2,
                   width: double.infinity,
                   padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: isDark
-                        ? Colors.white.withValues(alpha: 0.06)
-                        : Colors.black.withValues(alpha: 0.04),
-                    borderRadius: BorderRadius.circular(14),
-                    border: Border.all(
-                      color: isDark
-                          ? Colors.white.withValues(alpha: 0.12)
-                          : Colors.black.withValues(alpha: 0.08),
-                    ),
-                  ),
+                  borderRadius: BorderRadius.circular(14),
                   child: Text(
                     isEn ? option.textEn : option.textTr,
                     style: TextStyle(
@@ -368,13 +361,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                   ),
                 ),
               ),
-            )
-                .animate()
-                .fadeIn(
-                  duration: 300.ms,
-                  delay: Duration(milliseconds: 100 + index * 80),
-                )
-                .slideX(begin: 0.08, end: 0);
+            ).glassListItem(context: context, index: index);
           }),
         ],
       ),
@@ -400,7 +387,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
           Text(
             archetype.emoji,
             style: const TextStyle(fontSize: 64),
-          ).animate().scale(begin: const Offset(0, 0), end: const Offset(1, 1), duration: 500.ms, curve: Curves.elasticOut),
+          ).glassReveal(context: context),
 
           const SizedBox(height: 16),
 
@@ -413,7 +400,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
               color: AppColors.starGold,
               letterSpacing: 1.5,
             ),
-          ).animate().fadeIn(delay: 300.ms),
+          ).glassEntrance(context: context, delay: const Duration(milliseconds: 300)),
 
           const SizedBox(height: 8),
 
@@ -427,7 +414,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,
             ),
-          ).animate().fadeIn(delay: 400.ms),
+          ).glassEntrance(context: context, delay: const Duration(milliseconds: 400)),
 
           const SizedBox(height: 16),
 
@@ -440,23 +427,17 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               height: 1.5,
             ),
-          ).animate().fadeIn(delay: 500.ms),
+          ).glassEntrance(context: context, delay: const Duration(milliseconds: 500)),
 
           const SizedBox(height: 28),
 
           // Strengths card
-          Container(
+          GlassPanel(
+            elevation: GlassElevation.g3,
+            glowColor: GlassTokens.glowGold,
             width: double.infinity,
             padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: isDark
-                  ? AppColors.starGold.withValues(alpha: 0.08)
-                  : AppColors.starGold.withValues(alpha: 0.06),
-              borderRadius: BorderRadius.circular(14),
-              border: Border.all(
-                color: AppColors.starGold.withValues(alpha: 0.2),
-              ),
-            ),
+            borderRadius: BorderRadius.circular(14),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -492,23 +473,17 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                     )),
               ],
             ),
-          ).animate().fadeIn(delay: 600.ms).slideY(begin: 0.1, end: 0),
+          ).glassEntrance(context: context, delay: const Duration(milliseconds: 600)),
 
           const SizedBox(height: 16),
 
           // Growth tip card
-          Container(
+          GlassPanel(
+            elevation: GlassElevation.g3,
+            glowColor: GlassTokens.glowAmethyst,
             width: double.infinity,
             padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: isDark
-                  ? AppColors.cosmicPurple.withValues(alpha: 0.1)
-                  : AppColors.cosmicPurple.withValues(alpha: 0.06),
-              borderRadius: BorderRadius.circular(14),
-              border: Border.all(
-                color: AppColors.cosmicPurple.withValues(alpha: 0.2),
-              ),
-            ),
+            borderRadius: BorderRadius.circular(14),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -533,7 +508,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                 ),
               ],
             ),
-          ).animate().fadeIn(delay: 700.ms).slideY(begin: 0.1, end: 0),
+          ).glassEntrance(context: context, delay: const Duration(milliseconds: 700)),
 
           const SizedBox(height: 32),
 
@@ -559,7 +534,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                 ),
               ),
             ),
-          ).animate().fadeIn(delay: 800.ms),
+          ).glassEntrance(context: context, delay: const Duration(milliseconds: 800)),
 
           const SizedBox(height: 12),
 

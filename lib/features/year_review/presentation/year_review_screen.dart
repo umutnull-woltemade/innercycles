@@ -8,11 +8,13 @@
 import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/liquid_glass/glass_animations.dart';
+import '../../../core/theme/liquid_glass/glass_panel.dart';
+import '../../../core/theme/mystical_typography.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/year_review_service.dart';
@@ -151,81 +153,37 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                             review: review,
                             isDark: isDark,
                             isEn: isEn,
-                          ).animate().fadeIn(duration: 500.ms).slideY(
-                                begin: 0.1,
-                                end: 0,
-                                duration: 500.ms,
-                              ),
+                          ).glassReveal(context: context),
                           const SizedBox(height: 20),
                           _MoodJourneyCard(
                             review: review,
                             isDark: isDark,
                             isEn: isEn,
-                          )
-                              .animate()
-                              .fadeIn(delay: 100.ms, duration: 500.ms)
-                              .slideY(
-                                begin: 0.1,
-                                end: 0,
-                                delay: 100.ms,
-                                duration: 500.ms,
-                              ),
+                          ).glassListItem(context: context, index: 1),
                           const SizedBox(height: 20),
                           _FocusAreasCard(
                             review: review,
                             isDark: isDark,
                             isEn: isEn,
-                          )
-                              .animate()
-                              .fadeIn(delay: 200.ms, duration: 500.ms)
-                              .slideY(
-                                begin: 0.1,
-                                end: 0,
-                                delay: 200.ms,
-                                duration: 500.ms,
-                              ),
+                          ).glassListItem(context: context, index: 2),
                           const SizedBox(height: 20),
                           _GrowthScoreCard(
                             review: review,
                             isDark: isDark,
                             isEn: isEn,
-                          )
-                              .animate()
-                              .fadeIn(delay: 300.ms, duration: 500.ms)
-                              .slideY(
-                                begin: 0.1,
-                                end: 0,
-                                delay: 300.ms,
-                                duration: 500.ms,
-                              ),
+                          ).glassListItem(context: context, index: 3),
                           const SizedBox(height: 20),
                           _HighlightsCard(
                             review: review,
                             isDark: isDark,
                             isEn: isEn,
-                          )
-                              .animate()
-                              .fadeIn(delay: 400.ms, duration: 500.ms)
-                              .slideY(
-                                begin: 0.1,
-                                end: 0,
-                                delay: 400.ms,
-                                duration: 500.ms,
-                              ),
+                          ).glassListItem(context: context, index: 4),
                           const SizedBox(height: 20),
                           _ShareableSummaryCard(
                             review: review,
                             isDark: isDark,
                             isEn: isEn,
-                          )
-                              .animate()
-                              .fadeIn(delay: 500.ms, duration: 500.ms)
-                              .slideY(
-                                begin: 0.1,
-                                end: 0,
-                                delay: 500.ms,
-                                duration: 500.ms,
-                              ),
+                          ).glassListItem(context: context, index: 5),
                           const SizedBox(height: 40),
                         ]),
                       );
@@ -433,35 +391,11 @@ class _HeroCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g3,
+      borderRadius: BorderRadius.circular(20),
       padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: isDark
-              ? [
-                  AppColors.cosmicPurple.withValues(alpha: 0.9),
-                  AppColors.surfaceDark.withValues(alpha: 0.95),
-                ]
-              : [
-                  AppColors.lightCard,
-                  AppColors.lightSurfaceVariant,
-                ],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.3),
-          width: 1.5,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.starGold.withValues(alpha: isDark ? 0.1 : 0.05),
-            blurRadius: 20,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
+      glowColor: AppColors.starGold.withValues(alpha: 0.2),
       child: Column(
         children: [
           Icon(
@@ -472,13 +406,11 @@ class _HeroCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             'InnerCycles',
-            style: TextStyle(
-              fontSize: 13,
+            style: MysticalTypography.elegantAccent(
+              fontSize: 12,
               fontWeight: FontWeight.w600,
-              letterSpacing: 1.5,
-              color: isDark
-                  ? AppColors.textMuted
-                  : AppColors.lightTextMuted,
+              letterSpacing: 3.0,
+              color: AppColors.starGold.withValues(alpha: 0.7),
             ),
           ),
           const SizedBox(height: 6),
@@ -611,19 +543,10 @@ class _MoodJourneyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final monthLabels = isEn ? _monthLabelsEn : _monthLabelsTr;
 
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g2,
+      borderRadius: BorderRadius.circular(16),
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.12)
-              : Colors.black.withValues(alpha: 0.06),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -757,19 +680,10 @@ class _FocusAreasCard extends StatelessWidget {
       ..sort((a, b) => b.value.compareTo(a.value));
     final maxCount = sortedAreas.isNotEmpty ? sortedAreas.first.value : 1;
 
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g2,
+      borderRadius: BorderRadius.circular(16),
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.12)
-              : Colors.black.withValues(alpha: 0.06),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -877,19 +791,10 @@ class _GrowthScoreCard extends StatelessWidget {
             ? (isEn ? 'Steady Progress' : 'İstikrarlı İlerleme')
             : (isEn ? 'Room to Grow' : 'Gelişim Alanı');
 
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g2,
+      borderRadius: BorderRadius.circular(16),
       padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.12)
-              : Colors.black.withValues(alpha: 0.06),
-        ),
-      ),
       child: Column(
         children: [
           Text(
@@ -1048,19 +953,10 @@ class _HighlightsCard extends StatelessWidget {
     final highlights = _parseHighlights(review.topPatterns);
     if (highlights.isEmpty) return const SizedBox.shrink();
 
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g2,
+      borderRadius: BorderRadius.circular(16),
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.12)
-              : Colors.black.withValues(alpha: 0.06),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1260,22 +1156,11 @@ class _ShareableSummaryCard extends StatelessWidget {
         ? review.topFocusArea.displayNameEn
         : review.topFocusArea.displayNameTr;
 
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g3,
+      borderRadius: BorderRadius.circular(16),
       padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.auroraStart.withValues(alpha: isDark ? 0.25 : 0.15),
-            AppColors.auroraEnd.withValues(alpha: isDark ? 0.25 : 0.15),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.auroraStart.withValues(alpha: 0.3),
-        ),
-      ),
+      glowColor: AppColors.auroraStart.withValues(alpha: 0.15),
       child: Column(
         children: [
           Text(
@@ -1308,13 +1193,11 @@ class _ShareableSummaryCard extends StatelessWidget {
           const SizedBox(height: 20),
           Text(
             'InnerCycles',
-            style: TextStyle(
+            style: MysticalTypography.elegantAccent(
               fontSize: 12,
               fontWeight: FontWeight.w600,
-              letterSpacing: 1.2,
-              color: isDark
-                  ? AppColors.textMuted
-                  : AppColors.lightTextMuted,
+              letterSpacing: 2.5,
+              color: AppColors.starGold.withValues(alpha: 0.6),
             ),
           ),
           const SizedBox(height: 16),

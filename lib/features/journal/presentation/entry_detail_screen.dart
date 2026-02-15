@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/liquid_glass/glass_animations.dart';
+import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -86,23 +87,20 @@ class EntryDetailScreen extends ConsumerWidget {
               delegate: SliverChildListDelegate([
                 // Focus area & rating header
                 _buildHeaderCard(context, areaLabel, entry, isDark)
-                    .animate()
-                    .fadeIn(duration: 300.ms),
+                    .glassReveal(context: context),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Sub-ratings
                 if (entry.subRatings.isNotEmpty)
                   _buildSubRatingsCard(context, names, entry, isDark)
-                      .animate()
-                      .fadeIn(delay: 100.ms, duration: 300.ms),
+                      .glassListItem(context: context, index: 1),
                 if (entry.subRatings.isNotEmpty)
                   const SizedBox(height: AppConstants.spacingLg),
 
                 // Note
                 if (entry.note != null && entry.note!.isNotEmpty)
                   _buildNoteCard(context, entry.note!, isDark, isEn)
-                      .animate()
-                      .fadeIn(delay: 200.ms, duration: 300.ms),
+                      .glassListItem(context: context, index: 2),
               ]),
             ),
           ),
@@ -117,17 +115,11 @@ class EntryDetailScreen extends ConsumerWidget {
     JournalEntry entry,
     bool isDark,
   ) {
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g3,
+      glowColor: AppColors.starGold.withValues(alpha: 0.3),
       padding: const EdgeInsets.all(AppConstants.spacingXl),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.3),
-        ),
-      ),
+      borderRadius: BorderRadius.circular(AppConstants.radiusLg),
       child: Column(
         children: [
           Text(
@@ -177,19 +169,10 @@ class EntryDetailScreen extends ConsumerWidget {
     JournalEntry entry,
     bool isDark,
   ) {
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g2,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
+      borderRadius: BorderRadius.circular(AppConstants.radiusLg),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: entry.subRatings.entries.map((e) {
@@ -247,20 +230,11 @@ class EntryDetailScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g2,
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
+      borderRadius: BorderRadius.circular(AppConstants.radiusLg),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

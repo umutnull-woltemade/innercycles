@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -9,6 +8,10 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/liquid_glass/glass_animations.dart';
+import '../../../core/theme/liquid_glass/glass_panel.dart';
+// ignore: unused_import
+import '../../../core/theme/mystical_typography.dart';
 import '../../../data/models/user_profile.dart';
 
 import '../../../data/providers/app_providers.dart';
@@ -432,7 +435,7 @@ class _WelcomePageState extends State<_WelcomePage>
                 color: Colors.white,
                 letterSpacing: 4,
               ),
-            ).animate().fadeIn(duration: 800.ms).slideY(begin: 0.2),
+            ).glassReveal(context: context),
 
             const SizedBox(height: 8),
 
@@ -448,7 +451,7 @@ class _WelcomePageState extends State<_WelcomePage>
                 letterSpacing: 1,
               ),
               textAlign: TextAlign.center,
-            ).animate().fadeIn(delay: 400.ms, duration: 600.ms),
+            ).glassListItem(context: context, index: 1),
 
             const SizedBox(height: 48),
 
@@ -484,7 +487,7 @@ class _WelcomePageState extends State<_WelcomePage>
                 fontSize: 14,
               ),
               textAlign: TextAlign.center,
-            ).animate().fadeIn(delay: 1200.ms),
+            ).glassListItem(context: context, index: 9),
 
             const SizedBox(height: 24),
 
@@ -543,13 +546,7 @@ class _WelcomePageState extends State<_WelcomePage>
             fit: BoxFit.contain,
           ),
         )
-        .animate()
-        .fadeIn(duration: 1000.ms)
-        .scale(
-          begin: const Offset(0.8, 0.8),
-          curve: Curves.elasticOut,
-          duration: 1200.ms,
-        );
+        .glassReveal(context: context);
   }
 
   Widget _buildAppleSignInButton() {
@@ -601,7 +598,7 @@ class _WelcomePageState extends State<_WelcomePage>
           ],
         ),
       ),
-    ).animate().fadeIn(delay: 700.ms, duration: 500.ms).slideY(begin: 0.3);
+    ).glassListItem(context: context, index: 2);
   }
 
   Widget _buildDivider() {
@@ -645,7 +642,7 @@ class _WelcomePageState extends State<_WelcomePage>
           ),
         ),
       ],
-    ).animate().fadeIn(delay: 800.ms, duration: 400.ms);
+    ).glassListItem(context: context, index: 3);
   }
 
   Widget _buildGuestButton() {
@@ -700,7 +697,7 @@ class _WelcomePageState extends State<_WelcomePage>
           ],
         ),
       ),
-    ).animate().fadeIn(delay: 900.ms, duration: 500.ms).slideY(begin: 0.2);
+    ).glassListItem(context: context, index: 4);
   }
 
   Widget _buildFeaturesPreview() {
@@ -772,9 +769,7 @@ class _WelcomePageState extends State<_WelcomePage>
                 ),
               ],
             )
-            .animate()
-            .fadeIn(delay: (1000 + index * 100).ms, duration: 400.ms)
-            .slideY(begin: 0.3);
+            .glassListItem(context: context, index: 5 + index);
       }).toList(),
     );
   }
@@ -865,7 +860,7 @@ class _BirthDataPage extends StatelessWidget {
             userName: userName,
             onNameChanged: onNameChanged,
             language: language,
-          ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
+          ).glassListItem(context: context, index: 0),
           const SizedBox(height: AppConstants.spacingLg),
 
           // Birth Date (optional)
@@ -890,14 +885,14 @@ class _BirthDataPage extends StatelessWidget {
             initialDate: selectedDate,
             onDateChanged: onDateSelected,
             language: language,
-          ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+          ).glassListItem(context: context, index: 1),
 
           const SizedBox(height: AppConstants.spacingLg),
 
           // Info box
           _InfoBox(
             language: language,
-          ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
+          ).glassListItem(context: context, index: 2),
 
           const SizedBox(height: 20),
         ],
@@ -986,18 +981,12 @@ class _InfoBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g2,
+      borderRadius: BorderRadius.circular(12),
       padding: const EdgeInsets.all(AppConstants.spacingMd),
-      decoration: BoxDecoration(
-        color: colorScheme.primary.withAlpha(isDark ? 25 : 15),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: colorScheme.primary.withAlpha(isDark ? 76 : 50),
-        ),
-      ),
       child: Row(
         children: [
           Icon(Icons.info_outline, color: colorScheme.primary, size: 20),
@@ -1254,11 +1243,7 @@ class _ReadyPage extends StatelessWidget {
                 size: 64,
                 color: Color(0xFF4CAF50),
               ),
-            ).animate().scale(
-              begin: const Offset(0.5, 0.5),
-              curve: Curves.elasticOut,
-              duration: 600.ms,
-            ),
+            ).glassReveal(context: context),
 
             const SizedBox(height: 32),
 
@@ -1272,7 +1257,7 @@ class _ReadyPage extends StatelessWidget {
                 letterSpacing: 1,
               ),
               textAlign: TextAlign.center,
-            ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+            ).glassListItem(context: context, index: 1),
 
             const SizedBox(height: 16),
 
@@ -1284,18 +1269,15 @@ class _ReadyPage extends StatelessWidget {
                 fontSize: 16,
               ),
               textAlign: TextAlign.center,
-            ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+            ).glassListItem(context: context, index: 2),
 
             const SizedBox(height: 48),
 
             // Feature preview - safe features only
-            Container(
+            GlassPanel(
+                  elevation: GlassElevation.g2,
+                  borderRadius: BorderRadius.circular(16),
                   padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: AppColors.surfaceLight.withAlpha(30),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.white.withAlpha(20)),
-                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1337,19 +1319,15 @@ class _ReadyPage extends StatelessWidget {
                     ],
                   ),
                 )
-                .animate()
-                .fadeIn(delay: 600.ms, duration: 400.ms)
-                .slideY(begin: 0.2),
+                .glassListItem(context: context, index: 3),
 
             const SizedBox(height: 24),
 
             // Disclaimer
-            Container(
+            GlassPanel(
+              elevation: GlassElevation.g2,
+              borderRadius: BorderRadius.circular(8),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              decoration: BoxDecoration(
-                color: Colors.white.withAlpha(10),
-                borderRadius: BorderRadius.circular(8),
-              ),
               child: Row(
                 children: [
                   Icon(
@@ -1369,7 +1347,7 @@ class _ReadyPage extends StatelessWidget {
                   ),
                 ],
               ),
-            ).animate().fadeIn(delay: 800.ms, duration: 400.ms),
+            ).glassListItem(context: context, index: 4),
           ],
         ),
       ),

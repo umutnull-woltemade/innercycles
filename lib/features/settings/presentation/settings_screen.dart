@@ -13,6 +13,7 @@ import '../../../data/services/storage_service.dart';
 import '../../../data/services/url_launcher_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../data/services/paywall_service.dart';
+import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import 'notification_settings_section.dart';
@@ -714,14 +715,10 @@ class _GroupedContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: noPadding ? null : const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
+    return GlassPanel(
+      elevation: GlassElevation.g2,
+      borderRadius: BorderRadius.circular(10),
+      padding: noPadding ? EdgeInsets.zero : const EdgeInsets.all(16),
       child: child,
     );
   }

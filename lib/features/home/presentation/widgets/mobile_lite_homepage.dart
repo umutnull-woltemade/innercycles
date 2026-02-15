@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/liquid_glass/glass_animations.dart';
+import '../../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/services/premium_service.dart';
@@ -70,7 +72,7 @@ class MobileLiteHomepage extends ConsumerWidget {
                 _AboveTheFold(
                   userName: userProfile.name ?? '',
                   isDark: isDark,
-                ),
+                ).glassReveal(context: context),
                 _BelowTheFold(isDark: isDark),
                 const SizedBox(height: 32),
               ],
@@ -117,11 +119,11 @@ class _AboveTheFold extends ConsumerWidget {
       orElse: () => _getDailySentence(language),
     );
 
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g3,
+      borderRadius: BorderRadius.zero,
       padding: const EdgeInsets.fromLTRB(20, 24, 20, 32),
-      decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1A1A2E) : const Color(0xFFF0F2F8),
-      ),
+      glowColor: AppColors.starGold.withValues(alpha: 0.2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -480,6 +482,7 @@ class _BelowTheFold extends ConsumerWidget {
             route: Routes.journal,
             isDark: isDark,
             isHighlighted: true,
+            index: 0,
           ),
 
           _EntryPointTile(
@@ -492,6 +495,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Kayıtlarındaki eğilimler ve bağlantılar',
             route: Routes.journalPatterns,
             isDark: isDark,
+            index: 1,
           ),
 
           _EntryPointTile(
@@ -504,6 +508,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Duygusal dalga kalıplarını görselleştir',
             route: Routes.emotionalCycles,
             isDark: isDark,
+            index: 2,
           ),
 
           _EntryPointTile(
@@ -516,6 +521,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Ayına bir bakışta göz at',
             route: Routes.journalMonthly,
             isDark: isDark,
+            index: 3,
           ),
 
           _EntryPointTile(
@@ -528,6 +534,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Minnettar olduğun şeyleri kaydet',
             route: Routes.gratitudeJournal,
             isDark: isDark,
+            index: 4,
           ),
 
           _EntryPointTile(
@@ -540,6 +547,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Yansıma başlatacak seçilmiş sorular',
             route: Routes.promptLibrary,
             isDark: isDark,
+            index: 5,
           ),
 
           const SizedBox(height: 24),
@@ -570,6 +578,7 @@ class _BelowTheFold extends ConsumerWidget {
             route: Routes.dreamInterpretation,
             isDark: isDark,
             isHighlighted: true,
+            index: 0,
           ),
 
           _EntryPointTile(
@@ -582,6 +591,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : '1000+ sembol ve anlamı',
             route: Routes.dreamGlossary,
             isDark: isDark,
+            index: 1,
           ),
 
           const SizedBox(height: 24),
@@ -612,6 +622,7 @@ class _BelowTheFold extends ConsumerWidget {
             route: Routes.growthDashboard,
             isDark: isDark,
             isHighlighted: true,
+            index: 0,
           ),
 
           _EntryPointTile(
@@ -624,6 +635,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'İlişki kalıplarını keşfet',
             route: Routes.attachmentQuiz,
             isDark: isDark,
+            index: 1,
           ),
 
           _EntryPointTile(
@@ -636,6 +648,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Yapay zeka destekli öz-yansıma asistanı',
             route: Routes.insight,
             isDark: isDark,
+            index: 2,
           ),
 
           _EntryPointTile(
@@ -648,6 +661,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : '36 bilim destekli duygusal okuryazarlık modülü',
             route: Routes.insightsDiscovery,
             isDark: isDark,
+            index: 3,
           ),
 
           _EntryPointTile(
@@ -660,6 +674,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Tüm kendini keşfetme testleri tek yerde',
             route: Routes.quizHub,
             isDark: isDark,
+            index: 4,
           ),
 
           _EntryPointTile(
@@ -672,6 +687,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Yapılandırılmış büyüme yolculukları',
             route: Routes.programs,
             isDark: isDark,
+            index: 5,
           ),
 
           _EntryPointTile(
@@ -684,6 +700,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Rehberli meydan okumalarla daha iyi alışkanlıklar edin',
             route: Routes.challenges,
             isDark: isDark,
+            index: 6,
           ),
 
           _EntryPointTile(
@@ -696,6 +713,59 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Güzel içgörü kartları oluştur ve paylaş',
             route: Routes.shareCardGallery,
             isDark: isDark,
+            index: 7,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.fingerprint_outlined,
+            title: language == AppLanguage.en
+                ? 'Your Archetype'
+                : 'Arketipiniz',
+            subtitle: language == AppLanguage.en
+                ? 'Discover your emotional archetype profile'
+                : 'Duygusal arketip profilinizi keşfedin',
+            route: Routes.archetype,
+            isDark: isDark,
+            index: 8,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.visibility_off_outlined,
+            title: language == AppLanguage.en
+                ? 'Blind Spot Mirror'
+                : 'Kör Nokta Aynası',
+            subtitle: language == AppLanguage.en
+                ? 'Uncover hidden patterns in your behavior'
+                : 'Davranışlarınızdaki gizli kalıpları ortaya çıkarın',
+            route: Routes.blindSpot,
+            isDark: isDark,
+            index: 9,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.people_outline_rounded,
+            title: language == AppLanguage.en
+                ? 'Compatibility Reflection'
+                : 'Uyumluluk Yansıması',
+            subtitle: language == AppLanguage.en
+                ? 'Explore relationship dynamics & patterns'
+                : 'İlişki dinamiklerini ve kalıplarını keşfedin',
+            route: Routes.compatibilityReflection,
+            isDark: isDark,
+            index: 10,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.military_tech_outlined,
+            title: language == AppLanguage.en
+                ? 'Milestones & Badges'
+                : 'Kilometre Taşları ve Rozetler',
+            subtitle: language == AppLanguage.en
+                ? 'Track your achievements & unlocked badges'
+                : 'Başarılarınızı ve açılan rozetleri takip edin',
+            route: Routes.milestones,
+            isDark: isDark,
+            index: 11,
           ),
 
           const SizedBox(height: 24),
@@ -725,6 +795,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Sakinlik ve odak için rehberli nefes',
             route: Routes.breathing,
             isDark: isDark,
+            index: 0,
           ),
 
           _EntryPointTile(
@@ -737,6 +808,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Farkındalık için zamanlı oturumlar',
             route: Routes.meditation,
             isDark: isDark,
+            index: 1,
           ),
 
           _EntryPointTile(
@@ -749,6 +821,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Günlük sağlık rutinleri oluştur',
             route: Routes.rituals,
             isDark: isDark,
+            index: 2,
           ),
 
           _EntryPointTile(
@@ -761,6 +834,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : '56 kanıta dayalı deneyebileceğin alışkanlık',
             route: Routes.habitSuggestions,
             isDark: isDark,
+            index: 3,
           ),
 
           _EntryPointTile(
@@ -773,6 +847,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Doğanın ritimleriyle uyum sağla',
             route: Routes.seasonal,
             isDark: isDark,
+            index: 4,
           ),
 
           _EntryPointTile(
@@ -785,6 +860,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Ay evrelerini ve yansımalarını takip et',
             route: Routes.moonCalendar,
             isDark: isDark,
+            index: 5,
           ),
 
           const SizedBox(height: 24),
@@ -814,6 +890,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Tüm kayıtları ara ve gözat',
             route: Routes.journalArchive,
             isDark: isDark,
+            index: 0,
           ),
 
           _EntryPointTile(
@@ -826,6 +903,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Günlüğünüzü metin, CSV veya JSON olarak indirin',
             route: Routes.exportData,
             isDark: isDark,
+            index: 1,
           ),
 
           _EntryPointTile(
@@ -838,6 +916,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Tam duygusal hikaye arkın',
             route: Routes.yearReview,
             isDark: isDark,
+            index: 2,
           ),
 
           _EntryPointTile(
@@ -850,6 +929,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Haftanın içgörüleri bir bakışta',
             route: Routes.weeklyDigest,
             isDark: isDark,
+            index: 3,
           ),
 
           const SizedBox(height: 32),
@@ -954,6 +1034,7 @@ class _EntryPointTile extends StatelessWidget {
   final String route;
   final bool isDark;
   final bool isHighlighted;
+  final int index;
 
   const _EntryPointTile({
     required this.icon,
@@ -962,11 +1043,12 @@ class _EntryPointTile extends StatelessWidget {
     required this.route,
     required this.isDark,
     this.isHighlighted = false,
+    this.index = 0,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
+    final tile = Semantics(
       label: '$title. $subtitle',
       button: true,
       child: Padding(
@@ -976,24 +1058,13 @@ class _EntryPointTile extends StatelessWidget {
         child: InkWell(
           onTap: () => context.push(route),
           borderRadius: BorderRadius.circular(12),
-          child: Container(
+          child: GlassPanel(
+            elevation: isHighlighted ? GlassElevation.g3 : GlassElevation.g2,
+            borderRadius: BorderRadius.circular(12),
             padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: isHighlighted
-                  ? (isDark
-                        ? AppColors.starGold.withValues(alpha: 0.1)
-                        : AppColors.lightStarGold.withValues(alpha: 0.1))
-                  : (isDark ? AppColors.surfaceDark : AppColors.lightCard),
-              borderRadius: BorderRadius.circular(12),
-              border: isHighlighted
-                  ? Border.all(
-                      color: isDark
-                          ? AppColors.starGold.withValues(alpha: 0.3)
-                          : AppColors.lightStarGold.withValues(alpha: 0.3),
-                      width: 1,
-                    )
-                  : null,
-            ),
+            glowColor: isHighlighted
+                ? AppColors.starGold.withValues(alpha: 0.2)
+                : null,
             child: Row(
               children: [
                 Container(
@@ -1061,6 +1132,7 @@ class _EntryPointTile extends StatelessWidget {
       ),
     ),
     );
+    return tile.glassListItem(context: context, index: index);
   }
 }
 
@@ -1108,20 +1180,11 @@ class _UpgradeTriggerBanner extends ConsumerWidget {
             upgradeService.markTriggerShown(trigger);
             context.push(Routes.premium);
           },
-          child: Container(
+          child: GlassPanel(
+            elevation: GlassElevation.g3,
+            borderRadius: BorderRadius.circular(16),
             padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.starGold.withValues(alpha: isDark ? 0.15 : 0.1),
-                  AppColors.auroraStart.withValues(alpha: isDark ? 0.1 : 0.05),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: AppColors.starGold.withValues(alpha: 0.3),
-              ),
-            ),
+            glowColor: AppColors.starGold.withValues(alpha: 0.2),
             child: Row(
               children: [
                 Icon(prompt.icon, size: 28, color: AppColors.starGold),
@@ -1160,7 +1223,7 @@ class _UpgradeTriggerBanner extends ConsumerWidget {
               ],
             ),
           ),
-        );
+        ).glassReveal(context: context);
       },
       orElse: () => const SizedBox.shrink(),
     );

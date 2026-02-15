@@ -10,6 +10,8 @@ import '../../../data/services/ai_content_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../core/theme/liquid_glass/glass_animations.dart';
+import '../../../core/theme/liquid_glass/glass_panel.dart';
 
 /// Inner Dream Guide - AI-Powered Dream Chatbot
 /// Conversational dream interpretation experience
@@ -1856,7 +1858,7 @@ ${_getPersonalAdvice(sign)}''';
           ),
         ],
       ),
-    ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.2, end: 0);
+    ).glassReveal(context: context);
   }
 
   Widget _buildChatArea() {
@@ -1929,30 +1931,12 @@ ${_getPersonalAdvice(sign)}''';
                           _sendMessage();
                         },
                         borderRadius: BorderRadius.circular(14),
-                        child: Container(
-                          width: 180,
+                        child: GlassPanel(
+                          elevation: GlassElevation.g2,
+                          borderRadius: BorderRadius.circular(14),
                           padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                AppColors.mystic.withValues(alpha: 0.25),
-                                AppColors.nebulaPurple.withValues(alpha: 0.15),
-                              ],
-                            ),
-                            borderRadius: BorderRadius.circular(14),
-                            border: Border.all(
-                              color: AppColors.mystic.withValues(alpha: 0.35),
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: AppColors.mystic.withValues(alpha: 0.1),
-                                blurRadius: 8,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
-                          ),
+                          width: 180,
+                          glowColor: AppColors.mystic.withValues(alpha: 0.2),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -1978,9 +1962,7 @@ ${_getPersonalAdvice(sign)}''';
                         ),
                       ),
                     )
-                    .animate()
-                    .fadeIn(duration: 300.ms, delay: (50 * index).ms)
-                    .slideX(begin: 0.1, end: 0);
+                    .glassListItem(context: context, index: index);
               },
             ),
           ),
@@ -2000,7 +1982,7 @@ ${_getPersonalAdvice(sign)}''';
           ),
         ],
       ),
-    ).animate().fadeIn(duration: 500.ms, delay: 300.ms);
+    ).glassReveal(context: context, delay: const Duration(milliseconds: 300));
   }
 
   Widget _buildMessageBubble(ChatMessage message, int index) {
@@ -2034,44 +2016,18 @@ ${_getPersonalAdvice(sign)}''';
                 const SizedBox(width: 8),
               ],
               Flexible(
-                child: Container(
-                  padding: const EdgeInsets.all(14),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: isUser
-                          ? [
-                              AppColors.cosmicPurple.withValues(alpha: 0.4),
-                              AppColors.nebulaPurple.withValues(alpha: 0.3),
-                            ]
-                          : [
-                              AppColors.mystic.withValues(alpha: 0.2),
-                              const Color(0xFF1A1A2E).withValues(alpha: 0.8),
-                            ],
-                    ),
-                    borderRadius: BorderRadius.only(
-                      topLeft: const Radius.circular(18),
-                      topRight: const Radius.circular(18),
-                      bottomLeft: Radius.circular(isUser ? 18 : 4),
-                      bottomRight: Radius.circular(isUser ? 4 : 18),
-                    ),
-                    border: Border.all(
-                      color: isUser
-                          ? AppColors.cosmicPurple.withValues(alpha: 0.3)
-                          : AppColors.mystic.withValues(alpha: 0.2),
-                      width: 1,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color:
-                            (isUser ? AppColors.cosmicPurple : AppColors.mystic)
-                                .withValues(alpha: 0.1),
-                        blurRadius: 8,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
+                child: GlassPanel(
+                  elevation: isUser ? GlassElevation.g2 : GlassElevation.g2,
+                  borderRadius: BorderRadius.only(
+                    topLeft: const Radius.circular(18),
+                    topRight: const Radius.circular(18),
+                    bottomLeft: Radius.circular(isUser ? 18 : 4),
+                    bottomRight: Radius.circular(isUser ? 4 : 18),
                   ),
+                  padding: const EdgeInsets.all(14),
+                  glowColor: isUser
+                      ? AppColors.cosmicPurple.withValues(alpha: 0.2)
+                      : AppColors.mystic.withValues(alpha: 0.2),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -2138,14 +2094,7 @@ ${_getPersonalAdvice(sign)}''';
             ],
           ),
         )
-        .animate()
-        .fadeIn(duration: 300.ms, delay: (50 * index).ms)
-        .slideX(
-          begin: isUser ? 0.2 : -0.2,
-          end: 0,
-          duration: 300.ms,
-          delay: (50 * index).ms,
-        );
+        .glassListItem(context: context, index: index);
   }
 
   Widget _buildTypingIndicator() {
@@ -2167,15 +2116,10 @@ ${_getPersonalAdvice(sign)}''';
             child: const Text('\u{1F319}', style: TextStyle(fontSize: 18)),
           ),
           const SizedBox(width: 8),
-          Container(
+          GlassPanel(
+            elevation: GlassElevation.g1,
+            borderRadius: BorderRadius.circular(18),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(
-              color: AppColors.mystic.withValues(alpha: 0.15),
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(
-                color: AppColors.mystic.withValues(alpha: 0.2),
-              ),
-            ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: List.generate(3, (index) {
@@ -2219,19 +2163,10 @@ ${_getPersonalAdvice(sign)}''';
           Row(
             children: [
               Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        AppColors.mystic.withValues(alpha: 0.15),
-                        const Color(0xFF1A1A2E).withValues(alpha: 0.9),
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(24),
-                    border: Border.all(
-                      color: AppColors.mystic.withValues(alpha: 0.3),
-                    ),
-                  ),
+                child: GlassPanel(
+                  elevation: GlassElevation.g2,
+                  borderRadius: BorderRadius.circular(24),
+                  padding: EdgeInsets.zero,
                   child: KeyboardListener(
                     focusNode: FocusNode(),
                     onKeyEvent: (event) {
@@ -2714,29 +2649,14 @@ ${_getPersonalAdvice(sign)}''';
                   _sendMessage();
                 },
                 borderRadius: BorderRadius.circular(20),
-                child: Container(
+                child: GlassPanel(
+                  elevation: GlassElevation.g2,
+                  borderRadius: BorderRadius.circular(20),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 8,
                   ),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        AppColors.cosmicPurple.withValues(alpha: 0.3),
-                        AppColors.mystic.withValues(alpha: 0.2),
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: AppColors.mystic.withValues(alpha: 0.4),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.mystic.withValues(alpha: 0.1),
-                        blurRadius: 4,
-                      ),
-                    ],
-                  ),
+                  glowColor: AppColors.mystic.withValues(alpha: 0.15),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -2951,20 +2871,10 @@ class _DreamSymbolsSheet extends ConsumerWidget {
               itemCount: symbols.length,
               itemBuilder: (context, index) {
                 final symbol = symbols[index];
-                return Container(
+                return GlassPanel(
+                      elevation: GlassElevation.g2,
+                      borderRadius: BorderRadius.circular(14),
                       padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            AppColors.mystic.withValues(alpha: 0.2),
-                            const Color(0xFF1A1A2E).withValues(alpha: 0.8),
-                          ],
-                        ),
-                        borderRadius: BorderRadius.circular(14),
-                        border: Border.all(
-                          color: AppColors.mystic.withValues(alpha: 0.2),
-                        ),
-                      ),
                       child: Row(
                         children: [
                           Text(
@@ -3002,9 +2912,7 @@ class _DreamSymbolsSheet extends ConsumerWidget {
                         ],
                       ),
                     )
-                    .animate()
-                    .fadeIn(delay: (50 * index).ms)
-                    .slideY(begin: 0.1, end: 0);
+                    .glassListItem(context: context, index: index);
               },
             ),
           ),

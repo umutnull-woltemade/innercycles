@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/liquid_glass/glass_animations.dart';
+import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/review_service.dart';
@@ -178,17 +179,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         );
         if (picked != null) setState(() => _selectedDate = picked);
       },
-      child: Container(
+      child: GlassPanel(
+        elevation: GlassElevation.g2,
+        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         padding: const EdgeInsets.all(AppConstants.spacingLg),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.85)
-              : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-          border: Border.all(
-            color: AppColors.starGold.withValues(alpha: 0.3),
-          ),
-        ),
         child: Row(
           children: [
             Icon(Icons.calendar_today, color: AppColors.starGold, size: 24),
@@ -223,7 +217,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           ],
         ),
       ),
-    ).animate().fadeIn(duration: 300.ms);
+    ).glassReveal(context: context);
   }
 
   Widget _buildSectionLabel(
@@ -312,7 +306,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           ),
         );
       }).toList(),
-    ).animate().fadeIn(delay: 100.ms, duration: 300.ms);
+    ).glassListItem(context: context, index: 1);
   }
 
   Widget _buildRatingSlider(
@@ -325,19 +319,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         ? ['Low', 'Below Avg', 'Average', 'Good', 'Excellent']
         : ['Düşük', 'Ortanın Altı', 'Orta', 'İyi', 'Mükemmel'];
 
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g2,
+      borderRadius: BorderRadius.circular(AppConstants.radiusLg),
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         children: [
           Row(
@@ -398,7 +383,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           ),
         ],
       ),
-    ).animate().fadeIn(delay: 200.ms, duration: 300.ms);
+    ).glassListItem(context: context, index: 2);
   }
 
   Widget _buildSubRatings(bool isDark, bool isEn) {
@@ -406,19 +391,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         ? _selectedArea.subRatingNamesEn
         : _selectedArea.subRatingNamesTr;
 
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g2,
+      borderRadius: BorderRadius.circular(AppConstants.radiusLg),
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         children: _selectedArea.subRatingKeys.map((key) {
           final label = names[key] ?? key;
@@ -480,25 +456,17 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           );
         }).toList(),
       ),
-    ).animate().fadeIn(delay: 300.ms, duration: 300.ms);
+    ).glassListItem(context: context, index: 3);
   }
 
   Widget _buildNoteField(bool isDark, bool isEn) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.85)
-                : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-            border: Border.all(
-              color: isDark
-                  ? Colors.white.withValues(alpha: 0.15)
-                  : Colors.black.withValues(alpha: 0.05),
-            ),
-          ),
+        GlassPanel(
+          elevation: GlassElevation.g2,
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          padding: EdgeInsets.zero,
           child: Column(
             children: [
               TextField(
@@ -589,7 +557,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           ),
         ),
       ],
-    ).animate().fadeIn(delay: 400.ms, duration: 300.ms);
+    ).glassListItem(context: context, index: 4);
   }
 
   Widget _buildSaveButton(bool isDark, bool isEn) {
@@ -623,7 +591,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 ),
               ),
       ),
-    ).animate().fadeIn(delay: 500.ms, duration: 300.ms);
+    ).glassListItem(context: context, index: 5);
   }
 
   Future<void> _saveEntry() async {

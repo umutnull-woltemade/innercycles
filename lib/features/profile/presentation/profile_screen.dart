@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/liquid_glass/glass_animations.dart';
+import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
@@ -132,7 +133,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
           ),
       ],
-    ).animate().fadeIn(duration: 400.ms);
+    ).glassEntrance(context: context);
   }
 
   Widget _buildProfileHeader(
@@ -207,7 +208,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ],
         ),
       ],
-    ).animate().fadeIn(delay: 100.ms, duration: 400.ms);
+    ).glassReveal(context: context);
   }
 
   Widget _buildEditSection(
@@ -215,19 +216,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     AppLanguage language,
     bool isDark,
   ) {
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g2,
+      borderRadius: BorderRadius.circular(AppConstants.radiusLg),
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -298,7 +290,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ),
         ],
       ),
-    ).animate().fadeIn(delay: 200.ms, duration: 400.ms).slideY(begin: 0.1);
+    ).glassListItem(context: context, index: 0);
   }
 
   Widget _buildTextField(
@@ -422,19 +414,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     AppLanguage language,
     bool isDark,
   ) {
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g3,
+      borderRadius: BorderRadius.circular(AppConstants.radiusLg),
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
+      glowColor: AppColors.starGold.withValues(alpha: 0.2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -506,7 +490,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ),
         ],
       ),
-    ).animate().fadeIn(delay: 300.ms, duration: 400.ms).slideY(begin: 0.1);
+    ).glassListItem(context: context, index: 1);
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -853,17 +837,11 @@ class _CosmicSignCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GlassPanel(
+      elevation: GlassElevation.g2,
+      borderRadius: BorderRadius.circular(AppConstants.radiusMd),
       padding: const EdgeInsets.all(AppConstants.spacingMd),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceLight.withValues(alpha: 0.3)
-            : AppColors.lightSurfaceVariant,
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: sign != null
-            ? Border.all(color: sign!.color.withValues(alpha: 0.3))
-            : null,
-      ),
+      glowColor: sign?.color.withValues(alpha: 0.2),
       child: Column(
         children: [
           Text(
