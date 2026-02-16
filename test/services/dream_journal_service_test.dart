@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:astrology_app/data/services/dream_journal_service.dart';
-import 'package:astrology_app/data/models/dream_interpretation_models.dart';
+import 'package:inner_cycles/data/services/dream_journal_service.dart';
+import 'package:inner_cycles/data/models/dream_interpretation_models.dart';
 
 void main() {
   late DreamJournalService service;

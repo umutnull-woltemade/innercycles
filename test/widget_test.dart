@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:astrology_app/main.dart';
+import 'package:inner_cycles/main.dart';
 
 // Basic test to verify the main app class exists and is properly exported.
 // Full widget tests with app initialization are in integration tests.

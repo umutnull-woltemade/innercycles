@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:astrology_app/core/constants/app_constants.dart';
+import 'package:inner_cycles/core/constants/app_constants.dart';
 
 void main() {
   group('AppConstants', () {

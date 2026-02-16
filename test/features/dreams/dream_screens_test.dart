@@ -1,20 +1,20 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:astrology_app/features/dreams/presentation/dream_interpretation_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/dream_oracle_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/dream_glossary_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/canonical/dream_falling_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/canonical/dream_water_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/canonical/dream_recurring_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/canonical/dream_running_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/canonical/dream_flying_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/canonical/dream_losing_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/canonical/dream_darkness_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/canonical/dream_past_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/canonical/dream_searching_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/canonical/dream_voiceless_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/canonical/dream_lost_screen.dart';
-import 'package:astrology_app/features/dreams/presentation/canonical/dream_unable_to_fly_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/dream_interpretation_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/dream_oracle_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/dream_glossary_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/canonical/dream_falling_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/canonical/dream_water_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/canonical/dream_recurring_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/canonical/dream_running_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/canonical/dream_flying_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/canonical/dream_losing_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/canonical/dream_darkness_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/canonical/dream_past_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/canonical/dream_searching_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/canonical/dream_voiceless_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/canonical/dream_lost_screen.dart';
+import 'package:inner_cycles/features/dreams/presentation/canonical/dream_unable_to_fly_screen.dart';
 
 import '../../helpers/pump_app.dart';
 

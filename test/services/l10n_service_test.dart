@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:astrology_app/data/services/l10n_service.dart';
-import 'package:astrology_app/data/providers/app_providers.dart';
+import 'package:inner_cycles/data/services/l10n_service.dart';
+import 'package:inner_cycles/data/providers/app_providers.dart';
 
 void main() {
   group('L10nService', () {

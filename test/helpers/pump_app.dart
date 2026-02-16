@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:astrology_app/data/providers/app_providers.dart';
-import 'package:astrology_app/data/models/user_profile.dart';
+import 'package:inner_cycles/data/providers/app_providers.dart';
+import 'package:inner_cycles/data/models/user_profile.dart';
 
 // ---------------------------------------------------------------------------
 // Feature Screen Test Skip Flag

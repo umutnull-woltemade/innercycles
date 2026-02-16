@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:astrology_app/data/services/tone_service.dart';
+import 'package:inner_cycles/data/services/tone_service.dart';
 
 void main() {
   group('ToneService', () {

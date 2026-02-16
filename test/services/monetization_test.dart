@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:astrology_app/data/models/experiment_config.dart';
-import 'package:astrology_app/data/services/experiment_service.dart';
-import 'package:astrology_app/data/services/premium_service.dart';
-import 'package:astrology_app/data/services/ad_service.dart';
-import 'package:astrology_app/data/services/analytics_service.dart';
-import 'package:astrology_app/core/constants/app_constants.dart';
+import 'package:inner_cycles/data/models/experiment_config.dart';
+import 'package:inner_cycles/data/services/experiment_service.dart';
+import 'package:inner_cycles/data/services/premium_service.dart';
+import 'package:inner_cycles/data/services/ad_service.dart';
+import 'package:inner_cycles/data/services/analytics_service.dart';
+import 'package:inner_cycles/core/constants/app_constants.dart';
 
 /// Mock AdService for testing
 class MockAdService extends AdService {

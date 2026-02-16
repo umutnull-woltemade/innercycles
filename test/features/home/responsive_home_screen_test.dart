@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:astrology_app/features/home/presentation/responsive_home_screen.dart';
+import 'package:inner_cycles/features/home/presentation/responsive_home_screen.dart';
 import '../../helpers/pump_app.dart';
 
 void main() {

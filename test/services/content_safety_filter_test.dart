@@ -7,7 +7,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:astrology_app/data/services/content_safety_filter.dart';
+import 'package:inner_cycles/data/services/content_safety_filter.dart';
 
 void main() {
   group('ContentSafetyFilter', () {

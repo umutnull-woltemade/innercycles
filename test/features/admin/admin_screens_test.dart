@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:astrology_app/features/admin/presentation/admin_login_screen.dart';
-import 'package:astrology_app/features/admin/presentation/admin_dashboard_screen.dart';
+import 'package:inner_cycles/features/admin/presentation/admin_login_screen.dart';
+import 'package:inner_cycles/features/admin/presentation/admin_dashboard_screen.dart';
 
 import '../../helpers/pump_app.dart';
 
