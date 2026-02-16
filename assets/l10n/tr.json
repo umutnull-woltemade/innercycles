@@ -99,8 +99,8 @@
       "patterns": "Kalip Takibi"
     },
     "calculated_items": {
-      "planets": "10 Gezegen",
-      "aspects": "Gezegen Açıları",
+      "planets": "10 Temel Özellik",
+      "aspects": "Özellik Açıları",
       "houses": "12 Ev Sistemi",
       "rising": "Yükselen Arketip",
       "nodes": "Ay Düğümleri",
@@ -1876,7 +1876,7 @@
       },
       "chart_connected_dreams": {
         "title": "Haritanla Bağlantılı Rüyalar",
-        "description": "Gezegenler rüyalarına nasıl yansıyor?"
+        "description": "Kişilik özelliklerin rüyalarına nasıl yansıyor?"
       },
       "personal_cosmic_message": {
         "title": "Kişisel Günlük Mesaj",
@@ -2036,7 +2036,7 @@
       },
       "self_awareness_connection": {
         "title": "Öz Farkındalık Bağlantısı",
-        "description": "Sefirot ve gezegenler."
+        "description": "Sefirot ve kişilik özellikleri."
       },
       "chakra_system": {
         "title": "Chakra Sistemi",
@@ -2082,7 +2082,7 @@
         "description": "Bugünün enerjisi."
       },
       "planet_glossary": {
-        "title": "Gezegen Sözlüğü",
+        "title": "Özellik Sözlüğü",
         "description": "Transit anlamları"
       },
       "moon_phases_dreams": {
@@ -2178,7 +2178,7 @@
         "description": "Doğu-Batı enerji haritaları."
       },
       "planets_and_chakras": {
-        "description": "Gezegenler ve chakralar."
+        "description": "Kişilik özellikleri ve chakralar."
       },
       "energy_blockages_dreams": {
         "description": "Enerji blokajları rüyalara nasıl yansır?"
@@ -2221,7 +2221,7 @@
         "description": "Bu ay için kişisel mesaj."
       },
       "moon_planet_positions": {
-        "description": "Ay ve gezegen konumları."
+        "description": "Ay ve döngüsel konumlar."
       },
       "kabbalah_meditation": {
         "title": "Kabala Meditasyonu",
@@ -2277,7 +2277,7 @@
       "special_message_for_today": "Bugün Sana Özel Mesaj",
       "cosmic_guidance": "Kişisel rehberlik al.",
       "beyond_your_sun_sign": "{sign} Güneşinin ötesinde ne var?",
-      "where_is_your_ruler": "Yönetici gezegenin şu an nerede?",
+      "where_is_your_ruler": "Yönlendirici özelliğin şu an nerede?",
       "reading_aligned_with_energy": "{sign} enerjisiyle uyumlu bir okuma.",
       "compatibility_with": "{sign} ile Uyumun",
       "weekly_reading": "Haftalık {sign} Yorumu"
@@ -3432,7 +3432,7 @@
     "todays_cosmic_energy": "Bugünün Kişisel Enerjisi",
     "reflect": "Düşün",
     "action": "Hareket",
-    "dominant_planet": "Dominant Gezegen",
+    "dominant_planet": "Baskın Özellik",
     "activates": "Aktive Ediyor",
     "blocks": "Engelliyor",
     "todays_action": "BUGÜNKÜ EYLEM",
@@ -3467,7 +3467,7 @@
     "moon_phases": "Ay Evreleri",
     "moon_phases_desc": "Yeni ay ve dolunay bildirimleri",
     "transit_alerts": "Transit Uyarıları",
-    "transit_desc": "Önemli gezegensel transitler",
+    "transit_desc": "Önemli döngüsel transitler",
     "lifecycle": {
       "smart_notifications": "Akilli Bildirimler",
       "smart_notifications_desc": "Gunluk yazma aliskanliklariniza gore kisisel hatirlatmalar",

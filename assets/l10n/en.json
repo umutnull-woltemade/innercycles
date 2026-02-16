@@ -380,7 +380,7 @@
       },
       "interpretation_templates": {
         "turkish": "In Turkish culture and folklore, {symbol} is associated with {meaning}.",
-        "islamic": "In Islamic dream interpretation, {symbol} usually carries spiritual messages and divine signs.",
+        "islamic": "In Islamic dream interpretation, {symbol} usually carries deep messages and inner signs.",
         "western": "In Western tradition, {symbol} symbolizes {meaning}.",
         "jungian": "{symbol} is connected to {archetypes} archetypes. {shadow}",
         "freudian": "From a Freudian perspective, {symbol} may be related to unconscious desires and repressed emotions."
@@ -436,7 +436,7 @@
       "shadow_side_footer": "These aspects can be transformed with awareness. Accepting the shadow is not empowering it - it is integrating it.",
       "all_life_path_numbers": "All Life Path Numbers",
       "master_numbers": "Master Numbers",
-      "lessons_from_past_lives": "Lessons carried from past lives",
+      "lessons_from_past_lives": "Deep-rooted lessons carried forward",
       "yours": "YOURS",
       "karmic_debt_message": "Your chart has {debts} growth lessons. Tap for details.",
       "keywords": "Keywords",
@@ -513,7 +513,7 @@
       "advice_house_9": "Expand your horizons. Ideal year for education, travel and philosophical pursuits.",
       "advice_house_10": "Focus on your career goals. Establish your place in society.",
       "advice_house_11": "Expand your social circle. Work towards your personal aspirations.",
-      "advice_house_12": "Year of introspection. Spiritual development and rest should be prioritized.",
+      "advice_house_12": "Year of introspection. Personal development and rest should be prioritized.",
       "advice_default": "This year invites reflection on important transformation themes."
     },
     "reiki": {
@@ -633,7 +633,7 @@
           "sanskrit": "Sahasrara",
           "location": "Top of head",
           "attributes": [
-            "Spiritual connection",
+            "Inner connection",
             "Enlightenment",
             "Unity"
           ],
@@ -868,7 +868,7 @@
     "dream_share_card": {
       "themes": {
         "mystical": {
-          "label": "Mystical",
+          "label": "Deep",
           "description": "Deep purple and starry night"
         },
         "minimal": {
@@ -895,7 +895,7 @@
       "fonts": {
         "elegant": "Elegant",
         "modern": "Modern",
-        "mystical": "Mystical",
+        "mystical": "Evocative",
         "handwritten": "Handwritten"
       },
       "templates": {
@@ -1137,9 +1137,9 @@
             "practice": "• Water your plants, tend your garden\n• Take a bath ritual\n• Visualize financial flow\n• Make relaxation and comfort your priority"
           },
           "nurturer": {
-            "basic_meaning": "Water is your element - this dream is extremely meaningful! There is a powerful message from your spiritual depths.",
+            "basic_meaning": "Water is your element - this dream is extremely meaningful! There is a powerful message from your inner depths.",
             "element_perspective": "This dream indicates a deep connection with home, family and your roots. The mother archetype is active. Your inner home is calling.",
-            "psychological": "Water: Subconscious, intuition, protective instinct\nAs Cancer: The need for spiritual protection and home\nMessage: Return home - to your inner home, your spiritual home",
+            "psychological": "Water: Subconscious, intuition, protective instinct\nAs Cancer: The need for emotional protection and home\nMessage: Return home - to your inner home, your inner home",
             "practice": "• Fill water under moonlight and drink\n• Look at family photos\n• Take a sea salt bath\n• Clean the house - renew the energy\n• Connect with mother figures"
           },
           "transformer": {
@@ -1149,10 +1149,10 @@
             "practice": "• Do deep meditations\n• Keep a shadow journal\n• Practice letting go ritual\n• Embrace Plutonian transformation\n• Consider therapy or counseling"
           },
           "dreamer": {
-            "basic_meaning": "Water is your element - your connection with spiritual realms is very strong! You can fully trust your intuition.",
+            "basic_meaning": "Water is your element - your connection with deeper awareness is very strong! You can fully trust your intuition.",
             "element_perspective": "You're experiencing oneness with the universe. Creative inspiration is flowing. Ideal period for artistic expression.",
-            "psychological": "Water: Universal consciousness, healing, collective subconscious\nAs Pisces: Mystical experiences and inner guidance\nMessage: You are beyond water - you are the ocean",
-            "practice": "• Artistic creation - painting, music, writing\n• Meditation by sea or lake\n• Lucid dream practices\n• Healing work\n• Be open to spiritual guidance"
+            "psychological": "Water: Universal consciousness, healing, collective subconscious\nAs Pisces: Deep experiences and inner guidance\nMessage: You are beyond water - you are the ocean",
+            "practice": "• Artistic creation - painting, music, writing\n• Meditation by sea or lake\n• Lucid dream practices\n• Healing work\n• Be open to inner guidance"
           },
           "default": {
             "basic_meaning": "Water carries emotional messages for your {element} sign. The subconscious wants to flow.",
@@ -1223,7 +1223,7 @@
           "basic_meaning": "Animals represent our instinctual nature and suppressed energies. Each animal carries a totem message.",
           "special_interpretation": "This dream is a call to reconnect with your natural instincts. Research the totem energy of whichever animal you saw.",
           "common_symbols_label": "🐍 COMMON ANIMAL SYMBOLS",
-          "common_symbols": "• Snake: Transformation, healing, kundalini\n• Dog: Loyalty, protection, friendship\n• Cat: Independence, mystery, intuition\n• Bird: Freedom, spiritual messages\n• Wolf: Community, leadership, teacher\n• Bear: Strength, protection, introspection\n• Horse: Freedom, power, passion",
+          "common_symbols": "• Snake: Transformation, healing, kundalini\n• Dog: Loyalty, protection, friendship\n• Cat: Independence, mystery, intuition\n• Bird: Freedom, intuitive messages\n• Wolf: Community, leadership, teacher\n• Bear: Strength, protection, introspection\n• Horse: Freedom, power, passion",
           "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
           "psychological": "• Animal's behavior: Your suppressed behavior\n• Your relationship with animal: Your relationship with instincts\n• Animal's color: Emotional tone\n• If animal attacks: Suppressed energy eruption",
           "practice_label": "✨ PRACTICAL APPLICATION",
@@ -1234,14 +1234,14 @@
         "house": {
           "title": "🏠 HOUSE/BUILDING DREAM - {sign} INTERPRETATION",
           "basic_meaning_label": "🏛️ BASIC MEANING",
-          "basic_meaning": "Houses and buildings symbolize your spiritual structure and inner world. Each room represents different aspects of your self.",
+          "basic_meaning": "Houses and buildings symbolize your inner structure and inner world. Each room represents different aspects of your self.",
           "special_interpretation": "Think about which 'room' you're avoiding entering. As a {element} element, the structure of your inner world is important.",
           "room_meanings_label": "🚪 ROOM MEANINGS",
           "room_meanings": "• Basement: Subconscious, suppressed memories\n• Attic: Higher consciousness, spirituality\n• Kitchen: Nourishment, creativity\n• Bedroom: Privacy, sexuality\n• Bathroom: Purification, emotional cleansing\n• Living room: Social aspect, relationship with outer world\n• Secret rooms: Unexplored potential",
           "house_states_label": "🔑 HOUSE STATES",
           "house_states": "• New house: New self, change\n• Ruined house: Neglected aspects\n• Childhood home: Roots, past\n• Strange house: Unknown potential",
           "practice_label": "✨ PRACTICAL APPLICATION",
-          "practice": "• Clean the room you visit least in your home\n• Renew house corners with energy\n• Draw a map of your inner world\n• Do 'spiritual home' meditation",
+          "practice": "• Clean the room you visit least in your home\n• Renew house corners with energy\n• Draw a map of your inner world\n• Do 'inner home' meditation",
           "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
           "cosmic_message": "The house is you. Each room is an aspect of you. Explore and own them all."
         },
@@ -1269,7 +1269,7 @@
           "dream_types_label": "💎 MONEY DREAM TYPES",
           "dream_types": "• Finding money: Incoming opportunities, abundance\n• Losing money: Insecurity, fear of loss\n• Being rich: Awareness of potential\n• Counting money: Need for control\n• Giving money: Generosity or power loss",
           "symbols_label": "🪙 SYMBOLS",
-          "symbols": "• Gold: Spiritual wealth, wisdom\n• Cash: Daily security\n• Treasure: Hidden potential\n• Jewels: Self-worth\n• Bank: Security and structure",
+          "symbols": "• Gold: Inner wealth, wisdom\n• Cash: Daily security\n• Treasure: Hidden potential\n• Jewels: Self-worth\n• Bank: Security and structure",
           "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
           "psychological": "• Money = Energy exchange\n• Wealth = Self-worth perception\n• Poverty = Feeling of inadequacy\n• Abundance = Harmony with universe",
           "practice_label": "✨ PRACTICAL APPLICATION",
@@ -1307,7 +1307,7 @@
           "fire_generic": "passion, action and creative power",
           "earth_generic": "security, material world and practical steps",
           "air_generic": "communication, ideas and social connections",
-          "water_generic": "emotions, intuition and spiritual depth"
+          "water_generic": "emotions, intuition and emotional depth"
         },
         "personal_advice": {
           "pioneer": "Advice: Write down your first thoughts when you wake up in the morning. Your fire energy can quickly make you forget subconscious messages.",
@@ -1321,7 +1321,7 @@
           "explorer": "Advice: Interpret your dreams philosophically. Your fire energy loves to see the big picture.",
           "achiever": "Advice: Think about how to apply your dreams to practical life. Your earth energy wants concrete results.",
           "visionary": "Advice: Join dream communities. Your air energy is nourished by collective wisdom.",
-          "dreamer": "Advice: Set intention before sleep. Your water energy can connect directly with spiritual guidance."
+          "dreamer": "Advice: Set intention before sleep. Your water energy can connect directly with inner guidance."
         }
       }
     }
@@ -1449,7 +1449,7 @@
       "self_awareness": "For self-reflection only. Not suggestive advice.",
       "card_insight": "For reflection purposes only. Not suggestive.",
       "numerology": "For self-exploration only. Not suggestive.",
-      "chakra": "For awareness only. Not medical or spiritual prescription.",
+      "chakra": "For awareness only. Not medical or wellness prescription.",
       "compatibility": "For reflection only. Not relationship advice.",
       "insight": "For personal reflection only. Not professional advice.",
       "reflection": "This is a space for self-reflection, not reflection or advice."
@@ -1777,7 +1777,7 @@
       },
       "draconic_chart": {
         "title": "Draconic Chart",
-        "description": "Your spiritual origin."
+        "description": "Your inner origin."
       },
       "asteroids": {
         "title": "Asteroids",
@@ -1861,7 +1861,7 @@
       },
       "kabbalah_numbers": {
         "title": "Kabbalah Numbers",
-        "description": "Mystical origin of numbers."
+        "description": "Ancient origin of numbers."
       },
       "personal_perspective": {
         "description": "Personal perspective."
@@ -1962,7 +1962,7 @@
       },
       "self_awareness_connection": {
         "title": "Self-Awareness Connection",
-        "description": "Sefirot and planets."
+        "description": "Sefirot and personal traits."
       },
       "chakra_system": {
         "title": "Chakra System",
@@ -1970,14 +1970,14 @@
       },
       "mystic_dreams": {
         "title": "Mystic Dreams",
-        "description": "Spiritual symbols and dreams."
+        "description": "Contemplative symbols and dreams."
       },
       "sefirot_meditation": {
         "title": "Sefirot Meditation",
         "description": "Journey on the Tree of Life."
       },
       "spiritual_practices": {
-        "description": "Spiritual practices."
+        "description": "Contemplative practices."
       },
       "sefirot_glossary": {
         "title": "Sefirot Glossary",
@@ -2008,7 +2008,7 @@
         "description": "Today's energy."
       },
       "planet_glossary": {
-        "title": "Planet Glossary",
+        "title": "Trait Glossary",
         "description": "Cycle meanings"
       },
       "moon_phases_dreams": {
@@ -2100,7 +2100,7 @@
         "description": "East-West energy maps."
       },
       "planets_and_chakras": {
-        "description": "Planets and chakras."
+        "description": "Personal traits and chakras."
       },
       "energy_blockages_dreams": {
         "description": "How do energy blockages reflect in dreams?"
@@ -2143,7 +2143,7 @@
         "description": "Reflective message for this month."
       },
       "moon_planet_positions": {
-        "description": "Moon and planet positions."
+        "description": "Moon and cyclical patterns."
       },
       "kabbalah_meditation": {
         "title": "Kabbalah Meditation",
@@ -2199,7 +2199,7 @@
       "special_message_for_today": "Special Message for Today",
       "cosmic_guidance": "Get personal guidance.",
       "beyond_your_sun_sign": "What's beyond your {sign} core identity?",
-      "where_is_your_ruler": "Where is your ruler planet now?",
+      "where_is_your_ruler": "Where is your guiding trait now?",
       "reading_aligned_with_energy": "A reading aligned with {sign} energy.",
       "compatibility_with": "Compatibility with {sign}",
       "weekly_reading": "Weekly {sign} Reading"
@@ -2753,8 +2753,8 @@
       "styles": {
         "jungian": "Jungian",
         "jungian_desc": "Depth Psychology",
-        "spiritual": "Spiritual",
-        "spiritual_desc": "Mystical Interpretation",
+        "spiritual": "Personal",
+        "spiritual_desc": "Deep Interpretation",
         "folk": "Folk Interpretation",
         "folk_desc": "Turkish Tradition",
         "islamic": "Islamic",
@@ -2946,7 +2946,7 @@
       "tonight_in_my_dream": "Tonight in my dream ",
       "dream_poetry": "Dream Poetry",
       "daily_affirmations": "Daily Affirmations",
-      "mystical_quotes": "Mystical Quotes",
+      "mystical_quotes": "Inspiring Quotes",
       "symbol_art_suggestions": "Symbol Art Suggestions",
       "ai_generated": "AI Generated",
       "mystical_quotes_list": [
@@ -2997,7 +2997,7 @@
       "fire": "Fire can represent passion, anger, transformation, or purification. Whether the fire is controlled or uncontrolled is important.",
       "blood": "Blood can point to themes related to life energy, emotional wounds, or family ties.",
       "wedding": "Wedding/bride dreams can symbolize union, commitment, or transition to a new phase of life.",
-      "illness": "Illness dreams may point to emotional or spiritual imbalances, areas that need attention.",
+      "illness": "Illness dreams may point to emotional or inner imbalances, areas that need attention.",
       "general": "Every dream symbol carries personal meaning. What's important is discovering what this symbol means to you."
     },
     "context_questions": {
@@ -3346,7 +3346,7 @@
     "todays_cosmic_energy": "Today's Daily Energy",
     "reflect": "Reflect",
     "action": "Action",
-    "dominant_planet": "Dominant Planet",
+    "dominant_planet": "Key Strength",
     "activates": "Activates",
     "blocks": "Blocks",
     "todays_action": "TODAY'S ACTION",
@@ -3416,7 +3416,7 @@
     "birth_date": "Birth Date",
     "birth_time": "Birth Time",
     "birth_place": "Birth Place",
-    "planets": "Planets",
+    "planets": "Characteristics",
     "houses": "Houses",
     "aspects": "Aspects",
     "cosmic_map_title": "Your Personal Self-Awareness Map",
@@ -3624,7 +3624,7 @@
     "rec_money_desc_default": "Proceed carefully with money matters. Avoid major expenses.",
     "rec_health_activity": "Health Activities",
     "rec_health_desc_virgo": "Ideal for detox and cleansing. Create healthy routines.",
-    "rec_health_desc_pisces": "Spiritual balance is important. Meditation and relaxation recommended.",
+    "rec_health_desc_pisces": "Inner balance is important. Meditation and relaxation recommended.",
     "rec_health_desc_aries": "High energy for physical activity. Exercise and sports.",
     "rec_health_desc_cancer": "Emotional health is priority. Show yourself compassion.",
     "rec_health_desc_default": "Good for general health. Balanced nutrition and rest are important.",
@@ -3708,7 +3708,7 @@
       "cusp": "House or sign transition point",
       "element": "Four fundamental energies",
       "modality": "Three modes of movement",
-      "dignity": "Planet's power in its sign",
+      "dignity": "Trait's strength in its context",
       "sun": "Your essence and life force",
       "moon": "Your emotions and instincts",
       "mercury": "Mind and communication",
