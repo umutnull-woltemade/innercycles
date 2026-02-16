@@ -8,7 +8,7 @@ import '../models/dream_interpretation_models.dart';
 // KADİM GİRİŞ ŞABLONLARI - 100+ Varyasyon
 // ════════════════════════════════════════════════════════════════════════════
 
-/// Kadim giriş şablonları - mitolojik ve spiritüel
+/// Kadim giriş şablonları - mitolojik ve içsel
 class KadimGirisTemplates {
   /// Genel kadim girişler
   static const List<String> genel = [
@@ -288,7 +288,7 @@ class EkSemboller {
       category: SymbolCategory.mekan,
       universalMeanings: [
         'Hedef ve başarı',
-        'Spiritüel yükseliş',
+        'İçsel yükseliş',
         'Engeller ve zorluklar',
         'Perspektif kazanma',
       ],
@@ -301,7 +301,7 @@ class EkSemboller {
       archetypes: ['Bilge', 'Kahraman', 'Keşifçi'],
       relatedSymbols: ['climb', 'summit', 'view', 'challenge'],
       shadowAspect: 'Ulaşılamaz hedefler, yalnızlık, zorluk',
-      lightAspect: 'Başarı, perspektif, spiritüel yükseliş',
+      lightAspect: 'Başarı, perspektif, içsel yükseliş',
     ),
 
     DreamSymbolData(
@@ -475,7 +475,7 @@ class EkSemboller {
       category: SymbolCategory.hayvan,
       universalMeanings: [
         'Yüksek bakış açısı',
-        'Spiritüel yükseliş',
+        'İçsel yükseliş',
         'Özgürlük ve güç',
         'Keskin görüş',
       ],
@@ -488,7 +488,7 @@ class EkSemboller {
       archetypes: ['Bilge', 'Kahraman', 'Ruh'],
       relatedSymbols: ['sky', 'flying', 'vision', 'freedom'],
       shadowAspect: 'Kibirli izolasyon, soğuk uzaklık',
-      lightAspect: 'Vizyon, spiritüel bakış, özgürlük',
+      lightAspect: 'Vizyon, içsel bakış, özgürlük',
     ),
 
     DreamSymbolData(
@@ -1243,7 +1243,7 @@ class TekrarlayanRuyaKaliplari {
       psychologicalMeaning:
           'Keşfedilmemiş potansiyel, bilinmeyen benlik yönleri. Ev = psişe. Yeni odalar = fark edilmemiş yetenekler.',
       jungianAnalysis:
-          'Jung ev rüyalarını çok önemsedi. Bodrum = bilinçdışı, üst katlar = bilinç, çatı = spiritüel.',
+          'Jung ev rüyalarını çok önemsedi. Bodrum = bilinçdışı, üst katlar = bilinç, çatı = içsel alan.',
       actionAdvice: [
         'Keşfettiğin odanın özelliklerini not et',
         'Bu alan hayatında neyi temsil ediyor?',
@@ -1617,7 +1617,7 @@ class GenisletilmisAlintilar {
     ShareableCard(
       emoji: '📿',
       quote: 'Her nefes bir dua, her adım bir meditasyondur.',
-      category: 'Spiritüellik',
+      category: 'İçsel Farkındalık',
     ),
     ShareableCard(
       emoji: '🌳',

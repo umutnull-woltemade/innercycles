@@ -55,7 +55,7 @@ class DreamSymbolsDatabase {
       emotionVariants: {
         EmotionalTone.korku:
             'Varoluşsal endişe - bilinmeyenin derinliği ürkütüyor',
-        EmotionalTone.huzur: 'Evrenle bütünleşme - spiritüel birlik hissi',
+        EmotionalTone.huzur: 'Evrenle bütünleşme - içsel birlik hissi',
         EmotionalTone.ozlem:
             'Kayıp bütünlüğe özlem - anne rahmine dönüş arzusu',
         EmotionalTone.heyecan: 'Keşfedilecek sonsuz potansiyel - yeni ufuklar',
@@ -221,7 +221,7 @@ class DreamSymbolsDatabase {
       universalMeanings: [
         'Bilinçaltı içerikleri',
         'Bereket ve bolluk',
-        'Spiritüel beslenme',
+        'İçsel beslenme',
         'Gizli bilgi',
       ],
       emotionVariants: {
@@ -233,7 +233,7 @@ class DreamSymbolsDatabase {
       archetypes: ['Bilinçdışı İçerik', 'Bereket', 'Gizem'],
       relatedSymbols: ['water', 'ocean', 'abundance', 'unconscious'],
       shadowAspect: 'Ele avuca sığmazlık, kaygan duygular, derinlik korkusu',
-      lightAspect: 'Spiritüel içgörü, bilinçdışı bilgelik, bereket',
+      lightAspect: 'İçsel içgörü, bilinçdışı bilgelik, bereket',
     ),
 
     DreamSymbolData(
@@ -485,7 +485,7 @@ class DreamSymbolsDatabase {
         'Özgürlük ve aşkınlık',
         'Yüksek bakış açısı',
         'Sınırlamaları aşma',
-        'Spiritüel yükseliş',
+        'İçsel yükseliş',
       ],
       emotionVariants: {
         EmotionalTone.heyecan: 'Özgürleşme - sınırlarını aşıyorsun',
@@ -497,7 +497,7 @@ class DreamSymbolsDatabase {
       archetypes: ['Özgür Ruh', 'Aşkın Benlik', 'Kahraman'],
       relatedSymbols: ['bird', 'sky', 'freedom', 'falling'],
       shadowAspect: 'Kaçış, gerçeklikten kopma, temelsizlik',
-      lightAspect: 'Gerçek özgürlük, spiritüel bakış, aşkınlık',
+      lightAspect: 'Gerçek özgürlük, içsel bakış, aşkınlık',
     ),
 
     DreamSymbolData(
@@ -776,7 +776,7 @@ class DreamSymbolsDatabase {
       archetypes: ['Ata Ruhu', 'Rehber', 'İçsel Figür'],
       relatedSymbols: ['death', 'ancestor', 'spirit', 'message'],
       shadowAspect: 'Çözülmemiş yas, suçluluk, korku',
-      lightAspect: 'Spiritüel bağ, bilgelik, rehberlik',
+      lightAspect: 'İçsel bağ, bilgelik, rehberlik',
     ),
 
     // ═══════════════════════════════════════════════════════════
@@ -1605,7 +1605,7 @@ class ShareableQuoteTemplates {
       category: 'Sabır',
     ),
 
-    // Spiritüel
+    // İçsel Farkındalık
     ShareableCard(
       emoji: '✨',
       quote: 'Sen yıldız tozundan yapılmışsın, parlamanı engelleme.',

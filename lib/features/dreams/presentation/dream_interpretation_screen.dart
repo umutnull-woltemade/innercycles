@@ -415,7 +415,7 @@ class _DreamInterpretationScreenState
         'category': 'yolculuk',
       },
 
-      // Mystical & Spiritual dreams
+      // Mystical & Contemplative dreams
       {
         'emoji': '🔮',
         'text': L10nService.get(

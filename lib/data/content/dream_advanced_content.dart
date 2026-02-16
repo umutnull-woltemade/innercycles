@@ -895,7 +895,7 @@ class HizliSembolSozlugu {
     // B
     'baba': 'Otorite, koruma, dış dünya, iç baba',
     'bahçe': 'İç dünya, bakım, büyüme, cennet',
-    'balık': 'Bilinçaltı, bereket, spiritüellik',
+    'balık': 'Bilinçaltı, bereket, içsel farkındalık',
     'bebek': 'Yeni başlangıç, masumiyet, iç çocuk, proje',
     'bisiklet': 'Denge, öz-güç, özgürlük',
     'bodrum': 'Bilinçaltı derinlikleri, bastırılmış',
@@ -903,7 +903,7 @@ class HizliSembolSozlugu {
 
     // C-Ç
     'canavar': 'Gölge, bastırılmış korku, bilinmeyen',
-    'çatı': 'Yüksek bilinç, spiritüel alan',
+    'çatı': 'Yüksek bilinç, içsel alan',
     'çıplaklık': 'Savunmasızlık, gerçek benlik, utanç',
     'çiçek': 'Güzellik, açılma, kırılganlık, geçicilik',
 
@@ -938,7 +938,7 @@ class HizliSembolSozlugu {
     'kapı': 'Fırsat, geçiş, seçim, yeni başlangıç',
     'kar': 'Arınma, saflık, duygusal soğuma',
     'karga': 'Sihir, dönüşüm, ölüm habercisi',
-    'kartal': 'Yüksek bakış, spiritüellik, özgürlük',
+    'kartal': 'Yüksek bakış, içsel farkındalık, özgürlük',
     'kedi': 'Bağımsızlık, sezgi, feminen gizem',
     'kelebek': 'Dönüşüm, ruh, kırılganlık, güzellik',
     'kitap': 'Bilgi, hikaye, hayat dersleri',
@@ -979,7 +979,7 @@ class HizliSembolSozlugu {
 
     // U-Ü
     'uçak': 'Yüksek hedefler, hızlı değişim',
-    'uçmak': 'Özgürlük, aşkınlık, spiritüel yükseliş',
+    'uçmak': 'Özgürlük, aşkınlık, içsel yükseliş',
 
     // Y
     'yağmur': 'Arınma, gözyaşı, bereket, yenilenme',
