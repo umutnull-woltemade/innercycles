@@ -12,6 +12,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/services/paywall_service.dart';
 import '../../../data/services/premium_service.dart';
+import '../../../data/services/url_launcher_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 class PremiumScreen extends ConsumerStatefulWidget {
@@ -549,15 +550,60 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
   Widget _buildTerms(BuildContext context) {
     final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
-      child: Text(
-        L10nService.get('premium.terms_text', language),
-        textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-          color: AppColors.textMuted,
-          fontSize: 10,
-        ),
+      child: Column(
+        children: [
+          Text(
+            L10nService.get('premium.terms_text', language),
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: AppColors.textMuted,
+              fontSize: 10,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () => ref.read(urlLauncherServiceProvider).openPrivacyPolicy(),
+                child: Text(
+                  isEn ? 'Privacy Policy' : L10nService.get('settings.privacy_policy', language),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.starGold,
+                    fontSize: 10,
+                    decoration: TextDecoration.underline,
+                    decorationColor: AppColors.starGold,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Text(
+                  '|',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.textMuted,
+                    fontSize: 10,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () => ref.read(urlLauncherServiceProvider).openTermsOfService(),
+                child: Text(
+                  isEn ? 'Terms of Service' : L10nService.get('settings.terms_of_service', language),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.starGold,
+                    fontSize: 10,
+                    decoration: TextDecoration.underline,
+                    decorationColor: AppColors.starGold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

@@ -86,11 +86,11 @@
   },
   "onboarding": {
     "welcome_text": "Evrenin sana fısıldadığı sırları dinle.\nDoğduğun an gökyüzü senin için\nbir harita çizdi, onu keşfet.",
-    "cosmic_identity": "Kozmik Kimliğin",
+    "cosmic_identity": "Kişisel Kimliğin",
     "enter_info_subtitle": "Evrenle bağlantını kurmak için bilgilerini gir",
-    "info_box_text": "Kozmik haritanın tüm katmanlarını açmak için bilgilerini eksiksiz gir.",
+    "info_box_text": "Kişisel haritanın tüm katmanlarını açmak için bilgilerini eksiksiz gir.",
     "will_be_calculated": "Senin İçin Çözümlenecekler",
-    "start_cosmic_journey": "Kozmik Yolculuğuna Başla",
+    "start_cosmic_journey": "Kişisel Yolculuğuna Başla",
     "tap_to_continue": "Dokunarak devam et",
     "connect_with_apple": "Apple ile devam et",
     "connecting": "Bağlanıyor...",
@@ -110,7 +110,7 @@
       "houses": "12 Ev Sistemi",
       "rising": "Yükselen Arketip",
       "nodes": "Ay Düğümleri",
-      "karmic": "Karmik Harita",
+      "karmic": "Döngü Haritası",
       "psychological": "Psikolojik Profil",
       "numerology": "Sembol Keşfi",
       "elements": "Element Dengesi"
@@ -210,14 +210,14 @@
   },
   "home": {
     "greeting": "Merhaba, {name}!",
-    "todays_cosmic_message": "Bugünün Kozmik Mesajı",
+    "todays_cosmic_message": "Bugünün Günlük Mesajı",
     "chips": {
       "dream": "Rüya",
-      "kozmoz": "Kozmoz",
+      "kozmoz": "InnerCycles",
       "personal_profile": "Kişisel Profil",
-      "theta_healing": "Theta Healing",
+      "theta_healing": "Bilinçaltı Çalışması",
       "astrocartography": "Astrokartografi",
-      "reiki": "Reiki",
+      "reiki": "Enerji Farkındalığı",
       "card_insight": "Refleksiyon",
       "reflection": "Arketip",
       "tantra": "Tantra",
@@ -235,12 +235,12 @@
     },
     "entries": {
       "cosmic_flow": {
-        "title": "Kozmik Akış",
+        "title": "Kişisel Akış",
         "subtitle": "Günlük enerji ve rehberlik"
       },
       "cosmic_share": {
-        "title": "Kozmik Paylaşım",
-        "subtitle": "Kozmik enerjini paylaş"
+        "title": "Kişisel Paylaşım",
+        "subtitle": "Kişisel enerjini paylaş"
       },
       "card_insight": {
         "title": "Refleksiyon Refleksiyonu",
@@ -252,7 +252,7 @@
       },
       "personal_profile": {
         "title": "Kişisel Profil",
-        "subtitle": "Kozmik şablonun"
+        "subtitle": "Kişisel şablonun"
       },
       "numerology": {
         "title": "Numeroloji",
@@ -280,10 +280,10 @@
     "detailed_reading": "Detaylı Yorum",
     "mercury_retrograde": "Merkür Retrosu",
     "mercury_retrograde_warning": "İletişim ve teknolojide dikkatli ol!",
-    "get_cosmic_message": "Kozmik Mesajını Al",
+    "get_cosmic_message": "Günlük Mesajını Al",
     "all_services": "Tüm Çözümlemeler",
-    "all_services_desc": "Kozmik yolculuğun için 80+ araç",
-    "todays_cosmic_whisper": "Bugünün Kozmik Fısıltısı",
+    "all_services_desc": "Kişisel yolculuğun için 80+ araç",
+    "todays_cosmic_whisper": "Bugünün Kişisel Fısıltısı",
     "special_readings": "Özel Çözümlemelerimiz",
     "personalized_readings": "Doğum bilgilerinize özel analizler",
     "moon_in_sign": "Ay arketipinda",
@@ -296,14 +296,14 @@
     "explore_category": "Keşfet",
     "more_tools_category": "Daha Fazla Araç",
     "no_results": "Sonuç bulunamadı",
-    "kozmoz_master": "Kozmoz Ustası",
-    "kozmoz_subtitle": "arketipi için kişiselleştirilmiş kozmik rehberlik",
+    "kozmoz_master": "InnerCycles Ustası",
+    "kozmoz_subtitle": "arketipi için kişiselleştirilmiş rehberlik",
     "most_popular_questions": "En Popüler Sorular",
     "other_questions": "Başka sorular",
     "ask_stars_hint": "Yıldızlara sormak istediğin her şey...",
     "ask_stars_short": "Yıldızlara bir soru sor...",
     "discover_stars_wisdom": "Yıldızların bilgeliğini keşfet ✨",
-    "share_cosmic_energy": "Hikayende kozmik enerjini paylaş!",
+    "share_cosmic_energy": "Hikayende kişisel enerjini paylaş!",
     "voc_delay_decisions": "Önemli kararlar ertelensin. {time} kaldı.",
     "voc_postpone_important": "Önemli kararlar ve başlangıçları erteleyiniz.",
     "meditation_subtitle": "Meditasyon, ritüeller ve enerji dengeleme",
@@ -334,11 +334,11 @@
       "attention_this_week": "🎭 Bu hafta hangi temalar dikkatimi hak ediyor?",
       "soulmate_find": "💑 Derin bağlantıda hangi niteliklere değer veriyorum?"
     },
-    "cosmic_connection_lost": "Kozmik bağlantı geçici olarak kesildi. Lütfen tekrar deneyin.",
+    "cosmic_connection_lost": "Bağlantı geçici olarak kesildi. Lütfen tekrar deneyin.",
     "share_on_instagram": "Instagram'da Paylaş",
     "search_features": {
       "reflection_title": "Günlük İçgörü",
-      "reflection_desc": "Günlük kozmik rehberlik",
+      "reflection_desc": "Günlük kişisel rehberlik",
       "card_insight_title": "Refleksiyon Refleksiyonu",
       "card_insight_desc": "Kartların bilgeliğini keşfet",
       "dreams_title": "Rüya Yorumu",
@@ -348,13 +348,13 @@
       "numerology_title": "Numeroloji",
       "numerology_desc": "Sayıların ruhsal anlamı",
       "personal_profile_title": "Kişisel Profil",
-      "personal_profile_desc": "Kozmik haritanız",
-      "transits_title": "Kozmik Transitler",
-      "transits_desc": "Kozmik etkiler",
-      "saturn_return_title": "Satürn Dönüşü",
+      "personal_profile_desc": "Kişisel haritanız",
+      "transits_title": "Kişisel Transitler",
+      "transits_desc": "Kişisel etkiler",
+      "saturn_return_title": "Büyüme Döngüsü",
       "saturn_return_desc": "Hayatın dönüşüm dönemi",
       "solar_return_title": "Güneş Dönüşü",
-      "solar_return_desc": "Yıllık kozmik haritanız",
+      "solar_return_desc": "Yıllık kişisel haritanız",
       "progressions_title": "Progresyonlar",
       "progressions_desc": "Evrimsel öz farkındalık",
       "local_space_title": "Yerel Uzay",
@@ -368,12 +368,12 @@
       "vedic_title": "Vedik Öz Farkındalık",
       "vedic_desc": "Hint öz farkındalık sistemi",
       "rituals_title": "Ritüeller",
-      "rituals_desc": "Kozmik ritüeller",
+      "rituals_desc": "Kişisel ritüeller",
       "celebrities_title": "Ünlü Haritaları",
       "celebrities_desc": "Ünlü kişisel profilleri",
       "year_ahead_title": "Önümüzdeki Yıl",
-      "year_ahead_desc": "Yıllık kozmik önizleme",
-      "timing_title": "Kozmik Zamanlama",
+      "year_ahead_desc": "Yıllık kişisel önizleme",
+      "timing_title": "Kişisel Zamanlama",
       "timing_desc": "Auspicious zamanlama",
       "energy_title": "Çakra Analizi",
       "energy_desc": "Enerji merkezi analizi"
@@ -397,7 +397,7 @@
       "transits": "Transitler",
       "transit_calendar": "Transit Takvimi",
       "progressions": "Progresyon",
-      "saturn_return": "Saturn Dönüşü",
+      "saturn_return": "Büyüme Döngüsü",
       "solar_return": "Solar Return",
       "year_ahead": "Yıl Bakışı",
       "vedic": "Vedik",
@@ -417,7 +417,7 @@
       "celebrities": "Ünlüler",
       "daily": "Günlük",
       "weekly": "Haftalık",
-      "cosmic": "Kozmik",
+      "cosmic": "Kişisel",
       "share": "Paylaşım",
       "discovery": "Keşif",
       "wisdom": "Bilgelik",
@@ -427,14 +427,14 @@
     "other_tools": {
       "title": "Kalan Cozumlemelerimiz",
       "subtitle": "Genel öz farkındalık araclari ve burc yorumlari",
-      "weekly_tooltip": "Bu haftanin kozmik enerjileri ve tavsiyeleri"
+      "weekly_tooltip": "Bu haftanin kişisel enerjileri ve tavsiyeleri"
     },
     "tooltips": {
       "monthly": "Bu ayın kişisel temaları ve fırsatları",
       "yearly": "Yılın genel akışı ve büyük döngüler",
       "card_insight": "Günlük kart çekimi ve refleksiyon okumları",
-      "all_kozmoz": "Bütün Kozmoz",
-      "all_cosmic_tools": "Tüm kozmik araçlar ve içerikler"
+      "all_kozmoz": "Tüm İçerikler",
+      "all_cosmic_tools": "Tüm kişisel araçlar ve içerikler"
     },
     "search_items": {
       "daily_reflection": {
@@ -506,8 +506,8 @@
         "desc": "Secondary progressions"
       },
       "saturn_return": {
-        "title": "Saturn Dönüşü",
-        "desc": "Saturn Return analizi"
+        "title": "Büyüme Döngüsü",
+        "desc": "Büyüme Döngüsü analizi"
       },
       "solar_return": {
         "title": "Solar Return",
@@ -591,7 +591,7 @@
       }
     },
     "archetype": {
-      "personalized_guidance": "{sign} arketipi için kişiselleştirilmiş kozmik rehberlik",
+      "personalized_guidance": "{sign} arketipi için kişiselleştirilmiş rehberlik",
       "popular_questions": "Popüler Sorular",
       "favorable_months": {
         "aries": "Mart, Temmuz, Kasım",
@@ -863,11 +863,11 @@
     "quiz": {
       "return_home": "Ana Sayfaya Dön",
       "special_discount": "ÖZEL %20 İNDİRİM",
-      "open_cosmic_map": "Kişisel Kozmik Haritanı Aç",
+      "open_cosmic_map": "Kişisel Haritanı Aç",
       "strong_profile_message": "Profilin çok güçlü! Kişiselleştirilmiş içerikleri keşfedebilirsin.",
       "start_now": "Şimdi Başla",
       "valid_today_only": "Sadece bugün geçerli",
-      "continue_cosmic_journey": "Kozmik yolculuğuna devam etmek ister misin?",
+      "continue_cosmic_journey": "Kişisel yolculuğuna devam etmek ister misin?",
       "view_premium_features": "Premium Özellikleri Gör",
       "continue_free": "Ücretsiz içeriklerle devam et",
       "start_exploring": "Keşfetmeye Başla"
@@ -973,9 +973,9 @@
       "advice_default": "Bu yıl önemli dönüşüm temaları üzerine düşünmek faydalı olabilir."
     },
     "reiki": {
-      "title": "Reiki",
+      "title": "Enerji Farkındalığı",
       "subtitle": "Evrensel Yaşam Enerjisi",
-      "description": "Reiki, Japonca \"evrensel yaşam enerjisi\" anlamına gelir. Ellerin üzerinden akan bu enerji, bedenin doğal şifa mekanizmalarını aktive eder ve enerji bloklarını çözer. Stres azaltma, rahatlama ve bütünsel iyileşme sağlar.",
+      "description": "Enerji farkındalığı, bedenin doğal denge mekanizmalarını destekleyen bir farkındalık pratiğidir. Ellerin üzerinden akan enerji hissiyle, enerji bloklarını fark etmenize ve stres azaltma, rahatlama ve bütünsel denge sağlamanıza yardımcı olur.",
       "tabs": {
         "principles": "İlkeler",
         "chakras": "Çakralar",
@@ -1096,10 +1096,10 @@
           "reiki_position": "Elleri başın tepesine koy"
         }
       },
-      "reiki_position_label": "Reiki Pozisyonu",
+      "reiki_position_label": "Enerji Farkındalığı Pozisyonu",
       "practice": {
         "self_reiki": {
-          "title": "Öz-Reiki Pratiği",
+          "title": "Öz-Enerji Farkındalığı Pratiği",
           "steps": [
             "Rahat bir pozisyonda otur veya uzan",
             "Gözlerini kapat ve birkaç derin nefes al",
@@ -1124,7 +1124,7 @@
           ]
         },
         "distance_reiki": {
-          "title": "Uzaktan Reiki",
+          "title": "Uzaktan Enerji Farkındalığı",
           "steps": [
             "Şifa göndereceğin kişiden izin al (zihinsel olarak)",
             "Kişiyi veya durumu gözünde canlandır",
@@ -1135,7 +1135,7 @@
           ]
         }
       },
-      "tip": "Reiki uyumlanması için bir Reiki ustasıyla çalışmanız önerilir. Bu pratikler, uyumlanmış olmasanız da enerji farkındalığı geliştirmenize yardımcı olabilir."
+      "tip": "Enerji uyumlanması için bir enerji farkındalığı uzmanıyla çalışmanız önerilir. Bu pratikler, uyumlanmış olmasanız da enerji farkındalığı geliştirmenize yardımcı olabilir."
     },
     "progressions": {
       "title": "Progresyonlar",
@@ -1369,7 +1369,7 @@
       "saturn": {
         "line1": "{planet} {sign} arketipinda - sorumluluk ve sınırlar bu arketip enerjisiyle ifade buluyor.",
         "line2": "{sign}'nin özellikleri, hangi alanlarda olgunlaşman gerektiğini, korkularını ve hayat derslerini gösteriyor. Disiplin tarzın, otorite ilişkin ve zaman anlayışın bu arketipla şekilleniyor.",
-        "line3": "{meaning} alanlarında {sign} enerjisi etkin. Bu yerleşim, karmanı ve ustalık yolculuğunu gösteriyor."
+        "line3": "{meaning} alanlarında {sign} enerjisi etkin. Bu yerleşim, döngüsel temalarını ve ustalık yolculuğunu gösteriyor."
       },
       "uranus": {
         "line1": "{planet} {sign} arketipinda - özgünlük ve devrim bu arketip enerjisiyle ifade buluyor.",

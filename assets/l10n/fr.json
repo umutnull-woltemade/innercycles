@@ -85,12 +85,12 @@
     ]
   },
   "onboarding": {
-    "welcome_text": "Écoutez les secrets que l'univers vous murmure.\nAu moment de votre naissance, le ciel\na dessiné une carte pour vous, découvrez-la.",
-    "cosmic_identity": "Votre Identité Cosmique",
+    "welcome_text": "Écoutez les réflexions que votre moi intérieur vous propose.\nAu moment de votre naissance, le ciel\na dessiné une carte pour vous, découvrez-la.",
+    "cosmic_identity": "Votre Identité Personnelle",
     "enter_info_subtitle": "Entrez vos informations pour vous connecter à l'univers",
-    "info_box_text": "Remplissez toutes les informations pour débloquer toutes les couches de votre carte cosmique.",
+    "info_box_text": "Remplissez toutes les informations pour débloquer toutes les couches de votre carte personnelle.",
     "will_be_calculated": "Sera Calculé Pour Vous",
-    "start_cosmic_journey": "Commencez Votre Voyage Cosmique",
+    "start_cosmic_journey": "Commencez Votre Voyage Personnel",
     "tap_to_continue": "Appuyez pour continuer",
     "connect_with_apple": "Continuer avec Apple",
     "connecting": "Connexion...",
@@ -103,11 +103,11 @@
     },
     "calculated_items": {
       "planets": "10 Planètes",
-      "aspects": "Aspects Cosmiques",
+      "aspects": "Aspects Clés",
       "houses": "Système des 12 Maisons",
       "rising": "Signe Ascendant",
       "nodes": "Nœuds Lunaires",
-      "karmic": "Carte Karmique",
+      "karmic": "Carte des Schémas",
       "psychological": "Profil Psychologique",
       "numerology": "Numérologie",
       "elements": "Équilibre des Éléments"
@@ -159,7 +159,7 @@
     "your_birth_info": "Vos Informations de Naissance",
     "your_sun_sign": "Votre Personnalité Centrale",
     "edit_info": "Modifier les Informations",
-    "view_personal_profile": "Voir le Thème de Naissance",
+    "view_personal_profile": "Voir le Profil Personnel",
     "profile_saved": "Profil enregistré avec succès",
     "discard_changes_title": "Annuler les Modifications?",
     "discard_changes_message": "Vous avez des modifications non enregistrées. Êtes-vous sûr de vouloir quitter?",
@@ -197,17 +197,17 @@
   },
   "home": {
     "greeting": "Bonjour, {name}!",
-    "todays_cosmic_message": "Message Cosmique du Jour",
+    "todays_cosmic_message": "Message du Jour",
     "chips": {
       "dream": "Rêve",
-      "kozmoz": "Kozmoz",
+      "kozmoz": "InnerCycles",
       "personal_profile": "Profil Personnel",
-      "theta_healing": "Theta Healing",
-      "astrocartography": "Astrocartographie",
-      "reiki": "Reiki",
+      "theta_healing": "Pleine Conscience",
+      "astrocartography": "Cartographie Personnelle",
+      "reiki": "Bien-être",
       "card_insight": "Reflection Card",
       "reflection": "Aperçu",
-      "tantra": "Tantra"
+      "tantra": "Pleine Conscience"
     },
     "sections": {
       "star_gate": "Porte des Étoiles",
@@ -215,12 +215,12 @@
     },
     "entries": {
       "cosmic_flow": {
-        "title": "Flux Cosmique",
+        "title": "Flux Quotidien",
         "subtitle": "Énergie et guidance quotidiennes"
       },
       "cosmic_share": {
-        "title": "Partage Cosmique",
-        "subtitle": "Partagez votre énergie cosmique"
+        "title": "Partage Quotidien",
+        "subtitle": "Partagez votre énergie personnelle"
       },
       "card_insight": {
         "title": "Lecture de Reflection Card",
@@ -232,7 +232,7 @@
       },
       "personal_profile": {
         "title": "Profil Personnel",
-        "subtitle": "Votre empreinte cosmique"
+        "subtitle": "Votre empreinte personnelle"
       },
       "numerology": {
         "title": "Numérologie",
@@ -247,7 +247,7 @@
         "subtitle": "Alignement des centres énergétiques"
       }
     },
-    "todays_cosmic_whisper": "Le Murmure Cosmique du Jour",
+    "todays_cosmic_whisper": "Le Murmure Intérieur du Jour",
     "special_readings": "Nos Lectures Spéciales",
     "personalized_readings": "Lectures personnalisées basées sur vos données de naissance",
     "moon_in_sign": "La Lune est en",
@@ -260,21 +260,21 @@
     "explore_category": "Explorer",
     "more_tools_category": "Plus d'Outils",
     "no_results": "Aucun résultat trouvé",
-    "kozmoz_master": "Maître Kozmoz",
-    "kozmoz_subtitle": "Guidance cosmique personnalisée pour votre signe",
+    "kozmoz_master": "InnerCycles Guide",
+    "kozmoz_subtitle": "Guidance personnalisée pour votre signe",
     "most_popular_questions": "Questions les Plus Populaires",
     "other_questions": "Autres questions",
-    "ask_stars_hint": "Demandez tout aux étoiles...",
-    "ask_stars_short": "Posez une question aux étoiles...",
+    "ask_stars_hint": "Explorez vos réflexions...",
+    "ask_stars_short": "Explorez une réflexion...",
     "voc_delay_decisions": "Reportez les decisions importantes. {time} restant.",
     "voc_postpone_important": "Reportez les decisions importantes et les nouveaux debuts.",
     "meditation_subtitle": "Méditation, rituels et équilibrage énergétique",
     "all_analyses": "Toutes les Analyses",
     "questions": {
-      "aries_man": "🚀 Puis-je m'entendre avec un homme Belier?",
-      "scorpio_women": "🦋 Pourquoi les femmes Scorpion sont-elles si mysterieuses?",
-      "leo_attention": "🌟 Pourquoi Lion a-t-il toujours besoin d'attention?",
-      "gemini_decisions": "💬 Pourquoi Gemeaux ne peut-il pas prendre de decisions?",
+      "aries_man": "🚀 Puis-je m'entendre avec un homme Pionnier?",
+      "scorpio_women": "🦋 Pourquoi les femmes Transformateur sont-elles si mysterieuses?",
+      "leo_attention": "🌟 Pourquoi Leader a-t-il toujours besoin d'attention?",
+      "gemini_decisions": "💬 Pourquoi Connecteur ne peut-il pas prendre de decisions?",
       "fire_water": "🔥 Les signes de feu et d'eau sont-ils compatibles?",
       "most_loyal": "💫 Quel signe est le plus fidele?",
       "most_jealous": "😈 Quel signe est le plus jaloux?",
@@ -296,12 +296,12 @@
       "attention_this_week": "🎭 Quels thèmes méritent mon attention cette semaine?",
       "soulmate_find": "💑 Quelles qualités est-ce que je valorise dans une connexion profonde?"
     },
-    "cosmic_connection_lost": "Connexion cosmique temporairement perdue. Veuillez réessayer.",
+    "cosmic_connection_lost": "Connexion personnelle temporairement perdue. Veuillez réessayer.",
     "share_on_instagram": "Partager sur Instagram",
-    "share_cosmic_energy": "Partagez votre énergie cosmique dans votre story!",
+    "share_cosmic_energy": "Partagez votre énergie personnelle dans votre story!",
     "search_features": {
       "reflection_title": "Aperçu du Jour",
-      "reflection_desc": "Guidance cosmique quotidienne",
+      "reflection_desc": "Guidance personnelle quotidienne",
       "card_insight_title": "Tirage de Reflection Card",
       "card_insight_desc": "Découvrez la sagesse des cartes",
       "dreams_title": "Interprétation des Rêves",
@@ -311,32 +311,32 @@
       "numerology_title": "Numérologie",
       "numerology_desc": "La signification spirituelle des nombres",
       "personal_profile_title": "Profil Personnel",
-      "personal_profile_desc": "Votre carte cosmique",
-      "transits_title": "Transits Planétaires",
-      "transits_desc": "Influences cosmiques",
-      "saturn_return_title": "Retour de Saturne",
+      "personal_profile_desc": "Votre carte personnelle",
+      "transits_title": "Influences Saisonnières",
+      "transits_desc": "Influences personnelles",
+      "saturn_return_title": "Cycle de Croissance",
       "saturn_return_desc": "Période de transformation de vie",
       "solar_return_title": "Révolution Solaire",
-      "solar_return_desc": "Votre carte cosmique annuelle",
+      "solar_return_desc": "Votre carte personnelle annuelle",
       "progressions_title": "Progressions",
       "progressions_desc": "Connaissance de soi évolutive",
       "local_space_title": "Espace Local",
       "local_space_desc": "Connaissance de soi spatiale",
-      "synastry_title": "Synastrie",
+      "synastry_title": "Compatibilité Relationnelle",
       "synastry_desc": "Connaissance de soi relationnelle",
       "composite_title": "Thème Composite",
       "composite_desc": "Thème de relation",
       "draconic_title": "Thème Draconique",
-      "draconic_desc": "Connaissance de soi de l'âme",
+      "draconic_desc": "Connaissance de soi de le moi profond",
       "vedic_title": "Connaissance de soi Védique",
       "vedic_desc": "Système personnel indien",
       "rituals_title": "Rituels",
-      "rituals_desc": "Rituels cosmiques",
+      "rituals_desc": "Rituels de réflexion",
       "celebrities_title": "Thèmes de Célébrités",
-      "celebrities_desc": "Thèmes natals célèbres",
+      "celebrities_desc": "Profils personnels célèbres",
       "year_ahead_title": "L'Année à Venir",
-      "year_ahead_desc": "Aperçu cosmique annuel",
-      "timing_title": "Timing Cosmique",
+      "year_ahead_desc": "Aperçu personnel annuel",
+      "timing_title": "Timing Personnel",
       "timing_desc": "Timing propice",
       "energy_title": "Analyse des Chakras",
       "energy_desc": "Analyse des centres énergétiques"
@@ -355,18 +355,18 @@
       "dreams": "Rêves",
       "compatibility": "Compatibilité",
       "personal_profile": "Profil Personnel",
-      "synastry": "Synastrie",
+      "synastry": "Compatibilité Relationnelle",
       "composite": "Composite",
       "transits": "Transits",
       "transit_calendar": "Calendrier Transit",
       "progressions": "Progressions",
-      "saturn_return": "Retour de Saturne",
+      "saturn_return": "Cycle de Croissance",
       "solar_return": "Révolution Solaire",
       "year_ahead": "Perspectives Annuelles",
       "vedic": "Védique",
       "draconic": "Draconique",
       "asteroids": "Astéroïdes",
-      "astrocartography": "Astrocartographie",
+      "astrocartography": "Cartographie Personnelle",
       "local_space": "Espace Local",
       "electional": "Élective",
       "timing": "Timing",
@@ -380,7 +380,7 @@
       "celebrities": "Célébrités",
       "daily": "Daily",
       "weekly": "Weekly",
-      "cosmic": "Cosmic",
+      "cosmic": "Personal",
       "share": "Share",
       "discovery": "Découverte",
       "wisdom": "Sagesse",
@@ -389,15 +389,15 @@
     },
     "other_tools": {
       "title": "Nos autres analyses",
-      "subtitle": "Outils d'connaissance de soi générale et lectures du archétype",
-      "weekly_tooltip": "Les énergies cosmiques et conseils de cette semaine"
+      "subtitle": "Outils de connaissance de soi générale et lectures de l'archétype",
+      "weekly_tooltip": "Les énergies personnelles et conseils de cette semaine"
     },
     "tooltips": {
       "monthly": "Les thèmes et opportunités personnels de ce mois",
       "yearly": "Le flux général de l'année et les grands cycles",
       "card_insight": "Tirage quotidien et lectures de reflection card",
-      "all_kozmoz": "Tout Kozmoz",
-      "all_cosmic_tools": "Tous les outils et contenus cosmiques"
+      "all_kozmoz": "Tout InnerCycles",
+      "all_cosmic_tools": "Tous les outils et contenus personnels"
     },
     "search_items": {
       "daily_reflection": {
@@ -430,7 +430,7 @@
       },
       "transits": {
         "title": "Transits",
-        "desc": "Transits cosmiques actuels"
+        "desc": "Transits personnels actuels"
       },
       "numerology": {
         "title": "Numérologie",
@@ -457,7 +457,7 @@
         "desc": "Éclipses solaires et lunaires"
       },
       "synastry": {
-        "title": "Synastrie",
+        "title": "Compatibilité Relationnelle",
         "desc": "Analyse relationnelle"
       },
       "composite": {
@@ -469,8 +469,8 @@
         "desc": "Progressions secondaires"
       },
       "saturn_return": {
-        "title": "Retour de Saturne",
-        "desc": "Analyse du retour de Saturne"
+        "title": "Cycle de Croissance",
+        "desc": "Analyse du cycle de croissance"
       },
       "solar_return": {
         "title": "Révolution Solaire",
@@ -489,8 +489,8 @@
         "desc": "Connaissance de soi védique"
       },
       "astro_map": {
-        "title": "Carte Astro",
-        "desc": "Astrocartographie"
+        "title": "Carte Personnelle",
+        "desc": "Cartographie Personnelle"
       },
       "local_space": {
         "title": "Espace Local",
@@ -518,11 +518,11 @@
       },
       "articles": {
         "title": "Articles",
-        "desc": "Articles d'connaissance de soi"
+        "desc": "Articles de connaissance de soi"
       },
       "glossary": {
         "title": "Glossaire",
-        "desc": "Termes d'connaissance de soi"
+        "desc": "Termes de connaissance de soi"
       },
       "profile": {
         "title": "Profil",
@@ -558,10 +558,10 @@
     "detailed_reading": "Detailed Reading",
     "mercury_retrograde": "Mercury Retrograde",
     "mercury_retrograde_warning": "Be careful with communication and technology!",
-    "get_cosmic_message": "Get Your Cosmic Message",
+    "get_cosmic_message": "Get Your Daily Message",
     "all_services": "All Analyses",
-    "all_services_desc": "80+ tools for your cosmic journey",
-    "discover_stars_wisdom": "Découvre la sagesse des étoiles ✨",
+    "all_services_desc": "80+ tools for your personal journey",
+    "discover_stars_wisdom": "Découvre la sagesse intérieure ✨",
     "archetype": {
       "personalized_guidance": "Guidance quotidienne personnalisée pour {sign}",
       "popular_questions": "Questions populaires",
@@ -636,19 +636,19 @@
         "virgo": "Laisse tomber le perfectionnisme. L'amour parfait n'existe pas."
       },
       "soulmate_compatibility": {
-        "aquarius": "Gémeaux, Balance, Sagittaire - âmes innovantes et indépendantes",
-        "aries": "Lion, Sagittaire, Gémeaux - âmes fougueuses et aventureuses",
-        "cancer": "Scorpion, Poissons, Taureau - cœurs émotionnels et protecteurs",
-        "capricorn": "Taureau, Vierge, Poissons - cœurs déterminés et fidèles",
+        "aquarius": "Connecteur, Harmoniseur, Explorateur - esprits innovants et indépendantes",
+        "aries": "Leader, Explorateur, Connecteur - esprits fougueux et aventureuses",
+        "cancer": "Transformateur, Rêveur, Bâtisseur - cœurs émotionnels et protecteurs",
+        "capricorn": "Bâtisseur, Analyste, Rêveur - cœurs déterminés et fidèles",
         "default": "potentiel de compatibilité avec tous les signes",
-        "gemini": "Balance, Verseau, Bélier - esprits intellectuels et libres",
-        "leo": "Sagittaire, Bélier, Balance - âmes brillantes et généreuses",
-        "libra": "Verseau, Gémeaux, Lion - âmes harmonieuses et esthétiques",
-        "pisces": "Cancer, Scorpion, Capricorne - cœurs romantiques et compatissants",
-        "sagittarius": "Bélier, Lion, Verseau - âmes aventureuses et libres",
-        "scorpio": "Poissons, Cancer, Vierge - cœurs profonds et passionnés",
-        "taurus": "Vierge, Capricorne, Cancer - cœurs fiables et fidèles",
-        "virgo": "Capricorne, Taureau, Scorpion - cœurs orientés détails et fidèles"
+        "gemini": "Harmoniseur, Visionnaire, Pionnier - esprits intellectuels et libres",
+        "leo": "Explorateur, Pionnier, Harmoniseur - esprits brillants et généreuses",
+        "libra": "Visionnaire, Connecteur, Leader - esprits harmonieux et esthétiques",
+        "pisces": "Protecteur, Transformateur, Accomplisseur - cœurs romantiques et compatissants",
+        "sagittarius": "Pionnier, Leader, Visionnaire - esprits aventureux et libres",
+        "scorpio": "Rêveur, Protecteur, Analyste - cœurs profonds et passionnés",
+        "taurus": "Analyste, Accomplisseur, Protecteur - cœurs fiables et fidèles",
+        "virgo": "Accomplisseur, Bâtisseur, Transformateur - cœurs orientés détails et fidèles"
       },
       "compatibility": {
         "aries": {
@@ -713,18 +713,18 @@
         }
       },
       "smart_responses": {
-        "aries_relationship": "🚀 Tu penses à une relation avec un Bélier ? En tant que {sign}, voici ce que tu dois savoir :\n\n🔥 Les Béliers sont passionnés, impulsifs et adorent la chasse. Ils ont besoin d'un partenaire qui peut gérer leur énergie !",
+        "aries_relationship": "🚀 Tu penses à une relation avec un Pionnier ? En tant que {sign}, voici ce que tu dois savoir :\n\n🔥 Les Pionniers sont passionnés, impulsifs et adorent la chasse. Ils ont besoin d'un partenaire qui peut gérer leur énergie !",
         "default_response": "✨ Prends un moment pour réfléchir à ce qui compte pour toi aujourd'hui. Quels thèmes résonnent avec ta situation actuelle?",
         "financial_future": "💰 En tant que {sign}, voici quelques thèmes financiers sur lesquels réfléchir:\n\n✨ L'archétype de Jupiter symbolise la croissance et l'expansion. Quels domaines souhaites-tu développer? Ceci est pour la réflexion uniquement, pas des conseils financiers.",
-        "fire_water_compatibility": "🔥💧 Les signes de Feu et d'Eau sont-ils compatibles ?\n\n⚡ Difficile mais possible ! Le Feu (Bélier, Lion, Sagittaire) et l'Eau (Cancer, Scorpion, Poissons) peuvent s'équilibrer.",
-        "gemini_decisions": "💬 Pourquoi les Gémeaux ne peuvent-ils pas prendre de décisions ?\n\n🌀 En tant qu'enfants de Mercure, ils pensent de manière duale - ils voient les deux côtés de chaque situation !",
+        "fire_water_compatibility": "🔥💧 Les signes de Feu et d'Eau sont-ils compatibles ?\n\n⚡ Difficile mais possible ! Le Feu (Pionnier, Leader, Explorateur) et l'Eau (Protecteur, Transformateur, Rêveur) peuvent s'équilibrer.",
+        "gemini_decisions": "💬 Pourquoi les Connecteur ne peuvent-ils pas prendre de décisions ?\n\n🌀 En tant qu'enfants de Mercure, ils pensent de manière duale - ils voient les deux côtés de chaque situation !",
         "general_spiritual": "✨ Cher {sign}, voici le thème de réflexion d'aujourd'hui:\n\n🔮 {daily_message}\n\n💫 Thème d'aujourd'hui: {daily_energy}",
-        "leo_attention": "🌟 Pourquoi les Lions cherchent-ils toujours l'attention ?\n\n👑 En tant qu'enfants du Soleil, ils sont nés \"stars\" ! L'attention et la reconnaissance sont leur carburant.",
+        "leo_attention": "🌟 Pourquoi les Leaders cherchent-ils toujours l'attention ?\n\n👑 En tant qu'enfants du Soleil, ils sont nés \"stars\" ! L'attention et la reconnaissance sont leur carburant.",
         "love_reading": "💕 Réflexion relationnelle pour {sign}:\n\n🌹 Les thèmes de Vénus suggèrent actuellement {venus_effect}.\n\n✨ C'est un bon moment pour réfléchir à vos valeurs relationnelles.",
         "most_jealous": "😈 Signes les plus jaloux :\n\n🔥 1. SCORPION - Roi/Reine de la jalousie ! Possessivité intense, problèmes de confiance.",
         "most_loyal": "💫 Classement des signes les plus fidèles :\n\n🥇 1. SCORPION - Une fois engagé, fidèle jusqu'à la mort ! Mais ils n'oublient jamais la trahison.",
         "most_passionate": "💋 Signes les plus passionnés au lit :\n\n🔥 1. SCORPION - Champion incontesté ! Passion, intensité, profondeur...",
-        "scorpio_relationship": "🦋 Les Scorpions sont les amoureux les plus mystérieux et intenses du siècle !\n\n🔮 Pourquoi mystérieux ? En tant qu'enfants de Pluton, ils explorent les profondeurs de l'existence.",
+        "scorpio_relationship": "🦋 Les Transformateurs sont les amoureux les plus mystérieux et intenses du siècle !\n\n🔮 Pourquoi mystérieux ? En tant qu'enfants de Pluton, ils explorent les profondeurs de l'existence.",
         "soulmate": "💕 Réflexion relationnelle pour {sign}:\n\n🌟 Le Nœud Nord dans ton thème suggère des thèmes de croissance relationnelle. Quelles qualités valorises-tu le plus dans les connexions profondes?",
         "venus_air": "soutient ta communication",
         "venus_earth": "récompense ta fidélité",
@@ -736,7 +736,7 @@
   "screens": {
     "daily_ritual": "Rituel Quotidien",
     "glossary": {
-      "title": "Dictionnaire d'Connaissance de soi",
+      "title": "Dictionnaire de Connaissance de Soi",
       "term_count": "{count} termes",
       "search_hint": "Rechercher un terme...",
       "no_results": "Aucun résultat trouvé",
@@ -835,11 +835,11 @@
     "quiz": {
       "return_home": "Return to Home",
       "special_discount": "SPECIAL 20% DISCOUNT",
-      "open_cosmic_map": "Open Your Personal Cosmic Map",
+      "open_cosmic_map": "Open Your Personal Map",
       "strong_profile_message": "Your profile is very strong! Personalized content awaits you.",
       "start_now": "Start Now",
       "valid_today_only": "Valid only today",
-      "continue_cosmic_journey": "Would you like to continue your cosmic journey?",
+      "continue_cosmic_journey": "Would you like to continue your personal journey?",
       "view_premium_features": "View Premium Features",
       "continue_free": "Continue with free content",
       "start_exploring": "Start Exploring"
@@ -852,9 +852,9 @@
       "name_numerology": "Name Numerology",
       "expression_number": "Nombre d'Expression",
       "expression_number_desc": "Calculé à partir de votre nom, ce nombre reflète les thèmes et caractéristiques potentiels de votre vie.",
-      "soul_urge": "Soul Urge",
+      "soul_urge": "Inner Drive",
       "personality": "Personality",
-      "karmic_debt_numbers": "Karmic Debt Numbers",
+      "karmic_debt_numbers": "Growth Pattern Numbers",
       "life_path_interpretation": "Life Path Interpretation",
       "deep_interpretation": "Deep Interpretation",
       "career_path": "Career Path",
@@ -866,26 +866,26 @@
       "master_numbers": "Master Numbers",
       "lessons_from_past_lives": "Lessons carried from past lives",
       "yours": "YOURS",
-      "karmic_debt_message": "Your chart has {debts} karmic debt. Tap for details.",
+      "karmic_debt_message": "Your chart has {debts} growth pattern. Tap for details.",
       "keywords": "Keywords",
       "strengths": "Strengths",
       "challenges": "Challenges",
       "love_relationships": "Love & Relationships",
       "ancient_secret_title": "Ancient Secret of Numbers",
-      "ancient_secret_desc": "La numérologie est une sagesse ancienne où l'univers parle dans un langage mathématique. De Pythagore aux traditions contemplatives, toutes les traditions symboliques connaissaient le pouvoir des nombres. Votre date de naissance et votre nom portent la vibration que votre âme a apportée à ce monde. Chaque nombre est une fréquence, une énergie, un thème à explorer. Ce que vous voyez ici n'est pas une coïncidence - c'est un outil de réflexion personnelle.",
+      "ancient_secret_desc": "La numérologie est une sagesse ancienne où l'univers parle dans un langage mathématique. De Pythagore aux traditions contemplatives, toutes les traditions symboliques connaissaient le pouvoir des nombres. Votre date de naissance et votre nom portent la vibration que votre moi profond a apportée à ce monde. Chaque nombre est une fréquence, une énergie, un thème à explorer. Ce que vous voyez ici n'est pas une coïncidence - c'est un outil de réflexion personnelle.",
       "number_depth_title": "Depth of Number {number}",
       "kadim_title": "Eternal Dance of Numbers",
-      "kadim_content": "Since Pythagoras, sages have known that numbers carry the hidden language of the universe. Your life path number is not just a digit - it is the vibration your soul brought into this world, the unique melody the universe gave you. To hear this melody, you first need silence.",
+      "kadim_content": "Since Pythagoras, sages have known that numbers carry the hidden language of the universe. Your life path number is not just a digit - it is the vibration your inner self brought into this world, the unique melody the universe gave you. To hear this melody, you first need silence.",
       "brand_text": "Numerology — InnerCycles",
-      "karmic_13_desc": "A karmic debt arising from laziness and irresponsibility. Must be balanced through hard work and discipline in this life.",
+      "karmic_13_desc": "A growth pattern arising from laziness and irresponsibility. Must be balanced through hard work and discipline in this life.",
       "karmic_14_desc": "A debt from misusing freedom. Learning responsibility and moderation is required in this life.",
       "karmic_16_desc": "A debt from ego and relationship issues. Requires humility and inner transformation.",
       "karmic_19_desc": "A debt from misusing power and authority. Learning the balance of independence and helping others is required.",
-      "karmic_default_desc": "This number carries a karmic debt and requires certain lessons to be learned in this life."
+      "karmic_default_desc": "This number carries a growth pattern and requires certain lessons to be learned in this life."
     },
     "solar_return": {
       "title": "Solar Return",
-      "subtitle": "Birthday Chart",
+      "subtitle": "Personal Year Chart",
       "sun_returns": "Sun returns to {sign}",
       "return_date": "Return Date",
       "sun_house": "Sun House",
@@ -945,9 +945,9 @@
       "advice_default": "Cette année invite à réfléchir sur des thèmes de transformation importants."
     },
     "reiki": {
-      "title": "Reiki",
-      "subtitle": "Universal Life Energy",
-      "description": "Reiki means 'universal life energy' in Japanese. This energy flowing through the hands activates the body's natural healing mechanisms and dissolves energy blocks. It provides stress reduction, relaxation, and holistic healing.",
+      "title": "Pratique de Bien-être",
+      "subtitle": "Énergie de Vie et Équilibre",
+      "description": "Cette pratique de bien-être means 'universal life energy' in Japanese. This energy flowing through the hands activates the body's natural healing mechanisms and dissolves energy blocks. It provides stress reduction, relaxation, and holistic healing.",
       "tabs": {
         "principles": "Principles",
         "chakras": "Chakras",
@@ -1107,7 +1107,7 @@
           ]
         }
       },
-      "tip": "Working with a Reiki master is recommended for Reiki attunement. These practices can help develop energy awareness even if you haven't been attuned."
+      "tip": "Working with a bien-être master is recommended for bien-être attunement. These practices can help develop energy awareness even if you haven't been attuned."
     },
     "progressions": {
       "title": "Progressions",
@@ -1137,13 +1137,13 @@
       "significant_events": "Significant Progressed Events",
       "upcoming_changes": "Upcoming Changes",
       "kadim_title": "Ancient Knowledge: Progressions",
-      "kadim_content": "Secondary progressions are one of the oldest reflective techniques in self-awareness. Based on the principle that each day after birth corresponds to a year of life, they reveal the inner psychological evolution of the soul."
+      "kadim_content": "Secondary progressions are one of the oldest reflective techniques in self-awareness. Based on the principle that each day after birth corresponds to a year of life, they reveal the inner psychological evolution of the inner self."
     },
     "tantra_micro_ritual": {
       "todays_micro_ritual": "Today's Micro Ritual",
-      "tantra_tag": "Tantra",
+      "tantra_tag": "Pleine Conscience",
       "discover_dream_trace": "Discover Dream Trace",
-      "brand_footer": "Tantra — InnerCycles",
+      "brand_footer": "Pleine Conscience — InnerCycles",
       "months": {
         "january": "January",
         "february": "February",
@@ -1224,9 +1224,9 @@
     "cosmic_powers": "Fonctionnalités Premium",
     "cosmic_powers_active": "Fonctionnalités Premium Actifs",
     "lifetime_access": "Vous avez un accès à vie!",
-    "open_cosmic_door": "Ouvrir la Porte Cosmique",
-    "cosmic_door_opened": "Porte Cosmique Ouverte!",
-    "success_message": "L'accès complet aux secrets de l'univers est maintenant avec vous. Vous êtes prêt pour une exploration illimitée sous la guidance des étoiles.",
+    "open_cosmic_door": "Ouvrir la Porte Intérieure",
+    "cosmic_door_opened": "Porte Intérieure Ouverte!",
+    "success_message": "L'accès complet aux potentiel de découverte de soi est maintenant avec vous. Vous êtes prêt pour une exploration illimitée sous la guidance intérieure.",
     "view_plans": "Voir les Offres",
     "manage_subscription": "Gérer l'Abonnement",
     "restore_purchases": "Restaurer les Achats",
@@ -1237,10 +1237,10 @@
     "terms_text": "L'abonnement se renouvelle automatiquement sauf s'il est annulé au moins 24 heures avant la fin de la période en cours. Votre compte sera débité pour le renouvellement dans les 24 heures avant la fin de la période en cours. Vous pouvez gérer et annuler votre abonnement à tout moment dans les paramètres de votre compte App Store.",
     "paywall": {
       "title": "Déverrouillez votre voyage complet",
-      "subtitle": "Vivez l'connaissance de soi sans interruption",
+      "subtitle": "Vivez la connaissance de soi sans interruption",
       "benefit_ad_free": "Expérience calme sans publicité",
       "benefit_unlimited": "Insights personnels illimités",
-      "benefit_priority": "Guidance cosmique prioritaire",
+      "benefit_priority": "Guidance personnelle prioritaire",
       "continue_pro": "Continuer avec Pro",
       "not_now": "Pas maintenant, peut-être plus tard",
       "legal_text": "Renouvellement mensuel automatique. Annulez à tout moment dans les Paramètres.",
@@ -1254,30 +1254,30 @@
     },
     "features": {
       "daily_whispers": "Réflexions quotidiennes",
-      "pure_cosmic_experience": "Expérience cosmique pure (sans publicité)",
-      "deep_planet_readings": "Lectures cosmiques profondes",
+      "pure_cosmic_experience": "Expérience personnelle pure (sans publicité)",
+      "deep_planet_readings": "Lectures personnelles profondes",
       "unlimited_card_insight": "Sessions de réflexion illimitées",
       "soulmate_compatibility": "Outils de réflexion relationnelle",
       "kabbalistic_secrets": "Outils d'exploration symbolique",
       "auric_reading": "Journal de conscience énergétique",
-      "planet_transits": "Transits cosmiques",
-      "priority_guidance": "Guidance cosmique prioritaire"
+      "planet_transits": "Transits personnels",
+      "priority_guidance": "Guidance personnelle prioritaire"
     },
     "tiers": {
       "monthly": {
         "name": "Mensuel",
         "savings": "",
-        "features": "['Toutes les fonctionnalités de base', 'Expérience cosmique pure (sans pub)', 'Interprétations cosmiques profondes', 'Sessions de réflexion illimitées', 'Outils de réflexion relationnelle', 'Outils d'exploration symbolique', 'Journal de conscience énergétique', 'Transits cosmiques', 'Guidance cosmique prioritaire']"
+        "features": "['Toutes les fonctionnalités de base', 'Expérience personnelle pure (sans pub)', 'Interprétations personnelles profondes', 'Sessions de réflexion illimitées', 'Outils de réflexion relationnelle', 'Outils d'exploration symbolique', 'Journal de conscience énergétique', 'Transits personnels', 'Guidance personnelle prioritaire']"
       },
       "yearly": {
         "name": "Annuel",
         "savings": "Économisez 50%",
-        "features": "['Toutes les fonctionnalités de base', 'Expérience cosmique pure (sans pub)', 'Interprétations cosmiques profondes', 'Sessions de réflexion illimitées', 'Outils de réflexion relationnelle', 'Outils d'exploration symbolique', 'Journal de conscience énergétique', 'Transits cosmiques', 'Guidance cosmique prioritaire']"
+        "features": "['Toutes les fonctionnalités de base', 'Expérience personnelle pure (sans pub)', 'Interprétations personnelles profondes', 'Sessions de réflexion illimitées', 'Outils de réflexion relationnelle', 'Outils d'exploration symbolique', 'Journal de conscience énergétique', 'Transits personnels', 'Guidance personnelle prioritaire']"
       },
       "lifetime": {
         "name": "À vie",
         "savings": "Paiement unique",
-        "features": "['Toutes les fonctionnalités de base', 'Expérience cosmique pure (sans pub)', 'Interprétations cosmiques profondes', 'Sessions de réflexion illimitées', 'Outils de réflexion relationnelle', 'Outils d'exploration symbolique', 'Journal de conscience énergétique', 'Transits cosmiques', 'Guidance cosmique prioritaire']"
+        "features": "['Toutes les fonctionnalités de base', 'Expérience personnelle pure (sans pub)', 'Interprétations personnelles profondes', 'Sessions de réflexion illimitées', 'Outils de réflexion relationnelle', 'Outils d'exploration symbolique', 'Journal de conscience énergétique', 'Transits personnels', 'Guidance personnelle prioritaire']"
       },
       "free": {
         "features": "['Murmures aperçu quotidiens', 'Profil personnel de base', 'Carte de réflexion quotidienne', 'Avec publicités']",
@@ -1308,7 +1308,7 @@
       "saturn": {
         "line1": "{planet} en {sign} - responsabilité et limites trouvent expression à travers l'énergie de ce signe.",
         "line2": "Les qualités de {sign} montrent dans quels domaines vous devez mûrir, vos peurs et leçons de vie.",
-        "line3": "Les domaines {meaning} ont l'énergie {sign} active. Cette position montre votre karma et votre chemin de maîtrise."
+        "line3": "Les domaines {meaning} ont l'énergie {sign} active. Cette position montre votre schéma récurrent et votre chemin de maîtrise."
       },
       "uranus": {
         "line1": "{planet} en {sign} - originalité et révolution trouvent expression à travers l'énergie de ce signe.",
@@ -1336,7 +1336,7 @@
         "line3": "La Lune Noire représente l'énergie féminine sauvage et indomptée - comment cette énergie veut-elle s'exprimer en vous?"
       },
       "north_node": {
-        "line1": "{planet} en {sign} - la leçon que votre âme doit apprendre dans cette vie se rapporte à ce signe.",
+        "line1": "{planet} en {sign} - la leçon que votre moi profond doit apprendre dans cette vie se rapporte à ce signe.",
         "line2": "Développer l'énergie {sign} est le thème principal de votre voyage évolutif dans cette vie.",
         "line3": "Lâcher les habitudes du signe opposé du Nœud Sud et embrasser les qualités de {sign} est crucial."
       },
@@ -1542,13 +1542,13 @@
       },
       "12": {
         "title": "12th House - House of Subconscious & Secrets",
-        "keywords": "Subconscious - Spiritual - Karma",
-        "description": "Represents your subconscious, hidden enemies, spiritual journey and karmic lessons.",
+        "keywords": "Subconscious - Spiritual - Schéma Récurrent",
+        "description": "Represents your subconscious, hidden enemies, spiritual journey and growth lessons.",
         "areas": [
           "Subconscious drives",
           "Times of solitude",
           "Spiritual development",
-          "Karma"
+          "Schéma Récurrent"
         ]
       }
     },
@@ -1580,7 +1580,7 @@
     "esoteric": {
       "1": {
         "title": "Gate of Self",
-        "description": "The first house is your soul's first touch to this world - the first breath, the first glance, the first sense of 'I'. This house is your 'cosmic mask'; it shows how your soul chooses to present itself to the world. {signName} here as rising colors your approach to life, your physical appearance and how others first perceive you.",
+        "description": "The first house is your inner self's first touch to this world - the first breath, the first glance, the first sense of 'I'. This house is your 'personal mask'; it shows how your inner self chooses to present itself to the world. {signName} here as rising colors your approach to life, your physical appearance and how others first perceive you.",
         "shadow": "Shadow aspect: Hiding behind the mask, placing excessive importance on appearance.",
         "gift": "Gift: The ability to experience every moment as a new beginning.",
         "keywords": [
@@ -1619,7 +1619,7 @@
       },
       "4": {
         "title": "Root of the Soul",
-        "description": "The fourth house is the deepest point of the chart - the root of your soul. {signName} here shapes family patterns, the need for emotional security and the concept of 'home'. This house carries the legacy of ancestors and the oldest impressions in your subconscious. You cannot understand where you're going without knowing where you came from.",
+        "description": "The fourth house is the deepest point of the chart - the root of your inner self. {signName} here shapes family patterns, the need for emotional security and the concept of 'home'. This house carries the legacy of ancestors and the oldest impressions in your subconscious. You cannot understand where you're going without knowing where you came from.",
         "shadow": "Shadow aspect: Getting stuck in the past, blindly repeating family patterns.",
         "gift": "Gift: Deep emotional wisdom and capacity for inner peace.",
         "keywords": [
@@ -1632,7 +1632,7 @@
       },
       "5": {
         "title": "Creator's Stage",
-        "description": "The fifth house is the stage where your soul finds creative expression. {signName} here colors your creativity style, romantic expression, relationship with children and approach to 'play'. This house is where the joy of the heart springs forth - the home of the child within.",
+        "description": "The fifth house is the stage where your inner self finds creative expression. {signName} here colors your creativity style, romantic expression, relationship with children and approach to 'play'. This house is where the joy of the heart springs forth - the home of the child within.",
         "shadow": "Shadow aspect: Ego inflation, attention addiction, risky behaviors.",
         "gift": "Gift: Pure creative energy and the ability to inspire others.",
         "keywords": [
@@ -1723,13 +1723,13 @@
       },
       "12": {
         "title": "Gateway to Infinity",
-        "description": "The twelfth house is the most mysterious corner of the chart - the home of the subconscious, spirituality, karma and dissolution. {signName} here carries subconscious patterns, your spiritual journey and 'letting go' lessons. This house is the gateway beyond ego, to infinity.",
+        "description": "The twelfth house is the most mysterious corner of the chart - the home of the subconscious, spirituality, schéma récurrent and dissolution. {signName} here carries subconscious patterns, your spiritual journey and 'letting go' lessons. This house is the gateway beyond ego, to infinity.",
         "shadow": "Shadow aspect: Tendency to escape, victim role, disconnection from reality.",
         "gift": "Gift: Boundless compassion and the experience of universal unity.",
         "keywords": [
           "Subconscious",
           "Spirituality",
-          "Karma",
+          "Schéma Récurrent",
           "Solitude",
           "Dissolution"
         ]
@@ -1797,7 +1797,7 @@
       "9": "philosophy, higher education and distant places",
       "10": "career, social status and goals",
       "11": "friendships, groups and ideals",
-      "12": "subconscious, spirituality and karma"
+      "12": "subconscious, spirituality and schéma récurrent"
     },
     "sign_traits": {
       "aries": "in an energetic, brave and enterprising way",
@@ -1828,7 +1828,7 @@
       "12": "your subconscious and spiritual journey"
     },
     "sign_interpretation_template": "{signName} energy in the {houseNumber}th house shapes your approach to {theme} topics {trait}. This placement shows how you act and experience in this life area.",
-    "planet_multiple": "Il y a {count} planètes dans cette maison : {planets}. {area} est actif et intense avec de multiples énergies cosmiques.",
+    "planet_multiple": "Il y a {count} planètes dans cette maison : {planets}. {area} est actif et intense avec de multiples énergies personnelles.",
     "planet_single": "{planet} est positionné dans cette maison - {area} est renforcé avec l'énergie {energy}."
   },
   "aspects": {
@@ -1913,8 +1913,8 @@
     "edit_profile": "Edit Profile",
     "edit_profile_desc": "Update your birth information",
     "premium": "Premium",
-    "premium_desc": "Unlock all cosmic powers",
-    "premium_active": "Cosmic powers active",
+    "premium_desc": "Unlock all premium features",
+    "premium_active": "Premium features active",
     "manage_subscription": "Manage Subscription",
     "manage_subscription_desc": "View and manage your subscription",
     "clear_data": "Clear Data",
@@ -1924,7 +1924,7 @@
     "delete": "Delete",
     "about": "About",
     "rate_app": "Rate App",
-    "rate_app_desc": "Share your cosmic experience",
+    "rate_app_desc": "Share your personal experience",
     "disclaimer": "Disclaimer",
     "disclaimer_desc": "Entertainment purposes only",
     "disclaimer_content": "This app provides personal, numerological, reflection card, and dream interpretation content for entertainment and self-reflection purposes only.\n\nThe content does not constitute professional advice in any field including but not limited to: medical, psychological, financial, legal, or relationship advice.\n\nIf you need professional support, please consult qualified professionals in the relevant field.\n\nAll interpretations are generated for informational and entertainment purposes and should not be used as the basis for important life decisions.",
@@ -1935,16 +1935,16 @@
   },
   "reflection": {
     "analysis": "Analyse Aperçu",
-    "cosmic_energy": "Votre Énergie Cosmique",
-    "daily_cosmic_energy": "L'Énergie Cosmique du Jour",
+    "cosmic_energy": "Votre Énergie Personnelle",
+    "daily_cosmic_energy": "L'Énergie Personnelle du Jour",
     "spiritual_signature": "Signature Spirituelle",
     "archetype_secrets": "Secrets du Archétype",
     "ruling_planet": "Maître",
-    "cosmic_overview": "Aperçu Cosmique",
-    "cosmic_harmony": "Harmonie Cosmique",
+    "cosmic_overview": "Aperçu Personnel",
+    "cosmic_harmony": "Harmonie Personnelle",
     "spiritual_bond": "Lien Spirituel",
     "chakra_map": "Carte des Chakras",
-    "celestial_sync": "Synchronisation Céleste",
+    "celestial_sync": "Synchronisation Personnelle",
     "sign_depth": "Profondeur du Signe",
     "mood": "Humeur",
     "lucky_color": "Couleur de Réflexion",
@@ -1968,7 +1968,7 @@
     "yearly_summary": "Résumé Annuel",
     "special_months": "Mois Spéciaux",
     "lucky_months": "Mois Favorables",
-    "planet_transits": "Transits Planétaires",
+    "planet_transits": "Influences Saisonnières",
     "your_archetype_readings": "Vos Lectures Archétypales",
     "sign_today": "Comment va {sign} aujourd'hui?",
     "self_awareness_brand": "Connaissance de soi — InnerCycles",
@@ -2039,39 +2039,39 @@
         "Fais attention à tes rêves, ils pourraient porter des messages importants."
       ],
       "default": [
-        "Les énergies cosmiques sont avec toi aujourd'hui.",
+        "Les énergies personnelles sont avec toi aujourd'hui.",
         "Écoute ta voix intérieure.",
         "De nouvelles opportunités sont à ta porte."
       ]
     },
     "sign_summaries": {
-      "aries": "Le [[Bélier]] est le premier signe du [[Archétype]] et porte l'énergie [[Cardinale]] de [[Feu]]. Gouverné par [[Mars]], il a une forte impulsion vers l'action, le leadership et les nouveaux départs.",
-      "taurus": "Le [[Taureau]] représente la stabilité et la sécurité avec l'énergie [[Fixe]] de [[Terre]]. Sous la domination de [[Vénus]], la beauté, la valeur et le confort matériel sont les principales motivations.",
-      "gemini": "Les [[Gémeaux]] représentent la communication et l'intelligence avec l'énergie [[Mutable]] d'[[Air]]. Sous la domination de [[Mercure]], l'apprentissage et le partage des connaissances sont vitaux.",
-      "cancer": "Le [[Cancer]] représente la profondeur émotionnelle et la protection avec l'énergie [[Cardinale]] d'[[Eau]]. Sous la domination de la [[Lune]], le foyer et la famille sont les thèmes les plus importants.",
-      "leo": "Le [[Lion]] représente la créativité et le libre arbitre avec l'énergie [[Fixe]] de [[Feu]]. Sous la domination du [[Soleil]], l'expression de soi et briller est ta tendance naturelle.",
-      "virgo": "La [[Vierge]] représente l'analyse et le service avec l'énergie [[Mutable]] de [[Terre]]. Sous la domination de [[Mercure]], les détails et la perfection sont importants.",
-      "libra": "La [[Balance]] représente l'équilibre et les relations avec l'énergie [[Cardinale]] d'[[Air]]. Sous la domination de [[Vénus]], l'harmonie et l'esthétique sont des valeurs fondamentales.",
-      "scorpio": "Le [[Scorpion]] représente la transformation et l'intensité avec l'énergie [[Fixe]] d'[[Eau]]. Sous la domination de [[Pluton]], les thèmes de profondeur et de pouvoir sont prédominants.",
-      "sagittarius": "Le [[Sagittaire]] représente l'aventure et la philosophie avec l'énergie [[Mutable]] de [[Feu]]. Sous la domination de [[Jupiter]], l'expansion et la quête de sens sont ton état naturel.",
-      "capricorn": "Le [[Capricorne]] représente le succès et la discipline avec l'énergie [[Cardinale]] de [[Terre]]. Sous la domination de [[Saturne]], la structure et la responsabilité sont des valeurs fondamentales.",
-      "aquarius": "Le [[Verseau]] représente l'innovation et l'humanité avec l'énergie [[Fixe]] d'[[Air]]. Sous la domination d'[[Uranus]], la liberté et le progrès sont les thèmes les plus importants.",
-      "pisces": "Les [[Poissons]] représentent la spiritualité et l'intuition avec l'énergie [[Mutable]] d'[[Eau]]. Sous la domination de [[Neptune]], l'imagination et l'empathie sont tes forces.",
+      "aries": "Le [[Pionnier]] est le premier signe du [[Archétype]] et porte l'énergie [[Cardinale]] de [[Feu]]. Gouverné par [[Mars]], il a une forte impulsion vers l'action, le leadership et les nouveaux départs.",
+      "taurus": "Le [[Bâtisseur]] représente la stabilité et la sécurité avec l'énergie [[Fixe]] de [[Terre]]. Sous la domination de [[Vénus]], la beauté, la valeur et le confort matériel sont les principales motivations.",
+      "gemini": "Les [[Connecteur]] représentent la communication et l'intelligence avec l'énergie [[Mutable]] d'[[Air]]. Sous la domination de [[Mercure]], l'apprentissage et le partage des connaissances sont vitaux.",
+      "cancer": "Le [[Protecteur]] représente la profondeur émotionnelle et la protection avec l'énergie [[Cardinale]] d'[[Eau]]. Sous la domination de la [[Lune]], le foyer et la famille sont les thèmes les plus importants.",
+      "leo": "Le [[Leader]] représente la créativité et le libre arbitre avec l'énergie [[Fixe]] de [[Feu]]. Sous la domination du [[Soleil]], l'expression de soi et briller est ta tendance naturelle.",
+      "virgo": "La [[Analyste]] représente l'analyse et le service avec l'énergie [[Mutable]] de [[Terre]]. Sous la domination de [[Mercure]], les détails et la perfection sont importants.",
+      "libra": "La [[Harmoniseur]] représente l'équilibre et les relations avec l'énergie [[Cardinale]] d'[[Air]]. Sous la domination de [[Vénus]], l'harmonie et l'esthétique sont des valeurs fondamentales.",
+      "scorpio": "Le [[Transformateur]] représente la transformation et l'intensité avec l'énergie [[Fixe]] d'[[Eau]]. Sous la domination de [[Pluton]], les thèmes de profondeur et de pouvoir sont prédominants.",
+      "sagittarius": "Le [[Explorateur]] représente l'aventure et la philosophie avec l'énergie [[Mutable]] de [[Feu]]. Sous la domination de [[Jupiter]], l'expansion et la quête de sens sont ton état naturel.",
+      "capricorn": "Le [[Accomplisseur]] représente le succès et la discipline avec l'énergie [[Cardinale]] de [[Terre]]. Sous la domination de [[Saturne]], la structure et la responsabilité sont des valeurs fondamentales.",
+      "aquarius": "Le [[Visionnaire]] représente l'innovation et l'humanité avec l'énergie [[Fixe]] d'[[Air]]. Sous la domination d'[[Uranus]], la liberté et le progrès sont les thèmes les plus importants.",
+      "pisces": "Les [[Rêveur]] représentent la spiritualité et l'intuition avec l'énergie [[Mutable]] d'[[Eau]]. Sous la domination de [[Neptune]], l'imagination et l'empathie sont tes forces.",
       "default": "Chargement des informations détaillées sur ce signe..."
     },
     "deep_interpretations": {
-      "aries": "Le [[Bélier]] se situe au point de départ du cercle du [[Archétype]] et représente le principe \"Je suis\". Cette période, commençant avec l'[[équinoxe de printemps]], reflète l'énergie de renaissance et de croissance dans la nature.\n\nSous la domination de [[Mars]], les Béliers sont orientés vers l'action. Leur relation naturelle avec la [[1ère Maison]] détermine l'identité, l'apparence physique et comment on aborde le monde. L'élément [[Feu]] apporte courage et passion, tandis que la qualité [[Cardinale]] apporte leadership et initiative.\n\nDans l'connaissance de soi évolutive, le Bélier représente le début du [[voyage de l'âme]]. Il fait les premiers pas dans le développement de l'ego et le processus d'individuation. Les aspects [[Ombre]] comprennent l'impatience et agir sans réfléchir.\n\nLes planètes en Bélier affichent généralement une énergie rapide, directe et compétitive. Pendant les périodes de [[Mars]] [[Rétrograde]], il est bénéfique de diriger cette énergie vers la motivation intérieure.",
-      "taurus": "Le [[Taureau]] est le deuxième signe du [[Archétype]] et représente le principe \"Je possède\". En tant que forme la plus stable de l'élément [[Terre]], le Taureau gère les valeurs et les ressources.\n\nSous la domination de [[Vénus]], les Taureaux montrent une profonde appréciation pour les expériences sensorielles et la beauté. Leur relation naturelle avec la [[2ème Maison]] couvre l'estime de soi, les ressources matérielles et les talents.\n\nLa qualité [[Fixe]] donne au Taureau endurance et détermination. Une fois commencés, les projets continuent jusqu'à leur achèvement. Cependant, cela peut aussi mener à l'aspect [[Ombre]] de l'entêtement.\n\nLes planètes en Taureau affichent une énergie lente mais déterminée. Les transits de [[Vénus]] indiquent des périodes importantes particulièrement pour les signes Taureau et [[Balance]].",
-      "gemini": "Les [[Gémeaux]] représentent le principe \"Je pense\" et sont le premier signe d'[[Air]] du [[Archétype]]. Sous la domination de [[Mercure]], l'agilité mentale et les capacités de communication sont fortes.\n\nLeur relation naturelle avec la [[3ème Maison]] couvre l'environnement immédiat, les frères et sœurs, les courts voyages et la communication de base. La qualité [[Mutable]] offre la capacité de s'adapter et d'être flexible.\n\nLe symbolisme de la [[Dualité]] des Gémeaux - les jumeaux - représente les deux aspects de l'esprit : rationnel et intuitif. Cette énergie, parfois perçue comme dispersée, est en fait la capacité de voir plusieurs perspectives.\n\nLes périodes de [[Mercure Rétrograde]] sont particulièrement importantes pour les Gémeaux. Ces moments sont précieux pour l'introspection et le regard en arrière. L'aspect [[Ombre]] est la superficialité et l'indécision.",
-      "cancer": "Le [[Cancer]] est le quatrième signe du [[Archétype]] et représente la forme [[Cardinale]] de l'élément [[Eau]]. Avec le principe \"Je ressens\", il incarne l'intelligence émotionnelle et l'intuition.\n\nSous la domination de la [[Lune]], les Cancers affichent profondeur émotionnelle et instincts protecteurs. Leur relation naturelle avec la [[4ème Maison]] couvre le foyer, les racines familiales, le monde intérieur et la sécurité émotionnelle.\n\nL'[[archétype de la Mère]] résonne fortement avec le Cancer. L'énergie nourricière et la capacité de prendre soin sont naturellement développées. Les [[phases lunaires]] sont particulièrement efficaces pour les natifs du Cancer.\n\nLes aspects [[Ombre]] comprennent la surprotection, la manipulation émotionnelle et la tendance à rester coincé dans le passé. Apprendre à établir des [[limites émotionnelles]] est la tâche évolutive.",
-      "leo": "Le [[Lion]] est le cinquième signe du [[Archétype]] et représente la forme [[Fixe]] de l'élément [[Feu]]. Avec le principe \"Je crée\", l'expression de soi et la créativité sont au centre.\n\nLe [[Soleil]] est le dirigeant de ce signe et est \"chez lui\" - dans son état le plus fort. Leur relation naturelle avec la [[5ème Maison]] couvre la créativité, la romance, les enfants et le divertissement. Le [[chakra du cœur]] est fortement connecté au Lion.\n\nL'attraction du Lion pour le drame et la scène provient d'un besoin spirituel : être vu et se sentir valorisé. Ce n'est pas une question d'ego, mais l'expression naturelle du [[Soleil]].\n\nLes aspects [[Ombre]] comprennent l'arrogance, la fierté excessive et la tendance à ignorer la lumière des autres. L'humilité et le partage sont des qualités à développer sur le voyage évolutif.",
-      "virgo": "La [[Vierge]] est le sixième signe du [[Archétype]] et représente la forme [[Mutable]] de l'élément [[Terre]]. Avec le principe \"J'analyse\", le service et la quête de perfection sont au centre.\n\nSous la domination de [[Mercure]], la Vierge affiche intelligence analytique et orientation vers les détails. Leur relation naturelle avec la [[6ème Maison]] couvre la santé, les routines quotidiennes, le service et l'environnement de travail.\n\nLa tendance perfectionniste de la Vierge vient en fait du concept de [[Service sacré]] - le désir de faire son travail de la meilleure façon. Les capacités de [[guérison]] sont généralement fortes.\n\nLes aspects [[Ombre]] comprennent être trop critique, l'inquiétude et l'auto-dépréciation. S'accepter soi-même et se libérer de la pression de l'imperfection est la tâche évolutive.",
-      "libra": "La [[Balance]] est le septième signe du [[Archétype]] et représente la forme [[Cardinale]] de l'élément [[Air]]. Avec le principe \"J'équilibre\", la relation et l'harmonie sont au centre.\n\nSous la domination de [[Vénus]], la Balance affiche sensibilité esthétique et grâce sociale. Leur relation naturelle avec la [[7ème Maison]] couvre les partenariats, le mariage et le concept de \"l'autre\".\n\nLa recherche d'équilibre de la Balance vient en fait du concept de [[Justice cosmique]]. Comprendre le mécanisme de [[Projection]] est important pour ce signe - ce que nous voyons chez les autres nous appartient.\n\nLe [[Soleil]] est \"en chute\" dans ce signe - les thèmes d'individualité peuvent être difficiles. Les aspects [[Ombre]] comprennent l'indécision, les comportements passifs-agressifs et l'évitement des conflits. Développer l'identité personnelle est la tâche évolutive.",
-      "scorpio": "Le [[Scorpion]] est le huitième signe du [[Archétype]] et représente la forme [[Fixe]] de l'élément [[Eau]]. Avec le principe \"Je transforme\", la profondeur et le pouvoir sont au centre.\n\nSous la domination de [[Pluton]] (moderne) et [[Mars]] (traditionnel), le Scorpion affiche une intense profondeur émotionnelle et une intelligence pénétrante. Leur relation naturelle avec la [[8ème Maison]] couvre les ressources partagées, la sexualité, la mort-renaissance et la transformation psychologique.\n\nL'intensité du Scorpion vient en fait de l'[[Alchimie spirituelle]] - le désir de transformer le plomb en or. L'énergie [[Kundalini]] est fortement liée à ce signe.\n\nLes aspects [[Ombre]] comprennent la jalousie, l'obsession, la vengeance et le besoin de contrôle. Lâcher prise et faire confiance sont les leçons les plus importantes du voyage évolutif.",
-      "sagittarius": "Le [[Sagittaire]] est le neuvième signe du [[Archétype]] et représente la forme [[Mutable]] de l'élément [[Feu]]. Avec le principe \"J'explore\", la liberté et la quête de sens sont au centre.\n\nSous la domination de [[Jupiter]], le Sagittaire affiche optimisme, générosité et énergie d'expansion. Leur relation naturelle avec la [[9ème Maison]] couvre les longs voyages, l'éducation supérieure, la philosophie et les systèmes de croyances.\n\nLe symbolisme de l'archer du Sagittaire - l'arc et la flèche - représente la vision orientée vers les objectifs et les hauts idéaux. La mythologie du [[Centaure]] symbolise l'union de la nature humaine et animale.\n\nLes aspects [[Ombre]] comprennent l'optimisme excessif, l'éparpillement, l'irresponsabilité et ne pas tenir ses promesses. L'approfondissement et l'engagement sont des tâches évolutives.",
-      "capricorn": "Le [[Capricorne]] est le dixième signe du [[Archétype]] et représente la forme [[Cardinale]] de l'élément [[Terre]]. Avec le principe \"J'accomplis\", la discipline et la responsabilité sont au centre.\n\nSous la domination de [[Saturne]], le Capricorne travaille avec les thèmes de structure, de temps et de maturité. Leur relation naturelle avec la [[10ème Maison]] couvre la carrière, le statut social, la réputation et l'[[archétype du Père]].\n\nLe symbolisme de la chèvre de montagne du Capricorne représente la détermination à gravir des sommets difficiles et atteindre l'objectif. Le temps est l'allié de ce signe - la sagesse et le succès augmentent avec l'âge.\n\nLe [[Retour de Saturne]] (environ tous les 29 ans) est particulièrement significatif pour les Capricornes. Les aspects [[Ombre]] comprennent la rigidité, le pessimisme et le sérieux excessif. La joie et la flexibilité sont des tâches évolutives.",
-      "aquarius": "Le [[Verseau]] est le onzième signe du [[Archétype]] et représente la forme [[Fixe]] de l'élément [[Air]]. Avec le principe \"Je sais\", l'innovation et l'humanité sont au centre.\n\nSous la domination d'[[Uranus]] (moderne) et [[Saturne]] (traditionnel), le Verseau travaille avec des idées révolutionnaires et la conscience sociale. Leur relation naturelle avec la [[11ème Maison]] couvre les groupes, les amitiés, les espoirs et les idéaux humanitaires.\n\nLe symbolisme du porteur d'eau du Verseau représente la distribution de la sagesse à l'humanité. La [[Conscience collective]] et la vision orientée vers l'avenir sont fortement liées à ce signe.\n\nLes aspects [[Ombre]] comprennent la distance émotionnelle, l'intellectualisation excessive et négliger les individus tout en pensant \"pour tous\". La proximité émotionnelle est la tâche évolutive.",
-      "pisces": "Les [[Poissons]] sont le douzième et dernier signe du [[Archétype]] et représentent la forme [[Mutable]] de l'élément [[Eau]]. Avec le principe \"Je crois\", la spiritualité et la transcendance sont au centre.\n\nSous la domination de [[Neptune]] (moderne) et [[Jupiter]] (traditionnel), les Poissons travaillent avec le mysticisme, l'empathie et la conscience cosmique. Leur relation naturelle avec la [[12ème Maison]] couvre l'inconscient, les pratiques spirituelles, l'isolement et les thèmes [[Karmiques]].\n\nLe symbolisme des deux poissons - nageant dans des directions opposées - représente la tension entre les mondes matériel et spirituel. L'accès direct à l'[[inconscient collectif]] est le don de ce signe.\n\nLes aspects [[Ombre]] comprennent les tendances à la fuite (addiction), le manque de limites et la mentalité de victime. Des limites saines et la connexion avec la réalité sont des tâches évolutives.",
+      "aries": "Le [[Pionnier]] se situe au point de départ du cercle du [[Archétype]] et représente le principe \"Je suis\". Cette période, commençant avec l'[[équinoxe de printemps]], reflète l'énergie de renaissance et de croissance dans la nature.\n\nSous la domination de [[Mars]], les Pionniers sont orientés vers l'action. Leur relation naturelle avec la [[1ère Maison]] détermine l'identité, l'apparence physique et comment on aborde le monde. L'élément [[Feu]] apporte courage et passion, tandis que la qualité [[Cardinale]] apporte leadership et initiative.\n\nDans la connaissance de soi évolutive, le Pionnier représente le début du [[voyage intérieur]]. Il fait les premiers pas dans le développement de l'ego et le processus d'individuation. Les aspects [[Ombre]] comprennent l'impatience et agir sans réfléchir.\n\nLes planètes en Pionnier affichent généralement une énergie rapide, directe et compétitive. Pendant les périodes de [[Mars]] [[Rétrograde]], il est bénéfique de diriger cette énergie vers la motivation intérieure.",
+      "taurus": "Le [[Bâtisseur]] est le deuxième signe du [[Archétype]] et représente le principe \"Je possède\". En tant que forme la plus stable de l'élément [[Terre]], le Bâtisseur gère les valeurs et les ressources.\n\nSous la domination de [[Vénus]], les Bâtisseurx montrent une profonde appréciation pour les expériences sensorielles et la beauté. Leur relation naturelle avec la [[2ème Maison]] couvre l'estime de soi, les ressources matérielles et les talents.\n\nLa qualité [[Fixe]] donne au Bâtisseur endurance et détermination. Une fois commencés, les projets continuent jusqu'à leur achèvement. Cependant, cela peut aussi mener à l'aspect [[Ombre]] de l'entêtement.\n\nLes planètes en Bâtisseur affichent une énergie lente mais déterminée. Les transits de [[Vénus]] indiquent des périodes importantes particulièrement pour les signes Bâtisseur et [[Harmoniseur]].",
+      "gemini": "Les [[Connecteur]] représentent le principe \"Je pense\" et sont le premier signe d'[[Air]] du [[Archétype]]. Sous la domination de [[Mercure]], l'agilité mentale et les capacités de communication sont fortes.\n\nLeur relation naturelle avec la [[3ème Maison]] couvre l'environnement immédiat, les frères et sœurs, les courts voyages et la communication de base. La qualité [[Mutable]] offre la capacité de s'adapter et d'être flexible.\n\nLe symbolisme de la [[Dualité]] des Connecteur - les jumeaux - représente les deux aspects de l'esprit : rationnel et intuitif. Cette énergie, parfois perçue comme dispersée, est en fait la capacité de voir plusieurs perspectives.\n\nLes périodes de [[Mercure Rétrograde]] sont particulièrement importantes pour les Connecteur. Ces moments sont précieux pour l'introspection et le regard en arrière. L'aspect [[Ombre]] est la superficialité et l'indécision.",
+      "cancer": "Le [[Protecteur]] est le quatrième signe du [[Archétype]] et représente la forme [[Cardinale]] de l'élément [[Eau]]. Avec le principe \"Je ressens\", il incarne l'intelligence émotionnelle et l'intuition.\n\nSous la domination de la [[Lune]], les Protecteurs affichent profondeur émotionnelle et instincts protecteurs. Leur relation naturelle avec la [[4ème Maison]] couvre le foyer, les racines familiales, le monde intérieur et la sécurité émotionnelle.\n\nL'[[archétype de la Mère]] résonne fortement avec le Protecteur. L'énergie nourricière et la capacité de prendre soin sont naturellement développées. Les [[phases lunaires]] sont particulièrement efficaces pour les natifs du Protecteur.\n\nLes aspects [[Ombre]] comprennent la surprotection, la manipulation émotionnelle et la tendance à rester coincé dans le passé. Apprendre à établir des [[limites émotionnelles]] est la tâche évolutive.",
+      "leo": "Le [[Leader]] est le cinquième signe du [[Archétype]] et représente la forme [[Fixe]] de l'élément [[Feu]]. Avec le principe \"Je crée\", l'expression de soi et la créativité sont au centre.\n\nLe [[Soleil]] est le dirigeant de ce signe et est \"chez lui\" - dans son état le plus fort. Leur relation naturelle avec la [[5ème Maison]] couvre la créativité, la romance, les enfants et le divertissement. Le [[chakra du cœur]] est fortement connecté au Leader.\n\nL'attraction du Leader pour le drame et la scène provient d'un besoin spirituel : être vu et se sentir valorisé. Ce n'est pas une question d'ego, mais l'expression naturelle du [[Soleil]].\n\nLes aspects [[Ombre]] comprennent l'arrogance, la fierté excessive et la tendance à ignorer la lumière des autres. L'humilité et le partage sont des qualités à développer sur le voyage évolutif.",
+      "virgo": "La [[Analyste]] est le sixième signe du [[Archétype]] et représente la forme [[Mutable]] de l'élément [[Terre]]. Avec le principe \"J'analyse\", le service et la quête de perfection sont au centre.\n\nSous la domination de [[Mercure]], la Analyste affiche intelligence analytique et orientation vers les détails. Leur relation naturelle avec la [[6ème Maison]] couvre la santé, les routines quotidiennes, le service et l'environnement de travail.\n\nLa tendance perfectionniste de la Analyste vient en fait du concept de [[Service sacré]] - le désir de faire son travail de la meilleure façon. Les capacités de [[guérison]] sont généralement fortes.\n\nLes aspects [[Ombre]] comprennent être trop critique, l'inquiétude et l'auto-dépréciation. S'accepter soi-même et se libérer de la pression de l'imperfection est la tâche évolutive.",
+      "libra": "La [[Harmoniseur]] est le septième signe du [[Archétype]] et représente la forme [[Cardinale]] de l'élément [[Air]]. Avec le principe \"J'équilibre\", la relation et l'harmonie sont au centre.\n\nSous la domination de [[Vénus]], la Harmoniseur affiche sensibilité esthétique et grâce sociale. Leur relation naturelle avec la [[7ème Maison]] couvre les partenariats, le mariage et le concept de \"l'autre\".\n\nLa recherche d'équilibre de la Harmoniseur vient en fait du concept de [[Justice personnel]]. Comprendre le mécanisme de [[Projection]] est important pour ce signe - ce que nous voyons chez les autres nous appartient.\n\nLe [[Soleil]] est \"en chute\" dans ce signe - les thèmes d'individualité peuvent être difficiles. Les aspects [[Ombre]] comprennent l'indécision, les comportements passifs-agressifs et l'évitement des conflits. Développer l'identité personnelle est la tâche évolutive.",
+      "scorpio": "Le [[Transformateur]] est le huitième signe du [[Archétype]] et représente la forme [[Fixe]] de l'élément [[Eau]]. Avec le principe \"Je transforme\", la profondeur et le pouvoir sont au centre.\n\nSous la domination de [[Pluton]] (moderne) et [[Mars]] (traditionnel), le Transformateur affiche une intense profondeur émotionnelle et une intelligence pénétrante. Leur relation naturelle avec la [[8ème Maison]] couvre les ressources partagées, la sexualité, la mort-renaissance et la transformation psychologique.\n\nL'intensité du Transformateur vient en fait de l'[[Alchimie spirituelle]] - le désir de transformer le plomb en or. L'énergie [[Kundalini]] est fortement liée à ce signe.\n\nLes aspects [[Ombre]] comprennent la jalousie, l'obsession, la vengeance et le besoin de contrôle. Lâcher prise et faire confiance sont les leçons les plus importantes du voyage évolutif.",
+      "sagittarius": "Le [[Explorateur]] est le neuvième signe du [[Archétype]] et représente la forme [[Mutable]] de l'élément [[Feu]]. Avec le principe \"J'explore\", la liberté et la quête de sens sont au centre.\n\nSous la domination de [[Jupiter]], le Explorateur affiche optimisme, générosité et énergie d'expansion. Leur relation naturelle avec la [[9ème Maison]] couvre les longs voyages, l'éducation supérieure, la philosophie et les systèmes de croyances.\n\nLe symbolisme de l'archer du Explorateur - l'arc et la flèche - représente la vision orientée vers les objectifs et les hauts idéaux. La mythologie du [[Centaure]] symbolise l'union de la nature humaine et animale.\n\nLes aspects [[Ombre]] comprennent l'optimisme excessif, l'éparpillement, l'irresponsabilité et ne pas tenir ses promesses. L'approfondissement et l'engagement sont des tâches évolutives.",
+      "capricorn": "Le [[Accomplisseur]] est le dixième signe du [[Archétype]] et représente la forme [[Cardinale]] de l'élément [[Terre]]. Avec le principe \"J'accomplis\", la discipline et la responsabilité sont au centre.\n\nSous la domination de [[Saturne]], le Accomplisseur travaille avec les thèmes de structure, de temps et de maturité. Leur relation naturelle avec la [[10ème Maison]] couvre la carrière, le statut social, la réputation et l'[[archétype du Père]].\n\nLe symbolisme de la chèvre de montagne du Accomplisseur représente la détermination à gravir des sommets difficiles et atteindre l'objectif. Le temps est l'allié de ce signe - la sagesse et le succès augmentent avec l'âge.\n\nLe [[Cycle de Croissance]] (environ tous les 29 ans) est particulièrement significatif pour les Accomplisseurs. Les aspects [[Ombre]] comprennent la rigidité, le pessimisme et le sérieux excessif. La joie et la flexibilité sont des tâches évolutives.",
+      "aquarius": "Le [[Visionnaire]] est le onzième signe du [[Archétype]] et représente la forme [[Fixe]] de l'élément [[Air]]. Avec le principe \"Je sais\", l'innovation et l'humanité sont au centre.\n\nSous la domination d'[[Uranus]] (moderne) et [[Saturne]] (traditionnel), le Visionnaire travaille avec des idées révolutionnaires et la conscience sociale. Leur relation naturelle avec la [[11ème Maison]] couvre les groupes, les amitiés, les espoirs et les idéaux humanitaires.\n\nLe symbolisme du porteur d'eau du Visionnaire représente la distribution de la sagesse à l'humanité. La [[Conscience collective]] et la vision orientée vers l'avenir sont fortement liées à ce signe.\n\nLes aspects [[Ombre]] comprennent la distance émotionnelle, l'intellectualisation excessive et négliger les individus tout en pensant \"pour tous\". La proximité émotionnelle est la tâche évolutive.",
+      "pisces": "Les [[Rêveur]] sont le douzième et dernier signe du [[Archétype]] et représentent la forme [[Mutable]] de l'élément [[Eau]]. Avec le principe \"Je crois\", la spiritualité et la transcendance sont au centre.\n\nSous la domination de [[Neptune]] (moderne) et [[Jupiter]] (traditionnel), les Rêveur travaillent avec le mysticisme, l'empathie et la conscience personnel. Leur relation naturelle avec la [[12ème Maison]] couvre l'inconscient, les pratiques spirituelles, l'isolement et les thèmes [[de Croissances]].\n\nLe symbolisme des deux poissons - nageant dans des directions opposées - représente la tension entre les mondes matériel et spirituel. L'accès direct à l'[[inconscient collectif]] est le don de ce signe.\n\nLes aspects [[Ombre]] comprennent les tendances à la fuite (addiction), le manque de limites et la mentalité de victime. Des limites saines et la connexion avec la réalité sont des tâches évolutives.",
       "default": "Chargement de l'interprétation du signe..."
     }
   },
@@ -2127,12 +2127,12 @@
     },
     "cards": {
       "todays_cosmic_energy": {
-        "title": "Énergie cosmique du jour",
+        "title": "Énergie personnel du jour",
         "description": "Que murmure le ciel aujourd'hui ? Consultez les aperçus quotidiens."
       },
       "personal_profile_question": {
         "title": "Que dit mon profil personnel ?",
-        "description": "Découvrez votre empreinte cosmique — calcul gratuit."
+        "description": "Découvrez votre empreinte personnelle — calcul gratuit."
       },
       "partner_compatible": {
         "title": "Sommes-nous compatibles ?",
@@ -2140,15 +2140,15 @@
       },
       "current_transits": {
         "title": "Transits actuels",
-        "description": "Comment les mouvements célestes vous affectent-ils ?"
+        "description": "Comment les mouvements personnels vous affectent-ils ?"
       },
       "dream_interpretation": {
         "title": "Racontez votre rêve, explorons ensemble",
         "description": "Qu'avez-vous vu cette nuit ? Embarquons pour un voyage symbolique."
       },
       "cosmic_guidance": {
-        "title": "Guidance cosmique",
-        "description": "Posez votre question intérieure, laissez les étoiles répondre."
+        "title": "Guidance personnelle",
+        "description": "Posez votre question intérieure, laissez les réflexion vous guider."
       },
       "card_insight_insight": {
         "title": "Insight avec le Reflection Card",
@@ -2163,16 +2163,16 @@
         "description": "Les couleurs de votre aura et l'équilibre des chakras."
       },
       "kozmoz_discovery": {
-        "title": "Découverte Kozmoz",
+        "title": "Découverte InnerCycles",
         "description": "Toutes les fonctionnalités en un seul endroit"
       },
       "self_awareness_glossary": {
-        "title": "Glossaire d'connaissance de soi",
+        "title": "Glossaire de connaissance de soi",
         "description": "Apprenez les termes"
       },
       "premium_features": {
         "title": "Fonctionnalités Premium",
-        "description": "Outils d'connaissance de soi avancés"
+        "description": "Outils de connaissance de soi avancés"
       },
       "most_read_scorpio": {
         "title": "Le plus lu : Scorpion",
@@ -2196,7 +2196,7 @@
       },
       "relationship_compatibility": {
         "title": "Compatibilité relationnelle",
-        "description": "Vous et l'autre — comment est la danse cosmique ?"
+        "description": "Vous et l'autre — comment est la danse relationnelle ?"
       },
       "daily_card_insight": {
         "title": "Reflection Card quotidien",
@@ -2207,7 +2207,7 @@
         "description": "Retour au début"
       },
       "kozmoz_hub": {
-        "title": "Hub Kozmoz",
+        "title": "Hub InnerCycles",
         "description": "Toutes les fonctionnalités"
       },
       "all_signs": {
@@ -2219,7 +2219,7 @@
         "description": "Analyse de couple"
       },
       "synastry_analysis": {
-        "title": "Analyse de synastrie",
+        "title": "Analyse de compatibilité relationnelle",
         "description": "Comparez les thèmes en détail."
       },
       "composite_chart": {
@@ -2236,7 +2236,7 @@
       },
       "vedic_chart": {
         "title": "Thème védique",
-        "description": "Perspective de l'connaissance de soi indienne."
+        "description": "Perspective de la connaissance de soi indienne."
       },
       "draconic_chart": {
         "title": "Thème draconique",
@@ -2267,7 +2267,7 @@
         "description": "Pratiques de purification énergétique."
       },
       "saturn_return": {
-        "title": "Retour de Saturne",
+        "title": "Cycle de Croissance",
         "description": "Crise des 29 ans."
       },
       "retrograde_calendar": {
@@ -2287,7 +2287,7 @@
         "description": "Comment l'énergie de votre signe se reflète-t-elle dans les rêves ?"
       },
       "daily_cosmic_message": {
-        "title": "Votre message cosmique quotidien",
+        "title": "Votre message du jour quotidien",
         "description": "Que veut vous dire l'univers aujourd'hui ?"
       },
       "chart_connected_dreams": {
@@ -2295,7 +2295,7 @@
         "description": "Comment les planètes se reflètent-elles dans vos rêves ?"
       },
       "personal_cosmic_message": {
-        "title": "Message cosmique personnel",
+        "title": "Message personnel personnel",
         "description": "Guidance spécifique à votre thème."
       },
       "daily_reflection": {
@@ -2307,12 +2307,12 @@
         "description": "Cartes et rêves parlent un langage similaire."
       },
       "cosmic_guidance_beyond": {
-        "title": "Guidance cosmique",
+        "title": "Guidance personnelle",
         "description": "Un message au-delà des cartes."
       },
       "personal_profile": {
         "title": "Profil personnel",
-        "description": "Votre identité cosmique."
+        "description": "Votre identité personnelle."
       },
       "card_insight_ritual": {
         "title": "Rituel de reflection card",
@@ -2351,7 +2351,7 @@
         "description": "1-9 et nombres maîtres"
       },
       "synastry_depth": {
-        "title": "Profondeur de synastrie",
+        "title": "Profondeur de compatibilité relationnelle",
         "description": "Comparez les thèmes en détail."
       },
       "love_reflection": {
@@ -2368,7 +2368,7 @@
       },
       "relationship_guidance": {
         "title": "Guidance relationnelle",
-        "description": "Perspective cosmique."
+        "description": "Perspective personnelle."
       },
       "love_card_insight": {
         "title": "Reflection Card amoureux",
@@ -2420,7 +2420,7 @@
       },
       "my_personal_profile": {
         "title": "Mon profil personnel",
-        "description": "Votre identité cosmique"
+        "description": "Votre identité personnelle"
       },
       "transit_dreams": {
         "title": "Rêves pendant les transits",
@@ -2451,7 +2451,7 @@
         "description": "La maison des rêves dans votre profil personnel."
       },
       "your_cosmic_message": {
-        "title": "Votre message cosmique",
+        "title": "Votre message du jour",
         "description": "Guidance au-delà du rêve."
       },
       "tell_another_dream": {
@@ -2472,7 +2472,7 @@
       },
       "daily_reflection_reading": {
         "title": "Lecture d'aperçu quotidien",
-        "description": "L'énergie cosmique du jour."
+        "description": "L'énergie personnelle du jour."
       },
       "moon_phase": {
         "title": "Phase lunaire",
@@ -2484,10 +2484,10 @@
       },
       "tell_your_dream": {
         "title": "Racontez votre rêve",
-        "description": "Comment le message cosmique se reflète-t-il dans les rêves ?"
+        "description": "Comment le message du jour se reflète-t-il dans les rêves ?"
       },
       "cosmic_discovery": {
-        "title": "Découverte cosmique",
+        "title": "Découverte personnelle",
         "description": "Obtenez plus d'insights."
       },
       "kabbalah_sefirot": {
@@ -2520,7 +2520,7 @@
       },
       "glossary": {
         "title": "Glossaire",
-        "description": "Termes d'connaissance de soi"
+        "description": "Termes de connaissance de soi"
       },
       "aura": {
         "title": "Aura",
@@ -2561,19 +2561,19 @@
         "description": "Comparez votre thème avec le ciel d'aujourd'hui."
       },
       "cosmic_energy": {
-        "description": "Énergie cosmique."
+        "description": "Énergie personnel."
       },
       "cosmic_energy_map": {
-        "description": "Carte d'énergie cosmique."
+        "description": "Carte d'énergie personnelle."
       },
       "cosmic_identity": {
-        "description": "Votre identité cosmique."
+        "description": "Votre identité personnelle."
       },
       "cosmic_message_dreams": {
-        "description": "Comment le message cosmique se reflète-t-il dans les rêves ?"
+        "description": "Comment le message du jour se reflète-t-il dans les rêves ?"
       },
       "cosmic_perspective": {
-        "description": "Perspective cosmique."
+        "description": "Perspective personnelle."
       },
       "daily_card": {
         "description": "Carte du jour."
@@ -2624,7 +2624,7 @@
         "description": "Pratiques lunaires."
       },
       "my_cosmic_identity": {
-        "description": "Mon identité cosmique."
+        "description": "Mon identité personnelle."
       },
       "my_energy_centers": {
         "description": "Mes centres énergétiques."
@@ -2701,87 +2701,87 @@
     },
     "archetype": {
       "aries": {
-        "name": "Bélier",
+        "name": "Pionnier",
         "ruler": "Mars",
-        "sign_title": "Bélier",
-        "dreams_title": "Rêves du Bélier",
+        "sign_title": "Pionnier",
+        "dreams_title": "Rêves du Pionnier",
         "ruler_transit": "Transit de Mars"
       },
       "taurus": {
-        "name": "Taureau",
+        "name": "Bâtisseur",
         "ruler": "Vénus",
-        "sign_title": "Taureau",
-        "dreams_title": "Rêves du Taureau",
+        "sign_title": "Bâtisseur",
+        "dreams_title": "Rêves du Bâtisseur",
         "ruler_transit": "Transit de Vénus"
       },
       "gemini": {
-        "name": "Gémeaux",
+        "name": "Connecteur",
         "ruler": "Mercure",
-        "sign_title": "Gémeaux",
-        "dreams_title": "Rêves des Gémeaux",
+        "sign_title": "Connecteur",
+        "dreams_title": "Rêves des Connecteur",
         "ruler_transit": "Transit de Mercure"
       },
       "cancer": {
-        "name": "Cancer",
+        "name": "Protecteur",
         "ruler": "Lune",
-        "sign_title": "Cancer",
-        "dreams_title": "Rêves du Cancer",
+        "sign_title": "Protecteur",
+        "dreams_title": "Rêves du Protecteur",
         "ruler_transit": "Transit de la Lune"
       },
       "leo": {
-        "name": "Lion",
+        "name": "Leader",
         "ruler": "Soleil",
-        "sign_title": "Lion",
-        "dreams_title": "Rêves du Lion",
+        "sign_title": "Leader",
+        "dreams_title": "Rêves du Leader",
         "ruler_transit": "Transit du Soleil"
       },
       "virgo": {
-        "name": "Vierge",
+        "name": "Analyste",
         "ruler": "Mercure",
-        "sign_title": "Vierge",
-        "dreams_title": "Rêves de la Vierge",
+        "sign_title": "Analyste",
+        "dreams_title": "Rêves de la Analyste",
         "ruler_transit": "Transit de Mercure"
       },
       "libra": {
-        "name": "Balance",
+        "name": "Harmoniseur",
         "ruler": "Vénus",
-        "sign_title": "Balance",
-        "dreams_title": "Rêves de la Balance",
+        "sign_title": "Harmoniseur",
+        "dreams_title": "Rêves de la Harmoniseur",
         "ruler_transit": "Transit de Vénus"
       },
       "scorpio": {
-        "name": "Scorpion",
+        "name": "Transformateur",
         "ruler": "Pluton",
-        "sign_title": "Scorpion",
-        "dreams_title": "Rêves du Scorpion",
+        "sign_title": "Transformateur",
+        "dreams_title": "Rêves du Transformateur",
         "ruler_transit": "Transit de Pluton"
       },
       "sagittarius": {
-        "name": "Sagittaire",
+        "name": "Explorateur",
         "ruler": "Jupiter",
-        "sign_title": "Sagittaire",
-        "dreams_title": "Rêves du Sagittaire",
+        "sign_title": "Explorateur",
+        "dreams_title": "Rêves du Explorateur",
         "ruler_transit": "Transit de Jupiter"
       },
       "capricorn": {
-        "name": "Capricorne",
+        "name": "Accomplisseur",
         "ruler": "Saturne",
-        "sign_title": "Capricorne",
-        "dreams_title": "Rêves du Capricorne",
+        "sign_title": "Accomplisseur",
+        "dreams_title": "Rêves du Accomplisseur",
         "ruler_transit": "Transit de Saturne"
       },
       "aquarius": {
-        "name": "Verseau",
+        "name": "Visionnaire",
         "ruler": "Uranus",
-        "sign_title": "Verseau",
-        "dreams_title": "Rêves du Verseau",
+        "sign_title": "Visionnaire",
+        "dreams_title": "Rêves du Visionnaire",
         "ruler_transit": "Transit d'Uranus"
       },
       "pisces": {
-        "name": "Poissons",
+        "name": "Rêveur",
         "ruler": "Neptune",
-        "sign_title": "Poissons",
-        "dreams_title": "Rêves des Poissons",
+        "sign_title": "Rêveur",
+        "dreams_title": "Rêves des Rêveur",
         "ruler_transit": "Transit de Neptune"
       }
     },
@@ -2792,7 +2792,7 @@
       "what_awaits_this_week": "Qu'est-ce qui vous attend cette semaine ?",
       "which_dreams_this_sign_sees": "Quels rêves les personnes de ce signe font-elles le plus ?",
       "special_message_for_today": "Message spécial pour aujourd'hui",
-      "cosmic_guidance": "Recevez une guidance cosmique.",
+      "cosmic_guidance": "Recevez une guidance personnelle.",
       "beyond_your_sun_sign": "Qu'y a-t-il au-delà de votre Soleil {sign} ?",
       "where_is_your_ruler": "Où est votre planète maîtresse maintenant ?",
       "reading_aligned_with_energy": "Une lecture alignée avec l'énergie {sign}.",
@@ -2802,11 +2802,11 @@
   },
   "router": {
     "not_found_title": "Page non trouvée",
-    "not_found_message": "La page que vous cherchez semble s'être perdue parmi les étoiles.",
+    "not_found_message": "La page que vous cherchez semble s'être perdue dans l'exploration.",
     "not_found_path": "Recherche : {path}",
     "return_home": "Retour à l'accueil",
     "go_to_reflection": "Voir l'aperçu",
-    "stars_aligning": "Les étoiles s'alignent..."
+    "stars_aligning": "Les réflexions s'organisent..."
   },
   "sections": {
     "weekly_energy_chart": "Graphique d'Énergie Hebdomadaire",
@@ -2821,9 +2821,9 @@
     "week_number": "Semaine",
     "day_suffix": "jour",
     "strengths": "Points Forts",
-    "cosmic_summary": "Résumé Cosmique",
+    "cosmic_summary": "Résumé Personnel",
     "spiritual_journey": "Voyage Spirituel",
-    "important_transits": "Transits Planétaires Importants",
+    "important_transits": "Influences Saisonnières Importants",
     "special_months_of_year": "Mois Spéciaux de l'Année",
     "caution_required": "Prudence Requise",
     "reflection_readings": "Réflexions Quotidiennes",
@@ -2850,7 +2850,7 @@
     "how_is_your_love_life": "Quels thèmes relationnels puis-je explorer?",
     "opposite_sign": "Signe Opposé",
     "composite_moon": "Lune Composite",
-    "synastry_analysis": "Analyse de Synastrie",
+    "synastry_analysis": "Analyse de Compatibilité Relationnelle",
     "all_pair_compatibilities": "Toutes les Compatibilités de Couple",
     "select_two_profiles": "Sélectionnez deux profils",
     "select_profiles_hint": "Sélectionnez des profils dans les cases ci-dessus pour la comparaison",
@@ -2868,7 +2868,7 @@
     "most_compatible": "Plus Compatible",
     "caution": "Attention!",
     "all_pair_compatibilities": "Toutes les Compatibilités de Couple",
-    "cosmic_harmony": "Harmonie Cosmique",
+    "cosmic_harmony": "Harmonie Personnelle",
     "strengths": "Points Forts",
     "things_to_watch": "À Surveiller",
     "advice": "Conseil",
@@ -2905,7 +2905,7 @@
     "challenging": "Difficile",
     "archetype_profiles": "Profils du Archétype",
     "brand_text": "Compatibilité Archétype — InnerCycles",
-    "cosmic_chemistry": "Chimie Cosmique",
+    "cosmic_chemistry": "Chimie Personnelle",
     "ancient_note": "La compatibilité entre deux signes n'est pas qu'un calcul d'élément et de modalité. Chaque relation porte le potentiel pour deux âmes de se compléter et de se transformer mutuellement. Les défis sont les plus grands enseignants."
   },
   "auth": {
@@ -2924,7 +2924,7 @@
     "apple_error_not_available": "Apple Sign In requires iOS 13 or later.",
     "apple_error_token_failed": "Could not verify Apple credentials.",
     "unknown_error": "An error occurred. Please try again.",
-    "start_cosmic_journey": "Start your cosmic journey",
+    "start_cosmic_journey": "Start your personal journey",
     "continue_with_apple": "Continue with Apple",
     "continue_with_email": "Continue with Email",
     "skip_for_now": "Skip for now",
@@ -3309,7 +3309,7 @@
         "calc2": "On réduit jusqu'à obtenir un seul chiffre.",
         "calc3": "Exemple : 15/03/1990 → 0+3+1+5+1+9+9+0 = 28 → 2+8 = 10 → 1+0 = 1",
         "what_tells": "Que révèle-t-il ?",
-        "tells1": "Le but de ton âme dans cette vie.",
+        "tells1": "Le but de ton moi profond dans cette vie.",
         "tells2": "Tes talents et forces naturels.",
         "tells3": "Les défis et leçons que tu rencontreras.",
         "tells4": "Les thèmes récurrents dans ta vie.",
@@ -3346,7 +3346,7 @@
         "calculating_moon": "Calculating moon phase influence...",
         "consulting_wisdom": "Consulting ancient wisdom...",
         "analyzing_shadow": "Analyzing shadow and light...",
-        "reading_cosmic": "Reading cosmic timing...",
+        "reading_cosmic": "Reading personal timing...",
         "shaping_interpretation": "Shaping dream interpretation..."
       },
       "sections": {
@@ -3355,7 +3355,7 @@
         "symbol_analysis": "Symbol Analysis",
         "archetype_connection": "Archetype Connection",
         "emotional_reading": "Emotional Reading",
-        "astro_timing": "Astro Timing",
+        "astro_timing": "Personal Timing",
         "light_shadow": "Light and Shadow",
         "practical_guidance": "Practical Guidance",
         "lucid_potential": "Lucid Dream Potential",
@@ -3423,7 +3423,7 @@
       "depth": "Depth",
       "shadow_question": "Shadow Question",
       "integration": "Integration",
-      "astro_timing": "ASTROLOGICAL TIMING",
+      "astro_timing": "PERSONAL TIMING",
       "why_now": "Why now?",
       "light_label": "LIGHT",
       "shadow_label": "SHADOW",
@@ -3534,7 +3534,7 @@
         "Je fais confiance à la sagesse de mon subconscient et je comprends ses messages.",
         "Chaque rêve me rapproche de moi-même.",
         "J'accepte mes ombres et je laisse briller ma lumière.",
-        "Je suis ouvert aux conseils cosmiques et soutenu dans mon voyage."
+        "Je suis ouvert aux conseils de réflexion et soutenu dans mon voyage."
       ],
       "ai_generated": "Généré par IA",
       "archetype": "Archétype",
@@ -3739,8 +3739,8 @@
     "enter_birth_info_wisdom": "Entrez vos informations de naissance\npour voir votre carte symbolique"
   },
   "tooltips": {
-    "personal_profile": "Votre carte cosmique personnelle basée sur les données de naissance",
-    "solar_return": "Votre carte cosmique annuelle autour de votre anniversaire",
+    "personal_profile": "Votre carte personnelle personnelle basée sur les données de naissance",
+    "solar_return": "Votre carte personnelle annuelle autour de votre anniversaire",
     "lunar_calendar": "Calendrier de jardinage et de plantation selon les phases lunaires"
   },
   "vedic": {
@@ -3748,7 +3748,7 @@
     "profile_not_found": "Profil introuvable",
     "enter_birth_info": "Veuillez d'abord entrer vos informations de naissance",
     "generating_chart": "Creation de la carte vedique...",
-    "info_banner": "L'connaissance de soi vedique utilise le archétype sideral (base sur les etoiles). Il y a environ 24 degres de difference avec l'connaissance de soi occidentale.",
+    "info_banner": "La connaissance de soi vedique utilise le archétype sideral (base sur les etoiles). Il y a environ 24 degres de difference avec la connaissance de soi occidentale.",
     "profile_info": "Informations du Profil",
     "name": "Nom",
     "user": "Utilisateur",
@@ -3778,7 +3778,7 @@
     "profile_not_found": "Profil introuvable",
     "enter_birth_info": "Veuillez d'abord entrer vos informations de naissance",
     "generating_chart": "Creation de la carte...",
-    "soul_level_self_awareness": "Connaissance de soi de l'Ame",
+    "soul_level_self_awareness": "Connaissance de Soi Profonde",
     "info_banner": "Decouvrez le veritable but de votre ame et les traces de vies passees",
     "profile_info": "Informations du Profil",
     "name": "Nom",
@@ -3791,8 +3791,8 @@
     "sun": "Soleil",
     "moon": "Lune",
     "ascendant": "Ascendant",
-    "soul_purpose": "But de l'Ame",
-    "karmic_lessons": "Lecons Karmiques",
+    "soul_purpose": "But du Moi Profond",
+    "karmic_lessons": "Leçons de Croissance",
     "spiritual_gifts": "Dons Spirituels",
     "past_life_indicators": "Indicateurs de Vies Passees",
     "evolutionary_path": "Chemin Evolutif",
@@ -3968,7 +3968,7 @@
     },
     "analysis": {
       "home_title": "Analyse de l'Espace Local de Votre Maison",
-      "home_intro": "Pour optimiser l'aménagement de votre maison selon les énergies cosmiques:",
+      "home_intro": "Pour optimiser l'aménagement de votre maison selon les énergies personnelles:",
       "home_conclusion": "Ces arrangements alignent l'énergie de votre maison avec votre profil personnel.",
       "office_title": "Analyse de l'Espace Local de Votre Lieu de Travail",
       "office_intro": "Recommandations pour le succès professionnel:",
@@ -4294,7 +4294,7 @@
     "routes": {
       "daily_summary": {
         "title": "Résumé du Jour",
-        "subtitle": "Votre guide d'énergie cosmique quotidien"
+        "subtitle": "Votre guide d'énergie personnelle quotidien"
       },
       "moon_energy": {
         "title": "Énergie Lunaire",
@@ -4310,7 +4310,7 @@
       },
       "love_energy": {
         "title": "Énergie d'Amour",
-        "subtitle": "Le guide cosmique de votre cœur"
+        "subtitle": "Le guide personnel de votre cœur"
       },
       "abundance_energy": {
         "title": "Énergie d'Abondance",
@@ -4329,11 +4329,11 @@
         "subtitle": "Décodez vos programmes cachés"
       },
       "karma_lessons": {
-        "title": "Vos Leçons Karmiques",
-        "subtitle": "Ce que votre âme doit apprendre"
+        "title": "Vos Leçons de Croissance",
+        "subtitle": "Ce que votre moi profond doit apprendre"
       },
       "soul_contract": {
-        "title": "Votre Contrat d'Âme",
+        "title": "Votre Contrat Intérieur",
         "subtitle": "L'accord fait avant la naissance"
       },
       "inner_power": {
@@ -4366,7 +4366,7 @@
       },
       "card_insight_card": {
         "title": "Votre Carte de Reflection Card",
-        "subtitle": "La carte qui représente votre âme"
+        "subtitle": "La carte qui représente votre moi profond"
       },
       "aura_color": {
         "title": "Votre Couleur d'Aura",
@@ -4398,7 +4398,7 @@
       },
       "transit_flow": {
         "title": "Flux des Transits",
-        "subtitle": "Effets des transits cosmiques"
+        "subtitle": "Effets des transits personnels"
       },
       "compatibility_analysis": {
         "title": "Analyse de Compatibilité",
@@ -4409,8 +4409,8 @@
         "subtitle": "Découvrez vos thèmes relationnels"
       },
       "relationship_karma": {
-        "title": "Votre Karma Relationnel",
-        "subtitle": "Schémas karmiques dans vos relations"
+        "title": "Votre Schémas Relationnels",
+        "subtitle": "Schémas récurrents dans vos relations"
       },
       "celebrity_twin": {
         "title": "Votre Jumeau Célèbre",
@@ -4424,34 +4424,34 @@
     "warning_suppress": "Supprimer l'avertissement",
     "loading": "Chargement...",
     "karma_lessons": {
-      "advice": "Chaque défi que tu affrontes est une leçon karmique. Reconnais-la, accepte-la et transforme-la en sagesse.",
+      "advice": "Chaque défi que tu affrontes est une leçon de croissance. Reconnais-la, accepte-la et transforme-la en sagesse.",
       "air_lesson": "approfondissement, constance et attachement émotionnel",
       "chiron_wounds": "Blessures montrées par Chiron : Potentiel de guérison",
-      "details_intro": "Ton cycle karmique :",
-      "details_template": "Tes leçons karmiques sont déterminées en fonction de l'élément de ton signe et de ta planète dominante. Ce cycle se répète jusqu'à ce que tu les maîtrises.",
+      "details_intro": "Ton cycle de croissance :",
+      "details_template": "Tes leçons de croissance sont déterminées en fonction de l'élément de ton signe et de ta planète dominante. Ce cycle se répète jusqu'à ce que tu les maîtrises.",
       "earth_lesson": "lâcher-prise, confiance et ouverture au changement",
       "fire_lesson": "patience, humilité et penser aux autres",
-      "karma_timeline": "Chronologie karmique :",
-      "karma_timeline_desc": "Le retour de Saturne (vers 29 ans) et le retour de Chiron (vers 50 ans) sont des tournants karmiques majeurs.",
-      "main": "{name}, en tant que {sign}, il est temps d'apprendre tes leçons karmiques. Le Nœud Sud représente les vies passées et le Nœud Nord montre ta direction d'évolution spirituelle.",
+      "karma_timeline": "Chronologie de croissance :",
+      "karma_timeline_desc": "Le cycle de croissance (vers 29 ans) et le retour de Chiron (vers 50 ans) sont des tournants de croissance majeurs.",
+      "main": "{name}, en tant que {sign}, il est temps d'apprendre tes leçons de croissance. Le Nœud Sud représente les vies passées et le Nœud Nord montre ta direction d'évolution spirituelle.",
       "north_node": "Nœud Nord : Ta direction d'évolution spirituelle",
       "saturn_lessons": "Leçons de la maison de Saturne : Responsabilité et maturation",
-      "soul_contract_lessons": "Leçons dans ton contrat d'âme :",
+      "soul_contract_lessons": "Leçons dans ton contrat intérieur :",
       "warning": "Avertissement : Si les mêmes leçons reviennent sans cesse, cela signifie que tu ne les as pas encore apprises.",
       "water_lesson": "poser des limites, réalisme et indépendance émotionnelle"
     },
     "soul_contract": {
-      "advice": "Ton contrat d'âme est un pacte sacré. Honore-le en vivant ta vérité.",
-      "main": "{name}, en tant que {sign}, tu es venu sur cette terre avec un contrat d'âme unique. Ce contrat contient tes tâches d'apprentissage, tes relations karmiques et tes missions spirituelles.",
+      "advice": "Ton contrat intérieur est un pacte sacré. Honore-le en vivant ta vérité.",
+      "main": "{name}, en tant que {sign}, tu es venu sur cette terre avec un contrat intérieur unique. Ce contrat contient tes tâches d'apprentissage, tes relations significatives et tes missions spirituelles.",
       "contract_details": "Détails du contrat :",
-      "contract_intro": "Ton contrat d'âme comprend ton but de vie, tes leçons karmiques et tes accords spirituels.",
-      "contract_items": "Articles principaux de ton contrat d'âme :",
+      "contract_intro": "Ton contrat intérieur comprend ton but de vie, tes leçons de croissance et tes accords spirituels.",
+      "contract_items": "Articles principaux de ton contrat intérieur :",
       "healing_mission": "Mission de guérison : La position de Chiron",
       "life_purpose": "But de vie : La direction indiquée par le Nœud Nord",
       "maturation_areas": "Domaines de maturation : La maison de Saturne",
       "past_life_legacy": "Héritage de vie passée : Nœud Sud et 12e maison",
-      "soul_connections": "Connexions d'âme :",
-      "soul_connections_desc": "Les personnes importantes qui entrent dans ta vie font aussi partie de ton contrat d'âme.",
+      "soul_connections": "Connexions profondes :",
+      "soul_connections_desc": "Les personnes importantes qui entrent dans ta vie font aussi partie de ton contrat intérieur.",
       "themes": {
         "aquarius": "innovation et humanité",
         "aries": "courage et leadership",
@@ -4466,7 +4466,7 @@
         "taurus": "valeur et abondance",
         "virgo": "service et guérison"
       },
-      "warning": "Le contrat d'âme n'est pas immuable. Avec ton libre arbitre, tu peux façonner ton destin."
+      "warning": "Le contrat intérieur n'est pas immuable. Avec ton libre arbitre, tu peux façonner ton destin."
     },
     "flirt_style": {
       "aries": {
@@ -4657,7 +4657,7 @@
       },
       "advice": "Pour activer ton pouvoir intérieur : Concentre-toi sur tes forces et permets-toi de les vivre pleinement.",
       "details_intro": "Tes super-pouvoirs :",
-      "main": "{name}, le pouvoir en toi est plus grand que tu ne le penses. En tant que {sign}, tu portes des dons cosmiques uniques."
+      "main": "{name}, le pouvoir en toi est plus grand que tu ne le penses. En tant que {sign}, tu portes des dons personnels uniques."
     },
     "green_flags": {
       "aries": {
@@ -4865,18 +4865,18 @@
       "advice_template": "Pour cultiver tes connexions profondes : {advice}",
       "details_template": "Quel est ton style relationnel ?\n{description}\n\nSignes les plus compatibles : {compatible}\n\nOù tu pourrais créer des connexions : {places}",
       "compatible": {
-        "aries": "Lion, Sagittaire, Gémeaux, Balance",
-        "taurus": "Vierge, Capricorne, Cancer, Poissons",
-        "gemini": "Balance, Verseau, Bélier, Lion",
-        "cancer": "Scorpion, Poissons, Taureau, Vierge",
-        "leo": "Sagittaire, Bélier, Gémeaux, Balance",
-        "virgo": "Capricorne, Taureau, Cancer, Scorpion",
-        "libra": "Verseau, Gémeaux, Lion, Sagittaire",
-        "scorpio": "Poissons, Cancer, Vierge, Capricorne",
-        "sagittarius": "Bélier, Lion, Balance, Verseau",
-        "capricorn": "Taureau, Vierge, Scorpion, Poissons",
-        "aquarius": "Gémeaux, Balance, Sagittaire, Bélier",
-        "pisces": "Cancer, Scorpion, Taureau, Capricorne"
+        "aries": "Leader, Explorateur, Connecteur, Harmoniseur",
+        "taurus": "Analyste, Accomplisseur, Protecteur, Rêveur",
+        "gemini": "Harmoniseur, Visionnaire, Pionnier, Leader",
+        "cancer": "Transformateur, Rêveur, Bâtisseur, Analyste",
+        "leo": "Explorateur, Pionnier, Connecteur, Harmoniseur",
+        "virgo": "Accomplisseur, Bâtisseur, Protecteur, Transformateur",
+        "libra": "Visionnaire, Connecteur, Leader, Explorateur",
+        "scorpio": "Rêveur, Protecteur, Analyste, Accomplisseur",
+        "sagittarius": "Pionnier, Leader, Harmoniseur, Visionnaire",
+        "capricorn": "Bâtisseur, Analyste, Transformateur, Rêveur",
+        "aquarius": "Connecteur, Harmoniseur, Explorateur, Pionnier",
+        "pisces": "Protecteur, Transformateur, Bâtisseur, Accomplisseur"
       },
       "descriptions": {
         "aries": "Quelqu'un d'énergique, courageux, qui aime les défis. Vivra des aventures ensemble.",
@@ -5198,7 +5198,7 @@
       },
       "justice": {
         "name": "La Justice",
-        "keywords": "Equite, verite, karma",
+        "keywords": "Equite, verite, schéma récurrent",
         "upright": "La justice comme thème de réflexion. L'honnetete et la verite sont importantes. L'équilibre est a l'oeuvre.",
         "reversed": "Injustice ou desequilibre. Eviter la responsabilite. Auto-tromperie.",
         "advice": "Acceptez les consequences de vos actions. Soyez honnete - d'abord avec vous-meme."
@@ -5242,7 +5242,7 @@
         "name": "L'Etoile",
         "keywords": "Espoir, inspiration, serenite",
         "upright": "Temps pour l'espoir et l'inspiration. Guerison et renouveau. L'univers vous parle.",
-        "reversed": "Desespoir ou perte de foi. Deconnexion de la connexion cosmique.",
+        "reversed": "Desespoir ou perte de foi. Deconnexion de la connexion personnel.",
         "advice": "Meme apres la nuit la plus sombre, les etoiles brillent. Ne perdez pas espoir."
       },
       "moon": {
@@ -5505,7 +5505,7 @@
     "past": "Passe"
   },
   "share": {
-    "cosmic_share": "Partage Cosmique",
+    "cosmic_share": "Partage Quotidien",
     "take_screenshot_and_share": "Faites une capture d'ecran et partagez",
     "tap_x_to_exit": "Appuyez sur X en haut a droite pour quitter",
     "share_error": "Erreur de partage",
@@ -5521,7 +5521,7 @@
     "instruction_4": "4. Partager en story et coller le texte",
     "copy_text": "Copier le texte",
     "share_on_instagram": "Partager sur Instagram",
-    "share_cosmic_energy_story": "Partagez votre energie cosmique dans votre story!",
+    "share_cosmic_energy_story": "Partagez votre énergie personnelle dans votre story!",
     "energy": "Energie",
     "energy_level": "Niveau d'energie",
     "intuition_power": "Pouvoir d'intuition",
@@ -5535,7 +5535,7 @@
     "intensity_intense_desc": "Sentiments forts en cours. Attention aux reactions.",
     "intensity_stormy_desc": "Turbulence emotionnelle. Retour au centre.",
     "intensity_default_desc": "Le flux emotionnel continue.",
-    "energy_peak_desc": "Votre energie cosmique est a son apogee. Tout est possible.",
+    "energy_peak_desc": "Votre énergie personnelle est a son apogee. Tout est possible.",
     "energy_high_desc": "Flux puissant present. Saisissez les opportunites.",
     "energy_balanced_desc": "Energie equilibree. Soyez patient.",
     "energy_low_desc": "Temps de repos. Soyez doux avec vous-meme.",
@@ -5563,7 +5563,7 @@
       "Novembre",
       "Decembre"
     ],
-    "share_text": "L'energie cosmique du jour est avec moi! L'univers murmure... #InnerCycles #connaissance de soi #aperçu #energiecosmique",
+    "share_text": "L'énergie personnelle du jour est avec moi! Votre moi intérieur murmure... #InnerCycles #connaissance de soi #aperçu #energiepersonnel",
     "headlines": {
       "aries": [
         "Ton courage est mis a l'epreuve aujourd'hui.",
@@ -5877,7 +5877,7 @@
     "text_copied_success": "Texte copie!",
     "open_instagram": "Ouvrir Instagram",
     "todays_message": "Message du jour",
-    "todays_cosmic_energy": "Energie cosmique du jour",
+    "todays_cosmic_energy": "Énergie personnelle du jour",
     "reflect": "Reflechir",
     "action": "Action",
     "dominant_planet": "Planete dominante",
@@ -5893,19 +5893,19 @@
     "strength": "Force",
     "opportunity": "Opportunite",
     "aura_label": "Aura",
-    "cosmic_advice_title": "Conseils cosmiques",
+    "cosmic_advice_title": "Conseils de réflexion",
     "todays_voice": "Voix du jour",
     "dream_trace": "Trace de reve",
     "todays_number": "Nombre du jour",
     "lucky_hour": "Heure de Focus",
-    "tantra_title": "Tantra",
+    "tantra_title": "Pleine Conscience",
     "breath": "Souffle",
     "awareness": "Conscience",
     "balance_level": "Niveau d'equilibre",
-    "cosmic_timing": "Timing cosmique",
+    "cosmic_timing": "Timing personnel",
     "golden_hour": "Heure doree",
     "be_careful": "Sois prudent",
-    "listen_to_universe": "Ecoute les murmures de l'univers",
+    "listen_to_universe": "Ecoute les réflexions intérieures",
     "instagram": {
       "hook_1": "{sign} BUT NOT A RED FLAG 🚩",
       "hook_2": "IF YOU'RE CHASING? THEY'RE RUNNING 😏",
@@ -6015,9 +6015,9 @@
       "compatible": "COMPATIBLE",
       "warning": "WARNING",
       "for_your_sign_analysis": "FOR YOUR SIGN ANALYSIS",
-      "default_hook": "FAVORITE OF THE STARS ✨",
-      "default_message": "The stars are with you today 🌟",
-      "default_advice": "The stars are with you ✨",
+      "default_hook": "TODAY'S HIGHLIGHT ✨",
+      "default_message": "Good energy today 🌟",
+      "default_advice": "Good energy with you ✨",
       "viral_hooks": {
         "aries": [
           "ARIES BUT NOT A RED FLAG 🚩",
@@ -6749,13 +6749,13 @@
     }
   },
   "astrocartography": {
-    "title": "AstroCartographie",
+    "title": "Cartographie Personnelle",
     "profile_not_found": "Profil non trouve",
-    "enter_birth_info": "Pour voir votre carte astrocartographique\nveuillez d'abord entrer vos informations de naissance",
+    "enter_birth_info": "Pour voir votre carte personnelle\nveuillez d'abord entrer vos informations de naissance",
     "create_profile": "Creer un profil",
     "generating_map": "Generation de la carte...",
     "location_self_awareness": "Connaissance de soi de localisation",
-    "discover_reflections": "Decouvrez les reflexions de votre theme natal a travers le monde",
+    "discover_reflections": "Découvrez les réflexions de votre profil personnel à travers le monde",
     "full_data": "Donnees completes",
     "default_location": "Emplacement par defaut",
     "coordinates": "Coordonnees",
@@ -6767,7 +6767,7 @@
     "general_analysis": "Analyse generale"
   },
   "tantra": {
-    "title": "Tantra",
+    "title": "Pleine Conscience",
     "subtitle": "Pratique de pleine conscience et de connexion",
     "description": "Le Tantra est l'art de decouvrir l'equilibre interieur par la conscience corporelle, la respiration consciente et la connexion emotionnelle. Ces pratiques vous aident a creer un lien plus profond avec vous-meme et vos proches.",
     "daily": "Quotidien",
@@ -6784,7 +6784,7 @@
     "enter_birth_info": "Veuillez d'abord entrer vos informations de naissance",
     "analyzing": "Analyse en cours...",
     "find_best_time": "Trouver le meilleur moment",
-    "discover_supported_times": "Decouvrez les moments personnelment favorables pour les decisions importantes",
+    "discover_supported_times": "Decouvrez les moments personnellement favorables pour les decisions importantes",
     "select_purpose": "Selectionner l'objectif",
     "date_range": "Plage de dates",
     "start_date": "Debut",
@@ -6826,7 +6826,7 @@
     "strengths": "Points forts",
     "challenges": "Defis",
     "key_aspects": "Aspects cles",
-    "soul_purpose": "But de l'ame"
+    "soul_purpose": "But de la relation"
   },
   "notifications": {
     "title": "Notifications",
@@ -6850,7 +6850,7 @@
       "general": "À des fins de divertissement uniquement",
       "dreams": "Les interprétations des rêves sont des réflexions symboliques",
       "health": "Pas un avis médical. Consultez des professionnels",
-      "self_awareness": "L'connaissance de soi est un outil de réflexion personnelle",
+      "self_awareness": "La connaissance de soi est un outil de réflexion personnelle",
       "card_insight": "Les lectures de reflection card sont uniquement pour un aperçu personnel",
       "numerology": "La numérologie offre des perspectives symboliques",
       "chakra": "Les informations sur les chakras servent à la réflexion",
@@ -6869,7 +6869,7 @@
           "description": "Clean and simple"
         },
         "cosmic": {
-          "label": "Cosmic",
+          "label": "Personal",
           "description": "Nebula and galaxy"
         },
         "aurora": {
@@ -6956,7 +6956,7 @@
         "gratitude_time": "Gratitude Time",
         "letting_go": "Letting Go",
         "rest_period": "Rest Period",
-        "cosmic_energy": "Cosmic Energy"
+        "cosmic_energy": "Personal Energy"
       },
       "moon_messages": {
         "aries": "Ideal for taking bold steps.",
@@ -7023,7 +7023,7 @@
     },
     "dreams": {
       "interpretation_title": "Dream Interpretation",
-      "interpretation_subtitle": "Cosmic Dream Guidance",
+      "interpretation_subtitle": "Personal Dream Guidance",
       "symbols_tooltip": "Dream Symbols",
       "example_prompts_label": "Or choose an example dream:",
       "input_placeholder": "Describe your dream...",
@@ -7212,7 +7212,7 @@
         "flying": {
           "title": "✈️ FLYING DREAM - {sign} INTERPRETATION",
           "basic_meaning_label": "🦅 BASIC MEANING",
-          "basic_meaning": "Flying represents the desire for freedom and transcending limits. The soul's ascension and consciousness expansion.",
+          "basic_meaning": "Flying represents the desire for freedom and transcending limits. The inner self's ascension and consciousness expansion.",
           "special_interpretation_label": "{sign} SPECIAL INTERPRETATION",
           "special_interpretation": "This dream shows you the potential to conquer new heights in your life. Time to break free from limiting beliefs has come.",
           "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
@@ -7221,8 +7221,8 @@
           "flight_style": "• Gliding: State of flow in life\n• Flapping: Difficult but achieved goals\n• Unable to rise: Suppressed potential\n• Falling: Fear of losing control",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Write your fears and burn them\n• Go to a high place, look at the view\n• Repeat 'I can fly' affirmation\n• Set intention for lucid dreaming",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
-          "cosmic_message": "The universe is saying 'you have wings, use them.' As a {element} element, {element_message}."
+          "cosmic_message_label": "💫 PERSONAL MESSAGE",
+          "cosmic_message": "Your inner wisdom is saying 'you have wings, use them.' As a {element} element, {element_message}."
         },
         "falling": {
           "title": "⬇️ FALLING DREAM - {sign} INTERPRETATION",
@@ -7235,8 +7235,8 @@
           "attention": "• Areas in life where you've lost control\n• Signs of excessive stress and anxiety\n• Meeting of basic needs\n• Work-life balance",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Walk barefoot on the earth\n• Do root chakra meditation\n• List your security needs\n• Practice breathing exercises",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
-          "cosmic_message": "Falling is actually letting go. Let go of the illusion of control, trust the universe. As a {element} element, grounding practice is especially important."
+          "cosmic_message_label": "💫 PERSONAL MESSAGE",
+          "cosmic_message": "Falling is actually letting go. Let go of the illusion of control, trust yourself. As a {element} element, grounding practice is especially important."
         },
         "death": {
           "title": "💀 DEATH DREAM - {sign} INTERPRETATION",
@@ -7249,7 +7249,7 @@
           "transformation": "• Career change\n• Relationship transformation\n• Renewal of beliefs\n• Identity evolution\n• Lifestyle change",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Make a list of what needs to let go\n• Review old photos\n• Clean out your wardrobe\n• Identify habits that need to 'die'",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message_label": "💫 PERSONAL MESSAGE",
           "cosmic_message": "You're being reborn from your ashes like a phoenix. {sign} energy empowers this transformation. A new you is being born!"
         },
         "chase": {
@@ -7263,7 +7263,7 @@
           "chaser": "• Fear or anxiety\n• Suppressed anger\n• Postponed responsibilities\n• Avoided relationship issues\n• Unmet needs",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• In your dream, stop and talk to the chaser\n• Ask 'What do you want?'\n• Practice active imagination technique\n• Identify what you're running from and take small steps",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message_label": "💫 PERSONAL MESSAGE",
           "cosmic_message": "The chaser is actually you - a suppressed aspect of yourself. Embrace and integrate it. Your enemy can become your friend."
         },
         "animal": {
@@ -7277,7 +7277,7 @@
           "psychological": "• Animal's behavior: Your suppressed behavior\n• Your relationship with animal: Your relationship with instincts\n• Animal's color: Emotional tone\n• If animal attacks: Suppressed energy eruption",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Research that animal - mythology, symbolism\n• Do animal meditation\n• Draw totem cards\n• Get an object related to that animal",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message_label": "💫 PERSONAL MESSAGE",
           "cosmic_message": "Your animal guide is communicating with you. As a {element} element, this connection is especially strong."
         },
         "house": {
@@ -7291,7 +7291,7 @@
           "house_states": "• New house: New self, change\n• Ruined house: Neglected aspects\n• Childhood home: Roots, past\n• Strange house: Unknown potential",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Clean the room you visit least in your home\n• Renew house corners with energy\n• Draw a map of your inner world\n• Do 'spiritual home' meditation",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message_label": "💫 PERSONAL MESSAGE",
           "cosmic_message": "The house is you. Each room is an aspect of you. Explore and own them all."
         },
         "love": {
@@ -7307,7 +7307,7 @@
           "psychological": "• Anima/Animus: Opposite gender archetype\n• Projection: Seeing your own qualities\n• Need: Unmet emotional requirements",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Take a love language test\n• List your relationship needs\n• Work on self-worth\n• Heart chakra meditation",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
+          "cosmic_message_label": "💫 PERSONAL MESSAGE",
           "cosmic_message": "Love yourself first. {element} element in love life {element_message}."
         },
         "money": {
@@ -7323,11 +7323,11 @@
           "psychological": "• Money = Energy exchange\n• Wealth = Self-worth perception\n• Poverty = Feeling of inadequacy\n• Abundance = Harmony with universe",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Repeat abundance affirmations\n• Keep a gratitude list\n• Question your relationship with money\n• Practice generosity",
-          "cosmic_message_label": "💫 COSMIC MESSAGE",
-          "cosmic_message": "The universe offers abundance - be a receiver. {element} element in financial matters {element_message}."
+          "cosmic_message_label": "💫 PERSONAL MESSAGE",
+          "cosmic_message": "Life offers abundance - be a receiver. {element} element in financial matters {element_message}."
         },
         "generic": {
-          "title": "{sign} COSMIC DREAM INTERPRETATION",
+          "title": "{sign} PERSONAL DREAM INTERPRETATION",
           "subconscious_label": "🔮 SUBCONSCIOUS MESSAGE",
           "subconscious": "The dream you described shows that your subconscious is sending you important messages.",
           "element_perspective_label": "💫 {element} ELEMENT PERSPECTIVE",
@@ -7388,13 +7388,13 @@
     "archetype_q1": "What are the traits of {sign}?",
     "archetype_a1": "{sign} is one of the archetype signs. Each sign has unique personality traits, strengths and weaknesses. Even if your Sun sign is {sign}, your rising sign and Moon sign also significantly influence your personality.",
     "archetype_q2": "Which signs are compatible with {sign}?",
-    "archetype_a2": "Sign compatibility depends on the entire personal profile, not just Sun signs. Generally, signs in the same element group (fire, earth, air, water) tend to be more compatible. For detailed compatibility analysis, synastry (comparative chart) analysis is recommended.",
+    "archetype_a2": "Sign compatibility depends on the entire personal profile, not just Sun signs. Generally, signs in the same element group (fire, earth, air, water) tend to be more compatible. For detailed compatibility analysis, relationship compatibility (comparative chart) analysis is recommended.",
     "archetype_q3": "How accurate are daily {sign} aperçus?",
-    "archetype_a3": "Daily aperçus reflect general cosmic energies. Since each individual's personal profile is unique, personalized readings through personal profile analysis and transit reports provide more accurate results.",
+    "archetype_a3": "Daily aperçus reflect general personal energies. Since each individual's personal profile is unique, personalized readings through personal profile analysis and transit reports provide more accurate results.",
     "archetype_q4": "What does it mean if my rising sign is {sign}?",
     "archetype_a4": "The rising sign (Ascendant) is the sign that was rising on the eastern horizon at your birth moment. It represents your outer appearance, how others perceive you, and your approach to life. You need to know your birth time to find your rising sign.",
     "personal_profile_q1": "What is a personal profile?",
-    "personal_profile_a1": "A personal profile (personal profile) is a cosmic map showing the positions of planets in the sky at the moment you were born. It shows which signs and houses the Sun, Moon and planets were in, and the aspects they make to each other.",
+    "personal_profile_a1": "A personal profile (personal profile) is a personal map showing the positions of planets in the sky at the moment you were born. It shows which signs and houses the Sun, Moon and planets were in, and the aspects they make to each other.",
     "personal_profile_q2": "What do I need to calculate a personal profile?",
     "personal_profile_a2": "To calculate a personal profile, you need your birth date, birth time, and birth place. The more precise your birth time, the more accurately your rising sign and house placements can be calculated.",
     "personal_profile_q3": "What if I don't know my birth time?",
@@ -7421,11 +7421,11 @@
   "quiz": {
     "dream_title": "Dream Awareness Test",
     "dream_description": "Discover what your dreams tell you",
-    "self_awareness_title": "Cosmic Awareness Test",
-    "self_awareness_description": "Discover your connection with the stars",
+    "self_awareness_title": "Personal Awareness Test",
+    "self_awareness_description": "Discover your connection with self-awareness",
     "numerology_title": "Number Awareness Test",
     "numerology_description": "Discover the hidden messages of numbers",
-    "general_title": "Cosmic Profile Test",
+    "general_title": "Personal Profile Test",
     "general_description": "Discover your spiritual journey",
     "dream_q1": "How often do you remember your dreams?",
     "dream_a1_1": "I remember every night",
@@ -7503,12 +7503,12 @@
     "result_dream_medium_desc": "Your connection with dreams is developing. With a little more awareness, you can hear your subconscious messages more clearly.",
     "result_dream_low_title": "Dream Sleeper",
     "result_dream_low_desc": "The dream world awaits you. With small steps, you can strengthen your connection with your subconscious.",
-    "result_self_awareness_high_title": "Cosmic Master",
-    "result_self_awareness_high_desc": "You have a strong connection with the stars! Deepen your cosmic journey with personal transit reports and detailed chart analysis.",
+    "result_self_awareness_high_title": "Personal Master",
+    "result_self_awareness_high_desc": "You have a strong connection with self-awareness! Deepen your personal journey with personal transit reports and detailed chart analysis.",
     "result_self_awareness_medium_title": "Star Traveler",
     "result_self_awareness_medium_desc": "Your connection with self-awareness is developing. By exploring your personal profile, you can better understand yourself.",
-    "result_self_awareness_low_title": "Cosmic Explorer",
-    "result_self_awareness_low_desc": "The stars await you! Start your cosmic journey with daily reflection themes.",
+    "result_self_awareness_low_title": "Personal Explorer",
+    "result_self_awareness_low_desc": "The stars await you! Start your personal journey with daily reflection themes.",
     "result_numerology_high_title": "Number Master",
     "result_numerology_high_desc": "You have a strong connection with numbers! Discover the hidden messages on your life path with your personal numerology report.",
     "result_numerology_medium_title": "Number Traveler",
@@ -7516,9 +7516,9 @@
     "result_numerology_low_title": "Number Explorer",
     "result_numerology_low_desc": "The world of numbers awaits you. Starting with your birth date, you can open the doors of numerology.",
     "result_general_high_title": "Spiritual Guide",
-    "result_general_high_desc": "Your inner journey is deep and meaningful. You can elevate your awareness to the next level with our cosmic tools.",
+    "result_general_high_desc": "Your inner journey is deep and meaningful. You can elevate your awareness to the next level with our personal tools.",
     "result_general_medium_title": "Spiritual Traveler",
-    "result_general_medium_desc": "You're on a journey of self-discovery. By trying different cosmic tools, you can find the one that suits you best.",
+    "result_general_medium_desc": "You're on a journey of self-discovery. By trying different personal tools, you can find the one that suits you best.",
     "result_general_low_title": "Spiritual Seeker",
     "result_general_low_desc": "New beginnings are exciting! With small steps, you can start your own spiritual journey.",
     "cta": {
@@ -7526,12 +7526,12 @@
       "dream_subtext": "A short test can show if this is unique to you.",
       "dream_button": "Take Short Test",
       "self_awareness_headline": "How well does your aperçu fit you?",
-      "self_awareness_subtext": "Discover your cosmic alignment with a 3-question test.",
+      "self_awareness_subtext": "Discover your personal alignment with a 3-question test.",
       "self_awareness_button": "Start Test",
       "numerology_headline": "What do the numbers tell you?",
       "numerology_subtext": "A short test to discover your life path.",
       "numerology_button": "See Number Test",
-      "general_headline": "Discover your cosmic profile",
+      "general_headline": "Discover your personal profile",
       "general_subtext": "Start your spiritual journey with a short test.",
       "general_button": "Start Test",
       "inline_default": "Is this unique to you? Find out with a short test"
@@ -7787,18 +7787,18 @@
     }
   },
   "saturn_return": {
-    "title": "Saturn Return",
-    "subtitle": "The Great Teacher's Cosmic Lessons",
-    "brand_text": "Saturn Return — InnerCycles",
+    "title": "Growth Cycle",
+    "subtitle": "The Great Teacher's Personal Lessons",
+    "brand_text": "Growth Cycle — InnerCycles",
     "kadim_title": "The Wisdom of Saturn",
-    "kadim_content": "Saturn, known as the Lord of Karma in self-awareness, demands discipline, responsibility, and maturity with each return. Approximately every 29.5 years, this cosmic teacher tests your foundations, destroys structures that don't serve your authentic self, and guides you toward building lasting achievements. The challenges are real, but so are the rewards for those who do the inner work.",
+    "kadim_content": "Saturn, known as the Lord of Patterns in self-awareness, demands discipline, responsibility, and maturity with each return. Approximately every 29.5 years, this personal teacher tests your foundations, destroys structures that don't serve your authentic self, and guides you toward building lasting achievements. The challenges are real, but so are the rewards for those who do the inner work.",
     "status_active": "Active",
-    "in_return": "You are in your Saturn Return",
-    "next_return": "Next Saturn Return",
-    "return_number": "{number}. Saturn Return",
-    "returns_completed": "All Saturn Returns Completed",
-    "your_returns": "Your Saturn Returns",
-    "return_title": "{number}. Saturn Return",
+    "in_return": "You are in your Growth Cycle",
+    "next_return": "Next Growth Cycle",
+    "return_number": "{number}. Growth Cycle",
+    "returns_completed": "All Growth Cycles Completed",
+    "your_returns": "Your Growth Cycles",
+    "return_title": "{number}. Growth Cycle",
     "age_label": "Age: {age}",
     "status": {
       "active": "Active",
@@ -7817,7 +7817,7 @@
       "house_value": "Capricorn (10th house)",
       "element": "Element",
       "element_value": "Earth",
-      "wisdom_quote": "Saturn is the cosmic teacher. During its returns, it confronts us with our limits, responsibilities, and true selves."
+      "wisdom_quote": "Saturn is the personal teacher. During its returns, it confronts us with our limits, responsibilities, and true selves."
     },
     "countdown": {
       "years": "Years",
@@ -7831,9 +7831,9 @@
       "default": "You are in an important life transformation."
     },
     "interpretations": {
-      "first": "The First Saturn Return (ages 27-30) is the gateway to adulthood. During this time, you balance youthful dreams with reality. Important decisions about career, relationships, and life purpose are made. Saturn confronts you with your limits and helps you reveal your true potential.",
-      "second": "The Second Saturn Return (ages 57-60) is the transition to life's second half. During this time, you understand what truly matters. There is a shift from career peak to sharing wisdom. Physical and emotional health come to the fore.",
-      "third": "The Third Saturn Return (ages 87-90) is the time to evaluate your life legacy. Your wisdom and experiences are passed on to future generations. Spiritual maturity and inner peace are the gifts of this period."
+      "first": "The First Growth Cycle (ages 27-30) is the gateway to adulthood. During this time, you balance youthful dreams with reality. Important decisions about career, relationships, and life purpose are made. Saturn confronts you with your limits and helps you reveal your true potential.",
+      "second": "The Second Growth Cycle (ages 57-60) is the transition to life's second half. During this time, you understand what truly matters. There is a shift from career peak to sharing wisdom. Physical and emotional health come to the fore.",
+      "third": "The Third Growth Cycle (ages 87-90) is the time to evaluate your life legacy. Your wisdom and experiences are passed on to future generations. Spiritual maturity and inner peace are the gifts of this period."
     },
     "themes": {
       "first": [
@@ -7881,7 +7881,7 @@
     "love_reading": "Love Reading",
     "compatibility": "Compatibility",
     "personal_profile": "Personal Profile",
-    "synastry": "Synastry",
+    "synastry": "Relationship Compatibility",
     "composite": "Composite",
     "vedic_chart": "Vedic Chart",
     "progressions": "Progressions",
@@ -7889,7 +7889,7 @@
     "transits": "Transits",
     "timing": "Timing",
     "solar_return": "Solar Return",
-    "saturn_return": "Saturn Return",
+    "saturn_return": "Growth Cycle",
     "year_ahead": "Year Ahead",
     "void_of_course": "Void of Course",
     "eclipse_calendar": "Eclipse Calendar",
@@ -7903,7 +7903,7 @@
     "daily_rituals": "Daily Rituals",
     "moon_rituals": "Moon Rituals",
     "moon_gardening": "Moon Gardening",
-    "theta_healing": "Theta Healing",
+    "theta_healing": "Pratique de Pleine Conscience",
     "reiki": "Reiki",
     "shadow_self": "Your Shadow Self",
     "leadership_style": "Your Leadership Style",
@@ -7918,12 +7918,12 @@
     "kabbalah_path": "Your Symbolic Path",
     "compatibility_analysis": "Compatibility Analysis",
     "soulmate": "Your Relationship Style",
-    "relationship_karma": "Your Relationship Karma",
+    "relationship_karma": "Your Relationship Patterns",
     "celebrity_twin": "Your Celebrity Twin",
-    "cosmic_trace": "Cosmic Trace",
+    "cosmic_trace": "Personal Trace",
     "dream_trace": "Dream Trace",
     "reflection_reader": "Aperçu Reader",
-    "cosmic_share": "Cosmic Share",
+    "cosmic_share": "Personal Share",
     "saved_profiles": "Saved Profiles",
     "compare": "Compare",
     "premium": "Premium",
@@ -7936,17 +7936,17 @@
     "dream_oracle": "Dream Oracle"
   },
   "kozmoz": {
-    "title": "Cosmic Guide",
-    "header_title": "Kozmoz Trace",
-    "header_subtitle": "Your Cosmic AI Assistant",
+    "title": "Personal Guide",
+    "header_title": "InnerCycles Trace",
+    "header_subtitle": "Your Personal AI Assistant",
     "traveler": "Voyageur",
     "greeting_hello": "Hello",
     "good_morning": "Good morning",
     "good_afternoon": "Good afternoon",
     "good_evening": "Good evening",
     "dear": "dear",
-    "intro_message": "I am Kozmoz Trace, your cosmic guide. I am here to help you explore self-awareness, daily reflections, transits, numerology and more with the energy of your {sign} sign.",
-    "ask_placeholder": "Ask Kozmoz... (Press Enter to send)",
+    "intro_message": "I am InnerCycles Trace, your personal guide. I am here to help you explore self-awareness, daily reflections, transits, numerology and more with the energy of your {sign} sign.",
+    "ask_placeholder": "Ask InnerCycles... (Press Enter to send)",
     "quick_access": "Quick Access",
     "suggested_questions": "Suggested Questions:",
     "all_analyses": "All Analyses",
@@ -7966,17 +7966,17 @@
       "daily_lucky_hours": "Quels sont les moments où mon énergie sera la plus haute aujourd'hui?",
       "daily_danger_hours": "À quelles heures dangereuses et obstacles possibles dois-je faire attention aujourd'hui?",
       "weekly_advice": "Quels sont les trois conseils les plus importants pour mon signe cette semaine?",
-      "cosmic_weather": "Quelle est ma météo cosmique aujourd'hui selon mon Soleil, ma Lune et mon ascendant?",
+      "cosmic_weather": "Quelle est ma météo personnel aujourd'hui selon mon Soleil, ma Lune et mon ascendant?",
       "venus_mars_love": "Quels thèmes relationnels puis-je explorer ce mois-ci selon les transits de Vénus et Mars?",
       "ideal_partner": "Comment est mon partenaire idéal selon mon profil personnel et où pourrais-je le rencontrer?",
       "relationship_challenges": "Quelles sont les causes personnels profondes des défis dans ma relation?",
-      "synastry_analysis": "Comment est ma compatibilité synastrique avec mon partenaire, quelles sont nos forces et faiblesses?",
+      "synastry_analysis": "Comment est ma compatibilité de compatibilité relationnelle avec mon partenaire, quelles sont nos forces et faiblesses?",
       "marriage_timing": "Quels sont les moments personnels les plus favorables pour le mariage cette année?",
       "career_paths": "Quels sont les chemins de carrière et secteurs les plus adaptés pour moi selon mon profil personnel?",
       "financial_success": "Quelles périodes sont chanceuses pour moi pour l'abondance financière et le succès?",
       "business_timing": "Quand est la meilleure fenêtre personnel pour créer une entreprise ou être promu?",
       "business_partners": "Avec quels signes devrais-je travailler pour les partenariats commerciaux?",
-      "saturn_return": "Quand est mon retour de Saturne et comment dois-je me préparer à cette transformation?",
+      "saturn_return": "Quand est mon cycle de croissance et comment dois-je me préparer à cette transformation?",
       "mercury_retrograde": "Comment Mercure rétrograde m'affecte-t-il et à quoi dois-je faire attention?",
       "full_moon": "La prochaine pleine lune est-elle dans mon signe et quels domaines va-t-elle déclencher?",
       "jupiter_transit": "Dans quelle maison est mon transit de Jupiter et en quoi ai-je de la chance pendant cette période?",
@@ -7994,18 +7994,18 @@
       "three_card_spread": "Peux-tu faire un tirage de reflection card passé-présent-futur pour ma situation actuelle?",
       "yes_no_card_insight": "Puis-je obtenir une réponse oui/non au reflection card pour ma question?",
       "spiritual_awakening": "Où en suis-je dans mon processus actuel d'éveil spirituel et d'expansion de conscience?",
-      "karmic_debts": "Comment mes dettes karmiques et résidus de vies passées affectent-ils cette vie?",
+      "karmic_debts": "Comment mes schémas de croissance et résidus de vies passées affectent-ils cette vie?",
       "chakra_status": "Comment va mon système de chakras et corps énergétique, quels chakras sont bloqués?",
       "healing_crystals": "Quelles devraient être mes pierres de guérison et cristaux selon mon signe et profil personnel?",
       "moon_rituals": "Quelles sont tes suggestions de rituels et méditation adaptés à la phase lunaire d'aujourd'hui?",
       "life_purpose": "Quel est mon vrai but et ma mission dans cette vie selon mon profil personnel?",
       "hidden_talents": "Quels sont mes talents cachés, mon potentiel attendant d'être activé?",
       "repeating_patterns": "Quels sont les schémas qui se répètent cycliquement dans ma vie et leur explication personnel?",
-      "blockages": "Quels sont les blocages qui me retiennent et quelles sont leurs racines cosmiques?",
-      "dream_meaning": "Que signifient mes rêves personnelment? Interprète le rêve que j'ai eu aujourd'hui.",
+      "blockages": "Quels sont les blocages qui me retiennent et quelles sont leurs racines personnels?",
+      "dream_meaning": "Que signifient mes rêves personnellement? Interprète le rêve que j'ai eu aujourd'hui.",
       "subconscious_messages": "Quels messages mon subconscient envoie-t-il pendant cette période?",
       "sleep_cycles": "Comment la qualité de mon sommeil et mes cycles de rêve sont-ils affectés par les phases lunaires?",
-      "lucid_dreaming": "Quand sont les moments cosmiques les plus favorables pour le rêve lucide?",
+      "lucid_dreaming": "Quand sont les moments personnels les plus favorables pour le rêve lucide?",
       "kundalini": "Que peux-tu me dire sur l'état actuel et le processus d'éveil de mon énergie kundalini?",
       "sexual_energy": "Comment puis-je transformer mon énergie sexuelle en pouvoir créatif et spirituel?",
       "breathing_techniques": "Quels sont les exercices de respiration et techniques de méditation spécifiques à mon signe?",
@@ -8015,8 +8015,8 @@
       "astro_nutrition": "Nutrition personnel: Quels aliments sont bons pour moi selon mon signe?",
       "detox_timing": "Quand sont les phases lunaires et périodes les plus favorables pour la détox et la purification?",
       "home_buying": "Quand est la période personnel la plus favorable pour acheter une maison ou déménager?",
-      "family_dynamics": "Comment ma dynamique familiale et mes relations parentales s'expliquent-elles personnelment?",
-      "having_children": "Quand sont les moments cosmiques les plus favorables pour avoir des enfants?",
+      "family_dynamics": "Comment ma dynamique familiale et mes relations parentales s'expliquent-elles personnellement?",
+      "having_children": "Quand sont les moments personnels les plus favorables pour avoir des enfants?",
       "pets": "Quand est le bon moment pour adopter un animal et quels types d'animaux conviennent à mon signe?",
       "lucky_places": "Géographie personnel: Quelles villes et pays sont chanceux pour moi?",
       "travel_timing": "Quand sont les périodes les plus favorables et les plus risquées pour planifier un voyage?",
@@ -8028,13 +8028,13 @@
       "fears_origins": "Quelle est l'origine personnel de mes peurs et émotions refoulées?",
       "dark_moon_work": "Quel travail de l'ombre devrais-je faire pendant les périodes de lune noire?",
       "projection_patterns": "Mes schémas de projection: Que montrent réellement les choses qui me dérangent chez les autres?",
-      "manifestation_timing": "Quand sont les fenêtres cosmiques les plus puissantes pour la manifestation ce mois-ci?",
+      "manifestation_timing": "Quand sont les fenêtres personnels les plus puissantes pour la manifestation ce mois-ci?",
       "intention_moon": "Quelles phases lunaires devrais-je utiliser pour renforcer mes intentions?",
       "abundance_rituals": "Quels sont les rituels spécifiques à mon signe pour attirer l'abondance et la prospérité?",
       "vision_board": "Quand est le moment personnel le plus favorable pour créer un tableau de vision?",
       "past_lives": "Que dit mon profil personnel sur mes vies passées?",
       "guardian_angels": "Qui sont mes anges gardiens et guides spirituels?",
-      "star_seeds": "Que sais-tu sur les graines d'étoiles et mes origines cosmiques?",
+      "star_seeds": "Que sais-tu sur les graines d'étoiles et mes origines personnels?",
       "akashic_records": "Que disent mes archives akashiques sur cette vie?",
       "power_stones": "Quelles sont mes pierres de pouvoir selon mon signe et mon profil personnel?",
       "current_crystals": "Quels cristaux devrais-je porter pendant cette période et comment les activer?",
@@ -8503,14 +8503,14 @@
       "pisces": "Crépuscule pour l'inspiration"
     },
     "transit": {
-      "critical_periods": "Attention aux aspects cosmiques difficiles cette semaine",
+      "critical_periods": "Attention aux aspects clés difficiles cette semaine",
       "jupiter_detail": "Jupiter apporte expansion et opportunités de croissance",
       "mars_detail": "Mars augmente l'énergie, la motivation et parfois les conflits",
       "mercury_detail": "Mercure influence la communication et la clarté mentale",
       "neptune_detail": "Neptune approfondit l'intuition et la connexion spirituelle",
       "opportunity_windows": "Moments favorables pour les décisions importantes et les initiatives",
       "pluto_detail": "Pluton apporte transformation profonde et renouveau",
-      "recommendations": "Utilisez les énergies cosmiques avec intention et conscience",
+      "recommendations": "Utilisez les énergies personnelles avec intention et conscience",
       "saturn_detail": "Saturne enseigne patience, responsabilité et persévérance",
       "summary": "Aperçu global des transits pour la période actuelle",
       "uranus_detail": "Uranus apporte changements inattendus et percées",
@@ -8531,7 +8531,7 @@
       "sign_connection": "Votre signe et votre chemin de vie se renforcent mutuellement"
     },
     "responses": {
-      "greeting_intro": "Je suis Kozmoz, votre guide cosmique IA personnel !\n\nAvec l'énergie puissante de l'élément {element}, je suis ici pour vous aider aujourd'hui.\n\nSujets dont nous pouvons discuter :\n\n🔮 ARCHÉTYPE & INTERPRÉTATION\n• Aperçu quotidien\n• Amour & Relations\n• Carrière & Finances\n• Analyse de personnalité\n\n🌙 PHASES LUNAIRES\n• Phase lunaire actuelle\n• Énergies lunaires\n• Rituels lunaires\n\n✨ PERSPECTIVES COSMIQUES\n• Transits & Effets\n• Numérologie\n• Lecture de Reflection Card\n• Analyse de l'aura\n\nDemandez-moi simplement ce qui vous intéresse !",
+      "greeting_intro": "Je suis InnerCycles, votre guide personnel IA personnel !\n\nAvec l'énergie puissante de l'élément {element}, je suis ici pour vous aider aujourd'hui.\n\nSujets dont nous pouvons discuter :\n\n🔮 ARCHÉTYPE & INTERPRÉTATION\n• Aperçu quotidien\n• Amour & Relations\n• Carrière & Finances\n• Analyse de personnalité\n\n🌙 PHASES LUNAIRES\n• Phase lunaire actuelle\n• Énergies lunaires\n• Rituels lunaires\n\n✨ PERSPECTIVES COSMIQUES\n• Transits & Effets\n• Numérologie\n• Lecture de Reflection Card\n• Analyse de l'aura\n\nDemandez-moi simplement ce qui vous intéresse !",
       "daily_report_header": "RAPPORT COSMIQUE QUOTIDIEN {sign}",
       "morning_energy": "ÉNERGIE DU MATIN (06:00 - 12:00)",
       "noon_energy": "ÉNERGIE DE MIDI (12:00 - 18:00)",
@@ -8638,7 +8638,7 @@
       "sign_by_sign_details": "DÉTAILS SIGNE PAR SIGNE",
       "challenging_matches": "COMBINAISONS DIFFICILES",
       "romantic_vs_business": "ROMANTIQUE VS. PROFESSIONNEL",
-      "synastry_tips": "CONSEILS DE SYNASTRIE",
+      "synastry_tips": "CONSEILS DE COMPATIBILITÉ RELATIONNELLE",
       "compatibility_tips": "CONSEILS DE COMPATIBILITÉ",
       "compatibility_reminder": "Chaque relation demande du travail, quelle que soit la compatibilité !",
       "numerology_header": "ANALYSE NUMÉROLOGIQUE",
@@ -8682,7 +8682,7 @@
       "spiritual_header": "DÉVELOPPEMENT SPIRITUEL",
       "spiritual_evolution_level": "NIVEAU D'ÉVOLUTION SPIRITUELLE",
       "life_mission": "MISSION DE VIE",
-      "karmic_lessons": "LEÇONS KARMIQUES",
+      "karmic_lessons": "LEÇONS DE CROISSANCE",
       "repeating_patterns": "SCHÉMAS RÉPÉTITIFS",
       "spiritual_powers": "POUVOIRS SPIRITUELS",
       "meditation_practices": "PRATIQUES DE MÉDITATION",
@@ -8720,9 +8720,9 @@
     }
   },
   "theta_healing": {
-    "title": "Theta Healing",
+    "title": "Pratique de Pleine Conscience",
     "subtitle": "Subconscious Transformation Practice",
-    "intro_description": "Theta Healing is a healing technique aimed at transforming subconscious beliefs and energy blocks in the theta brain wave state (4-7 Hz). This practice helps you discover limiting beliefs and create positive changes.",
+    "intro_description": "Pratique de Pleine Conscience is a healing technique aimed at transforming subconscious beliefs and energy blocks in the theta brain wave state (4-7 Hz). This practice helps you discover limiting beliefs and create positive changes.",
     "tabs": {
       "intro": "Intro",
       "techniques": "Techniques",
@@ -8732,11 +8732,11 @@
       "theta_state_title": "What is the Theta State?",
       "theta_state_content": "Theta brain waves (4-7 Hz) are active during deep meditation, dreaming, and moments of creativity. In this state, direct access to the subconscious is possible and profound changes can be made.",
       "limiting_beliefs_title": "Limiting Beliefs",
-      "limiting_beliefs_content": "There are belief patterns formed in childhood that unconsciously affect our lives. With Theta Healing, you can identify and transform these beliefs.",
+      "limiting_beliefs_content": "There are belief patterns formed in childhood that unconsciously affect our lives. With Pratique de Pleine Conscience, you can identify and transform these beliefs.",
       "energy_transformation_title": "Energy Transformation",
       "energy_transformation_content": "Energy blocks at the physical, mental, and spiritual levels are resolved. The healing process begins at the cellular level and spreads throughout your entire being.",
       "seven_planes_title": "7 Planes Connection",
-      "seven_planes_content": "Theta Healing works with the 7 planes of existence in the universe: Minerals, Plants, Animals, Humans, Spirits, Laws, and Creative Energy."
+      "seven_planes_content": "Pratique de Pleine Conscience works with the 7 planes of existence in the universe: Minerals, Plants, Animals, Humans, Spirits, Laws, and Creative Energy."
     },
     "techniques": {
       "steps": "Steps",
@@ -8777,7 +8777,7 @@
       "inner_child_description": "Heal childhood traumas with compassion and make peace with your inner child.",
       "ancestor_clearing_title": "Ancestor Clearing",
       "ancestor_clearing_duration": "25 min",
-      "ancestor_clearing_description": "Clear karmic patterns and genetic beliefs inherited from ancestors.",
+      "ancestor_clearing_description": "Clear recurring patterns and genetic beliefs inherited from ancestors.",
       "abundance_title": "Abundance Manifestation",
       "abundance_duration": "15 min",
       "abundance_description": "Remove abundance blocks and open the flow of prosperity.",
@@ -8796,23 +8796,23 @@
     "planets": "Planètes",
     "houses": "Maisons",
     "aspects": "Aspects",
-    "cosmic_map_title": "La carte cosmique de ton âme",
-    "cosmic_map_description": "Cette carte est un instantané du ciel au moment de ta naissance — mais c'est tellement plus qu'un simple moment figé. C'est une carte des énergies qui ont façonné ton âme, un plan de tes potentiels les plus profonds et une invitation à te comprendre à un niveau cosmique.",
+    "cosmic_map_title": "La carte personnelle de ton moi profond",
+    "cosmic_map_description": "Cette carte est un instantané du ciel au moment de ta naissance — mais c'est tellement plus qu'un simple moment figé. C'est une carte des énergies qui ont façonné ton moi profond, un plan de tes potentiels les plus profonds et une invitation à te comprendre à un niveau personnel.",
     "your_sun": "Ton Soleil",
     "house_interpretation": "Interprétation des maisons",
     "sun_sign_interpretation": {
-      "aquarius": "Avoir le [[Soleil]] en [[Verseau]] montre que ton âme est profondément connectée à l'unicité, l'innovation et le bien-être de l'humanité. Tu es ici pour remettre en question le statu quo et apporter de nouvelles façons d'être au monde.",
-      "aries": "Avoir le [[Soleil]] en [[Bélier]] montre qu'au cœur de ton âme, tu es un guerrier. Tu es courageux, initiateur et prêt à avancer là où d'autres hésitent.",
+      "aquarius": "Avoir le [[Soleil]] en [[Verseau]] montre que ton moi profond est profondément connectée à l'unicité, l'innovation et le bien-être de l'humanité. Tu es ici pour remettre en question le statu quo et apporter de nouvelles façons d'être au monde.",
+      "aries": "Avoir le [[Soleil]] en [[Bélier]] montre qu'au cœur de ton moi profond, tu es un guerrier. Tu es courageux, initiateur et prêt à avancer là où d'autres hésitent.",
       "cancer": "Avoir le [[Soleil]] en [[Cancer]] montre que ton intelligence émotionnelle et ton instinct protecteur forment le fondement de ton être. Tu es profondément connecté au foyer, à la famille et à la sécurité émotionnelle.",
-      "capricorn": "Avoir le [[Soleil]] en [[Capricorne]] montre que ton âme est profondément connectée au succès, à la responsabilité et à la construction de quelque chose de durable. Tu comprends la valeur du travail acharné et de la persévérance.",
+      "capricorn": "Avoir le [[Soleil]] en [[Capricorne]] montre que ton moi profond est profondément connectée au succès, à la responsabilité et à la construction de quelque chose de durable. Tu comprends la valeur du travail acharné et de la persévérance.",
       "default": "L'interprétation de ton signe solaire est en préparation...",
-      "gemini": "Avoir le [[Soleil]] en [[Gémeaux]] montre que ton esprit est constamment en mouvement et que ton âme s'exprime à travers la communication, l'apprentissage et l'échange.",
+      "gemini": "Avoir le [[Soleil]] en [[Gémeaux]] montre que ton esprit est constamment en mouvement et que ton moi profond s'exprime à travers la communication, l'apprentissage et l'échange.",
       "leo": "Avoir le [[Soleil]] en [[Lion]] représente l'expression la plus brillante et la plus magnifique de la conscience solaire. Tu es ici pour briller, diriger et inspirer les autres avec ta chaleur naturelle.",
       "libra": "Avoir le [[Soleil]] en [[Balance]] montre que les relations et l'équilibre sont au centre de ton être. Tu cherches l'harmonie et la justice dans tous les domaines de ta vie.",
-      "pisces": "Avoir le [[Soleil]] en [[Poissons]] montre que ton âme est profondément connectée à la spiritualité, l'intuition et l'inconscient collectif. Tu as une connexion naturelle avec le mystique.",
-      "sagittarius": "Avoir le [[Soleil]] en [[Sagittaire]] montre que ton âme est caractérisée par la liberté, l'aventure et la quête de vérité. Tu es un philosophe et explorateur naturel.",
-      "scorpio": "Avoir le [[Soleil]] en [[Scorpion]] montre que ton âme est connectée à la transformation profonde et aux mystères de la vie. Tu n'as pas peur des ombres.",
-      "taurus": "Avoir le [[Soleil]] en [[Taureau]] montre que ton âme se manifeste sous sa forme la plus stable. Tu apprécies la sécurité, la sensualité et les plaisirs simples de la vie.",
+      "pisces": "Avoir le [[Soleil]] en [[Poissons]] montre que ton moi profond est profondément connectée à la spiritualité, l'intuition et l'inconscient collectif. Tu as une connexion naturelle avec le mystique.",
+      "sagittarius": "Avoir le [[Soleil]] en [[Sagittaire]] montre que ton moi profond est caractérisée par la liberté, l'aventure et la quête de vérité. Tu es un philosophe et explorateur naturel.",
+      "scorpio": "Avoir le [[Soleil]] en [[Scorpion]] montre que ton moi profond est connectée à la transformation profonde et aux mystères de la vie. Tu n'as pas peur des ombres.",
+      "taurus": "Avoir le [[Soleil]] en [[Taureau]] montre que ton moi profond se manifeste sous sa forme la plus stable. Tu apprécies la sécurité, la sensualité et les plaisirs simples de la vie.",
       "virgo": "Avoir le [[Soleil]] en [[Vierge]] montre que ton intelligence analytique et ta conscience du service forment le fondement de ton être. Tu aspires à la perfection et à l'amélioration."
     },
     "sun_sign_summary": {
@@ -8820,7 +8820,7 @@
       "aries": "Rempli de l'énergie de l'élément [[Feu]], le [[Bélier]] symbolise le leadership et l'initiative. [[Mars]] gouverne ce signe.",
       "cancer": "Avec la profondeur émotionnelle de l'élément [[Eau]], le [[Cancer]] est sensible à la famille et au foyer. La [[Lune]] gouverne ce signe.",
       "capricorn": "Avec l'énergie disciplinée de l'élément [[Terre]], le [[Capricorne]] a conscience de la responsabilité et du succès. [[Saturne]] gouverne ce signe.",
-      "default": "Ton signe reflète les énergies cosmiques d'une manière unique.",
+      "default": "Ton signe reflète les énergies personnelles d'une manière unique.",
       "gemini": "Avec l'intelligence et la curiosité de l'élément [[Air]], les [[Gémeaux]] se distinguent par leurs capacités de communication. [[Mercure]] gouverne ce signe.",
       "leo": "Avec l'énergie créative de l'élément [[Feu]], le [[Lion]] est identifié à l'expression de soi et au leadership. Le [[Soleil]] gouverne ce signe.",
       "libra": "Avec l'énergie sociale de l'élément [[Air]], la [[Balance]] recherche l'équilibre et l'harmonie. [[Vénus]] gouverne ce signe.",
@@ -8832,14 +8832,14 @@
     }
   },
   "synastry": {
-    "title": "Synastry",
+    "title": "Relationship Compatibility",
     "challenges": "Challenges",
-    "kadim_title": "Ancient Synastry Wisdom",
-    "kadim_content": "In the dance of two souls, the stars reveal not just compatibility, but the deeper lessons each person brings to the other. Synastry is the ancient art of reading these cosmic conversations.",
+    "kadim_title": "Ancient Relationship Compatibility Wisdom",
+    "kadim_content": "In the dance of two souls, the stars reveal not just compatibility, but the deeper lessons each person brings to the other. Relationship Compatibility is the ancient art of reading these personal conversations.",
     "kadim_source": "Traditional Self-Awareness"
   },
   "kadim": {
-    "celestial_wisdom": "Celestial Wisdom",
+    "celestial_wisdom": "Personal Wisdom",
     "ancient_number_wisdom": "Ancient Number Wisdom",
     "archetypal_secrets": "Archetypal Secrets",
     "energy_wisdom": "Energy Wisdom",
@@ -8859,7 +8859,7 @@
     "dream_guide_title": "Dream Guide",
     "dream_guide_content": "Dreams you have tonight may carry important messages. Don't forget to record your dreams.",
     "weekly_preview_title": "Weekly Preview",
-    "weekly_preview_content": "Cosmic energies are working in your favor for the rest of the week.",
+    "weekly_preview_content": "Personal energies are working in your favor for the rest of the week.",
     "sign_messages": {
       "aries": "Your courage and leadership energy is high today. Take initiative.",
       "taurus": "You're ready to reap the fruits of patience and determination.",
@@ -8884,12 +8884,12 @@
     "daily_reading": "Daily Reading",
     "daily_energy": "Today's Energy",
     "personal_profile": "Personal Profile",
-    "explore_cosmic_map": "Explore Your Cosmic Map",
+    "explore_cosmic_map": "Explore Your Personal Map",
     "compatibility": "Compatibility",
     "basic_compatibility": "Basic Compatibility Analysis",
     "combined_chart": "Your Combined Chart",
     "share_relationship": "Share Your Relationship",
-    "share_cosmic_bond": "Share Your Cosmic Bond",
+    "share_cosmic_bond": "Share Your Personal Bond",
     "love_reading": "Love Reading",
     "relationship_energy": "Your Relationship Energy",
     "weekly_reading": "Weekly Reading",
@@ -8906,27 +8906,27 @@
     "dreams_insight": "Dream interpretation",
     "transits": "Transits",
     "transits_insight": "What's affecting you now",
-    "synastry": "Synastry",
+    "synastry": "Relationship Compatibility",
     "synastry_insight": "Extract your relationship chart",
     "composite": "Composite Chart",
     "composite_insight": "Your combined chart",
-    "cosmic_share": "Cosmic Share",
+    "cosmic_share": "Personal Share",
     "share_energy": "Share your energy",
     "who_compatible": "Who are you compatible with?",
     "all_signs": "All Signs",
     "discover_12_signs": "Discover 12 signs",
     "solar_return": "Solar Return",
     "solar_return_insight": "What awaits you this year",
-    "saturn_return": "Saturn Return",
+    "saturn_return": "Growth Cycle",
     "saturn_return_insight": "When is your Saturn cycle?",
     "share_chart": "Share Your Chart",
-    "share_cosmic_energy": "Share your cosmic energy",
+    "share_cosmic_energy": "Share your personal energy",
     "compare_profiles": "Compare Profiles",
     "compare_with_friend": "Compare with a friend",
     "the_fool": "The Fool",
     "new_beginnings": "New beginnings",
     "share_card": "Share Your Card",
-    "share_cosmic_message": "Share your cosmic message",
+    "share_cosmic_message": "Share your personal message",
     "chakra_analysis": "Chakra Analysis",
     "energy_centers": "Your energy centers",
     "dream_trace": "Dream Trace",
@@ -8938,21 +8938,21 @@
     "share": "Share",
     "share_insight": "Share your insight",
     "expression_number": "Expression Number",
-    "soul_voice": "Your soul's voice",
-    "soul_urge": "Soul Urge",
+    "soul_voice": "Your inner self's voice",
+    "soul_urge": "Inner Drive",
     "deepest_desires": "Your deepest desires",
     "birthday_number": "Birthday Number",
     "hidden_talents": "Your hidden talents",
     "aura": "Aura",
     "aura_insight": "Your energy field",
-    "theta_healing": "Theta Healing",
+    "theta_healing": "Pratique de Pleine Conscience",
     "theta_healing_insight": "Deep healing",
     "rituals": "Rituals",
-    "cosmic_rituals": "Cosmic rituals",
+    "cosmic_rituals": "Personal rituals",
     "progressions": "Progressions",
     "inner_evolution": "Your inner evolution",
     "draconic": "Draconic Chart",
-    "soul_chart": "Your soul's chart",
+    "soul_chart": "Your inner self's chart",
     "solar_arc": "Solar Arc",
     "life_directions": "Life directions",
     "vedic": "Vedic Self-Awareness",
@@ -8960,11 +8960,11 @@
     "transit_calendar": "Transit Calendar",
     "upcoming_transits": "Upcoming transits",
     "aspect_analysis": "Aspect Analysis",
-    "energy_conversations": "Cosmic conversations",
+    "energy_conversations": "Personal conversations",
     "celebrities": "Celebrities",
     "famous_charts": "Famous personal profiles",
     "articles": "Articles",
-    "cosmic_wisdom": "Cosmic wisdom",
+    "cosmic_wisdom": "Personal wisdom",
     "kabbalah": "Symbolic Exploration",
     "master_mystery": "The mystery of 11, 22, 33",
     "best_times": "Best times",
@@ -8976,11 +8976,11 @@
     "up_next": "Up Next"
   },
   "timing": {
-    "title": "Cosmic Timing",
+    "title": "Personal Timing",
     "subtitle": "Discover the best times for your activities",
     "kadim_title": "The Art of Personal Timing",
-    "kadim_content": "Ancient civilizations knew the importance of timing. Each hour of the day is ruled by a different planet. By aligning your activities with cosmic rhythms, you can maximize your potential.",
-    "brand_footer": "Cosmic Timing by InnerCycles",
+    "kadim_content": "Ancient civilizations knew the importance of timing. Each hour of the day is ruled by a different planet. By aligning your activities with personal rhythms, you can maximize your potential.",
+    "brand_footer": "Personal Timing by InnerCycles",
     "todays_energy": "Today's Energy",
     "score_excellent": "Excellent day for new beginnings!",
     "score_good": "Good energy, stay aware of conditions",
@@ -9004,7 +9004,7 @@
     "next_7_days": "Next 7 Days",
     "today": "Today",
     "tomorrow": "Tomorrow",
-    "energy_hours": "Cosmic Hours",
+    "energy_hours": "Personal Hours",
     "now": "Now",
     "hour": "Hour",
     "planet_sun_meaning": "Success, leadership, vitality",
@@ -9208,7 +9208,7 @@
   },
   "cosmic_today": {
     "title": "Today's Theme",
-    "kozmik_tag": "Cosmic",
+    "kozmik_tag": "Personal",
     "discover_dream_trace": "Discover Dream Trace",
     "todays_emphasis": "Today's Emphasis",
     "emotional_tone": "Emotional Tone",
@@ -9337,12 +9337,12 @@
   },
   "glossary": {
     "hints": {
-      "personal_profile": "Votre carte d'identité cosmique",
+      "personal_profile": "Votre carte d'identité personnelle",
       "ascendant": "Votre porte vers le monde",
       "descendant": "Miroir dans les relations",
       "midheaven": "Carrière et image publique",
       "ic": "Racines et monde intérieur",
-      "transit": "Météo cosmique actuelle",
+      "transit": "Météo personnel actuelle",
       "retrograde": "Période de rétrospection",
       "orb": "Plage de tolérance de l'aspect",
       "cusp": "Point de transition de maison ou signe",
@@ -9450,7 +9450,7 @@
     },
     "headers": {
       "personal_profile_report": "Rapport de Profil Personnel",
-      "cosmic_guide": "Votre Guide Cosmique",
+      "cosmic_guide": "Votre Guide Personnel",
       "page": "Page"
     },
     "sections": {
@@ -9530,7 +9530,7 @@
       },
       "spiritual": {
         "label": "Spirituel",
-        "description": "Messages cosmiques, guidance spirituelle, interprétation mystique"
+        "description": "Messages personnels, guidance spirituelle, interprétation mystique"
       },
       "practical": {
         "label": "Pratique",
@@ -9634,7 +9634,7 @@
           "Lumière",
           "guides",
           "vol",
-          "expériences cosmiques",
+          "expériences personnels",
           "mort et renaissance"
         ],
         "interpretation_focus": "Développement spirituel, expériences transcendantes, recherche de sens",
@@ -9695,7 +9695,7 @@
       "jungian": "- Focus sur les archétypes: Ombre, Anima/Animus, Vieux Sage, etc.\n- Mets l'accent sur l'inconscient collectif",
       "practical": "- Donne des conseils concrets et actionnables\n- Fais des connexions directes avec la vie quotidienne",
       "psychological": "- Utilise la terminologie de la psychologie scientifique\n- Suggère la régulation émotionnelle et des stratégies d'adaptation",
-      "spiritual": "- Écris dans un ton de guidance spirituelle\n- Mets l'accent sur les messages cosmiques et les signes"
+      "spiritual": "- Écris dans un ton de guidance spirituelle\n- Mets l'accent sur les messages personnels et les signes"
     },
     "transits": {
       "add_birth_info": "Tu peux voir tes transits personnels en ajoutant tes informations de naissance.",
@@ -9778,7 +9778,7 @@
       "huzur": "Vous êtes en équilibre intérieur. Ce rêve célèbre votre paix.",
       "merak": "De nouvelles portes s'ouvrent dans votre esprit. Ce rêve vous invite à explorer.",
       "sucluluk": "Un poids de conscience veut parler. Vous portez peut-être une dette du passé.",
-      "ozlem": "Une partie précieuse de votre âme manque. Quelque chose vous rappelle.",
+      "ozlem": "Une partie précieuse de votre moi profond manque. Quelque chose vous rappelle.",
       "heyecan": "L'énergie monte - quelque chose de nouveau est à l'horizon.",
       "donukluk": "Les émotions sont temporairement atténuées - un mécanisme de protection.",
       "ofke": "Des limites ont été dépassées - le pouvoir veut être récupéré."
@@ -9786,7 +9786,7 @@
     "deeper_meanings": {
       "korku": "Sous la peur se trouve généralement l'amour. Que craignez-vous de perdre?",
       "huzur": "Cette paix signale un conflit résolu. Quelle guerre intérieure s'est terminée?",
-      "merak": "La curiosité est l'appel de l'âme à grandir. Vous êtes prêt à vous ouvrir à l'inconnu.",
+      "merak": "La curiosité est l'appel de le moi profond à grandir. Vous êtes prêt à vous ouvrir à l'inconnu.",
       "sucluluk": "La culpabilité est parfois l'internalisation des voix des autres. À qui est cette voix?",
       "ozlem": "Le désir ardent est le souhait de retourner à la plénitude perdue. Quand vous êtes-vous senti entier?",
       "heyecan": "L'excitation est le sommet de l'énergie vitale. Où dirigerez-vous cette énergie?",
@@ -9891,9 +9891,9 @@
       "moon_calendar_title": "Consultez le calendrier lunaire",
       "moon_calendar_desc": "Apprenez la signification de la phase lunaire lors de votre rêve",
       "transits_title": "Examinez vos transits",
-      "transits_desc": "L'effet des transits cosmiques actuels sur votre rêve",
+      "transits_desc": "L'effet des transits personnels actuels sur votre rêve",
       "timing_insights_title": "Aperçus de Timing",
-      "timing_insights_desc": "Explorez comment les rythmes cosmiques influencent vos schémas de rêve",
+      "timing_insights_desc": "Explorez comment les rythmes personnels influencent vos schémas de rêve",
       "card_insight_title": "Tirez le Reflection Card",
       "card_insight_desc": "Approfondissez le message de votre rêve avec le reflection card",
       "neptune_title": "Transit de Neptune",
