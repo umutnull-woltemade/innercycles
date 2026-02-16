@@ -882,7 +882,7 @@
       "expression_number_desc": "İsminizin toplam değerinden hesaplanan bu sayı, hayatınızdaki potansiyel temalar ve özellikler hakkında düşünmenize yardımcı olur.",
       "soul_urge": "Ruh Durtusu",
       "personality": "Kisilik",
-      "karmic_debt_numbers": "Karmik Borc Sayilari",
+      "karmic_debt_numbers": "Döngüsel Ders Sayıları",
       "life_path_interpretation": "Yasam Yolu Yorumu",
       "deep_interpretation": "Derin Yorum",
       "career_path": "Kariyer Yolu",
@@ -894,7 +894,7 @@
       "master_numbers": "Master Sayilar",
       "lessons_from_past_lives": "Gecmis yasamlardan tasinan dersler",
       "yours": "SENIN",
-      "karmic_debt_message": "Haritanda {debts} karmik borcu var. Detaylar icin dokun.",
+      "karmic_debt_message": "Haritanda {debts} döngüsel dersi var. Detaylar icin dokun.",
       "keywords": "Anahtar Kelimeler",
       "strengths": "Guclu Yanlar",
       "challenges": "Zorluklar",
@@ -905,11 +905,11 @@
       "kadim_title": "Sayilarin Ezeli Dansi",
       "kadim_content": "Pisagor'dan bu yana bilgeler sayilarin evrenin gizli dilini tasidini bilir. Yasam yolu sayin sadece bir rakam degil - ruhunun bu dunyaya getirdigi titresim, evrenin sana verdigi benzersiz melodi. Bu melodiyi duyabilmek icin once sessizlige ihtiyacin var.",
       "brand_text": "Numeroloji — InnerCycles",
-      "karmic_13_desc": "Tembellik ve sorumsuzluktan kaynaklanan karmik bir borc. Bu hayatta siki calisma ve disiplin yoluyla dengelenmelidir.",
+      "karmic_13_desc": "Tembellik ve sorumsuzluktan kaynaklanan döngüsel bir ders. Bu hayatta siki calisma ve disiplin yoluyla dengelenmelidir.",
       "karmic_14_desc": "Ozgurlugu kotuye kullanmaktan kaynaklanan bir borc. Bu hayatta sorumluluk ve olculululuk ogrenmek gerekiyor.",
       "karmic_16_desc": "Ego ve iliski sorunlarindan kaynaklanan bir borc. Alcakgonulluluk ve icsel donusum gerektiriyor.",
       "karmic_19_desc": "Guc ve otoriteyi kotuye kullanmaktan kaynaklanan bir borc. Bagimsizlik ve baskalarina yardim etme dengesi ogrenmek gerekiyor.",
-      "karmic_default_desc": "Bu sayi karmik bir borc tasiyor ve bu hayatta belirli dersler ogrenilmesini gerektiriyor."
+      "karmic_default_desc": "Bu sayı döngüsel bir ders taşıyor ve bu hayatta belirli dersler öğrenilmesini gerektiriyor."
     },
     "solar_return": {
       "title": "Solar Return",
@@ -4615,7 +4615,7 @@
     "moon": "Ay",
     "ascendant": "Yükselen",
     "soul_purpose": "Ruhsal Amaç",
-    "karmic_lessons": "Karmik Dersler",
+    "karmic_lessons": "Döngüsel Dersler",
     "spiritual_gifts": "Spiritual Hediyeler",
     "past_life_indicators": "Geçmiş Yaşam Göstergeleri",
     "evolutionary_path": "Evrimsel Yol",
@@ -5433,7 +5433,7 @@
         "subtitle": "Gizli programlarını çöz"
       },
       "karma_lessons": {
-        "title": "Karma Derslerin",
+        "title": "Döngü Derslerin",
         "subtitle": "Ruhunun öğrenmesi gerekenler"
       },
       "soul_contract": {
@@ -5477,8 +5477,8 @@
         "subtitle": "Enerji alanının rengi"
       },
       "crystal_guide": {
-        "title": "Kristal Rehberi",
-        "subtitle": "Şifalı taşların enerjisi"
+        "title": "Doğal Taş Rehberi",
+        "subtitle": "Doğal taşların enerjisi"
       },
       "chakra_balance": {
         "title": "Çakra Dengen",
@@ -5517,8 +5517,8 @@
         "subtitle": "Derin bağlantı tarzını tanımla"
       },
       "relationship_karma": {
-        "title": "İlişki Karman",
-        "subtitle": "İlişkilerindeki karma kalıplar"
+        "title": "İlişki Döngün",
+        "subtitle": "İlişkilerindeki döngüsel kalıplar"
       },
       "celebrity_twin": {
         "title": "Ünlü İkizin",
@@ -5789,16 +5789,16 @@
       }
     },
     "karma_lessons": {
-      "main": "{name}, {sign} arketipi olarak karma derslerini ogrenme zamani geldi. Guney Dugumu gecmis yasam aliskanliklarini, Saturn ise bu hayattaki sinavlarini temsil eder. Bu hayatta uzerinde calisman gereken temalar var.",
-      "details_intro": "Karma Dongun:",
-      "details_template": "Karma derslerin burc elementine ve yonetici gezegenine bagli olarak belirlenir. {element} elementi olarak {lesson} ogrenmen gerekiyor.",
+      "main": "{name}, {sign} arketipi olarak döngüsel derslerini öğrenme zamanı geldi. Güney Düğümü geçmiş alışkanlıklarını, Satürn ise bu hayattaki sınavlarını temsil eder. Bu hayatta üzerinde çalışman gereken temalar var.",
+      "details_intro": "Döngü Yolculuğun:",
+      "details_template": "Döngüsel derslerin element ve yönetici gezegenine bağlı olarak belirlenir. {element} elementi olarak {lesson} öğrenmen gerekiyor.",
       "soul_contract_lessons": "Ruh Sozlesmendeki Dersler:",
       "saturn_lessons": "Saturn'un evindeki dersler: Sorumluluk ve olgunlasma",
       "chiron_wounds": "Kiron'un gosterdigi yaralar: Sifa potansiyeli",
       "north_node": "Kuzey Dugumu: Ruhsal evrim yonun",
-      "karma_timeline": "Karma Takvimi:",
-      "karma_timeline_desc": "Saturn donusu (yaklasik 29 yas) ve Kiron donusu (yaklasik 50 yas) buyuk karma hesaplasma donemleridir.",
-      "advice": "Her karsilastigin zorluk bir karma dersidir. Onu tani, kabul et ve donustur. Transit haritani takip ederek aktif karma donemlerini onceden bilebilirsin.",
+      "karma_timeline": "Döngü Takvimi:",
+      "karma_timeline_desc": "Büyüme döngüsü (yaklaşık 29 yaş) ve Kiron dönüşü (yaklaşık 50 yaş) büyük döngü değerlendirme dönemleridir.",
+      "advice": "Her karşılaştığın zorluk bir döngüsel derstir. Onu tanı, kabul et ve dönüştür. Transit haritanı takip ederek aktif döngüsel dönemleri önceden bilebilirsin.",
       "warning": "Dikkat: Ayni dersler tekrar tekrar onune geliyorsa, henuz ogrenmedigin anlamina gelir. Kacmak yerine yuzles.",
       "fire_lesson": "sabir, alcakgonulluluk ve baskalrini dusunme",
       "earth_lesson": "birakma, guvenme ve degisime acik olma",
@@ -5808,7 +5808,7 @@
     "soul_contract": {
       "main": "{name}, bu dunyaya gelmeden once ruhun bir sozlesme yapti. {sign} arketipi olarak dogum haritandaki Kuzey Dugumu, Saturn ve 12. ev bu sozlesmenin izlerini tasiyor.",
       "contract_items": "Ruh Sozlesmenin Ana Maddeleri:",
-      "contract_intro": "Ruh sozlesmen, yasam amacini, karma derslerini ve bu hayatta karsilasacagin temel deneyimleri iceriyor. {sign} olarak {theme} uzerine calismak icin geldin.",
+      "contract_intro": "Ruh sözleşmen, yaşam amacını, döngüsel derslerini ve bu hayatta karşılaşacağın temel deneyimleri içeriyor. {sign} olarak {theme} üzerine çalışmak için geldin.",
       "contract_details": "Sozlesme Detaylari:",
       "life_purpose": "Yasam Amaci: Kuzey Dugumu'nun gosterdigi yon",
       "past_life_legacy": "Gecmis Yasam Mirasi: Guney Dugumu ve 12. ev",
@@ -6399,7 +6399,7 @@
     "todays_intention": "Bugünün Niyeti",
     "ritual_steps": "Ritüel Adımları",
     "minutes": "dk",
-    "suggested_crystal": "Önerilen Kristal",
+    "suggested_crystal": "Önerilen Doğal Taş",
     "suggested_essential_oil": "Önerilen Esansiyel Yağ",
     "todays_meditation": "Bugünün Meditasyonu",
     "find_inner_peace": "İç huzurunu bul",
@@ -6608,7 +6608,7 @@
     "past": "Geçmiş"
   },
   "share": {
-    "cosmic_share": "Kozmik Paylaşım",
+    "cosmic_share": "Kişisel Paylaşım",
     "take_screenshot_and_share": "Ekran görüntüsü al ve paylaş",
     "tap_x_to_exit": "Çıkmak için sağ üstteki X butonuna dokun",
     "share_error": "Paylaşım hatası",
@@ -7821,7 +7821,7 @@
     "text_copied_success": "Metin kopyalandı!",
     "open_instagram": "Instagram'ı Aç",
     "todays_message": "Bugünün Mesajı",
-    "todays_cosmic_energy": "Bugünün Kozmik Enerjisi",
+    "todays_cosmic_energy": "Bugünün Kişisel Enerjisi",
     "reflect": "Düşün",
     "action": "Hareket",
     "dominant_planet": "Dominant Gezegen",
@@ -7837,7 +7837,7 @@
     "strength": "Güç",
     "opportunity": "Fırsat",
     "aura_label": "Aura",
-    "cosmic_advice_title": "Kozmik Öğütler",
+    "cosmic_advice_title": "Kişisel Öğütler",
     "todays_voice": "Bugünün Sesi",
     "dream_trace": "Rüya İzi",
     "todays_number": "Bugünün Sayısı",
@@ -7846,7 +7846,7 @@
     "breath": "Nefes",
     "awareness": "Farkındalık",
     "balance_level": "Denge Seviyesi",
-    "cosmic_timing": "Kozmik Zamanlama",
+    "cosmic_timing": "Kişisel Zamanlama",
     "golden_hour": "Altın Saat",
     "be_careful": "Dikkatli Ol",
     "listen_to_universe": "Evrenin fısıltılarını dinle"
@@ -7866,7 +7866,7 @@
     "energy_lines_shown_here": "Kozmik çizgilerniz burada gösterilir",
     "power_points": "Güç Noktaları",
     "active_planets": "Aktif Gezegenler",
-    "energy_lines": "Kozmik Çizgiler",
+    "energy_lines": "Kişisel Çizgiler",
     "general_analysis": "Genel Analiz"
   },
   "tantra": {
@@ -7985,7 +7985,7 @@
     "transits": "Transitler",
     "timing": "Zamanlama",
     "solar_return": "Solar Return",
-    "saturn_return": "Satürn Dönüşü",
+    "saturn_return": "Büyüme Döngüsü",
     "year_ahead": "Yıllık Bakış",
     "void_of_course": "Void of Course",
     "eclipse_calendar": "Tutulma Takvimi",
@@ -7995,11 +7995,11 @@
     "kabbalah": "Kabala",
     "aura": "Aura",
     "chakra": "Çakra",
-    "crystal_guide": "Kristal Rehberi",
+    "crystal_guide": "Doğal Taş Rehberi",
     "daily_rituals": "Günlük Ritüeller",
     "moon_rituals": "Ay Ritüelleri",
     "moon_gardening": "Ay Bahçeciliği",
-    "theta_healing": "Theta Healing",
+    "theta_healing": "Bilinçaltı Çalışması",
     "reiki": "Reiki",
     "shadow_self": "Gölge Benliğin",
     "leadership_style": "Liderlik Stilin",
@@ -8014,12 +8014,12 @@
     "kabbalah_path": "Kabala Yolun",
     "compatibility_analysis": "Uyum Analizi",
     "soulmate": "Derin Bağlantın",
-    "relationship_karma": "İlişki Karman",
+    "relationship_karma": "İlişki Döngün",
     "celebrity_twin": "Ünlü İkizin",
-    "cosmic_trace": "Kozmoz İzi",
+    "cosmic_trace": "InnerCycles Rehberi",
     "dream_trace": "Rüya İzi",
     "reflection_reader": "Arketip Yorumcusu",
-    "cosmic_share": "Kozmik Paylaşım",
+    "cosmic_share": "Kişisel Paylaşım",
     "saved_profiles": "Kayıtlı Profiller",
     "compare": "Karşılaştır",
     "premium": "Premium",
@@ -8032,17 +8032,17 @@
     "dream_oracle": "Rüya Orakeli"
   },
   "kozmoz": {
-    "title": "Kozmik Rehber",
-    "header_title": "Kozmoz İzi",
-    "header_subtitle": "Kozmik AI Asistanın",
+    "title": "Kişisel Rehber",
+    "header_title": "InnerCycles Rehberi",
+    "header_subtitle": "Kişisel AI Asistanın",
     "traveler": "Yolcu",
     "greeting_hello": "Merhaba",
     "good_morning": "Günaydın",
     "good_afternoon": "İyi günler",
     "good_evening": "İyi akşamlar",
     "dear": "değerli",
-    "intro_message": "Ben Kozmoz İzi, senin kozmik rehberin. {sign} arketipinun enerjisiyle öz farkındalık, arketip yorumları, transitler, numeroloji ve daha fazlası hakkında sorularını yanıtlamak için buradayım.",
-    "ask_placeholder": "Kozmoz'a sor... (Enter ile gönder)",
+    "intro_message": "Ben InnerCycles Rehberi, senin kozmik rehberin. {sign} arketipinun enerjisiyle öz farkındalık, arketip yorumları, transitler, numeroloji ve daha fazlası hakkında sorularını yanıtlamak için buradayım.",
+    "ask_placeholder": "InnerCycles'a sor... (Enter ile gönder)",
     "quick_access": "Hızlı Erişim",
     "suggested_questions": "Önerilen Sorular:",
     "all_analyses": "Tüm Çözümlemeler",
@@ -8816,9 +8816,9 @@
     }
   },
   "theta_healing": {
-    "title": "Theta Healing",
+    "title": "Bilinçaltı Çalışması",
     "subtitle": "Bilinçaltı Dönüşüm Pratiği",
-    "intro_description": "Theta Healing, theta beyin dalgası durumunda (4-7 Hz) bilinçaltı inançları ve enerji bloklarını dönüştürmeye yönelik bir şifa tekniğidir. Bu pratik, sınırlayıcı inançları keşfetmenize ve pozitif değişimler yaratmanıza yardımcı olur.",
+    "intro_description": "Bilinçaltı Çalışması, theta beyin dalgası durumunda (4-7 Hz) bilinçaltı inançları ve enerji bloklarını dönüştürmeye yönelik bir şifa tekniğidir. Bu pratik, sınırlayıcı inançları keşfetmenize ve pozitif değişimler yaratmanıza yardımcı olur.",
     "tabs": {
       "intro": "Giriş",
       "techniques": "Teknikler",
@@ -8828,11 +8828,11 @@
       "theta_state_title": "Theta Durumu Nedir?",
       "theta_state_content": "Theta beyin dalgaları (4-7 Hz), derin meditasyon, rüya görme ve yaratıcılık anlarında aktif olur. Bu durumda bilinçaltına doğrudan erişim mümkündür ve köklü değişimler yapılabilir.",
       "limiting_beliefs_title": "Sınırlayıcı İnançlar",
-      "limiting_beliefs_content": "Çocukluk döneminde oluşan ve farkında olmadan hayatımızı etkileyen inanç kalıpları vardır. Theta Healing ile bu inançları tespit edip dönüştürebilirsiniz.",
+      "limiting_beliefs_content": "Çocukluk döneminde oluşan ve farkında olmadan hayatımızı etkileyen inanç kalıpları vardır. Bilinçaltı Çalışması ile bu inançları tespit edip dönüştürebilirsiniz.",
       "energy_transformation_title": "Enerji Dönüşümü",
       "energy_transformation_content": "Bedensel, zihinsel ve ruhsal seviyedeki enerji blokları çözülür. Şifalanma süreci hücresel düzeyde başlar ve tüm varlığınıza yayılır.",
       "seven_planes_title": "7 Düzlem Bağlantısı",
-      "seven_planes_content": "Theta Healing, evrenin 7 varoluş düzlemiyle çalışır: Mineraller, Bitkiler, Hayvanlar, İnsanlar, Ruhlar, Yasalar ve Yaratıcı Enerji."
+      "seven_planes_content": "Bilinçaltı Çalışması, evrenin 7 varoluş düzlemiyle çalışır: Mineraller, Bitkiler, Hayvanlar, İnsanlar, Ruhlar, Yasalar ve Yaratıcı Enerji."
     },
     "techniques": {
       "steps": "Adımlar",
@@ -9018,14 +9018,14 @@
     "synastry_insight": "İlişki haritanı çıkar",
     "composite": "Composite Harita",
     "composite_insight": "Birleşik haritanız",
-    "cosmic_share": "Kozmik Paylaşım",
+    "cosmic_share": "Kişisel Paylaşım",
     "share_energy": "Enerjini paylaş",
     "who_compatible": "Kiminle uyumlusun?",
     "all_signs": "Tüm Arketipler",
     "discover_12_signs": "12 arketipi keşfet",
     "solar_return": "Solar Return",
     "solar_return_insight": "Bu yıl seni neler bekliyor",
-    "saturn_return": "Saturn Dönüşü",
+    "saturn_return": "Büyüme Döngüsü",
     "saturn_return_insight": "Satürn döngün ne zaman?",
     "share_chart": "Haritanı Paylaş",
     "share_cosmic_energy": "Kozmik enerjini paylaş",
@@ -9053,7 +9053,7 @@
     "hidden_talents": "Gizli yeteneklerin",
     "aura": "Aura",
     "aura_insight": "Enerji alanın",
-    "theta_healing": "Theta Healing",
+    "theta_healing": "Bilinçaltı Çalışması",
     "theta_healing_insight": "Derin şifa",
     "rituals": "Ritüeller",
     "cosmic_rituals": "Kozmik ritüeller",
@@ -9077,14 +9077,14 @@
     "master_mystery": "11, 22, 33 gizemi",
     "best_times": "En iyi zamanlar",
     "energy_practices": "Enerji pratikleri",
-    "crystal_guide": "Kristal Rehberi",
+    "crystal_guide": "Doğal Taş Rehberi",
     "what_awaits_this_week": "Bu hafta seni neler bekliyor",
     "what_awaits_this_month": "Bu ay seni neler bekliyor",
     "home": "Ana Sayfa",
     "up_next": "Sonraki"
   },
   "timing": {
-    "title": "Kozmik Zamanlama",
+    "title": "Kişisel Zamanlama",
     "subtitle": "Aktiviteleriniz için en uygun zamanları keşfedin",
     "kadim_title": "Kişisel Zamanlama Sanatı",
     "kadim_content": "Kadim medeniyetler zamanlamanın önemini bilirdi. Günün her saati farklı bir gezegen tarafından yönetilir. Aktivitelerinizi kozmik ritimlere uyumlayarak potansiyelinizi maksimize edebilirsiniz.",
@@ -9112,7 +9112,7 @@
     "next_7_days": "Önümüzdeki 7 Gün",
     "today": "Bugün",
     "tomorrow": "Yarın",
-    "energy_hours": "Kozmik Saatler",
+    "energy_hours": "Kişisel Saatler",
     "now": "Şimdi",
     "hour": "Saati",
     "planet_sun_meaning": "Başarı, liderlik, canlılık",
@@ -9558,7 +9558,7 @@
     },
     "headers": {
       "personal_profile_report": "Kişisel Profil Raporu",
-      "cosmic_guide": "Kozmik Rehberiniz",
+      "cosmic_guide": "Kişisel Rehberiniz",
       "page": "Sayfa"
     },
     "sections": {

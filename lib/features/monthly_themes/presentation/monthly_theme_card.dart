@@ -45,23 +45,23 @@ class MonthlyThemeCard extends ConsumerWidget {
                 end: Alignment.bottomRight,
                 colors: isDark
                     ? [
-                        AppColors.venusPink.withValues(alpha: 0.12),
+                        AppColors.brandPink.withValues(alpha: 0.12),
                         AppColors.sunriseEnd.withValues(alpha: 0.08),
                         AppColors.surfaceDark.withValues(alpha: 0.9),
                       ]
                     : [
-                        AppColors.venusPink.withValues(alpha: 0.06),
+                        AppColors.brandPink.withValues(alpha: 0.06),
                         AppColors.sunriseEnd.withValues(alpha: 0.03),
                         AppColors.lightCard,
                       ],
               ),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: AppColors.venusPink.withValues(alpha: 0.2),
+                color: AppColors.brandPink.withValues(alpha: 0.2),
               ),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.venusPink
+                  color: AppColors.brandPink
                       .withValues(alpha: isDark ? 0.06 : 0.03),
                   blurRadius: 20,
                   offset: const Offset(0, 4),
@@ -77,12 +77,12 @@ class MonthlyThemeCard extends ConsumerWidget {
                     Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: AppColors.venusPink.withValues(alpha: 0.15),
+                        color: AppColors.brandPink.withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Icon(
                         _monthIcon(theme.month),
-                        color: AppColors.venusPink,
+                        color: AppColors.brandPink,
                         size: 18,
                       ),
                     ),
@@ -121,7 +121,7 @@ class MonthlyThemeCard extends ConsumerWidget {
                         vertical: 3,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.venusPink.withValues(alpha: 0.1),
+                        color: AppColors.brandPink.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
@@ -131,7 +131,7 @@ class MonthlyThemeCard extends ConsumerWidget {
                         style: TextStyle(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.venusPink,
+                          color: AppColors.brandPink,
                         ),
                       ),
                     ),
@@ -144,11 +144,11 @@ class MonthlyThemeCard extends ConsumerWidget {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: AppColors.venusPink
+                    color: AppColors.brandPink
                         .withValues(alpha: isDark ? 0.08 : 0.05),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: AppColors.venusPink.withValues(alpha: 0.15),
+                      color: AppColors.brandPink.withValues(alpha: 0.15),
                     ),
                   ),
                   child: Row(
@@ -157,7 +157,7 @@ class MonthlyThemeCard extends ConsumerWidget {
                       Icon(
                         Icons.format_quote_rounded,
                         size: 16,
-                        color: AppColors.venusPink.withValues(alpha: 0.5),
+                        color: AppColors.brandPink.withValues(alpha: 0.5),
                       ),
                       const SizedBox(width: 8),
                       Expanded(
@@ -194,7 +194,7 @@ class MonthlyThemeCard extends ConsumerWidget {
                               ? Colors.white.withValues(alpha: 0.06)
                               : Colors.black.withValues(alpha: 0.06),
                           valueColor: AlwaysStoppedAnimation<Color>(
-                            AppColors.venusPink,
+                            AppColors.brandPink,
                           ),
                         ),
                       ),

@@ -313,7 +313,7 @@ class _AffirmationCardState extends ConsumerState<AffirmationCard> {
       case AffirmationCategory.resilience:
         return AppColors.sunriseEnd;
       case AffirmationCategory.connection:
-        return AppColors.venusPink;
+        return AppColors.brandPink;
       case AffirmationCategory.calm:
         return AppColors.auroraStart;
       case AffirmationCategory.purpose:

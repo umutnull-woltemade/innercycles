@@ -883,7 +883,7 @@ class _InsightsDiscoveryScreenState
   Color _categoryColor(ContextModuleCategory category) {
     switch (category) {
       case ContextModuleCategory.emotionalLiteracy:
-        return AppColors.venusPink;
+        return AppColors.brandPink;
       case ContextModuleCategory.mythVsReality:
         return AppColors.sunriseEnd;
       case ContextModuleCategory.patternRecognition:

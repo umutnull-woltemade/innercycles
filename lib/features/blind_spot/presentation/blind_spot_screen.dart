@@ -979,13 +979,13 @@ class _ShareInsightsButton extends StatelessWidget {
           ),
         ),
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.venusPink.withValues(alpha: 0.15),
-          foregroundColor: AppColors.venusPink,
+          backgroundColor: AppColors.brandPink.withValues(alpha: 0.15),
+          foregroundColor: AppColors.brandPink,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
             side: BorderSide(
-              color: AppColors.venusPink.withValues(alpha: 0.3),
+              color: AppColors.brandPink.withValues(alpha: 0.3),
             ),
           ),
         ),

@@ -830,7 +830,7 @@ class _GrowthDashboardScreenState
         title: isEn ? 'Blind Spots' : 'Kör Noktalar',
         subtitle: isEn ? 'Hidden patterns' : 'Gizli kalıplar',
         route: Routes.blindSpot,
-        color: AppColors.venusPink,
+        color: AppColors.brandPink,
       ),
       _GrowthTool(
         icon: Icons.people_outline_rounded,

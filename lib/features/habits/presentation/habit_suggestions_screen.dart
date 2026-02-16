@@ -817,7 +817,7 @@ class _HabitCard extends StatelessWidget {
       case 'mindfulness':
         return AppColors.auroraStart;
       case 'social':
-        return AppColors.venusPink;
+        return AppColors.brandPink;
       case 'creative':
         return AppColors.sunriseEnd;
       case 'physical':

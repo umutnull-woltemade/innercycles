@@ -1074,7 +1074,7 @@ class _HighlightsCard extends StatelessWidget {
               text: isEn
                   ? 'Your longest streak was $days days!'
                   : 'En uzun seriniz $days gün oldu!',
-              color: AppColors.venusPink,
+              color: AppColors.brandPink,
             ));
           }
         case 'high_average':

@@ -337,7 +337,7 @@ class _WelcomePageState extends State<_WelcomePage>
             children: [
               // Logo - Use actual InnerCycles logo with fallback for web
               Image.asset(
-                'assets/brand/venus-logo/png/venus-logo-256.png',
+                'assets/brand/app-logo/png/venus-logo-256.png',
                 width: 120,
                 height: 120,
                 fit: BoxFit.contain,
@@ -541,7 +541,7 @@ class _WelcomePageState extends State<_WelcomePage>
             );
           },
           child: Image.asset(
-            'assets/brand/venus-logo/png/venus-logo-256.png',
+            'assets/brand/app-logo/png/venus-logo-256.png',
             width: 160,
             height: 160,
             fit: BoxFit.contain,

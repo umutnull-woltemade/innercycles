@@ -284,7 +284,7 @@ class _EmotionOfDayCardState extends ConsumerState<EmotionOfDayCard> {
       case EmotionFamily.fear:
         return AppColors.amethyst;
       case EmotionFamily.surprise:
-        return AppColors.venusPink;
+        return AppColors.brandPink;
       case EmotionFamily.calm:
         return AppColors.success;
     }
