@@ -5279,7 +5279,7 @@
     "routes": {
       "daily_summary": {
         "title": "Today's Summary",
-        "subtitle": "Your daily cosmic energy guide"
+        "subtitle": "Your daily personal energy guide"
       },
       "moon_energy": {
         "title": "Moon Energy",
@@ -5291,7 +5291,7 @@
       },
       "love_energy": {
         "title": "Love Energy",
-        "subtitle": "Your heart's cosmic guide"
+        "subtitle": "Your heart's personal guide"
       },
       "abundance_energy": {
         "title": "Abundance Energy",
@@ -6222,7 +6222,7 @@
         "name": "The Star",
         "keywords": "Hope, inspiration, serenity",
         "upright": "Time for hope and inspiration. Healing and renewal. The universe is speaking to you.",
-        "reversed": "Hopelessness or loss of faith. Disconnection from cosmic connection.",
+        "reversed": "Hopelessness or loss of faith. Disconnection from inner connection.",
         "advice": "Even after the darkest night, stars shine. Don't lose hope."
       },
       "moon": {
@@ -6500,7 +6500,7 @@
     "instruction_3": "3. Open Instagram",
     "instruction_4": "4. Share as story and paste text",
     "share_on_instagram": "Share on Instagram",
-    "share_cosmic_energy_story": "Share your cosmic energy on your story!",
+    "share_cosmic_energy_story": "Share your personal energy on your story!",
     "copy_text": "Copy Text",
     "energy": "Energy",
     "energy_level": "Energy Level",
@@ -6515,7 +6515,7 @@
     "intensity_intense_desc": "Strong feelings flowing. Watch reactions.",
     "intensity_stormy_desc": "Emotional turbulence. Return to center.",
     "intensity_default_desc": "Emotional flow continues.",
-    "energy_peak_desc": "Your cosmic energy is at its peak. Everything is possible.",
+    "energy_peak_desc": "Your personal energy is at its peak. Everything is possible.",
     "energy_high_desc": "Strong flow present. Seize opportunities.",
     "energy_balanced_desc": "Balanced energy. Be patient.",
     "energy_low_desc": "Rest time. Be gentle with yourself.",
@@ -6543,7 +6543,7 @@
       "November",
       "December"
     ],
-    "share_text": "Today's cosmic energy is with me! The universe whispers... #InnerCycles #self-awareness #insight #cosmicenergy",
+    "share_text": "Today's personal energy is with me! Reflecting on my journey... #InnerCycles #self-awareness #insight #personalenergy",
     "instagram": {
       "hook_1": "{sign} BUT NOT A RED FLAG 🚩",
       "hook_2": "IF YOU'RE CHASING? THEY'RE RUNNING 😏",
@@ -7714,7 +7714,7 @@
     "strength": "Strength",
     "opportunity": "Opportunity",
     "aura_label": "Aura",
-    "cosmic_advice_title": "Cosmic Advice",
+    "cosmic_advice_title": "Personal Advice",
     "todays_voice": "Today's Voice",
     "dream_trace": "Dream Trace",
     "todays_number": "Today's Number",
@@ -7723,7 +7723,7 @@
     "breath": "Breath",
     "awareness": "Awareness",
     "balance_level": "Balance Level",
-    "cosmic_timing": "Cosmic Timing",
+    "cosmic_timing": "Optimal Timing",
     "golden_hour": "Golden Hour",
     "be_careful": "Be Careful",
     "listen_to_universe": "Listen to the whispers of the universe"
@@ -8936,7 +8936,7 @@
     "theta_healing": "Theta Healing",
     "theta_healing_insight": "Deep healing",
     "rituals": "Rituals",
-    "cosmic_rituals": "Cosmic rituals",
+    "cosmic_rituals": "Daily rituals",
     "progressions": "Progressions",
     "inner_evolution": "Your inner evolution",
     "draconic": "Draconic Chart",
@@ -9196,7 +9196,7 @@
   },
   "cosmic_today": {
     "title": "Today's Theme",
-    "kozmik_tag": "Cosmic",
+    "kozmik_tag": "Daily",
     "discover_dream_trace": "Discover Dream Trace",
     "todays_emphasis": "Today's Emphasis",
     "emotional_tone": "Emotional Tone",
@@ -9506,7 +9506,7 @@
       },
       "spiritual": {
         "label": "Spiritual",
-        "description": "Cosmic messages, spiritual guidance, mystical interpretation"
+        "description": "Reflective messages, personal guidance, deep interpretation"
       },
       "practical": {
         "label": "Practical",

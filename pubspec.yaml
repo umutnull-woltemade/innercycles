@@ -80,7 +80,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-    - assets/brand/
     - assets/brand/venus-logo/png/
     - assets/.env
     - assets/l10n/
