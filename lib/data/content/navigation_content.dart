@@ -692,7 +692,7 @@ class PersonalProfileNavigation {
 }
 
 // ============================================================
-// PAGE 16: JOURNAL (/journal) - Redirected from former tarot
+// PAGE 16: JOURNAL (/journal)
 // ============================================================
 
 class JournalNavigation {
