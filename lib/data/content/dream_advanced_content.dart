@@ -418,7 +418,7 @@ class PsikolojikRuyaTemalari {
   static const Map<String, ArchetypeDreamProfile> arketipRuyaProfili = {
     'aries': ArchetypeDreamProfile(
       archetype: 'Öncü',
-      emoji: '♈',
+      emoji: '🚀',
       commonThemes: [
         'Savaş',
         'yarış',
@@ -435,7 +435,7 @@ class PsikolojikRuyaTemalari {
     ),
     'taurus': ArchetypeDreamProfile(
       archetype: 'Kurucu',
-      emoji: '♉',
+      emoji: '🏗',
       commonThemes: ['Doğa', 'yemek', 'para', 'bahçe', 'konfor', 'boyun'],
       nightmareThemes: [
         'Yoksulluk',
@@ -450,7 +450,7 @@ class PsikolojikRuyaTemalari {
     ),
     'gemini': ArchetypeDreamProfile(
       archetype: 'İletişimci',
-      emoji: '♊',
+      emoji: '💬',
       commonThemes: [
         'İletişim',
         'yolculuk',
@@ -472,7 +472,7 @@ class PsikolojikRuyaTemalari {
     ),
     'cancer': ArchetypeDreamProfile(
       archetype: 'Koruyucu',
-      emoji: '♋',
+      emoji: '🛡',
       commonThemes: ['Ev', 'aile', 'anne', 'su', 'geçmiş', 'göğüs', 'mutfak'],
       nightmareThemes: ['Evsizlik', 'aile kaybı', 'boğulma', 'terk edilme'],
       lucidTendency: 'Yüksek - güçlü bilinçdışı bağlantı',
@@ -481,7 +481,7 @@ class PsikolojikRuyaTemalari {
     ),
     'leo': ArchetypeDreamProfile(
       archetype: 'Sahne Yıldızı',
-      emoji: '♌',
+      emoji: '🌟',
       commonThemes: [
         'Sahne',
         'tanınma',
@@ -503,7 +503,7 @@ class PsikolojikRuyaTemalari {
     ),
     'virgo': ArchetypeDreamProfile(
       archetype: 'Analist',
-      emoji: '♍',
+      emoji: '🔍',
       commonThemes: ['İş', 'sağlık', 'detay', 'temizlik', 'sindirim', 'analiz'],
       nightmareThemes: [
         'Düzensizlik',
@@ -517,7 +517,7 @@ class PsikolojikRuyaTemalari {
     ),
     'libra': ArchetypeDreamProfile(
       archetype: 'Dengeleyici',
-      emoji: '♎',
+      emoji: '⚖️',
       commonThemes: [
         'İlişki',
         'denge',
@@ -538,7 +538,7 @@ class PsikolojikRuyaTemalari {
     ),
     'scorpio': ArchetypeDreamProfile(
       archetype: 'Dönüştürücü',
-      emoji: '♏',
+      emoji: '🦋',
       commonThemes: [
         'Dönüşüm',
         'ölüm',
@@ -554,7 +554,7 @@ class PsikolojikRuyaTemalari {
     ),
     'sagittarius': ArchetypeDreamProfile(
       archetype: 'Kaşif',
-      emoji: '♐',
+      emoji: '🧭',
       commonThemes: [
         'Seyahat',
         'felsefe',
@@ -570,7 +570,7 @@ class PsikolojikRuyaTemalari {
     ),
     'capricorn': ArchetypeDreamProfile(
       archetype: 'Başarıcı',
-      emoji: '♑',
+      emoji: '🏔',
       commonThemes: [
         'Kariyer',
         'dağ',
@@ -587,7 +587,7 @@ class PsikolojikRuyaTemalari {
     ),
     'aquarius': ArchetypeDreamProfile(
       archetype: 'Vizyoner',
-      emoji: '♒',
+      emoji: '💡',
       commonThemes: [
         'Grup',
         'teknoloji',
@@ -603,7 +603,7 @@ class PsikolojikRuyaTemalari {
     ),
     'pisces': ArchetypeDreamProfile(
       archetype: 'Hayalperest',
-      emoji: '♓',
+      emoji: '🌙',
       commonThemes: [
         'Su',
         'hayal gücü',

@@ -640,7 +640,7 @@ class _DreamInterpretationScreenState
         language,
         params: {'sign': sign.localizedName(language)},
       );
-      buffer.writeln('${sign.symbol} $signPerspective\n');
+      buffer.writeln('$signPerspective\n');
 
       for (final entry in themes.entries) {
         buffer.writeln(entry.value);
@@ -807,7 +807,7 @@ $practice''';
     final specialLabel = L10nService.getWithParams(
       'widgets.dreams.interpretations.flying.special_interpretation_label',
       language,
-      params: {'sign': '${sign.symbol} $signName'},
+      params: {'sign': signName},
     );
     final specialInterpretation = L10nService.get(
       'widgets.dreams.interpretations.flying.special_interpretation',
@@ -944,7 +944,7 @@ $cosmicMessage''';
 $basicLabel
 $basicMeaning
 
-${sign.symbol} $signName
+$signName
 $specialInterpretation
 
 $psychLabel
@@ -1021,7 +1021,7 @@ $cosmicMessage''';
 $notScaryLabel
 $notScary
 
-${sign.symbol} $signName
+$signName
 $specialInterpretation
 
 $psychLabel
@@ -1099,7 +1099,7 @@ $cosmicMessage''';
 $basicLabel
 $basicMeaning
 
-${sign.symbol} $signName
+$signName
 $specialInterpretation
 
 $psychLabel
@@ -1177,7 +1177,7 @@ $cosmicMessage''';
 $basicLabel
 $basicMeaning
 
-${sign.symbol} $signName
+$signName
 $specialInterpretation
 
 $symbolsLabel
@@ -1255,7 +1255,7 @@ $cosmicMessage''';
 $basicLabel
 $basicMeaning
 
-${sign.symbol} $signName
+$signName
 $specialInterpretation
 
 $roomLabel
@@ -1346,7 +1346,7 @@ $cosmicMessage''';
 $basicLabel
 $basicMeaning
 
-${sign.symbol} $signName
+$signName
 $specialInterpretation
 
 $typesLabel
@@ -1440,7 +1440,7 @@ $cosmicMessage''';
 $basicLabel
 $basicMeaning
 
-${sign.symbol} $signName
+$signName
 $specialInterpretation
 
 $typesLabel
@@ -1522,7 +1522,7 @@ $cosmicMessage''';
       params: {'sign': signName},
     );
 
-    return '''${sign.symbol} $title
+    return '''$title
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 $subconLabel
