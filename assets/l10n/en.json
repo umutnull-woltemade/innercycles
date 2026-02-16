@@ -811,7 +811,7 @@
       "expression_number_desc": "Calculated from your name, this number reflects potential themes and characteristics in your life.",
       "soul_urge": "Soul Urge",
       "personality": "Personality",
-      "karmic_debt_numbers": "Karmic Debt Numbers",
+      "karmic_debt_numbers": "Growth Lesson Numbers",
       "life_path_interpretation": "Life Path Interpretation",
       "deep_interpretation": "Deep Interpretation",
       "career_path": "Career Path",
@@ -823,7 +823,7 @@
       "master_numbers": "Master Numbers",
       "lessons_from_past_lives": "Lessons carried from past lives",
       "yours": "YOURS",
-      "karmic_debt_message": "Your chart has {debts} karmic debt. Tap for details.",
+      "karmic_debt_message": "Your chart has {debts} growth lessons. Tap for details.",
       "keywords": "Keywords",
       "strengths": "Strengths",
       "challenges": "Challenges",
@@ -834,11 +834,11 @@
       "kadim_title": "Eternal Dance of Numbers",
       "kadim_content": "Since Pythagoras, many traditions have explored symbolic meanings of numbers. Your life path number is a reflection theme - a way to think about personal qualities and life patterns. These symbolic associations can be useful for journaling and self-discovery.",
       "brand_text": "Numerology — InnerCycles",
-      "karmic_13_desc": "A karmic debt arising from laziness and irresponsibility. Must be balanced through hard work and discipline in this life.",
-      "karmic_14_desc": "A debt from misusing freedom. Learning responsibility and moderation is required in this life.",
-      "karmic_16_desc": "A debt from ego and relationship issues. Requires humility and inner transformation.",
-      "karmic_19_desc": "A debt from misusing power and authority. Learning the balance of independence and helping others is required.",
-      "karmic_default_desc": "This number carries a karmic debt and requires certain lessons to be learned in this life."
+      "karmic_13_desc": "A growth lesson arising from laziness and irresponsibility. Must be balanced through hard work and discipline in this life.",
+      "karmic_14_desc": "A lesson from misusing freedom. Learning responsibility and moderation is required in this life.",
+      "karmic_16_desc": "A lesson from ego and relationship issues. Requires humility and inner transformation.",
+      "karmic_19_desc": "A lesson from misusing power and authority. Learning the balance of independence and helping others is required.",
+      "karmic_default_desc": "This number carries a growth lesson and requires certain lessons to be learned in this life."
     },
     "solar_return": {
       "title": "Solar Return",
@@ -1298,7 +1298,7 @@
       "saturn": {
         "line1": "{planet} in {sign} - responsibility and boundaries find expression through this sign's energy.",
         "line2": "{sign}'s qualities show which areas you need to mature in, your fears, and life lessons. Your discipline style, authority relationship, and time understanding are shaped by this sign.",
-        "line3": "{meaning} areas have {sign} energy active. This placement shows your karma and mastery journey."
+        "line3": "{meaning} areas have {sign} energy active. This placement shows your growth and mastery journey."
       },
       "uranus": {
         "line1": "{planet} in {sign} - originality and revolution find expression through this sign's energy.",
@@ -1524,8 +1524,8 @@
       },
       "12": {
         "title": "12th House - House of Subconscious & Secrets",
-        "keywords": "Subconscious - Spiritual - Karma",
-        "description": "Represents your subconscious, hidden enemies, spiritual journey and karmic lessons.",
+        "keywords": "Subconscious - Personal Growth - Patterns",
+        "description": "Represents your subconscious, hidden challenges, personal journey and growth lessons.",
         "areas": [
           "Subconscious drives",
           "Times of solitude",

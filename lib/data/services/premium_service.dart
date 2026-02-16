@@ -35,13 +35,13 @@ extension PremiumTierExtension on PremiumTier {
   String get price {
     switch (this) {
       case PremiumTier.free:
-        return '₺0';
+        return '\$0';
       case PremiumTier.monthly:
-        return '₺29/mo';
+        return '\$4.99/mo';
       case PremiumTier.yearly:
-        return '₺79/yr';
+        return '\$29.99/yr';
       case PremiumTier.lifetime:
-        return '₺249';
+        return '\$79.99';
     }
   }
 

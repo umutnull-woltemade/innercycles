@@ -244,7 +244,7 @@ class _WelcomePageState extends State<_WelcomePage>
       return;
     }
 
-    // OAuth callback'lerini dinle (mobile only)
+    // Listen for OAuth callbacks (mobile only)
     _authStateStream = AuthService.authStateChanges;
     _authStateStream.listen((state) {
       debugPrint('🔐 Auth state changed: ${state.event}');
@@ -254,11 +254,11 @@ class _WelcomePageState extends State<_WelcomePage>
       }
     });
 
-    // Sayfa yüklendiğinde zaten oturum açık mı kontrol et
+    // Check if user is already signed in when page loads
     final currentUser = AuthService.currentUser;
     if (currentUser != null) {
       debugPrint('🔐 User already signed in: ${currentUser.email}');
-      // Biraz bekle ki UI hazır olsun
+      // Wait briefly for UI to be ready
       Future.delayed(const Duration(milliseconds: 500), () {
         if (mounted) {
           _handleOAuthSuccess(currentUser);
@@ -280,7 +280,7 @@ class _WelcomePageState extends State<_WelcomePage>
   }
 
   void _showCosmicWelcome(String? name) {
-    // Ezoterik karşılama mesajları - from locale
+    // Welcome greeting messages - from locale
     final cosmicGreetings = L10nService.getList(
       'greetings.cosmic_welcome',
       widget.language,
@@ -325,8 +325,9 @@ class _WelcomePageState extends State<_WelcomePage>
     // WEB: Simple static version without animations (prevents white screen)
     // The animated version causes layout/animation issues on web
     if (kIsWeb) {
-      // ignore: avoid_print
-      print('🌐 WEB: _WelcomePage building static version');
+      if (kDebugMode) {
+        debugPrint('WEB: _WelcomePage building static version');
+      }
       return Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -787,21 +788,21 @@ class _WelcomePageState extends State<_WelcomePage>
         // Show welcome overlay
         _showCosmicWelcome(userInfo.displayName);
       }
-      // userInfo null ise web'de OAuth redirect olacak
-      // authStateChanges listener basarili girisi yakalayacak
-      // Loading state'i devam etsin ta ki redirect olana kadar
+      // If userInfo is null, web will do OAuth redirect
+      // authStateChanges listener will catch successful sign-in
+      // Keep loading state until redirect completes
     } catch (e) {
       if (!mounted) return;
       final errorStr = e.toString();
 
-      // Web'de JS interop hatalarini gosterme - OAuth devam ediyor olabilir
+      // Don't show JS interop errors on web - OAuth may still be in progress
       if (errorStr.contains('TypeError') ||
           errorStr.contains('JSObject') ||
           errorStr.contains('minified')) {
         debugPrint(
-          '🍎 JS interop hatasi yakalandi - OAuth redirect bekleniyor',
+          'JS interop error caught - waiting for OAuth redirect',
         );
-        // Loading state'i devam etsin
+        // Keep loading state active
         return;
       }
 
@@ -819,8 +820,8 @@ class _WelcomePageState extends State<_WelcomePage>
       );
       setState(() => _isAppleLoading = false);
     }
-    // finally bloğunu kaldırdık - loading state'i sadece hata durumunda kapatılıyor
-    // başarılı OAuth'da redirect olacağı için loading devam etmeli
+    // Removed finally block - loading state only cleared on error
+    // On successful OAuth, redirect will happen so loading should persist
   }
 }
 
@@ -1045,7 +1046,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
       duration: const Duration(milliseconds: 800),
     )..forward();
 
-    // 2.5 saniye sonra otomatik geç
+    // Auto-advance after 2.5 seconds
     Future.delayed(const Duration(milliseconds: 2500), () {
       if (mounted) widget.onComplete();
     });
@@ -1081,7 +1082,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
           ),
           child: Stack(
             children: [
-              // Yıldızlar arka planı
+              // Stars background
               ...List.generate(50, (index) {
                 final random = index * 7.3;
                 return Positioned(
@@ -1109,7 +1110,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                 );
               }),
 
-              // Ana içerik
+              // Main content
               Center(
                 child: FadeTransition(
                   opacity: _textController,
@@ -1127,11 +1128,11 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        // Ay/Yıldız ikonu
+                        // Moon/Star icon
                         const Text('🌙', style: TextStyle(fontSize: 64)),
                         const SizedBox(height: 32),
 
-                        // Ezoterik mesaj
+                        // Welcome message
                         ShaderMask(
                           shaderCallback: (bounds) => const LinearGradient(
                             colors: [
@@ -1152,7 +1153,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                           ),
                         ),
 
-                        // İsim varsa göster
+                        // Show name if available
                         if (widget.name != null && widget.name!.isNotEmpty) ...[
                           const SizedBox(height: 16),
                           Text(
@@ -1168,7 +1169,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
 
                         const SizedBox(height: 48),
 
-                        // Alt mesaj
+                        // Bottom message
                         Text(
                           '✨ ${L10nService.get('onboarding.tap_to_continue', widget.language)} ✨',
                           style: TextStyle(

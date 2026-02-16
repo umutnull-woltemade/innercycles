@@ -1,7 +1,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 // MOON PHASE SERVICE - InnerCycles Lunar Awareness
 // ════════════════════════════════════════════════════════════════════════════
-// Pure astronomical moon phase calculation (no API, no astrology predictions).
+// Pure astronomical moon phase calculation (no API, no predictions).
 // Decorative lunar indicator for journal entries.
 // Premium: lunar correlation analysis across focus areas.
 // ════════════════════════════════════════════════════════════════════════════

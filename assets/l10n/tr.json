@@ -1595,13 +1595,13 @@
       },
       "12": {
         "title": "12. Ev - Bilinçaltı ve Gizlilik Evi",
-        "keywords": "Bilinçaltı • Spiritüel • Karma",
-        "description": "Bilinçaltınızı, gizli düşmanları, spiritüel yolculuğu ve karmik dersleri temsil eder.",
+        "keywords": "Bilinçaltı • Spiritüel • Döngü",
+        "description": "Bilinçaltınızı, gizli düşmanları, spiritüel yolculuğu ve döngüsel dersleri temsil eder.",
         "areas": [
           "Bilinçaltı dürtüler",
           "Yalnızlık zamanları",
           "Spiritüel gelişim",
-          "Karma"
+          "Döngü"
         ]
       }
     },
@@ -1787,15 +1787,15 @@
         ]
       },
       "12": {
-        "title": "Kozmik Okyanus",
-        "description": "On ikinci ev, bilinçaltını, ruhani çözülmeyi, gizli düşmanları ve karmanın tamamlanmasını yönetir. Burası sınırların eridiği ve kozmosla birleşmenin evidir.",
+        "title": "İç Okyanus",
+        "description": "On ikinci ev, bilinçaltını, ruhani çözülmeyi, gizli düşmanları ve döngülerin tamamlanmasını yönetir. Burası sınırların eridiği ve bütünle birleşmenin evidir.",
         "shadow": "Gölge boyutu: Kaçış eğilimleri, kurban rolü, bilinçaltı sabotaj.",
-        "gift": "Armağan: Kozmik bütünle birleşme ve derin şifa getirme yeteneği.",
+        "gift": "Armağan: Bütünle birleşme ve derin iyileşme getirme yeteneği.",
         "keywords": [
           "Bilinçaltı",
           "Ruhaniyet",
           "Gizli Düşmanlar",
-          "Karma",
+          "Döngü",
           "Teslimiyet"
         ]
       }
@@ -1847,7 +1847,7 @@
       },
       "12": {
         "shadow": "Gölge: Kaçış eğilimleri",
-        "gift": "Armağan: Kozmik birleşme"
+        "gift": "Armağan: İçsel birleşme"
       }
     },
     "themes": {
@@ -1862,7 +1862,7 @@
       "9": "felsefe, yüksek öğrenim ve seyahat",
       "10": "kariyer, kamusal imaj ve yaşam misyonu",
       "11": "arkadaşlık, gruplar ve geleceğe umutlar",
-      "12": "bilinçaltı, ruhaniyet ve karma"
+      "12": "bilinçaltı, ruhaniyet ve döngüler"
     },
     "sign_traits": {
       "aries": "enerjik, cesur ve girişimci bir şekilde",
@@ -1930,7 +1930,7 @@
           "description": "Temiz ve sade"
         },
         "cosmic": {
-          "label": "Kozmik",
+          "label": "Kişisel",
           "description": "Nebula ve galaksi"
         },
         "aurora": {
@@ -2017,7 +2017,7 @@
         "gratitude_time": "Minnet Zamanı",
         "letting_go": "Serbest Bırakma",
         "rest_period": "Dinlenme Dönemi",
-        "cosmic_energy": "Kozmik Enerji"
+        "cosmic_energy": "İç Enerji"
       },
       "moon_messages": {
         "aries": "Cesur adımlar atmak için ideal.",
@@ -2084,7 +2084,7 @@
     },
     "dreams": {
       "interpretation_title": "Rüya Yorumu",
-      "interpretation_subtitle": "Kozmik Rüya Rehberliği",
+      "interpretation_subtitle": "Kişisel Rüya Rehberliği",
       "symbols_tooltip": "Rüya Sembolleri",
       "example_prompts_label": "Ya da bir örnek rüya seç:",
       "input_placeholder": "Rüyanı anlat...",
@@ -2282,7 +2282,7 @@
           "flight_style": "• Süzülerek: Hayatta akışta olma hali\n• Çırpınarak: Zorlu ama başarılan hedefler\n• Yükselememe: Bastırılmış potansiyel\n• Düşme: Kontrolü kaybetme korkusu",
           "practice_label": "✨ PRATİK UYGULAMA",
           "practice": "• Korkularını yaz ve yak\n• Yüksek bir yere çık, manzaraya bak\n• \"Uçabiliyorum\" afirmasyonu tekrarla\n• Lucid rüya için niyet koy",
-          "cosmic_message_label": "💫 KOZMİK MESAJ",
+          "cosmic_message_label": "💫 KİŞİSEL MESAJ",
           "cosmic_message": "Evren sana \"kanatların var, kullan\" diyor. {element} elementi olarak {element_message}."
         },
         "falling": {
@@ -2296,7 +2296,7 @@
           "attention": "• Hayatında kontrolü kaybettiğin alanlar\n• Aşırı stres ve kaygı belirtileri\n• Temel ihtiyaçların karşılanması\n• İş-yaşam dengesi",
           "practice_label": "✨ PRATİK UYGULAMA",
           "practice": "• Çıplak ayakla toprağa bas\n• Kök çakra meditasyonu yap\n• Güvenlik ihtiyaçlarını listele\n• Nefes egzersizleri uygula",
-          "cosmic_message_label": "💫 KOZMİK MESAJ",
+          "cosmic_message_label": "💫 KİŞİSEL MESAJ",
           "cosmic_message": "Düşmek aslında bırakmaktır. Kontrol illüzyonunu bırak, evrene güven. {element} elementi olarak topraklanma pratiği özellikle önemli."
         },
         "death": {
@@ -2310,7 +2310,7 @@
           "transformation": "• Kariyer değişimi\n• İlişki dönüşümü\n• İnançların yenilenmesi\n• Kimlik evrimi\n• Yaşam tarzı değişikliği",
           "practice_label": "✨ PRATİK UYGULAMA",
           "practice": "• Neyi bırakman gerekiyor - liste yap\n• Eski fotoğrafları gözden geçir\n• Kıyafet dolabını temizle\n• \"Ölmesi gereken\" alışkanlıkları belirle",
-          "cosmic_message_label": "💫 KOZMİK MESAJ",
+          "cosmic_message_label": "💫 KİŞİSEL MESAJ",
           "cosmic_message": "Anka kuşu gibi küllerinden doğuyorsun. {sign} enerjisi bu dönüşümü güçlendiriyor. Yeni sen doğuyor!"
         },
         "chase": {
@@ -2324,7 +2324,7 @@
           "chaser": "• Korku veya kaygı\n• Bastırılmış öfke\n• Ertelenen sorumluluklar\n• Kaçınılan ilişki meseleleri\n• Karşılanmamış ihtiyaçlar",
           "practice_label": "✨ PRATİK UYGULAMA",
           "practice": "• Rüyanda dur ve kovalayıcıyla konuş\n• \"Ne istiyorsun?\" diye sor\n• Aktif hayal tekniği uygula\n• Kaçtığın konuyu belirle ve küçük adımlar at",
-          "cosmic_message_label": "💫 KOZMİK MESAJ",
+          "cosmic_message_label": "💫 KİŞİSEL MESAJ",
           "cosmic_message": "Kovalayan aslında sensin - bastırdığın bir yönün. Kucakla ve entegre et. Düşmanın dostun olabilir."
         },
         "animal": {
@@ -2338,7 +2338,7 @@
           "psychological": "• Hayvan davranışı: Senin bastırdığın davranış\n• Hayvanla ilişkin: İçgüdülerinle ilişkin\n• Hayvanın rengi: Duygusal ton\n• Hayvan saldırıyorsa: Bastırılmış enerji patlaması",
           "practice_label": "✨ PRATİK UYGULAMA",
           "practice": "• O hayvanı araştır - mitoloji, sembolizm\n• Hayvan meditasyonu yap\n• Totem kartları çek\n• O hayvanla ilgili bir nesne edin",
-          "cosmic_message_label": "💫 KOZMİK MESAJ",
+          "cosmic_message_label": "💫 KİŞİSEL MESAJ",
           "cosmic_message": "Hayvan rehberin seninle iletişim kuruyor. {element} elementi olarak bu bağlantı özellikle güçlü."
         },
         "house": {
@@ -2352,7 +2352,7 @@
           "house_states": "• Yeni ev: Yeni benlik, değişim\n• Harap ev: İhmal edilen yönler\n• Çocukluk evi: Kökler, geçmiş\n• Yabancı ev: Bilinmeyen potansiyel",
           "practice_label": "✨ PRATİK UYGULAMA",
           "practice": "• Evinizde en az gittiğiniz odayı temizle\n• Ev köşelerini enerjiyle yenile\n• İç dünyanın haritasını çiz\n• \"Ruhsal evin\" meditasyonu yap",
-          "cosmic_message_label": "💫 KOZMİK MESAJ",
+          "cosmic_message_label": "💫 KİŞİSEL MESAJ",
           "cosmic_message": "Evin sensin. Her odası bir yönün. Hepsini keşfet ve sahiplen."
         },
         "love": {
@@ -2368,7 +2368,7 @@
           "psychological": "• Anima/Animus: Karşı cins arketipi\n• Projeksiyon: Kendi özelliklerini görme\n• İhtiyaç: Karşılanmamış duygusal gereksinimler",
           "practice_label": "✨ PRATİK UYGULAMA",
           "practice": "• Aşk dili testini yap\n• İlişki ihtiyaçlarını listele\n• Özdeğer çalışması yap\n• Kalp çakrası meditasyonu",
-          "cosmic_message_label": "💫 KOZMİK MESAJ",
+          "cosmic_message_label": "💫 KİŞİSEL MESAJ",
           "cosmic_message": "Önce kendini sev. {element} elementi aşk yaşamında {element_message}."
         },
         "money": {
@@ -2384,11 +2384,11 @@
           "psychological": "• Para = Enerji alışverişi\n• Zenginlik = Öz değer algısı\n• Yoksulluk = Yetersizlik hissi\n• Bolluk = Evrenle uyum",
           "practice_label": "✨ PRATİK UYGULAMA",
           "practice": "• Bolluk afirmasyonları tekrarla\n• Şükran listesi tut\n• Para ile ilişkini sorgula\n• Cömertlik pratiği yap",
-          "cosmic_message_label": "💫 KOZMİK MESAJ",
+          "cosmic_message_label": "💫 KİŞİSEL MESAJ",
           "cosmic_message": "Evren bolluk sunar - alıcı ol. {element} elementi finansal konularda {element_message}."
         },
         "generic": {
-          "title": "{sign} KOZMİK RÜYA YORUMU",
+          "title": "{sign} KİŞİSEL RÜYA YORUMU",
           "subconscious_label": "🔮 BİLİNÇALTI MESAJI",
           "subconscious": "Anlattığın rüya, bilinçaltının sana önemli mesajlar ilettiğini gösteriyor.",
           "element_perspective_label": "💫 {element} ELEMENTİ PERSPEKTİFİ",

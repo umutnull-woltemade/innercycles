@@ -305,107 +305,95 @@ void main() {
     });
   });
 
-  group('Astrology Terminology', () {
-    test('EN zodiac names are correct (Astro.com standard)', () {
-      final zodiacNames = [
-        'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
-        'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'
+  group('Archetype Naming', () {
+    test('EN has archetype names for all 12 archetypes', () {
+      final archetypeKeys = [
+        'pioneer', 'builder', 'communicator', 'nurturer', 'performer', 'analyst',
+        'harmonizer', 'transformer', 'explorer', 'achiever', 'visionary', 'dreamer'
       ];
-      final zodiacContent = enContent['zodiac'] as Map<String, dynamic>?;
-      expect(zodiacContent, isNotNull);
+      final archetypeContent = enContent['archetype'] as Map<String, dynamic>?;
+      expect(archetypeContent, isNotNull,
+        reason: 'EN locale must have an "archetype" section');
 
-      for (final name in zodiacNames) {
-        final key = name.toLowerCase();
+      for (final key in archetypeKeys) {
         expect(
-          zodiacContent!.containsKey(key),
+          archetypeContent!.containsKey(key),
           isTrue,
-          reason: 'EN missing zodiac key: $key',
+          reason: 'EN missing archetype key: $key',
         );
         expect(
-          zodiacContent[key],
-          equals(name),
-          reason: 'EN zodiac name mismatch for $key',
-        );
-      }
-    });
-
-    test('TR zodiac names are correct', () {
-      final expectedNames = {
-        'aries': 'Koç',
-        'taurus': 'Boğa',
-        'gemini': 'İkizler',
-        'cancer': 'Yengeç',
-        'leo': 'Aslan',
-        'virgo': 'Başak',
-        'libra': 'Terazi',
-        'scorpio': 'Akrep',
-        'sagittarius': 'Yay',
-        'capricorn': 'Oğlak',
-        'aquarius': 'Kova',
-        'pisces': 'Balık',
-      };
-      final zodiacContent = trContent['zodiac'] as Map<String, dynamic>?;
-      expect(zodiacContent, isNotNull);
-
-      for (final entry in expectedNames.entries) {
-        expect(
-          zodiacContent![entry.key],
-          equals(entry.value),
-          reason: 'TR zodiac name mismatch for ${entry.key}',
+          (archetypeContent[key] as String).isNotEmpty,
+          isTrue,
+          reason: 'EN archetype name is empty for $key',
         );
       }
     });
 
-    test('DE zodiac names are correct', () {
-      final expectedNames = {
-        'aries': 'Widder',
-        'taurus': 'Stier',
-        'gemini': 'Zwillinge',
-        'cancer': 'Krebs',
-        'leo': 'Löwe',
-        'virgo': 'Jungfrau',
-        'libra': 'Waage',
-        'scorpio': 'Skorpion',
-        'sagittarius': 'Schütze',
-        'capricorn': 'Steinbock',
-        'aquarius': 'Wassermann',
-        'pisces': 'Fische',
-      };
-      final zodiacContent = deContent['zodiac'] as Map<String, dynamic>?;
-      expect(zodiacContent, isNotNull);
+    test('TR has archetype names for all 12 archetypes', () {
+      final archetypeKeys = [
+        'pioneer', 'builder', 'communicator', 'nurturer', 'performer', 'analyst',
+        'harmonizer', 'transformer', 'explorer', 'achiever', 'visionary', 'dreamer'
+      ];
+      final archetypeContent = trContent['archetype'] as Map<String, dynamic>?;
+      expect(archetypeContent, isNotNull,
+        reason: 'TR locale must have an "archetype" section');
 
-      for (final entry in expectedNames.entries) {
+      for (final key in archetypeKeys) {
         expect(
-          zodiacContent![entry.key],
-          equals(entry.value),
-          reason: 'DE zodiac name mismatch for ${entry.key}',
+          archetypeContent!.containsKey(key),
+          isTrue,
+          reason: 'TR missing archetype key: $key',
+        );
+        expect(
+          (archetypeContent[key] as String).isNotEmpty,
+          isTrue,
+          reason: 'TR archetype name is empty for $key',
         );
       }
     });
 
-    test('FR zodiac names are correct', () {
-      final expectedNames = {
-        'aries': 'Bélier',
-        'taurus': 'Taureau',
-        'gemini': 'Gémeaux',
-        'cancer': 'Cancer',
-        'leo': 'Lion',
-        'virgo': 'Vierge',
-        'libra': 'Balance',
-        'scorpio': 'Scorpion',
-        'sagittarius': 'Sagittaire',
-        'capricorn': 'Capricorne',
-        'aquarius': 'Verseau',
-        'pisces': 'Poissons',
-      };
-      final zodiacContent = frContent['zodiac'] as Map<String, dynamic>?;
-      expect(zodiacContent, isNotNull);
+    test('DE has archetype names for all 12 archetypes', () {
+      final archetypeKeys = [
+        'pioneer', 'builder', 'communicator', 'nurturer', 'performer', 'analyst',
+        'harmonizer', 'transformer', 'explorer', 'achiever', 'visionary', 'dreamer'
+      ];
+      final archetypeContent = deContent['archetype'] as Map<String, dynamic>?;
+      expect(archetypeContent, isNotNull,
+        reason: 'DE locale must have an "archetype" section');
 
-      for (final entry in expectedNames.entries) {
+      for (final key in archetypeKeys) {
         expect(
-          zodiacContent![entry.key],
-          equals(entry.value),
-          reason: 'FR zodiac name mismatch for ${entry.key}',
+          archetypeContent!.containsKey(key),
+          isTrue,
+          reason: 'DE missing archetype key: $key',
+        );
+        expect(
+          (archetypeContent[key] as String).isNotEmpty,
+          isTrue,
+          reason: 'DE archetype name is empty for $key',
+        );
+      }
+    });
+
+    test('FR has archetype names for all 12 archetypes', () {
+      final archetypeKeys = [
+        'pioneer', 'builder', 'communicator', 'nurturer', 'performer', 'analyst',
+        'harmonizer', 'transformer', 'explorer', 'achiever', 'visionary', 'dreamer'
+      ];
+      final archetypeContent = frContent['archetype'] as Map<String, dynamic>?;
+      expect(archetypeContent, isNotNull,
+        reason: 'FR locale must have an "archetype" section');
+
+      for (final key in archetypeKeys) {
+        expect(
+          archetypeContent!.containsKey(key),
+          isTrue,
+          reason: 'FR missing archetype key: $key',
+        );
+        expect(
+          (archetypeContent[key] as String).isNotEmpty,
+          isTrue,
+          reason: 'FR archetype name is empty for $key',
         );
       }
     });

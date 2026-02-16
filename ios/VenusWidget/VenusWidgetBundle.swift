@@ -5,7 +5,7 @@ import WidgetKit
 import SwiftUI
 
 @main
-struct VenusWidgetBundle: WidgetBundle {
+struct InnerCyclesWidgetBundle: WidgetBundle {
     var body: some Widget {
         DailyReflectionWidget()
         MoodInsightWidget()

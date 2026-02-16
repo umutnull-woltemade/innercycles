@@ -148,11 +148,11 @@ class ReferralService {
 
     return ReferralStatus(
       headline: isEn
-          ? 'Share & Unlock Premium'
-          : 'Paylaş ve Premium Aç',
+          ? 'Share & Unlock Premium Trial'
+          : 'Paylaş ve Premium Dene',
       subtitle: isEn
-          ? 'Share $sharesRemaining more times to unlock 7 days free'
-          : '$sharesRemaining kez daha paylaş, 7 gün ücretsiz kazan',
+          ? 'Share $sharesRemaining more times to unlock a 7-day free trial. No subscription required — trial ends automatically.'
+          : '$sharesRemaining kez daha paylaş, 7 günlük ücretsiz deneme kazan. Abonelik gerektirmez — deneme otomatik sona erer.',
       progress: shareCount / sharesToUnlock,
       isUnlocked: false,
     );
