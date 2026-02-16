@@ -1060,7 +1060,7 @@
             },
             "calculate_personal_profile": {
                 "title": "Berechne dein Persönliches Profil",
-                "description": "Sieh über dein Sonnenzeichen hinaus."
+                "description": "Sieh über dein Kernprofil hinaus."
             },
             "relationship_compatibility": {
                 "title": "Beziehungskompatibilität",
@@ -1555,7 +1555,7 @@
             "which_dreams_this_sign_sees": "Welche Träume haben Menschen dieses Zeichens am häufigsten?",
             "special_message_for_today": "Spezielle Botschaft für Heute",
             "cosmic_guidance": "Erhalte persönliche Führung.",
-            "beyond_your_sun_sign": "Was ist jenseits deiner {sign} Sonne?",
+            "beyond_your_sun_sign": "Was steckt hinter deiner {sign} Kernidentität?",
             "where_is_your_ruler": "Wo ist dein Herrscherplanet jetzt?",
             "reading_aligned_with_energy": "Eine Lesung im Einklang mit {sign} Energie.",
             "compatibility_with": "Kompatibilität mit {sign}",
@@ -3262,8 +3262,8 @@
         "self_awareness_a1_4": "Rarely",
         "self_awareness_q2": "Do you know your personal profile?",
         "self_awareness_a2_1": "I know it in detail",
-        "self_awareness_a2_2": "I know my Sun and Moon sign",
-        "self_awareness_a2_3": "Only my Sun sign",
+        "self_awareness_a2_2": "I know my core and emotional style",
+        "self_awareness_a2_3": "Only my core personality",
         "self_awareness_a2_4": "I've never looked",
         "self_awareness_a3_1": "Absolutely, it's important!",
         "self_awareness_a3_2": "Sometimes I pay attention",
@@ -3423,7 +3423,7 @@
         "aspects": "Aspekte",
         "cosmic_map_title": "Die persönliche Karte deiner Seele",
         "cosmic_map_description": "Dieses Einblick ist ein Abbild des Himmels zum Zeitpunkt deiner Geburt – aber es ist so viel mehr als nur eine Momentaufnahme. Es ist eine Landkarte der Energien, die deine Seele geprägt haben, eine Blaupause deiner tiefsten Potenziale und eine Einladung, dich selbst auf persönlicher Ebene zu verstehen.",
-        "your_sun": "Deine Sonne",
+        "your_sun": "Dein Kernwesen",
         "house_interpretation": "Häuser-Interpretation"
     },
     "insights": {
