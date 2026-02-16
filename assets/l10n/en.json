@@ -444,7 +444,7 @@
             "challenges": "Challenges",
             "love_relationships": "Love & Relationships",
             "ancient_secret_title": "Ancient Secret of Numbers",
-            "ancient_secret_desc": "Numerology is an ancient reflection system using mathematical symbolism. From Pythagoras to Kabbalah, many cultural traditions explored the meaning of numbers. Your birth date and name can be used as themes for self-reflection and personal exploration. Each number represents symbolic qualities to consider. This is a tool for introspection, not reflection.",
+            "ancient_secret_desc": "Numerology is an ancient reflection system using mathematical symbolism. From Pythagoras to ancient traditions, many cultures explored the meaning of numbers. Your birth date and name can be used as themes for self-reflection and personal exploration. Each number represents symbolic qualities to consider. This is a tool for introspection, not reflection.",
             "number_depth_title": "Depth of Number {number}",
             "kadim_title": "Eternal Dance of Numbers",
             "kadim_content": "Since Pythagoras, many traditions have explored symbolic meanings of numbers. Your life path number is a reflection theme - a way to think about personal qualities and life patterns. These symbolic associations can be useful for journaling and self-discovery.",
@@ -1786,7 +1786,7 @@
                 "description": "Wisdom of numbers."
             },
             "kabbalah": {
-                "title": "Kabbalah",
+                "title": "Symbolic Numbers",
                 "description": "Cards and Tree of Life connection."
             },
             "aura_reading": {
@@ -1854,7 +1854,7 @@
                 "description": "Other exploration paths"
             },
             "kabbalah_numbers": {
-                "title": "Kabbalah Numbers",
+                "title": "Number Patterns",
                 "description": "Ancient origin of numbers."
             },
             "personal_perspective": {
@@ -2083,7 +2083,7 @@
                 "description": "Chakra balancing practices."
             },
             "kabbalah_sefirot": {
-                "title": "Kabbalah Sefirot",
+                "title": "Life Dimensions",
                 "description": "East-West energy maps."
             },
             "east_west_energy_maps": {
@@ -2133,7 +2133,7 @@
                 "description": "Reflective message for this month."
             },
             "kabbalah_meditation": {
-                "title": "Kabbalah Meditation",
+                "title": "Contemplative Practice",
                 "description": "Sefirot journey."
             },
             "other_practices": {
@@ -3083,10 +3083,10 @@
         "archetype_analysis": "Archetype Analysis",
         "discovery_analysis": "Numerology Analysis",
         "wellness_analysis": "Aura Analysis",
-        "wisdom_analysis": "Kabbalah Analysis",
+        "wisdom_analysis": "Symbolic Analysis",
         "enter_birth_info_discovery": "Enter your birth information\nto see your life path number",
         "enter_birth_info_wellness": "Enter your birth information\nto discover your aura color",
-        "enter_birth_info_wisdom": "Enter your birth information\nto see your Kabbalah chart"
+        "enter_birth_info_wisdom": "Enter your birth information\nto see your personal number chart"
     },
     "tooltips": {
         "personal_profile": "Your personal self-awareness map based on birth data",
@@ -3503,7 +3503,7 @@
         "famous_charts": "Famous personal profiles",
         "articles": "Articles",
         "cosmic_wisdom": "Personal wisdom",
-        "kabbalah": "Kabbalah",
+        "kabbalah": "Number Wisdom",
         "master_mystery": "The mystery of 11, 22, 33",
         "best_times": "Best times",
         "energy_practices": "Energy practices",

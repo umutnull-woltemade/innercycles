@@ -1725,7 +1725,7 @@ class GenisletilmisAlintilar {
     ),
     ShareableCard(
       emoji: '💑',
-      quote: 'Ruh eşi bulmak değil, ruhunu paylaşmaktır.',
+      quote: 'Derin bağ kurmak, kendini paylaşmaktır.',
       category: 'Birlik',
     ),
     ShareableCard(

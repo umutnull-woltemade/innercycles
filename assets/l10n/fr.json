@@ -83,7 +83,7 @@
         "cosmic_identity": "Votre Identité Personnelle",
         "enter_info_subtitle": "Entrez vos informations pour vous connecter à votre monde intérieur",
         "info_box_text": "Remplissez toutes les informations pour débloquer toutes les couches de votre carte personnelle.",
-        "will_be_calculated": "Sera Calculé Pour Vous",
+        "will_be_calculated": "Votre journal vous attend",
         "start_cosmic_journey": "Commencez Votre Voyage Personnel",
         "tap_to_continue": "Appuyez pour continuer",
         "connect_with_apple": "Continuer avec Apple",
@@ -466,9 +466,9 @@
             "kadim_content": "Since Pythagoras, sages have known that numbers carry the hidden language of your inner self. Your life path number is not just a digit - it is the vibration your inner self brought into this world, the unique melody your inner self gave you. To hear this melody, you first need silence.",
             "brand_text": "Numerology — InnerCycles",
             "karmic_13_desc": "A growth pattern arising from laziness and irresponsibility. Must be balanced through hard work and discipline in this life.",
-            "karmic_14_desc": "A debt from misusing freedom. Learning responsibility and moderation is required in this life.",
-            "karmic_16_desc": "A debt from ego and relationship issues. Requires humility and inner transformation.",
-            "karmic_19_desc": "A debt from misusing power and authority. Learning the balance of independence and helping others is required.",
+            "karmic_14_desc": "A growth pattern from misusing freedom. Learning responsibility and moderation is the path forward.",
+            "karmic_16_desc": "A growth pattern from ego and relationship issues. Requires humility and inner transformation.",
+            "karmic_19_desc": "A growth pattern from misusing power and authority. Learning the balance of independence and helping others is the path forward.",
             "karmic_default_desc": "This number carries a growth pattern and requires certain lessons to be learned in this life."
         },
         "solar_return": {

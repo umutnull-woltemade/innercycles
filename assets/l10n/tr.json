@@ -83,7 +83,7 @@
         "cosmic_identity": "Kişisel Kimliğin",
         "enter_info_subtitle": "Kişisel profilini oluşturmak için bilgilerini gir",
         "info_box_text": "Kişisel haritanın tüm katmanlarını açmak için bilgilerini eksiksiz gir.",
-        "will_be_calculated": "Senin İçin Çözümlenecekler",
+        "will_be_calculated": "Günlüğün seni bekliyor",
         "start_cosmic_journey": "Kişisel Yolculuğuna Başla",
         "tap_to_continue": "Dokunarak devam et",
         "connect_with_apple": "Apple ile devam et",
@@ -480,7 +480,7 @@
             "shadow_side_footer": "Bu yonler farkindalikla donusturulebilir. Golgeyi kabullenmek, ona guc vermek degil - onu entegre etmektir.",
             "all_life_path_numbers": "Tum Yasam Yolu Sayilari",
             "master_numbers": "Master Sayilar",
-            "lessons_from_past_lives": "Gecmis yasamlardan tasinan dersler",
+            "lessons_from_past_lives": "Derinden köken alan dersler",
             "yours": "SENIN",
             "karmic_debt_message": "Haritanda {debts} döngüsel dersi var. Detaylar icin dokun.",
             "keywords": "Anahtar Kelimeler",
@@ -488,7 +488,7 @@
             "challenges": "Zorluklar",
             "love_relationships": "Ask ve Iliski",
             "ancient_secret_title": "Sayilarin Kadim Sirri",
-            "ancient_secret_desc": "Numeroloji, matematiksel sembolizm kullanan kadim bir refleksiyon sistemidir. Pisagor'dan Kabala'ya, birçok kültürel gelenek sayıların anlamını keşfetti. Doğum tarihin ve ismin, öz-yansıtma ve kişisel keşif için temalar olarak kullanılabilir. Her sayı düşünülecek sembolik nitelikleri temsil eder. Bu bir içe bakış aracıdır, tahmin değil.",
+            "ancient_secret_desc": "Numeroloji, matematiksel sembolizm kullanan kadim bir refleksiyon sistemidir. Pisagor'dan kadim geleneklere, birçok kültürel gelenek sayıların anlamını keşfetti. Doğum tarihin ve ismin, öz-yansıtma ve kişisel keşif için temalar olarak kullanılabilir. Her sayı düşünülecek sembolik nitelikleri temsil eder. Bu bir içe bakış aracıdır, tahmin değil.",
             "number_depth_title": "{number} Sayisinin Derinligi",
             "kadim_title": "Sayilarin Ezeli Dansi",
             "kadim_content": "Pisagor'dan bu yana bilgeler sayilarin yaşamın gizli kalıplarını tasidini bilir. Yasam yolu sayin sadece bir rakam degil - bu dunyaya getirdigin titresim, sana özgü benzersiz melodi. Bu melodiyi duyabilmek icin once sessizlige ihtiyacin var.",
@@ -1838,7 +1838,7 @@
                 "description": "Sayıların bilgeliği."
             },
             "kabbalah": {
-                "title": "Kabala",
+                "title": "Sembolik Sayılar",
                 "description": "Refleksiyon ve Hayat Ağacı bağlantısı."
             },
             "aura_reading": {
@@ -1916,7 +1916,7 @@
                 "description": "Refleksiyon terimleri"
             },
             "kabbalah_numbers": {
-                "title": "Kabala Sayıları",
+                "title": "Sayı Örüntüleri",
                 "description": "Sayıların mistik kökeni."
             },
             "personal_perspective": {
@@ -2161,7 +2161,7 @@
                 "description": "Chakra dengeleme pratikleri."
             },
             "kabbalah_sefirot": {
-                "title": "Kabala Sefirotları",
+                "title": "Yaşam Boyutları",
                 "description": "Doğu-Batı enerji haritaları."
             },
             "east_west_energy_maps": {
@@ -2211,7 +2211,7 @@
                 "description": "Bu ay için kişisel mesaj."
             },
             "kabbalah_meditation": {
-                "title": "Kabala Meditasyonu",
+                "title": "Tefekkür Pratiği",
                 "description": "Sefirot yolculuğu."
             },
             "other_practices": {
@@ -2758,7 +2758,7 @@
         "example_prompts_label": "Örnek Rüya Paylaşımları:",
         "input_placeholder": "Rüyanı detaylı anlat... (Enter ile gönder, Shift+Enter yeni satır)",
         "oracle": {
-            "title": "Ruya Orakeli",
+            "title": "Rüya Rehberi",
             "new_dream": "Yeni Ruya",
             "describe_dream": "Ruyani Anlat",
             "voice_input_soon": "Sesli giris yakinda aktif olacak",
@@ -2835,7 +2835,7 @@
                 "quick": "Hizli",
                 "quick_desc": "3 Dakikada Yorum"
             },
-            "share_hashtags": "- Ruya Orakeli\n#RuyaYorumu #Bilincalti",
+            "share_hashtags": "- Rüya Rehberi\n#RuyaYorumu #Bilincalti",
             "symbol": {
                 "personal_context": "Kisisel Baglam",
                 "light_side": "Isik Yonu",
@@ -3169,10 +3169,10 @@
         "archetype_analysis": "Arketip Çözümlemesi",
         "discovery_analysis": "Numeroloji Analizi",
         "wellness_analysis": "Aura Analizi",
-        "wisdom_analysis": "Kabala Analizi",
+        "wisdom_analysis": "Sembolik Analiz",
         "enter_birth_info_discovery": "Hayat yolu sayınızı görmek için\nönce doğum bilgilerinizi girin",
         "enter_birth_info_wellness": "Aura renginizi keşfetmek için\nönce doğum bilgilerinizi girin",
-        "enter_birth_info_wisdom": "Kabala haritanızı görmek için\nönce doğum bilgilerinizi girin"
+        "enter_birth_info_wisdom": "Kişisel sayı haritanızı görmek için\nönce doğum bilgilerinizi girin"
     },
     "tooltips": {
         "personal_profile": "Doğum bilgilerinize göre kişisel haritanız",
@@ -3586,7 +3586,7 @@
         "famous_charts": "Ünlü kişisel profilleri",
         "articles": "Makaleler",
         "cosmic_wisdom": "Kişisel bilgelik",
-        "kabbalah": "Kabala",
+        "kabbalah": "Sayı Bilgeliği",
         "master_mystery": "11, 22, 33 gizemi",
         "best_times": "En iyi zamanlar",
         "energy_practices": "Enerji pratikleri",

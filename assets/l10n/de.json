@@ -83,7 +83,7 @@
         "cosmic_identity": "Deine Persönliches Profil",
         "enter_info_subtitle": "Gib deine Informationen ein, um dein persönliches Profil zu erstellen",
         "info_box_text": "Fülle alle Informationen aus, um alle Ebenen deiner persönlichen Karte freizuschalten.",
-        "will_be_calculated": "Wird Für Sie Berechnet",
+        "will_be_calculated": "Dein Journal erwartet dich",
         "start_cosmic_journey": "Beginne Deine Persönliche Reise",
         "tap_to_continue": "Tippen zum Fortfahren",
         "connect_with_apple": "Mit Apple fortfahren",
@@ -453,7 +453,7 @@
             "shadow_side_footer": "These aspects can be transformed with awareness. Accepting the shadow is not empowering it - it is integrating it.",
             "all_life_path_numbers": "All Life Path Numbers",
             "master_numbers": "Master Numbers",
-            "lessons_from_past_lives": "Lessons carried from past lives",
+            "lessons_from_past_lives": "Deep-rooted lessons carried forward",
             "yours": "YOURS",
             "karmic_debt_message": "Your chart has {debts} growth lesson. Tap for details.",
             "keywords": "Keywords",
@@ -1117,7 +1117,7 @@
                 "description": "Weisheit der Zahlen."
             },
             "kabbalah": {
-                "title": "Kabbala",
+                "title": "Symbolische Zahlen",
                 "description": "Reflection Card und Lebensbaum-Verbindung."
             },
             "aura_reading": {
@@ -1177,7 +1177,7 @@
                 "description": "Andere Erkundungspfade"
             },
             "kabbalah_numbers": {
-                "title": "Kabbala-Zahlen",
+                "title": "Zahlenmuster",
                 "description": "Mystischer Ursprung der Zahlen."
             },
             "card_insight": {
@@ -1329,11 +1329,11 @@
                 "description": "Erhalte mehr Einsicht."
             },
             "kabbalah_sefirot": {
-                "title": "Kabbala Sefirot",
+                "title": "Lebensdimensionen",
                 "description": "Pfade auf dem Lebensbaum."
             },
             "kabbalah_meditation": {
-                "title": "Kabbala-Meditation",
+                "title": "Kontemplative Praxis",
                 "description": "Reise auf dem Lebensbaum."
             },
             "moon_calendar": {
@@ -2028,7 +2028,7 @@
                 "tells2": "Deine natürlichen Talente und Stärken.",
                 "tells3": "Herausforderungen und Lektionen, denen du begegnen wirst.",
                 "tells4": "Wiederkehrende Themen in deinem Leben.",
-                "note1": "Die Lebenswegzahl ist kein Schicksal.",
+                "note1": "Die Lebenswegzahl ist kein festgelegter Pfad.",
                 "note2": "Sie zeigt Potenzial, Entscheidungen liegen bei dir.",
                 "note3": "Jede Zahl hat sowohl Licht- als auch Schattenseiten.",
                 "suggestion": "Was sagt die tägliche Zahlenenergie?"
@@ -2448,10 +2448,10 @@
         "archetype_analysis": "Persönlichkeitstyp-Analyse",
         "discovery_analysis": "Numerologie-Analyse",
         "wellness_analysis": "Aura-Analyse",
-        "wisdom_analysis": "Kabbala-Analyse",
+        "wisdom_analysis": "Symbolische Analyse",
         "enter_birth_info_discovery": "Geben Sie Ihre Geburtsdaten ein\num Ihre Lebensweg-Zahl zu sehen",
         "enter_birth_info_wellness": "Geben Sie Ihre Geburtsdaten ein\num Ihre Aura-Farbe zu entdecken",
-        "enter_birth_info_wisdom": "Geben Sie Ihre Geburtsdaten ein\num Ihre Kabbala-Karte zu sehen"
+        "enter_birth_info_wisdom": "Geben Sie Ihre Geburtsdaten ein\num Ihre persönliche Zahlenkarte zu sehen"
     },
     "tooltips": {
         "personal_profile": "Deine persönliche persönliche Karte basierend auf Geburtsdaten",
@@ -3504,7 +3504,7 @@
         "famous_charts": "Famous personal profiles",
         "articles": "Articles",
         "cosmic_wisdom": "Personal wisdom",
-        "kabbalah": "Kabbalah",
+        "kabbalah": "Zahlenweisheit",
         "master_mystery": "The mystery of 11, 22, 33",
         "best_times": "Best times",
         "energy_practices": "Energy practices",
