@@ -1791,7 +1791,7 @@
       "9": "philosophy, higher education and distant places",
       "10": "career, social status and goals",
       "11": "friendships, groups and ideals",
-      "12": "subconscious, spirituality and karma"
+      "12": "subconscious, inner wisdom and growth patterns"
     },
     "sign_traits": {
       "aries": "in an energetic, brave and enterprising way",
@@ -4492,7 +4492,7 @@
     "moon": "Moon",
     "ascendant": "Rising",
     "soul_purpose": "Soul Purpose",
-    "karmic_lessons": "Karmic Lessons",
+    "karmic_lessons": "Growth Lessons",
     "spiritual_gifts": "Spiritual Gifts",
     "past_life_indicators": "Past Life Indicators",
     "evolutionary_path": "Evolutionary Path",
@@ -5310,12 +5310,12 @@
         "subtitle": "Decode your hidden programs"
       },
       "karma_lessons": {
-        "title": "Your Karma Lessons",
-        "subtitle": "What your soul needs to learn"
+        "title": "Your Growth Lessons",
+        "subtitle": "What you need to learn"
       },
       "soul_contract": {
-        "title": "Your Soul Contract",
-        "subtitle": "The agreement made before birth"
+        "title": "Your Life Blueprint",
+        "subtitle": "The patterns that shape your journey"
       },
       "inner_power": {
         "title": "Your Inner Power",
@@ -5394,8 +5394,8 @@
         "subtitle": "Discover your relationship patterns"
       },
       "relationship_karma": {
-        "title": "Your Relationship Karma",
-        "subtitle": "Karmic patterns in your relationships"
+        "title": "Your Relationship Patterns",
+        "subtitle": "Growth patterns in your relationships"
       },
       "celebrity_twin": {
         "title": "Your Celebrity Twin",
