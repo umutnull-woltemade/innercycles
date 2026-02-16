@@ -3627,7 +3627,7 @@
     "apple_error_timeout": "The request timed out. Please try again.",
     "apple_error_server": "Apple servers are temporarily unavailable. Please try again later.",
     "unknown_error": "An error occurred. Please try again.",
-    "start_cosmic_journey": "Start your cosmic journey",
+    "start_cosmic_journey": "Start your personal journey",
     "continue_with_apple": "Continue with Apple",
     "continue_with_email": "Continue with Email",
     "skip_for_now": "Skip for now",
@@ -4046,7 +4046,7 @@
         "calculating_moon": "Calculating moon phase influence...",
         "consulting_wisdom": "Consulting ancient wisdom...",
         "analyzing_shadow": "Analyzing shadow and light...",
-        "reading_cosmic": "Reading cosmic timing...",
+        "reading_cosmic": "Reading optimal timing...",
         "shaping_interpretation": "Shaping dream interpretation..."
       },
       "sections": {
@@ -8772,8 +8772,8 @@
     "planets": "Planets",
     "houses": "Houses",
     "aspects": "Aspects",
-    "cosmic_map_title": "Your Soul's Self-Awareness Map",
-    "cosmic_map_description": "This profile is a snapshot of the moment you were born -- but it's so much more. It's a coded map of the potentials, lessons, and gifts your soul brought into this world. Each dimension is an inner voice, each sign an energy pattern, each house a life domain. This profile doesn't limit you -- it reminds you of who you are.",
+    "cosmic_map_title": "Your Personal Self-Awareness Map",
+    "cosmic_map_description": "This profile is a snapshot of the moment you were born -- but it's so much more. It's a map of the potentials, lessons, and gifts you brought into this world. Each dimension is an inner voice, each pattern an energy signature, each house a life domain. This profile doesn't limit you -- it reminds you of who you are.",
     "your_sun": "Your Sun",
     "house_interpretation": "House Interpretation",
     "sun_sign_summary": {
@@ -8789,7 +8789,7 @@
       "capricorn": "With the disciplined energy of [[Earth]] element, [[Capricorn]] has awareness of success and responsibility. Under [[Saturn]] rulership, structure and boundaries are important.",
       "aquarius": "With the innovative energy of [[Air]] element, [[Aquarius]] works for independence and humanity. Under [[Uranus]] rulership, revolutionary ideas stand out.",
       "pisces": "With the mystical energy of [[Water]] element, [[Pisces]] is open to intuition and spiritual connections. Under [[Neptune]] rulership, imagination is limitless.",
-      "default": "Your sign reflects cosmic energies in a unique way."
+      "default": "Your sign reflects personal energies in a unique way."
     },
     "sun_sign_interpretation": {
       "aries": "Having [[Sun]] in [[Aries]] shows that at the core of your soul, you are a warrior and pioneer. This energy under [[Mars]] rulership gives you the courage to take the first step in life.\n\nThis [[Cardinal]] sign has natural talent for new beginnings and leadership. Combined with [[Fire]] element, your passion and energy affect and motivate those around you.\n\nOn your evolutionary journey, [[ego]] and individuality themes are important. Your natural relationship with the [[1st House]] emphasizes the need to discover yourself and express your authentic identity.\n\nBecause [[Sun]] is \"exalted\" here, your life force and will are extremely strong. The [[shadow]] aspect to watch is the tendency toward impatience and acting without thinking.",
