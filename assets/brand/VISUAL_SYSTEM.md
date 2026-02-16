@@ -1,11 +1,11 @@
-# Venus One Visual System
-## Premium Astrology App - Production Ready Assets
+# InnerCycles Visual System
+## Premium Journaling App - Production Ready Assets
 
 ---
 
 ## 1. TRANSPARENT PLANET (BASE ASSET)
 
-**File**: `venus-logo/png/venus-planet-transparent.png`
+**File**: `app-logo/png/app-planet-transparent.png`
 - Format: PNG with alpha channel
 - Background: 100% transparent
 - Planet preserved with all surface details
@@ -16,15 +16,15 @@
 ## 2. APP STORE ICON VARIANTS
 
 ### Variant A - GLOW VERSION
-**File**: `venus-logo/png/venus-appicon-glow-1024.png`
+**File**: `app-logo/png/app-appicon-glow-1024.png`
 - Background: Deep space blue (#0B0F1A)
 - Soft violet/purple glow around planet (~20% opacity)
 - Color: #8B5CF6 (violet)
-- Premium, mystical feel
-- Use for: Emotional, cosmic-themed marketing
+- Premium, premium feel
+- Use for: Emotional, wellness-themed marketing
 
 ### Variant B - NO GLOW VERSION (RECOMMENDED)
-**File**: `venus-logo/png/venus-appicon-noglow-1024.png`
+**File**: `app-logo/png/app-appicon-noglow-1024.png`
 - Background: Deep space blue (#0B0F1A)
 - No glow - clean, sharp edge
 - Ultra-minimal Apple-style
@@ -127,19 +127,19 @@ curve: easeInOut
 ### For GLOW Icon Campaign
 - Dark cosmic UI theme
 - Subtle glowing accents
-- Emotional, mystical tone
-- Keywords: "Cosmic guidance", "Destiny awaits"
+- Emotional, reflective tone
+- Keywords: "Personal insights", "Discover yourself"
 
 ### For NO-GLOW Icon Campaign
 - Cleaner, minimal UI
 - Flat accents
 - Calm, confident, premium tone
-- Keywords: "Premium astrology", "Personal insights"
+- Keywords: "Premium journaling", "Personal insights"
 
 ### Screenshot Requirements
 - Consistent with icon style
 - Readable at small sizes
-- Emphasize "personal cosmic guidance"
+- Emphasize "personal journaling experience"
 - 6.5" iPhone size (1284 x 2778)
 
 ---
@@ -191,21 +191,21 @@ curve: easeInOut
 
 ### File Locations
 ```
-assets/brand/venus-logo/
+assets/brand/app-logo/
 ├── png/
-│   ├── venus-planet-transparent.png
-│   ├── venus-appicon-glow-1024.png
-│   ├── venus-appicon-noglow-1024.png
-│   ├── venus-logo-48.png
-│   ├── venus-logo-72.png
-│   ├── venus-logo-96.png
-│   ├── venus-logo-120.png
-│   ├── venus-logo-144.png
-│   ├── venus-logo-180.png
-│   ├── venus-logo-192.png
-│   ├── venus-logo-256.png
-│   ├── venus-logo-512.png
-│   └── venus-logo-1024.png
+│   ├── app-planet-transparent.png
+│   ├── app-appicon-glow-1024.png
+│   ├── app-appicon-noglow-1024.png
+│   ├── app-logo-48.png
+│   ├── app-logo-72.png
+│   ├── app-logo-96.png
+│   ├── app-logo-120.png
+│   ├── app-logo-144.png
+│   ├── app-logo-180.png
+│   ├── app-logo-192.png
+│   ├── app-logo-256.png
+│   ├── app-logo-512.png
+│   └── app-logo-1024.png
 ├── pwa/
 │   ├── icon-48x48.png
 │   ├── icon-72x72.png
@@ -214,7 +214,7 @@ assets/brand/venus-logo/
 │   ├── icon-192x192.png
 │   ├── icon-384x384.png
 │   └── icon-512x512.png
-└── VENUS_ONE_VISUAL_SYSTEM.md (this file)
+└── VISUAL_SYSTEM.md (this file)
 ```
 
 ---
@@ -231,4 +231,4 @@ assets/brand/venus-logo/
 ---
 
 *Last updated: 2026-01-31*
-*Venus One - Premium Astrology App*
+*InnerCycles - Premium Journaling App*

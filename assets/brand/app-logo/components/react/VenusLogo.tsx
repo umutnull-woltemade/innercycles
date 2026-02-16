@@ -13,7 +13,7 @@ const VenusLogoSVG = ({ size = 48 }: { size: number }) => (
     width={size}
     height={size}
     role="img"
-    aria-label="Venus One"
+    aria-label="InnerCycles"
   >
     <defs>
       <radialGradient id="venusCore" cx="35%" cy="30%" r="65%" fx="30%" fy="25%">
@@ -64,8 +64,8 @@ export function VenusLogo({
 
   return (
     <img
-      src="/brand/venus-logo.svg"
-      alt="Venus One"
+      src="/brand/app-logo.svg"
+      alt="InnerCycles"
       width={size}
       height={size}
       className={className}

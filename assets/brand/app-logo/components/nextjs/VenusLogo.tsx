@@ -13,8 +13,8 @@ export function VenusLogo({
 }: VenusLogoProps) {
   return (
     <Image
-      src="/brand/venus-logo.svg"
-      alt="Venus One"
+      src="/brand/app-logo.svg"
+      alt="InnerCycles"
       width={size}
       height={size}
       priority={priority}

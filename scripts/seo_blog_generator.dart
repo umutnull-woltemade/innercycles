@@ -1,7 +1,7 @@
 #!/usr/bin/env dart
 // ignore_for_file: avoid_print
 
-/// SEO Blog Generator for Venus One
+/// SEO Blog Generator for InnerCycles
 ///
 /// Generates SEO-optimized blog content for various astrology topics.
 /// Usage: `dart run scripts/seo_blog_generator.dart [topic] [options]`
@@ -68,7 +68,7 @@ void main(List<String> args) {
 
 void printUsage() {
   print('''
-SEO Blog Generator for Venus One
+SEO Blog Generator for InnerCycles
 
 Usage: dart run scripts/seo_blog_generator.dart <topic> [options]
 
@@ -250,11 +250,11 @@ Take care of your physical and mental wellbeing today. As a ${data['modality']} 
 
 ## Cosmic Advice
 
-Remember that your birth chart is unique. While this general horoscope provides guidance, your personal planetary placements offer deeper insights. [Explore your complete birth chart](/birth-chart) for personalized cosmic guidance.
+Remember that your birth chart is unique. While this general horoscope provides guidance, your personal planetary placements offer deeper insights. [Explore your complete birth chart](/birth-chart) for personalized self-reflection.
 
 ---
 
-*Get your personalized daily horoscope based on your complete birth chart with [Venus One](https://venusone.app).*
+*Get your personalized daily horoscope based on your complete birth chart with [InnerCycles](https://innercycles.app).*
 ''';
 
   print(article);
@@ -337,7 +337,7 @@ This overview captures the essence of ${data['name']}, but your personal birth c
 
 ---
 
-*Explore the depths of your astrological profile with [Venus One](https://venusone.app).*
+*Explore the depths of your astrological profile with [InnerCycles](https://innercycles.app).*
 ''';
 
   print(article);
@@ -405,7 +405,7 @@ The house position of your $planetName in ${data['name']} adds another layer of 
 - **9th House:** Philosophy and expansion
 - **10th House:** Career and public life
 - **11th House:** Community and future vision
-- **12th House:** Spirituality and the unconscious
+- **12th House:** Inner life and the unconscious
 
 ## Famous People with $planetName in ${data['name']}
 
@@ -419,7 +419,7 @@ $planetName in ${data['name']} is just one piece of your astrological puzzle. Yo
 
 ---
 
-*Unlock the secrets of your cosmic blueprint with [Venus One](https://venusone.app).*
+*Unlock the insights of your personal blueprint with [InnerCycles](https://innercycles.app).*
 ''';
 
   print(article);
@@ -455,7 +455,7 @@ Your birth chart contains 10 celestial bodies, each representing different aspec
 | Jupiter | Growth, luck, wisdom |
 | Saturn | Structure, discipline, lessons |
 | Uranus | Innovation, rebellion, change |
-| Neptune | Dreams, intuition, spirituality |
+| Neptune | Dreams, intuition, imagination |
 | Pluto | Transformation, power, rebirth |
 
 ### 2. Signs
@@ -482,7 +482,7 @@ The 12 houses show WHERE in life these energies manifest:
 | 9th | Philosophy, travel, higher education |
 | 10th | Career, reputation, public life |
 | 11th | Friends, groups, future goals |
-| 12th | Subconscious, spirituality, hidden matters |
+| 12th | Subconscious, inner life, hidden matters |
 
 ## The Big Three: Your Core Identity
 
@@ -516,7 +516,7 @@ Ready to explore your cosmic blueprint? [Calculate your birth chart now](/birth-
 
 ---
 
-*Begin your astrological journey with [Venus One](https://venusone.app) — personalized insights based on your complete birth chart.*
+*Begin your self-discovery journey with [InnerCycles](https://innercycles.app) — personalized insights based on your complete birth chart.*
 ''';
 
   print(article);
@@ -617,7 +617,7 @@ Discover all the ${aspectName.toLowerCase()} aspects in your personal birth char
 
 ---
 
-*Explore the geometry of your soul with [Venus One](https://venusone.app).*
+*Explore the geometry of your inner self with [InnerCycles](https://innercycles.app).*
 ''';
 
   print(article);
@@ -732,7 +732,7 @@ String _getSecondaryStrength(String sign) {
     'sagittarius': 'philosophical wisdom',
     'capricorn': 'strategic planning',
     'aquarius': 'humanitarian vision',
-    'pisces': 'spiritual connection',
+    'pisces': 'inner connection',
   };
   return strengths[sign] ?? 'inner wisdom';
 }
@@ -840,7 +840,7 @@ String _getCareer(String sign, int index) {
     'sagittarius': ['Education', 'Travel', 'Publishing'],
     'capricorn': ['Business', 'Government', 'Architecture'],
     'aquarius': ['Technology', 'Science', 'Social Work'],
-    'pisces': ['Arts', 'Healthcare', 'Spirituality'],
+    'pisces': ['Arts', 'Healthcare', 'Wellness'],
   };
   return careers[sign]?[index] ?? 'Various fields';
 }

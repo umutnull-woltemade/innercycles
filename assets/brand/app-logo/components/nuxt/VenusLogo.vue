@@ -12,8 +12,8 @@ const props = withDefaults(defineProps<Props>(), {
 
 <template>
   <NuxtImg
-    src="/brand/venus-logo.svg"
-    alt="Venus One"
+    src="/brand/app-logo.svg"
+    alt="InnerCycles"
     :width="props.size"
     :height="props.size"
     :class="props.class"

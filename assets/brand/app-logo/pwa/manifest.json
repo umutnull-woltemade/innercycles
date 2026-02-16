@@ -1,7 +1,7 @@
 {
-  "name": "Venus One",
-  "short_name": "Venus One",
-  "description": "Your cosmic guide to astrology and self-discovery",
+  "name": "InnerCycles",
+  "short_name": "InnerCycles",
+  "description": "Your personal guide to journaling and self-discovery",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFF8F5",
