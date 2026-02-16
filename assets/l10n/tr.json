@@ -5402,7 +5402,7 @@
     "routes": {
       "daily_summary": {
         "title": "Bugünün Özeti",
-        "subtitle": "Kozmik enerjilerin günlük rehberin"
+        "subtitle": "Kişisel enerjilerin günlük rehberin"
       },
       "moon_energy": {
         "title": "Ay Enerjisi",
@@ -5414,7 +5414,7 @@
       },
       "love_energy": {
         "title": "Aşk Enerjisi",
-        "subtitle": "Kalbinin kozmik rehberi"
+        "subtitle": "Kalbinin kişisel rehberi"
       },
       "abundance_energy": {
         "title": "Bolluk Enerjisi",
@@ -5815,7 +5815,7 @@
       "healing_mission": "Sifa Gorevi: Kiron'un konumu",
       "maturation_areas": "Olgunlasma Alanlari: Saturn'un evi",
       "soul_connections": "Ruh Baglantilari:",
-      "soul_connections_desc": "Hayatina giren onemli kisiler de ruh sozlesmenin parcasi. Sinastri haritasindaki Ay Dugumleri baglantilari, karmik ruh baglarini gosterir.",
+      "soul_connections_desc": "Hayatina giren onemli kisiler de ruh sozlesmenin parcasi. Sinastri haritasindaki Ay Dugumleri baglantilari, döngüsel ruh bağlarını gösterir.",
       "advice": "Ruh sozlesmeni hatirlamak icin: Meditasyon yap, ruyalarina dikkat et, tekrarlayan temalari gozlemle. Dogum haritandaki 12. ev ve Neptun konumu, bilincalti hafizana erisim kapilarini gosterir.",
       "warning": "Ruh sozlesmesi degistirilemez degildir. Ozgur iradenle her an yeni secimler yapabilirsin.",
       "themes": {
@@ -6301,7 +6301,7 @@
       },
       "justice": {
         "name": "Adalet",
-        "keywords": "Hakkaniyet, hakikat, karma",
+        "keywords": "Hakkaniyet, hakikat, döngü",
         "upright": "Adalet ve denge temaları öne çıkıyor. Dürüstlük ve hakikat üzerine düşünün.",
         "reversed": "Adaletsizlik veya dengesizlik. Sorumluluktan kaçma. Öz-aldatma.",
         "advice": "Eylemlerinin sonuçlarını kabul et. Dürüst ol - önce kendinle."
@@ -6345,7 +6345,7 @@
         "name": "Yıldız",
         "keywords": "Umut, ilham, huzur",
         "upright": "Umut ve ilham zamanı. Şifa ve yenilenme. Evren seninle konuşuyor.",
-        "reversed": "Umutsuzluk veya inanç kaybı. Kozmik bağlantının kesilmesi.",
+        "reversed": "Umutsuzluk veya inanç kaybı. Kişisel bağlantının kesilmesi.",
         "advice": "En karanlık geceden sonra bile yıldızlar parlar. Umudunu kaybetme."
       },
       "moon": {
@@ -6623,7 +6623,7 @@
     "instruction_3": "3. Instagram'ı aç",
     "instruction_4": "4. Hikaye olarak paylaş ve metni yapıştır",
     "share_on_instagram": "Instagram'da Paylaş",
-    "share_cosmic_energy_story": "Hikayende kozmik enerjini paylaş!",
+    "share_cosmic_energy_story": "Hikayende kişisel enerjini paylaş!",
     "copy_text": "Metni Kopyala",
     "energy": "Enerji",
     "energy_level": "Enerji Seviyesi",
@@ -6638,7 +6638,7 @@
     "intensity_intense_desc": "Güçlü hisler akıyor. Tepkilere dikkat.",
     "intensity_stormy_desc": "Duygusal dalgalanma. Merkeze dön.",
     "intensity_default_desc": "Duygusal akış devam ediyor.",
-    "energy_peak_desc": "Kozmik enerjin dorukta. Her şey mümkün.",
+    "energy_peak_desc": "Kişisel enerjin dorukta. Her şey mümkün.",
     "energy_high_desc": "Güçlü bir akış var. Fırsatları yakala.",
     "energy_balanced_desc": "Dengeli enerji. Sabırlı ol.",
     "energy_low_desc": "Dinlenme zamanı. Kendine nazik ol.",
@@ -6666,7 +6666,7 @@
       "Kasım",
       "Aralık"
     ],
-    "share_text": "Bugünün kozmik enerjisi benimle! Evrenin fısıltılarını dinle... #InnerCycles #öz farkındalık #arketipyorumu #kozmikenerji",
+    "share_text": "Bugünün kişisel enerjisi benimle! Evrenin fısıltılarını dinle... #InnerCycles #özfarkındalık #arketipyorumu #kişiselenerji",
     "instagram": {
       "hook_1": "{sign} ARKETİPİ AMA RED FLAG DEĞİL 🚩",
       "hook_2": "KOVALIYORSAN? KAÇIYOR 😏",
@@ -7863,7 +7863,7 @@
     "default_location": "Varsayılan Konum",
     "coordinates": "Koordinatlar",
     "world_map": "Dünya Haritası",
-    "energy_lines_shown_here": "Kozmik çizgilerniz burada gösterilir",
+    "energy_lines_shown_here": "Kişisel çizgileriniz burada gösterilir",
     "power_points": "Güç Noktaları",
     "active_planets": "Aktif Gezegenler",
     "energy_lines": "Kişisel Çizgiler",
@@ -8000,7 +8000,7 @@
     "moon_rituals": "Ay Ritüelleri",
     "moon_gardening": "Ay Bahçeciliği",
     "theta_healing": "Bilinçaltı Çalışması",
-    "reiki": "Reiki",
+    "reiki": "Enerji Farkındalığı",
     "shadow_self": "Gölge Benliğin",
     "leadership_style": "Liderlik Stilin",
     "heartbreaker": "Kalp Kıran",
@@ -8041,7 +8041,7 @@
     "good_afternoon": "İyi günler",
     "good_evening": "İyi akşamlar",
     "dear": "değerli",
-    "intro_message": "Ben InnerCycles Rehberi, senin kozmik rehberin. {sign} arketipinun enerjisiyle öz farkındalık, arketip yorumları, transitler, numeroloji ve daha fazlası hakkında sorularını yanıtlamak için buradayım.",
+    "intro_message": "Ben InnerCycles Rehberi, senin kişisel rehberin. {sign} arketipinun enerjisiyle öz farkındalık, arketip yorumları, transitler, numeroloji ve daha fazlası hakkında sorularını yanıtlamak için buradayım.",
     "ask_placeholder": "InnerCycles'a sor... (Enter ile gönder)",
     "quick_access": "Hızlı Erişim",
     "suggested_questions": "Önerilen Sorular:",
@@ -8090,9 +8090,9 @@
       "three_card_spread": "Durumum üzerine refleksiyon için üç kart açılımı gösterebilir misin?",
       "yes_no_card_insight": "Refleksiyon soruma bir perspektif sunabilir mi?",
       "spiritual_awakening": "Şu anki ruhsal uyanış ve bilinç genişlemesi sürecimde neredeyim?",
-      "karmic_debts": "Kişisel gelişim için hangi karmik temaları düşünebilirim?",
+      "karmic_debts": "Kişisel gelişim için hangi döngüsel temaları düşünebilirim?",
       "chakra_status": "Denge ve iyilik için hangi çakra temalarını keşfedebilirim?",
-      "healing_crystals": "Arketipimle geleneksel olarak ilişkilendirilen kristaller neler?",
+      "healing_crystals": "Arketipimle geleneksel olarak ilişkilendirilen doğal taşlar neler?",
       "moon_rituals": "Bugünkü ay fazı temasıyla uyumlu farkındalık pratikleri neler?",
       "life_purpose": "Haritam refleksiyon için hangi amaç ve anlam temalarını öneriyor?",
       "hidden_talents": "Hangi potansiyel güçlü yanları keşfedip geliştirebilirim?",
@@ -8101,7 +8101,7 @@
       "dream_meaning": "Rüyalarım kişisel olarak ne anlama geliyor? Bugün gördüğüm rüyayı yorumla.",
       "subconscious_messages": "Bilinçaltım bu dönemde hangi mesajları gönderiyor?",
       "sleep_cycles": "Uyku kalitem ve rüya döngülerim ay fazlarından nasıl etkileniyor?",
-      "lucid_dreaming": "Lüsid rüya görmek için en uygun kozmik zamanlar ne zaman?",
+      "lucid_dreaming": "Lüsid rüya görmek için en uygun kişisel zamanlar ne zaman?",
       "kundalini": "Kundalini enerjimin şu anki durumu ve uyanış süreci hakkında ne söyleyebilirsin?",
       "sexual_energy": "Cinsel enerjimi yaratıcı ve ruhsal güce nasıl dönüştürebilirim?",
       "breathing_techniques": "Arketipima özel nefes çalışması ve meditasyon teknikleri neler?",
@@ -8130,10 +8130,10 @@
       "vision_board": "Görselleştirme ve hedef planlama alıştırmaları beni nasıl destekleyebilir?",
       "past_lives": "Haritamdaki geçmiş yaşam temaları hangi refleksiyon fırsatları sunuyor?",
       "guardian_angels": "Hangi ruhsal rehberlik temalarını keşfedebilirim?",
-      "star_seeds": "Hangi kozmik köken kavramları refleksiyonuma ilham verebilir?",
+      "star_seeds": "Hangi kişisel köken kavramları refleksiyonuma ilham verebilir?",
       "akashic_records": "Hangi ruh yolculuğu temalarını düşünebilirim?",
       "power_stones": "Arketipima ve doğum haritama göre güç taşlarım neler?",
-      "current_crystals": "Bu dönem hangi kristalleri taşımalıyım ve nasıl aktive etmeliyim?",
+      "current_crystals": "Bu dönem hangi doğal taşları taşımalıyım ve nasıl aktive etmeliyim?",
       "stones_to_avoid": "Mücevher seçerken hangi taşlardan kaçınmalıyım?",
       "full_moon_ritual": "Dolunay ritüeli: Bu ay neyi bırakmalı, neyi kutlamalıyım?",
       "new_moon_intention": "Yeni ay niyeti: Bu döngüde hangi tohumları ekmeliyim?",
@@ -8141,8 +8141,8 @@
       "energy_cleansing": "Enerji temizliği için en etkili ritüeller ve zamanlamalar neler?"
     },
     "responses": {
-      "greeting_intro": "Ben Kozmoz, senin kişisel kozmik AI rehberin!\n\n{element} elementinin güçlü enerjisiyle bugün sana yardımcı olmak için buradayım.\n\nBenimle konuşabileceğin konular:\n\n🔮 ARKETİP & YORUM\n• Günlük/Haftalık/Aylık içgörü yorumları\n• Güneş, Ay ve Yükselen arketip analizleri\n• Element ve modalite yorumları\n\n💕 AŞK & İLİŞKİLER\n• Kişilik uyumu ve synastry\n• İdeal partner profili\n• İlişki tavsiyeleri\n\n💼 KARİYER & FİNANS\n• Uygun kariyer yolları\n• Para çekme dönemleri\n• İş ortaklığı uyumları\n\n🌙 KOZMİK ZAMANLAMALAR\n• Ay fazları ve etkileri\n• Önemli tarihler\n\n🔢 NUMEROLOJİ & MİSTİK\n• Yaşam yolu sayın\n• Refleksiyon mesajları\n\n🧘 SPİRİTÜEL GELİŞİM\n• Meditasyon ve ritüeller\n\nNe hakkında konuşmak istersin? ✨",
-      "daily_report_header": "{sign} GÜNLÜK KOZMİK RAPOR",
+      "greeting_intro": "Ben InnerCycles, senin kişisel AI rehberin!\n\n{element} elementinin güçlü enerjisiyle bugün sana yardımcı olmak için buradayım.\n\nBenimle konuşabileceğin konular:\n\n🔮 ARKETİP & YORUM\n• Günlük/Haftalık/Aylık içgörü yorumları\n• Güneş, Ay ve Yükselen arketip analizleri\n• Element ve modalite yorumları\n\n💕 AŞK & İLİŞKİLER\n• Kişilik uyumu ve synastry\n• İdeal partner profili\n• İlişki tavsiyeleri\n\n💼 KARİYER & FİNANS\n• Uygun kariyer yolları\n• Para çekme dönemleri\n• İş ortaklığı uyumları\n\n🌙 KİŞİSEL ZAMANLAMALAR\n• Ay fazları ve etkileri\n• Önemli tarihler\n\n🔢 NUMEROLOJİ & MİSTİK\n• Yaşam yolu sayın\n• Refleksiyon mesajları\n\n🧘 SPİRİTÜEL GELİŞİM\n• Meditasyon ve ritüeller\n\nNe hakkında konuşmak istersin? ✨",
+      "daily_report_header": "{sign} GÜNLÜK KİŞİSEL RAPOR",
       "morning_energy": "SABAH ENERJİSİ (06:00 - 12:00)",
       "noon_energy": "ÖĞLE ENERJİSİ (12:00 - 18:00)",
       "evening_energy": "AKŞAM ENERJİSİ (18:00 - 24:00)",
@@ -8152,8 +8152,8 @@
       "careful_hours_note": "Bu saatlerde büyük kararlardan, tartışmalardan ve riskli yatırımlardan kaçın.",
       "golden_advice": "BUGÜNÜN 3 ALTIN TAVSİYESİ",
       "daily_affirmation": "GÜNÜN AFİRMASYONU",
-      "cosmic_note": "KOZMİK NOT",
-      "cosmic_note_text": "{element} elementi olarak bugün {element_note}. Evrenin sana gönderdiği işaretlere açık ol - belki bir şarkı, bir kitap sayfası veya bir yabancının sözleri önemli mesajlar taşıyabilir.",
+      "cosmic_note": "KİŞİSEL NOT",
+      "cosmic_note_text": "{element} elementi olarak bugün {element_note}. Hayatın sana gönderdiği işaretlere açık ol - belki bir şarkı, bir kitap sayfası veya bir yabancının sözleri önemli mesajlar taşıyabilir.",
       "remember": "Unutma: Her gün yeni bir başlangıç fırsatıdır!",
       "love_analysis_header": "{sign} AŞK & İLİŞKİ ANALİZİ",
       "venus_position": "VENÜS POZİSYONU: {venus_sign} Arketipinda",
@@ -8167,7 +8167,7 @@
       "relationship_warnings": "İLİŞKİDE DİKKAT ETMELERİN",
       "love_period": "BU DÖNEM AŞK İÇİN",
       "love_ritual": "AŞK RİTÜELİ ÖNERİSİ",
-      "cosmic_love_advice": "KOZMİK AŞK TAVSİYESİ",
+      "cosmic_love_advice": "KİŞİSEL AŞK TAVSİYESİ",
       "love_reminder": "Gerçek aşk, önce kendinle başlar!",
       "career_analysis_header": "{sign} KARİYER & FİNANS ANALİZİ",
       "natural_talents": "DOĞAL YETENEKLERİN",
@@ -8189,7 +8189,7 @@
       "next_phase": "SONRAKİ FAZ: {days} gün sonra",
       "what_to_avoid": "BU AY FAZINDA KAÇINILMASI GEREKENLER",
       "moon_ritual": "AY RİTÜELİ",
-      "crystal_suggestion": "KRİSTAL & TAŞ ÖNERİSİ",
+      "crystal_suggestion": "DOĞAL TAŞ ÖNERİSİ",
       "colors_aromas": "RENKLER & AROMALAR",
       "mantra_affirmation": "MANTRA & AFİRMASYON",
       "moon_sign_effect": "AY ARKETİPİ ETKİSİ: {moon_sign}",
@@ -8212,9 +8212,9 @@
       "transit_interpretation": "TRANSİT YORUMU",
       "transit_recommendations": "ÖNERİLER",
       "transit_reminder": "Transitler bizi zorlamaz, dönüştürür!",
-      "general_response_header": "{sign} KOZMİK BİLGELİK",
+      "general_response_header": "{sign} KİŞİSEL BİLGELİK",
       "universal_message": "Sorduğun konu hakkında evrensel enerjiler şunları söylüyor:",
-      "cosmic_perspective": "KOZMİK BAKIŞ AÇISI",
+      "cosmic_perspective": "KİŞİSEL BAKIŞ AÇISI",
       "element_message": "{element} ELEMENTİNDEN MESAJ",
       "universal_guidance": "EVRENSEL REHBERLİK",
       "practical_advice": "PRATİK TAVSİYELER",
@@ -8285,14 +8285,14 @@
       "aura_strengthening": "AURA GÜÇLENDİRME",
       "energy_cleansing": "ENERJİ TEMİZLİĞİ",
       "protection_shield": "Koruma kalkanı:",
-      "compatible_crystals": "UYUMLU KRİSTALLER",
-      "color_therapy": "RENK TERAPİSİ",
+      "compatible_crystals": "UYUMLU DOĞAL TAŞLAR",
+      "color_therapy": "RENK UYUMU",
       "energy_meditation": "ENERJİ MEDİTASYONU",
       "aura_reminder": "Auran, ruhunun ışıltısıdır!",
       "spiritual_header": "{sign} RUHSAL GELİŞİM YOLCULUĞU",
       "spiritual_evolution_level": "RUHSAL EVRİM SEVİYEN",
       "life_mission": "BU HAYATTA MİSYONUN",
-      "karmic_lessons": "KARMİK DERSLERİN",
+      "karmic_lessons": "DÖNGÜSEL DERSLERİN",
       "repeating_patterns": "TEKRARLAYAN KALIPLAR",
       "spiritual_powers": "RUHSAL GÜÇLER",
       "meditation_practices": "MEDİTASYON & PRATİKLER",
@@ -8679,7 +8679,7 @@
     "moon_do_list": {
       "new_moon": "✅ Niyet belirle ve yaz\n✅ Yeni projeler başlat\n✅ Tohum ek (gerçek veya mecazi)\n✅ Meditasyon ve içe dönüş\n✅ Vizyon tahtası oluştur",
       "first_quarter": "✅ Aksiyona geç\n✅ Kararlar al\n✅ Engellerle yüzleş\n✅ Momentum oluştur\n✅ Cesaret göster",
-      "full_moon": "✅ Kutla ve şükret\n✅ Kristallerini şarj et\n✅ Ay ışığında banyo\n✅ İlişkilere dikkat et\n✅ Farkındalık meditasyonu",
+      "full_moon": "✅ Kutla ve şükret\n✅ Doğal taşlarını şarj et\n✅ Ay ışığında banyo\n✅ İlişkilere dikkat et\n✅ Farkındalık meditasyonu",
       "last_quarter": "✅ Temizlik yap\n✅ Bağışla ve bırak\n✅ Tamamlanmamış işleri bitir\n✅ Fiziksel detoks\n✅ Eski eşyaları ayıkla"
     },
     "moon_dont_list": {
@@ -8691,7 +8691,7 @@
     "moon_rituals": {
       "new_moon": "🕯️ Siyah mum yak (eski enerjiyi çöz)\n📝 12 niyet yaz\n🧘 20 dakika sessiz otur\n🌱 Bir bitki ek\n💧 Yeni Ay suyu hazırla",
       "first_quarter": "🕯️ Kırmızı mum yak (aksiyon enerjisi)\n📋 Engel listesi yap ve yak\n🏃 Fiziksel aktivite\n💪 Cesaret afirmasyonları\n⚔️ Sembolik meydan okuma",
-      "full_moon": "🕯️ Beyaz mum yak (aydınlanma)\n🌙 Ay ışığında dur\n💎 Kristalleri şarj et\n📿 Şükran listesi yaz\n🛁 Tuzlu su banyosu",
+      "full_moon": "🕯️ Beyaz mum yak (aydınlanma)\n🌙 Ay ışığında dur\n💎 Doğal taşları şarj et\n📿 Şükran listesi yaz\n🛁 Tuzlu su banyosu",
       "last_quarter": "🕯️ Mavi mum yak (huzur ve bırakma)\n🔥 Bırakma kağıdı yaz ve yak\n🧹 Fiziksel temizlik\n💆 Enerji temizliği\n🧘 Bırakma meditasyonu"
     },
     "moon_crystals": {
@@ -8809,7 +8809,7 @@
         "water": "• Su kenarında vakit geçir\n• Duş/banyo ritüelleri yap\n• Meditasyon ve yoga uygula"
       },
       "cleansing": "Tuzlu su banyosu, adaçayı tütsüsü, doğada yürüyüş",
-      "protection": "Günlük koruma meditasyonu ve kristal koruma ağı",
+      "protection": "Günlük koruma meditasyonu ve doğal taş koruma ağı",
       "crystals": "Kuvars, ametist, turmalin, obsidyen",
       "color_therapy": "{element} elementinin renklerini giy ve çevrene ekle.",
       "meditation": "10 dakika nefes meditasyonu, auranı görselleştir."
@@ -8873,7 +8873,7 @@
       "inner_child_description": "Çocukluk travmalarını şefkatle iyileştirin ve iç çocuğunuzla barışın.",
       "ancestor_clearing_title": "Ata Temizliği",
       "ancestor_clearing_duration": "25 dk",
-      "ancestor_clearing_description": "Atalardan gelen karma kalıpları ve genetik inançları temizleyin.",
+      "ancestor_clearing_description": "Atalardan gelen döngüsel kalıpları ve genetik inançları temizleyin.",
       "abundance_title": "Bolluk Manifestasyonu",
       "abundance_duration": "15 dk",
       "abundance_description": "Bolluk bloklarını kaldırın ve bereket akışını açın.",
@@ -8883,7 +8883,7 @@
     }
   },
   "reiki": {
-    "title": "Reiki"
+    "title": "Enerji Farkındalığı"
   },
   "chart": {
     "birth_date": "Doğum Tarihi",
@@ -8892,7 +8892,7 @@
     "planets": "Gezegen",
     "houses": "Ev",
     "aspects": "Açı",
-    "cosmic_map_title": "Ruhunun Kozmik Haritası",
+    "cosmic_map_title": "Ruhunun Kişisel Haritası",
     "cosmic_map_description": "Bu harita, doğduğunda gökyüzünün bir an görüntüsüdür - ama bundan çok daha fazlası. Bu, ruhunun bu dünyaya getirdiği potansiyellerin, derslerin ve armağanların şifreli bir haritasıdır. Her gezegen bir iç ses, her arketip bir enerji kalıbı, her ev bir yaşam alanıdır. Bu harita seni sınırlamaz - sana kim olduğunu hatırlatır.",
     "your_sun": "Güneşiniz",
     "house_interpretation": "Ev Yorumu",
@@ -8909,7 +8909,7 @@
       "capricorn": "[[Toprak]] elementinin disiplinli enerjisiyle, [[Oğlak]] arketipi başarı ve sorumluluk bilincine sahiptir. [[Satürn]] yönetiminde yapı ve sınırlar önemlidir.",
       "aquarius": "[[Hava]] elementinin yenilikçi enerjisiyle, [[Kova]] arketipi bağımsızlık ve insanlık için çalışır. [[Uranüs]] yönetiminde devrimci fikirler öne çıkar.",
       "pisces": "[[Su]] elementinin mistik enerjisiyle, [[Balık]] arketipi sezgi ve spiritüel bağlantılara açıktır. [[Neptün]] yönetiminde hayal gücü sınırsızdır.",
-      "default": "Arketipinuz kozmik enerjileri benzersiz bir şekilde yansıtır."
+      "default": "Arketipinuz kişisel enerjileri benzersiz bir şekilde yansıtır."
     },
     "sun_sign_interpretation": {
       "aries": "[[Koç]] arketipinda [[Güneş]] sahibi olmak, ruhunuzun özünde bir savaşçı ve öncü olduğunu gösterir. [[Mars]]'ın yönetimindeki bu enerji, size hayatta ilk adımı atma cesareti verir.\n\n[[Kardinal]] nitelikli bu arketip, yeni başlangıçlar ve liderlik için doğal bir yeteneğe sahiptir. [[Ateş]] elementi ile birlikte, tutkunuz ve enerjiniz etrafınızdakileri etkiler ve motive eder.\n\nEvrimsel yolculuğunuzda, [[ego]] ve bireysellik temaları önemlidir. [[1. Ev]] ile doğal ilişkiniz, kendinizi keşfetme ve otantik kimliğinizi ifade etme ihtiyacını vurgular.\n\n[[Güneş]] burada \"yükselimde\" (exaltation) olduğu için, yaşam gücünüz ve iradeniz son derece güçlüdür. Dikkat edilmesi gereken [[gölge]] yönü ise sabırsızlık ve düşünmeden hareket etme eğilimidir.",
@@ -8931,7 +8931,7 @@
     "title": "Sinastri",
     "challenges": "Zorluklar",
     "kadim_title": "Kadim Sinastri Bilgeliği",
-    "kadim_content": "İki ruhun dansında, yıldızlar sadece uyumu değil, her kişinin diğerine getirdiği derin dersleri de ortaya koyar. Sinastri, bu kozmik konuşmaları okuma kadim sanatıdır.",
+    "kadim_content": "İki ruhun dansında, yıldızlar sadece uyumu değil, her kişinin diğerine getirdiği derin dersleri de ortaya koyar. Sinastri, bu kişisel konuşmaları okuma kadim sanatıdır.",
     "kadim_source": "Geleneksel Öz Farkındalık"
   },
   "kadim": {
@@ -8955,7 +8955,7 @@
     "dream_guide_title": "Rüya Rehberi",
     "dream_guide_content": "Bu gece gördüğünüz rüyalar önemli mesajlar taşıyabilir. Rüyalarınızı kaydetmeyi unutmayın.",
     "weekly_preview_title": "Haftalık Bakış",
-    "weekly_preview_content": "Haftanın geri kalanı için kozmik enerjiler sizin lehinize çalışıyor.",
+    "weekly_preview_content": "Haftanın geri kalanı için kişisel enerjiler sizin lehinize çalışıyor.",
     "sign_messages": {
       "aries": "Cesaretin ve liderlik enerjin bugün yüksek. İnisiyatif al.",
       "taurus": "Sabır ve kararlılığın meyvelerini toplamaya hazırsın.",
@@ -8992,12 +8992,12 @@
     "daily_reading": "Günlük Yorum",
     "daily_energy": "Bugünün enerjisi",
     "personal_profile": "Kişisel Profil",
-    "explore_cosmic_map": "Kozmik haritanı keşfet",
+    "explore_cosmic_map": "Kişisel haritanı keşfet",
     "compatibility": "Kişilik Uyumu",
     "basic_compatibility": "Temel uyum analizi",
     "combined_chart": "Birleşik haritanız",
     "share_relationship": "İlişkinizi Paylaş",
-    "share_cosmic_bond": "Kozmik bağınızı paylaş",
+    "share_cosmic_bond": "Kişisel bağınızı paylaş",
     "love_reading": "Aşk Yorumu",
     "relationship_energy": "İlişki enerjiniz",
     "weekly_reading": "Haftalık Yorum",
@@ -9028,13 +9028,13 @@
     "saturn_return": "Büyüme Döngüsü",
     "saturn_return_insight": "Satürn döngün ne zaman?",
     "share_chart": "Haritanı Paylaş",
-    "share_cosmic_energy": "Kozmik enerjini paylaş",
+    "share_cosmic_energy": "Kişisel enerjini paylaş",
     "compare_profiles": "Profil Karşılaştır",
     "compare_with_friend": "Bir arkadaşınla karşılaştır",
     "the_fool": "The Fool",
     "new_beginnings": "Yeni başlangıçlar",
     "share_card": "Kartını Paylaş",
-    "share_cosmic_message": "Kozmik mesajını paylaş",
+    "share_cosmic_message": "Kişisel mesajını paylaş",
     "chakra_analysis": "Chakra Analizi",
     "energy_centers": "Enerji merkezlerin",
     "dream_trace": "Rüya İzi",
@@ -9056,7 +9056,7 @@
     "theta_healing": "Bilinçaltı Çalışması",
     "theta_healing_insight": "Derin şifa",
     "rituals": "Ritüeller",
-    "cosmic_rituals": "Kozmik ritüeller",
+    "cosmic_rituals": "Kişisel ritüeller",
     "progressions": "Progressions",
     "inner_evolution": "İç evriminin",
     "draconic": "Draconic Harita",
@@ -9068,11 +9068,11 @@
     "transit_calendar": "Transit Takvimi",
     "upcoming_transits": "Yaklaşan transitler",
     "aspect_analysis": "Açı Analizi",
-    "energy_conversations": "Kozmik konuşmalar",
+    "energy_conversations": "Kişisel konuşmalar",
     "celebrities": "Ünlüler",
     "famous_charts": "Ünlü kişisel profilleri",
     "articles": "Makaleler",
-    "cosmic_wisdom": "Kozmik bilgelik",
+    "cosmic_wisdom": "Kişisel bilgelik",
     "kabbalah": "Kabala",
     "master_mystery": "11, 22, 33 gizemi",
     "best_times": "En iyi zamanlar",
@@ -9087,7 +9087,7 @@
     "title": "Kişisel Zamanlama",
     "subtitle": "Aktiviteleriniz için en uygun zamanları keşfedin",
     "kadim_title": "Kişisel Zamanlama Sanatı",
-    "kadim_content": "Kadim medeniyetler zamanlamanın önemini bilirdi. Günün her saati farklı bir gezegen tarafından yönetilir. Aktivitelerinizi kozmik ritimlere uyumlayarak potansiyelinizi maksimize edebilirsiniz.",
+    "kadim_content": "Kadim medeniyetler zamanlamanın önemini bilirdi. Günün her saati farklı bir gezegen tarafından yönetilir. Aktivitelerinizi kişisel ritimlere uyumlayarak potansiyelinizi maksimize edebilirsiniz.",
     "brand_footer": "InnerCycles Döngüsel Zamanlama",
     "todays_energy": "Bugünün Enerjisi",
     "score_excellent": "Yeni başlangıçlar için mükemmel gün!",
@@ -9312,11 +9312,11 @@
     "garnet": "Lal Taşı",
     "amethyst": "Ametist",
     "aquamarine": "Akuamarin",
-    "crystal": "Kristal"
+    "crystal": "Doğal Taş"
   },
   "cosmic_today": {
     "title": "Bugünün Teması",
-    "kozmik_tag": "Kozmik",
+    "kozmik_tag": "Kişisel",
     "discover_dream_trace": "Rüya İzi'ni keşfet",
     "todays_emphasis": "Bugünün Vurgusu",
     "emotional_tone": "Duygusal Ton",
@@ -9445,12 +9445,12 @@
   },
   "glossary": {
     "hints": {
-      "personal_profile": "Kozmik kimlik kartın",
+      "personal_profile": "Kişisel kimlik kartın",
       "ascendant": "Dünyaya açılan kapın",
       "descendant": "İlişkilerdeki ayna",
       "midheaven": "Kariyer ve kamusal imaj",
       "ic": "Kökler ve iç dünya",
-      "transit": "Güncel kozmik hava durumu",
+      "transit": "Güncel kişisel hava durumu",
       "retrograde": "Geriye bakış dönemi",
       "orb": "Açının tolerans payı",
       "cusp": "Ev veya arketip geçiş noktası",
@@ -9626,7 +9626,7 @@
       },
       "spiritual": {
         "label": "Spiritüel",
-        "description": "Kozmik mesajlar, ruhani rehberlik, mistik yorum"
+        "description": "Kişisel mesajlar, ruhani rehberlik, mistik yorum"
       },
       "practical": {
         "label": "Pratik",
@@ -9730,7 +9730,7 @@
           "Işık",
           "rehberler",
           "uçuş",
-          "kozmik deneyimler",
+          "kişisel deneyimler",
           "ölüm ve yeniden doğuş"
         ],
         "interpretation_focus": "Ruhani gelişim, aşkın deneyimler, anlam arayışı",
@@ -9750,7 +9750,7 @@
     },
     "style_guides": {
       "jungian": "- Arketiplere odaklan: Gölge, Anima/Animus, Bilge Yaşlı, vb.\n- Bireyselleşme sürecini vurgula\n- Kolektif bilinçdışından referanslar ver\n- Sembollerin evrensel ve kişisel anlamlarını ayır",
-      "spiritual": "- Ruhani rehberlik tonuyla yaz\n- Kozmik mesajları ve işaretleri vurgula\n- Meditasyon ve spiritüel pratik önerileri ekle\n- Yüksek benlik ve ruhani gelişimden bahset",
+      "spiritual": "- Ruhani rehberlik tonuyla yaz\n- Kişisel mesajları ve işaretleri vurgula\n- Meditasyon ve spiritüel pratik önerileri ekle\n- Yüksek benlik ve ruhani gelişimden bahset",
       "practical": "- Somut ve uygulanabilir tavsiyeler ver\n- Günlük yaşamla doğrudan bağlantı kur\n- Minimum mistik dil kullan\n- Problem çözme odaklı yaklaş",
       "esoteric": "- Kadim bilgelik ve mistik geleneklere referans ver\n- Sembolizmin derin katmanlarını aç\n- Ezoterik kavramları kullan ama açıkla\n- Gizli öğretilere referans ver",
       "psychological": "- Bilimsel psikoloji terminolojisi kullan\n- Duygu düzenleme ve başa çıkma stratejileri öner\n- Savunma mekanizmalarını tanımla\n- Terapötik içgörüler sun"
@@ -10038,7 +10038,7 @@
       "transits_title": "Transitlerini İncele",
       "transits_desc": "Şu anki gezegen geçişlerinin rüyana etkisi",
       "timing_insights_title": "Zamanlama İçgörüleri",
-      "timing_insights_desc": "Kozmik ritimlerin rüya kalıplarını nasıl etkilediğini keşfet",
+      "timing_insights_desc": "Kişisel ritimlerin rüya kalıplarını nasıl etkilediğini keşfet",
       "card_insight_title": "Refleksiyon Çek",
       "card_insight_desc": "Rüyanın mesajını refleksiyon ile derinleştir",
       "neptune_title": "Neptün Transiti",

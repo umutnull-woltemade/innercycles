@@ -809,7 +809,7 @@
       "name_numerology": "Name Numerology",
       "expression_number": "Expression Number",
       "expression_number_desc": "Calculated from your name, this number reflects potential themes and characteristics in your life.",
-      "soul_urge": "Soul Urge",
+      "soul_urge": "Inner Motivation",
       "personality": "Personality",
       "karmic_debt_numbers": "Growth Lesson Numbers",
       "life_path_interpretation": "Life Path Interpretation",
@@ -1316,7 +1316,7 @@
         "line3": "{meaning} areas have {sign} energy active. This is a generational placement - reflecting collective transformation and power dynamics."
       },
       "north_node": {
-        "line1": "{planet} in {sign} - your soul's lesson to learn in this life relates to this sign.",
+        "line1": "{planet} in {sign} - your growth area in this life relates to this sign.",
         "line2": "Developing {sign} energy is the main theme of your evolutionary journey in this life. This sign shows the goal you need to reach by stepping out of your comfort zone.",
         "line3": "Letting go of habits from the opposite sign of the South Node and embracing {sign}'s qualities is critical for your spiritual growth."
       },
@@ -2406,7 +2406,7 @@
     "numerology_title": "Number Awareness Test",
     "numerology_description": "Discover the hidden messages of numbers",
     "general_title": "Personal Awareness Quiz",
-    "general_description": "Discover your spiritual journey",
+    "general_description": "Discover your personal journey",
     "dream_q1": "How often do you remember your dreams?",
     "dream_a1_1": "I remember every night",
     "dream_a1_2": "A few times a week",
@@ -2467,7 +2467,7 @@
     "general_a2_2": "I mostly listen to it",
     "general_a2_3": "Sometimes I consider it",
     "general_a2_4": "I trust my logic",
-    "general_q3": "What do you do for spiritual growth?",
+    "general_q3": "What do you do for personal growth?",
     "general_a3_1": "I have regular practices",
     "general_a3_2": "I read books, do research",
     "general_a3_3": "I engage occasionally",
@@ -3587,7 +3587,7 @@
     "todays_compatibility": "Today's Personality Compatibility",
     "most_compatible": "Most Compatible",
     "challenging": "Challenging",
-    "soul_connection": "Soul Connection",
+    "soul_connection": "Deep Connection",
     "venus_influence": "Venus Influence",
     "intimacy_advice": "Intimacy Advice"
   },
@@ -3683,7 +3683,7 @@
         "calc2": "It is reduced until a single digit is reached.",
         "calc3": "Example: 03/15/1990 → 0+3+1+5+1+9+9+0 = 28 → 2+8 = 10 → 1+0 = 1",
         "what_tells": "What Does It Tell?",
-        "tells1": "Your soul's purpose in this life.",
+        "tells1": "Your deeper purpose in this life.",
         "tells2": "Your natural talents and strengths.",
         "tells3": "Challenges and lessons you may encounter.",
         "tells4": "Recurring themes in your life.",
@@ -4478,8 +4478,8 @@
     "profile_not_found": "Profile not found",
     "enter_birth_info": "Please enter your birth information first",
     "generating_chart": "Generating chart...",
-    "soul_level_self_awareness": "Soul Level Self-Awareness",
-    "info_banner": "Discover your soul's true purpose and past life traces",
+    "soul_level_self_awareness": "Deep Self-Awareness",
+    "info_banner": "Discover your true purpose and deep personal patterns",
     "profile_info": "Profile Information",
     "name": "Name",
     "user": "User",
@@ -4491,9 +4491,9 @@
     "sun": "Sun",
     "moon": "Moon",
     "ascendant": "Rising",
-    "soul_purpose": "Soul Purpose",
+    "soul_purpose": "Life Purpose",
     "karmic_lessons": "Growth Lessons",
-    "spiritual_gifts": "Spiritual Gifts",
+    "spiritual_gifts": "Personal Gifts",
     "past_life_indicators": "Past Life Indicators",
     "evolutionary_path": "Evolutionary Path",
     "planet_positions": "Draconic Planet Positions",
@@ -5298,7 +5298,7 @@
         "subtitle": "Discover the source of prosperity"
       },
       "spiritual_transformation": {
-        "title": "Spiritual Transformation",
+        "title": "Personal Transformation",
         "subtitle": "Map of your inner journey"
       },
       "life_purpose": {
@@ -5963,9 +5963,9 @@
       }
     },
     "soul_mate": {
-      "main": "{name}, here's everything you wonder about your soul mate as a {sign}.",
-      "details_template": "What Is Your Soul Mate Like?\n{description}\n\nMost Compatible Signs: {compatible}\n\nWhere You Might Meet: {places}",
-      "advice_template": "To attract your soul mate: {advice}",
+      "main": "{name}, here's everything you wonder about your ideal match as a {sign}.",
+      "details_template": "What Is Your Ideal Match Like?\n{description}\n\nMost Compatible Signs: {compatible}\n\nWhere You Might Meet: {places}",
+      "advice_template": "To attract your ideal match: {advice}",
       "descriptions": {
         "aries": "Someone energetic, brave, who loves challenge. Will compete with you but also support you.",
         "taurus": "Someone reliable, loyal, who loves beauty. Will build a comfortable home with you.",
@@ -5978,7 +5978,7 @@
         "sagittarius": "Someone adventurous, free-spirited, philosophical. Will explore the world with you.",
         "capricorn": "Someone ambitious, reliable, goal-oriented. Tends to walk toward success alongside you.",
         "aquarius": "Someone unique, independent, visionary. Will change the world with you.",
-        "pisces": "Someone romantic, intuitive, artistic. Will build a spiritual bond with you."
+        "pisces": "Someone romantic, intuitive, artistic. Will build a deep bond with you."
       },
       "compatible": {
         "aries": "Leo, Sagittarius, Gemini, Libra",
@@ -8926,8 +8926,8 @@
     "share": "Share",
     "share_insight": "Share your insight",
     "expression_number": "Expression Number",
-    "soul_voice": "Your soul's voice",
-    "soul_urge": "Soul Urge",
+    "soul_voice": "Your inner voice",
+    "soul_urge": "Inner Motivation",
     "deepest_desires": "Your deepest desires",
     "birthday_number": "Birthday Number",
     "hidden_talents": "Your hidden talents",
@@ -8940,7 +8940,7 @@
     "progressions": "Progressions",
     "inner_evolution": "Your inner evolution",
     "draconic": "Draconic Chart",
-    "soul_chart": "Your soul's chart",
+    "soul_chart": "Your personal chart",
     "solar_arc": "Solar Arc",
     "life_directions": "Life directions",
     "vedic": "Vedic Self-Awareness",

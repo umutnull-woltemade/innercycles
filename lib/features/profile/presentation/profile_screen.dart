@@ -167,7 +167,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: Image.asset(
-                'assets/brand/app-logo/png/venus-logo-96.png',
+                'assets/brand/app-logo/png/app-logo-96.png',
                 fit: BoxFit.contain,
               ),
             ),
