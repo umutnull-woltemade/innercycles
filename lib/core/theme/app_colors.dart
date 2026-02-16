@@ -62,8 +62,8 @@ class AppColors {
   static const Color softPink = Color(0xFFFFB6C1);
   static const Color silverGray = Color(0xFFB8B8B8);
 
-  // Venus brand color
-  static const Color venusPink = Color(0xFFE91E8C);
+  // Brand accent color
+  static const Color brandPink = Color(0xFFE91E8C);
 
   // ========== LIGHT MODE COLORS ==========
 

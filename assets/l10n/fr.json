@@ -261,7 +261,7 @@
     "more_tools_category": "Plus d'Outils",
     "no_results": "Aucun résultat trouvé",
     "kozmoz_master": "InnerCycles Guide",
-    "kozmoz_subtitle": "Guidance personnalisée pour votre signe",
+    "kozmoz_subtitle": "Guidance personnalisée pour votre profil",
     "most_popular_questions": "Questions les Plus Populaires",
     "other_questions": "Autres questions",
     "ask_stars_hint": "Explorez vos réflexions...",
@@ -1618,7 +1618,7 @@
         ]
       },
       "4": {
-        "title": "Root of the Soul",
+        "title": "Root of the Self",
         "description": "The fourth house is the deepest point of the chart - the root of your inner self. {signName} here shapes family patterns, the need for emotional security and the concept of 'home'. This house carries the legacy of ancestors and the oldest impressions in your subconscious. You cannot understand where you're going without knowing where you came from.",
         "shadow": "Shadow aspect: Getting stuck in the past, blindly repeating family patterns.",
         "gift": "Gift: Deep emotional wisdom and capacity for inner peace.",
@@ -2906,7 +2906,7 @@
     "archetype_profiles": "Profils du Archétype",
     "brand_text": "Compatibilité Archétype — InnerCycles",
     "cosmic_chemistry": "Chimie Personnelle",
-    "ancient_note": "La compatibilité entre deux signes n'est pas qu'un calcul d'élément et de modalité. Chaque relation porte le potentiel pour deux âmes de se compléter et de se transformer mutuellement. Les défis sont les plus grands enseignants."
+    "ancient_note": "La compatibilité entre deux signes n'est pas qu'un calcul d'élément et de modalité. Chaque relation porte le potentiel pour deux personnes de se compléter et de se transformer mutuellement. Les défis sont les plus grands enseignants."
   },
   "auth": {
     "registration_success": "Inscription réussie! Veuillez vérifier votre adresse email.",
@@ -3563,14 +3563,14 @@
       "mystery": "mystère",
       "mystical_quotes": "Citations mystiques",
       "mystical_quotes_list": [
-        "\"Les rêves sont des lettres écrites par nos âmes la nuit.\"",
+        "\"Les rêves sont des lettres écrites par notre moi profond la nuit.\"",
         "\"Chaque rêve est un miroir, chaque symbole une clé.\"",
         "\"La nuit est le moment où le subconscient parle le plus fort.\"",
         "\"Ceux qui écoutent leurs rêves écrivent leur destin.\""
       ],
       "personal_insight": "Aperçu personnel",
       "poetry_templates": [
-        "Dans les profondeurs de la nuit, {mainSymbol} est apparu,\nL'archétype {archetype} a appelé mon âme.\nLes messages cryptés du subconscient,\nBrillent maintenant à la lumière du sens.",
+        "Dans les profondeurs de la nuit, {mainSymbol} est apparu,\nL'archétype {archetype} a appelé mon moi profond.\nLes messages cryptés du subconscient,\nBrillent maintenant à la lumière du sens.",
         "Les portes du royaume des rêves se sont ouvertes,\nLe symbole {mainSymbol} a illuminé mon chemin.\nLa sagesse ancienne m'a murmuré à l'oreille,\nL'énergie de {archetype} a embrassé tout mon être.",
         "Les ombres dansent au clair de lune,\n{mainSymbol} m'a raconté des histoires.\nJe marche sur les traces de {archetype},\nJ'ai gravé la sagesse de mon rêve dans mon cœur."
       ],
@@ -3980,15 +3980,15 @@
   "child_reflection": {
     "personality": {
       "aries": "A natural-born leader with boundless energy and enthusiasm. Your Aries child is adventurous, courageous, and loves to be first at everything.",
-      "taurus": "A gentle soul who appreciates comfort and stability. Your Taurus child is patient, determined, and has a strong appreciation for beauty.",
+      "taurus": "A gentle spirit who appreciates comfort and stability. Your Taurus child is patient, determined, and has a strong appreciation for beauty.",
       "gemini": "A curious mind that never stops asking questions. Your Gemini child is communicative, adaptable, and loves learning new things.",
       "cancer": "A sensitive and nurturing spirit. Your Cancer child is intuitive, caring, and deeply connected to family.",
       "leo": "A bright light who loves to shine. Your Leo child is confident, creative, and has a natural flair for drama.",
       "virgo": "A thoughtful perfectionist with attention to detail. Your Virgo child is helpful, analytical, and loves organizing things.",
       "libra": "A natural peacemaker who values harmony. Your Libra child is charming, fair-minded, and loves making friends.",
-      "scorpio": "An intense and passionate soul. Your Scorpio child is determined, intuitive, and fiercely loyal.",
+      "scorpio": "An intense and passionate spirit. Your Scorpio child is determined, intuitive, and fiercely loyal.",
       "sagittarius": "A free spirit with an adventurous heart. Your Sagittarius child is optimistic, honest, and loves exploring.",
-      "capricorn": "A responsible old soul. Your Capricorn child is ambitious, disciplined, and wise beyond their years.",
+      "capricorn": "A responsible old spirit. Your Capricorn child is ambitious, disciplined, and wise beyond their years.",
       "aquarius": "A unique individual who thinks differently. Your Aquarius child is inventive, independent, and humanitarian.",
       "pisces": "A dreamy and imaginative spirit. Your Pisces child is compassionate, artistic, and deeply intuitive.",
       "default": "La personnalité de votre enfant se développe de manière unique."
@@ -7074,7 +7074,7 @@
         "stage_voiceless": "I had to speak on stage but my voice wouldn't come out",
         "race_stuck": "I was racing but couldn't run",
         "acting_forgot": "I had to act but forgot my lines",
-        "death_watching": "I saw myself die but my soul was watching",
+        "death_watching": "I saw myself die but my spirit was watching",
         "funeral_crying": "I was at my funeral, everyone was crying",
         "death_rebirth": "I died but woke up in another body",
         "ghost_invisible": "I became a ghost and no one could see me",
@@ -7416,7 +7416,7 @@
     "numerology_q3": "What are master numbers (11, 22, 33)?",
     "numerology_a3": "Master numbers are powerful vibrations that carry special potential and challenges. 11 represents intuitive enlightenment, 22 the master builder, and 33 the master teacher. These numbers are not reduced to single digits.",
     "numerology_q4": "How does name numerology work?",
-    "numerology_a4": "Each letter has a numerical value (in the Pythagorean or Chaldean system). By adding up the numerical values of the letters in your name, your expression number, soul number, and personality number are calculated."
+    "numerology_a4": "Each letter has a numerical value (in the Pythagorean or Chaldean system). By adding up the numerical values of the letters in your name, your expression number, inner self number, and personality number are calculated."
   },
   "quiz": {
     "dream_title": "Dream Awareness Test",

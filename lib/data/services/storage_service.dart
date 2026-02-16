@@ -363,28 +363,6 @@ class StorageService {
     return ThemeMode.dark;
   }
 
-  // ========== HOUSE SYSTEM ==========
-
-  static const String _houseSystemKey = 'house_system';
-
-  /// Save selected house system
-  static Future<void> saveHouseSystem(int index) async {
-    _warnIfNotInitialized('saveHouseSystem');
-    final box = _settingsBox;
-    if (box == null) return;
-
-    await box.put(_houseSystemKey, index);
-  }
-
-  /// Load selected house system index (defaults to 0 = Placidus)
-  static int loadHouseSystemIndex() {
-    _warnIfNotInitialized('loadHouseSystemIndex');
-    final box = _settingsBox;
-    if (box == null) return 0;
-
-    final index = box.get(_houseSystemKey, defaultValue: 0) as int;
-    return index;
-  }
 
   // ========== CLEAR ALL DATA ==========
 
