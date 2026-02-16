@@ -54,23 +54,7 @@ class CosmicMessagesContent {
         _dateIndex(date, _allExtendedCosmicWisdoms.length)];
   }
 
-  /// Get archetype-based guidance theme
-  static String getArchetypeGuidance(String archetype) {
-    return _archetypeGuidance[archetype.toLowerCase()] ??
-        _archetypeGuidance['sun']!;
-  }
-
-  /// Get element-based reflection theme
-  static String getElementMessage(String element) {
-    return _elementMessages[element.toLowerCase()] ?? _elementMessages['fire']!;
-  }
-
-  /// Get house-based reflection theme
-  static String getHouseInsight(int houseNumber) {
-    return _houseInsights[houseNumber] ?? _houseInsights[1]!;
-  }
-
-  /// Get archetype-specific daily intention (e.g., 'aries', 'taurus')
+  /// Get archetype-specific daily intention (e.g., 'pioneer', 'builder')
   /// Falls back to universal intentions if archetype not found
   static String getArchetypeIntention(String archetype, {DateTime? date}) {
     final d = date ?? DateTime.now();
@@ -84,7 +68,7 @@ class CosmicMessagesContent {
     return _universalIntentions[_dateIndex(d, _universalIntentions.length)];
   }
 
-  /// Get archetype-specific extended wisdom (e.g., 'aries', 'taurus')
+  /// Get archetype-specific extended wisdom (e.g., 'pioneer', 'builder')
   /// Falls back to universal extended wisdoms if archetype not found
   static String getArchetypeWisdom(String archetype, {DateTime? date}) {
     final d = date ?? DateTime.now();
@@ -414,7 +398,7 @@ class CosmicMessagesContent {
 
   /// Daily intentions by archetype
   static final Map<String, List<String>> _dailyIntentions = {
-    'aries': [
+    'pioneer': [
       'Bugün sabırla hareket etmeyi seçebilirim.',
       'Cesaretimi yapıcı yönde kullanmayı deniyorum.',
       'Liderliğimi sevgiyle göstermeyi düşünüyorum.',
@@ -423,7 +407,7 @@ class CosmicMessagesContent {
       'Yeni başlangıçlara açık olmayı deniyorum.',
       'Gücümü başkalarını desteklemek için kullanmayı düşünüyorum.',
     ],
-    'taurus': [
+    'builder': [
       'Bugün bolluğa açık olmayı seçebilirim.',
       'Hayatın küçük zevklerini fark etmeyi deniyorum.',
       'Sabırla güzel şeylerin gelmesine izin vermeyi düşünüyorum.',
@@ -432,7 +416,7 @@ class CosmicMessagesContent {
       'Doğayla bağlantı kurmayı düşünüyorum.',
       'Minnettarlık pratiği yapmayı seçebilirim.',
     ],
-    'gemini': [
+    'communicator': [
       'Bugün bilinçli iletişim kurmayı seçebilirim.',
       'Öğrenmeye açık bir zihinle yaklaşmayı deniyorum.',
       'Merakımı yapıcı yönde kullanmayı düşünüyorum.',
@@ -441,7 +425,7 @@ class CosmicMessagesContent {
       'Çok yönlülüğümü kutlamayı düşünüyorum.',
       'Bağlantılarımı derinleştirmeyi seçebilirim.',
     ],
-    'cancer': [
+    'nurturer': [
       'Bugün duygularıma alan tanımayı seçebilirim.',
       'Sezgilerime güvenmeyi deniyorum.',
       'Sevdiklerime sevgimi göstermeyi düşünüyorum.',
@@ -450,7 +434,7 @@ class CosmicMessagesContent {
       'Geçmişi iyileştirmeyi düşünüyorum.',
       'Yuva enerjisi yaratmayı seçebilirim.',
     ],
-    'leo': [
+    'performer': [
       'Bugün otantik ben olmayı seçebilirim.',
       'Yaratıcılığımı ifade etmeyi deniyorum.',
       'Başkalarının parlamasına alan açmayı düşünüyorum.',
@@ -459,7 +443,7 @@ class CosmicMessagesContent {
       'İlham kaynağı olmayı düşünüyorum.',
       'Kalbimden konuşmayı seçebilirim.',
     ],
-    'virgo': [
+    'analyst': [
       'Bugün mükemmeliyetçiliği bırakmayı seçebilirim.',
       'Kendime şefkat göstermeyi deniyorum.',
       'Detaylarda anlam bulmayı düşünüyorum.',
@@ -468,7 +452,7 @@ class CosmicMessagesContent {
       'İlerlemeyi kutlamayı düşünüyorum.',
       'Düzeni sevgiyle yaratmayı seçebilirim.',
     ],
-    'libra': [
+    'harmonizer': [
       'Bugün iç dengeyi bulmayı seçebilirim.',
       'İlişkilerimde sağlıklı sınır koymayı deniyorum.',
       'Güzellik yaratmayı düşünüyorum.',
@@ -477,7 +461,7 @@ class CosmicMessagesContent {
       'Adalet için sesimi yükseltmeyi düşünüyorum.',
       'Barışı yaymayı seçebilirim.',
     ],
-    'scorpio': [
+    'transformer': [
       'Bugün dönüşüme açık olmayı seçebilirim.',
       'Derinliği kucaklamayı deniyorum.',
       'Gölgelerimi aydınlatmayı düşünüyorum.',
@@ -536,42 +520,42 @@ class CosmicMessagesContent {
 
   /// Extended reflection themes for deeper readings
   static final Map<String, List<String>> _extendedCosmicWisdoms = {
-    'aries': [
+    'pioneer': [
       'Ateş arketipi, cesaret, inisiyatif ve liderlik temalarını simgeler. Bu özellikler hayatında nasıl ortaya çıkıyor? Gerçek gücün kontrollü güç olduğu düşünülebilir. Sabırsızlık ile kararlılık arasındaki dengeyi düşünmek isteyebilirsin.',
       'Öncü arketipi olarak, liderlik enerjisi üzerine düşünebilirsin. Yeni projeler, yeni ilişkiler, yeni başlangıçlar... Hangi alanlarda inisiyatif almak istiyorsun? Korku ve cesaret arasındaki ilişkiyi keşfedebilirsin.',
       'Eylem ve düşünce arasındaki denge üzerine bir refleksiyon yapabilirsin. Sezgilerine güvenmek ne anlama geliyor? İçgüdülerinle nasıl bir ilişkin var?',
     ],
-    'taurus': [
+    'builder': [
       'Toprak arketipi, istikrar, değer ve duyusal deneyim temalarını simgeler. Maddi dünya ile ilişkin üzerine düşünebilirsin. Gerçek zenginliğin ne olduğunu keşfetmek isteyebilirsin.',
       'Sabır ve kararlılık temaları üzerine bir refleksiyon. Hızlı sonuçlar yerine sürdürülebilir ilerleme üzerine düşünmek faydalı olabilir. Zamanlamanın önemi hakkında ne düşünüyorsun?',
       'Duyusal zevkler ve öz-bakım temaları üzerine düşünebilirsin. Güzel bir yemek, hoş bir müzik, sevilen birinin varlığı... Bunların ruhunu nasıl beslediğini fark edebilirsin.',
     ],
-    'gemini': [
+    'communicator': [
       'Hava arketipi, iletişim, merak ve çok yönlülük temalarını simgeler. Zihinsel çevikliğin hayatına nasıl katkıda bulunuyor? Bilgi ve bağlantı üzerine düşünmek isteyebilirsin.',
       'Çok yönlülük teması üzerine bir refleksiyon. Aynı anda birçok ilgi alanına sahip olmak senin için ne anlama geliyor? Bu özelliğini nasıl değerlendiriyorsun?',
       'Merak ve öğrenme üzerine düşünebilirsin. Sorular sormak ve araştırmak hayatında nasıl yer alıyor? Öğrendiklerini paylaşmak hakkında ne hissediyorsun?',
     ],
-    'cancer': [
+    'nurturer': [
       'Su arketipi, duygusal derinlik, sezgi ve koruma temalarını simgeler. İç sesin sana ne söylüyor? Duygusal radarın üzerine düşünmek isteyebilirsin.',
       'Yuva, aile ve kökler temaları üzerine bir refleksiyon. Bunlar senin için ne anlama geliyor? Sevdiklerinle ilişkin hakkında düşünebilirsin.',
       'Duygularla ilişki üzerine düşünebilirsin. Duygusal ifade senin için ne anlama geliyor? Şefkat ve savunmasızlık arasındaki dengeyi keşfedebilirsin.',
     ],
-    'leo': [
+    'performer': [
       'Ateş arketipi, yaratıcılık, kendini ifade etme ve görünürlük temalarını simgeler. Parlamak senin için ne anlama geliyor? Otantik olmak üzerine düşünmek isteyebilirsin.',
       'Yaratıcılık teması üzerine bir refleksiyon. Sanat, müzik, dans, yazı... Her türlü yaratıcı ifade senin için ne ifade ediyor? Yaratıcılığınla nasıl bir ilişkin var?',
       'Cömertlik ve paylaşım temaları üzerine düşünebilirsin. Vermek ve almak arasındaki denge hakkında ne düşünüyorsun? Cömertliğin farklı biçimlerini keşfedebilirsin.',
     ],
-    'virgo': [
+    'analyst': [
       'Toprak arketipi, detay, hizmet ve şifa temalarını simgeler. Analitik zekanın hayatına nasıl katkıda bulunuyor? Düzen ve anlam arayışı üzerine düşünmek isteyebilirsin.',
       'Şifa ve hizmet temaları üzerine bir refleksiyon. Kendine ve başkalarına nasıl iyilik yapıyorsun? Küçük eylemlerin büyük etkileri hakkında düşünebilirsin.',
       'Mükemmellik ve ilerleme arasındaki denge üzerine düşünebilirsin. İlerlemeyi kutlamak senin için ne anlama geliyor? Pratik zekânı nasıl değerlendiriyorsun?',
     ],
-    'libra': [
+    'harmonizer': [
       'Hava arketipi, denge, uyum ve ilişki temalarını simgeler. Harmoni senin için ne anlama geliyor? İlişkilerde dengeyi bulmak üzerine düşünmek isteyebilirsin.',
       'Diplomasi ve iletişim temaları üzerine bir refleksiyon. Çatışmaları nasıl yönetiyorsun? İnsanları bir araya getirmek hakkında ne düşünüyorsun?',
       'Estetik ve güzellik üzerine düşünebilirsin. Güzellik sadece görsel değil, ruhsal da olabilir. Güzellik yaratmak ve takdir etmek senin için ne anlama geliyor?',
     ],
-    'scorpio': [
+    'transformer': [
       'Su arketipi, dönüşüm, derinlik ve yoğunluk temalarını simgeler. Dönüşüm senin için ne anlama geliyor? Gölgelerle ilişkin üzerine düşünmek isteyebilirsin.',
       'Sezgi ve içgörü temaları üzerine bir refleksiyon. Görünmeyeni görmek, bilinmeyeni bilmek... Bu yeteneklerle nasıl bir ilişkin var?',
       'Tutku ve yoğunluk üzerine düşünebilirsin. Bu enerjiyi nasıl yönlendiriyorsun? Yaratıcı ve dönüştürücü yollar hakkında ne düşünüyorsun?',

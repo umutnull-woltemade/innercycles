@@ -6,7 +6,7 @@
     "completeness": 100
   },
   "app": {
-    "name": "Venus One",
+    "name": "InnerCycles",
     "tagline": "Deine Innere Reise Beginnt",
     "loading_text": "Dein Reflexionsbereich wird vorbereitet..."
   },
@@ -877,7 +877,7 @@
       "number_depth_title": "Depth of Number {number}",
       "kadim_title": "Eternal Dance of Numbers",
       "kadim_content": "Since Pythagoras, sages have known that numbers carry the hidden language of the universe. Your life path number is not just a digit - it is the vibration your soul brought into this world, the unique melody the universe gave you. To hear this melody, you first need silence.",
-      "brand_text": "Numerology — Venus One",
+      "brand_text": "Numerology — InnerCycles",
       "karmic_13_desc": "A karmic debt arising from laziness and irresponsibility. Must be balanced through hard work and discipline in this life.",
       "karmic_14_desc": "A debt from misusing freedom. Learning responsibility and moderation is required in this life.",
       "karmic_16_desc": "A debt from ego and relationship issues. Requires humility and inner transformation.",
@@ -1144,7 +1144,7 @@
       "todays_micro_ritual": "Today's Micro Ritual",
       "tantra_tag": "Tantra",
       "discover_dream_trace": "Discover Dream Trace",
-      "brand_footer": "Tantra — Venus One",
+      "brand_footer": "Tantra — InnerCycles",
       "months": {
         "january": "January",
         "february": "February",
@@ -1222,8 +1222,8 @@
     "historical": "Historische Persönlichkeiten"
   },
   "premium": {
-    "cosmic_powers": "Kosmische Kräfte",
-    "cosmic_powers_active": "Kosmische Kräfte Aktiv",
+    "cosmic_powers": "Premium-Funktionen",
+    "cosmic_powers_active": "Premium-Funktionen Aktiv",
     "lifetime_access": "Du hast lebenslangen Zugang!",
     "open_cosmic_door": "Kosmische Tür Öffnen",
     "cosmic_door_opened": "Kosmische Tür Geöffnet!",
@@ -1258,9 +1258,9 @@
       "pure_cosmic_experience": "Reines kosmisches Erlebnis (werbefrei)",
       "deep_planet_readings": "Tiefe Planetenlesungen",
       "unlimited_card_insight": "Unbegrenzte Reflection Card-Sitzungen",
-      "soulmate_compatibility": "Seelenverwandten-Kompatibilitätsanalyse",
-      "kabbalistic_secrets": "Kabbalistische Geheimnisse",
-      "auric_reading": "Auralesen",
+      "soulmate_compatibility": "Beziehungs-Reflexionstools",
+      "kabbalistic_secrets": "Symbolische Erkundungstools",
+      "auric_reading": "Energie-Bewusstseinstagebuch",
       "planet_transits": "Kosmische Transite",
       "priority_guidance": "Prioritäre kosmische Führung"
     },
@@ -1268,17 +1268,17 @@
       "monthly": {
         "name": "Monatlich",
         "savings": "",
-        "features": "['Alle Basisfunktionen', 'Reines kosmisches Erlebnis (werbefrei)', 'Tiefe Planeteninterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Seelenverwandten-Kompatibilitätsanalyse', 'Kabbalistische Geheimnisse', 'Aura-Energie-Lesung', 'Kosmische Transite', 'Prioritäts-kosmische Führung']"
+        "features": "['Alle Basisfunktionen', 'Reines kosmisches Erlebnis (werbefrei)', 'Tiefe Planeteninterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Kosmische Transite', 'Prioritäts-kosmische Führung']"
       },
       "yearly": {
         "name": "Jährlich",
         "savings": "50% sparen",
-        "features": "['Alle Basisfunktionen', 'Reines kosmisches Erlebnis (werbefrei)', 'Tiefe Planeteninterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Seelenverwandten-Kompatibilitätsanalyse', 'Kabbalistische Geheimnisse', 'Aura-Energie-Lesung', 'Kosmische Transite', 'Prioritäts-kosmische Führung']"
+        "features": "['Alle Basisfunktionen', 'Reines kosmisches Erlebnis (werbefrei)', 'Tiefe Planeteninterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Kosmische Transite', 'Prioritäts-kosmische Führung']"
       },
       "lifetime": {
         "name": "Lebenslang",
         "savings": "Einmalzahlung",
-        "features": "['Alle Basisfunktionen', 'Reines kosmisches Erlebnis (werbefrei)', 'Tiefe Planeteninterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Seelenverwandten-Kompatibilitätsanalyse', 'Kabbalistische Geheimnisse', 'Aura-Energie-Lesung', 'Kosmische Transite', 'Prioritäts-kosmische Führung']"
+        "features": "['Alle Basisfunktionen', 'Reines kosmisches Erlebnis (werbefrei)', 'Tiefe Planeteninterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Kosmische Transite', 'Prioritäts-kosmische Führung']"
       },
       "free": {
         "features": "['Tägliche Einblick-Flüstern', 'Basis-Persönliches Profil', 'Tägliche Reflexionskarte', 'Werbefinanziert']",
@@ -1903,8 +1903,8 @@
     "light_mode": "Heller Modus",
     "dark_mode": "Dunkler Modus",
     "coming_soon_language": "Demnächst verfügbar",
-    "support": "Venus One Support",
-    "version": "Venus One v1.0.0",
+    "support": "InnerCycles Support",
+    "version": "InnerCycles v1.0.0",
     "admin": "Admin",
     "dashboard": "Dashboard & Analytics",
     "pin": "PIN",
@@ -1972,7 +1972,7 @@
     "planet_transits": "Kosmische Transite",
     "your_archetype_readings": "Deine Persönlichkeitstyp-Deutungen",
     "sign_today": "Wie geht es {sign} heute?",
-    "self_awareness_brand": "Selbstwahrnehmung — Venus One",
+    "self_awareness_brand": "Selbstwahrnehmung — InnerCycles",
     "self_awareness": "Selbstwahrnehmung",
     "hermetic_teaching": "Hermetische Lehre",
     "weekly_affirmation_label": "Wochen-Affirmation",
@@ -2106,18 +2106,18 @@
     "trust": "Vertrauen"
   },
   "brands": {
-    "reflection": "Einblick — Venus One",
-    "weekly_reflection": "Wöchentlicher Einblick — Venus One",
-    "monthly_reflection": "Monatlicher Einblick — Venus One",
-    "yearly_reflection": "Jährlicher Einblick — Venus One",
-    "love_reflection": "Liebes-Einblick — Venus One",
-    "compatibility": "Persönlichkeitskompatibilität — Venus One",
-    "card_insight": "Reflection Card — Venus One",
-    "dreams": "Traumorakel — Venus One",
-    "self_awareness": "Self-Awareness — Venus One",
-    "numerology": "Numerology — Venus One",
-    "dream_trace": "Dream Trace — Venus One",
-    "personal_profile": "Personal Profile — Venus One"
+    "reflection": "Einblick — InnerCycles",
+    "weekly_reflection": "Wöchentlicher Einblick — InnerCycles",
+    "monthly_reflection": "Monatlicher Einblick — InnerCycles",
+    "yearly_reflection": "Jährlicher Einblick — InnerCycles",
+    "love_reflection": "Liebes-Einblick — InnerCycles",
+    "compatibility": "Persönlichkeitskompatibilität — InnerCycles",
+    "card_insight": "Reflection Card — InnerCycles",
+    "dreams": "Traumorakel — InnerCycles",
+    "self_awareness": "Self-Awareness — InnerCycles",
+    "numerology": "Numerology — InnerCycles",
+    "dream_trace": "Dream Trace — InnerCycles",
+    "personal_profile": "Personal Profile — InnerCycles"
   },
   "navigation": {
     "section_titles": {
@@ -2905,7 +2905,7 @@
     "moderate_match": "Mittlere Übereinstimmung",
     "challenging": "Herausfordernd",
     "archetype_profiles": "Persönlichkeitstyp-Profile",
-    "brand_text": "Persönlichkeitskompatibilität — Venus One",
+    "brand_text": "Persönlichkeitskompatibilität — InnerCycles",
     "cosmic_chemistry": "Kosmische Chemie",
     "ancient_note": "Die Kompatibilität zwischen zwei Zeichen ist nicht nur eine Element- und Modalitätsberechnung. Jede Beziehung trägt das Potenzial für zwei Seelen, sich gegenseitig zu ergänzen und zu verwandeln. Herausforderungen sind die größten Lehrer."
   },
@@ -3086,7 +3086,7 @@
     "saved_to_journal": "Saved to dream journal",
     "canonical": {
       "brand_tag": "Dream Trace",
-      "brand_footer": "Dream Trace — Venus One",
+      "brand_footer": "Dream Trace — InnerCycles",
       "losing_question": "What does losing someone in a dream mean?",
       "searching_question": "What does searching for something in a dream mean?",
       "past_question": "What does someone from the past appearing in a dream mean?",
@@ -4201,7 +4201,7 @@
       "Your energy is high! An ideal day for playing outside or doing sports.",
       "A day to collect beautiful memories with your family. Play games together.",
       "A good time to start learning a new skill.",
-      "Expressing your feelings will be easy today. Share what you feel."
+      "Expressing your feelings may feel easier today. Share what you feel."
     ],
     "family_dynamics": {
       "fire": "Your family is built on energy, initiative and passion. Joint activities and healthy competition are ways to bond.",
@@ -7768,7 +7768,7 @@
           "aries": "Advice: Write down your first thoughts when you wake up in the morning. Your fire energy can quickly make you forget subconscious messages.",
           "taurus": "Advice: Write your dreams in a dream journal. Your earth energy works better with tangible records.",
           "gemini": "Advice: Tell your dream to someone. Your air energy loves to find meaning through verbal expression.",
-          "cancer": "Advice: Pay attention to moon phases. Your dreams will be stronger during full moon and new moon times.",
+          "cancer": "Advice: Pay attention to moon phases. Your dreams tend to be more vivid during full moon and new moon times.",
           "leo": "Advice: Express your dreams creatively - draw, write, share. Your fire energy loves expression.",
           "virgo": "Advice: Keep a list of dream symbols. Your earth energy appreciates systematic analysis.",
           "libra": "Advice: Focus on relationships in your dreams. Your air energy draws lessons from social dynamics.",
@@ -8051,7 +8051,7 @@
         "It positions life areas from career to relationships."
       ],
       "suggestion_text": "What does Mercury retrograde mean?",
-      "brand_text": "Self-Awareness — Venus One"
+      "brand_text": "Self-Awareness — InnerCycles"
     },
     "moon_sign_today": {
       "title": "What sign is the Moon in today?",
@@ -8079,7 +8079,7 @@
       "moon_in_sign": "Moon is in {sign}",
       "element_label": "{element} Element",
       "suggestion_text": "What is rising sign?",
-      "brand_text": "Self-Awareness — Venus One",
+      "brand_text": "Self-Awareness — InnerCycles",
       "signs": {
         "aries": {
           "name": "Aries",
@@ -8195,7 +8195,7 @@
   "saturn_return": {
     "title": "Saturn Return",
     "subtitle": "The Great Teacher's Cosmic Lessons",
-    "brand_text": "Saturn Return — Venus One",
+    "brand_text": "Saturn Return — InnerCycles",
     "kadim_title": "The Wisdom of Saturn",
     "kadim_content": "Saturn, known as the Lord of Karma in self-awareness, demands discipline, responsibility, and maturity with each return. Approximately every 29.5 years, this cosmic teacher tests your foundations, destroys structures that don't serve your authentic self, and guides you toward building lasting achievements. The challenges are real, but so are the rewards for those who do the inner work.",
     "status_active": "Active",
@@ -9284,7 +9284,7 @@
   },
   "numerology": {
     "title": "Numerology",
-    "brand_footer": "Numerology — Venus One",
+    "brand_footer": "Numerology — InnerCycles",
     "karmic_not_found": "Karmic debt information not found",
     "karmic_wisdom": "Karmic Wisdom",
     "karmic_cycle": "Karmic Cycle",
@@ -9413,7 +9413,7 @@
       "meaning_33": "A day of healing and teaching",
       "meaning_default": "A day of strong energy",
       "suggestion_text": "What is expression number?",
-      "footer": "Numerology — Venus One"
+      "footer": "Numerology — InnerCycles"
     },
     "expression_number_screen": {
       "page_title": "What is expression number?",
@@ -9437,7 +9437,7 @@
       "difference_from_life_path_2": "Expression number: The destination you want to reach.",
       "difference_from_life_path_3": "Together they form the complete picture.",
       "suggestion_text": "What is life path number?",
-      "footer": "Numerology — Venus One"
+      "footer": "Numerology — InnerCycles"
     }
   },
   "nav": {
@@ -9544,7 +9544,7 @@
     "subtitle": "Discover the best times for your activities",
     "kadim_title": "The Art of Personal Timing",
     "kadim_content": "Ancient civilizations knew the importance of timing. Each hour of the day is ruled by a different planet. By aligning your activities with cosmic rhythms, you can maximize your potential.",
-    "brand_footer": "Cosmic Timing by Venus One",
+    "brand_footer": "Cosmic Timing by InnerCycles",
     "todays_energy": "Today's Energy",
     "score_excellent": "Excellent day for new beginnings!",
     "score_good": "Good energy, stay aware of conditions",

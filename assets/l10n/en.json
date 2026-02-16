@@ -416,7 +416,7 @@
       },
       "kabbalah": {
         "title": "Kabbalah",
-        "desc": "Kabbalistic analysis"
+        "desc": "Symbolic analysis"
       },
       "card_insight": {
         "title": "Card Insight",
@@ -559,7 +559,7 @@
         "libra": "Diplomacy and partnerships. Collaborations are fruitful.",
         "scorpio": "Depth and transformation. Investment and research fields are shining.",
         "sagittarius": "Vision and expansion. International opportunities await you.",
-        "capricorn": "Discipline and ambition. Long-term plans will bear fruit.",
+        "capricorn": "Discipline and ambition. Long-term plans may bear fruit.",
         "aquarius": "Innovation and technology. There are opportunities in digital fields.",
         "pisces": "Creativity and intuition. Art and spiritual fields are fruitful.",
         "default": "Using your talents"
@@ -595,7 +595,7 @@
         "default": "Open your heart, let love in."
       },
       "daily_message": {
-        "aries": "Today your courage will be rewarded. Be ready to overcome your fears!",
+        "aries": "Today your courage may be rewarded. Be ready to overcome your fears!",
         "taurus": "Today you'll get what you deserve. Patience is paying off.",
         "gemini": "Today your communication power is at its peak. Share your ideas!",
         "cancer": "Today your intuition will guide you in the right direction. Trust!",
@@ -1209,7 +1209,7 @@
       "subtitle": "Experience insights without interruption",
       "benefit_ad_free": "Ad-free, calm experience",
       "benefit_unlimited": "Unlimited personal insights",
-      "benefit_priority": "Priority cosmic guidance",
+      "benefit_priority": "Priority personal guidance",
       "continue_pro": "Continue with Pro",
       "not_now": "Not now, maybe later",
       "legal_text": "Auto-renews monthly. Cancel anytime in Settings.",
@@ -1223,13 +1223,13 @@
     },
     "features": {
       "daily_whispers": "Daily insight whispers",
-      "pure_cosmic_experience": "Pure experience (ad-free)",
-      "deep_planet_readings": "Deep personality readings",
+      "pure_cosmic_experience": "Ad-free, peaceful experience",
+      "deep_planet_readings": "Deep personal insights",
       "unlimited_card_insight": "Unlimited card reading sessions",
-      "soulmate_compatibility": "Soulmate compatibility analysis",
-      "kabbalistic_secrets": "Kabbalistic secrets",
-      "auric_reading": "Auric energy reading",
-      "planet_transits": "Life cycle insights",
+      "soulmate_compatibility": "Relationship reflection tools",
+      "kabbalistic_secrets": "Symbolic exploration tools",
+      "auric_reading": "Energy awareness journal",
+      "planet_transits": "Cyclical theme tracking",
       "priority_guidance": "Priority personal guidance"
     },
     "tiers": {
@@ -1248,13 +1248,13 @@
         "savings": "",
         "features": [
           "All basic features",
-          "Pure experience (ad-free)",
+          "Ad-free, peaceful experience",
           "Deep personality interpretations",
           "Unlimited card reading sessions",
-          "Soul mate compatibility analysis",
-          "Kabbalistic secrets",
-          "Auric energy reading",
-          "Life cycle insights",
+          "Relationship reflection tools",
+          "Symbolic exploration tools",
+          "Energy awareness journal",
+          "Cyclical theme tracking",
           "Priority personal guidance"
         ]
       },
@@ -1263,13 +1263,13 @@
         "savings": "77% savings",
         "features": [
           "All basic features",
-          "Pure experience (ad-free)",
+          "Ad-free, peaceful experience",
           "Deep personality interpretations",
           "Unlimited card reading sessions",
-          "Soul mate compatibility analysis",
-          "Kabbalistic secrets",
-          "Auric energy reading",
-          "Life cycle insights",
+          "Relationship reflection tools",
+          "Symbolic exploration tools",
+          "Energy awareness journal",
+          "Cyclical theme tracking",
           "Priority personal guidance"
         ]
       },
@@ -1278,13 +1278,13 @@
         "savings": "One-time payment",
         "features": [
           "All basic features",
-          "Pure experience (ad-free)",
+          "Ad-free, peaceful experience",
           "Deep personality interpretations",
           "Unlimited card reading sessions",
-          "Soul mate compatibility analysis",
-          "Kabbalistic secrets",
-          "Auric energy reading",
-          "Life cycle insights",
+          "Relationship reflection tools",
+          "Symbolic exploration tools",
+          "Energy awareness journal",
+          "Cyclical theme tracking",
           "Priority personal guidance"
         ]
       }
@@ -1958,7 +1958,7 @@
         "gratitude_time": "Gratitude Time",
         "letting_go": "Letting Go",
         "rest_period": "Rest Period",
-        "cosmic_energy": "Cosmic Energy"
+        "cosmic_energy": "Daily Energy"
       },
       "moon_messages": {
         "aries": "Ideal for taking bold steps.",
@@ -2364,7 +2364,7 @@
           "aries": "Advice: Write down your first thoughts when you wake up in the morning. Your fire energy can quickly make you forget subconscious messages.",
           "taurus": "Advice: Write your dreams in a dream journal. Your earth energy works better with tangible records.",
           "gemini": "Advice: Tell your dream to someone. Your air energy loves to find meaning through verbal expression.",
-          "cancer": "Advice: Pay attention to moon phases. Your dreams will be stronger during full moon and new moon times.",
+          "cancer": "Advice: Pay attention to moon phases. Your dreams tend to be more vivid during full moon and new moon times.",
           "leo": "Advice: Express your dreams creatively - draw, write, share. Your fire energy loves expression.",
           "virgo": "Advice: Keep a list of dream symbols. Your earth energy appreciates systematic analysis.",
           "libra": "Advice: Focus on relationships in your dreams. Your air energy draws lessons from social dynamics.",
@@ -2616,8 +2616,8 @@
     "edit_profile": "Edit Profile",
     "edit_profile_desc": "Update your birth information",
     "premium": "Premium",
-    "premium_desc": "Unlock all cosmic powers",
-    "premium_active": "Cosmic powers active",
+    "premium_desc": "Unlock all premium features",
+    "premium_active": "Premium Features Active",
     "manage_subscription": "Manage Subscription",
     "manage_subscription_desc": "View and manage your subscription",
     "clear_data": "Clear Data",
@@ -2627,7 +2627,7 @@
     "delete": "Delete",
     "about": "About",
     "rate_app": "Rate App",
-    "rate_app_desc": "Share your cosmic experience",
+    "rate_app_desc": "Share your experience",
     "disclaimer": "Disclaimer",
     "disclaimer_desc": "Entertainment purposes only",
     "disclaimer_content": "This app provides personal, numerological, card insight, and dream interpretation content for entertainment and self-reflection purposes only.\n\nThe content does not constitute professional advice in any field including but not limited to: medical, psychological, financial, legal, or relationship advice.\n\nIf you need professional support, please consult qualified professionals in the relevant field.\n\nAll interpretations are generated for informational and entertainment purposes and should not be used as the basis for important life decisions.",
@@ -2704,7 +2704,7 @@
       "leo": [
         "You don't need extra effort to stand out today.",
         "You may find inspiration for creative projects.",
-        "Your leadership qualities will be appreciated."
+        "Your leadership qualities tends to be appreciated."
       ],
       "virgo": [
         "A day when you need to focus on details.",
@@ -2728,7 +2728,7 @@
       ],
       "capricorn": [
         "You can take concrete steps toward your career goals.",
-        "Your disciplined approach will bear fruit today.",
+        "Your disciplined approach may bear fruit today.",
         "Good time for making long-term plans."
       ],
       "aquarius": [
@@ -3580,7 +3580,7 @@
     "most_compatible": "Most Compatible",
     "caution": "Caution!",
     "all_pair_compatibilities": "All Pair Compatibilities",
-    "cosmic_harmony": "Cosmic Harmony",
+    "cosmic_harmony": "Personal Harmony",
     "strengths": "Strengths",
     "things_to_watch": "Things to Watch",
     "advice": "Advice",
@@ -5569,7 +5569,7 @@
       "Your energy is high! An ideal day for playing outside or doing sports.",
       "A day to collect beautiful memories with your family. Play games together.",
       "A good time to start learning a new skill.",
-      "Expressing your feelings will be easy today. Share what you feel."
+      "Expressing your feelings may feel easier today. Share what you feel."
     ],
     "family_dynamics": {
       "fire": "Your family is built on energy, initiative and passion. Joint activities and healthy competition are one of the ways to bond. There may be competition but your enthusiasm is contagious.",
@@ -8101,7 +8101,7 @@
     "text_copied_success": "Text copied!",
     "open_instagram": "Open Instagram",
     "todays_message": "Today's Message",
-    "todays_cosmic_energy": "Today's Cosmic Energy",
+    "todays_cosmic_energy": "Today's Daily Energy",
     "reflect": "Reflect",
     "action": "Action",
     "dominant_planet": "Dominant Planet",

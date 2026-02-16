@@ -416,7 +416,7 @@ class PsikolojikRuyaTemalari {
 
   /// Kişilik arketipine göre rüya temaları
   static const Map<String, ArchetypeDreamProfile> arketipRuyaProfili = {
-    'aries': ArchetypeDreamProfile(
+    'pioneer': ArchetypeDreamProfile(
       archetype: 'Öncü',
       emoji: '🚀',
       commonThemes: [
@@ -433,7 +433,7 @@ class PsikolojikRuyaTemalari {
           'Rüyalarında eylem çağrısı ara. Pasif izleme sana göre değil.',
       healingSymbols: ['Kılıç', 'ateş', 'kırmızı', 'at'],
     ),
-    'taurus': ArchetypeDreamProfile(
+    'builder': ArchetypeDreamProfile(
       archetype: 'Kurucu',
       emoji: '🏗',
       commonThemes: ['Doğa', 'yemek', 'para', 'bahçe', 'konfor', 'boyun'],
@@ -448,7 +448,7 @@ class PsikolojikRuyaTemalari {
           'Duyusal detaylara dikkat et. Rüyandaki koku, tat, dokunuş önemli.',
       healingSymbols: ['Çiçek', 'toprak', 'yeşil', 'dağ'],
     ),
-    'gemini': ArchetypeDreamProfile(
+    'communicator': ArchetypeDreamProfile(
       archetype: 'İletişimci',
       emoji: '💬',
       commonThemes: [
@@ -470,7 +470,7 @@ class PsikolojikRuyaTemalari {
           'Rüyalardaki konuşmalara dikkat et. Mesajlar kelimelerle gelir.',
       healingSymbols: ['Kuş', 'kanat', 'sarı', 'kitap'],
     ),
-    'cancer': ArchetypeDreamProfile(
+    'nurturer': ArchetypeDreamProfile(
       archetype: 'Koruyucu',
       emoji: '🛡',
       commonThemes: ['Ev', 'aile', 'anne', 'su', 'geçmiş', 'göğüs', 'mutfak'],
@@ -479,7 +479,7 @@ class PsikolojikRuyaTemalari {
       dreamAdvice: 'Rüyaların duygusal termometren. Hislerine güven.',
       healingSymbols: ['Deniz kabuğu', 'su', 'gümüş', 'yuva'],
     ),
-    'leo': ArchetypeDreamProfile(
+    'performer': ArchetypeDreamProfile(
       archetype: 'Sahne Yıldızı',
       emoji: '🌟',
       commonThemes: [
@@ -501,7 +501,7 @@ class PsikolojikRuyaTemalari {
       dreamAdvice: 'Rüyalarında liderlik rolünü keşfet.',
       healingSymbols: ['Güneş', 'altın', 'taç', 'ışık'],
     ),
-    'virgo': ArchetypeDreamProfile(
+    'analyst': ArchetypeDreamProfile(
       archetype: 'Analist',
       emoji: '🔍',
       commonThemes: ['İş', 'sağlık', 'detay', 'temizlik', 'sindirim', 'analiz'],
@@ -515,7 +515,7 @@ class PsikolojikRuyaTemalari {
       dreamAdvice: 'Detaylara odaklan ama büyük resmi kaçırma.',
       healingSymbols: ['Buğday', 'yeşil', 'kristal', 'bahçe'],
     ),
-    'libra': ArchetypeDreamProfile(
+    'harmonizer': ArchetypeDreamProfile(
       archetype: 'Dengeleyici',
       emoji: '⚖️',
       commonThemes: [
@@ -536,7 +536,7 @@ class PsikolojikRuyaTemalari {
       dreamAdvice: 'İlişki rüyalarına dikkat et. Denge nerede bozuk?',
       healingSymbols: ['Gül', 'pembe', 'ayna', 'köprü'],
     ),
-    'scorpio': ArchetypeDreamProfile(
+    'transformer': ArchetypeDreamProfile(
       archetype: 'Dönüştürücü',
       emoji: '🦋',
       commonThemes: [
@@ -552,7 +552,7 @@ class PsikolojikRuyaTemalari {
       dreamAdvice: 'Karanlık rüyalardan korkma. En derin şifa oradan gelir.',
       healingSymbols: ['Yılan', 'anka kuşu', 'bordo', 'ateş'],
     ),
-    'sagittarius': ArchetypeDreamProfile(
+    'explorer': ArchetypeDreamProfile(
       archetype: 'Kaşif',
       emoji: '🧭',
       commonThemes: [
@@ -568,7 +568,7 @@ class PsikolojikRuyaTemalari {
       dreamAdvice: 'Rüyalardaki yolculuklar iç arayışını yansıtabilir.',
       healingSymbols: ['Ok', 'at', 'mor', 'yıldızlar'],
     ),
-    'capricorn': ArchetypeDreamProfile(
+    'achiever': ArchetypeDreamProfile(
       archetype: 'Başarıcı',
       emoji: '🏔',
       commonThemes: [
@@ -585,7 +585,7 @@ class PsikolojikRuyaTemalari {
       dreamAdvice: 'Kariyer rüyaları gerçek hedeflerini yansıtabilir.',
       healingSymbols: ['Dağ', 'taş', 'siyah', 'yapı'],
     ),
-    'aquarius': ArchetypeDreamProfile(
+    'visionary': ArchetypeDreamProfile(
       archetype: 'Vizyoner',
       emoji: '💡',
       commonThemes: [
@@ -601,7 +601,7 @@ class PsikolojikRuyaTemalari {
       dreamAdvice: 'Sıra dışı rüyaların yaratıcı yeteneklerini yansıtabilir.',
       healingSymbols: ['Su dalgası', 'yıldız', 'mavi', 'elektrik'],
     ),
-    'pisces': ArchetypeDreamProfile(
+    'dreamer': ArchetypeDreamProfile(
       archetype: 'Hayalperest',
       emoji: '🌙',
       commonThemes: [

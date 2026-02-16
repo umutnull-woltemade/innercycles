@@ -660,11 +660,11 @@ class _DreamInterpretationScreenState
 
     // Map sign to JSON key
     final signKeyMap = {
-      archetype.PersonalityArchetype.pioneer: 'aries',
-      archetype.PersonalityArchetype.builder: 'taurus',
-      archetype.PersonalityArchetype.nurturer: 'cancer',
-      archetype.PersonalityArchetype.transformer: 'scorpio',
-      archetype.PersonalityArchetype.dreamer: 'pisces',
+      archetype.PersonalityArchetype.pioneer: 'pioneer',
+      archetype.PersonalityArchetype.builder: 'builder',
+      archetype.PersonalityArchetype.nurturer: 'nurturer',
+      archetype.PersonalityArchetype.transformer: 'transformer',
+      archetype.PersonalityArchetype.dreamer: 'dreamer',
     };
 
     final signKey = signKeyMap[sign];
@@ -1547,18 +1547,18 @@ ${_getPersonalAdvice(sign)}''';
   String _getPersonalAdvice(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
     final signKeyMap = {
-      archetype.PersonalityArchetype.pioneer: 'aries',
-      archetype.PersonalityArchetype.builder: 'taurus',
-      archetype.PersonalityArchetype.communicator: 'gemini',
-      archetype.PersonalityArchetype.nurturer: 'cancer',
-      archetype.PersonalityArchetype.performer: 'leo',
-      archetype.PersonalityArchetype.analyst: 'virgo',
-      archetype.PersonalityArchetype.harmonizer: 'libra',
-      archetype.PersonalityArchetype.transformer: 'scorpio',
-      archetype.PersonalityArchetype.explorer: 'sagittarius',
-      archetype.PersonalityArchetype.achiever: 'capricorn',
-      archetype.PersonalityArchetype.visionary: 'aquarius',
-      archetype.PersonalityArchetype.dreamer: 'pisces',
+      archetype.PersonalityArchetype.pioneer: 'pioneer',
+      archetype.PersonalityArchetype.builder: 'builder',
+      archetype.PersonalityArchetype.communicator: 'communicator',
+      archetype.PersonalityArchetype.nurturer: 'nurturer',
+      archetype.PersonalityArchetype.performer: 'performer',
+      archetype.PersonalityArchetype.analyst: 'analyst',
+      archetype.PersonalityArchetype.harmonizer: 'harmonizer',
+      archetype.PersonalityArchetype.transformer: 'transformer',
+      archetype.PersonalityArchetype.explorer: 'explorer',
+      archetype.PersonalityArchetype.achiever: 'achiever',
+      archetype.PersonalityArchetype.visionary: 'visionary',
+      archetype.PersonalityArchetype.dreamer: 'dreamer',
     };
     final signKey = signKeyMap[sign] ?? 'aries';
     return L10nService.get(

@@ -8,8 +8,6 @@ import '../providers/app_providers.dart';
 /// Personality element archetypes used for dream interpretation and reflection
 enum Element { fire, earth, air, water }
 
-/// Personality modality archetypes
-enum Modality { cardinal, fixed, mutable }
 
 /// Personality archetype signs derived from birth date
 /// Used internally for personalized dream interpretation and journaling themes
@@ -141,12 +139,17 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
       case PersonalityArchetype.nurturer:
         return [
           'Mother Energy',
-          'Moon Intuition',
+          'Deep Intuition',
           'Protective Shell',
           'Tidal Emotion',
         ];
       case PersonalityArchetype.performer:
-        return ['Sun Heart', 'Creative Fire', 'Royal Aura', 'Stage Spirit'];
+        return [
+          'Radiant Heart',
+          'Creative Fire',
+          'Natural Presence',
+          'Stage Spirit',
+        ];
       case PersonalityArchetype.analyst:
         return [
           'Detail Eye',
@@ -158,14 +161,14 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
         return [
           'Balance Master',
           'Justice Scales',
-          'Venus Charm',
+          'Natural Charm',
           'Weighing Soul',
         ];
       case PersonalityArchetype.transformer:
         return [
           'Transform Power',
           'Depth Knowledge',
-          'Pluto Courage',
+          'Inner Courage',
           'Mystery Veil',
         ];
       case PersonalityArchetype.explorer:
@@ -178,21 +181,21 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
       case PersonalityArchetype.achiever:
         return [
           'Summit Drive',
-          'Saturn Discipline',
+          'Steady Discipline',
           'Mountain Patience',
           'Stone Wall',
         ];
       case PersonalityArchetype.visionary:
         return [
           'Revolutionary Soul',
-          'Uranus Spark',
+          'Creative Spark',
           'Free Mind',
           'Distant Gaze',
         ];
       case PersonalityArchetype.dreamer:
         return [
           'Ocean Heart',
-          'Neptune Dream',
+          'Vivid Dream',
           'Mystic Intuition',
           'Boundless Imagination',
         ];
@@ -202,60 +205,32 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
   String get symbol {
     switch (this) {
       case PersonalityArchetype.pioneer:
-        return '♈';
+        return '🚀';
       case PersonalityArchetype.builder:
-        return '♉';
+        return '🏗️';
       case PersonalityArchetype.communicator:
-        return '♊';
+        return '💬';
       case PersonalityArchetype.nurturer:
-        return '♋';
+        return '🤗';
       case PersonalityArchetype.performer:
-        return '♌';
+        return '🎭';
       case PersonalityArchetype.analyst:
-        return '♍';
+        return '🔍';
       case PersonalityArchetype.harmonizer:
-        return '♎';
+        return '⚖️';
       case PersonalityArchetype.transformer:
-        return '♏';
+        return '🦋';
       case PersonalityArchetype.explorer:
-        return '♐';
+        return '🧭';
       case PersonalityArchetype.achiever:
-        return '♑';
+        return '🏔️';
       case PersonalityArchetype.visionary:
-        return '♒';
+        return '💡';
       case PersonalityArchetype.dreamer:
-        return '♓';
+        return '🌊';
     }
   }
 
-  String get dateRange {
-    switch (this) {
-      case PersonalityArchetype.pioneer:
-        return 'Mar 21 - Apr 19';
-      case PersonalityArchetype.builder:
-        return 'Apr 20 - May 20';
-      case PersonalityArchetype.communicator:
-        return 'May 21 - Jun 20';
-      case PersonalityArchetype.nurturer:
-        return 'Jun 21 - Jul 22';
-      case PersonalityArchetype.performer:
-        return 'Jul 23 - Aug 22';
-      case PersonalityArchetype.analyst:
-        return 'Aug 23 - Sep 22';
-      case PersonalityArchetype.harmonizer:
-        return 'Sep 23 - Oct 22';
-      case PersonalityArchetype.transformer:
-        return 'Oct 23 - Nov 21';
-      case PersonalityArchetype.explorer:
-        return 'Nov 22 - Dec 21';
-      case PersonalityArchetype.achiever:
-        return 'Dec 22 - Jan 19';
-      case PersonalityArchetype.visionary:
-        return 'Jan 20 - Feb 18';
-      case PersonalityArchetype.dreamer:
-        return 'Feb 19 - Mar 20';
-    }
-  }
 
   Element get element {
     switch (this) {
@@ -278,25 +253,6 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
     }
   }
 
-  Modality get modality {
-    switch (this) {
-      case PersonalityArchetype.pioneer:
-      case PersonalityArchetype.nurturer:
-      case PersonalityArchetype.harmonizer:
-      case PersonalityArchetype.achiever:
-        return Modality.cardinal;
-      case PersonalityArchetype.builder:
-      case PersonalityArchetype.performer:
-      case PersonalityArchetype.transformer:
-      case PersonalityArchetype.visionary:
-        return Modality.fixed;
-      case PersonalityArchetype.communicator:
-      case PersonalityArchetype.analyst:
-      case PersonalityArchetype.explorer:
-      case PersonalityArchetype.dreamer:
-        return Modality.mutable;
-    }
-  }
 
   Color get color {
     switch (element) {
@@ -311,63 +267,6 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
     }
   }
 
-  String get coreStrength {
-    switch (this) {
-      case PersonalityArchetype.pioneer:
-        return 'Mars';
-      case PersonalityArchetype.builder:
-        return 'Venus';
-      case PersonalityArchetype.communicator:
-        return 'Mercury';
-      case PersonalityArchetype.nurturer:
-        return 'Moon';
-      case PersonalityArchetype.performer:
-        return 'Sun';
-      case PersonalityArchetype.analyst:
-        return 'Mercury';
-      case PersonalityArchetype.harmonizer:
-        return 'Venus';
-      case PersonalityArchetype.transformer:
-        return 'Pluto';
-      case PersonalityArchetype.explorer:
-        return 'Jupiter';
-      case PersonalityArchetype.achiever:
-        return 'Saturn';
-      case PersonalityArchetype.visionary:
-        return 'Uranus';
-      case PersonalityArchetype.dreamer:
-        return 'Neptune';
-    }
-  }
-
-  String get coreStrengthTr {
-    switch (this) {
-      case PersonalityArchetype.pioneer:
-        return 'Mars';
-      case PersonalityArchetype.builder:
-        return 'Venüs';
-      case PersonalityArchetype.communicator:
-        return 'Merkür';
-      case PersonalityArchetype.nurturer:
-        return 'Ay';
-      case PersonalityArchetype.performer:
-        return 'Güneş';
-      case PersonalityArchetype.analyst:
-        return 'Merkür';
-      case PersonalityArchetype.harmonizer:
-        return 'Venüs';
-      case PersonalityArchetype.transformer:
-        return 'Plüton';
-      case PersonalityArchetype.explorer:
-        return 'Jüpiter';
-      case PersonalityArchetype.achiever:
-        return 'Satürn';
-      case PersonalityArchetype.visionary:
-        return 'Uranüs';
-      case PersonalityArchetype.dreamer:
-        return 'Neptün';
-    }
-  }
 
   List<String> get traits {
     switch (this) {
@@ -385,12 +284,17 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
       case PersonalityArchetype.nurturer:
         return [
           'Anne Enerjisi',
-          'Ay Sezgisi',
+          'Derin Sezgi',
           'Koruyucu Kabuk',
           'Gelgit Duygusu',
         ];
       case PersonalityArchetype.performer:
-        return ['Güneş Kalbi', 'Yaratıcı Ateş', 'Kral Aurası', 'Sahne Ruhu'];
+        return [
+          'Parlak Kalp',
+          'Yaratıcı Ateş',
+          'Doğal Karizma',
+          'Sahne Ruhu',
+        ];
       case PersonalityArchetype.analyst:
         return [
           'Detay Gözü',
@@ -402,31 +306,36 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
         return [
           'Denge Ustası',
           'Adalet Terazisi',
-          'Venüs Cazibesi',
+          'Doğal Cazibe',
           'Tartı Ruhu',
         ];
       case PersonalityArchetype.transformer:
         return [
           'Dönüşüm Gücü',
           'Derinlik Bilgisi',
-          'Plüton Cesareti',
+          'İç Cesaret',
           'Gizem Perdesi',
         ];
       case PersonalityArchetype.explorer:
         return ['Okçu Vizyonu', 'Macera Ateşi', 'Hakikat Oku', 'Özgür Ruh'];
       case PersonalityArchetype.achiever:
-        return ['Zirve Azmi', 'Saturn Disiplini', 'Dağ Sabrı', 'Taş Duvar'];
+        return [
+          'Zirve Azmi',
+          'Kararlı Disiplin',
+          'Dağ Sabrı',
+          'Taş Duvar',
+        ];
       case PersonalityArchetype.visionary:
         return [
           'Devrimci Ruh',
-          'Uranüs Kıvılcımı',
+          'Yaratıcı Kıvılcım',
           'Özgür Zihin',
           'Uzak Bakış',
         ];
       case PersonalityArchetype.dreamer:
         return [
           'Okyanus Kalbi',
-          'Neptün Rüyası',
+          'Canlı Rüya',
           'Mistik Sezgi',
           'Sınırsız Hayal',
         ];
@@ -595,63 +504,3 @@ extension ElementExtension on Element {
   }
 }
 
-extension ModalityExtension on Modality {
-  String get name {
-    switch (this) {
-      case Modality.cardinal:
-        return 'Cardinal';
-      case Modality.fixed:
-        return 'Fixed';
-      case Modality.mutable:
-        return 'Mutable';
-    }
-  }
-
-  String get nameTr {
-    switch (this) {
-      case Modality.cardinal:
-        return 'Öncü';
-      case Modality.fixed:
-        return 'Sabit';
-      case Modality.mutable:
-        return 'Değişken';
-    }
-  }
-
-  /// Get localized modality name based on app language
-  String localizedName(AppLanguage language) {
-    switch (this) {
-      case Modality.cardinal:
-        return L10n.get('modality_cardinal', language);
-      case Modality.fixed:
-        return L10n.get('modality_fixed', language);
-      case Modality.mutable:
-        return L10n.get('modality_mutable', language);
-    }
-  }
-
-  /// Alias for localizedName - consistent naming
-  String getLocalizedName(AppLanguage language) => localizedName(language);
-
-  String get symbol {
-    switch (this) {
-      case Modality.cardinal:
-        return '⟁';
-      case Modality.fixed:
-        return '◇';
-      case Modality.mutable:
-        return '☆';
-    }
-  }
-
-  String get description {
-    switch (this) {
-      case Modality.cardinal:
-        return 'Initiators and leaders';
-      case Modality.fixed:
-        return 'Stabilizers and persisters';
-      case Modality.mutable:
-        return 'Adaptors and transformers';
-    }
-  }
-}

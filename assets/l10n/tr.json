@@ -6,7 +6,7 @@
     "completeness": 100
   },
   "app": {
-    "name": "Venus One",
+    "name": "InnerCycles",
     "tagline": "İçsel Yolculuğun Başlıyor",
     "loading_text": "Refleksiyon alanın hazırlanıyor..."
   },
@@ -100,7 +100,7 @@
       "personal_profile": "Kişisel Profil",
       "daily_reading": "Gunluk Yansitma",
       "card_insight": "Refleksiyon",
-      "numerology": "Numeroloji",
+      "numerology": "Sembol Keşfi",
       "dream_journal": "Ruya Gunlugu",
       "patterns": "Kalip Takibi"
     },
@@ -112,7 +112,7 @@
       "nodes": "Ay Düğümleri",
       "karmic": "Karmik Harita",
       "psychological": "Psikolojik Profil",
-      "numerology": "Numeroloji",
+      "numerology": "Sembol Keşfi",
       "elements": "Element Dengesi"
     },
     "profile_ready": "Profilin Hazır",
@@ -309,10 +309,10 @@
     "meditation_subtitle": "Meditasyon, ritüeller ve enerji dengeleme",
     "all_analyses": "Tüm Çözümlemeler",
     "questions": {
-      "aries_man": "♈ Koç erkeğiyle anlaşabilir miyim?",
-      "scorpio_women": "♏ Akrep kadınları neden bu kadar gizemli?",
-      "leo_attention": "♌ Aslan arketipi neden hep ilgi bekler?",
-      "gemini_decisions": "♊ İkizler neden karar veremez?",
+      "aries_man": "🚀 Koç erkeğiyle anlaşabilir miyim?",
+      "scorpio_women": "🦋 Akrep kadınları neden bu kadar gizemli?",
+      "leo_attention": "🌟 Aslan arketipi neden hep ilgi bekler?",
+      "gemini_decisions": "💬 İkizler neden karar veremez?",
       "fire_water": "🔥 Ateş grubuyla su grubu uyumlu mu?",
       "most_loyal": "💫 En sadık arketip hangisi?",
       "most_jealous": "😈 En kıskanç arketip hangisi?",
@@ -741,10 +741,10 @@
         }
       },
       "smart_responses": {
-        "aries_relationship": "♈ Koç erkeği/kadınıyla ilişki mi düşünüyorsun? {sign} arketipi olarak şunu bilmelisin:\n\n🔥 Koç arketiplerı ateşli, tutkulu ve sabırsızdır. İlk adımı onlar atmak ister!\n\n💕 Seninle uyumu: {compatibility}\n\n⚠️ Dikkat: Koçlar çabuk sıkılabilir, heyecanı canlı tut. Meydan okumayı severler ama ego çatışmalarından kaçın.\n\n💡 İpucu: Bağımsızlıklarına saygı göster, maceraya ortak ol!",
-        "scorpio_relationship": "♏ Akrep arketiplerı yüzyılın en gizemli ve yoğun aşıklarıdır!\n\n🔮 Neden gizemli? Pluto'nun çocukları olarak derinliklerde yaşarlar. Duygularını kolay açmazlar ama bir kez bağlandılar mı ölümüne sadıktırlar.\n\n{sign} arketipi olarak seninle uyumu: {compatibility}\n\n⚠️ Dikkat: Kıskançlık ve sahiplenme güçlü olabilir. Güven inşa et, sırlarını paylaş.\n\n💋 Bonus: Yatakta en tutkulu arketiplerdan biri... 🔥",
-        "leo_attention": "♌ Aslan arketiplerı neden sürekli ilgi bekler?\n\n👑 Güneş'in çocukları olarak doğuştan \"star\" olarak doğdular! İlgi ve takdir onların oksijeni.\n\n🎭 Gerçek: Aslında çok cömert ve sıcak kalplidirler. İlgi istedikleri kadar sevgi de verirler.\n\n{sign} arketipi olarak seninle uyumu: {compatibility}\n\n💡 İpucu: Onları öv, takdir et, sahneyi paylaş. Karşılığında en sadık ve koruyucu partnere sahip olursun!",
-        "gemini_decisions": "♊ İkizler neden karar veremez?\n\n🌀 Merkür'ün çocukları olarak çift taraflı düşünürler - her şeyin iki yüzünü görürler!\n\n💬 Gerçek: Aslında karar verememe değil, tüm seçenekleri değerlendirme ihtiyacı. Çok zekiler!\n\n{sign} arketipi olarak seninle uyumu: {compatibility}\n\n⚠️ Dikkat: Sıkılabilirler, entelektüel uyarılma şart. Konuşma, tartışma, fikir alışverişi anahtar!\n\n😜 Bonus: İkizlerle asla sıkılmazsın - her gün farklı bir insan gibidirler!",
+        "aries_relationship": "🚀 Koç erkeği/kadınıyla ilişki mi düşünüyorsun? {sign} arketipi olarak şunu bilmelisin:\n\n🔥 Koç arketiplerı ateşli, tutkulu ve sabırsızdır. İlk adımı onlar atmak ister!\n\n💕 Seninle uyumu: {compatibility}\n\n⚠️ Dikkat: Koçlar çabuk sıkılabilir, heyecanı canlı tut. Meydan okumayı severler ama ego çatışmalarından kaçın.\n\n💡 İpucu: Bağımsızlıklarına saygı göster, maceraya ortak ol!",
+        "scorpio_relationship": "🦋 Akrep arketiplerı yüzyılın en gizemli ve yoğun aşıklarıdır!\n\n🔮 Neden gizemli? Pluto'nun çocukları olarak derinliklerde yaşarlar. Duygularını kolay açmazlar ama bir kez bağlandılar mı ölümüne sadıktırlar.\n\n{sign} arketipi olarak seninle uyumu: {compatibility}\n\n⚠️ Dikkat: Kıskançlık ve sahiplenme güçlü olabilir. Güven inşa et, sırlarını paylaş.\n\n💋 Bonus: Yatakta en tutkulu arketiplerdan biri... 🔥",
+        "leo_attention": "🌟 Aslan arketiplerı neden sürekli ilgi bekler?\n\n👑 Güneş'in çocukları olarak doğuştan \"star\" olarak doğdular! İlgi ve takdir onların oksijeni.\n\n🎭 Gerçek: Aslında çok cömert ve sıcak kalplidirler. İlgi istedikleri kadar sevgi de verirler.\n\n{sign} arketipi olarak seninle uyumu: {compatibility}\n\n💡 İpucu: Onları öv, takdir et, sahneyi paylaş. Karşılığında en sadık ve koruyucu partnere sahip olursun!",
+        "gemini_decisions": "💬 İkizler neden karar veremez?\n\n🌀 Merkür'ün çocukları olarak çift taraflı düşünürler - her şeyin iki yüzünü görürler!\n\n💬 Gerçek: Aslında karar verememe değil, tüm seçenekleri değerlendirme ihtiyacı. Çok zekiler!\n\n{sign} arketipi olarak seninle uyumu: {compatibility}\n\n⚠️ Dikkat: Sıkılabilirler, entelektüel uyarılma şart. Konuşma, tartışma, fikir alışverişi anahtar!\n\n😜 Bonus: İkizlerle asla sıkılmazsın - her gün farklı bir insan gibidirler!",
         "fire_water_compatibility": "🔥💧 Ateş ve Su grupları uyumlu mu?\n\n⚡ Zorlu ama mümkün! Ateş (Koç, Aslan, Yay) tutku ve enerji getirir. Su (Yengeç, Akrep, Balık) duygusal derinlik katar.\n\n✅ Artıları:\n• Tutku + Duygusallık = Yoğun romantizm\n• Birbirlerini dengeleyebilirler\n• Çekim gücü yüksek\n\n❌ Eksileri:\n• Ateş çok hızlı, Su çok hassas\n• İletişim kopuklukları yaşanabilir\n• Ateş suyu buharlaştırabilir, Su ateşi söndürebilir\n\n💡 Çözüm: Sabır, anlayış ve orta yol bulmak şart!",
         "most_loyal": "💫 En sadık arketipler sıralaması:\n\n🥇 1. AKREP - Bir kez bağlandı mı ölümüne sadık! Ama ihanet edersen unutmaz.\n\n🥈 2. BOĞA - Toprak elementi, güvenilir ve sadık. Değişimi sevmez.\n\n🥉 3. YENGEÇ - Aile odaklı, koruyucu ve sadık. Duygusal bağ güçlü.\n\n4. OĞLAK - Sorumlu ve bağlı. Evliliği ciddiye alır.\n\n5. ASLAN - Sadık ama ilgi ister. İlgi alırsa sadık kalır.\n\n⚠️ En az sadık: İkizler (değişken), Yay (özgürlükçü), Kova (bağımsız)",
         "most_jealous": "😈 En kıskanç arketipler:\n\n🔥 1. AKREP - Kıskançlık kralı/kraliçesi! Sahiplenme yoğun, güven sorunu var.\n\n2. ASLAN - Ego meselesi. \"Benim olan başkasının olamaz\" zihniyeti.\n\n3. BOĞA - Sahiplenme güdüsü güçlü. Yavaş güvenir ama kıskançlık patlamaları olabilir.\n\n4. YENGEÇ - Duygusal kıskançlık. Güvensizlik hissederse kapanır.\n\n5. KOÇ - Ani öfke patlamaları olabilir ama çabuk geçer.\n\n😎 En az kıskanç: Yay, Kova, İkizler - özgürlüğe değer verirler!",
@@ -904,7 +904,7 @@
       "number_depth_title": "{number} Sayisinin Derinligi",
       "kadim_title": "Sayilarin Ezeli Dansi",
       "kadim_content": "Pisagor'dan bu yana bilgeler sayilarin evrenin gizli dilini tasidini bilir. Yasam yolu sayin sadece bir rakam degil - ruhunun bu dunyaya getirdigi titresim, evrenin sana verdigi benzersiz melodi. Bu melodiyi duyabilmek icin once sessizlige ihtiyacin var.",
-      "brand_text": "Numeroloji — Venus One",
+      "brand_text": "Numeroloji — InnerCycles",
       "karmic_13_desc": "Tembellik ve sorumsuzluktan kaynaklanan karmik bir borc. Bu hayatta siki calisma ve disiplin yoluyla dengelenmelidir.",
       "karmic_14_desc": "Ozgurlugu kotuye kullanmaktan kaynaklanan bir borc. Bu hayatta sorumluluk ve olculululuk ogrenmek gerekiyor.",
       "karmic_16_desc": "Ego ve iliski sorunlarindan kaynaklanan bir borc. Alcakgonulluluk ve icsel donusum gerektiriyor.",
@@ -1171,7 +1171,7 @@
       "todays_micro_ritual": "Bugünün Mikro Ritüeli",
       "tantra_tag": "Tantra",
       "discover_dream_trace": "Rüya İzi'ni keşfet",
-      "brand_footer": "Tantra — Venus One",
+      "brand_footer": "Tantra — InnerCycles",
       "months": {
         "january": "Ocak",
         "february": "Şubat",
@@ -1249,12 +1249,12 @@
     "historical": "Tarihi Figürler"
   },
   "premium": {
-    "cosmic_powers": "Kozmik Güçler",
-    "cosmic_powers_active": "Kozmik Güçler Aktif",
+    "cosmic_powers": "Premium Özellikler",
+    "cosmic_powers_active": "Premium Özellikler Aktif",
     "lifetime_access": "Ömür boyu erişiminiz var!",
-    "open_cosmic_door": "Kozmik Kapıyı Aç",
-    "cosmic_door_opened": "Kozmik Kapı Açıldı!",
-    "success_message": "Evrenin sırlarına tam erişim artık seninle. Yıldızların rehberliğinde sınırsız keşfe hazırsın.",
+    "open_cosmic_door": "Premium'u Aç",
+    "cosmic_door_opened": "Premium Açıldı!",
+    "success_message": "Tüm özelliklere tam erişim artık seninle. Sınırsız keşfe hazırsın.",
     "view_plans": "Planları Görüntüle",
     "manage_subscription": "Aboneliği Yönet",
     "restore_purchases": "Satın Alımları Geri Yükle",
@@ -1265,10 +1265,10 @@
     "terms_text": "Abonelik, mevcut dönemin bitiminden 24 saat önce iptal edilmediği sürece otomatik olarak yenilenir. Hesabınız, mevcut dönemin bitiminden 24 saat önce yenileme için ücretlendirilecektir. Aboneliğinizi istediğiniz zaman App Store hesap ayarlarınızdan yönetebilir ve iptal edebilirsiniz.",
     "paywall": {
       "title": "Yolculuğunun Tamamını Aç",
-      "subtitle": "Öz Farkındalıkyi kesintisiz deneyimle",
+      "subtitle": "Öz farkındalığı kesintisiz deneyimle",
       "benefit_ad_free": "Reklamsız, huzurlu deneyim",
       "benefit_unlimited": "Sınırsız kişisel içgörüler",
-      "benefit_priority": "Öncelikli kozmik rehberlik",
+      "benefit_priority": "Öncelikli kişisel rehberlik",
       "continue_pro": "Pro ile Devam Et",
       "not_now": "Şimdi değil, belki sonra",
       "legal_text": "Aylık otomatik yenilenir. Ayarlardan istediğiniz zaman iptal edebilirsiniz.",
@@ -1282,14 +1282,14 @@
     },
     "features": {
       "daily_whispers": "Günlük içgörü fısıltıları",
-      "pure_cosmic_experience": "Saf kozmik deneyim (reklamsız)",
-      "deep_planet_readings": "Derin gezegen yorumları",
+      "pure_cosmic_experience": "Reklamsız, huzurlu deneyim",
+      "deep_planet_readings": "Derin kişisel içgörüler",
       "unlimited_card_insight": "Sınırsız refleksiyon seansları",
-      "soulmate_compatibility": "Ruh ikizi uyum analizi",
-      "kabbalistic_secrets": "Kabalistik sırlar",
-      "auric_reading": "Aurik enerji okuması",
-      "planet_transits": "Kozmik transitler",
-      "priority_guidance": "Öncelikli kozmik rehberlik"
+      "soulmate_compatibility": "İlişki yansıtma araçları",
+      "kabbalistic_secrets": "Sembolik keşif araçları",
+      "auric_reading": "Enerji farkındalık günlüğü",
+      "planet_transits": "Döngüsel tema takibi",
+      "priority_guidance": "Öncelikli kişisel rehberlik"
     },
     "tiers": {
       "free": {
@@ -1307,14 +1307,14 @@
         "savings": "",
         "features": [
           "Tüm temel özellikler",
-          "Saf kozmik deneyim (reklamsız)",
-          "Derin gezegen yorumları",
+          "Reklamsız, huzurlu deneyim",
+          "Derin kişisel içgörüler",
           "Sınırsız refleksiyon seansları",
-          "Ruh ikizi uyum analizi",
-          "Kabalistik sırlar",
-          "Aurik enerji okuması",
-          "Kozmik transitler",
-          "Öncelikli kozmik rehberlik"
+          "İlişki yansıtma araçları",
+          "Sembolik keşif araçları",
+          "Enerji farkındalık günlüğü",
+          "Döngüsel tema takibi",
+          "Öncelikli kişisel rehberlik"
         ]
       },
       "yearly": {
@@ -1322,14 +1322,14 @@
         "savings": "%77 tasarruf",
         "features": [
           "Tüm temel özellikler",
-          "Saf kozmik deneyim (reklamsız)",
-          "Derin gezegen yorumları",
+          "Reklamsız, huzurlu deneyim",
+          "Derin kişisel içgörüler",
           "Sınırsız refleksiyon seansları",
-          "Ruh ikizi uyum analizi",
-          "Kabalistik sırlar",
-          "Aurik enerji okuması",
-          "Kozmik transitler",
-          "Öncelikli kozmik rehberlik"
+          "İlişki yansıtma araçları",
+          "Sembolik keşif araçları",
+          "Enerji farkındalık günlüğü",
+          "Döngüsel tema takibi",
+          "Öncelikli kişisel rehberlik"
         ]
       },
       "lifetime": {
@@ -1337,14 +1337,14 @@
         "savings": "Tek seferlik ödeme",
         "features": [
           "Tüm temel özellikler",
-          "Saf kozmik deneyim (reklamsız)",
-          "Derin gezegen yorumları",
+          "Reklamsız, huzurlu deneyim",
+          "Derin kişisel içgörüler",
           "Sınırsız refleksiyon seansları",
-          "Ruh ikizi uyum analizi",
-          "Kabalistik sırlar",
-          "Aurik enerji okuması",
-          "Kozmik transitler",
-          "Öncelikli kozmik rehberlik"
+          "İlişki yansıtma araçları",
+          "Sembolik keşif araçları",
+          "Enerji farkındalık günlüğü",
+          "Döngüsel tema takibi",
+          "Öncelikli kişisel rehberlik"
         ]
       }
     }
@@ -2674,8 +2674,8 @@
     "light_mode": "Açık Mod",
     "dark_mode": "Koyu Mod",
     "coming_soon_language": "Yakında eklenecek / Coming soon",
-    "support": "Venus One Destek",
-    "version": "Venus One v1.0.0",
+    "support": "InnerCycles Destek",
+    "version": "InnerCycles v1.0.0",
     "admin": "Admin",
     "dashboard": "Dashboard & Analytics",
     "pin": "PIN",
@@ -2685,8 +2685,8 @@
     "edit_profile": "Profili Düzenle",
     "edit_profile_desc": "Doğum bilgilerini güncelle",
     "premium": "Premium",
-    "premium_desc": "Tüm kozmik güçleri aç",
-    "premium_active": "Kozmik güçler aktif",
+    "premium_desc": "Tüm premium özellikleri aç",
+    "premium_active": "Premium özellikler aktif",
     "manage_subscription": "Aboneliği Yönet",
     "manage_subscription_desc": "Aboneliğini görüntüle ve yönet",
     "clear_data": "Verileri Sil",
@@ -2696,7 +2696,7 @@
     "delete": "Sil",
     "about": "Hakkında",
     "rate_app": "Uygulamayı Değerlendir",
-    "rate_app_desc": "Kozmik deneyimini paylaş",
+    "rate_app_desc": "Deneyimini paylaş",
     "disclaimer": "Yasal Uyarı",
     "disclaimer_desc": "Sadece eğlence amaçlıdır",
     "disclaimer_content": "Bu uygulama öz farkındalık, numeroloji, refleksiyon ve rüya yorumu içeriklerini yalnızca eğlence ve kendini keşfetme amaçlı sunmaktadır.\n\nİçerikler; tıbbi, psikolojik, finansal, hukuki veya ilişki danışmanlığı dahil hiçbir alanda profesyonel tavsiye niteliği taşımaz.\n\nProfesyonel desteğe ihtiyacınız varsa, lütfen ilgili alanda uzman kişilere başvurun.\n\nTüm yorumlar bilgilendirme ve eğlence amaçlı oluşturulmaktadır ve önemli yaşam kararlarına temel oluşturmamalıdır.",
@@ -2709,16 +2709,16 @@
     "title": "Kişisel İçgörü",
     "reading": "Yorum",
     "analysis": "Arketip Çözümlemelerin",
-    "cosmic_energy": "Kozmik Enerjin",
-    "daily_cosmic_energy": "Günün Kozmik Enerjin",
+    "cosmic_energy": "Günlük Enerjin",
+    "daily_cosmic_energy": "Günün Enerjin",
     "spiritual_signature": "Ruhsal İmza",
     "archetype_secrets": "Arketipi Sırları",
     "ruling_planet": "Yönetici",
-    "cosmic_overview": "Kozmik Özeti",
-    "cosmic_harmony": "Kozmik Uyum",
+    "cosmic_overview": "Günlük Özeti",
+    "cosmic_harmony": "Kişisel Uyum",
     "spiritual_bond": "Ruhsal Bağ",
     "chakra_map": "Çakra Haritası",
-    "celestial_sync": "Göksel Senkronizasyon",
+    "celestial_sync": "Kişisel Senkronizasyon",
     "sign_depth": "Arketipinun Derinliği",
     "mood": "Ruh Hali",
     "lucky_color": "Refleksiyon Rengi",
@@ -2733,7 +2733,7 @@
     "spiritual_guidance": "Ruhsal Rehberlik",
     "important_days": "Önemli Günler",
     "lucky_days": "Uygun Günler",
-    "important_transits": "Önemli Transitler",
+    "important_transits": "Önemli Döngüler",
     "daily_reading": "Günlük Refleksiyon",
     "luck_rate": "Enerji Seviyesi",
     "cosmic_tips": "Refleksiyon İpuçları",
@@ -2745,7 +2745,7 @@
     "planet_transits": "Kozmik Transitler",
     "your_archetype_readings": "Arketip Çözümlemelerin",
     "sign_today": "{sign} arketipi bugün nasıl?",
-    "self_awareness_brand": "Öz Farkındalık — Venus One",
+    "self_awareness_brand": "Öz Farkındalık — InnerCycles",
     "self_awareness": "Öz Farkındalık",
     "hermetic_teaching": "Hermetik Öğreti",
     "weekly_affirmation_label": "Haftanın Olumlaması",
@@ -2877,18 +2877,18 @@
     "trust": "Güven"
   },
   "brands": {
-    "weekly_reflection": "Haftalık İçgörü — Venus One",
-    "monthly_reflection": "Aylık İçgörü — Venus One",
-    "yearly_reflection": "Yıllık İçgörü — Venus One",
-    "love_reflection": "Aşk İçgörüsü — Venus One",
-    "compatibility": "Kişilik Uyumu — Venus One",
-    "reflection": "Arketip Yorumları — Venus One",
-    "card_insight": "Refleksiyon — Venus One",
-    "dreams": "Rüya Kâhini — Venus One",
-    "self_awareness": "Öz Farkındalık — Venus One",
-    "numerology": "Numeroloji — Venus One",
-    "dream_trace": "Rüya İzi — Venus One",
-    "personal_profile": "Kişisel Profil — Venus One"
+    "weekly_reflection": "Haftalık İçgörü — InnerCycles",
+    "monthly_reflection": "Aylık İçgörü — InnerCycles",
+    "yearly_reflection": "Yıllık İçgörü — InnerCycles",
+    "love_reflection": "Aşk İçgörüsü — InnerCycles",
+    "compatibility": "Kişilik Uyumu — InnerCycles",
+    "reflection": "Arketip Yorumları — InnerCycles",
+    "card_insight": "Refleksiyon — InnerCycles",
+    "dreams": "Rüya Kâhini — InnerCycles",
+    "self_awareness": "Öz Farkındalık — InnerCycles",
+    "numerology": "Numeroloji — InnerCycles",
+    "dream_trace": "Rüya İzi — InnerCycles",
+    "personal_profile": "Kişisel Profil — InnerCycles"
   },
   "ads": {
     "failed_to_load": "Reklam Yüklenemedi",
@@ -3644,7 +3644,7 @@
     "week_number": "Hafta",
     "day_suffix": "gün",
     "strengths": "Güçlü Yanlar",
-    "cosmic_summary": "Kozmik Özeti",
+    "cosmic_summary": "Günlük Özeti",
     "spiritual_journey": "Ruhsal Yolculuk",
     "important_transits": "Önemli Kozmik Transitler",
     "special_months_of_year": "Yılın Özel Ayları",
@@ -3691,7 +3691,7 @@
     "most_compatible": "En Uyumlu",
     "caution": "Dikkat!",
     "all_pair_compatibilities": "Tüm İkili Uyumları",
-    "cosmic_harmony": "Kozmik Uyum",
+    "cosmic_harmony": "Kişisel Uyum",
     "strengths": "Güçlü Yanlar",
     "things_to_watch": "Dikkat Edilecekler",
     "advice": "Tavsiye",
@@ -3727,7 +3727,7 @@
     "moderate_match": "Orta Uyum",
     "challenging": "Zorlu",
     "archetype_profiles": "Arketip Profilleri",
-    "brand_text": "Kişilik Uyumu — Venus One",
+    "brand_text": "Kişilik Uyumu — InnerCycles",
     "cosmic_chemistry": "Kozmik Kimya",
     "ancient_note": "İki arketip arasındaki uyum, sadece element ve modalite hesabı değildir. Her ilişki, iki ruhun birbirini tamamlama ve dönüştürme potansiyelini taşır. Zorluklar, en büyük öğretmenlerdir."
   },
@@ -3776,7 +3776,7 @@
     "saved_to_journal": "Rüya günlüğüne kaydedildi",
     "canonical": {
       "brand_tag": "Rüya İzi",
-      "brand_footer": "Rüya İzi — Venus One",
+      "brand_footer": "Rüya İzi — InnerCycles",
       "losing_question": "Rüyada birini kaybetmek ne demek?",
       "searching_question": "Rüyada bir şey aramak ne anlama gelir?",
       "past_question": "Rüyada geçmişten biri çıkması ne demek?",
@@ -4856,7 +4856,7 @@
         "Kariyerden ilişkilere kadar hayat alanlarını konumlandırır."
       ],
       "suggestion_text": "Merkür retrosu ne demek?",
-      "brand_text": "Öz Farkındalık — Venus One"
+      "brand_text": "Öz Farkındalık — InnerCycles"
     },
     "moon_sign_today": {
       "title": "Ay bugün hangi arketipta?",
@@ -4884,7 +4884,7 @@
       "moon_in_sign": "Ay {sign} Arketipinda",
       "element_label": "{element} Elementi",
       "suggestion_text": "Yükselen arketip nedir?",
-      "brand_text": "Öz Farkındalık — Venus One",
+      "brand_text": "Öz Farkındalık — InnerCycles",
       "signs": {
         "aries": {
           "name": "Koç",
@@ -5195,7 +5195,7 @@
   "saturn_return": {
     "title": "Satürn Dönüşü",
     "subtitle": "Büyük Öğretmenin Kozmik Dersleri",
-    "brand_text": "Satürn Dönüşü — Venus One",
+    "brand_text": "Satürn Dönüşü — InnerCycles",
     "kadim_title": "Satürn'ün Bilgeliği",
     "kadim_content": "Öz Farkındalıkde Karma'nın Efendisi olarak bilinen Satürn, her dönüşte disiplin, sorumluluk ve olgunluk talep eder. Yaklaşık her 29.5 yılda bir, bu kozmik öğretmen temellerinizi test eder, otantik benliğinize hizmet etmeyen yapıları yıkar ve kalıcı başarılar inşa etmeniz için size rehberlik eder. Zorluklar gerçektir, ancak içsel çalışmayı yapanlar için ödüller de öyle.",
     "status_active": "Aktif",
@@ -8877,18 +8877,18 @@
       "default": "Sana layık mükemmel partner!"
     },
     "perfect_matches": {
-      "aries": "♌ ASLAN - Ateşin ateşle buluşması, tutku dolu\n♐ YAY - Macera ortakları, özgür ruhlar\n♊ İKİZLER - Heyecan ve iletişim",
-      "taurus": "♍ BAŞAK - Pratik uyum, güvenilirlik\n♑ OĞLAK - Maddi güvenlik, uzun vade\n♋ YENGEÇ - Duygusal derinlik, ev/yuva",
-      "gemini": "♎ TERAZİ - Entelektüel uyum, sosyallik\n♒ KOVA - Fikir paylaşımı, yenilikçilik\n♈ KOÇ - Enerji ve heyecan",
-      "cancer": "♏ AKREP - Duygusal derinlik, sadakat\n♓ BALIK - Ruhsal bağ, sezgisellik\n♉ BOĞA - Güvenlik, konfor",
-      "leo": "♈ KOÇ - Tutku ve aksiyon\n♐ YAY - Macera ve optimizm\n♊ İKİZLER - Eğlence ve iletişim",
-      "virgo": "♉ BOĞA - Pratik uyum, istikrar\n♑ OĞLAK - Hedef odaklılık, çalışkanlık\n♋ YENGEÇ - Bakım ve şefkat",
-      "libra": "♊ İKİZLER - Sosyal uyum, iletişim\n♒ KOVA - Entelektüel bağ, arkadaşlık\n♌ ASLAN - Romantizm ve estetik",
-      "scorpio": "♋ YENGEÇ - Duygusal derinlik\n♓ BALIK - Ruhsal bağ, sezgisellik\n♍ BAŞAK - Sadakat, analiz",
-      "sagittarius": "♈ KOÇ - Macera ortakları\n♌ ASLAN - Optimizm, yaratıcılık\n♎ TERAZİ - Sosyallik, denge",
-      "capricorn": "♉ BOĞA - Maddi güvenlik, sadakat\n♍ BAŞAK - Çalışkanlık, pratiklik\n♏ AKREP - Derinlik, tutku",
-      "aquarius": "♊ İKİZLER - Entelektüel uyum\n♎ TERAZİ - Sosyal adalet, estetik\n♐ YAY - Özgürlük, felsefe",
-      "pisces": "♋ YENGEÇ - Duygusal bağ\n♏ AKREP - Ruhsal derinlik\n♑ OĞLAK - Koruyucu, yapıcı",
+      "aries": "🌟 ASLAN - Ateşin ateşle buluşması, tutku dolu\n🧭 YAY - Macera ortakları, özgür ruhlar\n💬 İKİZLER - Heyecan ve iletişim",
+      "taurus": "🔍 BAŞAK - Pratik uyum, güvenilirlik\n🏔 OĞLAK - Maddi güvenlik, uzun vade\n🛡 YENGEÇ - Duygusal derinlik, ev/yuva",
+      "gemini": "⚖️ TERAZİ - Entelektüel uyum, sosyallik\n💡 KOVA - Fikir paylaşımı, yenilikçilik\n🚀 KOÇ - Enerji ve heyecan",
+      "cancer": "🦋 AKREP - Duygusal derinlik, sadakat\n🌙 BALIK - Ruhsal bağ, sezgisellik\n🏗 BOĞA - Güvenlik, konfor",
+      "leo": "🚀 KOÇ - Tutku ve aksiyon\n🧭 YAY - Macera ve optimizm\n💬 İKİZLER - Eğlence ve iletişim",
+      "virgo": "🏗 BOĞA - Pratik uyum, istikrar\n🏔 OĞLAK - Hedef odaklılık, çalışkanlık\n🛡 YENGEÇ - Bakım ve şefkat",
+      "libra": "💬 İKİZLER - Sosyal uyum, iletişim\n💡 KOVA - Entelektüel bağ, arkadaşlık\n🌟 ASLAN - Romantizm ve estetik",
+      "scorpio": "🛡 YENGEÇ - Duygusal derinlik\n🌙 BALIK - Ruhsal bağ, sezgisellik\n🔍 BAŞAK - Sadakat, analiz",
+      "sagittarius": "🚀 KOÇ - Macera ortakları\n🌟 ASLAN - Optimizm, yaratıcılık\n⚖️ TERAZİ - Sosyallik, denge",
+      "capricorn": "🏗 BOĞA - Maddi güvenlik, sadakat\n🔍 BAŞAK - Çalışkanlık, pratiklik\n🦋 AKREP - Derinlik, tutku",
+      "aquarius": "💬 İKİZLER - Entelektüel uyum\n⚖️ TERAZİ - Sosyal adalet, estetik\n🧭 YAY - Özgürlük, felsefe",
+      "pisces": "🛡 YENGEÇ - Duygusal bağ\n🦋 AKREP - Ruhsal derinlik\n🏔 OĞLAK - Koruyucu, yapıcı",
       "default": "Mükemmel uyumlar!"
     },
     "compatible_signs": {
@@ -9365,7 +9365,7 @@
   },
   "numerology": {
     "title": "Numeroloji",
-    "brand_footer": "Numeroloji — Venus One",
+    "brand_footer": "Numeroloji — InnerCycles",
     "karmic_not_found": "Karmik borç bilgisi bulunamadı",
     "karmic_wisdom": "Karmik Bilgelik",
     "karmic_cycle": "Karmik Döngü",
@@ -9494,7 +9494,7 @@
       "meaning_33": "Şifa ve öğretme günü",
       "meaning_default": "Güçlü enerji günü",
       "suggestion_text": "İfade sayısı nedir?",
-      "footer": "Numeroloji — Venus One"
+      "footer": "Numeroloji — InnerCycles"
     },
     "expression_number_screen": {
       "page_title": "İfade sayısı nedir?",
@@ -9518,7 +9518,7 @@
       "difference_from_life_path_2": "İfade sayısı: Potansiyel hedefler.",
       "difference_from_life_path_3": "İkisi birlikte düşünmek için zengin bir bakış açısı sunar.",
       "suggestion_text": "Yaşam yolu sayısı nedir?",
-      "footer": "Numeroloji — Venus One"
+      "footer": "Numeroloji — InnerCycles"
     }
   },
   "moon": {
@@ -9637,7 +9637,7 @@
     "subtitle": "Aktiviteleriniz için en uygun zamanları keşfedin",
     "kadim_title": "Kişisel Zamanlama Sanatı",
     "kadim_content": "Kadim medeniyetler zamanlamanın önemini bilirdi. Günün her saati farklı bir gezegen tarafından yönetilir. Aktivitelerinizi kozmik ritimlere uyumlayarak potansiyelinizi maksimize edebilirsiniz.",
-    "brand_footer": "Venus One Kozmik Zamanlama",
+    "brand_footer": "InnerCycles Kozmik Zamanlama",
     "todays_energy": "Bugünün Enerjisi",
     "score_excellent": "Yeni başlangıçlar için mükemmel gün!",
     "score_good": "İyi enerji, koşulların farkında ol",
