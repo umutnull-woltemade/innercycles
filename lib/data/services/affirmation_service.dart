@@ -482,8 +482,8 @@ class AffirmationService {
     ),
     const Affirmation(
       id: 'cn_05',
-      textEn: 'I nurture the bonds that nourish my soul.',
-      textTr: 'Ruhumu besleyen bağları büyütürüm.',
+      textEn: 'I nurture the bonds that nourish my heart.',
+      textTr: 'Kalbimi besleyen bağları büyütürüm.',
       category: AffirmationCategory.connection,
     ),
     const Affirmation(

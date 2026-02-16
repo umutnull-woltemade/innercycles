@@ -4,8 +4,8 @@ import 'package:inner_cycles/core/constants/app_constants.dart';
 void main() {
   group('AppConstants', () {
     group('App Info', () {
-      test('appName is Venus One', () {
-        expect(AppConstants.appName, 'Venus One');
+      test('appName is InnerCycles', () {
+        expect(AppConstants.appName, 'InnerCycles');
       });
     });
 

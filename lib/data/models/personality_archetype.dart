@@ -162,7 +162,7 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
           'Balance Master',
           'Justice Scales',
           'Natural Charm',
-          'Weighing Soul',
+          'Weighing Heart',
         ];
       case PersonalityArchetype.transformer:
         return [
@@ -187,7 +187,7 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
         ];
       case PersonalityArchetype.visionary:
         return [
-          'Revolutionary Soul',
+          'Revolutionary Mind',
           'Creative Spark',
           'Free Mind',
           'Distant Gaze',
@@ -367,7 +367,7 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
       case PersonalityArchetype.visionary:
         return 'The Visionary pours forth innovation for humanity, envisioning a better future through progressive ideals.';
       case PersonalityArchetype.dreamer:
-        return 'The Dreamer navigates mystical waters of imagination, dissolving boundaries and connecting us to deeper consciousness.';
+        return 'The Dreamer navigates deep waters of imagination, dissolving boundaries and connecting us to deeper consciousness.';
     }
   }
 

@@ -424,8 +424,8 @@ class ShareCardTemplates {
               : 'Dikkatinin alanlara nasıl dağıldığını gösteriyor',
           chartValues: focusValues ?? [4, 3, 5, 2, 4],
           chartLabels: isEn
-              ? ['Mind', 'Body', 'Heart', 'Soul', 'Social']
-              : ['Zihin', 'Beden', 'Kalp', 'Ruh', 'Sosyal'],
+              ? ['Mind', 'Body', 'Heart', 'Inner', 'Social']
+              : ['Zihin', 'Beden', 'Kalp', 'İç', 'Sosyal'],
         );
 
       case 'streak_flame':

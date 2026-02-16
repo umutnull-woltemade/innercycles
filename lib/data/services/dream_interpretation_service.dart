@@ -663,7 +663,7 @@ JSON FORMATI:
       EmotionalTone.huzur:
           'This peace signals conflict resolved. Which inner war has ended?',
       EmotionalTone.merak:
-          'Curiosity is the soul\'s call to grow. You are ready to open to the unknown.',
+          'Curiosity is the mind\'s call to grow. You are ready to open to the unknown.',
       EmotionalTone.sucluluk:
           'Guilt is sometimes internalizing others\' voices. Whose voice is this?',
       EmotionalTone.ozlem:
@@ -923,7 +923,7 @@ JSON FORMATI:
     // English fallback
     final fallbacks = [
       'The night spoke for you, now you speak during the day.',
-      'One who remembers dreams has begun to listen to their soul.',
+      'One who remembers dreams has begun to listen to their inner self.',
       'Every symbol is a key, every emotion a door.',
       'The subconscious doesn\'t lie, it just speaks in code.',
       'You can\'t escape your shadow, but you can dance with it.',

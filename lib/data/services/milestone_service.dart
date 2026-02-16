@@ -298,8 +298,8 @@ const List<Milestone> _allMilestones = [
   // ── Depth (5) ───────────────────────────────────────────────────────────
   Milestone(
     id: 'depth_deep_5',
-    nameEn: 'Soul Diver',
-    nameTr: 'Ruh Dalgıcı',
+    nameEn: 'Deep Diver',
+    nameTr: 'Derin Dalıcı',
     descriptionEn: 'Wrote 5 deep entries with a rating of 8 or higher.',
     descriptionTr: '8 ve üzeri puanla 5 derin kayıt yazdın.',
     emoji: '\u{1F30A}',
