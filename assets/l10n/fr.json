@@ -2036,7 +2036,7 @@
         "example_prompts_label": "Example Dream Shares:",
         "input_placeholder": "Describe your dream in detail... (Enter to send, Shift+Enter new line)",
         "oracle": {
-            "title": "Dream Oracle",
+            "title": "Dream Insight",
             "new_dream": "New Dream",
             "describe_dream": "Describe Your Dream",
             "voice_input_soon": "Voice input coming soon",
@@ -2113,7 +2113,7 @@
                 "quick": "Quick",
                 "quick_desc": "3 Minute Interpretation"
             },
-            "share_hashtags": "- Dream Oracle\n#DreamInterpretation #Subconscious",
+            "share_hashtags": "- Dream Insight\n#DreamInterpretation #Subconscious",
             "symbol": {
                 "personal_context": "Personal Context",
                 "light_side": "Light Side",
