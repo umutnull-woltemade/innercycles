@@ -470,7 +470,7 @@ class CosmicMessagesContent {
       'Yeniden doğuşu kutlamayı düşünüyorum.',
       'Gücümü bilgelikle kullanmayı seçebilirim.',
     ],
-    'sagittarius': [
+    'explorer': [
       'Bugün yeni ufuklar aramayı seçebilirim.',
       'Bilgelik arayışımı sürdürmeyi deniyorum.',
       'Özgürlüğümü sorumlulukla kullanmayı düşünüyorum.',
@@ -479,7 +479,7 @@ class CosmicMessagesContent {
       'Büyük resmi görmeyi düşünüyorum.',
       'İnancımı güçlendirmeyi seçebilirim.',
     ],
-    'capricorn': [
+    'achiever': [
       'Bugün hedeflerime odaklanmayı seçebilirim.',
       'Sabırla ilerlemeyi deniyorum.',
       'Disiplinimi sevgiyle uygulamayı düşünüyorum.',
@@ -488,7 +488,7 @@ class CosmicMessagesContent {
       'Sorumluluklarımı dengelemeyi düşünüyorum.',
       'Zirveye yaklaşmayı seçebilirim.',
     ],
-    'aquarius': [
+    'visionary': [
       'Bugün benzersizliğimi kutlamayı seçebilirim.',
       'İnsanlığa hizmet etmeyi deniyorum.',
       'Yenilikçi düşünmeyi düşünüyorum.',
@@ -497,7 +497,7 @@ class CosmicMessagesContent {
       'Özgür düşünceyi savunmayı düşünüyorum.',
       'Değişimi kucaklamayı seçebilirim.',
     ],
-    'pisces': [
+    'dreamer': [
       'Bugün sezgilerime güvenmeyi seçebilirim.',
       'Spiritüel bağlantımı derinleştirmeyi deniyorum.',
       'Yaratıcılığımı ifade etmeyi düşünüyorum.',
@@ -560,22 +560,22 @@ class CosmicMessagesContent {
       'Sezgi ve içgörü temaları üzerine bir refleksiyon. Görünmeyeni görmek, bilinmeyeni bilmek... Bu yeteneklerle nasıl bir ilişkin var?',
       'Tutku ve yoğunluk üzerine düşünebilirsin. Bu enerjiyi nasıl yönlendiriyorsun? Yaratıcı ve dönüştürücü yollar hakkında ne düşünüyorsun?',
     ],
-    'sagittarius': [
+    'explorer': [
       'Ateş arketipi, keşif, anlam arayışı ve özgürlük temalarını simgeler. Yeni ufuklar senin için ne anlama geliyor? Fiziksel, zihinsel veya ruhsal yolculuklar üzerine düşünmek isteyebilirsin.',
       'Bilgelik arayışı teması üzerine bir refleksiyon. Felsefe, spiritualite, hayatın büyük soruları... Bu konulara nasıl yaklaşıyorsun?',
       'İyimserlik ve umut temaları üzerine düşünebilirsin. Zor zamanlarda bile umut taşımak ne anlama geliyor? İyimserliğinin kaynağını keşfedebilirsin.',
     ],
-    'capricorn': [
+    'achiever': [
       'Toprak arketipi, hedefler, yapı ve sorumluluk temalarını simgeler. Zirveye ulaşmak senin için ne anlama geliyor? Yolculuk ve varış noktası arasındaki ilişkiyi düşünmek isteyebilirsin.',
       'Uzun vadeli düşünme teması üzerine bir refleksiyon. Herkes şimdiyi düşünürken, geleceği planlamak hakkında ne hissediyorsun? Temeller ve yapılar üzerine düşünebilirsin.',
       'Otorite ve sorumluluk temaları üzerine düşünebilirsin. Liderlik etmek, yönetmek, organize etmek... Bu roller hayatında nasıl yer alıyor?',
     ],
-    'aquarius': [
+    'visionary': [
       'Hava arketipi, yenilik, topluluk ve benzersizlik temalarını simgeler. Geleceği şekillendirmek senin için ne anlama geliyor? Vizyoner bakış açın üzerine düşünmek isteyebilirsin.',
       'Topluluk ve kolektif bilinç temaları üzerine bir refleksiyon. Bireysel başarılar ile kolektif ilerleme arasındaki denge hakkında ne düşünüyorsun?',
       'Benzersizlik ve özgünlük üzerine düşünebilirsin. Farklı olmak senin için ne anlama geliyor? Özgünlüğünü kutlamak hakkında ne hissediyorsun?',
     ],
-    'pisces': [
+    'dreamer': [
       'Su arketipi, hayal gücü, sezgi ve şefkat temalarını simgeler. Görünmeyen dünyalar, duyulmayan sesler, hissedilmeyen enerjiler... Bunlara erişimin hakkında düşünmek isteyebilirsin.',
       'Yaratıcılık ve hayal gücü temaları üzerine bir refleksiyon. Sanat, müzik, şiir, dans... Yaratıcı ifade senin için ne anlama geliyor?',
       'Empati ve şefkat üzerine düşünebilirsin. Başkalarının duygularını hissetmek ne anlama geliyor? Kendi sınırlarını korurken şefkatli olmak hakkında ne düşünüyorsun?',
@@ -726,55 +726,4 @@ class CosmicMessagesContent {
     'Değişim ve dönüşüm temaları üzerine bir refleksiyon. Eskiyi bırakmak ve yeniye açılmak senin için ne anlama geliyor?',
   ];
 
-  /// Archetype guidance themes (formerly planetary)
-  static final Map<String, String> _archetypeGuidance = {
-    'sun':
-        'Güneş arketipi, kimlik ve yaşam gücü temalarını simgeler. Kendini ifade etmek ve merkezinde kalmak üzerine düşünmek isteyebilirsin.',
-    'moon':
-        'Ay arketipi, duygusal dünya ve sezgi temalarını simgeler. İç sesini dinlemek ve hislerini kabul etmek üzerine düşünebilirsin.',
-    'mercury':
-        'Merkür arketipi, iletişim ve düşünce temalarını simgeler. Konuşmak, yazmak, öğrenmek ve öğretmek üzerine düşünmek isteyebilirsin.',
-    'venus':
-        'Venüs arketipi, sevgi, güzellik ve değerler temalarını simgeler. Aşkı kabul etmek ve güzellik yaratmak üzerine düşünebilirsin.',
-    'mars':
-        'Mars arketipi, aksiyon ve enerji temalarını simgeler. Harekete geçmek ve cesareti kullanmak üzerine düşünmek isteyebilirsin.',
-    'jupiter':
-        'Jüpiter arketipi, büyüme ve genişleme temalarını simgeler. Fırsatlara açık olmak ve büyük düşünmek üzerine düşünebilirsin.',
-    'saturn':
-        'Satürn arketipi, disiplin ve yapı temalarını simgeler. Sabırlı olmak ve sorumlu davranmak üzerine düşünmek isteyebilirsin.',
-    'uranus':
-        'Uranüs arketipi, değişim ve yenilik temalarını simgeler. Beklenmedik olaylara açık olmak ve eski kalıpları sorgulamak üzerine düşünebilirsin.',
-    'neptune':
-        'Neptün arketipi, spiritualite ve hayal gücü temalarını simgeler. Rüyalara dikkat etmek ve yaratıcılığı kullanmak üzerine düşünmek isteyebilirsin.',
-    'pluto':
-        'Pluto arketipi, dönüşüm ve derinlik temalarını simgeler. Gölgelerle yüzleşmek ve gücü keşfetmek üzerine düşünebilirsin.',
-  };
-
-  /// Element-based reflection themes
-  static final Map<String, String> _elementMessages = {
-    'fire':
-        'Ateş elementi, tutku, cesaret ve yaşam enerjisi ile ilişkilendirilir. Harekete geçmek ve parlamak temaları üzerine düşünmek isteyebilirsin.',
-    'earth':
-        'Toprak elementi, pratiklik, istikrar ve maddi bilinç ile ilişkilendirilir. Temeller atmak ve sabırla çalışmak üzerine düşünebilirsin.',
-    'air':
-        'Hava elementi, zihinsel çeviklik, iletişim ve sosyal bağlantılar ile ilişkilendirilir. Düşünmek, konuşmak ve bağlanmak üzerine düşünmek isteyebilirsin.',
-    'water':
-        'Su elementi, duygusal derinlik, sezgi ve empati ile ilişkilendirilir. Hissetmek ve akışa teslim olmak üzerine düşünebilirsin.',
-  };
-
-  /// House-based reflection themes
-  static final Map<int, String> _houseInsights = {
-    1: '1. Ev temaları: Kişisel kimlik, fiziksel görünüm ve yeni başlangıçlar. Kendini göstermek ve inisiyatif almak üzerine düşünmek isteyebilirsin.',
-    2: '2. Ev temaları: Değerler ve öz-değer. Maddi güvenlik ve yeteneklerin üzerine düşünebilirsin.',
-    3: '3. Ev temaları: İletişim ve öğrenme. Konuşmak, yazmak ve yeni şeyler öğrenmek üzerine düşünmek isteyebilirsin.',
-    4: '4. Ev temaları: Ev, aile ve duygusal kökler. Yuva ve iç huzur üzerine düşünebilirsin.',
-    5: '5. Ev temaları: Yaratıcılık, eğlence ve kendini ifade etme. Sanat ve oyun üzerine düşünmek isteyebilirsin.',
-    6: '6. Ev temaları: Sağlık, günlük rutinler ve hizmet. Sağlığına dikkat etmek ve yardımsever olmak üzerine düşünebilirsin.',
-    7: '7. Ev temaları: İlişkiler ve ortaklıklar. Partnerine zaman ayırmak ve iş birliği yapmak üzerine düşünmek isteyebilirsin.',
-    8: '8. Ev temaları: Dönüşüm ve derin bağlantılar. Değişimi kucaklamak ve paylaşmak üzerine düşünebilirsin.',
-    9: '9. Ev temaları: Felsefe ve yüksek öğrenim. Bilgelik aramak ve büyük resmi görmek üzerine düşünmek isteyebilirsin.',
-    10: '10. Ev temaları: Kariyer ve hedefler. Profesyonel alanda parlamak ve hedeflere odaklanmak üzerine düşünebilirsin.',
-    11: '11. Ev temaları: Arkadaşlıklar ve topluluk. Sosyal çevrede aktif olmak ve geleceği planlamak üzerine düşünmek isteyebilirsin.',
-    12: '12. Ev temaları: Bilinçaltı ve spiritualite. Meditasyon yapmak ve geçmişi bırakmak üzerine düşünebilirsin.',
-  };
 }
