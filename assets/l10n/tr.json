@@ -161,7 +161,7 @@
     "compare": "Karşılaştır",
     "delete_profile": "Profili Sil",
     "your_birth_info": "Doğum Bilgilerin",
-    "your_sun_sign": "Güneş Arketipin",
+    "your_sun_sign": "Temel Kimliğin",
     "edit_info": "Bilgileri Düzenle",
     "view_personal_profile": "Kişisel Profilnı Gör",
     "profile_saved": "Profil başarıyla kaydedildi",
@@ -502,7 +502,7 @@
     "solar_return": {
       "title": "Solar Return",
       "subtitle": "Doğum Günü Haritası",
-      "sun_returns": "Güneş {sign} arketipina dönüyor",
+      "sun_returns": "Temel kimliğin {sign} arketipine dönüyor",
       "return_date": "Dönüş Tarihi",
       "sun_house": "Güneş Evi",
       "house_number": "{number}. Ev",
@@ -2839,8 +2839,8 @@
       "styles": {
         "jungian": "Jungian",
         "jungian_desc": "Derinlik Psikolojisi",
-        "spiritual": "Spiritual",
-        "spiritual_desc": "Mistik Yorum",
+        "spiritual": "İçsel",
+        "spiritual_desc": "İçsel Yorum",
         "folk": "Halk Tabiri",
         "folk_desc": "Turk Gelenegine Gore",
         "islamic": "Islami",
