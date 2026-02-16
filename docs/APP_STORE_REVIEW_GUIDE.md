@@ -1,11 +1,11 @@
-# Venus One: App Store Review Guide
+# InnerCycles: App Store Review Guide
 ## Why This Is a Lifestyle Reflection App, Not a Prediction App
 
 ---
 
 ## EXECUTIVE SUMMARY
 
-**Venus One** is a lifestyle reflection and journaling application that uses symbolic themes from various cultural traditions to support personal growth, self-awareness, and mindful living.
+**InnerCycles** is a lifestyle reflection and journaling application that uses symbolic themes from various cultural traditions to support personal growth, self-awareness, and mindful living.
 
 **Key Positioning:**
 - **Category:** Lifestyle / Health & Fitness / Mindfulness
@@ -83,7 +83,7 @@
 ### In-App Disclaimers
 
 **Location 1: Onboarding**
-> "Venus One is a reflection and journaling app that uses symbolic themes for personal growth. All content is for entertainment and self-awareness purposes. This app does not predict future events and is not a substitute for professional advice."
+> "InnerCycles is a reflection and journaling app that uses symbolic themes for personal growth. All content is for entertainment and self-awareness purposes. This app does not predict future events and is not a substitute for professional advice."
 
 **Location 2: Per-Content Disclaimers**
 Every content piece includes:
@@ -99,7 +99,7 @@ Comprehensive disclaimer covering:
 
 ### Terms of Service Excerpt
 
-> "Venus One provides symbolic and archetypal content for personal reflection, journaling, and entertainment purposes. Users acknowledge that:
+> "InnerCycles provides symbolic and archetypal content for personal reflection, journaling, and entertainment purposes. Users acknowledge that:
 > 1. All content is interpretive and symbolic, not predictive
 > 2. The app makes no claims of accuracy regarding future events
 > 3. Users are responsible for their own decisions
@@ -140,7 +140,7 @@ Comprehensive disclaimer covering:
 
 ### Similar Approved Apps (Lifestyle/Reflection Category)
 
-| App | Function | Venus One Similarity |
+| App | Function | InnerCycles Similarity |
 |-----|----------|---------------------|
 | **Headspace** | Meditation + daily reflection | Similar reflection prompts |
 | **Calm** | Mindfulness + journaling | Similar wellness focus |
@@ -150,7 +150,7 @@ Comprehensive disclaimer covering:
 
 ### Different From (Rejected/Problematic Categories)
 
-| Category | Why Venus One Is Different |
+| Category | Why InnerCycles Is Different |
 |----------|---------------------------|
 | **Fortune-telling apps** | We don't predict futures |
 | **Gambling prediction** | No numerical/outcome predictions |
@@ -198,7 +198,7 @@ Comprehensive disclaimer covering:
 ## REVIEWER FAQ
 
 **Q: Is this a horoscope/astrology app?**
-A: Venus One uses archetypal themes (some of which originate from astrological traditions) as a framework for journaling and reflection. Unlike traditional horoscope apps, we do not make predictions about future events. Our content is framed as cultural education and self-reflection prompts.
+A: InnerCycles uses archetypal themes (some of which originate from astrological traditions) as a framework for journaling and reflection. Unlike traditional horoscope apps, we do not make predictions about future events. Our content is framed as cultural education and self-reflection prompts.
 
 **Q: Does the app tell users what will happen to them?**
 A: No. All content uses reflective language ("you might consider," "some find it helpful to") rather than predictive language ("you will," "this will happen"). We explicitly disclaim any predictive function.

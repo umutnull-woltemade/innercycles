@@ -1,98 +1,91 @@
 Dear App Review Team,
 
-Thank you for reviewing Lumera.
+Thank you for reviewing InnerCycles.
 
-══════════════════════════════════════════════════════════════
+======================================================================
 WHAT THIS APP IS
-══════════════════════════════════════════════════════════════
+======================================================================
 
-Lumera is an astrology and horoscope entertainment app. Users can:
-- Read daily, weekly, and monthly horoscopes
-- Create and explore birth charts (natal charts)
-- Check zodiac compatibility
-- Draw virtual tarot cards
-- Calculate numerology numbers
-- Keep a dream journal
-- Chat with an AI assistant about cosmic themes
+InnerCycles is a personal journaling and mood-tracking app. Users can:
+- Write daily journal entries with guided reflection prompts
+- Track moods and emotional patterns over weeks and months
+- Maintain a dream journal with 1000+ symbol interpretations
+- Discover their attachment style through an interactive quiz
+- View monthly insight reports showing personal growth
+- Create and share insight cards summarizing their patterns
 
-══════════════════════════════════════════════════════════════
-ENTERTAINMENT DISCLAIMER
-══════════════════════════════════════════════════════════════
+======================================================================
+APP CATEGORY & POSITIONING
+======================================================================
 
-This app is FOR ENTERTAINMENT PURPOSES ONLY.
+Primary Category: Lifestyle
+Secondary Category: Health & Fitness
 
-We are very clear about this throughout the app:
+Comparable apps: Day One, Reflectly, Finch, Headspace, Calm
 
-1. ✅ Onboarding screens display entertainment disclaimer
-2. ✅ Every horoscope screen shows "For entertainment only" footer
-3. ✅ Birth chart screens include disclaimer
-4. ✅ Tarot screens show "For reflection purposes" notice
-5. ✅ AI responses are filtered to remove prediction language
-6. ✅ Settings screen contains full legal disclaimer
+InnerCycles is a self-awareness and wellness tool. All content is
+based on the user's own journal entries and self-reported data.
+The app does NOT predict future events or make claims about outcomes.
 
-══════════════════════════════════════════════════════════════
-WHAT WE DO NOT DO
-══════════════════════════════════════════════════════════════
+======================================================================
+KEY FEATURES WALKTHROUGH (2 minutes)
+======================================================================
 
-• We do NOT claim to predict the future
-• We do NOT provide fortune-telling as a service
-• We do NOT make health, medical, or financial claims
-• We do NOT encourage users to make life decisions based on horoscopes
-• All AI-generated content passes through a safety filter that removes
-  prediction language ("will happen", "your future", "destiny", etc.)
+1. Launch app -> Onboarding introduces journaling features
+2. Tap "Continue" or sign in with Apple
+3. Home screen shows daily reflection prompt and mood check-in
+4. Write a journal entry -> App tracks patterns over time
+5. Visit Dream Journal -> Record dreams and explore symbol meanings
+6. Check Patterns tab -> See emotional trends across weeks/months
+7. Take Attachment Style Quiz -> Discover relationship patterns
+8. View Monthly Report -> Data-driven summary of entries
 
-══════════════════════════════════════════════════════════════
-CONTENT SAFETY
-══════════════════════════════════════════════════════════════
+======================================================================
+CONTENT APPROACH
+======================================================================
 
-Our AI assistant uses a ContentSafetyFilter that:
-- Blocks 50+ forbidden phrases related to predictions
-- Auto-rewrites borderline content to safe alternatives
-- Logs all filter events for compliance monitoring
+All content in the app is:
+- Based on user's own entries and self-reported data
+- Reflective in nature ("past entries suggest...", "you may notice...")
+- Never predictive ("will happen", "your future", "destiny")
+- For self-awareness and personal growth purposes
 
-Example forbidden phrases that are blocked:
-- "will happen" → replaced with "may unfold"
-- "your future" → replaced with "your potential"
-- "destiny" → replaced with "journey"
-- "the stars predict" → replaced with "patterns suggest"
+The app uses personality archetypes (e.g., The Pioneer, The Builder)
+as a framework for reflection prompts. These are framed as personality
+profiles, not predictions or deterministic claims.
 
-══════════════════════════════════════════════════════════════
-DEMO WALKTHROUGH (2 minutes)
-══════════════════════════════════════════════════════════════
+======================================================================
+PRIVACY
+======================================================================
 
-1. Launch app → See onboarding with entertainment disclaimer
-2. Tap "Continue as Guest"
-3. Enter birth date (for horoscope sign)
-4. See home screen with today's horoscope
-5. Notice: Footer says "For entertainment purposes only"
-6. Tap any horoscope → See reflection-style content
-7. Try AI chat → Type "What will happen tomorrow?"
-8. Observe: AI gives supportive response WITHOUT predictions
-9. Check Settings → About → See full disclaimer
+- All journal data is stored locally on-device
+- No journal content is sent to external servers
+- User can delete all data at any time from Settings
+- Sign in with Apple supported for account creation
 
-══════════════════════════════════════════════════════════════
+======================================================================
 TEST ACCOUNT
-══════════════════════════════════════════════════════════════
+======================================================================
 
-No account required. The app works in guest mode.
+No account required. The app works without sign-in.
+Tap "Continue as Guest" during onboarding to access all features.
 
-If you need a premium account for testing:
-Email: review@lumeraspace.com
-Password: Review2024!
+For premium features testing, use Sandbox account or contact:
+support@innercycles.app
 
-══════════════════════════════════════════════════════════════
+======================================================================
 AGE RATING
-══════════════════════════════════════════════════════════════
+======================================================================
 
-We recommend 12+ for "Infrequent/Mild Mature/Suggestive Themes"
-due to the astrological/mystical content nature.
+12+ for Infrequent/Mild Mature/Suggestive Themes
+(emotional wellness and self-reflection content)
 
-══════════════════════════════════════════════════════════════
+======================================================================
 
 We are committed to App Store guidelines and happy to make
 any changes you recommend.
 
 Thank you for your consideration.
 
-Lumera Team
-review@lumeraspace.com
+InnerCycles Team
+support@innercycles.app

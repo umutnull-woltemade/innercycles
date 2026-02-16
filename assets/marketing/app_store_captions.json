@@ -1,96 +1,45 @@
 {
   "_metadata": {
-    "description": "A/B test variants for App Store screenshot captions",
-    "version": "1.0.0",
-    "lastUpdated": "2026-02-05"
+    "description": "App Store screenshot captions for InnerCycles",
+    "version": "2.0.0",
+    "lastUpdated": "2026-02-16"
   },
   "screenshots": {
-    "birth_chart": {
-      "variant_a": {
-        "caption": "Your complete birth chart, calculated to the minute",
-        "focus": "clarity"
-      },
-      "variant_b": {
-        "caption": "The stars knew you before you were born",
-        "focus": "emotion"
-      }
+    "mood_checkin": {
+      "caption": "How do you feel today? Start tracking in 30 seconds"
     },
-    "daily_horoscope": {
-      "variant_a": {
-        "caption": "Personalized daily guidance for your zodiac sign",
-        "focus": "clarity"
-      },
-      "variant_b": {
-        "caption": "Start each day knowing what the cosmos has in store",
-        "focus": "emotion"
-      }
+    "emotional_patterns": {
+      "caption": "See your emotional patterns emerge over weeks"
     },
-    "compatibility": {
-      "variant_a": {
-        "caption": "See your relationship compatibility score instantly",
-        "focus": "clarity"
-      },
-      "variant_b": {
-        "caption": "Discover if the stars align for your connection",
-        "focus": "emotion"
-      }
+    "dream_journal": {
+      "caption": "Decode your dreams with 1000+ symbol meanings"
     },
-    "dream_interpretation": {
-      "variant_a": {
-        "caption": "AI-powered dream analysis and symbol decoding",
-        "focus": "clarity"
-      },
-      "variant_b": {
-        "caption": "Unlock the hidden messages in your dreams",
-        "focus": "emotion"
-      }
+    "growth_score": {
+      "caption": "Your growth score rises with every entry"
     },
-    "tarot": {
-      "variant_a": {
-        "caption": "Daily tarot card readings with deep interpretations",
-        "focus": "clarity"
-      },
-      "variant_b": {
-        "caption": "Let the cards reveal your path forward",
-        "focus": "emotion"
-      }
+    "daily_prompts": {
+      "caption": "Daily prompts that spark real self-reflection"
     },
-    "numerology": {
-      "variant_a": {
-        "caption": "Calculate your life path number and destiny",
-        "focus": "clarity"
-      },
-      "variant_b": {
-        "caption": "Numbers hold the blueprint to your soul",
-        "focus": "emotion"
-      }
+    "cycle_visualizer": {
+      "caption": "Visualize your emotional cycles and rhythms"
     },
-    "transits": {
-      "variant_a": {
-        "caption": "Track planetary movements affecting your chart",
-        "focus": "clarity"
-      },
-      "variant_b": {
-        "caption": "The planets are always moving — stay aligned",
-        "focus": "emotion"
-      }
+    "attachment_quiz": {
+      "caption": "Discover your attachment style in 5 minutes"
     },
-    "synastry": {
-      "variant_a": {
-        "caption": "Compare two birth charts for relationship insights",
-        "focus": "clarity"
-      },
-      "variant_b": {
-        "caption": "See your cosmic connection with someone special",
-        "focus": "emotion"
-      }
+    "monthly_reports": {
+      "caption": "Monthly reports show how far you've come"
+    },
+    "insight_cards": {
+      "caption": "Beautiful insight cards to share your journey"
+    },
+    "privacy": {
+      "caption": "100% private — your thoughts never leave your device"
     }
   },
   "app_store_metadata": {
-    "title": "Venus One: Astrology & Tarot",
-    "subtitle": "Birth Charts, Daily Horoscopes & More",
-    "promotional_text": "Your personal astrologer, always with you. Get daily insights tailored to your unique birth chart.",
-    "description": "Discover the cosmic guidance you've been looking for. Venus One combines ancient astrological wisdom with modern AI to deliver personalized insights about your life, relationships, and destiny.\n\n✨ BIRTH CHART ANALYSIS\nGet your complete natal chart calculated to the exact minute. Understand your planets, houses, and aspects with detailed interpretations.\n\n🌟 DAILY HOROSCOPES\nStart each day with personalized guidance based on your unique chart — not just your Sun sign.\n\n💫 COMPATIBILITY READINGS\nExplore relationship dynamics with synastry and composite chart analysis.\n\n🔮 TAROT & NUMEROLOGY\nDaily card pulls and life path calculations to guide your journey.\n\n🌙 DREAM INTERPRETATION\nAI-powered dream analysis to unlock your subconscious messages.\n\n⏰ TRANSIT TRACKING\nKnow when important planetary alignments affect your life.\n\nDownload now and let the stars guide your way.",
-    "keywords": "astrology,horoscope,birth chart,zodiac,tarot,numerology,compatibility,daily horoscope,natal chart,star sign"
+    "title": "InnerCycles - Mood Journal",
+    "subtitle": "Daily Mood & Dream Diary",
+    "promotional_text": "New: Emotional Cycle Visualizer + Attachment Style Quiz + Shareable Insight Cards. See the patterns behind your feelings in just 7 days.",
+    "keywords": "journal,tracker,reflection,gratitude,mindful,wellness,self,care,pattern,cycle,emotional,habit,sleep,anxiety,growth,insight"
   }
 }

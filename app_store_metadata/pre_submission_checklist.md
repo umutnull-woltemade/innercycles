@@ -1,74 +1,70 @@
-# Venus One - App Store 4.3(b) Pre-Submission Checklist
+# InnerCycles - App Store Pre-Submission Checklist
 
 ## Before Submitting
 
-### Feature Flag Verification
-- [ ] `FeatureFlags.appStoreReviewMode = true` in `lib/core/config/feature_flags.dart`
-- [ ] Build and verify hidden features are inaccessible
-- [ ] Test: Navigate to `/horoscope` → Should redirect to `/insight`
-- [ ] Test: Navigate to `/kozmoz` → Should redirect to `/insight`
-- [ ] Test: Navigate to `/year-ahead` → Should redirect to `/insight`
+### Content Compliance Verification
+- [ ] No prediction language visible ("will happen", "your future", "destiny")
+- [ ] No astrology/horoscope/zodiac terminology in user-facing text
+- [ ] All personality content uses archetype framing (The Pioneer, The Builder, etc.)
+- [ ] Dream interpretations use psychological framing, not mystical
+- [ ] All reflective language: "past entries suggest...", "you may notice..."
+- [ ] Disclaimers visible on primary screens
 
 ### Onboarding Flow Verification
 - [ ] Launch app fresh (clear data)
-- [ ] Onboarding Page 3 shows "Profile Ready" NOT zodiac sign reveal
-- [ ] No "You are a Leo!" or similar messaging
-- [ ] No zodiac symbol prominently displayed
+- [ ] Onboarding introduces journaling and mood tracking
+- [ ] No zodiac sign reveal or astrology messaging
+- [ ] Sign in with Apple works correctly
+- [ ] "Continue as Guest" path works correctly
 
 ### First 2-Minute Flow Verification
-- [ ] Launch shows reflection messaging, not astrology
-- [ ] First screen after onboarding is Insight/Reflection
-- [ ] User must type before receiving any content
-- [ ] AI response contains no future claims
-- [ ] Disclaimer visible on primary screens
-
-### Language Audit
-- [ ] No "destiny" visible in UI (check numerology screens)
-- [ ] No "awaits you" visible anywhere
-- [ ] No "fortune" or "fate" visible
-- [ ] No "stars say" or "cosmic reveals" visible
-- [ ] No "what does your future hold" visible
+- [ ] Launch shows journaling/reflection messaging
+- [ ] Home screen displays daily reflection prompt and mood check-in
+- [ ] User can write a journal entry
+- [ ] Pattern tracking shows after multiple entries
+- [ ] Dream journal accessible and functional
 
 ### App Store Metadata
-- [ ] Description uploaded from `app_store_metadata/description.txt`
-- [ ] Subtitle: "Mindful Journaling & Insights"
-- [ ] Keywords exclude: astrology, horoscope, zodiac, fortune, tarot, prediction
-- [ ] App Review Notes copied from `app_store_metadata/app_review_notes.txt`
-- [ ] Screenshots show journaling interface, not horoscopes
+- [ ] Title: "InnerCycles - Mood Journal" (26 chars)
+- [ ] Subtitle: "Daily Mood & Dream Diary" (25 chars)
+- [ ] Keywords from `app_store_metadata/keywords.txt` (no astrology terms)
+- [ ] Description from `app_store_metadata/description.txt`
+- [ ] App Review Notes from `app_store_metadata/app_review_notes.txt`
+- [ ] Primary Category: Lifestyle
+- [ ] Secondary Category: Health & Fitness
+- [ ] Age Rating: 12+
+- [ ] Screenshots show journaling interface (mood tracking, patterns, dreams)
 
 ### Build Steps
 1. [ ] Run `flutter clean`
 2. [ ] Run `flutter pub get`
-3. [ ] Run `flutter build ios --release`
-4. [ ] Archive in Xcode
-5. [ ] Upload to App Store Connect
-6. [ ] Update all metadata
-7. [ ] Submit for review
+3. [ ] Run `dart analyze lib/` — verify 0 issues
+4. [ ] Run `flutter build ios --release`
+5. [ ] Archive in Xcode
+6. [ ] Upload to App Store Connect via Xcode or Transporter
+7. [ ] Update all metadata in App Store Connect
+8. [ ] Paste App Review Notes
+9. [ ] Submit for review
+
+### iPad Verification
+- [ ] Test on iPad (landscape and portrait)
+- [ ] All screens render correctly
+- [ ] No layout overflow issues
+- [ ] Navigation works on larger screen
+
+### Privacy & Permissions
+- [ ] Microphone usage description is accurate (voice journaling)
+- [ ] Speech recognition usage description is accurate
+- [ ] ATT dialog appears correctly
+- [ ] Privacy policy URL works: https://innercycles.app/privacy
+- [ ] Terms of use URL works: https://innercycles.app/terms
 
 ## Common Re-Rejection Risks
 
 | Risk | How to Verify |
 |------|---------------|
-| Hidden features discovered | Test all blocked routes return 404 or redirect |
-| Zodiac sign appears anywhere | Search codebase for `.sunSign` usage |
-| "Daily" tied to zodiac | Ensure no sign-based content on home |
-| Tarot spreads visible | Verify tarot feature is hidden |
-| Dream interpretation too mystical | Check dream responses are psychological only |
-| Numerology says "destiny" | Verify "Expression Number" label used |
-| AI generates prediction | Test with sample inputs, check responses |
-
-## After Approval
-
-When the app is approved, you can re-enable features:
-
-1. Set `FeatureFlags.appStoreReviewMode = false`
-2. Build and submit update
-3. Features will gradually become available
-
-## Emergency Rollback
-
-If rejected again:
-1. Review rejection reason carefully
-2. Identify specific triggering content
-3. Add to blocked routes/feature flags
-4. Resubmit with updated App Review Notes explaining changes
+| Astrology language surfaces | Search codebase: no "horoscope", "zodiac", "fortune" in UI |
+| Prediction language appears | Search for "will happen", "destiny", "fate" in UI strings |
+| Dream interpretation too mystical | Verify dream responses use psychological framing |
+| Screenshots show astrology content | All screenshots must show journaling features |
+| Old metadata not updated | Verify all App Store Connect fields match this checklist |
