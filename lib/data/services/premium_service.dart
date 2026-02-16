@@ -13,7 +13,7 @@ import 'l10n_service.dart';
 enum PremiumTier { free, monthly, yearly, lifetime }
 
 extension PremiumTierExtension on PremiumTier {
-  String get displayName => localizedDisplayName(AppLanguage.tr);
+  String get displayName => localizedDisplayName(AppLanguage.en);
 
   String localizedDisplayName(AppLanguage language) {
     final key = 'premium.tiers.$name.name';
@@ -45,7 +45,7 @@ extension PremiumTierExtension on PremiumTier {
     }
   }
 
-  String get savings => localizedSavings(AppLanguage.tr);
+  String get savings => localizedSavings(AppLanguage.en);
 
   String localizedSavings(AppLanguage language) {
     final key = 'premium.tiers.$name.savings';
@@ -64,7 +64,7 @@ extension PremiumTierExtension on PremiumTier {
     }
   }
 
-  List<String> get features => localizedFeatures(AppLanguage.tr);
+  List<String> get features => localizedFeatures(AppLanguage.en);
 
   List<String> localizedFeatures(AppLanguage language) {
     final key = 'premium.tiers.$name.features';

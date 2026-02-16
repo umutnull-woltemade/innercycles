@@ -7,9 +7,9 @@ class AppConstants {
   // App IDs and Links
   static const String appStoreId = '6758612716';
   static const String playStoreId = 'com.venusone.innercycles';
-  static const String privacyPolicyUrl = 'https://venusone.com/privacy';
-  static const String termsOfServiceUrl = 'https://venusone.com/terms';
-  static const String supportEmail = 'support@venusone.com';
+  static const String privacyPolicyUrl = 'https://innercycles.app/privacy';
+  static const String termsOfServiceUrl = 'https://innercycles.app/terms';
+  static const String supportEmail = 'support@innercycles.app';
 
   // RevenueCat API Keys (iOS only)
   static const String revenueCatAppleApiKey =
@@ -20,7 +20,7 @@ class AppConstants {
   static const String monthlyProductId = 'monthly';
   static const String yearlyProductId = 'yearly';
   static const String lifetimeProductId = 'lifetime';
-  static const String entitlementId = 'umutnull_pro';
+  static const String entitlementId = 'innercycles_pro';
 
   // Pricing Experiment Product IDs
   static const String monthlyProductId799 = 'monthly_799';

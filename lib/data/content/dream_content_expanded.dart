@@ -1914,58 +1914,6 @@ class GenisletilmisAlintilar {
       quote: 'Kupa dışarıda, zafer içeride.',
       category: 'Başarı',
     ),
-
-    // ASTROLOJİK
-    ShareableCard(
-      emoji: '☿',
-      quote: 'Merkür retro: Geri değil, içeri git.',
-      category: 'Retro',
-    ),
-    ShareableCard(
-      emoji: '♀',
-      quote: 'Venüs der ki: Güzellik bakanın gözündedir.',
-      category: 'Güzellik',
-    ),
-    ShareableCard(
-      emoji: '♂',
-      quote: 'Mars der ki: Enerji yönlendirilmezse yakar.',
-      category: 'Enerji',
-    ),
-    ShareableCard(
-      emoji: '♃',
-      quote: 'Jüpiter genişletir - neyi genişlettiğine dikkat et.',
-      category: 'Büyüme',
-    ),
-    ShareableCard(
-      emoji: '♄',
-      quote: 'Satürn sıkıştırır ki özün ortaya çıksın.',
-      category: 'Disiplin',
-    ),
-    ShareableCard(
-      emoji: '♅',
-      quote: 'Uranüs beklenmedik kapılar açar - cesaret et.',
-      category: 'Sürpriz',
-    ),
-    ShareableCard(
-      emoji: '♆',
-      quote: 'Neptün sis verir ki sezgini kullan.',
-      category: 'Sezgi',
-    ),
-    ShareableCard(
-      emoji: '♇',
-      quote: 'Plüton öldürür ki yeniden doğasın.',
-      category: 'Dönüşüm',
-    ),
-    ShareableCard(
-      emoji: '☊',
-      quote: 'Kuzey Node: Korktuğun yönde git.',
-      category: 'Kader',
-    ),
-    ShareableCard(
-      emoji: '☋',
-      quote: 'Güney Node: Bildiğini bırak, bilinmeyene adım at.',
-      category: 'Geçmiş',
-    ),
   ];
 
   /// Tüm alıntıları getir (orijinal + ek)

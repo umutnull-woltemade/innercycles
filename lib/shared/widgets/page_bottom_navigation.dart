@@ -12,7 +12,7 @@ import '../../data/providers/app_providers.dart';
 /// Implements the "Back-Button-Free Navigation System"
 /// Every page ends with 4 mandatory exploration sections:
 /// 1. "Bunu Okuyanlar Şuna da Baktı" - Social proof navigation
-/// 2. "Bir Adım Daha Derinleş" - Deeper experience (dreams/kozmoz)
+/// 2. "Bir Adım Daha Derinleş" - Deeper experience (dreams/reflection)
 /// 3. "Keşfetmeye Devam Et" - Cross-category exploration
 /// 4. "Geri Dönmeden Devam Et" - Hub links (replace back button)
 class PageBottomNavigation extends StatelessWidget {

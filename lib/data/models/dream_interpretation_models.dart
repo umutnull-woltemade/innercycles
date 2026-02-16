@@ -1,5 +1,5 @@
 /// Dream Interpretation Models - 7 Boyutlu Rüya Yorumlama Sistemi
-/// Kadim bilgelik + Jungian arketipler + Astrolojik zamanlama
+/// Jungian archetypes + dream timing context
 library;
 
 // ════════════════════════════════════════════════════════════════
@@ -380,7 +380,7 @@ class FullDreamInterpretation {
   // 5. Duygusal Okuma
   final EmotionalReading emotionalReading;
 
-  // 6. Astrolojik Zamanlama
+  // 6. Dream Timing
   final DreamTiming dreamTiming;
 
   // 7. Işık/Gölge

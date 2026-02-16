@@ -138,7 +138,6 @@ class _AppInitializerState extends State<AppInitializer> {
     }
 
     // Glossary cache disabled for 4.3(b) compliance
-    // Astrology glossary content moved to _archived/
     // if (!kIsWeb) {
     //   Future.microtask(() => GlossaryCache().initialize());
     // }
@@ -402,7 +401,7 @@ class _AppInitializerState extends State<AppInitializer> {
                 () => _InitializedUserProfileNotifier(result.profile!),
               ),
           ],
-          child: const VenusOneApp(),
+          child: const InnerCyclesApp(),
         );
       },
     );
@@ -444,8 +443,8 @@ class _InitializedUserProfileNotifier extends UserProfileNotifier {
 // INNERCYCLES APP - Main app widget
 // ═══════════════════════════════════════════════════════════════════════════
 
-class VenusOneApp extends ConsumerWidget {
-  const VenusOneApp({super.key});
+class InnerCyclesApp extends ConsumerWidget {
+  const InnerCyclesApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

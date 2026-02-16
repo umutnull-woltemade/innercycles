@@ -1560,7 +1560,7 @@ ${_getPersonalAdvice(sign)}''';
       archetype.PersonalityArchetype.visionary: 'visionary',
       archetype.PersonalityArchetype.dreamer: 'dreamer',
     };
-    final signKey = signKeyMap[sign] ?? 'aries';
+    final signKey = signKeyMap[sign] ?? 'pioneer';
     return L10nService.get(
       'widgets.dreams.interpretations.personal_advice.$signKey',
       language,

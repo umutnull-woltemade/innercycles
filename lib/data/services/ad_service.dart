@@ -51,7 +51,7 @@ enum AdPlacement {
   dreamResult,
   reflectionResult,
   patternResult,
-  auraResult,
+  wellnessResult,
   postAnalysis,
   premiumUnlock,
   homeScreen,

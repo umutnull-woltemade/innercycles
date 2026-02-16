@@ -144,7 +144,7 @@ class HomepageNavigation {
       ),
       NavigationCard(
         title: 'Enerji Alanın',
-        description: 'Auranın renkleri ve chakra dengen.',
+        description: 'Enerjini ve dengenı keşfet.',
         route: '/insight',
         emoji: '🌈',
         titleKey: 'navigation.cards.energy_field.title',
@@ -418,148 +418,148 @@ class ArchetypeNavigation {
   }
 
   static const Map<String, Map<String, dynamic>> _archetypeData = {
-    'aries': {
+    'pioneer': {
       'name': 'Öncü',
       'compatibleSign1': 'Sahne Yıldızı',
-      'compatibleRoute1': 'leo',
+      'compatibleRoute1': 'performer',
       'compatibleEmoji1': '🌟',
       'elementBuddy1': 'Sahne Yıldızı',
-      'elementBuddyRoute1': 'leo',
+      'elementBuddyRoute1': 'performer',
       'elementBuddyEmoji1': '🌟',
       'elementBuddy2': 'Kaşif',
-      'elementBuddyRoute2': 'sagittarius',
+      'elementBuddyRoute2': 'explorer',
       'elementBuddyEmoji2': '🧭',
     },
-    'taurus': {
+    'builder': {
       'name': 'Kurucu',
       'compatibleSign1': 'Analist',
-      'compatibleRoute1': 'virgo',
+      'compatibleRoute1': 'analyst',
       'compatibleEmoji1': '🔍',
       'elementBuddy1': 'Analist',
-      'elementBuddyRoute1': 'virgo',
+      'elementBuddyRoute1': 'analyst',
       'elementBuddyEmoji1': '🔍',
       'elementBuddy2': 'Başarıcı',
-      'elementBuddyRoute2': 'capricorn',
+      'elementBuddyRoute2': 'achiever',
       'elementBuddyEmoji2': '🏔',
     },
-    'gemini': {
+    'communicator': {
       'name': 'İletişimci',
       'compatibleSign1': 'Dengeleyici',
-      'compatibleRoute1': 'libra',
+      'compatibleRoute1': 'harmonizer',
       'compatibleEmoji1': '⚖️',
       'elementBuddy1': 'Dengeleyici',
-      'elementBuddyRoute1': 'libra',
+      'elementBuddyRoute1': 'harmonizer',
       'elementBuddyEmoji1': '⚖️',
       'elementBuddy2': 'Vizyoner',
-      'elementBuddyRoute2': 'aquarius',
+      'elementBuddyRoute2': 'visionary',
       'elementBuddyEmoji2': '💡',
     },
-    'cancer': {
+    'nurturer': {
       'name': 'Koruyucu',
       'compatibleSign1': 'Dönüştürücü',
-      'compatibleRoute1': 'scorpio',
+      'compatibleRoute1': 'transformer',
       'compatibleEmoji1': '🦋',
       'elementBuddy1': 'Dönüştürücü',
-      'elementBuddyRoute1': 'scorpio',
+      'elementBuddyRoute1': 'transformer',
       'elementBuddyEmoji1': '🦋',
       'elementBuddy2': 'Hayalci',
-      'elementBuddyRoute2': 'pisces',
+      'elementBuddyRoute2': 'dreamer',
       'elementBuddyEmoji2': '🌙',
     },
-    'leo': {
+    'performer': {
       'name': 'Sahne Yıldızı',
       'compatibleSign1': 'Öncü',
-      'compatibleRoute1': 'aries',
+      'compatibleRoute1': 'pioneer',
       'compatibleEmoji1': '🚀',
       'elementBuddy1': 'Öncü',
-      'elementBuddyRoute1': 'aries',
+      'elementBuddyRoute1': 'pioneer',
       'elementBuddyEmoji1': '🚀',
       'elementBuddy2': 'Kaşif',
-      'elementBuddyRoute2': 'sagittarius',
+      'elementBuddyRoute2': 'explorer',
       'elementBuddyEmoji2': '🧭',
     },
-    'virgo': {
+    'analyst': {
       'name': 'Analist',
       'compatibleSign1': 'Kurucu',
-      'compatibleRoute1': 'taurus',
+      'compatibleRoute1': 'builder',
       'compatibleEmoji1': '🏗',
       'elementBuddy1': 'Kurucu',
-      'elementBuddyRoute1': 'taurus',
+      'elementBuddyRoute1': 'builder',
       'elementBuddyEmoji1': '🏗',
       'elementBuddy2': 'Başarıcı',
-      'elementBuddyRoute2': 'capricorn',
+      'elementBuddyRoute2': 'achiever',
       'elementBuddyEmoji2': '🏔',
     },
-    'libra': {
+    'harmonizer': {
       'name': 'Dengeleyici',
       'compatibleSign1': 'İletişimci',
-      'compatibleRoute1': 'gemini',
+      'compatibleRoute1': 'communicator',
       'compatibleEmoji1': '💬',
       'elementBuddy1': 'İletişimci',
-      'elementBuddyRoute1': 'gemini',
+      'elementBuddyRoute1': 'communicator',
       'elementBuddyEmoji1': '💬',
       'elementBuddy2': 'Vizyoner',
-      'elementBuddyRoute2': 'aquarius',
+      'elementBuddyRoute2': 'visionary',
       'elementBuddyEmoji2': '💡',
     },
-    'scorpio': {
+    'transformer': {
       'name': 'Dönüştürücü',
       'compatibleSign1': 'Koruyucu',
-      'compatibleRoute1': 'cancer',
+      'compatibleRoute1': 'nurturer',
       'compatibleEmoji1': '🛡',
       'elementBuddy1': 'Koruyucu',
-      'elementBuddyRoute1': 'cancer',
+      'elementBuddyRoute1': 'nurturer',
       'elementBuddyEmoji1': '🛡',
       'elementBuddy2': 'Hayalci',
-      'elementBuddyRoute2': 'pisces',
+      'elementBuddyRoute2': 'dreamer',
       'elementBuddyEmoji2': '🌙',
     },
-    'sagittarius': {
+    'explorer': {
       'name': 'Kaşif',
       'compatibleSign1': 'Öncü',
-      'compatibleRoute1': 'aries',
+      'compatibleRoute1': 'pioneer',
       'compatibleEmoji1': '🚀',
       'elementBuddy1': 'Öncü',
-      'elementBuddyRoute1': 'aries',
+      'elementBuddyRoute1': 'pioneer',
       'elementBuddyEmoji1': '🚀',
       'elementBuddy2': 'Sahne Yıldızı',
-      'elementBuddyRoute2': 'leo',
+      'elementBuddyRoute2': 'performer',
       'elementBuddyEmoji2': '🌟',
     },
-    'capricorn': {
+    'achiever': {
       'name': 'Başarıcı',
       'compatibleSign1': 'Kurucu',
-      'compatibleRoute1': 'taurus',
+      'compatibleRoute1': 'builder',
       'compatibleEmoji1': '🏗',
       'elementBuddy1': 'Kurucu',
-      'elementBuddyRoute1': 'taurus',
+      'elementBuddyRoute1': 'builder',
       'elementBuddyEmoji1': '🏗',
       'elementBuddy2': 'Analist',
-      'elementBuddyRoute2': 'virgo',
+      'elementBuddyRoute2': 'analyst',
       'elementBuddyEmoji2': '🔍',
     },
-    'aquarius': {
+    'visionary': {
       'name': 'Vizyoner',
       'compatibleSign1': 'İletişimci',
-      'compatibleRoute1': 'gemini',
+      'compatibleRoute1': 'communicator',
       'compatibleEmoji1': '💬',
       'elementBuddy1': 'İletişimci',
-      'elementBuddyRoute1': 'gemini',
+      'elementBuddyRoute1': 'communicator',
       'elementBuddyEmoji1': '💬',
       'elementBuddy2': 'Dengeleyici',
-      'elementBuddyRoute2': 'libra',
+      'elementBuddyRoute2': 'harmonizer',
       'elementBuddyEmoji2': '⚖️',
     },
-    'pisces': {
+    'dreamer': {
       'name': 'Hayalci',
       'compatibleSign1': 'Koruyucu',
-      'compatibleRoute1': 'cancer',
+      'compatibleRoute1': 'nurturer',
       'compatibleEmoji1': '🛡',
       'elementBuddy1': 'Koruyucu',
-      'elementBuddyRoute1': 'cancer',
+      'elementBuddyRoute1': 'nurturer',
       'elementBuddyEmoji1': '🛡',
       'elementBuddy2': 'Dönüştürücü',
-      'elementBuddyRoute2': 'scorpio',
+      'elementBuddyRoute2': 'transformer',
       'elementBuddyEmoji2': '🦋',
     },
   };
@@ -783,121 +783,6 @@ class JournalNavigation {
 }
 
 // ============================================================
-// PAGE 17: NUMEROLOGY (/numerology)
-// ============================================================
-
-class DiscoveryNavigation {
-  static const navigation = PageNavigation(
-    pageRoute: '/numerology',
-    pageType: 'tool',
-    alsoViewed: [
-      NavigationCard(
-        title: 'Kabala Sayıları',
-        description: 'Sayıların mistik kökeni.',
-        route: '/insight',
-        emoji: '🌳',
-        titleKey: 'navigation.cards.kabbalah_numbers.title',
-        descriptionKey: 'navigation.cards.kabbalah_numbers.description',
-      ),
-      NavigationCard(
-        title: 'Kişisel Profil',
-        description: 'Kişisel gelişim perspektifi.',
-        route: '/insight',
-        emoji: '🗺️',
-        titleKey: 'navigation.cards.personal_profile.title',
-        descriptionKey: 'navigation.cards.personal_growth_perspective.description',
-      ),
-      NavigationCard(
-        title: 'Günlük Yansıma',
-        description: 'Sayılarla birlikte keşfet.',
-        route: '/journal',
-        emoji: '📝',
-        titleKey: 'navigation.cards.daily_reflection.title',
-        descriptionKey: 'navigation.cards.explore_with_numbers.description',
-      ),
-      NavigationCard(
-        title: 'İlişki Uyumu',
-        description: 'Sayısal uyum analizi.',
-        route: '/insight',
-        emoji: '💑',
-        titleKey: 'navigation.cards.relationship_compatibility.title',
-        descriptionKey: 'navigation.cards.numerical_compatibility.description',
-      ),
-    ],
-    goDeeper: [
-      NavigationCard(
-        title: 'Sayılarla Rüya Yorumu',
-        description: 'Rüyandaki sayılar ne anlatıyor?',
-        route: '/dream-interpretation',
-        emoji: '🌙',
-        titleKey: 'navigation.cards.dream_with_numbers.title',
-        descriptionKey: 'navigation.cards.dream_with_numbers.description',
-      ),
-      NavigationCard(
-        title: 'Kişisel Yıl Mesajı',
-        description: 'Bu yılın sayısal enerjisi.',
-        route: '/insight',
-        emoji: '✨',
-        titleKey: 'navigation.cards.personal_year_message.title',
-        descriptionKey: 'navigation.cards.personal_year_message.description',
-      ),
-    ],
-    keepExploring: [
-      NavigationCard(
-        title: 'Günlük Yansıma',
-        description: 'Sayılarla birlikte oku.',
-        route: '/insight',
-        emoji: '⭐',
-        titleKey: 'navigation.cards.daily_reflection.title',
-        descriptionKey: 'navigation.cards.read_with_numbers.description',
-      ),
-      NavigationCard(
-        title: 'Aura Renkleri',
-        description: 'Enerji alanın.',
-        route: '/insight',
-        emoji: '🌈',
-        titleKey: 'navigation.cards.aura_colors.title',
-        descriptionKey: 'navigation.cards.energy_field.description',
-      ),
-      NavigationCard(
-        title: 'Chakra Dengesi',
-        description: 'Sayılar ve chakralar.',
-        route: '/insight',
-        emoji: '🧘',
-        titleKey: 'navigation.cards.chakra_balance.title',
-        descriptionKey: 'navigation.cards.numbers_and_chakras.description',
-      ),
-    ],
-    continueWithoutBack: [
-      NavigationCard(
-        title: 'Tüm Çözümlemeler',
-        description: 'Diğer sistemler',
-        route: '/insight',
-        emoji: '🧰',
-        titleKey: 'navigation.cards.all_analyses.title',
-        descriptionKey: 'navigation.cards.other_systems.description',
-      ),
-      NavigationCard(
-        title: 'Ana Sayfa',
-        description: 'Başa dön',
-        route: '/',
-        emoji: '🏠',
-        titleKey: 'navigation.cards.home.title',
-        descriptionKey: 'navigation.cards.home.description',
-      ),
-      NavigationCard(
-        title: 'Sayı Anlamları',
-        description: '1-9 ve master sayılar',
-        route: '/glossary',
-        emoji: '🔢',
-        titleKey: 'navigation.cards.number_meanings.title',
-        descriptionKey: 'navigation.cards.number_meanings.description',
-      ),
-    ],
-  );
-}
-
-// ============================================================
 // PAGE 18: COMPATIBILITY (/insight - relationship section)
 // ============================================================
 
@@ -931,12 +816,12 @@ class CompatibilityNavigation {
         descriptionKey: 'navigation.cards.love_reflection.description',
       ),
       NavigationCard(
-        title: 'Venüs ve Mars',
+        title: 'İlişki Enerjisi',
         description: 'Aşk enerjilerini incele.',
         route: '/insight',
-        emoji: '🪐',
-        titleKey: 'navigation.cards.venus_and_mars.title',
-        descriptionKey: 'navigation.cards.venus_and_mars.description',
+        emoji: '💞',
+        titleKey: 'navigation.cards.relationship_energy.title',
+        descriptionKey: 'navigation.cards.relationship_energy.description',
       ),
     ],
     goDeeper: [
@@ -968,19 +853,19 @@ class CompatibilityNavigation {
       ),
       NavigationCard(
         title: 'Sayısal Uyum',
-        description: 'İsimlerle numeroloji.',
+        description: 'İsimlerle keşif.',
         route: '/insights-discovery',
         emoji: '🔢',
         titleKey: 'navigation.cards.numerical_harmony.title',
         descriptionKey: 'navigation.cards.numerical_harmony.description',
       ),
       NavigationCard(
-        title: 'Venüs Döngüsü',
-        description: 'Aşk enerjisi nerede?',
+        title: 'Duygusal Döngü',
+        description: 'İlişki enerjin nerede?',
         route: '/insight',
         emoji: '💖',
-        titleKey: 'navigation.cards.venus_cycle.title',
-        descriptionKey: 'navigation.cards.venus_cycle.description',
+        titleKey: 'navigation.cards.emotional_cycle.title',
+        descriptionKey: 'navigation.cards.emotional_cycle.description',
       ),
     ],
     continueWithoutBack: [
@@ -1007,236 +892,6 @@ class CompatibilityNavigation {
         emoji: '🌟',
         titleKey: 'navigation.cards.celebrity_couples.title',
         descriptionKey: 'navigation.cards.celebrity_couples.description',
-      ),
-    ],
-  );
-}
-
-// ============================================================
-// PAGE 19: AURA (/aura)
-// ============================================================
-
-class WellnessNavigation {
-  static const navigation = PageNavigation(
-    pageRoute: '/aura',
-    pageType: 'tool',
-    alsoViewed: [
-      NavigationCard(
-        title: 'Chakra Analizi',
-        description: 'Enerji merkezlerini keşfet.',
-        route: '/insight',
-        emoji: '🧘',
-        titleKey: 'navigation.cards.chakra_analysis.title',
-        descriptionKey: 'navigation.cards.discover_energy_centers.description',
-      ),
-      NavigationCard(
-        title: 'Ay Ritüelleri',
-        description: 'Enerji temizliği pratikleri.',
-        route: '/rituals',
-        emoji: '🌕',
-        titleKey: 'navigation.cards.moon_rituals.title',
-        descriptionKey: 'navigation.cards.moon_rituals.description',
-      ),
-      NavigationCard(
-        title: 'Kişisel Profil',
-        description: 'İç enerji haritası.',
-        route: '/insight',
-        emoji: '🗺️',
-        titleKey: 'navigation.cards.personal_profile.title',
-        descriptionKey: 'navigation.cards.inner_energy_map.description',
-      ),
-      NavigationCard(
-        title: 'Günlük Yansıma',
-        description: 'Enerji farkındalığı yolu.',
-        route: '/journal',
-        emoji: '📝',
-        titleKey: 'navigation.cards.daily_reflection.title',
-        descriptionKey: 'navigation.cards.energy_awareness_path.description',
-      ),
-    ],
-    goDeeper: [
-      NavigationCard(
-        title: 'Enerji Rüyaları',
-        description: 'Renkler ve ışık rüyalarının anlamı.',
-        route: '/dream-interpretation',
-        emoji: '🌙',
-        titleKey: 'navigation.cards.energy_dreams.title',
-        descriptionKey: 'navigation.cards.energy_dreams.description',
-      ),
-      NavigationCard(
-        title: 'Günlük Enerji Mesajı',
-        description: 'Bugünün enerji akışı.',
-        route: '/insight',
-        emoji: '✨',
-        titleKey: 'navigation.cards.daily_energy_message.title',
-        descriptionKey: 'navigation.cards.daily_energy_message.description',
-      ),
-    ],
-    keepExploring: [
-      NavigationCard(
-        title: 'Numeroloji',
-        description: 'Sayısal titreşimler.',
-        route: '/insights-discovery',
-        emoji: '🔢',
-        titleKey: 'navigation.cards.numerology.title',
-        descriptionKey: 'navigation.cards.numerical_vibrations.description',
-      ),
-      NavigationCard(
-        title: 'Kabala',
-        description: 'Sefirot enerjileri.',
-        route: '/insight',
-        emoji: '🌳',
-        titleKey: 'navigation.cards.kabbalah.title',
-        descriptionKey: 'navigation.cards.sefirot_energies.description',
-      ),
-      NavigationCard(
-        title: 'Günlük Yansıma',
-        description: 'İç enerji.',
-        route: '/insight',
-        emoji: '⭐',
-        titleKey: 'navigation.cards.daily_reflection.title',
-        descriptionKey: 'navigation.cards.inner_energy.description',
-      ),
-    ],
-    continueWithoutBack: [
-      NavigationCard(
-        title: 'Tüm Çözümlemeler',
-        description: 'Diğer keşif yolları',
-        route: '/insight',
-        emoji: '🧰',
-        titleKey: 'navigation.cards.all_analyses.title',
-        descriptionKey: 'navigation.cards.other_exploration_paths.description',
-      ),
-      NavigationCard(
-        title: 'Ana Sayfa',
-        description: 'Başa dön',
-        route: '/',
-        emoji: '🏠',
-        titleKey: 'navigation.cards.home.title',
-        descriptionKey: 'navigation.cards.home.description',
-      ),
-      NavigationCard(
-        title: 'Renk Anlamları',
-        description: 'Aura renkleri sözlüğü',
-        route: '/glossary',
-        emoji: '🌈',
-        titleKey: 'navigation.cards.color_meanings.title',
-        descriptionKey: 'navigation.cards.color_meanings.description',
-      ),
-    ],
-  );
-}
-
-// ============================================================
-// PAGE 20: KABBALAH (/kabbalah)
-// ============================================================
-
-class WisdomNavigation {
-  static const navigation = PageNavigation(
-    pageRoute: '/kabbalah',
-    pageType: 'tool',
-    alsoViewed: [
-      NavigationCard(
-        title: 'İçsel Yolculuk',
-        description: 'Derinlemesine keşif patikası.',
-        route: '/journal',
-        emoji: '🧭',
-        titleKey: 'navigation.cards.inner_journey.title',
-        descriptionKey: 'navigation.cards.inner_journey.description',
-      ),
-      NavigationCard(
-        title: 'Numeroloji',
-        description: 'Gematria ve sayılar.',
-        route: '/insights-discovery',
-        emoji: '🔢',
-        titleKey: 'navigation.cards.numerology.title',
-        descriptionKey: 'navigation.cards.gematria_and_numbers.description',
-      ),
-      NavigationCard(
-        title: 'Kişisel Gelişim Bağlantısı',
-        description: 'Sefirot ve kişisel gelişim.',
-        route: '/insight',
-        emoji: '🪐',
-        titleKey: 'navigation.cards.personal_growth_connection.title',
-        descriptionKey: 'navigation.cards.personal_growth_connection.description',
-      ),
-      NavigationCard(
-        title: 'Chakra Sistemi',
-        description: 'Doğu ve Batı enerji haritaları.',
-        route: '/insight',
-        emoji: '🧘',
-        titleKey: 'navigation.cards.chakra_system.title',
-        descriptionKey: 'navigation.cards.chakra_system.description',
-      ),
-    ],
-    goDeeper: [
-      NavigationCard(
-        title: 'Mistik Rüyalar',
-        description: 'Ruhani semboller ve rüyalar.',
-        route: '/dream-interpretation',
-        emoji: '🌙',
-        titleKey: 'navigation.cards.mystic_dreams.title',
-        descriptionKey: 'navigation.cards.mystic_dreams.description',
-      ),
-      NavigationCard(
-        title: 'Sefirot Meditasyonu',
-        description: 'Hayat Ağacında yolculuk.',
-        route: '/insight',
-        emoji: '✨',
-        titleKey: 'navigation.cards.sefirot_meditation.title',
-        descriptionKey: 'navigation.cards.sefirot_meditation.description',
-      ),
-    ],
-    keepExploring: [
-      NavigationCard(
-        title: 'Aura Okuma',
-        description: 'Enerji alanı.',
-        route: '/insight',
-        emoji: '🌈',
-        titleKey: 'navigation.cards.aura_reading.title',
-        descriptionKey: 'navigation.cards.energy_field.description',
-      ),
-      NavigationCard(
-        title: 'Ay Ritüelleri',
-        description: 'Spiritüel pratikler.',
-        route: '/rituals',
-        emoji: '🌕',
-        titleKey: 'navigation.cards.moon_rituals.title',
-        descriptionKey: 'navigation.cards.spiritual_practices.description',
-      ),
-      NavigationCard(
-        title: 'Günlük Yansıma',
-        description: 'İçsel perspektif.',
-        route: '/insight',
-        emoji: '⭐',
-        titleKey: 'navigation.cards.daily_reflection.title',
-        descriptionKey: 'navigation.cards.inner_perspective.description',
-      ),
-    ],
-    continueWithoutBack: [
-      NavigationCard(
-        title: 'Tüm Çözümlemeler',
-        description: 'Diğer sistemler',
-        route: '/insight',
-        emoji: '🧰',
-        titleKey: 'navigation.cards.all_analyses.title',
-        descriptionKey: 'navigation.cards.other_systems.description',
-      ),
-      NavigationCard(
-        title: 'Ana Sayfa',
-        description: 'Başa dön',
-        route: '/',
-        emoji: '🏠',
-        titleKey: 'navigation.cards.home.title',
-        descriptionKey: 'navigation.cards.home.description',
-      ),
-      NavigationCard(
-        title: 'Sefirot Sözlüğü',
-        description: '10 sefirah anlamları',
-        route: '/glossary',
-        emoji: '🌳',
-        titleKey: 'navigation.cards.sefirot_glossary.title',
-        descriptionKey: 'navigation.cards.sefirot_glossary.description',
       ),
     ],
   );
@@ -1322,7 +977,7 @@ class LifeCyclesNavigation {
       ),
       NavigationCard(
         title: 'Gözden Geçirme Takvimi',
-        description: 'Merkür gözden geçirme dönemi ne zaman?',
+        description: 'Gözden geçirme dönemi ne zaman?',
         route: '/insight',
         emoji: '↩️',
         titleKey: 'navigation.cards.review_calendar.title',
@@ -1420,28 +1075,28 @@ class DreamInterpretationNavigation {
     ],
     keepExploring: [
       NavigationCard(
-        title: 'Chakra ve Rüyalar',
-        description: 'Enerji merkezleri ve bilinçaltı.',
-        route: '/insight',
-        emoji: '🧘',
-        titleKey: 'navigation.cards.chakra_and_dreams.title',
-        descriptionKey: 'navigation.cards.chakra_and_dreams.description',
+        title: 'Rüya Günlüğü',
+        description: 'Rüyalarını kaydet ve takip et.',
+        route: '/journal',
+        emoji: '📓',
+        titleKey: 'navigation.cards.dream_journal.title',
+        descriptionKey: 'navigation.cards.dream_journal.description',
       ),
       NavigationCard(
-        title: 'Aura Okuma',
-        description: 'Enerji alanın.',
+        title: 'Uyku Kalitesi',
+        description: 'Uyku düzenini keşfet.',
         route: '/insight',
-        emoji: '🌈',
-        titleKey: 'navigation.cards.aura_reading.title',
-        descriptionKey: 'navigation.cards.energy_field.description',
+        emoji: '😴',
+        titleKey: 'navigation.cards.sleep_quality.title',
+        descriptionKey: 'navigation.cards.sleep_quality.description',
       ),
       NavigationCard(
-        title: 'Neptün Döngüsü',
-        description: 'Rüya enerjisi nerede?',
-        route: '/insight',
-        emoji: '🪐',
-        titleKey: 'navigation.cards.neptune_cycle.title',
-        descriptionKey: 'navigation.cards.neptune_cycle.description',
+        title: 'İçsel Keşif',
+        description: 'Kişilik kalıplarını incele.',
+        route: '/insights-discovery',
+        emoji: '🔍',
+        titleKey: 'navigation.cards.inner_discovery.title',
+        descriptionKey: 'navigation.cards.inner_discovery.description',
       ),
     ],
     continueWithoutBack: [
@@ -1473,340 +1128,6 @@ class DreamInterpretationNavigation {
   );
 }
 
-class ReflectionNavigation {
-  static const navigation = PageNavigation(
-    pageRoute: '/kozmoz',
-    pageType: 'tool',
-    alsoViewed: [
-      NavigationCard(
-        title: 'Günlük Yansıma',
-        description: 'Bugünün iç enerjisi.',
-        route: '/insight',
-        emoji: '⭐',
-        titleKey: 'navigation.cards.daily_reflection_reading.title',
-        descriptionKey: 'navigation.cards.todays_inner_energy.description',
-      ),
-      NavigationCard(
-        title: 'Günlük Günlük',
-        description: 'Bugünkü yansıman.',
-        route: '/journal',
-        emoji: '📝',
-        titleKey: 'navigation.cards.daily_journal.title',
-        descriptionKey: 'navigation.cards.todays_reflection.description',
-      ),
-      NavigationCard(
-        title: 'Ay Fazı',
-        description: 'Ayın bugünkü etkisi.',
-        route: '/rituals',
-        emoji: '🌙',
-        titleKey: 'navigation.cards.moon_phase.title',
-        descriptionKey: 'navigation.cards.moon_phase.description',
-      ),
-      NavigationCard(
-        title: 'Döngüler',
-        description: 'Hayatındaki döngüler bugün.',
-        route: '/insight',
-        emoji: '🔄',
-        titleKey: 'navigation.cards.cycles.title',
-        descriptionKey: 'navigation.cards.life_cycles_today.description',
-      ),
-    ],
-    goDeeper: [
-      NavigationCard(
-        title: 'Rüyanı Anlat',
-        description: 'İçsel mesajın rüyalara nasıl yansıyor?',
-        route: '/dream-interpretation',
-        emoji: '🌙',
-        titleKey: 'navigation.cards.tell_your_dream.title',
-        descriptionKey: 'navigation.cards.inner_message_dreams.description',
-      ),
-      NavigationCard(
-        title: 'İçsel Keşif',
-        description: 'Daha fazla içgörü al.',
-        route: '/insight',
-        emoji: '✨',
-        titleKey: 'navigation.cards.inner_discovery.title',
-        descriptionKey: 'navigation.cards.get_more_insight.description',
-      ),
-    ],
-    keepExploring: [
-      NavigationCard(
-        title: 'Kişisel Profilim',
-        description: 'İçsel kimliğim.',
-        route: '/insight',
-        emoji: '🗺️',
-        titleKey: 'navigation.cards.my_personal_profile.title',
-        descriptionKey: 'navigation.cards.my_inner_identity.description',
-      ),
-      NavigationCard(
-        title: 'Numeroloji',
-        description: 'Sayıların bilgeliği.',
-        route: '/insights-discovery',
-        emoji: '🔢',
-        titleKey: 'navigation.cards.numerology.title',
-        descriptionKey: 'navigation.cards.numerology.description',
-      ),
-      NavigationCard(
-        title: 'Chakra Dengesi',
-        description: 'Enerji merkezlerim.',
-        route: '/insight',
-        emoji: '🧘',
-        titleKey: 'navigation.cards.chakra_balance.title',
-        descriptionKey: 'navigation.cards.my_energy_centers.description',
-      ),
-    ],
-    continueWithoutBack: [
-      NavigationCard(
-        title: 'Premium Özellikler',
-        description: 'Gelişmiş kişisel gelişim',
-        route: '/premium',
-        emoji: '👑',
-        titleKey: 'navigation.cards.premium_features.title',
-        descriptionKey: 'navigation.cards.advanced_personal_growth.description',
-      ),
-      NavigationCard(
-        title: 'Ana Sayfa',
-        description: 'Başa dön',
-        route: '/',
-        emoji: '🏠',
-        titleKey: 'navigation.cards.home.title',
-        descriptionKey: 'navigation.cards.home.description',
-      ),
-      NavigationCard(
-        title: 'Kavram Sözlüğü',
-        description: 'Kavramları öğren',
-        route: '/glossary',
-        emoji: '📖',
-        titleKey: 'navigation.cards.wellness_glossary.title',
-        descriptionKey: 'navigation.cards.learn_concepts.description',
-      ),
-    ],
-  );
-}
-
-class EnergyNavigation {
-  static const navigation = PageNavigation(
-    pageRoute: '/chakra-analysis',
-    pageType: 'tool',
-    alsoViewed: [
-      NavigationCard(
-        title: 'Aura Renkleri',
-        description: 'Enerji alanın ve chakralar.',
-        route: '/insight',
-        emoji: '🌈',
-        titleKey: 'navigation.cards.aura_colors.title',
-        descriptionKey: 'navigation.cards.energy_field_chakras.description',
-      ),
-      NavigationCard(
-        title: 'Ay Ritüelleri',
-        description: 'Chakra dengeleme pratikleri.',
-        route: '/rituals',
-        emoji: '🌕',
-        titleKey: 'navigation.cards.moon_rituals.title',
-        descriptionKey:
-            'navigation.cards.chakra_balancing_practices.description',
-      ),
-      NavigationCard(
-        title: 'Kabala Sefirotları',
-        description: 'Doğu-Batı enerji haritaları.',
-        route: '/insight',
-        emoji: '🌳',
-        titleKey: 'navigation.cards.kabbalah_sefirot.title',
-        descriptionKey: 'navigation.cards.east_west_energy_maps.description',
-      ),
-      NavigationCard(
-        title: 'Kişisel Profil',
-        description: 'Enerji profili ve chakralar.',
-        route: '/insight',
-        emoji: '🗺️',
-        titleKey: 'navigation.cards.personal_profile.title',
-        descriptionKey: 'navigation.cards.energy_profile_chakras.description',
-      ),
-    ],
-    goDeeper: [
-      NavigationCard(
-        title: 'Chakra ve Rüyalar',
-        description: 'Enerji blokajları rüyalara nasıl yansır?',
-        route: '/dream-interpretation',
-        emoji: '🌙',
-        titleKey: 'navigation.cards.chakra_and_dreams.title',
-        descriptionKey: 'navigation.cards.energy_blockages_dreams.description',
-      ),
-      NavigationCard(
-        title: 'Enerji Rehberliği',
-        description: 'Chakralarına özel mesaj.',
-        route: '/insight',
-        emoji: '✨',
-        titleKey: 'navigation.cards.energy_guidance.title',
-        descriptionKey: 'navigation.cards.chakra_special_message.description',
-      ),
-    ],
-    keepExploring: [
-      NavigationCard(
-        title: 'Günlük Yansıma',
-        description: 'Enerji farkındalığı.',
-        route: '/journal',
-        emoji: '📝',
-        titleKey: 'navigation.cards.daily_reflection.title',
-        descriptionKey: 'navigation.cards.energy_awareness.description',
-      ),
-      NavigationCard(
-        title: 'Numeroloji',
-        description: 'Sayısal titreşimler.',
-        route: '/insights-discovery',
-        emoji: '🔢',
-        titleKey: 'navigation.cards.numerology.title',
-        descriptionKey: 'navigation.cards.numerical_vibrations.description',
-      ),
-      NavigationCard(
-        title: 'Günlük Yansıma',
-        description: 'İç enerji.',
-        route: '/insight',
-        emoji: '⭐',
-        titleKey: 'navigation.cards.daily_reflection.title',
-        descriptionKey: 'navigation.cards.inner_energy.description',
-      ),
-    ],
-    continueWithoutBack: [
-      NavigationCard(
-        title: 'Tüm Çözümlemeler',
-        description: 'Diğer sistemler',
-        route: '/insight',
-        emoji: '🧰',
-        titleKey: 'navigation.cards.all_analyses.title',
-        descriptionKey: 'navigation.cards.other_systems.description',
-      ),
-      NavigationCard(
-        title: 'Ana Sayfa',
-        description: 'Başa dön',
-        route: '/',
-        emoji: '🏠',
-        titleKey: 'navigation.cards.home.title',
-        descriptionKey: 'navigation.cards.home.description',
-      ),
-      NavigationCard(
-        title: '7 Chakra Rehberi',
-        description: 'Detaylı açıklamalar',
-        route: '/glossary',
-        emoji: '🧘',
-        titleKey: 'navigation.cards.seven_chakra_guide.title',
-        descriptionKey: 'navigation.cards.seven_chakra_guide.description',
-      ),
-    ],
-  );
-}
-
-class RitualNavigation {
-  static const navigation = PageNavigation(
-    pageRoute: '/moon-rituals',
-    pageType: 'tool',
-    alsoViewed: [
-      NavigationCard(
-        title: 'Ay Takvimi',
-        description: 'Yeniay ve dolunay tarihleri.',
-        route: '/journal/patterns',
-        emoji: '📅',
-        titleKey: 'navigation.cards.moon_calendar.title',
-        descriptionKey: 'navigation.cards.moon_calendar.description',
-      ),
-      NavigationCard(
-        title: 'Chakra Dengeleme',
-        description: 'Ritüellerle enerji çalışması.',
-        route: '/insight',
-        emoji: '🧘',
-        titleKey: 'navigation.cards.chakra_balancing.title',
-        descriptionKey: 'navigation.cards.energy_work_rituals.description',
-      ),
-      NavigationCard(
-        title: 'Aura Temizliği',
-        description: 'Enerji alanını arındır.',
-        route: '/insight',
-        emoji: '🌈',
-        titleKey: 'navigation.cards.aura_cleansing.title',
-        descriptionKey: 'navigation.cards.aura_cleansing.description',
-      ),
-      NavigationCard(
-        title: 'Günlük Meditasyon',
-        description: 'İçsel farkındalık meditasyonu.',
-        route: '/journal',
-        emoji: '🧘',
-        titleKey: 'navigation.cards.daily_meditation.title',
-        descriptionKey: 'navigation.cards.daily_meditation.description',
-      ),
-    ],
-    goDeeper: [
-      NavigationCard(
-        title: 'Ritüel Sonrası Rüyalar',
-        description: 'Ritüeller rüyaları nasıl etkiler?',
-        route: '/dream-interpretation',
-        emoji: '🌙',
-        titleKey: 'navigation.cards.post_ritual_dreams.title',
-        descriptionKey: 'navigation.cards.post_ritual_dreams.description',
-      ),
-      NavigationCard(
-        title: 'Niyet Rehberliği',
-        description: 'Bu ay için içsel mesaj.',
-        route: '/insight',
-        emoji: '✨',
-        titleKey: 'navigation.cards.intention_guidance.title',
-        descriptionKey: 'navigation.cards.intention_guidance.description',
-      ),
-    ],
-    keepExploring: [
-      NavigationCard(
-        title: 'Günlük Yansıma',
-        description: 'Bugünün enerjisi.',
-        route: '/insight',
-        emoji: '⭐',
-        titleKey: 'navigation.cards.daily_reflection.title',
-        descriptionKey: 'navigation.cards.todays_energy.description',
-      ),
-      NavigationCard(
-        title: 'Döngüler',
-        description: 'Ay ve yaşam döngüleri.',
-        route: '/insight',
-        emoji: '🔄',
-        titleKey: 'navigation.cards.cycles.title',
-        descriptionKey: 'navigation.cards.moon_life_cycles.description',
-      ),
-      NavigationCard(
-        title: 'Kabala Meditasyonu',
-        description: 'Sefirot yolculuğu.',
-        route: '/insight',
-        emoji: '🌳',
-        titleKey: 'navigation.cards.kabbalah_meditation.title',
-        descriptionKey: 'navigation.cards.kabbalah_meditation.description',
-      ),
-    ],
-    continueWithoutBack: [
-      NavigationCard(
-        title: 'Tüm Çözümlemeler',
-        description: 'Diğer pratikler',
-        route: '/insight',
-        emoji: '🧰',
-        titleKey: 'navigation.cards.all_analyses.title',
-        descriptionKey: 'navigation.cards.other_practices.description',
-      ),
-      NavigationCard(
-        title: 'Ana Sayfa',
-        description: 'Başa dön',
-        route: '/',
-        emoji: '🏠',
-        titleKey: 'navigation.cards.home.title',
-        descriptionKey: 'navigation.cards.home.description',
-      ),
-      NavigationCard(
-        title: 'Ritüel Rehberi',
-        description: 'Adım adım talimatlar',
-        route: '/rituals',
-        emoji: '📖',
-        titleKey: 'navigation.cards.ritual_guide.title',
-        descriptionKey: 'navigation.cards.ritual_guide.description',
-      ),
-    ],
-  );
-}
-
 // ============================================================
 // NAVIGATION SERVICE
 // ============================================================
@@ -1833,37 +1154,8 @@ class NavigationService {
         return InsightHubNavigation.navigation;
       case 'journal':
         return JournalNavigation.navigation;
-      case 'discovery':
-        return DiscoveryNavigation.navigation;
-      case 'wellness':
-        return WellnessNavigation.navigation;
-      case 'wisdom':
-        return WisdomNavigation.navigation;
       case 'dream-interpretation':
         return DreamInterpretationNavigation.navigation;
-      case 'reflection':
-        return ReflectionNavigation.navigation;
-      case 'energy':
-        return EnergyNavigation.navigation;
-      case 'rituals':
-        return RitualNavigation.navigation;
-      // Redirect archived routes to insight
-      case 'legacy-horoscope':
-      case 'legacy-birth-chart':
-      case 'legacy-tarot':
-      case 'legacy-transits':
-      case 'legacy-compat':
-      case 'legacy-saturn-return':
-      case 'legacy-synastry':
-      case 'legacy-solar-return':
-      case 'legacy-progressions':
-      case 'legacy-vedic':
-      case 'legacy-draconic':
-      case 'legacy-asteroids':
-      case 'legacy-composite':
-      case 'legacy-transit-cal':
-      case 'legacy-timing':
-        return InsightHubNavigation.navigation;
       default:
         return _defaultNavigation(normalizedRoute);
     }
@@ -1919,28 +1211,28 @@ class NavigationService {
       ],
       keepExploring: const [
         NavigationCard(
-          title: 'Numeroloji',
-          description: 'Sayıların sırrı.',
+          title: 'Kendini Keşfet',
+          description: 'Kişilik testi ve içgörüler.',
           route: '/insights-discovery',
-          emoji: '🔢',
-          titleKey: 'navigation.cards.numerology.title',
-          descriptionKey: 'navigation.cards.secret_of_numbers.description',
+          emoji: '🔍',
+          titleKey: 'navigation.cards.discover_yourself.title',
+          descriptionKey: 'navigation.cards.personality_test.description',
         ),
         NavigationCard(
-          title: 'Aura',
-          description: 'Enerji alanın.',
-          route: '/insight',
-          emoji: '🌈',
-          titleKey: 'navigation.cards.aura.title',
-          descriptionKey: 'navigation.cards.energy_field.description',
+          title: 'Günlük',
+          description: 'Bugün nasıl hissediyorsun?',
+          route: '/journal',
+          emoji: '📝',
+          titleKey: 'navigation.cards.journal.title',
+          descriptionKey: 'navigation.cards.how_feeling_today.description',
         ),
         NavigationCard(
           title: 'Ritüeller',
-          description: 'Ay pratikleri.',
+          description: 'Günlük pratikler.',
           route: '/rituals',
-          emoji: '🌕',
+          emoji: '🌿',
           titleKey: 'navigation.cards.rituals.title',
-          descriptionKey: 'navigation.cards.moon_practices.description',
+          descriptionKey: 'navigation.cards.daily_practices.description',
         ),
       ],
       continueWithoutBack: const [

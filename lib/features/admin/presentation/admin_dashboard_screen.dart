@@ -580,7 +580,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
         return AppColors.warmCrimson;
       case 'insight':
         return AppColors.twilightEnd;
-      case 'numerology':
+      case 'discovery':
         return AppColors.success;
       default:
         return AppColors.starGold;

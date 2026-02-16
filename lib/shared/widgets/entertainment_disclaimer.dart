@@ -107,8 +107,6 @@ class DisclaimerTexts {
   static String wellness(AppLanguage language) =>
       L10nService.get('widgets.entertainment_disclaimer.general', language);
 
-  static String chakra(AppLanguage language) =>
-      L10nService.get('widgets.entertainment_disclaimer.chakra', language);
 
   static String compatibility(AppLanguage language) => L10nService.get(
     'widgets.entertainment_disclaimer.compatibility',

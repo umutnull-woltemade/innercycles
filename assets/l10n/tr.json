@@ -192,18 +192,18 @@
     "patterns_found": "Bulunan Kaliplar"
   },
   "archetype": {
-    "pioneer": "Koç",
-    "builder": "Boğa",
-    "communicator": "İkizler",
-    "nurturer": "Yengeç",
-    "performer": "Aslan",
-    "analyst": "Başak",
-    "harmonizer": "Terazi",
-    "transformer": "Akrep",
-    "explorer": "Yay",
-    "achiever": "Oğlak",
-    "visionary": "Kova",
-    "dreamer": "Balık"
+    "pioneer": "Öncü",
+    "builder": "Kurucu",
+    "communicator": "İletişimci",
+    "nurturer": "Koruyucu",
+    "performer": "Sahne Yıldızı",
+    "analyst": "Analist",
+    "harmonizer": "Dengeleyici",
+    "transformer": "Dönüştürücü",
+    "explorer": "Kaşif",
+    "achiever": "Başarıcı",
+    "visionary": "Vizyoner",
+    "dreamer": "Hayalci"
   },
   "personal_profile": {
     "title": "Kişisel Profil"
@@ -367,8 +367,6 @@
       "draconic_desc": "Ruh öz farkındalıksi",
       "vedic_title": "Vedik Öz Farkındalık",
       "vedic_desc": "Hint öz farkındalık sistemi",
-      "chakra_title": "Çakra Analizi",
-      "chakra_desc": "Enerji merkezi analizi",
       "rituals_title": "Ritüeller",
       "rituals_desc": "Kozmik ritüeller",
       "celebrities_title": "Ünlü Haritaları",
@@ -376,7 +374,9 @@
       "year_ahead_title": "Önümüzdeki Yıl",
       "year_ahead_desc": "Yıllık kozmik önizleme",
       "timing_title": "Kozmik Zamanlama",
-      "timing_desc": "Auspicious zamanlama"
+      "timing_desc": "Auspicious zamanlama",
+      "energy_title": "Çakra Analizi",
+      "energy_desc": "Enerji merkezi analizi"
     },
     "featured_questions": {
       "soulmate": "Derin bağlantıda hangi nitelikleri arıyorum?",
@@ -407,22 +407,22 @@
       "local_space": "Yerel Uzay",
       "electional": "Elektif",
       "timing": "Zamanlama",
-      "numerology": "Numeroloji",
       "all_signs": "Tüm Arketipler",
       "love": "Aşk",
       "see_house": "Haritamda Bu Evi Gör",
       "articles": "Makaleler",
       "glossary": "Sözlük",
       "eclipse": "Tutulma",
-      "kabbalah": "Kabala",
-      "aura": "Aura Analizi",
       "gardening_moon": "Bahçe Ayı",
       "celebrities": "Ünlüler",
-      "chakra": "Chakra",
       "daily": "Günlük",
       "weekly": "Haftalık",
       "cosmic": "Kozmik",
-      "share": "Paylaşım"
+      "share": "Paylaşım",
+      "discovery": "Keşif",
+      "wisdom": "Bilgelik",
+      "wellness": "Sağlık",
+      "energy": "Enerji"
     },
     "other_tools": {
       "title": "Kalan Cozumlemelerimiz",
@@ -475,7 +475,7 @@
       },
       "kabbalah": {
         "title": "Kabala",
-        "desc": "Kabalistik analiz"
+        "desc": "Sembolik keşif"
       },
       "card_insight": {
         "title": "Refleksiyon",
@@ -702,7 +702,7 @@
           "leo": "🔥⚡ Güç savaşı!",
           "virgo": "✨ İyi! Güven inşa edilirse.",
           "libra": "😐 Orta. Derinlik farkı.",
-          "scorpio": "🦂🦂 Yoğun! Ya ruh eşi ya düşman.",
+          "scorpio": "🦂🦂 Yoğun bağlantı enerjisi.",
           "sagittarius": "⚠️ Zorlu. Güven sorunu.",
           "capricorn": "💪 Güçlü! Güç çifti.",
           "aquarius": "❄️ Çok zor. Zıt kutuplar.",
@@ -2234,31 +2234,31 @@
           "element_perspective_label": "🔥 {element} ELEMENTİ PERSPEKTİFİ",
           "psychological_label": "🌙 PSİKOLOJİK BOYUT",
           "practice_label": "✨ PRATİK UYGULAMA",
-          "aries": {
+          "pioneer": {
             "basic_meaning": "Su, ateş arketipin için duygusal derinliklere inme çağrısıdır. Bilinçdışı enerjilerin yüzeye çıkmak istiyor.",
             "element_perspective": "Suyun yatıştırıcı enerjisi, ateş doğanı dengelemek için gelmiş. Sabır ve dinlenme zamanı. Aksiyondan önce düşünme dönemi.",
             "psychological": "Su: Bilinçaltı, duygular, anne arketipi\nKoç olarak: Bastırdığın duygular yüzeye çıkmak istiyor\nMesaj: Sadece koşmak değil, bazen duraksayıp hissetmek de gerekir",
             "practice": "• Su kenarında meditasyon yap\n• Duş alırken niyetini belirle\n• Gözyaşlarına izin ver\n• Duygularını yazıya dök"
           },
-          "taurus": {
+          "builder": {
             "basic_meaning": "Su, toprak arketipin için bereket ve bolluğun sembolü. Maddi ve duygusal akış hayatına giriyor.",
             "element_perspective": "Su toprağı besler - bu rüya büyüme ve bereket habercisi. Doğal ritmine güven, zorlamadan akışa bırak.",
             "psychological": "Su: Duygusal güvenlik, konfor, beslenme\nBoğa olarak: İç huzurun maddi güvenlikle bağlantısı\nMesaj: Duygusal zenginlik maddi zenginliği çeker",
             "practice": "• Bitkilerini sula, bahçeyle ilgilen\n• Banyo ritüeli yap\n• Finansal akışı görselleştir\n• Rahatlama ve konfor önceliğin olsun"
           },
-          "cancer": {
+          "nurturer": {
             "basic_meaning": "Su senin elementi - bu rüya son derece anlamlı! Ruhsal derinliklerinden gelen güçlü bir mesaj var.",
             "element_perspective": "Bu rüya ev, aile ve köklerinle derin bir bağlantıyı işaret ediyor. Anne arketipi aktif. İçsel yuvan çağırıyor.",
             "psychological": "Su: Bilinçaltı, sezgi, koruyucu içgüdü\nYengeç olarak: Ruhsal koruma ve yuva ihtiyacı\nMesaj: Eve dön - iç evine, ruhsal evine",
             "practice": "• Ay ışığında su doldur ve iç\n• Aile fotoğraflarına bak\n• Deniz tuzu banyosu al\n• Ev temizliği yap - enerjiyi yenile\n• Annevi figürlerle bağlantı kur"
           },
-          "scorpio": {
+          "transformer": {
             "basic_meaning": "Su senin elementi ve bu rüya derin dönüşümü işaret ediyor! Yenilenme zamanı geldi.",
             "element_perspective": "Suyun derinliklerine dalmaktan korkma. Orada hazineler var. Ölüm ve yeniden doğuş döngüsü aktif.",
             "psychological": "Su: Bilinçaltının en derin katmanları\nAkrep olarak: Gölge çalışması zamanı\nMesaj: Karanlıktan korkmak yerine, onu aydınlat",
             "practice": "• Derin meditasyonlar yap\n• Gölge jurnal tut\n• Bırakma ritüeli uygula\n• Plutonyen dönüşümü kucakla\n• Terapi veya danışmanlık düşün"
           },
-          "pisces": {
+          "dreamer": {
             "basic_meaning": "Su senin elementi - spiritüel alemlerle bağlantın çok güçlü! Sezgilerine tamamen güvenebilirsin.",
             "element_perspective": "Evrenle bir olma deneyimi yaşıyorsun. Yaratıcı ilham akıyor. Sanatsal ifade için ideal dönem.",
             "psychological": "Su: Evrensel bilinç, şifa, kolektif bilinçaltı\nBalık olarak: Mistik deneyimler ve içsel rehberlik\nMesaj: Sen sudan ötesin - okyanussun",
@@ -2420,18 +2420,18 @@
           "water_generic": "duygular, sezgi ve ruhsal derinlik"
         },
         "personal_advice": {
-          "aries": "Tavsiyem: Sabah uyandığında ilk düşüncelerini not al. Ateş enerjin, bilinçaltı mesajları hızla unutturabilir.",
-          "taurus": "Tavsiyem: Rüyalarını bir rüya defterine yaz. Toprak enerjin, somut kayıtlarla daha iyi çalışır.",
-          "gemini": "Tavsiyem: Rüyanı birine anlat. Hava enerjin, sözel ifadeyle anlam bulmayı sever.",
-          "cancer": "Tavsiyem: Ay fazlarına dikkat et. Dolunay ve yeniay zamanları rüya farkındalığın artabilir.",
-          "leo": "Tavsiyem: Rüyalarını yaratıcı bir şekilde ifade et - çiz, yaz, paylaş. Ateş enerjin ifadeyi sever.",
-          "virgo": "Tavsiyem: Rüya sembolleri listesi tut. Toprak enerjin, sistematik analizi takdir eder.",
-          "libra": "Tavsiyem: Rüyalarındaki ilişkilere odaklan. Hava enerjin, sosyal dinamiklerden ders çıkarır.",
-          "scorpio": "Tavsiyem: Derin meditasyon yap. Su enerjin, bilinçaltı derinliklerine dalmak için çok güçlü.",
-          "sagittarius": "Tavsiyem: Rüyalarını felsefi açıdan yorumla. Ateş enerjin, büyük resmi görmeyi sever.",
-          "capricorn": "Tavsiyem: Rüyalarını pratik yaşama nasıl uygularsın düşün. Toprak enerjin, somut sonuçlar ister.",
-          "aquarius": "Tavsiyem: Rüya topluluklarına katıl. Hava enerjin, kolektif bilgelikten beslenir.",
-          "pisces": "Tavsiyem: Uyumadan önce niyet koy. Su enerjin, spiritüel rehberlikle doğrudan bağlanabilir."
+          "pioneer": "Tavsiyem: Sabah uyandığında ilk düşüncelerini not al. Ateş enerjin, bilinçaltı mesajları hızla unutturabilir.",
+          "builder": "Tavsiyem: Rüyalarını bir rüya defterine yaz. Toprak enerjin, somut kayıtlarla daha iyi çalışır.",
+          "communicator": "Tavsiyem: Rüyanı birine anlat. Hava enerjin, sözel ifadeyle anlam bulmayı sever.",
+          "nurturer": "Tavsiyem: Ay fazlarına dikkat et. Dolunay ve yeniay zamanları rüya farkındalığın artabilir.",
+          "performer": "Tavsiyem: Rüyalarını yaratıcı bir şekilde ifade et - çiz, yaz, paylaş. Ateş enerjin ifadeyi sever.",
+          "analyst": "Tavsiyem: Rüya sembolleri listesi tut. Toprak enerjin, sistematik analizi takdir eder.",
+          "harmonizer": "Tavsiyem: Rüyalarındaki ilişkilere odaklan. Hava enerjin, sosyal dinamiklerden ders çıkarır.",
+          "transformer": "Tavsiyem: Derin meditasyon yap. Su enerjin, bilinçaltı derinliklerine dalmak için çok güçlü.",
+          "explorer": "Tavsiyem: Rüyalarını felsefi açıdan yorumla. Ateş enerjin, büyük resmi görmeyi sever.",
+          "achiever": "Tavsiyem: Rüyalarını pratik yaşama nasıl uygularsın düşün. Toprak enerjin, somut sonuçlar ister.",
+          "visionary": "Tavsiyem: Rüya topluluklarına katıl. Hava enerjin, kolektif bilgelikten beslenir.",
+          "dreamer": "Tavsiyem: Uyumadan önce niyet koy. Su enerjin, spiritüel rehberlikle doğrudan bağlanabilir."
         }
       }
     }
@@ -4257,7 +4257,7 @@
       "reflection_question": "Yansitma Sorusu",
       "whisper_wisdom": "Fisildayan Bilgelik",
       "share": "Paylas",
-      "share_footer": "Ruya Yorumu | venusone.com",
+      "share_footer": "Ruya Yorumu | innercycles.app",
       "explore": "KESFET"
     },
     "statistics": {
@@ -4554,12 +4554,12 @@
   },
   "analysis": {
     "archetype_analysis": "Arketip Çözümlemesi",
-    "numerology_analysis": "Numeroloji Analizi",
-    "aura_analysis": "Aura Analizi",
-    "kabbalah_analysis": "Kabala Analizi",
-    "enter_birth_info_numerology": "Hayat yolu sayınızı görmek için\nönce doğum bilgilerinizi girin",
-    "enter_birth_info_aura": "Aura renginizi keşfetmek için\nönce doğum bilgilerinizi girin",
-    "enter_birth_info_kabbalah": "Kabala haritanızı görmek için\nönce doğum bilgilerinizi girin"
+    "discovery_analysis": "Numeroloji Analizi",
+    "wellness_analysis": "Aura Analizi",
+    "wisdom_analysis": "Kabala Analizi",
+    "enter_birth_info_discovery": "Hayat yolu sayınızı görmek için\nönce doğum bilgilerinizi girin",
+    "enter_birth_info_wellness": "Aura renginizi keşfetmek için\nönce doğum bilgilerinizi girin",
+    "enter_birth_info_wisdom": "Kabala haritanızı görmek için\nönce doğum bilgilerinizi girin"
   },
   "tooltips": {
     "personal_profile": "Doğum bilgilerinize göre kişisel kozmik haritanız",
@@ -4621,202 +4621,6 @@
     "evolutionary_path": "Evrimsel Yol",
     "planet_positions": "Drakonik Gezegen Pozisyonları",
     "house": "Ev"
-  },
-  "chakra": {
-    "title": "Çakra Analizi",
-    "analyzing": "Çakra enerjin analiz ediliyor...",
-    "profile": "Çakra Profilin",
-    "map": "Çakra Haritası",
-    "meditation": "Meditasyon",
-    "daily": "Günlük",
-    "meditations": "Çakra Meditasyonları",
-    "todays_energy": "Bugünün Çakra Enerjisi",
-    "focus_today": "Bugün {chakra} Çakrana Odaklan",
-    "suggested_activities": "Önerilen Aktiviteler",
-    "strongest": "En Güçlü Çakran",
-    "needs_attention": "Dikkat Gerektiren",
-    "general_tips": "Genel Öneriler",
-    "balancing_tips": "Dengeleme Önerileri",
-    "about": "Hakkında",
-    "physical_connections": "Fiziksel Bağlantılar",
-    "emotional_aspects": "Duygusal Yönler",
-    "balance_status": "Denge Durumu",
-    "active": "Aktif",
-    "blocked": "Bloklu",
-    "balanced": "Dengeli",
-    "energy_cycle": "Enerji Döngüsü",
-    "energy_cycle_content": "Çakralar yalnızca enerji merkezleri değil, bilinç kapılarıdır. Her çakra, fiziksel bedenle ruhsal beden arasında bir köprüdür. Onları dengelemek, sadece sağlık değil - içsel uyanışın anahtarıdır.",
-    "tantric_wisdom": "Tantrik Bilgelik",
-    "minutes": "{duration} dakika",
-    "names": {
-      "root": "Kök Çakrası",
-      "sacral": "Sakral Çakrası",
-      "solar_plexus": "Güneş Ağı Çakrası",
-      "heart": "Kalp Çakrası",
-      "throat": "Boğaz Çakrası",
-      "third_eye": "Üçüncü Göz Çakrası",
-      "crown": "Taç Çakrası"
-    },
-    "data": {
-      "root": {
-        "description": "Muladhara - \"Kök Destek\" - 4 yapraklı kırmızı lotus olarak sembolize edilir. Omurganın tabanında yer alan bu çakra, hayatta kalma içgüdüleri, güvenlik, topraklanma ve maddi dünya ile bağlantını temsil eder. Toprak elementi ile ilişkilidir. Atalarından gelen enerji burada saklanır. Dengeli olduğunda güvenli ve istikrarlı hissedersin.",
-        "physical_connection": "Bacaklar, ayaklar, kemikler, bağışıklık sistemi",
-        "emotional_aspects": "Güvenlik hissi, istikrar, temel ihtiyaçlar",
-        "balance_high": "Güçlü bir temele sahipsin, kendini güvenli hissediyorsun.",
-        "balance_low": "Topraklanmaya ihtiyacın var. Doğada zaman geçir.",
-        "balance_mid": "Dengeleniyor - düzenli pratikle güçlendir.",
-        "healing_suggestions": [
-          "Çıplak ayakla yerde yürü",
-          "Kırmızı renkli yiyecekler tüket",
-          "Ağaç sarılma meditasyonu yap"
-        ],
-        "crystals": [
-          "Kırmızı Jasper",
-          "Siyah Turmalin",
-          "Hematit"
-        ],
-        "affirmation": "Ben güvendeyim. Evren beni koruyor ve destekliyor."
-      },
-      "sacral": {
-        "description": "Sakral çakra, yaratıcılık, duygular, cinsellik ve zevk alma kapasitesi ile bağlantılıdır.",
-        "physical_connection": "Üreme organları, böbrekler, alt sırt",
-        "emotional_aspects": "Duygusal akış, tutku, yaratıcılık",
-        "balance_high": "Yaratıcı enerjin akıyor, duygularınla barışıksın.",
-        "balance_low": "Duygularını ifade etmekte zorluk yaşıyorsun.",
-        "balance_mid": "Yaratıcı projelerle bu enerjiyi canlandır.",
-        "healing_suggestions": [
-          "Dans et veya bedenini özgürce hareket ettir",
-          "Turuncu renkli yiyecekler tüket",
-          "Suyla temas kur - yüzme, banyo"
-        ],
-        "crystals": [
-          "Karneol",
-          "Turuncu Kalsit",
-          "Ay Taşı"
-        ],
-        "affirmation": "Duygularım özgürce akıyor. Yaratıcılığımı kucaklıyorum."
-      },
-      "solar_plexus": {
-        "description": "Güneş ağı çakrası, kişisel güç, özgüven, irade gücü ve kimlik duygusu ile ilişkilidir.",
-        "physical_connection": "Sindirim sistemi, mide, karaciğer",
-        "emotional_aspects": "Özgüven, kişisel güç, karar verme",
-        "balance_high": "Güçlü bir benlik algına sahipsin.",
-        "balance_low": "Özgüvenini yeniden inşa etmen gerekiyor.",
-        "balance_mid": "Hedeflerine odaklanarak güçlen.",
-        "healing_suggestions": [
-          "Güneş ışığında zaman geçir",
-          "Karın bölgesini güçlendiren egzersizler yap",
-          "Sarı renkli besinler tüket"
-        ],
-        "crystals": [
-          "Sitrin",
-          "Kaplan Gözü",
-          "Sarı Jasper"
-        ],
-        "affirmation": "Ben güçlüyüm. Hayatım üzerinde tam kontrole sahibim."
-      },
-      "heart": {
-        "description": "Anahata - \"Vurulamayan Ses\" - 12 yapraklı yeşil lotus olarak sembolize edilir. Kalp çakrası, sevgi, şefkat, affetme ve koşulsuz kabul enerjisidir. Fiziksel ve ruhsal bedeni birleştiren köprüdür. Hava elementi ile bağlantılıdır. Dengeli olduğunda evrensel sevgiyi deneyimler, tüm canlılara şefkat duyarsın.",
-        "physical_connection": "Kalp, akciğer, göğüs, kollar, eller",
-        "emotional_aspects": "Koşulsuz sevgi, empati, bağışlama",
-        "balance_high": "Kalbin sevgiyle dolu, ilişkilerinde uyumlusun.",
-        "balance_low": "Kendine ve başkalarına şefkat göster.",
-        "balance_mid": "Affetme pratikleriyle kalbini aç.",
-        "healing_suggestions": [
-          "Minnettarlık günlüğü tut",
-          "Yeşil renkli sebzeler tüket",
-          "Sevdiklerinle kaliteli zaman geçir"
-        ],
-        "crystals": [
-          "Gül Kuvars",
-          "Yeşil Aventurin",
-          "Zümrüt"
-        ],
-        "affirmation": "Kalbim sevgiyle dolu. Vermek ve almak için açığım."
-      },
-      "throat": {
-        "description": "Boğaz çakrası, iletişim, öz-ifade, doğruluk ve yaratıcı ses ile ilişkilidir.",
-        "physical_connection": "Boğaz, tiroid, boyun, kulaklar",
-        "emotional_aspects": "İletişim, öz-ifade, doğruluk",
-        "balance_high": "Kendini rahatça ifade edebiliyorsun.",
-        "balance_low": "Sesini duyurmakta zorluk yaşıyorsun.",
-        "balance_mid": "Günlük yazma pratikleriyle güçlen.",
-        "healing_suggestions": [
-          "Şarkı söyle veya mantra oku",
-          "Duygularını yazmaya başla",
-          "Mavi renkli çayı iç (kelebek bezelye)"
-        ],
-        "crystals": [
-          "Akuamarin",
-          "Lapis Lazuli",
-          "Mavi Kantaşı"
-        ],
-        "affirmation": "Sesim değerli. Gerçeğimi sevgiyle paylaşıyorum."
-      },
-      "third_eye": {
-        "description": "Üçüncü göz çakrası, sezgi, iç görüş, hayal gücü ve ruhsal farkındalık ile bağlantılıdır.",
-        "physical_connection": "Beyin, gözler, hipofiz bezi",
-        "emotional_aspects": "Sezgi, iç bilgelik, vizyon",
-        "balance_high": "Sezgilerin güçlü, iç sesinle bağdaşsın.",
-        "balance_low": "Sezgilerini dinlemeyi öğren.",
-        "balance_mid": "Meditasyonla iç görüşünü geliştir.",
-        "healing_suggestions": [
-          "Gece gökyüzünü seyret",
-          "Rüya günlüğü tut",
-          "Sezgisel yazma pratiği yap"
-        ],
-        "crystals": [
-          "Ametist",
-          "Labradorit",
-          "Sodalit"
-        ],
-        "affirmation": "Sezgilerime güveniyorum. İç bilgeliğim beni yönlendiriyor."
-      },
-      "crown": {
-        "description": "Taç çakrası, ruhani bağlantı, aydınlanma, evrensel bilinç ve yaşam amacı ile ilişkilidir.",
-        "physical_connection": "Beyin, sinir sistemi, epifiz bezi",
-        "emotional_aspects": "Ruhani bağlantı, anlam arayışı, birlik",
-        "balance_high": "Evrenle derin bir bağlantın var.",
-        "balance_low": "Ruhani pratiklerle bağlantını güçlendir.",
-        "balance_mid": "Sessizlik ve meditasyonla aç.",
-        "healing_suggestions": [
-          "Sessizlikte zaman geçir",
-          "Farkındalık meditasyonu yap",
-          "Doğada yalnız kal"
-        ],
-        "crystals": [
-          "Berrak Kuvars",
-          "Ametist",
-          "Selenit"
-        ],
-        "affirmation": "Evrenle birim. İlahi rehberliğe açığım."
-      }
-    },
-    "overall_analysis": "{sign} arketipi olarak, enerji sistemin {strongest} bölgesinde özellikle güçlü. Bu, {emotional_aspects} konularında doğal bir yeteneğe sahip olduğun anlamına gelir.\n\nAncak {weakest} bölgesine daha fazla dikkat göstermen faydalı olabilir. Bu çakrayı dengelemek için önerilen pratikleri günlük rutinine ekleyebilirsin.\n\nGenel olarak, çakra sistemin harmonik bir şekilde çalışıyor. Düzenli meditasyon ve farkındalık pratikleri ile bu dengeyi koruyabilirsin.",
-    "general_tips_list": [
-      "Her gün en az 10 dakika meditasyon yap",
-      "Doğada zaman geçirerek topraklan",
-      "Renkli ve dengeli beslen",
-      "Düzenli fiziksel aktivite yap",
-      "Duygularını günlüğe yaz"
-    ],
-    "meditation_titles": {
-      "grounding": "Topraklanma Meditasyonu",
-      "heart_opening": "Kalp Açma Meditasyonu",
-      "third_eye_activation": "Üçüncü Göz Aktivasyonu"
-    },
-    "meditation_descriptions": {
-      "grounding": "Ayaklarından yeryüzüne uzanan kökler hayal et. Güvenlik ve istikrar hisset.",
-      "heart_opening": "Kalbinde yeşil bir ışık hayal et. Her nefeste bu ışık büyüsün.",
-      "third_eye_activation": "Kaşların arasındaki noktaya odaklan. Mor bir ışık görebildiğini hayal et."
-    },
-    "daily_description": "Bugün {chakra} enerjisi ön planda. Bu enerjiyle uyumlu aktiviteler yaparak gününü daha verimli geçirebilirsin.",
-    "daily_reason": "Haftanın bu günü {chakra} enerjisine karşılık geliyor.",
-    "daily_activities": {
-      "meditation_5min": "{chakra} için 5 dakikalık meditasyon yap",
-      "carry_crystal": "{crystal} taşını yanında taşı",
-      "affirmation_3x": "Gün içinde olumlamayı 3 kez tekrarla"
-    }
   },
   "self_awareness": {
     "rising_sign": {
@@ -4995,201 +4799,6 @@
           ]
         }
       }
-    }
-  },
-  "aura": {
-    "title": "Aura Analizi",
-    "your_energy_body": "Enerji Bedenin",
-    "energy_body_description": "Aura, fiziksel bedenini çevreleyen enerji alanıdır. Her düşünce, duygu ve deneyim auranın rengini ve yoğunluğunu etkiler. Doğum tarihin ve ismin, temel aura rengini belirler - bu senin ruhsal imzandır. Auranı anlamak, enerjini yönetmenin ve korumanın anahtarıdır.",
-    "primary_aura": "Birincil Auran",
-    "secondary_aura": "İkincil Aura",
-    "energy_level": "Enerji Seviyesi",
-    "chakra_balance": "Çakra Dengesi",
-    "chakra_balance_info": "Çakralar bedenindeki enerji merkezleridir. Her biri farklı yaşam alanlarını yönetir.",
-    "daily_energy": "Günlük Aura Enerjisi",
-    "todays_aura_energy": "Bugünün Aura Enerjisi",
-    "daily_affirmation": "Günlük Olumlamanız",
-    "cleansing": "Aura Temizleme",
-    "spiritual_advice": {
-      "red": "Enerjini toprakla. Fiziksel aktivite ve doğa yürüyüşleri auranı dengeleyecektir.",
-      "orange": "Yaratıcılığını ifade et. Sanat, dans veya müzik auranı güçlendirecektir.",
-      "yellow": "Zihinsel berraklığını koru. Öğrenme ve öğretme auranı parlatacaktır.",
-      "green": "Kalbini aç. Şifa çalışmaları ve başkalarına yardım auranı büyütecektir.",
-      "blue": "Hakikatini konuş. Dürüst iletişim ve özgün ifade auranı güçlendirecektir.",
-      "indigo": "Sezgine güven. Meditasyon ve rüya çalışması auranı derinleştirecektir.",
-      "violet": "Kozmik bağlantını güçlendir. Spiritüel pratikler ve hizmet auranı yükseltecektir.",
-      "pink": "Koşulsuz sevgiyi yay. Şefkat ve empati auranı genişletecektir.",
-      "white": "Saflığını koru. Arınma ritüelleri ve meditasyon auranı koruyacaktır.",
-      "gold": "İlahi bağlantını hatırla. Dua ve şükran auranı parlatacaktır."
-    },
-    "balancing_advice": "Dengeleme Tavsiyesi",
-    "mantra": "Mantra",
-    "strongest": "En Güçlü",
-    "needs_balance": "Dengelenmeli",
-    "energy_body_secret": "Enerji Bedenin Sırrı",
-    "energy_body_secret_content": "Aura kavramı binlerce yıllık ezoterik geleneğe dayanır. Eski Mısır'da 'ka' olarak bilinen enerji bedeni, Hint geleneğinde 'prana maya kosha' (yaşam enerjisi kılıfı) adını alır. Modern Kirlian fotoğrafçılığı bu kadim bilgeliği doğrulamış, canlı organizmaların çevresindeki biyoelektrik alanı görünür kılmıştır.",
-    "colors": {
-      "red": "Kırmızı",
-      "orange": "Turuncu",
-      "yellow": "Sarı",
-      "green": "Yeşil",
-      "blue": "Mavi",
-      "indigo": "Çivit",
-      "violet": "Mor",
-      "pink": "Pembe",
-      "white": "Beyaz",
-      "gold": "Altın"
-    },
-    "status": {
-      "active": "Aktif",
-      "balanced": "Dengeli",
-      "weak": "Zayıf"
-    },
-    "chakra_area_root": "Güvenlik, Hayatta Kalma",
-    "chakra_area_sacral": "Yaratıcılık, Duygular",
-    "chakra_area_solar": "Güç, Özgüven",
-    "chakra_area_heart": "Sevgi, Bağlantı",
-    "chakra_area_throat": "İletişim, İfade",
-    "chakra_area_third_eye": "Sezgi, Bilgelik",
-    "chakra_area_crown": "Spiritüellik, Bilinç",
-    "chakra_advice_root": "Doğada yürüyüş yapın, kırmızı giyinin. Topraklanma meditasyonları ve fiziksel egzersizler bu chakrayı güçlendirir.",
-    "chakra_advice_sacral": "Yaratıcı aktiviteler yapın, dans edin. Turuncu renkli yiyecekler tüketin ve su elementine yakın olun.",
-    "chakra_advice_solar": "Güneş ışığında vakit geçirin. Nefes egzersizleri yapın ve kendinize pozitif olumlamalar söyleyin.",
-    "chakra_advice_heart": "Sevdiklerinizle zaman geçirin. Şükran günlüğü tutun ve yeşil alanlarla vakit geçirin.",
-    "chakra_advice_throat": "Duygularınızı ifade edin, şarkı söyleyin. Mavi tonlarda giyinin ve bol su için.",
-    "chakra_advice_third_eye": "Meditasyon yapın ve rüyalarınızı kaydedin. Mor/çivit renklerine odaklanın.",
-    "chakra_advice_crown": "Sessizlikte vakit geçirin, meditasyon yapın. Beyaz veya mor giyin ve doğayla bağlantı kurun.",
-    "affirmations": {
-      "red": "Güçlü ve güvendeyim. Korkusuzca ilerlerim.",
-      "orange": "Yaratıcılığım sınırsız. Neşeyle ifade ederim.",
-      "yellow": "Zihnim berrak, iradem güçlü. Başarı benim.",
-      "green": "Kalbim açık, sevgim sonsuz. Şifa taşıyorum.",
-      "blue": "Hakikatimi konuşurum. Sesim güçlüdür.",
-      "indigo": "Sezgilerime güvenirim. İç bilgeliğim rehberimdir.",
-      "violet": "Evrenle birlikteyim. Yüksek amacıma hizmet ederim.",
-      "pink": "Sevgi veririm, sevgi alırım. Şefkat doğamdır.",
-      "white": "Saf ışıktayım. İlahi koruma benimledir.",
-      "gold": "İlahi enerjiyim. Bolluk ve bereket benimle akar."
-    },
-    "daily_guidance": {
-      "strongest": "Bugün auran en güçlü halinde. Doğal yeteneklerini kullanmak için ideal bir gün.",
-      "harmonious": "Bugünün enerjisi auranla uyumlu. Akışta kal ve fırsatları değerlendir.",
-      "different": "Bugün farklı bir enerji akışı var. Esneklik ve adaptasyon önemli. Dengeyi bul."
-    },
-    "cleansing_tips": {
-      "meditation_title": "Meditasyon",
-      "meditation_desc": "{color} auranı güçlendirmek için günde 10-15 dakika {focus} üzerine meditasyon yap.",
-      "crystal_title": "Kristal Terapi",
-      "crystal_desc": "{crystal} kristali auranı dengelemek için idealdir.",
-      "color_title": "Renk Terapisi",
-      "color_desc": "{color} tonlarında kıyafetler giy veya bu renkte nesnelerle çevrili ol.",
-      "nature_title": "Doğa Bağlantısı",
-      "sound_title": "Ses Terapisi",
-      "sound_desc": "{frequency} Hz frekansında müzik dinle veya {mantra} mantrasını söyle."
-    },
-    "meditation_focus": {
-      "red": "topraklanma ve güvenlik",
-      "orange": "yaratıcılık ve duygusal akış",
-      "yellow": "kişisel güç ve özgüven",
-      "green": "kalp açılımı ve şifa",
-      "blue": "iletişim ve özgün ifade",
-      "indigo": "üçüncü göz ve sezgi",
-      "violet": "taç chakra ve evrensel bağlantı",
-      "pink": "koşulsuz sevgi ve şefkat",
-      "white": "arınma ve koruma",
-      "gold": "ilahi bağlantı ve bolluk"
-    },
-    "crystals": {
-      "red": "Kırmızı Jasper veya Garnet",
-      "orange": "Karneol veya Turuncu Kalsit",
-      "yellow": "Sitrin veya Kaplan Gözü",
-      "green": "Yeşil Aventurin veya Zümrüt",
-      "blue": "Lapis Lazuli veya Akuamarin",
-      "indigo": "Ametist veya Sodalit",
-      "violet": "Mor Ametist veya Sugilit",
-      "pink": "Pembe Kuvars veya Rodonit",
-      "white": "Şeffaf Kuvars veya Selenit",
-      "gold": "Altın Topaz veya Pirit"
-    },
-    "nature": {
-      "red": "Yalın ayak toprakta yürü. Ağaçlara sarıl.",
-      "orange": "Gün batımını izle. Su kenarında zaman geçir.",
-      "yellow": "Güneş banyosu yap. Çiçekli bahçelerde ol.",
-      "green": "Ormanda yürü. Bitkilerle ilgilen.",
-      "blue": "Deniz veya göl kenarında ol. Gökyüzünü izle.",
-      "indigo": "Gece gökyüzünü ve yıldızları izle.",
-      "violet": "Dağlarda veya yüksek yerlerde ol.",
-      "pink": "Çiçek bahçelerinde zaman geçir.",
-      "white": "Kar veya bulutları izle. Temiz havada ol.",
-      "gold": "Gün doğumunu izle. Güneş ışığında ol."
-    },
-    "meanings": {
-      "red": "Güçlü yaşam enerjisi, tutku ve fiziksel güç. Topraklı ve hayatta kalmaya odaklı.",
-      "orange": "Yaratıcılık, duygusal ifade ve sosyallik. Neşeli ve maceracı ruh.",
-      "yellow": "Zihinsel güç, iyimserlik ve özgüven. Entelektüel ve analitik.",
-      "green": "Şifa enerjisi, denge ve büyüme. Kalp merkezli ve besleyici.",
-      "blue": "İletişim, hakikat ve sakinlik. Güvenilir ve barışçıl.",
-      "indigo": "Derin sezgi, spiritüel farkındalık ve içgörü. Mistik ve vizyoner.",
-      "violet": "Spiritüel bağlantı, dönüşüm ve bilgelik. Yüksek bilinç.",
-      "pink": "Koşulsuz sevgi, şefkat ve romantizm. Hassas ve sevgi dolu.",
-      "white": "Saflık, ilahi koruma ve yüksek spiritüel gelişim. Aydınlanmış.",
-      "gold": "İlahi bilgelik, koruma ve bolluk. Spiritüel liderlik."
-    }
-  },
-  "kabbalah": {
-    "sefirah_names": {
-      "keter": "Taç (Keter)",
-      "chokhmah": "Bilgelik (Hokmah)",
-      "binah": "Anlayış (Binah)",
-      "chesed": "Merhamet (Hesed)",
-      "gevurah": "Güç (Gevurah)",
-      "tiferet": "Güzellik (Tiferet)",
-      "netzach": "Zafer (Netsah)",
-      "hod": "İhtişam (Hod)",
-      "yesod": "Temel (Yesod)",
-      "malkut": "Krallık (Malhut)"
-    },
-    "sefirah_meanings": {
-      "keter": "Sonsuzlukla birleşme noktası. İlahi iradenin kaynağı. Tüm potansiyellerin başlangıcı.",
-      "chokhmah": "Saf bilgelik ve ilham. Yaratıcı kıvılcım. Eril enerjinin ve vizyonun kaynağı.",
-      "binah": "Derin anlayış ve kavrayış. Form veren enerji. Dişil bilgelik ve sezgi.",
-      "chesed": "Koşulsuz sevgi ve şefkat. Genişleme ve bolluk. Cömertlik ve şifa.",
-      "gevurah": "İç güç ve disiplin. Sınırlar ve adalet. Arınma ve odaklanma.",
-      "tiferet": "Denge ve uyumun merkezi. Güzellik ve hakikat. Kalp ve ruhun birleşimi.",
-      "netzach": "Kararlılık ve dayanıklılık. Duygusal güç ve tutku. Yaratıcı ifade.",
-      "hod": "Zihinsel berraklık ve iletişim. Analitik düşünce. Manevi anlayış.",
-      "yesod": "Astral bağlantı ve rüyalar. Bilinçaltı ve sezgi. Tezahürün temeli.",
-      "malkut": "Fiziksel dünya ve madde. Topraklama ve gerçekleştirme. Günlük yaşam."
-    },
-    "compatibility": {
-      "very_high": "Ruhlarınız arasında derin bir bağ var. {s1} ve {s2} enerjileri birbirini tamamlıyor, birlikte yüksek spiritüel uyum oluşturuyorsunuz.",
-      "high": "Güçlü bir enerji bağlantınız var. {s1} ve {s2} destekleyici enerjiler taşıyor.",
-      "medium": "{s1} ve {s2} farklı enerjiler taşısa da, bu farklar büyüme fırsatları sunuyor.",
-      "low": "{s1} ve {s2} enerjileri farklı. Bu ilişki her iki taraf için de öğrenilecek dersler içeriyor."
-    },
-    "daily_guidance": {
-      "keter": "Bugün sonsuz potansiyelle bağlantı kurma günü. Meditasyon ve iç sessizlik için zaman ayır. İlahi iradenin seni yönlendirmesine izin ver.",
-      "chokhmah": "Bugün bilgelik ve içgörü günü. Ani ilhamlar gelebilir. Yeni fikirlere ve vizyonlara açık ol.",
-      "binah": "Bugün anlayış ve kavrayış günü. Detaylara odaklan, analiz et. Duygusal derinliğine güven.",
-      "chesed": "Bugün sevgi ve şefkat günü. Başkalarına yardım et, cömert ol. Kalp çakranı açık tut.",
-      "gevurah": "Bugün güç ve disiplin günü. Sınırlarını koru, gerekli kararları al. İç gücüne güven.",
-      "tiferet": "Bugün denge ve güzellik günü. Karşıtları dengelemeye çalış. İç ve dış güzelliği takdir et.",
-      "netzach": "Bugün kararlılık ve zafer günü. Hedeflerine odaklan, vazgeçme. Yaratıcı enerjini kullan.",
-      "hod": "Bugün iletişim ve analiz günü. Düşüncelerini netleştir, bilgi paylaş. Zihinsel berraklık ara.",
-      "yesod": "Bugün temel ve bağlantı günü. Rüyalarına dikkat et, sezgilerine güven. Astral bağlantılar güçlü.",
-      "malkut": "Bugün maddi dünya ve tezahür günü. Pratik konulara odaklan, somut adımlar at. Doğayla bağlantı kur."
-    },
-    "daily_meditation": {
-      "keter": "Gözkapaklarını kapat ve başının üzerinde parlak beyaz bir ışık hayal et. Bu ışığın seni sonsuzlukla birleştirdiğini hisset.",
-      "chokhmah": "Gri bir boşluk hayal et - ne tamamen aydınlık ne de tamamen karanlık. Bu belirsizlikte yeni fikirlerin doğduğunu hisset.",
-      "binah": "Derin mavi bir okyanusun içinde olduğunu hayal et. Sonsuz derinliğin sana anlayış getirdiğini hisset.",
-      "chesed": "Kalbinden altın ışık yayıldığını hayal et. Bu ışığın tüm varlıklara sevgi ve şefkat taşıdığını hisset.",
-      "gevurah": "Kırmızı bir alev hayal et - yakan ama arındıran. Bu ateşin gereksiz olan her şeyi temizlediğini hisset.",
-      "tiferet": "Altın güneş ışığında yıkandığını hayal et. Bu ışığın tüm karşıtları dengede tuttuğunu hisset.",
-      "netzach": "Yemyeşil bir ormanın ortasında olduğunu hayal et. Doğanın dayanıklılığını ve zaferini hisset.",
-      "hod": "Zihnini aydınlatan turuncu bir ışık küresi hayal et. Düşüncelerinin berraklaştığını hisset.",
-      "yesod": "Göbek bölgeni saran mor bir ışık hayal et. Rüya alemine ve bilinçaltına kapının açıldığını hisset.",
-      "malkut": "Ayaklarının toprağa kök saldığını hayal et. Toprağın enerjisinin sana güç verdiğini hisset."
     }
   },
   "saturn_return": {
@@ -5904,8 +5513,8 @@
         "subtitle": "İlişki potansiyelini keşfet"
       },
       "soul_mate": {
-        "title": "Ruh Eşin",
-        "subtitle": "Kozmik eşini tanımla"
+        "title": "İlişki Tarzın",
+        "subtitle": "Derin bağlantı tarzını tanımla"
       },
       "relationship_karma": {
         "title": "İlişki Karman",
@@ -6478,9 +6087,9 @@
       }
     },
     "soul_mate": {
-      "main": "{name}, {sign} arketipi olarak ruh esin nasil biri merak ediyor musun?",
-      "details_template": "Ruh Esin: {description}\n\nUyumlu Burclar: {compatible}\n\nKarsilasma Yerleri: {places}",
-      "advice_template": "Ruh Esini Bulmak Icin: {advice}",
+      "main": "{name}, {sign} arketipi olarak derin bağlantı tarzın nasıl merak ediyor musun?",
+      "details_template": "İlişki Tarzın: {description}\n\nUyumlu Arketipler: {compatible}\n\nKarsilasma Yerleri: {places}",
+      "advice_template": "Anlamlı Bağlantılar Kurmak İçin: {advice}",
       "descriptions": {
         "aries": "Cesur, bagimsiz, meydan okuyan biri. Senin enerjine ayak uydurabilen, seni zorlayan ama destekleyen.",
         "taurus": "Guvenilir, sadik, duyusal biri. Seninle sakin ama tutkulu bir hayat kuracak.",
@@ -7057,7 +6666,7 @@
       "Kasım",
       "Aralık"
     ],
-    "share_text": "Bugünün kozmik enerjisi benimle! Evrenin fısıltılarını dinle... #venusone #öz farkındalık #arketipyorumu #kozmikenerji",
+    "share_text": "Bugünün kozmik enerjisi benimle! Evrenin fısıltılarını dinle... #InnerCycles #öz farkındalık #arketipyorumu #kozmikenerji",
     "instagram": {
       "hook_1": "{sign} ARKETİPİ AMA RED FLAG DEĞİL 🚩",
       "hook_2": "KOVALIYORSAN? KAÇIYOR 😏",
@@ -8404,7 +8013,7 @@
     "life_number": "Yaşam Sayın",
     "kabbalah_path": "Kabala Yolun",
     "compatibility_analysis": "Uyum Analizi",
-    "soulmate": "Ruh Eşin",
+    "soulmate": "Derin Bağlantın",
     "relationship_karma": "İlişki Karman",
     "celebrity_twin": "Ünlü İkizin",
     "cosmic_trace": "Kozmoz İzi",
@@ -9268,9 +8877,9 @@
       "abundance_title": "Bolluk Manifestasyonu",
       "abundance_duration": "15 dk",
       "abundance_description": "Bolluk bloklarını kaldırın ve bereket akışını açın.",
-      "soulmate_title": "Ruh Eşi Çekimi",
+      "soulmate_title": "İlişki Netliği Meditasyonu",
       "soulmate_duration": "20 dk",
-      "soulmate_description": "İlişki engellerini temizleyin ve ruh eşinizi çekin."
+      "soulmate_description": "İlişki engellerini temizleyin ve anlamlı bağlantılar kurun."
     }
   },
   "reiki": {
@@ -9361,164 +8970,6 @@
       "aquarius": "Yenilikçi fikirlerin değerli. Farklı düşün.",
       "pisces": "Hayal gücün ve empatın güçlü. Sanatla ifade et.",
       "default": "Evrenin enerjisiyle uyum içinde kal."
-    }
-  },
-  "numerology": {
-    "title": "Numeroloji",
-    "brand_footer": "Numeroloji — InnerCycles",
-    "karmic_not_found": "Karmik borç bilgisi bulunamadı",
-    "karmic_wisdom": "Karmik Bilgelik",
-    "karmic_cycle": "Karmik Döngü",
-    "karmic_debt_badge": "KARMİK BORÇ",
-    "deep_meaning": "Derin Anlam",
-    "past_life_patterns": "Geçmiş Yaşam Kalıpları",
-    "life_lesson": "Bu Yaşamdaki Dersin",
-    "challenge": "Zorluk",
-    "gift": "Armağan",
-    "healing_path": "İyileşme Yolu",
-    "spiritual_practice": "Ruhsal Pratik",
-    "warnings": "Dikkat Edilmesi Gerekenler",
-    "strengths_learned": "Güçlü Yönler (Öğrenildiğinde)",
-    "life_areas_impact": "Hayat Alanlarında Etkisi",
-    "reduces_to_archetype": "{number} sayısına indirgenir • {archetype}",
-    "relationships": "İlişkiler",
-    "career": "Kariyer",
-    "health": "Sağlık",
-    "daily_affirmation": "Günlük Olumlama",
-    "other_karmic_debts": "Diğer Karmik Borçlar",
-    "life_path_not_found": "Yaşam yolu sayısı bulunamadı",
-    "soul_mission": "Ruh Misyonu",
-    "gift_to_world": "Dünyaya Armağanın",
-    "love_relationships": "Aşk ve İlişkiler",
-    "career_path": "Kariyer Yolu",
-    "spiritual_lesson": "Ruhsal Ders",
-    "health_wellness": "Sağlık ve Wellness",
-    "quick_answer": "Kısa Cevap",
-    "shadow_info": "Gölge farkındalıkla dönüşür...",
-    "number_compatibility": "Sayı Uyumu",
-    "compatible": "Uyumlu",
-    "challenging": "Zorlayıcı",
-    "famous_people": "Bu Yaşam Yolundaki Ünlüler",
-    "your_affirmation": "Günlük Olumlamanız",
-    "master_not_found": "Master sayı bulunamadı",
-    "master_number_badge": "MASTER SAYI",
-    "master_feature": "Master Sayı Özelliği",
-    "challenges": "Zorluklar",
-    "keywords": "Anahtar Kelimeler",
-    "master_practical_advice": "Master {number} İçin Pratik Tavsiye",
-    "master_secret": "Master {number}'in Sırrı",
-    "ancient_numerology": "Kadim Numeroloji",
-    "element_energy": "{element} Enerjisi",
-    "master_tip_11": "Master 11 olarak, yüksek sezgi ve hassasiyetinizi korumak için düzenli meditasyon ve topraklanma pratiği yapın. Enerji vampirlerinden kendinizi koruyun.",
-    "master_tip_22": "Master 22 olarak, büyük vizyonlarınızı adım adım inşa edin. Mükemmeliyetçilik felç edebilir - \"yapılmış, mükemmelden iyidir\" ilkesini benimseyin.",
-    "master_tip_33": "Master 33 olarak, başkalarına şifa verirken kendinizi ihmal etmeyin. Sınırlar sevgisizlik değil - önce kendi maskenizi takın.",
-    "personal_year_not_found": "Kişisel yıl bilgisi bulunamadı",
-    "year_wisdom": "{number}. Yılın Bilgeliği",
-    "cyclical_wisdom": "Döngüsel Bilgelik",
-    "personal_year": "Kişisel Yıl",
-    "year_theme": "Yılın Teması",
-    "energy": "Enerji:",
-    "year_guidance": "Yılın Rehberliği",
-    "focus": "Odaklan",
-    "avoid": "Kaçın",
-    "year_affirmation": "Yılın Olumlaması",
-    "nine_year_cycle": "9 Yıllık Döngü",
-    "shadow_side": "Gölge Taraf",
-    "shadow_transforms": "Gölge farkındalıkla dönüşür. Kabullenmek, entegre etmektir.",
-    "life_path_question": "Yaşam yolu {number} ne demek?",
-    "numerology_tag": "Numeroloji",
-    "life_path_title": "Yaşam Yolu {number}",
-    "number_secret": "{number} Sayısının Sırrı",
-    "life_path_bullets_1_1": "Yaşam yolu 1, liderlik ve bağımsızlık enerjisi taşır.",
-    "life_path_bullets_1_2": "Öncü ruh, yeni başlangıçlar için doğmuştur.",
-    "life_path_bullets_1_3": "Bireysellik ve özgünlük temel yaşam temasıdır.",
-    "life_path_bullets_2_1": "Yaşam yolu 2, denge ve ortaklık enerjisi taşır.",
-    "life_path_bullets_2_2": "Diplomasi ve uyum sağlama doğal yetenektir.",
-    "life_path_bullets_2_3": "İlişkiler ve işbirliği yaşam amacının merkezindedir.",
-    "life_path_bullets_3_1": "Yaşam yolu 3, yaratıcılık ve ifade enerjisi taşır.",
-    "life_path_bullets_3_2": "Sanat ve iletişim alanında doğal yetenek vardır.",
-    "life_path_bullets_3_3": "Neşe ve ilham yaymak ruhsal misyondur.",
-    "life_path_bullets_4_1": "Yaşam yolu 4, düzen ve istikrar enerjisi taşır.",
-    "life_path_bullets_4_2": "Sağlam temeller kurmak için doğmuştur.",
-    "life_path_bullets_4_3": "Disiplin ve çalışkanlık temel yaşam temasıdır.",
-    "life_path_bullets_5_1": "Yaşam yolu 5, özgürlük ve değişim enerjisi taşır.",
-    "life_path_bullets_5_2": "Macera ve deneyim arayışı doğaldır.",
-    "life_path_bullets_5_3": "Esneklik ve uyum sağlama güçlü yanlarıdır.",
-    "life_path_bullets_6_1": "Yaşam yolu 6, sorumluluk ve sevgi enerjisi taşır.",
-    "life_path_bullets_6_2": "Aile ve toplum için bakım vermek doğaldır.",
-    "life_path_bullets_6_3": "Uyum ve güzellik yaratmak yaşam amacıdır.",
-    "life_path_bullets_7_1": "Yaşam yolu 7, bilgelik ve içe bakış enerjisi taşır.",
-    "life_path_bullets_7_2": "Spiritüel arayış ve analiz doğal eğilimdir.",
-    "life_path_bullets_7_3": "Derin anlam arayışı yaşamın merkezindedir.",
-    "life_path_bullets_8_1": "Yaşam yolu 8, güç ve bolluk enerjisi taşır.",
-    "life_path_bullets_8_2": "Maddi ve manevi başarı için potansiyel yüksektir.",
-    "life_path_bullets_8_3": "Liderlik ve yöneticilik doğal yetenektir.",
-    "life_path_bullets_9_1": "Yaşam yolu 9, insanlık ve tamamlanma enerjisi taşır.",
-    "life_path_bullets_9_2": "Evrensel sevgi ve şefkat doğal haldir.",
-    "life_path_bullets_9_3": "Başkalarına hizmet etmek ruhsal misyondur.",
-    "life_path_bullets_default_1": "Bu sayı özel bir enerji taşır.",
-    "life_path_bullets_default_2": "Potansiyelin keşfedilmeyi bekliyor.",
-    "life_path_bullets_default_3": "Yaşam yolculuğun benzersizdir.",
-    "current_year_text": "Şu an {number}. yıldasınız",
-    "daily_number": {
-      "page_title": "Günlük sayı enerjisi ne anlatır?",
-      "tag": "Numeroloji",
-      "short_answer_title": "Kısa Cevap",
-      "short_answer_1": "Günlük sayı enerjisi, o günün numerolojik titreşimini gösterir.",
-      "short_answer_2": "Bugünün tarihinden hesaplanır.",
-      "short_answer_3": "Günün genel enerjisini ve potansiyelini yansıtır.",
-      "how_calculated_title": "Nasıl Hesaplanır?",
-      "how_calculated_1": "Günün tarihinin tüm rakamları toplanır.",
-      "how_calculated_2": "Tek haneli sayıya indirgenir.",
-      "how_calculated_3": "Örnek: 24.01.2026 → 2+4+0+1+2+0+2+6 = 17 → 1+7 = 8",
-      "what_for_title": "Ne İşe Yarar?",
-      "what_for_1": "Günün enerjisine uyum sağlamana yardım eder.",
-      "what_for_2": "Hangi aktivitelerin desteklendiğini gösterir.",
-      "what_for_3": "Dikkat edilmesi gereken alanları işaret eder.",
-      "important_note_title": "Önemli Not",
-      "important_note_1": "Günlük sayı herkesi etkiler.",
-      "important_note_2": "Kişisel sayınla birleşince daha özel anlam kazanır.",
-      "important_note_3": "Zorunluluk değil, farkındalık aracıdır.",
-      "todays_number": "Bugünün Sayısı",
-      "meaning_1": "Başlangıçlar ve liderlik günü",
-      "meaning_2": "İşbirliği ve denge günü",
-      "meaning_3": "Yaratıcılık ve ifade günü",
-      "meaning_4": "Yapılanma ve düzen günü",
-      "meaning_5": "Değişim ve özgürlük günü",
-      "meaning_6": "Aile ve sorumluluk günü",
-      "meaning_7": "İçe dönüş ve analiz günü",
-      "meaning_8": "Bolluk ve güç günü",
-      "meaning_9": "Tamamlanma ve bırakma günü",
-      "meaning_11": "Sezgi ve ilham günü",
-      "meaning_22": "Büyük projeler günü",
-      "meaning_33": "Şifa ve öğretme günü",
-      "meaning_default": "Güçlü enerji günü",
-      "suggestion_text": "İfade sayısı nedir?",
-      "footer": "Numeroloji — InnerCycles"
-    },
-    "expression_number_screen": {
-      "page_title": "İfade sayısı nedir?",
-      "tag": "Numeroloji",
-      "short_answer_title": "Kısa Cevap",
-      "short_answer_1": "İfade sayısı, tam adından hesaplanan numerolojik değerdir.",
-      "short_answer_2": "Bu hayatta keşfedebileceğin potansiyel temaları yansıtır.",
-      "short_answer_3": "Kendin hakkında düşünmek için bir araçtır.",
-      "how_calculated_title": "Nasıl Hesaplanır?",
-      "how_calculated_1": "Tam adının her harfine bir sayı karşılığı atanır.",
-      "how_calculated_2": "A=1, B=2, C=3... şeklinde devam eder.",
-      "how_calculated_3": "Tüm harflerin sayıları toplanır ve tek haneye indirgenir.",
-      "letter_number_chart": "Harf-Sayı Tablosu",
-      "what_it_tells_title": "Ne Keşfedebilirsin?",
-      "what_it_tells_1": "Bu hayatta ifade edebileceğin potansiyel enerjiyi.",
-      "what_it_tells_2": "Potansiyelini nasıl keşfedebileceğini.",
-      "what_it_tells_3": "Dünyaya katkıda bulunma temalarını.",
-      "what_it_tells_4": "Doğal yeteneklerinin yönünü.",
-      "difference_from_life_path_title": "Yaşam Yolundan Farkı",
-      "difference_from_life_path_1": "Yaşam yolu: Keşfettiğin yol.",
-      "difference_from_life_path_2": "İfade sayısı: Potansiyel hedefler.",
-      "difference_from_life_path_3": "İkisi birlikte düşünmek için zengin bir bakış açısı sunar.",
-      "suggestion_text": "Yaşam yolu sayısı nedir?",
-      "footer": "Numeroloji — InnerCycles"
     }
   },
   "moon": {
@@ -9637,7 +9088,7 @@
     "subtitle": "Aktiviteleriniz için en uygun zamanları keşfedin",
     "kadim_title": "Kişisel Zamanlama Sanatı",
     "kadim_content": "Kadim medeniyetler zamanlamanın önemini bilirdi. Günün her saati farklı bir gezegen tarafından yönetilir. Aktivitelerinizi kozmik ritimlere uyumlayarak potansiyelinizi maksimize edebilirsiniz.",
-    "brand_footer": "InnerCycles Kozmik Zamanlama",
+    "brand_footer": "InnerCycles Döngüsel Zamanlama",
     "todays_energy": "Bugünün Enerjisi",
     "score_excellent": "Yeni başlangıçlar için mükemmel gün!",
     "score_good": "İyi enerji, koşulların farkında ol",

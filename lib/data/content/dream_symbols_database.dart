@@ -1658,33 +1658,6 @@ class ShareableQuoteTemplates {
       quote: 'Tekrar eden rüya, öğrenilmemiş derstir.',
       category: 'Döngü',
     ),
-
-    // Astrololojik
-    ShareableCard(
-      emoji: '♄',
-      quote: 'Satürn sıkıştırır, ama elmas yaratır.',
-      category: 'Astroloji',
-    ),
-    ShareableCard(
-      emoji: '♆',
-      quote: 'Neptün sisinde gerçek, sezgiyle bulunur.',
-      category: 'Astroloji',
-    ),
-    ShareableCard(
-      emoji: '♇',
-      quote: 'Plüton yıkar, ama yeniden doğurur.',
-      category: 'Astroloji',
-    ),
-    ShareableCard(
-      emoji: '☿',
-      quote: 'Retro mesaj: Geçmişe bak, geleceği gör.',
-      category: 'Astroloji',
-    ),
-    ShareableCard(
-      emoji: '🌕',
-      quote: 'Dolunay aydınlatır: Gör ve bırak.',
-      category: 'Astroloji',
-    ),
   ];
 
   /// Rastgele bir alıntı seç

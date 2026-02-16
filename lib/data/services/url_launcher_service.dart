@@ -152,7 +152,7 @@ class UrlLauncherService {
   /// Share app link
   Future<String> getAppShareLink() async {
     // Web'de platform kontrolü yapamayız
-    if (kIsWeb) return 'https://venusone.com';
+    if (kIsWeb) return 'https://innercycles.app';
 
     try {
       if (Platform.isIOS && AppConstants.appStoreId.isNotEmpty) {
@@ -163,7 +163,7 @@ class UrlLauncherService {
     } catch (_) {
       // Platform erişimi başarısız
     }
-    return 'https://venusone.com';
+    return 'https://innercycles.app';
   }
 }
 

@@ -179,18 +179,18 @@
     "view_insight": "Voir l'Aperçu Complet"
   },
   "archetype": {
-    "pioneer": "Bélier",
-    "builder": "Taureau",
-    "communicator": "Gémeaux",
-    "nurturer": "Cancer",
-    "performer": "Lion",
-    "analyst": "Vierge",
-    "harmonizer": "Balance",
-    "transformer": "Scorpion",
-    "explorer": "Sagittaire",
-    "achiever": "Capricorne",
-    "visionary": "Verseau",
-    "dreamer": "Poissons"
+    "pioneer": "Le Pionnier",
+    "builder": "Le Bâtisseur",
+    "communicator": "Le Communicateur",
+    "nurturer": "Le Protecteur",
+    "performer": "L'Artiste",
+    "analyst": "L'Analyste",
+    "harmonizer": "L'Harmonisateur",
+    "transformer": "Le Transformateur",
+    "explorer": "L'Explorateur",
+    "achiever": "L'Accompli",
+    "visionary": "Le Visionnaire",
+    "dreamer": "Le Rêveur"
   },
   "personal_profile": {
     "title": "Personal Profile"
@@ -271,10 +271,10 @@
     "meditation_subtitle": "Méditation, rituels et équilibrage énergétique",
     "all_analyses": "Toutes les Analyses",
     "questions": {
-      "aries_man": "♈ Puis-je m'entendre avec un homme Belier?",
-      "scorpio_women": "♏ Pourquoi les femmes Scorpion sont-elles si mysterieuses?",
-      "leo_attention": "♌ Pourquoi Lion a-t-il toujours besoin d'attention?",
-      "gemini_decisions": "♊ Pourquoi Gemeaux ne peut-il pas prendre de decisions?",
+      "aries_man": "🚀 Puis-je m'entendre avec un homme Belier?",
+      "scorpio_women": "🦋 Pourquoi les femmes Scorpion sont-elles si mysterieuses?",
+      "leo_attention": "🌟 Pourquoi Lion a-t-il toujours besoin d'attention?",
+      "gemini_decisions": "💬 Pourquoi Gemeaux ne peut-il pas prendre de decisions?",
       "fire_water": "🔥 Les signes de feu et d'eau sont-ils compatibles?",
       "most_loyal": "💫 Quel signe est le plus fidele?",
       "most_jealous": "😈 Quel signe est le plus jaloux?",
@@ -330,8 +330,6 @@
       "draconic_desc": "Connaissance de soi de l'âme",
       "vedic_title": "Connaissance de soi Védique",
       "vedic_desc": "Système personnel indien",
-      "chakra_title": "Analyse des Chakras",
-      "chakra_desc": "Analyse des centres énergétiques",
       "rituals_title": "Rituels",
       "rituals_desc": "Rituels cosmiques",
       "celebrities_title": "Thèmes de Célébrités",
@@ -339,7 +337,9 @@
       "year_ahead_title": "L'Année à Venir",
       "year_ahead_desc": "Aperçu cosmique annuel",
       "timing_title": "Timing Cosmique",
-      "timing_desc": "Timing propice"
+      "timing_desc": "Timing propice",
+      "energy_title": "Analyse des Chakras",
+      "energy_desc": "Analyse des centres énergétiques"
     },
     "featured_questions": {
       "soulmate": "Quelles qualités est-ce que je recherche dans une connexion profonde?",
@@ -370,22 +370,22 @@
       "local_space": "Espace Local",
       "electional": "Élective",
       "timing": "Timing",
-      "numerology": "Numérologie",
       "all_signs": "Tous les Signes",
       "love": "Amour",
       "see_house": "Voir Cette Maison",
       "articles": "Articles",
       "glossary": "Glossaire",
       "eclipse": "Éclipse",
-      "kabbalah": "Kabbale",
-      "aura": "Analyse d'Aura",
       "gardening_moon": "Lune Jardin",
       "celebrities": "Célébrités",
-      "chakra": "Chakra",
       "daily": "Daily",
       "weekly": "Weekly",
       "cosmic": "Cosmic",
-      "share": "Share"
+      "share": "Share",
+      "discovery": "Découverte",
+      "wisdom": "Sagesse",
+      "wellness": "Bien-être",
+      "energy": "Énergie"
     },
     "other_tools": {
       "title": "Nos autres analyses",
@@ -437,8 +437,8 @@
         "desc": "Le mystère des nombres"
       },
       "kabbalah": {
-        "title": "Kabbale",
-        "desc": "Analyse kabbalistique"
+        "title": "Exploration Symbolique",
+        "desc": "Exploration symbolique"
       },
       "card_insight": {
         "title": "Reflection Card",
@@ -577,7 +577,7 @@
       },
       "daily_message": {
         "aquarius": "Aujourd'hui est le jour de l'innovation. Sois différent, fais la différence !",
-        "aries": "Aujourd'hui ton courage sera récompensé. Sois prêt à surmonter tes peurs !",
+        "aries": "Aujourd'hui ton courage peut porter ses fruits. Sois prêt à surmonter tes peurs !",
         "cancer": "Aujourd'hui ton intuition te guidera dans la bonne direction. Fais confiance !",
         "capricorn": "Aujourd'hui est le jour du succès. Fais un pas de plus vers tes objectifs.",
         "default": "Aujourd'hui est ton jour !",
@@ -704,7 +704,7 @@
           "leo": "Lutte de pouvoir !",
           "virgo": "Bien ! Si la confiance est établie.",
           "libra": "Moyen. Différence de profondeur.",
-          "scorpio": "Intense ! Soit âme sœur soit ennemi.",
+          "scorpio": "Intense ! Énergie de connexion intense.",
           "sagittarius": "Difficile. Problèmes de confiance.",
           "capricorn": "Fort ! Power couple.",
           "aquarius": "Très difficile. Pôles opposés.",
@@ -713,18 +713,18 @@
         }
       },
       "smart_responses": {
-        "aries_relationship": "♈ Tu penses à une relation avec un Bélier ? En tant que {sign}, voici ce que tu dois savoir :\n\n🔥 Les Béliers sont passionnés, impulsifs et adorent la chasse. Ils ont besoin d'un partenaire qui peut gérer leur énergie !",
+        "aries_relationship": "🚀 Tu penses à une relation avec un Bélier ? En tant que {sign}, voici ce que tu dois savoir :\n\n🔥 Les Béliers sont passionnés, impulsifs et adorent la chasse. Ils ont besoin d'un partenaire qui peut gérer leur énergie !",
         "default_response": "✨ Prends un moment pour réfléchir à ce qui compte pour toi aujourd'hui. Quels thèmes résonnent avec ta situation actuelle?",
         "financial_future": "💰 En tant que {sign}, voici quelques thèmes financiers sur lesquels réfléchir:\n\n✨ L'archétype de Jupiter symbolise la croissance et l'expansion. Quels domaines souhaites-tu développer? Ceci est pour la réflexion uniquement, pas des conseils financiers.",
         "fire_water_compatibility": "🔥💧 Les signes de Feu et d'Eau sont-ils compatibles ?\n\n⚡ Difficile mais possible ! Le Feu (Bélier, Lion, Sagittaire) et l'Eau (Cancer, Scorpion, Poissons) peuvent s'équilibrer.",
-        "gemini_decisions": "♊ Pourquoi les Gémeaux ne peuvent-ils pas prendre de décisions ?\n\n🌀 En tant qu'enfants de Mercure, ils pensent de manière duale - ils voient les deux côtés de chaque situation !",
+        "gemini_decisions": "💬 Pourquoi les Gémeaux ne peuvent-ils pas prendre de décisions ?\n\n🌀 En tant qu'enfants de Mercure, ils pensent de manière duale - ils voient les deux côtés de chaque situation !",
         "general_spiritual": "✨ Cher {sign}, voici le thème de réflexion d'aujourd'hui:\n\n🔮 {daily_message}\n\n💫 Thème d'aujourd'hui: {daily_energy}",
-        "leo_attention": "♌ Pourquoi les Lions cherchent-ils toujours l'attention ?\n\n👑 En tant qu'enfants du Soleil, ils sont nés \"stars\" ! L'attention et la reconnaissance sont leur carburant.",
+        "leo_attention": "🌟 Pourquoi les Lions cherchent-ils toujours l'attention ?\n\n👑 En tant qu'enfants du Soleil, ils sont nés \"stars\" ! L'attention et la reconnaissance sont leur carburant.",
         "love_reading": "💕 Réflexion relationnelle pour {sign}:\n\n🌹 Les thèmes de Vénus suggèrent actuellement {venus_effect}.\n\n✨ C'est un bon moment pour réfléchir à vos valeurs relationnelles.",
         "most_jealous": "😈 Signes les plus jaloux :\n\n🔥 1. SCORPION - Roi/Reine de la jalousie ! Possessivité intense, problèmes de confiance.",
         "most_loyal": "💫 Classement des signes les plus fidèles :\n\n🥇 1. SCORPION - Une fois engagé, fidèle jusqu'à la mort ! Mais ils n'oublient jamais la trahison.",
         "most_passionate": "💋 Signes les plus passionnés au lit :\n\n🔥 1. SCORPION - Champion incontesté ! Passion, intensité, profondeur...",
-        "scorpio_relationship": "♏ Les Scorpions sont les amoureux les plus mystérieux et intenses du siècle !\n\n🔮 Pourquoi mystérieux ? En tant qu'enfants de Pluton, ils explorent les profondeurs de l'existence.",
+        "scorpio_relationship": "🦋 Les Scorpions sont les amoureux les plus mystérieux et intenses du siècle !\n\n🔮 Pourquoi mystérieux ? En tant qu'enfants de Pluton, ils explorent les profondeurs de l'existence.",
         "soulmate": "💕 Réflexion relationnelle pour {sign}:\n\n🌟 Le Nœud Nord dans ton thème suggère des thèmes de croissance relationnelle. Quelles qualités valorises-tu le plus dans les connexions profondes?",
         "venus_air": "soutient ta communication",
         "venus_earth": "récompense ta fidélité",
@@ -872,7 +872,7 @@
       "challenges": "Challenges",
       "love_relationships": "Love & Relationships",
       "ancient_secret_title": "Ancient Secret of Numbers",
-      "ancient_secret_desc": "La numérologie est une sagesse ancienne où l'univers parle dans un langage mathématique. De Pythagore à la Kabbale, toutes les traditions ésotériques connaissaient le pouvoir des nombres. Votre date de naissance et votre nom portent la vibration que votre âme a apportée à ce monde. Chaque nombre est une fréquence, une énergie, un thème à explorer. Ce que vous voyez ici n'est pas une coïncidence - c'est un outil de réflexion personnelle.",
+      "ancient_secret_desc": "La numérologie est une sagesse ancienne où l'univers parle dans un langage mathématique. De Pythagore aux traditions contemplatives, toutes les traditions symboliques connaissaient le pouvoir des nombres. Votre date de naissance et votre nom portent la vibration que votre âme a apportée à ce monde. Chaque nombre est une fréquence, une énergie, un thème à explorer. Ce que vous voyez ici n'est pas une coïncidence - c'est un outil de réflexion personnelle.",
       "number_depth_title": "Depth of Number {number}",
       "kadim_title": "Eternal Dance of Numbers",
       "kadim_content": "Since Pythagoras, sages have known that numbers carry the hidden language of the universe. Your life path number is not just a digit - it is the vibration your soul brought into this world, the unique melody the universe gave you. To hear this melody, you first need silence.",
@@ -2251,7 +2251,7 @@
         "description": "Sagesse des nombres."
       },
       "kabbalah": {
-        "title": "Kabbale",
+        "title": "Exploration Symbolique",
         "description": "Connexion Reflection Card et Arbre de Vie."
       },
       "aura_reading": {
@@ -2323,7 +2323,7 @@
         "description": "Autres chemins d'exploration"
       },
       "kabbalah_numbers": {
-        "title": "Nombres kabbalistiques",
+        "title": "Nombres symboliques",
         "description": "Origine mystique des nombres."
       },
       "card_insight": {
@@ -2491,11 +2491,11 @@
         "description": "Obtenez plus d'insights."
       },
       "kabbalah_sefirot": {
-        "title": "Sefirot kabbalistiques",
+        "title": "Sefirot symboliques",
         "description": "Chemins sur l'Arbre de Vie."
       },
       "kabbalah_meditation": {
-        "title": "Méditation kabbalistique",
+        "title": "Méditation contemplative",
         "description": "Voyage sur l'Arbre de Vie."
       },
       "moon_calendar": {
@@ -2847,7 +2847,7 @@
     "archetype_profiles": "Profils du Archétype",
     "select_archetype": "Sélectionner le Signe",
     "view_house_on_map": "Voir Cette Maison sur Ma Carte",
-    "how_is_your_love_life": "Comment va votre vie amoureuse?",
+    "how_is_your_love_life": "Quels thèmes relationnels puis-je explorer?",
     "opposite_sign": "Signe Opposé",
     "composite_moon": "Lune Composite",
     "synastry_analysis": "Analyse de Synastrie",
@@ -2875,7 +2875,7 @@
     "no_profiles_yet": "Aucun profil ajouté"
   },
   "love_reflection": {
-    "title": "Comment va votre vie amoureuse?",
+    "title": "Quels thèmes relationnels puis-je explorer?",
     "today": "Aujourd'hui",
     "love_energy": "Énergie Amoureuse",
     "daily_love_energies": "Énergies Amoureuses du Jour",
@@ -3434,7 +3434,7 @@
       "reflection_question": "Reflection Question",
       "whisper_wisdom": "Whispering Wisdom",
       "share": "Share",
-      "share_footer": "Dream Interpretation | venusone.com",
+      "share_footer": "Dream Interpretation | innercycles.app",
       "explore": "EXPLORE"
     },
     "statistics": {
@@ -3731,12 +3731,12 @@
   },
   "analysis": {
     "archetype_analysis": "Analyse du Archétype",
-    "numerology_analysis": "Analyse Numérologique",
-    "aura_analysis": "Analyse de l'Aura",
-    "kabbalah_analysis": "Analyse Kabbalistique",
-    "enter_birth_info_numerology": "Entrez vos informations de naissance\npour voir votre nombre de chemin de vie",
-    "enter_birth_info_aura": "Entrez vos informations de naissance\npour découvrir la couleur de votre aura",
-    "enter_birth_info_kabbalah": "Entrez vos informations de naissance\npour voir votre carte Kabbale"
+    "discovery_analysis": "Analyse Numérologique",
+    "wellness_analysis": "Analyse de l'Aura",
+    "wisdom_analysis": "Exploration Symbolique",
+    "enter_birth_info_discovery": "Entrez vos informations de naissance\npour voir votre nombre de chemin de vie",
+    "enter_birth_info_wellness": "Entrez vos informations de naissance\npour découvrir la couleur de votre aura",
+    "enter_birth_info_wisdom": "Entrez vos informations de naissance\npour voir votre carte symbolique"
   },
   "tooltips": {
     "personal_profile": "Votre carte cosmique personnelle basée sur les données de naissance",
@@ -4381,7 +4381,7 @@
         "subtitle": "Découvrez votre destin numérologique"
       },
       "kabbala_path": {
-        "title": "Votre Chemin Kabbalistique",
+        "title": "Votre Chemin Symbolique",
         "subtitle": "Votre place sur l'Arbre de Vie"
       },
       "saturn_lessons": {
@@ -4405,8 +4405,8 @@
         "subtitle": "Découvrez le potentiel relationnel"
       },
       "soul_mate": {
-        "title": "Votre Âme Sœur",
-        "subtitle": "Identifiez votre partenaire cosmique"
+        "title": "Votre Style Relationnel",
+        "subtitle": "Découvrez vos thèmes relationnels"
       },
       "relationship_karma": {
         "title": "Votre Karma Relationnel",
@@ -4861,9 +4861,9 @@
       }
     },
     "soul_mate": {
-      "main": "{name}, voici tout ce que tu te demandes sur ton âme sœur, basé sur ton signe {sign}.",
-      "advice_template": "Pour attirer ton âme sœur : {advice}",
-      "details_template": "À quoi ressemble ton âme sœur ?\n{description}\n\nSignes les plus compatibles : {compatible}\n\nOù tu pourrais la rencontrer : {places}",
+      "main": "{name}, voici tout ce que tu te demandes sur ton style relationnel, basé sur ton signe {sign}.",
+      "advice_template": "Pour cultiver tes connexions profondes : {advice}",
+      "details_template": "Quel est ton style relationnel ?\n{description}\n\nSignes les plus compatibles : {compatible}\n\nOù tu pourrais créer des connexions : {places}",
       "compatible": {
         "aries": "Lion, Sagittaire, Gémeaux, Balance",
         "taurus": "Vierge, Capricorne, Cancer, Poissons",
@@ -5199,7 +5199,7 @@
       "justice": {
         "name": "La Justice",
         "keywords": "Equite, verite, karma",
-        "upright": "La justice sera rendue. L'honnetete et la verite sont importantes. Le karma est a l'oeuvre.",
+        "upright": "La justice comme thème de réflexion. L'honnetete et la verite sont importantes. L'équilibre est a l'oeuvre.",
         "reversed": "Injustice ou desequilibre. Eviter la responsabilite. Auto-tromperie.",
         "advice": "Acceptez les consequences de vos actions. Soyez honnete - d'abord avec vous-meme."
       },
@@ -5273,397 +5273,6 @@
         "reversed": "Affaires inachevees ou cycles incomplets. Une etape de plus est necessaire.",
         "advice": "Chaque fin est un nouveau debut. Celebrez vos accomplissements et preparez-vous pour le prochain cycle."
       }
-    }
-  },
-  "chakra": {
-    "title": "Analyse des Chakras",
-    "analyzing": "Analyse de votre energie chakra...",
-    "profile": "Profil Chakra",
-    "map": "Carte des Chakras",
-    "meditation": "Meditation",
-    "daily": "Quotidien",
-    "meditations": "Meditations Chakra",
-    "todays_energy": "Energie Chakra du Jour",
-    "focus_today": "Concentrez-vous aujourd'hui sur votre Chakra {chakra}",
-    "suggested_activities": "Activites Suggerees",
-    "strongest": "Chakra le Plus Fort",
-    "needs_attention": "Necessite de l'Attention",
-    "general_tips": "Conseils Generaux",
-    "balancing_tips": "Conseils d'Equilibrage",
-    "about": "A Propos",
-    "physical_connections": "Connexions Physiques",
-    "emotional_aspects": "Aspects Emotionnels",
-    "balance_status": "Etat d'Equilibre",
-    "active": "Actif",
-    "blocked": "Bloque",
-    "balanced": "Equilibre",
-    "energy_cycle": "Cycle Energetique",
-    "energy_cycle_content": "Les chakras ne sont pas seulement des centres energetiques, ce sont des portes de conscience. Chaque chakra est un pont entre le corps physique et le corps spirituel. Les equilibrer est la cle non seulement de la sante mais de l'eveil interieur.",
-    "tantric_wisdom": "Sagesse Tantrique",
-    "minutes": "{duration} minutes",
-    "names": {
-      "root": "Chakra Racine",
-      "sacral": "Chakra Sacre",
-      "solar_plexus": "Plexus Solaire",
-      "heart": "Chakra du Coeur",
-      "throat": "Chakra de la Gorge",
-      "third_eye": "Troisieme Oeil",
-      "crown": "Chakra Couronne"
-    },
-    "data": {
-      "root": {
-        "description": "Muladhara - \"Support Racine\" - symbolise par un lotus rouge a 4 petales. Situe a la base de la colonne vertebrale, ce chakra represente les instincts de survie, la securite, l'ancrage et votre connexion au monde materiel. Il est associe a l'element Terre. L'energie ancestrale y est stockee. Lorsqu'il est equilibre, vous vous sentez en securite et stable.",
-        "physical_connection": "Jambes, pieds, os, systeme immunitaire",
-        "emotional_aspects": "Sentiment de securite, stabilite, besoins fondamentaux",
-        "balance_high": "Vous avez une base solide, vous vous sentez en securite.",
-        "balance_low": "Vous avez besoin d'ancrage. Passez du temps dans la nature.",
-        "balance_mid": "En equilibrage - renforcez avec une pratique reguliere.",
-        "healing_suggestions": [
-          "Marchez pieds nus sur la terre",
-          "Consommez des aliments rouges",
-          "Pratiquez la meditation d'etreinte d'arbre"
-        ],
-        "crystals": [
-          "Jaspe rouge",
-          "Tourmaline noire",
-          "Hematite"
-        ],
-        "affirmation": "Je suis en securite. L'univers me protege et me soutient."
-      },
-      "sacral": {
-        "description": "Le chakra sacre est connecte a la creativite, aux emotions, a la sexualite et a la capacite de plaisir.",
-        "physical_connection": "Organes reproducteurs, reins, bas du dos",
-        "emotional_aspects": "Flux emotionnel, passion, creativite",
-        "balance_high": "Votre energie creative circule, vous etes en paix avec vos emotions.",
-        "balance_low": "Vous avez du mal a exprimer vos emotions.",
-        "balance_mid": "Revitalisez cette energie avec des projets creatifs.",
-        "healing_suggestions": [
-          "Dansez ou bougez votre corps librement",
-          "Consommez des aliments orange",
-          "Connectez-vous a l'eau - nager, se baigner"
-        ],
-        "crystals": [
-          "Cornaline",
-          "Calcite orange",
-          "Pierre de lune"
-        ],
-        "affirmation": "Mes emotions circulent librement. J'embrasse ma creativite."
-      },
-      "solar_plexus": {
-        "description": "Le chakra du plexus solaire est lie au pouvoir personnel, a la confiance en soi, a la volonte et au sens de l'identite.",
-        "physical_connection": "Systeme digestif, estomac, foie",
-        "emotional_aspects": "Confiance en soi, pouvoir personnel, prise de decision",
-        "balance_high": "Vous avez une forte image de vous-meme.",
-        "balance_low": "Vous devez reconstruire votre confiance en vous.",
-        "balance_mid": "Renforcez-vous en vous concentrant sur vos objectifs.",
-        "healing_suggestions": [
-          "Passez du temps au soleil",
-          "Faites des exercices pour renforcer la region abdominale",
-          "Consommez des aliments jaunes"
-        ],
-        "crystals": [
-          "Citrine",
-          "Oeil de tigre",
-          "Jaspe jaune"
-        ],
-        "affirmation": "Je suis puissant. J'ai le plein controle de ma vie."
-      },
-      "heart": {
-        "description": "Anahata - \"Son Non Frappe\" - symbolise par un lotus vert a 12 petales. Le chakra du coeur est l'energie de l'amour, de la compassion, du pardon et de l'acceptation inconditionnelle. C'est le pont reliant le corps physique et spirituel. Il est connecte a l'element Air. Lorsqu'il est equilibre, vous experimentez l'amour universel et la compassion pour tous les etres.",
-        "physical_connection": "Coeur, poumons, poitrine, bras, mains",
-        "emotional_aspects": "Amour inconditionnel, empathie, pardon",
-        "balance_high": "Votre coeur est plein d'amour, vous etes harmonieux dans vos relations.",
-        "balance_low": "Montrez de la compassion a vous-meme et aux autres.",
-        "balance_mid": "Ouvrez votre coeur avec des pratiques de pardon.",
-        "healing_suggestions": [
-          "Tenez un journal de gratitude",
-          "Consommez des legumes verts",
-          "Passez du temps de qualite avec vos proches"
-        ],
-        "crystals": [
-          "Quartz rose",
-          "Aventurine verte",
-          "Emeraude"
-        ],
-        "affirmation": "Mon coeur est plein d'amour. Je suis ouvert a donner et recevoir."
-      },
-      "throat": {
-        "description": "Le chakra de la gorge est lie a la communication, a l'expression de soi, a la verite et a la voix creative.",
-        "physical_connection": "Gorge, thyroide, cou, oreilles",
-        "emotional_aspects": "Communication, expression de soi, verite",
-        "balance_high": "Vous pouvez vous exprimer confortablement.",
-        "balance_low": "Vous avez du mal a vous faire entendre.",
-        "balance_mid": "Renforcez-vous avec des pratiques d'ecriture quotidiennes.",
-        "healing_suggestions": [
-          "Chantez ou recitez des mantras",
-          "Commencez a ecrire vos sentiments",
-          "Buvez du the bleu (pois papillon)"
-        ],
-        "crystals": [
-          "Aigue-marine",
-          "Lapis lazuli",
-          "Agate dentelle bleue"
-        ],
-        "affirmation": "Ma voix a de la valeur. Je partage ma verite avec amour."
-      },
-      "third_eye": {
-        "description": "Le chakra du troisieme oeil est connecte a l'intuition, a la vision interieure, a l'imagination et a la conscience spirituelle.",
-        "physical_connection": "Cerveau, yeux, glande pituitaire",
-        "emotional_aspects": "Intuition, sagesse interieure, vision",
-        "balance_high": "Votre intuition est forte, vous etes en harmonie avec votre voix interieure.",
-        "balance_low": "Apprenez a ecouter votre intuition.",
-        "balance_mid": "Developpez votre perspicacite avec la meditation.",
-        "healing_suggestions": [
-          "Observez le ciel nocturne",
-          "Tenez un journal de reves",
-          "Pratiquez l'ecriture intuitive"
-        ],
-        "crystals": [
-          "Amethyste",
-          "Labradorite",
-          "Sodalite"
-        ],
-        "affirmation": "Je fais confiance a mon intuition. Ma sagesse interieure me guide."
-      },
-      "crown": {
-        "description": "Le chakra couronne est lie a la connexion spirituelle, a l'illumination, a la conscience universelle et au but de vie.",
-        "physical_connection": "Cerveau, systeme nerveux, glande pineale",
-        "emotional_aspects": "Connexion spirituelle, quete de sens, unite",
-        "balance_high": "Vous avez une connexion profonde avec l'univers.",
-        "balance_low": "Renforcez votre connexion avec des pratiques spirituelles.",
-        "balance_mid": "Ouvrez-vous avec le silence et la meditation.",
-        "healing_suggestions": [
-          "Passez du temps en silence",
-          "Pratiquez la meditation de pleine conscience",
-          "Soyez seul dans la nature"
-        ],
-        "crystals": [
-          "Quartz clair",
-          "Amethyste",
-          "Selenite"
-        ],
-        "affirmation": "Je suis un avec l'univers. Je suis ouvert a la guidance divine."
-      }
-    },
-    "overall_analysis": "En tant que {sign}, votre systeme energetique est particulierement fort dans la zone {strongest}. Cela signifie que vous avez un talent naturel pour les questions de {emotional_aspects}.\n\nCependant, accorder plus d'attention a votre zone {weakest} serait benefique. Vous pouvez ajouter les pratiques recommandees pour ce chakra a votre routine quotidienne.\n\nDans l'ensemble, votre systeme de chakras fonctionne harmonieusement. Vous pouvez maintenir cet equilibre avec une meditation reguliere et des pratiques de pleine conscience.",
-    "general_tips_list": [
-      "Meditez au moins 10 minutes chaque jour",
-      "Ancrez-vous en passant du temps dans la nature",
-      "Mangez colore et equilibre",
-      "Faites de l'exercice regulierement",
-      "Ecrivez vos emotions dans un journal"
-    ],
-    "meditation_titles": {
-      "grounding": "Meditation d'Ancrage",
-      "heart_opening": "Meditation d'Ouverture du Coeur",
-      "third_eye_activation": "Activation du Troisieme Oeil"
-    },
-    "meditation_descriptions": {
-      "grounding": "Imaginez des racines s'etendant de vos pieds dans la terre. Ressentez securite et stabilite.",
-      "heart_opening": "Imaginez une lumiere verte dans votre coeur. A chaque respiration, laissez cette lumiere grandir.",
-      "third_eye_activation": "Concentrez-vous sur le point entre vos sourcils. Imaginez que vous pouvez voir une lumiere violette."
-    },
-    "daily_description": "Aujourd'hui, l'energie {chakra} est proeminente. Vous pouvez rendre votre journee plus productive en faisant des activites alignees avec cette energie.",
-    "daily_reason": "Ce jour de la semaine correspond a l'energie {chakra}.",
-    "daily_activities": {
-      "meditation_5min": "Faites une meditation de 5 minutes pour {chakra}",
-      "carry_crystal": "Portez la pierre {crystal} avec vous",
-      "affirmation_3x": "Repetez l'affirmation 3 fois pendant la journee"
-    }
-  },
-  "aura": {
-    "title": "Analyse de l'Aura",
-    "your_energy_body": "Votre Corps Energetique",
-    "energy_body_description": "L'aura est le champ energetique qui entoure votre corps physique. Chaque pensee, emotion et experience affecte la couleur et l'intensite de votre aura. Votre date de naissance et votre nom determinent votre couleur d'aura principale - c'est votre signature spirituelle. Comprendre votre aura est la cle pour gerer et proteger votre energie.",
-    "primary_aura": "Aura Principale",
-    "secondary_aura": "Aura Secondaire",
-    "energy_level": "Niveau d'Energie",
-    "chakra_balance": "Equilibre des Chakras",
-    "chakra_balance_info": "Les chakras sont les centres energetiques de votre corps. Chacun gouverne differents domaines de la vie.",
-    "daily_energy": "Energie Aura Quotidienne",
-    "todays_aura_energy": "Energie Aura du Jour",
-    "daily_affirmation": "Votre Affirmation Quotidienne",
-    "cleansing": "Nettoyage de l'Aura",
-    "spiritual_advice": {
-      "red": "Ancrez votre energie. L'activite physique et les promenades dans la nature equilibreront votre aura.",
-      "orange": "Exprimez votre creativite. L'art, la danse ou la musique renforceront votre aura.",
-      "yellow": "Gardez votre clarte mentale. Apprendre et enseigner poliront votre aura.",
-      "green": "Ouvrez votre coeur. Le travail de guerison et l'aide aux autres feront grandir votre aura.",
-      "blue": "Dites votre verite. La communication honnete et l'expression authentique renforceront votre aura.",
-      "indigo": "Faites confiance a votre intuition. La meditation et le travail sur les reves approfondiront votre aura.",
-      "violet": "Renforcez votre connexion cosmique. Les pratiques spirituelles et le service eleveront votre aura.",
-      "pink": "Repandez l'amour inconditionnel. La compassion et l'empathie etendront votre aura.",
-      "white": "Maintenez votre purete. Les rituels de purification et la meditation protegeront votre aura.",
-      "gold": "Souvenez-vous de votre connexion divine. La priere et la gratitude poliront votre aura."
-    },
-    "balancing_advice": "Conseil d'Equilibrage",
-    "mantra": "Mantra",
-    "strongest": "Le Plus Fort",
-    "needs_balance": "Necessite un Equilibrage",
-    "energy_body_secret": "Le Secret de Votre Corps Energetique",
-    "energy_body_secret_content": "Le concept d'aura est base sur des milliers d'annees de tradition esoterique. Connu comme 'ka' dans l'Egypte ancienne, ce corps energetique est appele 'prana maya kosha' (enveloppe d'energie vitale) dans la tradition indienne. La photographie Kirlian moderne a confirme cette sagesse ancienne, rendant visible le champ bioelectrique autour des organismes vivants.",
-    "colors": {
-      "red": "Rouge",
-      "orange": "Orange",
-      "yellow": "Jaune",
-      "green": "Vert",
-      "blue": "Bleu",
-      "indigo": "Indigo",
-      "violet": "Violet",
-      "pink": "Rose",
-      "white": "Blanc",
-      "gold": "Or"
-    },
-    "status": {
-      "active": "Actif",
-      "balanced": "Equilibre",
-      "weak": "Faible"
-    },
-    "chakra_area_root": "Securite, Survie",
-    "chakra_area_sacral": "Creativite, Emotions",
-    "chakra_area_solar": "Puissance, Confiance",
-    "chakra_area_heart": "Amour, Connexion",
-    "chakra_area_throat": "Communication, Expression",
-    "chakra_area_third_eye": "Intuition, Sagesse",
-    "chakra_area_crown": "Spiritualite, Conscience",
-    "chakra_advice_root": "Promenez-vous dans la nature, portez du rouge. Meditations d'ancrage et exercices physiques renforcent ce chakra.",
-    "chakra_advice_sacral": "Faites des activites creatives, dansez. Mangez des aliments oranges et restez pres de l'element eau.",
-    "chakra_advice_solar": "Passez du temps au soleil. Faites des exercices de respiration et dites-vous des affirmations positives.",
-    "chakra_advice_heart": "Passez du temps avec vos proches. Tenez un journal de gratitude et passez du temps dans des espaces verts.",
-    "chakra_advice_throat": "Exprimez vos sentiments, chantez. Portez des tons bleus et buvez beaucoup d'eau.",
-    "chakra_advice_third_eye": "Meditez et notez vos reves. Concentrez-vous sur les couleurs violettes/indigo.",
-    "chakra_advice_crown": "Passez du temps dans le silence, meditez. Portez du blanc ou du violet et connectez-vous avec la nature.",
-    "affirmations": {
-      "red": "Je suis fort et en securite. J'avance sans peur.",
-      "orange": "Ma creativite est illimitee. Je m'exprime avec joie.",
-      "yellow": "Mon esprit est clair, ma volonte est forte. Le succes est mien.",
-      "green": "Mon coeur est ouvert, mon amour est infini. Je porte la guerison.",
-      "blue": "Je dis ma verite. Ma voix est puissante.",
-      "indigo": "Je fais confiance a mon intuition. Ma sagesse interieure me guide.",
-      "violet": "Je suis un avec l'univers. Je sers mon but superieur.",
-      "pink": "Je donne de l'amour, je recois de l'amour. La compassion est ma nature.",
-      "white": "Je suis dans la lumiere pure. La protection divine est avec moi.",
-      "gold": "Je suis energie divine. L'abondance et la prosperite coulent avec moi."
-    },
-    "daily_guidance": {
-      "strongest": "Aujourd'hui votre aura est a son plus fort. Jour ideal pour utiliser vos talents naturels.",
-      "harmonious": "L'energie d'aujourd'hui est harmonieuse avec votre aura. Restez dans le flux et saisissez les opportunites.",
-      "different": "Aujourd'hui a un flux d'energie different. Flexibilite et adaptation sont importants. Trouvez l'equilibre."
-    },
-    "cleansing_tips": {
-      "meditation_title": "Meditation",
-      "meditation_desc": "Meditez sur {focus} pendant 10-15 minutes par jour pour renforcer votre aura {color}.",
-      "crystal_title": "Therapie par les cristaux",
-      "crystal_desc": "Le cristal {crystal} est ideal pour equilibrer votre aura.",
-      "color_title": "Chromotherapie",
-      "color_desc": "Portez des vetements dans les tons {color} ou entourez-vous d'objets de cette couleur.",
-      "nature_title": "Connexion a la nature",
-      "sound_title": "Sonotherapie",
-      "sound_desc": "Ecoutez de la musique a la frequence {frequency} Hz ou chantez le mantra {mantra}."
-    },
-    "meditation_focus": {
-      "red": "ancrage et securite",
-      "orange": "creativite et flux emotionnel",
-      "yellow": "pouvoir personnel et confiance",
-      "green": "ouverture du coeur et guerison",
-      "blue": "communication et expression authentique",
-      "indigo": "troisieme oeil et intuition",
-      "violet": "chakra couronne et connexion universelle",
-      "pink": "amour inconditionnel et compassion",
-      "white": "purification et protection",
-      "gold": "connexion divine et abondance"
-    },
-    "crystals": {
-      "red": "Jaspe rouge ou Grenat",
-      "orange": "Cornaline ou Calcite orange",
-      "yellow": "Citrine ou Oeil de tigre",
-      "green": "Aventurine verte ou Emeraude",
-      "blue": "Lapis-lazuli ou Aigue-marine",
-      "indigo": "Amethyste ou Sodalite",
-      "violet": "Amethyste violette ou Sugilite",
-      "pink": "Quartz rose ou Rhodonite",
-      "white": "Quartz clair ou Selenite",
-      "gold": "Topaze doree ou Pyrite"
-    },
-    "nature": {
-      "red": "Marchez pieds nus sur la terre. Enlacez les arbres.",
-      "orange": "Regardez le coucher de soleil. Passez du temps pres de l'eau.",
-      "yellow": "Prenez des bains de soleil. Soyez dans les jardins fleuris.",
-      "green": "Promenez-vous en foret. Prenez soin des plantes.",
-      "blue": "Soyez pres de la mer ou d'un lac. Regardez le ciel.",
-      "indigo": "Observez le ciel nocturne et les etoiles.",
-      "violet": "Soyez en montagne ou en altitude.",
-      "pink": "Passez du temps dans les jardins fleuris.",
-      "white": "Observez la neige ou les nuages. Soyez au grand air.",
-      "gold": "Regardez le lever du soleil. Soyez dans la lumiere du soleil."
-    },
-    "meanings": {
-      "blue": "Communication, vérité et calme. Digne de confiance et paisible.",
-      "gold": "Sagesse divine, protection et abondance. Leadership spirituel.",
-      "green": "Énergie de guérison, équilibre et croissance. Centré sur le cœur et nourrissant.",
-      "indigo": "Intuition profonde, conscience spirituelle et perspicacité. Mystique et visionnaire.",
-      "orange": "Créativité, expression émotionnelle et sociabilité. Esprit joyeux et aventurier.",
-      "pink": "Amour inconditionnel, compassion et romance. Sensible et aimant.",
-      "red": "Forte énergie vitale, passion et force physique. Ancré et axé sur la survie.",
-      "violet": "Connexion spirituelle, transformation et sagesse. Conscience supérieure.",
-      "white": "Pureté, protection divine et haut développement spirituel. Éclairé.",
-      "yellow": "Pouvoir mental, optimisme et confiance. Intellectuel et analytique."
-    }
-  },
-  "kabbalah": {
-    "sefirah_names": {
-      "keter": "Couronne (Keter)",
-      "chokhmah": "Sagesse (Chokhmah)",
-      "binah": "Compréhension (Binah)",
-      "chesed": "Bonté (Chesed)",
-      "gevurah": "Force (Gevurah)",
-      "tiferet": "Beauté (Tiferet)",
-      "netzach": "Victoire (Netzach)",
-      "hod": "Splendeur (Hod)",
-      "yesod": "Fondation (Yesod)",
-      "malkut": "Royaume (Malkut)"
-    },
-    "sefirah_meanings": {
-      "keter": "Point d'union avec l'infini. Source de la volonté divine. Début de tous les potentiels.",
-      "chokhmah": "Sagesse pure et inspiration. L'étincelle créative. Source de l'énergie masculine et de la vision.",
-      "binah": "Compréhension profonde et perspicacité. Énergie formatrice. Sagesse féminine et intuition.",
-      "chesed": "Amour inconditionnel et compassion. Expansion et abondance. Générosité et guérison.",
-      "gevurah": "Force intérieure et discipline. Limites et justice. Purification et concentration.",
-      "tiferet": "Centre d'équilibre et d'harmonie. Beauté et vérité. Union du cœur et de l'âme.",
-      "netzach": "Détermination et endurance. Force émotionnelle et passion. Expression créative.",
-      "hod": "Clarté mentale et communication. Pensée analytique. Compréhension spirituelle.",
-      "yesod": "Connexion astrale et rêves. Subconscient et intuition. Base de la manifestation.",
-      "malkut": "Monde physique et matière. Ancrage et réalisation. Vie quotidienne."
-    },
-    "compatibility": {
-      "very_high": "Il y a une connexion profonde entre vos âmes. Les énergies {s1} et {s2} se complètent, ensemble vous formez une haute harmonie spirituelle.",
-      "high": "Vous avez une forte connexion énergétique. {s1} et {s2} portent des énergies de soutien.",
-      "medium": "Bien que {s1} et {s2} portent des énergies différentes, ces différences offrent des opportunités de croissance.",
-      "low": "Les énergies {s1} et {s2} sont différentes. Cette relation contient des leçons pour les deux parties."
-    },
-    "daily_guidance": {
-      "keter": "Aujourd'hui est un jour pour se connecter au potentiel infini. Prenez du temps pour la méditation et le silence intérieur.",
-      "chokhmah": "Aujourd'hui est un jour de sagesse et d'intuition. Des inspirations soudaines peuvent venir. Soyez ouvert aux nouvelles idées.",
-      "binah": "Aujourd'hui est un jour de compréhension. Concentrez-vous sur les détails, analysez. Faites confiance à votre profondeur émotionnelle.",
-      "chesed": "Aujourd'hui est un jour d'amour et de compassion. Aidez les autres, soyez généreux. Gardez votre chakra du cœur ouvert.",
-      "gevurah": "Aujourd'hui est un jour de force et de discipline. Protégez vos limites, prenez les décisions nécessaires.",
-      "tiferet": "Aujourd'hui est un jour d'équilibre et de beauté. Essayez d'équilibrer les opposés. Appréciez la beauté intérieure et extérieure.",
-      "netzach": "Aujourd'hui est un jour de détermination et de victoire. Concentrez-vous sur vos objectifs, n'abandonnez pas.",
-      "hod": "Aujourd'hui est un jour de communication et d'analyse. Clarifiez vos pensées, partagez vos connaissances.",
-      "yesod": "Aujourd'hui est un jour de fondation et de connexion. Faites attention à vos rêves, faites confiance à votre intuition.",
-      "malkut": "Aujourd'hui est un jour du monde matériel et de la manifestation. Concentrez-vous sur les questions pratiques."
-    },
-    "daily_meditation": {
-      "keter": "Fermez les yeux et imaginez une lumière blanche brillante au-dessus de votre tête. Sentez cette lumière vous unir à l'infini.",
-      "chokhmah": "Imaginez un espace gris - ni complètement clair ni complètement sombre. Sentez de nouvelles idées naître dans cette incertitude.",
-      "binah": "Imaginez que vous êtes dans un océan bleu profond. Sentez la profondeur infinie vous apporter la compréhension.",
-      "chesed": "Imaginez une lumière dorée rayonnant de votre cœur. Sentez cette lumière porter l'amour à tous les êtres.",
-      "gevurah": "Imaginez une flamme rouge - brûlante mais purifiante. Sentez ce feu nettoyer tout ce qui est inutile.",
-      "tiferet": "Imaginez-vous baigné dans la lumière dorée du soleil. Sentez cette lumière maintenir tous les opposés en équilibre.",
-      "netzach": "Imaginez-vous au milieu d'une forêt verte luxuriante. Sentez la résilience et la victoire de la nature.",
-      "hod": "Imaginez une sphère de lumière orange illuminant votre esprit. Sentez vos pensées devenir plus claires.",
-      "yesod": "Imaginez une lumière violette entourant votre zone du nombril. Sentez la porte du royaume des rêves s'ouvrir.",
-      "malkut": "Imaginez vos pieds s'enraciner dans la terre. Sentez l'énergie de la terre vous donner de la force."
     }
   },
   "days": {
@@ -5954,7 +5563,7 @@
       "Novembre",
       "Decembre"
     ],
-    "share_text": "L'energie cosmique du jour est avec moi! L'univers murmure... #venusone #connaissance de soi #aperçu #energiecosmique",
+    "share_text": "L'energie cosmique du jour est avec moi! L'univers murmure... #InnerCycles #connaissance de soi #aperçu #energiecosmique",
     "headlines": {
       "aries": [
         "Ton courage est mis a l'epreuve aujourd'hui.",
@@ -7564,31 +7173,31 @@
           "element_perspective_label": "🔥 {element} ELEMENT PERSPECTIVE",
           "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
           "practice_label": "✨ PRACTICAL APPLICATION",
-          "aries": {
+          "pioneer": {
             "basic_meaning": "Water, for your fire sign, is a call to dive into emotional depths. Subconscious energies want to surface.",
             "element_perspective": "Water's calming energy has come to balance your fire nature. Time for patience and rest. A period of reflection before action.",
             "psychological": "Water: Subconscious, emotions, mother archetype\nAs Aries: Suppressed emotions want to surface\nMessage: Not just running, but sometimes pausing to feel is needed",
             "practice": "• Meditate by the water\n• Set your intention while showering\n• Allow your tears\n• Write your feelings down"
           },
-          "taurus": {
+          "builder": {
             "basic_meaning": "Water, for your earth sign, symbolizes fertility and abundance. Material and emotional flow is entering your life.",
             "element_perspective": "Water nourishes earth - this dream is a harbinger of growth and prosperity. Trust your natural rhythm, let go without forcing.",
             "psychological": "Water: Emotional security, comfort, nourishment\nAs Taurus: The connection between inner peace and material security\nMessage: Emotional wealth attracts material wealth",
             "practice": "• Water your plants, tend your garden\n• Take a bath ritual\n• Visualize financial flow\n• Make relaxation and comfort your priority"
           },
-          "cancer": {
+          "nurturer": {
             "basic_meaning": "Water is your element - this dream is extremely meaningful! There is a powerful message from your spiritual depths.",
             "element_perspective": "This dream indicates a deep connection with home, family and your roots. The mother archetype is active. Your inner home is calling.",
             "psychological": "Water: Subconscious, intuition, protective instinct\nAs Cancer: The need for spiritual protection and home\nMessage: Return home - to your inner home, your spiritual home",
             "practice": "• Fill water under moonlight and drink\n• Look at family photos\n• Take a sea salt bath\n• Clean the house - renew the energy\n• Connect with mother figures"
           },
-          "scorpio": {
+          "transformer": {
             "basic_meaning": "Water is your element and this dream indicates deep transformation! Time for renewal has come.",
             "element_perspective": "Don't fear diving into the depths of water. There are treasures there. The cycle of death and rebirth is active.",
             "psychological": "Water: The deepest layers of the subconscious\nAs Scorpio: Time for shadow work\nMessage: Instead of fearing darkness, illuminate it",
             "practice": "• Do deep meditations\n• Keep a shadow journal\n• Practice letting go ritual\n• Embrace Plutonian transformation\n• Consider therapy or counseling"
           },
-          "pisces": {
+          "dreamer": {
             "basic_meaning": "Water is your element - your connection with spiritual realms is very strong! You can fully trust your intuition.",
             "element_perspective": "You're experiencing oneness with the universe. Creative inspiration is flowing. Ideal period for artistic expression.",
             "psychological": "Water: Universal consciousness, healing, collective subconscious\nAs Pisces: Mystical experiences and inner guidance\nMessage: You are beyond water - you are the ocean",
@@ -7750,18 +7359,18 @@
           "water_generic": "emotions, intuition and spiritual depth"
         },
         "personal_advice": {
-          "aries": "Advice: Write down your first thoughts when you wake up in the morning. Your fire energy can quickly make you forget subconscious messages.",
-          "taurus": "Advice: Write your dreams in a dream journal. Your earth energy works better with tangible records.",
-          "gemini": "Advice: Tell your dream to someone. Your air energy loves to find meaning through verbal expression.",
-          "cancer": "Advice: Pay attention to moon phases. Your dreams tend to be more vivid during full moon and new moon times.",
-          "leo": "Advice: Express your dreams creatively - draw, write, share. Your fire energy loves expression.",
-          "virgo": "Advice: Keep a list of dream symbols. Your earth energy appreciates systematic analysis.",
-          "libra": "Advice: Focus on relationships in your dreams. Your air energy draws lessons from social dynamics.",
-          "scorpio": "Advice: Do deep meditation. Your water energy is very powerful for diving into subconscious depths.",
-          "sagittarius": "Advice: Interpret your dreams philosophically. Your fire energy loves to see the big picture.",
-          "capricorn": "Advice: Think about how to apply your dreams to practical life. Your earth energy wants concrete results.",
-          "aquarius": "Advice: Join dream communities. Your air energy is nourished by collective wisdom.",
-          "pisces": "Advice: Set intention before sleep. Your water energy can connect directly with spiritual guidance."
+          "pioneer": "Advice: Write down your first thoughts when you wake up in the morning. Your fire energy can quickly make you forget subconscious messages.",
+          "builder": "Advice: Write your dreams in a dream journal. Your earth energy works better with tangible records.",
+          "communicator": "Advice: Tell your dream to someone. Your air energy loves to find meaning through verbal expression.",
+          "nurturer": "Advice: Pay attention to moon phases. Your dreams tend to be more vivid during full moon and new moon times.",
+          "performer": "Advice: Express your dreams creatively - draw, write, share. Your fire energy loves expression.",
+          "analyst": "Advice: Keep a list of dream symbols. Your earth energy appreciates systematic analysis.",
+          "harmonizer": "Advice: Focus on relationships in your dreams. Your air energy draws lessons from social dynamics.",
+          "transformer": "Advice: Do deep meditation. Your water energy is very powerful for diving into subconscious depths.",
+          "explorer": "Advice: Interpret your dreams philosophically. Your fire energy loves to see the big picture.",
+          "achiever": "Advice: Think about how to apply your dreams to practical life. Your earth energy wants concrete results.",
+          "visionary": "Advice: Join dream communities. Your air energy is nourished by collective wisdom.",
+          "dreamer": "Advice: Set intention before sleep. Your water energy can connect directly with spiritual guidance."
         }
       }
     }
@@ -8287,7 +7896,7 @@
     "transit_calendar": "Transit Calendar",
     "numerology": "Numerology",
     "card_insight": "Reflection Card",
-    "kabbalah": "Kabbalah",
+    "kabbalah": "Symbolic Exploration",
     "aura": "Aura",
     "chakra": "Chakra",
     "crystal_guide": "Crystal Guide",
@@ -8306,9 +7915,9 @@
     "aura_color": "Your Aura Color",
     "chakra_balance": "Your Chakra Balance",
     "life_number": "Your Life Number",
-    "kabbalah_path": "Your Kabbalah Path",
+    "kabbalah_path": "Your Symbolic Path",
     "compatibility_analysis": "Compatibility Analysis",
-    "soulmate": "Your Soulmate",
+    "soulmate": "Your Relationship Style",
     "relationship_karma": "Your Relationship Karma",
     "celebrity_twin": "Your Celebrity Twin",
     "cosmic_trace": "Cosmic Trace",
@@ -8354,11 +7963,11 @@
       "timing": "Timing"
     },
     "questions": {
-      "daily_lucky_hours": "Quelles sont mes heures les plus chanceuses aujourd'hui quand mon énergie sera la plus haute?",
+      "daily_lucky_hours": "Quels sont les moments où mon énergie sera la plus haute aujourd'hui?",
       "daily_danger_hours": "À quelles heures dangereuses et obstacles possibles dois-je faire attention aujourd'hui?",
       "weekly_advice": "Quels sont les trois conseils les plus importants pour mon signe cette semaine?",
       "cosmic_weather": "Quelle est ma météo cosmique aujourd'hui selon mon Soleil, ma Lune et mon ascendant?",
-      "venus_mars_love": "Que puis-je attendre dans ma vie amoureuse ce mois-ci selon les transits de Vénus et Mars?",
+      "venus_mars_love": "Quels thèmes relationnels puis-je explorer ce mois-ci selon les transits de Vénus et Mars?",
       "ideal_partner": "Comment est mon partenaire idéal selon mon profil personnel et où pourrais-je le rencontrer?",
       "relationship_challenges": "Quelles sont les causes personnels profondes des défis dans ma relation?",
       "synastry_analysis": "Comment est ma compatibilité synastrique avec mon partenaire, quelles sont nos forces et faiblesses?",
@@ -9001,7 +8610,7 @@
       "practical_advice": "CONSEIL PRATIQUE",
       "wisdom_affirmation": "AFFIRMATION DU JOUR",
       "more_help": "Pour une aide plus spécifique, vous pouvez me demander :",
-      "example_questions": "• \"Mon aperçu pour aujourd'hui\"\n• \"Comment sera ma vie amoureuse ?\"\n• \"Conseils pour la carrière\"\n• \"Effets des phases lunaires\"",
+      "example_questions": "• \"Mon aperçu pour aujourd'hui\"\n• \"Quels thèmes relationnels puis-je explorer ?\"\n• \"Conseils pour la carrière\"\n• \"Effets des phases lunaires\"",
       "date_format": "{day}/{month}/{year}",
       "moon_in_sign": "Lune : En {sign}",
       "rising_sign_header": "{sign} & ANALYSE DE L'ASCENDANT",
@@ -9172,9 +8781,9 @@
       "abundance_title": "Abundance Manifestation",
       "abundance_duration": "15 min",
       "abundance_description": "Remove abundance blocks and open the flow of prosperity.",
-      "soulmate_title": "Soulmate Attraction",
+      "soulmate_title": "Deep Connection Meditation",
       "soulmate_duration": "20 min",
-      "soulmate_description": "Clear relationship obstacles and attract your soulmate."
+      "soulmate_description": "Clear relationship obstacles and cultivate deeper connections."
     }
   },
   "reiki": {
@@ -9267,164 +8876,6 @@
       "default": "Stay in harmony with the energy of the universe."
     }
   },
-  "numerology": {
-    "title": "Numerology",
-    "brand_footer": "Numerology — InnerCycles",
-    "karmic_not_found": "Karmic debt information not found",
-    "karmic_wisdom": "Karmic Wisdom",
-    "karmic_cycle": "Karmic Cycle",
-    "karmic_debt_badge": "KARMIC DEBT",
-    "deep_meaning": "Deep Meaning",
-    "past_life_patterns": "Past Life Patterns",
-    "life_lesson": "Your Lesson in This Life",
-    "challenge": "Challenge",
-    "gift": "Gift",
-    "healing_path": "Healing Path",
-    "spiritual_practice": "Spiritual Practice",
-    "warnings": "Things to Watch",
-    "strengths_learned": "Strengths (When Learned)",
-    "life_areas_impact": "Impact sur les Domaines de Vie",
-    "reduces_to_archetype": "Se réduit à {number} • {archetype}",
-    "relationships": "Relations",
-    "career": "Carrière",
-    "health": "Santé",
-    "daily_affirmation": "Affirmation Quotidienne",
-    "other_karmic_debts": "Other Karmic Debts",
-    "life_path_not_found": "Life path number not found",
-    "soul_mission": "Soul Mission",
-    "gift_to_world": "Your Gift to the World",
-    "love_relationships": "Love & Relationships",
-    "career_path": "Career Path",
-    "spiritual_lesson": "Spiritual Lesson",
-    "health_wellness": "Health & Wellness",
-    "quick_answer": "Quick Answer",
-    "shadow_info": "Shadow transforms with awareness...",
-    "number_compatibility": "Number Compatibility",
-    "compatible": "Compatible",
-    "challenging": "Challenging",
-    "famous_people": "Famous People with This Life Path",
-    "your_affirmation": "Your Daily Affirmation",
-    "master_not_found": "Master number not found",
-    "master_number_badge": "MASTER NUMBER",
-    "master_feature": "Master Number Feature",
-    "challenges": "Challenges",
-    "keywords": "Keywords",
-    "master_practical_advice": "Practical Advice for Master {number}",
-    "master_secret": "The Secret of Master {number}",
-    "ancient_numerology": "Ancient Numerology",
-    "element_energy": "{element} Energy",
-    "master_tip_11": "As a Master 11, practice regular meditation and grounding to protect your high intuition and sensitivity. Protect yourself from energy vampires.",
-    "master_tip_22": "As a Master 22, build your big visions step by step. Perfectionism can paralyze - embrace the principle that 'done is better than perfect'.",
-    "master_tip_33": "As a Master 33, don't neglect yourself while healing others. Boundaries are not unkind - put on your own mask first.",
-    "personal_year_not_found": "Personal year information not found",
-    "year_wisdom": "Year {number} Wisdom",
-    "cyclical_wisdom": "Cyclical Wisdom",
-    "personal_year": "Personal Year",
-    "year_theme": "Theme of the Year",
-    "energy": "Energy:",
-    "year_guidance": "Guidance for the Year",
-    "focus": "Focus",
-    "avoid": "Avoid",
-    "year_affirmation": "Affirmation for the Year",
-    "nine_year_cycle": "9-Year Cycle",
-    "shadow_side": "Shadow Side",
-    "shadow_transforms": "Shadow transforms with awareness. Acceptance is integration.",
-    "life_path_question": "What does life path {number} mean?",
-    "numerology_tag": "Numerology",
-    "life_path_title": "Life Path {number}",
-    "number_secret": "The Secret of Number {number}",
-    "life_path_bullets_1_1": "Life path 1 carries leadership and independence energy.",
-    "life_path_bullets_1_2": "The pioneering soul is born for new beginnings.",
-    "life_path_bullets_1_3": "Individuality and originality are core life themes.",
-    "life_path_bullets_2_1": "Life path 2 carries balance and partnership energy.",
-    "life_path_bullets_2_2": "Diplomacy and harmony are natural talents.",
-    "life_path_bullets_2_3": "Relationships and cooperation are central to life purpose.",
-    "life_path_bullets_3_1": "Life path 3 carries creativity and expression energy.",
-    "life_path_bullets_3_2": "Natural talent exists in art and communication.",
-    "life_path_bullets_3_3": "Spreading joy and inspiration is the spiritual mission.",
-    "life_path_bullets_4_1": "Life path 4 carries order and stability energy.",
-    "life_path_bullets_4_2": "Born to build solid foundations.",
-    "life_path_bullets_4_3": "Discipline and diligence are core life themes.",
-    "life_path_bullets_5_1": "Life path 5 carries freedom and change energy.",
-    "life_path_bullets_5_2": "Adventure and experience seeking is natural.",
-    "life_path_bullets_5_3": "Flexibility and adaptability are strong points.",
-    "life_path_bullets_6_1": "Life path 6 carries responsibility and love energy.",
-    "life_path_bullets_6_2": "Caring for family and community comes naturally.",
-    "life_path_bullets_6_3": "Creating harmony and beauty is life purpose.",
-    "life_path_bullets_7_1": "Life path 7 carries wisdom and introspection energy.",
-    "life_path_bullets_7_2": "Spiritual seeking and analysis are natural tendencies.",
-    "life_path_bullets_7_3": "Deep meaning seeking is central to life.",
-    "life_path_bullets_8_1": "Life path 8 carries power and abundance energy.",
-    "life_path_bullets_8_2": "High potential for material and spiritual success.",
-    "life_path_bullets_8_3": "Leadership and management are natural talents.",
-    "life_path_bullets_9_1": "Life path 9 carries humanity and completion energy.",
-    "life_path_bullets_9_2": "Universal love and compassion are natural states.",
-    "life_path_bullets_9_3": "Serving others is the spiritual mission.",
-    "life_path_bullets_default_1": "This number carries special energy.",
-    "life_path_bullets_default_2": "Your potential awaits discovery.",
-    "life_path_bullets_default_3": "Your life journey is unique.",
-    "current_year_text": "You are currently in year {number}",
-    "daily_number": {
-      "page_title": "What does daily number energy tell you?",
-      "tag": "Numerology",
-      "short_answer_title": "Quick Answer",
-      "short_answer_1": "Daily number energy shows the numerological vibration of the day.",
-      "short_answer_2": "Calculated from today's date.",
-      "short_answer_3": "Reflects the overall energy and potential of the day.",
-      "how_calculated_title": "How Is It Calculated?",
-      "how_calculated_1": "All digits of the date are added together.",
-      "how_calculated_2": "Reduced to a single digit.",
-      "how_calculated_3": "Example: 24.01.2026 → 2+4+0+1+2+0+2+6 = 17 → 1+7 = 8",
-      "what_for_title": "What Is It For?",
-      "what_for_1": "Helps you align with the energy of the day.",
-      "what_for_2": "Shows which activities are supported.",
-      "what_for_3": "Points to areas that need attention.",
-      "important_note_title": "Important Note",
-      "important_note_1": "Daily number affects everyone.",
-      "important_note_2": "Gains more personal meaning when combined with your personal number.",
-      "important_note_3": "It's an awareness tool, not an obligation.",
-      "todays_number": "Today's Number",
-      "meaning_1": "A day of beginnings and leadership",
-      "meaning_2": "A day of cooperation and balance",
-      "meaning_3": "A day of creativity and expression",
-      "meaning_4": "A day of structure and order",
-      "meaning_5": "A day of change and freedom",
-      "meaning_6": "A day of family and responsibility",
-      "meaning_7": "A day of introspection and analysis",
-      "meaning_8": "A day of abundance and power",
-      "meaning_9": "A day of completion and release",
-      "meaning_11": "A day of intuition and inspiration",
-      "meaning_22": "A day for big projects",
-      "meaning_33": "A day of healing and teaching",
-      "meaning_default": "A day of strong energy",
-      "suggestion_text": "What is expression number?",
-      "footer": "Numerology — InnerCycles"
-    },
-    "expression_number_screen": {
-      "page_title": "What is expression number?",
-      "tag": "Numerology",
-      "short_answer_title": "Quick Answer",
-      "short_answer_1": "Expression number is the numerological value calculated from your full name.",
-      "short_answer_2": "It shows what you came to achieve in this life.",
-      "short_answer_3": "It is also known as the expression number.",
-      "how_calculated_title": "How Is It Calculated?",
-      "how_calculated_1": "Each letter in your full name is assigned a number value.",
-      "how_calculated_2": "A=1, B=2, C=3... and so on.",
-      "how_calculated_3": "All letter values are added and reduced to a single digit.",
-      "letter_number_chart": "Letter-Number Chart",
-      "what_it_tells_title": "What Does It Tell?",
-      "what_it_tells_1": "The energy you need to express in this life.",
-      "what_it_tells_2": "How to best use your potential.",
-      "what_it_tells_3": "What you came to contribute to the world.",
-      "what_it_tells_4": "The direction of your natural talents.",
-      "difference_from_life_path_title": "Difference From Life Path",
-      "difference_from_life_path_1": "Life path: The road you walk.",
-      "difference_from_life_path_2": "Expression number: The destination you want to reach.",
-      "difference_from_life_path_3": "Together they form the complete picture.",
-      "suggestion_text": "What is life path number?",
-      "footer": "Numerology — InnerCycles"
-    }
-  },
   "nav": {
     "also_viewed_subtitle": "D'autres curieux ont également consulté ceci",
     "go_deeper_subtitle": "Connectez-vous avec votre monde intérieur",
@@ -9514,7 +8965,7 @@
     "famous_charts": "Famous personal profiles",
     "articles": "Articles",
     "cosmic_wisdom": "Cosmic wisdom",
-    "kabbalah": "Kabbalah",
+    "kabbalah": "Symbolic Exploration",
     "master_mystery": "The mystery of 11, 22, 33",
     "best_times": "Best times",
     "energy_practices": "Energy practices",
