@@ -20,9 +20,9 @@ enum ShareCardCategory {
       case ShareCardCategory.identity:
         return isEn ? 'Identity' : 'Kimlik';
       case ShareCardCategory.pattern:
-        return isEn ? 'Patterns' : 'Oruntu';
+        return isEn ? 'Patterns' : 'Örüntü';
       case ShareCardCategory.achievement:
-        return isEn ? 'Achievements' : 'Basari';
+        return isEn ? 'Achievements' : 'Başarı';
       case ShareCardCategory.wisdom:
         return isEn ? 'Wisdom' : 'Bilgelik';
     }

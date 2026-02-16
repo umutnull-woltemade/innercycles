@@ -48,11 +48,11 @@ class TrendInsight {
   String getMessageTr() {
     switch (direction) {
       case TrendDirection.up:
-        return '${area.displayNameTr} alanin iyilesiyor (+${changePercent.toStringAsFixed(0)}%)';
+        return '${area.displayNameTr} alanın iyileşiyor (+${changePercent.toStringAsFixed(0)}%)';
       case TrendDirection.down:
-        return '${area.displayNameTr} alanin dikkat gerektirebilir (${changePercent.toStringAsFixed(0)}%)';
+        return '${area.displayNameTr} alanın dikkat gerektirebilir (${changePercent.toStringAsFixed(0)}%)';
       case TrendDirection.stable:
-        return '${area.displayNameTr} alanin tutarli';
+        return '${area.displayNameTr} alanın tutarlı';
     }
   }
 }
@@ -79,9 +79,9 @@ class CorrelationInsight {
 
   String getMessageTr() {
     if (correlation > 0.5) {
-      return '${area1.displayNameTr} yuksek oldugunda, ${area2.displayNameTr} de yuksek olma egiliminde';
+      return '${area1.displayNameTr} yüksek olduğunda, ${area2.displayNameTr} de yüksek olma eğiliminde';
     } else if (correlation < -0.5) {
-      return '${area1.displayNameTr} yuksek oldugunda, ${area2.displayNameTr} dusuk olma egiliminde';
+      return '${area1.displayNameTr} yüksek olduğunda, ${area2.displayNameTr} düşük olma eğiliminde';
     }
     return '';
   }
@@ -414,7 +414,7 @@ class PatternEngineService {
       dimensionA: 'Sleep Quality',
       dimensionB: 'Mood',
       insightTemplateEn: 'Your entries suggest that sleep quality and mood are {direction} (r={r})',
-      insightTemplateTr: 'Kayitlarin uyku kalitesi ile ruh halinin {direction} oldugunu gosteriyor (r={r})',
+      insightTemplateTr: 'Kayıtların uyku kalitesi ile ruh halinin {direction} olduğunu gösteriyor (r={r})',
     );
   }
 
@@ -449,7 +449,7 @@ class PatternEngineService {
       dimensionA: 'Sleep Quality',
       dimensionB: 'Energy',
       insightTemplateEn: 'Your entries suggest that sleep quality and next-day energy are {direction} (r={r})',
-      insightTemplateTr: 'Kayitlarin uyku kalitesi ile ertesi gun enerjinin {direction} oldugunu gosteriyor (r={r})',
+      insightTemplateTr: 'Kayıtların uyku kalitesi ile ertesi gün enerjinin {direction} olduğunu gösteriyor (r={r})',
     );
   }
 
@@ -495,7 +495,7 @@ class PatternEngineService {
       dimensionA: 'Gratitude',
       dimensionB: 'Weekly Mood',
       insightTemplateEn: 'Your entries suggest that gratitude practice and weekly mood are {direction} (r={r})',
-      insightTemplateTr: 'Kayitlarin minnettarlik pratigi ile haftalik ruh halinin {direction} oldugunu gosteriyor (r={r})',
+      insightTemplateTr: 'Kayıtların minnettarlık pratiği ile haftalık ruh halinin {direction} olduğunu gösteriyor (r={r})',
     );
   }
 
@@ -544,7 +544,7 @@ class PatternEngineService {
       dimensionA: 'Ritual Completion',
       dimensionB: 'Journal Scores',
       insightTemplateEn: 'Your entries suggest that ritual completion and journal ratings are {direction} (r={r})',
-      insightTemplateTr: 'Kayitlarin rituel tamamlama ile gunluk puanlarinin {direction} oldugunu gosteriyor (r={r})',
+      insightTemplateTr: 'Kayıtların ritüel tamamlama ile günlük puanlarının {direction} olduğunu gösteriyor (r={r})',
     );
   }
 
@@ -589,7 +589,7 @@ class PatternEngineService {
       dimensionA: 'Wellness Score',
       dimensionB: 'Journal Frequency',
       insightTemplateEn: 'Your entries suggest that wellness score and journaling frequency are {direction} (r={r})',
-      insightTemplateTr: 'Kayitlarin saglik puani ile gunluk yazma sikliginin {direction} oldugunu gosteriyor (r={r})',
+      insightTemplateTr: 'Kayıtların sağlık puanı ile günlük yazma sıklığının {direction} olduğunu gösteriyor (r={r})',
     );
   }
 
@@ -659,7 +659,7 @@ class PatternEngineService {
       dimensionA: 'Streak Length',
       dimensionB: 'Mood',
       insightTemplateEn: 'Your entries suggest that journaling consistency and mood are {direction} (r={r})',
-      insightTemplateTr: 'Kayitlarin gunluk tutarliligi ile ruh halinin {direction} oldugunu gosteriyor (r={r})',
+      insightTemplateTr: 'Kayıtların günlük tutarlılığı ile ruh halinin {direction} olduğunu gösteriyor (r={r})',
     );
   }
 
@@ -695,7 +695,7 @@ class PatternEngineService {
       dimensionA: 'Sleep Quality',
       dimensionB: 'Stress Level',
       insightTemplateEn: 'Your entries suggest that sleep quality and stress levels are {direction} (r={r})',
-      insightTemplateTr: 'Kayitlarin uyku kalitesi ile stres seviyesinin {direction} oldugunu gosteriyor (r={r})',
+      insightTemplateTr: 'Kayıtların uyku kalitesi ile stres seviyesinin {direction} olduğunu gösteriyor (r={r})',
     );
   }
 

@@ -214,7 +214,7 @@ class PatternHealthService {
           titleEn:
               '${area.displayNameEn} is low at ${currentAvg.toStringAsFixed(1)} - consider giving it more attention',
           titleTr:
-              '${area.displayNameTr} ${currentAvg.toStringAsFixed(1)} ile dusuk - daha fazla dikkat gostermeyi deneyin',
+              '${area.displayNameTr} ${currentAvg.toStringAsFixed(1)} ile düşük - daha fazla dikkat göstermeyi deneyin',
           severity: severity,
           area: area,
         );
@@ -223,7 +223,7 @@ class PatternHealthService {
         titleEn:
             '${area.displayNameEn} dropped significantly (${diff.toStringAsFixed(1)}) from previous period',
         titleTr:
-            '${area.displayNameTr} onceki doneme gore belirgin dustu (${diff.toStringAsFixed(1)})',
+            '${area.displayNameTr} önceki döneme göre belirgin düştü (${diff.toStringAsFixed(1)})',
         severity: severity,
         area: area,
       );
@@ -234,7 +234,7 @@ class PatternHealthService {
       titleEn:
           '${area.displayNameEn} shows a slight decline - you may want to check in with yourself',
       titleTr:
-          '${area.displayNameTr} hafif bir dusus gosteriyor - kendinize bir sorun',
+          '${area.displayNameTr} hafif bir düşüş gösteriyor - kendinize bir sorun',
       severity: severity,
       area: area,
     );

@@ -45,11 +45,11 @@ enum CyclePhase {
   String labelTr() {
     switch (this) {
       case CyclePhase.rising:
-        return 'Yukselis';
+        return 'Yükseliş';
       case CyclePhase.peak:
         return 'Zirve';
       case CyclePhase.falling:
-        return 'Dusus';
+        return 'Düşüş';
       case CyclePhase.valley:
         return 'Dinlenme';
     }
@@ -76,7 +76,7 @@ enum CycleTrend {
   String labelTr() {
     switch (this) {
       case CycleTrend.improving:
-        return 'Gelisiyor';
+        return 'Gelişiyor';
       case CycleTrend.stable:
         return 'Sabit';
       case CycleTrend.declining:
@@ -119,9 +119,9 @@ class FocusAreaCycleSummary {
 
   String getSummaryTr() {
     if (cycleLengthDays != null) {
-      return '${area.displayNameTr} alanin ~$cycleLengthDays gunde bir dongu egilimi gosteriyor';
+      return '${area.displayNameTr} alanın ~$cycleLengthDays günde bir döngü eğilimi gösteriyor';
     }
-    return '${area.displayNameTr} dongunu tespit etmek icin henuz yeterli veri yok';
+    return '${area.displayNameTr} döngünü tespit etmek için henüz yeterli veri yok';
   }
 }
 
@@ -445,7 +445,7 @@ class EmotionalCycleService {
         messageEn:
             'Your ${strongest.displayNameEn} tends to be your strongest dimension recently',
         messageTr:
-            '${strongest.displayNameTr} son zamanlarda en guclu boyutun olma egiliminde',
+            '${strongest.displayNameTr} son zamanlarda en güçlü boyutun olma eğiliminde',
         relatedArea: strongest,
       ));
     }
@@ -474,7 +474,7 @@ class EmotionalCycleService {
               messageEn:
                   '${areas[i].displayNameEn} and ${areas[j].displayNameEn} tend to move together in your data',
               messageTr:
-                  '${areas[i].displayNameTr} ve ${areas[j].displayNameTr} verilerinde birlikte hareket etme egiliminde',
+                  '${areas[i].displayNameTr} ve ${areas[j].displayNameTr} verilerinde birlikte hareket etme eğiliminde',
               relatedArea: areas[i],
               secondaryArea: areas[j],
             ));
@@ -483,7 +483,7 @@ class EmotionalCycleService {
               messageEn:
                   'When your ${areas[i].displayNameEn} is high, your ${areas[j].displayNameEn} tends to be lower',
               messageTr:
-                  '${areas[i].displayNameTr} yuksek oldugunda, ${areas[j].displayNameTr} dusuk olma egiliminde',
+                  '${areas[i].displayNameTr} yüksek olduğunda, ${areas[j].displayNameTr} düşük olma eğiliminde',
               relatedArea: areas[i],
               secondaryArea: areas[j],
             ));
@@ -500,14 +500,14 @@ class EmotionalCycleService {
         'Thursdays', 'Fridays', 'Saturdays', 'Sundays',
       ];
       final dayNamesTr = [
-        '', 'Pazartesi', 'Sali', 'Carsamba',
-        'Persembe', 'Cuma', 'Cumartesi', 'Pazar',
+        '', 'Pazartesi', 'Salı', 'Çarşamba',
+        'Perşembe', 'Cuma', 'Cumartesi', 'Pazar',
       ];
       insights.add(CycleInsight(
         messageEn:
             'Your ratings tend to be higher on ${dayNamesEn[bestDay]}',
         messageTr:
-            'Puanlarinin ${dayNamesTr[bestDay]} gunleri daha yuksek olma egiliminde',
+            'Puanlarının ${dayNamesTr[bestDay]} günleri daha yüksek olma eğiliminde',
       ));
     }
 
@@ -518,7 +518,7 @@ class EmotionalCycleService {
           messageEn:
               'Your ${summary.area.displayNameEn} patterns suggest a ~${summary.cycleLengthDays}-day cycle',
           messageTr:
-              '${summary.area.displayNameTr} kaliplarin ~${summary.cycleLengthDays} gunluk bir dongu oneriyor',
+              '${summary.area.displayNameTr} kalıpların ~${summary.cycleLengthDays} günlük bir döngü öneriyor',
           relatedArea: summary.area,
         ));
       }
@@ -532,7 +532,7 @@ class EmotionalCycleService {
           messageEn:
               'Your ${summary.area.displayNameEn} appears to be gradually improving',
           messageTr:
-              '${summary.area.displayNameTr} alanin kademeli olarak iyilesiyor gibi gorunuyor',
+              '${summary.area.displayNameTr} alanın kademeli olarak iyileşiyor gibi görünüyor',
           relatedArea: summary.area,
         ));
       } else if (summary.trend == CycleTrend.declining &&
@@ -541,7 +541,7 @@ class EmotionalCycleService {
           messageEn:
               'Your ${summary.area.displayNameEn} may need some attention recently',
           messageTr:
-              '${summary.area.displayNameTr} alanin son zamanlarda biraz ilgi gerektirebilir',
+              '${summary.area.displayNameTr} alanın son zamanlarda biraz ilgi gerektirebilir',
           relatedArea: summary.area,
         ));
       }
