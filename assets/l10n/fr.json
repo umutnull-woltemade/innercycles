@@ -79,7 +79,7 @@
         ]
     },
     "onboarding": {
-        "welcome_text": "Écoutez les réflexions que votre moi intérieur vous propose.\nAu moment de votre naissance, le ciel\na dessiné une carte pour vous, découvrez-la.",
+        "welcome_text": "Écoutez les réflexions que votre moi intérieur vous propose.\nAu moment de votre naissance, un profil personnel unique\ns'est formé pour vous, découvrez-le.",
         "cosmic_identity": "Votre Identité Personnelle",
         "enter_info_subtitle": "Entrez vos informations pour vous connecter à votre monde intérieur",
         "info_box_text": "Remplissez toutes les informations pour débloquer toutes les couches de votre carte personnelle.",
@@ -338,7 +338,7 @@
             "title": "Thèmes de Célébrités",
             "search_hint": "Rechercher une célébrité...",
             "no_results": "Aucun résultat trouvé",
-            "chart_analysis": "Analyse du Thème",
+            "chart_analysis": "Analyse de profil",
             "notable_aspects": "Aspects Notables"
         },
         "admin_login": {
@@ -452,7 +452,7 @@
             "shadow_side_footer": "These aspects can be transformed with awareness. Accepting the shadow is not empowering it - it is integrating it.",
             "all_life_path_numbers": "All Life Path Numbers",
             "master_numbers": "Master Numbers",
-            "lessons_from_past_lives": "Lessons carried from past lives",
+            "lessons_from_past_lives": "Lessons carried from past experiences",
             "yours": "YOURS",
             "karmic_debt_message": "Your chart has {debts} growth pattern. Tap for details.",
             "keywords": "Keywords",
@@ -460,7 +460,7 @@
             "challenges": "Challenges",
             "love_relationships": "Love & Relationships",
             "ancient_secret_title": "Ancient Secret of Numbers",
-            "ancient_secret_desc": "La numérologie est une sagesse ancienne où l'univers parle dans un langage mathématique. De Pythagore aux traditions contemplatives, toutes les traditions symboliques connaissaient le pouvoir des nombres. Votre date de naissance et votre nom portent la vibration que votre moi profond a apportée à ce monde. Chaque nombre est une fréquence, une énergie, un thème à explorer. Ce que vous voyez ici n'est pas une coïncidence - c'est un outil de réflexion personnelle.",
+            "ancient_secret_desc": "La numérologie est une sagesse ancienne où les nombres parlent un langage mathématique. De Pythagore aux traditions contemplatives, toutes les traditions symboliques connaissaient le pouvoir des nombres. Votre date de naissance et votre nom portent la vibration que votre moi profond a apportée à ce monde. Chaque nombre est une fréquence, une énergie, un thème à explorer. Ce que vous voyez ici n'est pas une coïncidence - c'est un outil de réflexion personnelle.",
             "number_depth_title": "Depth of Number {number}",
             "kadim_title": "Eternal Dance of Numbers",
             "kadim_content": "Since Pythagoras, sages have known that numbers carry the hidden language of your inner self. Your life path number is not just a digit - it is the vibration your inner self brought into this world, the unique melody your inner self gave you. To hear this melody, you first need silence.",
@@ -892,8 +892,6 @@
         "admin": "Admin",
         "dashboard": "Tableau de Bord & Analytics",
         "pin": "PIN",
-        "house_system": "House System",
-        "house_system_desc": "Choose how houses are calculated in your charts",
         "account": "Account",
         "edit_profile": "Edit Profile",
         "edit_profile_desc": "Update your birth information",
@@ -946,7 +944,7 @@
         "yearly_summary": "Résumé Annuel",
         "special_months": "Mois Spéciaux",
         "lucky_months": "Mois Favorables",
-        "planet_transits": "Influences Saisonnières",
+        "planet_transits": "Cycles de vie",
         "your_archetype_readings": "Vos Lectures Archétypales",
         "sign_today": "Comment va {sign} aujourd'hui?",
         "self_awareness_brand": "Connaissance de soi — InnerCycles",
@@ -995,7 +993,7 @@
         "cards": {
             "todays_cosmic_energy": {
                 "title": "Énergie personnel du jour",
-                "description": "Que murmure le ciel aujourd'hui ? Consultez les aperçus quotidiens."
+                "description": "Que vous réserve cette journée ? Consultez les aperçus quotidiens."
             },
             "personal_profile_question": {
                 "title": "Que dit mon profil personnel ?",
@@ -1042,7 +1040,7 @@
                 "description": "Outils de connaissance de soi avancés"
             },
             "most_read_scorpio": {
-                "title": "Le plus lu : Scorpion",
+                "title": "Le plus lu : Transformern",
                 "description": "Que disent les eaux mystérieuses aujourd'hui ?"
             },
             "rising_trend_aquarius": {
@@ -1136,10 +1134,6 @@
             "electional_self_awareness": {
                 "title": "Connaissance de soi élective",
                 "description": "Choisissez les bons moments."
-            },
-            "celebrity_couples": {
-                "title": "Couples de célébrités",
-                "description": "Compatibilité des célébrités"
             },
             "dream_tonight": {
                 "title": "Qu'avez-vous rêvé cette nuit ?",
@@ -1281,10 +1275,6 @@
                 "title": "Guidance personnelle des transits",
                 "description": "Message spécial pour cette période."
             },
-            "planet_glossary": {
-                "title": "Glossaire des traits",
-                "description": "Significations des transits"
-            },
             "moon_phases_dreams": {
                 "title": "Phases lunaires et rêves",
                 "description": "Comment le cycle lunaire affecte-t-il les rêves ?"
@@ -1327,7 +1317,7 @@
             },
             "transits": {
                 "title": "Transits",
-                "description": "Le ciel aujourd'hui."
+                "description": "Les influences du jour."
             },
             "tell_your_dream": {
                 "title": "Racontez votre rêve",
@@ -1405,7 +1395,7 @@
                 "description": "Message spécial pour vos chakras."
             },
             "compare_chart_today": {
-                "description": "Comparez votre thème avec le ciel d'aujourd'hui."
+                "description": "Comparez votre thème avec les influences du jour."
             },
             "cosmic_energy": {
                 "description": "Énergie personnel."
@@ -1464,9 +1454,6 @@
             "learn_concepts": {
                 "description": "Apprenez les concepts"
             },
-            "moon_planet_positions": {
-                "description": "Positions de la lune et des caractéristiques."
-            },
             "moon_practices": {
                 "description": "Pratiques lunaires."
             },
@@ -1519,7 +1506,7 @@
                 "description": "Pages des signes"
             },
             "sky_today": {
-                "description": "Le ciel aujourd'hui."
+                "description": "Les influences du jour."
             },
             "speak_subconscious": {
                 "description": "Parlez à votre subconscient."
@@ -1554,7 +1541,7 @@
             "which_dreams_this_sign_sees": "Quels rêves les personnes de ce signe font-elles le plus ?",
             "special_message_for_today": "Message spécial pour aujourd'hui",
             "cosmic_guidance": "Recevez une guidance personnelle.",
-            "beyond_your_sun_sign": "Qu'y a-t-il au-delà de votre Soleil {sign} ?",
+            "beyond_your_sun_sign": "Qu'y a-t-il au-delà de votre identité {sign}?",
             "where_is_your_ruler": "Quel est votre trait dominant maintenant ?",
             "reading_aligned_with_energy": "Une lecture alignée avec l'énergie {sign}.",
             "compatibility_with": "Compatibilité avec {sign}",
@@ -2040,7 +2027,7 @@
                 "tells2": "Tes talents et forces naturels.",
                 "tells3": "Les défis et leçons que tu rencontreras.",
                 "tells4": "Les thèmes récurrents dans ta vie.",
-                "note1": "Le nombre de chemin de vie n'est pas le destin.",
+                "note1": "Le nombre de chemin de vie n'est pas une prédiction.",
                 "note2": "Il montre le potentiel, les décisions t'appartiennent.",
                 "note3": "Chaque nombre a des côtés lumineux et sombres.",
                 "suggestion": "Que dit l'énergie du nombre quotidien ?"
@@ -2293,7 +2280,7 @@
                 "\"Les rêves sont des lettres écrites par notre moi profond la nuit.\"",
                 "\"Chaque rêve est un miroir, chaque symbole une clé.\"",
                 "\"La nuit est le moment où le subconscient parle le plus fort.\"",
-                "\"Ceux qui écoutent leurs rêves écrivent leur destin.\""
+                "\"Ceux qui écoutent leurs rêves se comprennent mieux.\""
             ],
             "personal_insight": "Aperçu personnel",
             "poetry_templates": [
@@ -2767,7 +2754,7 @@
         "dream_share_card": {
             "themes": {
                 "mystical": {
-                    "label": "Mystical",
+                    "label": "Profond",
                     "description": "Deep purple and midnight sky"
                 },
                 "minimal": {
@@ -2794,7 +2781,7 @@
             "fonts": {
                 "elegant": "Elegant",
                 "modern": "Modern",
-                "mystical": "Mystical",
+                "mystical": "Profond",
                 "handwritten": "Handwritten"
             },
             "templates": {
@@ -3026,31 +3013,31 @@
                     "pioneer": {
                         "basic_meaning": "Water, for your fire sign, is a call to dive into emotional depths. Subconscious energies want to surface.",
                         "element_perspective": "Water's calming energy has come to balance your fire nature. Time for patience and rest. A period of reflection before action.",
-                        "psychological": "Water: Subconscious, emotions, mother archetype\nAs Aries: Suppressed emotions want to surface\nMessage: Not just running, but sometimes pausing to feel is needed",
+                        "psychological": "Water: Subconscious, emotions, mother archetype\nAs a Pioneer: Suppressed emotions want to surface\nMessage: Not just running, but sometimes pausing to feel is needed",
                         "practice": "• Meditate by the water\n• Set your intention while showering\n• Allow your tears\n• Write your feelings down"
                     },
                     "builder": {
                         "basic_meaning": "Water, for your earth sign, symbolizes fertility and abundance. Material and emotional flow is entering your life.",
                         "element_perspective": "Water nourishes earth - this dream is a harbinger of growth and prosperity. Trust your natural rhythm, let go without forcing.",
-                        "psychological": "Water: Emotional security, comfort, nourishment\nAs Taurus: The connection between inner peace and material security\nMessage: Emotional wealth attracts material wealth",
+                        "psychological": "Water: Emotional security, comfort, nourishment\nAs a Builder: The connection between inner peace and material security\nMessage: Emotional wealth attracts material wealth",
                         "practice": "• Water your plants, tend your garden\n• Take a bath ritual\n• Visualize financial flow\n• Make relaxation and comfort your priority"
                     },
                     "nurturer": {
                         "basic_meaning": "Water is your element - this dream is extremely meaningful! There is a powerful message from your inner depths.",
                         "element_perspective": "This dream indicates a deep connection with home, family and your roots. The mother archetype is active. Your inner home is calling.",
-                        "psychological": "Water: Subconscious, intuition, protective instinct\nAs Cancer: The need for inner protection and home\nMessage: Return home - to your inner home, your emotional home",
+                        "psychological": "Water: Subconscious, intuition, protective instinct\nAs a Nurturer: The need for inner protection and home\nMessage: Return home - to your inner home, your emotional home",
                         "practice": "• Fill water under moonlight and drink\n• Look at family photos\n• Take a sea salt bath\n• Clean the house - renew the energy\n• Connect with mother figures"
                     },
                     "transformer": {
                         "basic_meaning": "Water is your element and this dream indicates deep transformation! Time for renewal has come.",
                         "element_perspective": "Don't fear diving into the depths of water. There are treasures there. The cycle of death and rebirth is active.",
-                        "psychological": "Water: The deepest layers of the subconscious\nAs Scorpio: Time for shadow work\nMessage: Instead of fearing darkness, illuminate it",
-                        "practice": "• Do deep meditations\n• Keep a shadow journal\n• Practice letting go ritual\n• Embrace Plutonian transformation\n• Consider therapy or counseling"
+                        "psychological": "Water: The deepest layers of the subconscious\nAs a Transformer: Time for shadow work\nMessage: Instead of fearing darkness, illuminate it",
+                        "practice": "• Do deep meditations\n• Keep a shadow journal\n• Practice letting go ritual\n• Embrace deep inner transformation\n• Consider therapy or counseling"
                     },
                     "dreamer": {
                         "basic_meaning": "Water is your element - your connection with inner realms is very strong! You can fully trust your intuition.",
                         "element_perspective": "You're experiencing deep inner oneness. Creative inspiration is flowing. Ideal period for artistic expression.",
-                        "psychological": "Water: Deep consciousness, healing, collective subconscious\nAs Pisces: Deep experiences and inner guidance\nMessage: You are beyond water - you are the ocean",
+                        "psychological": "Water: Deep consciousness, healing, collective subconscious\nAs a Dreamer: Deep experiences and inner guidance\nMessage: You are beyond water - you are the ocean",
                         "practice": "• Artistic creation - painting, music, writing\n• Meditation by sea or lake\n• Lucid dream practices\n• Healing work\n• Be open to inner guidance"
                     },
                     "default": {
@@ -3416,21 +3403,14 @@
     "chart": {
         "birth_date": "Date de naissance",
         "birth_time": "Heure de naissance",
-        "birth_place": "Lieu de naissance",
-        "planets": "Caractéristiques",
-        "houses": "Maisons",
-        "aspects": "Aspects",
-        "cosmic_map_title": "La carte personnelle de ton moi profond",
-        "cosmic_map_description": "Cette carte est un instantané du ciel au moment de ta naissance — mais c'est tellement plus qu'un simple moment figé. C'est une carte des énergies qui ont façonné ton moi profond, un plan de tes potentiels les plus profonds et une invitation à te comprendre à un niveau personnel.",
-        "your_sun": "Ton Soleil",
-        "house_interpretation": "Interprétation des maisons"
+        "birth_place": "Lieu de naissance"
     },
     "insights": {
         "daily_energy_title": "Today's Energy",
         "daily_energy_content": "The Moon's current position brings emotional depth. It's the perfect time to listen to your inner voice.",
         "transit_effect_title": "Transit Effect",
         "transit_effect_content": "Les cycles actuels mettent en lumière vos relations et vos valeurs.",
-        "sign_message_title": "Your Sign's Message",
+        "sign_message_title": "Le message de votre archétype",
         "dream_guide_title": "Dream Guide",
         "dream_guide_content": "Dreams you have tonight may carry important messages. Don't forget to record your dreams.",
         "weekly_preview_title": "Weekly Preview",
@@ -3558,10 +3538,6 @@
         "energy_hours": "Personal Hours",
         "now": "Now",
         "hour": "Hour",
-        "planet_sun_meaning": "Success, leadership, vitality",
-        "planet_moon_meaning": "Emotions, intuition, home",
-        "planet_mars_meaning": "Action, courage, energy",
-        "planet_jupiter_meaning": "Croissance, expansion, abondance",
         "lucky_elements": "Éléments de Réflexion Aujourd'hui",
         "lucky_numbers": "Nombres de Focus",
         "lucky_color": "Couleur Thématique",
@@ -3698,27 +3674,10 @@
     "glossary": {
         "hints": {
             "personal_profile": "Votre carte d'identité personnelle",
-            "ascendant": "Votre porte vers le monde",
-            "descendant": "Miroir dans les relations",
-            "midheaven": "Carrière et image publique",
-            "ic": "Racines et monde intérieur",
-            "transit": "Météo personnel actuelle",
-            "retrograde": "Période de rétrospection",
-            "orb": "Plage de tolérance de l'aspect",
-            "cusp": "Point de transition de maison ou signe",
             "element": "Quatre énergies fondamentales",
             "modality": "Trois modes de mouvement",
-            "dignity": "Puissance du trait dans son profil",
             "sun": "Votre essence et force vitale",
-            "moon": "Vos émotions et instincts",
-            "mercury": "Esprit et communication",
-            "venus": "Amour, beauté et valeurs",
-            "mars": "Action, passion et énergie",
-            "jupiter": "Expansion, croissance et sagesse",
-            "saturn": "Structure, discipline et temps",
-            "uranus": "Révolution, liberté et changement",
-            "neptune": "Rêves, inspiration et illusion",
-            "pluto": "Transformation, pouvoir et renaissance"
+            "moon": "Vos émotions et instincts"
         }
     },
     "moon": {},
