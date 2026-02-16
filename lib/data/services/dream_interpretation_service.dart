@@ -258,7 +258,7 @@ class DreamInterpretationService {
     );
 
     return '''
-SEN: Kadim rüya bilgeliğinin modern yorumcusu. Jung, Campbell ve Sufizm'in derinliğini taşıyan bir oraküllsün. Rüyaları 7 boyutta analiz eder, şiirsel ama derin içgörüler sunarsın.
+SEN: Modern rüya analisti. Jung, Campbell ve derinlik psikolojisinin bakış açısıyla rüyaları 7 boyutta analiz eder, şiirsel ama derin içgörüler sunarsın.
 
 KULLANICI RÜYASI:
 "${input.dreamDescription}"
@@ -294,8 +294,8 @@ Bu arketipin şu anki mesajı ne?
 - Entegrasyon yolu
 
 6. TIMING AWARENESS:
-- Why did this dream come NOW?
-- Moon phase connection
+- Why might this dream have come NOW?
+- Seasonal or life-stage reflection
 - Timing insight message
 
 7. IŞIK/GÖLGE:
@@ -469,32 +469,32 @@ JSON FORMATI:
       case MoonPhase.yeniay:
         return getLocalizedPhaseMessage(
           'new_moon',
-          'This dream coming in the new moon phase carries a seed of new intention. Make a wish today.',
+          'You may find this is a good time for setting new intentions. Consider what you want to invite in.',
         );
       case MoonPhase.hilal:
         return getLocalizedPhaseMessage(
           'crescent',
-          'Dreams coming during the crescent moon show growth potential. Move forward with courage.',
+          'This may be a time of growing clarity. Move forward with courage.',
         );
       case MoonPhase.ilkDordun:
         return getLocalizedPhaseMessage(
           'first_quarter',
-          'This dream coming in the first quarter points to a decision point. You are between two paths.',
+          'You may notice a decision point emerging. Consider the two paths before you.',
         );
       case MoonPhase.dolunay:
         return getLocalizedPhaseMessage(
           'full_moon',
-          'Dreams coming in the full moon are the peak of awareness. Accept what you see.',
+          'You may find heightened awareness right now. Accept what you see with openness.',
         );
       case MoonPhase.sonDordun:
         return getLocalizedPhaseMessage(
           'last_quarter',
-          'This dream coming in the last quarter phase shows it is time to let go. What do you need to release?',
+          'You may find it helpful to let go of something. What do you need to release?',
         );
       case MoonPhase.karanlikAy:
         return getLocalizedPhaseMessage(
           'dark_moon',
-          'Dreams coming in the dark moon carry the most ancient messages. Listen deeply.',
+          'This may be a time for rest and deep reflection. Listen to your inner voice.',
         );
     }
   }
