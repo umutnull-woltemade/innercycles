@@ -6,7 +6,6 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
-import '../../../data/models/zodiac_sign.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/services/storage_service.dart';
@@ -141,14 +140,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     dynamic profile,
     bool isDark,
   ) {
-    final sign = profile.sunSign as ZodiacSign;
-    final language = ref.watch(languageProvider);
-
-    // Compact header with logo and personality type inline
+    // Compact header with logo and name inline
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // InnerCycles Logo - smaller
+        // InnerCycles Logo
         Container(
           width: 56,
           height: 56,
@@ -182,7 +178,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              profile.name ?? sign.localizedName(language),
+              profile.name ?? profile.displayEmoji,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 color: isDark
                     ? AppColors.textPrimary
@@ -190,21 +186,23 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(height: 4),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-              decoration: BoxDecoration(
-                color: sign.color.withValues(alpha: 0.2),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                sign.localizedName(language),
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: sign.color,
-                  fontWeight: FontWeight.w600,
+            if (profile.age > 0) ...[
+              const SizedBox(height: 4),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: AppColors.starGold.withValues(alpha: 0.2),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  '${profile.age}',
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: AppColors.starGold,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-            ),
+            ],
           ],
         ),
       ],
@@ -414,6 +412,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     AppLanguage language,
     bool isDark,
   ) {
+    final isEn = language == AppLanguage.en;
     return GlassPanel(
       elevation: GlassElevation.g3,
       borderRadius: BorderRadius.circular(AppConstants.radiusLg),
@@ -427,7 +426,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
               const SizedBox(width: AppConstants.spacingSm),
               Text(
-                L10nService.get('profile.big_three', language),
+                isEn ? 'Your Journey' : 'Yolculuğun',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
@@ -437,36 +436,17 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               ),
             ],
           ),
-          const SizedBox(height: AppConstants.spacingLg),
-          Row(
-            children: [
-              Expanded(
-                child: _CosmicSignCard(
-                  title: L10nService.get('profile.sun_type', language),
-                  sign: profile.sunSign,
-                  isDark: isDark,
-                  language: language,
-                ),
-              ),
-              const SizedBox(width: AppConstants.spacingSm),
-              Expanded(
-                child: _CosmicSignCard(
-                  title: L10nService.get('profile.moon_type', language),
-                  sign: profile.moonSign,
-                  isDark: isDark,
-                  language: language,
-                ),
-              ),
-              const SizedBox(width: AppConstants.spacingSm),
-              Expanded(
-                child: _CosmicSignCard(
-                  title: L10nService.get('profile.rising_type', language),
-                  sign: profile.risingSign,
-                  isDark: isDark,
-                  language: language,
-                ),
-              ),
-            ],
+          const SizedBox(height: AppConstants.spacingMd),
+          Text(
+            isEn
+                ? 'Explore your patterns, track your growth, and discover insights from your journal entries.'
+                : 'Örüntülerini keşfet, gelişimini takip et ve günlük kayıtlarından içgörüler elde et.',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+              height: 1.5,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           // App Store 4.3(b): Navigate to Insight
@@ -476,7 +456,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               onPressed: () => context.push(Routes.insight),
               icon: const Icon(Icons.auto_awesome),
               label: Text(
-                L10nService.get('profile.view_insight', language),
+                isEn ? 'View Insights' : 'İçgörüleri Gör',
               ),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.auroraStart,
@@ -822,63 +802,3 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   }
 }
 
-class _CosmicSignCard extends StatelessWidget {
-  final String title;
-  final ZodiacSign? sign;
-  final bool isDark;
-  final AppLanguage language;
-
-  const _CosmicSignCard({
-    required this.title,
-    required this.sign,
-    required this.isDark,
-    required this.language,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GlassPanel(
-      elevation: GlassElevation.g2,
-      borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-      padding: const EdgeInsets.all(AppConstants.spacingMd),
-      glowColor: sign?.color.withValues(alpha: 0.2),
-      child: Column(
-        children: [
-          Text(
-            title,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              fontSize: 10,
-            ),
-            textAlign: TextAlign.center,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-          ),
-          const SizedBox(height: 6),
-          if (sign != null) ...[
-            Text(
-              sign!.symbol,
-              style: TextStyle(fontSize: 24, color: sign!.color),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              sign!.localizedName(language),
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                color: sign!.color,
-                fontWeight: FontWeight.w600,
-                fontSize: 10,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ] else
-            Text(
-              '?',
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-}

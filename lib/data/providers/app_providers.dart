@@ -41,7 +41,6 @@ import '../services/milestone_service.dart';
 import '../services/journal_prompt_service.dart';
 import '../services/pattern_health_service.dart';
 import '../services/quiz_engine_service.dart';
-import '../services/emotional_cycle_service.dart';
 import '../services/notification_lifecycle_service.dart';
 import '../services/voice_journal_service.dart';
 import '../services/pattern_engine_service.dart';
@@ -646,35 +645,12 @@ final crossCorrelationsProvider =
 });
 
 // =============================================================================
-// EMOTIONAL CYCLE SERVICE PROVIDER
-// =============================================================================
-
-final emotionalCycleServiceProvider =
-    FutureProvider<EmotionalCycleService>((ref) async {
-  final journalService = await ref.watch(journalServiceProvider.future);
-  return EmotionalCycleService(journalService);
-});
-
-// =============================================================================
 // QUIZ ENGINE SERVICE PROVIDER
 // =============================================================================
 
 final quizEngineServiceProvider =
     FutureProvider<QuizEngineService>((ref) async {
   return await QuizEngineService.init();
-});
-
-final emotionalCycleAnalysisProvider =
-    FutureProvider<EmotionalCycleAnalysis>((ref) async {
-  final service = await ref.watch(emotionalCycleServiceProvider.future);
-  if (!service.hasEnoughData()) {
-    return EmotionalCycleAnalysis(
-      areaSummaries: {},
-      insights: [],
-      totalEntries: 0,
-    );
-  }
-  return service.analyze();
 });
 
 // =============================================================================

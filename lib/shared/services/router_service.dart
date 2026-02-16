@@ -14,13 +14,11 @@ import '../../features/home/presentation/responsive_home_screen.dart';
 import '../../features/premium/presentation/premium_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/profile/presentation/profile_screen.dart';
-import '../../features/profile/presentation/saved_profiles_screen.dart';
 import '../../features/profile/presentation/comparison_screen.dart';
 import '../../features/insight/presentation/insight_screen.dart';
 import '../../features/insight/presentation/insights_discovery_screen.dart';
 import '../../features/dreams/presentation/dream_interpretation_screen.dart';
 import '../../features/dreams/presentation/dream_glossary_screen.dart';
-import '../../features/dreams/presentation/dream_share_screen.dart';
 import '../../features/dreams/presentation/canonical/dream_falling_screen.dart';
 import '../../features/dreams/presentation/canonical/dream_water_screen.dart';
 import '../../features/dreams/presentation/canonical/dream_recurring_screen.dart';
@@ -194,7 +192,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: Routes.dreamShare,
-        builder: (context, state) => const DreamShareScreen(),
+        redirect: (_, _) => Routes.dreamGlossary,
       ),
       GoRoute(
         path: Routes.dreamFalling,
@@ -417,7 +415,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: Routes.savedProfiles,
-        builder: (context, state) => const SavedProfilesScreen(),
+        redirect: (_, _) => Routes.profile,
       ),
       GoRoute(
         path: Routes.comparison,
