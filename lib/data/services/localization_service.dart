@@ -799,7 +799,7 @@ class L10n {
       AppLanguage.es: 'Lecturas de personalidad profundas',
       AppLanguage.ar: 'قراءات شخصية عميقة',
     },
-    'unlimited_tarot': {
+    'unlimited_reflection': {
       AppLanguage.en: 'Unlimited reflection sessions',
       AppLanguage.tr: 'Sınırsız yansıma seansları',
       AppLanguage.el: 'Απεριόριστες συνεδρίες αναστοχασμού',
@@ -811,17 +811,17 @@ class L10n {
       AppLanguage.es: 'Sesiones de reflexión ilimitadas',
       AppLanguage.ar: 'جلسات تأمل غير محدودة',
     },
-    'soulmate_compatibility': {
-      AppLanguage.en: 'Soulmate compatibility analysis',
-      AppLanguage.tr: 'Ruh ikizi uyum analizi',
-      AppLanguage.el: 'Ανάλυση συμβατότητας ψυχής',
-      AppLanguage.bg: 'Анализ на съвместимост на сродни души',
-      AppLanguage.ru: 'Анализ совместимости родственных душ',
-      AppLanguage.zh: '灵魂伴侣兼容性分析',
-      AppLanguage.fr: 'Analyse de compatibilité des âmes soeurs',
-      AppLanguage.de: 'Seelenverwandten-Kompatibilitätsanalyse',
-      AppLanguage.es: 'Análisis de compatibilidad de almas gemelas',
-      AppLanguage.ar: 'تحليل توافق الأرواح التوأم',
+    'personality_compatibility': {
+      AppLanguage.en: 'Personality compatibility analysis',
+      AppLanguage.tr: 'Kişilik uyum analizi',
+      AppLanguage.el: 'Ανάλυση συμβατότητας προσωπικότητας',
+      AppLanguage.bg: 'Анализ на съвместимост на личността',
+      AppLanguage.ru: 'Анализ совместимости личности',
+      AppLanguage.zh: '性格兼容性分析',
+      AppLanguage.fr: 'Analyse de compatibilité de personnalité',
+      AppLanguage.de: 'Persönlichkeits-Kompatibilitätsanalyse',
+      AppLanguage.es: 'Análisis de compatibilidad de personalidad',
+      AppLanguage.ar: 'تحليل توافق الشخصية',
     },
     'kabbalistic_secrets': {
       AppLanguage.en: 'Inner wisdom insights',
@@ -1302,9 +1302,9 @@ class L10n {
     },
     'tab_explore': {AppLanguage.en: 'Explore', AppLanguage.tr: 'Keşfet'},
     'tab_questions': {AppLanguage.en: 'Questions', AppLanguage.tr: 'Sorular'},
-    'tab_main_asteroids': {
-      AppLanguage.en: 'Main Asteroids',
-      AppLanguage.tr: 'Ana Asteroidler',
+    'tab_main_insights': {
+      AppLanguage.en: 'Main Insights',
+      AppLanguage.tr: 'Ana Bilgiler',
     },
     'tab_secondary': {AppLanguage.en: 'Secondary', AppLanguage.tr: 'İkincil'},
     'tab_analysis': {AppLanguage.en: 'Analysis', AppLanguage.tr: 'Analiz'},
@@ -1393,10 +1393,6 @@ class L10n {
     'love_interpretation': {
       AppLanguage.en: 'Love Reading',
       AppLanguage.tr: 'Aşk Yorumu',
-    },
-    'personality_compatibility': {
-      AppLanguage.en: 'Personality Compatibility',
-      AppLanguage.tr: 'Kişilik Uyumu',
     },
     'personality_profiles': {
       AppLanguage.en: 'Personality Profiles',
@@ -1569,10 +1565,10 @@ class L10n {
 
     // ============ PROGRESSIONS ============
     'progressions_title': {
-      AppLanguage.en: 'Secondary Progressions',
-      AppLanguage.tr: 'İkincil İlerlemeler',
-      AppLanguage.de: 'Sekundäre Progressionen',
-      AppLanguage.fr: 'Progressions Secondaires',
+      AppLanguage.en: 'Personal Growth Timeline',
+      AppLanguage.tr: 'Kişisel Gelişim Zaman Çizelgesi',
+      AppLanguage.de: 'Persönliche Entwicklungs-Zeitleiste',
+      AppLanguage.fr: 'Chronologie de Croissance Personnelle',
     },
     'progressions_profile_not_found': {
       AppLanguage.en: 'Profile not found',
@@ -1594,13 +1590,13 @@ class L10n {
     },
     'progressions_info_banner': {
       AppLanguage.en:
-          'Secondary progressions are based on the "one day = one year" principle. They show the slow evolution of your personal profile.',
+          'Your personal growth timeline tracks the gradual evolution of your inner self. It highlights patterns and phases in your personal development journey.',
       AppLanguage.tr:
-          'İkincil ilerlemeler, "bir gün = bir yıl" prensibine dayanır. Kişisel profilinizin yavaş evrimini gösterir.',
+          'Kişisel gelişim zaman çizelgeniz, iç dünyanızın kademeli evrimini takip eder. Kişisel gelişim yolculuğunuzdaki örüntüleri ve evreleri vurgular.',
       AppLanguage.de:
-          'Sekundäre Progressionen basieren auf dem Prinzip "ein Tag = ein Jahr". Sie zeigen die langsame Entwicklung Ihres persönlichen Profils.',
+          'Ihre persönliche Entwicklungs-Zeitleiste verfolgt die schrittweise Entwicklung Ihres inneren Selbst. Sie hebt Muster und Phasen in Ihrer persönlichen Entwicklungsreise hervor.',
       AppLanguage.fr:
-          'Les progressions secondaires sont basées sur le principe "un jour = un an". Elles montrent l\'évolution lente de votre profil personnel.',
+          'Votre chronologie de croissance personnelle suit l\'évolution progressive de votre être intérieur. Elle met en lumière les schémas et les phases de votre parcours de développement personnel.',
     },
     'progressions_profile_info': {
       AppLanguage.en: 'Profile Information',
@@ -1621,16 +1617,16 @@ class L10n {
       AppLanguage.fr: 'Utilisateur',
     },
     'progressions_calculating': {
-      AppLanguage.en: 'Calculating progressions...',
-      AppLanguage.tr: 'İlerlemeler hesaplanıyor...',
-      AppLanguage.de: 'Progressionen werden berechnet...',
-      AppLanguage.fr: 'Calcul des progressions...',
+      AppLanguage.en: 'Analyzing your growth journey...',
+      AppLanguage.tr: 'Gelişim yolculuğunuz analiz ediliyor...',
+      AppLanguage.de: 'Ihre Entwicklungsreise wird analysiert...',
+      AppLanguage.fr: 'Analyse de votre parcours de croissance...',
     },
     'progressions_positions': {
-      AppLanguage.en: 'Progressed Positions',
-      AppLanguage.tr: 'İlerlemiş Pozisyonlar',
-      AppLanguage.de: 'Progredierte Positionen',
-      AppLanguage.fr: 'Positions Progressées',
+      AppLanguage.en: 'Growth Dimensions',
+      AppLanguage.tr: 'Gelişim Boyutları',
+      AppLanguage.de: 'Wachstumsdimensionen',
+      AppLanguage.fr: 'Dimensions de Croissance',
     },
     'progressions_age': {
       AppLanguage.en: 'years old',
@@ -1639,40 +1635,40 @@ class L10n {
       AppLanguage.fr: 'ans',
     },
     'progressions_sun': {
-      AppLanguage.en: 'Sun',
-      AppLanguage.tr: 'Güneş',
-      AppLanguage.de: 'Sonne',
-      AppLanguage.fr: 'Soleil',
+      AppLanguage.en: 'Core Identity',
+      AppLanguage.tr: 'Temel Kimlik',
+      AppLanguage.de: 'Kernidentität',
+      AppLanguage.fr: 'Identité Fondamentale',
     },
     'progressions_moon': {
-      AppLanguage.en: 'Moon',
-      AppLanguage.tr: 'Ay',
-      AppLanguage.de: 'Mond',
-      AppLanguage.fr: 'Lune',
+      AppLanguage.en: 'Emotional Self',
+      AppLanguage.tr: 'Duygusal Benlik',
+      AppLanguage.de: 'Emotionales Selbst',
+      AppLanguage.fr: 'Soi Émotionnel',
     },
     'progressions_rising': {
-      AppLanguage.en: 'Rising',
-      AppLanguage.tr: 'Yükselen',
-      AppLanguage.de: 'Aszendent',
-      AppLanguage.fr: 'Ascendant',
+      AppLanguage.en: 'Social Presence',
+      AppLanguage.tr: 'Sosyal Varlık',
+      AppLanguage.de: 'Soziale Präsenz',
+      AppLanguage.fr: 'Présence Sociale',
     },
     'progressions_mercury': {
-      AppLanguage.en: 'Mercury',
-      AppLanguage.tr: 'Merkür',
-      AppLanguage.de: 'Merkur',
-      AppLanguage.fr: 'Mercure',
+      AppLanguage.en: 'Communication',
+      AppLanguage.tr: 'İletişim',
+      AppLanguage.de: 'Kommunikation',
+      AppLanguage.fr: 'Communication',
     },
     'progressions_venus': {
-      AppLanguage.en: 'Venus',
-      AppLanguage.tr: 'Venüs',
-      AppLanguage.de: 'Venus',
-      AppLanguage.fr: 'Vénus',
+      AppLanguage.en: 'Relationships',
+      AppLanguage.tr: 'İlişkiler',
+      AppLanguage.de: 'Beziehungen',
+      AppLanguage.fr: 'Relations',
     },
     'progressions_mars': {
-      AppLanguage.en: 'Mars',
-      AppLanguage.tr: 'Mars',
-      AppLanguage.de: 'Mars',
-      AppLanguage.fr: 'Mars',
+      AppLanguage.en: 'Drive & Motivation',
+      AppLanguage.tr: 'Motivasyon',
+      AppLanguage.de: 'Antrieb & Motivation',
+      AppLanguage.fr: 'Motivation',
     },
     'progressions_from': {
       AppLanguage.en: '(from {sign})',
@@ -1699,22 +1695,22 @@ class L10n {
       AppLanguage.fr: 'Évolution de l\'Identité',
     },
     'progressions_active_aspects': {
-      AppLanguage.en: 'Active Aspects',
-      AppLanguage.tr: 'Aktif Açılar',
-      AppLanguage.de: 'Aktive Aspekte',
-      AppLanguage.fr: 'Aspects Actifs',
+      AppLanguage.en: 'Active Growth Areas',
+      AppLanguage.tr: 'Aktif Gelişim Alanları',
+      AppLanguage.de: 'Aktive Wachstumsbereiche',
+      AppLanguage.fr: 'Domaines de Croissance Actifs',
     },
     'progressions_applying': {
-      AppLanguage.en: 'Applying',
-      AppLanguage.tr: 'Yaklaşan',
-      AppLanguage.de: 'Annähernd',
-      AppLanguage.fr: 'Appliquant',
+      AppLanguage.en: 'Emerging',
+      AppLanguage.tr: 'Beliren',
+      AppLanguage.de: 'Aufkommend',
+      AppLanguage.fr: 'Émergent',
     },
     'progressions_separating': {
-      AppLanguage.en: 'Separating',
-      AppLanguage.tr: 'Ayrılan',
-      AppLanguage.de: 'Trennend',
-      AppLanguage.fr: 'Séparant',
+      AppLanguage.en: 'Integrating',
+      AppLanguage.tr: 'Bütünleşen',
+      AppLanguage.de: 'Integrierend',
+      AppLanguage.fr: 'Intégrant',
     },
     'progressions_significant_events': {
       AppLanguage.en: 'Significant Events',
@@ -1729,20 +1725,20 @@ class L10n {
       AppLanguage.fr: 'Changements à Venir',
     },
     'progressions_kadim_title': {
-      AppLanguage.en: 'One Day = One Year',
-      AppLanguage.tr: 'Bir Gün = Bir Yıl',
-      AppLanguage.de: 'Ein Tag = Ein Jahr',
-      AppLanguage.fr: 'Un Jour = Un An',
+      AppLanguage.en: 'Understanding Your Growth Phases',
+      AppLanguage.tr: 'Gelişim Evrelerinizi Anlamak',
+      AppLanguage.de: 'Ihre Wachstumsphasen Verstehen',
+      AppLanguage.fr: 'Comprendre Vos Phases de Croissance',
     },
     'progressions_kadim_content': {
       AppLanguage.en:
-          'Secondary Progressions are one of personal growth\'s most subtle timing techniques. They work with the "one day = one year" formula: the patterns 30 days after your birth reflect themes associated with your 30th year. This ancient technique explores inner evolution and spiritual maturation - inner transformation rather than external events.',
+          'Your personal growth timeline maps the gradual unfolding of your inner potential. By reflecting on early life patterns, you may notice themes that echo through later years. This technique focuses on inner evolution and personal maturation - inner transformation rather than external events.',
       AppLanguage.tr:
-          'İkincil İlerlemeler, kişisel gelişimin en incelikli zamanlama tekniklerinden biridir. "Bir gün = bir yıl" formülüyle çalışır: doğumunuzdan 30 gün sonraki örüntüler, 30 yaşınızdaki temalarla ilişkilendirilir. Bu kadim teknik, içsel evriminizi ve ruhsal olgunlaşmanızı keşfetmenize yardımcı olur.',
+          'Kişisel gelişim zaman çizelgeniz, iç potansiyelinizin kademeli açılımını haritalandırır. Erken yaşam kalıplarını düşünerek, sonraki yıllarda yankılanan temaları fark edebilirsiniz. Bu teknik, içsel evrim ve kişisel olgunlaşmaya odaklanır.',
       AppLanguage.de:
-          'Sekundäre Progressionen sind eine der subtilsten Zeittechniken der persönlichen Entwicklung. Sie arbeiten mit der Formel "ein Tag = ein Jahr": die Muster 30 Tage nach Ihrer Geburt spiegeln Themen Ihres 30. Lebensjahres wider. Diese alte Technik erforscht Ihre innere Entwicklung und spirituelle Reifung.',
+          'Ihre persönliche Entwicklungs-Zeitleiste bildet die schrittweise Entfaltung Ihres inneren Potenzials ab. Durch die Reflexion früher Lebensmuster können Sie Themen erkennen, die sich durch spätere Jahre ziehen. Diese Technik konzentriert sich auf innere Entwicklung und persönliche Reifung.',
       AppLanguage.fr:
-          'Les Progressions Secondaires sont l\'une des techniques de timing les plus subtiles du développement personnel. Elles fonctionnent avec la formule "un jour = un an" : les schémas 30 jours après votre naissance reflètent les thèmes associés à votre 30e année. Cette technique ancienne explore votre évolution intérieure et votre maturation spirituelle.',
+          'Votre chronologie de croissance personnelle cartographie le déploiement progressif de votre potentiel intérieur. En réfléchissant aux schémas de la petite enfance, vous pouvez remarquer des thèmes qui résonnent au fil des années. Cette technique se concentre sur l\'évolution intérieure et la maturation personnelle.',
     },
   };
 }
