@@ -45,16 +45,12 @@ GoRouter buildTestRouter({String initialLocation = '/'}) {
         builder: (context, state) => const _TestPlaceholderScreen(title: 'Premium'),
       ),
       GoRoute(
-        path: '/numerology',
-        builder: (context, state) => const _TestPlaceholderScreen(title: 'Numerology'),
+        path: '/journal',
+        builder: (context, state) => const _TestPlaceholderScreen(title: 'Journal'),
       ),
       GoRoute(
-        path: '/tarot',
-        builder: (context, state) => const _TestPlaceholderScreen(title: 'Tarot'),
-      ),
-      GoRoute(
-        path: '/aura',
-        builder: (context, state) => const _TestPlaceholderScreen(title: 'Aura'),
+        path: '/patterns',
+        builder: (context, state) => const _TestPlaceholderScreen(title: 'Patterns'),
       ),
       GoRoute(
         path: '/dream-interpretation',
