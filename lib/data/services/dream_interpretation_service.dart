@@ -438,7 +438,7 @@ JSON FORMATI:
       case TimeLayer.simdi:
         return 'This dream reflects a situation in your current life.';
       case TimeLayer.gelecek:
-        return 'This dream is a harbinger of an approaching change.';
+        return 'This dream may reflect an approaching change in your life.';
       case TimeLayer.dongusel:
         return 'This recurring pattern points to a cycle that needs to be broken.';
     }
