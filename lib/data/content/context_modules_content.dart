@@ -441,7 +441,7 @@ const List<ContextModule> allContextModules = [
     titleEn: 'The Sleep-Mood Connection',
     titleTr: 'Uyku-Ruh Hali Bağlantısı',
     summaryEn:
-        'Sleep quality is the single strongest predictor of next-day mood, yet most people underestimate its impact.',
+        'Sleep quality is the single strongest indicator of next-day mood, yet most people underestimate its impact.',
     summaryTr:
         'Uyku kalitesi ertesi gün ruh halinin en güçlü tek belirleyicisidir, ancak çoğu insan etkisini hafife alır.',
     bodyEn:
@@ -518,7 +518,7 @@ const List<ContextModule> allContextModules = [
     bodyTr:
         'Araştırmalar serotonin üretiminin gün ışığı maruziyetiyle değiştiğini, melatonin döngülerinin mevsim uzunluğuyla kaydığını ve D vitamini seviyelerinin yıl boyunca dalgalandığını göstermektedir — bunların hepsi ruh halini ve enerjiyi etkiler. Tam bir yıllık ruh hali takibi, aylık görünümlere görünmez olan örüntüleri sıklıkla ortaya çıkarır.',
     whyItMattersEn:
-        'Long-term tracking transforms seasonal shifts from surprises into predictable phases you can prepare for.',
+        'Long-term tracking transforms seasonal shifts from surprises into familiar phases you can prepare for.',
     whyItMattersTr:
         'Uzun vadeli takip, mevsimsel değişimleri sürprizlerden hazırlanabileceğiniz öngörülebilir fazlara dönüştürür.',
     screenshotLineEn: 'Your year has seasons too. Track long enough to see them.',
@@ -629,7 +629,7 @@ const List<ContextModule> allContextModules = [
     titleEn: 'Cognitive Distortions to Watch For',
     titleTr: 'Dikkat Edilmesi Gereken Bilişsel Çarpıtmalar',
     summaryEn:
-        'Your brain has predictable thinking traps. Recognizing them in your journal entries is the first step to freedom.',
+        'Your brain has common thinking traps. Recognizing them in your journal entries is the first step to freedom.',
     summaryTr:
         'Beyninizin öngörülebilir düşünce tuzakları vardır. Onları günlük kayıtlarınızda tanımak özgürlüğe giden ilk adımdır.',
     bodyEn:

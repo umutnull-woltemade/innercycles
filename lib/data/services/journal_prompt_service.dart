@@ -507,8 +507,8 @@ class JournalPromptService {
     ),
     JournalPrompt(
       id: 'em_04',
-      promptEn: 'Describe your current emotional state as a weather pattern. What is the forecast?',
-      promptTr: 'Mevcut duygusal durumunuzu bir hava durumu olarak tanımlayın. Tahmin nedir?',
+      promptEn: 'Describe your current emotional state as a weather pattern. What do you notice?',
+      promptTr: 'Mevcut duygusal durumunuzu bir hava durumu olarak tanımlayın. Ne fark ediyorsunuz?',
       category: PromptCategory.emotions,
       depth: PromptDepth.surface,
     ),

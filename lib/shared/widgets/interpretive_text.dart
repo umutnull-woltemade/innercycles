@@ -1,11 +1,9 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/constants/routes.dart';
-import '../../data/content/glossary_content.dart';
 import '../../data/models/reference_content.dart';
 import '../../data/providers/app_providers.dart';
 import '../../data/services/l10n_service.dart';
@@ -17,38 +15,13 @@ class GlossaryCache {
   GlossaryCache._internal();
 
   Map<String, GlossaryEntry>? _termMap;
-  List<String>? _sortedTerms;
   RegExp? _termPattern;
 
-  /// Initialize cache - call this early in app lifecycle
+  /// Initialize cache - disabled for 4.3(b) compliance
+  /// Astrology glossary content moved to _archived/
   void initialize() {
     if (_termMap != null) return;
-
-    // Web'de glossary cache'i skip et - 300+ terimlik regex çok yavaş
-    if (kIsWeb) {
-      _termMap = {};
-      _sortedTerms = [];
-      return;
-    }
-
-    final entries = GlossaryContent.getAllEntries();
-    _termMap = <String, GlossaryEntry>{};
-
-    for (final entry in entries) {
-      _termMap![entry.termTr.toLowerCase()] = entry;
-      _termMap![entry.term.toLowerCase()] = entry;
-    }
-
-    // Sort terms by length (longest first) to match longer terms first
-    _sortedTerms = _termMap!.keys.toList()
-      ..sort((a, b) => b.length.compareTo(a.length));
-
-    // Only match terms that are at least 3 characters
-    final filteredTerms = _sortedTerms!.where((t) => t.length >= 3).toList();
-    if (filteredTerms.isNotEmpty) {
-      final escapedTerms = filteredTerms.map((t) => RegExp.escape(t)).join('|');
-      _termPattern = RegExp('\\b($escapedTerms)\\b', caseSensitive: false);
-    }
+    _termMap = {};
   }
 
   /// Get entry by term (case-insensitive)

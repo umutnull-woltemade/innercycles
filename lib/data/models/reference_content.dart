@@ -2,7 +2,7 @@ import 'zodiac_sign.dart';
 import '../providers/app_providers.dart';
 import '../services/l10n_service.dart';
 
-/// Astrology Glossary Entry with enhanced features
+/// Reflection Glossary Entry with enhanced features
 class GlossaryEntry {
   final String term;
   final String termTr;
@@ -160,9 +160,9 @@ enum GlossaryCategory {
   techniques,
   modern,
   esoteric, // Ezoterik ve spiritüel kavramlar
-  psychological, // Psikolojik astroloji
-  predictive, // Tahmin teknikleri
-  relationships, // İlişki astrolojisi
+  psychological, // Psikolojik yansıma
+  analytical, // Analiz teknikleri
+  relationships, // İlişki yansıması
 }
 
 extension GlossaryCategoryExtension on GlossaryCategory {
@@ -186,8 +186,8 @@ extension GlossaryCategoryExtension on GlossaryCategory {
         return 'Ezoterik';
       case GlossaryCategory.psychological:
         return 'Psikolojik';
-      case GlossaryCategory.predictive:
-        return 'Tahmin';
+      case GlossaryCategory.analytical:
+        return 'Analitik';
       case GlossaryCategory.relationships:
         return 'İlişkiler';
     }
@@ -208,13 +208,13 @@ extension GlossaryCategoryExtension on GlossaryCategory {
       case GlossaryCategory.techniques:
         return 'Techniques';
       case GlossaryCategory.modern:
-        return 'Modern Astrology';
+        return 'Modern Wellness';
       case GlossaryCategory.esoteric:
         return 'Esoteric';
       case GlossaryCategory.psychological:
         return 'Psychological';
-      case GlossaryCategory.predictive:
-        return 'Predictive';
+      case GlossaryCategory.analytical:
+        return 'Analytical';
       case GlossaryCategory.relationships:
         return 'Relationships';
     }
@@ -235,13 +235,13 @@ extension GlossaryCategoryExtension on GlossaryCategory {
       case GlossaryCategory.techniques:
         return 'Techniken';
       case GlossaryCategory.modern:
-        return 'Moderne Astrologie';
+        return 'Modernes Wellness';
       case GlossaryCategory.esoteric:
         return 'Esoterisch';
       case GlossaryCategory.psychological:
         return 'Psychologisch';
-      case GlossaryCategory.predictive:
-        return 'Prognostisch';
+      case GlossaryCategory.analytical:
+        return 'Analytisch';
       case GlossaryCategory.relationships:
         return 'Beziehungen';
     }
@@ -262,13 +262,13 @@ extension GlossaryCategoryExtension on GlossaryCategory {
       case GlossaryCategory.techniques:
         return 'Techniques';
       case GlossaryCategory.modern:
-        return 'Astrologie moderne';
+        return 'Bien-etre moderne';
       case GlossaryCategory.esoteric:
         return 'Esoterique';
       case GlossaryCategory.psychological:
         return 'Psychologique';
-      case GlossaryCategory.predictive:
-        return 'Predictif';
+      case GlossaryCategory.analytical:
+        return 'Analytique';
       case GlossaryCategory.relationships:
         return 'Relations';
     }
@@ -308,7 +308,7 @@ extension GlossaryCategoryExtension on GlossaryCategory {
         return '🌙';
       case GlossaryCategory.psychological:
         return '🧠';
-      case GlossaryCategory.predictive:
+      case GlossaryCategory.analytical:
         return '🔭';
       case GlossaryCategory.relationships:
         return '💕';
@@ -849,7 +849,7 @@ extension CelebrityCategoryExtension on CelebrityCategory {
 }
 
 /// Article/Guide
-class AstrologyArticle {
+class ReflectionArticle {
   final String id;
   final String title;
   final String summary;
@@ -861,7 +861,7 @@ class AstrologyArticle {
   final List<String> tags;
   final bool isPremium;
 
-  AstrologyArticle({
+  ReflectionArticle({
     required this.id,
     required this.title,
     required this.summary,
@@ -887,8 +887,8 @@ class AstrologyArticle {
     'isPremium': isPremium,
   };
 
-  factory AstrologyArticle.fromJson(Map<String, dynamic> json) =>
-      AstrologyArticle(
+  factory ReflectionArticle.fromJson(Map<String, dynamic> json) =>
+      ReflectionArticle(
         id: json['id'] as String,
         title: json['title'] as String,
         summary: json['summary'] as String,

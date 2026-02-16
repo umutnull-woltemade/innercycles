@@ -3,7 +3,7 @@ import 'dart:math';
 import '../providers/app_providers.dart';
 import 'l10n_service.dart';
 
-/// Moon phase and sign calculation service
+/// Moon phase and personality archetype calculation service
 class MoonService {
   /// Known new moon reference date (Jan 6, 2000 at 18:14 UTC)
   static final DateTime _knownNewMoon = DateTime.utc(2000, 1, 6, 18, 14);
@@ -30,7 +30,7 @@ class MoonService {
     return ((1 - cos(2 * pi * phaseDay / _synodicMonth)) / 2) * 100;
   }
 
-  /// Get current moon sign based on moon's position
+  /// Get current personality archetype based on lunar cycle position
   static MoonSign getCurrentMoonSign([DateTime? date]) {
     final now = date ?? DateTime.now();
 
@@ -340,7 +340,7 @@ extension MoonPhaseExtension on MoonPhase {
   }
 }
 
-/// Moon sign enum
+/// Personality archetype enum (mapped from lunar cycle positions)
 enum MoonSign {
   aries,
   taurus,
@@ -360,92 +360,92 @@ extension MoonSignExtension on MoonSign {
   String get name {
     switch (this) {
       case MoonSign.aries:
-        return 'Aries';
+        return 'The Pioneer';
       case MoonSign.taurus:
-        return 'Taurus';
+        return 'The Builder';
       case MoonSign.gemini:
-        return 'Gemini';
+        return 'The Communicator';
       case MoonSign.cancer:
-        return 'Cancer';
+        return 'The Nurturer';
       case MoonSign.leo:
-        return 'Leo';
+        return 'The Performer';
       case MoonSign.virgo:
-        return 'Virgo';
+        return 'The Analyst';
       case MoonSign.libra:
-        return 'Libra';
+        return 'The Harmonizer';
       case MoonSign.scorpio:
-        return 'Scorpio';
+        return 'The Transformer';
       case MoonSign.sagittarius:
-        return 'Sagittarius';
+        return 'The Explorer';
       case MoonSign.capricorn:
-        return 'Capricorn';
+        return 'The Achiever';
       case MoonSign.aquarius:
-        return 'Aquarius';
+        return 'The Visionary';
       case MoonSign.pisces:
-        return 'Pisces';
+        return 'The Dreamer';
     }
   }
 
   String get nameTr {
     switch (this) {
       case MoonSign.aries:
-        return 'Koç';
+        return 'Öncü';
       case MoonSign.taurus:
-        return 'Boğa';
+        return 'Kurucu';
       case MoonSign.gemini:
-        return 'İkizler';
+        return 'İletişimci';
       case MoonSign.cancer:
-        return 'Yengeç';
+        return 'Koruyucu';
       case MoonSign.leo:
-        return 'Aslan';
+        return 'Sanatçı';
       case MoonSign.virgo:
-        return 'Başak';
+        return 'Analist';
       case MoonSign.libra:
-        return 'Terazi';
+        return 'Uyumcu';
       case MoonSign.scorpio:
-        return 'Akrep';
+        return 'Dönüştürücü';
       case MoonSign.sagittarius:
-        return 'Yay';
+        return 'Kaşif';
       case MoonSign.capricorn:
-        return 'Oğlak';
+        return 'Başarıcı';
       case MoonSign.aquarius:
-        return 'Kova';
+        return 'Vizyoner';
       case MoonSign.pisces:
-        return 'Balık';
+        return 'Hayalperest';
     }
   }
 
   String get symbol {
     switch (this) {
       case MoonSign.aries:
-        return '♈';
+        return '🚀'; // Pioneer
       case MoonSign.taurus:
-        return '♉';
+        return '🏗️'; // Builder
       case MoonSign.gemini:
-        return '♊';
+        return '💬'; // Communicator
       case MoonSign.cancer:
-        return '♋';
+        return '🤲'; // Nurturer
       case MoonSign.leo:
-        return '♌';
+        return '🎭'; // Performer
       case MoonSign.virgo:
-        return '♍';
+        return '🔍'; // Analyst
       case MoonSign.libra:
-        return '♎';
+        return '⚖️'; // Harmonizer
       case MoonSign.scorpio:
-        return '♏';
+        return '🦋'; // Transformer
       case MoonSign.sagittarius:
-        return '♐';
+        return '🧭'; // Explorer
       case MoonSign.capricorn:
-        return '♑';
+        return '🏆'; // Achiever
       case MoonSign.aquarius:
-        return '♒';
+        return '💡'; // Visionary
       case MoonSign.pisces:
-        return '♓';
+        return '🌊'; // Dreamer
     }
   }
 
   String localizedName(AppLanguage language) {
-    final key = 'signs.${name.toLowerCase()}';
+    final key = 'archetypes.${toString().split('.').last}';
     return L10nService.get(key, language);
   }
 }
@@ -612,9 +612,10 @@ extension VoidOfCourseMoonExtension on MoonService {
 
   /// Check if this is likely a void period based on Moon sign patterns
   static bool _isLikelyVoidPeriod(DateTime date, MoonSign sign) {
-    // Some signs have longer typical VOC periods
-    // Fire signs (Aries, Leo, Sag) and Air signs often have shorter VOCs
-    // Water and Earth signs can have longer ones
+    // Some archetypes have longer typical VOC periods
+    // Action-oriented archetypes (Pioneer, Performer, Explorer) and
+    // social archetypes often have shorter VOCs
+    // Reflective and grounded archetypes can have longer ones
 
     // Use date components for seed to ensure consistent results
     final seed = date.year * 10000 + date.month * 100 + date.day + sign.index;

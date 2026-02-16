@@ -9,7 +9,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'core/theme/app_theme.dart';
 import 'shared/services/router_service.dart';
-import 'shared/widgets/interpretive_text.dart';
 import 'shared/widgets/app_error_widget.dart';
 import 'data/services/ad_service.dart';
 import 'data/services/storage_service.dart';
@@ -138,10 +137,11 @@ class _AppInitializerState extends State<AppInitializer> {
       }
     }
 
-    // Initialize glossary cache (MOBILE ONLY)
-    if (!kIsWeb) {
-      Future.microtask(() => GlossaryCache().initialize());
-    }
+    // Glossary cache disabled for 4.3(b) compliance
+    // Astrology glossary content moved to _archived/
+    // if (!kIsWeb) {
+    //   Future.microtask(() => GlossaryCache().initialize());
+    // }
 
     // Initialize storage
     try {

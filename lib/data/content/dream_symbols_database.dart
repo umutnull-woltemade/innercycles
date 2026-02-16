@@ -1,5 +1,5 @@
 /// Dream Symbols Database - 7 Boyutlu Rüya Sembol Ansiklopedisi
-/// 50+ evrensel sembol, Jungian arketipler, astrolojik bağlantılar
+/// 50+ evrensel sembol, Jungian arketipler, psikolojik bağlantılar
 library;
 
 import '../models/dream_interpretation_models.dart';

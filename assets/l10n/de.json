@@ -158,7 +158,7 @@
     "compare": "Vergleichen",
     "delete_profile": "Profil Löschen",
     "your_birth_info": "Deine Geburtsinformationen",
-    "your_sun_sign": "Dein Sonnenzeichen",
+    "your_sun_sign": "Deine Kernpersönlichkeit",
     "edit_info": "Informationen Bearbeiten",
     "view_personal_profile": "Persönliches Profil Anzeigen",
     "profile_saved": "Profil erfolgreich gespeichert",
@@ -173,10 +173,25 @@
     },
     "emoji_select": "Emoji Auswählen",
     "relationship_type": "Beziehungstyp",
-    "big_three": "Die Großen Drei",
-    "sun_type": "Sonnenzeichen",
-    "moon_type": "Mondzeichen",
-    "rising_type": "Aszendent"
+    "big_three": "Dein Persönlichkeitsprofil",
+    "sun_type": "Kernpersönlichkeit",
+    "moon_type": "Emotionales Profil",
+    "rising_type": "Sozialer Stil",
+    "view_insight": "Vollständige Einsicht"
+  },
+  "zodiac": {
+    "aries": "Der Pionier",
+    "taurus": "Der Erbauer",
+    "gemini": "Der Kommunikator",
+    "cancer": "Der Beschützer",
+    "leo": "Der Darsteller",
+    "virgo": "Der Analyst",
+    "libra": "Der Harmonisierer",
+    "scorpio": "Der Verwandler",
+    "sagittarius": "Der Entdecker",
+    "capricorn": "Der Leistungsträger",
+    "aquarius": "Der Visionär",
+    "pisces": "Der Träumer"
   },
   "personal_profile": {
     "title": "Personal Profile"
@@ -7455,7 +7470,7 @@
       "error_try_again": "An error occurred. Please try again.",
       "interpretation_failed": "Could not generate interpretation.",
       "share_another": "If you want to share another dream, I'm ready to listen.",
-      "welcome_message": "Hello, I am Dream Trace. I'm here to guide you with the cosmic energy of {signName} sign.\n\nDescribe your dream in detail. What did you see? How did you feel? The more you share about the symbols, colors, and emotions in your dream, the deeper my cosmic interpretation will be.\n\n",
+      "welcome_message": "Hallo, ich bin Dream Trace. Ich bin hier, um deine Träume durch die Perspektive deines {signName} Persönlichkeitsarchetypus zu erkunden.\n\nBeschreibe deinen Traum im Detail. Was hast du gesehen? Wie hast du dich gefühlt? Je mehr du über Symbole, Farben und Emotionen teilst, desto tiefer wird die Reflexion.\n\n",
       "prompts": {
         "water_breathing": "I was swimming in the sea but I could breathe underwater",
         "rain_running": "I was running in heavy rain but not getting wet",
@@ -7586,7 +7601,7 @@
         "love_meaning": "Connection, desire, acceptance"
       },
       "interpretations": {
-        "sign_perspective": "{sign} cosmic perspective on your dream:",
+        "sign_perspective": "Durch die Perspektive deines {sign} Archetypus:",
         "water": {
           "title": "🌊 WATER DREAM - {sign} INTERPRETATION",
           "divider": "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",

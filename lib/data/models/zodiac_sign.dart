@@ -32,58 +32,58 @@ extension ZodiacSignExtension on ZodiacSign {
   String get name {
     switch (this) {
       case ZodiacSign.aries:
-        return 'Aries';
+        return 'The Pioneer';
       case ZodiacSign.taurus:
-        return 'Taurus';
+        return 'The Builder';
       case ZodiacSign.gemini:
-        return 'Gemini';
+        return 'The Communicator';
       case ZodiacSign.cancer:
-        return 'Cancer';
+        return 'The Nurturer';
       case ZodiacSign.leo:
-        return 'Leo';
+        return 'The Performer';
       case ZodiacSign.virgo:
-        return 'Virgo';
+        return 'The Analyst';
       case ZodiacSign.libra:
-        return 'Libra';
+        return 'The Harmonizer';
       case ZodiacSign.scorpio:
-        return 'Scorpio';
+        return 'The Transformer';
       case ZodiacSign.sagittarius:
-        return 'Sagittarius';
+        return 'The Explorer';
       case ZodiacSign.capricorn:
-        return 'Capricorn';
+        return 'The Achiever';
       case ZodiacSign.aquarius:
-        return 'Aquarius';
+        return 'The Visionary';
       case ZodiacSign.pisces:
-        return 'Pisces';
+        return 'The Dreamer';
     }
   }
 
   String get nameTr {
     switch (this) {
       case ZodiacSign.aries:
-        return 'Koç';
+        return 'Öncü';
       case ZodiacSign.taurus:
-        return 'Boğa';
+        return 'Kurucu';
       case ZodiacSign.gemini:
-        return 'İkizler';
+        return 'İletişimci';
       case ZodiacSign.cancer:
-        return 'Yengeç';
+        return 'Koruyucu';
       case ZodiacSign.leo:
-        return 'Aslan';
+        return 'Sahne Yıldızı';
       case ZodiacSign.virgo:
-        return 'Başak';
+        return 'Analist';
       case ZodiacSign.libra:
-        return 'Terazi';
+        return 'Dengeleyici';
       case ZodiacSign.scorpio:
-        return 'Akrep';
+        return 'Dönüştürücü';
       case ZodiacSign.sagittarius:
-        return 'Yay';
+        return 'Kaşif';
       case ZodiacSign.capricorn:
-        return 'Oğlak';
+        return 'Başarıcı';
       case ZodiacSign.aquarius:
-        return 'Kova';
+        return 'Vizyoner';
       case ZodiacSign.pisces:
-        return 'Balık';
+        return 'Hayalci';
     }
   }
 
@@ -444,29 +444,29 @@ extension ZodiacSignExtension on ZodiacSign {
   String get description {
     switch (this) {
       case ZodiacSign.aries:
-        return 'The Ram charges forward with unstoppable energy and courage. As the first sign of the zodiac, Aries embodies new beginnings and bold initiatives.';
+        return 'The Pioneer charges forward with unstoppable energy and courage, embodying new beginnings and bold initiatives.';
       case ZodiacSign.taurus:
-        return 'The Bull grounds us with stability and sensual pleasures. Taurus seeks security and finds joy in life\'s tangible comforts.';
+        return 'The Builder grounds us with stability and appreciation for beauty, seeking security and finding joy in life\'s tangible comforts.';
       case ZodiacSign.gemini:
-        return 'The Twins dance between ideas with quicksilver minds. Gemini\'s dual nature brings curiosity and adaptability to every situation.';
+        return 'The Communicator dances between ideas with a quicksilver mind, bringing curiosity and adaptability to every situation.';
       case ZodiacSign.cancer:
-        return 'The Crab protects with fierce love and emotional depth. Cancer nurtures connections and creates sanctuary wherever they go.';
+        return 'The Nurturer protects with fierce love and emotional depth, creating sanctuary and meaningful connections wherever they go.';
       case ZodiacSign.leo:
-        return 'The Lion roars with creative fire and generous spirit. Leo leads with warmth and inspires others through authentic self-expression.';
+        return 'The Performer leads with creative fire and generous spirit, inspiring others through authentic self-expression.';
       case ZodiacSign.virgo:
-        return 'The Maiden analyzes with precision and serves with devotion. Virgo\'s keen eye for detail brings order to chaos.';
+        return 'The Analyst observes with precision and serves with devotion, bringing a keen eye for detail and order to any situation.';
       case ZodiacSign.libra:
-        return 'The Scales seek harmony and beauty in all things. Libra weighs every option to find balance and fairness.';
+        return 'The Harmonizer seeks beauty and balance in all things, weighing every option to find fairness and equilibrium.';
       case ZodiacSign.scorpio:
-        return 'The Scorpion delves into depths others fear to explore. Scorpio transforms through intensity and emerges renewed.';
+        return 'The Transformer delves into depths others fear to explore, growing through intensity and emerging renewed.';
       case ZodiacSign.sagittarius:
-        return 'The Archer aims for distant horizons with optimistic spirit. Sagittarius seeks truth through adventure and philosophical exploration.';
+        return 'The Explorer aims for distant horizons with optimistic spirit, seeking truth through adventure and philosophical inquiry.';
       case ZodiacSign.capricorn:
-        return 'The Sea-Goat climbs steadily toward ambitious heights. Capricorn builds lasting structures through discipline and patience.';
+        return 'The Achiever climbs steadily toward ambitious heights, building lasting structures through discipline and patience.';
       case ZodiacSign.aquarius:
-        return 'The Water-Bearer pours forth innovation for humanity. Aquarius envisions a better future through progressive ideals.';
+        return 'The Visionary pours forth innovation for humanity, envisioning a better future through progressive ideals.';
       case ZodiacSign.pisces:
-        return 'The Fish swim through mystical waters of imagination. Pisces dissolves boundaries and connects us to the universal ocean of consciousness.';
+        return 'The Dreamer navigates mystical waters of imagination, dissolving boundaries and connecting us to deeper consciousness.';
     }
   }
 

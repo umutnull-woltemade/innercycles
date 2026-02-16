@@ -393,7 +393,7 @@ const List<GranularEmotion> allGranularEmotions = [
     intensity: EmotionIntensity.low,
     nameEn: 'Uncertain',
     nameTr: 'Belirsiz',
-    descriptionEn: 'The discomfort of not knowing what will happen next or which choice to make.',
+    descriptionEn: 'The discomfort of not knowing what comes next or which choice to make.',
     descriptionTr: 'Bundan sonra ne olacağını veya hangi seçimi yapacağını bilmemenin rahatsızlığı.',
     bodySensationEn: 'Unsettled stomach, wandering focus, slight tension',
     bodySensationTr: 'Tedirgin mide, dağınık odak, hafif gerilim',

@@ -447,11 +447,11 @@ JSON FORMATI:
   String _getMoonPhaseMessage(MoonPhase phase) {
     // Gelişmiş ay fazı detaylarını kullan
     final phaseKey = _getMoonPhaseKey(phase);
-    final phaseDetail = AstroRuyaKorelasyonlari.ayFaziDetay[phaseKey];
+    final phaseDetail = PsikolojikRuyaTemalari.uykuDongusuNotlari[phaseKey];
 
     if (phaseDetail != null) {
       return '${phaseDetail.emoji} ${phaseDetail.phase}: ${phaseDetail.dreamQuality}. '
-          '${phaseDetail.ritualAdvice}';
+          '${phaseDetail.advice}';
     }
 
     // Fallback with localization support
@@ -502,17 +502,17 @@ JSON FORMATI:
   String _getMoonPhaseKey(MoonPhase phase) {
     switch (phase) {
       case MoonPhase.yeniay:
-        return 'yeniay';
+        return 'derinUyku';
       case MoonPhase.hilal:
-        return 'hilal';
+        return 'hafifUyku';
       case MoonPhase.ilkDordun:
-        return 'ilkDordun';
+        return 'remBaslangic';
       case MoonPhase.dolunay:
-        return 'dolunay';
+        return 'remDoruk';
       case MoonPhase.sonDordun:
-        return 'sonDordun';
+        return 'uyanmaOncesi';
       case MoonPhase.karanlikAy:
-        return 'karanlikAy';
+        return 'derinDinlenme';
     }
   }
 
@@ -527,7 +527,7 @@ JSON FORMATI:
     final localized = L10nService.get(key, language);
     final template = localized != key
         ? localized
-        : 'This dream came right now because {phaseContext} and {layerContext} The universe sent this message at the perfect time for you.';
+        : 'This dream may have surfaced now because {phaseContext} and {layerContext} Your mind tends to process what matters most at the right time.';
     return template
         .replaceAll('{phaseContext}', phaseContext)
         .replaceAll('{layerContext}', layerContext);
@@ -1148,9 +1148,9 @@ JSON FORMATI:
 /// Arketip bazli ruya icgoruleri
 class ArchetypeDreamInsights {
   /// Arketipe ozel ruya analizi
-  static ZodiacDreamProfile? getProfile(String archetypeSign) {
+  static ArchetypeDreamProfile? getProfile(String archetypeSign) {
     final normalizedSign = archetypeSign.toLowerCase().trim();
-    return AstroRuyaKorelasyonlari.burcRuyaProfili[normalizedSign];
+    return PsikolojikRuyaTemalari.arketipRuyaProfili[normalizedSign];
   }
 
   /// Arketipe ozel ruya tavsiyesi
@@ -1326,26 +1326,26 @@ class DreamRitualService {
     return RuyaRituelleri.haftalik;
   }
 
-  /// Ay fazına göre ritüel öner
-  static List<String> getRitualsForMoonPhase(MoonPhase phase) {
-    final phaseKey = _getPhaseKey(phase);
-    return RuyaRituelleri.ayFaziRituelleri[phaseKey] ?? [];
+  /// Haftanın gününe göre ritüel öner
+  static List<String> getRitualsForDay(String dayKey) {
+    return RuyaRituelleri.haftalikDonguRituelleri[dayKey] ?? [];
   }
 
-  static String _getPhaseKey(MoonPhase phase) {
+  /// Uyku döngüsüne göre ritüel öner (fallback)
+  static List<String> getRitualsForMoonPhase(MoonPhase phase) {
+    // Map to weekday-based rituals as fallback
     switch (phase) {
       case MoonPhase.yeniay:
-        return 'yeniay';
+        return RuyaRituelleri.haftalikDonguRituelleri['pazartesi'] ?? [];
       case MoonPhase.hilal:
-        return 'hilal';
+        return RuyaRituelleri.haftalikDonguRituelleri['sali'] ?? [];
       case MoonPhase.ilkDordun:
-        return 'ilkDordun';
+        return RuyaRituelleri.haftalikDonguRituelleri['carsamba'] ?? [];
       case MoonPhase.dolunay:
-        return 'dolunay';
+        return RuyaRituelleri.haftalikDonguRituelleri['persembe'] ?? [];
       case MoonPhase.sonDordun:
-        return 'sonDordun';
       case MoonPhase.karanlikAy:
-        return 'karanlikAy';
+        return RuyaRituelleri.haftalikDonguRituelleri['cuma'] ?? [];
     }
   }
 
@@ -1372,38 +1372,38 @@ class DreamRitualService {
 // CYCLICAL INFLUENCE ANALYSIS
 // ═══════════════════════════════════════════════════════════════
 
-/// Cyclical rhythms' influence on dreams
-class PlanetaryDreamInfluenceService {
-  /// Gezegen etkisi bilgisi al
-  static PlanetaryDreamInfluence? getPlanetInfluence(String planet) {
-    return AstroRuyaKorelasyonlari.gezegenEtkileri.firstWhere(
-      (p) => p.planet.toLowerCase() == planet.toLowerCase(),
-      orElse: () => AstroRuyaKorelasyonlari.gezegenEtkileri.first,
+/// Psikolojik rüya tema analiz servisi
+class DreamThemeCategoryService {
+  /// Tema kategorisi bilgisi al
+  static DreamThemeCategory? getThemeCategory(String category) {
+    return PsikolojikRuyaTemalari.temaKategorileri.firstWhere(
+      (t) => t.category.toLowerCase() == category.toLowerCase(),
+      orElse: () => PsikolojikRuyaTemalari.temaKategorileri.first,
     );
   }
 
-  /// Neptün aktifken (rüyalar yoğun)
-  static PlanetaryDreamInfluence get neptuneInfluence {
-    return AstroRuyaKorelasyonlari.gezegenEtkileri.firstWhere(
-      (p) => p.planet == 'Neptün',
+  /// Hayal gücü kategorisi (rüyalar yoğun)
+  static DreamThemeCategory get imaginationTheme {
+    return PsikolojikRuyaTemalari.temaKategorileri.firstWhere(
+      (t) => t.category == 'Hayal Gücü & Sezgi',
     );
   }
 
-  /// Moon phase influence
-  static String getMoonSignEffect(String moonSign) {
-    final moonInfluence = AstroRuyaKorelasyonlari.gezegenEtkileri.firstWhere(
-      (p) => p.planet == 'Ay',
+  /// Duygusal tema etkisi
+  static String getEmotionalThemeEffect(String themeKey) {
+    final emotionalTheme = PsikolojikRuyaTemalari.temaKategorileri.firstWhere(
+      (t) => t.category == 'Duygusal Dünya',
     );
-    return moonInfluence.signInfluences[moonSign] ?? 'Genel ay enerjisi aktif.';
+    return emotionalTheme.themeDetails[themeKey] ?? 'Genel duygusal temalar aktif olabilir.';
   }
 
-  /// Retro döneminde rüya notları
-  static String getRetroGradeNotes(String planet) {
-    final influence = getPlanetInfluence(planet);
-    if (influence != null && influence.signInfluences.containsKey('Retro')) {
-      return influence.signInfluences['Retro']!;
+  /// Geçmiş odaklı rüya notları
+  static String getPastFocusedNotes(String category) {
+    final theme = getThemeCategory(category);
+    if (theme != null && theme.themeDetails.containsKey('Geçmiş')) {
+      return theme.themeDetails['Geçmiş']!;
     }
-    return '$planet retro döneminde rüyalar daha yoğun ve geçmişe dönük olabilir.';
+    return 'Bu tema altında rüyalar daha yoğun ve geçmişe dönük olabilir.';
   }
 }
 

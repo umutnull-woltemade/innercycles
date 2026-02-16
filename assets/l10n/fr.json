@@ -157,7 +157,7 @@
     "compare": "Comparer",
     "delete_profile": "Supprimer le Profil",
     "your_birth_info": "Vos Informations de Naissance",
-    "your_sun_sign": "Votre Signe Solaire",
+    "your_sun_sign": "Votre Personnalité Centrale",
     "edit_info": "Modifier les Informations",
     "view_personal_profile": "Voir le Thème de Naissance",
     "profile_saved": "Profil enregistré avec succès",
@@ -172,10 +172,25 @@
     },
     "emoji_select": "Sélectionner un Emoji",
     "relationship_type": "Type de Relation",
-    "big_three": "Les Trois Grands",
-    "sun_type": "Signe Solaire",
-    "moon_type": "Signe Lunaire",
-    "rising_type": "Signe Ascendant"
+    "big_three": "Votre Profil de Personnalité",
+    "sun_type": "Personnalité Centrale",
+    "moon_type": "Profil Émotionnel",
+    "rising_type": "Style Social",
+    "view_insight": "Voir l'Aperçu Complet"
+  },
+  "zodiac": {
+    "aries": "Le Pionnier",
+    "taurus": "Le Bâtisseur",
+    "gemini": "Le Communicateur",
+    "cancer": "Le Protecteur",
+    "leo": "L'Artiste",
+    "virgo": "L'Analyste",
+    "libra": "L'Harmonisateur",
+    "scorpio": "Le Transformateur",
+    "sagittarius": "L'Explorateur",
+    "capricorn": "L'Accompli",
+    "aquarius": "Le Visionnaire",
+    "pisces": "Le Rêveur"
   },
   "personal_profile": {
     "title": "Personal Profile"
@@ -7440,7 +7455,7 @@
       "error_try_again": "An error occurred. Please try again.",
       "interpretation_failed": "Could not generate interpretation.",
       "share_another": "If you want to share another dream, I'm ready to listen.",
-      "welcome_message": "Hello, I am Dream Trace. I'm here to guide you with the cosmic energy of {signName} sign.\n\nDescribe your dream in detail. What did you see? How did you feel? The more you share about the symbols, colors, and emotions in your dream, the deeper my cosmic interpretation will be.\n\n",
+      "welcome_message": "Bonjour, je suis Dream Trace. Je suis ici pour explorer vos rêves à travers le prisme de votre archétype de personnalité {signName}.\n\nDécrivez votre rêve en détail. Qu'avez-vous vu? Comment vous êtes-vous senti? Plus vous partagez de symboles, couleurs et émotions, plus la réflexion sera profonde.\n\n",
       "prompts": {
         "water_breathing": "I was swimming in the sea but I could breathe underwater",
         "rain_running": "I was running in heavy rain but not getting wet",
@@ -7571,7 +7586,7 @@
         "love_meaning": "Connection, desire, acceptance"
       },
       "interpretations": {
-        "sign_perspective": "{sign} cosmic perspective on your dream:",
+        "sign_perspective": "À travers le prisme de votre archétype {sign}:",
         "water": {
           "title": "🌊 WATER DREAM - {sign} INTERPRETATION",
           "divider": "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",

@@ -1,4 +1,4 @@
-/// Dream Advanced Content - Lucid Rüya, Astrolojik Korelasyonlar, Rüya Ritüelleri
+/// Dream Advanced Content - Lucid Rüya, Kişilik Rüya Profilleri, Rüya Ritüelleri
 /// İleri düzey rüya çalışmaları için kapsamlı içerik
 library;
 
@@ -196,228 +196,228 @@ class LucidTechnique {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// ASTROLOJİK RÜYA KORELASYONLARI
+// PSİKOLOJİK RÜYA TEMATİKLERİ
 // ════════════════════════════════════════════════════════════════════════════
 
-/// Gezegen transitlerinin rüyalara etkisi
-class AstroRuyaKorelasyonlari {
-  /// Gezegen etkileri
-  static const List<PlanetaryDreamInfluence> gezegenEtkileri = [
-    PlanetaryDreamInfluence(
-      planet: 'Ay',
+/// Psikolojik rüya tema kategorileri
+class PsikolojikRuyaTemalari {
+  /// Temel psikolojik rüya tema grupları
+  static const List<DreamThemeCategory> temaKategorileri = [
+    DreamThemeCategory(
+      category: 'Duygusal Dünya',
       symbol: '☽',
       emoji: '🌙',
-      generalInfluence:
-          'Ay, rüyaların ana yöneticisidir. Ay fazları ve burç geçişleri rüya yoğunluğunu doğrudan etkiler.',
-      signInfluences: {
-        'Koç': 'Aksiyon rüyaları, savaş, rekabet, cesaret temaları',
-        'Boğa': 'Doğa, yemek, konfor, maddi güvenlik rüyaları',
-        'İkizler': 'İletişim, yolculuk, ikizler/çokluk rüyaları',
-        'Yengeç': 'Ev, aile, anne, su, duygusal yoğun rüyalar',
-        'Aslan': 'Sahne, tanınma, yaratıcılık, kalp rüyaları',
-        'Başak': 'Detay, sağlık, iş, düzenleme rüyaları',
-        'Terazi': 'İlişki, denge, adalet, güzellik rüyaları',
-        'Akrep': 'Dönüşüm, ölüm/yeniden doğuş, cinsellik, gizem',
-        'Yay': 'Seyahat, felsefe, eğitim, at, yabancı kültür',
-        'Oğlak': 'Kariyer, otorite, dağ, yapı, baba figürü',
-        'Kova': 'Grup, teknoloji, gelecek, uzaylı, sıra dışı',
-        'Balık': 'Spiritüel, mistik, su, kaybolma, sezgisel mesajlar',
+      description:
+          'Rüyalar, duygusal durumumuzu yansıtma eğilimindedir. Uyku döngüleri ve uyku kalitesi rüya yoğunluğunu etkileyebilir.',
+      themeDetails: {
+        'Cesaret & Eylem': 'Aksiyon rüyaları, mücadele, rekabet, cesaret temaları',
+        'Güvenlik & Konfor': 'Doğa, yemek, konfor, maddi güvenlik rüyaları',
+        'İletişim & Bağlantı': 'İletişim, yolculuk, çokluk rüyaları',
+        'Aile & Yuva': 'Ev, aile, anne, su, duygusal yoğun rüyalar',
+        'İfade & Yaratıcılık': 'Sahne, tanınma, yaratıcılık, kalp rüyaları',
+        'Düzen & Analiz': 'Detay, sağlık, iş, düzenleme rüyaları',
+        'İlişki & Denge': 'İlişki, denge, adalet, güzellik rüyaları',
+        'Dönüşüm & Derinlik': 'Dönüşüm, yeniden doğuş, gizem temaları',
+        'Keşif & Anlam': 'Seyahat, felsefe, eğitim, yabancı kültür temaları',
+        'Hedef & Yapı': 'Kariyer, otorite, yapı, baba figürü temaları',
+        'Yenilik & Vizyon': 'Grup, teknoloji, gelecek, sıra dışı temalar',
+        'Sezgi & Hayal Gücü': 'Sezgisel, mistik, su, kaybolma, sezgisel mesajlar',
       },
-      dreamIntensityNotes:
-          'Dolunay: En yoğun rüyalar, hatırlama yüksek. Yeniay: Derin ama hatırlanması zor rüyalar.',
+      notes:
+          'Uyku kalitesi yüksek olduğunda rüyalar daha canlı hatırlanabilir. Derin uyku dönemlerinde rüya hatırlama azalabilir.',
     ),
-    PlanetaryDreamInfluence(
-      planet: 'Merkür',
+    DreamThemeCategory(
+      category: 'İletişim & İfade',
       symbol: '☿',
       emoji: '📝',
-      generalInfluence:
-          'İletişim, mesajlar, haberler. Merkür retro dönemlerinde rüyalar kafa karıştırıcı olabilir.',
-      signInfluences: {
-        'Retro':
+      description:
+          'İletişim ve ifade ile ilgili rüyalar, iç dünyamızdaki tamamlanmamış diyalogları yansıtabilir.',
+      themeDetails: {
+        'Geçmiş':
             'Geçmişle ilgili rüyalar, eski insanlar, tamamlanmamış konuşmalar',
-        'Direkt': 'Net mesajlar, berrak semboller, iletişim temaları',
+        'Netlik': 'Net mesajlar, berrak semboller, iletişim temaları',
       },
-      dreamIntensityNotes:
-          'Merkür retro: Rüyalarda karışık mesajlar, geçmişten figürler. İletişimi sorgula.',
+      notes:
+          'İletişim temelli rüyalarda karışık mesajlar ve geçmişten figürler görülebilir. Bu, iç sesin işlenme biçimidir.',
     ),
-    PlanetaryDreamInfluence(
-      planet: 'Venüs',
+    DreamThemeCategory(
+      category: 'İlişkiler & Değerler',
       symbol: '♀',
       emoji: '💕',
-      generalInfluence:
-          'Aşk, güzellik, değerler. Venüs geçişleri ilişki rüyalarını artırır.',
-      signInfluences: {
-        'Koç': 'Tutku, fetih, hızlı aşk rüyaları',
-        'Boğa': 'Duyusal, rahat, güzel mekanlar rüyası',
-        'Terazi': 'Romantik, uyumlu, ideal partner rüyaları',
-        'Akrep': 'Yoğun, transformatif, obsesif aşk rüyaları',
-        'Balık': 'Ruhani aşk, kayıp sevgili, nostalji',
+      description:
+          'Aşk, güzellik ve değerlerle ilgili rüyalar, ilişkisel ihtiyaçlarımızı yansıtma eğilimindedir.',
+      themeDetails: {
+        'Tutku': 'Tutku, heyecan, yeni ilişki rüyaları',
+        'Konfor': 'Duyusal, rahat, güzel mekanlar rüyası',
+        'Uyum': 'Romantik, uyumlu, ideal partner rüyaları',
+        'Derinlik': 'Yoğun, dönüştürücü ilişki rüyaları',
+        'Nostalji': 'Özlem, kayıp sevgili, nostalji',
       },
-      dreamIntensityNotes:
-          'Venüs retro: Eski sevgililer rüyalarda belirir. Tamamlanmamış aşk işleri yüzeye çıkar.',
+      notes:
+          'Eski ilişkilerle ilgili rüyalar, tamamlanmamış duygusal süreçleri işaret edebilir.',
     ),
-    PlanetaryDreamInfluence(
-      planet: 'Mars',
+    DreamThemeCategory(
+      category: 'Enerji & Eylem',
       symbol: '♂',
       emoji: '⚔️',
-      generalInfluence:
-          'Eylem, öfke, enerji, cinsellik. Mars transitlerinde rüyalar daha aktif ve bazen şiddet içerir.',
-      signInfluences: {
-        'Koç': 'Savaş, yarış, rekabet, kazanma rüyaları',
-        'Akrep': 'Yoğun cinsellik, güç mücadelesi, dönüşüm',
-        'Oğlak': 'Kariyer mücadelesi, otorite çatışması',
+      description:
+          'Eylem, öfke ve enerji ile ilgili rüyalar, bastırılmış duyguları işleme biçimimiz olabilir.',
+      themeDetails: {
+        'Mücadele': 'Savaş, yarış, rekabet, kazanma rüyaları',
+        'Güç': 'Yoğun duygusal güç mücadelesi, dönüşüm',
+        'Kariyer': 'Kariyer mücadelesi, otorite çatışması',
       },
-      dreamIntensityNotes:
-          'Mars retro: Bastırılmış öfke rüyalarda patlar. Saldırganlık temaları. Enerjiyi yönlendir.',
+      notes:
+          'Bastırılmış öfke rüyalarda yoğunlaşabilir. Bu temaları fark etmek, enerjiyi bilinçli yönlendirmeye yardımcı olabilir.',
     ),
-    PlanetaryDreamInfluence(
-      planet: 'Jüpiter',
+    DreamThemeCategory(
+      category: 'Büyüme & Genişleme',
       symbol: '♃',
       emoji: '🎯',
-      generalInfluence:
-          'Genişleme, bolluk, öğrenme. Jüpiter transitlerinde rüyalar büyük, epik olabilir.',
-      signInfluences: {
-        'Yay': 'Büyük yolculuklar, felsefe, öğretmenler rüyası',
-        'Balık': 'Spiritüel uyanış, mistik deneyimler',
-        'Koç': 'Yeni başlangıçlar, cesaret, macera',
+      description:
+          'Büyüme, bolluk ve öğrenme temaları, kişisel gelişim süreçlerimizi yansıtabilir.',
+      themeDetails: {
+        'Keşif': 'Büyük yolculuklar, felsefe, öğretmenler rüyası',
+        'İç Uyanış': 'İçsel uyanış, derin deneyimler',
+        'Yenilik': 'Yeni başlangıçlar, cesaret, macera',
       },
-      dreamIntensityNotes:
-          'Jüpiter pozitif açıları: İyimser, genişletici rüyalar. Negatif: Aşırılık, abartı temaları.',
+      notes:
+          'İyimser ve genişletici rüyalar, kişisel büyüme dönemlerinde daha sık görülme eğilimindedir.',
     ),
-    PlanetaryDreamInfluence(
-      planet: 'Satürn',
+    DreamThemeCategory(
+      category: 'Sorumluluk & Olgunlaşma',
       symbol: '♄',
       emoji: '⏳',
-      generalInfluence:
-          'Kısıtlama, sorumluluk, zaman. Satürn transitlerinde rüyalar ağır, öğretici olabilir.',
-      signInfluences: {
-        'Oğlak': 'Kariyer baskısı, baba figürü, yapı rüyaları',
-        'Kova': 'Toplumsal sorumluluk, yalnızlık, reform',
-        'Terazi': 'İlişki testleri, bağlılık soruları',
+      description:
+          'Sorumluluk ve zaman temalı rüyalar, hayattaki sınırlarımızı ve olgunlaşma sürecimizi yansıtabilir.',
+      themeDetails: {
+        'Yapı': 'Kariyer baskısı, baba figürü, yapı rüyaları',
+        'Toplum': 'Toplumsal sorumluluk, yalnızlık, reform',
+        'İlişki': 'İlişki testleri, bağlılık soruları',
       },
-      dreamIntensityNotes:
-          'Satürn dönüşü (28-30 yaş): Yoğun olgunlaşma rüyaları. Yaşlı figürler, sınavlar.',
+      notes:
+          'Olgunlaşma dönemlerinde (özellikle 28-30 yaş civarı) yoğun öğretici rüyalar görülme eğilimindedir.',
     ),
-    PlanetaryDreamInfluence(
-      planet: 'Uranüs',
+    DreamThemeCategory(
+      category: 'Sürpriz & Uyanış',
       symbol: '♅',
       emoji: '⚡',
-      generalInfluence:
-          'Beklenmedik, devrimci, uyanış. Uranüs transitlerinde rüyalar sıra dışı ve şok edici.',
-      signInfluences: {
-        'Genel': 'Elektrik çarpması, uçak, uzay, teknoloji, alien rüyaları',
+      description:
+          'Beklenmedik ve sıra dışı rüyalar, bilinçaltımızdaki yenilikçi düşünceyi yansıtabilir.',
+      themeDetails: {
+        'Genel': 'Sıra dışı deneyimler, teknoloji, uzay, uçak rüyaları',
       },
-      dreamIntensityNotes:
-          'Uranüs transitlerinde lucid rüya şansı artar. Ani farkındalık anları.',
+      notes:
+          'Sıra dışı rüya dönemlerinde lucid rüya farkındalığı artma eğilimi gösterebilir.',
     ),
-    PlanetaryDreamInfluence(
-      planet: 'Neptün',
+    DreamThemeCategory(
+      category: 'Hayal Gücü & Sezgi',
       symbol: '♆',
       emoji: '🔮',
-      generalInfluence:
-          'Rüyaların doğal yöneticisi. Neptün transitlerinde rüyalar çok canlı, mistik ve bazen kafa karıştırıcı.',
-      signInfluences: {
-        'Balık':
-            'En yoğun rüya dönemi. Spiritüel mesajlar, geçmiş yaşam anıları',
-        'Kova': 'Kolektif bilinç rüyaları, insanlık temaları',
+      description:
+          'Hayal gücü ve sezgiye dayalı rüyalar, iç dünyamızdaki yaratıcı potansiyeli yansıtabilir.',
+      themeDetails: {
+        'Derinlik':
+            'En yoğun rüya deneyimleri, derin iç mesajlar, anı parçaları',
+        'Kolektif': 'Kolektif bilinç rüyaları, insanlık temaları',
       },
-      dreamIntensityNotes:
-          'Natal Neptün transitlerinde: Rüya hatırlama ve canlılık dorukta. Gerçek-hayal sınırı bulanık.',
+      notes:
+          'Canlı ve mistik rüyalar, hayal gücünün aktif olduğu dönemlerde daha sık görülme eğilimindedir.',
     ),
-    PlanetaryDreamInfluence(
-      planet: 'Plüton',
+    DreamThemeCategory(
+      category: 'Dönüşüm & Yeniden Doğuş',
       symbol: '♇',
       emoji: '🦂',
-      generalInfluence:
-          'Dönüşüm, ölüm/yeniden doğuş, güç. Plüton transitlerinde rüyalar yoğun ve dönüştürücü.',
-      signInfluences: {
-        'Genel': 'Ölüm, cenaze, dönüşüm, yılan, yeraltı, hazine rüyaları',
+      description:
+          'Dönüşüm ve yeniden doğuş temaları, hayatımızdaki derin değişim süreçlerini yansıtabilir.',
+      themeDetails: {
+        'Genel': 'Dönüşüm, yılan, yeraltı, hazine rüyaları',
       },
-      dreamIntensityNotes:
-          'Plüton natal gezegenlere geçtiğinde: Kâbuslar artabilir ama bunlar derin şifa taşır.',
+      notes:
+          'Yoğun değişim dönemlerinde kâbuslar artabilir, ancak bunlar derin bir şifa süreci taşıyabilir.',
     ),
   ];
 
-  /// Ay fazı etkileri detaylı
-  static const Map<String, MoonPhaseDreamEffect> ayFaziDetay = {
-    'yeniay': MoonPhaseDreamEffect(
-      phase: 'Yeniay',
+  /// Uyku döngüsü notları
+  static const Map<String, SleepCycleDreamNote> uykuDongusuNotlari = {
+    'derinUyku': SleepCycleDreamNote(
+      phase: 'Derin Uyku',
       emoji: '🌑',
       dreamQuality: 'Derin ama hatırlanması zor',
-      themes: ['Yeni başlangıçlar', 'Tohum fikirleri', 'Karanlık, sessizlik'],
+      themes: ['Yeni başlangıçlar', 'Tohum fikirleri', 'Dinlenme'],
       lucidPotential: 'Düşük - bilinçdışı çok aktif',
-      ritualAdvice: 'Uyumadan önce niyet koy. Ne başlatmak istiyorsun?',
-      journalPrompt: 'Yeni döngüde neyi manifeste etmek istiyorum?',
+      advice: 'Uyumadan önce niyet koy. Ne başlatmak istiyorsun?',
+      journalPrompt: 'Yeni döngüde neyi keşfetmek istiyorum?',
     ),
-    'hilal': MoonPhaseDreamEffect(
-      phase: 'Hilal (Büyüyen)',
+    'hafifUyku': SleepCycleDreamNote(
+      phase: 'Hafif Uyku Geçişi',
       emoji: '🌒',
       dreamQuality: 'Artan netlik, büyüme temaları',
       themes: ['Büyüme', 'Cesaret', 'İlk adımlar', 'Umut'],
       lucidPotential: 'Orta - farkındalık artıyor',
-      ritualAdvice: 'Rüyalardaki işaretlere dikkat et. Niyetinin ipuçları var.',
-      journalPrompt: 'Hangi tohumlar filizleniyor?',
+      advice: 'Rüyalardaki işaretlere dikkat et. Niyetinin ipuçları var.',
+      journalPrompt: 'Hangi düşünceler filizleniyor?',
     ),
-    'ilkDordun': MoonPhaseDreamEffect(
-      phase: 'İlk Dördün',
+    'remBaslangic': SleepCycleDreamNote(
+      phase: 'REM Başlangıcı',
       emoji: '🌓',
       dreamQuality: 'Gerilim, karar noktaları',
       themes: ['Çatışma', 'Seçim', 'Engeller', 'Eylem çağrısı'],
       lucidPotential: 'Orta-yüksek - kararsızlık lucid tetikleyebilir',
-      ritualAdvice: 'Rüyadaki çatışmalar gerçek hayat kararlarını yansıtır.',
+      advice: 'Rüyadaki çatışmalar gerçek hayat kararlarını yansıtabilir.',
       journalPrompt: 'Hangi seçimle karşı karşıyayım?',
     ),
-    'dolgunlaşan': MoonPhaseDreamEffect(
-      phase: 'Dolgunlaşan Ay',
+    'remYogunlasan': SleepCycleDreamNote(
+      phase: 'Yoğunlaşan REM',
       emoji: '🌔',
       dreamQuality: 'Yoğunlaşan, detaylı',
       themes: ['Tamamlanma', 'İnşa', 'Netleşme'],
-      lucidPotential: 'Yüksek - enerji doruğa yaklaşıyor',
-      ritualAdvice: 'Rüyalar ne tamamlanmak üzere olduğunu gösterir.',
+      lucidPotential: 'Yüksek - farkındalık doruğa yaklaşıyor',
+      advice: 'Rüyalar ne tamamlanmak üzere olduğunu gösterebilir.',
       journalPrompt: 'Ne olgunlaşıyor hayatımda?',
     ),
-    'dolunay': MoonPhaseDreamEffect(
-      phase: 'Dolunay',
+    'remDoruk': SleepCycleDreamNote(
+      phase: 'REM Doruk Noktası',
       emoji: '🌕',
       dreamQuality: 'En canlı, hatırlanması kolay, yoğun',
       themes: ['Farkındalık', 'Açığa çıkma', 'Doruk', 'Tamamlanma'],
-      lucidPotential: 'En yüksek - enerji doruğunda',
-      ritualAdvice: 'Dolunay gecesi rüya günlüğünü yastığının yanına koy.',
-      journalPrompt: 'Ne aydınlandı? Ne açığa çıktı?',
+      lucidPotential: 'En yüksek - farkındalık doruğunda',
+      advice: 'Rüya günlüğünü yastığının yanına koy.',
+      journalPrompt: 'Ne aydınlandı? Ne fark ettim?',
     ),
-    'azalan': MoonPhaseDreamEffect(
-      phase: 'Azalan Ay',
+    'remAzalan': SleepCycleDreamNote(
+      phase: 'Azalan REM',
       emoji: '🌖',
       dreamQuality: 'Yansıtıcı, değerlendirici',
       themes: ['Değerlendirme', 'Minnettarlık', 'Geri bakış'],
       lucidPotential: 'Orta-yüksek',
-      ritualAdvice: 'Rüyalar neyin işe yaradığını gösterir.',
+      advice: 'Rüyalar neyin işe yaradığını gösterebilir.',
       journalPrompt: 'Neye minnettarım? Ne öğrendim?',
     ),
-    'sonDordun': MoonPhaseDreamEffect(
-      phase: 'Son Dördün',
+    'uyanmaOncesi': SleepCycleDreamNote(
+      phase: 'Uyanma Öncesi',
       emoji: '🌗',
       dreamQuality: 'Bırakma temaları, temizlik',
       themes: ['Bırakma', 'Affetme', 'Temizlik', 'Son'],
       lucidPotential: 'Orta',
-      ritualAdvice: 'Rüyalarda gördüğün "eski" şeyleri bırakmanın zamanı.',
+      advice: 'Rüyalarda gördüğün "eski" şeyleri bırakmanın zamanı olabilir.',
       journalPrompt: 'Neyi bırakmam gerekiyor?',
     ),
-    'karanlikAy': MoonPhaseDreamEffect(
-      phase: 'Karanlık Ay',
+    'derinDinlenme': SleepCycleDreamNote(
+      phase: 'Derin Dinlenme',
       emoji: '🌘',
       dreamQuality: 'En derin, en gizli mesajlar',
       themes: ['Geri çekilme', 'Dinlenme', 'Gizli bilgelik', 'Bilinçdışı'],
       lucidPotential: 'Düşük ama gerçekleşirse çok derin',
-      ritualAdvice: 'Dinlen. Zorla hatırlama. Bırak gitsin.',
-      journalPrompt: 'Karanlıkta ne öğreniyorum?',
+      advice: 'Dinlen. Zorla hatırlama. Bırak gitsin.',
+      journalPrompt: 'Sessizlikte ne öğreniyorum?',
     ),
   };
 
-  /// Burca göre rüya temaları
-  static const Map<String, ZodiacDreamProfile> burcRuyaProfili = {
-    'aries': ZodiacDreamProfile(
-      sign: 'Koç',
+  /// Kişilik arketipine göre rüya temaları
+  static const Map<String, ArchetypeDreamProfile> arketipRuyaProfili = {
+    'aries': ArchetypeDreamProfile(
+      archetype: 'Öncü',
       emoji: '♈',
       commonThemes: [
         'Savaş',
@@ -433,8 +433,8 @@ class AstroRuyaKorelasyonlari {
           'Rüyalarında eylem çağrısı ara. Pasif izleme sana göre değil.',
       healingSymbols: ['Kılıç', 'ateş', 'kırmızı', 'at'],
     ),
-    'taurus': ZodiacDreamProfile(
-      sign: 'Boğa',
+    'taurus': ArchetypeDreamProfile(
+      archetype: 'Kurucu',
       emoji: '♉',
       commonThemes: ['Doğa', 'yemek', 'para', 'bahçe', 'konfor', 'boyun'],
       nightmareThemes: [
@@ -446,15 +446,15 @@ class AstroRuyaKorelasyonlari {
       lucidTendency: 'Orta - sabırlı ama yavaş',
       dreamAdvice:
           'Duyusal detaylara dikkat et. Rüyandaki koku, tat, dokunuş önemli.',
-      healingSymbols: ['Çiçek', 'toprak', 'yeşil', 'boğa'],
+      healingSymbols: ['Çiçek', 'toprak', 'yeşil', 'dağ'],
     ),
-    'gemini': ZodiacDreamProfile(
-      sign: 'İkizler',
+    'gemini': ArchetypeDreamProfile(
+      archetype: 'İletişimci',
       emoji: '♊',
       commonThemes: [
         'İletişim',
         'yolculuk',
-        'ikizler',
+        'çokluk',
         'kitaplar',
         'telefon',
         'eller',
@@ -470,17 +470,17 @@ class AstroRuyaKorelasyonlari {
           'Rüyalardaki konuşmalara dikkat et. Mesajlar kelimelerle gelir.',
       healingSymbols: ['Kuş', 'kanat', 'sarı', 'kitap'],
     ),
-    'cancer': ZodiacDreamProfile(
-      sign: 'Yengeç',
+    'cancer': ArchetypeDreamProfile(
+      archetype: 'Koruyucu',
       emoji: '♋',
       commonThemes: ['Ev', 'aile', 'anne', 'su', 'geçmiş', 'göğüs', 'mutfak'],
       nightmareThemes: ['Evsizlik', 'aile kaybı', 'boğulma', 'terk edilme'],
       lucidTendency: 'Yüksek - güçlü bilinçdışı bağlantı',
       dreamAdvice: 'Rüyaların duygusal termometren. Hislerine güven.',
-      healingSymbols: ['Deniz kabuğu', 'ay', 'gümüş', 'yuva'],
+      healingSymbols: ['Deniz kabuğu', 'su', 'gümüş', 'yuva'],
     ),
-    'leo': ZodiacDreamProfile(
-      sign: 'Aslan',
+    'leo': ArchetypeDreamProfile(
+      archetype: 'Sahne Yıldızı',
       emoji: '♌',
       commonThemes: [
         'Sahne',
@@ -498,11 +498,11 @@ class AstroRuyaKorelasyonlari {
         'kalp sorunları',
       ],
       lucidTendency: 'Çok yüksek - güçlü irade ve ego',
-      dreamAdvice: 'Rüyalarında kraliyet gibi davran. Liderliğini kullan.',
-      healingSymbols: ['Aslan', 'güneş', 'altın', 'taç'],
+      dreamAdvice: 'Rüyalarında liderlik rolünü keşfet.',
+      healingSymbols: ['Güneş', 'altın', 'taç', 'ışık'],
     ),
-    'virgo': ZodiacDreamProfile(
-      sign: 'Başak',
+    'virgo': ArchetypeDreamProfile(
+      archetype: 'Analist',
       emoji: '♍',
       commonThemes: ['İş', 'sağlık', 'detay', 'temizlik', 'sindirim', 'analiz'],
       nightmareThemes: [
@@ -513,10 +513,10 @@ class AstroRuyaKorelasyonlari {
       ],
       lucidTendency: 'Orta - analitik ama skeptik',
       dreamAdvice: 'Detaylara odaklan ama büyük resmi kaçırma.',
-      healingSymbols: ['Başak', 'buğday', 'yeşil', 'kristal'],
+      healingSymbols: ['Buğday', 'yeşil', 'kristal', 'bahçe'],
     ),
-    'libra': ZodiacDreamProfile(
-      sign: 'Terazi',
+    'libra': ArchetypeDreamProfile(
+      archetype: 'Dengeleyici',
       emoji: '♎',
       commonThemes: [
         'İlişki',
@@ -524,7 +524,7 @@ class AstroRuyaKorelasyonlari {
         'güzellik',
         'adalet',
         'evlilik',
-        'böbrekler',
+        'uyum',
       ],
       nightmareThemes: [
         'Adaletsizlik',
@@ -534,26 +534,26 @@ class AstroRuyaKorelasyonlari {
       ],
       lucidTendency: 'Orta - kararsızlık engelleyebilir',
       dreamAdvice: 'İlişki rüyalarına dikkat et. Denge nerede bozuk?',
-      healingSymbols: ['Terazi', 'gül', 'pembe', 'ayna'],
+      healingSymbols: ['Gül', 'pembe', 'ayna', 'köprü'],
     ),
-    'scorpio': ZodiacDreamProfile(
-      sign: 'Akrep',
+    'scorpio': ArchetypeDreamProfile(
+      archetype: 'Dönüştürücü',
       emoji: '♏',
       commonThemes: [
         'Dönüşüm',
         'ölüm',
-        'cinsellik',
         'gizem',
         'yeraltı',
-        'üreme organları',
+        'derinlik',
+        'yeniden doğuş',
       ],
       nightmareThemes: ['İhanet', 'güç kaybı', 'açığa çıkma', 'zehir'],
       lucidTendency: 'Çok yüksek - derin bilinçdışı erişim',
       dreamAdvice: 'Karanlık rüyalardan korkma. En derin şifa oradan gelir.',
-      healingSymbols: ['Akrep', 'yılan', 'anka kuşu', 'bordo'],
+      healingSymbols: ['Yılan', 'anka kuşu', 'bordo', 'ateş'],
     ),
-    'sagittarius': ZodiacDreamProfile(
-      sign: 'Yay',
+    'sagittarius': ArchetypeDreamProfile(
+      archetype: 'Kaşif',
       emoji: '♐',
       commonThemes: [
         'Seyahat',
@@ -561,15 +561,15 @@ class AstroRuyaKorelasyonlari {
         'at',
         'eğitim',
         'yabancı ülkeler',
-        'kalça',
+        'macera',
       ],
       nightmareThemes: ['Hapis', 'kısıtlanma', 'dogma', 'anlamsızlık'],
       lucidTendency: 'Yüksek - maceraperest ruh',
-      dreamAdvice: 'Rüyalardaki yolculuklar spiritüel arayışını yansıtır.',
+      dreamAdvice: 'Rüyalardaki yolculuklar iç arayışını yansıtabilir.',
       healingSymbols: ['Ok', 'at', 'mor', 'yıldızlar'],
     ),
-    'capricorn': ZodiacDreamProfile(
-      sign: 'Oğlak',
+    'capricorn': ArchetypeDreamProfile(
+      archetype: 'Başarıcı',
       emoji: '♑',
       commonThemes: [
         'Kariyer',
@@ -582,11 +582,11 @@ class AstroRuyaKorelasyonlari {
       ],
       nightmareThemes: ['Başarısızlık', 'düşüş', 'rezil olma', 'yaşlanma'],
       lucidTendency: 'Orta - disiplinli ama rüyalara mesafeli',
-      dreamAdvice: 'Kariyer rüyaları gerçek hedeflerini yansıtır.',
-      healingSymbols: ['Dağ keçisi', 'dağ', 'siyah', 'taş'],
+      dreamAdvice: 'Kariyer rüyaları gerçek hedeflerini yansıtabilir.',
+      healingSymbols: ['Dağ', 'taş', 'siyah', 'yapı'],
     ),
-    'aquarius': ZodiacDreamProfile(
-      sign: 'Kova',
+    'aquarius': ArchetypeDreamProfile(
+      archetype: 'Vizyoner',
       emoji: '♒',
       commonThemes: [
         'Grup',
@@ -594,75 +594,75 @@ class AstroRuyaKorelasyonlari {
         'gelecek',
         'uzay',
         'reform',
-        'bacaklar',
+        'yenilik',
       ],
       nightmareThemes: ['Uyumsuzluk', 'yalnızlık', 'distopya', 'makineleşme'],
       lucidTendency: 'Yüksek - alışılmadık zihin',
-      dreamAdvice: 'Sıra dışı rüyaların sıra dışı yeteneklerini yansıtır.',
+      dreamAdvice: 'Sıra dışı rüyaların yaratıcı yeteneklerini yansıtabilir.',
       healingSymbols: ['Su dalgası', 'yıldız', 'mavi', 'elektrik'],
     ),
-    'pisces': ZodiacDreamProfile(
-      sign: 'Balık',
+    'pisces': ArchetypeDreamProfile(
+      archetype: 'Hayalperest',
       emoji: '♓',
       commonThemes: [
         'Su',
-        'spiritüellik',
+        'hayal gücü',
         'kaybolma',
-        'mistisizm',
+        'sezgi',
         'ayaklar',
         'hayal',
       ],
       nightmareThemes: ['Boğulma', 'bulanıklık', 'aldatılma', 'bağımlılık'],
       lucidTendency: 'Çok yüksek - doğal rüya yeteneği',
-      dreamAdvice: 'Rüyaların en güçlü süper gücün. Spiritüel mesajlara aç ol.',
-      healingSymbols: ['Balık', 'okyanus', 'turkuaz', 'lotus'],
+      dreamAdvice: 'Rüyaların en güçlü süper gücün. Sezgisel mesajlara aç ol.',
+      healingSymbols: ['Okyanus', 'turkuaz', 'lotus', 'su'],
     ),
   };
 }
 
-/// Gezegen rüya etkisi modeli
-class PlanetaryDreamInfluence {
-  final String planet;
+/// Rüya tema kategorisi modeli
+class DreamThemeCategory {
+  final String category;
   final String symbol;
   final String emoji;
-  final String generalInfluence;
-  final Map<String, String> signInfluences;
-  final String dreamIntensityNotes;
+  final String description;
+  final Map<String, String> themeDetails;
+  final String notes;
 
-  const PlanetaryDreamInfluence({
-    required this.planet,
+  const DreamThemeCategory({
+    required this.category,
     required this.symbol,
     required this.emoji,
-    required this.generalInfluence,
-    required this.signInfluences,
-    required this.dreamIntensityNotes,
+    required this.description,
+    required this.themeDetails,
+    required this.notes,
   });
 }
 
-/// Ay fazı rüya etkisi modeli
-class MoonPhaseDreamEffect {
+/// Uyku döngüsü rüya notu modeli
+class SleepCycleDreamNote {
   final String phase;
   final String emoji;
   final String dreamQuality;
   final List<String> themes;
   final String lucidPotential;
-  final String ritualAdvice;
+  final String advice;
   final String journalPrompt;
 
-  const MoonPhaseDreamEffect({
+  const SleepCycleDreamNote({
     required this.phase,
     required this.emoji,
     required this.dreamQuality,
     required this.themes,
     required this.lucidPotential,
-    required this.ritualAdvice,
+    required this.advice,
     required this.journalPrompt,
   });
 }
 
-/// Burç rüya profili modeli
-class ZodiacDreamProfile {
-  final String sign;
+/// Kişilik arketipi rüya profili modeli
+class ArchetypeDreamProfile {
+  final String archetype;
   final String emoji;
   final List<String> commonThemes;
   final List<String> nightmareThemes;
@@ -670,8 +670,8 @@ class ZodiacDreamProfile {
   final String dreamAdvice;
   final List<String> healingSymbols;
 
-  const ZodiacDreamProfile({
-    required this.sign,
+  const ArchetypeDreamProfile({
+    required this.archetype,
     required this.emoji,
     required this.commonThemes,
     required this.nightmareThemes,
@@ -701,7 +701,7 @@ class RuyaRituelleri {
         'Minnettarlıkla bırak',
       ],
       bestFor: 'Spesifik sorulara cevap arayanlar',
-      moonPhaseBonus: 'Yeniay ve Dolunay\'da en etkili',
+      timingTip: 'Düzenli uygulandığında en etkili',
     ),
     DreamRitual(
       name: 'Lavanta Arınma Ritüeli',
@@ -714,8 +714,8 @@ class RuyaRituelleri {
         '"Zihnimim temizleniyor, rüyalarım berraklaşıyor" niyeti',
         'Sakin düşüncelerle uykuya dal',
       ],
-      bestFor: 'Kâbuslar ve stresli rüyalar',
-      moonPhaseBonus: 'Azalan Ay\'da en etkili (temizlik)',
+      bestFor: 'Kabuslar ve stresli rüyalar',
+      timingTip: 'Stresli günlerin ardından en etkili',
     ),
     DreamRitual(
       name: 'Rüya Kristali Aktivasyonu',
@@ -728,8 +728,8 @@ class RuyaRituelleri {
         'Yastığının altına veya yanına koy',
         'Sabah kristale teşekkür et',
       ],
-      bestFor: 'Lucid rüya çalışanlar, spiritüel mesaj arayanlar',
-      moonPhaseBonus: 'Dolunay\'da kristali şarj et',
+      bestFor: 'Lucid rüya çalışanlar, derin rüya arayanlar',
+      timingTip: 'Her akşam uygulanabilir',
     ),
     DreamRitual(
       name: 'Günlük Tarama Ritüeli',
@@ -743,7 +743,7 @@ class RuyaRituelleri {
         'Bırak ve uyu',
       ],
       bestFor: 'Gün içi stres taşıyanlar',
-      moonPhaseBonus: 'Her gün yapılabilir',
+      timingTip: 'Her gün yapılabilir',
     ),
   ];
 
@@ -761,7 +761,7 @@ class RuyaRituelleri {
         'Detayları sonra tamamla',
       ],
       bestFor: 'Herkes - temel pratik',
-      moonPhaseBonus: 'Dolunay sabahları özellikle önemli',
+      timingTip: 'Her sabah uygulanmalı',
     ),
     DreamRitual(
       name: 'Rüya Çizimi Ritüeli',
@@ -775,7 +775,7 @@ class RuyaRituelleri {
         'Çizimin altına kısa not yaz',
       ],
       bestFor: 'Görsel öğrenenler, sanatçılar',
-      moonPhaseBonus: 'İlk Dördün\'de yaratıcılık yüksek',
+      timingTip: 'Yaratıcı hissettiğin günlerde özellikle etkili',
     ),
     DreamRitual(
       name: 'Rüya Diyalogu Ritüeli',
@@ -789,7 +789,7 @@ class RuyaRituelleri {
         'Teşekkür et ve kapat',
       ],
       bestFor: 'Derin anlam arayanlar, Jungian çalışanlar',
-      moonPhaseBonus: 'Karanlık Ay\'da en derin diyaloglar',
+      timingTip: 'Dinlendiğin ve sakin olduğun günlerde en derin diyaloglar',
     ),
   ];
 
@@ -807,7 +807,7 @@ class RuyaRituelleri {
         'Önümüzdeki hafta için niyet belirle',
       ],
       bestFor: 'Ciddi rüya çalışanlar',
-      moonPhaseBonus: 'Pazar günleri, yeni haftaya hazırlık',
+      timingTip: 'Pazar günleri yeni haftaya hazırlık olarak',
     ),
     DreamRitual(
       name: 'Lucid Niyet Güncelleme',
@@ -821,33 +821,33 @@ class RuyaRituelleri {
         'Reality check rutinini tazele',
       ],
       bestFor: 'Lucid rüya pratisyenleri',
-      moonPhaseBonus: 'Yeniay\'da yeni lucid hedefler',
+      timingTip: 'Her hafta başında yeni lucid hedefler',
     ),
   ];
 
-  /// Ay fazına göre ritüel önerileri
-  static const Map<String, List<String>> ayFaziRituelleri = {
-    'yeniay': [
-      'Yeni döngü için rüya niyeti belirle',
+  /// Haftalık ritüel döngüsü önerileri
+  static const Map<String, List<String>> haftalikDonguRituelleri = {
+    'pazartesi': [
+      'Yeni hafta için rüya niyeti belirle',
       'Rüya günlüğüne başla veya yenile',
-      'Karanlıkta dinlenmeye izin ver',
+      'Dinlenmeye izin ver',
     ],
-    'hilal': [
+    'sali': [
       'Yeni semboller için araştırma yap',
       'Büyüme niyetini rüyalara sor',
       'Cesaretli rüya hedefleri koy',
     ],
-    'ilkDordun': [
+    'carsamba': [
       'Rüyalardaki çatışmaları incele',
       'Karar gerektiren konuları rüyaya sor',
       'Eylem çağrısı rüyalarına dikkat et',
     ],
-    'dolunay': [
-      'Yoğun rüya kaydı gec - birden fazla rüya olabilir',
-      'Lucid rüya denemesi için en iyi gece',
+    'persembe': [
+      'Yoğun rüya kaydı yap - birden fazla rüya olabilir',
+      'Lucid rüya denemesi için uygun gece',
       'Açığa çıkan bilgiyi değerlendir',
     ],
-    'sonDordun': [
+    'cuma': [
       'Bırakma ritüeli yap - rüyalardaki "eski" şeyleri not et',
       'Affetme çalışması - rüyalardaki figürleri affet',
       'Temizlik ve arınma niyeti',
@@ -862,7 +862,7 @@ class DreamRitual {
   final String description;
   final List<String> steps;
   final String bestFor;
-  final String moonPhaseBonus;
+  final String timingTip;
 
   const DreamRitual({
     required this.name,
@@ -870,7 +870,7 @@ class DreamRitual {
     required this.description,
     required this.steps,
     required this.bestFor,
-    required this.moonPhaseBonus,
+    required this.timingTip,
   });
 }
 

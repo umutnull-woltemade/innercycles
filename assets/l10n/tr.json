@@ -182,13 +182,28 @@
     },
     "emoji_select": "Emoji Seç",
     "relationship_type": "İlişki Türü",
-    "big_three": "Büyük Üçlü",
-    "sun_type": "Güneş Arketipi",
-    "moon_type": "Ay Arketipi",
-    "rising_type": "Yükselen Arketip",
+    "big_three": "Kişilik Profilin",
+    "sun_type": "Kişilik Tipi",
+    "moon_type": "Duygusal Profil",
+    "rising_type": "Sosyal Stil",
+    "view_insight": "Detaylı İçgörü",
     "journal_streak": "Gunluk Serisi",
     "entries_logged": "Kayit Sayisi",
     "patterns_found": "Bulunan Kaliplar"
+  },
+  "zodiac": {
+    "aries": "Öncü",
+    "taurus": "Kurucu",
+    "gemini": "İletişimci",
+    "cancer": "Koruyucu",
+    "leo": "Sahne Yıldızı",
+    "virgo": "Analist",
+    "libra": "Dengeleyici",
+    "scorpio": "Dönüştürücü",
+    "sagittarius": "Kaşif",
+    "capricorn": "Başarıcı",
+    "aquarius": "Vizyoner",
+    "pisces": "Hayalci"
   },
   "personal_profile": {
     "title": "Kişisel Profil"
@@ -2110,7 +2125,7 @@
       "error_try_again": "Bir sorun oluştu. Lütfen tekrar dene.",
       "interpretation_failed": "Yorum oluşturulamadı.",
       "share_another": "Başka bir rüya paylaşmak istersen, dinlemeye hazırım.",
-      "welcome_message": "Merhaba, ben Rüya İzi. {signName} arketipinun kozmik enerjisiyle sana eşlik etmek için buradayım.\n\nGördüğün rüyayı detaylı bir şekilde anlat. Ne gördün? Neler hissettin? Rüyandaki semboller, renkler ve duygular hakkında ne kadar çok bilgi verirsen, sembolik keşfimiz o kadar zengin olur.\n\n",
+      "welcome_message": "Merhaba, ben Rüya İzi. {signName} kişilik arketipinin perspektifinden rüyalarını keşfetmek için buradayım.\n\nGördüğün rüyayı detaylı bir şekilde anlat. Ne gördün? Neler hissettin? Rüyandaki semboller, renkler ve duygular hakkında ne kadar çok bilgi verirsen, keşfimiz o kadar zengin olur.\n\n",
       "prompts": {
         "water_breathing": "Denizde yüzüyordum ama suyun altında nefes alabiliyordum",
         "rain_running": "Şiddetli yağmur altında koşuyordum ama ıslanmıyordum",
@@ -2241,7 +2256,7 @@
         "love_meaning": "Bağlanma, arzu, kabul"
       },
       "interpretations": {
-        "sign_perspective": "{sign} arketipinun kozmik perspektifinden rüya yorumun:",
+        "sign_perspective": "{sign} arketipinin perspektifinden rüya yorumun:",
         "water": {
           "title": "🌊 SU RÜYASI - {sign} YORUMU",
           "divider": "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
@@ -4622,8 +4637,8 @@
     "name": "İsim",
     "user": "Kullanıcı",
     "birth_date": "Doğum Tarihi",
-    "sun_sign": "Güneş Arketipi",
-    "moon_sign": "Ay Arketipi",
+    "sun_sign": "Kişilik Tipi",
+    "moon_sign": "Duygusal Profil",
     "rising_sign": "Yükselen",
     "triad": "Drakonik Üçlüsü",
     "sun": "Güneş",
@@ -5762,7 +5777,7 @@
     "name": "İsim",
     "user": "Kullanıcı",
     "birth_date": "Doğum Tarihi",
-    "sun_sign": "Güneş Arketipi",
+    "sun_sign": "Kişilik Tipi",
     "main_asteroids": "Ana Asteroidler",
     "secondary": "İkincil",
     "analysis": "Analiz",
@@ -10144,8 +10159,8 @@
       "unknown": "Bilinmiyor"
     },
     "big_three_items": {
-      "sun_sign": "Güneş Arketipi",
-      "moon_sign": "Ay Arketipi",
+      "sun_sign": "Kişilik Tipi",
+      "moon_sign": "Duygusal Profil",
       "ascendant": "Yükselen",
       "sun_description": "Temel kimliğin, ego ve yaşam amacın",
       "moon_description": "Duygusal doğan, iç dünya ve sezgiler",
@@ -10169,7 +10184,7 @@
     },
     "moon_labels": {
       "moon_phase": "Ay Evresi",
-      "moon_sign": "Ay Arketipi"
+      "moon_sign": "Duygusal Profil"
     },
     "interpretations": {
       "sun_in_sign": "Güneş {sign} Arketipinda",
