@@ -130,8 +130,8 @@ class ContentEngineService {
     'Full Moon',
     'Quiet Reflection',
     'Seasonal Transition',
-    'Equinox',
-    'Solstice',
+    'Seasonal Balance',
+    'Seasonal Peak',
     'Monday Reset',
     'Mid-Week Check',
     'Friday Release',
@@ -356,7 +356,7 @@ class ContentEngineService {
     final moonAge = _approximateMoonAge(now);
     if (moonAge <= 1.5 || moonAge >= 28.0) return 'New Moon';
     if (moonAge >= 13.5 && moonAge <= 15.5) return 'Full Moon';
-    if (moonAge >= 7.0 && moonAge <= 9.0) return 'Eclipse Season';
+    if (moonAge >= 7.0 && moonAge <= 9.0) return 'Seasonal Transition';
 
     // Fallback: pick from cosmic contexts based on date seed
     final cosmicContexts = [

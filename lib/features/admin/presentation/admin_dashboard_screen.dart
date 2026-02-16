@@ -574,9 +574,9 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
     switch (tool.toLowerCase()) {
       case 'rüya izi':
         return AppColors.auroraStart;
-      case 'kozmik izi':
+      case 'kişisel iz':
         return AppColors.celestialGold;
-      case 'tantra':
+      case 'wellness':
         return AppColors.warmCrimson;
       case 'insight':
         return AppColors.twilightEnd;

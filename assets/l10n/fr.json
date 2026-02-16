@@ -238,7 +238,6 @@
         "moon_in_sign_formatted": "Lune en {sign}",
         "currently_in_sky": "Actuellement dans le Ciel",
         "illumination": "Illumination",
-        "void_of_course": "Lune Hors Cours",
         "light_mode": "Clair",
         "search_hint": "Rechercher... (ex: aperçu, reflection carde)",
         "explore_category": "Explorer",
@@ -252,15 +251,9 @@
         "ask_stars_short": "Explorez une réflexion...",
         "discover_stars_wisdom": "Découvre la sagesse intérieure ✨",
         "share_cosmic_energy": "Partagez votre énergie personnelle dans votre story!",
-        "voc_delay_decisions": "Reportez les decisions importantes. {time} restant.",
-        "voc_postpone_important": "Reportez les decisions importantes et les nouveaux debuts.",
         "meditation_subtitle": "Méditation, rituels et équilibrage énergétique",
         "all_analyses": "Toutes les Analyses",
         "questions": {
-            "aries_man": "🚀 Puis-je m'entendre avec un homme Pionnier?",
-            "scorpio_women": "🦋 Pourquoi les femmes Transformateur sont-elles si mysterieuses?",
-            "leo_attention": "🌟 Pourquoi Leader a-t-il toujours besoin d'attention?",
-            "gemini_decisions": "💬 Pourquoi Connecteur ne peut-il pas prendre de decisions?",
             "fire_water": "🔥 Les signes de feu et d'eau sont-ils compatibles?",
             "most_loyal": "💫 Quel signe est le plus fidele?",
             "most_jealous": "😈 Quel signe est le plus jaloux?",
@@ -280,7 +273,11 @@
             "rich_become": "💰 Quelle est ma relation avec l'abondance?",
             "future_love": "🔮 Quels schémas est-ce que je remarque dans mes relations?",
             "attention_this_week": "🎭 Quels thèmes méritent mon attention cette semaine?",
-            "soulmate_find": "💑 Quelles qualités est-ce que je valorise dans une connexion profonde?"
+            "soulmate_find": "💑 Quelles qualités est-ce que je valorise dans une connexion profonde?",
+            "pioneer_man": "🚀 Puis-je m'entendre avec un homme Pionnier?",
+            "transformer_women": "🦋 Pourquoi les femmes Transformateur sont-elles si mysterieuses?",
+            "performer_attention": "🌟 Pourquoi Leader a-t-il toujours besoin d'attention?",
+            "communicator_decisions": "💬 Pourquoi Connecteur ne peut-il pas prendre de decisions?"
         },
         "cosmic_connection_lost": "Connexion personnelle temporairement perdue. Veuillez réessayer.",
         "share_on_instagram": "Partager sur Instagram",
@@ -426,7 +423,6 @@
             "expression_number_desc": "Calculé à partir de votre nom, ce nombre reflète les thèmes et caractéristiques potentiels de votre vie.",
             "soul_urge": "Inner Drive",
             "personality": "Personality",
-            "karmic_debt_numbers": "Growth Pattern Numbers",
             "life_path_interpretation": "Life Path Interpretation",
             "deep_interpretation": "Deep Interpretation",
             "career_path": "Career Path",
@@ -438,7 +434,6 @@
             "master_numbers": "Master Numbers",
             "lessons_from_past_lives": "Lessons carried from past experiences",
             "yours": "YOURS",
-            "karmic_debt_message": "Your chart has {debts} growth pattern. Tap for details.",
             "keywords": "Keywords",
             "strengths": "Strengths",
             "challenges": "Challenges",
@@ -448,17 +443,12 @@
             "number_depth_title": "Depth of Number {number}",
             "kadim_title": "Eternal Dance of Numbers",
             "kadim_content": "Since Pythagoras, sages have known that numbers carry the hidden language of your inner self. Your life path number is not just a digit - it is the vibration your inner self brought into this world, the unique melody your inner self gave you. To hear this melody, you first need silence.",
-            "brand_text": "Numerology — InnerCycles",
-            "karmic_13_desc": "A growth pattern arising from laziness and irresponsibility. Must be balanced through hard work and discipline in this life.",
-            "karmic_14_desc": "A growth pattern from misusing freedom. Learning responsibility and moderation is the path forward.",
-            "karmic_16_desc": "A growth pattern from ego and relationship issues. Requires humility and inner transformation.",
-            "karmic_19_desc": "A growth pattern from misusing power and authority. Learning the balance of independence and helping others is the path forward.",
-            "karmic_default_desc": "This number carries a growth pattern and requires certain lessons to be learned in this life."
+            "brand_text": "Numerology — InnerCycles"
         },
         "solar_return": {
-            "title": "Solar Return",
+            "title": "Birthday Reflection",
             "subtitle": "Personal Year Chart",
-            "sun_returns": "Sun returns to {sign}",
+            "sun_returns": "Birthday returns to {sign}",
             "return_date": "Return Date",
             "sun_house": "Sun House",
             "house_number": "{number}. House",
@@ -491,7 +481,7 @@
             "keyword_reflection": "Reflection",
             "keyword_progress": "Progress",
             "keyword_change": "Change",
-            "keyword_balance": "Balance",
+            "keyword_balance": "Harmoniseur",
             "keyword_harvest": "Harvest",
             "keyword_closure": "Closure",
             "spring_equinox_title": "Spring Equinox",
@@ -832,10 +822,6 @@
         },
         "dream_share_card": {
             "themes": {
-                "mystical": {
-                    "label": "Profond",
-                    "description": "Deep purple and midnight sky"
-                },
                 "minimal": {
                     "label": "Minimal",
                     "description": "Clean and simple"
@@ -855,13 +841,17 @@
                 "golden": {
                     "label": "Golden",
                     "description": "Warm golden tones"
+                },
+                "contemplative": {
+                    "label": "Profond",
+                    "description": "Deep purple and midnight sky"
                 }
             },
             "fonts": {
                 "elegant": "Elegant",
                 "modern": "Modern",
-                "mystical": "Profond",
-                "handwritten": "Handwritten"
+                "handwritten": "Handwritten",
+                "contemplative": "Profond"
             },
             "templates": {
                 "dreamQuote": "Dream Quote",
@@ -1538,9 +1528,7 @@
         "yearly_summary": "Résumé Annuel",
         "special_months": "Mois Spéciaux",
         "lucky_months": "Mois Favorables",
-        "planet_transits": "Cycles de vie",
         "your_archetype_readings": "Vos Lectures Archétypales",
-        "sign_today": "Comment va {sign} aujourd'hui?",
         "self_awareness_brand": "Connaissance de soi — InnerCycles",
         "self_awareness": "Connaissance de soi",
         "hermetic_teaching": "Enseignement Hermétique",
@@ -1646,10 +1634,6 @@
                 "title": "Sommes-nous compatibles ?",
                 "description": "Voyez la danse de deux thèmes."
             },
-            "current_transits": {
-                "title": "Transits actuels",
-                "description": "Comment les mouvements personnels vous affectent-ils ?"
-            },
             "dream_interpretation": {
                 "title": "Racontez votre rêve, explorons ensemble",
                 "description": "Qu'avez-vous vu cette nuit ? Embarquons pour un voyage symbolique."
@@ -1677,14 +1661,6 @@
             "premium_features": {
                 "title": "Fonctionnalités Premium",
                 "description": "Outils de connaissance de soi avancés"
-            },
-            "most_read_scorpio": {
-                "title": "Le plus lu : Transformern",
-                "description": "Que disent les eaux mystérieuses aujourd'hui ?"
-            },
-            "rising_trend_aquarius": {
-                "title": "Tendance montante : Verseau",
-                "description": "Les vents du changement soufflent."
             },
             "weekly_overview": {
                 "title": "Aperçu hebdomadaire",
@@ -1718,33 +1694,9 @@
                 "title": "Compatibilité des signes",
                 "description": "Analyse de couple"
             },
-            "synastry_analysis": {
-                "title": "Analyse de compatibilité relationnelle",
-                "description": "Comparez les thèmes en détail."
-            },
-            "composite_chart": {
-                "title": "Thème composite",
-                "description": "Le thème propre de la relation."
-            },
-            "solar_return": {
-                "title": "Retour solaire",
-                "description": "Comment est le thème de cette année ?"
-            },
             "progressions": {
                 "title": "Progressions",
                 "description": "Suivez votre évolution intérieure."
-            },
-            "vedic_chart": {
-                "title": "Thème védique",
-                "description": "Perspective de la connaissance de soi indienne."
-            },
-            "draconic_chart": {
-                "title": "Thème draconique",
-                "description": "Votre origine intérieure."
-            },
-            "asteroids": {
-                "title": "Astéroïdes",
-                "description": "Chiron, Lilith et autres."
             },
             "numerology": {
                 "title": "Numérologie",
@@ -1860,10 +1812,6 @@
                 "title": "Significations des nombres",
                 "description": "1-9 et nombres maîtres"
             },
-            "synastry_depth": {
-                "title": "Profondeur de compatibilité relationnelle",
-                "description": "Comparez les thèmes en détail."
-            },
             "love_reflection": {
                 "title": "Aperçu amoureux",
                 "description": "Énergie amoureuse hebdomadaire"
@@ -1946,22 +1894,11 @@
                 "title": "Mon profil personnel",
                 "description": "Votre identité personnelle"
             },
-            "transits_affecting_chart": {
-                "description": "Comment les transits affectent-ils mon thème ?"
-            },
             "this_years_chart": {
                 "description": "Le thème de cette année."
             },
             "inner_evolution_tracking": {
                 "description": "Suivi de l'évolution intérieure."
-            },
-            "transit_dreams": {
-                "title": "Rêves pendant les transits",
-                "description": "Que disent les rêves pendant les transits intenses ?"
-            },
-            "personal_transit_guidance": {
-                "title": "Guidance personnelle des transits",
-                "description": "Message spécial pour cette période."
             },
             "todays_energy": {
                 "description": "L'énergie d'aujourd'hui."
@@ -2008,10 +1945,6 @@
                 "title": "Phase lunaire",
                 "description": "L'influence de la lune aujourd'hui."
             },
-            "transits": {
-                "title": "Transits",
-                "description": "Les influences du jour."
-            },
             "sky_today": {
                 "description": "Les influences du jour."
             },
@@ -2053,9 +1986,6 @@
             },
             "east_west_energy_maps": {
                 "description": "Cartes énergétiques Est-Ouest."
-            },
-            "planets_and_chakras": {
-                "description": "Caractéristiques et chakras."
             },
             "energy_blockages_dreams": {
                 "description": "Comment les blocages énergétiques se reflètent-ils dans les rêves ?"
@@ -2636,92 +2566,6 @@
         "saved": "Enregistre!",
         "example_prompts_label": "Example Dream Shares:",
         "input_placeholder": "Describe your dream in detail... (Enter to send, Shift+Enter new line)",
-        "oracle": {
-            "title": "Dream Insight",
-            "new_dream": "New Dream",
-            "describe_dream": "Describe Your Dream",
-            "voice_input_soon": "Voice input coming soon",
-            "voice_describe": "Voice Describe",
-            "dream_hint": "In my dream...\n\nWhat did you see? Who was there? What happened? How did you feel?",
-            "characters": "characters",
-            "dream_emotion": "Emotion in Your Dream",
-            "is_recurring": "Is this dream recurring?",
-            "recurring_message": "Recurring dreams carry special messages",
-            "life_situation": "Life Situation (Optional)",
-            "life_hint": "What's happening in your life right now? (career, relationship, etc.)",
-            "interpretation_style": "Interpretation Style",
-            "moon_phase_today": "Today's Moon Phase",
-            "interpret_dream": "Interpret My Dream",
-            "please_describe": "Please describe your dream",
-            "error_occurred": "An error occurred. Please try again.",
-            "loading": {
-                "diving_subconscious": "Diving into the depths of your subconscious...",
-                "decoding_symbols": "Decoding symbols...",
-                "connecting_archetypes": "Connecting with archetypes...",
-                "calculating_moon": "Calculating moon phase influence...",
-                "consulting_wisdom": "Consulting ancient wisdom...",
-                "analyzing_shadow": "Analyzing shadow and light...",
-                "reading_cosmic": "Reading personal timing...",
-                "shaping_interpretation": "Shaping dream interpretation..."
-            },
-            "sections": {
-                "ancient_intro": "Ancient Intro",
-                "core_message": "Core Message",
-                "symbol_analysis": "Symbol Analysis",
-                "archetype_connection": "Archetype Connection",
-                "emotional_reading": "Emotional Reading",
-                "astro_timing": "Personal Timing",
-                "light_shadow": "Light and Shadow",
-                "practical_guidance": "Practical Guidance",
-                "lucid_potential": "Lucid Dream Potential",
-                "whisper_quote": "Whispering Quote"
-            },
-            "emotional": {
-                "surface_message": "Surface Message",
-                "deep_meaning": "Deep Meaning",
-                "shadow_question": "Shadow Question",
-                "integration_path": "Integration Path"
-            },
-            "timing": {
-                "why_now": "Why Now?"
-            },
-            "light_shadow": {
-                "light_side": "Light Side",
-                "shadow_side": "Shadow Side"
-            },
-            "guidance": {
-                "today_action": "What to Do Today",
-                "weekly_focus": "Weekly Focus",
-                "reflection_question": "Reflection Question",
-                "avoid": "Avoid"
-            },
-            "lucid": {
-                "very_high": "Very High",
-                "high": "High",
-                "medium": "Medium",
-                "low": "Low",
-                "potential_message": "Your lucid (conscious) dream potential increased in this dream. Try setting an intention before sleeping tonight."
-            },
-            "styles": {
-                "jungian": "Jungian",
-                "jungian_desc": "Depth Psychology",
-                "spiritual": "Contemplative",
-                "spiritual_desc": "Inner Interpretation",
-                "folk": "Folk Interpretation",
-                "folk_desc": "Turkish Tradition",
-                "islamic": "Islamic",
-                "islamic_desc": "Islamic Interpretation",
-                "quick": "Quick",
-                "quick_desc": "3 Minute Interpretation"
-            },
-            "share_hashtags": "- Dream Insight\n#DreamInterpretation #Subconscious",
-            "symbol": {
-                "personal_context": "Personal Context",
-                "light_side": "Light Side",
-                "shadow_side": "Shadow Side",
-                "related": "Related:"
-            }
-        },
         "result_widget": {
             "title_badge": "7-DIMENSIONAL DREAM INTERPRETATION",
             "subconscious_message": "Message from Your Subconscious",
@@ -3028,6 +2872,92 @@
                 "As-tu reconnu quelqu'un ou un endroit ?",
                 "Quelle était ta position dans le rêve ? (observateur, participant)"
             ]
+        },
+        "dream_insight": {
+            "title": "Dream Insight",
+            "new_dream": "New Dream",
+            "describe_dream": "Describe Your Dream",
+            "voice_input_soon": "Voice input coming soon",
+            "voice_describe": "Voice Describe",
+            "dream_hint": "In my dream...\n\nWhat did you see? Who was there? What happened? How did you feel?",
+            "characters": "characters",
+            "dream_emotion": "Emotion in Your Dream",
+            "is_recurring": "Is this dream recurring?",
+            "recurring_message": "Recurring dreams carry special messages",
+            "life_situation": "Life Situation (Optional)",
+            "life_hint": "What's happening in your life right now? (career, relationship, etc.)",
+            "interpretation_style": "Interpretation Style",
+            "moon_phase_today": "Today's Moon Phase",
+            "interpret_dream": "Interpret My Dream",
+            "please_describe": "Please describe your dream",
+            "error_occurred": "An error occurred. Please try again.",
+            "loading": {
+                "diving_subconscious": "Diving into the depths of your subconscious...",
+                "decoding_symbols": "Decoding symbols...",
+                "connecting_archetypes": "Connecting with archetypes...",
+                "calculating_moon": "Calculating moon phase influence...",
+                "consulting_wisdom": "Consulting ancient wisdom...",
+                "analyzing_shadow": "Analyzing shadow and light...",
+                "reading_cosmic": "Reading personal timing...",
+                "shaping_interpretation": "Shaping dream interpretation..."
+            },
+            "sections": {
+                "ancient_intro": "Ancient Intro",
+                "core_message": "Core Message",
+                "symbol_analysis": "Symbol Analysis",
+                "archetype_connection": "Archetype Connection",
+                "emotional_reading": "Emotional Reading",
+                "astro_timing": "Personal Timing",
+                "light_shadow": "Light and Shadow",
+                "practical_guidance": "Practical Guidance",
+                "lucid_potential": "Lucid Dream Potential",
+                "whisper_quote": "Whispering Quote"
+            },
+            "emotional": {
+                "surface_message": "Surface Message",
+                "deep_meaning": "Deep Meaning",
+                "shadow_question": "Shadow Question",
+                "integration_path": "Integration Path"
+            },
+            "timing": {
+                "why_now": "Why Now?"
+            },
+            "light_shadow": {
+                "light_side": "Light Side",
+                "shadow_side": "Shadow Side"
+            },
+            "guidance": {
+                "today_action": "What to Do Today",
+                "weekly_focus": "Weekly Focus",
+                "reflection_question": "Reflection Question",
+                "avoid": "Avoid"
+            },
+            "lucid": {
+                "very_high": "Very High",
+                "high": "High",
+                "medium": "Medium",
+                "low": "Low",
+                "potential_message": "Your lucid (conscious) dream potential increased in this dream. Try setting an intention before sleeping tonight."
+            },
+            "styles": {
+                "jungian": "Jungian",
+                "jungian_desc": "Depth Psychology",
+                "spiritual": "Contemplative",
+                "spiritual_desc": "Inner Interpretation",
+                "folk": "Folk Interpretation",
+                "folk_desc": "Turkish Tradition",
+                "islamic": "Islamic",
+                "islamic_desc": "Islamic Interpretation",
+                "quick": "Quick",
+                "quick_desc": "3 Minute Interpretation"
+            },
+            "share_hashtags": "- Dream Insight\n#DreamInterpretation #Subconscious",
+            "symbol": {
+                "personal_context": "Personal Context",
+                "light_side": "Light Side",
+                "shadow_side": "Shadow Side",
+                "related": "Related:"
+            }
         }
     },
     "months": {
@@ -3365,16 +3295,12 @@
         "title": "Personal Profile"
     },
     "chart": {
-        "birth_date": "Date de naissance",
-        "birth_time": "Heure de naissance",
-        "birth_place": "Lieu de naissance"
+        "birth_date": "Date de naissance"
     },
     "insights": {
         "daily_energy_title": "Today's Energy",
         "daily_energy_content": "The Moon's current position brings emotional depth. It's the perfect time to listen to your inner voice.",
         "transit_effect_title": "Transit Effect",
-        "transit_effect_content": "Les cycles actuels mettent en lumière vos relations et vos valeurs.",
-        "sign_message_title": "Le message de votre archétype",
         "dream_guide_title": "Dream Guide",
         "dream_guide_content": "Dreams you have tonight may carry important messages. Don't forget to record your dreams.",
         "weekly_preview_title": "Weekly Preview",
@@ -3411,17 +3337,11 @@
         "dreams_insight": "Dream interpretation",
         "transits": "Transits",
         "transits_insight": "What's affecting you now",
-        "synastry": "Relationship Compatibility",
-        "synastry_insight": "Extract your relationship chart",
-        "composite": "Composite Chart",
-        "composite_insight": "Your combined chart",
         "cosmic_share": "Personal Share",
         "share_energy": "Share your energy",
         "who_compatible": "Who are you compatible with?",
-        "all_signs": "All Signs",
-        "discover_12_signs": "Discover 12 signs",
-        "solar_return": "Solar Return",
-        "solar_return_insight": "What awaits you this year",
+        "all_signs": "All Archetypes",
+        "discover_12_signs": "Discover 12 archetypes",
         "share_chart": "Share Your Chart",
         "share_cosmic_energy": "Share your personal energy",
         "compare_profiles": "Compare Profiles",
@@ -3454,11 +3374,9 @@
         "cosmic_rituals": "Personal rituals",
         "progressions": "Progressions",
         "inner_evolution": "Your inner evolution",
-        "draconic": "Draconic Chart",
         "soul_chart": "Your inner self's chart",
         "solar_arc": "Solar Arc",
         "life_directions": "Life directions",
-        "vedic": "Vedic Self-Awareness",
         "eastern_wisdom": "Eastern wisdom",
         "transit_calendar": "Transit Calendar",
         "upcoming_transits": "Upcoming transits",
@@ -3488,11 +3406,8 @@
         "score_moderate": "Mixed energy, choose activities carefully",
         "score_challenging": "Challenging day, focus on routine tasks",
         "active": "Active",
-        "voc_short": "VOC",
         "none": "None",
         "current_conditions": "Current Conditions",
-        "voc_title": "Void of Course Moon",
-        "voc_desc": "Ends in",
         "ending_soon": "Ending soon",
         "clear_sky_title": "Clear Skies",
         "clear_sky_desc": "No major personal warnings active. Good day for initiatives.",
@@ -3520,12 +3435,7 @@
         "biorhythm_low": "Some cycles are low. Rest and conserve energy when needed.",
         "biorhythm_critical": "Critical phase in some cycles. Take care and avoid overexertion.",
         "daily_aspects": "Daily Aspects",
-        "aspect_sun_harmonious": "Vitality and confidence are enhanced. Great for leadership and creative expression.",
-        "aspect_moon_harmonious": "Emotional harmony flows. Good for nurturing and connecting with loved ones.",
-        "aspect_jupiter_harmonious": "Growth and expansion favor you. Good for taking calculated risks.",
         "aspect_default_harmonious": "Positive energy supports your endeavors today.",
-        "aspect_mars_challenging": "Watch for impulsiveness or conflict. Channel energy into physical activity.",
-        "aspect_pluto_challenging": "Deep transformation underway. Face shadows with courage.",
         "aspect_default_challenging": "Navigate challenges with awareness and flexibility.",
         "category_all": "All",
         "category_love": "Love",
@@ -3546,37 +3456,18 @@
         ],
         "rec_love_activity": "Romantic Connection",
         "rec_love_desc_voc": "Emotional decisions should be postponed due to VOC. Focus on existing relationships.",
-        "rec_love_desc_libra": "Relationship energy is high. Ideal time for harmony and romance with partner.",
-        "rec_love_desc_taurus": "Physical closeness and security matter. Good for intimate moments.",
-        "rec_love_desc_cancer": "Emotional depth increases. Spend quality time with family and loved ones.",
-        "rec_love_desc_scorpio": "Passionate and intense emotions prevail. Be bold in forming deep connections.",
         "rec_love_desc_default": "New opportunities in love may arise. Stay open.",
         "rec_career_activity": "Business Matters",
         "rec_career_desc_voc": "Important business decisions should be postponed. Continue existing projects.",
-        "rec_career_desc_capricorn": "Career goals become clear. Ideal for long-term planning.",
-        "rec_career_desc_virgo": "Focus on details. Analysis and organization work is supported.",
-        "rec_career_desc_aries": "Leadership energy is high. Dare to start new projects.",
         "rec_career_desc_default": "Stable day at work. Stick to routines.",
         "rec_money_activity": "Financial Decisions",
         "rec_money_desc_voc": "Major financial decisions should be postponed. Use time for research and planning.",
-        "rec_money_desc_taurus": "Financial stability is important. Long-term investments can be considered.",
-        "rec_money_desc_scorpio": "Hidden opportunities may arise. Research and analyze.",
-        "rec_money_desc_capricorn": "Ideal for practical financial decisions. Make budget plans.",
         "rec_money_desc_default": "Proceed carefully with money matters. Avoid major expenses.",
         "rec_health_activity": "Health Activities",
-        "rec_health_desc_virgo": "Ideal for detox and cleansing. Create healthy routines.",
-        "rec_health_desc_pisces": "Inner balance is important. Meditation and relaxation recommended.",
-        "rec_health_desc_aries": "High energy for physical activity. Exercise and sports.",
-        "rec_health_desc_cancer": "Emotional health is priority. Show yourself compassion.",
         "rec_health_desc_default": "Good for general health. Balanced nutrition and rest are important.",
         "rec_travel_activity": "Travel Planning",
-        "rec_travel_desc_sagittarius": "Adventure spirit is high! Perfect for discovering new places.",
-        "rec_travel_desc_gemini": "Ideal period for short trips and local explorations.",
         "rec_travel_desc_default": "Good for travel planning. Determine details in advance.",
         "rec_creative_activity": "Creative Projects",
-        "rec_creative_desc_leo": "Creative expression is at its peak! Ideal for artistic projects and performance.",
-        "rec_creative_desc_pisces": "Imagination and inspiration are high. Intuitive creativity is supported.",
-        "rec_creative_desc_aquarius": "Innovative ideas are flowing. Try alternative approaches.",
         "rec_creative_desc_default": "Creative energy is stable. Good for continuing existing projects.",
         "tip_express_feelings": "Express your feelings",
         "tip_wait_patiently": "Wait patiently",
