@@ -14,7 +14,6 @@ import '../../features/home/presentation/responsive_home_screen.dart';
 import '../../features/premium/presentation/premium_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/profile/presentation/profile_screen.dart';
-import '../../features/profile/presentation/comparison_screen.dart';
 import '../../features/insight/presentation/insight_screen.dart';
 import '../../features/insight/presentation/insights_discovery_screen.dart';
 import '../../features/dreams/presentation/dream_interpretation_screen.dart';
@@ -146,6 +145,13 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.insight,
         builder: (context, state) => const InsightScreen(),
+        routes: [
+          // Catch-all for legacy archetype sub-routes like /insight/ateş-ruhu
+          GoRoute(
+            path: ':archetype',
+            redirect: (_, _) => Routes.insight,
+          ),
+        ],
       ),
       GoRoute(
         path: Routes.insightsDiscovery,
@@ -404,7 +410,19 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.articles,
         redirect: (context, state) => Routes.insight,
       ),
-      // Content detail route archived
+      // ════════════════════════════════════════════════════════════════
+      // LEGACY ROUTE REDIRECTS (archived astrology features → valid screens)
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(path: '/kozmoz', redirect: (_, _) => Routes.insight),
+      GoRoute(path: '/aura', redirect: (_, _) => Routes.insight),
+      GoRoute(path: '/numerology', redirect: (_, _) => Routes.insightsDiscovery),
+      GoRoute(path: '/chakra-analysis', redirect: (_, _) => Routes.insight),
+      GoRoute(path: '/moon-rituals', redirect: (_, _) => Routes.rituals),
+      GoRoute(path: '/kabbalah', redirect: (_, _) => Routes.insight),
+      GoRoute(path: '/timing', redirect: (_, _) => Routes.journalPatterns),
+      GoRoute(path: '/celebrities', redirect: (_, _) => Routes.insight),
+      GoRoute(path: '/daily-rituals', redirect: (_, _) => Routes.rituals),
+      GoRoute(path: '/kesif/ruhsal-donusum', redirect: (_, _) => Routes.insight),
 
       // ════════════════════════════════════════════════════════════════
       // PROFILE & SETTINGS
@@ -419,7 +437,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: Routes.comparison,
-        builder: (context, state) => const ComparisonScreen(),
+        redirect: (_, _) => Routes.profile,
       ),
       GoRoute(
         path: Routes.settings,

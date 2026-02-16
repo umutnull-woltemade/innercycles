@@ -145,9 +145,6 @@ final primaryProfileProvider = Provider<UserProfile?>((ref) {
   return profiles.isNotEmpty ? profiles.first : null;
 });
 
-/// Comparison profiles selection (for pattern comparison, not astrology)
-final comparisonProfile1Provider = StateProvider<UserProfile?>((ref) => null);
-final comparisonProfile2Provider = StateProvider<UserProfile?>((ref) => null);
 
 // =============================================================================
 // APP STATE PROVIDERS

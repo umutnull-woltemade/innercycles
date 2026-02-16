@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../data/models/zodiac_sign.dart' as archetype;
+import '../../../data/models/personality_archetype.dart' as archetype;
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -479,8 +479,8 @@ class _DreamInterpretationScreenState
   void _addWelcomeMessage() {
     final userProfile = ref.read(userProfileProvider);
     final sign = userProfile != null
-        ? archetype.ZodiacSignExtension.fromDate(userProfile.birthDate)
-        : archetype.ZodiacSign.aries;
+        ? archetype.PersonalityArchetypeExtension.fromDate(userProfile.birthDate)
+        : archetype.PersonalityArchetype.aries;
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language);
 
@@ -527,8 +527,8 @@ class _DreamInterpretationScreenState
   void _generateInterpretation(String dreamText) {
     final userProfile = ref.read(userProfileProvider);
     final sign = userProfile != null
-        ? archetype.ZodiacSignExtension.fromDate(userProfile.birthDate)
-        : archetype.ZodiacSign.aries;
+        ? archetype.PersonalityArchetypeExtension.fromDate(userProfile.birthDate)
+        : archetype.PersonalityArchetype.aries;
 
     // Generate interpretation based on dream content and personality profile
     final interpretation = _interpretDream(dreamText, sign);
@@ -547,7 +547,7 @@ class _DreamInterpretationScreenState
     _scrollToBottom();
   }
 
-  String _interpretDream(String dreamText, archetype.ZodiacSign sign) {
+  String _interpretDream(String dreamText, archetype.PersonalityArchetype sign) {
     final lowerDream = dreamText.toLowerCase();
 
     // Analyze dream themes
@@ -653,18 +653,18 @@ class _DreamInterpretationScreenState
     return buffer.toString().trim();
   }
 
-  String _getWaterInterpretation(archetype.ZodiacSign sign) {
+  String _getWaterInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
 
     // Map sign to JSON key
     final signKeyMap = {
-      archetype.ZodiacSign.aries: 'aries',
-      archetype.ZodiacSign.taurus: 'taurus',
-      archetype.ZodiacSign.cancer: 'cancer',
-      archetype.ZodiacSign.scorpio: 'scorpio',
-      archetype.ZodiacSign.pisces: 'pisces',
+      archetype.PersonalityArchetype.aries: 'aries',
+      archetype.PersonalityArchetype.taurus: 'taurus',
+      archetype.PersonalityArchetype.cancer: 'cancer',
+      archetype.PersonalityArchetype.scorpio: 'scorpio',
+      archetype.PersonalityArchetype.pisces: 'pisces',
     };
 
     final signKey = signKeyMap[sign];
@@ -781,7 +781,7 @@ $practiceLabel
 $practice''';
   }
 
-  String _getFlyingInterpretation(archetype.ZodiacSign sign) {
+  String _getFlyingInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
@@ -882,7 +882,7 @@ $cosmicMessage''';
     }
   }
 
-  String _getFallingInterpretation(archetype.ZodiacSign sign) {
+  String _getFallingInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
@@ -960,7 +960,7 @@ $cosmicLabel
 $cosmicMessage''';
   }
 
-  String _getDeathInterpretation(archetype.ZodiacSign sign) {
+  String _getDeathInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language).toUpperCase();
 
@@ -1037,7 +1037,7 @@ $cosmicLabel
 $cosmicMessage''';
   }
 
-  String _getChaseInterpretation(archetype.ZodiacSign sign) {
+  String _getChaseInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
@@ -1115,7 +1115,7 @@ $cosmicLabel
 $cosmicMessage''';
   }
 
-  String _getAnimalInterpretation(archetype.ZodiacSign sign) {
+  String _getAnimalInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
@@ -1193,7 +1193,7 @@ $cosmicLabel
 $cosmicMessage''';
   }
 
-  String _getHouseInterpretation(archetype.ZodiacSign sign) {
+  String _getHouseInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
@@ -1271,7 +1271,7 @@ $cosmicLabel
 $cosmicMessage''';
   }
 
-  String _getLoveInterpretation(archetype.ZodiacSign sign) {
+  String _getLoveInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
@@ -1365,7 +1365,7 @@ $cosmicLabel
 $cosmicMessage''';
   }
 
-  String _getMoneyInterpretation(archetype.ZodiacSign sign) {
+  String _getMoneyInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
@@ -1459,7 +1459,7 @@ $cosmicLabel
 $cosmicMessage''';
   }
 
-  String _getGenericInterpretation(archetype.ZodiacSign sign, String dreamText) {
+  String _getGenericInterpretation(archetype.PersonalityArchetype sign, String dreamText) {
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
@@ -1544,21 +1544,21 @@ $adviceLabel
 ${_getPersonalAdvice(sign)}''';
   }
 
-  String _getPersonalAdvice(archetype.ZodiacSign sign) {
+  String _getPersonalAdvice(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
     final signKeyMap = {
-      archetype.ZodiacSign.aries: 'aries',
-      archetype.ZodiacSign.taurus: 'taurus',
-      archetype.ZodiacSign.gemini: 'gemini',
-      archetype.ZodiacSign.cancer: 'cancer',
-      archetype.ZodiacSign.leo: 'leo',
-      archetype.ZodiacSign.virgo: 'virgo',
-      archetype.ZodiacSign.libra: 'libra',
-      archetype.ZodiacSign.scorpio: 'scorpio',
-      archetype.ZodiacSign.sagittarius: 'sagittarius',
-      archetype.ZodiacSign.capricorn: 'capricorn',
-      archetype.ZodiacSign.aquarius: 'aquarius',
-      archetype.ZodiacSign.pisces: 'pisces',
+      archetype.PersonalityArchetype.aries: 'aries',
+      archetype.PersonalityArchetype.taurus: 'taurus',
+      archetype.PersonalityArchetype.gemini: 'gemini',
+      archetype.PersonalityArchetype.cancer: 'cancer',
+      archetype.PersonalityArchetype.leo: 'leo',
+      archetype.PersonalityArchetype.virgo: 'virgo',
+      archetype.PersonalityArchetype.libra: 'libra',
+      archetype.PersonalityArchetype.scorpio: 'scorpio',
+      archetype.PersonalityArchetype.sagittarius: 'sagittarius',
+      archetype.PersonalityArchetype.capricorn: 'capricorn',
+      archetype.PersonalityArchetype.aquarius: 'aquarius',
+      archetype.PersonalityArchetype.pisces: 'pisces',
     };
     final signKey = signKeyMap[sign] ?? 'aries';
     return L10nService.get(

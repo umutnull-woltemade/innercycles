@@ -279,8 +279,6 @@ class L10nService {
       );
     }
 
-    // TODO: Trigger AI auto-repair hook (non-blocking)
-    // _triggerAIAutoRepair(key, language, reason);
   }
 
   /// Get all missing keys (for debugging/testing)
