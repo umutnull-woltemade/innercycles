@@ -504,7 +504,7 @@
       "subtitle": "Doğum Günü Haritası",
       "sun_returns": "Temel kimliğin {sign} arketipine dönüyor",
       "return_date": "Dönüş Tarihi",
-      "sun_house": "Güneş Evi",
+      "sun_house": "Kimlik Evi",
       "house_number": "{number}. Ev",
       "year_themes": "Yıl Temaları",
       "monthly_highlights": "Aylık Öne Çıkanlar",
@@ -1406,8 +1406,8 @@
     "self_awareness_a1_4": "Nadiren",
     "self_awareness_q2": "Kişisel profilini biliyor musun?",
     "self_awareness_a2_1": "Detaylı biliyorum",
-    "self_awareness_a2_2": "Güneş ve Ay arketipimu biliyorum",
-    "self_awareness_a2_3": "Sadece güneş arketipimu",
+    "self_awareness_a2_2": "Temel kimlik ve Ay arketipimu biliyorum",
+    "self_awareness_a2_3": "Sadece temel kimlik arketipimu",
     "self_awareness_a2_4": "Hiç bakmadım",
     "self_awareness_a3_1": "Kesinlikle, önemli!",
     "self_awareness_a3_2": "Bazen dikkat ederim",
@@ -1781,7 +1781,7 @@
       },
       "calculate_personal_profile": {
         "title": "Doğum Haritanı Hesapla",
-        "description": "Güneş arketipinun ötesini gör."
+        "description": "Temel kimliğinin ötesini gör."
       },
       "relationship_compatibility": {
         "title": "İlişki Uyumu",
@@ -2276,7 +2276,7 @@
       "which_dreams_this_sign_sees": "Bu arketipta insanlar en çok hangi rüyaları görür?",
       "special_message_for_today": "Bugün Sana Özel Mesaj",
       "cosmic_guidance": "Kişisel rehberlik al.",
-      "beyond_your_sun_sign": "{sign} Güneşinin ötesinde ne var?",
+      "beyond_your_sun_sign": "{sign} temel kimliğinin ötesinde ne var?",
       "where_is_your_ruler": "Yönlendirici özelliğin şu an nerede?",
       "reading_aligned_with_energy": "{sign} enerjisiyle uyumlu bir okuma.",
       "compatibility_with": "{sign} ile Uyumun",
@@ -3504,7 +3504,7 @@
     "aspects": "Açı",
     "cosmic_map_title": "Kişisel Haritası",
     "cosmic_map_description": "Bu harita, doğduğunda gökyüzünün bir an görüntüsüdür - ama bundan çok daha fazlası. Bu, bu dünyaya getirdiğin potansiyellerin, derslerin ve armağanların şifreli bir haritasıdır. Her özellik bir iç ses, her arketip bir enerji kalıbı, her ev bir yaşam alanıdır. Bu harita seni sınırlamaz - sana kim olduğunu hatırlatır.",
-    "your_sun": "Güneşiniz",
+    "your_sun": "Temel Kimliğiniz",
     "house_interpretation": "Ev Yorumu"
   },
   "insights": {

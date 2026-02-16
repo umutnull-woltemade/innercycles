@@ -397,7 +397,7 @@
             },
             "interpretation_templates": {
                 "turkish": "In Turkish culture and folklore, {symbol} is associated with {meaning}.",
-                "islamic": "In Islamic dream interpretation, {symbol} usually carries spiritual messages and divine signs.",
+                "islamic": "In Islamic dream interpretation, {symbol} usually carries contemplative messages and meaningful signs.",
                 "western": "In Western tradition, {symbol} symbolizes {meaning}.",
                 "jungian": "{symbol} is connected to {archetypes} archetypes. {shadow}",
                 "freudian": "From a Freudian perspective, {symbol} may be related to unconscious desires and repressed emotions."
@@ -441,14 +441,14 @@
             "name_numerology": "Name Numerology",
             "expression_number": "Ausdruckszahl",
             "expression_number_desc": "Berechnet aus Ihrem Namen, spiegelt diese Zahl potenzielle Themen und Eigenschaften in Ihrem Leben wider.",
-            "soul_urge": "Soul Urge",
+            "soul_urge": "Innere Motivation",
             "personality": "Personality",
             "karmic_debt_numbers": "Wachstumslektionen-Zahlen",
             "life_path_interpretation": "Life Path Interpretation",
             "deep_interpretation": "Deep Interpretation",
             "career_path": "Career Path",
             "compatible_numbers": "Compatible Numbers",
-            "spiritual_lesson": "Spiritual Lesson",
+            "spiritual_lesson": "Persönliche Lektion",
             "shadow_side": "Shadow Side",
             "shadow_side_footer": "These aspects can be transformed with awareness. Accepting the shadow is not empowering it - it is integrating it.",
             "all_life_path_numbers": "All Life Path Numbers",
@@ -530,7 +530,7 @@
             "advice_house_9": "Expand your horizons. Ideal year for education, travel and philosophical pursuits.",
             "advice_house_10": "Focus on your career goals. Establish your place in society.",
             "advice_house_11": "Expand your social circle. Work towards your personal aspirations.",
-            "advice_house_12": "Year of introspection. Spiritual development and rest should be prioritized.",
+            "advice_house_12": "Year of introspection. Personal development and rest should be prioritized.",
             "advice_default": "Dieses Jahr lädt zur Reflexion über wichtige Transformationsthemen ein."
         },
         "reiki": {
@@ -650,7 +650,7 @@
                     "sanskrit": "Sahasrara",
                     "location": "Top of head",
                     "attributes": [
-                        "Spiritual connection",
+                        "Inner connection",
                         "Enlightenment",
                         "Unity"
                     ],
@@ -935,7 +935,7 @@
         "career_finance": "Karriere & Finanzen",
         "health_wellness": "Gesundheit & Wohlbefinden",
         "health_energy": "Gesundheit & Energie",
-        "spiritual_guidance": "Spirituelle Führung",
+        "spiritual_guidance": "Persönliche Führung",
         "important_days": "Wichtige Tage",
         "lucky_days": "Günstige Tage",
         "important_transits": "Wichtige Transite",
@@ -1526,7 +1526,7 @@
                 "description": "Sprich mit deinem Unterbewusstsein."
             },
             "spiritual_practices": {
-                "description": "Spirituelle Praktiken."
+                "description": "Reflektive Praktiken."
             },
             "card_insight_terms": {
                 "description": "Reflection Card-Begriffe"
@@ -1584,7 +1584,7 @@
         "day_suffix": "Tag",
         "strengths": "Stärken",
         "cosmic_summary": "Persönliche Zusammenfassung",
-        "spiritual_journey": "Spirituelle Reise",
+        "spiritual_journey": "Persönliche Reise",
         "important_transits": "Wichtige Persönliche Transite",
         "special_months_of_year": "Besondere Monate des Jahres",
         "caution_required": "Vorsicht Erforderlich",
@@ -1592,7 +1592,7 @@
         "personal_profile_analysis": "Personal Profile & Analysis",
         "time_transits": "Time & Transits",
         "numerology_mystic": "Numerology & Mystic Tools",
-        "spiritual_wellness": "Spiritual & Wellness",
+        "spiritual_wellness": "Personal & Wellness",
         "advanced_self_awareness": "Advanced Self-Awareness",
         "personality_analysis": "Personality Analysis",
         "mystic_discoveries": "Mystic Discoveries",
@@ -2118,8 +2118,8 @@
             "styles": {
                 "jungian": "Jungian",
                 "jungian_desc": "Depth Psychology",
-                "spiritual": "Spiritual",
-                "spiritual_desc": "Mystical Interpretation",
+                "spiritual": "Reflektiv",
+                "spiritual_desc": "Tiefe Interpretation",
                 "folk": "Folk Interpretation",
                 "folk_desc": "Turkish Tradition",
                 "islamic": "Islamic",
@@ -2289,7 +2289,7 @@
             "instagram_story_size": "Instagram-Story-Größe",
             "main_text": "Haupttext",
             "mystery": "Mysterium",
-            "mystical_quotes": "Mystische Zitate",
+            "mystical_quotes": "Inspirierende Zitate",
             "mystical_quotes_list": [
                 "\"Träume sind Briefe, die unsere Seelen nachts schreiben.\"",
                 "\"Jeder Traum ist ein Spiegel, jedes Symbol ein Schlüssel.\"",
@@ -2768,7 +2768,7 @@
         "dream_share_card": {
             "themes": {
                 "mystical": {
-                    "label": "Mystical",
+                    "label": "Tief",
                     "description": "Deep purple and starry night"
                 },
                 "minimal": {
@@ -3709,7 +3709,7 @@
             "cusp": "Haus- oder Zeichenübergangspunkt",
             "element": "Vier grundlegende Energien",
             "modality": "Drei Bewegungsarten",
-            "dignity": "Kraft des Planeten in seinem Zeichen",
+            "dignity": "Kraft der Eigenschaft in ihrem Zeichen",
             "sun": "Dein Wesen und Lebenskraft",
             "moon": "Deine Emotionen und Instinkte",
             "mercury": "Geist und Kommunikation",
