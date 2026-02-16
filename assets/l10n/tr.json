@@ -1196,7 +1196,7 @@
             "basic_meaning": "Su senin elementi - içsel dünyalarla bağlantın çok güçlü! Sezgilerine tamamen güvenebilirsin.",
             "element_perspective": "Evrenle bir olma deneyimi yaşıyorsun. Yaratıcı ilham akıyor. Sanatsal ifade için ideal dönem.",
             "psychological": "Su: Evrensel bilinç, şifa, kolektif bilinçaltı\nBalık olarak: Mistik deneyimler ve içsel rehberlik\nMesaj: Sen sudan ötesin - okyanussun",
-            "practice": "• Sanatsal yaratım - resim, müzik, yazı\n• Deniz veya göl kenarında meditasyon\n• Lucid rüya pratikleri\n• Şifa çalışmaları\n• Spiritüel rehberliğe açık ol"
+            "practice": "• Sanatsal yaratım - resim, müzik, yazı\n• Deniz veya göl kenarında meditasyon\n• Lucid rüya pratikleri\n• Şifa çalışmaları\n• İçsel rehberliğe açık ol"
           },
           "default": {
             "basic_meaning": "Su, {element} arketipin için duygusal mesajlar taşıyor. Bilinçaltı akışa geçmek istiyor.",
@@ -1281,7 +1281,7 @@
           "basic_meaning": "Ev ve binalar, içsel yapını ve iç dünyayı sembolize eder. Her oda benliğinin farklı yönlerini temsil eder.",
           "special_interpretation": "Hangi \"odaya\" girmekten kaçındığını düşün. {element} elementi olarak iç dünyanın yapısı önemli.",
           "room_meanings_label": "🚪 ODA ANLAMLARI",
-          "room_meanings": "• Bodrum: Bilinçaltı, bastırılmış anılar\n• Çatı katı: Yüksek bilinç, spiritüellik\n• Mutfak: Beslenme, yaratıcılık\n• Yatak odası: Mahremiyet, cinsellik\n• Banyo: Arınma, duygusal temizlik\n• Salon: Sosyal yön, dış dünya ilişkisi\n• Gizli odalar: Keşfedilmemiş potansiyel",
+          "room_meanings": "• Bodrum: Bilinçaltı, bastırılmış anılar\n• Çatı katı: Yüksek bilinç, içsel farkındalık\n• Mutfak: Beslenme, yaratıcılık\n• Yatak odası: Mahremiyet, cinsellik\n• Banyo: Arınma, duygusal temizlik\n• Salon: Sosyal yön, dış dünya ilişkisi\n• Gizli odalar: Keşfedilmemiş potansiyel",
           "house_states_label": "🔑 EV DURUMLARI",
           "house_states": "• Yeni ev: Yeni benlik, değişim\n• Harap ev: İhmal edilen yönler\n• Çocukluk evi: Kökler, geçmiş\n• Yabancı ev: Bilinmeyen potansiyel",
           "practice_label": "✨ PRATİK UYGULAMA",
@@ -1365,7 +1365,7 @@
           "explorer": "Tavsiyem: Rüyalarını felsefi açıdan yorumla. Ateş enerjin, büyük resmi görmeyi sever.",
           "achiever": "Tavsiyem: Rüyalarını pratik yaşama nasıl uygularsın düşün. Toprak enerjin, somut sonuçlar ister.",
           "visionary": "Tavsiyem: Rüya topluluklarına katıl. Hava enerjin, kolektif bilgelikten beslenir.",
-          "dreamer": "Tavsiyem: Uyumadan önce niyet koy. Su enerjin, spiritüel rehberlikle doğrudan bağlanabilir."
+          "dreamer": "Tavsiyem: Uyumadan önce niyet koy. Su enerjin, içsel rehberlikle doğrudan bağlanabilir."
         }
       }
     }
@@ -2051,7 +2051,7 @@
         "description": "Hayat Ağacında yolculuk."
       },
       "spiritual_practices": {
-        "description": "Spiritüel pratikler."
+        "description": "Kişisel gelişim pratikleri."
       },
       "sefirot_glossary": {
         "title": "Sefirot Sözlüğü",

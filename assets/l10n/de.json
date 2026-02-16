@@ -97,7 +97,7 @@
             "numerology": "Numerologie"
         },
         "calculated_items": {
-            "planets": "10 Planeten",
+            "planets": "10 Persönlichkeitsmerkmale",
             "aspects": "Persönliche Aspekte",
             "houses": "12-Häuser-System",
             "rising": "Aszendent",
@@ -791,7 +791,7 @@
         "features": {
             "daily_whispers": "Tägliche Einblick-Flüstern",
             "pure_cosmic_experience": "Reines persönliches Erlebnis (werbefrei)",
-            "deep_planet_readings": "Tiefe Planetenlesungen",
+            "deep_planet_readings": "Tiefe Persönlichkeitslesungen",
             "unlimited_card_insight": "Unbegrenzte Reflection Card-Sitzungen",
             "soulmate_compatibility": "Beziehungs-Reflexionstools",
             "kabbalistic_secrets": "Symbolische Erkundungstools",
@@ -803,17 +803,17 @@
             "monthly": {
                 "name": "Monatlich",
                 "savings": "",
-                "features": "['Alle Basisfunktionen', 'Reines persönliches Erlebnis (werbefrei)', 'Tiefe Planeteninterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Persönliche Transite', 'Prioritäts-persönliche Führung']"
+                "features": "['Alle Basisfunktionen', 'Reines persönliches Erlebnis (werbefrei)', 'Tiefe Persönlichkeitsinterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Persönliche Transite', 'Prioritäts-persönliche Führung']"
             },
             "yearly": {
                 "name": "Jährlich",
                 "savings": "50% sparen",
-                "features": "['Alle Basisfunktionen', 'Reines persönliches Erlebnis (werbefrei)', 'Tiefe Planeteninterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Persönliche Transite', 'Prioritäts-persönliche Führung']"
+                "features": "['Alle Basisfunktionen', 'Reines persönliches Erlebnis (werbefrei)', 'Tiefe Persönlichkeitsinterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Persönliche Transite', 'Prioritäts-persönliche Führung']"
             },
             "lifetime": {
                 "name": "Lebenslang",
                 "savings": "Einmalzahlung",
-                "features": "['Alle Basisfunktionen', 'Reines persönliches Erlebnis (werbefrei)', 'Tiefe Planeteninterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Persönliche Transite', 'Prioritäts-persönliche Führung']"
+                "features": "['Alle Basisfunktionen', 'Reines persönliches Erlebnis (werbefrei)', 'Tiefe Persönlichkeitsinterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Persönliche Transite', 'Prioritäts-persönliche Führung']"
             },
             "free": {
                 "features": "['Tägliche Einblick-Flüstern', 'Basis-Persönliches Profil', 'Tägliche Reflexionskarte', 'Werbefinanziert']",
@@ -1152,7 +1152,7 @@
             },
             "chart_connected_dreams": {
                 "title": "Einblick-verbundene Träume",
-                "description": "Wie spiegeln sich Planeten in deinen Träumen?"
+                "description": "Wie spiegeln sich Persönlichkeitsmerkmale in deinen Träumen?"
             },
             "personal_cosmic_message": {
                 "title": "Persönliche persönliche Botschaft",
@@ -1252,7 +1252,7 @@
             },
             "self_awareness_connection": {
                 "title": "Selbstwahrnehmung-Verbindung",
-                "description": "Sefirot und Planeten."
+                "description": "Sefirot und Eigenschaften."
             },
             "chakra_system": {
                 "title": "Chakra-System",
@@ -1283,7 +1283,7 @@
                 "description": "Spezielle Botschaft für diese Zeit."
             },
             "planet_glossary": {
-                "title": "Planeten-Glossar",
+                "title": "Eigenschaften-Glossar",
                 "description": "Transit-Bedeutungen"
             },
             "moon_phases_dreams": {
@@ -1466,7 +1466,7 @@
                 "description": "Lerne die Konzepte"
             },
             "moon_planet_positions": {
-                "description": "Mond- und Planetenpositionen."
+                "description": "Mond- und Eigenschaftspositionen."
             },
             "moon_practices": {
                 "description": "Mondpraktiken."
@@ -1502,7 +1502,7 @@
                 "description": "Andere Systeme"
             },
             "planets_and_chakras": {
-                "description": "Planeten und Chakras."
+                "description": "Eigenschaften und Chakras."
             },
             "read_with_numbers": {
                 "description": "Lies mit Zahlen."
@@ -1556,7 +1556,7 @@
             "special_message_for_today": "Spezielle Botschaft für Heute",
             "cosmic_guidance": "Erhalte persönliche Führung.",
             "beyond_your_sun_sign": "Was steckt hinter deiner {sign} Kernidentität?",
-            "where_is_your_ruler": "Wo ist dein Herrscherplanet jetzt?",
+            "where_is_your_ruler": "Was ist dein Führungsmerkmal gerade?",
             "reading_aligned_with_energy": "Eine Lesung im Einklang mit {sign} Energie.",
             "compatibility_with": "Kompatibilität mit {sign}",
             "weekly_reading": "Wöchentliche {sign} Lesung"
