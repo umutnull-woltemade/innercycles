@@ -40,10 +40,10 @@ class DreamInterpretationService {
       emotionalReading: aiResponse['emotionalReading'] != null
           ? EmotionalReading.fromJson(aiResponse['emotionalReading'])
           : _defaultEmotionalReading(),
-      astroTiming: AstroTiming(
+      dreamTiming: DreamTiming(
         moonPhase: currentMoonPhase,
-        moonSign: aiResponse['moonSign'],
-        relevantTransit: aiResponse['relevantTransit'],
+        emotionalTone: aiResponse['emotionalTone'],
+        currentTheme: aiResponse['currentTheme'],
         timingMessage:
             aiResponse['timingMessage'] ??
             _getMoonPhaseMessage(currentMoonPhase),
@@ -53,7 +53,7 @@ class DreamInterpretationService {
               'dream_interpretation.why_now_simple',
               AppLanguage.tr,
             ),
-        isRetrograde: aiResponse['isRetrograde'] ?? false,
+        isIntense: aiResponse['isIntense'] ?? false,
       ),
       lightShadow: aiResponse['lightShadow'] != null
           ? LightShadowReading.fromJson(aiResponse['lightShadow'])
@@ -154,7 +154,7 @@ class DreamInterpretationService {
         shadowQuestion: _getShadowQuestion(dominantEmotion),
         integrationPath: _getIntegrationPath(dominantEmotion),
       ),
-      astroTiming: AstroTiming(
+      dreamTiming: DreamTiming(
         moonPhase: currentMoonPhase,
         timingMessage: _getMoonPhaseMessage(currentMoonPhase),
         whyNow: _getWhyNowMessage(currentMoonPhase, timeLayer),

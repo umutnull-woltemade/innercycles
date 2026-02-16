@@ -192,18 +192,18 @@
     "patterns_found": "Bulunan Kaliplar"
   },
   "archetype": {
-    "aries": "Öncü",
-    "taurus": "Kurucu",
-    "gemini": "İletişimci",
-    "cancer": "Koruyucu",
-    "leo": "Sahne Yıldızı",
-    "virgo": "Analist",
-    "libra": "Dengeleyici",
-    "scorpio": "Dönüştürücü",
-    "sagittarius": "Kaşif",
-    "capricorn": "Başarıcı",
-    "aquarius": "Vizyoner",
-    "pisces": "Hayalci"
+    "pioneer": "Koç",
+    "builder": "Boğa",
+    "communicator": "İkizler",
+    "nurturer": "Yengeç",
+    "performer": "Aslan",
+    "analyst": "Başak",
+    "harmonizer": "Terazi",
+    "transformer": "Akrep",
+    "explorer": "Yay",
+    "achiever": "Oğlak",
+    "visionary": "Kova",
+    "dreamer": "Balık"
   },
   "personal_profile": {
     "title": "Kişisel Profil"
@@ -1347,36 +1347,6 @@
           "Öncelikli kozmik rehberlik"
         ]
       }
-    }
-  },
-  "archetype": {
-    "all_signs": "Tüm Arketipler",
-    "discover_all_signs": "12 arketipi keşfet ve günlük yorumlarını oku",
-    "aries": "Koç",
-    "taurus": "Boğa",
-    "gemini": "İkizler",
-    "cancer": "Yengeç",
-    "leo": "Aslan",
-    "virgo": "Başak",
-    "libra": "Terazi",
-    "scorpio": "Akrep",
-    "sagittarius": "Yay",
-    "capricorn": "Oğlak",
-    "aquarius": "Kova",
-    "pisces": "Balık",
-    "dates": {
-      "aries": "21 Mar - 19 Nis",
-      "taurus": "20 Nis - 20 May",
-      "gemini": "21 May - 20 Haz",
-      "cancer": "21 Haz - 22 Tem",
-      "leo": "23 Tem - 22 Ağu",
-      "virgo": "23 Ağu - 22 Eyl",
-      "libra": "23 Eyl - 22 Eki",
-      "scorpio": "23 Eki - 21 Kas",
-      "sagittarius": "22 Kas - 21 Ara",
-      "capricorn": "22 Ara - 19 Oca",
-      "aquarius": "20 Oca - 18 Şub",
-      "pisces": "19 Şub - 20 Mar"
     }
   },
   "planets": {

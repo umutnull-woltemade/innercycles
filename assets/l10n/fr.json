@@ -179,18 +179,18 @@
     "view_insight": "Voir l'Aperçu Complet"
   },
   "archetype": {
-    "aries": "Le Pionnier",
-    "taurus": "Le Bâtisseur",
-    "gemini": "Le Communicateur",
-    "cancer": "Le Protecteur",
-    "leo": "L'Artiste",
-    "virgo": "L'Analyste",
-    "libra": "L'Harmonisateur",
-    "scorpio": "Le Transformateur",
-    "sagittarius": "L'Explorateur",
-    "capricorn": "L'Accompli",
-    "aquarius": "Le Visionnaire",
-    "pisces": "Le Rêveur"
+    "pioneer": "Bélier",
+    "builder": "Taureau",
+    "communicator": "Gémeaux",
+    "nurturer": "Cancer",
+    "performer": "Lion",
+    "analyst": "Vierge",
+    "harmonizer": "Balance",
+    "transformer": "Scorpion",
+    "explorer": "Sagittaire",
+    "achiever": "Capricorne",
+    "visionary": "Verseau",
+    "dreamer": "Poissons"
   },
   "personal_profile": {
     "title": "Personal Profile"
@@ -1284,36 +1284,6 @@
         "name": "Gratuit",
         "savings": ""
       }
-    }
-  },
-  "archetype": {
-    "aries": "Bélier",
-    "taurus": "Taureau",
-    "gemini": "Gémeaux",
-    "cancer": "Cancer",
-    "leo": "Lion",
-    "virgo": "Vierge",
-    "libra": "Balance",
-    "scorpio": "Scorpion",
-    "sagittarius": "Sagittaire",
-    "capricorn": "Capricorne",
-    "aquarius": "Verseau",
-    "pisces": "Poissons",
-    "all_signs": "All Archetype Signs",
-    "discover_all_signs": "Discover all 12 signs and read daily aperçus",
-    "dates": {
-      "aries": "21 Mars - 19 Avril",
-      "taurus": "20 Avril - 20 Mai",
-      "gemini": "21 Mai - 20 Juin",
-      "cancer": "21 Juin - 22 Juil.",
-      "leo": "23 Juil. - 22 Aout",
-      "virgo": "23 Aout - 22 Sept.",
-      "libra": "23 Sept. - 22 Oct.",
-      "scorpio": "23 Oct. - 21 Nov.",
-      "sagittarius": "22 Nov. - 21 Dec.",
-      "capricorn": "22 Dec. - 19 Janv.",
-      "aquarius": "20 Janv. - 18 Fev.",
-      "pisces": "19 Fev. - 20 Mars"
     }
   },
   "planets": {

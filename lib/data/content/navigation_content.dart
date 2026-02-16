@@ -119,7 +119,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'İçsel Rehberlik Al',
         description: 'İçindeki soruyu sor, cevaplar gelsin.',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.inner_guidance.title',
         descriptionKey: 'navigation.cards.inner_guidance.description',
@@ -137,7 +137,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'Sayılarının Sırrı',
         description: 'Doğum tarihin ve ismin ne anlatıyor?',
-        route: '/numerology',
+        route: '/insights-discovery',
         emoji: '🔢',
         titleKey: 'navigation.cards.number_secrets.title',
         descriptionKey: 'navigation.cards.number_secrets.description',
@@ -145,7 +145,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'Enerji Alanın',
         description: 'Auranın renkleri ve chakra dengen.',
-        route: '/aura',
+        route: '/insight',
         emoji: '🌈',
         titleKey: 'navigation.cards.energy_field.title',
         descriptionKey: 'navigation.cards.energy_field.description',
@@ -155,7 +155,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'Keşif Merkezi',
         description: 'Tüm özellikler tek yerde',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.discovery_center.title',
         descriptionKey: 'navigation.cards.discovery_center.description',
@@ -234,7 +234,7 @@ class InsightHubNavigation {
       NavigationCard(
         title: 'Günlük İçsel Mesajın',
         description: 'Bugün içindeki ses sana ne söylemek istiyor?',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '💫',
         titleKey: 'navigation.cards.daily_inner_message.title',
         descriptionKey: 'navigation.cards.daily_inner_message.description',
@@ -279,7 +279,7 @@ class InsightHubNavigation {
       NavigationCard(
         title: 'Keşif Merkezi',
         description: 'Tüm özellikler',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.discovery_center.title',
         descriptionKey: 'navigation.cards.discovery_center.description',
@@ -356,7 +356,7 @@ class ArchetypeNavigation {
         NavigationCard(
           title: 'Bugün Sana Özel Mesaj',
           description: 'İçsel rehberlik al.',
-          route: '/kozmoz',
+          route: '/insight',
           emoji: '✨',
           titleKey: 'navigation.phrases.special_message_for_today',
           descriptionKey: 'navigation.phrases.inner_guidance',
@@ -630,7 +630,7 @@ class PersonalProfileNavigation {
       NavigationCard(
         title: 'Kişisel İçsel Mesaj',
         description: 'Profiline özel rehberlik.',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.personal_inner_message.title',
         descriptionKey: 'navigation.cards.personal_inner_message.description',
@@ -737,7 +737,7 @@ class JournalNavigation {
       NavigationCard(
         title: 'İçsel Rehberlik',
         description: 'Günlüğünün ötesinde bir mesaj.',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.inner_guidance_beyond.title',
         descriptionKey: 'navigation.cards.inner_guidance_beyond.description',
@@ -747,7 +747,7 @@ class JournalNavigation {
       NavigationCard(
         title: 'Keşif Merkezi',
         description: 'Tüm özellikler.',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.discovery_center.title',
         descriptionKey: 'navigation.cards.discovery_center.description',
@@ -786,7 +786,7 @@ class JournalNavigation {
 // PAGE 17: NUMEROLOGY (/numerology)
 // ============================================================
 
-class NumerologyNavigation {
+class DiscoveryNavigation {
   static const navigation = PageNavigation(
     pageRoute: '/numerology',
     pageType: 'tool',
@@ -794,7 +794,7 @@ class NumerologyNavigation {
       NavigationCard(
         title: 'Kabala Sayıları',
         description: 'Sayıların mistik kökeni.',
-        route: '/kabbalah',
+        route: '/insight',
         emoji: '🌳',
         titleKey: 'navigation.cards.kabbalah_numbers.title',
         descriptionKey: 'navigation.cards.kabbalah_numbers.description',
@@ -836,7 +836,7 @@ class NumerologyNavigation {
       NavigationCard(
         title: 'Kişisel Yıl Mesajı',
         description: 'Bu yılın sayısal enerjisi.',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.personal_year_message.title',
         descriptionKey: 'navigation.cards.personal_year_message.description',
@@ -854,7 +854,7 @@ class NumerologyNavigation {
       NavigationCard(
         title: 'Aura Renkleri',
         description: 'Enerji alanın.',
-        route: '/aura',
+        route: '/insight',
         emoji: '🌈',
         titleKey: 'navigation.cards.aura_colors.title',
         descriptionKey: 'navigation.cards.energy_field.description',
@@ -862,7 +862,7 @@ class NumerologyNavigation {
       NavigationCard(
         title: 'Chakra Dengesi',
         description: 'Sayılar ve chakralar.',
-        route: '/chakra-analysis',
+        route: '/insight',
         emoji: '🧘',
         titleKey: 'navigation.cards.chakra_balance.title',
         descriptionKey: 'navigation.cards.numbers_and_chakras.description',
@@ -872,7 +872,7 @@ class NumerologyNavigation {
       NavigationCard(
         title: 'Tüm Çözümlemeler',
         description: 'Diğer sistemler',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '🧰',
         titleKey: 'navigation.cards.all_analyses.title',
         descriptionKey: 'navigation.cards.other_systems.description',
@@ -951,7 +951,7 @@ class CompatibilityNavigation {
       NavigationCard(
         title: 'İlişki Rehberliği',
         description: 'İçsel perspektif.',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.relationship_guidance.title',
         descriptionKey: 'navigation.cards.inner_perspective.description',
@@ -969,7 +969,7 @@ class CompatibilityNavigation {
       NavigationCard(
         title: 'Sayısal Uyum',
         description: 'İsimlerle numeroloji.',
-        route: '/numerology',
+        route: '/insights-discovery',
         emoji: '🔢',
         titleKey: 'navigation.cards.numerical_harmony.title',
         descriptionKey: 'navigation.cards.numerical_harmony.description',
@@ -1003,7 +1003,7 @@ class CompatibilityNavigation {
       NavigationCard(
         title: 'Ünlü Çiftler',
         description: 'Ünlülerin uyumu',
-        route: '/celebrities',
+        route: '/insight',
         emoji: '🌟',
         titleKey: 'navigation.cards.celebrity_couples.title',
         descriptionKey: 'navigation.cards.celebrity_couples.description',
@@ -1016,7 +1016,7 @@ class CompatibilityNavigation {
 // PAGE 19: AURA (/aura)
 // ============================================================
 
-class AuraNavigation {
+class WellnessNavigation {
   static const navigation = PageNavigation(
     pageRoute: '/aura',
     pageType: 'tool',
@@ -1024,7 +1024,7 @@ class AuraNavigation {
       NavigationCard(
         title: 'Chakra Analizi',
         description: 'Enerji merkezlerini keşfet.',
-        route: '/chakra-analysis',
+        route: '/insight',
         emoji: '🧘',
         titleKey: 'navigation.cards.chakra_analysis.title',
         descriptionKey: 'navigation.cards.discover_energy_centers.description',
@@ -1032,7 +1032,7 @@ class AuraNavigation {
       NavigationCard(
         title: 'Ay Ritüelleri',
         description: 'Enerji temizliği pratikleri.',
-        route: '/moon-rituals',
+        route: '/rituals',
         emoji: '🌕',
         titleKey: 'navigation.cards.moon_rituals.title',
         descriptionKey: 'navigation.cards.moon_rituals.description',
@@ -1066,7 +1066,7 @@ class AuraNavigation {
       NavigationCard(
         title: 'Günlük Enerji Mesajı',
         description: 'Bugünün enerji akışı.',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.daily_energy_message.title',
         descriptionKey: 'navigation.cards.daily_energy_message.description',
@@ -1076,7 +1076,7 @@ class AuraNavigation {
       NavigationCard(
         title: 'Numeroloji',
         description: 'Sayısal titreşimler.',
-        route: '/numerology',
+        route: '/insights-discovery',
         emoji: '🔢',
         titleKey: 'navigation.cards.numerology.title',
         descriptionKey: 'navigation.cards.numerical_vibrations.description',
@@ -1084,7 +1084,7 @@ class AuraNavigation {
       NavigationCard(
         title: 'Kabala',
         description: 'Sefirot enerjileri.',
-        route: '/kabbalah',
+        route: '/insight',
         emoji: '🌳',
         titleKey: 'navigation.cards.kabbalah.title',
         descriptionKey: 'navigation.cards.sefirot_energies.description',
@@ -1102,7 +1102,7 @@ class AuraNavigation {
       NavigationCard(
         title: 'Tüm Çözümlemeler',
         description: 'Diğer keşif yolları',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '🧰',
         titleKey: 'navigation.cards.all_analyses.title',
         descriptionKey: 'navigation.cards.other_exploration_paths.description',
@@ -1131,7 +1131,7 @@ class AuraNavigation {
 // PAGE 20: KABBALAH (/kabbalah)
 // ============================================================
 
-class KabbalahNavigation {
+class WisdomNavigation {
   static const navigation = PageNavigation(
     pageRoute: '/kabbalah',
     pageType: 'tool',
@@ -1147,7 +1147,7 @@ class KabbalahNavigation {
       NavigationCard(
         title: 'Numeroloji',
         description: 'Gematria ve sayılar.',
-        route: '/numerology',
+        route: '/insights-discovery',
         emoji: '🔢',
         titleKey: 'navigation.cards.numerology.title',
         descriptionKey: 'navigation.cards.gematria_and_numbers.description',
@@ -1163,7 +1163,7 @@ class KabbalahNavigation {
       NavigationCard(
         title: 'Chakra Sistemi',
         description: 'Doğu ve Batı enerji haritaları.',
-        route: '/chakra-analysis',
+        route: '/insight',
         emoji: '🧘',
         titleKey: 'navigation.cards.chakra_system.title',
         descriptionKey: 'navigation.cards.chakra_system.description',
@@ -1181,7 +1181,7 @@ class KabbalahNavigation {
       NavigationCard(
         title: 'Sefirot Meditasyonu',
         description: 'Hayat Ağacında yolculuk.',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.sefirot_meditation.title',
         descriptionKey: 'navigation.cards.sefirot_meditation.description',
@@ -1191,7 +1191,7 @@ class KabbalahNavigation {
       NavigationCard(
         title: 'Aura Okuma',
         description: 'Enerji alanı.',
-        route: '/aura',
+        route: '/insight',
         emoji: '🌈',
         titleKey: 'navigation.cards.aura_reading.title',
         descriptionKey: 'navigation.cards.energy_field.description',
@@ -1199,7 +1199,7 @@ class KabbalahNavigation {
       NavigationCard(
         title: 'Ay Ritüelleri',
         description: 'Spiritüel pratikler.',
-        route: '/moon-rituals',
+        route: '/rituals',
         emoji: '🌕',
         titleKey: 'navigation.cards.moon_rituals.title',
         descriptionKey: 'navigation.cards.spiritual_practices.description',
@@ -1217,7 +1217,7 @@ class KabbalahNavigation {
       NavigationCard(
         title: 'Tüm Çözümlemeler',
         description: 'Diğer sistemler',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '🧰',
         titleKey: 'navigation.cards.all_analyses.title',
         descriptionKey: 'navigation.cards.other_systems.description',
@@ -1296,7 +1296,7 @@ class LifeCyclesNavigation {
       NavigationCard(
         title: 'Kişisel Dönem Rehberliği',
         description: 'Bu dönem için özel mesaj.',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.personal_cycle_guidance.title',
         descriptionKey:
@@ -1315,7 +1315,7 @@ class LifeCyclesNavigation {
       NavigationCard(
         title: 'Zamanlama Rehberi',
         description: 'Uygun zamanları seç.',
-        route: '/timing',
+        route: '/journal/patterns',
         emoji: '📅',
         titleKey: 'navigation.cards.timing_guide.title',
         descriptionKey: 'navigation.cards.timing_guide.description',
@@ -1370,7 +1370,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'Ay Fazları ve Rüyalar',
         description: 'Ayın döngüsü rüyaları nasıl etkiler?',
-        route: '/moon-rituals',
+        route: '/rituals',
         emoji: '🌙',
         titleKey: 'navigation.cards.moon_phases_dreams.title',
         descriptionKey: 'navigation.cards.moon_phases_dreams.description',
@@ -1404,7 +1404,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'İçsel Mesajın',
         description: 'Rüyanın ötesinde rehberlik.',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.your_inner_message.title',
         descriptionKey: 'navigation.cards.guidance_beyond_dream.description',
@@ -1422,7 +1422,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'Chakra ve Rüyalar',
         description: 'Enerji merkezleri ve bilinçaltı.',
-        route: '/chakra-analysis',
+        route: '/insight',
         emoji: '🧘',
         titleKey: 'navigation.cards.chakra_and_dreams.title',
         descriptionKey: 'navigation.cards.chakra_and_dreams.description',
@@ -1430,7 +1430,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'Aura Okuma',
         description: 'Enerji alanın.',
-        route: '/aura',
+        route: '/insight',
         emoji: '🌈',
         titleKey: 'navigation.cards.aura_reading.title',
         descriptionKey: 'navigation.cards.energy_field.description',
@@ -1448,7 +1448,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'Tüm Çözümlemeler',
         description: 'Diğer keşif yolları',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '🧰',
         titleKey: 'navigation.cards.all_analyses.title',
         descriptionKey: 'navigation.cards.other_exploration_paths.description',
@@ -1473,7 +1473,7 @@ class DreamInterpretationNavigation {
   );
 }
 
-class KozmozNavigation {
+class ReflectionNavigation {
   static const navigation = PageNavigation(
     pageRoute: '/kozmoz',
     pageType: 'tool',
@@ -1497,7 +1497,7 @@ class KozmozNavigation {
       NavigationCard(
         title: 'Ay Fazı',
         description: 'Ayın bugünkü etkisi.',
-        route: '/moon-rituals',
+        route: '/rituals',
         emoji: '🌙',
         titleKey: 'navigation.cards.moon_phase.title',
         descriptionKey: 'navigation.cards.moon_phase.description',
@@ -1523,7 +1523,7 @@ class KozmozNavigation {
       NavigationCard(
         title: 'İçsel Keşif',
         description: 'Daha fazla içgörü al.',
-        route: '/kesif/ruhsal-donusum',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.inner_discovery.title',
         descriptionKey: 'navigation.cards.get_more_insight.description',
@@ -1541,7 +1541,7 @@ class KozmozNavigation {
       NavigationCard(
         title: 'Numeroloji',
         description: 'Sayıların bilgeliği.',
-        route: '/numerology',
+        route: '/insights-discovery',
         emoji: '🔢',
         titleKey: 'navigation.cards.numerology.title',
         descriptionKey: 'navigation.cards.numerology.description',
@@ -1549,7 +1549,7 @@ class KozmozNavigation {
       NavigationCard(
         title: 'Chakra Dengesi',
         description: 'Enerji merkezlerim.',
-        route: '/chakra-analysis',
+        route: '/insight',
         emoji: '🧘',
         titleKey: 'navigation.cards.chakra_balance.title',
         descriptionKey: 'navigation.cards.my_energy_centers.description',
@@ -1584,7 +1584,7 @@ class KozmozNavigation {
   );
 }
 
-class ChakraNavigation {
+class EnergyNavigation {
   static const navigation = PageNavigation(
     pageRoute: '/chakra-analysis',
     pageType: 'tool',
@@ -1592,7 +1592,7 @@ class ChakraNavigation {
       NavigationCard(
         title: 'Aura Renkleri',
         description: 'Enerji alanın ve chakralar.',
-        route: '/aura',
+        route: '/insight',
         emoji: '🌈',
         titleKey: 'navigation.cards.aura_colors.title',
         descriptionKey: 'navigation.cards.energy_field_chakras.description',
@@ -1600,7 +1600,7 @@ class ChakraNavigation {
       NavigationCard(
         title: 'Ay Ritüelleri',
         description: 'Chakra dengeleme pratikleri.',
-        route: '/moon-rituals',
+        route: '/rituals',
         emoji: '🌕',
         titleKey: 'navigation.cards.moon_rituals.title',
         descriptionKey:
@@ -1609,7 +1609,7 @@ class ChakraNavigation {
       NavigationCard(
         title: 'Kabala Sefirotları',
         description: 'Doğu-Batı enerji haritaları.',
-        route: '/kabbalah',
+        route: '/insight',
         emoji: '🌳',
         titleKey: 'navigation.cards.kabbalah_sefirot.title',
         descriptionKey: 'navigation.cards.east_west_energy_maps.description',
@@ -1635,7 +1635,7 @@ class ChakraNavigation {
       NavigationCard(
         title: 'Enerji Rehberliği',
         description: 'Chakralarına özel mesaj.',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.energy_guidance.title',
         descriptionKey: 'navigation.cards.chakra_special_message.description',
@@ -1653,7 +1653,7 @@ class ChakraNavigation {
       NavigationCard(
         title: 'Numeroloji',
         description: 'Sayısal titreşimler.',
-        route: '/numerology',
+        route: '/insights-discovery',
         emoji: '🔢',
         titleKey: 'navigation.cards.numerology.title',
         descriptionKey: 'navigation.cards.numerical_vibrations.description',
@@ -1671,7 +1671,7 @@ class ChakraNavigation {
       NavigationCard(
         title: 'Tüm Çözümlemeler',
         description: 'Diğer sistemler',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '🧰',
         titleKey: 'navigation.cards.all_analyses.title',
         descriptionKey: 'navigation.cards.other_systems.description',
@@ -1696,7 +1696,7 @@ class ChakraNavigation {
   );
 }
 
-class MoonRitualsNavigation {
+class RitualNavigation {
   static const navigation = PageNavigation(
     pageRoute: '/moon-rituals',
     pageType: 'tool',
@@ -1704,7 +1704,7 @@ class MoonRitualsNavigation {
       NavigationCard(
         title: 'Ay Takvimi',
         description: 'Yeniay ve dolunay tarihleri.',
-        route: '/timing',
+        route: '/journal/patterns',
         emoji: '📅',
         titleKey: 'navigation.cards.moon_calendar.title',
         descriptionKey: 'navigation.cards.moon_calendar.description',
@@ -1712,7 +1712,7 @@ class MoonRitualsNavigation {
       NavigationCard(
         title: 'Chakra Dengeleme',
         description: 'Ritüellerle enerji çalışması.',
-        route: '/chakra-analysis',
+        route: '/insight',
         emoji: '🧘',
         titleKey: 'navigation.cards.chakra_balancing.title',
         descriptionKey: 'navigation.cards.energy_work_rituals.description',
@@ -1720,7 +1720,7 @@ class MoonRitualsNavigation {
       NavigationCard(
         title: 'Aura Temizliği',
         description: 'Enerji alanını arındır.',
-        route: '/aura',
+        route: '/insight',
         emoji: '🌈',
         titleKey: 'navigation.cards.aura_cleansing.title',
         descriptionKey: 'navigation.cards.aura_cleansing.description',
@@ -1746,7 +1746,7 @@ class MoonRitualsNavigation {
       NavigationCard(
         title: 'Niyet Rehberliği',
         description: 'Bu ay için içsel mesaj.',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '✨',
         titleKey: 'navigation.cards.intention_guidance.title',
         descriptionKey: 'navigation.cards.intention_guidance.description',
@@ -1772,7 +1772,7 @@ class MoonRitualsNavigation {
       NavigationCard(
         title: 'Kabala Meditasyonu',
         description: 'Sefirot yolculuğu.',
-        route: '/kabbalah',
+        route: '/insight',
         emoji: '🌳',
         titleKey: 'navigation.cards.kabbalah_meditation.title',
         descriptionKey: 'navigation.cards.kabbalah_meditation.description',
@@ -1782,7 +1782,7 @@ class MoonRitualsNavigation {
       NavigationCard(
         title: 'Tüm Çözümlemeler',
         description: 'Diğer pratikler',
-        route: '/kozmoz',
+        route: '/insight',
         emoji: '🧰',
         titleKey: 'navigation.cards.all_analyses.title',
         descriptionKey: 'navigation.cards.other_practices.description',
@@ -1798,7 +1798,7 @@ class MoonRitualsNavigation {
       NavigationCard(
         title: 'Ritüel Rehberi',
         description: 'Adım adım talimatlar',
-        route: '/daily-rituals',
+        route: '/rituals',
         emoji: '📖',
         titleKey: 'navigation.cards.ritual_guide.title',
         descriptionKey: 'navigation.cards.ritual_guide.description',
@@ -1833,36 +1833,36 @@ class NavigationService {
         return InsightHubNavigation.navigation;
       case 'journal':
         return JournalNavigation.navigation;
-      case 'numerology':
-        return NumerologyNavigation.navigation;
-      case 'aura':
-        return AuraNavigation.navigation;
-      case 'kabbalah':
-        return KabbalahNavigation.navigation;
+      case 'discovery':
+        return DiscoveryNavigation.navigation;
+      case 'wellness':
+        return WellnessNavigation.navigation;
+      case 'wisdom':
+        return WisdomNavigation.navigation;
       case 'dream-interpretation':
         return DreamInterpretationNavigation.navigation;
-      case 'kozmoz':
-        return KozmozNavigation.navigation;
-      case 'chakra-analysis':
-        return ChakraNavigation.navigation;
-      case 'moon-rituals':
-        return MoonRitualsNavigation.navigation;
+      case 'reflection':
+        return ReflectionNavigation.navigation;
+      case 'energy':
+        return EnergyNavigation.navigation;
+      case 'rituals':
+        return RitualNavigation.navigation;
       // Redirect archived routes to insight
-      case 'horoscope':
-      case 'birth-chart':
-      case 'tarot':
-      case 'transits':
-      case 'compatibility':
-      case 'saturn-return':
-      case 'synastry':
-      case 'solar-return':
-      case 'progressions':
-      case 'vedic-chart':
-      case 'draconic-chart':
-      case 'asteroids':
-      case 'composite-chart':
-      case 'transit-calendar':
-      case 'timing':
+      case 'legacy-horoscope':
+      case 'legacy-birth-chart':
+      case 'legacy-tarot':
+      case 'legacy-transits':
+      case 'legacy-compat':
+      case 'legacy-saturn-return':
+      case 'legacy-synastry':
+      case 'legacy-solar-return':
+      case 'legacy-progressions':
+      case 'legacy-vedic':
+      case 'legacy-draconic':
+      case 'legacy-asteroids':
+      case 'legacy-composite':
+      case 'legacy-transit-cal':
+      case 'legacy-timing':
         return InsightHubNavigation.navigation;
       default:
         return _defaultNavigation(normalizedRoute);
@@ -1911,7 +1911,7 @@ class NavigationService {
         NavigationCard(
           title: 'İçsel Rehberlik',
           description: 'Kişisel mesaj al.',
-          route: '/kozmoz',
+          route: '/insight',
           emoji: '✨',
           titleKey: 'navigation.cards.inner_guidance.title',
           descriptionKey: 'navigation.cards.get_personal_message.description',
@@ -1921,7 +1921,7 @@ class NavigationService {
         NavigationCard(
           title: 'Numeroloji',
           description: 'Sayıların sırrı.',
-          route: '/numerology',
+          route: '/insights-discovery',
           emoji: '🔢',
           titleKey: 'navigation.cards.numerology.title',
           descriptionKey: 'navigation.cards.secret_of_numbers.description',
@@ -1929,7 +1929,7 @@ class NavigationService {
         NavigationCard(
           title: 'Aura',
           description: 'Enerji alanın.',
-          route: '/aura',
+          route: '/insight',
           emoji: '🌈',
           titleKey: 'navigation.cards.aura.title',
           descriptionKey: 'navigation.cards.energy_field.description',
@@ -1937,7 +1937,7 @@ class NavigationService {
         NavigationCard(
           title: 'Ritüeller',
           description: 'Ay pratikleri.',
-          route: '/moon-rituals',
+          route: '/rituals',
           emoji: '🌕',
           titleKey: 'navigation.cards.rituals.title',
           descriptionKey: 'navigation.cards.moon_practices.description',

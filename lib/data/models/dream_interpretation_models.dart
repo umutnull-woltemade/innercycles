@@ -195,40 +195,40 @@ class EmotionalReading {
       );
 }
 
-/// Astrolojik zamanlama
-class AstroTiming {
+/// Dream timing context
+class DreamTiming {
   final MoonPhase moonPhase;
-  final String? moonSign;
-  final String? relevantTransit;
+  final String? emotionalTone;
+  final String? currentTheme;
   final String timingMessage;
   final String whyNow;
-  final bool isRetrograde;
+  final bool isIntense;
 
-  const AstroTiming({
+  const DreamTiming({
     required this.moonPhase,
-    this.moonSign,
-    this.relevantTransit,
+    this.emotionalTone,
+    this.currentTheme,
     required this.timingMessage,
     required this.whyNow,
-    this.isRetrograde = false,
+    this.isIntense = false,
   });
 
   Map<String, dynamic> toJson() => {
     'moonPhase': moonPhase.name,
-    'moonSign': moonSign,
-    'relevantTransit': relevantTransit,
+    'emotionalTone': emotionalTone,
+    'currentTheme': currentTheme,
     'timingMessage': timingMessage,
     'whyNow': whyNow,
-    'isRetrograde': isRetrograde,
+    'isIntense': isIntense,
   };
 
-  factory AstroTiming.fromJson(Map<String, dynamic> json) => AstroTiming(
+  factory DreamTiming.fromJson(Map<String, dynamic> json) => DreamTiming(
     moonPhase: MoonPhase.values.firstWhere((e) => e.name == json['moonPhase']),
-    moonSign: json['moonSign'],
-    relevantTransit: json['relevantTransit'],
+    emotionalTone: json['emotionalTone'],
+    currentTheme: json['currentTheme'],
     timingMessage: json['timingMessage'],
     whyNow: json['whyNow'],
-    isRetrograde: json['isRetrograde'] ?? false,
+    isIntense: json['isIntense'] ?? false,
   );
 }
 
@@ -381,7 +381,7 @@ class FullDreamInterpretation {
   final EmotionalReading emotionalReading;
 
   // 6. Astrolojik Zamanlama
-  final AstroTiming astroTiming;
+  final DreamTiming dreamTiming;
 
   // 7. Işık/Gölge
   final LightShadowReading lightShadow;
@@ -420,7 +420,7 @@ class FullDreamInterpretation {
     required this.archetypeConnection,
     required this.archetypeName,
     required this.emotionalReading,
-    required this.astroTiming,
+    required this.dreamTiming,
     required this.lightShadow,
     required this.guidance,
     required this.whisperQuote,
@@ -446,7 +446,7 @@ class FullDreamInterpretation {
     'archetypeConnection': archetypeConnection,
     'archetypeName': archetypeName,
     'emotionalReading': emotionalReading.toJson(),
-    'astroTiming': astroTiming.toJson(),
+    'dreamTiming': dreamTiming.toJson(),
     'lightShadow': lightShadow.toJson(),
     'guidance': guidance.toJson(),
     'whisperQuote': whisperQuote,
@@ -475,7 +475,7 @@ class FullDreamInterpretation {
         archetypeConnection: json['archetypeConnection'],
         archetypeName: json['archetypeName'],
         emotionalReading: EmotionalReading.fromJson(json['emotionalReading']),
-        astroTiming: AstroTiming.fromJson(json['astroTiming']),
+        dreamTiming: DreamTiming.fromJson(json['dreamTiming']),
         lightShadow: LightShadowReading.fromJson(json['lightShadow']),
         guidance: PracticalGuidance.fromJson(json['guidance']),
         whisperQuote: json['whisperQuote'],

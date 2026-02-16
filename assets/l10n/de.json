@@ -180,18 +180,18 @@
     "view_insight": "Vollständige Einsicht"
   },
   "archetype": {
-    "aries": "Der Pionier",
-    "taurus": "Der Erbauer",
-    "gemini": "Der Kommunikator",
-    "cancer": "Der Beschützer",
-    "leo": "Der Darsteller",
-    "virgo": "Der Analyst",
-    "libra": "Der Harmonisierer",
-    "scorpio": "Der Verwandler",
-    "sagittarius": "Der Entdecker",
-    "capricorn": "Der Leistungsträger",
-    "aquarius": "Der Visionär",
-    "pisces": "Der Träumer"
+    "pioneer": "Widder",
+    "builder": "Stier",
+    "communicator": "Zwillinge",
+    "nurturer": "Krebs",
+    "performer": "Löwe",
+    "analyst": "Jungfrau",
+    "harmonizer": "Waage",
+    "transformer": "Skorpion",
+    "explorer": "Schütze",
+    "achiever": "Steinbock",
+    "visionary": "Wassermann",
+    "dreamer": "Fische"
   },
   "personal_profile": {
     "title": "Personal Profile"
@@ -1285,36 +1285,6 @@
         "name": "Kostenlos",
         "savings": ""
       }
-    }
-  },
-  "archetype": {
-    "aries": "Widder",
-    "taurus": "Stier",
-    "gemini": "Zwillinge",
-    "cancer": "Krebs",
-    "leo": "Löwe",
-    "virgo": "Jungfrau",
-    "libra": "Waage",
-    "scorpio": "Skorpion",
-    "sagittarius": "Schütze",
-    "capricorn": "Steinbock",
-    "aquarius": "Wassermann",
-    "pisces": "Fische",
-    "all_signs": "All Archetyp Signs",
-    "discover_all_signs": "Discover all 12 signs and read daily reflections",
-    "dates": {
-      "aries": "21. Maerz - 19. April",
-      "taurus": "20. April - 20. Mai",
-      "gemini": "21. Mai - 20. Juni",
-      "cancer": "21. Juni - 22. Juli",
-      "leo": "23. Juli - 22. Aug.",
-      "virgo": "23. Aug. - 22. Sept.",
-      "libra": "23. Sept. - 22. Okt.",
-      "scorpio": "23. Okt. - 21. Nov.",
-      "sagittarius": "22. Nov. - 21. Dez.",
-      "capricorn": "22. Dez. - 19. Jan.",
-      "aquarius": "20. Jan. - 18. Feb.",
-      "pisces": "19. Feb. - 20. Maerz"
     }
   },
   "planets": {

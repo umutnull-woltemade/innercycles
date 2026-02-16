@@ -480,7 +480,7 @@ class _DreamInterpretationScreenState
     final userProfile = ref.read(userProfileProvider);
     final sign = userProfile != null
         ? archetype.PersonalityArchetypeExtension.fromDate(userProfile.birthDate)
-        : archetype.PersonalityArchetype.aries;
+        : archetype.PersonalityArchetype.pioneer;
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language);
 
@@ -528,7 +528,7 @@ class _DreamInterpretationScreenState
     final userProfile = ref.read(userProfileProvider);
     final sign = userProfile != null
         ? archetype.PersonalityArchetypeExtension.fromDate(userProfile.birthDate)
-        : archetype.PersonalityArchetype.aries;
+        : archetype.PersonalityArchetype.pioneer;
 
     // Generate interpretation based on dream content and personality profile
     final interpretation = _interpretDream(dreamText, sign);
@@ -660,11 +660,11 @@ class _DreamInterpretationScreenState
 
     // Map sign to JSON key
     final signKeyMap = {
-      archetype.PersonalityArchetype.aries: 'aries',
-      archetype.PersonalityArchetype.taurus: 'taurus',
-      archetype.PersonalityArchetype.cancer: 'cancer',
-      archetype.PersonalityArchetype.scorpio: 'scorpio',
-      archetype.PersonalityArchetype.pisces: 'pisces',
+      archetype.PersonalityArchetype.pioneer: 'aries',
+      archetype.PersonalityArchetype.builder: 'taurus',
+      archetype.PersonalityArchetype.nurturer: 'cancer',
+      archetype.PersonalityArchetype.transformer: 'scorpio',
+      archetype.PersonalityArchetype.dreamer: 'pisces',
     };
 
     final signKey = signKeyMap[sign];
@@ -1547,18 +1547,18 @@ ${_getPersonalAdvice(sign)}''';
   String _getPersonalAdvice(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
     final signKeyMap = {
-      archetype.PersonalityArchetype.aries: 'aries',
-      archetype.PersonalityArchetype.taurus: 'taurus',
-      archetype.PersonalityArchetype.gemini: 'gemini',
-      archetype.PersonalityArchetype.cancer: 'cancer',
-      archetype.PersonalityArchetype.leo: 'leo',
-      archetype.PersonalityArchetype.virgo: 'virgo',
-      archetype.PersonalityArchetype.libra: 'libra',
-      archetype.PersonalityArchetype.scorpio: 'scorpio',
-      archetype.PersonalityArchetype.sagittarius: 'sagittarius',
-      archetype.PersonalityArchetype.capricorn: 'capricorn',
-      archetype.PersonalityArchetype.aquarius: 'aquarius',
-      archetype.PersonalityArchetype.pisces: 'pisces',
+      archetype.PersonalityArchetype.pioneer: 'aries',
+      archetype.PersonalityArchetype.builder: 'taurus',
+      archetype.PersonalityArchetype.communicator: 'gemini',
+      archetype.PersonalityArchetype.nurturer: 'cancer',
+      archetype.PersonalityArchetype.performer: 'leo',
+      archetype.PersonalityArchetype.analyst: 'virgo',
+      archetype.PersonalityArchetype.harmonizer: 'libra',
+      archetype.PersonalityArchetype.transformer: 'scorpio',
+      archetype.PersonalityArchetype.explorer: 'sagittarius',
+      archetype.PersonalityArchetype.achiever: 'capricorn',
+      archetype.PersonalityArchetype.visionary: 'aquarius',
+      archetype.PersonalityArchetype.dreamer: 'pisces',
     };
     final signKey = signKeyMap[sign] ?? 'aries';
     return L10nService.get(

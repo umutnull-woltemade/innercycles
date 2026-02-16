@@ -460,7 +460,7 @@ class L10n {
       AppLanguage.es: 'Tu perfil personal se está preparando...',
       AppLanguage.ar: 'ملفك الشخصي قيد التحضير...',
     },
-    'planets_whispering': {
+    'insights_preparing': {
       AppLanguage.en: 'Your insights are being prepared',
       AppLanguage.tr: 'İçgörülerin hazırlanıyor',
       AppLanguage.el: 'Οι γνώσεις σας προετοιμάζονται',
@@ -484,7 +484,7 @@ class L10n {
       AppLanguage.es: 'Resumen',
       AppLanguage.ar: 'ملخص',
     },
-    'planets': {
+    'dimensions': {
       AppLanguage.en: 'Aspects',
       AppLanguage.tr: 'Yönler',
       AppLanguage.el: 'Πτυχές',
@@ -496,7 +496,7 @@ class L10n {
       AppLanguage.es: 'Aspectos',
       AppLanguage.ar: 'الجوانب',
     },
-    'houses': {
+    'life_areas': {
       AppLanguage.en: 'Houses',
       AppLanguage.tr: 'Evler',
       AppLanguage.el: 'Οίκοι',
@@ -508,7 +508,7 @@ class L10n {
       AppLanguage.es: 'Casas',
       AppLanguage.ar: 'البيوت',
     },
-    'aspects': {
+    'patterns': {
       AppLanguage.en: 'Aspects',
       AppLanguage.tr: 'Açılar',
       AppLanguage.el: 'Όψεις',
@@ -520,7 +520,7 @@ class L10n {
       AppLanguage.es: 'Aspectos',
       AppLanguage.ar: 'الجوانب',
     },
-    'big_three': {
+    'core_traits': {
       AppLanguage.en: 'Big Three',
       AppLanguage.tr: 'Büyük Üçlü',
       AppLanguage.el: 'Μεγάλη Τριάδα',
@@ -532,7 +532,7 @@ class L10n {
       AppLanguage.es: 'Los Tres Grandes',
       AppLanguage.ar: 'الثلاثة الكبار',
     },
-    'sun_sign': {
+    'core_self': {
       AppLanguage.en: 'Core Self',
       AppLanguage.tr: 'Temel Benlik',
       AppLanguage.el: 'Βασικός Εαυτός',
@@ -544,7 +544,7 @@ class L10n {
       AppLanguage.es: 'Ser Esencial',
       AppLanguage.ar: 'الذات الأساسية',
     },
-    'moon_sign': {
+    'emotional_self': {
       AppLanguage.en: 'Emotional Self',
       AppLanguage.tr: 'Duygusal Benlik',
       AppLanguage.el: 'Συναισθηματικός Εαυτός',
@@ -556,7 +556,7 @@ class L10n {
       AppLanguage.es: 'Ser Emocional',
       AppLanguage.ar: 'الذات العاطفية',
     },
-    'rising_sign': {
+    'social_self': {
       AppLanguage.en: 'Social Self',
       AppLanguage.tr: 'Sosyal Benlik',
       AppLanguage.el: 'Κοινωνικός Εαυτός',
@@ -813,7 +813,7 @@ class L10n {
     },
 
     // ============ PERSONALITY TYPES ============
-    'aries': {
+    'pioneer': {
       AppLanguage.en: 'The Pioneer',
       AppLanguage.tr: 'Öncü',
       AppLanguage.el: 'Ο Πρωτοπόρος',
@@ -825,7 +825,7 @@ class L10n {
       AppLanguage.es: 'El Pionero',
       AppLanguage.ar: 'الرائد',
     },
-    'taurus': {
+    'builder': {
       AppLanguage.en: 'The Builder',
       AppLanguage.tr: 'Kurucu',
       AppLanguage.el: 'Ο Δημιουργός',
@@ -837,7 +837,7 @@ class L10n {
       AppLanguage.es: 'El Constructor',
       AppLanguage.ar: 'الباني',
     },
-    'gemini': {
+    'communicator': {
       AppLanguage.en: 'The Communicator',
       AppLanguage.tr: 'İletişimci',
       AppLanguage.el: 'Ο Επικοινωνιολόγος',
@@ -849,7 +849,7 @@ class L10n {
       AppLanguage.es: 'El Comunicador',
       AppLanguage.ar: 'المتواصل',
     },
-    'cancer': {
+    'nurturer': {
       AppLanguage.en: 'The Nurturer',
       AppLanguage.tr: 'Koruyucu',
       AppLanguage.el: 'Ο Τροφός',
@@ -861,7 +861,7 @@ class L10n {
       AppLanguage.es: 'El Protector',
       AppLanguage.ar: 'الراعي',
     },
-    'leo': {
+    'performer': {
       AppLanguage.en: 'The Performer',
       AppLanguage.tr: 'Sahne Yıldızı',
       AppLanguage.el: 'Ο Ερμηνευτής',
@@ -873,7 +873,7 @@ class L10n {
       AppLanguage.es: 'El Artista',
       AppLanguage.ar: 'المؤدي',
     },
-    'virgo': {
+    'analyst': {
       AppLanguage.en: 'The Analyst',
       AppLanguage.tr: 'Analist',
       AppLanguage.el: 'Ο Αναλυτής',
@@ -885,7 +885,7 @@ class L10n {
       AppLanguage.es: 'El Analista',
       AppLanguage.ar: 'المحلل',
     },
-    'libra': {
+    'harmonizer': {
       AppLanguage.en: 'The Harmonizer',
       AppLanguage.tr: 'Dengeleyici',
       AppLanguage.el: 'Ο Εναρμονιστής',
@@ -897,7 +897,7 @@ class L10n {
       AppLanguage.es: 'El Armonizador',
       AppLanguage.ar: 'الموازن',
     },
-    'scorpio': {
+    'transformer': {
       AppLanguage.en: 'The Transformer',
       AppLanguage.tr: 'Dönüştürücü',
       AppLanguage.el: 'Ο Μεταμορφωτής',
@@ -909,7 +909,7 @@ class L10n {
       AppLanguage.es: 'El Transformador',
       AppLanguage.ar: 'المحول',
     },
-    'sagittarius': {
+    'explorer': {
       AppLanguage.en: 'The Explorer',
       AppLanguage.tr: 'Kaşif',
       AppLanguage.el: 'Ο Εξερευνητής',
@@ -921,7 +921,7 @@ class L10n {
       AppLanguage.es: 'El Explorador',
       AppLanguage.ar: 'المستكشف',
     },
-    'capricorn': {
+    'achiever': {
       AppLanguage.en: 'The Achiever',
       AppLanguage.tr: 'Başarıcı',
       AppLanguage.el: 'Ο Επιτευγματίας',
@@ -933,7 +933,7 @@ class L10n {
       AppLanguage.es: 'El Triunfador',
       AppLanguage.ar: 'المنجز',
     },
-    'aquarius': {
+    'visionary': {
       AppLanguage.en: 'The Visionary',
       AppLanguage.tr: 'Vizyoner',
       AppLanguage.el: 'Ο Οραματιστής',
@@ -945,7 +945,7 @@ class L10n {
       AppLanguage.es: 'El Visionario',
       AppLanguage.ar: 'صاحب الرؤية',
     },
-    'pisces': {
+    'dreamer': {
       AppLanguage.en: 'The Dreamer',
       AppLanguage.tr: 'Hayalci',
       AppLanguage.el: 'Ο Ονειροπόλος',

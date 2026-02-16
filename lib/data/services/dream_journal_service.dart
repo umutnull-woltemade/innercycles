@@ -32,7 +32,7 @@ class DreamEntry {
   final bool isLucid;
   final bool isNightmare;
   final MoonPhase moonPhase;
-  final String? moonSign;
+  final String? emotionalTone;
   final List<String>? relevantTransits;
   final FullDreamInterpretation? interpretation;
   final String? voiceRecordingPath;
@@ -65,7 +65,7 @@ class DreamEntry {
     this.isLucid = false,
     this.isNightmare = false,
     required this.moonPhase,
-    this.moonSign,
+    this.emotionalTone,
     this.relevantTransits,
     this.interpretation,
     this.voiceRecordingPath,
@@ -97,7 +97,7 @@ class DreamEntry {
     'isLucid': isLucid,
     'isNightmare': isNightmare,
     'moonPhase': moonPhase.name,
-    'moonSign': moonSign,
+    'emotionalTone': emotionalTone,
     'relevantTransits': relevantTransits,
     'interpretation': interpretation?.toJson(),
     'voiceRecordingPath': voiceRecordingPath,
@@ -135,7 +135,7 @@ class DreamEntry {
       (e) => e.name == json['moonPhase'],
       orElse: () => MoonPhaseCalculator.today,
     ),
-    moonSign: json['moonSign'],
+    emotionalTone: json['emotionalTone'],
     relevantTransits: json['relevantTransits'] != null
         ? List<String>.from(json['relevantTransits'])
         : null,
@@ -185,7 +185,7 @@ class DreamEntry {
     bool? isLucid,
     bool? isNightmare,
     MoonPhase? moonPhase,
-    String? moonSign,
+    String? emotionalTone,
     List<String>? relevantTransits,
     FullDreamInterpretation? interpretation,
     String? voiceRecordingPath,
@@ -215,7 +215,7 @@ class DreamEntry {
     isLucid: isLucid ?? this.isLucid,
     isNightmare: isNightmare ?? this.isNightmare,
     moonPhase: moonPhase ?? this.moonPhase,
-    moonSign: moonSign ?? this.moonSign,
+    emotionalTone: emotionalTone ?? this.emotionalTone,
     relevantTransits: relevantTransits ?? this.relevantTransits,
     interpretation: interpretation ?? this.interpretation,
     voiceRecordingPath: voiceRecordingPath ?? this.voiceRecordingPath,
@@ -1947,7 +1947,7 @@ class DreamJournalService {
     bool isRecurring = false,
     bool isLucid = false,
     bool isNightmare = false,
-    String? moonSign,
+    String? emotionalTone,
     List<String>? transits,
     DreamRole? role,
     TimeLayer? timeLayer,
@@ -1976,7 +1976,7 @@ class DreamJournalService {
       isLucid: isLucid,
       isNightmare: isNightmare,
       moonPhase: moonPhase,
-      moonSign: moonSign,
+      emotionalTone: emotionalTone,
       relevantTransits: transits,
       userRole: role,
       timeLayer: timeLayer,

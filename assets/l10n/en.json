@@ -186,18 +186,18 @@
     "patterns_found": "Patterns Found"
   },
   "archetype": {
-    "aries": "The Pioneer",
-    "taurus": "The Builder",
-    "gemini": "The Communicator",
-    "cancer": "The Nurturer",
-    "leo": "The Performer",
-    "virgo": "The Analyst",
-    "libra": "The Harmonizer",
-    "scorpio": "The Transformer",
-    "sagittarius": "The Explorer",
-    "capricorn": "The Achiever",
-    "aquarius": "The Visionary",
-    "pisces": "The Dreamer"
+    "pioneer": "Aries",
+    "builder": "Taurus",
+    "communicator": "Gemini",
+    "nurturer": "Cancer",
+    "performer": "Leo",
+    "analyst": "Virgo",
+    "harmonizer": "Libra",
+    "transformer": "Scorpio",
+    "explorer": "Sagittarius",
+    "achiever": "Capricorn",
+    "visionary": "Aquarius",
+    "dreamer": "Pisces"
   },
   "home": {
     "greeting": "Hi, {name}!",
@@ -1288,36 +1288,6 @@
           "Priority personal guidance"
         ]
       }
-    }
-  },
-  "archetype": {
-    "all_signs": "All Personality Types",
-    "discover_all_signs": "Discover all 12 signs and read daily insights",
-    "aries": "Aries",
-    "taurus": "Taurus",
-    "gemini": "Gemini",
-    "cancer": "Cancer",
-    "leo": "Leo",
-    "virgo": "Virgo",
-    "libra": "Libra",
-    "scorpio": "Scorpio",
-    "sagittarius": "Sagittarius",
-    "capricorn": "Capricorn",
-    "aquarius": "Aquarius",
-    "pisces": "Pisces",
-    "dates": {
-      "aries": "Mar 21 - Apr 19",
-      "taurus": "Apr 20 - May 20",
-      "gemini": "May 21 - Jun 20",
-      "cancer": "Jun 21 - Jul 22",
-      "leo": "Jul 23 - Aug 22",
-      "virgo": "Aug 23 - Sep 22",
-      "libra": "Sep 23 - Oct 22",
-      "scorpio": "Oct 23 - Nov 21",
-      "sagittarius": "Nov 22 - Dec 21",
-      "capricorn": "Dec 22 - Jan 19",
-      "aquarius": "Jan 20 - Feb 18",
-      "pisces": "Feb 19 - Mar 20"
     }
   },
   "planets": {
