@@ -1574,7 +1574,7 @@
     "esoteric": {
       "1": {
         "title": "Gate of Self",
-        "description": "The first house is your soul's first touch to this world - the first breath, the first glance, the first sense of 'I'. This house is your 'cosmic mask'; it shows how your soul chooses to present itself to the world. {signName} here as rising colors your approach to life, your physical appearance and how others first perceive you.",
+        "description": "The first house is your personality's expression to this world - the first breath, the first glance, the first sense of 'I'. This house is your 'social style'; it shows how your personality chooses to present itself to the world. {signName} here as rising colors your approach to life, your physical appearance and how others first perceive you.",
         "shadow": "Shadow aspect: Hiding behind the mask, placing excessive importance on appearance.",
         "gift": "Gift: The ability to experience every moment as a new beginning.",
         "keywords": [
@@ -1859,7 +1859,7 @@
           "description": "Clean and simple"
         },
         "cosmic": {
-          "label": "Cosmic",
+          "label": "Daily",
           "description": "Nebula and galaxy"
         },
         "aurora": {
@@ -2013,7 +2013,7 @@
     },
     "dreams": {
       "interpretation_title": "Dream Interpretation",
-      "interpretation_subtitle": "Cosmic Dream Guidance",
+      "interpretation_subtitle": "Dream Guidance",
       "symbols_tooltip": "Dream Symbols",
       "example_prompts_label": "Or choose an example dream:",
       "input_placeholder": "Describe your dream...",
@@ -2730,7 +2730,7 @@
         "Pay attention to your dreams, they may carry important messages."
       ],
       "default": [
-        "Cosmic energies are with you today.",
+        "Your patterns are with you today.",
         "Listen to your inner voice.",
         "New opportunities are at the door."
       ]
@@ -4680,10 +4680,10 @@
   },
   "saturn_return": {
     "title": "Saturn Return",
-    "subtitle": "The Great Teacher's Cosmic Lessons",
+    "subtitle": "The Great Teacher's Life Lessons",
     "brand_text": "Saturn Return — InnerCycles",
     "kadim_title": "The Wisdom of Saturn",
-    "kadim_content": "Saturn, known as the Lord of Karma in self-awareness, demands discipline, responsibility, and maturity with each return. Approximately every 29.5 years, this cosmic teacher tests your foundations, destroys structures that don't serve your authentic self, and guides you toward building lasting achievements. The challenges are real, but so are the rewards for those who do the inner work.",
+    "kadim_content": "Saturn, known as The Great Teacher in self-awareness, demands discipline, responsibility, and maturity with each return. Approximately every 29.5 years, this life teacher tests your foundations, challenges structures that don't serve your authentic self, and guides you toward building lasting achievements. The challenges are real, but so are the rewards for those who do the inner work.",
     "status_active": "Active",
     "in_return": "You are in your Saturn Return",
     "next_return": "Next Saturn Return",
@@ -4709,7 +4709,7 @@
       "house_value": "Capricorn (10th house)",
       "element": "Element",
       "element_value": "Earth",
-      "wisdom_quote": "Saturn is the cosmic teacher. During its returns, it confronts us with our limits, responsibilities, and true selves."
+      "wisdom_quote": "Saturn is the great teacher. During its returns, it confronts us with our limits, responsibilities, and true selves."
     },
     "countdown": {
       "years": "Years",
@@ -8029,7 +8029,7 @@
       "careful_hours_note": "Avoid major decisions, arguments and risky investments during these hours.",
       "golden_advice": "TODAY'S 3 GOLDEN TIPS",
       "daily_affirmation": "TODAY'S AFFIRMATION",
-      "cosmic_note": "COSMIC NOTE",
+      "cosmic_note": "REFLECTION NOTE",
       "cosmic_note_text": "As a {element} element, today {element_note}. Be open to the signs the universe is sending you - perhaps a song, a book page or a stranger's words may carry important messages.",
       "remember": "Remember: Every day is a new beginning opportunity!",
       "love_analysis_header": "{sign} LOVE & RELATIONSHIP ANALYSIS",
@@ -8044,7 +8044,7 @@
       "relationship_warnings": "THINGS TO WATCH IN RELATIONSHIP",
       "love_period": "THIS PERIOD FOR LOVE",
       "love_ritual": "LOVE RITUAL SUGGESTION",
-      "cosmic_love_advice": "COSMIC LOVE ADVICE",
+      "cosmic_love_advice": "RELATIONSHIP REFLECTION",
       "love_reminder": "True love starts with loving yourself!",
       "career_analysis_header": "{sign} CAREER & FINANCE ANALYSIS",
       "natural_talents": "YOUR NATURAL TALENTS",
@@ -8835,7 +8835,7 @@
     "dream_guide_title": "Dream Guide",
     "dream_guide_content": "Dreams you have tonight may carry important messages. Don't forget to record your dreams.",
     "weekly_preview_title": "Weekly Preview",
-    "weekly_preview_content": "Cosmic energies are working in your favor for the rest of the week.",
+    "weekly_preview_content": "Your patterns are working in your favor for the rest of the week.",
     "sign_messages": {
       "aries": "Your courage and leadership energy is high today. Take initiative.",
       "taurus": "You're ready to reap the fruits of patience and determination.",
