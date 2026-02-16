@@ -27,7 +27,7 @@ void main() {
       const tier = PremiumTier.free;
       // displayName uses i18n with English fallback when not initialized
       expect(tier.displayName, isNotEmpty);
-      expect(tier.price, '₺0');
+      expect(tier.price, '\$0');
       expect(tier.features, isNotEmpty);
       expect(tier.productId, '');
     });
@@ -36,7 +36,7 @@ void main() {
       const tier = PremiumTier.monthly;
       // displayName uses i18n with English fallback when not initialized
       expect(tier.displayName, isNotEmpty);
-      expect(tier.price, '₺29/mo');
+      expect(tier.price, '\$4.99/mo');
       expect(tier.features, isNotEmpty);
       expect(tier.productId, 'monthly');
     });
@@ -45,7 +45,7 @@ void main() {
       const tier = PremiumTier.yearly;
       // displayName uses i18n with English fallback when not initialized
       expect(tier.displayName, isNotEmpty);
-      expect(tier.price, '₺79/yr');
+      expect(tier.price, '\$29.99/yr');
       expect(tier.features, isNotEmpty);
       expect(tier.productId, 'yearly');
     });
