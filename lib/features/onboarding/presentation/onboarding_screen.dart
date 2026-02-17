@@ -240,16 +240,16 @@ class _WelcomePageState extends State<_WelcomePage>
 
     // Guard Supabase access (may not be initialized in tests)
     if (!AuthService.isSupabaseInitialized) {
-      debugPrint('⚠️ Supabase not initialized - skipping auth listeners');
+      if (kDebugMode) debugPrint('⚠️ Supabase not initialized - skipping auth listeners');
       return;
     }
 
     // Listen for OAuth callbacks (mobile only)
     _authStateStream = AuthService.authStateChanges;
     _authStateStream.listen((state) {
-      debugPrint('🔐 Auth state changed: ${state.event}');
+      if (kDebugMode) debugPrint('🔐 Auth state changed: ${state.event}');
       if (state.event == AuthChangeEvent.signedIn && state.session != null) {
-        debugPrint('🔐 User signed in via OAuth callback!');
+        if (kDebugMode) debugPrint('🔐 User signed in via OAuth callback!');
         _handleOAuthSuccess(state.session!.user);
       }
     });
@@ -257,7 +257,7 @@ class _WelcomePageState extends State<_WelcomePage>
     // Check if user is already signed in when page loads
     final currentUser = AuthService.currentUser;
     if (currentUser != null) {
-      debugPrint('🔐 User already signed in: ${currentUser.email}');
+      if (kDebugMode) debugPrint('🔐 User already signed in: ${currentUser.email}');
       // Wait briefly for UI to be ready
       Future.delayed(const Duration(milliseconds: 500), () {
         if (mounted) {
@@ -799,9 +799,9 @@ class _WelcomePageState extends State<_WelcomePage>
       if (errorStr.contains('TypeError') ||
           errorStr.contains('JSObject') ||
           errorStr.contains('minified')) {
-        debugPrint(
-          'JS interop error caught - waiting for OAuth redirect',
-        );
+        if (kDebugMode) {
+          debugPrint('JS interop error caught - waiting for OAuth redirect');
+        }
         // Keep loading state active
         return;
       }
