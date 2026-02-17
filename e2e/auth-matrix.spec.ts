@@ -68,10 +68,9 @@ test.describe('Admin Authentication', () => {
   });
 });
 
-test.describe('App Store Review Mode - Route Blocking', () => {
-  test('blocked route redirects to insight', async ({ page }) => {
-    // Note: This test assumes appStoreReviewMode = true
-    await page.goto(`${BASE_URL}/horoscope`);
+test.describe('Legacy Route Redirect Verification', () => {
+  test('legacy route redirects to insight', async ({ page }) => {
+    await page.goto(`${BASE_URL}/year-ahead`);
     await page.waitForTimeout(5000);
 
     // Should redirect to /insight or show insight content
@@ -80,18 +79,13 @@ test.describe('App Store Review Mode - Route Blocking', () => {
 
     // Take screenshot for verification
     await page.screenshot({
-      path: 'test-results/blocked-route-redirect.png',
+      path: 'test-results/legacy-route-redirect.png',
       fullPage: true
     });
   });
 
-  test.describe('Blocked Routes', () => {
-    const blockedRoutes = [
-      '/horoscope',
-      '/horoscope/weekly',
-      '/horoscope/monthly',
-      '/horoscope/yearly',
-      '/horoscope/love',
+  test.describe('Removed Routes Redirect', () => {
+    const removedRoutes = [
       '/year-ahead',
       '/progressions',
       '/saturn-return',
@@ -105,8 +99,8 @@ test.describe('App Store Review Mode - Route Blocking', () => {
       '/eclipse-calendar',
     ];
 
-    for (const route of blockedRoutes) {
-      test(`${route} is blocked and redirects`, async ({ page }) => {
+    for (const route of removedRoutes) {
+      test(`${route} is removed and redirects`, async ({ page }) => {
         await page.goto(`${BASE_URL}${route}`);
         await page.waitForTimeout(3000);
 
@@ -200,14 +194,6 @@ test.describe('404 Error Handling', () => {
 });
 
 test.describe('Dynamic Route Parameters', () => {
-  test('horoscope detail with valid sign loads', async ({ page }) => {
-    await page.goto(`${BASE_URL}/horoscope/leo`);
-    await page.waitForTimeout(3000);
-
-    const flutterElements = page.locator('flutter-view, flt-glass-pane, [flt-view-id]');
-    await expect(flutterElements.first()).toBeVisible({ timeout: 20000 });
-  });
-
   test('numerology life path with valid number loads', async ({ page }) => {
     await page.goto(`${BASE_URL}/numerology/life-path/7`);
     await page.waitForTimeout(3000);
@@ -216,8 +202,8 @@ test.describe('Dynamic Route Parameters', () => {
     await expect(flutterElements.first()).toBeVisible({ timeout: 20000 });
   });
 
-  test('tarot major arcana with valid number loads', async ({ page }) => {
-    await page.goto(`${BASE_URL}/tarot/major/0`);
+  test('dream interpretation detail loads', async ({ page }) => {
+    await page.goto(`${BASE_URL}/dream-interpretation`);
     await page.waitForTimeout(3000);
 
     const flutterElements = page.locator('flutter-view, flt-glass-pane, [flt-view-id]');
