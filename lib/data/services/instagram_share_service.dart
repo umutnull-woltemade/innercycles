@@ -80,7 +80,7 @@ class InstagramShareService {
         );
       }
     } catch (e) {
-      debugPrint('Share error: $e');
+      if (kDebugMode) debugPrint('Share error: $e');
       return const ShareResult(success: false, error: ShareError.unknown);
     }
   }
@@ -99,7 +99,7 @@ class InstagramShareService {
 
       return byteData?.buffer.asUint8List();
     } catch (e) {
-      debugPrint('Image capture error: $e');
+      if (kDebugMode) debugPrint('Image capture error: $e');
       return null;
     }
   }
@@ -115,7 +115,7 @@ class InstagramShareService {
       await file.writeAsBytes(bytes);
       return file;
     } catch (e) {
-      debugPrint('File save error: $e');
+      if (kDebugMode) debugPrint('File save error: $e');
       return null;
     }
   }
@@ -155,7 +155,7 @@ class InstagramShareService {
         );
       }
     } catch (e) {
-      debugPrint('iOS share error: $e');
+      if (kDebugMode) debugPrint('iOS share error: $e');
       return const ShareResult(
         success: false,
         error: ShareError.platformError,
@@ -202,7 +202,7 @@ class InstagramShareService {
         );
       }
     } catch (e) {
-      debugPrint('Android share error: $e');
+      if (kDebugMode) debugPrint('Android share error: $e');
       return const ShareResult(
         success: false,
         error: ShareError.platformError,
@@ -250,7 +250,7 @@ class InstagramShareService {
           );
         }
       } catch (e) {
-        debugPrint('Web Share API failed, using download fallback: $e');
+        if (kDebugMode) debugPrint('Web Share API failed, using download fallback: $e');
       }
 
       // Fallback: Download image directly using web-specific implementation
@@ -266,7 +266,7 @@ class InstagramShareService {
         fallbackData: ShareFallbackData(downloadUrl: '', copyText: fullText),
       );
     } catch (e) {
-      debugPrint('Web share error: $e');
+      if (kDebugMode) debugPrint('Web share error: $e');
       return const ShareResult(
         success: false,
         error: ShareError.platformError,
@@ -303,7 +303,7 @@ class InstagramShareService {
         );
       }
     } catch (e) {
-      debugPrint('Generic share error: $e');
+      if (kDebugMode) debugPrint('Generic share error: $e');
       return const ShareResult(success: false, error: ShareError.unknown);
     }
   }
@@ -332,7 +332,7 @@ class InstagramShareService {
         return await launchUrl(Uri.parse(webUrl));
       }
     } catch (e) {
-      debugPrint('Could not open Instagram: $e');
+      if (kDebugMode) debugPrint('Could not open Instagram: $e');
       return false;
     }
   }
