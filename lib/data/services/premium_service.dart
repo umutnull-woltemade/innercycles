@@ -37,9 +37,23 @@ extension PremiumTierExtension on PremiumTier {
       case PremiumTier.free:
         return '\$0';
       case PremiumTier.monthly:
-        return '\$4.99/mo';
+        return '\$7.99/mo';
       case PremiumTier.yearly:
         return '\$29.99/yr';
+      case PremiumTier.lifetime:
+        return '\$79.99';
+    }
+  }
+
+  /// Monthly equivalent price for display (e.g. "$2.50/mo" for yearly)
+  String get monthlyEquivalent {
+    switch (this) {
+      case PremiumTier.free:
+        return '\$0';
+      case PremiumTier.monthly:
+        return '\$7.99/mo';
+      case PremiumTier.yearly:
+        return '\$2.50/mo';
       case PremiumTier.lifetime:
         return '\$79.99';
     }
@@ -58,9 +72,9 @@ extension PremiumTierExtension on PremiumTier {
       case PremiumTier.monthly:
         return '';
       case PremiumTier.yearly:
-        return '77% savings';
+        return 'Save 69% — just \$2.50/mo';
       case PremiumTier.lifetime:
-        return 'One-time payment';
+        return 'Pay once, yours forever';
     }
   }
 
@@ -83,20 +97,12 @@ extension PremiumTierExtension on PremiumTier {
       case PremiumTier.yearly:
       case PremiumTier.lifetime:
         return [
-          'All basic features',
-          'Ad-free experience',
-          'Deep pattern analysis',
-          'Unlimited dream interpretations',
-          'Monthly reflection reports',
-          'Advanced insight tools',
-          'Personal growth tracking',
-          'Trend analysis',
-          'Guided breathing exercises',
-          'Growth challenges & badges',
-          'Meditation timer',
-          'Seasonal reflections',
-          'Full data export (CSV, JSON)',
-          'Priority support',
+          'Full pattern analysis & recurrence detection',
+          'All 5 dream interpretation perspectives',
+          'Ad-free reflection space',
+          'Monthly & yearly growth reports',
+          'Unlimited export (CSV, JSON)',
+          'Premium programs, challenges & tools',
         ];
     }
   }
