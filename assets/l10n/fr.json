@@ -494,9 +494,9 @@
             "winter_solstice_desc": "Introspection and planning",
             "advice_default": "Cette année vous invite à réfléchir sur votre parcours de croissance personnelle."
         },
-        "tantra_micro_ritual": {
+        "mindfulness_micro_ritual": {
             "todays_micro_ritual": "Today's Micro Ritual",
-            "tantra_tag": "Pleine Conscience",
+            "mindfulness_tag": "Pleine Conscience",
             "discover_dream_trace": "Discover Dream Trace",
             "brand_footer": "Pleine Conscience — InnerCycles",
             "months": {
@@ -1523,7 +1523,7 @@
                 "title": "Numérologie",
                 "description": "Sagesse des nombres."
             },
-            "kabbalah": {
+            "symbolic_numbers": {
                 "title": "Exploration Symbolique",
                 "description": "Explorez les motifs numériques et les connexions."
             },
@@ -1587,7 +1587,7 @@
             "other_exploration_paths": {
                 "description": "Autres chemins d'exploration"
             },
-            "kabbalah_numbers": {
+            "symbolic_number_patterns": {
                 "title": "Nombres symboliques",
                 "description": "Origine mystique des nombres."
             },
@@ -1664,7 +1664,7 @@
             "numerical_vibrations": {
                 "description": "Vibrations numériques."
             },
-            "sefirot_energies": {
+            "life_dimension_energies": {
                 "description": "Énergies des Dimension de Vie."
             },
             "cosmic_energy": {
@@ -1685,16 +1685,16 @@
                 "title": "Rêves mystiques",
                 "description": "Symboles intérieurs et rêves."
             },
-            "sefirot_meditation": {
+            "life_dimension_meditation": {
                 "title": "Méditation des Dimension de Vie",
                 "description": "Contemplation guidée."
             },
             "spiritual_practices": {
                 "description": "Pratiques personnelles."
             },
-            "sefirot_glossary": {
+            "life_dimension_glossary": {
                 "title": "Glossaire des Dimension de Vie",
-                "description": "Significations des 10 sefirot"
+                "description": "Significations des 10 dimensions"
             },
             "my_personal_profile": {
                 "title": "Mon profil personnel",
@@ -1776,7 +1776,7 @@
             "learn_concepts": {
                 "description": "Apprenez les concepts"
             },
-            "kabbalah_sefirot": {
+            "life_dimensions": {
                 "title": "Dimension de Vie symboliques",
                 "description": "Dimensions d'équilibre intérieur."
             },
@@ -1812,7 +1812,7 @@
                 "title": "Guidance d'intention",
                 "description": "Fixez des intentions selon la lune."
             },
-            "kabbalah_meditation": {
+            "contemplative_meditation": {
                 "title": "Méditation contemplative",
                 "description": "Contemplation guidée."
             },
@@ -3020,7 +3020,7 @@
         "dream_trace": "Trace de reve",
         "todays_number": "Nombre du jour",
         "lucky_hour": "Heure de Focus",
-        "tantra_title": "Pleine Conscience",
+        "mindfulness_title": "Pleine Conscience",
         "breath": "Souffle",
         "awareness": "Conscience",
         "balance_level": "Niveau d'equilibre",

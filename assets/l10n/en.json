@@ -494,9 +494,9 @@
             "winter_solstice_desc": "Introspection and planning",
             "advice_default": "This year invites reflection on your personal growth journey."
         },
-        "tantra_micro_ritual": {
+        "mindfulness_micro_ritual": {
             "todays_micro_ritual": "Today's Micro Ritual",
-            "tantra_tag": "Mindfulness",
+            "mindfulness_tag": "Mindfulness",
             "discover_dream_trace": "Discover Dream Trace",
             "brand_footer": "Mindfulness — InnerCycles",
             "months": {
@@ -1255,15 +1255,15 @@
             "inline_default": "Is this unique to you? Find out with a short test"
         },
         "entertainment_disclaimer": {
-            "general": "For entertainment and self-reflection purposes only.",
-            "dreams": "Dream reflections are for personal exploration, not professional interpretation.",
+            "general": "For personal cycle awareness and pattern recognition only.",
+            "dreams": "Dream archaeology is for personal pattern exploration, not professional interpretation.",
             "health": "Not medical advice. Consult healthcare professionals.",
-            "self_awareness": "For self-reflection only. Not suggestive advice.",
-            "card_insight": "For reflection purposes only. Not suggestive.",
-            "numerology": "For self-exploration only. Not suggestive.",
-            "compatibility": "For reflection only. Not relationship advice.",
-            "insight": "For personal reflection only. Not professional advice.",
-            "reflection": "This is a space for self-reflection, not reflection or advice."
+            "self_awareness": "For cyclical self-awareness only. Not suggestive advice.",
+            "card_insight": "For archetype reflection only. Not suggestive.",
+            "numerology": "For cycle exploration only. Not suggestive.",
+            "compatibility": "For relationship cycle mapping only. Not relationship advice.",
+            "insight": "For personal cycle awareness only. Not professional advice.",
+            "reflection": "This is a space for pattern recognition, not advice."
         }
     },
     "insight": {
@@ -1347,9 +1347,9 @@
         "rate_app": "Rate App",
         "rate_app_desc": "Share your experience",
         "disclaimer": "Disclaimer",
-        "disclaimer_desc": "Entertainment purposes only",
-        "disclaimer_content": "This app provides personal, numerological, card insight, and dream interpretation content for entertainment and self-reflection purposes only.\n\nThe content does not constitute professional advice in any field including but not limited to: medical, psychological, financial, legal, or relationship advice.\n\nIf you need professional support, please consult qualified professionals in the relevant field.\n\nAll interpretations are generated for informational and entertainment purposes and should not be used as the basis for important life decisions.",
-        "disclaimer_tip": "Use the content for self-reflection, not decision-making.",
+        "disclaimer_desc": "For cycle awareness only",
+        "disclaimer_content": "This app provides cyclical pattern analysis, archetype mapping, and dream archaeology content for personal cycle awareness and self-reflection purposes only.\n\nThe content does not constitute professional advice in any field including but not limited to: medical, psychological, financial, legal, or relationship advice.\n\nIf you need professional support, please consult qualified professionals in the relevant field.\n\nAll cycle analysis is generated for pattern awareness and self-understanding purposes and should not be used as the basis for important life decisions.",
+        "disclaimer_tip": "Use cycle insights for pattern awareness, not decision-making.",
         "privacy_policy": "Privacy Policy",
         "terms_of_service": "Terms of Service",
         "contact_support": "Contact Support"
@@ -1558,7 +1558,7 @@
                 "title": "Numerology",
                 "description": "Wisdom of numbers."
             },
-            "kabbalah": {
+            "symbolic_numbers": {
                 "title": "Symbolic Numbers",
                 "description": "Explore number patterns and connections."
             },
@@ -1622,7 +1622,7 @@
             "other_exploration_paths": {
                 "description": "Other exploration paths"
             },
-            "kabbalah_numbers": {
+            "symbolic_number_patterns": {
                 "title": "Number Patterns",
                 "description": "Ancient origin of numbers."
             },
@@ -1699,7 +1699,7 @@
             "numerical_vibrations": {
                 "description": "Numerical vibrations."
             },
-            "sefirot_energies": {
+            "life_dimension_energies": {
                 "description": "Life Dimension energies."
             },
             "cosmic_energy": {
@@ -1720,16 +1720,16 @@
                 "title": "Mystic Dreams",
                 "description": "Contemplative symbols and dreams."
             },
-            "sefirot_meditation": {
+            "life_dimension_meditation": {
                 "title": "Life Dimension Meditation",
-                "description": "Journey on the Tree of Life."
+                "description": "Guided life dimension meditation."
             },
             "spiritual_practices": {
                 "description": "Contemplative practices."
             },
-            "sefirot_glossary": {
+            "life_dimension_glossary": {
                 "title": "Life Dimension Glossary",
-                "description": "10 sefirah meanings"
+                "description": "10 dimension meanings"
             },
             "my_personal_profile": {
                 "title": "My Personal Profile",
@@ -1811,7 +1811,7 @@
             "learn_concepts": {
                 "description": "Learn the concepts"
             },
-            "kabbalah_sefirot": {
+            "life_dimensions": {
                 "title": "Life Dimensions",
                 "description": "Inner balance dimensions."
             },
@@ -1847,7 +1847,7 @@
                 "title": "Intention Guidance",
                 "description": "Reflective message for this month."
             },
-            "kabbalah_meditation": {
+            "contemplative_meditation": {
                 "title": "Contemplative Practice",
                 "description": "Guided contemplation."
             },
@@ -3055,7 +3055,7 @@
         "dream_trace": "Dream Trace",
         "todays_number": "Today's Number",
         "lucky_hour": "Focus Hour",
-        "tantra_title": "Mindfulness",
+        "mindfulness_title": "Mindfulness",
         "breath": "Breath",
         "awareness": "Awareness",
         "balance_level": "Balance Level",

@@ -126,7 +126,7 @@ test.describe('Safe Routes - Always Accessible', () => {
     '/glossary',
     '/dream-interpretation',
     '/dream-glossary',
-    '/chakra-analysis',
+    '/legacy-analysis',
     '/aura',
     '/daily-rituals',
     '/profile',

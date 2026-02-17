@@ -12,7 +12,7 @@ InnerCycles is a Flutter iOS app focused on personal journaling, mood tracking, 
 - Riverpod for state management
 - GoRouter for navigation
 - RevenueCat for subscriptions
-- Firebase for analytics
+- Apple App Analytics
 
 ## Key Directories
 ```
@@ -27,7 +27,7 @@ lib/
 - `/journal` - Daily mood journal with guided prompts
 - `/dream-interpretation` - Dream journal with symbol library
 - `/patterns` - Emotional pattern analysis over time
-- `/wellness` - Wellness tools (chakra, aura, rituals)
+- `/wellness` - Wellness tools (energy, aura, rituals)
 - `/challenges` - Personal growth challenges
 - `/daily-rituals` - Mindfulness practices
 

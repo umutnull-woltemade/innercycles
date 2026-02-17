@@ -494,9 +494,9 @@
             "winter_solstice_desc": "İçe dönüş ve planlama",
             "advice_default": "Bu yıl kişisel gelişim yolculuğunuz üzerine düşünmeye davet ediyor."
         },
-        "tantra_micro_ritual": {
+        "mindfulness_micro_ritual": {
             "todays_micro_ritual": "Bugünün Mikro Ritüeli",
-            "tantra_tag": "Farkındalık",
+            "mindfulness_tag": "Farkındalık",
             "discover_dream_trace": "Rüya İzi'ni keşfet",
             "brand_footer": "Farkındalık — InnerCycles",
             "months": {
@@ -1558,7 +1558,7 @@
                 "title": "Numeroloji",
                 "description": "Sayıların bilgeliği."
             },
-            "kabbalah": {
+            "symbolic_numbers": {
                 "title": "Sembolik Sayılar",
                 "description": "Sayı kalıplarını ve bağlantılarını keşfet."
             },
@@ -1622,7 +1622,7 @@
             "other_exploration_paths": {
                 "description": "Diğer keşif yolları"
             },
-            "kabbalah_numbers": {
+            "symbolic_number_patterns": {
                 "title": "Sayı Örüntüleri",
                 "description": "Sayıların mistik kökeni."
             },
@@ -1699,7 +1699,7 @@
             "numerical_vibrations": {
                 "description": "Sayısal titreşimler."
             },
-            "sefirot_energies": {
+            "life_dimension_energies": {
                 "description": "Yaşam Boyutu enerjileri."
             },
             "cosmic_energy": {
@@ -1720,16 +1720,16 @@
                 "title": "Derin Rüyalar",
                 "description": "Derin semboller ve rüyalar."
             },
-            "sefirot_meditation": {
+            "life_dimension_meditation": {
                 "title": "Yaşam Boyutu Meditasyonu",
-                "description": "Hayat Ağacında yolculuk."
+                "description": "Rehberli yaşam boyutu meditasyonu."
             },
             "spiritual_practices": {
                 "description": "Kişisel gelişim pratikleri."
             },
-            "sefirot_glossary": {
+            "life_dimension_glossary": {
                 "title": "Yaşam Boyutu Sözlüğü",
-                "description": "10 sefirah anlamları"
+                "description": "10 boyut anlamları"
             },
             "my_personal_profile": {
                 "title": "Doğum Haritam",
@@ -1811,7 +1811,7 @@
             "learn_concepts": {
                 "description": "Kavramları öğren"
             },
-            "kabbalah_sefirot": {
+            "life_dimensions": {
                 "title": "Yaşam Boyutları",
                 "description": "İç denge boyutları."
             },
@@ -1847,7 +1847,7 @@
                 "title": "Niyet Rehberliği",
                 "description": "Bu ay için kişisel mesaj."
             },
-            "kabbalah_meditation": {
+            "contemplative_meditation": {
                 "title": "Tefekkür Pratiği",
                 "description": "Rehberli tefekkür."
             },
@@ -3055,7 +3055,7 @@
         "dream_trace": "Rüya İzi",
         "todays_number": "Bugünün Sayısı",
         "lucky_hour": "Odak Saati",
-        "tantra_title": "Farkındalık",
+        "mindfulness_title": "Farkındalık",
         "breath": "Nefes",
         "awareness": "Farkındalık",
         "balance_level": "Denge Seviyesi",

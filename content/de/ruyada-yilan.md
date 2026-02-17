@@ -35,7 +35,7 @@ Schlangenträume treten häufig in Phasen auf, in denen das Unterbewusstsein bes
 
 ## Sanfte Spirituelle Perspektive
 
-In vielen Kulturen wird die Schlange mit spirituellem Erwachen und tiefer Weisheit verbunden. Im Hinduismus wird die Kundalini-Energie als aufsteigende Schlange dargestellt. Ein Schlangentraum kann ein sanftes Zeichen innerer Transformation sein — eine Einladung, tiefer in sich selbst hineinzuschauen.
+In vielen Kulturen wird die Schlange mit innerem Erwachen und tiefer Weisheit verbunden. In verschiedenen Traditionen symbolisiert die Schlange die Lebensenergie — eine kraftvolle Strömung der Erneuerung und Transformation. Ein Schlangentraum kann ein sanftes Zeichen innerer Transformation sein — eine Einladung, tiefer in sich selbst hineinzuschauen.
 
 ## Häufige Variationen
 

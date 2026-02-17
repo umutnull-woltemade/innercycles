@@ -185,8 +185,8 @@ class _AboveTheFold extends ConsumerWidget {
                     const SizedBox(height: 2),
                     Text(
                       language == AppLanguage.en
-                          ? 'Personal Reflection Journal'
-                          : 'Kişisel Yansıma Günlüğü',
+                          ? 'Emotional Cycle Intelligence'
+                          : 'Duygusal Döngü Zekası',
                       style: TextStyle(
                         fontSize: 13,
                         color: isDark
@@ -326,8 +326,8 @@ class _AboveTheFold extends ConsumerWidget {
                   Flexible(
                     child: Text(
                       language == AppLanguage.en
-                          ? 'Start Today\'s Entry'
-                          : 'Bugünün Kaydını Başlat',
+                          ? 'Map Today\'s Cycle Position'
+                          : 'Bugünün Döngü Pozisyonunu Haritalandır',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -349,22 +349,22 @@ class _AboveTheFold extends ConsumerWidget {
   String _getDailyHeadline(AppLanguage language) {
     final headlines = language == AppLanguage.en
         ? [
-            'What patterns are you noticing today?',
-            'Take a moment for self-reflection',
-            'Your inner wisdom awaits',
-            'Discover something new about yourself',
-            'Today is a day for growth',
-            'Embrace your personal journey',
-            'Find clarity in stillness',
+            'Which emotional cycle are you in right now?',
+            'A recurring pattern may be active today',
+            'Your cycle position has shifted since last week',
+            'Check if today matches a previous cycle entry',
+            'New recurrence detected in your recent entries',
+            'Your archetype is showing a progression signal',
+            'Map this moment against your cycle history',
           ]
         : [
-            'Bugün hangi kalıpları fark ediyorsun?',
-            'Kendine yansıma için bir an al',
-            'İç bilgeliğin seni bekliyor',
-            'Kendin hakkında yeni bir şey keşfet',
-            'Bugün büyüme günü',
-            'Kişisel yolculuğunu kucakla',
-            'Sessizlikte netlik bul',
+            'Şu an hangi duygusal döngüdesin?',
+            'Bugün tekrarlayan bir örüntü aktif olabilir',
+            'Döngü pozisyonun geçen haftadan beri değişti',
+            'Bugünün önceki bir döngü kaydıyla eşleşip eşleşmediğini kontrol et',
+            'Son kayıtlarında yeni bir tekrar tespit edildi',
+            'Arketipin bir ilerleme sinyali gösteriyor',
+            'Bu anı döngü geçmişinle haritalandır',
           ];
 
     final dayOfYear = DateTime.now()
@@ -376,22 +376,22 @@ class _AboveTheFold extends ConsumerWidget {
   String _getDailySentence(AppLanguage language) {
     final sentences = language == AppLanguage.en
         ? [
-            'Every moment of reflection brings you closer to understanding yourself.',
-            'Your thoughts and feelings hold valuable insights.',
-            'Take time to explore your inner world today.',
-            'Self-awareness is the first step to personal growth.',
-            'What does your intuition tell you today?',
-            'Notice the patterns in your thoughts and emotions.',
-            'Your journey of self-discovery continues.',
+            'Your cycle engine is analyzing patterns across your recent entries.',
+            'Recurring emotional signatures become visible after 7 entries.',
+            'The recurrence detection engine maps what repeats and when.',
+            'Cycle awareness turns invisible patterns into visible structure.',
+            'Your dream archaeology data is building symbol frequency maps.',
+            'Each entry strengthens the cycle position accuracy for your profile.',
+            'Shadow-light integration tracking requires consistent entries.',
           ]
         : [
-            'Her yansıma anı seni kendini anlamaya yaklaştırır.',
-            'Düşüncelerin ve duyuların değerli içgörüler taşır.',
-            'Bugün iç dünyânı keşfetmek için zaman ayır.',
-            'Öz farkındalık kişisel büyümenin ilk adımıdır.',
-            'Sezgilerin bugün sana ne söylüyor?',
-            'Düşüncelerindeki ve duygularındaki kalıpları fark et.',
-            'Kendini keşfetme yolculuğun devam ediyor.',
+            'Döngü motorun son kayıtlarındaki örüntüleri analiz ediyor.',
+            'Tekrarlayan duygusal imzalar 7 kayıttan sonra görünür hale gelir.',
+            'Tekrar tespit motoru neyin ne zaman tekrarladığını haritalandırır.',
+            'Döngü farkındalığı görünmez örüntüleri görünür yapıya dönüştürür.',
+            'Rüya arkeolojisi verilerin sembol frekans haritaları oluşturuyor.',
+            'Her kayıt profilin için döngü pozisyon doğruluğunu güçlendirir.',
+            'Gölge-ışık entegrasyonu takibi tutarlı kayıtlar gerektirir.',
           ];
 
     final dayOfYear = DateTime.now()
@@ -514,11 +514,11 @@ class _BelowTheFold extends ConsumerWidget {
           _EntryPointTile(
             icon: Icons.edit_note_outlined,
             title: language == AppLanguage.en
-                ? 'Daily Journal'
-                : 'Günlük Kayıt',
+                ? 'Cycle Entry'
+                : 'Döngü Kaydı',
             subtitle: language == AppLanguage.en
-                ? 'Track your energy, focus & emotions'
-                : 'Enerji, odak ve duygularını takip et',
+                ? 'Map your cycle position, energy & emotional state'
+                : 'Döngü pozisyonunu, enerji ve duygusal durumunu haritalandır',
             route: Routes.journal,
             isDark: isDark,
             isHighlighted: true,
@@ -528,11 +528,11 @@ class _BelowTheFold extends ConsumerWidget {
           _EntryPointTile(
             icon: Icons.insights_outlined,
             title: language == AppLanguage.en
-                ? 'Your Patterns'
-                : 'Kalıpların',
+                ? 'Recurrence Detection'
+                : 'Tekrar Tespiti',
             subtitle: language == AppLanguage.en
-                ? 'Trends & correlations from your entries'
-                : 'Kayıtlarındaki eğilimler ve bağlantılar',
+                ? 'Recurring cycles & pattern correlations'
+                : 'Tekrarlayan döngüler ve örüntü korelasyonları',
             route: Routes.journalPatterns,
             isDark: isDark,
             index: 1,
@@ -544,8 +544,8 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Emotional Cycles'
                 : 'Duygusal Döngüler',
             subtitle: language == AppLanguage.en
-                ? 'Visualize your emotional wave patterns'
-                : 'Duygusal dalga kalıplarını görselleştir',
+                ? 'Visualize your emotional cycle rhythms over time'
+                : 'Duygusal döngü ritimlerini zaman içinde görselleştir',
             route: Routes.emotionalCycles,
             isDark: isDark,
             index: 2,
@@ -554,11 +554,11 @@ class _BelowTheFold extends ConsumerWidget {
           _EntryPointTile(
             icon: Icons.calendar_month_outlined,
             title: language == AppLanguage.en
-                ? 'Monthly Reflection'
-                : 'Aylık Yansıma',
+                ? 'Monthly Cycle Report'
+                : 'Aylık Döngü Raporu',
             subtitle: language == AppLanguage.en
-                ? 'Review your month at a glance'
-                : 'Ayına bir bakışta göz at',
+                ? 'Cycle position summary and pattern recurrences'
+                : 'Döngü pozisyon özeti ve örüntü tekrarları',
             route: Routes.journalMonthly,
             isDark: isDark,
             index: 3,
@@ -583,8 +583,8 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Prompt Library'
                 : 'Soru Kütüphanesi',
             subtitle: language == AppLanguage.en
-                ? 'Curated prompts to spark reflection'
-                : 'Yansıma başlatacak seçilmiş sorular',
+                ? 'Cycle-aware prompts for pattern exploration'
+                : 'Örüntü keşfi için döngü odaklı sorular',
             route: Routes.promptLibrary,
             isDark: isDark,
             index: 5,
@@ -595,8 +595,8 @@ class _BelowTheFold extends ConsumerWidget {
           // ═══ DREAM JOURNAL ═══
           Text(
             language == AppLanguage.en
-                ? 'Dream Journal'
-                : 'Rüya Günlüğü',
+                ? 'Dream Archaeology'
+                : 'Rüya Arkeolojisi',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -610,11 +610,11 @@ class _BelowTheFold extends ConsumerWidget {
           _EntryPointTile(
             icon: Icons.nights_stay_outlined,
             title: language == AppLanguage.en
-                ? 'Dream Interpretation'
-                : 'Rüya Yorumu',
+                ? 'Dream Archaeology'
+                : 'Rüya Arkeolojisi',
             subtitle: language == AppLanguage.en
-                ? 'Explore your dream symbols'
-                : 'Rüya sembollerini keşfet',
+                ? 'Map recurring symbols, arcs & archetype patterns'
+                : 'Tekrarlayan sembolleri, hikaye yaylarını ve arketip örüntülerini haritalandır',
             route: Routes.dreamInterpretation,
             isDark: isDark,
             isHighlighted: true,

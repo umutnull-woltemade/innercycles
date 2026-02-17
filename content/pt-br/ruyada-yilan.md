@@ -35,7 +35,7 @@ Sonhos com cobras surgem frequentemente em períodos de intensa atividade do inc
 
 ## Perspectiva espiritual suave
 
-Em muitas culturas, a cobra é associada ao despertar espiritual. No hinduísmo, a energia kundalini é representada como uma serpente. Um sonho com cobra pode sinalizar uma transformação interior em curso.
+Em muitas culturas, a cobra é associada ao despertar interior e à sabedoria profunda. Em diversas tradições, a serpente simboliza a energia vital — uma corrente poderosa de renovação e transformação. Um sonho com cobra pode sinalizar uma transformação interior em curso.
 
 ## Variações comuns
 
