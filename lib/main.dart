@@ -23,6 +23,7 @@ import 'data/services/l10n_service.dart';
 import 'data/services/sync_service.dart';
 import 'data/services/feature_flag_service.dart';
 import 'data/services/error_reporting_service.dart';
+import 'data/services/paywall_experiment_service.dart';
 import 'data/providers/app_providers.dart';
 import 'data/models/user_profile.dart';
 
@@ -302,6 +303,22 @@ class _AppInitializerState extends State<AppInitializer> {
     } catch (e) {
       if (kDebugMode) {
         debugPrint('⚠️ FeatureFlagService init failed: $e');
+      }
+    }
+
+    // Initialize paywall experiment and increment session
+    try {
+      final experiment = await PaywallExperimentService.init();
+      experiment.incrementSession();
+      if (kDebugMode) {
+        debugPrint(
+            '✓ PaywallExperiment: pricing=${experiment.pricingVariant.name}, '
+            'timing=${experiment.timingVariant.name}, '
+            'session=${experiment.sessionCount}');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('⚠️ PaywallExperimentService init failed: $e');
       }
     }
 

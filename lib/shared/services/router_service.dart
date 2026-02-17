@@ -73,6 +73,10 @@ import '../../features/mood/presentation/mood_trends_screen.dart';
 import '../../features/gratitude/presentation/gratitude_archive_screen.dart';
 import '../../features/sleep/presentation/sleep_trends_screen.dart';
 import '../../features/app_lock/presentation/app_lock_screen.dart';
+import '../../features/streak/presentation/streak_stats_screen.dart';
+import '../../features/dreams/presentation/dream_archive_screen.dart';
+import '../../features/settings/presentation/notification_schedule_screen.dart';
+import '../../features/programs/presentation/program_completion_screen.dart';
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/app_lock_service.dart';
 import '../../data/services/storage_service.dart';
@@ -438,6 +442,34 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.sleepTrends,
         builder: (context, state) => const SleepTrendsScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // STREAK, DREAM ARCHIVE, NOTIFICATIONS, PROGRAM COMPLETION
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.streakStats,
+        builder: (context, state) => const StreakStatsScreen(),
+      ),
+      GoRoute(
+        path: Routes.dreamArchive,
+        builder: (context, state) => const DreamArchiveScreen(),
+      ),
+      GoRoute(
+        path: Routes.notifications,
+        builder: (context, state) => const NotificationScheduleScreen(),
+      ),
+      GoRoute(
+        path: Routes.programCompletion,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>? ?? {};
+          return ProgramCompletionScreen(
+            programTitle: extra['title'] as String? ?? '',
+            programEmoji: extra['emoji'] as String? ?? '',
+            durationDays: extra['durationDays'] as int? ?? 0,
+            completedDays: extra['completedDays'] as int? ?? 0,
+          );
+        },
       ),
 
       // ════════════════════════════════════════════════════════════════

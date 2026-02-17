@@ -8,6 +8,7 @@ import '../../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/services/ad_service.dart';
+import '../../../../data/services/paywall_experiment_service.dart';
 import '../../../../data/services/premium_service.dart';
 import '../../../../data/services/upgrade_trigger_service.dart';
 import '../../../streak/presentation/streak_card.dart';
@@ -651,6 +652,19 @@ class _BelowTheFold extends ConsumerWidget {
             index: 1,
           ),
 
+          _EntryPointTile(
+            icon: Icons.auto_stories_outlined,
+            title: language == AppLanguage.en
+                ? 'Dream Archive'
+                : 'Rüya Arşivi',
+            subtitle: language == AppLanguage.en
+                ? 'Browse & search your dream journal history'
+                : 'Rüya günlüğü geçmişini gözat ve ara',
+            route: Routes.dreamArchive,
+            isDark: isDark,
+            index: 2,
+          ),
+
           const SizedBox(height: 24),
 
           // ═══ GROWTH & SELF-DISCOVERY ═══
@@ -1039,6 +1053,32 @@ class _BelowTheFold extends ConsumerWidget {
             route: Routes.sleepTrends,
             isDark: isDark,
             index: 4,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.local_fire_department_outlined,
+            title: language == AppLanguage.en
+                ? 'Streak Stats'
+                : 'Seri İstatistikleri',
+            subtitle: language == AppLanguage.en
+                ? 'Track your journaling streak & milestones'
+                : 'Günlük yazma serinizi ve kilometre taşlarını takip edin',
+            route: Routes.streakStats,
+            isDark: isDark,
+            index: 5,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.notifications_outlined,
+            title: language == AppLanguage.en
+                ? 'Notification Schedule'
+                : 'Bildirim Takvimi',
+            subtitle: language == AppLanguage.en
+                ? 'Configure your journaling reminders'
+                : 'Günlük hatırlatıcılarınızı yapılandırın',
+            route: Routes.notifications,
+            isDark: isDark,
+            index: 6,
           ),
 
           _EntryPointTile(

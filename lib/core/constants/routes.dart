@@ -135,6 +135,14 @@ class Routes {
   static const String yearReview = '/year-review';
 
   // ════════════════════════════════════════════════════════════════
+  // STREAK, DREAM ARCHIVE, NOTIFICATIONS, PROGRAM COMPLETION
+  // ════════════════════════════════════════════════════════════════
+  static const String streakStats = '/streak/stats';
+  static const String dreamArchive = '/dreams/archive';
+  static const String notifications = '/notifications';
+  static const String programCompletion = '/programs/completion';
+
+  // ════════════════════════════════════════════════════════════════
   // APP LOCK
   // ════════════════════════════════════════════════════════════════
   static const String appLock = '/app-lock';
