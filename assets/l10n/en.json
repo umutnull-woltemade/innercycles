@@ -469,7 +469,7 @@
             "theme_home_family_title": "Home & Family",
             "theme_home_family_desc": "Return to roots and building a home",
             "theme_creativity_title": "Creativity",
-            "theme_creativity_desc": "Artistic expression and entertainment",
+            "theme_creativity_desc": "Artistic expression and creative exploration",
             "theme_health_routine_title": "Health & Routine",
             "theme_health_routine_desc": "Improving daily life",
             "keyword_beginning": "Beginning",
@@ -1006,7 +1006,7 @@
                     "practice_label": "✨ PRACTICAL APPLICATION",
                     "practice": "• Make a list of what needs to let go\n• Review old photos\n• Clean out your wardrobe\n• Identify habits that need to 'die'",
                     "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
-                    "cosmic_message": "You're being reborn from your ashes like a phoenix. {archetype} energy empowers this transformation. A new you is being born!"
+                    "cosmic_message": "You're being reborn from your ashes like a phoenix. {archetype} strengths empower this transformation. A new you is being born!"
                 },
                 "chase": {
                     "title": "🏃 CHASE DREAM - {archetype} INTERPRETATION",
@@ -1555,7 +1555,7 @@
                 "title": "Symbolic Numbers",
                 "description": "Explore number patterns and connections."
             },
-            "aura_reading": {
+            "energy_reading": {
                 "title": "Energy Reading",
                 "description": "Discover your energy profile."
             },
@@ -1569,11 +1569,11 @@
             },
             "dream_tonight": {
                 "title": "What Did You Dream Tonight?",
-                "description": "How does your archetype energy reflect in dreams?"
+                "description": "How does your archetype influence your dreams?"
             },
             "daily_cosmic_message": {
                 "title": "Your Daily Reflective Message",
-                "description": "What insight awaits you today?"
+                "description": "What will you reflect on today?"
             },
             "compare_chart_today": {
                 "description": "Compare your profile with today's themes."
@@ -1639,7 +1639,7 @@
             "read_with_numbers": {
                 "description": "Read along with numbers."
             },
-            "aura_colors": {
+            "energy_colors": {
                 "title": "Energy Colors",
                 "description": "Your energy profile."
             },
@@ -1828,7 +1828,7 @@
             "energy_work_rituals": {
                 "description": "Energy work with rituals."
             },
-            "aura_cleansing": {
+            "energy_cleansing": {
                 "title": "Energy Cleansing",
                 "description": "Refresh your energy."
             },
@@ -3405,11 +3405,11 @@
             "empty": "What is this dream trying to tell me?",
             "symbol": "What does the {symbol} symbol represent in my life?"
         },
-        "weekly_focus": "This week, focus on the {archetype} archetype's message. Use the {phase} energy.",
+        "weekly_focus": "This week, focus on the {archetype} archetype's message. Embrace the {phase} momentum.",
         "time_layers": {
             "gecmis": "This dream carries unfinished business from the past.",
             "simdi": "This dream reflects a situation in your current life.",
-            "gelecek": "This dream is a harbinger of an approaching change.",
+            "gelecek": "This dream may reflect your awareness of an approaching change.",
             "dongusel": "This recurring pattern points to a cycle that needs to be broken."
         },
         "core_message": {

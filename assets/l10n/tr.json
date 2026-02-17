@@ -469,7 +469,7 @@
             "theme_home_family_title": "Ev ve Aile",
             "theme_home_family_desc": "Köklere dönüş ve yuva kurma",
             "theme_creativity_title": "Yaratıcılık",
-            "theme_creativity_desc": "Sanatsal ifade ve eğlence",
+            "theme_creativity_desc": "Sanatsal ifade ve yaratıcı keşif",
             "theme_health_routine_title": "Sağlık ve Rutin",
             "theme_health_routine_desc": "Günlük yaşamı iyileştirme",
             "keyword_beginning": "Başlangıç",
@@ -1006,7 +1006,7 @@
                     "practice_label": "✨ PRATİK UYGULAMA",
                     "practice": "• Neyi bırakman gerekiyor - liste yap\n• Eski fotoğrafları gözden geçir\n• Kıyafet dolabını temizle\n• \"Ölmesi gereken\" alışkanlıkları belirle",
                     "cosmic_message_label": "💫 KİŞİSEL MESAJ",
-                    "cosmic_message": "Anka kuşu gibi küllerinden doğuyorsun. {archetype} enerjisi bu dönüşümü güçlendiriyor. Yeni sen doğuyor!"
+                    "cosmic_message": "Anka kuşu gibi küllerinden doğuyorsun. {archetype} özelliklerin bu dönüşümü güçlendiriyor. Yeni sen doğuyor!"
                 },
                 "chase": {
                     "title": "🏃 KOVALANMA RÜYASI - {archetype} YORUMU",
@@ -1555,7 +1555,7 @@
                 "title": "Sembolik Sayılar",
                 "description": "Sayı kalıplarını ve bağlantılarını keşfet."
             },
-            "aura_reading": {
+            "energy_reading": {
                 "title": "Enerji Okuma",
                 "description": "Enerji alanını keşfet."
             },
@@ -1639,7 +1639,7 @@
             "read_with_numbers": {
                 "description": "Sayılarla birlikte oku."
             },
-            "aura_colors": {
+            "energy_colors": {
                 "title": "Enerji Renkleri",
                 "description": "Enerji alanın."
             },
@@ -1828,7 +1828,7 @@
             "energy_work_rituals": {
                 "description": "Ritüellerle enerji çalışması."
             },
-            "aura_cleansing": {
+            "energy_cleansing": {
                 "title": "Enerji Temizliği",
                 "description": "Enerji alanını arındır."
             },
@@ -1889,7 +1889,7 @@
             "how_this_pair_dances": "Bu ikili nasıl dans ediyor?",
             "same_element_different_energy": "Aynı element, farklı enerji.",
             "sibling_element_energy": "Kardeş element enerjisi.",
-            "what_awaits_this_week": "Bu hafta seni neler bekliyor?",
+            "what_awaits_this_week": "Bu hafta hangi konuları keşfedebilirsin?",
             "which_dreams_this_sign_sees": "Bu arketipta insanlar en çok hangi rüyaları görür?",
             "special_message_for_today": "Bugün Sana Özel Mesaj",
             "cosmic_guidance": "Kişisel rehberlik al.",

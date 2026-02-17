@@ -405,7 +405,7 @@
             "return_home": "Return to Home",
             "special_discount": "Pro-Funktionen",
             "open_cosmic_map": "Open Your Personal Map",
-            "strong_profile_message": "Your profile is very strong! Personalized content awaits you.",
+            "strong_profile_message": "Your profile is very strong! Personalized content is ready for you.",
             "start_now": "Start Now",
             "valid_today_only": "",
             "continue_cosmic_journey": "Would you like to continue your personal journey?",
@@ -895,13 +895,13 @@
                     "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
                     "practice_label": "✨ PRACTICAL APPLICATION",
                     "pioneer": {
-                        "basic_meaning": "Water, for your fire sign, is a call to dive into emotional depths. Subconscious energies want to surface.",
+                        "basic_meaning": "Water, for your fire archetype, is a call to dive into emotional depths. Subconscious energies want to surface.",
                         "element_perspective": "Water's calming energy has come to balance your fire nature. Time for patience and rest. A period of reflection before action.",
                         "psychological": "Water: Subconscious, emotions, mother archetype\nAs a Pioneer: Suppressed emotions want to surface\nMessage: Not just running, but sometimes pausing to feel is needed",
                         "practice": "• Meditate by the water\n• Set your intention while showering\n• Allow your tears\n• Write your feelings down"
                     },
                     "builder": {
-                        "basic_meaning": "Water, for your earth sign, symbolizes fertility and abundance. Material and emotional flow is entering your life.",
+                        "basic_meaning": "Water, for your earth archetype, symbolizes fertility and abundance. Material and emotional flow is entering your life.",
                         "element_perspective": "Water nourishes earth - this dream is a harbinger of growth and prosperity. Trust your natural rhythm, let go without forcing.",
                         "psychological": "Water: Emotional security, comfort, nourishment\nAs a Builder: The connection between inner peace and material security\nMessage: Emotional wealth attracts material wealth",
                         "practice": "• Water your plants, tend your garden\n• Take a bath ritual\n• Visualize financial flow\n• Make relaxation and comfort your priority"
@@ -971,7 +971,7 @@
                     "practice_label": "✨ PRACTICAL APPLICATION",
                     "practice": "• Make a list of what needs to let go\n• Review old photos\n• Clean out your wardrobe\n• Identify habits that need to 'die'",
                     "cosmic_message_label": "💫 PERSONAL MESSAGE",
-                    "cosmic_message": "You're being reborn from your ashes like a phoenix. {archetype} energy empowers this transformation. A new you is being born!"
+                    "cosmic_message": "You're being reborn from your ashes like a phoenix. {archetype} strengths empower this transformation. A new you is being born!"
                 },
                 "chase": {
                     "title": "🏃 CHASE DREAM - {archetype} INTERPRETATION",
@@ -1178,19 +1178,19 @@
         "result_dream_medium_title": "Dream Traveler",
         "result_dream_medium_desc": "Your connection with dreams is developing. With a little more awareness, you can hear your subconscious messages more clearly.",
         "result_dream_low_title": "Dream Sleeper",
-        "result_dream_low_desc": "The dream world awaits you. With small steps, you can strengthen your connection with your subconscious.",
+        "result_dream_low_desc": "The dream world is ready for you. With small steps, you can strengthen your connection with your subconscious.",
         "result_self_awareness_high_title": "Personal Master",
         "result_self_awareness_high_desc": "You have strong self-awareness! Deepen your personal journey with personal cycle reports and detailed profile analysis.",
         "result_self_awareness_medium_title": "Inner Traveler",
         "result_self_awareness_medium_desc": "Your connection with self-awareness is developing. By exploring your personal profile, you can better understand yourself.",
         "result_self_awareness_low_title": "Personal Explorer",
-        "result_self_awareness_low_desc": "Your journey awaits! Start your personal journey with daily reflection themes.",
+        "result_self_awareness_low_desc": "Your journey is ready! Start your personal journey with daily reflection themes.",
         "result_number_high_title": "Number Master",
         "result_number_high_desc": "You have a strong connection with numbers! Discover the patterns on your life path with your personal number analysis.",
         "result_number_medium_title": "Number Traveler",
         "result_number_medium_desc": "You feel the energy of numbers. You can guide your life with your life path number.",
         "result_number_low_title": "Number Explorer",
-        "result_number_low_desc": "The world of numbers awaits you. Starting with your birth date, you can discover meaningful number patterns.",
+        "result_number_low_desc": "The world of numbers is ready for you. Starting with your birth date, you can discover meaningful number patterns.",
         "result_general_high_title": "Personal Guide",
         "result_general_high_desc": "Your inner journey is deep and meaningful. You can elevate your awareness to the next level with our personal tools.",
         "result_general_medium_title": "Personal Traveler",
@@ -1520,7 +1520,7 @@
                 "title": "Symbolische Zahlen",
                 "description": "Zahlenmuster und Verbindungen entdecken."
             },
-            "aura_reading": {
+            "energy_reading": {
                 "title": "Energie-Lesung",
                 "description": "Entdecke dein Energiefeld."
             },
@@ -1604,7 +1604,7 @@
             "read_with_numbers": {
                 "description": "Lies mit Zahlen."
             },
-            "aura_colors": {
+            "energy_colors": {
                 "title": "Energie-Farben",
                 "description": "Dein Energiefeld."
             },
@@ -1793,7 +1793,7 @@
             "energy_work_rituals": {
                 "description": "Energiearbeit mit Ritualen."
             },
-            "aura_cleansing": {
+            "energy_cleansing": {
                 "title": "Energie-Reinigung",
                 "description": "Energie-Reinigungspraktiken."
             },
