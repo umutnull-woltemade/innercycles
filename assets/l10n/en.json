@@ -235,7 +235,7 @@
         "todays_cosmic_whisper": "Today's Reflection Prompt",
         "special_readings": "Personalized Features",
         "personalized_readings": "Personalized features based on your journal entries",
-        "moon_in_sign_formatted": "Moon in Current Phase",
+        "moon_phase_formatted": "Moon in Current Phase",
         "currently_in_sky": "Current Phase",
         "illumination": "Illumination",
         "light_mode": "Light",
@@ -445,10 +445,10 @@
             "kadim_content": "Since Pythagoras, many traditions have explored symbolic meanings of numbers. Your life path number is a reflection theme - a way to think about personal qualities and life patterns. These symbolic associations can be useful for journaling and self-discovery.",
             "brand_text": "Number Patterns — InnerCycles"
         },
-        "solar_return": {
+        "birthday_reflection": {
             "title": "Birthday Reflection",
             "subtitle": "Birthday Overview",
-            "sun_returns": "Birthday Reflection Cycle",
+            "birthday_cycle": "Birthday Reflection Cycle",
             "return_date": "Return Date",
             "sun_house": "Core Focus",
             "house_number": "{number}. Area",
@@ -2798,8 +2798,8 @@
     },
     "tooltips": {
         "personal_profile": "Your personal self-awareness map based on birth data",
-        "solar_return": "Your annual self-awareness map around your birthday",
-        "lunar_calendar": "Gardening and planting calendar based on moon phases"
+        "birthday_reflection": "Your annual self-awareness map around your birthday",
+        "moon_calendar": "Gardening and planting calendar based on moon phases"
     },
     "days": {
         "mon_short": "Mon",

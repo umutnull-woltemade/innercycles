@@ -235,7 +235,7 @@
         "todays_cosmic_whisper": "Persönliches Flüstern des Tages",
         "special_readings": "Unsere Speziellen Deutungen",
         "personalized_readings": "Personalisierte Analysen basierend auf deinen Geburtsdaten",
-        "moon_in_sign_formatted": "Mond in {archetype}",
+        "moon_phase_formatted": "Mond in {archetype}",
         "currently_in_sky": "Aktuell am Himmel",
         "illumination": "Beleuchtung",
         "light_mode": "Hell",
@@ -445,10 +445,10 @@
             "kadim_content": "Since Pythagoras, thinkers have explored how numbers reflect patterns in life. Your life path number is more than a digit - it represents your core tendencies and personal themes. To connect with these insights, you first need silence.",
             "brand_text": "Number Patterns — InnerCycles"
         },
-        "solar_return": {
+        "birthday_reflection": {
             "title": "Birthday Reflection",
             "subtitle": "Birthday Chart",
-            "sun_returns": "Birthday returns to {archetype}",
+            "birthday_cycle": "Birthday returns to {archetype}",
             "return_date": "Return Date",
             "sun_house": "Core Focus",
             "house_number": "{number}. House",
@@ -2763,8 +2763,8 @@
     },
     "tooltips": {
         "personal_profile": "Deine persönliche persönliche Karte basierend auf Geburtsdaten",
-        "solar_return": "Deine jährliche persönliche Karte um deinen Geburtstag",
-        "lunar_calendar": "Garten- und Pflanzkalender nach Mondphasen"
+        "birthday_reflection": "Deine jährliche persönliche Karte um deinen Geburtstag",
+        "moon_calendar": "Garten- und Pflanzkalender nach Mondphasen"
     },
     "days": {
         "mon_short": "Mo",

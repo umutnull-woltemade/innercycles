@@ -235,7 +235,7 @@
         "todays_cosmic_whisper": "Le Murmure Intérieur du Jour",
         "special_readings": "Nos Lectures Spéciales",
         "personalized_readings": "Lectures personnalisées basées sur vos données de naissance",
-        "moon_in_sign_formatted": "Lune en {archetype}",
+        "moon_phase_formatted": "Lune en {archetype}",
         "currently_in_sky": "Actuellement dans le Ciel",
         "illumination": "Illumination",
         "light_mode": "Clair",
@@ -445,10 +445,10 @@
             "kadim_content": "Since Pythagoras, sages have known that numbers carry the hidden language of your inner self. Your life path number is not just a digit - it is the pattern your inner self brought into this world, the unique melody your inner self gave you. To hear this melody, you first need silence.",
             "brand_text": "Modèles Numériques — InnerCycles"
         },
-        "solar_return": {
+        "birthday_reflection": {
             "title": "Birthday Reflection",
             "subtitle": "Personal Year Chart",
-            "sun_returns": "Birthday returns to {archetype}",
+            "birthday_cycle": "Birthday returns to {archetype}",
             "return_date": "Return Date",
             "sun_house": "Core Focus",
             "house_number": "{number}. House",
@@ -2763,8 +2763,8 @@
     },
     "tooltips": {
         "personal_profile": "Votre carte personnelle basée sur les données de naissance",
-        "solar_return": "Votre carte personnelle annuelle autour de votre anniversaire",
-        "lunar_calendar": "Calendrier de jardinage et de plantation selon les phases lunaires"
+        "birthday_reflection": "Votre carte personnelle annuelle autour de votre anniversaire",
+        "moon_calendar": "Calendrier de jardinage et de plantation selon les phases lunaires"
     },
     "days": {
         "mon_short": "Lun",

@@ -235,7 +235,7 @@
         "todays_cosmic_whisper": "Bugünün Kişisel Fısıltısı",
         "special_readings": "Özel Çözümlemelerimiz",
         "personalized_readings": "Doğum bilgilerinize özel analizler",
-        "moon_in_sign_formatted": "Ay {archetype} arketipinde",
+        "moon_phase_formatted": "Ay {archetype} arketipinde",
         "currently_in_sky": "Şimdi Gökyüzünde",
         "illumination": "Aydınlık",
         "light_mode": "Aydınlık",
@@ -445,10 +445,10 @@
             "kadim_content": "Pisagor'dan bu yana bilgeler sayıların yaşamın gizli kalıplarını taşıdığını bilir. Yaşam yolu sayın sadece bir rakam değil - bu dünyaya getirdiğin örüntü, sana özgü benzersiz melodi. Bu melodiyi duyabilmek için önce sessizliğe ihtiyacın var.",
             "brand_text": "Sayı Örüntüleri — InnerCycles"
         },
-        "solar_return": {
+        "birthday_reflection": {
             "title": "Doğum Günü Yansıması",
             "subtitle": "Doğum Günü Haritası",
-            "sun_returns": "Temel kimliğin {archetype} arketipine dönüyor",
+            "birthday_cycle": "Temel kimliğin {archetype} arketipine dönüyor",
             "return_date": "Dönüş Tarihi",
             "sun_house": "Kimlik Evi",
             "house_number": "{number}. Ev",
@@ -2798,8 +2798,8 @@
     },
     "tooltips": {
         "personal_profile": "Doğum bilgilerinize göre kişisel haritanız",
-        "solar_return": "Doğum gününüz etrafındaki yıllık kişisel haritanız",
-        "lunar_calendar": "Ay fazlarına göre bahçecilik ve ekim takvimi"
+        "birthday_reflection": "Doğum gününüz etrafındaki yıllık kişisel haritanız",
+        "moon_calendar": "Ay fazlarına göre bahçecilik ve ekim takvimi"
     },
     "days": {
         "mon_short": "Pzt",
