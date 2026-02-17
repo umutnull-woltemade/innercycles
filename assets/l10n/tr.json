@@ -2756,7 +2756,7 @@
                 "very_high": "Çok Yüksek",
                 "high": "Yüksek",
                 "medium": "Orta",
-                "low": "Dusuk",
+                "low": "Düşük",
                 "potential_message": "Bu rüyada bilinçli rüya görme potansiyeliniz yükseldi. Gelecek gece uyumadan önce niyet koymayı deneyin."
             },
             "styles": {
@@ -2765,18 +2765,18 @@
                 "spiritual": "İçsel",
                 "spiritual_desc": "İçsel Yorum",
                 "folk": "Halk Tabiri",
-                "folk_desc": "Turk Gelenegine Gore",
-                "islamic": "Islami",
-                "islamic_desc": "Islami Tabir",
-                "quick": "Hizli",
+                "folk_desc": "Türk Geleneğine Göre",
+                "islamic": "İslami",
+                "islamic_desc": "İslami Tabir",
+                "quick": "Hızlı",
                 "quick_desc": "3 Dakikada Yorum"
             },
             "share_hashtags": "- Rüya Rehberi\n#RuyaYorumu #Bilincalti",
             "symbol": {
-                "personal_context": "Kisisel Baglam",
+                "personal_context": "Kişisel Bağlam",
                 "light_side": "Işık Yönü",
                 "shadow_side": "Gölge Yönü",
-                "related": "Iliskili:"
+                "related": "İlişkili:"
             }
         }
     },
