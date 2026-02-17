@@ -65,7 +65,10 @@ import '../../features/prompts/presentation/prompt_library_screen.dart';
 import '../../features/milestones/presentation/milestone_screen.dart';
 import '../../features/onboarding/presentation/archetype_quiz_screen.dart';
 import '../../features/habits/presentation/habit_suggestions_screen.dart';
+import '../../features/habits/presentation/daily_habits_screen.dart';
 import '../../features/year_review/presentation/year_review_screen.dart';
+import '../../features/calendar/presentation/calendar_heatmap_screen.dart';
+import '../../features/search/presentation/search_screen.dart';
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/storage_service.dart';
 
@@ -377,6 +380,22 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.habitSuggestions,
         builder: (context, state) => const HabitSuggestionsScreen(),
+      ),
+      GoRoute(
+        path: Routes.dailyHabits,
+        builder: (context, state) => const DailyHabitsScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // CALENDAR & SEARCH
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.calendarHeatmap,
+        builder: (context, state) => const CalendarHeatmapScreen(),
+      ),
+      GoRoute(
+        path: Routes.search,
+        builder: (context, state) => const SearchScreen(),
       ),
 
       // ════════════════════════════════════════════════════════════════

@@ -1,8 +1,13 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -34,6 +39,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   final Map<String, int> _subRatings = {};
   final _noteController = TextEditingController();
   bool _isSaving = false;
+  String? _selectedImagePath;
 
   /// Stores the note text before a voice session starts, so partial
   /// results can be appended without duplicating previous voice output.
@@ -139,6 +145,18 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                       const SizedBox(height: AppConstants.spacingMd),
                       _buildNoteField(isDark, isEn),
                       const SizedBox(height: AppConstants.spacingXl),
+
+                      // Photo attachment
+                      if (!kIsWeb) ...[
+                        _buildSectionLabel(
+                          context,
+                          isDark,
+                          isEn ? 'Photo (optional)' : 'Fotoğraf (opsiyonel)',
+                        ),
+                        const SizedBox(height: AppConstants.spacingMd),
+                        _buildPhotoPicker(isDark, isEn),
+                        const SizedBox(height: AppConstants.spacingXl),
+                      ],
 
                       // Gratitude section (collapsible)
                       GratitudeSection(
@@ -561,6 +579,104 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     ).glassListItem(context: context, index: 4);
   }
 
+  Widget _buildPhotoPicker(bool isDark, bool isEn) {
+    if (_selectedImagePath != null) {
+      return GlassPanel(
+        elevation: GlassElevation.g2,
+        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+        padding: const EdgeInsets.all(AppConstants.spacingMd),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+              child: Image.file(
+                File(_selectedImagePath!),
+                height: 180,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(height: AppConstants.spacingSm),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton.icon(
+                  onPressed: _pickImage,
+                  icon: Icon(Icons.swap_horiz, size: 18, color: AppColors.auroraStart),
+                  label: Text(
+                    isEn ? 'Change' : 'Değiştir',
+                    style: TextStyle(color: AppColors.auroraStart, fontSize: 13),
+                  ),
+                ),
+                TextButton.icon(
+                  onPressed: () => setState(() => _selectedImagePath = null),
+                  icon: Icon(Icons.close, size: 18,
+                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                  label: Text(
+                    isEn ? 'Remove' : 'Kaldır',
+                    style: TextStyle(
+                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ).glassListItem(context: context, index: 4);
+    }
+
+    return GestureDetector(
+      onTap: _pickImage,
+      child: GlassPanel(
+        elevation: GlassElevation.g2,
+        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+        padding: const EdgeInsets.all(AppConstants.spacingLg),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.add_a_photo_outlined,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              size: 22,
+            ),
+            const SizedBox(width: AppConstants.spacingSm),
+            Text(
+              isEn ? 'Add a photo' : 'Fotoğraf ekle',
+              style: TextStyle(
+                fontSize: 14,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
+            ),
+          ],
+        ),
+      ),
+    ).glassListItem(context: context, index: 4);
+  }
+
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final picked = await picker.pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 1200,
+      maxHeight: 1200,
+      imageQuality: 85,
+    );
+    if (picked != null) {
+      // Copy to app documents directory for persistence
+      final appDir = await getApplicationDocumentsDirectory();
+      final journalDir = Directory('${appDir.path}/journal_photos');
+      if (!await journalDir.exists()) {
+        await journalDir.create(recursive: true);
+      }
+      final ext = p.extension(picked.path);
+      final savedPath = '${journalDir.path}/${DateTime.now().millisecondsSinceEpoch}$ext';
+      await File(picked.path).copy(savedPath);
+      setState(() => _selectedImagePath = savedPath);
+    }
+  }
+
   Widget _buildSaveButton(bool isDark, bool isEn) {
     return SizedBox(
       width: double.infinity,
@@ -605,6 +721,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         overallRating: _overallRating,
         subRatings: Map.from(_subRatings),
         note: _noteController.text.isNotEmpty ? _noteController.text : null,
+        imagePath: _selectedImagePath,
       );
 
       // Invalidate providers to refresh data

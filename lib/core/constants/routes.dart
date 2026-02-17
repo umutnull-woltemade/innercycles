@@ -108,6 +108,12 @@ class Routes {
   static const String growthDashboard = '/growth';
 
   // ════════════════════════════════════════════════════════════════
+  // CALENDAR & SEARCH
+  // ════════════════════════════════════════════════════════════════
+  static const String calendarHeatmap = '/calendar';
+  static const String search = '/search';
+
+  // ════════════════════════════════════════════════════════════════
   // TIER 2 FEATURES
   // ════════════════════════════════════════════════════════════════
   static const String weeklyDigest = '/weekly-digest';
@@ -117,6 +123,7 @@ class Routes {
   static const String promptLibrary = '/prompts';
   static const String milestones = '/milestones';
   static const String habitSuggestions = '/habits';
+  static const String dailyHabits = '/habits/daily';
   static const String archetypeQuiz = '/onboarding/quiz';
   static const String yearReview = '/year-review';
 

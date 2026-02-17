@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -97,10 +99,15 @@ class EntryDetailScreen extends ConsumerWidget {
                 if (entry.subRatings.isNotEmpty)
                   const SizedBox(height: AppConstants.spacingLg),
 
+                // Photo
+                if (!kIsWeb && entry.imagePath != null && entry.imagePath!.isNotEmpty)
+                  _buildPhotoCard(context, entry.imagePath!, isDark)
+                      .glassListItem(context: context, index: 2),
+
                 // Note
                 if (entry.note != null && entry.note!.isNotEmpty)
                   _buildNoteCard(context, entry.note!, isDark, isEn)
-                      .glassListItem(context: context, index: 2),
+                      .glassListItem(context: context, index: 3),
               ]),
             ),
           ),
@@ -220,6 +227,27 @@ class EntryDetailScreen extends ConsumerWidget {
             ),
           );
         }).toList(),
+      ),
+    );
+  }
+
+  Widget _buildPhotoCard(
+    BuildContext context,
+    String imagePath,
+    bool isDark,
+  ) {
+    final file = File(imagePath);
+    if (!file.existsSync()) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppConstants.spacingLg),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+        child: Image.file(
+          file,
+          width: double.infinity,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

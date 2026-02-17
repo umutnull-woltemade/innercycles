@@ -55,12 +55,14 @@ class ProgramProgress {
   final String programId;
   final DateTime startedAt;
   final Set<int> completedDays; // day numbers
+  final Map<int, String> reflections; // dayNumber -> reflection text
   final bool isCompleted;
 
   ProgramProgress({
     required this.programId,
     required this.startedAt,
     required this.completedDays,
+    this.reflections = const {},
     this.isCompleted = false,
   });
 
@@ -74,6 +76,7 @@ class ProgramProgress {
         'programId': programId,
         'startedAt': startedAt.toIso8601String(),
         'completedDays': completedDays.toList(),
+        'reflections': reflections.map((k, v) => MapEntry(k.toString(), v)),
         'isCompleted': isCompleted,
       };
 
@@ -83,6 +86,10 @@ class ProgramProgress {
         startedAt: DateTime.parse(json['startedAt'] as String),
         completedDays:
             (json['completedDays'] as List<dynamic>).cast<int>().toSet(),
+        reflections: json['reflections'] != null
+            ? (json['reflections'] as Map<String, dynamic>).map(
+                (k, v) => MapEntry(int.parse(k), v as String))
+            : {},
         isCompleted: json['isCompleted'] as bool? ?? false,
       );
 }
@@ -138,12 +145,18 @@ class GuidedProgramService {
     return progress;
   }
 
-  /// Complete a day in a program
-  Future<void> completeDay(String programId, int dayNumber) async {
+  /// Complete a day in a program with optional reflection text
+  Future<void> completeDay(String programId, int dayNumber, {String? reflection}) async {
     final progress = _activePrograms[programId];
     if (progress == null) return;
 
     progress.completedDays.add(dayNumber);
+
+    // Save reflection if provided
+    final updatedReflections = Map<int, String>.from(progress.reflections);
+    if (reflection != null && reflection.trim().isNotEmpty) {
+      updatedReflections[dayNumber] = reflection.trim();
+    }
 
     // Check if program is fully completed
     final program = allPrograms.firstWhere(
@@ -156,13 +169,26 @@ class GuidedProgramService {
         programId: programId,
         startedAt: progress.startedAt,
         completedDays: progress.completedDays,
+        reflections: updatedReflections,
         isCompleted: true,
       );
       _completedProgramIds.add(programId);
       await _persistCompletedPrograms();
+    } else {
+      _activePrograms[programId] = ProgramProgress(
+        programId: programId,
+        startedAt: progress.startedAt,
+        completedDays: progress.completedDays,
+        reflections: updatedReflections,
+      );
     }
 
     await _persistProgress();
+  }
+
+  /// Get reflection for a specific day
+  String? getReflection(String programId, int dayNumber) {
+    return _activePrograms[programId]?.reflections[dayNumber];
   }
 
   /// Get active progress for a program

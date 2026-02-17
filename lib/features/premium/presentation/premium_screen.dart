@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 
@@ -24,13 +25,12 @@ class PremiumScreen extends ConsumerStatefulWidget {
 
 class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   PremiumTier _selectedTier = PremiumTier.yearly;
-  bool _useRevenueCatPaywall = true; // Default to RevenueCat Paywall
+  bool _useRevenueCatPaywall = true;
 
   @override
   Widget build(BuildContext context) {
     final premiumState = ref.watch(premiumProvider);
 
-    // If user is already premium, show their status
     if (premiumState.isPremium) {
       return _buildPremiumActiveScreen(context, premiumState);
     }
@@ -44,30 +44,27 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Header
                   _buildHeader(context),
                   const SizedBox(height: AppConstants.spacingXl),
 
-                  // Premium badge
-                  _buildPremiumBadge(),
-                  const SizedBox(height: AppConstants.spacingXl),
-
-                  // Paywall toggle (for testing - can be removed in production)
+                  // Paywall toggle (debug only)
                   if (kDebugMode) ...[
                     _buildPaywallToggle(context),
                     const SizedBox(height: AppConstants.spacingMd),
                   ],
 
                   if (_useRevenueCatPaywall) ...[
-                    // RevenueCat Paywall Button
                     _buildRevenueCatPaywallButton(context, premiumState),
                   ] else ...[
-                    // Custom UI
-                    // Features list
+                    // Top features (reduced from 14 to 6)
                     _buildFeaturesList(context),
                     const SizedBox(height: AppConstants.spacingXl),
 
-                    // Plan selection
+                    // Free vs Pro comparison table
+                    _buildComparisonTable(context),
+                    const SizedBox(height: AppConstants.spacingXl),
+
+                    // Plan selection with anchoring
                     _buildPlanSelection(context),
                     const SizedBox(height: AppConstants.spacingXl),
 
@@ -75,6 +72,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                     _buildPurchaseButton(context, premiumState),
                   ],
 
+                  const SizedBox(height: AppConstants.spacingMd),
+
+                  // Risk reversal
+                  _buildRiskReversal(context),
                   const SizedBox(height: AppConstants.spacingMd),
 
                   // Restore purchases
@@ -92,130 +93,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     );
   }
 
-  Widget _buildPremiumActiveScreen(
-    BuildContext context,
-    PremiumState premiumState,
-  ) {
-    return Scaffold(
-      body: CosmicBackground(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(AppConstants.spacingLg),
-            child: Column(
-              children: [
-                _buildHeader(context),
-                const Spacer(),
-                _buildPremiumActiveBadge(premiumState),
-                const SizedBox(height: AppConstants.spacingXl),
-                _buildPremiumStatus(context, premiumState),
-                const SizedBox(height: AppConstants.spacingXl),
-                _buildManageSubscriptionButton(context),
-                const Spacer(),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPremiumActiveBadge(PremiumState premiumState) {
-    return Container(
-          padding: const EdgeInsets.all(32),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                AppColors.starGold.withValues(alpha: 0.4),
-                AppColors.auroraStart.withValues(alpha: 0.4),
-              ],
-            ),
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.starGold.withValues(alpha: 0.5),
-                blurRadius: 40,
-                spreadRadius: 10,
-              ),
-            ],
-          ),
-          child: Column(
-            children: [
-              const Text('👑', style: TextStyle(fontSize: 72)),
-              const SizedBox(height: 8),
-              Text(
-                premiumState.tier.displayName,
-                style: const TextStyle(
-                  color: AppColors.starGold,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        )
-        .glassReveal(context: context);
-  }
-
-  Widget _buildPremiumStatus(BuildContext context, PremiumState premiumState) {
-    final language = ref.watch(languageProvider);
-    return GlassPanel(
-      elevation: GlassElevation.g3,
-      borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
-      glowColor: AppColors.starGold.withValues(alpha: 0.2),
-      child: Column(
-        children: [
-          Text(
-            L10nService.get('premium.cosmic_powers_active', language),
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: AppColors.starGold,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: AppConstants.spacingMd),
-          if (premiumState.isLifetime)
-            Text(
-              L10nService.get('premium.lifetime_access', language),
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
-            )
-          else if (premiumState.expiryDate != null)
-            Text(
-              '${L10nService.get('common.next', language)}: ${_formatDate(premiumState.expiryDate!)}',
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
-            ),
-        ],
-      ),
-    ).glassListItem(context: context, index: 1);
-  }
-
-  Widget _buildManageSubscriptionButton(BuildContext context) {
-    final language = ref.watch(languageProvider);
-    return SizedBox(
-      width: double.infinity,
-      child: OutlinedButton.icon(
-        onPressed: () async {
-          await ref.read(paywallServiceProvider).presentCustomerCenter();
-        },
-        icon: const Icon(Icons.settings, color: AppColors.starGold),
-        label: Text(
-          L10nService.get('premium.manage_subscription', language),
-          style: const TextStyle(color: AppColors.starGold),
-        ),
-        style: OutlinedButton.styleFrom(
-          side: const BorderSide(color: AppColors.starGold),
-          padding: const EdgeInsets.symmetric(vertical: 16),
-        ),
-      ),
-    ).glassListItem(context: context, index: 2);
-  }
-
-  String _formatDate(DateTime date) {
-    return '${date.day}/${date.month}/${date.year}';
-  }
+  // ════════════════════════════════════════════════════════════════════════════
+  // HEADER — New conversion headline
+  // ════════════════════════════════════════════════════════════════════════════
 
   Widget _buildHeader(BuildContext context) {
     final language = ref.watch(languageProvider);
@@ -239,78 +119,365 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             color: AppColors.starGold.withValues(alpha: 0.7),
           ),
         ).glassReveal(context: context),
-        const SizedBox(height: 8),
+        const SizedBox(height: 16),
+
+        // New headline
         Text(
-          L10nService.get('premium.success_message', language),
+          L10nService.get('premium.paywall.title', language),
           textAlign: TextAlign.center,
-          style: Theme.of(
-            context,
-          ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
-        ).glassListItem(context: context, index: 1),
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.bold,
+            height: 1.2,
+          ),
+        ).animate().fadeIn(duration: 500.ms),
+        const SizedBox(height: 8),
+
+        // New subtitle
+        Text(
+          L10nService.get('premium.paywall.subtitle', language),
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            color: AppColors.textSecondary,
+          ),
+        ).animate().fadeIn(duration: 500.ms, delay: 100.ms),
       ],
     );
   }
 
-  Widget _buildPremiumBadge() {
-    return Container(
-          padding: const EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                AppColors.starGold.withValues(alpha: 0.3),
-                AppColors.auroraStart.withValues(alpha: 0.3),
-              ],
+  // ════════════════════════════════════════════════════════════════════════════
+  // FEATURES LIST — Reduced to top 6
+  // ════════════════════════════════════════════════════════════════════════════
+
+  Widget _buildFeaturesList(BuildContext context) {
+    final language = ref.watch(languageProvider);
+    final features = PremiumTier.yearly.localizedFeatures(language);
+
+    return GlassPanel(
+      elevation: GlassElevation.g3,
+      borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+      padding: const EdgeInsets.all(AppConstants.spacingLg),
+      glowColor: AppColors.starGold.withValues(alpha: 0.2),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            L10nService.get('premium.cosmic_powers', language),
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium
+                ?.copyWith(color: AppColors.starGold),
+          ),
+          const SizedBox(height: AppConstants.spacingMd),
+          ...features.map((feature) => _FeatureItem(feature: feature)),
+        ],
+      ),
+    ).glassListItem(context: context, index: 1);
+  }
+
+  // ════════════════════════════════════════════════════════════════════════════
+  // COMPARISON TABLE — Free vs Pro
+  // ════════════════════════════════════════════════════════════════════════════
+
+  Widget _buildComparisonTable(BuildContext context) {
+    final language = ref.watch(languageProvider);
+
+    final rows = [
+      _ComparisonRow(
+        feature: L10nService.get('premium.comparison.feature_journal', language),
+        free: L10nService.get('premium.comparison.feature_journal_free', language),
+        pro: L10nService.get('premium.comparison.feature_journal_pro', language),
+      ),
+      _ComparisonRow(
+        feature: L10nService.get('premium.comparison.feature_dreams', language),
+        free: L10nService.get('premium.comparison.feature_dreams_free', language),
+        pro: L10nService.get('premium.comparison.feature_dreams_pro', language),
+        isHighlight: true,
+      ),
+      _ComparisonRow(
+        feature: L10nService.get('premium.comparison.feature_patterns', language),
+        free: L10nService.get('premium.comparison.feature_patterns_free', language),
+        pro: L10nService.get('premium.comparison.feature_patterns_pro', language),
+        isHighlight: true,
+      ),
+      _ComparisonRow(
+        feature: L10nService.get('premium.comparison.feature_reports', language),
+        free: L10nService.get('premium.comparison.feature_reports_free', language),
+        pro: L10nService.get('premium.comparison.feature_reports_pro', language),
+        isHighlight: true,
+      ),
+      _ComparisonRow(
+        feature: L10nService.get('premium.comparison.feature_export', language),
+        free: L10nService.get('premium.comparison.feature_export_free', language),
+        pro: L10nService.get('premium.comparison.feature_export_pro', language),
+      ),
+      _ComparisonRow(
+        feature: L10nService.get('premium.comparison.feature_ads', language),
+        free: L10nService.get('premium.comparison.feature_ads_free', language),
+        pro: L10nService.get('premium.comparison.feature_ads_pro', language),
+      ),
+      _ComparisonRow(
+        feature: L10nService.get('premium.comparison.feature_programs', language),
+        free: L10nService.get('premium.comparison.feature_programs_free', language),
+        pro: L10nService.get('premium.comparison.feature_programs_pro', language),
+      ),
+    ];
+
+    return GlassPanel(
+      elevation: GlassElevation.g2,
+      borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+      padding: const EdgeInsets.all(AppConstants.spacingLg),
+      child: Column(
+        children: [
+          Text(
+            L10nService.get('premium.comparison.title', language),
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              color: AppColors.textPrimary,
+              fontWeight: FontWeight.bold,
             ),
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.starGold.withValues(alpha: 0.3),
-                blurRadius: 30,
-                spreadRadius: 5,
+          ),
+          const SizedBox(height: 16),
+
+          // Table header
+          Row(
+            children: [
+              const Expanded(flex: 3, child: SizedBox()),
+              Expanded(
+                flex: 2,
+                child: Text(
+                  L10nService.get('premium.tiers.free.name', language),
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: AppColors.textMuted,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  decoration: BoxDecoration(
+                    color: AppColors.starGold.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    'PRO',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: AppColors.starGold,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
-          child: const Text('✨', style: TextStyle(fontSize: 64)),
-        )
-        .glassReveal(context: context);
+          const SizedBox(height: 8),
+
+          // Table rows
+          ...rows.map((row) => Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Text(
+                    row.feature,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Text(
+                    row.free,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppColors.textMuted,
+                      fontSize: 11,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Text(
+                    row.pro,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: row.isHighlight
+                          ? AppColors.starGold
+                          : AppColors.textPrimary,
+                      fontWeight:
+                          row.isHighlight ? FontWeight.w600 : FontWeight.normal,
+                      fontSize: 11,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )),
+        ],
+      ),
+    ).animate().fadeIn(duration: 500.ms, delay: 200.ms);
   }
 
-  Widget _buildPaywallToggle(BuildContext context) {
-    return GlassPanel(
-      elevation: GlassElevation.g1,
-      borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-      padding: const EdgeInsets.all(AppConstants.spacingMd),
-      child: Row(
-        children: [
-          const Icon(Icons.science, color: Colors.orange, size: 20),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              'RevenueCat Paywall',
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: Colors.orange),
+  // ════════════════════════════════════════════════════════════════════════════
+  // PLAN SELECTION — With price anchoring
+  // ════════════════════════════════════════════════════════════════════════════
+
+  Widget _buildPlanSelection(BuildContext context) {
+    return Column(
+      children: [
+        // Yearly — target plan
+        _PlanCard(
+          tier: PremiumTier.yearly,
+          isSelected: _selectedTier == PremiumTier.yearly,
+          onTap: () => setState(() => _selectedTier = PremiumTier.yearly),
+          isBestValue: true,
+        ),
+        const SizedBox(height: AppConstants.spacingMd),
+
+        // Monthly — decoy
+        _PlanCard(
+          tier: PremiumTier.monthly,
+          isSelected: _selectedTier == PremiumTier.monthly,
+          onTap: () => setState(() => _selectedTier = PremiumTier.monthly),
+        ),
+        const SizedBox(height: AppConstants.spacingMd),
+
+        // Lifetime — aspirational anchor
+        _PlanCard(
+          tier: PremiumTier.lifetime,
+          isSelected: _selectedTier == PremiumTier.lifetime,
+          onTap: () => setState(() => _selectedTier = PremiumTier.lifetime),
+          isLifetime: true,
+        ),
+      ],
+    ).glassListItem(context: context, index: 2);
+  }
+
+  // ════════════════════════════════════════════════════════════════════════════
+  // PURCHASE BUTTON
+  // ════════════════════════════════════════════════════════════════════════════
+
+  Widget _buildPurchaseButton(BuildContext context, PremiumState premiumState) {
+    final language = ref.watch(languageProvider);
+    return SizedBox(
+      width: double.infinity,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [AppColors.starGold, Color(0xFFFFA500)],
+          ),
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.starGold.withValues(alpha: 0.4),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: premiumState.isLoading
+                ? null
+                : () async {
+                    final success = await ref
+                        .read(premiumProvider.notifier)
+                        .purchasePremium(_selectedTier);
+                    if (success && mounted) {
+                      _showSuccessDialog();
+                    }
+                  },
+            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: Center(
+                child: premiumState.isLoading
+                    ? const SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.black),
+                        ),
+                      )
+                    : Column(
+                        children: [
+                          Text(
+                            L10nService.get(
+                              'premium.paywall.continue_pro',
+                              language,
+                            ),
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          if (_selectedTier == PremiumTier.yearly)
+                            const SizedBox(height: 2),
+                          if (_selectedTier == PremiumTier.yearly)
+                            Text(
+                              _selectedTier.price,
+                              style: TextStyle(
+                                color: Colors.black.withValues(alpha: 0.6),
+                                fontSize: 12,
+                              ),
+                            ),
+                        ],
+                      ),
+              ),
             ),
           ),
-          Switch(
-            value: _useRevenueCatPaywall,
-            onChanged: (value) => setState(() => _useRevenueCatPaywall = value),
-            activeThumbColor: Colors.orange,
-          ),
-        ],
+        ),
+      ),
+    ).glassListItem(context: context, index: 3);
+  }
+
+  // ════════════════════════════════════════════════════════════════════════════
+  // RISK REVERSAL
+  // ════════════════════════════════════════════════════════════════════════════
+
+  Widget _buildRiskReversal(BuildContext context) {
+    final language = ref.watch(languageProvider);
+    return Text(
+      L10nService.get('premium.risk_reversal', language),
+      textAlign: TextAlign.center,
+      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+        color: AppColors.textMuted,
+        fontSize: 12,
       ),
     );
   }
+
+  // ════════════════════════════════════════════════════════════════════════════
+  // REVENUCAT PAYWALL (default mode)
+  // ════════════════════════════════════════════════════════════════════════════
 
   Widget _buildRevenueCatPaywallButton(
     BuildContext context,
     PremiumState premiumState,
   ) {
+    final language = ref.watch(languageProvider);
     return Column(
       children: [
-        // Features preview
+        // Features preview (reduced)
         _buildFeaturesList(context),
         const SizedBox(height: AppConstants.spacingXl),
+
+        // Comparison table
+        _buildComparisonTable(context),
+        const SizedBox(height: AppConstants.spacingXl),
+
+        // Price anchor display
+        _buildPriceAnchor(context),
+        const SizedBox(height: AppConstants.spacingLg),
 
         // Show RevenueCat Paywall button
         SizedBox(
@@ -352,161 +519,248 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                             height: 24,
                             child: CircularProgressIndicator(
                               strokeWidth: 2,
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                Colors.white,
-                              ),
+                              valueColor:
+                                  AlwaysStoppedAnimation<Color>(Colors.white),
                             ),
                           )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Icon(
-                                Icons.star,
-                                color: Colors.black,
-                                size: 20,
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                L10nService.get(
-                                  'premium.view_plans',
-                                  ref.watch(languageProvider),
-                                ),
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
+                        : Text(
+                            L10nService.get(
+                              'premium.paywall.continue_pro',
+                              language,
+                            ),
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                   ),
                 ),
               ),
             ),
           ),
-        ).glassListItem(context: context, index: 2),
+        ).glassListItem(context: context, index: 3),
       ],
     );
   }
 
-  Widget _buildFeaturesList(BuildContext context) {
-    final features = PremiumTier.yearly.features;
+  // ════════════════════════════════════════════════════════════════════════════
+  // PRICE ANCHOR — crossed-out monthly + yearly equivalent
+  // ════════════════════════════════════════════════════════════════════════════
 
+  Widget _buildPriceAnchor(BuildContext context) {
+    final language = ref.watch(languageProvider);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          L10nService.get('premium.price_monthly_crossed', language),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            color: AppColors.textMuted,
+            decoration: TextDecoration.lineThrough,
+            decorationColor: AppColors.textMuted,
+          ),
+        ),
+        const SizedBox(width: 12),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          decoration: BoxDecoration(
+            color: AppColors.starGold.withValues(alpha: 0.15),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: AppColors.starGold.withValues(alpha: 0.3),
+            ),
+          ),
+          child: Text(
+            L10nService.get('premium.price_anchor', language),
+            style: const TextStyle(
+              color: AppColors.starGold,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
+    ).animate().fadeIn(duration: 500.ms, delay: 300.ms);
+  }
+
+  // ════════════════════════════════════════════════════════════════════════════
+  // PREMIUM ACTIVE SCREEN (for existing subscribers)
+  // ════════════════════════════════════════════════════════════════════════════
+
+  Widget _buildPremiumActiveScreen(
+    BuildContext context,
+    PremiumState premiumState,
+  ) {
+    return Scaffold(
+      body: CosmicBackground(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(AppConstants.spacingLg),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      icon:
+                          const Icon(Icons.close, color: AppColors.textPrimary),
+                    ),
+                    const Spacer(),
+                  ],
+                ),
+                const Spacer(),
+                _buildPremiumActiveBadge(premiumState),
+                const SizedBox(height: AppConstants.spacingXl),
+                _buildPremiumStatus(context, premiumState),
+                const SizedBox(height: AppConstants.spacingXl),
+                _buildManageSubscriptionButton(context),
+                const Spacer(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPremiumActiveBadge(PremiumState premiumState) {
+    return Container(
+          padding: const EdgeInsets.all(32),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                AppColors.starGold.withValues(alpha: 0.4),
+                AppColors.auroraStart.withValues(alpha: 0.4),
+              ],
+            ),
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.starGold.withValues(alpha: 0.5),
+                blurRadius: 40,
+                spreadRadius: 10,
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              const Icon(Icons.star_rounded,
+                  size: 72, color: AppColors.starGold),
+              const SizedBox(height: 8),
+              Text(
+                premiumState.tier.displayName,
+                style: const TextStyle(
+                  color: AppColors.starGold,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        )
+        .glassReveal(context: context);
+  }
+
+  Widget _buildPremiumStatus(BuildContext context, PremiumState premiumState) {
+    final language = ref.watch(languageProvider);
     return GlassPanel(
       elevation: GlassElevation.g3,
       borderRadius: BorderRadius.circular(AppConstants.radiusMd),
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       glowColor: AppColors.starGold.withValues(alpha: 0.2),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            L10nService.get(
-              'premium.cosmic_powers',
-              ref.watch(languageProvider),
+            L10nService.get('premium.cosmic_powers_active', language),
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              color: AppColors.starGold,
+              fontWeight: FontWeight.bold,
             ),
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium?.copyWith(color: AppColors.starGold),
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          ...features.map((feature) => _FeatureItem(feature: feature)),
+          if (premiumState.isLifetime)
+            Text(
+              L10nService.get('premium.lifetime_access', language),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: AppColors.textSecondary),
+            )
+          else if (premiumState.expiryDate != null)
+            Text(
+              '${L10nService.get('common.next', language)}: ${_formatDate(premiumState.expiryDate!)}',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: AppColors.textSecondary),
+            ),
         ],
       ),
     ).glassListItem(context: context, index: 1);
   }
 
-  Widget _buildPlanSelection(BuildContext context) {
-    return Column(
-      children: [
-        // Best value - Yearly
-        _PlanCard(
-          tier: PremiumTier.yearly,
-          isSelected: _selectedTier == PremiumTier.yearly,
-          onTap: () => setState(() => _selectedTier = PremiumTier.yearly),
-          isBestValue: true,
+  Widget _buildManageSubscriptionButton(BuildContext context) {
+    final language = ref.watch(languageProvider);
+    return SizedBox(
+      width: double.infinity,
+      child: OutlinedButton.icon(
+        onPressed: () async {
+          await ref.read(paywallServiceProvider).presentCustomerCenter();
+        },
+        icon: const Icon(Icons.settings, color: AppColors.starGold),
+        label: Text(
+          L10nService.get('premium.manage_subscription', language),
+          style: const TextStyle(color: AppColors.starGold),
         ),
-        const SizedBox(height: AppConstants.spacingMd),
-
-        // Monthly
-        _PlanCard(
-          tier: PremiumTier.monthly,
-          isSelected: _selectedTier == PremiumTier.monthly,
-          onTap: () => setState(() => _selectedTier = PremiumTier.monthly),
+        style: OutlinedButton.styleFrom(
+          side: const BorderSide(color: AppColors.starGold),
+          padding: const EdgeInsets.symmetric(vertical: 16),
         ),
-        const SizedBox(height: AppConstants.spacingMd),
-
-        // Lifetime
-        _PlanCard(
-          tier: PremiumTier.lifetime,
-          isSelected: _selectedTier == PremiumTier.lifetime,
-          onTap: () => setState(() => _selectedTier = PremiumTier.lifetime),
-          isLifetime: true,
-        ),
-      ],
+      ),
     ).glassListItem(context: context, index: 2);
   }
 
-  Widget _buildPurchaseButton(BuildContext context, PremiumState premiumState) {
-    return SizedBox(
-      width: double.infinity,
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [AppColors.starGold, Color(0xFFFFA500)],
-          ),
-          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.starGold.withValues(alpha: 0.4),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: premiumState.isLoading
-                ? null
-                : () async {
-                    final success = await ref
-                        .read(premiumProvider.notifier)
-                        .purchasePremium(_selectedTier);
-                    if (success && mounted) {
-                      _showSuccessDialog();
-                    }
-                  },
-            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Center(
-                child: premiumState.isLoading
-                    ? const SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            Colors.white,
-                          ),
-                        ),
-                      )
-                    : Text(
-                        '${L10nService.get('premium.open_cosmic_door', ref.watch(languageProvider))} - ${_selectedTier.price}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    ).glassListItem(context: context, index: 3);
+  String _formatDate(DateTime date) {
+    return '${date.day}/${date.month}/${date.year}';
   }
+
+  // ════════════════════════════════════════════════════════════════════════════
+  // DEBUG TOGGLE
+  // ════════════════════════════════════════════════════════════════════════════
+
+  Widget _buildPaywallToggle(BuildContext context) {
+    return GlassPanel(
+      elevation: GlassElevation.g1,
+      borderRadius: BorderRadius.circular(AppConstants.radiusSm),
+      padding: const EdgeInsets.all(AppConstants.spacingMd),
+      child: Row(
+        children: [
+          const Icon(Icons.science, color: Colors.orange, size: 20),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              'RevenueCat Paywall',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: Colors.orange),
+            ),
+          ),
+          Switch(
+            value: _useRevenueCatPaywall,
+            onChanged: (value) =>
+                setState(() => _useRevenueCatPaywall = value),
+            activeThumbColor: Colors.orange,
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ════════════════════════════════════════════════════════════════════════════
+  // RESTORE + TERMS
+  // ════════════════════════════════════════════════════════════════════════════
 
   Widget _buildRestoreButton(BuildContext context, PremiumState premiumState) {
     final language = ref.watch(languageProvider);
@@ -514,26 +768,20 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       onPressed: premiumState.isLoading
           ? null
           : () async {
-              final restored = await ref
-                  .read(premiumProvider.notifier)
-                  .restorePurchases();
+              final restored =
+                  await ref.read(premiumProvider.notifier).restorePurchases();
               if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
                       restored
                           ? L10nService.get(
-                              'premium.purchases_restored',
-                              language,
-                            )
+                              'premium.purchases_restored', language)
                           : L10nService.get(
-                              'premium.no_purchases_found',
-                              language,
-                            ),
+                              'premium.no_purchases_found', language),
                     ),
-                    backgroundColor: restored
-                        ? AppColors.success
-                        : AppColors.error,
+                    backgroundColor:
+                        restored ? AppColors.success : AppColors.error,
                   ),
                 );
               }
@@ -558,19 +806,22 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           Text(
             L10nService.get('premium.terms_text', language),
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.textMuted,
-              fontSize: 10,
-            ),
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall
+                ?.copyWith(color: AppColors.textMuted, fontSize: 10),
           ),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () => ref.read(urlLauncherServiceProvider).openPrivacyPolicy(),
+                onTap: () =>
+                    ref.read(urlLauncherServiceProvider).openPrivacyPolicy(),
                 child: Text(
-                  isEn ? 'Privacy Policy' : L10nService.get('settings.privacy_policy', language),
+                  isEn
+                      ? 'Privacy Policy'
+                      : L10nService.get('settings.privacy_policy', language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.starGold,
                     fontSize: 10,
@@ -583,16 +834,19 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
                   '|',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textMuted,
-                    fontSize: 10,
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(color: AppColors.textMuted, fontSize: 10),
                 ),
               ),
               GestureDetector(
-                onTap: () => ref.read(urlLauncherServiceProvider).openTermsOfService(),
+                onTap: () =>
+                    ref.read(urlLauncherServiceProvider).openTermsOfService(),
                 child: Text(
-                  isEn ? 'Terms of Service' : L10nService.get('settings.terms_of_service', language),
+                  isEn
+                      ? 'Terms of Service'
+                      : L10nService.get('settings.terms_of_service', language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.starGold,
                     fontSize: 10,
@@ -608,16 +862,22 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     );
   }
 
+  // ════════════════════════════════════════════════════════════════════════════
+  // SUCCESS DIALOG
+  // ════════════════════════════════════════════════════════════════════════════
+
   void _showSuccessDialog() {
     final language = ref.read(languageProvider);
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: const Color(0xFF1A1A2E),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: Row(
           children: [
-            const Text('🌟', style: TextStyle(fontSize: 24)),
+            const Icon(Icons.star_rounded,
+                size: 28, color: AppColors.starGold),
             const SizedBox(width: 8),
             Flexible(
               child: Text(
@@ -634,8 +894,8 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // Close dialog
-              Navigator.pop(context); // Close premium screen
+              Navigator.pop(context);
+              Navigator.pop(context);
             },
             child: Text(
               L10nService.get('common.start_journey', language),
@@ -646,6 +906,24 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       ),
     );
   }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// SUPPORTING WIDGETS
+// ════════════════════════════════════════════════════════════════════════════
+
+class _ComparisonRow {
+  final String feature;
+  final String free;
+  final String pro;
+  final bool isHighlight;
+
+  const _ComparisonRow({
+    required this.feature,
+    required this.free,
+    required this.pro,
+    this.isHighlight = false,
+  });
 }
 
 class _FeatureItem extends StatelessWidget {
@@ -671,9 +949,10 @@ class _FeatureItem extends StatelessWidget {
           Expanded(
             child: Text(
               feature,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: AppColors.textPrimary),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: AppColors.textPrimary),
             ),
           ),
         ],
@@ -706,9 +985,8 @@ class _PlanCard extends StatelessWidget {
           elevation: isSelected ? GlassElevation.g3 : GlassElevation.g2,
           borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           padding: EdgeInsets.zero,
-          glowColor: isSelected
-              ? AppColors.starGold.withValues(alpha: 0.2)
-              : null,
+          glowColor:
+              isSelected ? AppColors.starGold.withValues(alpha: 0.2) : null,
           child: Material(
             color: Colors.transparent,
             child: InkWell(
@@ -734,11 +1012,8 @@ class _PlanCard extends StatelessWidget {
                             : Colors.transparent,
                       ),
                       child: isSelected
-                          ? const Icon(
-                              Icons.check,
-                              size: 16,
-                              color: Colors.black,
-                            )
+                          ? const Icon(Icons.check,
+                              size: 16, color: Colors.black)
                           : null,
                     ),
                     const SizedBox(width: 16),
@@ -746,31 +1021,24 @@ class _PlanCard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              Text(
-                                tier.displayName,
-                                style: Theme.of(context).textTheme.titleSmall
-                                    ?.copyWith(
-                                      color: isSelected
-                                          ? AppColors.starGold
-                                          : AppColors.textPrimary,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                              if (isLifetime) ...[
-                                const SizedBox(width: 8),
-                                const Text(
-                                  '♾️',
-                                  style: TextStyle(fontSize: 14),
+                          Text(
+                            tier.displayName,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
+                                  color: isSelected
+                                      ? AppColors.starGold
+                                      : AppColors.textPrimary,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                              ],
-                            ],
                           ),
                           if (tier.savings.isNotEmpty)
                             Text(
                               tier.savings,
-                              style: Theme.of(context).textTheme.bodySmall
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
                                   ?.copyWith(
                                     color: isLifetime
                                         ? AppColors.auroraEnd
@@ -780,14 +1048,33 @@ class _PlanCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Text(
-                      tier.price,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: isSelected
-                            ? AppColors.starGold
-                            : AppColors.textPrimary,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          tier.price,
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    color: isSelected
+                                        ? AppColors.starGold
+                                        : AppColors.textPrimary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                        // Show monthly equivalent for yearly
+                        if (tier == PremiumTier.yearly)
+                          Text(
+                            tier.monthlyEquivalent,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(
+                                  color: AppColors.starGold
+                                      .withValues(alpha: 0.7),
+                                  fontSize: 11,
+                                ),
+                          ),
+                      ],
                     ),
                   ],
                 ),

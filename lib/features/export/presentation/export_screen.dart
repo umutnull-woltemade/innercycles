@@ -9,15 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
-import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/export_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class ExportScreen extends ConsumerStatefulWidget {
   const ExportScreen({super.key});
@@ -59,11 +58,31 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
 
                     // Entry count
                     exportAsync.when(
-                      data: (service) => _EntryCountCard(
-                        count: service.totalEntries,
-                        isDark: isDark,
-                        isEn: isEn,
-                        isPremium: isPremium,
+                      data: (service) => Column(
+                        children: [
+                          _EntryCountCard(
+                            count: service.totalEntries,
+                            isDark: isDark,
+                            isEn: isEn,
+                            isPremium: isPremium,
+                          ),
+                          // Locked entries CTA for free users
+                          if (!isPremium && service.totalEntries > 7) ...[
+                            const SizedBox(height: 12),
+                            _LockedEntriesCta(
+                              totalEntries: service.totalEntries,
+                              lockedEntries: service.totalEntries - 7,
+                              isDark: isDark,
+                              isEn: isEn,
+                              onUnlock: () => showContextualPaywall(
+                                context,
+                                ref,
+                                paywallContext: PaywallContext.export,
+                                entryCount: service.totalEntries,
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
                       loading: () => const SizedBox.shrink(),
                       error: (e, s) => const SizedBox.shrink(),
@@ -111,7 +130,12 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                       onTap: isPremium
                           ? () => setState(
                               () => _selectedFormat = ExportFormat.csv)
-                          : () => context.push(Routes.premium),
+                          : () => showContextualPaywall(
+                              context,
+                              ref,
+                              paywallContext: PaywallContext.export,
+                              entryCount: exportAsync.valueOrNull?.totalEntries,
+                            ),
                     ),
                     const SizedBox(height: 8),
 
@@ -128,7 +152,12 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                       onTap: isPremium
                           ? () => setState(
                               () => _selectedFormat = ExportFormat.json)
-                          : () => context.push(Routes.premium),
+                          : () => showContextualPaywall(
+                              context,
+                              ref,
+                              paywallContext: PaywallContext.export,
+                              entryCount: exportAsync.valueOrNull?.totalEntries,
+                            ),
                     ),
 
                     const SizedBox(height: 32),
@@ -398,6 +427,111 @@ class _EntryCountCard extends StatelessWidget {
         ],
       ),
     ).animate().fadeIn(duration: 300.ms);
+  }
+}
+
+class _LockedEntriesCta extends StatelessWidget {
+  final int totalEntries;
+  final int lockedEntries;
+  final bool isDark;
+  final bool isEn;
+  final VoidCallback onUnlock;
+
+  const _LockedEntriesCta({
+    required this.totalEntries,
+    required this.lockedEntries,
+    required this.isDark,
+    required this.isEn,
+    required this.onUnlock,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onUnlock,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              const Color(0xFF66BB6A).withValues(alpha: 0.08),
+              const Color(0xFF66BB6A).withValues(alpha: 0.02),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+            color: const Color(0xFF66BB6A).withValues(alpha: 0.3),
+          ),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: const Color(0xFF66BB6A).withValues(alpha: 0.15),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.lock_outline,
+                size: 20,
+                color: Color(0xFF66BB6A),
+              ),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    isEn
+                        ? '$lockedEntries entries locked'
+                        : '$lockedEntries kayit kilitli',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    isEn
+                        ? 'Upgrade to export all $totalEntries entries'
+                        : 'Tum $totalEntries kaydi aktarmak icin yukselt',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF66BB6A), Color(0xFF4CAF50)],
+                ),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Text(
+                isEn ? 'Unlock' : 'Ac',
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ).animate().fadeIn(duration: 400.ms, delay: 200.ms);
   }
 }
 

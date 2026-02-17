@@ -255,4 +255,95 @@ class HabitSuggestionService {
         .where((h) => h.durationMinutes <= maxMinutes)
         .toList();
   }
+
+  // ═══════════════════════════════════════════════════════════════
+  // DAILY CHECK-OFF TRACKING (for adopted habits)
+  // ═══════════════════════════════════════════════════════════════
+
+  static const String _dailyCheckPrefix = 'habit_daily_check_';
+
+  String _checkKey(String habitId) => '$_dailyCheckPrefix$habitId';
+
+  String _todayKey() {
+    final now = DateTime.now();
+    return '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
+  }
+
+  /// Check off a habit for today
+  Future<void> checkOffToday(String habitId) async {
+    final dates = _getCheckDates(habitId);
+    final today = _todayKey();
+    if (!dates.contains(today)) {
+      dates.add(today);
+      await _prefs.setStringList(_checkKey(habitId), dates);
+    }
+  }
+
+  /// Uncheck a habit for today
+  Future<void> uncheckToday(String habitId) async {
+    final dates = _getCheckDates(habitId);
+    dates.remove(_todayKey());
+    await _prefs.setStringList(_checkKey(habitId), dates);
+  }
+
+  /// Check if a habit is checked off today
+  bool isCheckedToday(String habitId) {
+    return _getCheckDates(habitId).contains(_todayKey());
+  }
+
+  /// Get all dates a habit was checked off
+  List<String> _getCheckDates(String habitId) {
+    return _prefs.getStringList(_checkKey(habitId)) ?? [];
+  }
+
+  /// Get current streak for a habit
+  int getHabitStreak(String habitId) {
+    final dates = _getCheckDates(habitId);
+    if (dates.isEmpty) return 0;
+
+    dates.sort();
+    final today = DateTime.now();
+    int streak = 0;
+
+    for (int i = 0; i < 365; i++) {
+      final checkDate = today.subtract(Duration(days: i));
+      final key =
+          '${checkDate.year}-${checkDate.month.toString().padLeft(2, '0')}-${checkDate.day.toString().padLeft(2, '0')}';
+      if (dates.contains(key)) {
+        streak++;
+      } else {
+        break;
+      }
+    }
+    return streak;
+  }
+
+  /// Get total completions for a habit
+  int getTotalCompletions(String habitId) {
+    return _getCheckDates(habitId).length;
+  }
+
+  /// Get completions in the last 7 days for a habit (returns list of booleans, Mon-Sun)
+  List<bool> getWeekCompletions(String habitId) {
+    final dates = _getCheckDates(habitId).toSet();
+    final today = DateTime.now();
+    final result = <bool>[];
+
+    for (int i = 6; i >= 0; i--) {
+      final date = today.subtract(Duration(days: i));
+      final key =
+          '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+      result.add(dates.contains(key));
+    }
+    return result;
+  }
+
+  /// Get count of adopted habits checked off today
+  int get todayCompletedCount {
+    final adopted = _getAdoptedIds();
+    return adopted.where((id) => isCheckedToday(id)).length;
+  }
+
+  /// Get total adopted habits count
+  int get todayTotalAdopted => _getAdoptedIds().length;
 }

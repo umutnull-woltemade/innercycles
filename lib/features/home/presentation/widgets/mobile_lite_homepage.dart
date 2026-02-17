@@ -8,6 +8,7 @@ import '../../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/services/premium_service.dart';
+import '../../../../data/services/upgrade_trigger_service.dart';
 import '../../../streak/presentation/streak_card.dart';
 import '../../../gratitude/presentation/gratitude_section.dart';
 import '../../../rituals/presentation/ritual_checkoff_card.dart';
@@ -26,6 +27,7 @@ import '../../../prompts/presentation/today_prompt_card.dart';
 import '../../../referral/presentation/referral_progress_card.dart';
 import '../../../cosmic/presentation/cosmic_message_card.dart';
 import '../../../quiz/presentation/quiz_suggestion_card.dart';
+import '../../../premium/presentation/contextual_paywall_modal.dart';
 import 'whats_new_card.dart';
 
 /// MOBILE LITE HOMEPAGE - InnerCycles
@@ -253,6 +255,20 @@ class _AboveTheFold extends ConsumerWidget {
                   icon: '✨',
                   label: language == AppLanguage.en ? 'Insight' : 'İçgörü',
                   onTap: () => context.push(Routes.insight),
+                  isDark: isDark,
+                ),
+                const SizedBox(width: 8),
+                _QuickDiscoveryChip(
+                  icon: '📅',
+                  label: language == AppLanguage.en ? 'Calendar' : 'Takvim',
+                  onTap: () => context.push(Routes.calendarHeatmap),
+                  isDark: isDark,
+                ),
+                const SizedBox(width: 8),
+                _QuickDiscoveryChip(
+                  icon: '🔍',
+                  label: language == AppLanguage.en ? 'Search' : 'Ara',
+                  onTap: () => context.push(Routes.search),
                   isDark: isDark,
                 ),
               ],
@@ -878,6 +894,19 @@ class _BelowTheFold extends ConsumerWidget {
           ),
 
           _EntryPointTile(
+            icon: Icons.checklist_rounded,
+            title: language == AppLanguage.en
+                ? 'Daily Habit Tracker'
+                : 'Günlük Alışkanlık Takibi',
+            subtitle: language == AppLanguage.en
+                ? 'Check off your adopted habits daily'
+                : 'Benimsediğin alışkanlıkları günlük takip et',
+            route: Routes.dailyHabits,
+            isDark: isDark,
+            index: 4,
+          ),
+
+          _EntryPointTile(
             icon: Icons.park_outlined,
             title: language == AppLanguage.en
                 ? 'Seasonal Reflection'
@@ -947,6 +976,32 @@ class _BelowTheFold extends ConsumerWidget {
           const SizedBox(height: 16),
 
           _EntryPointTile(
+            icon: Icons.calendar_view_month_outlined,
+            title: language == AppLanguage.en
+                ? 'Activity Calendar'
+                : 'Aktivite Takvimi',
+            subtitle: language == AppLanguage.en
+                ? 'Visual heatmap of your journaling activity'
+                : 'Günlük yazma aktivitenizin görsel ısı haritası',
+            route: Routes.calendarHeatmap,
+            isDark: isDark,
+            index: 0,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.search_rounded,
+            title: language == AppLanguage.en
+                ? 'Search Everything'
+                : 'Her Şeyi Ara',
+            subtitle: language == AppLanguage.en
+                ? 'Find entries across journals, dreams & gratitude'
+                : 'Günlük, rüya ve minnettarlık kayıtlarında ara',
+            route: Routes.search,
+            isDark: isDark,
+            index: 1,
+          ),
+
+          _EntryPointTile(
             icon: Icons.archive_outlined,
             title: language == AppLanguage.en
                 ? 'Journal Archive'
@@ -956,7 +1011,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Tüm döngü kayıtlarını ara ve gözat',
             route: Routes.journalArchive,
             isDark: isDark,
-            index: 0,
+            index: 2,
           ),
 
           _EntryPointTile(
@@ -969,7 +1024,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Döngü verilerinizi metin, CSV veya JSON olarak indirin',
             route: Routes.exportData,
             isDark: isDark,
-            index: 1,
+            index: 3,
           ),
 
           _EntryPointTile(
@@ -982,7 +1037,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Yıllık döngü ilerleme arkın',
             route: Routes.yearReview,
             isDark: isDark,
-            index: 2,
+            index: 4,
           ),
 
           _EntryPointTile(
@@ -995,7 +1050,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Bu haftanın döngü pozisyonu ve tekrarları',
             route: Routes.weeklyDigest,
             isDark: isDark,
-            index: 3,
+            index: 5,
           ),
 
           const SizedBox(height: 32),
@@ -1244,7 +1299,13 @@ class _UpgradeTriggerBanner extends ConsumerWidget {
         return GestureDetector(
           onTap: () {
             upgradeService.markTriggerShown(trigger);
-            context.push(Routes.premium);
+            showContextualPaywall(
+              context,
+              ref,
+              paywallContext: _mapTriggerToPaywallContext(trigger),
+              entryCount: entryCount,
+              streakDays: streak,
+            );
           },
           child: GlassPanel(
             elevation: GlassElevation.g3,
@@ -1293,5 +1354,29 @@ class _UpgradeTriggerBanner extends ConsumerWidget {
       },
       orElse: () => const SizedBox.shrink(),
     );
+  }
+
+  /// Map upgrade triggers to contextual paywall types
+  PaywallContext _mapTriggerToPaywallContext(UpgradeTrigger trigger) {
+    switch (trigger) {
+      case UpgradeTrigger.insightsReady:
+      case UpgradeTrigger.patternShift:
+        return PaywallContext.patterns;
+      case UpgradeTrigger.dreamPatterns:
+        return PaywallContext.dreams;
+      case UpgradeTrigger.streakMilestone:
+        return PaywallContext.streakFreeze;
+      case UpgradeTrigger.monthlyReport:
+        return PaywallContext.monthlyReport;
+      case UpgradeTrigger.unlimitedSharing:
+      case UpgradeTrigger.comparePatterns:
+        return PaywallContext.general;
+      case UpgradeTrigger.attachmentDeep:
+        return PaywallContext.general;
+      case UpgradeTrigger.seasonalReset:
+        return PaywallContext.programs;
+      case UpgradeTrigger.removeAds:
+        return PaywallContext.adRemoval;
+    }
   }
 }

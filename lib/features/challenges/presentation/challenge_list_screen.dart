@@ -7,14 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/growth_challenge_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class ChallengeListScreen extends ConsumerWidget {
   const ChallengeListScreen({super.key});
@@ -116,7 +115,7 @@ class ChallengeListScreen extends ConsumerWidget {
                               isEn: isEn,
                               onStart: () async {
                                 if (c.isPremium && !isPremium) {
-                                  context.push(Routes.premium);
+                                  showContextualPaywall(context, ref, paywallContext: PaywallContext.challenges);
                                   return;
                                 }
                                 await service.startChallenge(c.id);

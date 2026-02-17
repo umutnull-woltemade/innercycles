@@ -18,6 +18,7 @@ import '../../../data/services/guided_program_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class ProgramListScreen extends ConsumerWidget {
   const ProgramListScreen({super.key});
@@ -131,7 +132,7 @@ class ProgramListScreen extends ConsumerWidget {
                               isEn: isEn,
                               onTap: () {
                                 if (p.isPremium && !isPremium) {
-                                  context.push(Routes.premium);
+                                  showContextualPaywall(context, ref, paywallContext: PaywallContext.programs);
                                   return;
                                 }
                                 if (service.getProgress(p.id) != null) {

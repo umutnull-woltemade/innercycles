@@ -63,6 +63,8 @@ dependencies:
   speech_to_text: ^7.0.0
 
   app_tracking_transparency: ^2.0.6+1
+  image_picker: ^1.2.1
+  path: ^1.9.1
 
 dev_dependencies:
   flutter_test:

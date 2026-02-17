@@ -143,7 +143,12 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
     GuidedProgramService service,
     int dayNumber,
   ) async {
-    await service.completeDay(widget.programId, dayNumber);
+    final reflection = _reflectionController.text;
+    await service.completeDay(
+      widget.programId,
+      dayNumber,
+      reflection: reflection.isNotEmpty ? reflection : null,
+    );
     ref.invalidate(guidedProgramServiceProvider);
     HapticFeedback.heavyImpact();
     _reflectionController.clear();

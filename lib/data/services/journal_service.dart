@@ -38,6 +38,7 @@ class JournalService {
     required int overallRating,
     Map<String, int> subRatings = const {},
     String? note,
+    String? imagePath,
   }) async {
     final entry = JournalEntry(
       id: _uuid.v4(),
@@ -47,6 +48,7 @@ class JournalService {
       overallRating: overallRating.clamp(1, 5),
       subRatings: subRatings.map((k, v) => MapEntry(k, v.clamp(1, 5))),
       note: note,
+      imagePath: imagePath,
     );
 
     _entries.add(entry);

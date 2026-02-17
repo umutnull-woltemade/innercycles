@@ -130,6 +130,7 @@ class JournalEntry {
   final int overallRating; // 1-5
   final Map<String, int> subRatings; // key -> 1-5
   final String? note;
+  final String? imagePath; // local file path to attached photo
 
   const JournalEntry({
     required this.id,
@@ -139,6 +140,7 @@ class JournalEntry {
     required this.overallRating,
     this.subRatings = const {},
     this.note,
+    this.imagePath,
   });
 
   JournalEntry copyWith({
@@ -149,6 +151,7 @@ class JournalEntry {
     int? overallRating,
     Map<String, int>? subRatings,
     String? note,
+    String? imagePath,
   }) {
     return JournalEntry(
       id: id ?? this.id,
@@ -158,6 +161,7 @@ class JournalEntry {
       overallRating: overallRating ?? this.overallRating,
       subRatings: subRatings ?? this.subRatings,
       note: note ?? this.note,
+      imagePath: imagePath ?? this.imagePath,
     );
   }
 
@@ -169,6 +173,7 @@ class JournalEntry {
     'overallRating': overallRating,
     'subRatings': subRatings,
     'note': note,
+    'imagePath': imagePath,
   };
 
   factory JournalEntry.fromJson(Map<String, dynamic> json) => JournalEntry(
@@ -188,6 +193,7 @@ class JournalEntry {
           )
         : {},
     note: json['note'] as String?,
+    imagePath: json['imagePath'] as String?,
   );
 
   /// Date key for grouping entries by day (yyyy-MM-dd)

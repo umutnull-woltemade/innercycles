@@ -16,6 +16,7 @@ import '../../../data/services/paywall_service.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 import 'notification_settings_section.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -229,7 +230,7 @@ class SettingsScreen extends ConsumerWidget {
                               language,
                             ),
                             isDark: isDark,
-                            onTap: () => context.push(Routes.premium),
+                            onTap: () => showContextualPaywall(context, ref, paywallContext: PaywallContext.general),
                             trailing: Container(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 8,

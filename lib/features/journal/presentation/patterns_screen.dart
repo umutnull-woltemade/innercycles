@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'dart:ui';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
@@ -10,8 +12,10 @@ import '../../../data/models/cross_correlation_result.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/pattern_engine_service.dart';
 import '../../../data/services/pattern_health_service.dart';
+import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class PatternsScreen extends ConsumerWidget {
   const PatternsScreen({super.key});
@@ -146,6 +150,7 @@ class PatternsScreen extends ConsumerWidget {
     final correlations = engine.detectCorrelations();
     final healthAsync = ref.watch(patternHealthReportProvider);
     final crossCorrelationsAsync = ref.watch(crossCorrelationsProvider);
+    final isPremium = ref.watch(isPremiumUserProvider);
 
     // Extract dimension health map (null if loading/error)
     final healthMap = healthAsync.whenOrNull(
@@ -168,13 +173,13 @@ class PatternsScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(AppConstants.spacingLg),
           sliver: SliverList(
             delegate: SliverChildListDelegate([
-              // Cycle arcs visualization
+              // Cycle arcs visualization — always free
               _buildCycleArcs(context, thisWeek, isDark)
                   .animate()
                   .fadeIn(duration: 400.ms),
               const SizedBox(height: AppConstants.spacingXl),
 
-              // Weekly comparison
+              // Weekly comparison — always free (summary level)
               if (thisWeek.isNotEmpty)
                 _buildWeeklyComparison(
                   context,
@@ -182,40 +187,136 @@ class PatternsScreen extends ConsumerWidget {
                   lastWeek,
                   isDark,
                   isEn,
-                  healthMap: healthMap,
+                  healthMap: isPremium ? healthMap : null,
                 ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
               if (thisWeek.isNotEmpty)
                 const SizedBox(height: AppConstants.spacingLg),
 
-              // Trends
-              if (trends.isNotEmpty)
-                _buildTrends(context, trends, isDark, isEn)
-                    .animate()
-                    .fadeIn(delay: 200.ms, duration: 400.ms),
-              if (trends.isNotEmpty)
-                const SizedBox(height: AppConstants.spacingLg),
+              // Deep analysis — blurred for free users
+              if (!isPremium && (trends.isNotEmpty || correlations.isNotEmpty || crossCorrelations.isNotEmpty))
+                _buildPremiumBlurOverlay(context, ref, isEn, isDark,
+                  child: Column(
+                    children: [
+                      if (trends.isNotEmpty)
+                        _buildTrends(context, trends, isDark, isEn),
+                      if (trends.isNotEmpty)
+                        const SizedBox(height: AppConstants.spacingLg),
+                      if (correlations.isNotEmpty)
+                        _buildCorrelations(context, correlations, isDark, isEn),
+                      if (correlations.isNotEmpty)
+                        const SizedBox(height: AppConstants.spacingLg),
+                      if (crossCorrelations.isNotEmpty)
+                        _buildCrossCorrelations(
+                          context, crossCorrelations, isDark, isEn,
+                        ),
+                    ],
+                  ),
+                ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
 
-              // Correlations
-              if (correlations.isNotEmpty)
-                _buildCorrelations(context, correlations, isDark, isEn)
-                    .animate()
-                    .fadeIn(delay: 300.ms, duration: 400.ms),
-              if (correlations.isNotEmpty)
-                const SizedBox(height: AppConstants.spacingLg),
-
-              // Cross-dimension correlations
-              if (crossCorrelations.isNotEmpty)
-                _buildCrossCorrelations(
-                  context,
-                  crossCorrelations,
-                  isDark,
-                  isEn,
-                ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+              // Premium users see everything unblurred
+              if (isPremium) ...[
+                if (trends.isNotEmpty)
+                  _buildTrends(context, trends, isDark, isEn)
+                      .animate()
+                      .fadeIn(delay: 200.ms, duration: 400.ms),
+                if (trends.isNotEmpty)
+                  const SizedBox(height: AppConstants.spacingLg),
+                if (correlations.isNotEmpty)
+                  _buildCorrelations(context, correlations, isDark, isEn)
+                      .animate()
+                      .fadeIn(delay: 300.ms, duration: 400.ms),
+                if (correlations.isNotEmpty)
+                  const SizedBox(height: AppConstants.spacingLg),
+                if (crossCorrelations.isNotEmpty)
+                  _buildCrossCorrelations(
+                    context, crossCorrelations, isDark, isEn,
+                  ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+              ],
               const SizedBox(height: 40),
             ]),
           ),
         ),
       ],
+      ),
+    );
+  }
+
+  /// Blurred overlay for deep analysis sections — tappable to open contextual paywall
+  Widget _buildPremiumBlurOverlay(
+    BuildContext context,
+    WidgetRef ref,
+    bool isEn,
+    bool isDark, {
+    required Widget child,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        showContextualPaywall(
+          context,
+          ref,
+          paywallContext: PaywallContext.patterns,
+        );
+      },
+      child: Stack(
+        children: [
+          // Blurred content
+          ClipRRect(
+            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+            child: ImageFiltered(
+              imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+              child: IgnorePointer(child: child),
+            ),
+          ),
+          // Overlay CTA
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    (isDark ? Colors.black : Colors.white).withValues(alpha: 0.7),
+                  ],
+                ),
+              ),
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [AppColors.starGold, Color(0xFFFFA500)],
+                    ),
+                    borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.starGold.withValues(alpha: 0.4),
+                        blurRadius: 16,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.auto_awesome, color: Colors.black, size: 18),
+                      const SizedBox(width: 8),
+                      Text(
+                        isEn ? 'See Full Analysis' : 'Tam Analizi Gör',
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
