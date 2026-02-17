@@ -870,8 +870,8 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Micro-Habits'
                 : 'Mikro Alışkanlıklar',
             subtitle: language == AppLanguage.en
-                ? '56 evidence-based habits to try'
-                : '56 kanıta dayalı deneyebileceğin alışkanlık',
+                ? '56 cycle-aware micro-habits to try'
+                : '56 döngü farkındalıklı mikro alışkanlık',
             route: Routes.habitSuggestions,
             isDark: isDark,
             index: 3,
@@ -883,8 +883,8 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Seasonal Reflection'
                 : 'Mevsimsel Yansıma',
             subtitle: language == AppLanguage.en
-                ? 'Align with nature\'s rhythms'
-                : 'Doğanın ritimleriyle uyum sağla',
+                ? 'Map your cycles against seasonal rhythms'
+                : 'Döngülerini mevsimsel ritimlerle haritalandır',
             route: Routes.seasonal,
             isDark: isDark,
             index: 4,
@@ -896,8 +896,8 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Moon Calendar'
                 : 'Ay Takvimi',
             subtitle: language == AppLanguage.en
-                ? 'Track lunar phases & reflections'
-                : 'Ay evrelerini ve yansımalarını takip et',
+                ? 'Correlate lunar phases with your emotional cycles'
+                : 'Ay evrelerini duygusal döngülerinle ilişkilendir',
             route: Routes.moonCalendar,
             isDark: isDark,
             index: 5,
@@ -909,8 +909,8 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Sleep Tracker'
                 : 'Uyku Takibi',
             subtitle: language == AppLanguage.en
-                ? 'Log & analyze your sleep patterns'
-                : 'Uyku düzeninizi kaydedin ve analiz edin',
+                ? 'Detect sleep-cycle correlations with mood'
+                : 'Uyku döngüsü ve ruh hali korelasyonlarını tespit et',
             route: Routes.sleepDetail,
             isDark: isDark,
             index: 6,
@@ -922,8 +922,8 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Energy Map'
                 : 'Enerji Haritası',
             subtitle: language == AppLanguage.en
-                ? 'Visualize your energy patterns over time'
-                : 'Enerji kalıplarınızı zaman içinde görselleştirin',
+                ? 'Visualize energy cycles and recurring shifts'
+                : 'Enerji döngülerini ve tekrarlayan değişimleri görselleştir',
             route: Routes.energyMap,
             isDark: isDark,
             index: 7,
@@ -934,8 +934,8 @@ class _BelowTheFold extends ConsumerWidget {
           // ═══ YOUR DATA ═══
           Text(
             language == AppLanguage.en
-                ? 'Your Data'
-                : 'Verileriniz',
+                ? 'Your Cycle Data'
+                : 'Döngü Verileriniz',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
