@@ -33,7 +33,7 @@ screenshot_captions:
   7: "Shadow-light integration: 62% of fear themes resolved"
   8: "Monthly cycle report: 3 patterns identified, 1 breaking"
   9: "Cyclical intelligence cards — share your pattern insights"
-  10: "Private by architecture — all cycle data stays on your device"
+  10: "Private by architecture — your cycle data is encrypted and under your control"
 
 # ── DESCRIPTION (iOS — not indexed, optimized for conversion) ────────────
 description: |
@@ -52,7 +52,7 @@ description: |
   - Shadow-Light Integration — Tracks your relationship with difficult emotions through journaling milestones
   - Wellness Rhythm Tracking — Observe energy patterns across physical, emotional, and intellectual dimensions over time
   - Cycle Position Reports — Weekly and monthly reports showing where you are in recurring patterns
-  - Private & Secure — Your data is encrypted and always under your control
+  - Private & Secure — Your data is encrypted, with optional cloud sync under your control
 
   WHO IT'S FOR:
 
@@ -106,9 +106,9 @@ review_notes: |
 
   ATT PROMPT: The app requests App Tracking Transparency permission to serve personalized ads via Google AdMob. If the user declines, only non-personalized ads are shown. Premium subscribers see no ads.
 
-  CONTENT: All reflective prompts, dream symbol definitions, and cycle analysis text are generated locally from a curated database. No AI-generated or user-generated content is displayed. The app does not provide medical, psychological, or predictive advice.
+  CONTENT: Reflective prompts, dream symbol definitions, and cycle analysis text are generated locally from a curated content database combined with AI-assisted content generation. AI-generated content is clearly labeled, safety-filtered to remove predictive or diagnostic language, and reviewed by human editors. No user-generated content is displayed to other users. The app does not provide medical, psychological, or predictive advice. Full AI usage policy at https://innercycles.app/ai-policy.
 
-  ARCHETYPE SYSTEM: The app uses a personality archetype framework (Pioneer, Builder, Communicator, etc.) inspired by narrative psychology and personality typing systems like the Enneagram and MBTI. These are NOT zodiac signs. The archetype assigned to a user is determined by their journal entries and self-reported preferences, not by birth date or celestial data. The system tracks how a user's dominant archetype evolves over time based on what they write.
+  ARCHETYPE SYSTEM: The app uses a personality archetype framework (Pioneer, Builder, Communicator, etc.) inspired by narrative psychology and personality typing systems like the Enneagram and MBTI. These are NOT zodiac signs. The initial archetype is assigned via an onboarding quiz based on self-reported preferences. The system tracks how a user's dominant archetype evolves over time based on what they write and explore.
 
   BIRTH DATE: Birth date is collected solely for age verification and birthday-themed reflection prompts (e.g., "birthday reflection" on the user's birthday). Birth time and city fields exist for timezone-aware notification scheduling and are fully optional. No astrological calculations are performed.
 
@@ -133,6 +133,6 @@ tr:
     - Arketip İlerlemesi — 12 arketip çerçevesinde kişilik evrimini izle
     - Gölge-Işık Entegrasyonu — Duygusal gölge çalışmasını ve entegrasyon kilometre taşlarını ölç
     - Döngü Pozisyon Raporları — Tekrarlayan örüntülerdeki yerini gör
-    - Özel & Güvenli — Verilerin şifrelenir ve her zaman senin kontrolünde
+    - Özel & Güvenli — Verilerin şifrelenir, isteğe bağlı bulut senkronizasyonu senin kontrolünde
 
     Ücretsiz başla. İçinde yaşadığın döngüleri gör.
