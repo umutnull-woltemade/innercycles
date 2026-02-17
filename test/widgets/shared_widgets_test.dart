@@ -61,6 +61,9 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
+          theme: ThemeData(
+            splashFactory: NoSplash.splashFactory,
+          ),
           home: Scaffold(
             body: GradientButton(
               label: 'Tap Me',
@@ -71,6 +74,7 @@ void main() {
       );
 
       await tester.tap(find.text('Tap Me'));
+      await tester.pump();
       expect(tapped, isTrue);
     });
 
