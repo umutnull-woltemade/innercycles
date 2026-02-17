@@ -36,7 +36,7 @@ void main() {
       const tier = PremiumTier.monthly;
       // displayName uses i18n with English fallback when not initialized
       expect(tier.displayName, isNotEmpty);
-      expect(tier.price, '\$4.99/mo');
+      expect(tier.price, '\$7.99/mo');
       expect(tier.features, isNotEmpty);
       expect(tier.productId, 'monthly');
     });

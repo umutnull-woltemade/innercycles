@@ -3,8 +3,8 @@
 # derive_repo_key.sh
 # Extracts a normalised repo key from GITHUB_REPOSITORY for secret naming.
 #
-# Input : GITHUB_REPOSITORY  (e.g. "umut-null/astrology_app")
-# Output: REPO_KEY           (e.g. "ASTROLOGY_APP")
+# Input : GITHUB_REPOSITORY  (e.g. "umut-null/innercycles")
+# Output: REPO_KEY           (e.g. "INNERCYCLES")
 #
 # Usage in GitHub Actions:
 #   - name: Derive repo key
