@@ -62,7 +62,7 @@ test.describe('Static Assets', () => {
 
 test.describe('Asset Loading', () => {
   test('brand logo loads', async ({ request }) => {
-    const response = await request.get(`${BASE_URL}/assets/brand/venus-logo/png/venus-logo-256.png`);
+    const response = await request.get(`${BASE_URL}/assets/brand/app-logo/png/app-logo-256.png`);
     // Accept 200 or asset bundled differently
     expect([200, 404]).toContain(response.status());
   });
