@@ -28,6 +28,11 @@
 	<string>ca-app-pub-5137678816003178~8037799627</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSFaceIDUsageDescription</key>
@@ -267,6 +272,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>InnerCycles uses the camera to take photos for journal entries. Photos stay on your device unless you choose to share.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>InnerCycles uses your photo library to attach photos to journal entries.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
