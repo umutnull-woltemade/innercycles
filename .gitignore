@@ -30,8 +30,7 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-/build/*/
-!/build/web/
+/build/
 /coverage/
 
 # Symbolication related
@@ -64,3 +63,7 @@ outputs/
 
 # Archived/graveyard
 _graveyard/
+
+# Orchestrator run artifacts
+.recovery_run/
+.cleanup_run/

@@ -35,7 +35,7 @@
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>InnerCycles uses speech recognition to convert your voice into journal text. Processing happens on-device for your privacy.</string>
 	<key>NSUserTrackingUsageDescription</key>
-	<string>This allows us to provide you with a more personalized ad experience.</string>
+	<string>InnerCycles uses this identifier to show relevant ads in the free version. Premium users see no ads.</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<!-- Google (AdMob) -->
@@ -235,6 +235,11 @@
 	</array>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
