@@ -64,6 +64,10 @@ outputs/
 # Archived/graveyard
 _graveyard/
 
+# Stale Flutter web build artifacts
+web/main.dart.js
+web/flutter_service_worker.js
+
 # Orchestrator run artifacts
 .recovery_run/
 .cleanup_run/

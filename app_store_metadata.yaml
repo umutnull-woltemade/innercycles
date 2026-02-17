@@ -88,6 +88,28 @@ whats_new: |
   - Enhanced Dream Analysis — Deeper symbol connections
   - Bug fixes and performance improvements
 
+# ── REVIEW NOTES (paste into App Store Connect → App Review Information) ──
+review_notes: |
+  InnerCycles is a personal journaling and mood-tracking app. No login is required to use the app — users can start journaling immediately.
+
+  HOW TO TEST:
+  1. Launch the app and complete the brief onboarding (select language, tap through intro).
+  2. On the home screen, tap "How are you feeling?" to create a journal entry.
+  3. Explore the Dream Journal, Daily Prompts, and Pattern Insights from the home cards.
+  4. Open Settings to see profile, notification preferences, and Premium subscription options.
+
+  SIGN-IN: Optional. Users may sign in with Apple for cloud backup. All core features work without an account.
+
+  SUBSCRIPTIONS: InnerCycles Premium is offered as Monthly and Annual auto-renewing subscriptions via RevenueCat/StoreKit 2. Free users have full access to journaling, prompts, and dream logging; Premium unlocks advanced pattern analysis, unlimited dream interpretations, and an ad-free experience.
+
+  ATT PROMPT: The app requests App Tracking Transparency permission to serve personalized ads via Google AdMob. If the user declines, only non-personalized ads are shown. Premium subscribers see no ads.
+
+  CONTENT: All reflective prompts, dream symbol definitions, and insight text are generated locally from a curated database. No AI-generated or user-generated content is displayed. The app does not provide medical, psychological, or predictive advice.
+
+  PRIVACY: No personal data is shared with third parties beyond analytics (Firebase) and ads (AdMob). Full privacy policy at https://innercycles.app/privacy.
+
+  CONTACT: support@innercycles.app
+
 # ── LOCALIZED METADATA (Turkish) ─────────────────────────────────────────
 tr:
   title: "InnerCycles - Ruh Hali"  # 23 chars
