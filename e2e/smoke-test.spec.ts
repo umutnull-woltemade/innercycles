@@ -127,10 +127,10 @@ test.describe('SMOKE: Exploration Features', () => {
     await page.screenshot({ path: 'artifacts/smoke-15-legacy-analysis.png', fullPage: true });
   });
 
-  test('16. Aura screen loads', async ({ page }) => {
-    await page.goto(`${BASE_URL}/aura`);
+  test('16. Energy profile screen loads', async ({ page }) => {
+    await page.goto(`${BASE_URL}/energy-profile`);
     await waitForFlutter(page);
-    await page.screenshot({ path: 'artifacts/smoke-16-aura.png', fullPage: true });
+    await page.screenshot({ path: 'artifacts/smoke-16-energy-profile.png', fullPage: true });
   });
 });
 

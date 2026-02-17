@@ -372,9 +372,9 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Uzunlamasına araştırmalar, kişilik özelliklerinin özellikle bilinçli çabayla yaşam boyunca anlamlı şekilde değiştiğini göstermektedir.',
     bodyEn:
-        'The myth that personality is set in stone by age 25 has been thoroughly debunked. A meta-analysis of 92 longitudinal studies found that agreeableness, conscientiousness, and emotional stability all increase significantly between ages 20 and 60. More importantly, intentional interventions — like therapy, journaling, and deliberate practice — can accelerate these changes. Your journal is a record of who you are becoming, not a fixed description of who you are.',
+        'The myth that personality is set in stone by age 25 has been thoroughly debunked. A meta-analysis of 92 longitudinal studies found that agreeableness, conscientiousness, and emotional stability all increase significantly between ages 20 and 60. More importantly, intentional interventions — like coaching, journaling, and deliberate practice — can accelerate these changes. Your journal is a record of who you are becoming, not a fixed description of who you are.',
     bodyTr:
-        '25 yaşına kadar kişiliğin taşa oyulduğu efsanesi tamamen çürütülmüştür. 92 uzunlamasına çalışmanın meta analizi, uyumluluk, öz disiplin ve duygusal istikrarın 20-60 yaşları arasında önemli ölçüde arttığını buldu. Daha da önemlisi, terapi, günlük tutma ve kasıtlı pratik gibi bilinçli müdahaleler bu değişiklikleri hızlandırabilir. Günlüğünüz kim olduğunuzun sabit bir açıklaması değil, kim olduğunuzun bir kaydıdır.',
+        '25 yaşına kadar kişiliğin taşa oyulduğu efsanesi tamamen çürütülmüştür. 92 uzunlamasına çalışmanın meta analizi, uyumluluk, öz disiplin ve duygusal istikrarın 20-60 yaşları arasında önemli ölçüde arttığını buldu. Daha da önemlisi, koçluk, günlük tutma ve kasıtlı pratik gibi bilinçli müdahaleler bu değişiklikleri hızlandırabilir. Günlüğünüz kim olduğunuzun sabit bir açıklaması değil, kim olduğunuzun bir kaydıdır.',
     whyItMattersEn:
         'Looking back at journal entries from months ago often reveals growth you cannot see day-to-day.',
     whyItMattersTr:
@@ -564,9 +564,9 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Kendi düşüncelerinizi ve duygularınızı onlara kapılmadan izleyebilen bir parçanız var.',
     bodyEn:
-        'Acceptance and Commitment Therapy (ACT) calls this the "observing self" — the perspective that notices you are thinking without becoming the thought. When you write "I feel anxious," something interesting happens: the part of you doing the writing is not anxious. It is observing anxiety. This distinction matters because it creates distance between you and your experience. You are not your mood. You are the one noticing your mood. Journaling naturally strengthens this observer perspective, which is why it consistently shows benefits in psychological research.',
+        'Acceptance and Commitment Training (ACT) calls this the "observing self" — the perspective that notices you are thinking without becoming the thought. When you write "I feel anxious," something interesting happens: the part of you doing the writing is not anxious. It is observing anxiety. This distinction matters because it creates distance between you and your experience. You are not your mood. You are the one noticing your mood. Journaling naturally strengthens this observer perspective, which is why it consistently shows benefits in psychological research.',
     bodyTr:
-        'Kabul ve Kararlılık Terapisi (ACT) buna "gözlemleyen benlik" der — düşünce olmadan düşündüğünüzü fark eden bakış açısı. "Kaygılı hissediyorum" yazdığınızda ilginç bir şey olur: yazan parçanız kaygılı değildir. Kaygıyı gözlemlemektedir. Bu ayrım önemlidir çünkü siz ile deneyiminiz arasında mesafe yaratır. Siz ruh haliniz değilsiniz. Siz ruh halinizi fark edensiniz.',
+        'Kabul ve Kararlılık Eğitimi (ACT) buna "gözlemleyen benlik" der — düşünce olmadan düşündüğünüzü fark eden bakış açısı. "Kaygılı hissediyorum" yazdığınızda ilginç bir şey olur: yazan parçanız kaygılı değildir. Kaygıyı gözlemlemektedir. Bu ayrım önemlidir çünkü siz ile deneyiminiz arasında mesafe yaratır. Siz ruh haliniz değilsiniz. Siz ruh halinizi fark edensiniz.',
     whyItMattersEn:
         'Strengthening the observer self through journaling helps you respond to difficult emotions with curiosity instead of panic.',
     whyItMattersTr:
@@ -633,9 +633,9 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Beyninizin öngörülebilir düşünce tuzakları vardır. Onları günlük kayıtlarınızda tanımak özgürlüğe giden ilk adımdır.',
     bodyEn:
-        'Cognitive behavioral therapy identifies common thinking patterns that distort reality: all-or-nothing thinking ("If it is not perfect, it is a failure"), catastrophizing ("This mistake will ruin everything"), mind-reading ("They probably think I am incompetent"), and emotional reasoning ("I feel stupid, so I must be stupid"). These are not character flaws — they are default brain shortcuts that everyone uses. The power of journaling is that these distortions become visible on the page. When you read back "everything went wrong today," you can ask: did literally everything go wrong, or are you filtering?',
+        'Cognitive behavioral research identifies common thinking patterns that distort reality: all-or-nothing thinking ("If it is not perfect, it is a failure"), catastrophizing ("This mistake will ruin everything"), mind-reading ("They probably think I am incompetent"), and emotional reasoning ("I feel stupid, so I must be stupid"). These are not character flaws — they are default brain shortcuts that everyone uses. The power of journaling is that these distortions become visible on the page. When you read back "everything went wrong today," you can ask: did literally everything go wrong, or are you filtering?',
     bodyTr:
-        'Bilişsel davranışçı terapi, gerçeği çarpıtan yaygın düşünce kalıplarını tanımlar: ya hep ya hiç düşüncesi, felaketleştirme, zihin okuma ve duygusal muhakeme. Bunlar karakter kusurları değil — herkesin kullandığı varsayılan beyin kısayollarıdır. Günlük tutmanın gücü, bu çarpıtmaların sayfada görünür hale gelmesidir.',
+        'Bilişsel davranışçı araştırmalar, gerçeği çarpıtan yaygın düşünce kalıplarını tanımlar: ya hep ya hiç düşüncesi, felaketleştirme, zihin okuma ve duygusal muhakeme. Bunlar karakter kusurları değil — herkesin kullandığı varsayılan beyin kısayollarıdır. Günlük tutmanın gücü, bu çarpıtmaların sayfada görünür hale gelmesidir.',
     whyItMattersEn:
         'Spotting distortions in your own writing trains your brain to catch them in real-time. This is the core mechanism of CBT.',
     whyItMattersTr:
