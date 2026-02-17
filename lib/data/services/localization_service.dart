@@ -124,14 +124,14 @@ class L10n {
       AppLanguage.ar: 'الليل الهادئ يدعو للتأمل',
     },
     'greeting_morning': {
-      AppLanguage.en: 'Good morning — a fresh start awaits',
-      AppLanguage.tr: 'Günaydın — taze bir başlangıç seni bekliyor',
+      AppLanguage.en: 'Good morning — a fresh start is here',
+      AppLanguage.tr: 'Günaydın — taze bir başlangıç burada',
       AppLanguage.el: 'Καλημέρα — μια νέα αρχή σας περιμένει',
       AppLanguage.bg: 'Добро утро — ново начало ви очаква',
       AppLanguage.ru: 'Доброе утро — вас ждёт свежее начало',
       AppLanguage.zh: '早安——新的开始在等着你',
-      AppLanguage.fr: 'Bonjour — un nouveau départ vous attend',
-      AppLanguage.de: 'Guten Morgen — ein frischer Start erwartet dich',
+      AppLanguage.fr: 'Bonjour — un nouveau départ est là',
+      AppLanguage.de: 'Guten Morgen — ein frischer Start ist da',
       AppLanguage.es: 'Buenos días — un nuevo comienzo te espera',
       AppLanguage.ar: 'صباح الخير — بداية جديدة بانتظارك',
     },
@@ -175,9 +175,9 @@ class L10n {
     // ============ ONBOARDING ============
     'onboarding_welcome_text': {
       AppLanguage.en:
-          'Your personal journal awaits.\nReflect on your thoughts, track your patterns,\nand grow through self-awareness.',
+          'Your personal journal is ready.\nReflect on your thoughts, track your patterns,\nand grow through self-awareness.',
       AppLanguage.tr:
-          'Kişisel günlüğün seni bekliyor.\nDüşüncelerini yansıt, kalıplarını takip et\nve öz-farkındalıkla büyü.',
+          'Kişisel günlüğün hazır.\nDüşüncelerini yansıt, kalıplarını takip et\nve öz-farkındalıkla büyü.',
       AppLanguage.el:
           'Το προσωπικό σας ημερολόγιο σας περιμένει.\nΑναστοχαστείτε, παρακολουθήστε τα μοτίβα σας\nκαι αναπτυχθείτε μέσω αυτογνωσίας.',
       AppLanguage.bg:
@@ -186,9 +186,9 @@ class L10n {
           'Ваш личный дневник ждёт вас.\nРазмышляйте, отслеживайте свои паттерны\nи развивайтесь через самопознание.',
       AppLanguage.zh: '您的个人日记在等待您。\n反思您的想法，追踪您的模式，\n通过自我认知成长。',
       AppLanguage.fr:
-          'Votre journal personnel vous attend.\nRéfléchissez, suivez vos schémas\net grandissez par la conscience de soi.',
+          'Votre journal personnel est prêt.\nRéfléchissez, suivez vos schémas\net grandissez par la conscience de soi.',
       AppLanguage.de:
-          'Dein persönliches Tagebuch wartet auf dich.\nReflektiere deine Gedanken, verfolge deine Muster\nund wachse durch Selbsterkenntnis.',
+          'Dein persönliches Tagebuch ist bereit.\nReflektiere deine Gedanken, verfolge deine Muster\nund wachse durch Selbsterkenntnis.',
       AppLanguage.es:
           'Tu diario personal te espera.\nReflexiona sobre tus pensamientos, rastrea tus patrones\ny crece a través del autoconocimiento.',
       AppLanguage.ar:
@@ -265,14 +265,14 @@ class L10n {
       AppLanguage.ar: 'أكمل جميع المعلومات لفتح جميع طبقات خريطتك الشخصية.',
     },
     'will_be_calculated': {
-      AppLanguage.en: 'Your Journal Awaits',
-      AppLanguage.tr: 'Günlüğün seni bekliyor',
+      AppLanguage.en: 'Your Journal Is Ready',
+      AppLanguage.tr: 'Günlüğün Hazır',
       AppLanguage.el: 'Θα Υπολογιστούν Για Εσάς',
       AppLanguage.bg: 'Ще Бъде Изчислено За Вас',
       AppLanguage.ru: 'Будет Рассчитано Для Вас',
       AppLanguage.zh: '将为您计算',
-      AppLanguage.fr: 'Votre journal vous attend',
-      AppLanguage.de: 'Dein Journal erwartet dich',
+      AppLanguage.fr: 'Votre journal est prêt',
+      AppLanguage.de: 'Dein Journal ist bereit',
       AppLanguage.es: 'Se Calculará Para Usted',
       AppLanguage.ar: 'سيتم حسابه لك',
     },

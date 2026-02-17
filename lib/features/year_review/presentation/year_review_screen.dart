@@ -296,8 +296,8 @@ class _EmptyState extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             isEn
-                ? 'Your Year in Review awaits'
-                : 'Yıllık değerlendirmeniz sizi bekliyor',
+                ? 'Your Year in Review is ready'
+                : 'Yıllık değerlendirmeniz hazır',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary

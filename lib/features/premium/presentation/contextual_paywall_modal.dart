@@ -360,8 +360,8 @@ class _ContextualPaywallSheetState
               ? 'Your dream has more to say'
               : 'Rüyanın söyleyecekleri bitmedi',
           subtitle: isEn
-              ? '4 more interpretation perspectives are waiting. See your dream through every lens.'
-              : '4 yorum perspektifi daha bekliyor. Rüyanı her açıdan gör.',
+              ? '4 more interpretation perspectives available. See your dream through every lens.'
+              : '4 yorum perspektifi daha mevcut. Rüyanı her açıdan gör.',
           cta: isEn
               ? 'Unlock All Perspectives'
               : 'Tüm Perspektifleri Aç',

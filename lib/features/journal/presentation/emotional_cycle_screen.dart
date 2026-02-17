@@ -13,6 +13,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/services/emotional_cycle_service.dart';
@@ -880,7 +881,10 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           SizedBox(
             width: double.infinity,
             child: OutlinedButton(
-              onPressed: () => context.push('/premium'),
+              onPressed: () => showContextualPaywall(
+                context, ref,
+                paywallContext: PaywallContext.patterns,
+              ),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.starGold,
                 side: const BorderSide(color: AppColors.starGold),
