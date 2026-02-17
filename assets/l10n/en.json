@@ -997,7 +997,7 @@
                     "attention_label": "⚠️ THINGS TO WATCH",
                     "attention": "• Areas in life where you've lost control\n• Signs of excessive stress and anxiety\n• Meeting of basic needs\n• Work-life balance",
                     "practice_label": "✨ PRACTICAL APPLICATION",
-                    "practice": "• Walk barefoot on the earth\n• Do root chakra meditation\n• List your security needs\n• Practice breathing exercises",
+                    "practice": "• Walk barefoot on the earth\n• Do grounding meditation\n• List your security needs\n• Practice breathing exercises",
                     "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
                     "cosmic_message": "Falling is actually letting go. Let go of the illusion of control, trust the process. As a {element} element, grounding practice is especially important."
                 },
@@ -1069,7 +1069,7 @@
                     "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
                     "psychological": "• Anima/Animus: Opposite gender archetype\n• Projection: Seeing your own qualities\n• Need: Unmet emotional requirements",
                     "practice_label": "✨ PRACTICAL APPLICATION",
-                    "practice": "• Take a love language test\n• List your relationship needs\n• Work on self-worth\n• Heart chakra meditation",
+                    "practice": "• Take a love language test\n• List your relationship needs\n• Work on self-worth\n• Heart-centered meditation",
                     "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
                     "cosmic_message": "Love yourself first. {element} element in love life {element_message}."
                 },
@@ -1504,7 +1504,7 @@
             },
             "energy_field": {
                 "title": "Your Energy Field",
-                "description": "The colors of your aura and chakra balance."
+                "description": "Your personal energy and inner balance."
             },
             "kozmoz_discovery": {
                 "title": "Personal Discovery",
@@ -1823,7 +1823,7 @@
             },
             "energy_guidance": {
                 "title": "Energy Guidance",
-                "description": "Special message for your chakras."
+                "description": "Personalized energy guidance."
             },
             "energy_reading": {
                 "description": "Energy reading."

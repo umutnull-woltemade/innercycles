@@ -124,7 +124,7 @@ class DreamSymbolsDatabase {
       universalMeanings: [
         'Dönüşüm ve deri değiştirme',
         'Şifa ve bilgelik (Asklepios asası)',
-        'Kundalini enerji ve cinsellik',
+        'Yaratıcı enerji ve cinsellik',
         'Gizli düşman veya ihanet',
       ],
       emotionVariants: {
@@ -132,7 +132,7 @@ class DreamSymbolsDatabase {
             'İhanet korkusu veya bastırılmış cinsellik - kim veya ne tehdit ediyor?',
         EmotionalTone.merak: 'Bilgelik arayışı - dönüşüm temaları öne çıkıyor',
         EmotionalTone.heyecan:
-            'Kundalini uyanışı - yaratıcı/cinsel enerji yükseliyor',
+            'İçsel uyanış - yaratıcı/cinsel enerji yükseliyor',
         EmotionalTone.ofke: 'Zehirli bir durum veya kişi - sınırları koru',
       },
       archetypes: ['Dönüştürücü', 'Bilge', 'Gölge'],

@@ -33,7 +33,7 @@ class DreamEntry {
   final bool isNightmare;
   final MoonPhase moonPhase;
   final String? emotionalTone;
-  final List<String>? relevantTransits;
+  final List<String>? relevantContext;
   final FullDreamInterpretation? interpretation;
   final String? voiceRecordingPath;
   final List<String>? imageUrls;
@@ -66,7 +66,7 @@ class DreamEntry {
     this.isNightmare = false,
     required this.moonPhase,
     this.emotionalTone,
-    this.relevantTransits,
+    this.relevantContext,
     this.interpretation,
     this.voiceRecordingPath,
     this.imageUrls,
@@ -98,7 +98,7 @@ class DreamEntry {
     'isNightmare': isNightmare,
     'moonPhase': moonPhase.name,
     'emotionalTone': emotionalTone,
-    'relevantTransits': relevantTransits,
+    'relevantContext': relevantContext,
     'interpretation': interpretation?.toJson(),
     'voiceRecordingPath': voiceRecordingPath,
     'imageUrls': imageUrls,
@@ -136,8 +136,8 @@ class DreamEntry {
       orElse: () => MoonPhaseCalculator.today,
     ),
     emotionalTone: json['emotionalTone'],
-    relevantTransits: json['relevantTransits'] != null
-        ? List<String>.from(json['relevantTransits'])
+    relevantContext: json['relevantContext'] != null
+        ? List<String>.from(json['relevantContext'])
         : null,
     interpretation: json['interpretation'] != null
         ? FullDreamInterpretation.fromJson(json['interpretation'])
@@ -186,7 +186,7 @@ class DreamEntry {
     bool? isNightmare,
     MoonPhase? moonPhase,
     String? emotionalTone,
-    List<String>? relevantTransits,
+    List<String>? relevantContext,
     FullDreamInterpretation? interpretation,
     String? voiceRecordingPath,
     List<String>? imageUrls,
@@ -216,7 +216,7 @@ class DreamEntry {
     isNightmare: isNightmare ?? this.isNightmare,
     moonPhase: moonPhase ?? this.moonPhase,
     emotionalTone: emotionalTone ?? this.emotionalTone,
-    relevantTransits: relevantTransits ?? this.relevantTransits,
+    relevantContext: relevantContext ?? this.relevantContext,
     interpretation: interpretation ?? this.interpretation,
     voiceRecordingPath: voiceRecordingPath ?? this.voiceRecordingPath,
     imageUrls: imageUrls ?? this.imageUrls,
@@ -1977,7 +1977,7 @@ class DreamJournalService {
       isNightmare: isNightmare,
       moonPhase: moonPhase,
       emotionalTone: emotionalTone,
-      relevantTransits: transits,
+      relevantContext: transits,
       userRole: role,
       timeLayer: timeLayer,
       characters: characters,

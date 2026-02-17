@@ -962,7 +962,7 @@
                     "attention_label": "⚠️ THINGS TO WATCH",
                     "attention": "• Areas in life where you've lost control\n• Signs of excessive stress and anxiety\n• Meeting of basic needs\n• Work-life balance",
                     "practice_label": "✨ PRACTICAL APPLICATION",
-                    "practice": "• Walk barefoot on the earth\n• Do root chakra meditation\n• List your security needs\n• Practice breathing exercises",
+                    "practice": "• Walk barefoot on the earth\n• Do grounding meditation\n• List your security needs\n• Practice breathing exercises",
                     "cosmic_message_label": "💫 PERSONAL MESSAGE",
                     "cosmic_message": "Falling is actually letting go. Let go of the illusion of control, trust yourself. As a {element} element, grounding practice is especially important."
                 },
@@ -1034,7 +1034,7 @@
                     "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
                     "psychological": "• Anima/Animus: Opposite gender archetype\n• Projection: Seeing your own qualities\n• Need: Unmet emotional requirements",
                     "practice_label": "✨ PRACTICAL APPLICATION",
-                    "practice": "• Take a love language test\n• List your relationship needs\n• Work on self-worth\n• Heart chakra meditation",
+                    "practice": "• Take a love language test\n• List your relationship needs\n• Work on self-worth\n• Heart-centered meditation",
                     "cosmic_message_label": "💫 PERSONAL MESSAGE",
                     "cosmic_message": "Love yourself first. {element} element in love life {element_message}."
                 },
@@ -1469,7 +1469,7 @@
             },
             "energy_field": {
                 "title": "Votre champ énergétique",
-                "description": "Les couleurs de votre aura et l'équilibre des chakras."
+                "description": "Votre énergie personnelle et votre équilibre intérieur."
             },
             "kozmoz_discovery": {
                 "title": "Découverte InnerCycles",
@@ -1861,7 +1861,7 @@
             "how_this_pair_dances": "Comment ce couple danse-t-il ?",
             "same_element_different_energy": "Même élément, énergie différente.",
             "sibling_element_energy": "Énergie d'élément frère.",
-            "what_awaits_this_week": "Qu'est-ce qui vous attend cette semaine ?",
+            "what_awaits_this_week": "Que découvrir cette semaine ?",
             "which_dreams_this_sign_sees": "Quels rêves les personnes de ce signe font-elles le plus ?",
             "special_message_for_today": "Message spécial pour aujourd'hui",
             "cosmic_guidance": "Recevez une guidance personnelle.",
@@ -1879,9 +1879,9 @@
         "monthly_energy_map": "Carte d'Énergie Mensuelle",
         "yearly_energy_map": "Carte d'Énergie Mensuelle",
         "yearly_affirmation": "Affirmation Annuelle",
-        "what_awaits_this_month": "Qu'est-ce qui vous attend ce mois-ci?",
-        "what_awaits_this_week": "Qu'est-ce qui vous attend cette semaine?",
-        "what_awaits_this_year": "Qu'est-ce qui vous attend cette année?",
+        "what_awaits_this_month": "Que découvrir ce mois-ci ?",
+        "what_awaits_this_week": "Que découvrir cette semaine ?",
+        "what_awaits_this_year": "Que découvrir cette année ?",
         "week_number": "Semaine",
         "day_suffix": "jour",
         "strengths": "Points Forts",

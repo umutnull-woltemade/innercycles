@@ -1504,7 +1504,7 @@
             },
             "energy_field": {
                 "title": "Enerji Alanın",
-                "description": "Auranın renkleri ve chakra dengen."
+                "description": "Kişisel enerjin ve iç dengen."
             },
             "kozmoz_discovery": {
                 "title": "InnerCycles Keşif",
@@ -1823,7 +1823,7 @@
             },
             "energy_guidance": {
                 "title": "Enerji Rehberliği",
-                "description": "Chakralarına özel mesaj."
+                "description": "Sana özel enerji rehberliği."
             },
             "energy_reading": {
                 "description": "Enerji okuma."
