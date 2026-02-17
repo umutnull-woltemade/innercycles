@@ -896,7 +896,7 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Moon Calendar'
                 : 'Ay Takvimi',
             subtitle: language == AppLanguage.en
-                ? 'Correlate lunar phases with your emotional cycles'
+                ? 'Correlate moon phases with your emotional cycles'
                 : 'Ay evrelerini duygusal döngülerinle ilişkilendir',
             route: Routes.moonCalendar,
             isDark: isDark,

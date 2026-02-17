@@ -258,7 +258,7 @@ class NotificationService {
     await _notifications.zonedSchedule(
       moonCycleId,
       'Moon Cycle Awareness',
-      'A new lunar phase is here. A good time for mindful reflection.',
+      'A new moon phase is here. A good time for mindful reflection.',
       _nextInstanceOfTime(20, 0),
       NotificationDetails(
         android: AndroidNotificationDetails(
