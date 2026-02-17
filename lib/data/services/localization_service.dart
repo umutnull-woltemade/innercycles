@@ -763,7 +763,7 @@ class L10n {
       AppLanguage.es: 'Análisis de compatibilidad de personalidad',
       AppLanguage.ar: 'تحليل توافق الشخصية',
     },
-    'kabbalistic_secrets': {
+    'inner_wisdom_tools': {
       AppLanguage.en: 'Inner wisdom insights',
       AppLanguage.tr: 'İçsel bilgelik',
       AppLanguage.el: 'Εσωτερική σοφία',
@@ -775,7 +775,7 @@ class L10n {
       AppLanguage.es: 'Sabiduría interior',
       AppLanguage.ar: 'الحكمة الداخلية',
     },
-    'auric_reading': {
+    'energy_awareness': {
       AppLanguage.en: 'Energy awareness reading',
       AppLanguage.tr: 'Enerji farkındalık okuması',
       AppLanguage.el: 'Ανάγνωση ενεργειακής επίγνωσης',

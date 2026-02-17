@@ -268,7 +268,7 @@
             "job_change": "📈 Quels facteurs sont importants dans les décisions de carrière?",
             "gambling": "🎰 Comment est-ce que j'aborde le risque et l'incertitude?",
             "gratitude_star": "✨ Pour quelles opportunités suis-je reconnaissant(e)?",
-            "mercury_retrograde": "🌙 Quels thèmes de communication émergent maintenant?",
+            "communication_themes": "🌙 Quels thèmes de communication émergent maintenant?",
             "big_change": "🦋 Quels thèmes de transformation résonnent avec moi?",
             "rich_become": "💰 Quelle est ma relation avec l'abondance?",
             "future_love": "🔮 Quels schémas est-ce que je remarque dans mes relations?",
@@ -587,12 +587,12 @@
         "features": {
             "daily_whispers": "Réflexions quotidiennes",
             "pure_cosmic_experience": "Expérience personnelle pure (sans publicité)",
-            "deep_planet_readings": "Lectures personnelles profondes",
+            "deep_pattern_analysis": "Lectures personnelles profondes",
             "unlimited_card_insight": "Sessions de réflexion illimitées",
-            "soulmate_compatibility": "Outils de réflexion relationnelle",
-            "kabbalistic_secrets": "Outils d'exploration symbolique",
-            "auric_reading": "Journal de conscience énergétique",
-            "planet_transits": "Cycles personnels",
+            "relationship_mapping": "Outils de réflexion relationnelle",
+            "inner_wisdom_tools": "Outils d'exploration symbolique",
+            "energy_awareness": "Journal de conscience énergétique",
+            "recurrence_detection": "Cycles personnels",
             "priority_guidance": "Guidance personnelle prioritaire"
         },
         "tiers": {
@@ -617,13 +617,6 @@
                 "features": "['Toutes les fonctionnalités de base', 'Expérience personnelle pure (sans pub)', 'Interprétations personnelles profondes', 'Sessions de réflexion illimitées', 'Outils de réflexion relationnelle', 'Outils d'exploration symbolique', 'Journal de conscience énergétique', 'Cycles personnels', 'Guidance personnelle prioritaire']"
             }
         }
-    },
-    "aspects": {
-        "conjunction": "Conjonction",
-        "trine": "Trigone",
-        "sextile": "Sextile",
-        "square": "Carré",
-        "opposition": "Opposition"
     },
     "widgets": {
         "birth_date_picker": {
@@ -1661,7 +1654,7 @@
                 "title": "Message énergétique quotidien",
                 "description": "Le flux d'énergie d'aujourd'hui."
             },
-            "numerical_vibrations": {
+            "number_resonance": {
                 "description": "Modèles numériques."
             },
             "life_dimension_energies": {
@@ -1681,7 +1674,7 @@
                 "title": "Connexion personnel",
                 "description": "Dimension de Vie et caractéristiques."
             },
-            "mystic_dreams": {
+            "deep_dreams": {
                 "title": "Rêves profonds",
                 "description": "Symboles intérieurs et rêves."
             },
@@ -1835,7 +1828,7 @@
             "secret_of_numbers": {
                 "description": "Le secret des nombres."
             },
-            "aura": {
+            "energy_profile": {
                 "title": "Énergie",
                 "description": "Profil énergétique"
             },
@@ -1893,11 +1886,11 @@
         "reflection_readings": "Réflexions Quotidiennes",
         "personal_profile_analysis": "Personal Profile & Analysis",
         "time_transits": "Time & Cycles",
-        "numerology_mystic": "Number Patterns & Inner Tools",
+        "number_patterns_tools": "Number Patterns & Inner Tools",
         "spiritual_wellness": "Inner Growth & Wellness",
         "advanced_self_awareness": "Advanced Self-Awareness",
         "personality_analysis": "Personality Analysis",
-        "mystic_discoveries": "Inner Discoveries",
+        "inner_discoveries": "Inner Discoveries",
         "relationship_analysis": "Relationship Analysis",
         "ai_assistants": "AI Assistants",
         "sharing_profile": "Sharing & Profile",
@@ -2527,10 +2520,10 @@
             "tonight_in_my_dream": "Cette nuit dans mon rêve...",
             "dream_poetry": "Poésie onirique",
             "daily_affirmations": "Affirmations quotidiennes",
-            "mystical_quotes": "Citations profondes",
+            "inspiring_quotes": "Citations profondes",
             "symbol_art_suggestions": "Suggestions d'art symbolique",
             "ai_generated": "Généré par IA",
-            "mystical_quotes_list": [
+            "inspiring_quotes_list": [
                 "\"Les rêves sont des lettres écrites par notre moi profond la nuit.\"",
                 "\"Chaque rêve est un miroir, chaque symbole une clé.\"",
                 "\"La nuit est le moment où le subconscient parle le plus fort.\"",
@@ -3002,7 +2995,7 @@
         "todays_cosmic_energy": "Énergie personnelle du jour",
         "reflect": "Reflechir",
         "action": "Action",
-        "dominant_planet": "Trait dominant",
+        "key_strength": "Trait dominant",
         "activates": "Active",
         "blocks": "Bloque",
         "todays_action": "ACTION DU JOUR",
@@ -3014,7 +3007,7 @@
         "light": "Lumiere",
         "strength": "Force",
         "opportunity": "Opportunite",
-        "aura_label": "Énergie",
+        "energy_label": "Énergie",
         "cosmic_advice_title": "Conseils de réflexion",
         "todays_voice": "Voix du jour",
         "dream_trace": "Trace de reve",
@@ -3115,15 +3108,15 @@
         "lucky_hour": "Heure de Focus",
         "lucky_flower": "Flower",
         "lucky_stone": "Stone",
-        "biorhythm_cycle": "Biorhythm Cycle",
+        "wellness_rhythm_cycle": "Rythme de Bien-être",
         "physical": "Physical",
         "emotional": "Emotional",
         "intellectual": "Intellectual",
         "intuitive": "Intuitive",
-        "biorhythm_high": "Energy is high across all cycles. Great day for challenging activities.",
-        "biorhythm_balanced": "Balanced energy day. Good for varied activities.",
-        "biorhythm_low": "Some cycles are low. Rest and conserve energy when needed.",
-        "biorhythm_critical": "Critical phase in some cycles. Take care and avoid overexertion.",
+        "wellness_rhythm_high": "Les patterns d'énergie suggèrent une bonne capacité pour des activités exigeantes.",
+        "wellness_rhythm_balanced": "Journée d'énergie équilibrée. Bon pour des activités variées.",
+        "wellness_rhythm_low": "Les patterns passés suggèrent une énergie plus faible. Reposez-vous au besoin.",
+        "wellness_rhythm_critical": "Phase de transition. Prenez soin et évitez la surexertion.",
         "daily_aspects": "Daily Aspects",
         "aspect_default_harmonious": "Positive energy supports your endeavors today.",
         "aspect_default_challenging": "Navigate challenges with awareness and flexibility.",

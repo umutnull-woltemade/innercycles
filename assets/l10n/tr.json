@@ -268,7 +268,7 @@
             "job_change": "📈 Kariyer kararlarımda neler önemli?",
             "gambling": "🎰 Risk ve belirsizliğe nasıl yaklaşıyorum?",
             "gratitude_star": "✨ Hangi fırsatlar için minnettarım?",
-            "mercury_retrograde": "🌙 Şu an hangi iletişim temaları öne çıkıyor?",
+            "communication_themes": "🌙 Şu an hangi iletişim temaları öne çıkıyor?",
             "big_change": "🦋 Hangi dönüşüm temaları bende yankı buluyor?",
             "rich_become": "💰 Bolluk kavramıyla ilişkim nasıl?",
             "future_love": "🔮 İlişkilerimde hangi kalıpları fark ediyorum?",
@@ -587,12 +587,12 @@
         "features": {
             "daily_whispers": "Günlük içgörü fısıltıları",
             "pure_cosmic_experience": "Reklamsız, huzurlu deneyim",
-            "deep_planet_readings": "Derin kişisel içgörüler",
+            "deep_pattern_analysis": "Derin kişisel içgörüler",
             "unlimited_card_insight": "Sınırsız refleksiyon seansları",
-            "soulmate_compatibility": "İlişki yansıtma araçları",
-            "kabbalistic_secrets": "Sembolik keşif araçları",
-            "auric_reading": "Enerji farkındalık günlüğü",
-            "planet_transits": "Döngüsel tema takibi",
+            "relationship_mapping": "İlişki yansıtma araçları",
+            "inner_wisdom_tools": "Sembolik keşif araçları",
+            "energy_awareness": "Enerji farkındalık günlüğü",
+            "recurrence_detection": "Döngüsel tema takibi",
             "priority_guidance": "Öncelikli kişisel rehberlik"
         },
         "tiers": {
@@ -652,13 +652,6 @@
                 ]
             }
         }
-    },
-    "aspects": {
-        "conjunction": "Kavuşum",
-        "trine": "Üçgen",
-        "sextile": "Altıgen",
-        "square": "Kare",
-        "opposition": "Karşıt"
     },
     "widgets": {
         "birth_date_picker": {
@@ -1696,7 +1689,7 @@
                 "title": "Günlük Enerji Mesajı",
                 "description": "Bugünün enerji akışı."
             },
-            "numerical_vibrations": {
+            "number_resonance": {
                 "description": "Sayısal örüntüler."
             },
             "life_dimension_energies": {
@@ -1716,7 +1709,7 @@
                 "title": "Öz Farkındalık Bağlantısı",
                 "description": "Yaşam Boyutu ve kişilik özellikleri."
             },
-            "mystic_dreams": {
+            "deep_dreams": {
                 "title": "Derin Rüyalar",
                 "description": "Derin semboller ve rüyalar."
             },
@@ -1870,7 +1863,7 @@
             "secret_of_numbers": {
                 "description": "Sayıların sırrı."
             },
-            "aura": {
+            "energy_profile": {
                 "title": "Enerji",
                 "description": "Enerji alanın."
             },
@@ -1928,11 +1921,11 @@
         "reflection_readings": "Arketip Yorumları",
         "personal_profile_analysis": "Kişisel Profil & Analizler",
         "time_transits": "Zaman & Döngüler",
-        "numerology_mystic": "Sayı Örüntüleri & Keşif Araçları",
+        "number_patterns_tools": "Sayı Örüntüleri & Keşif Araçları",
         "spiritual_wellness": "İçsel & Wellness",
         "advanced_self_awareness": "İleri Seviye Öz Farkındalık",
         "personality_analysis": "Kişilik Analizleri",
-        "mystic_discoveries": "Derin Keşifler",
+        "inner_discoveries": "Derin Keşifler",
         "relationship_analysis": "İlişki Analizleri",
         "ai_assistants": "AI Asistanlar",
         "sharing_profile": "Paylaşım & Profil",
@@ -2562,10 +2555,10 @@
             "tonight_in_my_dream": "Bu gece rüyamda ",
             "dream_poetry": "Rüya Şiiri",
             "daily_affirmations": "Günlük Olumlamalar",
-            "mystical_quotes": "Derin Alıntılar",
+            "inspiring_quotes": "Derin Alıntılar",
             "symbol_art_suggestions": "Sembol Sanatı Önerileri",
             "ai_generated": "AI Üretimi",
-            "mystical_quotes_list": [
+            "inspiring_quotes_list": [
                 "\"Ruyalar, benliğimizin gece yazılan mektuplarıdır.\"",
                 "\"Her rüya bir ayna, her sembol bir anahtar.\"",
                 "\"Gece, bilinçaltının en yüksek sesle konuştuğu andır.\"",
@@ -3037,7 +3030,7 @@
         "todays_cosmic_energy": "Bugünün Kişisel Enerjisi",
         "reflect": "Düşün",
         "action": "Hareket",
-        "dominant_planet": "Baskın Özellik",
+        "key_strength": "Baskın Özellik",
         "activates": "Aktive Ediyor",
         "blocks": "Engelliyor",
         "todays_action": "BUGÜNKÜ EYLEM",
@@ -3049,7 +3042,7 @@
         "light": "Işık",
         "strength": "Güç",
         "opportunity": "Fırsat",
-        "aura_label": "Enerji",
+        "energy_label": "Enerji",
         "cosmic_advice_title": "Kişisel Öğütler",
         "todays_voice": "Bugünün Sesi",
         "dream_trace": "Rüya İzi",
@@ -3150,15 +3143,15 @@
         "lucky_hour": "Odak Saati",
         "lucky_flower": "Çiçek",
         "lucky_stone": "Taş",
-        "biorhythm_cycle": "Biyoritm Döngüsü",
+        "wellness_rhythm_cycle": "Sağlıklı Yaşam Ritmi",
         "physical": "Fiziksel",
         "emotional": "Duygusal",
         "intellectual": "Zihinsel",
         "intuitive": "Sezgisel",
-        "biorhythm_high": "Tüm döngülerde enerji yüksek. Zorlu aktiviteler için harika gün.",
-        "biorhythm_balanced": "Dengeli enerji günü. Çeşitli aktiviteler için iyi.",
-        "biorhythm_low": "Bazı döngüler düşük. Gerektiğinde dinlenin ve enerji biriktirin.",
-        "biorhythm_critical": "Bazı döngülerde kritik faz. Dikkatli olun ve aşırı zorlanmadan kaçının.",
+        "wellness_rhythm_high": "Enerji paternleri zorlu aktiviteler için iyi kapasite öneriyor.",
+        "wellness_rhythm_balanced": "Dengeli enerji günü. Çeşitli aktiviteler için iyi.",
+        "wellness_rhythm_low": "Geçmiş paternler düşük enerji öneriyor. Gerektiğinde dinlenin.",
+        "wellness_rhythm_critical": "Geçiş fazı. Dikkatli olun ve aşırı zorlanmadan kaçının.",
         "daily_aspects": "Günlük Açılar",
         "aspect_default_harmonious": "Pozitif enerji bugün çabalarınızı destekliyor.",
         "aspect_default_challenging": "Zorlukları farkındalık ve esneklikle aşın.",

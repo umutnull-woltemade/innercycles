@@ -268,7 +268,7 @@
             "job_change": "📈 What factors matter in career decisions?",
             "gambling": "🎰 How do I approach risk and uncertainty?",
             "gratitude_star": "✨ What opportunities am I grateful for?",
-            "mercury_retrograde": "🌙 What communication themes arise now?",
+            "communication_themes": "🌙 What communication themes arise now?",
             "big_change": "🦋 What transformation themes resonate with me?",
             "rich_become": "💰 What is my relationship with abundance?",
             "future_love": "💕 What patterns do I notice in relationships?",
@@ -403,12 +403,12 @@
         },
         "quiz": {
             "return_home": "Return to Home",
-            "special_discount": "SPECIAL 20% DISCOUNT",
-            "open_cosmic_map": "Open Your Personal Profile Map",
-            "strong_profile_message": "Your profile is very strong! Personalized content to explore.",
+            "special_discount": "Pro Features Available",
+            "open_cosmic_map": "See Your Full Cycle Profile",
+            "strong_profile_message": "You've built a detailed profile. There's more to explore.",
             "start_now": "Start Now",
-            "valid_today_only": "Valid only today",
-            "continue_cosmic_journey": "Would you like to continue your personal journey?",
+            "valid_today_only": "",
+            "continue_cosmic_journey": "Want to go deeper with your cycle mapping?",
             "view_premium_features": "View Premium Features",
             "continue_free": "Continue with free content",
             "start_exploring": "Start Exploring"
@@ -587,12 +587,12 @@
         "features": {
             "daily_whispers": "Daily cycle position updates",
             "pure_cosmic_experience": "Ad-free cycle mapping experience",
-            "deep_planet_readings": "Deep recurrence analysis",
+            "deep_pattern_analysis": "Deep recurrence analysis",
             "unlimited_card_insight": "Unlimited archetype insight sessions",
-            "soulmate_compatibility": "Relationship cycle mapping",
-            "kabbalistic_secrets": "Shadow-light integration tools",
-            "auric_reading": "Emotional cycle awareness journal",
-            "planet_transits": "Full recurrence detection engine",
+            "relationship_mapping": "Relationship cycle mapping",
+            "inner_wisdom_tools": "Shadow-light integration tools",
+            "energy_awareness": "Emotional cycle awareness journal",
+            "recurrence_detection": "Full recurrence detection engine",
             "priority_guidance": "Priority cyclical intelligence reports"
         },
         "tiers": {
@@ -652,13 +652,6 @@
                 ]
             }
         }
-    },
-    "aspects": {
-        "conjunction": "Conjunction",
-        "trine": "Trine",
-        "sextile": "Sextile",
-        "square": "Square",
-        "opposition": "Opposition"
     },
     "widgets": {
         "birth_date_picker": {
@@ -1696,7 +1689,7 @@
                 "title": "Daily Energy Message",
                 "description": "Today's energy flow."
             },
-            "numerical_vibrations": {
+            "number_resonance": {
                 "description": "Numerical patterns."
             },
             "life_dimension_energies": {
@@ -1716,7 +1709,7 @@
                 "title": "Self-Awareness Connection",
                 "description": "Life Dimension and personal traits."
             },
-            "mystic_dreams": {
+            "deep_dreams": {
                 "title": "Dream Exploration",
                 "description": "Contemplative symbols and dreams."
             },
@@ -1870,7 +1863,7 @@
             "secret_of_numbers": {
                 "description": "The secret of numbers."
             },
-            "aura": {
+            "energy_profile": {
                 "title": "Energy Profile",
                 "description": "Your personal energy."
             },
@@ -1928,11 +1921,11 @@
         "reflection_readings": "Daily Reflections",
         "personal_profile_analysis": "Personal Profile & Analysis",
         "time_transits": "Time & Cycles",
-        "numerology_mystic": "Number Patterns & Reflection Tools",
+        "number_patterns_tools": "Number Patterns & Reflection Tools",
         "spiritual_wellness": "Personal & Wellness",
         "advanced_self_awareness": "Advanced Self-Awareness",
         "personality_analysis": "Personality Analysis",
-        "mystic_discoveries": "Inner Discoveries",
+        "inner_discoveries": "Inner Discoveries",
         "relationship_analysis": "Relationship Analysis",
         "ai_assistants": "AI Assistants",
         "sharing_profile": "Sharing & Profile",
@@ -2562,10 +2555,10 @@
             "tonight_in_my_dream": "Tonight in my dream ",
             "dream_poetry": "Dream Poetry",
             "daily_affirmations": "Daily Affirmations",
-            "mystical_quotes": "Inspiring Quotes",
+            "inspiring_quotes": "Inspiring Quotes",
             "symbol_art_suggestions": "Symbol Art Suggestions",
             "ai_generated": "AI Generated",
-            "mystical_quotes_list": [
+            "inspiring_quotes_list": [
                 "\"Dreams are letters written by our inner selves at night.\"",
                 "\"Every dream is a mirror, every symbol a key.\"",
                 "\"Night is when the subconscious speaks loudest.\"",
@@ -3037,7 +3030,7 @@
         "todays_cosmic_energy": "Today's Daily Energy",
         "reflect": "Reflect",
         "action": "Action",
-        "dominant_planet": "Key Strength",
+        "key_strength": "Key Strength",
         "activates": "Activates",
         "blocks": "Blocks",
         "todays_action": "TODAY'S ACTION",
@@ -3049,7 +3042,7 @@
         "light": "Light",
         "strength": "Strength",
         "opportunity": "Opportunity",
-        "aura_label": "Energy",
+        "energy_label": "Energy",
         "cosmic_advice_title": "Personal Advice",
         "todays_voice": "Today's Voice",
         "dream_trace": "Dream Trace",
@@ -3150,15 +3143,15 @@
         "lucky_hour": "Focus Hour",
         "lucky_flower": "Flower",
         "lucky_stone": "Stone",
-        "biorhythm_cycle": "Biorhythm Cycle",
+        "wellness_rhythm_cycle": "Wellness Rhythm",
         "physical": "Physical",
         "emotional": "Emotional",
         "intellectual": "Intellectual",
         "intuitive": "Intuitive",
-        "biorhythm_high": "Energy is high across all cycles. Great day for challenging activities.",
-        "biorhythm_balanced": "Balanced energy day. Good for varied activities.",
-        "biorhythm_low": "Some cycles are low. Rest and conserve energy when needed.",
-        "biorhythm_critical": "Critical phase in some cycles. Take care and avoid overexertion.",
+        "wellness_rhythm_high": "Energy patterns suggest good capacity for challenging activities.",
+        "wellness_rhythm_balanced": "Balanced energy day. Good for varied activities.",
+        "wellness_rhythm_low": "Past patterns suggest lower energy. Rest and conserve when needed.",
+        "wellness_rhythm_critical": "Transitional phase. Take care and avoid overexertion.",
         "daily_aspects": "Daily Aspects",
         "aspect_default_harmonious": "Positive energy supports your endeavors today.",
         "aspect_default_challenging": "Navigate challenges with awareness and flexibility.",

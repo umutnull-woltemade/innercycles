@@ -413,9 +413,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       // LEGACY ROUTE REDIRECTS (archived features → valid screens)
       // ════════════════════════════════════════════════════════════════
-      GoRoute(path: '/kozmoz', redirect: (_, _) => Routes.insight),
-      GoRoute(path: '/aura', redirect: (_, _) => Routes.insight),
-      GoRoute(path: '/numerology', redirect: (_, _) => Routes.insightsDiscovery),
+      GoRoute(path: '/legacy-home', redirect: (_, _) => Routes.insight),
+      GoRoute(path: '/energy-profile', redirect: (_, _) => Routes.insight),
+      GoRoute(path: '/number-patterns', redirect: (_, _) => Routes.insightsDiscovery),
       GoRoute(path: '/legacy-analysis', redirect: (_, _) => Routes.insight),
       GoRoute(path: '/moon-rituals', redirect: (_, _) => Routes.rituals),
       GoRoute(path: '/legacy-insight', redirect: (_, _) => Routes.insight),
