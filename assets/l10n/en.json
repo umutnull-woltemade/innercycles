@@ -45,8 +45,8 @@
         "birth_place": "Birth Place",
         "not_specified": "Not Specified",
         "minutes_short": "min",
-        "also_discover": "Also Discover",
-        "discover": "Discover",
+        "also_discover": "Also Explore",
+        "discover": "Explore",
         "all_features": "All Features",
         "notifications": "Notifications",
         "permission_required": "Permission required to receive notifications.",
@@ -600,55 +600,55 @@
                 "name": "Free",
                 "savings": "",
                 "features": [
-                    "Daily insight whispers",
-                    "Basic personal profile",
-                    "Daily insight card",
+                    "Daily cycle position updates",
+                    "Basic cycle profile",
+                    "Daily archetype card",
                     "Ad-supported"
                 ]
             },
             "monthly": {
-                "name": "Monthly Premium",
+                "name": "Monthly Cycle Intelligence",
                 "savings": "",
                 "features": [
                     "All basic features",
-                    "Ad-free, peaceful experience",
-                    "Deep personality interpretations",
-                    "Unlimited card reading sessions",
-                    "Relationship reflection tools",
-                    "Symbolic exploration tools",
-                    "Energy awareness journal",
-                    "Cyclical theme tracking",
-                    "Priority personal guidance"
+                    "Ad-free cycle mapping",
+                    "Deep recurrence analysis",
+                    "Unlimited archetype insight sessions",
+                    "Relationship cycle mapping",
+                    "Shadow-light integration tools",
+                    "Emotional cycle awareness journal",
+                    "Full recurrence detection engine",
+                    "Priority cyclical intelligence reports"
                 ]
             },
             "yearly": {
-                "name": "Yearly Premium",
+                "name": "Yearly Cycle Intelligence",
                 "savings": "77% savings",
                 "features": [
                     "All basic features",
-                    "Ad-free, peaceful experience",
-                    "Deep personality interpretations",
-                    "Unlimited card reading sessions",
-                    "Relationship reflection tools",
-                    "Symbolic exploration tools",
-                    "Energy awareness journal",
-                    "Cyclical theme tracking",
-                    "Priority personal guidance"
+                    "Ad-free cycle mapping",
+                    "Deep recurrence analysis",
+                    "Unlimited archetype insight sessions",
+                    "Relationship cycle mapping",
+                    "Shadow-light integration tools",
+                    "Emotional cycle awareness journal",
+                    "Full recurrence detection engine",
+                    "Priority cyclical intelligence reports"
                 ]
             },
             "lifetime": {
-                "name": "Lifetime Premium",
+                "name": "Lifetime Cycle Intelligence",
                 "savings": "One-time payment",
                 "features": [
                     "All basic features",
-                    "Ad-free, peaceful experience",
-                    "Deep personality interpretations",
-                    "Unlimited card reading sessions",
-                    "Relationship reflection tools",
-                    "Symbolic exploration tools",
-                    "Energy awareness journal",
-                    "Cyclical theme tracking",
-                    "Priority personal guidance"
+                    "Ad-free cycle mapping",
+                    "Deep recurrence analysis",
+                    "Unlimited archetype insight sessions",
+                    "Relationship cycle mapping",
+                    "Shadow-light integration tools",
+                    "Emotional cycle awareness journal",
+                    "Full recurrence detection engine",
+                    "Priority cyclical intelligence reports"
                 ]
             }
         }
@@ -667,15 +667,15 @@
             "year": "Year"
         },
         "entertainment_disclaimer": {
-            "general": "For entertainment purposes only",
-            "dreams": "Dream interpretations are symbolic reflections",
+            "general": "For personal cycle awareness only",
+            "dreams": "Dream archaeology surfaces recurring symbols for reflection",
             "health": "Not medical advice. Consult professionals for health concerns",
-            "self_awareness": "Self-awareness is a tool for self-reflection and personal growth",
-            "card_insight": "Card readings are for personal insight only",
-            "numerology": "Numerology offers symbolic perspectives",
-            "compatibility": "Compatibility insights are for reflection only",
-            "insight": "These insights are for personal reflection",
-            "reflection": "Use this as a tool for self-discovery"
+            "self_awareness": "Cycle awareness is a tool for pattern recognition and self-understanding",
+            "card_insight": "Archetype insights are for personal cycle mapping only",
+            "numerology": "Numerology offers symbolic cycle perspectives",
+            "compatibility": "Relationship cycle mapping is for reflection only",
+            "insight": "These cycle insights are for personal pattern awareness",
+            "reflection": "Use this as a cyclical intelligence tool"
         },
         "dream_share_card": {
             "themes": {
@@ -1249,8 +1249,8 @@
             "numerology_headline": "What do the numbers tell you?",
             "numerology_subtext": "A short test to discover your life path.",
             "numerology_button": "See Number Test",
-            "general_headline": "Discover your wellness profile",
-            "general_subtext": "Start your personal journey with a short test.",
+            "general_headline": "Map your cycle profile",
+            "general_subtext": "Identify your recurring patterns with a short assessment.",
             "general_button": "Start Test",
             "inline_default": "Is this unique to you? Find out with a short test"
         },
@@ -1358,15 +1358,15 @@
         "title": "Insight",
         "reading": "Reading",
         "analysis": "Insight Analysis",
-        "cosmic_energy": "Your Personal Energy",
-        "daily_cosmic_energy": "Today's Personal Energy",
-        "cosmic_overview": "Wellness Overview",
-        "cosmic_harmony": "Inner Harmony",
+        "cosmic_energy": "Your Cycle Energy",
+        "daily_cosmic_energy": "Today's Cycle Position",
+        "cosmic_overview": "Cycle Overview",
+        "cosmic_harmony": "Cycle Harmony",
         "mood": "Mood",
         "lucky_color": "Reflection Color",
         "lucky_number": "Focus Number",
         "feature_coming_soon": "This feature is coming soon",
-        "what_says_today": "What themes resonate with your archetype today?",
+        "what_says_today": "What cycle patterns are active for your archetype today?",
         "select_discover_energy": "Select your archetype, explore reflection themes",
         "love_relationships": "Love & Relationships",
         "career_finance": "Career & Finance",
@@ -2972,7 +2972,7 @@
         }
     },
     "share": {
-        "cosmic_share": "Share Insight",
+        "cosmic_share": "Share Cycle Insight",
         "take_screenshot_and_share": "Take screenshot and share",
         "tap_x_to_exit": "Tap the X button at top right to exit",
         "share_error": "Share error",
@@ -3030,7 +3030,7 @@
             "November",
             "December"
         ],
-        "share_text": "Today's personal energy is with me! Reflecting on my journey... #InnerCycles #self-awareness #insight #personalenergy",
+        "share_text": "Mapping emotional cycles — recurring patterns surfacing this week. #InnerCycles #EmotionalCycles #CyclicalIntelligence #PatternRecurrence",
         "text_copied_success": "Text copied!",
         "open_instagram": "Open Instagram",
         "todays_message": "Today's Message",
