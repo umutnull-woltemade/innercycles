@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { zodiacSigns } from "@/content/zodiac/signs";
 
 export const metadata: Metadata = {
-  title: "Astrobobo - Reflective Astrology & Cosmic Self-Discovery",
+  title: "InnerCycles - Reflective Astrology & Cosmic Self-Discovery",
   description:
     "Explore zodiac archetypes, birth chart insights, cosmic reflections, and educational astrology content. Understand yourself through the language of the stars.",
 };
@@ -18,7 +18,7 @@ export default function HomePage() {
         </div>
         <div className="relative max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-display text-cosmic-accent mb-6">
-            Astrobobo
+            InnerCycles
           </h1>
           <p className="text-xl md:text-2xl text-cosmic-text/80 max-w-2xl mx-auto mb-4">
             Explore zodiac archetypes and cosmic patterns through reflective, educational content.
@@ -136,7 +136,7 @@ export default function HomePage() {
             many people find insightful for self-reflection.
           </p>
           <p>
-            At Astrobobo, all content is educational and reflective. We explore how archetypal
+            At InnerCycles, all content is educational and reflective. We explore how archetypal
             patterns from astrology, mythology, and depth psychology can serve as mirrors for
             personal growth. Our approach emphasizes self-awareness, curiosity, and
             empowerment rather than dependency or deterministic claims.

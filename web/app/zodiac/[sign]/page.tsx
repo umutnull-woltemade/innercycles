@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${sign.name} (${sign.symbol}) - Personality, Traits & Growth Themes`,
     description: sign.overview.slice(0, 155) + "...",
     openGraph: {
-      title: `${sign.name} Zodiac Profile | Astrobobo`,
+      title: `${sign.name} Zodiac Profile | InnerCycles`,
       description: `Explore ${sign.name} personality insights, strengths, growth themes, and reflection prompts.`,
       url: `/zodiac/${sign.slug}`,
       images: [{ url: `/images/zodiac/${sign.slug}-og.png`, width: 1200, height: 630 }],
@@ -38,9 +38,9 @@ export default async function ZodiacSignPage({ params }: PageProps) {
     "@type": "Article",
     headline: `${sign.name} Zodiac Sign - Personality & Cosmic Insights`,
     description: sign.overview,
-    author: { "@type": "Organization", name: "Astrobobo" },
-    publisher: { "@type": "Organization", name: "Astrobobo" },
-    mainEntityOfPage: { "@type": "WebPage", "@id": `https://astrobobo.com/zodiac/${sign.slug}` },
+    author: { "@type": "Organization", name: "InnerCycles" },
+    publisher: { "@type": "Organization", name: "InnerCycles" },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `https://innercycles.app/zodiac/${sign.slug}` },
   };
 
   return (

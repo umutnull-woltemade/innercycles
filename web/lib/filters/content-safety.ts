@@ -1,5 +1,5 @@
 /**
- * Astrobobo Content Safety Filter
+ * InnerCycles Content Safety Filter
  *
  * Enforces Apple-safe, non-predictive language across all content.
  * Zero tolerance for deterministic/predictive phrases.

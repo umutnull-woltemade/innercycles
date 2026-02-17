@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { zodiacSigns } from "@/content/zodiac/signs";
 import { articles } from "@/content/articles";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://astrobobo.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://innercycles.app";
 
 export async function GET() {
   const now = new Date().toISOString().split("T")[0];

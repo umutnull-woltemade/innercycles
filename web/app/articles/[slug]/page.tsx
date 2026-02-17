@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: article.title,
     description: article.description,
     openGraph: {
-      title: `${article.title} | Astrobobo`,
+      title: `${article.title} | InnerCycles`,
       description: article.description,
       type: "article",
       url: `/articles/${article.slug}`,
@@ -39,12 +39,12 @@ export default async function ArticlePage({ params }: PageProps) {
     "@type": "Article",
     headline: article.title,
     description: article.description,
-    author: { "@type": "Organization", name: "Astrobobo" },
-    publisher: { "@type": "Organization", name: "Astrobobo" },
+    author: { "@type": "Organization", name: "InnerCycles" },
+    publisher: { "@type": "Organization", name: "InnerCycles" },
     datePublished: article.publishedAt,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://astrobobo.com/articles/${article.slug}`,
+      "@id": `https://innercycles.app/articles/${article.slug}`,
     },
   };
 

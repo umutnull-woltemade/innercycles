@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Explore all 12 zodiac archetypes with deep personality insights, strengths, growth themes, and reflection prompts. Educational astrology for self-understanding.",
   openGraph: {
-    title: "All 12 Zodiac Signs | Astrobobo",
+    title: "All 12 Zodiac Signs | InnerCycles",
     description: "Explore zodiac archetypes with personality insights and cosmic wisdom.",
     url: "/zodiac",
   },

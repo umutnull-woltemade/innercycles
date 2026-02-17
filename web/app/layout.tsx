@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://astrobobo.com"),
+  metadataBase: new URL("https://innercycles.app"),
   title: {
-    default: "Astrobobo - Reflective Astrology & Cosmic Self-Discovery",
-    template: "%s | Astrobobo",
+    default: "InnerCycles - Reflective Astrology & Cosmic Self-Discovery",
+    template: "%s | InnerCycles",
   },
   description:
     "Explore zodiac archetypes, birth chart insights, cosmic reflections, and educational astrology content. Understand yourself through the language of the stars.",
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     "archetype psychology",
     "zodiac personality",
   ],
-  authors: [{ name: "Astrobobo" }],
-  creator: "Astrobobo",
-  publisher: "Astrobobo",
+  authors: [{ name: "InnerCycles" }],
+  creator: "InnerCycles",
+  publisher: "InnerCycles",
   robots: {
     index: true,
     follow: true,
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://astrobobo.com",
-    siteName: "Astrobobo",
-    title: "Astrobobo - Reflective Astrology & Cosmic Self-Discovery",
+    url: "https://innercycles.app",
+    siteName: "InnerCycles",
+    title: "InnerCycles - Reflective Astrology & Cosmic Self-Discovery",
     description:
       "Explore zodiac archetypes, birth chart insights, and educational astrology content.",
     images: [
@@ -48,20 +48,20 @@ export const metadata: Metadata = {
         url: "/images/og/og-default.png",
         width: 1200,
         height: 630,
-        alt: "Astrobobo - Cosmic Self-Discovery",
+        alt: "InnerCycles - Cosmic Self-Discovery",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Astrobobo - Reflective Astrology",
+    title: "InnerCycles - Reflective Astrology",
     description:
       "Explore zodiac archetypes and cosmic self-discovery through educational astrology.",
     images: ["/images/og/og-default.png"],
-    creator: "@astrobobo",
+    creator: "@innercycles",
   },
   alternates: {
-    canonical: "https://astrobobo.com",
+    canonical: "https://innercycles.app",
   },
 };
 
@@ -84,7 +84,7 @@ export default function RootLayout({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <a href="/" className="text-cosmic-accent font-display text-xl font-bold">
-                Astrobobo
+                InnerCycles
               </a>
               <div className="hidden md:flex items-center space-x-8">
                 <a href="/zodiac" className="text-cosmic-muted hover:text-cosmic-text transition-colors">
@@ -113,7 +113,7 @@ export default function RootLayout({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div>
-                <h3 className="text-cosmic-accent font-display text-lg mb-4">Astrobobo</h3>
+                <h3 className="text-cosmic-accent font-display text-lg mb-4">InnerCycles</h3>
                 <p className="text-cosmic-muted text-sm">
                   Educational astrology content for self-reflection and cosmic exploration.
                   All content is reflective and non-predictive.
@@ -151,8 +151,8 @@ export default function RootLayout({
               </div>
             </div>
             <div className="mt-8 pt-8 border-t border-cosmic-border text-center text-cosmic-muted text-xs">
-              <p>Content is educational and reflective. Astrobobo does not make predictions or guarantees.</p>
-              <p className="mt-2">&copy; {new Date().getFullYear()} Astrobobo. All rights reserved.</p>
+              <p>Content is educational and reflective. InnerCycles does not make predictions or guarantees.</p>
+              <p className="mt-2">&copy; {new Date().getFullYear()} InnerCycles. All rights reserved.</p>
             </div>
           </div>
         </footer>
