@@ -713,7 +713,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   String _categoryLabel(PromptCategory category) {
     switch (category) {
       case PromptCategory.selfDiscovery:
-        return isEn ? 'Self-Discovery' : 'Kendini Keşfet';
+        return isEn ? 'Cycle Awareness' : 'Döngü Farkındalığı';
       case PromptCategory.relationships:
         return isEn ? 'Relationships' : 'İlişkiler';
       case PromptCategory.gratitude:

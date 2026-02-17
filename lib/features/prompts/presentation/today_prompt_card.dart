@@ -206,7 +206,7 @@ class TodayPromptCard extends ConsumerWidget {
   String _categoryLabel(String name, bool isEn) {
     switch (name) {
       case 'selfDiscovery':
-        return isEn ? 'Self-Discovery' : 'Kendini Keşfet';
+        return isEn ? 'Cycle Awareness' : 'Döngü Farkındalığı';
       case 'relationships':
         return isEn ? 'Relationships' : 'İlişkiler';
       case 'gratitude':

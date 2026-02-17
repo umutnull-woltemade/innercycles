@@ -682,9 +682,9 @@ class L10n {
     },
     'premium_success_message': {
       AppLanguage.en:
-          'Full access to premium features is now yours. You are ready for limitless self-discovery and personal growth.',
+          'Full cyclical intelligence unlocked. Recurrence detection, dream archaeology, and archetype progression are now active.',
       AppLanguage.tr:
-          'Premium özelliklere tam erişim artık seninle. Sınırsız keşfe ve kişisel gelişime hazırsın.',
+          'Tam döngüsel zeka kilidi açıldı. Tekrar tespiti, rüya arkeolojisi ve arketip ilerlemesi artık aktif.',
       AppLanguage.el:
           'Η πλήρης πρόσβαση στις premium λειτουργίες είναι τώρα δική σας. Είστε έτοιμοι για απεριόριστη αυτοανακάλυψη.',
       AppLanguage.bg:

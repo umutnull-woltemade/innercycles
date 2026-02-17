@@ -579,7 +579,7 @@ class ShareCardTemplates {
       default:
         return ShareCardData(
           headline: isEn ? 'InnerCycles' : 'InnerCycles',
-          subtitle: isEn ? 'Personal Reflection' : 'Kişisel Yansıtma',
+          subtitle: isEn ? 'Cyclical Intelligence' : 'Döngüsel Zeka',
         );
     }
   }

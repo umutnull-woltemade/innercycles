@@ -358,22 +358,22 @@ class _HeroSection extends StatelessWidget {
   String _getDailyHeadline(AppLanguage language) {
     final headlines = language == AppLanguage.en
         ? [
-            'What patterns are you noticing today?',
-            'Take a moment for self-reflection',
-            'Your inner wisdom awaits',
-            'Discover something new about yourself',
-            'Today is a day for growth',
-            'Embrace your personal journey',
-            'Find clarity in stillness',
+            'A recurring pattern may be active today',
+            'Your cycle engine detected a familiar position',
+            'Check where you are in your emotional cycle',
+            'A past cycle entry matches today\'s position',
+            'Your recurrence map updated overnight',
+            'Shadow-light ratio shifted since last week',
+            'Archetype progression: new data point logged',
           ]
         : [
-            'Bugün hangi kalıpları fark ediyorsun?',
-            'Kendine yansıma için bir an al',
-            'İç bilgeliğin seni bekliyor',
-            'Kendin hakkında yeni bir şey keşfet',
-            'Bugün büyüme günü',
-            'Kişisel yolculuğunu kucakla',
-            'Sessizlikte netlik bul',
+            'Bugün tekrarlayan bir örüntü aktif olabilir',
+            'Döngü motorun tanıdık bir pozisyon tespit etti',
+            'Duygusal döngünde nerede olduğunu kontrol et',
+            'Geçmiş bir döngü kaydı bugünkü pozisyonla eşleşiyor',
+            'Tekrar haritanız gece güncellendi',
+            'Gölge-ışık oranı geçen haftadan bu yana değişti',
+            'Arketip ilerlemesi: yeni veri noktası kaydedildi',
           ];
 
     final dayOfYear = DateTime.now()
@@ -385,22 +385,22 @@ class _HeroSection extends StatelessWidget {
   String _getDailySentence(AppLanguage language) {
     final sentences = language == AppLanguage.en
         ? [
-            'Every moment of reflection brings you closer to understanding yourself.',
-            'Your thoughts and feelings hold valuable insights.',
-            'Take time to explore your inner world today.',
-            'Self-awareness is the first step to personal growth.',
-            'What does your intuition tell you today?',
-            'Notice the patterns in your thoughts and emotions.',
-            'Your journey of self-discovery continues.',
+            'Your cycle engine is analyzing patterns across your recent entries.',
+            'Past entries from similar cycle positions are surfacing connections.',
+            'The recurrence detection engine found a matching pattern from 3 weeks ago.',
+            'Your archetype has shifted — check your progression dashboard.',
+            'Dream archaeology detected a recurring symbol across your last 5 dreams.',
+            'Shadow-light integration: a previously unresolved theme is re-emerging.',
+            'Cycle position 4 of 7 — here is what happened last time you were here.',
           ]
         : [
-            'Her yansıma anı seni kendini anlamaya yaklaştırır.',
-            'Düşüncelerin ve duyuların değerli içgörüler taşır.',
-            'Bugün iç dünyanı keşfetmek için zaman ayır.',
-            'Öz farkındalık kişisel büyümenin ilk adımıdır.',
-            'Sezgilerin bugün sana ne söylüyor?',
-            'Düşüncelerindeki ve duygularındaki kalıpları fark et.',
-            'Kendini keşfetme yolculuğun devam ediyor.',
+            'Döngü motorun son kayıtlarındaki örüntüleri analiz ediyor.',
+            'Benzer döngü pozisyonlarındaki geçmiş kayıtlar bağlantılar ortaya çıkarıyor.',
+            'Tekrar tespit motoru 3 hafta önceki eşleşen bir örüntü buldu.',
+            'Arketipin değişti — ilerleme panelini kontrol et.',
+            'Rüya arkeolojisi son 5 rüyanda tekrarlayan bir sembol tespit etti.',
+            'Gölge-ışık entegrasyonu: daha önce çözülmemiş bir tema yeniden ortaya çıkıyor.',
+            'Döngü pozisyonu 7\'de 4 — en son burada olduğunda ne olmuştu.',
           ];
 
     final dayOfYear = DateTime.now()
@@ -435,44 +435,44 @@ class _FeatureCategoriesSection extends StatelessWidget {
           children: [
             _FeatureCard(
               title: language == AppLanguage.en
-                  ? 'Daily Journal'
-                  : 'Günlük Kayit',
+                  ? 'Cycle Entry'
+                  : 'Döngü Kaydı',
               subtitle: language == AppLanguage.en
-                  ? 'Track your daily cycles'
-                  : 'Günlük döngülerini takip et',
+                  ? 'Map your cycle position & emotional state'
+                  : 'Döngü pozisyonunu ve duygusal durumunu haritalandır',
               icon: Icons.edit_note,
               color: AppColors.auroraStart,
               route: Routes.journal,
             ),
             _FeatureCard(
               title: language == AppLanguage.en
-                  ? 'Your Patterns'
-                  : 'Kaliplarin',
+                  ? 'Recurrence Detection'
+                  : 'Tekrar Tespiti',
               subtitle: language == AppLanguage.en
-                  ? 'Trends from your entries'
-                  : 'Kayitlarindaki egilimler',
+                  ? 'Recurring cycles & pattern correlations'
+                  : 'Tekrarlayan döngüler ve örüntü korelasyonları',
               icon: Icons.insights,
               color: AppColors.starGold,
               route: Routes.journalPatterns,
             ),
             _FeatureCard(
               title: language == AppLanguage.en
-                  ? 'Personal Insight'
-                  : 'Kişisel İçgörü',
+                  ? 'Cyclical Insight'
+                  : 'Döngüsel İçgörü',
               subtitle: language == AppLanguage.en
-                  ? 'AI-powered self-discovery'
-                  : 'Yapay zeka destekli öz-keşif',
+                  ? 'Pattern-aware reflection engine'
+                  : 'Örüntü farkındalıklı yansıma motoru',
               icon: Icons.auto_awesome,
               color: AppColors.starGold,
               route: Routes.insight,
             ),
             _FeatureCard(
               title: language == AppLanguage.en
-                  ? 'Dream Journal'
-                  : 'Rüya Günlüğü',
+                  ? 'Dream Archaeology'
+                  : 'Rüya Arkeolojisi',
               subtitle: language == AppLanguage.en
-                  ? 'Explore your subconscious'
-                  : 'Bilinçaltını keşfet',
+                  ? 'Track recurring symbols & story arcs'
+                  : 'Tekrarlayan sembolleri ve hikaye arklarını takip et',
               icon: Icons.nights_stay,
               color: AppColors.purpleAccent,
               route: Routes.dreamInterpretation,

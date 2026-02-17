@@ -531,7 +531,7 @@ class _SplashScreenState extends State<_SplashScreen> {
             ).animate().fadeIn(delay: 300.ms, duration: 600.ms),
             const SizedBox(height: 8),
             Text(
-              'Personal Reflection Journal',
+              'Emotional Cycle Intelligence',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Colors.white54,
                     letterSpacing: 2,
