@@ -39,7 +39,7 @@ screenshot_captions:
 description: |
   Map the emotional cycles you repeat without realizing it.
 
-  InnerCycles is a cyclical intelligence system — not a mood diary. It detects recurring emotional patterns across your journal entries, dreams, and check-ins. Over time, it shows you your cycle position: where you are now, where you have been before, and what happened last time you were here.
+  InnerCycles is a cyclical intelligence system — not a mood diary. It detects recurring emotional patterns across your journal entries, dreams, and check-ins. Over time, it shows you where you are in your emotional rhythms — and what you wrote last time you felt this way.
 
   HOW IT WORKS:
 
@@ -48,9 +48,9 @@ description: |
   - Cycle-Mapped Journaling — Each entry is plotted on your emotional timeline with recurrence detection
   - Dream Archaeology — Record dreams and track recurring symbols, story arcs, shadow integration, and archetype patterns across your dream history
   - Recurrence Detection Engine — Identifies when emotional patterns repeat across weeks and months
-  - Archetype Progression — Tracks how your dominant archetype evolves across 12 frameworks based on what you write, dream, and explore
-  - Shadow-Light Integration — Measures emotional shadow work through nightmare progression and integration milestones
-  - Wellness Rhythm Tracking — Monitors energy patterns across physical, emotional, intellectual, and intuitive dimensions to identify transitional phases
+  - Archetype Progression — Tracks how your dominant personality archetype evolves based on what you write, dream, and explore
+  - Shadow-Light Integration — Tracks your relationship with difficult emotions through journaling milestones
+  - Wellness Rhythm Tracking — Observe energy patterns across physical, emotional, and intellectual dimensions over time
   - Cycle Position Reports — Weekly and monthly reports showing where you are in recurring patterns
   - Private & Secure — Your data is encrypted and always under your control
 
@@ -107,6 +107,10 @@ review_notes: |
   ATT PROMPT: The app requests App Tracking Transparency permission to serve personalized ads via Google AdMob. If the user declines, only non-personalized ads are shown. Premium subscribers see no ads.
 
   CONTENT: All reflective prompts, dream symbol definitions, and cycle analysis text are generated locally from a curated database. No AI-generated or user-generated content is displayed. The app does not provide medical, psychological, or predictive advice.
+
+  ARCHETYPE SYSTEM: The app uses a personality archetype framework (Pioneer, Builder, Communicator, etc.) inspired by narrative psychology and personality typing systems like the Enneagram and MBTI. These are NOT zodiac signs. The archetype assigned to a user is determined by their journal entries and self-reported preferences, not by birth date or celestial data. The system tracks how a user's dominant archetype evolves over time based on what they write.
+
+  BIRTH DATE: Birth date is collected solely for age verification and birthday-themed reflection prompts (e.g., "birthday reflection" on the user's birthday). Birth time and city fields exist for timezone-aware notification scheduling and are fully optional. No astrological calculations are performed.
 
   PRIVACY: No personal data is shared with third parties beyond analytics (Apple App Analytics) and ads (AdMob). Full privacy policy at https://innercycles.app/privacy.
 

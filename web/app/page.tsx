@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "InnerCycles - Personal Journal & Mood Tracker",
+  title: "InnerCycles - Emotional Cycle Mapping",
   description:
-    "Track your moods, discover emotional patterns, and grow through daily self-awareness. A beautiful journaling companion for self-discovery and personal growth.",
+    "Map the emotional cycles you repeat without realizing it. Recurrence detection, dream archaeology, and archetype progression in one journaling system.",
 };
 
 export default function HomePage() {
@@ -20,10 +20,10 @@ export default function HomePage() {
             InnerCycles
           </h1>
           <p className="text-xl md:text-2xl text-cosmic-text/80 max-w-2xl mx-auto mb-4">
-            Your personal journaling companion for daily reflection, mood tracking, and self-discovery.
+            You keep repeating the same emotional patterns. This app shows you which ones, and when.
           </p>
           <p className="text-cosmic-muted max-w-xl mx-auto mb-8">
-            Capture your thoughts, notice patterns in your well-being, and grow through guided reflection prompts.
+            Not a mood diary. A recurrence detection system that maps the cycles you live inside and surfaces your past entries when patterns repeat.
           </p>
           <a
             href="https://apps.apple.com/app/innercycles/id6742044622"
@@ -42,68 +42,74 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features Grid */}
+      {/* How It Works */}
       <section className="max-w-7xl mx-auto px-4 py-16">
-        <h2 className="cosmic-heading text-3xl text-center mb-12">
-          What You Can Do
+        <h2 className="cosmic-heading text-3xl text-center mb-4">
+          How It Actually Works
         </h2>
+        <p className="text-cosmic-muted text-center max-w-2xl mx-auto mb-12">
+          Every entry you write feeds a pattern engine. When you re-enter familiar emotional territory, InnerCycles surfaces what you wrote last time you were there.
+        </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="cosmic-card text-center">
-            <div className="text-4xl mb-4">&#x1F4D3;</div>
-            <h3 className="text-cosmic-text font-display text-lg mb-2">Daily Journal</h3>
+          <div className="cosmic-card">
+            <div className="text-4xl mb-4">&#128260;</div>
+            <h3 className="text-cosmic-text font-display text-lg mb-2">Recurrence Detection</h3>
             <p className="text-cosmic-muted text-sm">
-              Record your thoughts, moods, and experiences with guided reflection prompts designed to deepen self-awareness.
+              The engine identifies when emotional patterns repeat across weeks and months. &quot;This feeling has appeared 4 times since October&quot; -- that kind of thing.
             </p>
           </div>
-          <div className="cosmic-card text-center">
-            <div className="text-4xl mb-4">&#x1F4CA;</div>
-            <h3 className="text-cosmic-text font-display text-lg mb-2">Pattern Insights</h3>
+          <div className="cosmic-card">
+            <div className="text-4xl mb-4">&#127769;</div>
+            <h3 className="text-cosmic-text font-display text-lg mb-2">Dream Archaeology</h3>
             <p className="text-cosmic-muted text-sm">
-              Discover emotional patterns over time. See trends in your moods, energy levels, and focus areas.
+              Track recurring dream symbols, story arcs, and shadow themes across your entire dream history. See which symbols keep coming back.
             </p>
           </div>
-          <div className="cosmic-card text-center">
-            <div className="text-4xl mb-4">&#x1F4AD;</div>
-            <h3 className="text-cosmic-text font-display text-lg mb-2">Dream Journal</h3>
+          <div className="cosmic-card">
+            <div className="text-4xl mb-4">&#128200;</div>
+            <h3 className="text-cosmic-text font-display text-lg mb-2">Cycle Position Reports</h3>
             <p className="text-cosmic-muted text-sm">
-              Record and explore your dreams with a dedicated dream journal and symbol glossary.
+              Weekly and monthly reports that show where you are in your recurring patterns. Not predictions -- observations from your own writing.
             </p>
           </div>
-          <div className="cosmic-card text-center">
-            <div className="text-4xl mb-4">&#x2728;</div>
-            <h3 className="text-cosmic-text font-display text-lg mb-2">Daily Prompts</h3>
+          <div className="cosmic-card">
+            <div className="text-4xl mb-4">&#128161;</div>
+            <h3 className="text-cosmic-text font-display text-lg mb-2">Archetype Progression</h3>
             <p className="text-cosmic-muted text-sm">
-              Get thoughtful reflection prompts and affirmations to guide your daily journaling practice.
+              Your dominant personality archetype evolves as you write. The system tracks shifts -- from Seeker to Explorer, from Builder to Visionary.
             </p>
           </div>
-          <div className="cosmic-card text-center">
-            <div className="text-4xl mb-4">&#x1F512;</div>
-            <h3 className="text-cosmic-text font-display text-lg mb-2">Private & Secure</h3>
+          <div className="cosmic-card">
+            <div className="text-4xl mb-4">&#127763;</div>
+            <h3 className="text-cosmic-text font-display text-lg mb-2">Shadow-Light Integration</h3>
             <p className="text-cosmic-muted text-sm">
-              Your journal entries stay on your device. No accounts required. Optional iCloud backup with Apple Sign In.
+              Tracks your relationship with difficult emotions over time. Measures how fear themes, anxiety patterns, and nightmares evolve through journaling.
             </p>
           </div>
-          <div className="cosmic-card text-center">
-            <div className="text-4xl mb-4">&#x1F30D;</div>
-            <h3 className="text-cosmic-text font-display text-lg mb-2">Multilingual</h3>
+          <div className="cosmic-card">
+            <div className="text-4xl mb-4">&#128274;</div>
+            <h3 className="text-cosmic-text font-display text-lg mb-2">Private by Architecture</h3>
             <p className="text-cosmic-muted text-sm">
-              Available in English, Turkish, German, and French. Journal in the language that feels most natural to you.
+              All cycle data stays on your device. No account required. Optional Apple Sign In for encrypted backup. We never read your entries.
             </p>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Who It's For */}
       <section className="relative py-20 px-4 text-center bg-cosmic-gradient overflow-hidden">
         <div className="absolute inset-0 opacity-15">
           <div className="absolute top-1/3 right-1/3 w-72 h-72 rounded-full bg-cosmic-accent/20 blur-3xl animate-float" />
         </div>
         <div className="relative max-w-3xl mx-auto">
           <h2 className="cosmic-heading text-3xl md:text-4xl mb-4">
-            Start Your Journaling Journey
+            For People Who Notice They Repeat Things
           </h2>
-          <p className="text-cosmic-text/80 text-lg mb-8">
-            Free to use. No sign-up required. Begin reflecting today.
+          <p className="text-cosmic-text/80 text-lg mb-4">
+            If you have ever thought &quot;I have been here before&quot; about an emotion, a conflict, or a mood -- InnerCycles shows you the pattern.
+          </p>
+          <p className="text-cosmic-muted mb-8">
+            Free to start. No sign-up. Your first cycle report generates after 7 days of entries.
           </p>
           <a
             href="https://apps.apple.com/app/innercycles/id6742044622"
@@ -111,7 +117,7 @@ export default function HomePage() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-cosmic-accent/10 border border-cosmic-accent/30 hover:bg-cosmic-accent/20 text-cosmic-accent px-8 py-4 rounded-2xl transition-all hover:scale-105 text-lg"
           >
-            Download InnerCycles &rarr;
+            Map Your Cycles &rarr;
           </a>
         </div>
       </section>
@@ -119,18 +125,16 @@ export default function HomePage() {
       {/* About */}
       <section className="max-w-4xl mx-auto px-4 py-16">
         <div className="article-prose">
-          <h2>About InnerCycles</h2>
+          <h2>What InnerCycles Is Not</h2>
           <p>
-            InnerCycles is a personal journaling app designed to help you build a daily
-            reflection habit. Whether you want to track your moods, explore your dreams,
-            or simply write down your thoughts, InnerCycles provides a beautiful, private
-            space for self-discovery.
+            It is not a mood tracker with a chart. It is not a gratitude journal with prompts.
+            It is a system that detects when emotional patterns recur -- and shows you what
+            you wrote the last time they did.
           </p>
           <p>
-            Our approach emphasizes self-awareness and personal growth. All content --
-            including reflection prompts, mood insights, and dream symbol definitions --
-            is designed to encourage thoughtful self-exploration rather than making
-            predictions or claims about the future.
+            All insights come from your own entries. The app does not predict anything.
+            It does not claim to know your future. It maps what has already happened, so
+            you can decide what to do differently. That is the entire idea.
           </p>
         </div>
       </section>
