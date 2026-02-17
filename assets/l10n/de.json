@@ -63,18 +63,18 @@
         "explore_more": "Explore More"
     },
     "greetings": {
-        "night": "Stille Reflexion in der Nacht",
-        "morning": "Die Sonne geht mit deiner Energie auf",
-        "afternoon": "Deine innere Weisheit spricht heute zu dir",
-        "evening": "Der Abend lädt zur Reflexion ein",
-        "late_night": "Mondlicht weist dir den Weg",
+        "night": "Noch wach? Gute Zeit zum Schreiben.",
+        "morning": "Morgen. Was beschäftigt dich?",
+        "afternoon": "Nachmittags-Check-in",
+        "evening": "Wie war dein Tag?",
+        "late_night": "Spätabend-Gedanken willkommen",
         "cosmic_welcome": [
-            "Zeit für Reflexion beginnt",
-            "Deine Achtsamkeitsreise beginnt",
-            "Willkommen zur inneren Erkundung",
-            "Nimm dir Zeit für dich selbst",
-            "Dein Gedankenraum ist bereit",
-            "Beginne deine tägliche Reflexion"
+            "Hallo wieder",
+            "Mach weiter, wo du aufgehört hast",
+            "Was ist heute los?",
+            "Wieder da",
+            "Mal sehen, was sich verändert hat",
+            "Deine Muster warten"
         ]
     },
     "onboarding": {
@@ -403,11 +403,11 @@
         },
         "quiz": {
             "return_home": "Return to Home",
-            "special_discount": "SPECIAL 20% DISCOUNT",
+            "special_discount": "Pro-Funktionen",
             "open_cosmic_map": "Open Your Personal Map",
             "strong_profile_message": "Your profile is very strong! Personalized content awaits you.",
             "start_now": "Start Now",
-            "valid_today_only": "Valid only today",
+            "valid_today_only": "",
             "continue_cosmic_journey": "Would you like to continue your personal journey?",
             "view_premium_features": "View Premium Features",
             "continue_free": "Continue with free content",
