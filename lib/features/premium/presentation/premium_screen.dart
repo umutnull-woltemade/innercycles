@@ -340,11 +340,14 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         ),
         const SizedBox(height: AppConstants.spacingMd),
 
-        // Monthly — decoy
+        // Monthly — decoy (variant-aware price)
         _PlanCard(
           tier: PremiumTier.monthly,
           isSelected: _selectedTier == PremiumTier.monthly,
           onTap: () => setState(() => _selectedTier = PremiumTier.monthly),
+          priceOverride: ref
+              .watch(paywallExperimentProvider)
+              .whenOrNull(data: (e) => e.monthlyPriceLabel),
         ),
         const SizedBox(height: AppConstants.spacingMd),
 
@@ -986,6 +989,7 @@ class _PlanCard extends StatelessWidget {
   final VoidCallback onTap;
   final bool isBestValue;
   final bool isLifetime;
+  final String? priceOverride;
 
   const _PlanCard({
     required this.tier,
@@ -993,6 +997,7 @@ class _PlanCard extends StatelessWidget {
     required this.onTap,
     this.isBestValue = false,
     this.isLifetime = false,
+    this.priceOverride,
   });
 
   @override
@@ -1071,7 +1076,7 @@ class _PlanCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          tier.price,
+                          priceOverride ?? tier.price,
                           style:
                               Theme.of(context).textTheme.titleMedium?.copyWith(
                                     color: isSelected

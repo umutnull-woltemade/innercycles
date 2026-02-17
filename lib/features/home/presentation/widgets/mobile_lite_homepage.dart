@@ -10,6 +10,7 @@ import '../../../../data/services/l10n_service.dart';
 import '../../../../data/services/ad_service.dart';
 import '../../../../data/services/premium_service.dart';
 import '../../../../data/services/upgrade_trigger_service.dart';
+import '../../../../data/services/paywall_experiment_service.dart';
 import '../../../streak/presentation/streak_card.dart';
 import '../../../gratitude/presentation/gratitude_section.dart';
 import '../../../rituals/presentation/ritual_checkoff_card.dart';
@@ -1361,14 +1362,32 @@ class _UpgradeTriggerBanner extends ConsumerWidget {
         final entryCount = journalAsync.valueOrNull?.entryCount ?? 0;
         final streak = streakAsync.valueOrNull?.currentStreak ?? 0;
         final adService = ref.watch(adServiceProvider);
+        final dreamCount = ref.watch(dreamCountProvider).valueOrNull ?? 0;
+        final referralService =
+            ref.watch(referralServiceProvider).valueOrNull;
+        final quizService =
+            ref.watch(quizEngineServiceProvider).valueOrNull;
+        final profiles = ref.watch(savedProfilesProvider);
+        final experiment =
+            ref.watch(paywallExperimentProvider).valueOrNull;
+
+        // Timing gate: respect A/B test variant
+        if (experiment != null) {
+          final hasInsight = entryCount >= 7;
+          if (!experiment.shouldShowPaywall(
+              hasGeneratedInsight: hasInsight)) {
+            return const SizedBox.shrink();
+          }
+        }
 
         final trigger = upgradeService.checkTriggers(
           entryCount: entryCount,
-          dreamCount: 0,
+          dreamCount: dreamCount,
           streak: streak,
-          shareCount: 0,
-          profileCount: 1,
-          hasCompletedQuiz: false,
+          shareCount: referralService?.shareCount ?? 0,
+          profileCount: profiles.length,
+          hasCompletedQuiz:
+              quizService?.completedQuizIds.isNotEmpty ?? false,
           adExposures: adService.sessionAdExposures,
         );
 

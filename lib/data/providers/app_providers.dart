@@ -281,6 +281,12 @@ final dreamJournalServiceProvider = FutureProvider<DreamJournalService>((
   return await DreamJournalService.init();
 });
 
+/// Derived dream count provider (sync-safe for widget builds).
+final dreamCountProvider = FutureProvider<int>((ref) async {
+  final service = await ref.watch(dreamJournalServiceProvider.future);
+  return service.getDreamCount();
+});
+
 // =============================================================================
 // JOURNAL PROVIDERS (InnerCycles)
 // =============================================================================
