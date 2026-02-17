@@ -8,7 +8,6 @@ import '../../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/services/ad_service.dart';
-import '../../../../data/services/paywall_experiment_service.dart';
 import '../../../../data/services/premium_service.dart';
 import '../../../../data/services/upgrade_trigger_service.dart';
 import '../../../streak/presentation/streak_card.dart';
