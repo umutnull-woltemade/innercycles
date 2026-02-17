@@ -553,89 +553,56 @@
     }
   },
   "premium": {
-    "cosmic_powers": "Fonctionnalités Premium",
-    "cosmic_powers_active": "Fonctionnalités Premium Actifs",
-    "lifetime_access": "Vous avez un accès à vie!",
-    "open_cosmic_door": "Ouvrir la Porte Intérieure",
-    "cosmic_door_opened": "Porte Intérieure Ouverte!",
-    "success_message": "L'accès complet aux potentiel de découverte de soi est maintenant avec vous. Vous êtes prêt pour une exploration illimitée sous la guidance intérieure.",
-    "view_plans": "Voir les Offres",
+    "cosmic_powers": "Ce que vous débloquez",
+    "cosmic_powers_active": "Fonctionnalités Pro Actives",
+    "lifetime_access": "Vous avez un accès à vie !",
+    "open_cosmic_door": "Débloquer tous les insights",
+    "cosmic_door_opened": "Tous les insights débloqués !",
+    "success_message": "Analyse complète des tendances, toutes les perspectives de rêves et votre boîte à outils de croissance sont maintenant actifs.",
+    "view_plans": "Voir mes insights",
     "manage_subscription": "Gérer l'Abonnement",
     "restore_purchases": "Restaurer les Achats",
-    "purchases_restored": "Achats restaurés!",
+    "purchases_restored": "Achats restaurés !",
     "no_purchases_found": "Aucun achat à restaurer.",
     "lifetime": "À Vie",
-    "best_value": "Meilleure Offre",
+    "best_value": "Le plus populaire",
     "terms_text": "L'abonnement se renouvelle automatiquement sauf s'il est annulé au moins 24 heures avant la fin de la période en cours. Votre compte sera débité pour le renouvellement dans les 24 heures avant la fin de la période en cours. Vous pouvez gérer et annuler votre abonnement à tout moment dans les paramètres de votre compte App Store.",
+    "risk_reversal": "Annulable à tout moment. Vos entrées vous appartiennent toujours.",
+    "price_anchor": "2,50 $/mois avec abonnement annuel",
+    "price_monthly_crossed": "7,99 $/mois",
     "paywall": {
-      "title": "Déverrouillez votre voyage complet",
-      "subtitle": "Vivez la connaissance de soi sans interruption",
-      "benefit_ad_free": "Expérience calme sans publicité",
-      "benefit_unlimited": "Insights personnels illimités",
-      "benefit_priority": "Guidance personnelle prioritaire",
-      "continue_pro": "Continuer avec Pro",
-      "not_now": "Pas maintenant, peut-être plus tard",
-      "legal_text": "Renouvellement mensuel automatique. Annulez à tout moment dans les Paramètres.",
-      "privacy_policy": "Politique de Confidentialité",
-      "terms_of_use": "Conditions d'Utilisation",
+      "title": "Votre journal a quelque chose à vous dire",
+      "subtitle": "Vous avez écrit votre histoire. Premium vous permet de la lire.",
+      "benefit_ad_free": "Espace de réflexion sans pub",
+      "benefit_unlimited": "Analyse complète des tendances et détection des récurrences",
+      "benefit_priority": "Les 5 perspectives d'interprétation des rêves",
       "benefit_export": "Export complet des données (CSV, JSON)",
-      "benefit_reports": "Rapports mensuels et annuels de progression",
-      "benefit_programs": "Programmes premium, défis et outils"
+      "benefit_reports": "Rapports mensuels et annuels de croissance",
+      "benefit_programs": "Programmes premium, défis et outils",
+      "continue_pro": "Débloquer tous les insights — $2,50/mois",
+      "not_now": "Pas maintenant",
+      "legal_text": "Renouvellement annuel automatique. Annulez à tout moment dans les Paramètres.",
+      "privacy_policy": "Politique de Confidentialité",
+      "terms_of_use": "Conditions d'Utilisation"
     },
     "retention": {
       "title": "Nous serons là",
-      "message": "Prenez tout le temps qu'il vous faut. Votre voyage continue quand vous êtes prêt.",
+      "message": "Prenez tout le temps qu'il vous faut. Votre journal continue de grandir quand vous êtes prêt.",
       "got_it": "Compris"
     },
-    "features": {
-      "daily_whispers": "Réflexions quotidiennes",
-      "pure_cosmic_experience": "Expérience personnelle pure (sans publicité)",
-      "deep_pattern_analysis": "Lectures personnelles profondes",
-      "unlimited_card_insight": "Sessions de réflexion illimitées",
-      "relationship_mapping": "Outils de réflexion relationnelle",
-      "inner_wisdom_tools": "Outils d'exploration symbolique",
-      "energy_awareness": "Journal de conscience énergétique",
-      "recurrence_detection": "Cycles personnels",
-      "priority_guidance": "Guidance personnelle prioritaire"
-    },
-    "tiers": {
-      "free": {
-        "name": "Gratuit",
-        "savings": "",
-        "features": "['Murmures aperçu quotidiens', 'Profil personnel de base', 'Carte de réflexion quotidienne', 'Avec publicités']"
-      },
-      "monthly": {
-        "name": "Mensuel",
-        "savings": "",
-        "features": "['Toutes les fonctionnalités de base', 'Expérience personnelle pure (sans pub)', 'Interprétations personnelles profondes', 'Sessions de réflexion illimitées', 'Outils de réflexion relationnelle', 'Outils d'exploration symbolique', 'Journal de conscience énergétique', 'Cycles personnels', 'Guidance personnelle prioritaire']"
-      },
-      "yearly": {
-        "name": "Annuel",
-        "savings": "Économisez 50%",
-        "features": "['Toutes les fonctionnalités de base', 'Expérience personnelle pure (sans pub)', 'Interprétations personnelles profondes', 'Sessions de réflexion illimitées', 'Outils de réflexion relationnelle', 'Outils d'exploration symbolique', 'Journal de conscience énergétique', 'Cycles personnels', 'Guidance personnelle prioritaire']"
-      },
-      "lifetime": {
-        "name": "À vie",
-        "savings": "Paiement unique",
-        "features": "['Toutes les fonctionnalités de base', 'Expérience personnelle pure (sans pub)', 'Interprétations personnelles profondes', 'Sessions de réflexion illimitées', 'Outils de réflexion relationnelle', 'Outils d'exploration symbolique', 'Journal de conscience énergétique', 'Cycles personnels', 'Guidance personnelle prioritaire']"
-      }
-    },
-    "risk_reversal": "Annulable à tout moment. Vos entrées vous appartiennent toujours.",
-    "price_anchor": "2,50 €/mois avec abonnement annuel",
-    "price_monthly_crossed": "7,99 €/mois",
     "comparison": {
       "title": "Gratuit vs Pro",
       "feature_journal": "Journal quotidien",
-      "feature_journal_free": "1 perspective",
-      "feature_journal_pro": "Les 5 perspectives",
+      "feature_journal_free": "Illimité",
+      "feature_journal_pro": "Illimité",
       "feature_dreams": "Interprétation des rêves",
-      "feature_dreams_free": "Basique",
-      "feature_dreams_pro": "Analyse approfondie",
+      "feature_dreams_free": "1 perspective",
+      "feature_dreams_pro": "Les 5 perspectives",
       "feature_patterns": "Analyse des tendances",
       "feature_patterns_free": "Tendances résumées",
       "feature_patterns_pro": "Profondeur complète + corrélations",
-      "feature_reports": "Rapports de progression",
-      "feature_reports_free": "Aucun",
+      "feature_reports": "Rapports de croissance",
+      "feature_reports_free": "—",
       "feature_reports_pro": "Mensuel et annuel",
       "feature_streaks": "Pauses de série",
       "feature_streaks_free": "1/semaine",
@@ -649,6 +616,65 @@
       "feature_programs": "Programmes guidés",
       "feature_programs_free": "2 gratuits",
       "feature_programs_pro": "Tous les programmes"
+    },
+    "features": {
+      "daily_whispers": "Analyse complète des tendances et détection des récurrences",
+      "pure_cosmic_experience": "Espace de réflexion sans pub",
+      "deep_pattern_analysis": "Les 5 perspectives d'interprétation des rêves",
+      "unlimited_card_insight": "Rapports mensuels et annuels de croissance",
+      "relationship_mapping": "Export complet des données",
+      "inner_wisdom_tools": "Programmes premium, défis et outils",
+      "energy_awareness": "Journal de conscience énergétique",
+      "recurrence_detection": "Moteur complet de détection des récurrences",
+      "priority_guidance": "Rapports d'intelligence cyclique prioritaires"
+    },
+    "tiers": {
+      "free": {
+        "name": "Gratuit",
+        "savings": "",
+        "features": [
+          "Journal quotidien (illimité)",
+          "1 perspective de rêve",
+          "Tendances résumées",
+          "Avec publicités"
+        ]
+      },
+      "monthly": {
+        "name": "Mensuel",
+        "savings": "",
+        "features": [
+          "Analyse complète des tendances et détection des récurrences",
+          "Les 5 perspectives d'interprétation des rêves",
+          "Espace de réflexion sans pub",
+          "Rapports mensuels et annuels de croissance",
+          "Export illimité (CSV, JSON)",
+          "Programmes premium, défis et outils"
+        ]
+      },
+      "yearly": {
+        "name": "Annuel",
+        "savings": "69% d'économie — seulement $2,50/mois",
+        "features": [
+          "Analyse complète des tendances et détection des récurrences",
+          "Les 5 perspectives d'interprétation des rêves",
+          "Espace de réflexion sans pub",
+          "Rapports mensuels et annuels de croissance",
+          "Export illimité (CSV, JSON)",
+          "Programmes premium, défis et outils"
+        ]
+      },
+      "lifetime": {
+        "name": "À vie",
+        "savings": "Payez une fois, c'est à vous pour toujours",
+        "features": [
+          "Analyse complète des tendances et détection des récurrences",
+          "Les 5 perspectives d'interprétation des rêves",
+          "Espace de réflexion sans pub",
+          "Rapports mensuels et annuels de croissance",
+          "Export illimité (CSV, JSON)",
+          "Programmes premium, défis et outils"
+        ]
+      }
     }
   },
   "widgets": {
@@ -3058,8 +3084,8 @@
     "off": "Desactive",
     "moon_phases": "Phases lunaires",
     "moon_phases_desc": "Alertes nouvelle lune et pleine lune",
-    "transit_alerts": "Alertes cycles",
-    "transit_desc": "Influences saisonnières importantes",
+    "cycle_alerts": "Alertes cycles",
+    "cycle_desc": "Influences saisonnières importantes",
     "lifecycle": {
       "streak_reminder_title": "Votre série vous attend",
       "streak_reminder_body": "Votre série de {count} jours vous attend ! Une entrée rapide la maintient.",
@@ -3073,8 +3099,8 @@
       "seasonal_new_moon_body": "The new moon is tonight — a perfect time for reflection.",
       "seasonal_full_moon_title": "Full Moon Tonight",
       "seasonal_full_moon_body": "The full moon is tonight — a wonderful moment for gratitude.",
-      "re_engagement_3day_title": "Your Journal Awaits",
-      "re_engagement_3day_body": "We miss your reflections. Your journal is waiting for you.",
+      "re_engagement_3day_title": "Your Journal Is Ready",
+      "re_engagement_3day_body": "We miss your reflections. Your journal is ready for you.",
       "re_engagement_7day_title": "One Sentence Counts",
       "re_engagement_7day_body": "It's been a little while — even one sentence counts.",
       "re_engagement_14day_title": "Still Here For You",
@@ -3096,7 +3122,7 @@
   "insights": {
     "daily_energy_title": "Today's Energy",
     "daily_energy_content": "The Moon's current position brings emotional depth. It's the perfect time to listen to your inner voice.",
-    "transit_effect_title": "Cycle Effect",
+    "cycle_effect_title": "Cycle Effect",
     "dream_guide_title": "Dream Guide",
     "dream_guide_content": "Dreams you have tonight may carry important messages. Don't forget to record your dreams.",
     "weekly_preview_title": "Weekly Preview",

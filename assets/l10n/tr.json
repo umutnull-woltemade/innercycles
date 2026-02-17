@@ -3088,8 +3088,8 @@
         "off": "Kapalı",
         "moon_phases": "Ay Evreleri",
         "moon_phases_desc": "Yeni ay ve dolunay bildirimleri",
-        "transit_alerts": "Döngü Uyarıları",
-        "transit_desc": "Önemli döngüsel geçişler",
+        "cycle_alerts": "Döngü Uyarıları",
+        "cycle_desc": "Önemli döngüsel geçişler",
         "lifecycle": {
             "streak_reminder_title": "Serine Devam Et",
             "streak_reminder_body": "{count} günlük serin devam ediyor! Hızlı bir kayıt seriyi sürdürür.",
@@ -3126,7 +3126,7 @@
     "insights": {
         "daily_energy_title": "Bugünün Enerjisi",
         "daily_energy_content": "Ay'ın mevcut konumu duygusal derinlik getiriyor. İç sesinize kulak vermenin tam zamanı.",
-        "transit_effect_title": "Döngü Etkisi",
+        "cycle_effect_title": "Döngü Etkisi",
         "dream_guide_title": "Rüya Rehberi",
         "dream_guide_content": "Bu gece gördüğünüz rüyalar önemli mesajlar taşıyabilir. Rüyalarınızı kaydetmeyi unutmayın.",
         "weekly_preview_title": "Haftalık Bakış",

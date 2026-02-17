@@ -74,7 +74,7 @@
             "What's happening today?",
             "Back for more",
             "Let's see what's changed",
-            "Your patterns are waiting"
+            "Your patterns are here"
         ]
     },
     "onboarding": {
@@ -82,7 +82,7 @@
         "cosmic_identity": "Your Profile",
         "enter_info_subtitle": "Tell us a bit about yourself to personalize your journal",
         "info_box_text": "Your name helps us personalize your experience. Birth date is optional.",
-        "will_be_calculated": "Your Journal Awaits",
+        "will_be_calculated": "Your Journal Is Ready",
         "start_cosmic_journey": "Map Your Cycles",
         "tap_to_continue": "Tap to continue",
         "connect_with_apple": "Continue with Apple",
@@ -3088,11 +3088,11 @@
         "off": "Off",
         "moon_phases": "Moon Phases",
         "moon_phases_desc": "New moon and full moon alerts",
-        "transit_alerts": "Cycle Alerts",
-        "transit_desc": "Important life cycles",
+        "cycle_alerts": "Cycle Alerts",
+        "cycle_desc": "Important life cycles",
         "lifecycle": {
-            "streak_reminder_title": "Your Streak is Waiting",
-            "streak_reminder_body": "Your {count}-day streak is waiting! A quick entry keeps it going.",
+            "streak_reminder_title": "Keep Your Streak Going",
+            "streak_reminder_body": "Your {count}-day streak continues! A quick entry keeps it going.",
             "insight_teaser_title": "Something Interesting",
             "insight_teaser_body": "We noticed something interesting in your patterns this week...",
             "mood_checkin_title": "Quick Check-In",
@@ -3103,8 +3103,8 @@
             "seasonal_new_moon_body": "The new moon is tonight — a perfect time for reflection.",
             "seasonal_full_moon_title": "Full Moon Tonight",
             "seasonal_full_moon_body": "The full moon is tonight — a wonderful moment for gratitude.",
-            "re_engagement_3day_title": "Your Journal Awaits",
-            "re_engagement_3day_body": "We miss your reflections. Your journal is waiting for you.",
+            "re_engagement_3day_title": "Your Journal Is Ready",
+            "re_engagement_3day_body": "We miss your reflections. Your journal is ready for you.",
             "re_engagement_7day_title": "One Sentence Counts",
             "re_engagement_7day_body": "It's been a little while — even one sentence counts.",
             "re_engagement_14day_title": "Still Here For You",
@@ -3126,7 +3126,7 @@
     "insights": {
         "daily_energy_title": "Today's Energy",
         "daily_energy_content": "Today's cycle brings emotional depth. It's the perfect time to listen to your inner voice.",
-        "transit_effect_title": "Cycle Effect",
+        "cycle_effect_title": "Cycle Effect",
         "dream_guide_title": "Dream Guide",
         "dream_guide_content": "Dreams you have tonight may carry important messages. Don't forget to record your dreams.",
         "weekly_preview_title": "Weekly Preview",
