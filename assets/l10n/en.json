@@ -1837,7 +1837,7 @@
             },
             "aura_cleansing": {
                 "title": "Energy Cleansing",
-                "description": "Purify your energy field."
+                "description": "Refresh your energy."
             },
             "post_ritual_dreams": {
                 "title": "Post-Ritual Dreams",
@@ -1871,8 +1871,8 @@
                 "description": "The secret of numbers."
             },
             "aura": {
-                "title": "Energy",
-                "description": "Your energy field."
+                "title": "Energy Profile",
+                "description": "Your personal energy."
             },
             "rituals": {
                 "title": "Rituals",
