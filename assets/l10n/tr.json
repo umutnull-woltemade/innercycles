@@ -673,7 +673,6 @@
             "self_awareness": "Öz Farkındalık bir öz-refleksiyon aracıdır, tahmin değil",
             "card_insight": "Refleksiyon okumaları sadece kişisel içgörü içindir",
             "numerology": "Numeroloji sembolik perspektifler sunar",
-            "chakra": "Çakra bilgisi öz-refleksiyon amaçlıdır",
             "compatibility": "Uyum içgörüleri sadece refleksiyon içindir",
             "insight": "Bu içgörüler kişisel refleksiyon içindir",
             "reflection": "Bunu kendini keşfetme aracı olarak kullan"
@@ -1262,7 +1261,6 @@
             "self_awareness": "Sadece eğlence amaçlıdır. Tahmin tavsiyesi değildir.",
             "card_insight": "Sadece düşünme amaçlıdır. Tahmin değildir.",
             "numerology": "Sadece öz-keşif amaçlıdır. Tahmin değildir.",
-            "chakra": "Sadece farkındalık amaçlıdır. Tıbbi veya manevi reçete değildir.",
             "compatibility": "Sadece düşünme amaçlıdır. İlişki tavsiyesi değildir.",
             "insight": "Sadece kişisel düşünme amaçlıdır. Profesyonel tavsiye değildir.",
             "reflection": "Burası öz-yansıtma alanıdır, tahmin veya tavsiye değil."
@@ -1568,10 +1566,6 @@
                 "title": "Aura Okuma",
                 "description": "Enerji alanını keşfet."
             },
-            "chakra_analysis": {
-                "title": "Chakra Analizi",
-                "description": "Enerji merkezlerin."
-            },
             "moon_rituals": {
                 "title": "Ay Ritüelleri",
                 "description": "Enerji temizliği pratikleri."
@@ -1656,13 +1650,6 @@
                 "title": "Aura Renkleri",
                 "description": "Enerji alanın."
             },
-            "chakra_balance": {
-                "title": "Chakra Dengesi",
-                "description": "Sayılar ve chakralar."
-            },
-            "numbers_and_chakras": {
-                "description": "Sayılar ve chakralar."
-            },
             "other_systems": {
                 "description": "Diğer sistemler"
             },
@@ -1729,10 +1716,6 @@
                 "title": "Öz Farkındalık Bağlantısı",
                 "description": "Sefirot ve kişilik özellikleri."
             },
-            "chakra_system": {
-                "title": "Chakra Sistemi",
-                "description": "Doğu ve Batı enerji haritaları."
-            },
             "mystic_dreams": {
                 "title": "Derin Rüyalar",
                 "description": "Derin semboller ve rüyalar."
@@ -1784,10 +1767,6 @@
                 "title": "Başka Bir Rüya Anlat",
                 "description": "Yeni bir yolculuğa başla."
             },
-            "chakra_and_dreams": {
-                "title": "Chakra ve Rüyalar",
-                "description": "Enerji merkezleri ve bilinçaltı."
-            },
             "symbol_glossary": {
                 "title": "Sembol Sözlüğü",
                 "description": "Rüya sembolleri"
@@ -1832,12 +1811,6 @@
             "learn_concepts": {
                 "description": "Kavramları öğren"
             },
-            "energy_field_chakras": {
-                "description": "Enerji alanın ve chakralar."
-            },
-            "chakra_balancing_practices": {
-                "description": "Chakra dengeleme pratikleri."
-            },
             "kabbalah_sefirot": {
                 "title": "Yaşam Boyutları",
                 "description": "Doğu-Batı enerji haritaları."
@@ -1852,23 +1825,12 @@
                 "title": "Enerji Rehberliği",
                 "description": "Chakralarına özel mesaj."
             },
-            "chakra_special_message": {
-                "description": "Chakralarına özel mesaj."
-            },
             "energy_reading": {
                 "description": "Enerji okuma."
-            },
-            "seven_chakra_guide": {
-                "title": "7 Chakra Rehberi",
-                "description": "Detaylı açıklamalar"
             },
             "moon_calendar": {
                 "title": "Ay Takvimi",
                 "description": "Yeniay ve dolunay tarihleri."
-            },
-            "chakra_balancing": {
-                "title": "Chakra Dengeleme",
-                "description": "Ritüellerle enerji çalışması."
             },
             "energy_work_rituals": {
                 "description": "Ritüellerle enerji çalışması."
@@ -2846,7 +2808,6 @@
         "solar_return": "Doğum gününüz etrafındaki yıllık kişisel haritanız",
         "lunar_calendar": "Ay fazlarına göre bahçecilik ve ekim takvimi"
     },
-    "self_awareness": {},
     "days": {
         "mon_short": "Pzt",
         "tue_short": "Sal",
@@ -2879,7 +2840,6 @@
         "hold": "Tut",
         "exhale": "Nefes Ver",
         "repeat_times": "{count} kez tekrarlayın",
-        "chakra_to_focus": "Odaklanılacak Çakra",
         "todays_affirmations": "Bugünün Olumlamaları",
         "affirmations_subtitle": "Pozitif sözler gerçekliğini şekillendirir",
         "main_affirmation": "Ana Olumlama",
@@ -2973,15 +2933,6 @@
             "natural_breath": "Doğal Nefes",
             "heart_breath": "Kalp Nefesi",
             "creative_breath": "Yaratıcı Nefes"
-        },
-        "chakras": {
-            "heart": "Kalp Çakrası",
-            "heart_focus": "Şefkat ve sevgi",
-            "root": "Kök Çakra",
-            "root_focus": "Topraklanma ve güvenlik",
-            "third_eye": "Üçüncü Göz",
-            "third_eye_focus": "Sezgi ve vizyon",
-            "unconditional_love": "Koşulsuz sevgi"
         },
         "affirmation_lists": {
             "morning_1": "Bugün kendimi harika şeylere açık hissediyorum.",
@@ -3164,7 +3115,6 @@
         "weekly_preview_title": "Haftalık Bakış",
         "weekly_preview_content": "Haftanın geri kalanı için kişisel enerjiler sizin lehinize çalışıyor."
     },
-    "moon": {},
     "nav": {
         "also_viewed_subtitle": "Merak edenler bunlara da göz attı",
         "go_deeper_subtitle": "İç dünyanla bağlan",
@@ -3208,7 +3158,6 @@
         "new_beginnings": "Yeni başlangıçlar",
         "share_card": "Kartını Paylaş",
         "share_cosmic_message": "Kişisel mesajını paylaş",
-        "chakra_analysis": "Chakra Analizi",
         "energy_centers": "Enerji merkezlerin",
         "dream_trace": "Rüya İzi",
         "dream_meanings": "Rüyalarının anlamı",

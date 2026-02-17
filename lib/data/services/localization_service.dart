@@ -1217,7 +1217,7 @@ class L10n {
       AppLanguage.es: 'Vínculo Personal',
       AppLanguage.ar: 'الرابط الشخصي',
     },
-    'chakra_map': {
+    'energy_map': {
       AppLanguage.en: 'Energy Map',
       AppLanguage.tr: 'Enerji Haritası',
       AppLanguage.el: 'Χάρτης Ενέργειας',

@@ -638,7 +638,6 @@
             "self_awareness": "La connaissance de soi est un outil de réflexion personnelle",
             "card_insight": "Les lectures de reflection card sont uniquement pour un aperçu personnel",
             "numerology": "La numérologie offre des perspectives symboliques",
-            "chakra": "Les informations sur les chakras servent à la réflexion",
             "compatibility": "Les aperçus de compatibilité sont uniquement pour la réflexion",
             "insight": "Ces aperçus servent à la réflexion personnelle",
             "reflection": "Utilisez ceci comme outil de découverte de soi"
@@ -869,7 +868,7 @@
             },
             "symbols": {
                 "snake_name": "Snake",
-                "snake_meaning": "Transformation, healing, hidden fears",
+                "snake_meaning": "Transformation, renewal, hidden fears",
                 "water_name": "Water",
                 "water_meaning": "Emotions, subconscious, purification",
                 "fire_name": "Fire",
@@ -929,8 +928,8 @@
                     "dreamer": {
                         "basic_meaning": "Water is your element - your connection with inner realms is very strong! You can fully trust your intuition.",
                         "element_perspective": "You're experiencing deep inner oneness. Creative inspiration is flowing. Ideal period for artistic expression.",
-                        "psychological": "Water: Deep consciousness, healing, collective subconscious\nAs a Dreamer: Deep experiences and inner guidance\nMessage: You are beyond water - you are the ocean",
-                        "practice": "• Artistic creation - painting, music, writing\n• Meditation by sea or lake\n• Lucid dream practices\n• Healing work\n• Be open to inner guidance"
+                        "psychological": "Water: Deep consciousness, renewal, collective subconscious\nAs a Dreamer: Deep experiences and inner guidance\nMessage: You are beyond water - you are the ocean",
+                        "practice": "• Artistic creation - painting, music, writing\n• Meditation by sea or lake\n• Lucid dream practices\n• Inner reflection work\n• Be open to inner guidance"
                     },
                     "default": {
                         "basic_meaning": "Water carries emotional messages for your {element} sign. The subconscious wants to flow.",
@@ -1227,7 +1226,6 @@
             "self_awareness": "À des fins de divertissement uniquement. Pas de conseils prédictifs.",
             "card_insight": "À des fins de réflexion uniquement. Non prédictif.",
             "numerology": "Pour l'auto-exploration uniquement. Non prédictif.",
-            "chakra": "Pour la sensibilisation uniquement. Pas de prescription médicale ou personnelle.",
             "compatibility": "Pour la réflexion uniquement. Pas de conseil relationnel.",
             "insight": "Pour la réflexion personnelle uniquement. Pas de conseil professionnel.",
             "reflection": "Ceci est un espace d'auto-réflexion, pas de réflexion ou de conseil."
@@ -1533,10 +1531,6 @@
                 "title": "Lecture d'aura",
                 "description": "Découvrez votre champ énergétique."
             },
-            "chakra_analysis": {
-                "title": "Analyse des chakras",
-                "description": "Vos centres énergétiques."
-            },
             "moon_rituals": {
                 "title": "Rituels lunaires",
                 "description": "Pratiques de purification énergétique."
@@ -1621,13 +1615,6 @@
                 "title": "Couleurs de l'aura",
                 "description": "Votre champ énergétique."
             },
-            "chakra_balance": {
-                "title": "Équilibre des chakras",
-                "description": "Nombres et chakras."
-            },
-            "numbers_and_chakras": {
-                "description": "Nombres et chakras."
-            },
             "other_systems": {
                 "description": "Autres systèmes"
             },
@@ -1694,10 +1681,6 @@
                 "title": "Connexion personnel",
                 "description": "Sefirot et caractéristiques."
             },
-            "chakra_system": {
-                "title": "Système des chakras",
-                "description": "Cartes énergétiques Est et Ouest."
-            },
             "mystic_dreams": {
                 "title": "Rêves mystiques",
                 "description": "Symboles intérieurs et rêves."
@@ -1749,10 +1732,6 @@
                 "title": "Racontez un autre rêve",
                 "description": "Commencez un nouveau voyage."
             },
-            "chakra_and_dreams": {
-                "title": "Chakra et rêves",
-                "description": "Centres énergétiques et subconscient."
-            },
             "symbol_glossary": {
                 "title": "Glossaire des symboles",
                 "description": "Symboles de rêves"
@@ -1797,12 +1776,6 @@
             "learn_concepts": {
                 "description": "Apprenez les concepts"
             },
-            "energy_field_chakras": {
-                "description": "Votre champ énergétique et chakras."
-            },
-            "chakra_balancing_practices": {
-                "description": "Pratiques d'équilibrage des chakras."
-            },
             "kabbalah_sefirot": {
                 "title": "Sefirot symboliques",
                 "description": "Chemins sur l'Arbre de Vie."
@@ -1817,23 +1790,12 @@
                 "title": "Guidance énergétique",
                 "description": "Flux d'énergie quotidien."
             },
-            "chakra_special_message": {
-                "description": "Message spécial pour vos chakras."
-            },
             "energy_reading": {
                 "description": "Lecture énergétique."
-            },
-            "seven_chakra_guide": {
-                "title": "Guide des sept chakras",
-                "description": "Comprenez vos centres énergétiques."
             },
             "moon_calendar": {
                 "title": "Calendrier lunaire",
                 "description": "Phases et énergies lunaires."
-            },
-            "chakra_balancing": {
-                "title": "Équilibrage des chakras",
-                "description": "Pratiques pour l'équilibre."
             },
             "energy_work_rituals": {
                 "description": "Travail énergétique avec les rituels."
@@ -2811,7 +2773,6 @@
         "solar_return": "Votre carte personnelle annuelle autour de votre anniversaire",
         "lunar_calendar": "Calendrier de jardinage et de plantation selon les phases lunaires"
     },
-    "self_awareness": {},
     "days": {
         "mon_short": "Lun",
         "tue_short": "Mar",
@@ -2844,7 +2805,6 @@
         "hold": "Retenir",
         "exhale": "Expirer",
         "repeat_times": "Repetez {count} fois",
-        "chakra_to_focus": "Chakra a Focaliser",
         "todays_affirmations": "Affirmations du Jour",
         "affirmations_subtitle": "Renforcez-vous avec des pensees positives",
         "main_affirmation": "Affirmation Principale du Jour",
@@ -2938,15 +2898,6 @@
             "natural_breath": "Natural Breath",
             "heart_breath": "Heart Breath",
             "creative_breath": "Creative Breath"
-        },
-        "chakras": {
-            "heart": "Heart Chakra",
-            "heart_focus": "Compassion and love",
-            "root": "Root Chakra",
-            "root_focus": "Grounding and security",
-            "third_eye": "Third Eye",
-            "third_eye_focus": "Intuition and vision",
-            "unconditional_love": "Unconditional love"
         },
         "affirmation_lists": {
             "morning_1": "Je suis ouvert(e) aux grandes choses aujourd'hui.",
@@ -3129,7 +3080,6 @@
         "weekly_preview_title": "Weekly Preview",
         "weekly_preview_content": "Personal energies are working in your favor for the rest of the week."
     },
-    "moon": {},
     "nav": {
         "also_viewed_subtitle": "D'autres curieux ont également consulté ceci",
         "go_deeper_subtitle": "Connectez-vous avec votre monde intérieur",
@@ -3173,7 +3123,6 @@
         "new_beginnings": "New beginnings",
         "share_card": "Share Your Card",
         "share_cosmic_message": "Share your personal message",
-        "chakra_analysis": "Chakra Analysis",
         "energy_centers": "Your energy centers",
         "dream_trace": "Dream Trace",
         "dream_meanings": "The meaning of your dreams",
