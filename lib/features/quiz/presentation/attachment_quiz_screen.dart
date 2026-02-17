@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../core/constants/app_constants.dart';
@@ -788,7 +789,10 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
       height: 52,
       child: OutlinedButton.icon(
         onPressed: () {
-          context.push('/premium');
+          showContextualPaywall(
+            context, ref,
+            paywallContext: PaywallContext.general,
+          );
         },
         icon: Icon(
           Icons.auto_awesome,
