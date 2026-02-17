@@ -952,8 +952,8 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Journal Archive'
                 : 'Günlük Arşivi',
             subtitle: language == AppLanguage.en
-                ? 'Search & browse all entries'
-                : 'Tüm kayıtları ara ve gözat',
+                ? 'Search & browse all cycle entries'
+                : 'Tüm döngü kayıtlarını ara ve gözat',
             route: Routes.journalArchive,
             isDark: isDark,
             index: 0,
@@ -965,8 +965,8 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Export Data'
                 : 'Verileri Dışa Aktar',
             subtitle: language == AppLanguage.en
-                ? 'Download your journal as text, CSV, or JSON'
-                : 'Günlüğünüzü metin, CSV veya JSON olarak indirin',
+                ? 'Export your cycle data as text, CSV, or JSON'
+                : 'Döngü verilerinizi metin, CSV veya JSON olarak indirin',
             route: Routes.exportData,
             isDark: isDark,
             index: 1,
@@ -978,8 +978,8 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Year in Review'
                 : 'Yıllık Özet',
             subtitle: language == AppLanguage.en
-                ? 'Your complete emotional story arc'
-                : 'Tam duygusal hikaye arkın',
+                ? 'Your full-year cycle progression arc'
+                : 'Yıllık döngü ilerleme arkın',
             route: Routes.yearReview,
             isDark: isDark,
             index: 2,
@@ -991,8 +991,8 @@ class _BelowTheFold extends ConsumerWidget {
                 ? 'Weekly Digest'
                 : 'Haftalık Özet',
             subtitle: language == AppLanguage.en
-                ? 'Your week\'s insights at a glance'
-                : 'Haftanın içgörüleri bir bakışta',
+                ? 'This week\'s cycle position & recurrences'
+                : 'Bu haftanın döngü pozisyonu ve tekrarları',
             route: Routes.weeklyDigest,
             isDark: isDark,
             index: 3,
