@@ -12,7 +12,7 @@ import '../../../data/services/l10n_service.dart';
 import '../../../data/services/first_taste_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
-import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';

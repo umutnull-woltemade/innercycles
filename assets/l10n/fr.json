@@ -683,7 +683,7 @@
       "month": "Mois",
       "year": "Année"
     },
-    "entertainment_disclaimer": {
+    "content_disclaimer": {
       "general": "À des fins de réflexion personnelle uniquement",
       "dreams": "Les interprétations des rêves sont des réflexions symboliques",
       "health": "Pas un avis médical. Consultez des professionnels",
@@ -1271,7 +1271,7 @@
       "general_button": "Start Test",
       "inline_default": "Is this unique to you? Find out with a short test"
     },
-    "entertainment_disclaimer": {
+    "content_disclaimer": {
       "general": "À des fins de réflexion personnelle et d'auto-réflexion uniquement.",
       "dreams": "Les réflexions sur les rêves sont pour l'exploration personnelle, pas l'interprétation professionnelle.",
       "health": "Pas de conseil médical. Consultez des professionnels de santé.",

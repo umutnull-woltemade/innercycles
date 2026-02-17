@@ -12,7 +12,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 import '../services/insight_routing_service.dart';
 import '../services/insight_response_service.dart';
-import '../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../shared/widgets/content_disclaimer.dart';
 
 /// Insight - Personal Reflection Assistant
 /// Single unified chat interface for self-reflection
@@ -183,7 +183,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
             ),
 
             // Disclaimer
-            EntertainmentDisclaimer(
+            ContentDisclaimer(
               compact: true,
               customText: DisclaimerTexts.insight(language),
               language: language,

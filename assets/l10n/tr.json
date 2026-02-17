@@ -683,7 +683,7 @@
             "month": "Ay",
             "year": "Yıl"
         },
-        "entertainment_disclaimer": {
+        "content_disclaimer": {
             "general": "Yalnızca öz-yansıtma amaçlıdır",
             "dreams": "Rüya yorumları sembolik refleksiyonlardır",
             "health": "Tıbbi tavsiye değildir. Sağlık konularında uzmana danışın",
@@ -1271,7 +1271,7 @@
             "general_button": "Teste Başla",
             "inline_default": "Bu sana özel mi? Kısa testle öğren"
         },
-        "entertainment_disclaimer": {
+        "content_disclaimer": {
             "general": "Yalnızca öz-yansıtma ve kişisel farkındalık amaçlıdır.",
             "dreams": "Rüya yorumları kişisel keşif içindir, profesyonel yorum değildir.",
             "health": "Tıbbi tavsiye değildir. Sağlık profesyonellerine danışın.",

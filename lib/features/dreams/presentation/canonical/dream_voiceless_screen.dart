@@ -6,7 +6,7 @@ import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/providers/app_providers.dart';
-import '../../../../shared/widgets/entertainment_disclaimer.dart';
+import '../../../../shared/widgets/content_disclaimer.dart';
 
 /// Rüyada Ses Çıkaramamak Ne Demek? - AI-First Canonical Sayfa
 class DreamVoicelessScreen extends ConsumerWidget {

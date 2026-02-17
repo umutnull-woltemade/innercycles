@@ -683,7 +683,7 @@
             "month": "Month",
             "year": "Year"
         },
-        "entertainment_disclaimer": {
+        "content_disclaimer": {
             "general": "For personal cycle awareness only",
             "dreams": "Dream archaeology surfaces recurring symbols for reflection",
             "health": "Not medical advice. Consult professionals for health concerns",
@@ -1271,7 +1271,7 @@
             "general_button": "Start Test",
             "inline_default": "Is this unique to you? Find out with a short test"
         },
-        "entertainment_disclaimer": {
+        "content_disclaimer": {
             "general": "For personal cycle awareness and pattern recognition only.",
             "dreams": "Dream archaeology is for personal pattern exploration, not professional interpretation.",
             "health": "Not medical advice. Consult healthcare professionals.",

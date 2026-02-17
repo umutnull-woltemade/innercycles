@@ -683,7 +683,7 @@
             "month": "Monat",
             "year": "Jahr"
         },
-        "entertainment_disclaimer": {
+        "content_disclaimer": {
             "general": "Nur zur Selbstreflexion",
             "dreams": "Traumdeutungen sind symbolische Reflexionen",
             "health": "Keine medizinische Beratung. Konsultieren Sie Fachleute",
@@ -1271,7 +1271,7 @@
             "general_button": "Start Test",
             "inline_default": "Is this unique to you? Find out with a short test"
         },
-        "entertainment_disclaimer": {
+        "content_disclaimer": {
             "general": "Nur zu Selbstreflexionszwecken.",
             "dreams": "Traumreflexionen dienen der persönlichen Erkundung, nicht der professionellen Interpretation.",
             "health": "Keine medizinische Beratung. Konsultiere medizinisches Fachpersonal.",
