@@ -21,7 +21,7 @@ If death has appeared in your dream, you're likely in the midst of a significant
 
 ## Symbol Analysis
 
-Death is the archetype of transformation and rebirth. Even in the Tarot, the Death card represents profound change, not physical ending.
+Death is the archetype of transformation and rebirth. In many symbolic traditions, the Death archetype represents profound change, not physical ending.
 
 **Dreaming of your own death** symbolizes the death of an old self — a transition from one identity or life phase to another.
 

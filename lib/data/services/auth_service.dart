@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
-import 'package:flutter/foundation.dart' show kIsWeb, debugPrint;
+import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb, debugPrint;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -141,18 +141,18 @@ class AuthService {
 
     for (int attempt = 1; attempt <= maxRetries; attempt++) {
       try {
-        debugPrint('🍎 Sign-in attempt $attempt of $maxRetries');
+        if (kDebugMode) debugPrint('🍎 Sign-in attempt $attempt of $maxRetries');
         return await signInWithApple();
       } on AppleAuthException catch (e) {
         lastError = e;
-        debugPrint('🍎 Attempt $attempt failed: ${e.type}');
+        if (kDebugMode) debugPrint('🍎 Attempt $attempt failed: ${e.type}');
 
         // Only retry on transient errors (timeout, network)
         if (e.type == AppleAuthErrorType.timeout ||
             e.type == AppleAuthErrorType.networkError ||
             e.type == AppleAuthErrorType.serverError) {
           if (attempt < maxRetries) {
-            debugPrint('🍎 Retrying in 2 seconds...');
+            if (kDebugMode) debugPrint('🍎 Retrying in 2 seconds...');
             await Future.delayed(const Duration(seconds: 2));
             continue;
           }
@@ -174,8 +174,8 @@ class AuthService {
   /// Uses Supabase OAuth on web, native Apple Sign-In on mobile
   static Future<AuthUserInfo?> signInWithApple() async {
     try {
-      debugPrint('🍎 Starting Apple Sign-In...');
-      debugPrint('🍎 Platform: ${kIsWeb ? "Web" : "Native"}');
+      if (kDebugMode) debugPrint('🍎 Starting Apple Sign-In...');
+      if (kDebugMode) debugPrint('🍎 Platform: ${kIsWeb ? "Web" : "Native"}');
 
       // Use Supabase OAuth flow on web platform
       if (kIsWeb) {
@@ -186,9 +186,9 @@ class AuthService {
       return await _signInWithAppleNative();
     } on SignInWithAppleAuthorizationException catch (e) {
       // User cancellation or Apple error
-      debugPrint('🍎 Apple Authorization Error: ${e.code} - ${e.message}');
+      if (kDebugMode) debugPrint('🍎 Apple Authorization Error: ${e.code} - ${e.message}');
       if (e.code == AuthorizationErrorCode.canceled) {
-        debugPrint('🍎 User canceled sign in');
+        if (kDebugMode) debugPrint('🍎 User canceled sign in');
         return null; // User canceled, don't show error
       }
       // Throw typed exceptions - localized in UI layer
@@ -207,7 +207,7 @@ class AuthService {
       }
     } on AuthException catch (e) {
       // Supabase auth error - map to specific types for better localization
-      debugPrint('🍎 Supabase Auth Error: ${e.message}');
+      if (kDebugMode) debugPrint('🍎 Supabase Auth Error: ${e.message}');
       final message = e.message.toLowerCase();
 
       // Map Supabase errors to specific types
@@ -237,7 +237,7 @@ class AuthService {
       }
       throw AppleAuthException(AppleAuthErrorType.supabaseError, e.message);
     } catch (e) {
-      debugPrint('🍎 Apple Sign-In error: $e');
+      if (kDebugMode) debugPrint('🍎 Apple Sign-In error: $e');
       final errorStr = e.toString().toLowerCase();
 
       // User cancellation - don't show error
@@ -277,7 +277,7 @@ class AuthService {
 
   /// Supabase OAuth flow for web (Apple)
   static Future<AuthUserInfo?> _signInWithAppleWeb() async {
-    debugPrint('🍎 Starting Web OAuth flow...');
+    if (kDebugMode) debugPrint('🍎 Starting Web OAuth flow...');
     try {
       // Use Supabase OAuth redirect for Apple Sign In on web
       final result = await _supabase.auth.signInWithOAuth(
@@ -285,19 +285,19 @@ class AuthService {
         authScreenLaunchMode: LaunchMode.platformDefault,
       );
 
-      debugPrint('🍎 OAuth result: $result');
+      if (kDebugMode) debugPrint('🍎 OAuth result: $result');
       // Return null because OAuth flow will redirect
       // Auth state listener will catch when user returns
       return null;
     } catch (e) {
-      debugPrint('🍎 Apple OAuth error: $e');
+      if (kDebugMode) debugPrint('🍎 Apple OAuth error: $e');
       final errorStr = e.toString();
       // JS interop errors during OAuth redirect are normal on web
       if (errorStr.contains('TypeError') ||
           errorStr.contains('TypeErrorImpl') ||
           errorStr.contains('JSObject') ||
           errorStr.contains('minified')) {
-        debugPrint('🍎 JS interop error - OAuth redirect continuing');
+        if (kDebugMode) debugPrint('🍎 JS interop error - OAuth redirect continuing');
         return null;
       }
       rethrow;
@@ -306,11 +306,11 @@ class AuthService {
 
   /// Native Apple Sign-In for mobile
   static Future<AuthUserInfo?> _signInWithAppleNative() async {
-    debugPrint('🍎 Starting Native Apple Sign-In...');
+    if (kDebugMode) debugPrint('🍎 Starting Native Apple Sign-In...');
 
     // Check if Apple Sign In is available
     final isAvailable = await SignInWithApple.isAvailable();
-    debugPrint('🍎 Apple Sign In available: $isAvailable');
+    if (kDebugMode) debugPrint('🍎 Apple Sign In available: $isAvailable');
 
     if (!isAvailable) {
       throw const AppleAuthException(AppleAuthErrorType.notAvailable);
@@ -319,11 +319,11 @@ class AuthService {
     // Generate nonce (for security)
     final rawNonce = _generateNonce();
     final hashedNonce = _sha256ofString(rawNonce);
-    debugPrint('🍎 Nonce generated');
+    if (kDebugMode) debugPrint('🍎 Nonce generated');
 
     // Start Apple Sign In with timeout protection
     // iPad/slower networks may need more time for the native dialog
-    debugPrint('🍎 Requesting Apple credential...');
+    if (kDebugMode) debugPrint('🍎 Requesting Apple credential...');
     final AuthorizationCredentialAppleID appleCredential;
     try {
       appleCredential = await SignInWithApple.getAppleIDCredential(
@@ -335,7 +335,7 @@ class AuthService {
       ).timeout(
         const Duration(seconds: 60), // Generous timeout for iPad/slow networks
         onTimeout: () {
-          debugPrint('🍎 Apple Sign-In timed out after 60 seconds');
+          if (kDebugMode) debugPrint('🍎 Apple Sign-In timed out after 60 seconds');
           throw const AppleAuthException(
             AppleAuthErrorType.timeout,
             'Sign in request timed out. Please try again.',
@@ -343,19 +343,19 @@ class AuthService {
         },
       );
     } on TimeoutException {
-      debugPrint('🍎 Apple Sign-In timeout exception');
+      if (kDebugMode) debugPrint('🍎 Apple Sign-In timeout exception');
       throw const AppleAuthException(
         AppleAuthErrorType.timeout,
         'Sign in request timed out. Please try again.',
       );
     } on SocketException catch (e) {
-      debugPrint('🍎 Network error during Apple Sign-In: $e');
+      if (kDebugMode) debugPrint('🍎 Network error during Apple Sign-In: $e');
       throw const AppleAuthException(
         AppleAuthErrorType.networkError,
         'Network connection failed. Please check your internet.',
       );
     }
-    debugPrint('🍎 Apple credential received');
+    if (kDebugMode) debugPrint('🍎 Apple credential received');
 
     final idToken = appleCredential.identityToken;
     if (idToken == null) {
@@ -377,7 +377,7 @@ class AuthService {
     }
 
     // Sign in to Supabase with timeout protection
-    debugPrint('🍎 Authenticating with Supabase...');
+    if (kDebugMode) debugPrint('🍎 Authenticating with Supabase...');
     final AuthResponse response;
     try {
       response = await _supabase.auth.signInWithIdToken(
@@ -387,7 +387,7 @@ class AuthService {
       ).timeout(
         const Duration(seconds: 30),
         onTimeout: () {
-          debugPrint('🍎 Supabase auth timed out');
+          if (kDebugMode) debugPrint('🍎 Supabase auth timed out');
           throw const AppleAuthException(
             AppleAuthErrorType.timeout,
             'Server authentication timed out. Please try again.',
@@ -405,7 +405,7 @@ class AuthService {
         'Network connection failed. Please check your internet.',
       );
     }
-    debugPrint('🍎 Supabase auth successful');
+    if (kDebugMode) debugPrint('🍎 Supabase auth successful');
 
     final user = response.user;
     if (user == null) return null;
@@ -519,7 +519,7 @@ class AuthService {
         }
       }
     } catch (e) {
-      debugPrint('Account deletion error: $e');
+      if (kDebugMode) debugPrint('Account deletion error: $e');
       rethrow;
     }
   }

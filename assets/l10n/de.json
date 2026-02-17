@@ -1485,7 +1485,7 @@
             },
             "weekly_overview": {
                 "title": "Wochenübersicht",
-                "description": "Was gibt es diese Woche für alle Zeichen zu entdecken?"
+                "description": "Was gibt es diese Woche für alle Archetypen zu entdecken?"
             },
             "monthly_depth": {
                 "title": "Monatliche Tiefe",
@@ -1508,11 +1508,11 @@
                 "description": "Alle Funktionen"
             },
             "all_signs": {
-                "title": "Alle Zeichen",
-                "description": "Erkunde 12 Zeichen"
+                "title": "Alle Archetypen",
+                "description": "Erkunde 12 Archetypen"
             },
             "sign_compatibility": {
-                "title": "Zeichenkompatibilität",
+                "title": "Archetyp-Kompatibilität",
                 "description": "Paaranalyse"
             },
             "progressions": {
@@ -1520,7 +1520,7 @@
                 "description": "Verfolge deine innere Entwicklung."
             },
             "numerology": {
-                "title": "Numerologie",
+                "title": "Zahlenmuster",
                 "description": "Weisheit der Zahlen."
             },
             "symbolic_numbers": {
@@ -1541,7 +1541,7 @@
             },
             "dream_tonight": {
                 "title": "Was hast du heute Nacht geträumt?",
-                "description": "Wie spiegelt sich deine Zeichenenergie in Träumen?"
+                "description": "Wie spiegelt sich deine Archetyp-Energie in Träumen?"
             },
             "daily_cosmic_message": {
                 "title": "Deine tägliche persönliche Botschaft",
@@ -1639,10 +1639,10 @@
             },
             "numerical_harmony": {
                 "title": "Numerische Harmonie",
-                "description": "Numerologie mit Namen."
+                "description": "Zahlenmuster mit Namen."
             },
             "sign_pages": {
-                "description": "Zeichenseiten"
+                "description": "Archetyp-Seiten"
             },
             "discover_energy_centers": {
                 "description": "Entdecke deine Energiezentren."
@@ -1714,8 +1714,8 @@
                 "description": "Wie beeinflusst der Mondzyklus Träume?"
             },
             "sign_dream_patterns": {
-                "title": "Zeichen- und Traummuster",
-                "description": "Wie spiegelt sich dein Zeichen in Träumen?"
+                "title": "Archetyp- und Traummuster",
+                "description": "Wie spiegelt sich dein Archetyp in Träumen?"
             },
             "twelfth_house_dreams": {
                 "title": "12. Haus und Träume",
@@ -1847,7 +1847,7 @@
                 "description": "Mondpraktiken."
             },
             "twelve_signs": {
-                "description": "12 Zeichen"
+                "description": "12 Archetypen"
             },
             "glossary": {
                 "title": "Glossar",
@@ -1862,7 +1862,7 @@
             "same_element_different_energy": "Gleiches Element, andere Energie.",
             "sibling_element_energy": "Geschwister-Element-Energie.",
             "what_awaits_this_week": "Was gibt es diese Woche zu entdecken?",
-            "which_dreams_this_sign_sees": "Welche Träume haben Menschen dieses Zeichens am häufigsten?",
+            "which_dreams_this_sign_sees": "Welche Träume haben Menschen dieses Archetyps am häufigsten?",
             "special_message_for_today": "Spezielle Botschaft für Heute",
             "cosmic_guidance": "Erhalte persönliche Führung.",
             "beyond_your_sun_sign": "Was steckt hinter deiner {sign} Kernidentität?",
@@ -1924,7 +1924,7 @@
     "compatibility": {
         "calculate": "Kompatibilität Berechnen",
         "your_sign": "Dein Persönlichkeitstyp",
-        "opposite_sign": "Gegenüber Zeichen",
+        "opposite_sign": "Gegenüber Archetyp",
         "strengths": "Stärken",
         "challenges": "Herausforderungen",
         "select": "Auswählen",
@@ -1936,7 +1936,7 @@
         "archetype_profiles": "Persönlichkeitstyp-Profile",
         "brand_text": "Persönlichkeitskompatibilität — InnerCycles",
         "cosmic_chemistry": "Persönliche Chemie",
-        "ancient_note": "Die Kompatibilität zwischen zwei Zeichen ist nicht nur eine Element- und Modalitätsberechnung. Jede Beziehung trägt das Potenzial für zwei Menschen, sich gegenseitig zu ergänzen und zu verwandeln. Herausforderungen sind die größten Lehrer."
+        "ancient_note": "Die Kompatibilität zwischen zwei Archetypen ist nicht nur eine Element- und Modalitätsberechnung. Jede Beziehung trägt das Potenzial für zwei Menschen, sich gegenseitig zu ergänzen und zu verwandeln. Herausforderungen sind die größten Lehrer."
     },
     "auth": {
         "registration_success": "Registrierung erfolgreich! Bitte bestätige deine E-Mail-Adresse.",
@@ -2761,7 +2761,7 @@
     },
     "analysis": {
         "archetype_analysis": "Persönlichkeitstyp-Analyse",
-        "discovery_analysis": "Numerologie-Analyse",
+        "discovery_analysis": "Zahlenmuster-Analyse",
         "wellness_analysis": "Energieprofil-Analyse",
         "wisdom_analysis": "Symbolische Analyse",
         "enter_birth_info_discovery": "Geben Sie Ihre Geburtsdaten ein\num Ihre Lebensweg-Zahl zu sehen",

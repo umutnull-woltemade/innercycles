@@ -138,7 +138,7 @@
         "whole_world": "Monde Entier",
         "popular_cities": "Villes Populaires",
         "required_for_rising": "Requis pour le profil montant",
-        "required_for_moon": "Requis pour le Signe Lunaire",
+        "required_for_moon": "Requis pour le Profil Lunaire",
         "please_enter_name": "Veuillez entrer un nom",
         "profile_name_hint": "Entrez le nom du profil",
         "date": "Date",
@@ -150,7 +150,7 @@
         "saved_profiles": "Profils Enregistrés",
         "add_profile_subtitle": "Ajouter un profil pour comparaison",
         "no_profiles_yet": "Aucun profil ajouté",
-        "no_profiles_description": "Ajoutez partenaire, ami ou famille pour\ndécouvrir la compatibilité des signes",
+        "no_profiles_description": "Ajoutez partenaire, ami ou famille pour\ndécouvrir la compatibilité des profils",
         "make_main_profile": "Définir comme Profil Principal",
         "compare": "Comparer",
         "delete_profile": "Supprimer le Profil",
@@ -254,10 +254,10 @@
         "meditation_subtitle": "Méditation, rituels et équilibrage énergétique",
         "all_analyses": "Toutes les Analyses",
         "questions": {
-            "fire_water": "🔥 Les signes de feu et d'eau sont-ils compatibles?",
-            "most_loyal": "💫 Quel signe est le plus fidele?",
-            "most_jealous": "😈 Quel signe est le plus jaloux?",
-            "most_passionate": "💋 Quel signe est le plus passionne au lit?",
+            "fire_water": "🔥 Les archétypes de feu et d'eau sont-ils compatibles?",
+            "most_loyal": "💫 Quel archétype est le plus fidele?",
+            "most_jealous": "😈 Quel archétype est le plus jaloux?",
+            "most_passionate": "💋 Quel archétype est le plus passionne au lit?",
             "love_luck_today": "💕 Quels thèmes amoureux puis-je explorer aujourd'hui?",
             "ex_return": "💔 Que puis-je apprendre de mes relations passées?",
             "cheating": "🤫 Quels schémas de confiance est-ce que je remarque en moi?",
@@ -418,7 +418,7 @@
             "life_path_number": "Life Path Number",
             "birthday_number": "Birthday",
             "personal_year": "Personal Year",
-            "name_numerology": "Name Numerology",
+            "name_numerology": "Modèles Numériques par Nom",
             "expression_number": "Nombre d'Expression",
             "expression_number_desc": "Calculé à partir de votre nom, ce nombre reflète les thèmes et caractéristiques potentiels de votre vie.",
             "soul_urge": "Inner Drive",
@@ -443,7 +443,7 @@
             "number_depth_title": "Depth of Number {number}",
             "kadim_title": "Eternal Dance of Numbers",
             "kadim_content": "Since Pythagoras, sages have known that numbers carry the hidden language of your inner self. Your life path number is not just a digit - it is the vibration your inner self brought into this world, the unique melody your inner self gave you. To hear this melody, you first need silence.",
-            "brand_text": "Numerology — InnerCycles"
+            "brand_text": "Modèles Numériques — InnerCycles"
         },
         "solar_return": {
             "title": "Birthday Reflection",
@@ -637,7 +637,7 @@
             "health": "Pas un avis médical. Consultez des professionnels",
             "self_awareness": "La connaissance de soi est un outil de réflexion personnelle",
             "card_insight": "Les lectures de reflection card sont uniquement pour un aperçu personnel",
-            "numerology": "La numérologie offre des perspectives symboliques",
+            "numerology": "Les Modèles Numériques offrent des perspectives symboliques",
             "compatibility": "Les aperçus de compatibilité sont uniquement pour la réflexion",
             "insight": "Ces aperçus servent à la réflexion personnelle",
             "reflection": "Utilisez ceci comme outil de découverte de soi"
@@ -1331,8 +1331,8 @@
         "lucky_color": "Couleur de Réflexion",
         "lucky_number": "Nombre de Focus",
         "feature_coming_soon": "Cette fonctionnalité arrive bientôt",
-        "what_says_today": "Quels thèmes résonnent avec votre signe aujourd'hui?",
-        "select_discover_energy": "Sélectionnez votre signe, découvrez vos thèmes de réflexion",
+        "what_says_today": "Quels thèmes résonnent avec votre profil aujourd'hui?",
+        "select_discover_energy": "Sélectionnez votre profil, découvrez vos thèmes de réflexion",
         "love_relationships": "Amour & Relations",
         "career_finance": "Carrière & Finances",
         "health_wellness": "Santé & Bien-être",
@@ -1485,7 +1485,7 @@
             },
             "weekly_overview": {
                 "title": "Aperçu hebdomadaire",
-                "description": "Qu'attend tous les signes cette semaine ?"
+                "description": "Qu'attend tous les archétypes cette semaine ?"
             },
             "monthly_depth": {
                 "title": "Profondeur mensuelle",
@@ -1493,7 +1493,7 @@
             },
             "calculate_personal_profile": {
                 "title": "Calculez votre profil personnel",
-                "description": "Voyez au-delà de votre signe solaire."
+                "description": "Voyez au-delà de votre profil de personnalité centrale."
             },
             "relationship_compatibility": {
                 "title": "Compatibilité relationnelle",
@@ -1508,11 +1508,11 @@
                 "description": "Toutes les fonctionnalités"
             },
             "all_signs": {
-                "title": "Tous les signes",
-                "description": "Explorez les 12 signes"
+                "title": "Tous les archétypes",
+                "description": "Explorez les 12 archétypes"
             },
             "sign_compatibility": {
-                "title": "Compatibilité des signes",
+                "title": "Compatibilité des archétypes",
                 "description": "Analyse de couple"
             },
             "progressions": {
@@ -1520,7 +1520,7 @@
                 "description": "Suivez votre évolution intérieure."
             },
             "numerology": {
-                "title": "Numérologie",
+                "title": "Modèles Numériques",
                 "description": "Sagesse des nombres."
             },
             "symbolic_numbers": {
@@ -1541,7 +1541,7 @@
             },
             "dream_tonight": {
                 "title": "Qu'avez-vous rêvé cette nuit ?",
-                "description": "Comment l'énergie de votre signe se reflète-t-elle dans les rêves ?"
+                "description": "Comment l'énergie de votre profil se reflète-t-elle dans les rêves ?"
             },
             "daily_cosmic_message": {
                 "title": "Votre message du jour quotidien",
@@ -1639,10 +1639,10 @@
             },
             "numerical_harmony": {
                 "title": "Harmonie numérique",
-                "description": "Numérologie avec les noms."
+                "description": "Modèles Numériques avec les noms."
             },
             "sign_pages": {
-                "description": "Pages des signes"
+                "description": "Pages des archétypes"
             },
             "discover_energy_centers": {
                 "description": "Découvrez vos centres énergétiques."
@@ -1714,8 +1714,8 @@
                 "description": "Comment le cycle lunaire affecte-t-il les rêves ?"
             },
             "sign_dream_patterns": {
-                "title": "Signes et motifs de rêves",
-                "description": "Comment votre signe se reflète-t-il dans les rêves ?"
+                "title": "Archétypes et motifs de rêves",
+                "description": "Comment votre archétype se reflète-t-il dans les rêves ?"
             },
             "twelfth_house_dreams": {
                 "title": "12e maison et rêves",
@@ -1847,7 +1847,7 @@
                 "description": "Pratiques lunaires."
             },
             "twelve_signs": {
-                "description": "12 signes"
+                "description": "12 archétypes"
             },
             "glossary": {
                 "title": "Glossaire",
@@ -1862,7 +1862,7 @@
             "same_element_different_energy": "Même élément, énergie différente.",
             "sibling_element_energy": "Énergie d'élément frère.",
             "what_awaits_this_week": "Que découvrir cette semaine ?",
-            "which_dreams_this_sign_sees": "Quels rêves les personnes de ce signe font-elles le plus ?",
+            "which_dreams_this_sign_sees": "Quels rêves les personnes de cet archétype font-elles le plus ?",
             "special_message_for_today": "Message spécial pour aujourd'hui",
             "cosmic_guidance": "Recevez une guidance personnelle.",
             "beyond_your_sun_sign": "Qu'y a-t-il au-delà de votre identité {sign}?",
@@ -1923,12 +1923,12 @@
     },
     "compatibility": {
         "calculate": "Calculer la Compatibilité",
-        "your_sign": "Votre Signe",
-        "opposite_sign": "Signe Opposé",
+        "your_sign": "Votre Archétype",
+        "opposite_sign": "Archétype Opposé",
         "strengths": "Forces",
         "challenges": "Défis",
         "select": "Sélectionner",
-        "select_sign": "Sélectionner un Signe",
+        "select_sign": "Sélectionner un Archétype",
         "excellent_match": "Excellente Compatibilité",
         "good_match": "Bonne Compatibilité",
         "moderate_match": "Compatibilité Modérée",
@@ -1936,7 +1936,7 @@
         "archetype_profiles": "Profils du Archétype",
         "brand_text": "Compatibilité Archétype — InnerCycles",
         "cosmic_chemistry": "Chimie Personnelle",
-        "ancient_note": "La compatibilité entre deux signes n'est pas qu'un calcul d'élément et de modalité. Chaque relation porte le potentiel pour deux personnes de se compléter et de se transformer mutuellement. Les défis sont les plus grands enseignants."
+        "ancient_note": "La compatibilité entre deux archétypes n'est pas qu'un calcul d'élément et de modalité. Chaque relation porte le potentiel pour deux personnes de se compléter et de se transformer mutuellement. Les défis sont les plus grands enseignants."
     },
     "auth": {
         "registration_success": "Inscription réussie! Veuillez vérifier votre adresse email.",

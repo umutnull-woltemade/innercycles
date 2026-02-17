@@ -19,7 +19,7 @@ Rüyada ölüm görmek, rüya dünyasının en güçlü ve en çok korku uyandı
 
 ## Sembol Analizi
 
-Ölüm, arketipsel düzeyde "dönüşüm ve yeniden doğuş" sembolüdür. Tarot'ta Ölüm kartı bile son değil, köklü değişimi temsil eder.
+Ölüm, arketipsel düzeyde "dönüşüm ve yeniden doğuş" sembolüdür. Birçok sembolik gelenekte Ölüm arketipi son değil, köklü değişimi temsil eder.
 
 **Kendi ölümünüzü görmek**, eski benliğin ölümü ve yeni bir kimliğe geçiş sürecini simgeler. Bir dönemin kapandığını kabul etme zamanı olabilir.
 

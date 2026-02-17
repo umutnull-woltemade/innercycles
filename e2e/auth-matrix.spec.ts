@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 /**
  * Auth Matrix E2E Tests
- * Tests all authentication scenarios for Venus One
+ * Tests all authentication scenarios for InnerCycles
  */
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:8080';
@@ -115,18 +115,16 @@ test.describe('Legacy Route Redirect Verification', () => {
 test.describe('Safe Routes - Always Accessible', () => {
   const safeRoutes = [
     '/insight',
-    '/birth-chart',
-    '/numerology',
+    '/journal',
     '/glossary',
     '/dream-interpretation',
     '/dream-glossary',
     '/legacy-analysis',
-    '/aura',
-    '/daily-rituals',
     '/profile',
     '/settings',
     '/premium',
-    '/articles',
+    '/compatibility',
+    '/prompts',
   ];
 
   for (const route of safeRoutes) {

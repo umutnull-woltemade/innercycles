@@ -439,11 +439,11 @@
             "challenges": "Zorluklar",
             "love_relationships": "Ask ve Iliski",
             "ancient_secret_title": "Sayilarin Kadim Sirri",
-            "ancient_secret_desc": "Numeroloji, matematiksel sembolizm kullanan kadim bir refleksiyon sistemidir. Pisagor'dan kadim geleneklere, birçok kültürel gelenek sayıların anlamını keşfetti. Doğum tarihin ve ismin, öz-yansıtma ve kişisel keşif için temalar olarak kullanılabilir. Her sayı düşünülecek sembolik nitelikleri temsil eder. Bu bir içe bakış aracıdır, tahmin değil.",
+            "ancient_secret_desc": "Sayı örüntüleri, matematiksel sembolizm kullanan kadim bir yansıtma sistemidir. Pisagor'dan kadim geleneklere, birçok kültürel gelenek sayıların anlamını keşfetti. Doğum tarihin ve ismin, öz-yansıtma ve kişisel keşif için temalar olarak kullanılabilir. Her sayı düşünülecek sembolik nitelikleri temsil eder. Bu bir içe bakış aracıdır, tahmin değil.",
             "number_depth_title": "{number} Sayisinin Derinligi",
             "kadim_title": "Sayilarin Ezeli Dansi",
             "kadim_content": "Pisagor'dan bu yana bilgeler sayilarin yaşamın gizli kalıplarını tasidini bilir. Yasam yolu sayin sadece bir rakam degil - bu dunyaya getirdigin titresim, sana özgü benzersiz melodi. Bu melodiyi duyabilmek icin once sessizlige ihtiyacin var.",
-            "brand_text": "Numeroloji — InnerCycles"
+            "brand_text": "Sayı Örüntüleri — InnerCycles"
         },
         "solar_return": {
             "title": "Doğum Günü Yansıması",
@@ -672,7 +672,7 @@
             "health": "Tıbbi tavsiye değildir. Sağlık konularında uzmana danışın",
             "self_awareness": "Öz Farkındalık bir öz-refleksiyon aracıdır, tahmin değil",
             "card_insight": "Refleksiyon okumaları sadece kişisel içgörü içindir",
-            "numerology": "Numeroloji sembolik perspektifler sunar",
+            "numerology": "Sayı örüntüleri sembolik perspektifler sunar",
             "compatibility": "Uyum içgörüleri sadece refleksiyon içindir",
             "insight": "Bu içgörüler kişisel refleksiyon içindir",
             "reflection": "Bunu kendini keşfetme aracı olarak kullan"
@@ -1228,7 +1228,7 @@
         "result_self_awareness_low_title": "İç Kaşif",
         "result_self_awareness_low_desc": "İç dünyanı keşfedebilirsin! Basit arketip yorumlarıyla başlayarak kişisel yolculuğuna adım at.",
         "result_numerology_high_title": "Sayı Ustası",
-        "result_numerology_high_desc": "Sayılarla güçlü bir bağın var! Kişisel numeroloji raporun ile yaşam yolundaki gizli mesajları keşfet.",
+        "result_numerology_high_desc": "Sayılarla güçlü bir bağın var! Kişisel sayı analiz raporun ile yaşam yolundaki örüntüleri keşfet.",
         "result_numerology_medium_title": "Sayı Yolcusu",
         "result_numerology_medium_desc": "Sayıların enerjisini hissediyorsun. Yaşam yolu sayınla hayatına yön verebilirsin.",
         "result_numerology_low_title": "Sayı Kaşifi",
@@ -1348,7 +1348,7 @@
         "rate_app_desc": "Deneyimini paylaş",
         "disclaimer": "Yasal Uyarı",
         "disclaimer_desc": "Yalnızca öz-yansıtma amaçlıdır",
-        "disclaimer_content": "Bu uygulama öz farkındalık, numeroloji, refleksiyon ve rüya yorumu içeriklerini yalnızca öz-yansıtma ve kişisel keşif amaçlı sunmaktadır.\n\nİçerikler; tıbbi, psikolojik, finansal, hukuki veya ilişki danışmanlığı dahil hiçbir alanda profesyonel tavsiye niteliği taşımaz.\n\nProfesyonel desteğe ihtiyacınız varsa, lütfen ilgili alanda uzman kişilere başvurun.\n\nTüm yorumlar kişisel farkındalık ve öz-yansıtma amaçlı oluşturulmaktadır ve önemli yaşam kararlarına temel oluşturmamalıdır.",
+        "disclaimer_content": "Bu uygulama öz farkındalık, sayı örüntüleri, refleksiyon ve rüya yorumu içeriklerini yalnızca öz-yansıtma ve kişisel keşif amaçlı sunmaktadır.\n\nİçerikler; tıbbi, psikolojik, finansal, hukuki veya ilişki danışmanlığı dahil hiçbir alanda profesyonel tavsiye niteliği taşımaz.\n\nProfesyonel desteğe ihtiyacınız varsa, lütfen ilgili alanda uzman kişilere başvurun.\n\nTüm yorumlar kişisel farkındalık ve öz-yansıtma amaçlı oluşturulmaktadır ve önemli yaşam kararlarına temel oluşturmamalıdır.",
         "disclaimer_tip": "İçerikleri karar verme için değil, kendini keşfetmek için kullan.",
         "privacy_policy": "Gizlilik Politikası",
         "terms_of_service": "Kullanım Koşulları",
@@ -1555,7 +1555,7 @@
                 "description": "İçsel evrimini takip et."
             },
             "numerology": {
-                "title": "Numeroloji",
+                "title": "Sayı Örüntüleri",
                 "description": "Sayıların bilgeliği."
             },
             "symbolic_numbers": {
@@ -1674,7 +1674,7 @@
             },
             "numerical_harmony": {
                 "title": "Sayısal Uyum",
-                "description": "İsimlerle numeroloji."
+                "description": "İsimlerle sayı örüntüleri."
             },
             "sign_pages": {
                 "description": "Arketip sayfaları"
@@ -1928,7 +1928,7 @@
         "reflection_readings": "Arketip Yorumları",
         "personal_profile_analysis": "Kişisel Profil & Analizler",
         "time_transits": "Zaman & Transitler",
-        "numerology_mystic": "Numeroloji & Keşif Araçları",
+        "numerology_mystic": "Sayı Örüntüleri & Keşif Araçları",
         "spiritual_wellness": "İçsel & Wellness",
         "advanced_self_awareness": "İleri Seviye Öz Farkındalık",
         "personality_analysis": "Kişilik Analizleri",
@@ -2796,7 +2796,7 @@
     },
     "analysis": {
         "archetype_analysis": "Arketip Çözümlemesi",
-        "discovery_analysis": "Numeroloji Analizi",
+        "discovery_analysis": "Sayı Örüntüsü Analizi",
         "wellness_analysis": "Enerji Profil Analizi",
         "wisdom_analysis": "Sembolik Analiz",
         "enter_birth_info_discovery": "Hayat yolu sayınızı görmek için\nönce doğum bilgilerinizi girin",

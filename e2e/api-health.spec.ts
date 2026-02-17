@@ -17,7 +17,7 @@ test.describe('API Health Checks', () => {
     expect(body).toHaveProperty('status');
     expect(body.status).toBe('ok');
     expect(body).toHaveProperty('app');
-    expect(body.app).toBe('venus-one');
+    expect(body.app).toBe('innercycles');
   });
 
   test('health endpoint responds within 5 seconds', async ({ request }) => {

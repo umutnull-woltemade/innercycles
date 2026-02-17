@@ -19,7 +19,7 @@ Wenn der Tod in Ihrem Traum erschienen ist, befinden Sie sich wahrscheinlich inm
 
 ## Symbolanalyse
 
-Der Tod ist auf archetypischer Ebene das Symbol für Verwandlung und Wiedergeburt. Selbst im Tarot steht die Todeskarte für tiefgreifenden Wandel, nicht für ein physisches Ende.
+Der Tod ist auf archetypischer Ebene das Symbol für Verwandlung und Wiedergeburt. In vielen symbolischen Traditionen steht der Todes-Archetyp für tiefgreifenden Wandel, nicht für ein physisches Ende.
 
 **Den eigenen Tod träumen** symbolisiert das Sterben eines alten Selbst — einen Übergang von einer Identität oder Lebensphase in eine andere. Es könnte an der Zeit sein, den Abschluss eines Kapitels anzunehmen.
 
@@ -41,7 +41,7 @@ Anstatt Todesträume zu fürchten, ist es gesünder, ihrer Botschaft zuzuhören.
 
 ## Sanfte spirituelle Einsicht
 
-In vielen spirituellen Traditionen ist der Tod die größte Verwandlung — ein Zustandswechsel, ein Tor. Im Sufismus bedeutet „Stirb, bevor du stirbst" (mutu kable an temutu) den Tod des Ego und das spirituelle Erwachen. Im Tarot steht die Todeskarte nicht für Zerstörung, sondern für Loslassen und grundlegenden Wandel. Betrachten Sie dies als persönliches Reflexionswerkzeug, nicht als Dogma.
+In vielen spirituellen Traditionen ist der Tod die größte Verwandlung — ein Zustandswechsel, ein Tor. Im Sufismus bedeutet „Stirb, bevor du stirbst" (mutu kable an temutu) den Tod des Ego und das spirituelle Erwachen. In der symbolischen Tradition steht der Todes-Archetyp nicht für Zerstörung, sondern für Loslassen und grundlegenden Wandel. Betrachten Sie dies als persönliches Reflexionswerkzeug, nicht als Dogma.
 
 ## Häufige Variationen
 

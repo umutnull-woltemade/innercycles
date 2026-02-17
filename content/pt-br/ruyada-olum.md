@@ -19,7 +19,7 @@ Se a morte apareceu no seu sonho, você provavelmente está no meio de uma trans
 
 ## Análise simbólica
 
-A morte é, no nível arquetípico, o símbolo supremo de transformação e renascimento. Até no Tarot, a carta da Morte representa uma mudança profunda, não um fim físico.
+A morte é, no nível arquetípico, o símbolo supremo de transformação e renascimento. Em muitas tradições simbólicas, o arquétipo da Morte representa uma mudança profunda, não um fim físico.
 
 **Sonhar com a própria morte** simboliza a morte de um antigo eu — uma transição de uma identidade ou fase da vida para outra. Pode ser hora de aceitar que um capítulo está se encerrando.
 
@@ -41,7 +41,7 @@ Em vez de temer os sonhos de morte, ouvir sua mensagem é a abordagem mais saud�
 
 ## Perspectiva espiritual sutil
 
-Em muitas tradições espirituais, a morte é a transformação suprema — uma mudança de estado, um portal de passagem. No sufismo, "morra antes de morrer" (mutu kable an temutu) refere-se à morte do ego e ao despertar espiritual. No Tarot, a carta da Morte não representa destruição, mas o desapego e a renovação radical. Considere essa leitura como uma ferramenta de reflexão pessoal, não como dogma.
+Em muitas tradições espirituais, a morte é a transformação suprema — uma mudança de estado, um portal de passagem. No sufismo, "morra antes de morrer" (mutu kable an temutu) refere-se à morte do ego e ao despertar espiritual. Na tradição simbólica, o arquétipo da Morte não representa destruição, mas o desapego e a renovação radical. Considere essa leitura como uma ferramenta de reflexão pessoal, não como dogma.
 
 ## Variações comuns
 

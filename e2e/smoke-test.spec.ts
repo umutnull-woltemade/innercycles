@@ -61,10 +61,10 @@ test.describe('SMOKE: Core Navigation', () => {
     await page.screenshot({ path: 'artifacts/smoke-04-insight.png', fullPage: true });
   });
 
-  test('5. All Services catalog loads', async ({ page }) => {
-    await page.goto(`${BASE_URL}/all-services`);
+  test('5. Insights discovery loads', async ({ page }) => {
+    await page.goto(`${BASE_URL}/insights-discovery`);
     await waitForFlutter(page);
-    await page.screenshot({ path: 'artifacts/smoke-05-all-services.png', fullPage: true });
+    await page.screenshot({ path: 'artifacts/smoke-05-insights-discovery.png', fullPage: true });
   });
 });
 
@@ -95,42 +95,36 @@ test.describe('SMOKE: Wellness Features', () => {
     await page.screenshot({ path: 'artifacts/smoke-09-compatibility.png', fullPage: true });
   });
 
-  test('10. Numerology screen loads', async ({ page }) => {
-    await page.goto(`${BASE_URL}/numerology`);
+  test('10. Emotional cycles screen loads', async ({ page }) => {
+    await page.goto(`${BASE_URL}/emotional-cycles`);
     await waitForFlutter(page);
-    await page.screenshot({ path: 'artifacts/smoke-10-numerology.png', fullPage: true });
+    await page.screenshot({ path: 'artifacts/smoke-10-emotional-cycles.png', fullPage: true });
   });
 
-  test('11. Numerology life path detail loads', async ({ page }) => {
-    await page.goto(`${BASE_URL}/numerology/life-path/7`);
+  test('11. Growth dashboard loads', async ({ page }) => {
+    await page.goto(`${BASE_URL}/growth`);
     await waitForFlutter(page);
-    await page.screenshot({ path: 'artifacts/smoke-11-life-path-7.png', fullPage: true });
+    await page.screenshot({ path: 'artifacts/smoke-11-growth.png', fullPage: true });
   });
 });
 
 test.describe('SMOKE: Exploration Features', () => {
-  test('12. Symbolic analysis screen loads', async ({ page }) => {
-    await page.goto(`${BASE_URL}/symbolic-analysis`);
-    await waitForFlutter(page);
-    await page.screenshot({ path: 'artifacts/smoke-12-symbolic-analysis.png', fullPage: true });
-  });
-
-  test('14. Dream interpretation loads', async ({ page }) => {
+  test('12. Dream interpretation loads', async ({ page }) => {
     await page.goto(`${BASE_URL}/dream-interpretation`);
     await waitForFlutter(page);
-    await page.screenshot({ path: 'artifacts/smoke-14-dream-interpretation.png', fullPage: true });
+    await page.screenshot({ path: 'artifacts/smoke-12-dream-interpretation.png', fullPage: true });
   });
 
-  test('15. Legacy analysis loads', async ({ page }) => {
+  test('13. Legacy analysis redirects', async ({ page }) => {
     await page.goto(`${BASE_URL}/legacy-analysis`);
     await waitForFlutter(page);
-    await page.screenshot({ path: 'artifacts/smoke-15-legacy-analysis.png', fullPage: true });
+    await page.screenshot({ path: 'artifacts/smoke-13-legacy-analysis.png', fullPage: true });
   });
 
-  test('16. Energy profile screen loads', async ({ page }) => {
-    await page.goto(`${BASE_URL}/energy-profile`);
+  test('14. Energy map loads', async ({ page }) => {
+    await page.goto(`${BASE_URL}/energy-map`);
     await waitForFlutter(page);
-    await page.screenshot({ path: 'artifacts/smoke-16-energy-profile.png', fullPage: true });
+    await page.screenshot({ path: 'artifacts/smoke-14-energy-map.png', fullPage: true });
   });
 });
 
@@ -178,7 +172,7 @@ test.describe('SMOKE: Health Endpoint', () => {
 
     const body = await response?.json();
     expect(body.status).toBe('ok');
-    expect(body.app).toBe('venus-one');
+    expect(body.app).toBe('innercycles');
   });
 });
 

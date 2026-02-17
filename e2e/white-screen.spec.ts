@@ -103,7 +103,7 @@ test.describe('White Screen Protection', () => {
 
     const body = await response?.json();
     expect(body.status).toBe('ok');
-    expect(body.app).toBe('venus-one');
+    expect(body.app).toBe('innercycles');
   });
 
   test('app is interactive after load', async ({ page }) => {

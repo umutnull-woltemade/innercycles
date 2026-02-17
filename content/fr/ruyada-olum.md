@@ -19,7 +19,7 @@ Si la mort est apparue dans votre rêve, vous traversez probablement une périod
 
 ## Analyse symbolique
 
-La mort est, au niveau archétypal, le symbole par excellence de la transformation et de la renaissance. Même dans le Tarot, la carte de la Mort représente un changement profond, et non une fin physique.
+La mort est, au niveau archétypal, le symbole par excellence de la transformation et de la renaissance. Dans de nombreuses traditions symboliques, l'archétype de la Mort représente un changement profond, et non une fin physique.
 
 **Rêver de sa propre mort** symbolise la mort d'un ancien soi — une transition d'une identité ou d'une phase de vie vers une autre. Il est peut-être temps d'accepter qu'un chapitre se ferme.
 
@@ -41,7 +41,7 @@ Plutôt que de craindre les rêves de mort, écouter leur message est l'approche
 
 ## Perspective spirituelle douce
 
-Dans de nombreuses traditions spirituelles, la mort est la transformation ultime — un changement d'état, une porte de passage. Dans le soufisme, « mourir avant de mourir » (mutu kable an temutu) désigne la mort de l'ego et l'éveil spirituel. Dans le Tarot, la carte de la Mort ne représente pas la destruction mais le lâcher-prise et le renouvellement fondamental. Considérez cette lecture comme un outil de réflexion personnelle, non comme un dogme.
+Dans de nombreuses traditions spirituelles, la mort est la transformation ultime — un changement d'état, une porte de passage. Dans le soufisme, « mourir avant de mourir » (mutu kable an temutu) désigne la mort de l'ego et l'éveil spirituel. Dans la tradition symbolique, l'archétype de la Mort ne représente pas la destruction mais le lâcher-prise et le renouvellement fondamental. Considérez cette lecture comme un outil de réflexion personnelle, non comme un dogme.
 
 ## Variations courantes
 
