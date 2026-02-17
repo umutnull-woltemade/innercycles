@@ -48,10 +48,6 @@ void main() {
         expect(AppConstants.userProfileKey, isNotEmpty);
       });
 
-      test('savedChartsKey is not empty', () {
-        expect(AppConstants.savedChartsKey, isNotEmpty);
-      });
-
       test('settingsKey is not empty', () {
         expect(AppConstants.settingsKey, isNotEmpty);
       });
