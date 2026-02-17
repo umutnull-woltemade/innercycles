@@ -61,7 +61,7 @@ class NotificationService {
     );
 
     await _notifications.initialize(
-      initSettings,
+      settings: initSettings,
       onDidReceiveNotificationResponse: _onNotificationTapped,
     );
 
@@ -152,11 +152,11 @@ class NotificationService {
         personalizedMessage ?? 'Take a moment to reflect on your day.';
 
     await _notifications.zonedSchedule(
-      dailyReflectionId,
-      '✨ Your Daily Reflection',
-      message,
-      _nextInstanceOfTime(hour, minute),
-      NotificationDetails(
+      id: dailyReflectionId,
+      title: '✨ Your Daily Reflection',
+      body: message,
+      scheduledDate: _nextInstanceOfTime(hour, minute),
+      notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'daily_reflection',
           'Daily Reflection',
@@ -173,8 +173,6 @@ class NotificationService {
         ),
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
       payload: 'daily_reflection',
     );
@@ -186,7 +184,7 @@ class NotificationService {
 
   /// Cancel daily reflection notification
   Future<void> cancelDailyReflection() async {
-    await _notifications.cancel(dailyReflectionId);
+    await _notifications.cancel(id: dailyReflectionId);
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_keyDailyEnabled, false);
   }
@@ -213,11 +211,11 @@ class NotificationService {
     required int minute,
   }) async {
     await _notifications.zonedSchedule(
-      eveningReflectionId,
-      'Evening Reflection',
-      'How was your day? Take a moment to journal your thoughts.',
-      _nextInstanceOfTime(hour, minute),
-      NotificationDetails(
+      id: eveningReflectionId,
+      title: 'Evening Reflection',
+      body: 'How was your day? Take a moment to journal your thoughts.',
+      scheduledDate: _nextInstanceOfTime(hour, minute),
+      notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'evening_reflection',
           'Evening Reflection',
@@ -234,8 +232,6 @@ class NotificationService {
         ),
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
       payload: 'evening_reflection',
     );
@@ -246,7 +242,7 @@ class NotificationService {
 
   /// Cancel evening reflection notifications
   Future<void> cancelEveningReflection() async {
-    await _notifications.cancel(eveningReflectionId);
+    await _notifications.cancel(id: eveningReflectionId);
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_keyEveningEnabled, false);
   }
@@ -256,11 +252,11 @@ class NotificationService {
   /// Schedule moon cycle mindfulness reminders
   Future<void> scheduleMoonPhaseNotifications() async {
     await _notifications.zonedSchedule(
-      moonCycleId,
-      'Moon Cycle Awareness',
-      'A new moon phase is here. A good time for mindful reflection.',
-      _nextInstanceOfTime(20, 0),
-      NotificationDetails(
+      id: moonCycleId,
+      title: 'Moon Cycle Awareness',
+      body: 'A new moon phase is here. A good time for mindful reflection.',
+      scheduledDate: _nextInstanceOfTime(20, 0),
+      notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'moon_cycle',
           'Moon Cycle Awareness',
@@ -272,8 +268,6 @@ class NotificationService {
         iOS: const DarwinNotificationDetails(),
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
       payload: 'moon_cycle',
     );
 
@@ -284,10 +278,10 @@ class NotificationService {
   /// Show new moon notification
   Future<void> showNewMoonNotification({String? message}) async {
     await _notifications.show(
-      newMoonId,
-      '🌑 New Moon',
-      message ?? 'A time for new beginnings and setting intentions.',
-      NotificationDetails(
+      id: newMoonId,
+      title: '🌑 New Moon',
+      body: message ?? 'A time for new beginnings and setting intentions.',
+      notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'moon_cycle',
           'Moon Cycle Awareness',
@@ -310,10 +304,10 @@ class NotificationService {
   /// Show full moon notification
   Future<void> showFullMoonNotification({String? message}) async {
     await _notifications.show(
-      fullMoonId,
-      '🌕 Full Moon',
-      message ?? 'A time for reflection and gratitude.',
-      NotificationDetails(
+      id: fullMoonId,
+      title: '🌕 Full Moon',
+      body: message ?? 'A time for reflection and gratitude.',
+      notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'moon_cycle',
           'Moon Cycle Awareness',
@@ -335,9 +329,9 @@ class NotificationService {
 
   /// Cancel moon cycle notifications
   Future<void> cancelMoonPhaseNotifications() async {
-    await _notifications.cancel(moonCycleId);
-    await _notifications.cancel(newMoonId);
-    await _notifications.cancel(fullMoonId);
+    await _notifications.cancel(id: moonCycleId);
+    await _notifications.cancel(id: newMoonId);
+    await _notifications.cancel(id: fullMoonId);
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_keyMoonPhaseEnabled, false);
   }
@@ -350,7 +344,7 @@ class NotificationService {
     await prefs.setBool(_keyWellnessEnabled, enabled);
 
     if (!enabled) {
-      await _notifications.cancel(wellnessReminderId);
+      await _notifications.cancel(id: wellnessReminderId);
     }
   }
 

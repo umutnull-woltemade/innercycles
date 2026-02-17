@@ -939,7 +939,7 @@ class _ShareArchetypeButton extends StatelessWidget {
                 'What\'s yours? Try it free:\nhttps://apps.apple.com/app/innercycles/id6758612716'
               : 'Duygusal arketipim "$name" — InnerCycles ile kendimi keşfederek buldum.\n\n'
                 'Seninki ne? Ücretsiz dene:\nhttps://apps.apple.com/app/innercycles/id6758612716';
-          Share.share(text);
+          SharePlus.instance.share(ShareParams(text: text));
         },
         icon: const Icon(Icons.share_rounded, size: 18),
         label: Text(

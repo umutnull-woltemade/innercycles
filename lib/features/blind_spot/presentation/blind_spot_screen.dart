@@ -968,7 +968,7 @@ class _ShareInsightsButton extends StatelessWidget {
                 'Discover your hidden patterns:\nhttps://apps.apple.com/app/innercycles/id6758612716'
               : 'InnerCycles ile öz yansıma yaparak $spotCount duygusal kör noktamı keşfettim.\n\n'
                 'Gizli kalıplarını keşfet:\nhttps://apps.apple.com/app/innercycles/id6758612716';
-          Share.share(text);
+          SharePlus.instance.share(ShareParams(text: text));
         },
         icon: const Icon(Icons.share_rounded, size: 18),
         label: Text(

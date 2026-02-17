@@ -761,7 +761,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
           final text = isEn
               ? 'I discovered my attachment style: ${style.displayNameEn} ($pct%)\n\nUnderstanding your patterns is the first step to growth.\n\nExplore yours with InnerCycles'
               : 'Bağlanma stilimi keşfettim: ${style.displayNameTr} (%$pct)\n\nKalıplarını anlamak büyümenin ilk adımıdır.\n\nInnerCycles ile keşfet';
-          Share.share(text);
+          SharePlus.instance.share(ShareParams(text: text));
         },
         icon: const Icon(Icons.share_rounded, size: 20),
         label: Text(

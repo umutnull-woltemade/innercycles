@@ -269,7 +269,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
         isEn: isEn,
       );
 
-      await Share.share(result.content, subject: result.fileName);
+      await SharePlus.instance.share(ShareParams(text: result.content, subject: result.fileName));
       HapticFeedback.mediumImpact();
     } finally {
       if (mounted) setState(() => _isExporting = false);

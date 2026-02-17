@@ -24,7 +24,7 @@ dependencies:
 
   # UI & Animations
   flutter_animate: ^4.5.2
-  google_fonts: ^6.3.0
+  google_fonts: ^8.0.1
   # Utilities
   intl: ^0.20.2
   uuid: ^4.2.1
@@ -56,8 +56,8 @@ dependencies:
   flutter_dotenv: ^6.0.0
 
   # Notifications
-  flutter_local_notifications: ^18.0.1
-  timezone: ^0.11.0
+  flutter_local_notifications: ^20.1.0
+  timezone: ^0.10.0
 
   # Voice Input
   speech_to_text: ^7.0.0

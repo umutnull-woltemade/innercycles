@@ -73,6 +73,9 @@ import '../../features/mood/presentation/mood_trends_screen.dart';
 import '../../features/gratitude/presentation/gratitude_archive_screen.dart';
 import '../../features/sleep/presentation/sleep_trends_screen.dart';
 import '../../features/app_lock/presentation/app_lock_screen.dart';
+import '../../features/affirmation/presentation/affirmation_library_screen.dart';
+import '../../features/mood/presentation/emotional_vocabulary_screen.dart';
+import '../../features/articles/presentation/articles_screen.dart';
 import '../../features/streak/presentation/streak_stats_screen.dart';
 import '../../features/dreams/presentation/dream_archive_screen.dart';
 import '../../features/settings/presentation/notification_schedule_screen.dart';
@@ -445,6 +448,18 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       // ════════════════════════════════════════════════════════════════
+      // AFFIRMATIONS, EMOTIONAL VOCABULARY
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.affirmations,
+        builder: (context, state) => const AffirmationLibraryScreen(),
+      ),
+      GoRoute(
+        path: Routes.emotionalVocabulary,
+        builder: (context, state) => const EmotionalVocabularyScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
       // STREAK, DREAM ARCHIVE, NOTIFICATIONS, PROGRAM COMPLETION
       // ════════════════════════════════════════════════════════════════
       GoRoute(
@@ -477,11 +492,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.glossary,
-        redirect: (context, state) => Routes.insight,
+        redirect: (context, state) => Routes.emotionalVocabulary,
       ),
       GoRoute(
         path: Routes.articles,
-        redirect: (context, state) => Routes.insight,
+        builder: (context, state) => const ArticlesScreen(),
       ),
       // ════════════════════════════════════════════════════════════════
       // LEGACY ROUTE REDIRECTS (archived features → valid screens)

@@ -135,6 +135,12 @@ class Routes {
   static const String yearReview = '/year-review';
 
   // ════════════════════════════════════════════════════════════════
+  // AFFIRMATIONS, EMOTIONAL VOCABULARY
+  // ════════════════════════════════════════════════════════════════
+  static const String affirmations = '/affirmations';
+  static const String emotionalVocabulary = '/emotions';
+
+  // ════════════════════════════════════════════════════════════════
   // STREAK, DREAM ARCHIVE, NOTIFICATIONS, PROGRAM COMPLETION
   // ════════════════════════════════════════════════════════════════
   static const String streakStats = '/streak/stats';

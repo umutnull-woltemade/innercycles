@@ -133,11 +133,11 @@ class InstagramShareService {
           ? 'Günlük Enerji'
           : 'Daily Energy';
 
-      final result = await Share.shareXFiles(
-        [XFile(file.path)],
+      final result = await SharePlus.instance.share(ShareParams(
+        files: [XFile(file.path)],
         text: fullText,
         subject: subject,
-      );
+      ));
 
       if (result.status == ShareResultStatus.success) {
         return const ShareResult(success: true, platform: SharePlatform.ios);
@@ -177,11 +177,11 @@ class InstagramShareService {
           ? 'Günlük Enerji'
           : 'Daily Energy';
 
-      final result = await Share.shareXFiles(
-        [XFile(file.path, mimeType: 'image/png')],
+      final result = await SharePlus.instance.share(ShareParams(
+        files: [XFile(file.path, mimeType: 'image/png')],
         text: fullText,
         subject: subject,
-      );
+      ));
 
       if (result.status == ShareResultStatus.success) {
         return const ShareResult(
@@ -234,11 +234,11 @@ class InstagramShareService {
           mimeType: 'image/png',
         );
 
-        final result = await Share.shareXFiles(
-          [xFile],
+        final result = await SharePlus.instance.share(ShareParams(
+          files: [xFile],
           text: fullText,
           subject: subject,
-        );
+        ));
 
         if (result.status == ShareResultStatus.success) {
           return const ShareResult(success: true, platform: SharePlatform.web);
@@ -283,9 +283,10 @@ class InstagramShareService {
     AppLanguage language = AppLanguage.tr,
   }) async {
     try {
-      final result = await Share.shareXFiles([
-        XFile(file.path),
-      ], text: _buildShareText(shareText, hashtags));
+      final result = await SharePlus.instance.share(ShareParams(
+        files: [XFile(file.path)],
+        text: _buildShareText(shareText, hashtags),
+      ));
 
       if (result.status == ShareResultStatus.success) {
         return const ShareResult(success: true, platform: SharePlatform.other);

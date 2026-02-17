@@ -74,7 +74,7 @@ class ReferralService {
 
     const appUrl = 'https://apps.apple.com/app/innercycles/id6758612716';
 
-    await Share.share('$shareText\n\n$appUrl');
+    await SharePlus.instance.share(ShareParams(text: '$shareText\n\n$appUrl'));
 
     // Count all share attempts (iOS doesn't reliably report actual success)
     {

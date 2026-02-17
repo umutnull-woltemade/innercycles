@@ -1156,7 +1156,7 @@ class _GrowthDashboardScreenState
             'Toplam kayıt: $totalEntries\n\n'
             'InnerCycles ile kişisel büyümeni takip et!';
 
-    Share.share(text);
+    SharePlus.instance.share(ShareParams(text: text));
   }
 
   // ══════════════════════════════════════════════════════════════════════════

@@ -857,6 +857,19 @@ class _BelowTheFold extends ConsumerWidget {
           const SizedBox(height: 16),
 
           _EntryPointTile(
+            icon: Icons.auto_awesome_outlined,
+            title: language == AppLanguage.en
+                ? 'Affirmation Library'
+                : 'Olumlama Kütüphanesi',
+            subtitle: language == AppLanguage.en
+                ? '60 affirmations across 6 categories with favorites'
+                : '6 kategoride 60 olumlama, favorilerle',
+            route: Routes.affirmations,
+            isDark: isDark,
+            index: 0,
+          ),
+
+          _EntryPointTile(
             icon: Icons.air_outlined,
             title: language == AppLanguage.en
                 ? 'Breathing Exercises'
@@ -1014,6 +1027,32 @@ class _BelowTheFold extends ConsumerWidget {
             route: Routes.search,
             isDark: isDark,
             index: 1,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.psychology_outlined,
+            title: language == AppLanguage.en
+                ? 'Emotional Vocabulary'
+                : 'Duygusal Sözlük',
+            subtitle: language == AppLanguage.en
+                ? '36 emotions with body sensations & intensity levels'
+                : '36 duygu, bedensel duyumlar ve yoğunluk seviyeleri',
+            route: Routes.emotionalVocabulary,
+            isDark: isDark,
+            index: 2,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.article_outlined,
+            title: language == AppLanguage.en
+                ? 'Insight Library'
+                : 'İçgörü Kütüphanesi',
+            subtitle: language == AppLanguage.en
+                ? '36 educational modules on emotional literacy'
+                : '36 duygusal okuryazarlık eğitim modülü',
+            route: Routes.articles,
+            isDark: isDark,
+            index: 3,
           ),
 
           _EntryPointTile(

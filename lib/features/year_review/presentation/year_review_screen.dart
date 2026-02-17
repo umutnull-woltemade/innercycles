@@ -1218,7 +1218,7 @@ class _ShareableSummaryCard extends StatelessWidget {
                       'Gelişim skoru: ${review.growthScore}/100\n'
                       'En iyi seri: ${review.streakBest} gün\n\n'
                       'InnerCycles ile yansıma yaptım';
-                Share.share(shareText);
+                SharePlus.instance.share(ShareParams(text: shareText));
               },
               icon: const Icon(Icons.share, size: 18),
               label: Text(isEn ? 'Share Summary' : 'Özeti Paylaş'),
