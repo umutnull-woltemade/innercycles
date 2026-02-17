@@ -9,6 +9,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/analytics_service.dart';
+import '../../../data/services/paywall_experiment_service.dart';
 import '../../../data/services/paywall_service.dart';
 
 /// The type of contextual paywall to show — each has unique visuals and copy.
@@ -72,6 +73,10 @@ class _ContextualPaywallSheetState
     ref.read(analyticsServiceProvider).logEvent('contextual_paywall_shown', {
       'context': widget.paywallContext.name,
     });
+    // Log experiment-aware paywall view
+    final experiment =
+        ref.read(paywallExperimentProvider).whenOrNull(data: (e) => e);
+    experiment?.logPaywallView();
   }
 
   @override
@@ -254,30 +259,10 @@ class _ContextualPaywallSheetState
                   ).animate().fadeIn(duration: 400.ms, delay: 300.ms),
                   const SizedBox(height: 12),
 
-                  // Price anchor
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        isEn ? '\$7.99/mo' : '\$7,99/ay',
-                        style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.4),
-                          fontSize: 13,
-                          decoration: TextDecoration.lineThrough,
-                          decorationColor: Colors.white.withValues(alpha: 0.4),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        isEn ? '\$2.50/mo billed yearly' : '\$2,50/ay yıllık',
-                        style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.7),
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ).animate().fadeIn(duration: 400.ms, delay: 350.ms),
+                  // Price anchor (variant-aware)
+                  _buildPriceAnchor(isEn)
+                      .animate()
+                      .fadeIn(duration: 400.ms, delay: 350.ms),
                   const SizedBox(height: 16),
 
                   // Risk reversal
@@ -295,7 +280,13 @@ class _ContextualPaywallSheetState
 
                   // Secondary - dismiss
                   TextButton(
-                    onPressed: () => Navigator.pop(context, false),
+                    onPressed: () {
+                      final experiment = ref
+                          .read(paywallExperimentProvider)
+                          .whenOrNull(data: (e) => e);
+                      experiment?.logPaywallDismissal();
+                      Navigator.pop(context, false);
+                    },
                     child: Text(
                       isEn ? 'Not now' : 'Şimdi değil',
                       style: TextStyle(
@@ -313,6 +304,39 @@ class _ContextualPaywallSheetState
     );
   }
 
+  Widget _buildPriceAnchor(bool isEn) {
+    final experiment =
+        ref.watch(paywallExperimentProvider).whenOrNull(data: (e) => e);
+    final monthlyLabel = experiment?.monthlyPriceLabel ?? '\$7.99/mo';
+    final yearlyLabel = experiment?.yearlyMonthlyEquivalent ?? '\$2.50/mo';
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          isEn ? monthlyLabel : monthlyLabel.replaceAll('.', ','),
+          style: TextStyle(
+            color: Colors.white.withValues(alpha: 0.4),
+            fontSize: 13,
+            decoration: TextDecoration.lineThrough,
+            decorationColor: Colors.white.withValues(alpha: 0.4),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Text(
+          isEn
+              ? '$yearlyLabel billed yearly'
+              : '${yearlyLabel.replaceAll('.', ',')} yıllık',
+          style: TextStyle(
+            color: Colors.white.withValues(alpha: 0.7),
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
+    );
+  }
+
   Future<void> _handlePrimaryCta() async {
     setState(() => _isLoading = true);
 
@@ -323,11 +347,17 @@ class _ContextualPaywallSheetState
     final result =
         await ref.read(paywallServiceProvider).presentPaywall();
 
+    final experiment =
+        ref.read(paywallExperimentProvider).whenOrNull(data: (e) => e);
+
     if (mounted) {
       setState(() => _isLoading = false);
       if (result == PaywallResult.purchased ||
           result == PaywallResult.restored) {
+        experiment?.logPaywallConversion();
         Navigator.pop(context, true);
+      } else {
+        experiment?.logPaywallDismissal();
       }
     }
   }
