@@ -2734,27 +2734,27 @@
                 "whisper_quote": "Fısıldayan Cümle"
             },
             "emotional": {
-                "surface_message": "Yuzey Mesaji",
+                "surface_message": "Yüzey Mesajı",
                 "deep_meaning": "Derin Anlam",
-                "shadow_question": "Golge Sorusu",
+                "shadow_question": "Gölge Sorusu",
                 "integration_path": "Entegrasyon Yolu"
             },
             "timing": {
-                "why_now": "Neden Simdi?"
+                "why_now": "Neden Şimdi?"
             },
             "light_shadow": {
-                "light_side": "Isik Yonu",
-                "shadow_side": "Golge Yonu"
+                "light_side": "Işık Yönü",
+                "shadow_side": "Gölge Yönü"
             },
             "guidance": {
-                "today_action": "Bugun Ne Yap",
-                "weekly_focus": "Haftalik Odak",
-                "reflection_question": "Yansitma Sorusu",
-                "avoid": "Kacin"
+                "today_action": "Bugün Ne Yap",
+                "weekly_focus": "Haftalık Odak",
+                "reflection_question": "Yansıtma Sorusu",
+                "avoid": "Kaçın"
             },
             "lucid": {
-                "very_high": "Cok Yuksek",
-                "high": "Yuksek",
+                "very_high": "Çok Yüksek",
+                "high": "Yüksek",
                 "medium": "Orta",
                 "low": "Dusuk",
                 "potential_message": "Bu rüyada bilinçli rüya görme potansiyeliniz yükseldi. Gelecek gece uyumadan önce niyet koymayı deneyin."
@@ -2774,8 +2774,8 @@
             "share_hashtags": "- Rüya Rehberi\n#RuyaYorumu #Bilincalti",
             "symbol": {
                 "personal_context": "Kisisel Baglam",
-                "light_side": "Isik Yonu",
-                "shadow_side": "Golge Yonu",
+                "light_side": "Işık Yönü",
+                "shadow_side": "Gölge Yönü",
                 "related": "Iliskili:"
             }
         }
