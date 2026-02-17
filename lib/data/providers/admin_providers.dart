@@ -317,7 +317,7 @@ class SnapshotsNotifier extends StateNotifier<List<AdminSnapshot>> {
       id: '2',
       title: 'Feature Launch Snapshot',
       content: '''
-- Tantra feature launched
+- Mindfulness feature launched
 - Initial CTR: 7%
 - User feedback: Positive
 - Bugs: 2 minor UI issues

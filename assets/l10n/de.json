@@ -496,9 +496,9 @@
         },
         "tantra_micro_ritual": {
             "todays_micro_ritual": "Today's Micro Ritual",
-            "tantra_tag": "Tantra",
+            "tantra_tag": "Achtsamkeit",
             "discover_dream_trace": "Discover Dream Trace",
-            "brand_footer": "Tantra — InnerCycles",
+            "brand_footer": "Achtsamkeit — InnerCycles",
             "months": {
                 "january": "January",
                 "february": "February",
@@ -1525,7 +1525,7 @@
             },
             "kabbalah": {
                 "title": "Symbolische Zahlen",
-                "description": "Reflection Card und Lebensbaum-Verbindung."
+                "description": "Zahlenmuster und Verbindungen entdecken."
             },
             "aura_reading": {
                 "title": "Aura-Lesung",
@@ -1665,7 +1665,7 @@
                 "description": "Numerische Schwingungen."
             },
             "sefirot_energies": {
-                "description": "Sefirot-Energien."
+                "description": "Lebensdimension-Energien."
             },
             "cosmic_energy": {
                 "description": "Persönliche Energie."
@@ -1679,21 +1679,21 @@
             },
             "self_awareness_connection": {
                 "title": "Selbstwahrnehmung-Verbindung",
-                "description": "Sefirot und Eigenschaften."
+                "description": "Lebensdimension und Eigenschaften."
             },
             "mystic_dreams": {
                 "title": "Mystische Träume",
                 "description": "Innere Symbole und Träume."
             },
             "sefirot_meditation": {
-                "title": "Sefirot-Meditation",
-                "description": "Reise auf dem Lebensbaum."
+                "title": "Lebensdimension-Meditation",
+                "description": "Geführte Kontemplation."
             },
             "spiritual_practices": {
                 "description": "Reflektive Praktiken."
             },
             "sefirot_glossary": {
-                "title": "Sefirot-Glossar",
+                "title": "Lebensdimension-Glossar",
                 "description": "10 Sefirah-Bedeutungen"
             },
             "my_personal_profile": {
@@ -1778,7 +1778,7 @@
             },
             "kabbalah_sefirot": {
                 "title": "Lebensdimensionen",
-                "description": "Pfade auf dem Lebensbaum."
+                "description": "Innere Balance-Dimensionen."
             },
             "east_west_energy_maps": {
                 "description": "Ost-West-Energiekarten."
@@ -1814,7 +1814,7 @@
             },
             "kabbalah_meditation": {
                 "title": "Kontemplative Praxis",
-                "description": "Reise auf dem Lebensbaum."
+                "description": "Geführte Kontemplation."
             },
             "other_practices": {
                 "description": "Andere Praktiken"
@@ -3020,7 +3020,7 @@
         "dream_trace": "Traumspur",
         "todays_number": "Zahl des Tages",
         "lucky_hour": "Fokusstunde",
-        "tantra_title": "Tantra",
+        "tantra_title": "Achtsamkeit",
         "breath": "Atem",
         "awareness": "Bewusstsein",
         "balance_level": "Gleichgewichtsniveau",

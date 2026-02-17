@@ -496,9 +496,9 @@
         },
         "tantra_micro_ritual": {
             "todays_micro_ritual": "Bugünün Mikro Ritüeli",
-            "tantra_tag": "Tantra",
+            "tantra_tag": "Farkındalık",
             "discover_dream_trace": "Rüya İzi'ni keşfet",
-            "brand_footer": "Tantra — InnerCycles",
+            "brand_footer": "Farkındalık — InnerCycles",
             "months": {
                 "january": "Ocak",
                 "february": "Şubat",
@@ -1560,7 +1560,7 @@
             },
             "kabbalah": {
                 "title": "Sembolik Sayılar",
-                "description": "Refleksiyon ve Hayat Ağacı bağlantısı."
+                "description": "Sayı kalıplarını ve bağlantılarını keşfet."
             },
             "aura_reading": {
                 "title": "Aura Okuma",
@@ -1700,7 +1700,7 @@
                 "description": "Sayısal titreşimler."
             },
             "sefirot_energies": {
-                "description": "Sefirot enerjileri."
+                "description": "Yaşam Boyutu enerjileri."
             },
             "cosmic_energy": {
                 "description": "Kişisel enerji."
@@ -1714,21 +1714,21 @@
             },
             "self_awareness_connection": {
                 "title": "Öz Farkındalık Bağlantısı",
-                "description": "Sefirot ve kişilik özellikleri."
+                "description": "Yaşam Boyutu ve kişilik özellikleri."
             },
             "mystic_dreams": {
                 "title": "Derin Rüyalar",
                 "description": "Derin semboller ve rüyalar."
             },
             "sefirot_meditation": {
-                "title": "Sefirot Meditasyonu",
+                "title": "Yaşam Boyutu Meditasyonu",
                 "description": "Hayat Ağacında yolculuk."
             },
             "spiritual_practices": {
                 "description": "Kişisel gelişim pratikleri."
             },
             "sefirot_glossary": {
-                "title": "Sefirot Sözlüğü",
+                "title": "Yaşam Boyutu Sözlüğü",
                 "description": "10 sefirah anlamları"
             },
             "my_personal_profile": {
@@ -1813,7 +1813,7 @@
             },
             "kabbalah_sefirot": {
                 "title": "Yaşam Boyutları",
-                "description": "Doğu-Batı enerji haritaları."
+                "description": "İç denge boyutları."
             },
             "east_west_energy_maps": {
                 "description": "Doğu-Batı enerji haritaları."
@@ -1849,7 +1849,7 @@
             },
             "kabbalah_meditation": {
                 "title": "Tefekkür Pratiği",
-                "description": "Sefirot yolculuğu."
+                "description": "Rehberli tefekkür."
             },
             "other_practices": {
                 "description": "Diğer pratikler"
@@ -3055,7 +3055,7 @@
         "dream_trace": "Rüya İzi",
         "todays_number": "Bugünün Sayısı",
         "lucky_hour": "Odak Saati",
-        "tantra_title": "Tantra",
+        "tantra_title": "Farkındalık",
         "breath": "Nefes",
         "awareness": "Farkındalık",
         "balance_level": "Denge Seviyesi",

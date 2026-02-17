@@ -1525,7 +1525,7 @@
             },
             "kabbalah": {
                 "title": "Exploration Symbolique",
-                "description": "Connexion Reflection Card et Arbre de Vie."
+                "description": "Explorez les motifs numériques et les connexions."
             },
             "aura_reading": {
                 "title": "Lecture d'aura",
@@ -1665,7 +1665,7 @@
                 "description": "Vibrations numériques."
             },
             "sefirot_energies": {
-                "description": "Énergies des Sefirot."
+                "description": "Énergies des Dimension de Vie."
             },
             "cosmic_energy": {
                 "description": "Énergie personnel."
@@ -1679,21 +1679,21 @@
             },
             "self_awareness_connection": {
                 "title": "Connexion personnel",
-                "description": "Sefirot et caractéristiques."
+                "description": "Dimension de Vie et caractéristiques."
             },
             "mystic_dreams": {
                 "title": "Rêves mystiques",
                 "description": "Symboles intérieurs et rêves."
             },
             "sefirot_meditation": {
-                "title": "Méditation des Sefirot",
-                "description": "Voyage sur l'Arbre de Vie."
+                "title": "Méditation des Dimension de Vie",
+                "description": "Contemplation guidée."
             },
             "spiritual_practices": {
                 "description": "Pratiques personnelles."
             },
             "sefirot_glossary": {
-                "title": "Glossaire des Sefirot",
+                "title": "Glossaire des Dimension de Vie",
                 "description": "Significations des 10 sefirot"
             },
             "my_personal_profile": {
@@ -1777,8 +1777,8 @@
                 "description": "Apprenez les concepts"
             },
             "kabbalah_sefirot": {
-                "title": "Sefirot symboliques",
-                "description": "Chemins sur l'Arbre de Vie."
+                "title": "Dimension de Vie symboliques",
+                "description": "Dimensions d'équilibre intérieur."
             },
             "east_west_energy_maps": {
                 "description": "Cartes énergétiques Est-Ouest."
@@ -1814,7 +1814,7 @@
             },
             "kabbalah_meditation": {
                 "title": "Méditation contemplative",
-                "description": "Voyage sur l'Arbre de Vie."
+                "description": "Contemplation guidée."
             },
             "other_practices": {
                 "description": "Autres pratiques"

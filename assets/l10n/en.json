@@ -496,9 +496,9 @@
         },
         "tantra_micro_ritual": {
             "todays_micro_ritual": "Today's Micro Ritual",
-            "tantra_tag": "Tantra",
+            "tantra_tag": "Mindfulness",
             "discover_dream_trace": "Discover Dream Trace",
-            "brand_footer": "Tantra — InnerCycles",
+            "brand_footer": "Mindfulness — InnerCycles",
             "months": {
                 "january": "January",
                 "february": "February",
@@ -1560,7 +1560,7 @@
             },
             "kabbalah": {
                 "title": "Symbolic Numbers",
-                "description": "Cards and Tree of Life connection."
+                "description": "Explore number patterns and connections."
             },
             "aura_reading": {
                 "title": "Aura Reading",
@@ -1700,7 +1700,7 @@
                 "description": "Numerical vibrations."
             },
             "sefirot_energies": {
-                "description": "Sefirot energies."
+                "description": "Life Dimension energies."
             },
             "cosmic_energy": {
                 "description": "Personal energy."
@@ -1714,21 +1714,21 @@
             },
             "self_awareness_connection": {
                 "title": "Self-Awareness Connection",
-                "description": "Sefirot and personal traits."
+                "description": "Life Dimension and personal traits."
             },
             "mystic_dreams": {
                 "title": "Mystic Dreams",
                 "description": "Contemplative symbols and dreams."
             },
             "sefirot_meditation": {
-                "title": "Sefirot Meditation",
+                "title": "Life Dimension Meditation",
                 "description": "Journey on the Tree of Life."
             },
             "spiritual_practices": {
                 "description": "Contemplative practices."
             },
             "sefirot_glossary": {
-                "title": "Sefirot Glossary",
+                "title": "Life Dimension Glossary",
                 "description": "10 sefirah meanings"
             },
             "my_personal_profile": {
@@ -1813,7 +1813,7 @@
             },
             "kabbalah_sefirot": {
                 "title": "Life Dimensions",
-                "description": "East-West energy maps."
+                "description": "Inner balance dimensions."
             },
             "east_west_energy_maps": {
                 "description": "East-West energy maps."
@@ -1849,7 +1849,7 @@
             },
             "kabbalah_meditation": {
                 "title": "Contemplative Practice",
-                "description": "Sefirot journey."
+                "description": "Guided contemplation."
             },
             "other_practices": {
                 "description": "Other practices"
@@ -3055,7 +3055,7 @@
         "dream_trace": "Dream Trace",
         "todays_number": "Today's Number",
         "lucky_hour": "Focus Hour",
-        "tantra_title": "Tantra",
+        "tantra_title": "Mindfulness",
         "breath": "Breath",
         "awareness": "Awareness",
         "balance_level": "Balance Level",
