@@ -403,11 +403,11 @@
         },
         "quiz": {
             "return_home": "Return to Home",
-            "special_discount": "SPECIAL 20% DISCOUNT",
+            "special_discount": "Fonctionnalités Pro",
             "open_cosmic_map": "Open Your Personal Map",
             "strong_profile_message": "Your profile is very strong! Personalized content awaits you.",
             "start_now": "Start Now",
-            "valid_today_only": "Valid only today",
+            "valid_today_only": "",
             "continue_cosmic_journey": "Would you like to continue your personal journey?",
             "view_premium_features": "View Premium Features",
             "continue_free": "Continue with free content",

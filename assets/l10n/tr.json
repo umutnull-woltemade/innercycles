@@ -403,11 +403,11 @@
         },
         "quiz": {
             "return_home": "Ana Sayfaya Dön",
-            "special_discount": "ÖZEL %20 İNDİRİM",
+            "special_discount": "Pro Özellikler Mevcut",
             "open_cosmic_map": "Kişisel Haritanı Aç",
             "strong_profile_message": "Profilin çok güçlü! Kişiselleştirilmiş içerikleri keşfedebilirsin.",
             "start_now": "Şimdi Başla",
-            "valid_today_only": "Sadece bugün geçerli",
+            "valid_today_only": "",
             "continue_cosmic_journey": "Kişisel yolculuğuna devam etmek ister misin?",
             "view_premium_features": "Premium Özellikleri Gör",
             "continue_free": "Ücretsiz içeriklerle devam et",
@@ -623,7 +623,7 @@
             },
             "yearly": {
                 "name": "Yıllık Premium",
-                "savings": "%77 tasarruf",
+                "savings": "",
                 "features": [
                     "Tüm temel özellikler",
                     "Reklamsız, huzurlu deneyim",
