@@ -1310,15 +1310,15 @@ class L10n {
       AppLanguage.en: 'Yearly Affirmation',
       AppLanguage.tr: 'Yıllık Afirmasyon',
     },
-    'what_awaits_this_month': {
+    'monthly_exploration': {
       AppLanguage.en: 'What themes can you explore this month?',
       AppLanguage.tr: 'Bu ay hangi temaları keşfedebilirsin?',
     },
-    'what_awaits_this_week': {
+    'weekly_exploration': {
       AppLanguage.en: 'What themes can you explore this week?',
       AppLanguage.tr: 'Bu hafta hangi temaları keşfedebilirsin?',
     },
-    'what_awaits_this_year': {
+    'yearly_exploration': {
       AppLanguage.en: 'What themes can you explore this year?',
       AppLanguage.tr: 'Bu yıl hangi temaları keşfedebilirsin?',
     },

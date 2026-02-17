@@ -341,7 +341,7 @@ class ArchetypeNavigation {
           route: '/journal',
           emoji: '📅',
           titleKey: 'navigation.cards.weekly_overview.title',
-          descriptionKey: 'navigation.phrases.what_awaits_this_week',
+          descriptionKey: 'navigation.phrases.weekly_exploration',
         ),
       ],
       goDeeper: [
