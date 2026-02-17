@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { zodiacSigns } from "@/content/zodiac/signs";
 
 export const metadata: Metadata = {
-  title: "InnerCycles - Reflective Astrology & Cosmic Self-Discovery",
+  title: "InnerCycles - Personal Journal & Mood Tracker",
   description:
-    "Explore zodiac archetypes, birth chart insights, cosmic reflections, and educational astrology content. Understand yourself through the language of the stars.",
+    "Track your moods, discover emotional patterns, and grow through daily self-awareness. A beautiful journaling companion for self-discovery and personal growth.",
 };
 
 export default function HomePage() {
@@ -21,91 +20,9 @@ export default function HomePage() {
             InnerCycles
           </h1>
           <p className="text-xl md:text-2xl text-cosmic-text/80 max-w-2xl mx-auto mb-4">
-            Explore zodiac archetypes and cosmic patterns through reflective, educational content.
+            Your personal journaling companion for daily reflection, mood tracking, and self-discovery.
           </p>
-          <p className="text-cosmic-muted max-w-xl mx-auto">
-            Discover insights about personality, relationships, and growth themes.
-            No predictions. No fortune telling. Just self-understanding.
-          </p>
-        </div>
-      </section>
-
-      {/* Zodiac Grid */}
-      <section className="max-w-7xl mx-auto px-4 py-16">
-        <h2 className="cosmic-heading text-3xl text-center mb-12">
-          The Twelve Zodiac Archetypes
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {zodiacSigns.map((sign) => (
-            <a
-              key={sign.slug}
-              href={`/zodiac/${sign.slug}`}
-              className="cosmic-card text-center group"
-            >
-              <div className="text-5xl mb-3">{sign.symbol}</div>
-              <h3 className="text-cosmic-text font-display text-lg group-hover:text-cosmic-accent transition-colors">
-                {sign.name}
-              </h3>
-              <p className="text-cosmic-muted text-sm mt-1">{sign.dateRange}</p>
-              <span className={`zodiac-${sign.element.toLowerCase()} zodiac-badge mt-3`}>
-                {sign.element}
-              </span>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      {/* Featured Content */}
-      <section className="bg-cosmic-surface py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="cosmic-heading text-3xl text-center mb-12">
-            Explore Cosmic Wisdom
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="cosmic-card">
-              <h3 className="text-cosmic-accent font-display text-xl mb-3">Zodiac Profiles</h3>
-              <p className="text-cosmic-muted text-sm">
-                Deep personality insights, strengths, growth themes, and reflection prompts for each zodiac archetype.
-              </p>
-              <a href="/zodiac" className="text-cosmic-accent text-sm mt-4 inline-block hover:underline">
-                Explore all signs &rarr;
-              </a>
-            </div>
-            <div className="cosmic-card">
-              <h3 className="text-cosmic-accent font-display text-xl mb-3">Educational Articles</h3>
-              <p className="text-cosmic-muted text-sm">
-                In-depth explorations of astrological concepts, planetary archetypes, elemental wisdom, and cosmic patterns.
-              </p>
-              <a href="/articles" className="text-cosmic-accent text-sm mt-4 inline-block hover:underline">
-                Read articles &rarr;
-              </a>
-            </div>
-            <div className="cosmic-card">
-              <h3 className="text-cosmic-accent font-display text-xl mb-3">Daily Reflections</h3>
-              <p className="text-cosmic-muted text-sm">
-                Thoughtful prompts and affirmations inspired by cosmic archetypes to support your self-awareness journey.
-              </p>
-              <a href="/articles?category=reflections" className="text-cosmic-accent text-sm mt-4 inline-block hover:underline">
-                Start reflecting &rarr;
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mobile App CTA */}
-      <section className="relative py-20 px-4 text-center bg-cosmic-gradient overflow-hidden">
-        <div className="absolute inset-0 opacity-15">
-          <div className="absolute top-1/3 right-1/3 w-72 h-72 rounded-full bg-cosmic-accent/20 blur-3xl animate-float" />
-        </div>
-        <div className="relative max-w-3xl mx-auto">
-          <h2 className="cosmic-heading text-3xl md:text-4xl mb-4">
-            Take Your Journey Mobile
-          </h2>
-          <p className="text-cosmic-text/80 text-lg mb-2">
-            <span className="text-cosmic-accent font-display">InnerCycles</span> — your personal journaling companion for daily reflection, mood tracking, and self-discovery.
-          </p>
-          <p className="text-cosmic-muted text-sm mb-8 max-w-xl mx-auto">
+          <p className="text-cosmic-muted max-w-xl mx-auto mb-8">
             Capture your thoughts, notice patterns in your well-being, and grow through guided reflection prompts.
           </p>
           <a
@@ -125,28 +42,95 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SEO Content Block */}
+      {/* Features Grid */}
+      <section className="max-w-7xl mx-auto px-4 py-16">
+        <h2 className="cosmic-heading text-3xl text-center mb-12">
+          What You Can Do
+        </h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="cosmic-card text-center">
+            <div className="text-4xl mb-4">&#x1F4D3;</div>
+            <h3 className="text-cosmic-text font-display text-lg mb-2">Daily Journal</h3>
+            <p className="text-cosmic-muted text-sm">
+              Record your thoughts, moods, and experiences with guided reflection prompts designed to deepen self-awareness.
+            </p>
+          </div>
+          <div className="cosmic-card text-center">
+            <div className="text-4xl mb-4">&#x1F4CA;</div>
+            <h3 className="text-cosmic-text font-display text-lg mb-2">Pattern Insights</h3>
+            <p className="text-cosmic-muted text-sm">
+              Discover emotional patterns over time. See trends in your moods, energy levels, and focus areas.
+            </p>
+          </div>
+          <div className="cosmic-card text-center">
+            <div className="text-4xl mb-4">&#x1F4AD;</div>
+            <h3 className="text-cosmic-text font-display text-lg mb-2">Dream Journal</h3>
+            <p className="text-cosmic-muted text-sm">
+              Record and explore your dreams with a dedicated dream journal and symbol glossary.
+            </p>
+          </div>
+          <div className="cosmic-card text-center">
+            <div className="text-4xl mb-4">&#x2728;</div>
+            <h3 className="text-cosmic-text font-display text-lg mb-2">Daily Prompts</h3>
+            <p className="text-cosmic-muted text-sm">
+              Get thoughtful reflection prompts and affirmations to guide your daily journaling practice.
+            </p>
+          </div>
+          <div className="cosmic-card text-center">
+            <div className="text-4xl mb-4">&#x1F512;</div>
+            <h3 className="text-cosmic-text font-display text-lg mb-2">Private & Secure</h3>
+            <p className="text-cosmic-muted text-sm">
+              Your journal entries stay on your device. No accounts required. Optional iCloud backup with Apple Sign In.
+            </p>
+          </div>
+          <div className="cosmic-card text-center">
+            <div className="text-4xl mb-4">&#x1F30D;</div>
+            <h3 className="text-cosmic-text font-display text-lg mb-2">Multilingual</h3>
+            <p className="text-cosmic-muted text-sm">
+              Available in English, Turkish, German, and French. Journal in the language that feels most natural to you.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative py-20 px-4 text-center bg-cosmic-gradient overflow-hidden">
+        <div className="absolute inset-0 opacity-15">
+          <div className="absolute top-1/3 right-1/3 w-72 h-72 rounded-full bg-cosmic-accent/20 blur-3xl animate-float" />
+        </div>
+        <div className="relative max-w-3xl mx-auto">
+          <h2 className="cosmic-heading text-3xl md:text-4xl mb-4">
+            Start Your Journaling Journey
+          </h2>
+          <p className="text-cosmic-text/80 text-lg mb-8">
+            Free to use. No sign-up required. Begin reflecting today.
+          </p>
+          <a
+            href="https://apps.apple.com/app/innercycles/id6742044622"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-cosmic-accent/10 border border-cosmic-accent/30 hover:bg-cosmic-accent/20 text-cosmic-accent px-8 py-4 rounded-2xl transition-all hover:scale-105 text-lg"
+          >
+            Download InnerCycles &rarr;
+          </a>
+        </div>
+      </section>
+
+      {/* About */}
       <section className="max-w-4xl mx-auto px-4 py-16">
         <div className="article-prose">
-          <h2>What is Reflective Astrology?</h2>
+          <h2>About InnerCycles</h2>
           <p>
-            Reflective astrology approaches zodiac archetypes as psychological frameworks for
-            self-understanding rather than predictive tools. Each zodiac sign represents a
-            constellation of personality traits, growth themes, and relational patterns that
-            many people find insightful for self-reflection.
+            InnerCycles is a personal journaling app designed to help you build a daily
+            reflection habit. Whether you want to track your moods, explore your dreams,
+            or simply write down your thoughts, InnerCycles provides a beautiful, private
+            space for self-discovery.
           </p>
           <p>
-            At InnerCycles, all content is educational and reflective. We explore how archetypal
-            patterns from astrology, mythology, and depth psychology can serve as mirrors for
-            personal growth. Our approach emphasizes self-awareness, curiosity, and
-            empowerment rather than dependency or deterministic claims.
-          </p>
-          <h2>How to Use This Resource</h2>
-          <p>
-            Browse zodiac profiles to explore personality archetypes. Read educational articles
-            about planetary symbolism, elemental wisdom, and cosmic cycles. Use reflection
-            prompts as journaling inspiration. Consider what resonates with your experience
-            and what invites further exploration.
+            Our approach emphasizes self-awareness and personal growth. All content --
+            including reflection prompts, mood insights, and dream symbol definitions --
+            is designed to encourage thoughtful self-exploration rather than making
+            predictions or claims about the future.
           </p>
         </div>
       </section>

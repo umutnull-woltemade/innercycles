@@ -29,27 +29,6 @@
     @apply text-cosmic-accent font-display;
   }
 
-  .zodiac-badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
-           border transition-colors;
-  }
-
-  .zodiac-fire {
-    @apply bg-zodiac-fire/10 text-zodiac-fire border-zodiac-fire/30;
-  }
-
-  .zodiac-earth {
-    @apply bg-zodiac-earth/10 text-zodiac-earth border-zodiac-earth/30;
-  }
-
-  .zodiac-air {
-    @apply bg-zodiac-air/10 text-zodiac-air border-zodiac-air/30;
-  }
-
-  .zodiac-water {
-    @apply bg-zodiac-water/10 text-zodiac-water border-zodiac-water/30;
-  }
-
   .article-prose {
     @apply text-cosmic-text/90 leading-relaxed;
   }
