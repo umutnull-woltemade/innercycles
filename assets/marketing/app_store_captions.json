@@ -1,45 +1,45 @@
 {
   "_metadata": {
-    "description": "App Store screenshot captions for InnerCycles",
-    "version": "2.0.0",
-    "lastUpdated": "2026-02-16"
+    "description": "App Store screenshot captions for InnerCycles — Anti-Similarity Optimized",
+    "version": "3.0.0",
+    "lastUpdated": "2026-02-17"
   },
   "screenshots": {
-    "mood_checkin": {
-      "caption": "How do you feel today? Start tracking in 30 seconds"
+    "cycle_position": {
+      "caption": "Cycle position 3 of 7 — here's what happened last time"
     },
-    "emotional_patterns": {
-      "caption": "See your emotional patterns emerge over weeks"
+    "recurrence_detection": {
+      "caption": "This emotional pattern has recurred 4 times since October"
     },
-    "dream_journal": {
-      "caption": "Decode your dreams with 1000+ symbol meanings"
+    "dream_archaeology": {
+      "caption": "Dream archaeology: this symbol appeared in 6 of your last 20 dreams"
     },
-    "growth_score": {
-      "caption": "Your growth score rises with every entry"
+    "archetype_progression": {
+      "caption": "Archetype shift detected: Seeker to Explorer"
     },
-    "daily_prompts": {
-      "caption": "Daily prompts that spark real self-reflection"
+    "cycle_mapped_journal": {
+      "caption": "Cycle-positioned journal entry mapped against past patterns"
     },
     "cycle_visualizer": {
-      "caption": "Visualize your emotional cycles and rhythms"
+      "caption": "Emotional cycle visualizer — see your rhythms across months"
     },
-    "attachment_quiz": {
-      "caption": "Discover your attachment style in 5 minutes"
+    "shadow_light": {
+      "caption": "Shadow-light integration: 62% of fear themes resolved"
     },
-    "monthly_reports": {
-      "caption": "Monthly reports show how far you've come"
+    "monthly_cycle_report": {
+      "caption": "Monthly cycle report: 3 patterns identified, 1 breaking"
     },
-    "insight_cards": {
-      "caption": "Beautiful insight cards to share your journey"
+    "intelligence_cards": {
+      "caption": "Cyclical intelligence cards — share your pattern insights"
     },
     "privacy": {
-      "caption": "100% private — your thoughts never leave your device"
+      "caption": "Private by architecture — all cycle data stays on your device"
     }
   },
   "app_store_metadata": {
-    "title": "InnerCycles - Mood Journal",
-    "subtitle": "Daily Mood & Dream Diary",
-    "promotional_text": "New: Emotional Cycle Visualizer + Attachment Style Quiz + Shareable Insight Cards. See the patterns behind your feelings in just 7 days.",
-    "keywords": "journal,tracker,reflection,gratitude,mindful,wellness,self,care,pattern,cycle,emotional,habit,sleep,anxiety,growth,insight"
+    "title": "InnerCycles - Cycle Mapping",
+    "subtitle": "Emotional Cycle Intelligence",
+    "promotional_text": "New: Recurrence Detection Engine + Dream Archaeology + Archetype Progression. Map the emotional cycles you repeat — see your cycle position in 7 days.",
+    "keywords": "journal,pattern,dream,archaeology,recurrence,archetype,shadow,mood,tracker,wellness,self,awareness,habit,sleep,growth,insight"
   }
 }

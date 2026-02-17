@@ -713,7 +713,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   String _categoryLabel(PromptCategory category) {
     switch (category) {
       case PromptCategory.selfDiscovery:
-        return isEn ? 'Self-Discovery' : 'Kendini Keşfet';
+        return isEn ? 'Cycle Awareness' : 'Döngü Farkındalığı';
       case PromptCategory.relationships:
         return isEn ? 'Relationships' : 'İlişkiler';
       case PromptCategory.gratitude:
@@ -722,8 +722,8 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
         return isEn ? 'Emotions' : 'Duygular';
       case PromptCategory.goals:
         return isEn ? 'Goals' : 'Hedefler';
-      case PromptCategory.healing:
-        return isEn ? 'Healing' : 'İyileşme';
+      case PromptCategory.recovery:
+        return isEn ? 'Recovery' : 'İyileşme';
       case PromptCategory.creativity:
         return isEn ? 'Creativity' : 'Yaratıcılık';
       case PromptCategory.mindfulness:

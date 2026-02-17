@@ -35,7 +35,7 @@ I sogni con serpenti emergono frequentemente durante periodi di intensa attivit�
 
 ## Prospettiva Spirituale Delicata
 
-In molte culture, il serpente è associato al risveglio spirituale. Nell'induismo, l'energia kundalini è rappresentata come un serpente. Un sogno con un serpente può segnalare una trasformazione interiore.
+In molte culture, il serpente è associato al risveglio interiore e alla saggezza profonda. In varie tradizioni, il serpente simboleggia l'energia vitale — una corrente potente di rinnovamento e trasformazione. Un sogno con un serpente può segnalare una trasformazione interiore.
 
 ## Variazioni Comuni
 

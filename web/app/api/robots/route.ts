@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://astrobobo.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://innercycles.app";
 
 export async function GET() {
-  const robots = `# Astrobobo - ${SITE_URL}
+  const robots = `# InnerCycles - ${SITE_URL}
 
 User-agent: *
 Allow: /

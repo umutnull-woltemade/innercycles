@@ -492,190 +492,13 @@
             "autumn_equinox_desc": "Dengeleme ve düşünme zamanı",
             "winter_solstice_title": "Kış Dönümü",
             "winter_solstice_desc": "İçe dönüş ve planlama",
-            "advice_house_1": "Bu yıl kendinize odaklanın. Kişisel hedeflerinizi belirleyin ve cesaretinizi kullanın.",
-            "advice_house_2": "Finansal planlarınızı gözden geçirin. Değerleriniz ve kaynaklarınız üzerinde çalışın.",
-            "advice_house_3": "İletişim becerilerinizi geliştirin. Yakın çevrenizle bağlantıları güçlendirin.",
-            "advice_house_4": "Evinize ve ailenize zaman ayırın. Duygusal güvenliğinizi öncelikli yapın.",
-            "advice_house_5": "Yaratıcılığınızda özgür bırakın. Aşk ve eğlence hayatında canlılık bekleyin.",
-            "advice_house_6": "Sağlığınıza ve günlük rutinlerinize dikkat edin. İş ortamında gelişme temaları öne çıkabilir.",
-            "advice_house_7": "İlişkileriniz ön planda. Ortaklıklar ve evlilik konularında önemli adımlar.",
-            "advice_house_8": "Derinlere inin. Dönüşüm ve yenilenme zamanı. Ortak finanslar önem kazanıyor.",
-            "advice_house_9": "Ufkunuzu genişletin. Eğitim, seyahat ve felsefi arayışlar için ideal yıl.",
-            "advice_house_10": "Kariyer hedeflerinize odaklanın. Toplumda yerinizi belirleyin.",
-            "advice_house_11": "Sosyal çevrenizi genişletin. Gelecek hayalleriniz için çalışın.",
-            "advice_house_12": "İçe dönüş yılı. Kişisel gelişim ve dinlenme öncelikli olmalı.",
-            "advice_default": "Bu yıl önemli dönüşüm temaları üzerine düşünmek faydalı olabilir."
+            "advice_default": "Bu yıl kişisel gelişim yolculuğunuz üzerine düşünmeye davet ediyor."
         },
-        "reiki": {
-            "title": "Enerji Farkındalığı",
-            "subtitle": "Bütünsel Yaşam Enerjisi",
-            "description": "Enerji farkındalığı, bedenin doğal denge mekanizmalarını destekleyen bir farkındalık pratiğidir. Ellerin üzerinden akan enerji hissiyle, enerji bloklarını fark etmenize ve stres azaltma, rahatlama ve bütünsel denge sağlamanıza yardımcı olur.",
-            "tabs": {
-                "principles": "İlkeler",
-                "chakras": "Çakralar",
-                "practice": "Pratik"
-            },
-            "gokai": {
-                "title": "Gokai - Beş İlke",
-                "subtitle": "Mikao Usui'nin öğretileri"
-            },
-            "principles": {
-                "kyo_dake_wa": {
-                    "japanese": "Kyo dake wa",
-                    "translation": "Sadece bugün için",
-                    "description": "Şimdiki ana odaklan. Geçmiş gitmiştir, gelecek henüz gelmedi. Sadece bugün kontrol edebilirsin."
-                },
-                "ikaru_na": {
-                    "japanese": "Ikaru na",
-                    "translation": "Kızma",
-                    "description": "Öfke enerjini tüketir ve sağlığına zarar verir. Duygularını kabul et ama bırak gitsinler."
-                },
-                "shinpai_suna": {
-                    "japanese": "Shinpai suna",
-                    "translation": "Endişelenme",
-                    "description": "Endişe, olmamış şeylere enerji vermektir. Güven ve teslimiyetle yaşa."
-                },
-                "kansha_shite": {
-                    "japanese": "Kansha shite",
-                    "translation": "Minnettar ol",
-                    "description": "Şükran, en yüksek titreşimlerden biridir. Her şeyde bir nimet bul."
-                },
-                "gyo_wo_hageme": {
-                    "japanese": "Gyo wo hageme",
-                    "translation": "İşini dürüstçe yap",
-                    "description": "Ne iş yaparsan yap, bütünlük ve özveriyle yap. Hayatına anlam kat."
-                },
-                "hito_ni_shinsetsu_ni": {
-                    "japanese": "Hito ni shinsetsu ni",
-                    "translation": "Herkese nazik ol",
-                    "description": "Şefkat ve nezaket güçlü iyileştirici enerjilerdir. Kendin dahil herkese nazik ol."
-                }
-            },
-            "chakras": {
-                "root": {
-                    "name": "Kök Çakra",
-                    "sanskrit": "Muladhara",
-                    "location": "Omurga tabanı",
-                    "attributes": [
-                        "Güvenlik",
-                        "Topraklama",
-                        "Hayatta kalma"
-                    ],
-                    "reiki_position": "Elleri kalça kemiklerinin üzerine koy"
-                },
-                "sacral": {
-                    "name": "Sakral Çakra",
-                    "sanskrit": "Svadhisthana",
-                    "location": "Göbek altı",
-                    "attributes": [
-                        "Yaratıcılık",
-                        "Cinsellik",
-                        "Duygular"
-                    ],
-                    "reiki_position": "Elleri göbek altına koy"
-                },
-                "solar_plexus": {
-                    "name": "Güneş Sinir Ağı",
-                    "sanskrit": "Manipura",
-                    "location": "Mide bölgesi",
-                    "attributes": [
-                        "Özgüven",
-                        "İrade gücü",
-                        "Kişisel güç"
-                    ],
-                    "reiki_position": "Elleri mide bölgesine koy"
-                },
-                "heart": {
-                    "name": "Kalp Çakra",
-                    "sanskrit": "Anahata",
-                    "location": "Göğüs ortası",
-                    "attributes": [
-                        "Sevgi",
-                        "Şefkat",
-                        "Affetme"
-                    ],
-                    "reiki_position": "Elleri göğsün ortasına koy"
-                },
-                "throat": {
-                    "name": "Boğaz Çakra",
-                    "sanskrit": "Vishuddha",
-                    "location": "Boğaz",
-                    "attributes": [
-                        "İletişim",
-                        "Kendini ifade",
-                        "Gerçek"
-                    ],
-                    "reiki_position": "Elleri boğazın iki yanına koy"
-                },
-                "third_eye": {
-                    "name": "Üçüncü Göz",
-                    "sanskrit": "Ajna",
-                    "location": "Kaşlar arası",
-                    "attributes": [
-                        "Sezgi",
-                        "İç görü",
-                        "Bilgelik"
-                    ],
-                    "reiki_position": "Elleri alına koy"
-                },
-                "crown": {
-                    "name": "Taç Çakra",
-                    "sanskrit": "Sahasrara",
-                    "location": "Baş tepesi",
-                    "attributes": [
-                        "Derin bağlantı",
-                        "Aydınlanma",
-                        "Birlik"
-                    ],
-                    "reiki_position": "Elleri başın tepesine koy"
-                }
-            },
-            "reiki_position_label": "Enerji Farkındalığı Pozisyonu",
-            "practice": {
-                "self_reiki": {
-                    "title": "Öz-Enerji Farkındalığı Pratiği",
-                    "steps": [
-                        "Rahat bir pozisyonda otur veya uzan",
-                        "Gözlerini kapat ve birkaç derin nefes al",
-                        "Niyetini belirle: \"Şifa enerjisine açılıyorum\"",
-                        "Ellerini başının tepesine koy (3-5 dk)",
-                        "Ellerini gözlerinin üzerine koy (3-5 dk)",
-                        "Ellerini boğazına koy (3-5 dk)",
-                        "Ellerini kalbinin üzerine koy (3-5 dk)",
-                        "Ellerini güneş sinir ağına koy (3-5 dk)",
-                        "Ellerini göbek altına koy (3-5 dk)",
-                        "Minnetle bitir"
-                    ]
-                },
-                "daily_cleansing": {
-                    "title": "Günlük Enerji Temizliği",
-                    "steps": [
-                        "Sabah uyandığında ellerini ov",
-                        "Ellerinin ısındığını ve enerjinin aktığını hisset",
-                        "Ellerini auranın etrafında gezdirerek enerji alanını temizle",
-                        "Negatif enerjiyi yere bırak",
-                        "Pozitif niyetlerle güne başla"
-                    ]
-                },
-                "distance_reiki": {
-                    "title": "Uzaktan Enerji Farkındalığı",
-                    "steps": [
-                        "Şifa göndereceğin kişiden izin al (zihinsel olarak)",
-                        "Kişiyi veya durumu gözünde canlandır",
-                        "Hon Sha Ze Sho Nen sembolünü çiz (varsa)",
-                        "Sevgi ve şifa niyetini gönder",
-                        "Enerjinin ulaştığını hisset",
-                        "Minnetle bitir"
-                    ]
-                }
-            },
-            "tip": "Enerji uyumlanması için bir enerji farkındalığı uzmanıyla çalışmanız önerilir. Bu pratikler, uyumlanmış olmasanız da enerji farkındalığı geliştirmenize yardımcı olabilir."
-        },
-        "tantra_micro_ritual": {
+        "mindfulness_micro_ritual": {
             "todays_micro_ritual": "Bugünün Mikro Ritüeli",
-            "tantra_tag": "Tantra",
+            "mindfulness_tag": "Farkındalık",
             "discover_dream_trace": "Rüya İzi'ni keşfet",
-            "brand_footer": "Tantra — InnerCycles",
+            "brand_footer": "Farkındalık — InnerCycles",
             "months": {
                 "january": "Ocak",
                 "february": "Şubat",
@@ -850,7 +673,6 @@
             "self_awareness": "Öz Farkındalık bir öz-refleksiyon aracıdır, tahmin değil",
             "card_insight": "Refleksiyon okumaları sadece kişisel içgörü içindir",
             "numerology": "Numeroloji sembolik perspektifler sunar",
-            "chakra": "Çakra bilgisi öz-refleksiyon amaçlıdır",
             "compatibility": "Uyum içgörüleri sadece refleksiyon içindir",
             "insight": "Bu içgörüler kişisel refleksiyon içindir",
             "reflection": "Bunu kendini keşfetme aracı olarak kullan"
@@ -1213,7 +1035,7 @@
                     "basic_meaning": "Hayvanlar, içgüdüsel doğamızı ve bastırılmış enerjileri temsil eder. Her hayvan bir totem mesajı taşır.",
                     "special_interpretation": "Bu rüya, doğal içgüdülerinle yeniden bağlanma çağrısı. Hangi hayvan gördüysen, onun totem enerjisini araştır.",
                     "common_symbols_label": "🐍 YAYGIN HAYVAN SEMBOLLERİ",
-                    "common_symbols": "• Yılan: Dönüşüm, şifa, kundalini\n• Köpek: Sadakat, koruma, arkadaşlık\n• Kedi: Bağımsızlık, gizem, sezgi\n• Kuş: Özgürlük, derin mesajlar\n• Kurt: Topluluk, liderlik, öğretmen\n• Ayı: Güç, koruma, içe dönüş\n• At: Özgürlük, güç, tutku",
+                    "common_symbols": "• Yılan: Dönüşüm, yenilenme, iç büyüme\n• Köpek: Sadakat, koruma, arkadaşlık\n• Kedi: Bağımsızlık, gizem, sezgi\n• Kuş: Özgürlük, derin mesajlar\n• Kurt: Topluluk, liderlik, öğretmen\n• Ayı: Güç, koruma, içe dönüş\n• At: Özgürlük, güç, tutku",
                     "psychological_label": "🌙 PSİKOLOJİK BOYUT",
                     "psychological": "• Hayvan davranışı: Senin bastırdığın davranış\n• Hayvanla ilişkin: İçgüdülerinle ilişkin\n• Hayvanın rengi: Duygusal ton\n• Hayvan saldırıyorsa: Bastırılmış enerji patlaması",
                     "practice_label": "✨ PRATİK UYGULAMA",
@@ -1439,7 +1261,6 @@
             "self_awareness": "Sadece eğlence amaçlıdır. Tahmin tavsiyesi değildir.",
             "card_insight": "Sadece düşünme amaçlıdır. Tahmin değildir.",
             "numerology": "Sadece öz-keşif amaçlıdır. Tahmin değildir.",
-            "chakra": "Sadece farkındalık amaçlıdır. Tıbbi veya manevi reçete değildir.",
             "compatibility": "Sadece düşünme amaçlıdır. İlişki tavsiyesi değildir.",
             "insight": "Sadece kişisel düşünme amaçlıdır. Profesyonel tavsiye değildir.",
             "reflection": "Burası öz-yansıtma alanıdır, tahmin veya tavsiye değil."
@@ -1683,7 +1504,7 @@
             },
             "energy_field": {
                 "title": "Enerji Alanın",
-                "description": "Auranın renkleri ve chakra dengen."
+                "description": "Kişisel enerjin ve iç dengen."
             },
             "kozmoz_discovery": {
                 "title": "InnerCycles Keşif",
@@ -1737,17 +1558,13 @@
                 "title": "Numeroloji",
                 "description": "Sayıların bilgeliği."
             },
-            "kabbalah": {
+            "symbolic_numbers": {
                 "title": "Sembolik Sayılar",
-                "description": "Refleksiyon ve Hayat Ağacı bağlantısı."
+                "description": "Sayı kalıplarını ve bağlantılarını keşfet."
             },
             "aura_reading": {
                 "title": "Aura Okuma",
                 "description": "Enerji alanını keşfet."
-            },
-            "chakra_analysis": {
-                "title": "Chakra Analizi",
-                "description": "Enerji merkezlerin."
             },
             "moon_rituals": {
                 "title": "Ay Ritüelleri",
@@ -1805,7 +1622,7 @@
             "other_exploration_paths": {
                 "description": "Diğer keşif yolları"
             },
-            "kabbalah_numbers": {
+            "symbolic_number_patterns": {
                 "title": "Sayı Örüntüleri",
                 "description": "Sayıların mistik kökeni."
             },
@@ -1832,13 +1649,6 @@
             "aura_colors": {
                 "title": "Aura Renkleri",
                 "description": "Enerji alanın."
-            },
-            "chakra_balance": {
-                "title": "Chakra Dengesi",
-                "description": "Sayılar ve chakralar."
-            },
-            "numbers_and_chakras": {
-                "description": "Sayılar ve chakralar."
             },
             "other_systems": {
                 "description": "Diğer sistemler"
@@ -1889,8 +1699,8 @@
             "numerical_vibrations": {
                 "description": "Sayısal titreşimler."
             },
-            "sefirot_energies": {
-                "description": "Sefirot enerjileri."
+            "life_dimension_energies": {
+                "description": "Yaşam Boyutu enerjileri."
             },
             "cosmic_energy": {
                 "description": "Kişisel enerji."
@@ -1904,26 +1714,22 @@
             },
             "self_awareness_connection": {
                 "title": "Öz Farkındalık Bağlantısı",
-                "description": "Sefirot ve kişilik özellikleri."
-            },
-            "chakra_system": {
-                "title": "Chakra Sistemi",
-                "description": "Doğu ve Batı enerji haritaları."
+                "description": "Yaşam Boyutu ve kişilik özellikleri."
             },
             "mystic_dreams": {
                 "title": "Derin Rüyalar",
                 "description": "Derin semboller ve rüyalar."
             },
-            "sefirot_meditation": {
-                "title": "Sefirot Meditasyonu",
-                "description": "Hayat Ağacında yolculuk."
+            "life_dimension_meditation": {
+                "title": "Yaşam Boyutu Meditasyonu",
+                "description": "Rehberli yaşam boyutu meditasyonu."
             },
             "spiritual_practices": {
                 "description": "Kişisel gelişim pratikleri."
             },
-            "sefirot_glossary": {
-                "title": "Sefirot Sözlüğü",
-                "description": "10 sefirah anlamları"
+            "life_dimension_glossary": {
+                "title": "Yaşam Boyutu Sözlüğü",
+                "description": "10 boyut anlamları"
             },
             "my_personal_profile": {
                 "title": "Doğum Haritam",
@@ -1960,10 +1766,6 @@
             "tell_another_dream": {
                 "title": "Başka Bir Rüya Anlat",
                 "description": "Yeni bir yolculuğa başla."
-            },
-            "chakra_and_dreams": {
-                "title": "Chakra ve Rüyalar",
-                "description": "Enerji merkezleri ve bilinçaltı."
             },
             "symbol_glossary": {
                 "title": "Sembol Sözlüğü",
@@ -2009,15 +1811,9 @@
             "learn_concepts": {
                 "description": "Kavramları öğren"
             },
-            "energy_field_chakras": {
-                "description": "Enerji alanın ve chakralar."
-            },
-            "chakra_balancing_practices": {
-                "description": "Chakra dengeleme pratikleri."
-            },
-            "kabbalah_sefirot": {
+            "life_dimensions": {
                 "title": "Yaşam Boyutları",
-                "description": "Doğu-Batı enerji haritaları."
+                "description": "İç denge boyutları."
             },
             "east_west_energy_maps": {
                 "description": "Doğu-Batı enerji haritaları."
@@ -2027,25 +1823,14 @@
             },
             "energy_guidance": {
                 "title": "Enerji Rehberliği",
-                "description": "Chakralarına özel mesaj."
-            },
-            "chakra_special_message": {
-                "description": "Chakralarına özel mesaj."
+                "description": "Sana özel enerji rehberliği."
             },
             "energy_reading": {
                 "description": "Enerji okuma."
             },
-            "seven_chakra_guide": {
-                "title": "7 Chakra Rehberi",
-                "description": "Detaylı açıklamalar"
-            },
             "moon_calendar": {
                 "title": "Ay Takvimi",
                 "description": "Yeniay ve dolunay tarihleri."
-            },
-            "chakra_balancing": {
-                "title": "Chakra Dengeleme",
-                "description": "Ritüellerle enerji çalışması."
             },
             "energy_work_rituals": {
                 "description": "Ritüellerle enerji çalışması."
@@ -2062,9 +1847,9 @@
                 "title": "Niyet Rehberliği",
                 "description": "Bu ay için kişisel mesaj."
             },
-            "kabbalah_meditation": {
+            "contemplative_meditation": {
                 "title": "Tefekkür Pratiği",
-                "description": "Sefirot yolculuğu."
+                "description": "Rehberli tefekkür."
             },
             "other_practices": {
                 "description": "Diğer pratikler"
@@ -3023,7 +2808,6 @@
         "solar_return": "Doğum gününüz etrafındaki yıllık kişisel haritanız",
         "lunar_calendar": "Ay fazlarına göre bahçecilik ve ekim takvimi"
     },
-    "self_awareness": {},
     "days": {
         "mon_short": "Pzt",
         "tue_short": "Sal",
@@ -3056,7 +2840,6 @@
         "hold": "Tut",
         "exhale": "Nefes Ver",
         "repeat_times": "{count} kez tekrarlayın",
-        "chakra_to_focus": "Odaklanılacak Çakra",
         "todays_affirmations": "Bugünün Olumlamaları",
         "affirmations_subtitle": "Pozitif sözler gerçekliğini şekillendirir",
         "main_affirmation": "Ana Olumlama",
@@ -3150,15 +2933,6 @@
             "natural_breath": "Doğal Nefes",
             "heart_breath": "Kalp Nefesi",
             "creative_breath": "Yaratıcı Nefes"
-        },
-        "chakras": {
-            "heart": "Kalp Çakrası",
-            "heart_focus": "Şefkat ve sevgi",
-            "root": "Kök Çakra",
-            "root_focus": "Topraklanma ve güvenlik",
-            "third_eye": "Üçüncü Göz",
-            "third_eye_focus": "Sezgi ve vizyon",
-            "unconditional_love": "Koşulsuz sevgi"
         },
         "affirmation_lists": {
             "morning_1": "Bugün kendimi harika şeylere açık hissediyorum.",
@@ -3281,7 +3055,7 @@
         "dream_trace": "Rüya İzi",
         "todays_number": "Bugünün Sayısı",
         "lucky_hour": "Odak Saati",
-        "tantra_title": "Tantra",
+        "mindfulness_title": "Farkındalık",
         "breath": "Nefes",
         "awareness": "Farkındalık",
         "balance_level": "Denge Seviyesi",
@@ -3341,95 +3115,11 @@
         "weekly_preview_title": "Haftalık Bakış",
         "weekly_preview_content": "Haftanın geri kalanı için kişisel enerjiler sizin lehinize çalışıyor."
     },
-    "moon": {},
     "nav": {
         "also_viewed_subtitle": "Merak edenler bunlara da göz attı",
         "go_deeper_subtitle": "İç dünyanla bağlan",
         "keep_exploring_subtitle": "Farklı bakış açıları",
-        "keep_exploring": "Keşfetmeye Devam Et",
-        "daily_reading": "Günlük Yorum",
-        "daily_energy": "Bugünün enerjisi",
-        "personal_profile": "Kişisel Profil",
-        "explore_cosmic_map": "Kişisel haritanı keşfet",
-        "compatibility": "Kişilik Uyumu",
-        "basic_compatibility": "Temel uyum analizi",
-        "combined_chart": "Birleşik haritanız",
-        "share_relationship": "İlişkinizi Paylaş",
-        "share_cosmic_bond": "Kişisel bağınızı paylaş",
-        "love_reading": "Aşk Yorumu",
-        "relationship_energy": "İlişki enerjiniz",
-        "weekly_reading": "Haftalık Yorum",
-        "weekly_energy": "Bu hafta seni neler bekliyor",
-        "monthly_reading": "Aylık Yorum",
-        "monthly_energy": "Bu ayın enerjisi",
-        "yearly_reading": "Yıllık Yorum",
-        "yearly_energy": "Bu yılın enerjisi",
-        "card_insight": "Refleksiyon",
-        "card_insight_guidance": "Kartlar ne diyor?",
-        "numerology": "Numeroloji",
-        "numerology_insight": "Sayıların gizemi",
-        "dreams": "Rüyalar",
-        "dreams_insight": "Rüyalarının anlamı",
-        "transits": "Transitler",
-        "transits_insight": "Şu an seni etkileyen",
-        "cosmic_share": "Kişisel Paylaşım",
-        "share_energy": "Enerjini paylaş",
-        "who_compatible": "Kiminle uyumlusun?",
-        "all_signs": "Tüm Arketipler",
-        "discover_12_signs": "12 arketipi keşfet",
-        "share_chart": "Haritanı Paylaş",
-        "share_cosmic_energy": "Kişisel enerjini paylaş",
-        "compare_profiles": "Profil Karşılaştır",
-        "compare_with_friend": "Bir arkadaşınla karşılaştır",
-        "the_fool": "The Fool",
-        "new_beginnings": "Yeni başlangıçlar",
-        "share_card": "Kartını Paylaş",
-        "share_cosmic_message": "Kişisel mesajını paylaş",
-        "chakra_analysis": "Chakra Analizi",
-        "energy_centers": "Enerji merkezlerin",
-        "dream_trace": "Rüya İzi",
-        "dream_meanings": "Rüyalarının anlamı",
-        "share_compatibility": "Uyumunuzu Paylaş",
-        "detailed_relationship": "Detaylı ilişki haritası",
-        "life_path": "Yaşam Yolu",
-        "leader_archetype": "Lider arketipi",
-        "share": "Paylaş",
-        "share_insight": "Keşfini paylaş",
-        "expression_number": "İfade Sayısı",
-        "soul_voice": "İç sesin",
-        "soul_urge": "İç Dürtü",
-        "deepest_desires": "En derin arzuların",
-        "birthday_number": "Doğum Günü Sayısı",
-        "hidden_talents": "Gizli yeteneklerin",
-        "aura": "Aura",
-        "aura_insight": "Enerji alanın",
-        "theta_healing": "Bilinçaltı Çalışması",
-        "theta_healing_insight": "Derin şifa",
-        "rituals": "Ritüeller",
-        "cosmic_rituals": "Kişisel ritüeller",
-        "progressions": "Progressions",
-        "inner_evolution": "İç evriminin",
-        "soul_chart": "Kişisel haritası",
-        "solar_arc": "Solar Arc",
-        "life_directions": "Yaşam yönlerin",
-        "eastern_wisdom": "Doğu bilgeliği",
-        "transit_calendar": "Transit Takvimi",
-        "upcoming_transits": "Yaklaşan transitler",
-        "aspect_analysis": "Açı Analizi",
-        "energy_conversations": "Kişisel konuşmalar",
-        "celebrities": "Ünlüler",
-        "famous_charts": "Ünlü kişisel profilleri",
-        "articles": "Makaleler",
-        "cosmic_wisdom": "Kişisel bilgelik",
-        "kabbalah": "Sayı Bilgeliği",
-        "master_mystery": "11, 22, 33 gizemi",
-        "best_times": "En iyi zamanlar",
-        "energy_practices": "Enerji pratikleri",
-        "crystal_guide": "Doğal Taş Rehberi",
-        "what_awaits_this_week": "Bu hafta seni neler bekliyor",
-        "what_awaits_this_month": "Bu ay seni neler bekliyor",
-        "home": "Ana Sayfa",
-        "up_next": "Sonraki"
+        "keep_exploring": "Keşfetmeye Devam Et"
     },
     "timing": {
         "subtitle": "Aktiviteleriniz için en uygun zamanları keşfedin",

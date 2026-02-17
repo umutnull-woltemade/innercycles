@@ -35,7 +35,7 @@ Les rêves de serpent apparaissent souvent pendant les périodes d'activité int
 
 ## Perspective spirituelle douce
 
-Dans de nombreuses cultures, le serpent est associé à l'éveil spirituel. Dans l'hindouisme, l'énergie kundalini est représentée sous forme de serpent. Un rêve de serpent peut signaler une transformation intérieure.
+Dans de nombreuses cultures, le serpent est associé à l'éveil intérieur et à la sagesse profonde. Dans diverses traditions, le serpent symbolise l'énergie vitale — un courant puissant de renouveau et de transformation. Un rêve de serpent peut signaler une transformation intérieure.
 
 ## Variations courantes
 

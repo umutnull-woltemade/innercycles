@@ -208,7 +208,7 @@ jobs:
           echo "Verifying production health..."
           sleep 30  # Wait for DNS propagation
           # Replace with your actual production URL
-          curl -f "https://astrobobo.vercel.app/api/health" || {
+          curl -f "https://innercycles.vercel.app/api/health" || {
             echo "WARNING: Production health check failed, but deployment completed"
           }
           echo "Production deployment complete!"

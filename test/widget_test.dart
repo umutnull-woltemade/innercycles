@@ -6,8 +6,8 @@ import 'package:inner_cycles/main.dart';
 void main() {
   test('InnerCyclesApp is exported from main.dart', () {
     // Verify the app class can be constructed
-    // Note: We don't pump the widget because it requires Firebase,
-    // platform channels, and other integrations that need full setup
+    // Note: We don't pump the widget because it requires
+    // platform channels and other integrations that need full setup
     expect(InnerCyclesApp, isNotNull);
     expect(const InnerCyclesApp(), isA<InnerCyclesApp>());
   });

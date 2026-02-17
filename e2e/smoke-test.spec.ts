@@ -127,10 +127,10 @@ test.describe('SMOKE: Spiritual Features', () => {
     await page.screenshot({ path: 'artifacts/smoke-14-dream-interpretation.png', fullPage: true });
   });
 
-  test('15. Chakra analysis loads', async ({ page }) => {
-    await page.goto(`${BASE_URL}/chakra-analysis`);
+  test('15. Legacy analysis loads', async ({ page }) => {
+    await page.goto(`${BASE_URL}/legacy-analysis`);
     await waitForFlutter(page);
-    await page.screenshot({ path: 'artifacts/smoke-15-chakra.png', fullPage: true });
+    await page.screenshot({ path: 'artifacts/smoke-15-legacy-analysis.png', fullPage: true });
   });
 
   test('16. Aura screen loads', async ({ page }) => {

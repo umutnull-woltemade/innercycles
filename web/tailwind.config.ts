@@ -4,7 +4,6 @@ const config: Config = {
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
-    "./content/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
@@ -21,12 +20,7 @@ const config: Config = {
           muted: "#A0A0B0",
           border: "#2A2A4E",
         },
-        zodiac: {
-          fire: "#FF6B35",
-          earth: "#4A7C59",
-          air: "#87CEEB",
-          water: "#4169E1",
-        },
+
       },
       fontFamily: {
         display: ["var(--font-display)", "serif"],

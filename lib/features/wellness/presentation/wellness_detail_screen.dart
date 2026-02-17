@@ -129,8 +129,8 @@ class WellnessDetailScreen extends ConsumerWidget {
         const SizedBox(height: 8),
         Text(
           isEn
-              ? 'Log a journal entry, gratitude, or sleep to see your wellness score'
-              : 'Sağlık skorunu görmek için günlük, şükran veya uyku kaydı oluştur',
+              ? 'Log a cycle entry, gratitude, or sleep to see your cycle score'
+              : 'Döngü skorunu görmek için döngü kaydı, şükran veya uyku kaydı oluştur',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 14,

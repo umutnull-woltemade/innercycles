@@ -14,7 +14,7 @@ import WidgetKit
     // Setup widget method channel
     setupWidgetChannel()
 
-    // This must be called AFTER GeneratedPluginRegistrant for Firebase
+    // Setup notification delegate
     if #available(iOS 10.0, *) {
       UNUserNotificationCenter.current().delegate = self
     }

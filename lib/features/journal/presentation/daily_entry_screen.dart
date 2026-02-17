@@ -695,8 +695,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     if (entryCount == 14) {
       return (
         isEn
-            ? 'Try a self-discovery quiz'
-            : 'Kendini keşfet testini dene',
+            ? 'Try a pattern-detection quiz'
+            : 'Bir örüntü tespit testini dene',
         Routes.quizHub,
       );
     }

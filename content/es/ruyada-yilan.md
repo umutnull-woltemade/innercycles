@@ -35,7 +35,7 @@ Los sueños con serpientes surgen frecuentemente en períodos de intensa activid
 
 ## Perspectiva Espiritual Suave
 
-En muchas culturas, la serpiente se asocia con el despertar espiritual. En el hinduismo, la energía kundalini se representa como una serpiente. Un sueño con serpientes puede señalar una transformación interior en marcha.
+En muchas culturas, la serpiente se asocia con el despertar interior y la sabiduría profunda. En diversas tradiciones, la serpiente simboliza la energía vital — una corriente poderosa de renovación y transformación. Un sueño con serpientes puede señalar una transformación interior en marcha.
 
 ## Variaciones Comunes
 

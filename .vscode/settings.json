@@ -72,8 +72,6 @@
     "**/*.g.dart": true
   },
 
-  // Firebase
-  "vsfire.useRestAPI": true,
 
   // Error Lens
   "errorLens.enabledDiagnosticLevels": ["error", "warning", "info"],
@@ -109,12 +107,10 @@
 
   // Spell checker
   "cSpell.words": [
-    "astrobobo",
+    "innercycles",
     "astrology",
     "cupertino",
     "dotenv",
-    "firebase",
-    "firestore",
     "gumroad",
     "hive",
     "riverpod",

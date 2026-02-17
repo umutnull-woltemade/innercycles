@@ -416,9 +416,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/kozmoz', redirect: (_, _) => Routes.insight),
       GoRoute(path: '/aura', redirect: (_, _) => Routes.insight),
       GoRoute(path: '/numerology', redirect: (_, _) => Routes.insightsDiscovery),
-      GoRoute(path: '/chakra-analysis', redirect: (_, _) => Routes.insight),
+      GoRoute(path: '/legacy-analysis', redirect: (_, _) => Routes.insight),
       GoRoute(path: '/moon-rituals', redirect: (_, _) => Routes.rituals),
-      GoRoute(path: '/kabbalah', redirect: (_, _) => Routes.insight),
+      GoRoute(path: '/legacy-insight', redirect: (_, _) => Routes.insight),
       GoRoute(path: '/timing', redirect: (_, _) => Routes.journalPatterns),
       GoRoute(path: '/celebrities', redirect: (_, _) => Routes.insight),
       GoRoute(path: '/daily-rituals', redirect: (_, _) => Routes.rituals),
@@ -531,7 +531,7 @@ class _SplashScreenState extends State<_SplashScreen> {
             ).animate().fadeIn(delay: 300.ms, duration: 600.ms),
             const SizedBox(height: 8),
             Text(
-              'Personal Reflection Journal',
+              'Emotional Cycle Intelligence',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Colors.white54,
                     letterSpacing: 2,

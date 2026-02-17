@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Astrobobo Content Safety Filter - CLI Validator
+ * InnerCycles Content Safety Filter - CLI Validator
  *
  * Scans all content files for banned phrases, dependency patterns,
  * and medical/financial claims.
@@ -97,7 +97,7 @@ async function getContentFiles(dir) {
 }
 
 async function run() {
-  console.log("=== ASTROBOBO CONTENT SAFETY FILTER ===\n");
+  console.log("=== INNERCYCLES CONTENT SAFETY FILTER ===\n");
 
   const dirs = ["content", "app"].map((d) => join(ROOT, d));
   let allFiles = [];

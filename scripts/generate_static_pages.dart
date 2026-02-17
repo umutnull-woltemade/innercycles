@@ -531,24 +531,24 @@ final List<PageMeta> pages = [
     ],
   ),
 
-  // Chakra
+  // Energy Centers
   PageMeta(
-    route: 'chakra',
-    title: 'Chakra Analizi — Enerji Merkezi Dengesi | InnerCycles',
-    description: 'Yedi ana chakranızın analizi. Enerji blokajları ve denge durumu.',
-    keywords: 'chakra, enerji merkezi, chakra dengesi, kundalini',
+    route: 'energy-centers',
+    title: 'Enerji Merkezi Analizi — Kişisel Denge | InnerCycles',
+    description: 'Yedi ana enerji merkezinizin analizi. Enerji akışı ve denge durumu.',
+    keywords: 'enerji merkezi, enerji dengesi, iç denge, farkındalık',
     ogType: 'website',
     content: [
-      'Chakra Analizi',
+      'Enerji Merkezi Analizi',
       'Yedi ana enerji merkezinizin durumunu keşfedin.',
-      'Yedi Chakra',
-      '• Muladhara (Kök): Güvenlik ve temel',
-      '• Svadhisthana (Sakral): Yaratıcılık ve duygular',
-      '• Manipura (Güneş Pleksusu): Güç ve irade',
-      '• Anahata (Kalp): Sevgi ve şefkat',
-      '• Vishuddha (Boğaz): İletişim ve ifade',
-      '• Ajna (Üçüncü Göz): Sezgi ve içgörü',
-      '• Sahasrara (Taç): Bilincin birliği',
+      'Yedi Enerji Merkezi',
+      '• Kök: Güvenlik ve temel',
+      '• Sakral: Yaratıcılık ve duygular',
+      '• Güneş Pleksusu: Güç ve irade',
+      '• Kalp: Sevgi ve şefkat',
+      '• Boğaz: İletişim ve ifade',
+      '• İçgörü: Sezgi ve içgörü',
+      '• Taç: Bilincin birliği',
     ],
   ),
 
@@ -625,7 +625,7 @@ String generateHtml(PageMeta page) {
                line.contains('Kategoriler') ||
                line.contains('Türleri') ||
                line.contains('Sayılar') ||
-               line.contains('Chakra') ||
+               line.contains('Enerji Merkezi') ||
                line.contains('Dönemleri')) {
       return '      <h2 style="color: #C9B8FF; font-size: 1.5rem; margin-top: 1.5rem;">$line</h2>';
     } else {

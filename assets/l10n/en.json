@@ -1,14 +1,14 @@
 {
     "app": {
         "name": "InnerCycles",
-        "tagline": "Track moods, decode dreams, discover patterns",
+        "tagline": "Cycle-aware journaling. Pattern recurrence. Dream archaeology.",
         "loading_text": "Setting up your journal..."
     },
     "common": {
         "cancel": "Cancel",
         "ok": "OK",
         "continue": "Continue",
-        "start_journey": "Start Journey",
+        "start_journey": "Begin Cycle Mapping",
         "explore": "Explore",
         "results": "results",
         "coming_soon": "Coming soon",
@@ -45,8 +45,8 @@
         "birth_place": "Birth Place",
         "not_specified": "Not Specified",
         "minutes_short": "min",
-        "also_discover": "Also Discover",
-        "discover": "Discover",
+        "also_discover": "Also Explore",
+        "discover": "Explore",
         "all_features": "All Features",
         "notifications": "Notifications",
         "permission_required": "Permission required to receive notifications.",
@@ -78,30 +78,30 @@
         ]
     },
     "onboarding": {
-        "welcome_text": "Track your moods, decode your dreams,\nand discover the emotional patterns\nthat shape your days.",
+        "welcome_text": "Map your emotional cycles.\nDetect recurring patterns.\nSee what repeats and why.",
         "cosmic_identity": "Your Profile",
         "enter_info_subtitle": "Tell us a bit about yourself to personalize your journal",
         "info_box_text": "Your name helps us personalize your experience. Birth date is optional.",
         "will_be_calculated": "Your Journal Awaits",
-        "start_cosmic_journey": "Start Your Journal",
+        "start_cosmic_journey": "Map Your Cycles",
         "tap_to_continue": "Tap to continue",
         "connect_with_apple": "Continue with Apple",
         "connecting": "Connecting...",
-        "explore_now": "Start Exploring Now",
+        "explore_now": "Start Mapping Now",
         "by_continuing": "By continuing, you agree to the Terms of Use",
         "features": {
-            "personal_profile": "Personal Profile",
-            "daily_reading": "Daily Reflection",
-            "dream_journal": "Dream Journal",
-            "patterns": "Pattern Tracking"
+            "personal_profile": "Cycle Profile",
+            "daily_reading": "Cycle-Mapped Entry",
+            "dream_journal": "Dream Archaeology",
+            "patterns": "Recurrence Detection"
         },
-        "profile_ready": "Your Profile is Ready",
-        "ready_subtitle": "Your personalized reflection experience is now set up. Start exploring your insights.",
+        "profile_ready": "Your Cycle Map is Ready",
+        "ready_subtitle": "Your cyclical intelligence system is now active. Start mapping your emotional patterns.",
         "whats_included": "What's Included",
-        "feature_reflection": "Daily reflection prompts",
-        "feature_dreams": "Dream journal & interpretation",
-        "feature_patterns": "Personal pattern tracking",
-        "feature_symbols": "Symbol exploration library"
+        "feature_reflection": "Cycle-mapped journaling",
+        "feature_dreams": "Dream archaeology & symbol tracking",
+        "feature_patterns": "Recurrence detection engine",
+        "feature_symbols": "Archetype progression framework"
     },
     "disclaimer": {
         "before_using": "Before Using",
@@ -195,7 +195,7 @@
     },
     "home": {
         "greeting": "Hi, {name}!",
-        "todays_cosmic_message": "Today's Reflective Message",
+        "todays_cosmic_message": "Today's Cycle Position",
         "chips": {
             "dream": "Dream",
             "journal": "Journal",
@@ -210,12 +210,12 @@
         },
         "entries": {
             "daily_journal": {
-                "title": "Daily Journal",
-                "subtitle": "Track your mood and reflections"
+                "title": "Cycle Entry",
+                "subtitle": "Map today's cycle position"
             },
             "share_insight": {
-                "title": "Share Insight",
-                "subtitle": "Share your reflection moments"
+                "title": "Share Cycle Insight",
+                "subtitle": "Share your cyclical pattern discoveries"
             },
             "compatibility": {
                 "title": "Relationship Reflections",
@@ -492,190 +492,13 @@
             "autumn_equinox_desc": "Time for balancing and reflection",
             "winter_solstice_title": "Winter Solstice",
             "winter_solstice_desc": "Introspection and planning",
-            "advice_house_1": "Focus on yourself this year. Set your personal goals and use your courage.",
-            "advice_house_2": "Review your financial plans. Work on your values and resources.",
-            "advice_house_3": "Develop your communication skills. Strengthen connections with your close circle.",
-            "advice_house_4": "Dedicate time to your home and family. Prioritize your emotional security.",
-            "advice_house_5": "Let your creativity flow freely. Expect vitality in love and entertainment.",
-            "advice_house_6": "Pay attention to your health and daily routines. Expect developments in your work environment.",
-            "advice_house_7": "Relationships take center stage. Important steps in partnerships and marriage matters.",
-            "advice_house_8": "Go deep. Time for transformation and renewal. Shared finances gain importance.",
-            "advice_house_9": "Expand your horizons. Ideal year for education, travel and philosophical pursuits.",
-            "advice_house_10": "Focus on your career goals. Establish your place in society.",
-            "advice_house_11": "Expand your social circle. Work towards your personal aspirations.",
-            "advice_house_12": "Year of introspection. Personal development and rest should be prioritized.",
-            "advice_default": "This year invites reflection on important transformation themes."
+            "advice_default": "This year invites reflection on your personal growth journey."
         },
-        "reiki": {
-            "title": "Reiki",
-            "subtitle": "Universal Life Energy",
-            "description": "Reiki means 'universal life energy' in Japanese. This energy flowing through the hands activates the body's natural healing mechanisms and dissolves energy blocks. It provides stress reduction, relaxation, and holistic healing.",
-            "tabs": {
-                "principles": "Principles",
-                "chakras": "Chakras",
-                "practice": "Practice"
-            },
-            "gokai": {
-                "title": "Gokai - Five Principles",
-                "subtitle": "Teachings of Mikao Usui"
-            },
-            "principles": {
-                "kyo_dake_wa": {
-                    "japanese": "Kyo dake wa",
-                    "translation": "Just for today",
-                    "description": "Focus on the present moment. The past is gone, the future hasn't come yet. You can only control today."
-                },
-                "ikaru_na": {
-                    "japanese": "Ikaru na",
-                    "translation": "Do not anger",
-                    "description": "Anger depletes your energy and harms your health. Accept your emotions but let them go."
-                },
-                "shinpai_suna": {
-                    "japanese": "Shinpai suna",
-                    "translation": "Do not worry",
-                    "description": "Worry is giving energy to things that haven't happened. Live with trust and surrender."
-                },
-                "kansha_shite": {
-                    "japanese": "Kansha shite",
-                    "translation": "Be grateful",
-                    "description": "Gratitude is one of the highest vibrations. Find a blessing in everything."
-                },
-                "gyo_wo_hageme": {
-                    "japanese": "Gyo wo hageme",
-                    "translation": "Work honestly",
-                    "description": "Whatever work you do, do it with integrity and dedication. Add meaning to your life."
-                },
-                "hito_ni_shinsetsu_ni": {
-                    "japanese": "Hito ni shinsetsu ni",
-                    "translation": "Be kind to everyone",
-                    "description": "Compassion and kindness are universal healing energies. Be kind to everyone, including yourself."
-                }
-            },
-            "chakras": {
-                "root": {
-                    "name": "Root Chakra",
-                    "sanskrit": "Muladhara",
-                    "location": "Base of spine",
-                    "attributes": [
-                        "Security",
-                        "Grounding",
-                        "Survival"
-                    ],
-                    "reiki_position": "Place hands on hip bones"
-                },
-                "sacral": {
-                    "name": "Sacral Chakra",
-                    "sanskrit": "Svadhisthana",
-                    "location": "Below navel",
-                    "attributes": [
-                        "Creativity",
-                        "Sexuality",
-                        "Emotions"
-                    ],
-                    "reiki_position": "Place hands below navel"
-                },
-                "solar_plexus": {
-                    "name": "Solar Plexus",
-                    "sanskrit": "Manipura",
-                    "location": "Stomach area",
-                    "attributes": [
-                        "Self-confidence",
-                        "Willpower",
-                        "Personal power"
-                    ],
-                    "reiki_position": "Place hands on stomach area"
-                },
-                "heart": {
-                    "name": "Heart Chakra",
-                    "sanskrit": "Anahata",
-                    "location": "Center of chest",
-                    "attributes": [
-                        "Love",
-                        "Compassion",
-                        "Forgiveness"
-                    ],
-                    "reiki_position": "Place hands on center of chest"
-                },
-                "throat": {
-                    "name": "Throat Chakra",
-                    "sanskrit": "Vishuddha",
-                    "location": "Throat",
-                    "attributes": [
-                        "Communication",
-                        "Self-expression",
-                        "Truth"
-                    ],
-                    "reiki_position": "Place hands on either side of throat"
-                },
-                "third_eye": {
-                    "name": "Third Eye",
-                    "sanskrit": "Ajna",
-                    "location": "Between eyebrows",
-                    "attributes": [
-                        "Intuition",
-                        "Insight",
-                        "Wisdom"
-                    ],
-                    "reiki_position": "Place hands on forehead"
-                },
-                "crown": {
-                    "name": "Crown Chakra",
-                    "sanskrit": "Sahasrara",
-                    "location": "Top of head",
-                    "attributes": [
-                        "Inner connection",
-                        "Enlightenment",
-                        "Unity"
-                    ],
-                    "reiki_position": "Place hands on top of head"
-                }
-            },
-            "reiki_position_label": "Reiki Position",
-            "practice": {
-                "self_reiki": {
-                    "title": "Self-Reiki Practice",
-                    "steps": [
-                        "Sit or lie in a comfortable position",
-                        "Close your eyes and take several deep breaths",
-                        "Set your intention: \"I open myself to healing energy\"",
-                        "Place hands on top of your head (3-5 min)",
-                        "Place hands over your eyes (3-5 min)",
-                        "Place hands on your throat (3-5 min)",
-                        "Place hands on your heart (3-5 min)",
-                        "Place hands on solar plexus (3-5 min)",
-                        "Place hands below navel (3-5 min)",
-                        "Finish with gratitude"
-                    ]
-                },
-                "daily_cleansing": {
-                    "title": "Daily Energy Cleansing",
-                    "steps": [
-                        "Rub your hands together when you wake up",
-                        "Feel your hands warming and energy flowing",
-                        "Cleanse your energy field by moving hands around your aura",
-                        "Release negative energy into the ground",
-                        "Start the day with positive intentions"
-                    ]
-                },
-                "distance_reiki": {
-                    "title": "Distance Reiki",
-                    "steps": [
-                        "Get permission from the person you'll send healing to (mentally)",
-                        "Visualize the person or situation",
-                        "Draw the Hon Sha Ze Sho Nen symbol (if applicable)",
-                        "Send love and healing intention",
-                        "Feel the energy reaching them",
-                        "Finish with gratitude"
-                    ]
-                }
-            },
-            "tip": "Working with a Reiki master is recommended for Reiki attunement. These practices can help develop energy awareness even if you haven't been attuned."
-        },
-        "tantra_micro_ritual": {
+        "mindfulness_micro_ritual": {
             "todays_micro_ritual": "Today's Micro Ritual",
-            "tantra_tag": "Tantra",
+            "mindfulness_tag": "Mindfulness",
             "discover_dream_trace": "Discover Dream Trace",
-            "brand_footer": "Tantra — InnerCycles",
+            "brand_footer": "Mindfulness — InnerCycles",
             "months": {
                 "january": "January",
                 "february": "February",
@@ -730,12 +553,12 @@
         }
     },
     "premium": {
-        "cosmic_powers": "Premium Features",
-        "cosmic_powers_active": "Premium Features Active",
+        "cosmic_powers": "Cyclical Intelligence",
+        "cosmic_powers_active": "Cyclical Intelligence Active",
         "lifetime_access": "You have lifetime access!",
-        "open_cosmic_door": "Unlock Premium",
-        "cosmic_door_opened": "Premium Unlocked!",
-        "success_message": "Full access to all premium features is now yours. You are ready for limitless self-exploration and personal growth.",
+        "open_cosmic_door": "Unlock Full Cycle Engine",
+        "cosmic_door_opened": "Cycle Engine Unlocked!",
+        "success_message": "Full cyclical intelligence is now active. Recurrence detection, dream archaeology, and archetype progression are ready.",
         "view_plans": "View Plans",
         "manage_subscription": "Manage Subscription",
         "restore_purchases": "Restore Purchases",
@@ -745,11 +568,11 @@
         "best_value": "Best Value",
         "terms_text": "Subscription automatically renews unless canceled 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours before the end of the current period. You can manage and cancel your subscription at any time from your App Store account settings.",
         "paywall": {
-            "title": "Unlock Your Full Journey",
-            "subtitle": "Experience insights without interruption",
-            "benefit_ad_free": "Ad-free, calm experience",
-            "benefit_unlimited": "Unlimited personal insights",
-            "benefit_priority": "Priority personal guidance",
+            "title": "Unlock Full Cyclical Intelligence",
+            "subtitle": "Complete recurrence detection and dream archaeology",
+            "benefit_ad_free": "Ad-free cycle mapping",
+            "benefit_unlimited": "Unlimited recurrence analysis",
+            "benefit_priority": "Priority cycle position reports",
             "continue_pro": "Continue with Pro",
             "not_now": "Not now, maybe later",
             "legal_text": "Auto-renews monthly. Cancel anytime in Settings.",
@@ -762,70 +585,70 @@
             "got_it": "Got it"
         },
         "features": {
-            "daily_whispers": "Daily insight whispers",
-            "pure_cosmic_experience": "Ad-free, peaceful experience",
-            "deep_planet_readings": "Deep personal insights",
-            "unlimited_card_insight": "Unlimited card reading sessions",
-            "soulmate_compatibility": "Relationship reflection tools",
-            "kabbalistic_secrets": "Symbolic exploration tools",
-            "auric_reading": "Energy awareness journal",
-            "planet_transits": "Cyclical theme tracking",
-            "priority_guidance": "Priority personal guidance"
+            "daily_whispers": "Daily cycle position updates",
+            "pure_cosmic_experience": "Ad-free cycle mapping experience",
+            "deep_planet_readings": "Deep recurrence analysis",
+            "unlimited_card_insight": "Unlimited archetype insight sessions",
+            "soulmate_compatibility": "Relationship cycle mapping",
+            "kabbalistic_secrets": "Shadow-light integration tools",
+            "auric_reading": "Emotional cycle awareness journal",
+            "planet_transits": "Full recurrence detection engine",
+            "priority_guidance": "Priority cyclical intelligence reports"
         },
         "tiers": {
             "free": {
                 "name": "Free",
                 "savings": "",
                 "features": [
-                    "Daily insight whispers",
-                    "Basic personal profile",
-                    "Daily insight card",
+                    "Daily cycle position updates",
+                    "Basic cycle profile",
+                    "Daily archetype card",
                     "Ad-supported"
                 ]
             },
             "monthly": {
-                "name": "Monthly Premium",
+                "name": "Monthly Cycle Intelligence",
                 "savings": "",
                 "features": [
                     "All basic features",
-                    "Ad-free, peaceful experience",
-                    "Deep personality interpretations",
-                    "Unlimited card reading sessions",
-                    "Relationship reflection tools",
-                    "Symbolic exploration tools",
-                    "Energy awareness journal",
-                    "Cyclical theme tracking",
-                    "Priority personal guidance"
+                    "Ad-free cycle mapping",
+                    "Deep recurrence analysis",
+                    "Unlimited archetype insight sessions",
+                    "Relationship cycle mapping",
+                    "Shadow-light integration tools",
+                    "Emotional cycle awareness journal",
+                    "Full recurrence detection engine",
+                    "Priority cyclical intelligence reports"
                 ]
             },
             "yearly": {
-                "name": "Yearly Premium",
+                "name": "Yearly Cycle Intelligence",
                 "savings": "77% savings",
                 "features": [
                     "All basic features",
-                    "Ad-free, peaceful experience",
-                    "Deep personality interpretations",
-                    "Unlimited card reading sessions",
-                    "Relationship reflection tools",
-                    "Symbolic exploration tools",
-                    "Energy awareness journal",
-                    "Cyclical theme tracking",
-                    "Priority personal guidance"
+                    "Ad-free cycle mapping",
+                    "Deep recurrence analysis",
+                    "Unlimited archetype insight sessions",
+                    "Relationship cycle mapping",
+                    "Shadow-light integration tools",
+                    "Emotional cycle awareness journal",
+                    "Full recurrence detection engine",
+                    "Priority cyclical intelligence reports"
                 ]
             },
             "lifetime": {
-                "name": "Lifetime Premium",
+                "name": "Lifetime Cycle Intelligence",
                 "savings": "One-time payment",
                 "features": [
                     "All basic features",
-                    "Ad-free, peaceful experience",
-                    "Deep personality interpretations",
-                    "Unlimited card reading sessions",
-                    "Relationship reflection tools",
-                    "Symbolic exploration tools",
-                    "Energy awareness journal",
-                    "Cyclical theme tracking",
-                    "Priority personal guidance"
+                    "Ad-free cycle mapping",
+                    "Deep recurrence analysis",
+                    "Unlimited archetype insight sessions",
+                    "Relationship cycle mapping",
+                    "Shadow-light integration tools",
+                    "Emotional cycle awareness journal",
+                    "Full recurrence detection engine",
+                    "Priority cyclical intelligence reports"
                 ]
             }
         }
@@ -844,16 +667,15 @@
             "year": "Year"
         },
         "entertainment_disclaimer": {
-            "general": "For entertainment purposes only",
-            "dreams": "Dream interpretations are symbolic reflections",
+            "general": "For personal cycle awareness only",
+            "dreams": "Dream archaeology surfaces recurring symbols for reflection",
             "health": "Not medical advice. Consult professionals for health concerns",
-            "self_awareness": "Self-awareness is a tool for self-reflection and personal growth",
-            "card_insight": "Card readings are for personal insight only",
-            "numerology": "Numerology offers symbolic perspectives",
-            "chakra": "Chakra information is for self-reflection purposes",
-            "compatibility": "Compatibility insights are for reflection only",
-            "insight": "These insights are for personal reflection",
-            "reflection": "Use this as a tool for self-discovery"
+            "self_awareness": "Cycle awareness is a tool for pattern recognition and self-understanding",
+            "card_insight": "Archetype insights are for personal cycle mapping only",
+            "numerology": "Numerology offers symbolic cycle perspectives",
+            "compatibility": "Relationship cycle mapping is for reflection only",
+            "insight": "These cycle insights are for personal pattern awareness",
+            "reflection": "Use this as a cyclical intelligence tool"
         },
         "dream_share_card": {
             "themes": {
@@ -1081,7 +903,7 @@
             },
             "symbols": {
                 "snake_name": "Snake",
-                "snake_meaning": "Transformation, healing, hidden fears",
+                "snake_meaning": "Transformation, renewal, hidden fears",
                 "water_name": "Water",
                 "water_meaning": "Emotions, subconscious, purification",
                 "fire_name": "Fire",
@@ -1136,13 +958,13 @@
                         "basic_meaning": "Water is your element and this dream indicates deep transformation! Time for renewal has come.",
                         "element_perspective": "Don't fear diving into the depths of water. There are treasures there. The cycle of death and rebirth is active.",
                         "psychological": "Water: The deepest layers of the subconscious\nAs a Transformer: Time for shadow work\nMessage: Instead of fearing darkness, illuminate it",
-                        "practice": "• Do deep meditations\n• Keep a shadow journal\n• Practice letting go ritual\n• Embrace deep inner transformation\n• Consider therapy or counseling"
+                        "practice": "• Do deep meditations\n• Keep a shadow journal\n• Practice letting go ritual\n• Embrace deep inner transformation\n• Consider speaking with a trusted person or professional"
                     },
                     "dreamer": {
                         "basic_meaning": "Water is your element - your connection with deeper awareness is very strong! You can fully trust your intuition.",
                         "element_perspective": "You're experiencing deep inner oneness. Creative inspiration is flowing. Ideal period for artistic expression.",
-                        "psychological": "Water: Universal consciousness, healing, collective subconscious\nAs a Dreamer: Deep experiences and inner guidance\nMessage: You are beyond water - you are the ocean",
-                        "practice": "• Artistic creation - painting, music, writing\n• Meditation by sea or lake\n• Lucid dream practices\n• Healing work\n• Be open to inner guidance"
+                        "psychological": "Water: Universal consciousness, renewal, collective subconscious\nAs a Dreamer: Deep experiences and inner guidance\nMessage: You are beyond water - you are the ocean",
+                        "practice": "• Artistic creation - painting, music, writing\n• Meditation by sea or lake\n• Lucid dream practices\n• Inner reflection work\n• Be open to inner guidance"
                     },
                     "default": {
                         "basic_meaning": "Water carries emotional messages for your {element} sign. The subconscious wants to flow.",
@@ -1175,7 +997,7 @@
                     "attention_label": "⚠️ THINGS TO WATCH",
                     "attention": "• Areas in life where you've lost control\n• Signs of excessive stress and anxiety\n• Meeting of basic needs\n• Work-life balance",
                     "practice_label": "✨ PRACTICAL APPLICATION",
-                    "practice": "• Walk barefoot on the earth\n• Do root chakra meditation\n• List your security needs\n• Practice breathing exercises",
+                    "practice": "• Walk barefoot on the earth\n• Do grounding meditation\n• List your security needs\n• Practice breathing exercises",
                     "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
                     "cosmic_message": "Falling is actually letting go. Let go of the illusion of control, trust the process. As a {element} element, grounding practice is especially important."
                 },
@@ -1213,7 +1035,7 @@
                     "basic_meaning": "Animals represent our instinctual nature and suppressed energies. Each animal carries a totem message.",
                     "special_interpretation": "This dream is a call to reconnect with your natural instincts. Research the totem energy of whichever animal you saw.",
                     "common_symbols_label": "🐍 COMMON ANIMAL SYMBOLS",
-                    "common_symbols": "• Snake: Transformation, healing, kundalini\n• Dog: Loyalty, protection, friendship\n• Cat: Independence, mystery, intuition\n• Bird: Freedom, intuitive messages\n• Wolf: Community, leadership, teacher\n• Bear: Strength, protection, introspection\n• Horse: Freedom, power, passion",
+                    "common_symbols": "• Snake: Transformation, renewal, inner growth\n• Dog: Loyalty, protection, friendship\n• Cat: Independence, mystery, intuition\n• Bird: Freedom, intuitive messages\n• Wolf: Community, leadership, teacher\n• Bear: Strength, protection, introspection\n• Horse: Freedom, power, passion",
                     "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
                     "psychological": "• Animal's behavior: Your suppressed behavior\n• Your relationship with animal: Your relationship with instincts\n• Animal's color: Emotional tone\n• If animal attacks: Suppressed energy eruption",
                     "practice_label": "✨ PRACTICAL APPLICATION",
@@ -1247,7 +1069,7 @@
                     "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
                     "psychological": "• Anima/Animus: Opposite gender archetype\n• Projection: Seeing your own qualities\n• Need: Unmet emotional requirements",
                     "practice_label": "✨ PRACTICAL APPLICATION",
-                    "practice": "• Take a love language test\n• List your relationship needs\n• Work on self-worth\n• Heart chakra meditation",
+                    "practice": "• Take a love language test\n• List your relationship needs\n• Work on self-worth\n• Heart-centered meditation",
                     "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
                     "cosmic_message": "Love yourself first. {element} element in love life {element_message}."
                 },
@@ -1427,22 +1249,21 @@
             "numerology_headline": "What do the numbers tell you?",
             "numerology_subtext": "A short test to discover your life path.",
             "numerology_button": "See Number Test",
-            "general_headline": "Discover your wellness profile",
-            "general_subtext": "Start your personal journey with a short test.",
+            "general_headline": "Map your cycle profile",
+            "general_subtext": "Identify your recurring patterns with a short assessment.",
             "general_button": "Start Test",
             "inline_default": "Is this unique to you? Find out with a short test"
         },
         "entertainment_disclaimer": {
-            "general": "For entertainment and self-reflection purposes only.",
-            "dreams": "Dream reflections are for personal exploration, not professional interpretation.",
+            "general": "For personal cycle awareness and pattern recognition only.",
+            "dreams": "Dream archaeology is for personal pattern exploration, not professional interpretation.",
             "health": "Not medical advice. Consult healthcare professionals.",
-            "self_awareness": "For self-reflection only. Not suggestive advice.",
-            "card_insight": "For reflection purposes only. Not suggestive.",
-            "numerology": "For self-exploration only. Not suggestive.",
-            "chakra": "For awareness only. Not medical or wellness prescription.",
-            "compatibility": "For reflection only. Not relationship advice.",
-            "insight": "For personal reflection only. Not professional advice.",
-            "reflection": "This is a space for self-reflection, not reflection or advice."
+            "self_awareness": "For cyclical self-awareness only. Not suggestive advice.",
+            "card_insight": "For archetype reflection only. Not suggestive.",
+            "numerology": "For cycle exploration only. Not suggestive.",
+            "compatibility": "For relationship cycle mapping only. Not relationship advice.",
+            "insight": "For personal cycle awareness only. Not professional advice.",
+            "reflection": "This is a space for pattern recognition, not advice."
         }
     },
     "insight": {
@@ -1526,9 +1347,9 @@
         "rate_app": "Rate App",
         "rate_app_desc": "Share your experience",
         "disclaimer": "Disclaimer",
-        "disclaimer_desc": "Entertainment purposes only",
-        "disclaimer_content": "This app provides personal, numerological, card insight, and dream interpretation content for entertainment and self-reflection purposes only.\n\nThe content does not constitute professional advice in any field including but not limited to: medical, psychological, financial, legal, or relationship advice.\n\nIf you need professional support, please consult qualified professionals in the relevant field.\n\nAll interpretations are generated for informational and entertainment purposes and should not be used as the basis for important life decisions.",
-        "disclaimer_tip": "Use the content for self-reflection, not decision-making.",
+        "disclaimer_desc": "For cycle awareness only",
+        "disclaimer_content": "This app provides cyclical pattern analysis, archetype mapping, and dream archaeology content for personal cycle awareness and self-reflection purposes only.\n\nThe content does not constitute professional advice in any field including but not limited to: medical, psychological, financial, legal, or relationship advice.\n\nIf you need professional support, please consult qualified professionals in the relevant field.\n\nAll cycle analysis is generated for pattern awareness and self-understanding purposes and should not be used as the basis for important life decisions.",
+        "disclaimer_tip": "Use cycle insights for pattern awareness, not decision-making.",
         "privacy_policy": "Privacy Policy",
         "terms_of_service": "Terms of Service",
         "contact_support": "Contact Support"
@@ -1537,15 +1358,15 @@
         "title": "Insight",
         "reading": "Reading",
         "analysis": "Insight Analysis",
-        "cosmic_energy": "Your Personal Energy",
-        "daily_cosmic_energy": "Today's Personal Energy",
-        "cosmic_overview": "Wellness Overview",
-        "cosmic_harmony": "Inner Harmony",
+        "cosmic_energy": "Your Cycle Energy",
+        "daily_cosmic_energy": "Today's Cycle Position",
+        "cosmic_overview": "Cycle Overview",
+        "cosmic_harmony": "Cycle Harmony",
         "mood": "Mood",
         "lucky_color": "Reflection Color",
         "lucky_number": "Focus Number",
         "feature_coming_soon": "This feature is coming soon",
-        "what_says_today": "What themes resonate with your archetype today?",
+        "what_says_today": "What cycle patterns are active for your archetype today?",
         "select_discover_energy": "Select your archetype, explore reflection themes",
         "love_relationships": "Love & Relationships",
         "career_finance": "Career & Finance",
@@ -1683,7 +1504,7 @@
             },
             "energy_field": {
                 "title": "Your Energy Field",
-                "description": "The colors of your aura and chakra balance."
+                "description": "Your personal energy and inner balance."
             },
             "kozmoz_discovery": {
                 "title": "Personal Discovery",
@@ -1737,17 +1558,13 @@
                 "title": "Numerology",
                 "description": "Wisdom of numbers."
             },
-            "kabbalah": {
+            "symbolic_numbers": {
                 "title": "Symbolic Numbers",
-                "description": "Cards and Tree of Life connection."
+                "description": "Explore number patterns and connections."
             },
             "aura_reading": {
                 "title": "Aura Reading",
                 "description": "Discover your energy field."
-            },
-            "chakra_analysis": {
-                "title": "Chakra Analysis",
-                "description": "Your energy centers."
             },
             "moon_rituals": {
                 "title": "Moon Rituals",
@@ -1805,7 +1622,7 @@
             "other_exploration_paths": {
                 "description": "Other exploration paths"
             },
-            "kabbalah_numbers": {
+            "symbolic_number_patterns": {
                 "title": "Number Patterns",
                 "description": "Ancient origin of numbers."
             },
@@ -1832,13 +1649,6 @@
             "aura_colors": {
                 "title": "Aura Colors",
                 "description": "Your energy field."
-            },
-            "chakra_balance": {
-                "title": "Chakra Balance",
-                "description": "Numbers and chakras."
-            },
-            "numbers_and_chakras": {
-                "description": "Numbers and chakras."
             },
             "other_systems": {
                 "description": "Other systems"
@@ -1889,8 +1699,8 @@
             "numerical_vibrations": {
                 "description": "Numerical vibrations."
             },
-            "sefirot_energies": {
-                "description": "Sefirot energies."
+            "life_dimension_energies": {
+                "description": "Life Dimension energies."
             },
             "cosmic_energy": {
                 "description": "Personal energy."
@@ -1904,26 +1714,22 @@
             },
             "self_awareness_connection": {
                 "title": "Self-Awareness Connection",
-                "description": "Sefirot and personal traits."
-            },
-            "chakra_system": {
-                "title": "Chakra System",
-                "description": "East and West energy maps."
+                "description": "Life Dimension and personal traits."
             },
             "mystic_dreams": {
                 "title": "Mystic Dreams",
                 "description": "Contemplative symbols and dreams."
             },
-            "sefirot_meditation": {
-                "title": "Sefirot Meditation",
-                "description": "Journey on the Tree of Life."
+            "life_dimension_meditation": {
+                "title": "Life Dimension Meditation",
+                "description": "Guided life dimension meditation."
             },
             "spiritual_practices": {
                 "description": "Contemplative practices."
             },
-            "sefirot_glossary": {
-                "title": "Sefirot Glossary",
-                "description": "10 sefirah meanings"
+            "life_dimension_glossary": {
+                "title": "Life Dimension Glossary",
+                "description": "10 dimension meanings"
             },
             "my_personal_profile": {
                 "title": "My Personal Profile",
@@ -1960,10 +1766,6 @@
             "tell_another_dream": {
                 "title": "Tell Another Dream",
                 "description": "Start a new journey."
-            },
-            "chakra_and_dreams": {
-                "title": "Chakra and Dreams",
-                "description": "Energy centers and subconscious."
             },
             "symbol_glossary": {
                 "title": "Symbol Glossary",
@@ -2009,15 +1811,9 @@
             "learn_concepts": {
                 "description": "Learn the concepts"
             },
-            "energy_field_chakras": {
-                "description": "Your energy field and chakras."
-            },
-            "chakra_balancing_practices": {
-                "description": "Chakra balancing practices."
-            },
-            "kabbalah_sefirot": {
+            "life_dimensions": {
                 "title": "Life Dimensions",
-                "description": "East-West energy maps."
+                "description": "Inner balance dimensions."
             },
             "east_west_energy_maps": {
                 "description": "East-West energy maps."
@@ -2027,25 +1823,14 @@
             },
             "energy_guidance": {
                 "title": "Energy Guidance",
-                "description": "Special message for your chakras."
-            },
-            "chakra_special_message": {
-                "description": "Special message for your chakras."
+                "description": "Personalized energy guidance."
             },
             "energy_reading": {
                 "description": "Energy reading."
             },
-            "seven_chakra_guide": {
-                "title": "7 Chakra Guide",
-                "description": "Detailed explanations"
-            },
             "moon_calendar": {
                 "title": "Moon Calendar",
                 "description": "New moon and full moon dates."
-            },
-            "chakra_balancing": {
-                "title": "Chakra Balancing",
-                "description": "Energy work with rituals."
             },
             "energy_work_rituals": {
                 "description": "Energy work with rituals."
@@ -2062,9 +1847,9 @@
                 "title": "Intention Guidance",
                 "description": "Reflective message for this month."
             },
-            "kabbalah_meditation": {
+            "contemplative_meditation": {
                 "title": "Contemplative Practice",
-                "description": "Sefirot journey."
+                "description": "Guided contemplation."
             },
             "other_practices": {
                 "description": "Other practices"
@@ -2809,7 +2594,7 @@
             "weekly_dream_summary": "Weekly dream summary"
         },
         "symbol_acknowledgments": {
-            "snake": "The snake is one of the most powerful and multilayered symbols in dreams. It can carry many meanings such as transformation, healing, hidden knowledge, or inner threats.",
+            "snake": "The snake is one of the most powerful and multilayered symbols in dreams. It can carry many meanings such as transformation, renewal, hidden knowledge, or inner threats.",
             "water": "Water is a universal symbol representing emotional state and the subconscious in dreams. The state of water - calm, turbulent, clear or murky - carries important clues.",
             "flying": "Flying is a powerful experience in dreams that can point to themes of freedom, high goals, or escape from reality.",
             "falling": "Falling dreams can reflect fears of losing control, insecurity, or felt before a major change.",
@@ -3023,7 +2808,6 @@
         "solar_return": "Your annual self-awareness map around your birthday",
         "lunar_calendar": "Gardening and planting calendar based on moon phases"
     },
-    "self_awareness": {},
     "days": {
         "mon_short": "Mon",
         "tue_short": "Tue",
@@ -3056,7 +2840,6 @@
         "hold": "Hold",
         "exhale": "Exhale",
         "repeat_times": "Repeat {count} times",
-        "chakra_to_focus": "Chakra to Focus",
         "todays_affirmations": "Today's Affirmations",
         "affirmations_subtitle": "Positive words shape your reality",
         "main_affirmation": "Main Affirmation",
@@ -3151,15 +2934,6 @@
             "heart_breath": "Heart Breath",
             "creative_breath": "Creative Breath"
         },
-        "chakras": {
-            "heart": "Heart Chakra",
-            "heart_focus": "Compassion and love",
-            "root": "Root Chakra",
-            "root_focus": "Grounding and security",
-            "third_eye": "Third Eye",
-            "third_eye_focus": "Intuition and vision",
-            "unconditional_love": "Unconditional love"
-        },
         "affirmation_lists": {
             "morning_1": "I am open to great things today.",
             "morning_2": "My energy is high and my focus is clear.",
@@ -3198,7 +2972,7 @@
         }
     },
     "share": {
-        "cosmic_share": "Share Insight",
+        "cosmic_share": "Share Cycle Insight",
         "take_screenshot_and_share": "Take screenshot and share",
         "tap_x_to_exit": "Tap the X button at top right to exit",
         "share_error": "Share error",
@@ -3256,7 +3030,7 @@
             "November",
             "December"
         ],
-        "share_text": "Today's personal energy is with me! Reflecting on my journey... #InnerCycles #self-awareness #insight #personalenergy",
+        "share_text": "Mapping emotional cycles — recurring patterns surfacing this week. #InnerCycles #EmotionalCycles #CyclicalIntelligence #PatternRecurrence",
         "text_copied_success": "Text copied!",
         "open_instagram": "Open Instagram",
         "todays_message": "Today's Message",
@@ -3281,7 +3055,7 @@
         "dream_trace": "Dream Trace",
         "todays_number": "Today's Number",
         "lucky_hour": "Focus Hour",
-        "tantra_title": "Tantra",
+        "mindfulness_title": "Mindfulness",
         "breath": "Breath",
         "awareness": "Awareness",
         "balance_level": "Balance Level",
@@ -3341,95 +3115,11 @@
         "weekly_preview_title": "Weekly Preview",
         "weekly_preview_content": "Your patterns are working in your favor for the rest of the week."
     },
-    "moon": {},
     "nav": {
         "also_viewed_subtitle": "Others who were curious also viewed these",
         "go_deeper_subtitle": "Connect with your inner world",
         "keep_exploring_subtitle": "Different perspectives",
-        "keep_exploring": "Continue Exploring",
-        "daily_reading": "Daily Reading",
-        "daily_energy": "Today's Energy",
-        "personal_profile": "Personal Profile",
-        "explore_cosmic_map": "Explore Your Self-Awareness Map",
-        "compatibility": "Compatibility",
-        "basic_compatibility": "Basic Compatibility Analysis",
-        "combined_chart": "Your Combined Chart",
-        "share_relationship": "Share Your Relationship",
-        "share_cosmic_bond": "Share Your Relationship Bond",
-        "love_reading": "Love Reading",
-        "relationship_energy": "Your Relationship Energy",
-        "weekly_reading": "Weekly Reading",
-        "weekly_energy": "What to explore this week",
-        "monthly_reading": "Monthly Reading",
-        "monthly_energy": "This Month's Energy",
-        "yearly_reading": "Yearly Reading",
-        "yearly_energy": "This Year's Energy",
-        "card_insight": "Card Insight",
-        "card_insight_guidance": "What do the cards say?",
-        "numerology": "Numerology",
-        "numerology_insight": "The mystery of numbers",
-        "dreams": "Dreams",
-        "dreams_insight": "Dream interpretation",
-        "transits": "Life Cycles",
-        "transits_insight": "What's affecting you now",
-        "cosmic_share": "Share Insight",
-        "share_energy": "Share your energy",
-        "who_compatible": "Who are you compatible with?",
-        "all_signs": "All Archetypes",
-        "discover_12_signs": "Discover 12 archetypes",
-        "share_chart": "Share Your Chart",
-        "share_cosmic_energy": "Share your personal energy",
-        "compare_profiles": "Compare Profiles",
-        "compare_with_friend": "Compare with a friend",
-        "the_fool": "The Fool",
-        "new_beginnings": "New beginnings",
-        "share_card": "Share Your Card",
-        "share_cosmic_message": "Share your reflective message",
-        "chakra_analysis": "Chakra Analysis",
-        "energy_centers": "Your energy centers",
-        "dream_trace": "Dream Trace",
-        "dream_meanings": "The meaning of your dreams",
-        "share_compatibility": "Share Compatibility",
-        "detailed_relationship": "Detailed relationship chart",
-        "life_path": "Life Path",
-        "leader_archetype": "Leader archetype",
-        "share": "Share",
-        "share_insight": "Share your insight",
-        "expression_number": "Expression Number",
-        "soul_voice": "Your inner voice",
-        "soul_urge": "Inner Motivation",
-        "deepest_desires": "Your deepest desires",
-        "birthday_number": "Birthday Number",
-        "hidden_talents": "Your hidden talents",
-        "aura": "Aura",
-        "aura_insight": "Your energy field",
-        "theta_healing": "Theta Healing",
-        "theta_healing_insight": "Deep healing",
-        "rituals": "Rituals",
-        "cosmic_rituals": "Daily rituals",
-        "progressions": "Progressions",
-        "inner_evolution": "Your inner evolution",
-        "soul_chart": "Your personal chart",
-        "solar_arc": "Solar Arc",
-        "life_directions": "Life directions",
-        "eastern_wisdom": "Eastern wisdom",
-        "transit_calendar": "Cycle Calendar",
-        "upcoming_transits": "Upcoming cycles",
-        "aspect_analysis": "Aspect Analysis",
-        "energy_conversations": "Energy conversations",
-        "celebrities": "Celebrities",
-        "famous_charts": "Famous personal profiles",
-        "articles": "Articles",
-        "cosmic_wisdom": "Personal wisdom",
-        "kabbalah": "Number Wisdom",
-        "master_mystery": "The mystery of 11, 22, 33",
-        "best_times": "Best times",
-        "energy_practices": "Energy practices",
-        "crystal_guide": "Crystal Guide",
-        "what_awaits_this_week": "What to explore this week",
-        "what_awaits_this_month": "What to explore this month",
-        "home": "Home",
-        "up_next": "Up Next"
+        "keep_exploring": "Continue Exploring"
     },
     "timing": {
         "subtitle": "Discover the best times for your activities",

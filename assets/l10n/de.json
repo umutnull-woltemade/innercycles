@@ -31,7 +31,7 @@
         "and": "und",
         "loading": "Laden...",
         "saving": "Speichern...",
-        "sharing": "Sharing...",
+        "sharing": "Teilen...",
         "error": "Fehler",
         "success": "Erfolg",
         "warning": "Warnung",
@@ -51,10 +51,10 @@
         "notifications": "Benachrichtigungen",
         "permission_required": "Erlaubnis erforderlich, um Benachrichtigungen zu erhalten.",
         "grant_permission": "Erlaubnis erteilen",
-        "hello": "Hello",
-        "read_more": "Read More",
+        "hello": "Hallo",
+        "read_more": "Mehr lesen",
         "unlock": "Unlock",
-        "view_all": "View All",
+        "view_all": "Alle anzeigen",
         "show_all": "Show All",
         "continue_exploring": "Continue Exploring",
         "copied": "Copied!",
@@ -198,11 +198,11 @@
         "todays_cosmic_message": "Persönliche Botschaft des Tages",
         "chips": {
             "dream": "Traum",
-            "journal": "Journal",
-            "patterns": "Patterns",
-            "insight": "Insight",
-            "growth": "Growth",
-            "breathe": "Breathe"
+            "journal": "Tagebuch",
+            "patterns": "Muster",
+            "insight": "Einblick",
+            "growth": "Wachstum",
+            "breathe": "Atmen"
         },
         "sections": {
             "journal_patterns": "Journal & Patterns",
@@ -492,190 +492,13 @@
             "autumn_equinox_desc": "Time for balancing and reflection",
             "winter_solstice_title": "Winter Solstice",
             "winter_solstice_desc": "Introspection and planning",
-            "advice_house_1": "Focus on yourself this year. Set your personal goals and use your courage.",
-            "advice_house_2": "Review your financial plans. Work on your values and resources.",
-            "advice_house_3": "Develop your communication skills. Strengthen connections with your close circle.",
-            "advice_house_4": "Dedicate time to your home and family. Prioritize your emotional security.",
-            "advice_house_5": "Let your creativity flow freely. Expect vitality in love and entertainment.",
-            "advice_house_6": "Pay attention to your health and daily routines. Expect developments in your work environment.",
-            "advice_house_7": "Relationships take center stage. Important steps in partnerships and marriage matters.",
-            "advice_house_8": "Go deep. Time for transformation and renewal. Shared finances gain importance.",
-            "advice_house_9": "Expand your horizons. Ideal year for education, travel and philosophical pursuits.",
-            "advice_house_10": "Focus on your career goals. Establish your place in society.",
-            "advice_house_11": "Expand your social circle. Work towards your personal aspirations.",
-            "advice_house_12": "Year of introspection. Personal development and rest should be prioritized.",
-            "advice_default": "Dieses Jahr lädt zur Reflexion über wichtige Transformationsthemen ein."
+            "advice_default": "Dieses Jahr lädt zur Reflexion über Ihre persönliche Wachstumsreise ein."
         },
-        "reiki": {
-            "title": "Energiewahrnehmung",
-            "subtitle": "Universal Life Energy",
-            "description": "Energy awareness is a practice of tuning into the body's natural energy flow. Through mindful hand placement and focused attention, it promotes stress reduction, relaxation, and holistic well-being.",
-            "tabs": {
-                "principles": "Principles",
-                "chakras": "Chakras",
-                "practice": "Practice"
-            },
-            "gokai": {
-                "title": "Gokai - Five Principles",
-                "subtitle": "Teachings of Mikao Usui"
-            },
-            "principles": {
-                "kyo_dake_wa": {
-                    "japanese": "Kyo dake wa",
-                    "translation": "Just for today",
-                    "description": "Focus on the present moment. The past is gone, the future hasn't come yet. You can only control today."
-                },
-                "ikaru_na": {
-                    "japanese": "Ikaru na",
-                    "translation": "Do not anger",
-                    "description": "Anger depletes your energy and harms your health. Accept your emotions but let them go."
-                },
-                "shinpai_suna": {
-                    "japanese": "Shinpai suna",
-                    "translation": "Do not worry",
-                    "description": "Worry is giving energy to things that haven't happened. Live with trust and surrender."
-                },
-                "kansha_shite": {
-                    "japanese": "Kansha shite",
-                    "translation": "Be grateful",
-                    "description": "Gratitude is one of the highest vibrations. Find a blessing in everything."
-                },
-                "gyo_wo_hageme": {
-                    "japanese": "Gyo wo hageme",
-                    "translation": "Work honestly",
-                    "description": "Whatever work you do, do it with integrity and dedication. Add meaning to your life."
-                },
-                "hito_ni_shinsetsu_ni": {
-                    "japanese": "Hito ni shinsetsu ni",
-                    "translation": "Be kind to everyone",
-                    "description": "Compassion and kindness are universal healing energies. Be kind to everyone, including yourself."
-                }
-            },
-            "chakras": {
-                "root": {
-                    "name": "Root Chakra",
-                    "sanskrit": "Muladhara",
-                    "location": "Base of spine",
-                    "attributes": [
-                        "Security",
-                        "Grounding",
-                        "Survival"
-                    ],
-                    "reiki_position": "Place hands on hip bones"
-                },
-                "sacral": {
-                    "name": "Sacral Chakra",
-                    "sanskrit": "Svadhisthana",
-                    "location": "Below navel",
-                    "attributes": [
-                        "Creativity",
-                        "Sexuality",
-                        "Emotions"
-                    ],
-                    "reiki_position": "Place hands below navel"
-                },
-                "solar_plexus": {
-                    "name": "Solar Plexus",
-                    "sanskrit": "Manipura",
-                    "location": "Stomach area",
-                    "attributes": [
-                        "Self-confidence",
-                        "Willpower",
-                        "Personal power"
-                    ],
-                    "reiki_position": "Place hands on stomach area"
-                },
-                "heart": {
-                    "name": "Heart Chakra",
-                    "sanskrit": "Anahata",
-                    "location": "Center of chest",
-                    "attributes": [
-                        "Love",
-                        "Compassion",
-                        "Forgiveness"
-                    ],
-                    "reiki_position": "Place hands on center of chest"
-                },
-                "throat": {
-                    "name": "Throat Chakra",
-                    "sanskrit": "Vishuddha",
-                    "location": "Throat",
-                    "attributes": [
-                        "Communication",
-                        "Self-expression",
-                        "Truth"
-                    ],
-                    "reiki_position": "Place hands on either side of throat"
-                },
-                "third_eye": {
-                    "name": "Third Eye",
-                    "sanskrit": "Ajna",
-                    "location": "Between eyebrows",
-                    "attributes": [
-                        "Intuition",
-                        "Insight",
-                        "Wisdom"
-                    ],
-                    "reiki_position": "Place hands on forehead"
-                },
-                "crown": {
-                    "name": "Crown Chakra",
-                    "sanskrit": "Sahasrara",
-                    "location": "Top of head",
-                    "attributes": [
-                        "Inner connection",
-                        "Enlightenment",
-                        "Unity"
-                    ],
-                    "reiki_position": "Place hands on top of head"
-                }
-            },
-            "reiki_position_label": "Energy Position",
-            "practice": {
-                "self_reiki": {
-                    "title": "Self-Energy Awareness Practice",
-                    "steps": [
-                        "Sit or lie in a comfortable position",
-                        "Close your eyes and take several deep breaths",
-                        "Set your intention: \"I open myself to healing energy\"",
-                        "Place hands on top of your head (3-5 min)",
-                        "Place hands over your eyes (3-5 min)",
-                        "Place hands on your throat (3-5 min)",
-                        "Place hands on your heart (3-5 min)",
-                        "Place hands on solar plexus (3-5 min)",
-                        "Place hands below navel (3-5 min)",
-                        "Finish with gratitude"
-                    ]
-                },
-                "daily_cleansing": {
-                    "title": "Daily Energy Cleansing",
-                    "steps": [
-                        "Rub your hands together when you wake up",
-                        "Feel your hands warming and energy flowing",
-                        "Cleanse your energy field by moving hands around your aura",
-                        "Release negative energy into the ground",
-                        "Start the day with positive intentions"
-                    ]
-                },
-                "distance_reiki": {
-                    "title": "Distance Energy Awareness",
-                    "steps": [
-                        "Get permission from the person you'll send healing to (mentally)",
-                        "Visualize the person or situation",
-                        "Draw the Hon Sha Ze Sho Nen symbol (if applicable)",
-                        "Send love and healing intention",
-                        "Feel the energy reaching them",
-                        "Finish with gratitude"
-                    ]
-                }
-            },
-            "tip": "Working with a practitioner is recommended for deeper practice. These exercises can help develop energy awareness at any level."
-        },
-        "tantra_micro_ritual": {
+        "mindfulness_micro_ritual": {
             "todays_micro_ritual": "Today's Micro Ritual",
-            "tantra_tag": "Tantra",
+            "mindfulness_tag": "Achtsamkeit",
             "discover_dream_trace": "Discover Dream Trace",
-            "brand_footer": "Tantra — InnerCycles",
+            "brand_footer": "Achtsamkeit — InnerCycles",
             "months": {
                 "january": "January",
                 "february": "February",
@@ -815,7 +638,6 @@
             "self_awareness": "Selbstwahrnehmung ist ein Werkzeug zur Selbstreflexion",
             "card_insight": "Reflection Card-Lesungen sind nur für persönliche Einblicke",
             "numerology": "Numerologie bietet symbolische Perspektiven",
-            "chakra": "Chakra-Informationen dienen der Selbstreflexion",
             "compatibility": "Kompatibilitätseinblicke dienen nur der Reflexion",
             "insight": "Diese Einblicke dienen der persönlichen Reflexion",
             "reflection": "Nutzen Sie dies als Werkzeug zur Selbstentdeckung"
@@ -1046,7 +868,7 @@
             },
             "symbols": {
                 "snake_name": "Snake",
-                "snake_meaning": "Transformation, healing, hidden fears",
+                "snake_meaning": "Transformation, renewal, hidden fears",
                 "water_name": "Water",
                 "water_meaning": "Emotions, subconscious, purification",
                 "fire_name": "Fire",
@@ -1101,13 +923,13 @@
                         "basic_meaning": "Water is your element and this dream indicates deep transformation! Time for renewal has come.",
                         "element_perspective": "Don't fear diving into the depths of water. There are treasures there. The cycle of death and rebirth is active.",
                         "psychological": "Water: The deepest layers of the subconscious\nAs a Transformer: Time for shadow work\nMessage: Instead of fearing darkness, illuminate it",
-                        "practice": "• Do deep meditations\n• Keep a shadow journal\n• Practice letting go ritual\n• Embrace deep inner transformation\n• Consider therapy or counseling"
+                        "practice": "• Do deep meditations\n• Keep a shadow journal\n• Practice letting go ritual\n• Embrace deep inner transformation\n• Consider speaking with a trusted person or professional"
                     },
                     "dreamer": {
                         "basic_meaning": "Water is your element - your connection with deeper awareness is very strong! You can fully trust your intuition.",
                         "element_perspective": "You're experiencing a deep sense of connection. Creative inspiration is flowing. Ideal period for artistic expression.",
-                        "psychological": "Water: Universal consciousness, healing, collective subconscious\nAs a Dreamer: Deep experiences and inner guidance\nMessage: You are beyond water - you are the ocean",
-                        "practice": "• Artistic creation - painting, music, writing\n• Meditation by sea or lake\n• Lucid dream practices\n• Healing work\n• Be open to inner guidance"
+                        "psychological": "Water: Universal consciousness, renewal, collective subconscious\nAs a Dreamer: Deep experiences and inner guidance\nMessage: You are beyond water - you are the ocean",
+                        "practice": "• Artistic creation - painting, music, writing\n• Meditation by sea or lake\n• Lucid dream practices\n• Inner reflection work\n• Be open to inner guidance"
                     },
                     "default": {
                         "basic_meaning": "Water carries emotional messages for your {element} sign. The subconscious wants to flow.",
@@ -1140,7 +962,7 @@
                     "attention_label": "⚠️ THINGS TO WATCH",
                     "attention": "• Areas in life where you've lost control\n• Signs of excessive stress and anxiety\n• Meeting of basic needs\n• Work-life balance",
                     "practice_label": "✨ PRACTICAL APPLICATION",
-                    "practice": "• Walk barefoot on the earth\n• Do root chakra meditation\n• List your security needs\n• Practice breathing exercises",
+                    "practice": "• Walk barefoot on the earth\n• Do grounding meditation\n• List your security needs\n• Practice breathing exercises",
                     "cosmic_message_label": "💫 PERSONAL MESSAGE",
                     "cosmic_message": "Falling is actually letting go. Let go of the illusion of control, trust the process. As a {element} element, grounding practice is especially important."
                 },
@@ -1178,7 +1000,7 @@
                     "basic_meaning": "Animals represent our instinctual nature and suppressed energies. Each animal carries a totem message.",
                     "special_interpretation": "This dream is a call to reconnect with your natural instincts. Research the totem energy of whichever animal you saw.",
                     "common_symbols_label": "🐍 COMMON ANIMAL SYMBOLS",
-                    "common_symbols": "• Snake: Transformation, healing, kundalini\n• Dog: Loyalty, protection, friendship\n• Cat: Independence, mystery, intuition\n• Bird: Freedom, intuitive messages\n• Wolf: Community, leadership, teacher\n• Bear: Strength, protection, introspection\n• Horse: Freedom, power, passion",
+                    "common_symbols": "• Snake: Transformation, renewal, inner growth\n• Dog: Loyalty, protection, friendship\n• Cat: Independence, mystery, intuition\n• Bird: Freedom, intuitive messages\n• Wolf: Community, leadership, teacher\n• Bear: Strength, protection, introspection\n• Horse: Freedom, power, passion",
                     "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
                     "psychological": "• Animal's behavior: Your suppressed behavior\n• Your relationship with animal: Your relationship with instincts\n• Animal's color: Emotional tone\n• If animal attacks: Suppressed energy eruption",
                     "practice_label": "✨ PRACTICAL APPLICATION",
@@ -1212,7 +1034,7 @@
                     "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
                     "psychological": "• Anima/Animus: Opposite gender archetype\n• Projection: Seeing your own qualities\n• Need: Unmet emotional requirements",
                     "practice_label": "✨ PRACTICAL APPLICATION",
-                    "practice": "• Take a love language test\n• List your relationship needs\n• Work on self-worth\n• Heart chakra meditation",
+                    "practice": "• Take a love language test\n• List your relationship needs\n• Work on self-worth\n• Heart-centered meditation",
                     "cosmic_message_label": "💫 PERSONAL MESSAGE",
                     "cosmic_message": "Love yourself first. {element} element in love life {element_message}."
                 },
@@ -1404,7 +1226,6 @@
             "self_awareness": "Nur zur Unterhaltung. Keine ausblickede Beratung.",
             "card_insight": "Nur zu Reflexionszwecken. Nicht ausblicked.",
             "numerology": "Nur zur Selbsterkundung. Nicht ausblicked.",
-            "chakra": "Nur zur Bewusstseinsbildung. Keine medizinische oder persönliche Verschreibung.",
             "compatibility": "Nur zur Reflexion. Keine Beziehungsberatung.",
             "insight": "Nur zur persönlichen Reflexion. Keine professionelle Beratung.",
             "reflection": "Dies ist ein Raum für Selbstreflexion, nicht für Ausblicke oder Ratschläge."
@@ -1465,30 +1286,30 @@
     "settings": {
         "title": "Einstellungen",
         "language": "Sprache",
-        "theme": "Thema",
-        "light_mode": "Heller Modus",
-        "dark_mode": "Dunkler Modus",
+        "theme": "Design",
+        "light_mode": "Hellmodus",
+        "dark_mode": "Dunkelmodus",
         "coming_soon_language": "Demnächst verfügbar",
-        "support": "InnerCycles Support",
+        "support": "InnerCycles-Support",
         "version": "InnerCycles v1.0.0",
         "admin": "Admin",
-        "dashboard": "Dashboard & Analytics",
+        "dashboard": "Dashboard & Analysen",
         "pin": "PIN",
-        "account": "Account",
-        "edit_profile": "Edit Profile",
+        "account": "Konto",
+        "edit_profile": "Profil bearbeiten",
         "edit_profile_desc": "Update your birth information",
         "premium": "Premium",
         "premium_desc": "Alle Premium-Funktionen freischalten",
         "premium_active": "Premium-Funktionen aktiv",
         "manage_subscription": "Manage Subscription",
         "manage_subscription_desc": "View and manage your subscription",
-        "clear_data": "Clear Data",
+        "clear_data": "Daten löschen",
         "clear_data_desc": "Delete all your data and start fresh",
-        "clear_data_confirm": "Clear All Data?",
+        "clear_data_confirm": "Bist du sicher? Dies kann nicht rückgängig gemacht werden.",
         "clear_data_warning": "This will delete your profile, settings, and all saved data. This action cannot be undone.",
         "delete": "Delete",
-        "about": "About",
-        "rate_app": "Rate App",
+        "about": "Über",
+        "rate_app": "App bewerten",
         "rate_app_desc": "Share your personal experience",
         "disclaimer": "Disclaimer",
         "disclaimer_desc": "Entertainment purposes only",
@@ -1564,10 +1385,10 @@
         "trust": "Vertrauen"
     },
     "ads": {
-        "failed_to_load": "Ad Failed to Load",
-        "not_available": "Ad not available right now. Please try again later or go Premium.",
-        "watch_ad": "Watch Ad",
-        "go_premium": "Go Premium"
+        "failed_to_load": "Werbung konnte nicht geladen werden",
+        "not_available": "Werbung derzeit nicht verfügbar. Bitte später erneut versuchen oder Premium werden.",
+        "watch_ad": "Werbung ansehen",
+        "go_premium": "Premium werden"
     },
     "admin": {
         "logout": "Logout",
@@ -1648,7 +1469,7 @@
             },
             "energy_field": {
                 "title": "Dein Energiefeld",
-                "description": "Die Farben deiner Aura und Chakra-Balance."
+                "description": "Deine persönliche Energie und innere Balance."
             },
             "kozmoz_discovery": {
                 "title": "InnerCycles Entdeckung",
@@ -1664,7 +1485,7 @@
             },
             "weekly_overview": {
                 "title": "Wochenübersicht",
-                "description": "Was erwartet alle Zeichen diese Woche?"
+                "description": "Was gibt es diese Woche für alle Zeichen zu entdecken?"
             },
             "monthly_depth": {
                 "title": "Monatliche Tiefe",
@@ -1702,17 +1523,13 @@
                 "title": "Numerologie",
                 "description": "Weisheit der Zahlen."
             },
-            "kabbalah": {
+            "symbolic_numbers": {
                 "title": "Symbolische Zahlen",
-                "description": "Reflection Card und Lebensbaum-Verbindung."
+                "description": "Zahlenmuster und Verbindungen entdecken."
             },
             "aura_reading": {
                 "title": "Aura-Lesung",
                 "description": "Entdecke dein Energiefeld."
-            },
-            "chakra_analysis": {
-                "title": "Chakra-Analyse",
-                "description": "Deine Energiezentren."
             },
             "moon_rituals": {
                 "title": "Mond-Rituale",
@@ -1770,7 +1587,7 @@
             "other_exploration_paths": {
                 "description": "Andere Erkundungspfade"
             },
-            "kabbalah_numbers": {
+            "symbolic_number_patterns": {
                 "title": "Zahlenmuster",
                 "description": "Mystischer Ursprung der Zahlen."
             },
@@ -1797,13 +1614,6 @@
             "aura_colors": {
                 "title": "Aura-Farben",
                 "description": "Dein Energiefeld."
-            },
-            "chakra_balance": {
-                "title": "Chakra-Balance",
-                "description": "Zahlen und Chakras."
-            },
-            "numbers_and_chakras": {
-                "description": "Zahlen und Chakras."
             },
             "other_systems": {
                 "description": "Andere Systeme"
@@ -1854,8 +1664,8 @@
             "numerical_vibrations": {
                 "description": "Numerische Schwingungen."
             },
-            "sefirot_energies": {
-                "description": "Sefirot-Energien."
+            "life_dimension_energies": {
+                "description": "Lebensdimension-Energien."
             },
             "cosmic_energy": {
                 "description": "Persönliche Energie."
@@ -1869,26 +1679,22 @@
             },
             "self_awareness_connection": {
                 "title": "Selbstwahrnehmung-Verbindung",
-                "description": "Sefirot und Eigenschaften."
-            },
-            "chakra_system": {
-                "title": "Chakra-System",
-                "description": "Ost- und West-Energiekarten."
+                "description": "Lebensdimension und Eigenschaften."
             },
             "mystic_dreams": {
                 "title": "Mystische Träume",
                 "description": "Innere Symbole und Träume."
             },
-            "sefirot_meditation": {
-                "title": "Sefirot-Meditation",
-                "description": "Reise auf dem Lebensbaum."
+            "life_dimension_meditation": {
+                "title": "Lebensdimension-Meditation",
+                "description": "Geführte Kontemplation."
             },
             "spiritual_practices": {
                 "description": "Reflektive Praktiken."
             },
-            "sefirot_glossary": {
-                "title": "Sefirot-Glossar",
-                "description": "10 Sefirah-Bedeutungen"
+            "life_dimension_glossary": {
+                "title": "Lebensdimension-Glossar",
+                "description": "10 Dimensions-Bedeutungen"
             },
             "my_personal_profile": {
                 "title": "Mein Persönliches Profil",
@@ -1925,10 +1731,6 @@
             "tell_another_dream": {
                 "title": "Erzähl einen anderen Traum",
                 "description": "Beginne eine neue Reise."
-            },
-            "chakra_and_dreams": {
-                "title": "Chakra und Träume",
-                "description": "Energiezentren und Unterbewusstsein."
             },
             "symbol_glossary": {
                 "title": "Symbol-Glossar",
@@ -1974,15 +1776,9 @@
             "learn_concepts": {
                 "description": "Lerne die Konzepte"
             },
-            "energy_field_chakras": {
-                "description": "Dein Energiefeld und Chakras."
-            },
-            "chakra_balancing_practices": {
-                "description": "Chakra-Ausgleichspraktiken."
-            },
-            "kabbalah_sefirot": {
+            "life_dimensions": {
                 "title": "Lebensdimensionen",
-                "description": "Pfade auf dem Lebensbaum."
+                "description": "Innere Balance-Dimensionen."
             },
             "east_west_energy_maps": {
                 "description": "Ost-West-Energiekarten."
@@ -1994,23 +1790,12 @@
                 "title": "Energie-Führung",
                 "description": "Täglicher Energiefluss."
             },
-            "chakra_special_message": {
-                "description": "Spezielle Botschaft für deine Chakras."
-            },
             "energy_reading": {
                 "description": "Energie-Lesung."
-            },
-            "seven_chakra_guide": {
-                "title": "Sieben-Chakra-Leitfaden",
-                "description": "Verstehe deine Energiezentren."
             },
             "moon_calendar": {
                 "title": "Mondkalender",
                 "description": "Mondphasen und Energien."
-            },
-            "chakra_balancing": {
-                "title": "Chakra-Ausgleich",
-                "description": "Praktiken für Balance."
             },
             "energy_work_rituals": {
                 "description": "Energiearbeit mit Ritualen."
@@ -2027,9 +1812,9 @@
                 "title": "Intentions-Führung",
                 "description": "Setze Absichten nach dem Mond."
             },
-            "kabbalah_meditation": {
+            "contemplative_meditation": {
                 "title": "Kontemplative Praxis",
-                "description": "Reise auf dem Lebensbaum."
+                "description": "Geführte Kontemplation."
             },
             "other_practices": {
                 "description": "Andere Praktiken"
@@ -2076,7 +1861,7 @@
             "how_this_pair_dances": "Wie tanzt dieses Paar?",
             "same_element_different_energy": "Gleiches Element, andere Energie.",
             "sibling_element_energy": "Geschwister-Element-Energie.",
-            "what_awaits_this_week": "Was erwartet dich diese Woche?",
+            "what_awaits_this_week": "Was gibt es diese Woche zu entdecken?",
             "which_dreams_this_sign_sees": "Welche Träume haben Menschen dieses Zeichens am häufigsten?",
             "special_message_for_today": "Spezielle Botschaft für Heute",
             "cosmic_guidance": "Erhalte persönliche Führung.",
@@ -2094,9 +1879,9 @@
         "monthly_energy_map": "Monatliche Energiekarte",
         "yearly_energy_map": "Monatliche Energiekarte",
         "yearly_affirmation": "Jährliche Affirmation",
-        "what_awaits_this_month": "Was erwartet dich diesen Monat?",
-        "what_awaits_this_week": "Was erwartet dich diese Woche?",
-        "what_awaits_this_year": "Was erwartet dich dieses Jahr?",
+        "what_awaits_this_month": "Was gibt es diesen Monat zu entdecken?",
+        "what_awaits_this_week": "Was gibt es diese Woche zu entdecken?",
+        "what_awaits_this_year": "Was gibt es dieses Jahr zu entdecken?",
         "week_number": "Woche",
         "day_suffix": "Tag",
         "strengths": "Stärken",
@@ -2155,18 +1940,18 @@
     },
     "auth": {
         "registration_success": "Registrierung erfolgreich! Bitte bestätige deine E-Mail-Adresse.",
-        "register_success": "Registration successful! Please verify your email.",
+        "register_success": "Registrierung erfolgreich! Bitte bestätige deine E-Mail.",
         "password_reset_sent": "E-Mail zum Zurücksetzen des Passworts gesendet",
-        "reset_email_sent": "Password reset email sent",
-        "enter_email": "Please enter your email address",
+        "reset_email_sent": "E-Mail zum Zurücksetzen des Passworts gesendet",
+        "enter_email": "Bitte gib deine E-Mail-Adresse ein",
         "apple_connection_failed": "Verbindung zu Apple konnte nicht hergestellt werden",
-        "apple_sign_in_failed": "Could not sign in with Apple. Please try again.",
-        "apple_error_failed": "Apple sign in failed. Please try again.",
+        "apple_sign_in_failed": "Anmeldung mit Apple fehlgeschlagen. Bitte versuche es erneut.",
+        "apple_error_failed": "Apple-Anmeldung fehlgeschlagen. Bitte versuche es erneut.",
         "apple_error_invalid_response": "Invalid response from Apple. Please try again.",
         "apple_error_not_handled": "Apple sign in could not be completed.",
         "apple_error_not_interactive": "Apple sign in requires interaction.",
-        "apple_error_unknown": "An unexpected error occurred. Please try again.",
-        "apple_error_not_available": "Apple Sign In requires iOS 13 or later.",
+        "apple_error_unknown": "Ein unbekannter Fehler ist aufgetreten. Bitte versuche es erneut.",
+        "apple_error_not_available": "Apple-Anmeldung ist auf diesem Gerät nicht verfügbar",
         "apple_error_token_failed": "Could not verify Apple credentials.",
         "apple_error_network": "Netzwerkverbindung fehlgeschlagen. Bitte überprüfe deine Internetverbindung und versuche es erneut.",
         "apple_error_timeout": "Die Anfrage hat das Zeitlimit überschritten. Bitte versuche es erneut.",
@@ -2185,11 +1970,11 @@
         "email_invalid": "Please enter a valid email",
         "password": "Password",
         "password_required": "Password is required",
-        "password_min_length": "Password must be at least 6 characters",
-        "forgot_password": "Forgot password",
+        "password_min_length": "Passwort muss mindestens 6 Zeichen lang sein",
+        "forgot_password": "Passwort vergessen?",
         "sign_up": "Sign Up",
-        "already_have_account": "Already have an account?",
-        "no_account": "Don't have an account?"
+        "already_have_account": "Bereits ein Konto?",
+        "no_account": "Noch kein Konto?"
     },
     "dreams": {
         "title": "Dreams",
@@ -2988,7 +2773,6 @@
         "solar_return": "Deine jährliche persönliche Karte um deinen Geburtstag",
         "lunar_calendar": "Garten- und Pflanzkalender nach Mondphasen"
     },
-    "self_awareness": {},
     "days": {
         "mon_short": "Mo",
         "tue_short": "Di",
@@ -3021,7 +2805,6 @@
         "hold": "Halten",
         "exhale": "Ausatmen",
         "repeat_times": "{count} mal wiederholen",
-        "chakra_to_focus": "Zu fokussierendes Chakra",
         "todays_affirmations": "Heutige Affirmationen",
         "affirmations_subtitle": "Staerke dich mit positiven Gedanken",
         "main_affirmation": "Heutige Hauptaffirmation",
@@ -3115,15 +2898,6 @@
             "natural_breath": "Natural Breath",
             "heart_breath": "Heart Breath",
             "creative_breath": "Creative Breath"
-        },
-        "chakras": {
-            "heart": "Heart Chakra",
-            "heart_focus": "Compassion and love",
-            "root": "Root Chakra",
-            "root_focus": "Grounding and security",
-            "third_eye": "Third Eye",
-            "third_eye_focus": "Intuition and vision",
-            "unconditional_love": "Unconditional love"
         },
         "affirmation_lists": {
             "morning_1": "Ich bin heute offen für großartige Dinge.",
@@ -3246,7 +3020,7 @@
         "dream_trace": "Traumspur",
         "todays_number": "Zahl des Tages",
         "lucky_hour": "Fokusstunde",
-        "tantra_title": "Tantra",
+        "mindfulness_title": "Achtsamkeit",
         "breath": "Atem",
         "awareness": "Bewusstsein",
         "balance_level": "Gleichgewichtsniveau",
@@ -3265,12 +3039,12 @@
         "transit_alerts": "Transit-Warnungen",
         "transit_desc": "Wichtige Persönliche Transite",
         "lifecycle": {
-            "streak_reminder_title": "Your Streak is Waiting",
-            "streak_reminder_body": "Your {count}-day streak is waiting! A quick entry keeps it going.",
-            "insight_teaser_title": "Something Interesting",
-            "insight_teaser_body": "We noticed something interesting in your patterns this week...",
-            "mood_checkin_title": "Quick Check-In",
-            "mood_checkin_body": "How are you feeling right now? A quick check-in takes 30 seconds.",
+            "streak_reminder_title": "Dein Streak wartet",
+            "streak_reminder_body": "Dein {count}-Tage-Streak wartet! Ein kurzer Eintrag hält ihn am Laufen.",
+            "insight_teaser_title": "Etwas Interessantes",
+            "insight_teaser_body": "Uns ist diese Woche etwas Interessantes in deinen Mustern aufgefallen...",
+            "mood_checkin_title": "Kurzes Check-In",
+            "mood_checkin_body": "Wie geht es dir gerade? Ein kurzes Check-In kann helfen, deinen Tag zu verstehen.",
             "milestone_title": "Milestone Reached!",
             "milestone_body": "You've journaled {count} days! Your patterns are getting really interesting.",
             "seasonal_new_moon_title": "New Moon Tonight",
@@ -3285,8 +3059,8 @@
             "re_engagement_14day_body": "Your patterns are still here, ready when you are.",
             "re_engagement_30day_title": "Welcome Back?",
             "re_engagement_30day_body": "Sometimes the best entries come after a break. Welcome back?",
-            "weekly_digest_title": "Weekly Reflection",
-            "weekly_digest_body": "Your weekly reflection is ready to review.",
+            "weekly_digest_title": "Deine Wochenübersicht",
+            "weekly_digest_body": "Deine Wochenreflexion ist bereit. Sieh nach, was deine Einträge zeigen.",
             "smart_notifications": "Smart Notifications",
             "smart_notifications_desc": "Contextual reminders based on your journaling habits"
         }
@@ -3306,95 +3080,11 @@
         "weekly_preview_title": "Weekly Preview",
         "weekly_preview_content": "Personal energies are working in your favor for the rest of the week."
     },
-    "moon": {},
     "nav": {
         "also_viewed_subtitle": "Andere Neugierige haben sich auch diese angesehen",
         "go_deeper_subtitle": "Verbinde dich mit deiner inneren Welt",
         "keep_exploring_subtitle": "Verschiedene Perspektiven",
-        "keep_exploring": "Continue Exploring",
-        "daily_reading": "Daily Reading",
-        "daily_energy": "Today's Energy",
-        "personal_profile": "Personal Profile",
-        "explore_cosmic_map": "Explore Your Personal Map",
-        "compatibility": "Compatibility",
-        "basic_compatibility": "Basic Compatibility Analysis",
-        "combined_chart": "Your Combined Chart",
-        "share_relationship": "Share Your Relationship",
-        "share_cosmic_bond": "Share Your Personal Bond",
-        "love_reading": "Love Reading",
-        "relationship_energy": "Your Relationship Energy",
-        "weekly_reading": "Weekly Reading",
-        "weekly_energy": "What awaits you this week",
-        "monthly_reading": "Monthly Reading",
-        "monthly_energy": "This Month's Energy",
-        "yearly_reading": "Yearly Reading",
-        "yearly_energy": "This Year's Energy",
-        "card_insight": "Reflection Card",
-        "card_insight_guidance": "What do the cards say?",
-        "numerology": "Numerology",
-        "numerology_insight": "The mystery of numbers",
-        "dreams": "Dreams",
-        "dreams_insight": "Dream interpretation",
-        "transits": "Transits",
-        "transits_insight": "What's affecting you now",
-        "cosmic_share": "Personal Share",
-        "share_energy": "Share your energy",
-        "who_compatible": "Who are you compatible with?",
-        "all_signs": "All Archetypes",
-        "discover_12_signs": "Discover 12 archetypes",
-        "share_chart": "Share Your Chart",
-        "share_cosmic_energy": "Share your personal energy",
-        "compare_profiles": "Compare Profiles",
-        "compare_with_friend": "Compare with a friend",
-        "the_fool": "The Fool",
-        "new_beginnings": "New beginnings",
-        "share_card": "Share Your Card",
-        "share_cosmic_message": "Share your personal message",
-        "chakra_analysis": "Chakra Analysis",
-        "energy_centers": "Your energy centers",
-        "dream_trace": "Dream Trace",
-        "dream_meanings": "The meaning of your dreams",
-        "share_compatibility": "Share Compatibility",
-        "detailed_relationship": "Detailed relationship chart",
-        "life_path": "Life Path",
-        "leader_archetype": "Leader archetype",
-        "share": "Share",
-        "share_insight": "Share your insight",
-        "expression_number": "Expression Number",
-        "soul_voice": "Your inner voice",
-        "soul_urge": "Innere Motivation",
-        "deepest_desires": "Your deepest desires",
-        "birthday_number": "Birthday Number",
-        "hidden_talents": "Your hidden talents",
-        "aura": "Aura",
-        "aura_insight": "Your energy field",
-        "theta_healing": "Achtsamkeitsarbeit",
-        "theta_healing_insight": "Deep healing",
-        "rituals": "Rituals",
-        "cosmic_rituals": "Personal rituals",
-        "progressions": "Progressions",
-        "inner_evolution": "Your inner evolution",
-        "soul_chart": "Your personal chart",
-        "solar_arc": "Solar Arc",
-        "life_directions": "Life directions",
-        "eastern_wisdom": "Eastern wisdom",
-        "transit_calendar": "Transit Calendar",
-        "upcoming_transits": "Upcoming transits",
-        "aspect_analysis": "Aspect Analysis",
-        "energy_conversations": "Personal conversations",
-        "celebrities": "Celebrities",
-        "famous_charts": "Famous personal profiles",
-        "articles": "Articles",
-        "cosmic_wisdom": "Personal wisdom",
-        "kabbalah": "Zahlenweisheit",
-        "master_mystery": "The mystery of 11, 22, 33",
-        "best_times": "Best times",
-        "energy_practices": "Energy practices",
-        "crystal_guide": "Gemstone Guide",
-        "what_awaits_this_week": "What awaits you this week",
-        "what_awaits_this_month": "What awaits you this month",
-        "home": "Home",
-        "up_next": "Up Next"
+        "keep_exploring": "Weiter entdecken"
     },
     "timing": {
         "subtitle": "Discover the best times for your activities",
@@ -3749,11 +3439,11 @@
         "generic_error": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
     },
     "voice_input": {
-        "tap_to_speak": "Tap to speak",
-        "listening": "Listening...",
-        "stop": "Stop",
-        "not_available": "Voice input is not available on this device.",
-        "permission_required": "Microphone permission is required for voice input. Please enable it in Settings.",
+        "tap_to_speak": "Zum Sprechen tippen",
+        "listening": "Zuhören...",
+        "stop": "Stopp",
+        "not_available": "Spracheingabe ist auf diesem Gerät nicht verfügbar.",
+        "permission_required": "Mikrofonberechtigung ist für die Spracheingabe erforderlich. Bitte in den Einstellungen aktivieren.",
         "error_start": "Could not start listening. Please try again.",
         "error_generic": "Voice input error. Please try again."
     },

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Astrobobo Duplicate Content Detector
+ * InnerCycles Duplicate Content Detector
  *
  * Calculates Jaccard similarity between all content pairs.
  * Threshold: 70% — any pair above this is flagged.
@@ -32,7 +32,7 @@ function jaccardSimilarity(setA, setB) {
 }
 
 async function run() {
-  console.log("=== ASTROBOBO DUPLICATE DETECTOR ===\n");
+  console.log("=== INNERCYCLES DUPLICATE DETECTOR ===\n");
   console.log(`Threshold: ${(THRESHOLD * 100).toFixed(0)}% Jaccard similarity\n`);
 
   const contentDir = join(ROOT, "content");

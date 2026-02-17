@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Astrobobo Database Migration Runner
+ * InnerCycles Database Migration Runner
  *
  * Usage:
  *   node db/migrations/run.mjs                  # Run all pending migrations

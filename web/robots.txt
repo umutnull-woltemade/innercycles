@@ -1,4 +1,4 @@
-# Astrobobo - https://astrobobo.com
+# InnerCycles - https://innercycles.app
 # Updated: 2026-02-12
 
 User-agent: *
@@ -21,7 +21,7 @@ Disallow: /*?ref=
 Disallow: /*.html$
 
 # Sitemap
-Sitemap: https://astrobobo.com/api/sitemap
+Sitemap: https://innercycles.app/api/sitemap
 
 # Google
 User-agent: Googlebot

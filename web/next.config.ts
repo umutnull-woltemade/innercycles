@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "astrobobo.com",
+        hostname: "innercycles.app",
       },
     ],
   },
@@ -47,21 +47,30 @@ const nextConfig: NextConfig = {
   ],
 
   redirects: async () => [
-    // Legacy sign routes → new zodiac routes
+    // Legacy astrology routes → home
     {
       source: "/horoscope/:sign",
-      destination: "/zodiac/:sign",
+      destination: "/",
       permanent: true,
     },
     {
       source: "/burc/:sign",
-      destination: "/zodiac/:sign",
+      destination: "/",
       permanent: true,
     },
-    // Legacy tool pages → home (preserve backlink equity)
     {
       source: "/horoscope",
-      destination: "/zodiac",
+      destination: "/",
+      permanent: true,
+    },
+    {
+      source: "/zodiac/:path*",
+      destination: "/",
+      permanent: true,
+    },
+    {
+      source: "/zodiac",
+      destination: "/",
       permanent: true,
     },
     {
@@ -115,11 +124,6 @@ const nextConfig: NextConfig = {
       permanent: true,
     },
     {
-      source: "/dreams",
-      destination: "/",
-      permanent: true,
-    },
-    {
       source: "/chakra",
       destination: "/",
       permanent: true,
@@ -156,26 +160,26 @@ const nextConfig: NextConfig = {
     },
     {
       source: "/weekly-horoscope",
-      destination: "/zodiac",
+      destination: "/",
       permanent: true,
     },
     {
       source: "/monthly-horoscope",
-      destination: "/zodiac",
+      destination: "/",
       permanent: true,
     },
     {
       source: "/yearly-horoscope",
-      destination: "/zodiac",
+      destination: "/",
       permanent: true,
     },
-    // Legacy Turkish dream pages → home (will redirect to /tr/ruyalar/ when built)
+    // Legacy Turkish dream pages → home
     {
       source: "/ruya/:path*",
       destination: "/",
-      permanent: false, // 302 — will change to proper TR route later
+      permanent: false,
     },
-    // Legacy internal pages — no SEO value, redirect to home
+    // Legacy internal pages
     {
       source: "/premium",
       destination: "/",
