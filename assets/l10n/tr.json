@@ -983,7 +983,7 @@
                     "flight_style_label": "📍 UÇUŞ STİLİNE GÖRE",
                     "flight_style": "• Süzülerek: Hayatta akışta olma hali\n• Çırpınarak: Zorlu ama başarılan hedefler\n• Yükselememe: Bastırılmış potansiyel\n• Düşme: Kontrolü kaybetme korkusu",
                     "practice_label": "✨ PRATİK UYGULAMA",
-                    "practice": "• Korkularını yaz ve yak\n• Yüksek bir yere çık, manzaraya bak\n• \"Uçabiliyorum\" afirmasyonu tekrarla\n• Lucid rüya için niyet koy",
+                    "practice": "• Korkularını yaz ve yak\n• Yüksek bir yere çık, manzaraya bak\n• \"Uçabiliyorum\" afirmasyonu tekrarla\n• Bilinçli rüya için niyet koy",
                     "cosmic_message_label": "💫 KİŞİSEL MESAJ",
                     "cosmic_message": "Bu düşünce sana \"kanatların var, kullan\" diyor. {element} elementi olarak {element_message}."
                 },
@@ -1483,12 +1483,12 @@
                 "description": "Gökyüzü bugün ne fısıldıyor? Günlük içgörü yorumlarına göz at."
             },
             "personal_profile_question": {
-                "title": "Doğum Haritam Ne Söylüyor?",
+                "title": "Kişisel Profilim Ne Söylüyor?",
                 "description": "Kişisel parmak izini keşfet — ücretsiz hesapla."
             },
             "partner_compatible": {
                 "title": "Partnerimle Uyumlu muyuz?",
-                "description": "İki haritanın dansını gör."
+                "description": "İlişki dinamiklerinizi birlikte keşfedin."
             },
             "dream_interpretation": {
                 "title": "Rüyanı Anlat, Birlikte Keşfedelim",
@@ -1527,7 +1527,7 @@
                 "description": "Ayın büyük teması ne?"
             },
             "calculate_personal_profile": {
-                "title": "Doğum Haritanı Hesapla",
+                "title": "Kişisel Profilini Hesapla",
                 "description": "Temel kimliğinin ötesini gör."
             },
             "relationship_compatibility": {

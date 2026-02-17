@@ -418,7 +418,7 @@
             "life_path_number": "Life Path Number",
             "birthday_number": "Birthday",
             "personal_year": "Personal Year",
-            "name_numerology": "Name Numerology",
+            "name_numerology": "Name Number Patterns",
             "expression_number": "Expression Number",
             "expression_number_desc": "Calculated from your name, this number reflects potential themes and characteristics in your life.",
             "soul_urge": "Inner Motivation",
@@ -439,19 +439,19 @@
             "challenges": "Challenges",
             "love_relationships": "Love & Relationships",
             "ancient_secret_title": "Ancient Secret of Numbers",
-            "ancient_secret_desc": "Numerology is an ancient reflection system using mathematical symbolism. From Pythagoras to ancient traditions, many cultures explored the meaning of numbers. Your birth date and name can be used as themes for self-reflection and personal exploration. Each number represents symbolic qualities to consider. This is a tool for introspection, not reflection.",
+            "ancient_secret_desc": "Number patterns form an ancient reflection system using mathematical symbolism. From Pythagoras to ancient traditions, many cultures explored the meaning of numbers. Your birth date and name can be used as themes for self-reflection and personal exploration. Each number represents symbolic qualities to consider. This is a tool for introspection and self-awareness.",
             "number_depth_title": "Depth of Number {number}",
             "kadim_title": "Eternal Dance of Numbers",
             "kadim_content": "Since Pythagoras, many traditions have explored symbolic meanings of numbers. Your life path number is a reflection theme - a way to think about personal qualities and life patterns. These symbolic associations can be useful for journaling and self-discovery.",
-            "brand_text": "Numerology — InnerCycles"
+            "brand_text": "Number Patterns — InnerCycles"
         },
         "solar_return": {
             "title": "Birthday Reflection",
-            "subtitle": "Birthday Chart",
-            "sun_returns": "Birthday returns to {sign}",
+            "subtitle": "Birthday Overview",
+            "sun_returns": "Birthday cycle for {sign}",
             "return_date": "Return Date",
-            "sun_house": "Sun House",
-            "house_number": "{number}. House",
+            "sun_house": "Core Focus",
+            "house_number": "{number}. Area",
             "year_themes": "Year Themes",
             "monthly_highlights": "Monthly Highlights",
             "important_dates": "Important Dates",
@@ -672,7 +672,7 @@
             "health": "Not medical advice. Consult professionals for health concerns",
             "self_awareness": "Cycle awareness is a tool for pattern recognition and self-understanding",
             "card_insight": "Archetype insights are for personal cycle mapping only",
-            "numerology": "Numerology offers symbolic cycle perspectives",
+            "numerology": "Number patterns offer symbolic cycle perspectives",
             "compatibility": "Relationship cycle mapping is for reflection only",
             "insight": "These cycle insights are for personal pattern awareness",
             "reflection": "Use this as a cyclical intelligence tool"
@@ -1228,11 +1228,11 @@
         "result_self_awareness_low_title": "Awareness Explorer",
         "result_self_awareness_low_desc": "Your self-awareness journey begins here! Start with daily reflection themes.",
         "result_numerology_high_title": "Number Master",
-        "result_numerology_high_desc": "You have a strong connection with numbers! Discover the hidden messages on your life path with your personal numerology report.",
+        "result_numerology_high_desc": "You have a strong connection with numbers! Discover the patterns on your life path with your personal number analysis.",
         "result_numerology_medium_title": "Number Traveler",
         "result_numerology_medium_desc": "You feel the energy of numbers. You can guide your life with your life path number.",
         "result_numerology_low_title": "Number Explorer",
-        "result_numerology_low_desc": "The world of numbers to explore. Starting with your birth date, you can open the doors of numerology.",
+        "result_numerology_low_desc": "The world of numbers to explore. Starting with your birth date, you can discover meaningful number patterns.",
         "result_general_high_title": "Personal Guide",
         "result_general_high_desc": "Your inner journey is deep and meaningful. You can elevate your awareness to the next level with our personal tools.",
         "result_general_medium_title": "Personal Explorer",
@@ -1488,7 +1488,7 @@
             },
             "partner_compatible": {
                 "title": "Are We Compatible?",
-                "description": "See the dance of two charts."
+                "description": "Explore your relationship dynamics together."
             },
             "dream_interpretation": {
                 "title": "Tell Your Dream, Let's Explore Together",
@@ -1555,7 +1555,7 @@
                 "description": "Track your inner evolution."
             },
             "numerology": {
-                "title": "Numerology",
+                "title": "Number Patterns",
                 "description": "Wisdom of numbers."
             },
             "symbolic_numbers": {
@@ -1586,7 +1586,7 @@
                 "description": "Compare your profile with today's themes."
             },
             "chart_connected_dreams": {
-                "title": "Chart-Connected Dreams",
+                "title": "Pattern-Connected Dreams",
                 "description": "How do your patterns reflect in your dreams?"
             },
             "personal_cosmic_message": {
@@ -1674,7 +1674,7 @@
             },
             "numerical_harmony": {
                 "title": "Numerical Harmony",
-                "description": "Numerology with names."
+                "description": "Number patterns with names."
             },
             "sign_pages": {
                 "description": "Archetype pages"
@@ -1717,7 +1717,7 @@
                 "description": "Life Dimension and personal traits."
             },
             "mystic_dreams": {
-                "title": "Mystic Dreams",
+                "title": "Dream Exploration",
                 "description": "Contemplative symbols and dreams."
             },
             "life_dimension_meditation": {
@@ -1736,7 +1736,7 @@
                 "description": "Your personal identity"
             },
             "this_years_chart": {
-                "description": "This year's chart."
+                "description": "This year's overview."
             },
             "inner_evolution_tracking": {
                 "description": "Inner evolution tracking."
@@ -1928,7 +1928,7 @@
         "reflection_readings": "Daily Reflections",
         "personal_profile_analysis": "Personal Profile & Analysis",
         "time_transits": "Time & Cycles",
-        "numerology_mystic": "Numerology & Reflection Tools",
+        "numerology_mystic": "Number Patterns & Reflection Tools",
         "spiritual_wellness": "Personal & Wellness",
         "advanced_self_awareness": "Advanced Self-Awareness",
         "personality_analysis": "Personality Analysis",
@@ -2796,7 +2796,7 @@
     },
     "analysis": {
         "archetype_analysis": "Archetype Analysis",
-        "discovery_analysis": "Numerology Analysis",
+        "discovery_analysis": "Number Pattern Analysis",
         "wellness_analysis": "Energy Profile Analysis",
         "wisdom_analysis": "Symbolic Analysis",
         "enter_birth_info_discovery": "Enter your birth information\nto see your life path number",
@@ -3108,7 +3108,7 @@
     },
     "insights": {
         "daily_energy_title": "Today's Energy",
-        "daily_energy_content": "The Moon's current position brings emotional depth. It's the perfect time to listen to your inner voice.",
+        "daily_energy_content": "Today's cycle brings emotional depth. It's the perfect time to listen to your inner voice.",
         "transit_effect_title": "Cycle Effect",
         "dream_guide_title": "Dream Guide",
         "dream_guide_content": "Dreams you have tonight may carry important messages. Don't forget to record your dreams.",
