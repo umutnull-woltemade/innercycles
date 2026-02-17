@@ -8,7 +8,7 @@
         "cancel": "İptal",
         "ok": "Tamam",
         "continue": "İlerle",
-        "start_journey": "Yolculuğa Başla",
+        "start_journey": "Döngü Haritalamaya Başla",
         "explore": "Keşfet",
         "results": "sonuç",
         "coming_soon": "Yakında eklenecek",
@@ -78,24 +78,24 @@
         ]
     },
     "onboarding": {
-        "welcome_text": "İçindeki sırları keşfet.\nDoğduğun an senin için\nbir harita çizildi, onu keşfet.",
+        "welcome_text": "Duygusal döngülerini haritalandır.\nTekrarlayan örüntüleri tespit et.\nNeyin tekrarladığını ve nedenini gör.",
         "cosmic_identity": "Kişisel Kimliğin",
         "enter_info_subtitle": "Kişisel profilini oluşturmak için bilgilerini gir",
         "info_box_text": "Kişisel haritanın tüm katmanlarını açmak için bilgilerini eksiksiz gir.",
         "will_be_calculated": "Günlüğün seni bekliyor",
-        "start_cosmic_journey": "Kişisel Yolculuğuna Başla",
+        "start_cosmic_journey": "Döngülerini Haritalandır",
         "tap_to_continue": "Dokunarak devam et",
         "connect_with_apple": "Apple ile devam et",
         "connecting": "Bağlanıyor...",
         "explore_now": "Hemen Keşfetmeye Başla",
         "by_continuing": "Devam ederek Kullanım Şartlarını kabul etmiş olursunuz",
         "features": {
-            "personal_profile": "Kişisel Profil",
-            "daily_reading": "Gunluk Yansitma",
-            "dream_journal": "Ruya Gunlugu",
-            "patterns": "Kalip Takibi"
+            "personal_profile": "Döngü Profili",
+            "daily_reading": "Döngü Haritalı Kayıt",
+            "dream_journal": "Rüya Arkeolojisi",
+            "patterns": "Tekrar Tespiti"
         },
-        "profile_ready": "Profilin Hazır",
+        "profile_ready": "Döngü Haritan Hazır",
         "ready_subtitle": "Kişiselleştirilmiş yansıtma deneyimin şimdi kuruldu. İç görülerini keşfetmeye başla.",
         "whats_included": "Neler Dahil",
         "feature_reflection": "Günlük yansıtma soruları",
@@ -105,7 +105,7 @@
     },
     "disclaimer": {
         "before_using": "Kullanmadan Önce",
-        "text_1": "Bu uygulamada sunulan bilgiler yalnızca eğlence ve bilgilendirme amaçlıdır.",
+        "text_1": "InnerCycles, öz-yansıtma ve örüntü farkındalığı için kişisel bir günlük aracıdır.",
         "text_2": "Sağlık, finansal, hukuki veya psikolojik konularda profesyonel tavsiye olarak değerlendirilmemelidir.",
         "text_3": "Önemli yaşam kararları için lütfen nitelikli uzmanlarla görüşün.",
         "reflection_only": "Bu içerik yalnızca öz-yansıtma ve farkındalık içindir."
@@ -157,7 +157,7 @@
         "your_birth_info": "Doğum Bilgilerin",
         "your_sun_sign": "Temel Kimliğin",
         "edit_info": "Bilgileri Düzenle",
-        "view_personal_profile": "Kişisel Profilnı Gör",
+        "view_personal_profile": "Kişisel Profilini Gör",
         "profile_saved": "Profil başarıyla kaydedildi",
         "discard_changes_title": "Değişiklikler Silinsin mi?",
         "discard_changes_message": "Kaydedilmemiş değişiklikleriniz var. Çıkmak istediğinizden emin misiniz?",
@@ -195,7 +195,7 @@
     },
     "home": {
         "greeting": "Merhaba, {name}!",
-        "todays_cosmic_message": "Bugünün Günlük Mesajı",
+        "todays_cosmic_message": "Bugünün Döngü Pozisyonu",
         "chips": {
             "dream": "Rüya",
             "journal": "Gunluk",
@@ -210,7 +210,7 @@
         },
         "entries": {
             "daily_journal": {
-                "title": "Gunluk Kayit",
+                "title": "Döngü Kaydı",
                 "subtitle": "Ruh halinizi ve dusuncelerinizi takip edin"
             },
             "share_insight": {
@@ -291,7 +291,7 @@
         },
         "other_tools": {
             "title": "Kalan Cozumlemelerimiz",
-            "subtitle": "Genel öz farkındalık araclari ve burc yorumlari",
+            "subtitle": "Genel öz farkındalık araçları ve kişisel yansıtmalar",
             "weekly_tooltip": "Bu haftanin kişisel enerjileri ve tavsiyeleri"
         },
         "tooltips": {
@@ -446,7 +446,7 @@
             "brand_text": "Numeroloji — InnerCycles"
         },
         "solar_return": {
-            "title": "Birthday Reflection",
+            "title": "Doğum Günü Yansıması",
             "subtitle": "Doğum Günü Haritası",
             "sun_returns": "Temel kimliğin {sign} arketipine dönüyor",
             "return_date": "Dönüş Tarihi",
@@ -667,7 +667,7 @@
             "year": "Yıl"
         },
         "entertainment_disclaimer": {
-            "general": "Sadece eğlence amaçlıdır",
+            "general": "Yalnızca öz-yansıtma amaçlıdır",
             "dreams": "Rüya yorumları sembolik refleksiyonlardır",
             "health": "Tıbbi tavsiye değildir. Sağlık konularında uzmana danışın",
             "self_awareness": "Öz Farkındalık bir öz-refleksiyon aracıdır, tahmin değil",
@@ -964,7 +964,7 @@
                         "basic_meaning": "Su senin elementi - içsel dünyalarla bağlantın çok güçlü! Sezgilerine tamamen güvenebilirsin.",
                         "element_perspective": "Bütünsel bir olma deneyimi yaşıyorsun. Yaratıcı ilham akıyor. Sanatsal ifade için ideal dönem.",
                         "psychological": "Su: Derin bilinç, şifa, kolektif bilinçaltı\nHayalperest olarak: Derin deneyimler ve içsel rehberlik\nMesaj: Sen sudan ötesin - okyanussun",
-                        "practice": "• Sanatsal yaratım - resim, müzik, yazı\n• Deniz veya göl kenarında meditasyon\n• Lucid rüya pratikleri\n• Şifa çalışmaları\n• İçsel rehberliğe açık ol"
+                        "practice": "• Sanatsal yaratım - resim, müzik, yazı\n• Deniz veya göl kenarında meditasyon\n• Bilinçli rüya pratikleri\n• Şifa çalışmaları\n• İçsel rehberliğe açık ol"
                     },
                     "default": {
                         "basic_meaning": "Su, {element} arketipin için duygusal mesajlar taşıyor. Bilinçaltı akışa geçmek istiyor.",
@@ -1174,8 +1174,8 @@
         "self_awareness_a1_4": "Nadiren",
         "self_awareness_q2": "Kişisel profilini biliyor musun?",
         "self_awareness_a2_1": "Detaylı biliyorum",
-        "self_awareness_a2_2": "Temel kimlik ve Ay arketipimu biliyorum",
-        "self_awareness_a2_3": "Sadece temel kimlik arketipimu",
+        "self_awareness_a2_2": "Temel kimlik ve Ay arketipimi biliyorum",
+        "self_awareness_a2_3": "Sadece temel kimlik arketipimi",
         "self_awareness_a2_4": "Hiç bakmadım",
         "self_awareness_a3_1": "Kesinlikle, önemli!",
         "self_awareness_a3_2": "Bazen dikkat ederim",
@@ -1255,10 +1255,10 @@
             "inline_default": "Bu sana özel mi? Kısa testle öğren"
         },
         "entertainment_disclaimer": {
-            "general": "Sadece eğlence ve kişisel düşünme amaçlıdır.",
+            "general": "Yalnızca öz-yansıtma ve kişisel farkındalık amaçlıdır.",
             "dreams": "Rüya yorumları kişisel keşif içindir, profesyonel yorum değildir.",
             "health": "Tıbbi tavsiye değildir. Sağlık profesyonellerine danışın.",
-            "self_awareness": "Sadece eğlence amaçlıdır. Tahmin tavsiyesi değildir.",
+            "self_awareness": "Yalnızca öz-yansıtma amaçlıdır. Tahmin tavsiyesi değildir.",
             "card_insight": "Sadece düşünme amaçlıdır. Tahmin değildir.",
             "numerology": "Sadece öz-keşif amaçlıdır. Tahmin değildir.",
             "compatibility": "Sadece düşünme amaçlıdır. İlişki tavsiyesi değildir.",
@@ -1328,7 +1328,7 @@
         "support": "InnerCycles Destek",
         "version": "InnerCycles v1.0.0",
         "admin": "Admin",
-        "dashboard": "Dashboard & Analytics",
+        "dashboard": "Pano ve Analitik",
         "pin": "PIN",
         "account": "Hesap",
         "edit_profile": "Profili Düzenle",
@@ -1347,8 +1347,8 @@
         "rate_app": "Uygulamayı Değerlendir",
         "rate_app_desc": "Deneyimini paylaş",
         "disclaimer": "Yasal Uyarı",
-        "disclaimer_desc": "Sadece eğlence amaçlıdır",
-        "disclaimer_content": "Bu uygulama öz farkındalık, numeroloji, refleksiyon ve rüya yorumu içeriklerini yalnızca eğlence ve kendini keşfetme amaçlı sunmaktadır.\n\nİçerikler; tıbbi, psikolojik, finansal, hukuki veya ilişki danışmanlığı dahil hiçbir alanda profesyonel tavsiye niteliği taşımaz.\n\nProfesyonel desteğe ihtiyacınız varsa, lütfen ilgili alanda uzman kişilere başvurun.\n\nTüm yorumlar bilgilendirme ve eğlence amaçlı oluşturulmaktadır ve önemli yaşam kararlarına temel oluşturmamalıdır.",
+        "disclaimer_desc": "Yalnızca öz-yansıtma amaçlıdır",
+        "disclaimer_content": "Bu uygulama öz farkındalık, numeroloji, refleksiyon ve rüya yorumu içeriklerini yalnızca öz-yansıtma ve kişisel keşif amaçlı sunmaktadır.\n\nİçerikler; tıbbi, psikolojik, finansal, hukuki veya ilişki danışmanlığı dahil hiçbir alanda profesyonel tavsiye niteliği taşımaz.\n\nProfesyonel desteğe ihtiyacınız varsa, lütfen ilgili alanda uzman kişilere başvurun.\n\nTüm yorumlar kişisel farkındalık ve öz-yansıtma amaçlı oluşturulmaktadır ve önemli yaşam kararlarına temel oluşturmamalıdır.",
         "disclaimer_tip": "İçerikleri karar verme için değil, kendini keşfetmek için kullan.",
         "privacy_policy": "Gizlilik Politikası",
         "terms_of_service": "Kullanım Koşulları",
@@ -1520,7 +1520,7 @@
             },
             "weekly_overview": {
                 "title": "Haftalık Genel Bakış",
-                "description": "Bu hafta tüm arketiplerı neler bekliyor?"
+                "description": "Bu hafta tüm arketipleri neler bekliyor?"
             },
             "monthly_depth": {
                 "title": "Aylık Derinlik",
@@ -1958,7 +1958,7 @@
     },
     "compatibility": {
         "calculate": "Uyumu Hesapla",
-        "your_sign": "Sizin Arketipinuz",
+        "your_sign": "Sizin Arketipiniz",
         "opposite_sign": "Karşı Arketip",
         "strengths": "Güçlü Yanlar",
         "challenges": "Zorluklar",
@@ -2290,7 +2290,7 @@
         "dream_recall": "Rüya Hatırlama",
         "dream_detail_level": "Rüya detay seviyesi",
         "lucid_progress": "Bilinçli Rüya",
-        "lucid_dream_development": "Lucid rüya gelişimi",
+        "lucid_dream_development": "Bilinçli rüya gelişimi",
         "nightmare_reduction": "Kabus Azaltma",
         "nightmare_frequency_change": "Kabus sıklığı değişimi",
         "shadow_integration": "GÖLGE ENTEGRASYONU",
@@ -2730,7 +2730,7 @@
                 "astro_timing": "Kişisel Zamanlama",
                 "light_shadow": "Isik ve Golge",
                 "practical_guidance": "Pratik Rehberlik",
-                "lucid_potential": "Lucid Ruya Potansiyeli",
+                "lucid_potential": "Bilinçli Rüya Potansiyeli",
                 "whisper_quote": "Fisildayan Cumle"
             },
             "emotional": {
@@ -2899,7 +2899,7 @@
             "breath_meditation": "Nefes Meditasyonu",
             "breath_focus": "Nefese odaklanma",
             "breath_desc": "Nefes meditasyonu, zihni sakinleştirmenin en etkili yoludur. Bugün sadece nefesinize odaklanarak iç huzuru bulun.",
-            "body_scan": "Body Scan",
+            "body_scan": "Beden Taraması",
             "body_awareness": "Vücut farkındalığı",
             "body_scan_desc": "Vücut taraması meditasyonu ile bedeninizle bağlantı kurun ve gerginlikleri fark edin.",
             "loving_kindness": "Sevgi-Şefkat",
@@ -3283,9 +3283,9 @@
         },
         "recommendations": {
             "keep_journal": "Her gün rüya günlüğü tutarak örüntüleri keşfet.",
-            "nightmare_work": "Kabuslarla çalışma: Lucid teknikleriyle dönüştür.",
+            "nightmare_work": "Kabuslarla çalışma: Bilinçli rüya teknikleriyle dönüştür.",
             "relaxation_ritual": "Uyku öncesi rahatlama ritüeli oluştur.",
-            "reality_check": "Reality check tekniğini dene - lucid rüya potansiyelin var.",
+            "reality_check": "Gerçeklik kontrolü tekniğini dene - bilinçli rüya potansiyelin var.",
             "fear_theme": "Korku temasını incele - gölge çalışması yapabilirsin.",
             "longing_journal": "Özlem duygusu üzerine yansıtma günlüğü tut.",
             "keep_going": "Rüya yolculuğun harika gidiyor. Kaydetmeye devam et!"
@@ -3474,26 +3474,26 @@
         "generic_error": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
     },
     "voice_input": {
-        "tap_to_speak": "Konusmak icin dokun",
+        "tap_to_speak": "Konuşmak için dokun",
         "listening": "Dinleniyor...",
         "stop": "Durdur",
-        "not_available": "Sesli giris bu cihazda kullanilamiyor.",
-        "permission_required": "Sesli giris icin mikrofon izni gerekli. Lutfen Ayarlar'dan etkinlestirin.",
-        "error_start": "Dinleme baslatilamadi. Lutfen tekrar deneyin.",
-        "error_generic": "Sesli giris hatasi. Lutfen tekrar deneyin."
+        "not_available": "Sesli giriş bu cihazda kullanılamıyor.",
+        "permission_required": "Sesli giriş için mikrofon izni gerekli. Lütfen Ayarlar'dan etkinleştirin.",
+        "error_start": "Dinleme başlatılamadı. Lütfen tekrar deneyin.",
+        "error_generic": "Sesli giriş hatası. Lütfen tekrar deneyin."
     },
     "quiz_hub": {
-        "title": "Oz Yansitma Testleri",
-        "description": "Dusunceli oz yansitma yoluyla kendinizin farkli yonlerini kesfedin. Bunlar kisisel farkindalik araclaridir, klinik degerlendirmeler degildir.",
-        "quiz_not_found": "Test bulunamadi",
+        "title": "Öz Yansıtma Testleri",
+        "description": "Düşünceli öz yansıtma yoluyla kendinizin farklı yönlerini keşfedin. Bunlar kişisel farkındalık araçlarıdır, klinik değerlendirmeler değildir.",
+        "quiz_not_found": "Test bulunamadı",
         "question_of": "Soru {current} / {total}",
         "your_result": "Sonucunuz",
-        "disclaimer": "Bu, klinik bir degerlendirme degil, kisisel farkindalik icin bir oz yansitma aracidir.",
-        "your_strengths": "Guclu Yanlariniz",
-        "growth_areas": "Gelisim Alanlari",
-        "full_breakdown": "Detayli Dagilim",
+        "disclaimer": "Bu, klinik bir değerlendirme değil, kişisel farkındalık için bir öz yansıtma aracıdır.",
+        "your_strengths": "Güçlü Yanlarınız",
+        "growth_areas": "Gelişim Alanları",
+        "full_breakdown": "Detaylı Dağılım",
         "retake_quiz": "Testi Tekrarla",
-        "back_to_all_quizzes": "Tum Testlere Don",
+        "back_to_all_quizzes": "Tüm Testlere Dön",
         "done_badge": "Tamam",
         "your_result_label": "Sonucunuz: {result}"
     }
