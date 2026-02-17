@@ -70,6 +70,10 @@ class AdService {
   // Show interstitial every N analyses
   static const int _interstitialFrequency = 3;
 
+  // Session-level ad exposure counter (for upgrade trigger)
+  int _sessionAdExposures = 0;
+  int get sessionAdExposures => _sessionAdExposures;
+
   // Premium status
   bool _isPremium = false;
   bool get isPremium => _isPremium;
@@ -159,8 +163,10 @@ class AdService {
             _logAdEvent('banner', 'opened', placement: placement),
         onAdClosed: (ad) =>
             _logAdEvent('banner', 'closed', placement: placement),
-        onAdImpression: (ad) =>
-            _logAdEvent('banner', 'impression', placement: placement),
+        onAdImpression: (ad) {
+          _sessionAdExposures++;
+          _logAdEvent('banner', 'impression', placement: placement);
+        },
         onAdClicked: (ad) =>
             _logAdEvent('banner', 'clicked', placement: placement),
       ),
@@ -182,6 +188,7 @@ class AdService {
 
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdShowedFullScreenContent: (ad) {
+              _sessionAdExposures++;
               _logAdEvent('interstitial', 'showed');
             },
             onAdDismissedFullScreenContent: (ad) {

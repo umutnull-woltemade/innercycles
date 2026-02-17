@@ -30,6 +30,8 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSFaceIDUsageDescription</key>
+	<string>InnerCycles uses Face ID to protect your private journal. Your biometric data never leaves your device.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>InnerCycles uses the microphone so you can journal by voice. Your audio is processed on-device and never stored or shared.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>

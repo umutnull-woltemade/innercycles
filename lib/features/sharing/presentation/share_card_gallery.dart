@@ -17,7 +17,10 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/share_card_models.dart';
 import '../../../data/content/share_card_templates.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/first_taste_service.dart';
 import '../../../data/services/instagram_share_service.dart';
+import '../../../data/services/premium_service.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 import 'widgets/share_card_renderer.dart';
 
 // ============================================================================
@@ -57,6 +60,20 @@ class _ShareCardGalleryScreenState
   // =========================================================================
 
   Future<void> _onShare(bool isEn, AppLanguage language) async {
+    // Check premium / first-taste before sharing
+    final isPremium = ref.read(premiumProvider).isPremium;
+    if (!isPremium) {
+      final firstTaste = ref.read(firstTasteServiceProvider).whenOrNull(data: (s) => s);
+      final allowFree = firstTaste?.shouldAllowFree(FirstTasteFeature.shareCards) ?? false;
+      if (!allowFree) {
+        // Free uses exhausted — show paywall
+        await showContextualPaywall(context, ref, paywallContext: PaywallContext.general);
+        return;
+      }
+      // Record the use
+      firstTaste?.recordUse(FirstTasteFeature.shareCards);
+    }
+
     final boundary = _repaintKey.currentContext?.findRenderObject()
         as RenderRepaintBoundary?;
     if (boundary == null) return;

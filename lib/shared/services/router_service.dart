@@ -69,7 +69,12 @@ import '../../features/habits/presentation/daily_habits_screen.dart';
 import '../../features/year_review/presentation/year_review_screen.dart';
 import '../../features/calendar/presentation/calendar_heatmap_screen.dart';
 import '../../features/search/presentation/search_screen.dart';
+import '../../features/mood/presentation/mood_trends_screen.dart';
+import '../../features/gratitude/presentation/gratitude_archive_screen.dart';
+import '../../features/sleep/presentation/sleep_trends_screen.dart';
+import '../../features/app_lock/presentation/app_lock_screen.dart';
 import '../../data/services/admin_auth_service.dart';
+import '../../data/services/app_lock_service.dart';
 import '../../data/services/storage_service.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -79,11 +84,12 @@ final routerProvider = Provider<GoRouter>((ref) {
     redirect: (context, state) {
       final path = state.uri.path;
 
-      // Allow splash, disclaimer, onboarding, and quiz without guard
+      // Allow splash, disclaimer, onboarding, quiz, and lock without guard
       if (path == Routes.splash ||
           path == Routes.disclaimer ||
           path == Routes.onboarding ||
-          path == Routes.archetypeQuiz) {
+          path == Routes.archetypeQuiz ||
+          path == Routes.appLock) {
         return null;
       }
 
@@ -419,6 +425,22 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       // ════════════════════════════════════════════════════════════════
+      // TRENDS & HISTORY
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.moodTrends,
+        builder: (context, state) => const MoodTrendsScreen(),
+      ),
+      GoRoute(
+        path: Routes.gratitudeArchive,
+        builder: (context, state) => const GratitudeArchiveScreen(),
+      ),
+      GoRoute(
+        path: Routes.sleepTrends,
+        builder: (context, state) => const SleepTrendsScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
       // REFERENCE & CONTENT
       // ════════════════════════════════════════════════════════════════
       GoRoute(
@@ -442,6 +464,14 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/celebrities', redirect: (_, _) => Routes.insight),
       GoRoute(path: '/daily-rituals', redirect: (_, _) => Routes.rituals),
       GoRoute(path: '/kesif/ruhsal-donusum', redirect: (_, _) => Routes.insight),
+
+      // ════════════════════════════════════════════════════════════════
+      // APP LOCK
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.appLock,
+        builder: (context, state) => const AppLockScreen(),
+      ),
 
       // ════════════════════════════════════════════════════════════════
       // PROFILE & SETTINGS
@@ -518,9 +548,20 @@ class _SplashScreenState extends State<_SplashScreen> {
 
   Future<void> _navigateToHome() async {
     await Future.delayed(const Duration(milliseconds: 1500));
-    if (mounted) {
-      context.go(Routes.home);
+    if (!mounted) return;
+
+    // Check if app lock is enabled
+    try {
+      final lockService = await AppLockService.init();
+      if (lockService.isEnabled && lockService.hasPin) {
+        if (mounted) context.go(Routes.appLock);
+        return;
+      }
+    } catch (_) {
+      // Proceed to home if lock check fails
     }
+
+    if (mounted) context.go(Routes.home);
   }
 
   @override

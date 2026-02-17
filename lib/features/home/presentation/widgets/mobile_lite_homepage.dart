@@ -7,6 +7,7 @@ import '../../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/l10n_service.dart';
+import '../../../../data/services/ad_service.dart';
 import '../../../../data/services/premium_service.dart';
 import '../../../../data/services/upgrade_trigger_service.dart';
 import '../../../streak/presentation/streak_card.dart';
@@ -1002,6 +1003,45 @@ class _BelowTheFold extends ConsumerWidget {
           ),
 
           _EntryPointTile(
+            icon: Icons.mood_outlined,
+            title: language == AppLanguage.en
+                ? 'Mood Trends'
+                : 'Ruh Hali Trendleri',
+            subtitle: language == AppLanguage.en
+                ? 'Track your mood patterns over time'
+                : 'Ruh hali kalıplarını zaman içinde takip et',
+            route: Routes.moodTrends,
+            isDark: isDark,
+            index: 2,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.favorite_border,
+            title: language == AppLanguage.en
+                ? 'Gratitude Archive'
+                : 'Şükran Arşivi',
+            subtitle: language == AppLanguage.en
+                ? 'Browse your gratitude journal history'
+                : 'Şükran günlüğü geçmişini gözat',
+            route: Routes.gratitudeArchive,
+            isDark: isDark,
+            index: 3,
+          ),
+
+          _EntryPointTile(
+            icon: Icons.nightlight_outlined,
+            title: language == AppLanguage.en
+                ? 'Sleep Trends'
+                : 'Uyku Trendleri',
+            subtitle: language == AppLanguage.en
+                ? 'Visualize your sleep quality over time'
+                : 'Uyku kalitenizi zaman içinde görselleştir',
+            route: Routes.sleepTrends,
+            isDark: isDark,
+            index: 4,
+          ),
+
+          _EntryPointTile(
             icon: Icons.archive_outlined,
             title: language == AppLanguage.en
                 ? 'Journal Archive'
@@ -1011,7 +1051,7 @@ class _BelowTheFold extends ConsumerWidget {
                 : 'Tüm döngü kayıtlarını ara ve gözat',
             route: Routes.journalArchive,
             isDark: isDark,
-            index: 2,
+            index: 5,
           ),
 
           _EntryPointTile(
@@ -1281,6 +1321,7 @@ class _UpgradeTriggerBanner extends ConsumerWidget {
       data: (upgradeService) {
         final entryCount = journalAsync.valueOrNull?.entryCount ?? 0;
         final streak = streakAsync.valueOrNull?.currentStreak ?? 0;
+        final adService = ref.watch(adServiceProvider);
 
         final trigger = upgradeService.checkTriggers(
           entryCount: entryCount,
@@ -1289,7 +1330,7 @@ class _UpgradeTriggerBanner extends ConsumerWidget {
           shareCount: 0,
           profileCount: 1,
           hasCompletedQuiz: false,
-          adExposures: 0,
+          adExposures: adService.sessionAdExposures,
         );
 
         if (trigger == null) return const SizedBox.shrink();

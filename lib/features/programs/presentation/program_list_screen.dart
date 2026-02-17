@@ -14,6 +14,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/first_taste_service.dart';
 import '../../../data/services/guided_program_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -123,25 +124,50 @@ class ProgramListScreen extends ConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: 12),
-                        ...programs.map((p) => _ProgramCard(
+                        ...programs.map((p) {
+                          final firstTaste = ref.watch(firstTasteServiceProvider)
+                              .whenOrNull(data: (s) => s);
+                          final allowFirstTaste = firstTaste?.shouldAllowFree(
+                                  FirstTasteFeature.guidedProgram) ??
+                              false;
+
+                          return _ProgramCard(
                               program: p,
                               progress: service.getProgress(p.id),
                               isCompleted: service.isProgramCompleted(p.id),
                               isPremium: isPremium,
+                              isFirstTasteFree: allowFirstTaste && !isPremium,
                               isDark: isDark,
                               isEn: isEn,
                               onTap: () {
                                 if (p.isPremium && !isPremium) {
-                                  showContextualPaywall(context, ref, paywallContext: PaywallContext.programs);
+                                  if (allowFirstTaste) {
+                                    // Allow first premium program free
+                                    firstTaste?.recordUse(
+                                        FirstTasteFeature.guidedProgram);
+                                    if (service.getProgress(p.id) != null) {
+                                      context.push(
+                                          '${Routes.programs}/${p.id}');
+                                    } else {
+                                      _startProgram(
+                                          context, ref, service, p, isEn);
+                                    }
+                                    return;
+                                  }
+                                  showContextualPaywall(context, ref,
+                                      paywallContext:
+                                          PaywallContext.programs);
                                   return;
                                 }
                                 if (service.getProgress(p.id) != null) {
                                   context.push('${Routes.programs}/${p.id}');
                                 } else {
-                                  _startProgram(context, ref, service, p, isEn);
+                                  _startProgram(
+                                      context, ref, service, p, isEn);
                                 }
                               },
-                            )),
+                            );
+                        }),
                         const SizedBox(height: 40),
                       ]),
                     );
@@ -181,6 +207,7 @@ class _ProgramCard extends StatelessWidget {
   final ProgramProgress? progress;
   final bool isCompleted;
   final bool isPremium;
+  final bool isFirstTasteFree;
   final bool isDark;
   final bool isEn;
   final VoidCallback onTap;
@@ -190,6 +217,7 @@ class _ProgramCard extends StatelessWidget {
     this.progress,
     required this.isCompleted,
     required this.isPremium,
+    this.isFirstTasteFree = false,
     required this.isDark,
     required this.isEn,
     required this.onTap,
@@ -197,7 +225,7 @@ class _ProgramCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLocked = program.isPremium && !isPremium;
+    final isLocked = program.isPremium && !isPremium && !isFirstTasteFree;
     final hasProgress = progress != null && !progress!.isCompleted;
     final completionPercent = hasProgress
         ? (progress!.completedDays.length / program.durationDays * 100).round()
@@ -290,6 +318,25 @@ class _ProgramCard extends StatelessWidget {
                                 fontSize: 10,
                                 fontWeight: FontWeight.w700,
                                 color: AppColors.starGold,
+                              ),
+                            ),
+                          ),
+                        if (isFirstTasteFree && program.isPremium && !isPremium)
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.success.withValues(alpha: 0.15),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              isEn ? 'FREE' : 'ÜCRETSİZ',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.success,
                               ),
                             ),
                           ),

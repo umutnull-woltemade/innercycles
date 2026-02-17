@@ -114,6 +114,13 @@ class Routes {
   static const String search = '/search';
 
   // ════════════════════════════════════════════════════════════════
+  // TRENDS & HISTORY
+  // ════════════════════════════════════════════════════════════════
+  static const String moodTrends = '/mood/trends';
+  static const String gratitudeArchive = '/gratitude/archive';
+  static const String sleepTrends = '/sleep/trends';
+
+  // ════════════════════════════════════════════════════════════════
   // TIER 2 FEATURES
   // ════════════════════════════════════════════════════════════════
   static const String weeklyDigest = '/weekly-digest';
@@ -126,6 +133,11 @@ class Routes {
   static const String dailyHabits = '/habits/daily';
   static const String archetypeQuiz = '/onboarding/quiz';
   static const String yearReview = '/year-review';
+
+  // ════════════════════════════════════════════════════════════════
+  // APP LOCK
+  // ════════════════════════════════════════════════════════════════
+  static const String appLock = '/app-lock';
 
   // ════════════════════════════════════════════════════════════════
   // PROFILE & SETTINGS

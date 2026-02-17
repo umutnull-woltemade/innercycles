@@ -13,6 +13,7 @@ import '../../../data/services/storage_service.dart';
 import '../../../data/services/url_launcher_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../data/services/paywall_service.dart';
+import '../../../data/services/app_lock_service.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -387,6 +388,17 @@ class SettingsScreen extends ConsumerWidget {
                       isDark: isDark,
                     ),
                     const NotificationSettingsSection(),
+                    const SizedBox(height: 35),
+
+                    // ═══ PRIVACY & SECURITY SECTION ═══
+                    _SectionHeader(
+                      title: (language == AppLanguage.en
+                              ? 'Privacy & Security'
+                              : 'Gizlilik ve Güvenlik')
+                          .toUpperCase(),
+                      isDark: isDark,
+                    ),
+                    _AppLockSection(isDark: isDark, language: language),
                     const SizedBox(height: 35),
 
                     // ═══ ABOUT SECTION ═══
@@ -1000,6 +1012,238 @@ class _ReferralCard extends ConsumerWidget {
           ),
         );
       },
+    );
+  }
+}
+
+/// App Lock toggle section
+class _AppLockSection extends ConsumerStatefulWidget {
+  final bool isDark;
+  final AppLanguage language;
+
+  const _AppLockSection({required this.isDark, required this.language});
+
+  @override
+  ConsumerState<_AppLockSection> createState() => _AppLockSectionState();
+}
+
+class _AppLockSectionState extends ConsumerState<_AppLockSection> {
+  @override
+  Widget build(BuildContext context) {
+    final lockAsync = ref.watch(appLockServiceProvider);
+    final isEn = widget.language == AppLanguage.en;
+
+    return lockAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (service) {
+        final isEnabled = service.isEnabled;
+
+        return _GroupedContainer(
+          isDark: widget.isDark,
+          noPadding: true,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.lock_outline,
+                      color: widget.isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                      size: 22,
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            isEn ? 'App Lock' : 'Uygulama Kilidi',
+                            style: TextStyle(
+                              fontSize: 17,
+                              color: widget.isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
+                            ),
+                          ),
+                          Text(
+                            isEn
+                                ? 'Require PIN or biometrics to open'
+                                : 'Açmak için PIN veya biyometrik gerekli',
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: widget.isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    CupertinoSwitch(
+                      value: isEnabled,
+                      activeTrackColor: AppColors.auroraStart,
+                      onChanged: (value) async {
+                        if (value) {
+                          _showPinSetup(service);
+                        } else {
+                          await service.setEnabled(false);
+                          await service.removePin();
+                          ref.invalidate(appLockServiceProvider);
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              if (isEnabled) ...[
+                _GroupedSeparator(isDark: widget.isDark),
+                GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => _showPinSetup(service),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.pin_outlined,
+                          color: widget.isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                          size: 22,
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Text(
+                            isEn ? 'Change PIN' : 'PIN Değiştir',
+                            style: TextStyle(
+                              fontSize: 17,
+                              color: widget.isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.chevron_right,
+                          size: 20,
+                          color: widget.isDark
+                              ? AppColors.textMuted.withValues(alpha: 0.5)
+                              : AppColors.lightTextMuted.withValues(alpha: 0.5),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _showPinSetup(AppLockService service) {
+    final isEn = widget.language == AppLanguage.en;
+    final controller = TextEditingController();
+    final confirmController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: widget.isDark ? AppColors.surfaceDark : AppColors.lightSurface,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        title: Text(
+          isEn ? 'Set 4-Digit PIN' : '4 Haneli PIN Belirle',
+          style: TextStyle(
+            color: widget.isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+          ),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: controller,
+              keyboardType: TextInputType.number,
+              maxLength: 4,
+              obscureText: true,
+              style: TextStyle(
+                color: widget.isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              ),
+              decoration: InputDecoration(
+                labelText: isEn ? 'PIN' : 'PIN',
+                labelStyle: TextStyle(
+                  color: widget.isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                ),
+              ),
+            ),
+            TextField(
+              controller: confirmController,
+              keyboardType: TextInputType.number,
+              maxLength: 4,
+              obscureText: true,
+              style: TextStyle(
+                color: widget.isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              ),
+              decoration: InputDecoration(
+                labelText: isEn ? 'Confirm PIN' : 'PIN Onayla',
+                labelStyle: TextStyle(
+                  color: widget.isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                ),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: Text(
+              isEn ? 'Cancel' : 'İptal',
+              style: TextStyle(
+                color: widget.isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () async {
+              final pin = controller.text;
+              final confirm = confirmController.text;
+
+              if (pin.length != 4) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(isEn ? 'PIN must be 4 digits' : 'PIN 4 haneli olmalı'),
+                    behavior: SnackBarBehavior.floating,
+                  ),
+                );
+                return;
+              }
+
+              if (pin != confirm) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(isEn ? 'PINs do not match' : 'PIN\'ler eşleşmiyor'),
+                    behavior: SnackBarBehavior.floating,
+                  ),
+                );
+                return;
+              }
+
+              await service.setPin(pin);
+              await service.setEnabled(true);
+              ref.invalidate(appLockServiceProvider);
+              if (ctx.mounted) Navigator.pop(ctx);
+            },
+            child: Text(
+              isEn ? 'Save' : 'Kaydet',
+              style: TextStyle(color: AppColors.starGold),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

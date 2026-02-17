@@ -49,6 +49,7 @@ import '../services/referral_service.dart';
 import '../services/context_module_service.dart';
 import '../services/habit_suggestion_service.dart';
 import '../services/monthly_theme_service.dart';
+import '../services/app_lock_service.dart';
 import '../models/journal_entry.dart';
 import '../models/cross_correlation_result.dart';
 
@@ -506,6 +507,15 @@ final weeklyDigestServiceProvider =
 final moodCheckinServiceProvider =
     FutureProvider<MoodCheckinService>((ref) async {
   return await MoodCheckinService.init();
+});
+
+// =============================================================================
+// APP LOCK PROVIDER
+// =============================================================================
+
+final appLockServiceProvider =
+    FutureProvider<AppLockService>((ref) async {
+  return await AppLockService.init();
 });
 
 // =============================================================================

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -7,9 +9,12 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/content/monthly_themes_content.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/first_taste_service.dart';
 import '../../../data/services/pattern_engine_service.dart';
+import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class MonthlyReflectionScreen extends ConsumerStatefulWidget {
   const MonthlyReflectionScreen({super.key});
@@ -23,6 +28,7 @@ class _MonthlyReflectionScreenState
     extends ConsumerState<MonthlyReflectionScreen> {
   late int _selectedYear;
   late int _selectedMonth;
+  bool _firstTasteRecorded = false;
 
   @override
   void initState() {
@@ -38,6 +44,21 @@ class _MonthlyReflectionScreenState
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(journalServiceProvider);
+    final isPremium = ref.watch(premiumProvider).isPremium;
+    final firstTasteAsync = ref.watch(firstTasteServiceProvider);
+
+    // Determine if deep content (theme + breakdown) should be visible
+    final firstTasteService = firstTasteAsync.whenOrNull(data: (s) => s);
+    final allowFree = firstTasteService?.shouldAllowFree(
+            FirstTasteFeature.monthlyReport) ??
+        false;
+    final showDeepContent = isPremium || allowFree;
+
+    // Record first taste on first view of deep content
+    if (showDeepContent && !isPremium && !_firstTasteRecorded && firstTasteService != null) {
+      _firstTasteRecorded = true;
+      firstTasteService.recordUse(FirstTasteFeature.monthlyReport);
+    }
 
     return Scaffold(
       body: CosmicBackground(
@@ -67,33 +88,57 @@ class _MonthlyReflectionScreenState
                           _buildMonthSelector(context, isDark, isEn),
                           const SizedBox(height: AppConstants.spacingXl),
 
-                          // Summary card
+                          // Summary card — always visible
                           _buildSummaryCard(context, summary, isDark, isEn)
                               .animate()
                               .fadeIn(duration: 400.ms),
                           const SizedBox(height: AppConstants.spacingLg),
 
-                          // Monthly theme
-                          _buildMonthlyThemeCard(
-                            context,
-                            _selectedMonth,
-                            isDark,
-                            isEn,
-                          )
-                              .animate()
-                              .fadeIn(delay: 50.ms, duration: 400.ms),
-                          const SizedBox(height: AppConstants.spacingLg),
-
-                          // Area breakdown
-                          if (summary.averagesByArea.isNotEmpty)
-                            _buildAreaBreakdown(
+                          // Monthly theme — gated
+                          if (showDeepContent)
+                            _buildMonthlyThemeCard(
                               context,
-                              summary,
+                              _selectedMonth,
                               isDark,
                               isEn,
                             )
                                 .animate()
-                                .fadeIn(delay: 100.ms, duration: 400.ms),
+                                .fadeIn(delay: 50.ms, duration: 400.ms)
+                          else
+                            _buildPremiumBlurOverlay(
+                              child: _buildMonthlyThemeCard(
+                                context,
+                                _selectedMonth,
+                                isDark,
+                                isEn,
+                              ),
+                              isDark: isDark,
+                              isEn: isEn,
+                            ).animate().fadeIn(delay: 50.ms, duration: 400.ms),
+                          const SizedBox(height: AppConstants.spacingLg),
+
+                          // Area breakdown — gated
+                          if (summary.averagesByArea.isNotEmpty)
+                            if (showDeepContent)
+                              _buildAreaBreakdown(
+                                context,
+                                summary,
+                                isDark,
+                                isEn,
+                              )
+                                  .animate()
+                                  .fadeIn(delay: 100.ms, duration: 400.ms)
+                            else
+                              _buildPremiumBlurOverlay(
+                                child: _buildAreaBreakdown(
+                                  context,
+                                  summary,
+                                  isDark,
+                                  isEn,
+                                ),
+                                isDark: isDark,
+                                isEn: isEn,
+                              ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
                           const SizedBox(height: 40),
                         ]),
                       ),
@@ -104,6 +149,86 @@ class _MonthlyReflectionScreenState
             },
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildPremiumBlurOverlay({
+    required Widget child,
+    required bool isDark,
+    required bool isEn,
+  }) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+      child: Stack(
+        children: [
+          ImageFiltered(
+            imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+            child: child,
+          ),
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    (isDark ? Colors.black : Colors.white).withValues(alpha: 0.7),
+                  ],
+                ),
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.lock_outline,
+                      color: AppColors.starGold,
+                      size: 28,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      isEn
+                          ? 'Unlock your full monthly report'
+                          : 'Aylık raporunun tamamını aç',
+                      style: TextStyle(
+                        color: isDark ? Colors.white : Colors.black87,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    ElevatedButton(
+                      onPressed: () => showContextualPaywall(
+                        context,
+                        ref,
+                        paywallContext: PaywallContext.monthlyReport,
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.starGold,
+                        foregroundColor: Colors.black,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 10,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(AppConstants.radiusMd),
+                        ),
+                      ),
+                      child: Text(
+                        isEn ? 'See Full Report' : 'Raporun Tamamını Gör',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

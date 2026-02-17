@@ -9,6 +9,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/personality_archetype.dart' as archetype;
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
+import '../../../data/services/first_taste_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
@@ -548,15 +549,26 @@ class _DreamInterpretationScreenState
     final fullInterpretation = result.fullText;
     final perspectiveCount = result.perspectiveCount;
 
+    // Check first-taste: first full interpretation is free
+    final firstTaste = ref.read(firstTasteServiceProvider).whenOrNull(data: (s) => s);
+    final allowFirstTaste = firstTaste?.shouldAllowFree(
+            FirstTasteFeature.fullDreamInterpretation) ??
+        false;
+
     // For free users with multiple perspectives, show only the first perspective
+    // UNLESS they have a free first-taste available
     final int lockedCount;
     final String displayText;
-    if (!isPremium && perspectiveCount > 1) {
+    if (!isPremium && perspectiveCount > 1 && !allowFirstTaste) {
       displayText = result.firstPerspective;
       lockedCount = perspectiveCount - 1;
     } else {
       displayText = fullInterpretation;
       lockedCount = 0;
+      // Record first-taste use if applicable
+      if (!isPremium && allowFirstTaste && perspectiveCount > 1) {
+        firstTaste?.recordUse(FirstTasteFeature.fullDreamInterpretation);
+      }
     }
 
     setState(() {
