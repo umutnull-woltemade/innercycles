@@ -514,7 +514,7 @@ const List<ContextModule> allContextModules = [
     summaryTr:
         'Ruh hali ve enerjideki mevsimsel örüntüler sadece mevsimsel duygulanım bozukluğu olanları değil, çoğu insanı bir dereceye kadar etkiler.',
     bodyEn:
-        'Research shows that serotonin production varies with daylight exposure, melatonin cycles shift with season length, and vitamin D levels fluctuate throughout the year — all affecting mood and energy. A full year of mood tracking often reveals patterns invisible to monthly views: winter introspection, spring restlessness, summer sociability, autumn creativity. These are not universal — they are personal. But they are remarkably consistent year to year once you identify your own.',
+        'Research shows that serotonin production varies with daylight exposure, melatonin cycles shift with season length, and vitamin D levels fluctuate throughout the year — all affecting mood and energy. A full year of emotional pattern tracking often reveals cycles invisible to monthly views: winter introspection, spring restlessness, summer sociability, autumn creativity. These are not universal — they are personal. But they are remarkably consistent year to year once you identify your own.',
     bodyTr:
         'Araştırmalar serotonin üretiminin gün ışığı maruziyetiyle değiştiğini, melatonin döngülerinin mevsim uzunluğuyla kaydığını ve D vitamini seviyelerinin yıl boyunca dalgalandığını göstermektedir — bunların hepsi ruh halini ve enerjiyi etkiler. Tam bir yıllık ruh hali takibi, aylık görünümlere görünmez olan örüntüleri sıklıkla ortaya çıkarır.',
     whyItMattersEn:

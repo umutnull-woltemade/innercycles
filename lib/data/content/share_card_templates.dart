@@ -609,7 +609,7 @@ class ShareCardTemplates {
       case 'top_emotion':
         return AppColors.sunriseEnd;
       case 'sleep_pattern':
-        return AppColors.mysticBlue;
+        return AppColors.amethystBlue;
       case 'journal_milestone':
         return AppColors.celestialGold;
       case 'dream_explorer':

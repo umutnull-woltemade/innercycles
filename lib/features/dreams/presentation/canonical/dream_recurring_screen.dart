@@ -66,14 +66,14 @@ class DreamRecurringScreen extends ConsumerWidget {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.mystic.withValues(alpha: 0.15),
+                    color: AppColors.amethyst.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
                     L10nService.get('dreams.canonical.brand_tag', language),
                     style: TextStyle(
                       fontSize: 12,
-                      color: AppColors.mystic,
+                      color: AppColors.amethyst,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -87,7 +87,7 @@ class DreamRecurringScreen extends ConsumerWidget {
                     'dreams.canonical.sections.short_answer',
                     language,
                   ),
-                  color: AppColors.mystic,
+                  color: AppColors.amethyst,
                   bullets: [
                     L10nService.get(
                       'dreams.canonical.recurring.short_answer_1',
@@ -112,7 +112,7 @@ class DreamRecurringScreen extends ConsumerWidget {
                     'dreams.canonical.recurring.why_title',
                     language,
                   ),
-                  color: AppColors.mystic,
+                  color: AppColors.amethyst,
                   bullets: [
                     L10nService.get(
                       'dreams.canonical.recurring.why_1',
@@ -141,7 +141,7 @@ class DreamRecurringScreen extends ConsumerWidget {
                     'dreams.canonical.recurring.what_to_do_title',
                     language,
                   ),
-                  color: AppColors.mystic,
+                  color: AppColors.amethyst,
                   bullets: [
                     L10nService.get(
                       'dreams.canonical.recurring.what_to_do_1',
@@ -170,7 +170,7 @@ class DreamRecurringScreen extends ConsumerWidget {
                     'dreams.canonical.recurring.when_stops_title',
                     language,
                   ),
-                  color: AppColors.mystic,
+                  color: AppColors.amethyst,
                   bullets: [
                     L10nService.get(
                       'dreams.canonical.recurring.when_stops_1',
@@ -268,12 +268,12 @@ class DreamRecurringScreen extends ConsumerWidget {
         decoration: BoxDecoration(
           color: isDark
               ? Colors.white.withValues(alpha: 0.05)
-              : AppColors.mystic.withValues(alpha: 0.08),
+              : AppColors.amethyst.withValues(alpha: 0.08),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isDark
                 ? Colors.white.withValues(alpha: 0.15)
-                : AppColors.mystic.withValues(alpha: 0.2),
+                : AppColors.amethyst.withValues(alpha: 0.2),
           ),
         ),
         child: Row(

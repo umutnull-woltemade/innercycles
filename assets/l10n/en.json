@@ -235,7 +235,7 @@
         "todays_cosmic_whisper": "Today's Reflection Prompt",
         "special_readings": "Personalized Features",
         "personalized_readings": "Personalized features based on your journal entries",
-        "moon_in_sign_formatted": "Moon in {sign}",
+        "moon_in_sign_formatted": "Moon in Current Phase",
         "currently_in_sky": "Current Phase",
         "illumination": "Illumination",
         "light_mode": "Light",
@@ -448,7 +448,7 @@
         "solar_return": {
             "title": "Birthday Reflection",
             "subtitle": "Birthday Overview",
-            "sun_returns": "Birthday cycle for {sign}",
+            "sun_returns": "Birthday Reflection Cycle",
             "return_date": "Return Date",
             "sun_house": "Core Focus",
             "house_number": "{number}. Area",
@@ -928,9 +928,9 @@
                 "love_meaning": "Connection, desire, acceptance"
             },
             "interpretations": {
-                "sign_perspective": "Through the lens of your {sign} archetype:",
+                "sign_perspective": "Through the lens of your {archetype} archetype:",
                 "water": {
-                    "title": "🌊 WATER DREAM - {sign} INTERPRETATION",
+                    "title": "🌊 WATER DREAM - {archetype} INTERPRETATION",
                     "divider": "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
                     "basic_meaning_label": "💧 BASIC MEANING",
                     "element_perspective_label": "🔥 {element} ELEMENT PERSPECTIVE",
@@ -967,16 +967,16 @@
                         "practice": "• Artistic creation - painting, music, writing\n• Meditation by sea or lake\n• Lucid dream practices\n• Inner reflection work\n• Be open to inner guidance"
                     },
                     "default": {
-                        "basic_meaning": "Water carries emotional messages for your {element} sign. The subconscious wants to flow.",
+                        "basic_meaning": "Water carries emotional messages for your {element} archetype. The subconscious wants to flow.",
                         "element_perspective": "Water's fluid energy is communicating with you. A call to dive into emotional depths.",
                         "practice": "• Spend time by water\n• Express your emotions\n• Trust the flow, let go of forcing\n• Listen to your intuition"
                     }
                 },
                 "flying": {
-                    "title": "✈️ FLYING DREAM - {sign} INTERPRETATION",
+                    "title": "✈️ FLYING DREAM - {archetype} INTERPRETATION",
                     "basic_meaning_label": "🦅 BASIC MEANING",
                     "basic_meaning": "Flying represents the desire for freedom and transcending limits. Personal ascension and consciousness expansion.",
-                    "special_interpretation_label": "{sign} SPECIAL INTERPRETATION",
+                    "special_interpretation_label": "{archetype} SPECIAL INTERPRETATION",
                     "special_interpretation": "This dream shows you the potential to conquer new heights in your life. Time to break free from limiting beliefs has come.",
                     "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
                     "psychological": "• Flight altitude: Indicates your level of consciousness\n• Flight speed: Symbolizes the speed of change\n• Difficulty: Reflects the obstacles you face\n• Ease: Shows your inner freedom level",
@@ -988,7 +988,7 @@
                     "cosmic_message": "Your entries suggest you have untapped potential — explore it. As a {element} element, {element_message}."
                 },
                 "falling": {
-                    "title": "⬇️ FALLING DREAM - {sign} INTERPRETATION",
+                    "title": "⬇️ FALLING DREAM - {archetype} INTERPRETATION",
                     "basic_meaning_label": "🌪️ BASIC MEANING",
                     "basic_meaning": "Falling reflects the fear of losing control or insecurity in an area of your life.",
                     "special_interpretation": "Focus on grounding work. This dream is giving you the message 'your feet need to touch the ground.'",
@@ -1002,7 +1002,7 @@
                     "cosmic_message": "Falling is actually letting go. Let go of the illusion of control, trust the process. As a {element} element, grounding practice is especially important."
                 },
                 "death": {
-                    "title": "💀 DEATH DREAM - {sign} INTERPRETATION",
+                    "title": "💀 DEATH DREAM - {archetype} INTERPRETATION",
                     "not_scary_label": "🦋 BASIC MEANING - NOTHING TO FEAR!",
                     "not_scary": "Death in dreams symbolizes transformation and new beginnings. This is not an end, it is transformation!",
                     "special_interpretation": "This dream means old patterns are dying and a new self is being born. Think about what you need to let go of in your life.",
@@ -1013,10 +1013,10 @@
                     "practice_label": "✨ PRACTICAL APPLICATION",
                     "practice": "• Make a list of what needs to let go\n• Review old photos\n• Clean out your wardrobe\n• Identify habits that need to 'die'",
                     "cosmic_message_label": "💫 REFLECTIVE INSIGHT",
-                    "cosmic_message": "You're being reborn from your ashes like a phoenix. {sign} energy empowers this transformation. A new you is being born!"
+                    "cosmic_message": "You're being reborn from your ashes like a phoenix. {archetype} energy empowers this transformation. A new you is being born!"
                 },
                 "chase": {
-                    "title": "🏃 CHASE DREAM - {sign} INTERPRETATION",
+                    "title": "🏃 CHASE DREAM - {archetype} INTERPRETATION",
                     "basic_meaning_label": "😰 BASIC MEANING",
                     "basic_meaning": "Being chased is a call to face something you're running from in life. The more you run, the bigger the chaser grows!",
                     "special_interpretation": "With your {element} energy, bravely turn around and ask what's chasing you. Usually what we run from are the lessons we need most.",
@@ -1030,7 +1030,7 @@
                     "cosmic_message": "The chaser is actually you - a suppressed aspect of yourself. Embrace and integrate it. Your enemy can become your friend."
                 },
                 "animal": {
-                    "title": "🐾 ANIMAL DREAM - {sign} INTERPRETATION",
+                    "title": "🐾 ANIMAL DREAM - {archetype} INTERPRETATION",
                     "basic_meaning_label": "🦁 BASIC MEANING",
                     "basic_meaning": "Animals represent our instinctual nature and suppressed energies. Each animal carries a totem message.",
                     "special_interpretation": "This dream is a call to reconnect with your natural instincts. Research the totem energy of whichever animal you saw.",
@@ -1044,7 +1044,7 @@
                     "cosmic_message": "Your animal guide is communicating with you. As a {element} element, this connection is especially strong."
                 },
                 "house": {
-                    "title": "🏠 HOUSE/BUILDING DREAM - {sign} INTERPRETATION",
+                    "title": "🏠 HOUSE/BUILDING DREAM - {archetype} INTERPRETATION",
                     "basic_meaning_label": "🏛️ BASIC MEANING",
                     "basic_meaning": "Houses and buildings symbolize your inner structure and inner world. Each room represents different aspects of your self.",
                     "special_interpretation": "Think about which 'room' you're avoiding entering. As a {element} element, the structure of your inner world is important.",
@@ -1058,7 +1058,7 @@
                     "cosmic_message": "The house is you. Each room is an aspect of you. Explore and own them all."
                 },
                 "love": {
-                    "title": "💕 LOVE DREAM - {sign} INTERPRETATION",
+                    "title": "💕 LOVE DREAM - {archetype} INTERPRETATION",
                     "basic_meaning_label": "❤️ BASIC MEANING",
                     "basic_meaning": "Love-themed dreams reflect relationship dynamics and emotional needs.",
                     "special_interpretation": "This dream may be a harbinger of a new period in your love life. Ask 'How is my relationship with myself?'",
@@ -1074,7 +1074,7 @@
                     "cosmic_message": "Love yourself first. {element} element in love life {element_message}."
                 },
                 "money": {
-                    "title": "💰 MONEY/WEALTH DREAM - {sign} INTERPRETATION",
+                    "title": "💰 MONEY/WEALTH DREAM - {archetype} INTERPRETATION",
                     "basic_meaning_label": "🏆 BASIC MEANING",
                     "basic_meaning": "Money and wealth dreams represent self-worth and abundance consciousness. They carry a message of inner, not material, wealth.",
                     "special_interpretation": "This dream invites you to question your relationship with the material world. True wealth is inner peace and gratitude.",
@@ -1090,7 +1090,7 @@
                     "cosmic_message": "Your reflections point toward abundance - be a receiver. {element} element in financial matters {element_message}."
                 },
                 "generic": {
-                    "title": "{sign} DREAM INTERPRETATION",
+                    "title": "{archetype} DREAM INTERPRETATION",
                     "subconscious_label": "🔮 SUBCONSCIOUS MESSAGE",
                     "subconscious": "The dream you described shows that your subconscious is sending you important messages.",
                     "element_perspective_label": "💫 {element} ELEMENT PERSPECTIVE",
@@ -1101,7 +1101,7 @@
                     "symbol_reading": "Note the main symbols in your dream:\n• People: Represent your aspects\n• Places: Map of your inner world\n• Objects: Tools and resources\n• Actions: Your approach to life",
                     "practice_label": "✨ PRACTICAL APPLICATION",
                     "practice": "• Keep a dream journal\n• Set intention before sleeping\n• Research symbols\n• Connect through meditation",
-                    "advice_label": "💫 {sign} ADVICE"
+                    "advice_label": "💫 {archetype} ADVICE"
                 },
                 "element_messages": {
                     "fire_flying": "time to rise with courage",
@@ -1697,7 +1697,7 @@
                 "description": "Today's energy flow."
             },
             "numerical_vibrations": {
-                "description": "Numerical vibrations."
+                "description": "Numerical patterns."
             },
             "life_dimension_energies": {
                 "description": "Life Dimension energies."
@@ -1753,8 +1753,8 @@
                 "description": "How does your archetype reflect in dreams?"
             },
             "twelfth_house_dreams": {
-                "title": "12th House and Dreams",
-                "description": "The dream house in your personal profile."
+                "title": "Dream Dimensions",
+                "description": "The dream layer in your personal profile."
             },
             "your_cosmic_message": {
                 "title": "Your Reflective Message",
@@ -1900,11 +1900,11 @@
             "which_dreams_this_sign_sees": "What dreams do people of this archetype see most?",
             "special_message_for_today": "Special Message for Today",
             "cosmic_guidance": "Get personal guidance.",
-            "beyond_your_sun_sign": "What's beyond your {sign} core archetype?",
+            "beyond_your_sun_sign": "What's beyond your core archetype?",
             "where_is_your_ruler": "Where is your guiding trait now?",
-            "reading_aligned_with_energy": "A reflection aligned with {sign} energy.",
-            "compatibility_with": "Compatibility with {sign}",
-            "weekly_reading": "Weekly {sign} Reflection"
+            "reading_aligned_with_energy": "A reflection aligned with your energy.",
+            "compatibility_with": "Compatibility Profile",
+            "weekly_reading": "Weekly Archetype Reflection"
         }
     },
     "sections": {
@@ -2040,7 +2040,7 @@
             "important_note": "Important Note",
             "life_path": {
                 "title": "What is life path number?",
-                "answer1": "Life path number is the fundamental numerological number calculated from your birth date.",
+                "answer1": "Life path number is the foundational number pattern calculated from your birth date.",
                 "answer2": "It reflects the path you tend to walk in this life.",
                 "answer3": "It ranges from 1 to 9 (and master numbers 11, 22, 33).",
                 "how_calculated": "How Is It Calculated?",

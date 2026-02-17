@@ -104,11 +104,11 @@
         "feature_symbols": "Symbol-Erkundungsbibliothek"
     },
     "disclaimer": {
-        "before_using": "Before Using",
-        "text_1": "The information provided in this app is for entertainment and informational purposes only.",
-        "text_2": "It should not be considered as professional advice for health, financial, legal, or psychological matters.",
-        "text_3": "Please consult qualified professionals for important life decisions.",
-        "reflection_only": "This content is for reflection and self-awareness only."
+        "before_using": "Vor der Nutzung",
+        "text_1": "Die in dieser App bereitgestellten Informationen dienen ausschließlich der Selbstreflexion und persönlichen Erkundung.",
+        "text_2": "Sie sollten nicht als professionelle Beratung für gesundheitliche, finanzielle, rechtliche oder psychologische Angelegenheiten betrachtet werden.",
+        "text_3": "Bitte konsultiere qualifizierte Fachleute für wichtige Lebensentscheidungen.",
+        "reflection_only": "Dieser Inhalt dient nur der Reflexion und Selbstwahrnehmung."
     },
     "router": {
         "not_found_title": "Seite nicht gefunden",
@@ -137,8 +137,8 @@
         "turkey_kktc": "Türkei & TRNZ",
         "whole_world": "Ganze Welt",
         "popular_cities": "Beliebte Städte",
-        "required_for_rising": "Erforderlich für den Aszendenten",
-        "required_for_moon": "Erforderlich für das Mondzeichen",
+        "required_for_rising": "Erforderlich für den Primären Archetyp",
+        "required_for_moon": "Erforderlich für den Mond-Archetyp",
         "please_enter_name": "Bitte gib einen Namen ein",
         "profile_name_hint": "Profilname eingeben",
         "date": "Datum",
@@ -235,7 +235,7 @@
         "todays_cosmic_whisper": "Persönliches Flüstern des Tages",
         "special_readings": "Unsere Speziellen Deutungen",
         "personalized_readings": "Personalisierte Analysen basierend auf deinen Geburtsdaten",
-        "moon_in_sign_formatted": "Mond in {sign}",
+        "moon_in_sign_formatted": "Mond in {archetype}",
         "currently_in_sky": "Aktuell am Himmel",
         "illumination": "Beleuchtung",
         "light_mode": "Hell",
@@ -418,7 +418,7 @@
             "life_path_number": "Life Path Number",
             "birthday_number": "Birthday",
             "personal_year": "Personal Year",
-            "name_numerology": "Name Numerology",
+            "name_numerology": "Namenszahlen-Analyse",
             "expression_number": "Ausdruckszahl",
             "expression_number_desc": "Berechnet aus Ihrem Namen, spiegelt diese Zahl potenzielle Themen und Eigenschaften in Ihrem Leben wider.",
             "soul_urge": "Inner Drive",
@@ -443,14 +443,14 @@
             "number_depth_title": "Depth of Number {number}",
             "kadim_title": "Eternal Dance of Numbers",
             "kadim_content": "Since Pythagoras, thinkers have explored how numbers reflect patterns in life. Your life path number is more than a digit - it represents your core tendencies and personal themes. To connect with these insights, you first need silence.",
-            "brand_text": "Numerology — InnerCycles"
+            "brand_text": "Number Patterns — InnerCycles"
         },
         "solar_return": {
             "title": "Birthday Reflection",
             "subtitle": "Birthday Chart",
-            "sun_returns": "Birthday returns to {sign}",
+            "sun_returns": "Birthday returns to {archetype}",
             "return_date": "Return Date",
-            "sun_house": "Sun House",
+            "sun_house": "Core Focus",
             "house_number": "{number}. House",
             "year_themes": "Year Themes",
             "monthly_highlights": "Monthly Highlights",
@@ -469,7 +469,7 @@
             "theme_home_family_title": "Home & Family",
             "theme_home_family_desc": "Return to roots and building a home",
             "theme_creativity_title": "Creativity",
-            "theme_creativity_desc": "Artistic expression and entertainment",
+            "theme_creativity_desc": "Künstlerischer Ausdruck und Kreativität",
             "theme_health_routine_title": "Health & Routine",
             "theme_health_routine_desc": "Improving daily life",
             "keyword_beginning": "Beginning",
@@ -592,7 +592,7 @@
             "soulmate_compatibility": "Beziehungs-Reflexionstools",
             "kabbalistic_secrets": "Symbolische Erkundungstools",
             "auric_reading": "Energie-Bewusstseinstagebuch",
-            "planet_transits": "Persönliche Transite",
+            "planet_transits": "Persönliche Zyklen",
             "priority_guidance": "Prioritäre persönliche Führung"
         },
         "tiers": {
@@ -604,17 +604,17 @@
             "monthly": {
                 "name": "Monatlich",
                 "savings": "",
-                "features": "['Alle Basisfunktionen', 'Reines persönliches Erlebnis (werbefrei)', 'Tiefe Persönlichkeitsinterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Persönliche Transite', 'Prioritäts-persönliche Führung']"
+                "features": "['Alle Basisfunktionen', 'Reines persönliches Erlebnis (werbefrei)', 'Tiefe Persönlichkeitsinterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Persönliche Zyklen', 'Prioritäts-persönliche Führung']"
             },
             "yearly": {
                 "name": "Jährlich",
                 "savings": "50% sparen",
-                "features": "['Alle Basisfunktionen', 'Reines persönliches Erlebnis (werbefrei)', 'Tiefe Persönlichkeitsinterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Persönliche Transite', 'Prioritäts-persönliche Führung']"
+                "features": "['Alle Basisfunktionen', 'Reines persönliches Erlebnis (werbefrei)', 'Tiefe Persönlichkeitsinterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Persönliche Zyklen', 'Prioritäts-persönliche Führung']"
             },
             "lifetime": {
                 "name": "Lebenslang",
                 "savings": "Einmalzahlung",
-                "features": "['Alle Basisfunktionen', 'Reines persönliches Erlebnis (werbefrei)', 'Tiefe Persönlichkeitsinterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Persönliche Transite', 'Prioritäts-persönliche Führung']"
+                "features": "['Alle Basisfunktionen', 'Reines persönliches Erlebnis (werbefrei)', 'Tiefe Persönlichkeitsinterpretationen', 'Unbegrenzte Reflection Card-Sitzungen', 'Beziehungs-Reflexionstools', 'Symbolische Erkundungstools', 'Energie-Bewusstseinstagebuch', 'Persönliche Zyklen', 'Prioritäts-persönliche Führung']"
             }
         }
     },
@@ -632,7 +632,7 @@
             "year": "Jahr"
         },
         "entertainment_disclaimer": {
-            "general": "Nur zur Unterhaltung",
+            "general": "Nur zur Selbstreflexion",
             "dreams": "Traumdeutungen sind symbolische Reflexionen",
             "health": "Keine medizinische Beratung. Konsultieren Sie Fachleute",
             "self_awareness": "Selbstwahrnehmung ist ein Werkzeug zur Selbstreflexion",
@@ -893,9 +893,9 @@
                 "love_meaning": "Connection, desire, acceptance"
             },
             "interpretations": {
-                "sign_perspective": "Durch die Perspektive deines {sign} Archetypus:",
+                "sign_perspective": "Durch die Perspektive deines {archetype} Archetypus:",
                 "water": {
-                    "title": "🌊 WATER DREAM - {sign} INTERPRETATION",
+                    "title": "🌊 WATER DREAM - {archetype} INTERPRETATION",
                     "divider": "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
                     "basic_meaning_label": "💧 BASIC MEANING",
                     "element_perspective_label": "🔥 {element} ELEMENT PERSPECTIVE",
@@ -938,10 +938,10 @@
                     }
                 },
                 "flying": {
-                    "title": "✈️ FLYING DREAM - {sign} INTERPRETATION",
+                    "title": "✈️ FLYING DREAM - {archetype} INTERPRETATION",
                     "basic_meaning_label": "🦅 BASIC MEANING",
                     "basic_meaning": "Flying represents the desire for freedom and transcending limits. A sense of rising above and expanded awareness.",
-                    "special_interpretation_label": "{sign} SPECIAL INTERPRETATION",
+                    "special_interpretation_label": "{archetype} SPECIAL INTERPRETATION",
                     "special_interpretation": "This dream shows you the potential to conquer new heights in your life. Time to break free from limiting beliefs has come.",
                     "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
                     "psychological": "• Flight altitude: Indicates your level of consciousness\n• Flight speed: Symbolizes the speed of change\n• Difficulty: Reflects the obstacles you face\n• Ease: Shows your inner freedom level",
@@ -953,7 +953,7 @@
                     "cosmic_message": "This dream suggests 'you have wings, use them.' As a {element} element, {element_message}."
                 },
                 "falling": {
-                    "title": "⬇️ FALLING DREAM - {sign} INTERPRETATION",
+                    "title": "⬇️ FALLING DREAM - {archetype} INTERPRETATION",
                     "basic_meaning_label": "🌪️ BASIC MEANING",
                     "basic_meaning": "Falling reflects the fear of losing control or insecurity in an area of your life.",
                     "special_interpretation": "Focus on grounding work. This dream is giving you the message 'your feet need to touch the ground.'",
@@ -967,7 +967,7 @@
                     "cosmic_message": "Falling is actually letting go. Let go of the illusion of control, trust the process. As a {element} element, grounding practice is especially important."
                 },
                 "death": {
-                    "title": "💀 DEATH DREAM - {sign} INTERPRETATION",
+                    "title": "💀 DEATH DREAM - {archetype} INTERPRETATION",
                     "not_scary_label": "🦋 BASIC MEANING - NOTHING TO FEAR!",
                     "not_scary": "Death in dreams symbolizes transformation and new beginnings. This is not an end, it is transformation!",
                     "special_interpretation": "This dream means old patterns are dying and a new self is being born. Think about what you need to let go of in your life.",
@@ -978,10 +978,10 @@
                     "practice_label": "✨ PRACTICAL APPLICATION",
                     "practice": "• Make a list of what needs to let go\n• Review old photos\n• Clean out your wardrobe\n• Identify habits that need to 'die'",
                     "cosmic_message_label": "💫 PERSONAL MESSAGE",
-                    "cosmic_message": "You're being reborn from your ashes like a phoenix. {sign} energy empowers this transformation. A new you is being born!"
+                    "cosmic_message": "You're being reborn from your ashes like a phoenix. {archetype} energy empowers this transformation. A new you is being born!"
                 },
                 "chase": {
-                    "title": "🏃 CHASE DREAM - {sign} INTERPRETATION",
+                    "title": "🏃 CHASE DREAM - {archetype} INTERPRETATION",
                     "basic_meaning_label": "😰 BASIC MEANING",
                     "basic_meaning": "Being chased is a call to face something you're running from in life. The more you run, the bigger the chaser grows!",
                     "special_interpretation": "With your {element} energy, bravely turn around and ask what's chasing you. Usually what we run from are the lessons we need most.",
@@ -995,7 +995,7 @@
                     "cosmic_message": "The chaser is actually you - a suppressed aspect of yourself. Embrace and integrate it. Your enemy can become your friend."
                 },
                 "animal": {
-                    "title": "🐾 ANIMAL DREAM - {sign} INTERPRETATION",
+                    "title": "🐾 ANIMAL DREAM - {archetype} INTERPRETATION",
                     "basic_meaning_label": "🦁 BASIC MEANING",
                     "basic_meaning": "Animals represent our instinctual nature and suppressed energies. Each animal carries a totem message.",
                     "special_interpretation": "This dream is a call to reconnect with your natural instincts. Research the totem energy of whichever animal you saw.",
@@ -1009,7 +1009,7 @@
                     "cosmic_message": "Your animal guide is communicating with you. As a {element} element, this connection is especially strong."
                 },
                 "house": {
-                    "title": "🏠 HOUSE/BUILDING DREAM - {sign} INTERPRETATION",
+                    "title": "🏠 HOUSE/BUILDING DREAM - {archetype} INTERPRETATION",
                     "basic_meaning_label": "🏛️ BASIC MEANING",
                     "basic_meaning": "Houses and buildings symbolize your inner structure and inner world. Each room represents different aspects of your self.",
                     "special_interpretation": "Think about which 'room' you're avoiding entering. As a {element} element, the structure of your inner world is important.",
@@ -1023,7 +1023,7 @@
                     "cosmic_message": "The house is you. Each room is an aspect of you. Explore and own them all."
                 },
                 "love": {
-                    "title": "💕 LOVE DREAM - {sign} INTERPRETATION",
+                    "title": "💕 LOVE DREAM - {archetype} INTERPRETATION",
                     "basic_meaning_label": "❤️ BASIC MEANING",
                     "basic_meaning": "Love-themed dreams reflect relationship dynamics and emotional needs.",
                     "special_interpretation": "This dream may be a harbinger of a new period in your love life. Ask 'How is my relationship with myself?'",
@@ -1039,7 +1039,7 @@
                     "cosmic_message": "Love yourself first. {element} element in love life {element_message}."
                 },
                 "money": {
-                    "title": "💰 MONEY/WEALTH DREAM - {sign} INTERPRETATION",
+                    "title": "💰 MONEY/WEALTH DREAM - {archetype} INTERPRETATION",
                     "basic_meaning_label": "🏆 BASIC MEANING",
                     "basic_meaning": "Money and wealth dreams represent self-worth and abundance consciousness. They carry a message of inner, not material, wealth.",
                     "special_interpretation": "This dream invites you to question your relationship with the material world. True wealth is inner peace and gratitude.",
@@ -1055,7 +1055,7 @@
                     "cosmic_message": "Life offers abundance - be a receiver. {element} element in financial matters {element_message}."
                 },
                 "generic": {
-                    "title": "{sign} PERSONAL DREAM INTERPRETATION",
+                    "title": "{archetype} PERSONAL DREAM INTERPRETATION",
                     "subconscious_label": "🔮 SUBCONSCIOUS MESSAGE",
                     "subconscious": "The dream you described shows that your subconscious is sending you important messages.",
                     "element_perspective_label": "💫 {element} ELEMENT PERSPECTIVE",
@@ -1066,7 +1066,7 @@
                     "symbol_reading": "Note the main symbols in your dream:\n• People: Represent your aspects\n• Places: Map of your inner world\n• Objects: Tools and resources\n• Actions: Your approach to life",
                     "practice_label": "✨ PRACTICAL APPLICATION",
                     "practice": "• Keep a dream journal\n• Set intention before sleeping\n• Research symbols\n• Connect through meditation",
-                    "advice_label": "💫 {sign} ADVICE"
+                    "advice_label": "💫 {archetype} ADVICE"
                 },
                 "element_messages": {
                     "fire_flying": "time to rise with courage",
@@ -1187,17 +1187,17 @@
         "result_dream_low_title": "Dream Sleeper",
         "result_dream_low_desc": "The dream world awaits you. With small steps, you can strengthen your connection with your subconscious.",
         "result_self_awareness_high_title": "Personal Master",
-        "result_self_awareness_high_desc": "You have strong self-awareness! Deepen your personal journey with personal transit reports and detailed chart analysis.",
-        "result_self_awareness_medium_title": "Star Traveler",
+        "result_self_awareness_high_desc": "You have strong self-awareness! Deepen your personal journey with personal cycle reports and detailed profile analysis.",
+        "result_self_awareness_medium_title": "Inner Traveler",
         "result_self_awareness_medium_desc": "Your connection with self-awareness is developing. By exploring your personal profile, you can better understand yourself.",
         "result_self_awareness_low_title": "Personal Explorer",
         "result_self_awareness_low_desc": "Your journey awaits! Start your personal journey with daily reflection themes.",
         "result_numerology_high_title": "Number Master",
-        "result_numerology_high_desc": "You have a strong connection with numbers! Discover the hidden messages on your life path with your personal numerology report.",
+        "result_numerology_high_desc": "You have a strong connection with numbers! Discover the patterns on your life path with your personal number analysis.",
         "result_numerology_medium_title": "Number Traveler",
         "result_numerology_medium_desc": "You feel the energy of numbers. You can guide your life with your life path number.",
         "result_numerology_low_title": "Number Explorer",
-        "result_numerology_low_desc": "The world of numbers awaits you. Starting with your birth date, you can open the doors of numerology.",
+        "result_numerology_low_desc": "The world of numbers awaits you. Starting with your birth date, you can discover meaningful number patterns.",
         "result_general_high_title": "Personal Guide",
         "result_general_high_desc": "Your inner journey is deep and meaningful. You can elevate your awareness to the next level with our personal tools.",
         "result_general_medium_title": "Personal Traveler",
@@ -1220,12 +1220,12 @@
             "inline_default": "Is this unique to you? Find out with a short test"
         },
         "entertainment_disclaimer": {
-            "general": "Nur zu Unterhaltungs- und Selbstreflexionszwecken.",
+            "general": "Nur zu Selbstreflexionszwecken.",
             "dreams": "Traumreflexionen dienen der persönlichen Erkundung, nicht der professionellen Interpretation.",
             "health": "Keine medizinische Beratung. Konsultiere medizinisches Fachpersonal.",
-            "self_awareness": "Nur zur Unterhaltung. Keine ausblickede Beratung.",
-            "card_insight": "Nur zu Reflexionszwecken. Nicht ausblicked.",
-            "numerology": "Nur zur Selbsterkundung. Nicht ausblicked.",
+            "self_awareness": "Nur zur Selbstreflexion. Keine vorausschauende Beratung.",
+            "card_insight": "Nur zu Reflexionszwecken. Nicht vorausschauend.",
+            "numerology": "Nur zur Selbsterkundung. Nicht vorausschauend.",
             "compatibility": "Nur zur Reflexion. Keine Beziehungsberatung.",
             "insight": "Nur zur persönlichen Reflexion. Keine professionelle Beratung.",
             "reflection": "Dies ist ein Raum für Selbstreflexion, nicht für Ausblicke oder Ratschläge."
@@ -1312,9 +1312,9 @@
         "rate_app": "App bewerten",
         "rate_app_desc": "Share your personal experience",
         "disclaimer": "Disclaimer",
-        "disclaimer_desc": "Entertainment purposes only",
-        "disclaimer_content": "This app provides personal, numerological, reflection card, and dream interpretation content for entertainment and self-reflection purposes only.\n\nThe content does not constitute professional advice in any field including but not limited to: medical, psychological, financial, legal, or relationship advice.\n\nIf you need professional support, please consult qualified professionals in the relevant field.\n\nAll interpretations are generated for informational and entertainment purposes and should not be used as the basis for important life decisions.",
-        "disclaimer_tip": "Use the content for self-reflection, not decision-making.",
+        "disclaimer_desc": "Nur zur Selbstreflexion",
+        "disclaimer_content": "Diese App bietet persönliche Musteranalyse, Reflexionskarten- und Traumdeutungsinhalte ausschließlich zur Selbstreflexion und persönlichen Erkundung.\n\nDie Inhalte stellen keine professionelle Beratung dar, einschließlich, aber nicht beschränkt auf: medizinische, psychologische, finanzielle, rechtliche oder Beziehungsberatung.\n\nWenn du professionelle Unterstützung benötigst, wende dich bitte an qualifizierte Fachleute im jeweiligen Bereich.\n\nAlle Interpretationen dienen der Selbstreflexion und persönlichen Erkundung und sollten nicht als Grundlage für wichtige Lebensentscheidungen verwendet werden.",
+        "disclaimer_tip": "Nutze die Inhalte zur Selbstreflexion, nicht zur Entscheidungsfindung.",
         "privacy_policy": "Privacy Policy",
         "terms_of_service": "Terms of Service",
         "contact_support": "Contact Support"
@@ -1340,7 +1340,7 @@
         "spiritual_guidance": "Persönliche Führung",
         "important_days": "Wichtige Tage",
         "lucky_days": "Günstige Tage",
-        "important_transits": "Wichtige Transite",
+        "important_transits": "Wichtige Zyklen",
         "daily_reading": "Tagesreflexion",
         "luck_rate": "Energieniveau",
         "cosmic_tips": "Reflexionstipps",
@@ -1368,8 +1368,8 @@
         "secondary": "Sekundär",
         "analysis": "Analyse",
         "general": "Allgemein",
-        "aspects": "Aspekte",
-        "houses": "Häuser",
+        "aspects": "Verbindungen",
+        "houses": "Lebensbereiche",
         "advice": "Ratschlag",
         "directions": "Richtungen",
         "home": "Zuhause",
@@ -1589,7 +1589,7 @@
             },
             "symbolic_number_patterns": {
                 "title": "Zahlenmuster",
-                "description": "Mystischer Ursprung der Zahlen."
+                "description": "Alter Ursprung der Zahlen."
             },
             "personal_perspective": {
                 "description": "Persönliche Perspektive."
@@ -1662,7 +1662,7 @@
                 "description": "Der heutige Energiefluss."
             },
             "numerical_vibrations": {
-                "description": "Numerische Schwingungen."
+                "description": "Numerische Muster."
             },
             "life_dimension_energies": {
                 "description": "Lebensdimension-Energien."
@@ -1682,7 +1682,7 @@
                 "description": "Lebensdimension und Eigenschaften."
             },
             "mystic_dreams": {
-                "title": "Mystische Träume",
+                "title": "Tiefe Träume",
                 "description": "Innere Symbole und Träume."
             },
             "life_dimension_meditation": {
@@ -1718,8 +1718,8 @@
                 "description": "Wie spiegelt sich dein Archetyp in Träumen?"
             },
             "twelfth_house_dreams": {
-                "title": "12. Haus und Träume",
-                "description": "Das Traumhaus in deinem Persönliches Profil."
+                "title": "Traum-Dimensionen",
+                "description": "Die Traumebene in deinem Persönlichen Profil."
             },
             "your_cosmic_message": {
                 "title": "Deine persönliche Botschaft",
@@ -1865,11 +1865,11 @@
             "which_dreams_this_sign_sees": "Welche Träume haben Menschen dieses Archetyps am häufigsten?",
             "special_message_for_today": "Spezielle Botschaft für Heute",
             "cosmic_guidance": "Erhalte persönliche Führung.",
-            "beyond_your_sun_sign": "Was steckt hinter deiner {sign} Kernidentität?",
+            "beyond_your_sun_sign": "Was steckt hinter deiner {archetype} Kernidentität?",
             "where_is_your_ruler": "Was ist dein Führungsmerkmal gerade?",
-            "reading_aligned_with_energy": "Eine Lesung im Einklang mit {sign} Energie.",
-            "compatibility_with": "Kompatibilität mit {sign}",
-            "weekly_reading": "Wöchentliche {sign} Lesung"
+            "reading_aligned_with_energy": "Eine Lesung im Einklang mit {archetype} Energie.",
+            "compatibility_with": "Kompatibilität mit {archetype}",
+            "weekly_reading": "Wöchentliche {archetype} Lesung"
         }
     },
     "sections": {
@@ -1887,17 +1887,17 @@
         "strengths": "Stärken",
         "cosmic_summary": "Persönliche Zusammenfassung",
         "spiritual_journey": "Persönliche Reise",
-        "important_transits": "Wichtige Persönliche Transite",
+        "important_transits": "Wichtige Persönliche Zyklen",
         "special_months_of_year": "Besondere Monate des Jahres",
         "caution_required": "Vorsicht Erforderlich",
         "reflection_readings": "Tägliche Reflexionen",
         "personal_profile_analysis": "Personal Profile & Analysis",
-        "time_transits": "Time & Transits",
-        "numerology_mystic": "Numerology & Mystic Tools",
+        "time_transits": "Time & Cycles",
+        "numerology_mystic": "Number Patterns & Inner Tools",
         "spiritual_wellness": "Personal & Wellness",
         "advanced_self_awareness": "Advanced Self-Awareness",
         "personality_analysis": "Personality Analysis",
-        "mystic_discoveries": "Mystic Discoveries",
+        "mystic_discoveries": "Inner Discoveries",
         "relationship_analysis": "Relationship Analysis",
         "ai_assistants": "AI Assistants",
         "sharing_profile": "Sharing & Profile",
@@ -2005,7 +2005,7 @@
             "important_note": "Wichtiger Hinweis",
             "life_path": {
                 "title": "Was ist die Lebenswegzahl?",
-                "answer1": "Die Lebenswegzahl ist die grundlegende numerologische Zahl, die aus deinem Geburtsdatum berechnet wird.",
+                "answer1": "Die Lebenswegzahl ist das grundlegende Zahlenmuster, das aus deinem Geburtsdatum berechnet wird.",
                 "answer2": "Sie zeigt, welchen Weg du in diesem Leben gehen wirst.",
                 "answer3": "Sie reicht von 1 bis 9 (und Meisterzahlen 11, 22, 33).",
                 "how_calculated": "Wie wird sie berechnet?",
@@ -3036,8 +3036,8 @@
         "off": "Aus",
         "moon_phases": "Mondphasen",
         "moon_phases_desc": "Neumond- und Vollmondbenachrichtigungen",
-        "transit_alerts": "Transit-Warnungen",
-        "transit_desc": "Wichtige Persönliche Transite",
+        "transit_alerts": "Zyklus-Hinweise",
+        "transit_desc": "Wichtige Persönliche Zyklen",
         "lifecycle": {
             "streak_reminder_title": "Dein Streak wartet",
             "streak_reminder_body": "Dein {count}-Tage-Streak wartet! Ein kurzer Eintrag hält ihn am Laufen.",
@@ -3074,7 +3074,7 @@
     "insights": {
         "daily_energy_title": "Today's Energy",
         "daily_energy_content": "The Moon's current position brings emotional depth. It's the perfect time to listen to your inner voice.",
-        "transit_effect_title": "Transit Effect",
+        "transit_effect_title": "Cycle Effect",
         "dream_guide_title": "Dream Guide",
         "dream_guide_content": "Dreams you have tonight may carry important messages. Don't forget to record your dreams.",
         "weekly_preview_title": "Weekly Preview",
@@ -3410,8 +3410,8 @@
             "personal_profile_desc": "Sieh wie Traumsymbole mit deinen inneren Mustern verbunden sind",
             "moon_calendar_title": "Mondkalender ansehen",
             "moon_calendar_desc": "Erfahre die Bedeutung der Mondphase, als dein Traum kam",
-            "transits_title": "Untersuche deine Transite",
-            "transits_desc": "Die Wirkung aktueller Persönliche Transite auf deinen Traum",
+            "transits_title": "Untersuche deine Zyklen",
+            "transits_desc": "Die Wirkung aktueller Persönliche Zyklen auf deinen Traum",
             "timing_insights_title": "Timing-Einblicke",
             "timing_insights_desc": "Entdecke wie persönliche Rhythmen deine Traummuster beeinflussen",
             "card_insight_title": "Reflection Card ziehen",

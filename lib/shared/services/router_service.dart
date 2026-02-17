@@ -411,7 +411,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         redirect: (context, state) => Routes.insight,
       ),
       // ════════════════════════════════════════════════════════════════
-      // LEGACY ROUTE REDIRECTS (archived astrology features → valid screens)
+      // LEGACY ROUTE REDIRECTS (archived features → valid screens)
       // ════════════════════════════════════════════════════════════════
       GoRoute(path: '/kozmoz', redirect: (_, _) => Routes.insight),
       GoRoute(path: '/aura', redirect: (_, _) => Routes.insight),

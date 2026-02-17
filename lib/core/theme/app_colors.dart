@@ -8,7 +8,7 @@ class AppColors {
   static const Color deepSpace = Color(0xFF0D0D1A);
   static const Color cosmicPurple = Color(0xFF1A1A2E);
   static const Color nebulaPurple = Color(0xFF16213E);
-  static const Color mysticBlue = Color(0xFF0F3460);
+  static const Color amethystBlue = Color(0xFF0F3460);
 
   // Accent colors
   static const Color starGold = Color(0xFFFFD700);
@@ -42,7 +42,7 @@ class AppColors {
 
   // Cosmic accent
   static const Color cosmic = Color(0xFF667EEA);
-  static const Color mystic = Color(0xFF8E54E9);
+  static const Color cosmicAmethyst = Color(0xFF8E54E9);
   static const Color gold = Color(0xFFFFD700);
 
   // Surface colors (dark mode)

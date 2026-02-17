@@ -175,9 +175,9 @@
         "moon_type": "Duygusal Profil",
         "rising_type": "Sosyal Stil",
         "view_insight": "Detaylı İçgörü",
-        "journal_streak": "Gunluk Serisi",
-        "entries_logged": "Kayit Sayisi",
-        "patterns_found": "Bulunan Kaliplar"
+        "journal_streak": "Günlük Serisi",
+        "entries_logged": "Kayıt Sayısı",
+        "patterns_found": "Bulunan Kalıplar"
     },
     "archetype": {
         "pioneer": "Öncü",
@@ -198,24 +198,24 @@
         "todays_cosmic_message": "Bugünün Döngü Pozisyonu",
         "chips": {
             "dream": "Rüya",
-            "journal": "Gunluk",
-            "patterns": "Kaliplar",
-            "insight": "Icgoru",
-            "growth": "Gelisim",
+            "journal": "Günlük",
+            "patterns": "Kalıplar",
+            "insight": "İçgörü",
+            "growth": "Gelişim",
             "breathe": "Nefes"
         },
         "sections": {
-            "journal_patterns": "Gunluk & Kaliplar",
-            "growth_discovery": "Gelisim & Kesfet"
+            "journal_patterns": "Günlük & Kalıplar",
+            "growth_discovery": "Gelişim & Keşfet"
         },
         "entries": {
             "daily_journal": {
                 "title": "Döngü Kaydı",
-                "subtitle": "Ruh halinizi ve dusuncelerinizi takip edin"
+                "subtitle": "Ruh halinizi ve düşüncelerinizi takip edin"
             },
             "share_insight": {
-                "title": "Icgoru Paylas",
-                "subtitle": "Yansitma anlarinizi paylasin"
+                "title": "İçgörü Paylaş",
+                "subtitle": "Yansıtma anlarınızı paylaşın"
             },
             "compatibility": {
                 "title": "Uyum Analizi",
@@ -235,9 +235,9 @@
         "todays_cosmic_whisper": "Bugünün Kişisel Fısıltısı",
         "special_readings": "Özel Çözümlemelerimiz",
         "personalized_readings": "Doğum bilgilerinize özel analizler",
-        "moon_in_sign_formatted": "Ay {sign} arketipinda",
-        "currently_in_sky": "Simdi Gokyuzunde",
-        "illumination": "Aydinlik",
+        "moon_in_sign_formatted": "Ay {archetype} arketipinde",
+        "currently_in_sky": "Şimdi Gökyüzünde",
+        "illumination": "Aydınlık",
         "light_mode": "Aydınlık",
         "search_hint": "Ara... (örn: arketip, refleksiyon)",
         "explore_category": "Keşfet",
@@ -290,9 +290,9 @@
             "love_improve": "İlişkilerimi nasıl besleyebilirim?"
         },
         "other_tools": {
-            "title": "Kalan Cozumlemelerimiz",
+            "title": "Kalan Çözümlemelerimiz",
             "subtitle": "Genel öz farkındalık araçları ve kişisel yansıtmalar",
-            "weekly_tooltip": "Bu haftanin kişisel enerjileri ve tavsiyeleri"
+            "weekly_tooltip": "Bu haftanın kişisel enerjileri ve tavsiyeleri"
         },
         "tooltips": {
             "monthly": "Bu ayın kişisel temaları ve fırsatları",
@@ -414,41 +414,41 @@
             "start_exploring": "Keşfetmeye Başla"
         },
         "numerology": {
-            "title": "Sayilar sana ne soyluyor?",
-            "life_path_number": "Yasam Yolu Sayisi",
-            "birthday_number": "Dogum Gunu",
-            "personal_year": "Kisisel Yil",
-            "name_numerology": "Isim Numerolojisi",
+            "title": "Sayılar sana ne söylüyor?",
+            "life_path_number": "Yaşam Yolu Sayısı",
+            "birthday_number": "Doğum Günü",
+            "personal_year": "Kişisel Yıl",
+            "name_numerology": "İsim Sayı Analizi",
             "expression_number": "İfade Sayısı",
             "expression_number_desc": "İsminizin toplam değerinden hesaplanan bu sayı, hayatınızdaki potansiyel temalar ve özellikler hakkında düşünmenize yardımcı olur.",
             "soul_urge": "İç Dürtü",
-            "personality": "Kisilik",
-            "life_path_interpretation": "Yasam Yolu Yorumu",
+            "personality": "Kişilik",
+            "life_path_interpretation": "Yaşam Yolu Yorumu",
             "deep_interpretation": "Derin Yorum",
             "career_path": "Kariyer Yolu",
-            "compatible_numbers": "Uyumlu Sayilar",
+            "compatible_numbers": "Uyumlu Sayılar",
             "spiritual_lesson": "Kişisel Ders",
-            "shadow_side": "Golge Taraf",
-            "shadow_side_footer": "Bu yonler farkindalikla donusturulebilir. Golgeyi kabullenmek, ona guc vermek degil - onu entegre etmektir.",
-            "all_life_path_numbers": "Tum Yasam Yolu Sayilari",
-            "master_numbers": "Master Sayilar",
+            "shadow_side": "Gölge Taraf",
+            "shadow_side_footer": "Bu yönler farkındalıkla dönüştürülebilir. Gölgeyi kabullenmek, ona güç vermek değil - onu entegre etmektir.",
+            "all_life_path_numbers": "Tüm Yaşam Yolu Sayıları",
+            "master_numbers": "Master Sayılar",
             "lessons_from_past_lives": "Derinden köken alan dersler",
             "yours": "SENIN",
             "keywords": "Anahtar Kelimeler",
-            "strengths": "Guclu Yanlar",
+            "strengths": "Güçlü Yanlar",
             "challenges": "Zorluklar",
-            "love_relationships": "Ask ve Iliski",
-            "ancient_secret_title": "Sayilarin Kadim Sirri",
+            "love_relationships": "Aşk ve İlişki",
+            "ancient_secret_title": "Sayıların Kadim Sırrı",
             "ancient_secret_desc": "Sayı örüntüleri, matematiksel sembolizm kullanan kadim bir yansıtma sistemidir. Pisagor'dan kadim geleneklere, birçok kültürel gelenek sayıların anlamını keşfetti. Doğum tarihin ve ismin, öz-yansıtma ve kişisel keşif için temalar olarak kullanılabilir. Her sayı düşünülecek sembolik nitelikleri temsil eder. Bu bir içe bakış aracıdır, tahmin değil.",
-            "number_depth_title": "{number} Sayisinin Derinligi",
-            "kadim_title": "Sayilarin Ezeli Dansi",
-            "kadim_content": "Pisagor'dan bu yana bilgeler sayilarin yaşamın gizli kalıplarını tasidini bilir. Yasam yolu sayin sadece bir rakam degil - bu dunyaya getirdigin titresim, sana özgü benzersiz melodi. Bu melodiyi duyabilmek icin once sessizlige ihtiyacin var.",
+            "number_depth_title": "{number} Sayısının Derinliği",
+            "kadim_title": "Sayıların Ezeli Dansı",
+            "kadim_content": "Pisagor'dan bu yana bilgeler sayıların yaşamın gizli kalıplarını taşıdığını bilir. Yaşam yolu sayın sadece bir rakam değil - bu dünyaya getirdiğin örüntü, sana özgü benzersiz melodi. Bu melodiyi duyabilmek için önce sessizliğe ihtiyacın var.",
             "brand_text": "Sayı Örüntüleri — InnerCycles"
         },
         "solar_return": {
             "title": "Doğum Günü Yansıması",
             "subtitle": "Doğum Günü Haritası",
-            "sun_returns": "Temel kimliğin {sign} arketipine dönüyor",
+            "sun_returns": "Temel kimliğin {archetype} arketipine dönüyor",
             "return_date": "Dönüş Tarihi",
             "sun_house": "Kimlik Evi",
             "house_number": "{number}. Ev",
@@ -689,61 +689,61 @@
                 },
                 "aurora": {
                     "label": "Aurora",
-                    "description": "Kuzey isiklari"
+                    "description": "Kuzey ışıkları"
                 },
                 "moonlit": {
-                    "label": "Ayisigi",
-                    "description": "Yumusak ay isigi"
+                    "label": "Ayışığı",
+                    "description": "Yumuşak ay ışığı"
                 },
                 "golden": {
-                    "label": "Altin",
-                    "description": "Sicak altin tonlari"
+                    "label": "Altın",
+                    "description": "Sıcak altın tonları"
                 },
                 "contemplative": {
                     "label": "Derin",
-                    "description": "Derin mor ve yildizli gece"
+                    "description": "Derin mor ve yıldızlı gece"
                 }
             },
             "fonts": {
                 "elegant": "Zarif",
                 "modern": "Modern",
-                "handwritten": "El Yazisi",
+                "handwritten": "El Yazısı",
                 "contemplative": "Derin"
             },
             "templates": {
-                "dreamQuote": "Ruya Alintisi",
-                "symbolInsight": "Sembol Icgorusu",
-                "dailyMessage": "Gunluk Mesaj",
-                "moonPhase": "Ay Fazi Bilgeligi",
-                "personalInsight": "Kisisel Icgoru",
-                "archetypeDiscovery": "Arketip Kesfi",
-                "weeklySummary": "Haftalik Ozet"
+                "dreamQuote": "Rüya Alıntısı",
+                "symbolInsight": "Sembol İçgörüsü",
+                "dailyMessage": "Günlük Mesaj",
+                "moonPhase": "Ay Fazı Bilgeliği",
+                "personalInsight": "Kişisel İçgörü",
+                "archetypeDiscovery": "Arketip Keşfi",
+                "weeklySummary": "Haftalık Özet"
             },
             "footer": {
-                "dream_interpretation": "Ruya Yorumu",
-                "symbol_insight": "Sembol Icgorusu",
-                "moon_phase_wisdom": "Ay Fazi Bilgeligi",
-                "archetype_discovery": "Arketip Kesfi",
-                "personal_insight": "Kisisel Icgoru",
-                "daily_dream_message": "Gunluk Ruya Mesaji",
-                "weekly_summary": "Haftalik Ozet"
+                "dream_interpretation": "Rüya Yorumu",
+                "symbol_insight": "Sembol İçgörüsü",
+                "moon_phase_wisdom": "Ay Fazı Bilgeliği",
+                "archetype_discovery": "Arketip Keşfi",
+                "personal_insight": "Kişisel İçgörü",
+                "daily_dream_message": "Günlük Rüya Mesajı",
+                "weekly_summary": "Haftalık Özet"
             },
             "moon_phase_energy": "{phase} Enerjisi",
-            "dreams_interpreted": "{count} ruya yorumlandi"
+            "dreams_interpreted": "{count} rüya yorumlandı"
         },
         "mood_selector": {
             "moods": {
                 "happy": "Mutlu",
-                "sad": "Huzunlu",
-                "anxious": "Kaygili",
+                "sad": "Hüzünlü",
+                "anxious": "Kaygılı",
                 "tired": "Yorgun",
-                "thoughtful": "Dusunceli",
-                "excited": "Heyecanli",
+                "thoughtful": "Düşünceli",
+                "excited": "Heyecanlı",
                 "calm": "Huzurlu",
-                "confused": "Kafasi Karisik"
+                "confused": "Kafası Karışık"
             },
-            "how_do_you_feel": "Bugun Nasil Hissediyorsun?",
-            "mood_personalizes": "Ruh halin yorumlarini kisisellestirir",
+            "how_do_you_feel": "Bugün Nasıl Hissediyorsun?",
+            "mood_personalizes": "Ruh halin yorumlarını kişiselleştirir",
             "skip": "Atla",
             "feeling_template": "{mood} hissediyorsun"
         },
@@ -928,9 +928,9 @@
                 "love_meaning": "Bağlanma, arzu, kabul"
             },
             "interpretations": {
-                "sign_perspective": "{sign} arketipinin perspektifinden rüya yorumun:",
+                "sign_perspective": "{archetype} arketipinin perspektifinden rüya yorumun:",
                 "water": {
-                    "title": "🌊 SU RÜYASI - {sign} YORUMU",
+                    "title": "🌊 SU RÜYASI - {archetype} YORUMU",
                     "divider": "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
                     "basic_meaning_label": "💧 TEMEL ANLAM",
                     "element_perspective_label": "🔥 {element} ELEMENTİ PERSPEKTİFİ",
@@ -973,10 +973,10 @@
                     }
                 },
                 "flying": {
-                    "title": "✈️ UÇMA RÜYASI - {sign} YORUMU",
+                    "title": "✈️ UÇMA RÜYASI - {archetype} YORUMU",
                     "basic_meaning_label": "🦅 TEMEL ANLAM",
                     "basic_meaning": "Uçmak, özgürlük ve sınırları aşma arzusunu temsil eder. Benliğin yükselişi ve bilinç genişlemesi.",
-                    "special_interpretation_label": "{sign} İÇİN ÖZEL YORUM",
+                    "special_interpretation_label": "{archetype} İÇİN ÖZEL YORUM",
                     "special_interpretation": "Bu rüya sana hayatında yeni zirveler fethetme potansiyelini gösteriyor. Kendini sınırlayan inançlardan kurtulma zamanı geldi.",
                     "psychological_label": "🌙 PSİKOLOJİK BOYUT",
                     "psychological": "• Uçuş yüksekliği: Bilinç seviyeni gösterir\n• Uçuş hızı: Değişim hızını simgeler\n• Zorluk: Yaşadığın engelleri yansıtır\n• Kolaylık: İçsel özgürlük seviyeni gösterir",
@@ -988,7 +988,7 @@
                     "cosmic_message": "Bu düşünce sana \"kanatların var, kullan\" diyor. {element} elementi olarak {element_message}."
                 },
                 "falling": {
-                    "title": "⬇️ DÜŞME RÜYASI - {sign} YORUMU",
+                    "title": "⬇️ DÜŞME RÜYASI - {archetype} YORUMU",
                     "basic_meaning_label": "🌪️ TEMEL ANLAM",
                     "basic_meaning": "Düşmek, kontrolü kaybetme korkusunu veya hayatındaki bir alanda güvensizliği yansıtır.",
                     "special_interpretation": "Temellendirme çalışmalarına odaklan. Bu rüya sana \"ayaklarının yere basması gerekiyor\" mesajı veriyor.",
@@ -1002,7 +1002,7 @@
                     "cosmic_message": "Düşmek aslında bırakmaktır. Kontrol illüzyonunu bırak, sürece güven. {element} elementi olarak topraklanma pratiği özellikle önemli."
                 },
                 "death": {
-                    "title": "💀 ÖLÜM RÜYASI - {sign} YORUMU",
+                    "title": "💀 ÖLÜM RÜYASI - {archetype} YORUMU",
                     "not_scary_label": "🦋 TEMEL ANLAM - KORKULACAK BİR ŞEY DEĞİL!",
                     "not_scary": "Rüyalarda ölüm, transformasyonun ve yeni başlangıçların sembolüdür. Bu bir son değil, dönüşümdür!",
                     "special_interpretation": "Bu rüya eski kalıpların ölmesi ve yeni benliğin doğması anlamına gelir. Hayatında neyi bırakman gerektiğini düşün.",
@@ -1013,10 +1013,10 @@
                     "practice_label": "✨ PRATİK UYGULAMA",
                     "practice": "• Neyi bırakman gerekiyor - liste yap\n• Eski fotoğrafları gözden geçir\n• Kıyafet dolabını temizle\n• \"Ölmesi gereken\" alışkanlıkları belirle",
                     "cosmic_message_label": "💫 KİŞİSEL MESAJ",
-                    "cosmic_message": "Anka kuşu gibi küllerinden doğuyorsun. {sign} enerjisi bu dönüşümü güçlendiriyor. Yeni sen doğuyor!"
+                    "cosmic_message": "Anka kuşu gibi küllerinden doğuyorsun. {archetype} enerjisi bu dönüşümü güçlendiriyor. Yeni sen doğuyor!"
                 },
                 "chase": {
-                    "title": "🏃 KOVALANMA RÜYASI - {sign} YORUMU",
+                    "title": "🏃 KOVALANMA RÜYASI - {archetype} YORUMU",
                     "basic_meaning_label": "😰 TEMEL ANLAM",
                     "basic_meaning": "Kovalanmak, hayatında kaçtığın bir konuyla yüzleşme çağrısıdır. Kaçtıkça kovalayan büyür!",
                     "special_interpretation": "{element} enerjinle, cesaretle dön ve neyin peşinde olduğunu sor. Genellikle kaçtığımız şey, en çok ihtiyacımız olan derslerdir.",
@@ -1030,7 +1030,7 @@
                     "cosmic_message": "Kovalayan aslında sensin - bastırdığın bir yönün. Kucakla ve entegre et. Düşmanın dostun olabilir."
                 },
                 "animal": {
-                    "title": "🐾 HAYVAN RÜYASI - {sign} YORUMU",
+                    "title": "🐾 HAYVAN RÜYASI - {archetype} YORUMU",
                     "basic_meaning_label": "🦁 TEMEL ANLAM",
                     "basic_meaning": "Hayvanlar, içgüdüsel doğamızı ve bastırılmış enerjileri temsil eder. Her hayvan bir totem mesajı taşır.",
                     "special_interpretation": "Bu rüya, doğal içgüdülerinle yeniden bağlanma çağrısı. Hangi hayvan gördüysen, onun totem enerjisini araştır.",
@@ -1044,7 +1044,7 @@
                     "cosmic_message": "Hayvan rehberin seninle iletişim kuruyor. {element} elementi olarak bu bağlantı özellikle güçlü."
                 },
                 "house": {
-                    "title": "🏠 EV/BİNA RÜYASI - {sign} YORUMU",
+                    "title": "🏠 EV/BİNA RÜYASI - {archetype} YORUMU",
                     "basic_meaning_label": "🏛️ TEMEL ANLAM",
                     "basic_meaning": "Ev ve binalar, içsel yapını ve iç dünyayı sembolize eder. Her oda benliğinin farklı yönlerini temsil eder.",
                     "special_interpretation": "Hangi \"odaya\" girmekten kaçındığını düşün. {element} elementi olarak iç dünyanın yapısı önemli.",
@@ -1058,7 +1058,7 @@
                     "cosmic_message": "Evin sensin. Her odası bir yönün. Hepsini keşfet ve sahiplen."
                 },
                 "love": {
-                    "title": "💕 AŞK RÜYASI - {sign} YORUMU",
+                    "title": "💕 AŞK RÜYASI - {archetype} YORUMU",
                     "basic_meaning_label": "❤️ TEMEL ANLAM",
                     "basic_meaning": "Aşk temalı rüyalar, ilişki dinamiklerini ve duygusal ihtiyaçları yansıtır.",
                     "special_interpretation": "Bu rüya, aşk hayatında yeni bir dönemin habercisi olabilir. \"Kendinle olan ilişkim nasıl?\" sorusunu sor.",
@@ -1074,7 +1074,7 @@
                     "cosmic_message": "Önce kendini sev. {element} elementi aşk yaşamında {element_message}."
                 },
                 "money": {
-                    "title": "💰 PARA/ZENGİNLİK RÜYASI - {sign} YORUMU",
+                    "title": "💰 PARA/ZENGİNLİK RÜYASI - {archetype} YORUMU",
                     "basic_meaning_label": "🏆 TEMEL ANLAM",
                     "basic_meaning": "Para ve zenginlik rüyaları, öz değer ve bolluk bilincini temsil eder. Maddi değil, içsel zenginlik mesajı taşır.",
                     "special_interpretation": "Bu rüya, maddi dünyayla ilişkini sorgulamaya davet ediyor. Gerçek zenginlik içsel huzur ve minnettarlıktır.",
@@ -1090,7 +1090,7 @@
                     "cosmic_message": "Hayat bolluk sunar - alıcı ol. {element} elementi finansal konularda {element_message}."
                 },
                 "generic": {
-                    "title": "{sign} KİŞİSEL RÜYA YORUMU",
+                    "title": "{archetype} KİŞİSEL RÜYA YORUMU",
                     "subconscious_label": "🔮 BİLİNÇALTI MESAJI",
                     "subconscious": "Anlattığın rüya, bilinçaltının sana önemli mesajlar ilettiğini gösteriyor.",
                     "element_perspective_label": "💫 {element} ELEMENTİ PERSPEKTİFİ",
@@ -1101,7 +1101,7 @@
                     "symbol_reading": "Rüyandaki ana sembolleri not et:\n• Kişiler: Senin yönlerini temsil ediyor\n• Mekanlar: İç dünyanın haritası\n• Objeler: Araçlar ve kaynaklar\n• Eylemler: Hayat yaklaşımın",
                     "practice_label": "✨ PRATİK UYGULAMA",
                     "practice": "• Rüya defteri tut\n• Uyumadan önce niyet koy\n• Sembolleri araştır\n• Meditasyonla bağlan",
-                    "advice_label": "💫 {sign} TAVSİYESİ"
+                    "advice_label": "💫 {archetype} TAVSİYESİ"
                 },
                 "element_messages": {
                     "fire_flying": "cesaretle yükselme zamanı",
@@ -1232,7 +1232,7 @@
         "result_numerology_medium_title": "Sayı Yolcusu",
         "result_numerology_medium_desc": "Sayıların enerjisini hissediyorsun. Yaşam yolu sayınla hayatına yön verebilirsin.",
         "result_numerology_low_title": "Sayı Kaşifi",
-        "result_numerology_low_desc": "Sayıların dünyasını keşfedebilirsin. Doğum tarihinden başlayarak numerolojinin kapılarını aralayabilirsin.",
+        "result_numerology_low_desc": "Sayıların dünyasını keşfedebilirsin. Doğum tarihinden başlayarak sayı örüntülerinin kapılarını aralayabilirsin.",
         "result_general_high_title": "İçsel Rehber",
         "result_general_high_desc": "İçsel yolculuğun derin ve anlamlı. Kişisel araçlarımız ile farkındalığını bir üst seviyeye taşıyabilirsin.",
         "result_general_medium_title": "İçsel Yolcu",
@@ -1367,7 +1367,7 @@
         "lucky_number": "Odak Sayısı",
         "feature_coming_soon": "Bu özellik yakında eklenecek",
         "what_says_today": "Bugün hangi temalar seninle rezonans kuruyor?",
-        "select_discover_energy": "Arketipinu seç, refleksiyon temalarını keşfet",
+        "select_discover_energy": "Arketipini seç, refleksiyon temalarını keşfet",
         "love_relationships": "Aşk & İlişkiler",
         "career_finance": "Kariyer & Finans",
         "health_wellness": "Sağlık & İyilik",
@@ -1571,7 +1571,7 @@
                 "description": "Enerji temizliği pratikleri."
             },
             "electional_self_awareness": {
-                "title": "Electional Öz Farkındalık",
+                "title": "Seçimsel Öz Farkındalık",
                 "description": "Uygun zamanları seç."
             },
             "dream_tonight": {
@@ -1697,7 +1697,7 @@
                 "description": "Bugünün enerji akışı."
             },
             "numerical_vibrations": {
-                "description": "Sayısal titreşimler."
+                "description": "Sayısal örüntüler."
             },
             "life_dimension_energies": {
                 "description": "Yaşam Boyutu enerjileri."
@@ -1753,7 +1753,7 @@
                 "description": "Arketipin rüyalarına nasıl yansıyor?"
             },
             "twelfth_house_dreams": {
-                "title": "12. Ev ve Rüyalar",
+                "title": "Rüya Boyutları",
                 "description": "Kişisel profilnda rüya evi."
             },
             "your_cosmic_message": {
@@ -1900,11 +1900,11 @@
             "which_dreams_this_sign_sees": "Bu arketipta insanlar en çok hangi rüyaları görür?",
             "special_message_for_today": "Bugün Sana Özel Mesaj",
             "cosmic_guidance": "Kişisel rehberlik al.",
-            "beyond_your_sun_sign": "{sign} temel kimliğinin ötesinde ne var?",
+            "beyond_your_sun_sign": "{archetype} temel kimliğinin ötesinde ne var?",
             "where_is_your_ruler": "Yönlendirici özelliğin şu an nerede?",
-            "reading_aligned_with_energy": "{sign} enerjisiyle uyumlu bir okuma.",
-            "compatibility_with": "{sign} ile Uyumun",
-            "weekly_reading": "Haftalık {sign} Yorumu"
+            "reading_aligned_with_energy": "{archetype} enerjisiyle uyumlu bir okuma.",
+            "compatibility_with": "{archetype} ile Uyumun",
+            "weekly_reading": "Haftalık {archetype} Yorumu"
         }
     },
     "sections": {
@@ -1922,12 +1922,12 @@
         "strengths": "Güçlü Yanlar",
         "cosmic_summary": "Günlük Özeti",
         "spiritual_journey": "İçsel Yolculuk",
-        "important_transits": "Önemli Kişisel Transitler",
+        "important_transits": "Önemli Kişisel Döngüler",
         "special_months_of_year": "Yılın Özel Ayları",
         "caution_required": "Dikkat Gerektiren",
         "reflection_readings": "Arketip Yorumları",
         "personal_profile_analysis": "Kişisel Profil & Analizler",
-        "time_transits": "Zaman & Transitler",
+        "time_transits": "Zaman & Döngüler",
         "numerology_mystic": "Sayı Örüntüleri & Keşif Araçları",
         "spiritual_wellness": "İçsel & Wellness",
         "advanced_self_awareness": "İleri Seviye Öz Farkındalık",
@@ -2040,7 +2040,7 @@
             "important_note": "Önemli Not",
             "life_path": {
                 "title": "Yaşam yolu sayısı nedir?",
-                "answer1": "Yaşam yolu sayısı, doğum tarihinden hesaplanan temel numerolojik sayındır.",
+                "answer1": "Yaşam yolu sayısı, doğum tarihinden hesaplanan temel sayısal örüntündür.",
                 "answer2": "Bu hayatta hangi yolda yürüyeceğini gösterir.",
                 "answer3": "1'den 9'a kadar (ve 11, 22, 33 üstat sayıları) değer alır.",
                 "how_calculated": "Nasıl Hesaplanır?",
@@ -2387,96 +2387,96 @@
         "example_prompts_label": "Örnek Rüya Paylaşımları:",
         "input_placeholder": "Rüyanı detaylı anlat... (Enter ile gönder, Shift+Enter yeni satır)",
         "result_widget": {
-            "title_badge": "7 BOYUTLU RUYA YORUMU",
-            "subconscious_message": "Bilincaltinin Mesaji",
+            "title_badge": "7 BOYUTLU RÜYA YORUMU",
+            "subconscious_message": "Bilinçaltının Mesajı",
             "ancient_wisdom": "Kadim Bilgelik",
             "core_message": "ANA MESAJ",
             "symbol_analysis": "SEMBOL ANALIZI",
             "universal": "Evrensel",
-            "personal": "Kisisel",
-            "shadow": "Golge",
-            "light": "Isik",
+            "personal": "Kişisel",
+            "shadow": "Gölge",
+            "light": "Işık",
             "archetype": "ARKETIP",
             "emotional_reading": "DUYGUSAL OKUMA",
-            "surface": "Yuzey",
+            "surface": "Yüzey",
             "depth": "Derinlik",
-            "shadow_question": "Golge Sorusu",
+            "shadow_question": "Gölge Sorusu",
             "integration": "Entegrasyon",
             "astro_timing": "KİŞİSEL ZAMANLAMA",
-            "why_now": "Neden simdi?",
-            "light_label": "ISIK",
-            "shadow_label": "GOLGE",
-            "practical_guidance": "PRATIK REHBERLIK",
-            "today": "Bugun",
+            "why_now": "Neden şimdi?",
+            "light_label": "IŞIK",
+            "shadow_label": "GÖLGE",
+            "practical_guidance": "PRATİK REHBERLİK",
+            "today": "Bugün",
             "this_week": "Bu Hafta",
-            "avoid": "Kacin",
-            "reflection_question": "Yansitma Sorusu",
-            "whisper_wisdom": "Fisildayan Bilgelik",
-            "share": "Paylas",
-            "share_footer": "Ruya Yorumu | innercycles.app",
-            "explore": "KESFET"
+            "avoid": "Kaçın",
+            "reflection_question": "Yansıtma Sorusu",
+            "whisper_wisdom": "Fısıldayan Bilgelik",
+            "share": "Paylaş",
+            "share_footer": "Rüya Yorumu | innercycles.app",
+            "explore": "KEŞFET"
         },
         "statistics": {
             "moon_phases_tr": {
                 "new_moon": "Yeni Ay",
                 "waxing_crescent": "Hilal",
-                "first_quarter": "Ilk Dordun",
-                "waxing_gibbous": "Siskin Ay",
+                "first_quarter": "İlk Dördün",
+                "waxing_gibbous": "Şişkin Ay",
                 "full_moon": "Dolunay",
                 "waning_gibbous": "Analist Ay",
-                "last_quarter": "Son Dordun",
+                "last_quarter": "Son Dördün",
                 "waning_crescent": "Hilal"
             },
             "character_types": {
-                "known": "Tanidik",
-                "stranger": "Yabanci",
+                "known": "Tanıdık",
+                "stranger": "Yabancı",
                 "animal": "Hayvan",
-                "celebrity": "Unlu Kisi",
+                "celebrity": "Ünlü Kişi",
                 "family": "Aile",
-                "other": "Diger"
+                "other": "Diğer"
             },
             "location_types": {
                 "home": "Ev",
-                "nature": "Doga",
-                "city": "Sehir",
+                "nature": "Doğa",
+                "city": "Şehir",
                 "unknown_place": "Bilinmeyen Yer",
-                "workplace": "Is Yeri",
-                "other": "Diger"
+                "workplace": "İş Yeri",
+                "other": "Diğer"
             },
             "characters": {
                 "anne": "Anne",
                 "baba": "Baba",
-                "kardes": "Kardes",
-                "arkadas": "Arkadas",
+                "kardes": "Kardeş",
+                "arkadas": "Arkadaş",
                 "sevgili": "Sevgili",
-                "es": "Es",
-                "cocuk": "Cocuk",
+                "es": "Eş",
+                "cocuk": "Çocuk",
                 "bebek": "Bebek",
                 "dede": "Dede",
                 "nine": "Nine",
-                "ogretmen": "Ogretmen",
+                "ogretmen": "Öğretmen",
                 "patron": "Patron",
-                "yabanci": "Yabanci",
-                "taninmayan": "Taninmayan",
-                "unlu": "Unlu Kisi",
+                "yabanci": "Yabancı",
+                "taninmayan": "Tanınmayan",
+                "unlu": "Ünlü Kişi",
                 "hayvan": "Hayvan"
             },
             "locations": {
                 "ev": "Ev",
                 "okul": "Okul",
-                "is": "Is Yeri",
+                "is": "İş Yeri",
                 "deniz": "Deniz",
                 "orman": "Orman",
-                "dag": "Dag",
-                "sehir": "Sehir",
-                "koy": "Koy",
+                "dag": "Dağ",
+                "sehir": "Şehir",
+                "koy": "Köy",
                 "hastane": "Hastane",
-                "ucak": "Ucak",
+                "ucak": "Uçak",
                 "araba": "Araba",
                 "tren": "Tren",
                 "uzay": "Uzay",
                 "ada": "Ada",
-                "magara": "Magara",
+                "magara": "Mağara",
                 "kale": "Kale"
             },
             "pattern_types": {
@@ -2484,143 +2484,143 @@
                 "theme": "Tema"
             },
             "achievements_list": {
-                "first_step": "Ilk Adim",
-                "first_step_desc": "Ilk ruyani kaydettin",
-                "dream_explorer": "Ruya Kasifu",
-                "dream_explorer_desc": "10 ruya kaydettin",
-                "dream_traveler": "Ruya Gezgini",
-                "dream_traveler_desc": "25 ruya kaydettin",
-                "dream_master": "Ruya Ustasi",
-                "dream_master_desc": "50 ruya kaydettin",
-                "weekly_streak": "Haftalik Seri",
-                "weekly_streak_desc": "7 gun art arda ruya kaydet",
-                "monthly_streak": "Aylik Seri",
-                "monthly_streak_desc": "30 gun art arda ruya kaydet",
-                "symbol_hunter": "Sembol Avcisi",
-                "symbol_hunter_desc": "20 farkli sembol kesfet",
-                "symbol_master": "Sembol Ustasi",
-                "symbol_master_desc": "50 farkli sembol kesfet",
-                "awakening": "Uyanis",
-                "awakening_desc": "Ilk bilincli ruyani yasadin",
-                "lucid_master": "Bilincli Ruya Ustasi",
-                "lucid_master_desc": "10 bilincli ruya yasadin"
+                "first_step": "İlk Adım",
+                "first_step_desc": "İlk rüyanı kaydettin",
+                "dream_explorer": "Rüya Kâşifi",
+                "dream_explorer_desc": "10 rüya kaydettin",
+                "dream_traveler": "Rüya Gezgini",
+                "dream_traveler_desc": "25 rüya kaydettin",
+                "dream_master": "Rüya Ustası",
+                "dream_master_desc": "50 rüya kaydettin",
+                "weekly_streak": "Haftalık Seri",
+                "weekly_streak_desc": "7 gün art arda rüya kaydet",
+                "monthly_streak": "Aylık Seri",
+                "monthly_streak_desc": "30 gün art arda rüya kaydet",
+                "symbol_hunter": "Sembol Avcısı",
+                "symbol_hunter_desc": "20 farklı sembol keşfet",
+                "symbol_master": "Sembol Ustası",
+                "symbol_master_desc": "50 farklı sembol keşfet",
+                "awakening": "Uyanış",
+                "awakening_desc": "İlk bilinçli rüyanı yaşadın",
+                "lucid_master": "Bilinçli Rüya Ustası",
+                "lucid_master_desc": "10 bilinçli rüya yaşadın"
             }
         },
         "share_screen": {
-            "default_text": "Ruyalarimin icinde kayboldum, kendimi buldum.",
-            "default_poetry": "Gece kainatin sessiz fisildamasi,\nRuyalar benliğimin aynadaki yansimasi.\nHer sembol bir mesaj, her an bir kesif,\nBilinçaltindan gelen kudretli bir hediye.",
+            "default_text": "Rüyalarımın içinde kayboldum, kendimi buldum.",
+            "default_poetry": "Gece kâinatın sessiz fısıldaması,\nRüyalar benliğimin aynadaki yansıması.\nHer sembol bir mesaj, her an bir keşif,\nBilinçaltından gelen kudretli bir hediye.",
             "mystery": "gizem",
             "poetry_templates": [
-                "Gecenin derinliklerinde {mainSymbol} belirdi,\n{archetype} arketipi benliğime seslendi.\nBilincaltinin sifreli mesajlari,\nSimdi anlamin isiginda parlıyor.",
-                "Ruya aleminin kapilari aralandi,\n{mainSymbol} sembolu yolumu aydinlatti.\nKadim bilgelik fisildadi kulagima,\n{archetype} enerjisi sardi tum benligimi.",
-                "Ay isiginda dans eden golgeler,\n{mainSymbol} bana hikayeler anlatti.\n{archetype}'in izinde yuruyorum,\nRuyamin bilgeligini kalbime naksettim."
+                "Gecenin derinliklerinde {mainSymbol} belirdi,\n{archetype} arketipi benliğime seslendi.\nBilinçaltının şifreli mesajları,\nŞimdi anlamın ışığında parlıyor.",
+                "Rüya âleminin kapıları aralandı,\n{mainSymbol} sembolü yolumu aydınlattı.\nKadim bilgelik fısıldadı kulağıma,\n{archetype} enerjisi sardı tüm benliğimi.",
+                "Ay ışığında dans eden gölgeler,\n{mainSymbol} bana hikâyeler anlattı.\n{archetype}'in izinde yürüyorum,\nRüyamın bilgeliğini kalbime nakşettim."
             ],
-            "default_affirmation": "Ruyalarim bana yol gosteriyor, onlara guveniyorum.",
+            "default_affirmation": "Rüyalarım bana yol gösteriyor, onlara güveniyorum.",
             "affirmations": [
                 "{moonEmoji} {todayAction}",
-                "Bilinçaltimin bilgeligine guveniyorum ve mesajlarini anliyorum.",
-                "Her ruya beni kendime daha da yaklastiriyor.",
-                "Golgelerimi kabul ediyor, isigimi parlak tutuyorum.",
-                "Kişisel rehberlige acigim ve yolculugumda destekleniyorum."
+                "Bilinçaltımın bilgeliğine güveniyorum ve mesajlarını anlıyorum.",
+                "Her rüya beni kendime daha da yaklaştırıyor.",
+                "Gölgelerimi kabul ediyor, ışığımı parlak tutuyorum.",
+                "Kişisel rehberliğe açığım ve yolculuğumda destekleniyorum."
             ],
             "default_art_suggestions": [
-                "Ay ve yildizlar kompozisyonu",
-                "Suyun akisini gosteren soyut cizim",
-                "Mor ve mavi tonlarinda mandala"
+                "Ay ve yıldızlar kompozisyonu",
+                "Suyun akışını gösteren soyut çizim",
+                "Mor ve mavi tonlarında mandala"
             ],
-            "symbol_art_template": "\"{symbol}\" temasinda minimalist cizim",
+            "symbol_art_template": "\"{symbol}\" temasında minimalist çizim",
             "archetype_symbol_template": "{archetype} arketip sembolu",
             "tab_cards": "Kartlar",
-            "tab_customize": "Ozellestir",
-            "tab_templates": "Sablonlar",
-            "tab_generated": "Uretilen",
-            "quick_templates": "Hizli Sablonlar",
-            "select_theme": "Tema Sec",
+            "tab_customize": "Özelleştir",
+            "tab_templates": "Şablonlar",
+            "tab_generated": "Üretilen",
+            "quick_templates": "Hızlı Şablonlar",
+            "select_theme": "Tema Seç",
             "main_text": "Ana Metin",
-            "font_style": "Yazi Stili",
-            "emoji_decoration": "Emoji Susleme",
-            "visual_elements": "Gorsel Ogeler",
+            "font_style": "Yazı Stili",
+            "emoji_decoration": "Emoji Süsleme",
+            "visual_elements": "Görsel Öğeler",
             "accent_color": "Vurgu Rengi",
-            "write_text_hint": "Paylasmak istedigin metni yaz...",
-            "subtitle_hint": "Alt baslik (opsiyonel)",
-            "show_moon_phase": "Ay Fazini Goster",
-            "show_watermark": "Filigran Goster",
-            "emoji_decorations": "Emoji Suslemeler",
-            "select_emoji": "Emoji Sec",
-            "ready_templates": "Hazir Sablonlar",
+            "write_text_hint": "Paylaşmak istediğin metni yaz...",
+            "subtitle_hint": "Alt başlık (opsiyonel)",
+            "show_moon_phase": "Ay Fazını Göster",
+            "show_watermark": "Filigran Göster",
+            "emoji_decorations": "Emoji Süslemeler",
+            "select_emoji": "Emoji Seç",
+            "ready_templates": "Hazır Şablonlar",
             "template_tonight": "\"Bu gece ruyamda...\"",
-            "template_tonight_desc": "Klasik ruya paylasimi formati",
+            "template_tonight_desc": "Klasik rüya paylaşımı formatı",
             "template_symbol": "Sembol Anlami",
-            "template_symbol_desc": "Bir sembolun derin anlamini paylas",
-            "template_archetype": "Arketip Kesfi",
-            "template_archetype_desc": "Hangi arketiple karsilastin?",
+            "template_symbol_desc": "Bir sembolün derin anlamını paylaş",
+            "template_archetype": "Arketip Keşfi",
+            "template_archetype_desc": "Hangi arketiple karşılaştın?",
             "template_moon_phase": "Ay Fazi Bilgeligi",
-            "template_moon_phase_desc": "Ayin mesajini paylas",
-            "template_weekly": "Haftalik Ozet",
-            "template_weekly_desc": "Bu haftaki ruyalarinin ozeti",
+            "template_moon_phase_desc": "Ayın mesajını paylaş",
+            "template_weekly": "Haftalık Özet",
+            "template_weekly_desc": "Bu haftaki rüyalarının özeti",
             "instagram_story_size": "Instagram Story Boyutu",
-            "tonight_in_my_dream": "Bu gece ruyamda ",
-            "dream_poetry": "Ruya Siiri",
-            "daily_affirmations": "Gunluk Olumlamalar",
-            "mystical_quotes": "Derin Alintilar",
-            "symbol_art_suggestions": "Sembol Sanati Onerileri",
-            "ai_generated": "AI Uretimi",
+            "tonight_in_my_dream": "Bu gece rüyamda ",
+            "dream_poetry": "Rüya Şiiri",
+            "daily_affirmations": "Günlük Olumlamalar",
+            "mystical_quotes": "Derin Alıntılar",
+            "symbol_art_suggestions": "Sembol Sanatı Önerileri",
+            "ai_generated": "AI Üretimi",
             "mystical_quotes_list": [
                 "\"Ruyalar, benliğimizin gece yazılan mektuplarıdır.\"",
-                "\"Her ruya bir ayna, her sembol bir anahtar.\"",
-                "\"Gece, bilincaltinin en yuksek sesle konustugu andir.\"",
+                "\"Her rüya bir ayna, her sembol bir anahtar.\"",
+                "\"Gece, bilinçaltının en yüksek sesle konuştuğu andır.\"",
                 "\"Rüyalarını dinleyen, hikayesini yazar.\""
             ],
             "privacy_controls": "Gizlilik Kontrolleri",
-            "share_anonymously": "Anonim Paylas",
-            "share_anonymously_desc": "Isim ve profil bilgisi gosterilmez",
-            "share_interpretation_only": "Sadece Yorum Paylas",
-            "share_interpretation_only_desc": "Ruya metni gizlenir, sadece yorum gosterilir",
-            "share_symbol_only": "Sadece Sembol Paylas",
-            "share_symbol_only_desc": "Kisisel detaylar olmadan sembol anlami",
-            "image_creation_error": "Gorsel olusturulamadi",
-            "image_downloaded": "Gorsel indirildi!",
-            "image_saved": "Gorsel kaydedildi!",
-            "save_error": "Kaydetme hatasi",
-            "dream_interpretation": "Ruya Yorumu",
-            "found_myself_in_dreams": "Ruyalarimin icinde kendimi buldum.",
-            "symbol_insight_title": "Sembol Icgorusu",
-            "subconscious_messages": "Bilinçaltinin mesajlari",
-            "walking_in_dream_light": "Bugun ruyalarimin isiginda yuruyorum.",
+            "share_anonymously": "Anonim Paylaş",
+            "share_anonymously_desc": "İsim ve profil bilgisi gösterilmez",
+            "share_interpretation_only": "Sadece Yorum Paylaş",
+            "share_interpretation_only_desc": "Rüya metni gizlenir, sadece yorum gösterilir",
+            "share_symbol_only": "Sadece Sembol Paylaş",
+            "share_symbol_only_desc": "Kişisel detaylar olmadan sembol anlamı",
+            "image_creation_error": "Görsel oluşturulamadı",
+            "image_downloaded": "Görsel indirildi!",
+            "image_saved": "Görsel kaydedildi!",
+            "save_error": "Kaydetme hatası",
+            "dream_interpretation": "Rüya Yorumu",
+            "found_myself_in_dreams": "Rüyalarımın içinde kendimi buldum.",
+            "symbol_insight_title": "Sembol İçgörüsü",
+            "subconscious_messages": "Bilinçaltının mesajları",
+            "walking_in_dream_light": "Bugün rüyalarımın ışığında yürüyorum.",
             "energy": "Enerjisi",
-            "personal_insight": "Kisisel icgorum",
+            "personal_insight": "Kişisel içgörüm",
             "archetype": "Arketip",
-            "weekly_subconscious_guided": "Bu hafta bilinçaltim bana yol gosterdi.",
-            "weekly_dream_summary": "Haftalik ruya ozeti"
+            "weekly_subconscious_guided": "Bu hafta bilinçaltım bana yol gösterdi.",
+            "weekly_dream_summary": "Haftalık rüya özeti"
         },
         "symbol_acknowledgments": {
-            "snake": "Yilan, ruyalarin en guclu ve cok katmanli sembollerinden biridir. Donusum, sifa, gizli bilgi veya ic tehditler gibi pek cok anlam tasiyabilir.",
-            "water": "Su, ruyalarda duygusal durumu ve bilincdisini temsil eden evrensel bir semboldur. Suyun hali - durgun, dalgali, temiz veya bulanik - onemli ipuclari tasir.",
-            "flying": "Ucmak, ruyalarda ozgurluk, yuksek hedefler veya gerceklikten kacis gibi temalari isaret edebilen guclu bir deneyimdir.",
-            "falling": "Dusme ruyalari, kontrol kaybetme, guvensizilik veya buyuk bir degisim oncesi hissedilen korkulari yansitabilir.",
-            "teeth": "Dis ruyalari, kayip, degisim, gorunum kaygilari veya iletisim sorunlariyla iliskili olabilir.",
-            "death": "Olum ruyalari cogunlukla literal degildir. Donusum, bir donemin sonu veya buyuk bir degisimi simgeleyebilir.",
-            "being_chased": "Kovalanma ruyalari, kacilmaya calisilan duygular, sorumluluklar veya korkulari temsil edebilir.",
-            "baby": "Bebek ruyalari, yeni baslangiclari, yaraticilik projelerini veya ic cocugunuzla baglantinizi simgeleyebilir.",
-            "house": "Ev, ruyalarda benlik ve ic dunyanin bir yansimasi olarak gorulur. Evin durumu ve odalari farkli yasam alanlarini temsil edebilir.",
-            "car": "Araba ruyalari, hayat yolculugunda kontrol, yon ve ilerleme temalarini isaret eder.",
-            "dog": "Kopek, sadakat, dostluk veya icgudusel yanlarimizi temsil edebilir. Kopegin davranisi onemli ipuclari tasir.",
-            "cat": "Kedi, bagimsizlik, sezgi ve gizemle iliskilidir. Feminen enerji ve ic bilgeligi de simgeleyebilir.",
-            "money": "Para ruyalari, deger, ozsaygi ve kaynaklara erisim temalarini yansitabilir.",
-            "exam": "Sinav ruyalari, performans kaygisi, degerlendirilme korkusu veya yasam testleri hakkinda olabilir.",
-            "nakedness": "Ciplaklık ruyalari, savunmasizlik, autentik benligin ifasi veya maskelerden arinma ile iliskilidir.",
-            "getting_lost": "Kaybolma ruyalari, hayatta yon kaybetme, kimlik arayisi veya belirsizlik hislerini yansitabilir.",
-            "fire": "Ates, tutku, ofke, donusum veya arinmayi temsil edebilir. Yanginin kontrollu veya kontrolsuz olmasi onemlidir.",
-            "blood": "Kan, yasam enerjisi, duygusal yaralar veya aile baglariyla iliskili temalari isaret edebilir.",
-            "wedding": "Gelin/dugun ruyalari, birlesme, taahhut veya hayatin yeni bir evresine gecisi simgeleyebilir.",
-            "illness": "Hastalik ruyalari, duygusal veya içsel dengesizliklere, dikkat edilmesi gereken alanlara isaret edebilir.",
-            "general": "Her ruya sembolu kisisel anlam tasir. Onemli olan, bu sembolun senin icin ne ifade ettigini kesfetmektir."
+            "snake": "Yılan, rüyaların en güçlü ve çok katmanlı sembollerinden biridir. Dönüşüm, şifa, gizli bilgi veya iç tehditler gibi pek çok anlam taşıyabilir.",
+            "water": "Su, rüyalarda duygusal durumu ve bilinçdışını temsil eden evrensel bir semboldür. Suyun hali - durgun, dalgalı, temiz veya bulanık - önemli ipuçları taşır.",
+            "flying": "Uçmak, rüyalarda özgürlük, yüksek hedefler veya gerçeklikten kaçış gibi temaları işaret edebilen güçlü bir deneyimdir.",
+            "falling": "Düşme rüyaları, kontrol kaybetme, güvensizlik veya büyük bir değişim öncesi hissedilen korkuları yansıtabilir.",
+            "teeth": "Diş rüyaları, kayıp, değişim, görünüm kaygıları veya iletişim sorunlarıyla ilişkili olabilir.",
+            "death": "Ölüm rüyaları çoğunlukla literal değildir. Dönüşüm, bir dönemin sonu veya büyük bir değişimi simgeleyebilir.",
+            "being_chased": "Kovalanma rüyaları, kaçılmaya çalışılan duygular, sorumluluklar veya korkuları temsil edebilir.",
+            "baby": "Bebek rüyaları, yeni başlangıçları, yaratıcılık projelerini veya iç çocuğunuzla bağlantınızı simgeleyebilir.",
+            "house": "Ev, rüyalarda benlik ve iç dünyanın bir yansıması olarak görülür. Evin durumu ve odaları farklı yaşam alanlarını temsil edebilir.",
+            "car": "Araba rüyaları, hayat yolculuğunda kontrol, yön ve ilerleme temalarını işaret eder.",
+            "dog": "Köpek, sadakat, dostluk veya içgüdüsel yanlarımızı temsil edebilir. Köpeğin davranışı önemli ipuçları taşır.",
+            "cat": "Kedi, bağımsızlık, sezgi ve gizemle ilişkilidir. Feminen enerji ve iç bilgeliği de simgeleyebilir.",
+            "money": "Para rüyaları, değer, özsaygı ve kaynaklara erişim temalarını yansıtabilir.",
+            "exam": "Sınav rüyaları, performans kaygısı, değerlendirilme korkusu veya yaşam testleri hakkında olabilir.",
+            "nakedness": "Çıplaklık rüyaları, savunmasızlık, otantik benliğin ifası veya maskelerden arınma ile ilişkilidir.",
+            "getting_lost": "Kaybolma rüyaları, hayatta yön kaybetme, kimlik arayışı veya belirsizlik hislerini yansıtabilir.",
+            "fire": "Ateş, tutku, öfke, dönüşüm veya arınmayı temsil edebilir. Yangının kontrollü veya kontrolsüz olması önemlidir.",
+            "blood": "Kan, yaşam enerjisi, duygusal yaralar veya aile bağlarıyla ilişkili temaları işaret edebilir.",
+            "wedding": "Gelin/düğün rüyaları, birleşme, taahhüt veya hayatın yeni bir evresine geçişi simgeleyebilir.",
+            "illness": "Hastalık rüyaları, duygusal veya içsel dengesizliklere, dikkat edilmesi gereken alanlara işaret edebilir.",
+            "general": "Her rüya sembolü kişisel anlam taşır. Önemli olan, bu sembolün senin için ne ifade ettiğini keşfetmektir."
         },
         "context_questions": {
             "snake": [
-                "Yilan sana dogru mu geliyordu, sadece orada mi duruyordu, yoksa uzaklasiyordu mu?",
-                "Hakim duygu neydi? (korku, gerilim, merak, sakinlik)",
-                "Ortam kapali miydi (oda/ev) yoksa acik miydi (doga)?"
+                "Yılan sana doğru mu geliyordu, sadece orada mı duruyordu, yoksa uzaklaşıyordu mu?",
+                "Hâkim duygu neydi? (korku, gerilim, merak, sakinlik)",
+                "Ortam kapalı mıydı (oda/ev) yoksa açık mıydı (doğa)?"
             ],
             "falling": [
                 "Dusus kontrol kaybetme mi yoksa birakma gibi mi hissettirdi?",
@@ -2697,41 +2697,41 @@
             "title": "Rüya Rehberi",
             "new_dream": "Yeni Ruya",
             "describe_dream": "Ruyani Anlat",
-            "voice_input_soon": "Sesli giris yakinda aktif olacak",
+            "voice_input_soon": "Sesli giriş yakında aktif olacak",
             "voice_describe": "Sesli Anlat",
-            "dream_hint": "Gordugum ruyada...\n\nNe gordun? Kimler vardi? Neler oldu? Ne hissettin?",
+            "dream_hint": "Gördüğüm rüyada...\n\nNe gördün? Kimler vardı? Neler oldu? Ne hissettin?",
             "characters": "karakter",
-            "dream_emotion": "Ruyandaki Duygu",
-            "is_recurring": "Bu ruya tekrarliyor mu?",
-            "recurring_message": "Tekrarlayan ruyalar ozel mesajlar tasir",
-            "life_situation": "Hayatindaki Durum (Istege Bagli)",
-            "life_hint": "Su an hayatinda neler oluyor? (kariyer, iliski, vb.)",
-            "interpretation_style": "Yorum Turu",
-            "moon_phase_today": "Gunun Ay Fazi",
-            "interpret_dream": "Ruyami Yorumla",
-            "please_describe": "Lutfen ruyani anlat",
-            "error_occurred": "Bir hata olustu. Lutfen tekrar dene.",
+            "dream_emotion": "Rüyandaki Duygu",
+            "is_recurring": "Bu rüya tekrarlıyor mu?",
+            "recurring_message": "Tekrarlayan rüyalar özel mesajlar taşır",
+            "life_situation": "Hayatındaki Durum (İsteğe Bağlı)",
+            "life_hint": "Şu an hayatında neler oluyor? (kariyer, ilişki, vb.)",
+            "interpretation_style": "Yorum Türü",
+            "moon_phase_today": "Günün Ay Fazı",
+            "interpret_dream": "Rüyamı Yorumla",
+            "please_describe": "Lütfen rüyanı anlat",
+            "error_occurred": "Bir hata oluştu. Lütfen tekrar dene.",
             "loading": {
-                "diving_subconscious": "Bilinçaltinin derinliklerine iniliyor...",
-                "decoding_symbols": "Semboller cozumleniyor...",
-                "connecting_archetypes": "Arketiplerle baglanti kuruluyor...",
-                "calculating_moon": "Ay fazi etkisi hesaplaniyor...",
-                "consulting_wisdom": "Kadim bilgelik danisiliyor...",
-                "analyzing_shadow": "Golge ve isik analiz ediliyor...",
+                "diving_subconscious": "Bilinçaltının derinliklerine iniliyor...",
+                "decoding_symbols": "Semboller çözümleniyor...",
+                "connecting_archetypes": "Arketiplerle bağlantı kuruluyor...",
+                "calculating_moon": "Ay fazı etkisi hesaplanıyor...",
+                "consulting_wisdom": "Kadim bilgelik danışılıyor...",
+                "analyzing_shadow": "Gölge ve ışık analiz ediliyor...",
                 "reading_cosmic": "Kişisel zamanlama okunuyor...",
-                "shaping_interpretation": "Ruya yorumu sekilleniyor..."
+                "shaping_interpretation": "Rüya yorumu şekilleniyor..."
             },
             "sections": {
-                "ancient_intro": "Kadim Giris",
+                "ancient_intro": "Kadim Giriş",
                 "core_message": "Ana Mesaj",
                 "symbol_analysis": "Sembol Analizi",
-                "archetype_connection": "Arketip Baglantisi",
+                "archetype_connection": "Arketip Bağlantısı",
                 "emotional_reading": "Duygusal Okuma",
                 "astro_timing": "Kişisel Zamanlama",
-                "light_shadow": "Isik ve Golge",
+                "light_shadow": "Işık ve Gölge",
                 "practical_guidance": "Pratik Rehberlik",
                 "lucid_potential": "Bilinçli Rüya Potansiyeli",
-                "whisper_quote": "Fisildayan Cumle"
+                "whisper_quote": "Fısıldayan Cümle"
             },
             "emotional": {
                 "surface_message": "Yuzey Mesaji",
@@ -2757,7 +2757,7 @@
                 "high": "Yuksek",
                 "medium": "Orta",
                 "low": "Dusuk",
-                "potential_message": "Bu ruyada lucid (bilincli) ruya gorme potansiyeliniz yukseldi. Gelecek gece uyumadan once niyet koymayi deneyin."
+                "potential_message": "Bu rüyada bilinçli rüya görme potansiyeliniz yükseldi. Gelecek gece uyumadan önce niyet koymayı deneyin."
             },
             "styles": {
                 "jungian": "Jungian",
@@ -3071,8 +3071,8 @@
         "off": "Kapalı",
         "moon_phases": "Ay Evreleri",
         "moon_phases_desc": "Yeni ay ve dolunay bildirimleri",
-        "transit_alerts": "Transit Uyarıları",
-        "transit_desc": "Önemli döngüsel transitler",
+        "transit_alerts": "Döngü Uyarıları",
+        "transit_desc": "Önemli döngüsel geçişler",
         "lifecycle": {
             "streak_reminder_title": "Seri Seni Bekliyor",
             "streak_reminder_body": "{count} gunluk serin seni bekliyor! Hizli bir kayit seriyi surdurur.",
@@ -3109,7 +3109,7 @@
     "insights": {
         "daily_energy_title": "Bugünün Enerjisi",
         "daily_energy_content": "Ay'ın mevcut konumu duygusal derinlik getiriyor. İç sesinize kulak vermenin tam zamanı.",
-        "transit_effect_title": "Transit Etkisi",
+        "transit_effect_title": "Döngü Etkisi",
         "dream_guide_title": "Rüya Rehberi",
         "dream_guide_content": "Bu gece gördüğünüz rüyalar önemli mesajlar taşıyabilir. Rüyalarınızı kaydetmeyi unutmayın.",
         "weekly_preview_title": "Haftalık Bakış",
@@ -3277,7 +3277,7 @@
             "no_dreams_weekly": "Bu hafta henüz rüya kaydetmedin. Bilinçaltının sesini dinlemeye hazır mısın?",
             "no_dreams_monthly": "Bu ay rüya kaydettikçe, örüntüleri keşfedeceğim.",
             "symbol_frequent": "\"{symbol}\" sembolü rüyalarında sık beliriyor.",
-            "lucid_count": "{count} lucid rüya deneyimledin - farkındalık gelişiyor!",
+            "lucid_count": "{count} bilinçli rüya deneyimledin - farkındalık gelişiyor!",
             "nightmare_count": "{count} kabus, gölge entegrasyonu için fırsat sunuyor.",
             "summary": "{count} rüya kaydettin. Dominant duygu: {emotion}. "
         },
@@ -3445,7 +3445,7 @@
             "personal_profile_desc": "Rüya sembollerinin iç kalıplarınla bağlantısını gör",
             "moon_calendar_title": "Ay Takvimine Bak",
             "moon_calendar_desc": "Rüyanın geldiği ay fazının anlamını öğren",
-            "transits_title": "Transitlerini İncele",
+            "transits_title": "Döngülerini İncele",
             "transits_desc": "Şu anki döngüsel geçişlerin rüyana etkisi",
             "timing_insights_title": "Zamanlama İçgörüleri",
             "timing_insights_desc": "Kişisel ritimlerin rüya kalıplarını nasıl etkilediğini keşfet",

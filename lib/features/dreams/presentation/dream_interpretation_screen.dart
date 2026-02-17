@@ -638,7 +638,7 @@ class _DreamInterpretationScreenState
       final signPerspective = L10nService.getWithParams(
         'widgets.dreams.interpretations.sign_perspective',
         language,
-        params: {'sign': sign.localizedName(language)},
+        params: {'archetype': sign.localizedName(language)},
       );
       buffer.writeln('$signPerspective\n');
 
@@ -673,7 +673,7 @@ class _DreamInterpretationScreenState
       final title = L10nService.getWithParams(
         'widgets.dreams.interpretations.water.title',
         language,
-        params: {'sign': signName},
+        params: {'archetype': signName},
       );
       final divider = L10nService.get(
         'widgets.dreams.interpretations.water.divider',
@@ -734,7 +734,7 @@ $practice''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.water.title',
       language,
-      params: {'sign': signName},
+      params: {'archetype': signName},
     );
     final divider = L10nService.get(
       'widgets.dreams.interpretations.water.divider',
@@ -794,7 +794,7 @@ $practice''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.flying.title',
       language,
-      params: {'sign': signName},
+      params: {'archetype': signName},
     );
     final basicLabel = L10nService.get(
       'widgets.dreams.interpretations.flying.basic_meaning_label',
@@ -807,7 +807,7 @@ $practice''';
     final specialLabel = L10nService.getWithParams(
       'widgets.dreams.interpretations.flying.special_interpretation_label',
       language,
-      params: {'sign': signName},
+      params: {'archetype': signName},
     );
     final specialInterpretation = L10nService.get(
       'widgets.dreams.interpretations.flying.special_interpretation',
@@ -890,7 +890,7 @@ $cosmicMessage''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.falling.title',
       language,
-      params: {'sign': signName},
+      params: {'archetype': signName},
     );
     final basicLabel = L10nService.get(
       'widgets.dreams.interpretations.falling.basic_meaning_label',
@@ -967,7 +967,7 @@ $cosmicMessage''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.death.title',
       language,
-      params: {'sign': signName},
+      params: {'archetype': signName},
     );
     final notScaryLabel = L10nService.get(
       'widgets.dreams.interpretations.death.not_scary_label',
@@ -1012,7 +1012,7 @@ $cosmicMessage''';
     final cosmicMessage = L10nService.getWithParams(
       'widgets.dreams.interpretations.death.cosmic_message',
       language,
-      params: {'sign': sign.localizedName(language)},
+      params: {'archetype': sign.localizedName(language)},
     );
 
     return '''$title
@@ -1045,7 +1045,7 @@ $cosmicMessage''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.chase.title',
       language,
-      params: {'sign': signName},
+      params: {'archetype': signName},
     );
     final basicLabel = L10nService.get(
       'widgets.dreams.interpretations.chase.basic_meaning_label',
@@ -1123,7 +1123,7 @@ $cosmicMessage''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.animal.title',
       language,
-      params: {'sign': signName},
+      params: {'archetype': signName},
     );
     final basicLabel = L10nService.get(
       'widgets.dreams.interpretations.animal.basic_meaning_label',
@@ -1201,7 +1201,7 @@ $cosmicMessage''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.house.title',
       language,
-      params: {'sign': signName},
+      params: {'archetype': signName},
     );
     final basicLabel = L10nService.get(
       'widgets.dreams.interpretations.house.basic_meaning_label',
@@ -1284,7 +1284,7 @@ $cosmicMessage''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.love.title',
       language,
-      params: {'sign': signName},
+      params: {'archetype': signName},
     );
     final basicLabel = L10nService.get(
       'widgets.dreams.interpretations.love.basic_meaning_label',
@@ -1378,7 +1378,7 @@ $cosmicMessage''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.money.title',
       language,
-      params: {'sign': signName},
+      params: {'archetype': signName},
     );
     final basicLabel = L10nService.get(
       'widgets.dreams.interpretations.money.basic_meaning_label',
@@ -1472,7 +1472,7 @@ $cosmicMessage''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.generic.title',
       language,
-      params: {'sign': signName},
+      params: {'archetype': signName},
     );
     final subconLabel = L10nService.get(
       'widgets.dreams.interpretations.generic.subconscious_label',
@@ -1519,7 +1519,7 @@ $cosmicMessage''';
     final adviceLabel = L10nService.getWithParams(
       'widgets.dreams.interpretations.generic.advice_label',
       language,
-      params: {'sign': signName},
+      params: {'archetype': signName},
     );
 
     return '''$title
@@ -1603,7 +1603,7 @@ ${_getPersonalAdvice(sign)}''';
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [AppColors.mystic.withValues(alpha: 0.3), Colors.transparent],
+          colors: [AppColors.amethyst.withValues(alpha: 0.3), Colors.transparent],
         ),
       ),
       child: Row(
@@ -1625,7 +1625,7 @@ ${_getPersonalAdvice(sign)}''';
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
-                      AppColors.mystic.withValues(
+                      AppColors.amethyst.withValues(
                         alpha: 0.5 + _pulseController.value * 0.3,
                       ),
                       AppColors.nebulaPurple.withValues(alpha: 0.3),
@@ -1634,7 +1634,7 @@ ${_getPersonalAdvice(sign)}''';
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.mystic.withValues(
+                      color: AppColors.amethyst.withValues(
                         alpha: 0.4 * _pulseController.value,
                       ),
                       blurRadius: 15,
@@ -1765,7 +1765,7 @@ ${_getPersonalAdvice(sign)}''';
                           borderRadius: BorderRadius.circular(14),
                           padding: const EdgeInsets.all(12),
                           width: 180,
-                          glowColor: AppColors.mystic.withValues(alpha: 0.2),
+                          glowColor: AppColors.amethyst.withValues(alpha: 0.2),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -1831,7 +1831,7 @@ ${_getPersonalAdvice(sign)}''';
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        AppColors.mystic.withValues(alpha: 0.5),
+                        AppColors.amethyst.withValues(alpha: 0.5),
                         AppColors.nebulaPurple.withValues(alpha: 0.3),
                       ],
                     ),
@@ -1856,7 +1856,7 @@ ${_getPersonalAdvice(sign)}''';
                   padding: const EdgeInsets.all(14),
                   glowColor: isUser
                       ? AppColors.cosmicPurple.withValues(alpha: 0.2)
-                      : AppColors.mystic.withValues(alpha: 0.2),
+                      : AppColors.amethyst.withValues(alpha: 0.2),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1899,7 +1899,7 @@ ${_getPersonalAdvice(sign)}''';
                               ),
                               style: Theme.of(context).textTheme.labelSmall
                                   ?.copyWith(
-                                    color: AppColors.mystic,
+                                    color: AppColors.amethyst,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1,
                                   ),
@@ -1936,7 +1936,7 @@ ${_getPersonalAdvice(sign)}''';
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  AppColors.mystic.withValues(alpha: 0.5),
+                  AppColors.amethyst.withValues(alpha: 0.5),
                   AppColors.nebulaPurple.withValues(alpha: 0.3),
                 ],
               ),
@@ -2035,12 +2035,12 @@ ${_getPersonalAdvice(sign)}''';
                       padding: const EdgeInsets.all(14),
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [AppColors.mystic, AppColors.cosmicPurple],
+                          colors: [AppColors.amethyst, AppColors.cosmicPurple],
                         ),
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors.mystic.withValues(alpha: 0.4),
+                            color: AppColors.amethyst.withValues(alpha: 0.4),
                             blurRadius: 12,
                             spreadRadius: 1,
                           ),

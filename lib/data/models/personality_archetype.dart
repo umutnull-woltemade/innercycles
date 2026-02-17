@@ -196,7 +196,7 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
         return [
           'Ocean Heart',
           'Vivid Dream',
-          'Mystic Intuition',
+          'Deep Intuition',
           'Boundless Imagination',
         ];
     }
