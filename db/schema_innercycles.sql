@@ -1,8 +1,8 @@
 -- ============================================================
--- ASTROBOBO ISOLATED DATABASE SCHEMA
+-- INNERCYCLES DATABASE SCHEMA
 -- Version: 1.0.0
 -- Created: 2026-02-11
--- Description: Independent schema for Astrobobo astrology platform
+-- Description: Independent schema for InnerCycles platform
 -- No foreign keys to external systems
 -- ============================================================
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Astrobobo Content Batch Generator
+ * InnerCycles Content Batch Generator
  *
  * Generates content in batches of 25, validates each piece,
  * and outputs inter-agent JSON messages.
@@ -74,7 +74,7 @@ async function generateBatch(type, batchNum, batchSize) {
 }
 
 async function run() {
-  console.log(`=== ASTROBOBO CONTENT GENERATOR ===`);
+  console.log(`=== INNERCYCLES CONTENT GENERATOR ===`);
   console.log(`Type: ${contentType}`);
   console.log(`Target count: ${count}`);
   console.log(`Batch size: ${BATCH_SIZE}`);

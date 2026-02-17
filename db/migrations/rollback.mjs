@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Astrobobo Database Migration Rollback
+ * InnerCycles Database Migration Rollback
  *
  * Usage:
  *   node db/migrations/rollback.mjs              # Rollback last migration

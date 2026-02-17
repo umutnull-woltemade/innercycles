@@ -38,7 +38,7 @@ serve(async (req) => {
     const blocks = [
       {
         type: "header",
-        text: { type: "plain_text", text: `${severity} — Astrobobo`, emoji: true }
+        text: { type: "plain_text", text: `${severity} — InnerCycles`, emoji: true }
       },
       {
         type: "section",

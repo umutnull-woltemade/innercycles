@@ -1,6 +1,6 @@
 -- Migration: 001_initial_schema
 -- Created: 2026-02-11
--- Description: Initial Astrobobo database schema
+-- Description: Initial InnerCycles database schema
 -- Rollback: 001_initial_schema_rollback.sql
 
 BEGIN;
@@ -21,7 +21,7 @@ BEGIN
 END $$;
 
 -- Execute full schema
-\i ../schema_astrobobo.sql
+\i ../schema_innercycles.sql
 
 -- Record migration
 INSERT INTO _migrations (name) VALUES ('001_initial_schema');

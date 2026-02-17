@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Astrobobo Compliance Checker
+ * InnerCycles Compliance Checker
  *
  * Validates all content against Apple 4.3(b) guidelines and
  * content quality standards.
@@ -73,7 +73,7 @@ function calculateAppleRiskScore(content) {
 }
 
 async function run() {
-  console.log("=== ASTROBOBO COMPLIANCE REPORT ===\n");
+  console.log("=== INNERCYCLES COMPLIANCE REPORT ===\n");
 
   const contentDir = join(ROOT, "content");
   let files;

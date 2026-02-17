@@ -1,4 +1,4 @@
-name: Astrobobo CI Pipeline
+name: InnerCycles CI Pipeline
 
 on:
   push:
