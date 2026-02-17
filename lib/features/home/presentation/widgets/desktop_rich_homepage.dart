@@ -130,8 +130,8 @@ class _DesktopHeader extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   language == AppLanguage.en
-                      ? 'Personal Reflection Journal'
-                      : 'Kişisel Yansıma Günlüğü',
+                      ? 'Emotional Cycle Intelligence'
+                      : 'Duygusal Döngü Zekası',
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.white.withValues(alpha: 0.7),
