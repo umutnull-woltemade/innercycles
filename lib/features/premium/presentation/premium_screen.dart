@@ -11,6 +11,7 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
+import '../../../data/services/paywall_experiment_service.dart';
 import '../../../data/services/paywall_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../data/services/url_launcher_service.dart';
@@ -502,11 +503,19 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 onTap: premiumState.isLoading
                     ? null
                     : () async {
+                        final experiment = ref
+                            .read(paywallExperimentProvider)
+                            .whenOrNull(data: (e) => e);
+                        experiment?.logPaywallView();
+
                         final result = await ref
                             .read(paywallServiceProvider)
                             .presentPaywall();
                         if (mounted && result == PaywallResult.purchased) {
+                          experiment?.logPaywallConversion();
                           _showSuccessDialog();
+                        } else {
+                          experiment?.logPaywallDismissal();
                         }
                       },
                 borderRadius: BorderRadius.circular(AppConstants.radiusMd),
@@ -550,11 +559,21 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
   Widget _buildPriceAnchor(BuildContext context) {
     final language = ref.watch(languageProvider);
+    final experiment =
+        ref.watch(paywallExperimentProvider).whenOrNull(data: (e) => e);
+
+    // Use experiment variant price if available, else fall back to l10n
+    final monthlyLabel = experiment?.monthlyPriceLabel ??
+        L10nService.get('premium.price_monthly_crossed', language);
+    final yearlyLabel = experiment != null
+        ? '${experiment.yearlyMonthlyEquivalent} — ${L10nService.get('premium.price_anchor', language).split('—').last.trim()}'
+        : L10nService.get('premium.price_anchor', language);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          L10nService.get('premium.price_monthly_crossed', language),
+          monthlyLabel,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: AppColors.textMuted,
             decoration: TextDecoration.lineThrough,
@@ -572,7 +591,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             ),
           ),
           child: Text(
-            L10nService.get('premium.price_anchor', language),
+            yearlyLabel,
             style: const TextStyle(
               color: AppColors.starGold,
               fontSize: 14,
