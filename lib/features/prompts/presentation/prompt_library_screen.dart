@@ -722,8 +722,8 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
         return isEn ? 'Emotions' : 'Duygular';
       case PromptCategory.goals:
         return isEn ? 'Goals' : 'Hedefler';
-      case PromptCategory.healing:
-        return isEn ? 'Healing' : 'İyileşme';
+      case PromptCategory.recovery:
+        return isEn ? 'Recovery' : 'İyileşme';
       case PromptCategory.creativity:
         return isEn ? 'Creativity' : 'Yaratıcılık';
       case PromptCategory.mindfulness:

@@ -215,8 +215,8 @@ class TodayPromptCard extends ConsumerWidget {
         return isEn ? 'Emotions' : 'Duygular';
       case 'goals':
         return isEn ? 'Goals' : 'Hedefler';
-      case 'healing':
-        return isEn ? 'Healing' : 'İyileşme';
+      case 'recovery':
+        return isEn ? 'Recovery' : 'İyileşme';
       case 'creativity':
         return isEn ? 'Creativity' : 'Yaratıcılık';
       case 'mindfulness':
