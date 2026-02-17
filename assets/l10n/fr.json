@@ -1998,7 +1998,7 @@
             "important_note": "Note importante",
             "life_path": {
                 "title": "Qu'est-ce que le nombre de chemin de vie ?",
-                "answer1": "Le nombre de chemin de vie est le nombre numérologique fondamental calculé à partir de ta date de naissance.",
+                "answer1": "Le nombre de chemin de vie est le nombre fondamental calculé à partir de ta date de naissance.",
                 "answer2": "Il montre quel chemin tu emprunteras dans cette vie.",
                 "answer3": "Il va de 1 à 9 (et les nombres maîtres 11, 22, 33).",
                 "how_calculated": "Comment est-il calculé ?",
@@ -2754,7 +2754,7 @@
     },
     "analysis": {
         "archetype_analysis": "Analyse du Archétype",
-        "discovery_analysis": "Analyse Numérologique",
+        "discovery_analysis": "Analyse des Nombres",
         "wellness_analysis": "Analyse du Profil Énergétique",
         "wisdom_analysis": "Exploration Symbolique",
         "enter_birth_info_discovery": "Entrez vos informations de naissance\npour voir votre nombre de chemin de vie",
