@@ -4,18 +4,16 @@ import 'package:google_fonts/google_fonts.dart';
 /// Typography styles for the InnerCycles app
 ///
 /// FONT CHOICES:
-/// - Playfair Display: Elegant serif for headers (şık, mistik hissiyat)
-/// - Space Grotesk: Modern, havalı sans-serif for body (kolay okunan, futuristik)
-/// - Cinzel: Ancient style for accent text (kadim, mistik)
-///
-/// BOYUTLAR BÜYÜTÜLDÜ - daha okunaklı
-class MysticalTypography {
-  MysticalTypography._();
+/// - Playfair Display: Elegant serif for headers
+/// - Space Grotesk: Modern sans-serif for body
+/// - Cinzel: Ancient style for accent text
+class AppTypography {
+  AppTypography._();
 
   /// Display font - Playfair Display (elegant, serif, premium)
   static TextStyle get displayFont => GoogleFonts.playfairDisplay();
 
-  /// Accent font - Cinzel (ancient, mystical)
+  /// Accent font - Cinzel (ancient, decorative)
   static TextStyle get accentFont => GoogleFonts.cinzel();
 
   /// Body font - Space Grotesk (modern, clean, futuristic, highly readable)
@@ -138,8 +136,8 @@ class MysticalTypography {
     );
   }
 
-  /// Get elegant script for special quotes and mystical text
-  static TextStyle mysticalScript({
+  /// Get elegant script for special quotes and decorative text
+  static TextStyle decorativeScript({
     double fontSize = 18,
     FontWeight fontWeight = FontWeight.w400,
     Color? color,

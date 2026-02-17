@@ -43,8 +43,8 @@
 | Name | Hex | Usage |
 |------|-----|-------|
 | Deep Space | #0B0F1A | App backgrounds, icons |
-| Venus Pink | #E8A0B4 | Planet highlight color |
-| Venus Rose | #C45C7D | Planet dark tones |
+| Soft Pink | #E8A0B4 | Planet highlight color |
+| Deep Rose | #C45C7D | Planet dark tones |
 | Cosmic Violet | #8B5CF6 | Glow effects, accents |
 | Cosmic Blue | #3498DB | Secondary glow |
 
@@ -61,7 +61,7 @@
 
 ### Sequence (Duration: ~1 second)
 1. **Frame 0-200ms**: Dark space background (#0B0F1A) fade in
-2. **Frame 200-600ms**: Venus planet fades in with scale animation (0.95 → 1.0)
+2. **Frame 200-600ms**: Planet fades in with scale animation (0.95 → 1.0)
 3. **Frame 400-1000ms**: Soft violet glow pulse (opacity 30% → 60% → 30%)
 4. **Frame 600-1000ms**: Transition to main app UI
 
@@ -89,7 +89,7 @@ curve: easeInOut
 ┌─────────────────────────────────────┐
 │  [Dark Background #0B0F1A]          │
 │                                     │
-│         🪐 Venus Planet             │
+│         🪐 Planet Icon               │
 │         (small, elegant)            │
 │                                     │
 │  ┌─────────────────────────────┐    │
@@ -109,7 +109,7 @@ curve: easeInOut
 
 ### Visual Rules
 - Dark background (#0B0F1A)
-- Venus planet as hero visual (small, ~80px)
+- Planet as hero visual (small, ~80px)
 - Glow used ONLY on selected/recommended plan
 - Non-selected plans remain flat
 - Glow color: #8B5CF6 (violet)

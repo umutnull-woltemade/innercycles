@@ -215,7 +215,7 @@ class _CosmicPainter extends CustomPainter {
   static final List<_Star> _stars = _generateStars();
   static final List<_Nebula> _nebulas = _generateNebulas();
   static final List<_GlowOrb> _glowOrbs = _generateGlowOrbs();
-  static final List<_EsotericSymbol> _symbols = _generateEsotericSymbols();
+  static final List<_DecorativeSymbol> _symbols = _generateDecorativeSymbols();
 
   static List<_Star> _generateStars() {
     final random = math.Random(42);
@@ -349,9 +349,9 @@ class _CosmicPainter extends CustomPainter {
   }
 
   // Decorative background symbols
-  static List<_EsotericSymbol> _generateEsotericSymbols() {
+  static List<_DecorativeSymbol> _generateDecorativeSymbols() {
     final random = math.Random(99);
-    final symbols = <_EsotericSymbol>[];
+    final symbols = <_DecorativeSymbol>[];
 
     // Decorative symbols
     const decorativeSymbols = [
@@ -381,7 +381,7 @@ class _CosmicPainter extends CustomPainter {
     // 25-30 sembol ekle - dağınık ve soluk
     for (int i = 0; i < 28; i++) {
       symbols.add(
-        _EsotericSymbol(
+        _DecorativeSymbol(
           x: random.nextDouble(),
           y: random.nextDouble(),
           symbol: allSymbols[random.nextInt(allSymbols.length)],
@@ -407,7 +407,7 @@ class _CosmicPainter extends CustomPainter {
     _drawGlowOrbs(canvas, size);
 
     // 4. Decorative symbols
-    _drawEsotericSymbols(canvas, size);
+    _drawDecorativeSymbols(canvas, size);
 
     // 5. Yıldızlar
     _drawStars(canvas, size);
@@ -512,7 +512,7 @@ class _CosmicPainter extends CustomPainter {
     }
   }
 
-  void _drawEsotericSymbols(Canvas canvas, Size size) {
+  void _drawDecorativeSymbols(Canvas canvas, Size size) {
     for (final symbol in _symbols) {
       final center = Offset(symbol.x * size.width, symbol.y * size.height);
 
@@ -600,7 +600,7 @@ class _GlowOrb {
   });
 }
 
-class _EsotericSymbol {
+class _DecorativeSymbol {
   final double x;
   final double y;
   final String symbol;
@@ -609,7 +609,7 @@ class _EsotericSymbol {
   final double rotation;
   final Color color;
 
-  const _EsotericSymbol({
+  const _DecorativeSymbol({
     required this.x,
     required this.y,
     required this.symbol,

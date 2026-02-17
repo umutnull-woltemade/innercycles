@@ -10,7 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../core/theme/mystical_colors.dart';
+import '../../../core/theme/cosmic_palette.dart';
 import '../../../core/theme/spacing.dart';
 import '../../../data/models/dream_interpretation_models.dart';
 import '../../../data/content/dream_symbols_database.dart';
@@ -272,7 +272,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            MysticalColors.amethyst.withValues(alpha: 0.3),
+            CosmicPalette.amethyst.withValues(alpha: 0.3),
             Colors.transparent,
           ],
         ),
@@ -292,8 +292,8 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
             decoration: BoxDecoration(
               gradient: RadialGradient(
                 colors: [
-                  MysticalColors.starGold.withValues(alpha: 0.5),
-                  MysticalColors.amethyst.withValues(alpha: 0.3),
+                  CosmicPalette.starGold.withValues(alpha: 0.5),
+                  CosmicPalette.amethyst.withValues(alpha: 0.3),
                 ],
               ),
               shape: BoxShape.circle,
@@ -333,7 +333,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
           // Personal dictionary button
           IconButton(
             onPressed: () => _showPersonalDictionary(language),
-            icon: const Icon(Icons.bookmark, color: MysticalColors.starGold),
+            icon: const Icon(Icons.bookmark, color: CosmicPalette.starGold),
             tooltip: L10nService.get(
               'screens.dream_glossary.personal_dictionary',
               language,
@@ -351,13 +351,13 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              MysticalColors.amethyst.withValues(alpha: 0.15),
-              MysticalColors.bgCosmic.withValues(alpha: 0.9),
+              CosmicPalette.amethyst.withValues(alpha: 0.15),
+              CosmicPalette.bgCosmic.withValues(alpha: 0.9),
             ],
           ),
           borderRadius: BorderRadius.circular(Spacing.radiusLg),
           border: Border.all(
-            color: MysticalColors.amethyst.withValues(alpha: 0.3),
+            color: CosmicPalette.amethyst.withValues(alpha: 0.3),
           ),
         ),
         child: TextField(
@@ -375,7 +375,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
             ),
             prefixIcon: const Icon(
               Icons.search,
-              color: MysticalColors.starGold,
+              color: CosmicPalette.starGold,
             ),
             suffixIcon: _searchQuery.isNotEmpty
                 ? IconButton(
@@ -409,9 +409,9 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
         isScrollable: true,
         tabAlignment: TabAlignment.start,
         padding: const EdgeInsets.symmetric(horizontal: 12),
-        indicatorColor: MysticalColors.starGold,
+        indicatorColor: CosmicPalette.starGold,
         indicatorWeight: 3,
-        labelColor: MysticalColors.starGold,
+        labelColor: CosmicPalette.starGold,
         unselectedLabelColor: AppColors.textSecondary,
         labelStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
         unselectedLabelStyle: const TextStyle(
@@ -507,7 +507,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: isSelected
-                    ? MysticalColors.starGold.withValues(alpha: 0.3)
+                    ? CosmicPalette.starGold.withValues(alpha: 0.3)
                     : Colors.transparent,
                 borderRadius: BorderRadius.circular(4),
               ),
@@ -517,7 +517,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
                   fontSize: 11,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                   color: isSelected
-                      ? MysticalColors.starGold
+                      ? CosmicPalette.starGold
                       : AppColors.textSecondary,
                 ),
               ),
@@ -578,15 +578,15 @@ class _SymbolCard extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  MysticalColors.amethyst.withValues(alpha: 0.15),
-                  MysticalColors.bgCosmic.withValues(alpha: 0.8),
+                  CosmicPalette.amethyst.withValues(alpha: 0.15),
+                  CosmicPalette.bgCosmic.withValues(alpha: 0.8),
                 ],
               ),
               borderRadius: BorderRadius.circular(Spacing.radiusMd),
               border: Border.all(
                 color: isDreamed
-                    ? MysticalColors.starGold.withValues(alpha: 0.4)
-                    : MysticalColors.amethyst.withValues(alpha: 0.2),
+                    ? CosmicPalette.starGold.withValues(alpha: 0.4)
+                    : CosmicPalette.amethyst.withValues(alpha: 0.2),
                 width: isDreamed ? 1.5 : 1,
               ),
             ),
@@ -640,7 +640,7 @@ class _SymbolCard extends StatelessWidget {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: MysticalColors.starGold.withValues(
+                                color: CosmicPalette.starGold.withValues(
                                   alpha: 0.2,
                                 ),
                                 borderRadius: BorderRadius.circular(8),
@@ -701,8 +701,8 @@ class _SymbolCard extends StatelessWidget {
           TextSpan(
             text: text.substring(index, index + query.length),
             style: TextStyle(
-              backgroundColor: MysticalColors.starGold.withValues(alpha: 0.3),
-              color: MysticalColors.starGold,
+              backgroundColor: CosmicPalette.starGold.withValues(alpha: 0.3),
+              color: CosmicPalette.starGold,
             ),
           ),
           TextSpan(text: text.substring(index + query.length)),
@@ -714,19 +714,19 @@ class _SymbolCard extends StatelessWidget {
   Color _getCategoryColor(SymbolCategory category) {
     switch (category) {
       case SymbolCategory.hayvan:
-        return MysticalColors.auroraGreen;
+        return CosmicPalette.auroraGreen;
       case SymbolCategory.dogaOlayi:
-        return MysticalColors.etherealCyan;
+        return CosmicPalette.etherealCyan;
       case SymbolCategory.insan:
-        return MysticalColors.nebulaRose;
+        return CosmicPalette.nebulaRose;
       case SymbolCategory.mekan:
-        return MysticalColors.stardustBlue;
+        return CosmicPalette.stardustBlue;
       case SymbolCategory.eylem:
-        return MysticalColors.solarOrange;
+        return CosmicPalette.solarOrange;
       case SymbolCategory.nesne:
-        return MysticalColors.lavender;
+        return CosmicPalette.lavender;
       case SymbolCategory.soyut:
-        return MysticalColors.orchid;
+        return CosmicPalette.orchid;
     }
   }
 }
@@ -758,7 +758,7 @@ class _SymbolDetailSheet extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [MysticalColors.bgCosmic, MysticalColors.bgDeepSpace],
+          colors: [CosmicPalette.bgCosmic, CosmicPalette.bgDeepSpace],
         ),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
       ),
@@ -787,7 +787,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: RadialGradient(
                       colors: [
-                        MysticalColors.starGold.withValues(alpha: 0.3),
+                        CosmicPalette.starGold.withValues(alpha: 0.3),
                         Colors.transparent,
                       ],
                     ),
@@ -818,7 +818,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: MysticalColors.amethyst.withValues(alpha: 0.2),
+                          color: CosmicPalette.amethyst.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Row(
@@ -832,7 +832,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                             Text(
                               symbol.category.label,
                               style: const TextStyle(
-                                color: MysticalColors.lavender,
+                                color: CosmicPalette.lavender,
                                 fontSize: 12,
                               ),
                             ),
@@ -873,7 +873,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                   ),
                   emoji: '\u{2728}',
                   content: symbol.lightAspect,
-                  color: MysticalColors.starGold,
+                  color: CosmicPalette.starGold,
                 ),
 
                 // Shadow aspect
@@ -885,7 +885,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                   ),
                   emoji: '\u{1F311}',
                   content: symbol.shadowAspect,
-                  color: MysticalColors.amethyst,
+                  color: CosmicPalette.amethyst,
                 ),
 
                 // Cultural interpretations
@@ -925,13 +925,13 @@ class _SymbolDetailSheet extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            (color ?? MysticalColors.amethyst).withValues(alpha: 0.1),
+            (color ?? CosmicPalette.amethyst).withValues(alpha: 0.1),
             Colors.transparent,
           ],
         ),
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
         border: Border.all(
-          color: (color ?? MysticalColors.amethyst).withValues(alpha: 0.2),
+          color: (color ?? CosmicPalette.amethyst).withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -944,7 +944,7 @@ class _SymbolDetailSheet extends StatelessWidget {
               Text(
                 title,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: color ?? MysticalColors.starGold,
+                  color: color ?? CosmicPalette.starGold,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -970,13 +970,13 @@ class _SymbolDetailSheet extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            MysticalColors.nebulaTeal.withValues(alpha: 0.1),
+            CosmicPalette.nebulaTeal.withValues(alpha: 0.1),
             Colors.transparent,
           ],
         ),
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
         border: Border.all(
-          color: MysticalColors.nebulaTeal.withValues(alpha: 0.2),
+          color: CosmicPalette.nebulaTeal.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -992,7 +992,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                   language,
                 ),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: MysticalColors.etherealCyan,
+                  color: CosmicPalette.etherealCyan,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -1043,12 +1043,12 @@ class _SymbolDetailSheet extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            MysticalColors.orchid.withValues(alpha: 0.1),
+            CosmicPalette.orchid.withValues(alpha: 0.1),
             Colors.transparent,
           ],
         ),
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
-        border: Border.all(color: MysticalColors.orchid.withValues(alpha: 0.2)),
+        border: Border.all(color: CosmicPalette.orchid.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1063,7 +1063,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                   language,
                 ),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: MysticalColors.orchid,
+                  color: CosmicPalette.orchid,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -1108,7 +1108,7 @@ class _SymbolDetailSheet extends StatelessWidget {
           width: 48,
           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
           decoration: BoxDecoration(
-            color: MysticalColors.bgElevated,
+            color: CosmicPalette.bgElevated,
             borderRadius: BorderRadius.circular(6),
           ),
           child: Text(
@@ -1142,13 +1142,13 @@ class _SymbolDetailSheet extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            MysticalColors.stardustBlue.withValues(alpha: 0.1),
+            CosmicPalette.stardustBlue.withValues(alpha: 0.1),
             Colors.transparent,
           ],
         ),
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
         border: Border.all(
-          color: MysticalColors.stardustBlue.withValues(alpha: 0.2),
+          color: CosmicPalette.stardustBlue.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -1164,7 +1164,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                   language,
                 ),
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: MysticalColors.stardustBlue,
+                  color: CosmicPalette.stardustBlue,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -1189,10 +1189,10 @@ class _SymbolDetailSheet extends StatelessWidget {
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: MysticalColors.bgElevated,
+                    color: CosmicPalette.bgElevated,
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
-                      color: MysticalColors.amethyst.withValues(alpha: 0.3),
+                      color: CosmicPalette.amethyst.withValues(alpha: 0.3),
                     ),
                   ),
                   child: Row(
@@ -1233,15 +1233,15 @@ class _SymbolDetailSheet extends StatelessWidget {
               ? null
               : LinearGradient(
                   colors: [
-                    MysticalColors.starGold.withValues(alpha: 0.8),
-                    MysticalColors.bronzeGlow.withValues(alpha: 0.8),
+                    CosmicPalette.starGold.withValues(alpha: 0.8),
+                    CosmicPalette.bronzeGlow.withValues(alpha: 0.8),
                   ],
                 ),
-          color: hasDreamed ? MysticalColors.bgElevated : null,
+          color: hasDreamed ? CosmicPalette.bgElevated : null,
           borderRadius: BorderRadius.circular(Spacing.radiusMd),
           border: hasDreamed
               ? Border.all(
-                  color: MysticalColors.starGold.withValues(alpha: 0.3),
+                  color: CosmicPalette.starGold.withValues(alpha: 0.3),
                 )
               : null,
         ),
@@ -1264,7 +1264,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                       language,
                     ),
               style: TextStyle(
-                color: hasDreamed ? MysticalColors.starGold : Colors.black87,
+                color: hasDreamed ? CosmicPalette.starGold : Colors.black87,
                 fontWeight: FontWeight.w600,
                 fontSize: 15,
               ),
@@ -1350,7 +1350,7 @@ class _PersonalDictionarySheet extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [MysticalColors.bgCosmic, MysticalColors.bgDeepSpace],
+          colors: [CosmicPalette.bgCosmic, CosmicPalette.bgDeepSpace],
         ),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
       ),
@@ -1394,7 +1394,7 @@ class _PersonalDictionarySheet extends StatelessWidget {
                           language,
                         ).replaceAll('{count}', '${dreamedSymbols.length}'),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: MysticalColors.starGold,
+                          color: CosmicPalette.starGold,
                         ),
                       ),
                     ],
@@ -1476,13 +1476,13 @@ class _PersonalDictionarySheet extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  MysticalColors.starGold.withValues(alpha: 0.1),
-                  MysticalColors.bgCosmic.withValues(alpha: 0.8),
+                  CosmicPalette.starGold.withValues(alpha: 0.1),
+                  CosmicPalette.bgCosmic.withValues(alpha: 0.8),
                 ],
               ),
               borderRadius: BorderRadius.circular(Spacing.radiusMd),
               border: Border.all(
-                color: MysticalColors.starGold.withValues(alpha: 0.3),
+                color: CosmicPalette.starGold.withValues(alpha: 0.3),
               ),
             ),
             child: Row(
@@ -1518,7 +1518,7 @@ class _PersonalDictionarySheet extends StatelessWidget {
                               language,
                             ).replaceAll('{count}', '${entry.count}'),
                             style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(color: MysticalColors.starGold),
+                                ?.copyWith(color: CosmicPalette.starGold),
                           ),
                           const SizedBox(width: 12),
                           Text(

@@ -11,7 +11,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 // ignore: unused_import
-import '../../../core/theme/mystical_typography.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/models/user_profile.dart';
 
 import '../../../data/providers/app_providers.dart';

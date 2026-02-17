@@ -14,7 +14,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
-import '../../../core/theme/mystical_typography.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/year_review_service.dart';
@@ -406,7 +406,7 @@ class _HeroCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             'InnerCycles',
-            style: MysticalTypography.elegantAccent(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
               fontWeight: FontWeight.w600,
               letterSpacing: 3.0,
@@ -1193,7 +1193,7 @@ class _ShareableSummaryCard extends StatelessWidget {
           const SizedBox(height: 20),
           Text(
             'InnerCycles',
-            style: MysticalTypography.elegantAccent(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
               fontWeight: FontWeight.w600,
               letterSpacing: 2.5,

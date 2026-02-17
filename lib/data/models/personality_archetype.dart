@@ -401,35 +401,24 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
     }
   }
 
-  static PersonalityArchetype fromDate(DateTime date) {
-    final month = date.month;
-    final day = date.day;
-
-    if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) {
-      return PersonalityArchetype.pioneer;
-    } else if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) {
-      return PersonalityArchetype.builder;
-    } else if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) {
-      return PersonalityArchetype.communicator;
-    } else if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) {
-      return PersonalityArchetype.nurturer;
-    } else if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) {
-      return PersonalityArchetype.performer;
-    } else if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) {
-      return PersonalityArchetype.analyst;
-    } else if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) {
-      return PersonalityArchetype.harmonizer;
-    } else if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) {
-      return PersonalityArchetype.transformer;
-    } else if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) {
-      return PersonalityArchetype.explorer;
-    } else if ((month == 12 && day >= 22) || (month == 1 && day <= 19)) {
-      return PersonalityArchetype.achiever;
-    } else if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) {
-      return PersonalityArchetype.visionary;
-    } else {
-      return PersonalityArchetype.dreamer;
-    }
+  /// Map a Jungian archetype ID (from ArchetypeService quiz/journal analysis)
+  /// to a PersonalityArchetype for dream interpretation content.
+  static PersonalityArchetype fromJungianId(String jungianId) {
+    const mapping = {
+      'creator': PersonalityArchetype.dreamer,
+      'explorer': PersonalityArchetype.explorer,
+      'sage': PersonalityArchetype.analyst,
+      'hero': PersonalityArchetype.pioneer,
+      'rebel': PersonalityArchetype.transformer,
+      'magician': PersonalityArchetype.visionary,
+      'lover': PersonalityArchetype.harmonizer,
+      'caregiver': PersonalityArchetype.nurturer,
+      'ruler': PersonalityArchetype.achiever,
+      'innocent': PersonalityArchetype.communicator,
+      'jester': PersonalityArchetype.performer,
+      'orphan': PersonalityArchetype.builder,
+    };
+    return mapping[jungianId] ?? PersonalityArchetype.pioneer;
   }
 }
 

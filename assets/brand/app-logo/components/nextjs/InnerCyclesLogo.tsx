@@ -1,16 +1,16 @@
 import Image from 'next/image';
 
-interface VenusLogoProps {
+interface InnerCyclesLogoProps {
   size?: number;
   priority?: boolean;
   className?: string;
 }
 
-export function VenusLogo({
+export function InnerCyclesLogo({
   size = 48,
   priority = false,
   className = ''
-}: VenusLogoProps) {
+}: InnerCyclesLogoProps) {
   return (
     <Image
       src="/brand/app-logo.svg"
@@ -28,4 +28,4 @@ export function VenusLogo({
   );
 }
 
-export default VenusLogo;
+export default InnerCyclesLogo;

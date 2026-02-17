@@ -1,2 +1,2 @@
-export { VenusLogo, VenusLogoSVG } from './VenusLogo';
-export type { default as VenusLogoProps } from './VenusLogo';
+export { InnerCyclesLogo, InnerCyclesLogoSVG } from './InnerCyclesLogo';
+export type { default as InnerCyclesLogoProps } from './InnerCyclesLogo';

@@ -7,7 +7,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
-import '../../../core/theme/mystical_typography.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/services/paywall_service.dart';
@@ -232,7 +232,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         ),
         Text(
           L10nService.get('app.name', language),
-          style: MysticalTypography.elegantAccent(
+          style: AppTypography.elegantAccent(
             fontSize: 12,
             fontWeight: FontWeight.w600,
             letterSpacing: 3.0,

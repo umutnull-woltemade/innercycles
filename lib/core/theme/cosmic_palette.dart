@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// Mystical/ethereal color palette for the InnerCycles app
-class MysticalColors {
-  MysticalColors._();
+/// Cosmic color palette for the InnerCycles app
+class CosmicPalette {
+  CosmicPalette._();
 
   // === PRIMARY PURPLES ===
   static const Color cosmicPurple = Color(0xFF2D1B4E);

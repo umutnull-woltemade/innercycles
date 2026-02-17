@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'mystical_colors.dart';
-import 'mystical_typography.dart';
+import 'cosmic_palette.dart';
+import 'app_typography.dart';
 import 'spacing.dart';
 
 /// App theme configuration with dark and light modes
@@ -10,7 +10,7 @@ class AppTheme {
   static ThemeData get dark => ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
-    colorScheme: MysticalColors.darkScheme,
+    colorScheme: CosmicPalette.darkScheme,
     // Smooth page transitions with swipe-back gesture (iOS style)
     pageTransitionsTheme: const PageTransitionsTheme(
       builders: {
@@ -22,19 +22,19 @@ class AppTheme {
         TargetPlatform.fuchsia: CupertinoPageTransitionsBuilder(),
       },
     ),
-    textTheme: MysticalTypography.textTheme.apply(
-      bodyColor: MysticalColors.textPrimary,
-      displayColor: MysticalColors.textPrimary,
+    textTheme: AppTypography.textTheme.apply(
+      bodyColor: CosmicPalette.textPrimary,
+      displayColor: CosmicPalette.textPrimary,
     ),
-    scaffoldBackgroundColor: MysticalColors.bgDeepSpace,
+    scaffoldBackgroundColor: CosmicPalette.bgDeepSpace,
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
       elevation: 0,
       centerTitle: true,
-      iconTheme: IconThemeData(color: MysticalColors.textPrimary),
+      iconTheme: IconThemeData(color: CosmicPalette.textPrimary),
     ),
     cardTheme: CardThemeData(
-      color: MysticalColors.bgCosmic,
+      color: CosmicPalette.bgCosmic,
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
@@ -42,8 +42,8 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: MysticalColors.amethyst,
-        foregroundColor: MysticalColors.textPrimary,
+        backgroundColor: CosmicPalette.amethyst,
+        foregroundColor: CosmicPalette.textPrimary,
         padding: const EdgeInsets.symmetric(
           horizontal: Spacing.xl,
           vertical: Spacing.lg,
@@ -55,8 +55,8 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: MysticalColors.starGold,
-        side: const BorderSide(color: MysticalColors.starGold),
+        foregroundColor: CosmicPalette.starGold,
+        side: const BorderSide(color: CosmicPalette.starGold),
         padding: const EdgeInsets.symmetric(
           horizontal: Spacing.xl,
           vertical: Spacing.lg,
@@ -68,7 +68,7 @@ class AppTheme {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: MysticalColors.bgElevated,
+      fillColor: CosmicPalette.bgElevated,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
         borderSide: BorderSide.none,
@@ -76,20 +76,20 @@ class AppTheme {
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
         borderSide: BorderSide(
-          color: MysticalColors.textMuted.withValues(alpha: 0.3),
+          color: CosmicPalette.textMuted.withValues(alpha: 0.3),
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
-        borderSide: const BorderSide(color: MysticalColors.amethyst),
+        borderSide: const BorderSide(color: CosmicPalette.amethyst),
       ),
     ),
     dividerTheme: const DividerThemeData(
-      color: MysticalColors.textMuted,
+      color: CosmicPalette.textMuted,
       thickness: 0.5,
     ),
     iconTheme: const IconThemeData(
-      color: MysticalColors.textSecondary,
+      color: CosmicPalette.textSecondary,
       size: Spacing.iconMd,
     ),
   );
@@ -97,7 +97,7 @@ class AppTheme {
   static ThemeData get light => ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
-    colorScheme: MysticalColors.lightScheme,
+    colorScheme: CosmicPalette.lightScheme,
     // Smooth page transitions with swipe-back gesture (iOS style)
     pageTransitionsTheme: const PageTransitionsTheme(
       builders: {
@@ -109,28 +109,28 @@ class AppTheme {
         TargetPlatform.fuchsia: CupertinoPageTransitionsBuilder(),
       },
     ),
-    textTheme: MysticalTypography.textTheme.apply(
-      bodyColor: MysticalColors.textDark,
-      displayColor: MysticalColors.textDark,
+    textTheme: AppTypography.textTheme.apply(
+      bodyColor: CosmicPalette.textDark,
+      displayColor: CosmicPalette.textDark,
     ),
-    scaffoldBackgroundColor: MysticalColors.bgLight,
+    scaffoldBackgroundColor: CosmicPalette.bgLight,
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
       elevation: 0,
       centerTitle: true,
-      iconTheme: IconThemeData(color: MysticalColors.textDark),
+      iconTheme: IconThemeData(color: CosmicPalette.textDark),
     ),
     cardTheme: CardThemeData(
-      color: MysticalColors.bgLightElevated,
+      color: CosmicPalette.bgLightElevated,
       elevation: 2,
-      shadowColor: MysticalColors.amethyst.withValues(alpha: 0.1),
+      shadowColor: CosmicPalette.amethyst.withValues(alpha: 0.1),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: MysticalColors.amethyst,
+        backgroundColor: CosmicPalette.amethyst,
         foregroundColor: Colors.white,
         padding: const EdgeInsets.symmetric(
           horizontal: Spacing.xl,
@@ -143,8 +143,8 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: MysticalColors.amethyst,
-        side: const BorderSide(color: MysticalColors.amethyst),
+        foregroundColor: CosmicPalette.amethyst,
+        side: const BorderSide(color: CosmicPalette.amethyst),
         padding: const EdgeInsets.symmetric(
           horizontal: Spacing.xl,
           vertical: Spacing.lg,
@@ -156,7 +156,7 @@ class AppTheme {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: MysticalColors.bgLightElevated,
+      fillColor: CosmicPalette.bgLightElevated,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
         borderSide: BorderSide.none,
@@ -164,20 +164,20 @@ class AppTheme {
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
         borderSide: BorderSide(
-          color: MysticalColors.violetMist.withValues(alpha: 0.5),
+          color: CosmicPalette.violetMist.withValues(alpha: 0.5),
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(Spacing.radiusMd),
-        borderSide: const BorderSide(color: MysticalColors.amethyst),
+        borderSide: const BorderSide(color: CosmicPalette.amethyst),
       ),
     ),
     dividerTheme: const DividerThemeData(
-      color: MysticalColors.violetMist,
+      color: CosmicPalette.violetMist,
       thickness: 0.5,
     ),
     iconTheme: const IconThemeData(
-      color: MysticalColors.textDarkSecondary,
+      color: CosmicPalette.textDarkSecondary,
       size: Spacing.iconMd,
     ),
   );

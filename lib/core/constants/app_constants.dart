@@ -65,7 +65,7 @@ class AppConstants {
 
   // Storage keys
   static const String userProfileKey = 'user_profile';
-  static const String savedChartsKey = 'saved_charts';
+
   static const String settingsKey = 'app_settings';
   static const String onboardingCompleteKey = 'onboarding_complete';
 

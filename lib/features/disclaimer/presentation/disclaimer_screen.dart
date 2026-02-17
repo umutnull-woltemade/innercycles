@@ -4,7 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../core/theme/mystical_colors.dart';
+import '../../../core/theme/cosmic_palette.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../data/services/l10n_service.dart';
@@ -35,7 +35,7 @@ class DisclaimerScreen extends ConsumerWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: LinearGradient(
-                      colors: [AppColors.cosmicPurple, MysticalColors.amethyst],
+                      colors: [AppColors.cosmicPurple, CosmicPalette.amethyst],
                     ),
                     boxShadow: [
                       BoxShadow(

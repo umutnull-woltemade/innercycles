@@ -415,7 +415,7 @@ class _DreamInterpretationScreenState
         'category': 'yolculuk',
       },
 
-      // Mystical & Contemplative dreams
+      // Deep & Contemplative dreams
       {
         'emoji': '🔮',
         'text': L10nService.get(
@@ -476,11 +476,22 @@ class _DreamInterpretationScreenState
     super.dispose();
   }
 
+  /// Resolve the user's personality archetype from their Jungian quiz/journal
+  /// archetype (via ArchetypeService). Falls back to pioneer if unavailable.
+  archetype.PersonalityArchetype _resolveArchetype() {
+    final archetypeService = ref.read(archetypeServiceProvider).valueOrNull;
+    if (archetypeService != null) {
+      final history = archetypeService.getArchetypeHistory();
+      if (history.isNotEmpty) {
+        final jungianId = history.last.archetypeId;
+        return archetype.PersonalityArchetypeExtension.fromJungianId(jungianId);
+      }
+    }
+    return archetype.PersonalityArchetype.pioneer;
+  }
+
   void _addWelcomeMessage() {
-    final userProfile = ref.read(userProfileProvider);
-    final sign = userProfile != null
-        ? archetype.PersonalityArchetypeExtension.fromDate(userProfile.birthDate)
-        : archetype.PersonalityArchetype.pioneer;
+    final sign = _resolveArchetype();
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language);
 
@@ -525,10 +536,7 @@ class _DreamInterpretationScreenState
   }
 
   void _generateInterpretation(String dreamText) {
-    final userProfile = ref.read(userProfileProvider);
-    final sign = userProfile != null
-        ? archetype.PersonalityArchetypeExtension.fromDate(userProfile.birthDate)
-        : archetype.PersonalityArchetype.pioneer;
+    final sign = _resolveArchetype();
 
     // Generate interpretation based on dream content and personality profile
     final interpretation = _interpretDream(dreamText, sign);
