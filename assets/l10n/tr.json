@@ -1563,7 +1563,7 @@
                 "description": "Sayı kalıplarını ve bağlantılarını keşfet."
             },
             "aura_reading": {
-                "title": "Aura Okuma",
+                "title": "Enerji Okuma",
                 "description": "Enerji alanını keşfet."
             },
             "moon_rituals": {
@@ -1647,7 +1647,7 @@
                 "description": "Sayılarla birlikte oku."
             },
             "aura_colors": {
-                "title": "Aura Renkleri",
+                "title": "Enerji Renkleri",
                 "description": "Enerji alanın."
             },
             "other_systems": {
@@ -1707,7 +1707,7 @@
             },
             "color_meanings": {
                 "title": "Renk Anlamları",
-                "description": "Aura renkleri sözlüğü"
+                "description": "Enerji renkleri sözlüğü"
             },
             "gematria_and_numbers": {
                 "description": "Gematria ve sayılar."
@@ -1836,7 +1836,7 @@
                 "description": "Ritüellerle enerji çalışması."
             },
             "aura_cleansing": {
-                "title": "Aura Temizliği",
+                "title": "Enerji Temizliği",
                 "description": "Enerji alanını arındır."
             },
             "post_ritual_dreams": {
@@ -1871,7 +1871,7 @@
                 "description": "Sayıların sırrı."
             },
             "aura": {
-                "title": "Aura",
+                "title": "Enerji",
                 "description": "Enerji alanın."
             },
             "rituals": {
@@ -2797,10 +2797,10 @@
     "analysis": {
         "archetype_analysis": "Arketip Çözümlemesi",
         "discovery_analysis": "Numeroloji Analizi",
-        "wellness_analysis": "Aura Analizi",
+        "wellness_analysis": "Enerji Profil Analizi",
         "wisdom_analysis": "Sembolik Analiz",
         "enter_birth_info_discovery": "Hayat yolu sayınızı görmek için\nönce doğum bilgilerinizi girin",
-        "enter_birth_info_wellness": "Aura renginizi keşfetmek için\nönce doğum bilgilerinizi girin",
+        "enter_birth_info_wellness": "Enerji profilinizi keşfetmek için\nönce doğum bilgilerinizi girin",
         "enter_birth_info_wisdom": "Kişisel sayı haritanızı görmek için\nönce doğum bilgilerinizi girin"
     },
     "tooltips": {
@@ -3049,7 +3049,7 @@
         "light": "Işık",
         "strength": "Güç",
         "opportunity": "Fırsat",
-        "aura_label": "Aura",
+        "aura_label": "Enerji",
         "cosmic_advice_title": "Kişisel Öğütler",
         "todays_voice": "Bugünün Sesi",
         "dream_trace": "Rüya İzi",

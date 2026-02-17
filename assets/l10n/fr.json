@@ -1528,7 +1528,7 @@
                 "description": "Explorez les motifs numériques et les connexions."
             },
             "aura_reading": {
-                "title": "Lecture d'aura",
+                "title": "Lecture d'énergie",
                 "description": "Découvrez votre champ énergétique."
             },
             "moon_rituals": {
@@ -1612,7 +1612,7 @@
                 "description": "Lisez avec les nombres."
             },
             "aura_colors": {
-                "title": "Couleurs de l'aura",
+                "title": "Couleurs d'énergie",
                 "description": "Votre champ énergétique."
             },
             "other_systems": {
@@ -1672,7 +1672,7 @@
             },
             "color_meanings": {
                 "title": "Significations des couleurs",
-                "description": "Glossaire des couleurs d'aura"
+                "description": "Glossaire des couleurs d'énergie"
             },
             "gematria_and_numbers": {
                 "description": "Gematria et nombres."
@@ -1801,7 +1801,7 @@
                 "description": "Travail énergétique avec les rituels."
             },
             "aura_cleansing": {
-                "title": "Nettoyage de l'aura",
+                "title": "Nettoyage d'énergie",
                 "description": "Pratiques de purification énergétique."
             },
             "post_ritual_dreams": {
@@ -1836,7 +1836,7 @@
                 "description": "Le secret des nombres."
             },
             "aura": {
-                "title": "Aura",
+                "title": "Énergie",
                 "description": "Analyse du champ énergétique"
             },
             "rituals": {
@@ -2762,10 +2762,10 @@
     "analysis": {
         "archetype_analysis": "Analyse du Archétype",
         "discovery_analysis": "Analyse Numérologique",
-        "wellness_analysis": "Analyse de l'Aura",
+        "wellness_analysis": "Analyse du Profil Énergétique",
         "wisdom_analysis": "Exploration Symbolique",
         "enter_birth_info_discovery": "Entrez vos informations de naissance\npour voir votre nombre de chemin de vie",
-        "enter_birth_info_wellness": "Entrez vos informations de naissance\npour découvrir la couleur de votre aura",
+        "enter_birth_info_wellness": "Entrez vos informations de naissance\npour découvrir votre profil énergétique",
         "enter_birth_info_wisdom": "Entrez vos informations de naissance\npour voir votre carte symbolique"
     },
     "tooltips": {
@@ -3014,7 +3014,7 @@
         "light": "Lumiere",
         "strength": "Force",
         "opportunity": "Opportunite",
-        "aura_label": "Aura",
+        "aura_label": "Énergie",
         "cosmic_advice_title": "Conseils de réflexion",
         "todays_voice": "Voix du jour",
         "dream_trace": "Trace de reve",

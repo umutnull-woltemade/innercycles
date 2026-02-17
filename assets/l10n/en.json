@@ -937,13 +937,13 @@
                     "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
                     "practice_label": "✨ PRACTICAL APPLICATION",
                     "pioneer": {
-                        "basic_meaning": "Water, for your fire sign, is a call to dive into emotional depths. Subconscious energies want to surface.",
+                        "basic_meaning": "Water, for your fire archetype, is a call to dive into emotional depths. Subconscious energies want to surface.",
                         "element_perspective": "Water's calming energy has come to balance your fire nature. Time for patience and rest. A period of reflection before action.",
                         "psychological": "Water: Subconscious, emotions, mother archetype\nAs a Pioneer: Suppressed emotions want to surface\nMessage: Not just running, but sometimes pausing to feel is needed",
                         "practice": "• Meditate by the water\n• Set your intention while showering\n• Allow your tears\n• Write your feelings down"
                     },
                     "builder": {
-                        "basic_meaning": "Water, for your earth sign, symbolizes fertility and abundance. Material and emotional flow is entering your life.",
+                        "basic_meaning": "Water, for your earth archetype, symbolizes fertility and abundance. Material and emotional flow is entering your life.",
                         "element_perspective": "Water nourishes earth - this dream is a harbinger of growth and prosperity. Trust your natural rhythm, let go without forcing.",
                         "psychological": "Water: Emotional security, comfort, nourishment\nAs a Builder: The connection between inner peace and material security\nMessage: Emotional wealth attracts material wealth",
                         "practice": "• Water your plants, tend your garden\n• Take a bath ritual\n• Visualize financial flow\n• Make relaxation and comfort your priority"
@@ -1096,7 +1096,7 @@
                     "element_perspective_label": "💫 {element} ELEMENT PERSPECTIVE",
                     "element_perspective": "With your {element} element's energy, the core message of this dream seems to be related to {element_message}.",
                     "emotion_label": "🌙 EMOTION ANALYSIS",
-                    "emotion": "Focus on the emotions in your dream:\n• Fear: Need for security\n• Happiness: Sign that you're on the right path\n• Confusion: The unknown is being explored\n• Sadness: Incomplete feeling\n• Anger: Suppressed energy",
+                    "emotion": "Focus on the emotions in your dream:\n• Fear: Need for security\n• Happiness: Indicator that you're on the right path\n• Confusion: The unknown is being explored\n• Sadness: Incomplete feeling\n• Anger: Suppressed energy",
                     "symbol_reading_label": "📍 SYMBOL READING",
                     "symbol_reading": "Note the main symbols in your dream:\n• People: Represent your aspects\n• Places: Map of your inner world\n• Objects: Tools and resources\n• Actions: Your approach to life",
                     "practice_label": "✨ PRACTICAL APPLICATION",
@@ -1547,7 +1547,7 @@
                 "description": "Explore 12 archetypes"
             },
             "sign_compatibility": {
-                "title": "Sign Compatibility",
+                "title": "Archetype Compatibility",
                 "description": "Dual analysis"
             },
             "progressions": {
@@ -1563,8 +1563,8 @@
                 "description": "Explore number patterns and connections."
             },
             "aura_reading": {
-                "title": "Aura Reading",
-                "description": "Discover your energy field."
+                "title": "Energy Reading",
+                "description": "Discover your energy profile."
             },
             "moon_rituals": {
                 "title": "Moon Rituals",
@@ -1647,8 +1647,8 @@
                 "description": "Read along with numbers."
             },
             "aura_colors": {
-                "title": "Aura Colors",
-                "description": "Your energy field."
+                "title": "Energy Colors",
+                "description": "Your energy profile."
             },
             "other_systems": {
                 "description": "Other systems"
@@ -1677,7 +1677,7 @@
                 "description": "Numerology with names."
             },
             "sign_pages": {
-                "description": "Sign pages"
+                "description": "Archetype pages"
             },
             "discover_energy_centers": {
                 "description": "Discover your energy centers."
@@ -1707,7 +1707,7 @@
             },
             "color_meanings": {
                 "title": "Color Meanings",
-                "description": "Aura colors glossary"
+                "description": "Energy colors glossary"
             },
             "gematria_and_numbers": {
                 "description": "Gematria and numbers."
@@ -1749,7 +1749,7 @@
                 "description": "How does the moon cycle affect dreams?"
             },
             "sign_dream_patterns": {
-                "title": "Sign and Dream Patterns",
+                "title": "Archetype and Dream Patterns",
                 "description": "How does your archetype reflect in dreams?"
             },
             "twelfth_house_dreams": {
@@ -1836,7 +1836,7 @@
                 "description": "Energy work with rituals."
             },
             "aura_cleansing": {
-                "title": "Aura Cleansing",
+                "title": "Energy Cleansing",
                 "description": "Purify your energy field."
             },
             "post_ritual_dreams": {
@@ -1871,7 +1871,7 @@
                 "description": "The secret of numbers."
             },
             "aura": {
-                "title": "Aura",
+                "title": "Energy",
                 "description": "Your energy field."
             },
             "rituals": {
@@ -3049,7 +3049,7 @@
         "light": "Light",
         "strength": "Strength",
         "opportunity": "Opportunity",
-        "aura_label": "Aura",
+        "aura_label": "Energy",
         "cosmic_advice_title": "Personal Advice",
         "todays_voice": "Today's Voice",
         "dream_trace": "Dream Trace",

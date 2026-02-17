@@ -1528,7 +1528,7 @@
                 "description": "Zahlenmuster und Verbindungen entdecken."
             },
             "aura_reading": {
-                "title": "Aura-Lesung",
+                "title": "Energie-Lesung",
                 "description": "Entdecke dein Energiefeld."
             },
             "moon_rituals": {
@@ -1612,7 +1612,7 @@
                 "description": "Lies mit Zahlen."
             },
             "aura_colors": {
-                "title": "Aura-Farben",
+                "title": "Energie-Farben",
                 "description": "Dein Energiefeld."
             },
             "other_systems": {
@@ -1672,7 +1672,7 @@
             },
             "color_meanings": {
                 "title": "Farbbedeutungen",
-                "description": "Aura-Farben-Glossar"
+                "description": "Energie-Farben-Glossar"
             },
             "gematria_and_numbers": {
                 "description": "Gematria und Zahlen."
@@ -1801,7 +1801,7 @@
                 "description": "Energiearbeit mit Ritualen."
             },
             "aura_cleansing": {
-                "title": "Aura-Reinigung",
+                "title": "Energie-Reinigung",
                 "description": "Energie-Reinigungspraktiken."
             },
             "post_ritual_dreams": {
@@ -1836,7 +1836,7 @@
                 "description": "Das Geheimnis der Zahlen."
             },
             "aura": {
-                "title": "Aura",
+                "title": "Energie",
                 "description": "Energiefeld-Analyse"
             },
             "rituals": {
@@ -2762,10 +2762,10 @@
     "analysis": {
         "archetype_analysis": "Persönlichkeitstyp-Analyse",
         "discovery_analysis": "Numerologie-Analyse",
-        "wellness_analysis": "Aura-Analyse",
+        "wellness_analysis": "Energieprofil-Analyse",
         "wisdom_analysis": "Symbolische Analyse",
         "enter_birth_info_discovery": "Geben Sie Ihre Geburtsdaten ein\num Ihre Lebensweg-Zahl zu sehen",
-        "enter_birth_info_wellness": "Geben Sie Ihre Geburtsdaten ein\num Ihre Aura-Farbe zu entdecken",
+        "enter_birth_info_wellness": "Geben Sie Ihre Geburtsdaten ein\num Ihr Energieprofil zu entdecken",
         "enter_birth_info_wisdom": "Geben Sie Ihre Geburtsdaten ein\num Ihre persönliche Zahlenkarte zu sehen"
     },
     "tooltips": {
@@ -3014,7 +3014,7 @@
         "light": "Licht",
         "strength": "Staerke",
         "opportunity": "Gelegenheit",
-        "aura_label": "Aura",
+        "aura_label": "Energie",
         "cosmic_advice_title": "Persönliche Ratschläge",
         "todays_voice": "Stimme des Tages",
         "dream_trace": "Traumspur",

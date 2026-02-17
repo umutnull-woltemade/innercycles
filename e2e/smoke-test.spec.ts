@@ -88,37 +88,31 @@ test.describe('SMOKE: User Profile Flow', () => {
   });
 });
 
-test.describe('SMOKE: Astrology Features', () => {
-  test('9. Birth chart loads', async ({ page }) => {
-    await page.goto(`${BASE_URL}/birth-chart`);
-    await waitForFlutter(page);
-    await page.screenshot({ path: 'artifacts/smoke-09-birth-chart.png', fullPage: true });
-  });
-
-  test('10. Compatibility screen loads', async ({ page }) => {
+test.describe('SMOKE: Wellness Features', () => {
+  test('9. Compatibility reflections loads', async ({ page }) => {
     await page.goto(`${BASE_URL}/compatibility`);
     await waitForFlutter(page);
-    await page.screenshot({ path: 'artifacts/smoke-10-compatibility.png', fullPage: true });
+    await page.screenshot({ path: 'artifacts/smoke-09-compatibility.png', fullPage: true });
   });
 
-  test('11. Numerology screen loads', async ({ page }) => {
+  test('10. Numerology screen loads', async ({ page }) => {
     await page.goto(`${BASE_URL}/numerology`);
     await waitForFlutter(page);
-    await page.screenshot({ path: 'artifacts/smoke-11-numerology.png', fullPage: true });
+    await page.screenshot({ path: 'artifacts/smoke-10-numerology.png', fullPage: true });
   });
 
-  test('12. Numerology life path detail loads', async ({ page }) => {
+  test('11. Numerology life path detail loads', async ({ page }) => {
     await page.goto(`${BASE_URL}/numerology/life-path/7`);
     await waitForFlutter(page);
-    await page.screenshot({ path: 'artifacts/smoke-12-life-path-7.png', fullPage: true });
+    await page.screenshot({ path: 'artifacts/smoke-11-life-path-7.png', fullPage: true });
   });
 });
 
-test.describe('SMOKE: Spiritual Features', () => {
-  test('13. Tarot screen loads', async ({ page }) => {
-    await page.goto(`${BASE_URL}/tarot`);
+test.describe('SMOKE: Exploration Features', () => {
+  test('12. Symbolic analysis screen loads', async ({ page }) => {
+    await page.goto(`${BASE_URL}/symbolic-analysis`);
     await waitForFlutter(page);
-    await page.screenshot({ path: 'artifacts/smoke-13-tarot.png', fullPage: true });
+    await page.screenshot({ path: 'artifacts/smoke-12-symbolic-analysis.png', fullPage: true });
   });
 
   test('14. Dream interpretation loads', async ({ page }) => {
