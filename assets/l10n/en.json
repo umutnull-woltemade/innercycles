@@ -1,14 +1,14 @@
 {
     "app": {
         "name": "InnerCycles",
-        "tagline": "Track moods, decode dreams, discover patterns",
+        "tagline": "Cycle-aware journaling. Pattern recurrence. Dream archaeology.",
         "loading_text": "Setting up your journal..."
     },
     "common": {
         "cancel": "Cancel",
         "ok": "OK",
         "continue": "Continue",
-        "start_journey": "Start Journey",
+        "start_journey": "Begin Cycle Mapping",
         "explore": "Explore",
         "results": "results",
         "coming_soon": "Coming soon",
@@ -78,30 +78,30 @@
         ]
     },
     "onboarding": {
-        "welcome_text": "Track your moods, decode your dreams,\nand discover the emotional patterns\nthat shape your days.",
+        "welcome_text": "Map your emotional cycles.\nDetect recurring patterns.\nSee what repeats and why.",
         "cosmic_identity": "Your Profile",
         "enter_info_subtitle": "Tell us a bit about yourself to personalize your journal",
         "info_box_text": "Your name helps us personalize your experience. Birth date is optional.",
         "will_be_calculated": "Your Journal Awaits",
-        "start_cosmic_journey": "Start Your Journal",
+        "start_cosmic_journey": "Map Your Cycles",
         "tap_to_continue": "Tap to continue",
         "connect_with_apple": "Continue with Apple",
         "connecting": "Connecting...",
-        "explore_now": "Start Exploring Now",
+        "explore_now": "Start Mapping Now",
         "by_continuing": "By continuing, you agree to the Terms of Use",
         "features": {
-            "personal_profile": "Personal Profile",
-            "daily_reading": "Daily Reflection",
-            "dream_journal": "Dream Journal",
-            "patterns": "Pattern Tracking"
+            "personal_profile": "Cycle Profile",
+            "daily_reading": "Cycle-Mapped Entry",
+            "dream_journal": "Dream Archaeology",
+            "patterns": "Recurrence Detection"
         },
-        "profile_ready": "Your Profile is Ready",
-        "ready_subtitle": "Your personalized reflection experience is now set up. Start exploring your insights.",
+        "profile_ready": "Your Cycle Map is Ready",
+        "ready_subtitle": "Your cyclical intelligence system is now active. Start mapping your emotional patterns.",
         "whats_included": "What's Included",
-        "feature_reflection": "Daily reflection prompts",
-        "feature_dreams": "Dream journal & interpretation",
-        "feature_patterns": "Personal pattern tracking",
-        "feature_symbols": "Symbol exploration library"
+        "feature_reflection": "Cycle-mapped journaling",
+        "feature_dreams": "Dream archaeology & symbol tracking",
+        "feature_patterns": "Recurrence detection engine",
+        "feature_symbols": "Archetype progression framework"
     },
     "disclaimer": {
         "before_using": "Before Using",
@@ -195,7 +195,7 @@
     },
     "home": {
         "greeting": "Hi, {name}!",
-        "todays_cosmic_message": "Today's Reflective Message",
+        "todays_cosmic_message": "Today's Cycle Position",
         "chips": {
             "dream": "Dream",
             "journal": "Journal",
@@ -210,12 +210,12 @@
         },
         "entries": {
             "daily_journal": {
-                "title": "Daily Journal",
-                "subtitle": "Track your mood and reflections"
+                "title": "Cycle Entry",
+                "subtitle": "Map today's cycle position"
             },
             "share_insight": {
-                "title": "Share Insight",
-                "subtitle": "Share your reflection moments"
+                "title": "Share Cycle Insight",
+                "subtitle": "Share your cyclical pattern discoveries"
             },
             "compatibility": {
                 "title": "Relationship Reflections",
@@ -553,12 +553,12 @@
         }
     },
     "premium": {
-        "cosmic_powers": "Premium Features",
-        "cosmic_powers_active": "Premium Features Active",
+        "cosmic_powers": "Cyclical Intelligence",
+        "cosmic_powers_active": "Cyclical Intelligence Active",
         "lifetime_access": "You have lifetime access!",
-        "open_cosmic_door": "Unlock Premium",
-        "cosmic_door_opened": "Premium Unlocked!",
-        "success_message": "Full access to all premium features is now yours. You are ready for limitless self-exploration and personal growth.",
+        "open_cosmic_door": "Unlock Full Cycle Engine",
+        "cosmic_door_opened": "Cycle Engine Unlocked!",
+        "success_message": "Full cyclical intelligence is now active. Recurrence detection, dream archaeology, and archetype progression are ready.",
         "view_plans": "View Plans",
         "manage_subscription": "Manage Subscription",
         "restore_purchases": "Restore Purchases",
@@ -568,11 +568,11 @@
         "best_value": "Best Value",
         "terms_text": "Subscription automatically renews unless canceled 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours before the end of the current period. You can manage and cancel your subscription at any time from your App Store account settings.",
         "paywall": {
-            "title": "Unlock Your Full Journey",
-            "subtitle": "Experience insights without interruption",
-            "benefit_ad_free": "Ad-free, calm experience",
-            "benefit_unlimited": "Unlimited personal insights",
-            "benefit_priority": "Priority personal guidance",
+            "title": "Unlock Full Cyclical Intelligence",
+            "subtitle": "Complete recurrence detection and dream archaeology",
+            "benefit_ad_free": "Ad-free cycle mapping",
+            "benefit_unlimited": "Unlimited recurrence analysis",
+            "benefit_priority": "Priority cycle position reports",
             "continue_pro": "Continue with Pro",
             "not_now": "Not now, maybe later",
             "legal_text": "Auto-renews monthly. Cancel anytime in Settings.",
@@ -585,15 +585,15 @@
             "got_it": "Got it"
         },
         "features": {
-            "daily_whispers": "Daily insight whispers",
-            "pure_cosmic_experience": "Ad-free, peaceful experience",
-            "deep_planet_readings": "Deep personal insights",
-            "unlimited_card_insight": "Unlimited card reading sessions",
-            "soulmate_compatibility": "Relationship reflection tools",
-            "kabbalistic_secrets": "Symbolic exploration tools",
-            "auric_reading": "Energy awareness journal",
-            "planet_transits": "Cyclical theme tracking",
-            "priority_guidance": "Priority personal guidance"
+            "daily_whispers": "Daily cycle position updates",
+            "pure_cosmic_experience": "Ad-free cycle mapping experience",
+            "deep_planet_readings": "Deep recurrence analysis",
+            "unlimited_card_insight": "Unlimited archetype insight sessions",
+            "soulmate_compatibility": "Relationship cycle mapping",
+            "kabbalistic_secrets": "Shadow-light integration tools",
+            "auric_reading": "Emotional cycle awareness journal",
+            "planet_transits": "Full recurrence detection engine",
+            "priority_guidance": "Priority cyclical intelligence reports"
         },
         "tiers": {
             "free": {

@@ -1,5 +1,5 @@
 # ════════════════════════════════════════════════════════════════════════════
-# APP STORE METADATA - InnerCycles (Optimized February 2026)
+# APP STORE METADATA - InnerCycles (Anti-Similarity Rewrite February 2026)
 # ════════════════════════════════════════════════════════════════════════════
 # Copy these values into App Store Connect.
 # Title + Subtitle + Keyword Field are all indexed by Apple's algorithm.
@@ -7,16 +7,16 @@
 # ════════════════════════════════════════════════════════════════════════════
 
 # ── TITLE (30 char max) ──────────────────────────────────────────────────
-title: "InnerCycles - Mood Journal"  # 26 chars
+title: "InnerCycles - Cycle Mapping"  # 28 chars — owns "cycle mapping" category
 
 # ── SUBTITLE (30 char max) ───────────────────────────────────────────────
-subtitle: "Daily Mood & Dream Diary"  # 25 chars — 4 keywords: daily, mood, dream, diary
+subtitle: "Emotional Cycle Intelligence"  # 30 chars — owns "cycle intelligence"
 
 # ── KEYWORD FIELD (100 char max, comma-separated, no spaces) ─────────────
 # Do NOT repeat words from title/subtitle. Apple auto-combines tokens.
 # Singular forms only — Apple auto-indexes plurals.
-keywords: "journal,tracker,reflection,gratitude,mindful,wellness,self,care,pattern,cycle,emotional,habit,sleep,anxiety,growth,insight"
-# 100 chars — "diary" and "mood" removed (already in title/subtitle), replaced with high-value terms
+keywords: "journal,pattern,dream,archaeology,recurrence,archetype,shadow,mood,tracker,wellness,self,awareness,habit,sleep,growth,insight"
+# 100 chars — "cycle", "mapping", "emotional", "intelligence" already in title/subtitle
 
 # ── CATEGORY ─────────────────────────────────────────────────────────────
 primary_category: "Lifestyle"
@@ -24,49 +24,51 @@ secondary_category: "Health & Fitness"
 
 # ── SCREENSHOT CAPTIONS (keyword-rich for OCR indexing) ──────────────────
 screenshot_captions:
-  1: "How do you feel today? Start tracking in 30 seconds"
-  2: "See your emotional patterns emerge over weeks"
-  3: "Decode your dreams with 1000+ symbol meanings"
-  4: "Your growth score rises with every entry"
-  5: "Daily prompts that spark real self-reflection"
-  6: "Visualize your emotional cycles and rhythms"
-  7: "Discover your attachment style in 5 minutes"
-  8: "Monthly reports show how far you've come"
-  9: "Beautiful insight cards to share your journey"
-  10: "Private by design — your journal, your rules"
+  1: "Cycle position 3 of 7 — here's what happened last time"
+  2: "This emotional pattern has recurred 4 times since October"
+  3: "Dream archaeology: this symbol appeared in 6 of your last 20 dreams"
+  4: "Archetype shift detected: Seeker to Explorer"
+  5: "Cycle-positioned journal entry mapped against past patterns"
+  6: "Emotional cycle visualizer — see your rhythms across months"
+  7: "Shadow-light integration: 62% of fear themes resolved"
+  8: "Monthly cycle report: 3 patterns identified, 1 breaking"
+  9: "Cyclical intelligence cards — share your pattern insights"
+  10: "Private by architecture — all cycle data stays on your device"
 
 # ── DESCRIPTION (iOS — not indexed, optimized for conversion) ────────────
 description: |
-  Understand yourself better, one day at a time.
+  Map the emotional cycles you repeat without realizing it.
 
-  InnerCycles is the private journal that helps you track your moods, reflect on patterns, and grow through daily self-awareness. Unlike generic journals, InnerCycles reveals your unique emotional cycles — the rhythms of energy, focus, emotions, decisions, and connection that shape your days.
+  InnerCycles is a cyclical intelligence system — not a mood diary. It detects recurring emotional patterns across your journal entries, dreams, and check-ins. Over time, it shows you your cycle position: where you are now, where you have been before, and what happened last time you were here.
 
-  WHAT YOU GET:
+  HOW IT WORKS:
 
-  - Daily Reflection Prompts — Guided questions that help you explore your inner world in just 5 minutes
-  - Mood & Pattern Tracking — See how your emotions flow over weeks and months
-  - Dream Journal — Capture dreams with a 1000+ symbol interpretation database
-  - Emotional Cycle Mapping — Discover your personal rhythms and patterns
-  - Monthly Insight Reports — Understand your growth with data-driven summaries
-  - Attachment Style Quiz — Discover your relationship pattern
-  - Shareable Insight Cards — Share your patterns with friends
+  Every journal entry, dream, and emotional check-in feeds a pattern recurrence engine. The system identifies when you re-enter familiar emotional territory and surfaces past entries from similar cycle positions.
+
+  - Cycle-Mapped Journaling — Each entry is plotted on your emotional timeline with recurrence detection
+  - Dream Archaeology — Record dreams and track recurring symbols, story arcs, shadow integration, and archetype patterns across your dream history
+  - Recurrence Detection Engine — Identifies when emotional patterns repeat across weeks and months
+  - Archetype Progression — Tracks how your dominant archetype evolves across 12 frameworks based on what you write, dream, and explore
+  - Shadow-Light Integration — Measures emotional shadow work through nightmare progression and integration milestones
+  - Biorhythm Correlation — 4D cycle tracking (Physical, Emotional, Intellectual, Intuitive) with critical phase detection
+  - Cycle Position Reports — Weekly and monthly reports showing where you are in recurring patterns
   - Private & Secure — Your data is encrypted and always under your control
 
   WHO IT'S FOR:
 
-  Whether you're processing emotions, building self-awareness, tracking your mental wellness, or simply want a beautiful daily journaling habit — InnerCycles meets you where you are.
+  People who notice they repeat the same emotional patterns but cannot see why. People who want structure around their inner life — not motivational quotes, but a system that maps what recurs and when.
 
   START FREE TODAY
 
-  Download InnerCycles and discover the patterns that make you, you.
+  Download InnerCycles and see the cycles you have been living inside.
 
   INNERCYCLES PREMIUM:
-  - Deep pattern analysis engine
-  - Unlimited dream interpretations
-  - Monthly reflection reports
-  - Advanced emotional insights
-  - Attachment style evolution tracker
-  - Shareable insight card templates
+  - Full recurrence detection engine
+  - Unlimited dream archaeology sessions
+  - Monthly cycle position reports
+  - Advanced archetype progression tracking
+  - Shadow-light integration dashboard
+  - Cyclical intelligence card templates
   - Ad-free experience
 
   Subscriptions: Monthly or Annual plans available. Payment charged to iTunes Account at confirmation of purchase. Subscription auto-renews unless turned off at least 24 hours before the end of the current period. Manage subscriptions in Account Settings.
@@ -75,36 +77,36 @@ description: |
   Terms of Use: https://innercycles.app/terms
 
 # ── PROMOTIONAL TEXT (170 chars, can be updated without review) ──────────
-promotional_text: "New: Emotional Cycle Visualizer + Attachment Style Quiz + Shareable Insight Cards. See the patterns behind your feelings in just 7 days."
+promotional_text: "New: Recurrence Detection Engine + Dream Archaeology + Archetype Progression. Map the emotional cycles you repeat — see your cycle position in 7 days."
 
 # ── WHAT'S NEW (for next update) ─────────────────────────────────────────
 whats_new: |
   What's New in InnerCycles:
-  - Attachment Style Quiz — Discover your relationship pattern
-  - Shareable Insight Cards — Share your emotional patterns
-  - Emotional Cycle Visualizer — See your mood waves over time
-  - Growth Dashboard — Track your personal growth score
-  - Daily Hooks — New reflection prompts every day
-  - Enhanced Dream Analysis — Deeper symbol connections
+  - Recurrence Detection — See when emotional patterns repeat across weeks
+  - Dream Archaeology — Track recurring symbols and story arcs across dreams
+  - Archetype Progression — Watch your dominant archetype evolve over time
+  - Cycle Position Reports — Know where you are in your recurring patterns
+  - Shadow-Light Dashboard — Measure emotional integration milestones
+  - Enhanced Cyclical Intelligence — Deeper pattern connections
   - Bug fixes and performance improvements
 
 # ── REVIEW NOTES (paste into App Store Connect → App Review Information) ──
 review_notes: |
-  InnerCycles is a personal journaling and mood-tracking app. No login is required to use the app — users can start journaling immediately.
+  InnerCycles is a cyclical pattern intelligence app built around journaling. No login is required — users can start journaling immediately.
 
   HOW TO TEST:
-  1. Launch the app and complete the brief onboarding (select language, tap through intro).
-  2. On the home screen, tap "How are you feeling?" to create a journal entry.
-  3. Explore the Dream Journal, Daily Prompts, and Pattern Insights from the home cards.
+  1. Launch the app and complete the brief onboarding (enter name, optional birth date).
+  2. On the home screen, create a journal entry to begin feeding the cycle engine.
+  3. Explore Dream Archaeology, Cycle-Mapped Journaling, and Pattern Reports from the home cards.
   4. Open Settings to see profile, notification preferences, and Premium subscription options.
 
   SIGN-IN: Optional. Users may sign in with Apple for cloud backup. All core features work without an account.
 
-  SUBSCRIPTIONS: InnerCycles Premium is offered as Monthly and Annual auto-renewing subscriptions via RevenueCat/StoreKit 2. Free users have full access to journaling, prompts, and dream logging; Premium unlocks advanced pattern analysis, unlimited dream interpretations, and an ad-free experience.
+  SUBSCRIPTIONS: InnerCycles Premium is offered as Monthly and Annual auto-renewing subscriptions via RevenueCat/StoreKit 2. Free users have full access to journaling, dream logging, and basic cycle awareness; Premium unlocks full recurrence detection, unlimited dream archaeology, and an ad-free experience.
 
   ATT PROMPT: The app requests App Tracking Transparency permission to serve personalized ads via Google AdMob. If the user declines, only non-personalized ads are shown. Premium subscribers see no ads.
 
-  CONTENT: All reflective prompts, dream symbol definitions, and insight text are generated locally from a curated database. No AI-generated or user-generated content is displayed. The app does not provide medical, psychological, or predictive advice.
+  CONTENT: All reflective prompts, dream symbol definitions, and cycle analysis text are generated locally from a curated database. No AI-generated or user-generated content is displayed. The app does not provide medical, psychological, or predictive advice.
 
   PRIVACY: No personal data is shared with third parties beyond analytics (Firebase) and ads (AdMob). Full privacy policy at https://innercycles.app/privacy.
 
@@ -112,21 +114,21 @@ review_notes: |
 
 # ── LOCALIZED METADATA (Turkish) ─────────────────────────────────────────
 tr:
-  title: "InnerCycles - Ruh Hali"  # 23 chars
-  subtitle: "Günlük Ruh Hali & Rüya"  # 23 chars
-  keywords: "günlük,takip,yansıma,şükran,farkındalık,sağlık,ritüel,benlik,bakım,duygu,döngü,ruh,hali,rüya"
+  title: "InnerCycles - Döngü Haritası"  # 30 chars
+  subtitle: "Duygusal Döngü Zekası"  # 22 chars
+  keywords: "günlük,örüntü,rüya,arkeoloji,tekrar,arketip,gölge,ruh,hali,farkındalık,benlik,bakım,duygu,döngü,büyüme"
   description: |
-    Her gün kendini biraz daha iyi anla.
+    Fark etmeden tekrarladığın duygusal döngüleri haritalandır.
 
-    InnerCycles, ruh halini takip etmeni, örüntülerini keşfetmeni ve günlük farkındalıkla büyümeni sağlayan özel bir günlüktür.
+    InnerCycles bir döngüsel zeka sistemidir — basit bir günlük değil. Günlük yazıların, rüyaların ve duygusal kayıtların üzerinden tekrarlayan örüntüleri tespit eder. Zamanla sana döngü pozisyonunu gösterir: şu an neredesin, daha önce neredeydin ve o zaman ne olmuştu.
 
     ÖZELLİKLER:
-    - Günlük Yansıma — İç dünyanı keşfetmen için rehberli sorular
-    - Ruh Hali & Örüntü Takibi — Duygularının haftalar ve aylar boyunca akışını gör
-    - Rüya Günlüğü — 1000+ sembol yorumlama veritabanı
-    - Duygusal Döngü Haritası — Kişisel ritimlerini keşfet
-    - Aylık İçgörü Raporları — Büyümeni verilerle anla
-    - Paylaşılabilir İçgörü Kartları — Keşiflerini arkadaşlarınla paylaş
+    - Döngü Haritalı Günlük — Her kayıt duygusal zaman çizelgene yerleştirilir
+    - Rüya Arkeolojisi — 1000+ sembol veritabanıyla tekrarlayan rüya örüntülerini takip et
+    - Tekrar Tespit Motoru — Duygusal döngülerin ne zaman tekrarladığını belirler
+    - Arketip İlerlemesi — 12 arketip çerçevesinde kişilik evrimini izle
+    - Gölge-Işık Entegrasyonu — Duygusal gölge çalışmasını ve entegrasyon kilometre taşlarını ölç
+    - Döngü Pozisyon Raporları — Tekrarlayan örüntülerdeki yerini gör
     - Özel & Güvenli — Verilerin şifrelenir ve her zaman senin kontrolünde
 
-    Ücretsiz başla. Seni sen yapan örüntüleri keşfet.
+    Ücretsiz başla. İçinde yaşadığın döngüleri gör.
