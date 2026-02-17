@@ -71,3 +71,4 @@ web/flutter_service_worker.js
 # Orchestrator run artifacts
 .recovery_run/
 .cleanup_run/
+.firebase/

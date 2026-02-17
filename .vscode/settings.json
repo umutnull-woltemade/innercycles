@@ -72,8 +72,6 @@
     "**/*.g.dart": true
   },
 
-  // Firebase
-  "vsfire.useRestAPI": true,
 
   // Error Lens
   "errorLens.enabledDiagnosticLevels": ["error", "warning", "info"],
@@ -113,8 +111,6 @@
     "astrology",
     "cupertino",
     "dotenv",
-    "firebase",
-    "firestore",
     "gumroad",
     "hive",
     "riverpod",
