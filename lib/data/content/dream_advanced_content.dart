@@ -431,7 +431,7 @@ class PsikolojikRuyaTemalari {
       lucidTendency: 'Yüksek - güçlü irade',
       dreamAdvice:
           'Rüyalarında eylem çağrısı ara. Pasif izleme sana göre değil.',
-      healingSymbols: ['Kılıç', 'ateş', 'kırmızı', 'at'],
+      dreamSymbols: ['Kılıç', 'ateş', 'kırmızı', 'at'],
     ),
     'builder': ArchetypeDreamProfile(
       archetype: 'Kurucu',
@@ -446,7 +446,7 @@ class PsikolojikRuyaTemalari {
       lucidTendency: 'Orta - sabırlı ama yavaş',
       dreamAdvice:
           'Duyusal detaylara dikkat et. Rüyandaki koku, tat, dokunuş önemli.',
-      healingSymbols: ['Çiçek', 'toprak', 'yeşil', 'dağ'],
+      dreamSymbols: ['Çiçek', 'toprak', 'yeşil', 'dağ'],
     ),
     'communicator': ArchetypeDreamProfile(
       archetype: 'İletişimci',
@@ -468,7 +468,7 @@ class PsikolojikRuyaTemalari {
       lucidTendency: 'Yüksek - meraklı zihin',
       dreamAdvice:
           'Rüyalardaki konuşmalara dikkat et. Mesajlar kelimelerle gelir.',
-      healingSymbols: ['Kuş', 'kanat', 'sarı', 'kitap'],
+      dreamSymbols: ['Kuş', 'kanat', 'sarı', 'kitap'],
     ),
     'nurturer': ArchetypeDreamProfile(
       archetype: 'Koruyucu',
@@ -477,7 +477,7 @@ class PsikolojikRuyaTemalari {
       nightmareThemes: ['Evsizlik', 'aile kaybı', 'boğulma', 'terk edilme'],
       lucidTendency: 'Yüksek - güçlü bilinçdışı bağlantı',
       dreamAdvice: 'Rüyaların duygusal termometren. Hislerine güven.',
-      healingSymbols: ['Deniz kabuğu', 'su', 'gümüş', 'yuva'],
+      dreamSymbols: ['Deniz kabuğu', 'su', 'gümüş', 'yuva'],
     ),
     'performer': ArchetypeDreamProfile(
       archetype: 'Sahne Yıldızı',
@@ -499,7 +499,7 @@ class PsikolojikRuyaTemalari {
       ],
       lucidTendency: 'Çok yüksek - güçlü irade ve ego',
       dreamAdvice: 'Rüyalarında liderlik rolünü keşfet.',
-      healingSymbols: ['Güneş', 'altın', 'taç', 'ışık'],
+      dreamSymbols: ['Güneş', 'altın', 'taç', 'ışık'],
     ),
     'analyst': ArchetypeDreamProfile(
       archetype: 'Analist',
@@ -513,7 +513,7 @@ class PsikolojikRuyaTemalari {
       ],
       lucidTendency: 'Orta - analitik ama skeptik',
       dreamAdvice: 'Detaylara odaklan ama büyük resmi kaçırma.',
-      healingSymbols: ['Buğday', 'yeşil', 'kristal', 'bahçe'],
+      dreamSymbols: ['Buğday', 'yeşil', 'kristal', 'bahçe'],
     ),
     'harmonizer': ArchetypeDreamProfile(
       archetype: 'Dengeleyici',
@@ -534,7 +534,7 @@ class PsikolojikRuyaTemalari {
       ],
       lucidTendency: 'Orta - kararsızlık engelleyebilir',
       dreamAdvice: 'İlişki rüyalarına dikkat et. Denge nerede bozuk?',
-      healingSymbols: ['Gül', 'pembe', 'ayna', 'köprü'],
+      dreamSymbols: ['Gül', 'pembe', 'ayna', 'köprü'],
     ),
     'transformer': ArchetypeDreamProfile(
       archetype: 'Dönüştürücü',
@@ -550,7 +550,7 @@ class PsikolojikRuyaTemalari {
       nightmareThemes: ['İhanet', 'güç kaybı', 'açığa çıkma', 'zehir'],
       lucidTendency: 'Çok yüksek - derin bilinçdışı erişim',
       dreamAdvice: 'Karanlık rüyalardan korkma. En derin şifa oradan gelir.',
-      healingSymbols: ['Yılan', 'anka kuşu', 'bordo', 'ateş'],
+      dreamSymbols: ['Yılan', 'anka kuşu', 'bordo', 'ateş'],
     ),
     'explorer': ArchetypeDreamProfile(
       archetype: 'Kaşif',
@@ -566,7 +566,7 @@ class PsikolojikRuyaTemalari {
       nightmareThemes: ['Hapis', 'kısıtlanma', 'dogma', 'anlamsızlık'],
       lucidTendency: 'Yüksek - maceraperest ruh',
       dreamAdvice: 'Rüyalardaki yolculuklar iç arayışını yansıtabilir.',
-      healingSymbols: ['Ok', 'at', 'mor', 'yıldızlar'],
+      dreamSymbols: ['Ok', 'at', 'mor', 'yıldızlar'],
     ),
     'achiever': ArchetypeDreamProfile(
       archetype: 'Başarıcı',
@@ -583,7 +583,7 @@ class PsikolojikRuyaTemalari {
       nightmareThemes: ['Başarısızlık', 'düşüş', 'rezil olma', 'yaşlanma'],
       lucidTendency: 'Orta - disiplinli ama rüyalara mesafeli',
       dreamAdvice: 'Kariyer rüyaları gerçek hedeflerini yansıtabilir.',
-      healingSymbols: ['Dağ', 'taş', 'siyah', 'yapı'],
+      dreamSymbols: ['Dağ', 'taş', 'siyah', 'yapı'],
     ),
     'visionary': ArchetypeDreamProfile(
       archetype: 'Vizyoner',
@@ -599,7 +599,7 @@ class PsikolojikRuyaTemalari {
       nightmareThemes: ['Uyumsuzluk', 'yalnızlık', 'distopya', 'makineleşme'],
       lucidTendency: 'Yüksek - alışılmadık zihin',
       dreamAdvice: 'Sıra dışı rüyaların yaratıcı yeteneklerini yansıtabilir.',
-      healingSymbols: ['Su dalgası', 'yıldız', 'mavi', 'elektrik'],
+      dreamSymbols: ['Su dalgası', 'yıldız', 'mavi', 'elektrik'],
     ),
     'dreamer': ArchetypeDreamProfile(
       archetype: 'Hayalperest',
@@ -615,7 +615,7 @@ class PsikolojikRuyaTemalari {
       nightmareThemes: ['Boğulma', 'bulanıklık', 'aldatılma', 'bağımlılık'],
       lucidTendency: 'Çok yüksek - doğal rüya yeteneği',
       dreamAdvice: 'Rüyaların en güçlü süper gücün. Sezgisel mesajlara aç ol.',
-      healingSymbols: ['Okyanus', 'turkuaz', 'lotus', 'su'],
+      dreamSymbols: ['Okyanus', 'turkuaz', 'lotus', 'su'],
     ),
   };
 }
@@ -668,7 +668,7 @@ class ArchetypeDreamProfile {
   final List<String> nightmareThemes;
   final String lucidTendency;
   final String dreamAdvice;
-  final List<String> healingSymbols;
+  final List<String> dreamSymbols;
 
   const ArchetypeDreamProfile({
     required this.archetype,
@@ -677,7 +677,7 @@ class ArchetypeDreamProfile {
     required this.nightmareThemes,
     required this.lucidTendency,
     required this.dreamAdvice,
-    required this.healingSymbols,
+    required this.dreamSymbols,
   });
 }
 

@@ -1166,10 +1166,10 @@ class ArchetypeDreamInsights {
     return profile?.lucidTendency ?? 'Orta';
   }
 
-  /// Arketipe ozel sifa sembolleri
-  static List<String> getHealingSymbols(String archetypeSign) {
+  /// Arketipe ozel rüya sembolleri
+  static List<String> getDreamSymbols(String archetypeSign) {
     final profile = getProfile(archetypeSign);
-    return profile?.healingSymbols ?? [];
+    return profile?.dreamSymbols ?? [];
   }
 
   /// Arketipe ozel yaygin temalar

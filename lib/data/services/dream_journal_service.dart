@@ -489,7 +489,7 @@ class PersonalSymbolEntry {
   final int occurrenceCount;
   final String? evolutionNote;
   final bool isShadowSymbol;
-  final bool isHealingSymbol;
+  final bool isKeySymbol;
 
   const PersonalSymbolEntry({
     required this.symbol,
@@ -501,7 +501,7 @@ class PersonalSymbolEntry {
     this.occurrenceCount = 1,
     this.evolutionNote,
     this.isShadowSymbol = false,
-    this.isHealingSymbol = false,
+    this.isKeySymbol = false,
   });
 
   Map<String, dynamic> toJson() => {
@@ -514,7 +514,7 @@ class PersonalSymbolEntry {
     'occurrenceCount': occurrenceCount,
     'evolutionNote': evolutionNote,
     'isShadowSymbol': isShadowSymbol,
-    'isHealingSymbol': isHealingSymbol,
+    'isKeySymbol': isKeySymbol,
   };
 
   factory PersonalSymbolEntry.fromJson(Map<String, dynamic> json) =>
@@ -528,7 +528,7 @@ class PersonalSymbolEntry {
         occurrenceCount: json['occurrenceCount'] ?? 1,
         evolutionNote: json['evolutionNote'],
         isShadowSymbol: json['isShadowSymbol'] ?? false,
-        isHealingSymbol: json['isHealingSymbol'] ?? false,
+        isKeySymbol: json['isKeySymbol'] ?? false,
       );
 }
 
@@ -1695,7 +1695,7 @@ class DreamJournalService {
           occurrenceCount: existing.occurrenceCount + 1,
           evolutionNote: existing.evolutionNote,
           isShadowSymbol: dream.isNightmare || existing.isShadowSymbol,
-          isHealingSymbol: existing.isHealingSymbol,
+          isKeySymbol: existing.isKeySymbol,
         );
       } else {
         dictionary[symbol] = PersonalSymbolEntry(
@@ -1740,7 +1740,7 @@ class DreamJournalService {
         occurrenceCount: existing.occurrenceCount,
         evolutionNote: existing.evolutionNote,
         isShadowSymbol: existing.isShadowSymbol,
-        isHealingSymbol: existing.isHealingSymbol,
+        isKeySymbol: existing.isKeySymbol,
       );
       await _saveDictionary(dictionary);
     }
