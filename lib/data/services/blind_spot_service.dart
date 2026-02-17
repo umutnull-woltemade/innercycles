@@ -456,7 +456,7 @@ class BlindSpotService {
       dateMap.putIfAbsent(e.dateKey, () => []).add(e);
     }
 
-    // Check: does a high social day predict low energy the next day?
+    // Check: does a high social day correlate with low energy the next day?
     _checkSequentialCorrelation(
       dateMap: dateMap,
       triggerArea: FocusArea.social,
