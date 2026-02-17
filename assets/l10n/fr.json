@@ -63,18 +63,18 @@
         "explore_more": "Explore More"
     },
     "greetings": {
-        "night": "Les réflexions murmurent dans la nuit",
-        "morning": "Le soleil se lève avec votre énergie",
-        "afternoon": "Votre monde intérieur vous parle aujourd'hui",
-        "evening": "Les pensées du soir brillent",
-        "late_night": "Le clair de lune guide votre chemin",
+        "night": "Encore debout ? Bon moment pour écrire.",
+        "morning": "Bonjour. Qu'avez-vous en tête ?",
+        "afternoon": "Bilan de l'après-midi",
+        "evening": "Comment s'est passée la journée ?",
+        "late_night": "Pensées nocturnes bienvenues",
         "cosmic_welcome": [
-            "Le temps de réflexion commence",
-            "Votre voyage de conscience commence",
-            "Bienvenue dans l'exploration intérieure",
-            "Prenez du temps pour vous",
-            "Votre espace de pensée est prêt",
-            "Commencez votre réflexion quotidienne"
+            "Re-bonjour",
+            "Reprenez là où vous en étiez",
+            "Quoi de neuf aujourd'hui ?",
+            "De retour",
+            "Voyons ce qui a changé",
+            "Vos schémas vous attendent"
         ]
     },
     "onboarding": {

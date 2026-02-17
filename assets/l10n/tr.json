@@ -63,18 +63,18 @@
         "explore_more": "Daha Fazla Keşfet"
     },
     "greetings": {
-        "night": "Gece sessizliğinde, huzur seninle",
-        "morning": "Güneş doğuyor, enerjin yükseliyor",
-        "afternoon": "İçsel bilgeliğin bugün seninle konuşuyor",
-        "evening": "Akşam huzuru seni karşılıyor",
-        "late_night": "Ay ışığı yolunu aydınlatıyor",
+        "night": "Hâlâ ayakta mısın? Yazmak için iyi bir zaman.",
+        "morning": "Günaydın. Aklında ne var?",
+        "afternoon": "Öğleden sonra kontrol",
+        "evening": "Bugün nasıl geçti?",
+        "late_night": "Gece düşünceleri hoş gelir",
         "cosmic_welcome": [
-            "Refleksiyon zamanı başlıyor",
-            "Farkındalık yolculuğun başlıyor",
-            "İçsel keşfine hoş geldin",
-            "Kendi kendine zaman ayır",
-            "Düşünce alanın hazır",
-            "Günlük refleksiyonuna başla"
+            "Tekrar hoş geldin",
+            "Kaldığın yerden devam et",
+            "Bugün neler oluyor?",
+            "Yine buradasın",
+            "Neler değişmiş bakalım",
+            "Örüntülerin seni bekliyor"
         ]
     },
     "onboarding": {
