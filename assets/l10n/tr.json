@@ -74,7 +74,7 @@
             "Bugün neler oluyor?",
             "Yine buradasın",
             "Neler değişmiş bakalım",
-            "Örüntülerin seni bekliyor"
+            "Örüntülerin hazır"
         ]
     },
     "onboarding": {
@@ -82,7 +82,7 @@
         "cosmic_identity": "Kişisel Kimliğin",
         "enter_info_subtitle": "Kişisel profilini oluşturmak için bilgilerini gir",
         "info_box_text": "Kişisel haritanın tüm katmanlarını açmak için bilgilerini eksiksiz gir.",
-        "will_be_calculated": "Günlüğün seni bekliyor",
+        "will_be_calculated": "Günlüğün hazır",
         "start_cosmic_journey": "Döngülerini Haritalandır",
         "tap_to_continue": "Dokunarak devam et",
         "connect_with_apple": "Apple ile devam et",
@@ -1368,7 +1368,7 @@
         "spiritual_guidance": "İçsel Rehberlik",
         "important_days": "Önemli Günler",
         "lucky_days": "Uygun Günler",
-        "important_transits": "Önemli Döngüler",
+        "important_cycles": "Önemli Döngüler",
         "daily_reading": "Günlük Refleksiyon",
         "luck_rate": "Enerji Seviyesi",
         "cosmic_tips": "Refleksiyon İpuçları",
@@ -1513,7 +1513,7 @@
             },
             "weekly_overview": {
                 "title": "Haftalık Genel Bakış",
-                "description": "Bu hafta tüm arketipleri neler bekliyor?"
+                "description": "Bu hafta tüm arketipler için neler var?"
             },
             "monthly_depth": {
                 "title": "Aylık Derinlik",
@@ -1617,7 +1617,7 @@
             },
             "symbolic_number_patterns": {
                 "title": "Sayı Örüntüleri",
-                "description": "Sayıların mistik kökeni."
+                "description": "Sayıların derin kökeni."
             },
             "personal_perspective": {
                 "description": "Kişisel perspektif."
@@ -1915,12 +1915,12 @@
         "strengths": "Güçlü Yanlar",
         "cosmic_summary": "Günlük Özeti",
         "spiritual_journey": "İçsel Yolculuk",
-        "important_transits": "Önemli Kişisel Döngüler",
+        "important_cycles": "Önemli Kişisel Döngüler",
         "special_months_of_year": "Yılın Özel Ayları",
         "caution_required": "Dikkat Gerektiren",
         "reflection_readings": "Arketip Yorumları",
         "personal_profile_analysis": "Kişisel Profil & Analizler",
-        "time_transits": "Zaman & Döngüler",
+        "time_cycles": "Zaman & Döngüler",
         "number_patterns_tools": "Sayı Örüntüleri & Keşif Araçları",
         "spiritual_wellness": "İçsel & Wellness",
         "advanced_self_awareness": "İleri Seviye Öz Farkındalık",
@@ -3067,8 +3067,8 @@
         "transit_alerts": "Döngü Uyarıları",
         "transit_desc": "Önemli döngüsel geçişler",
         "lifecycle": {
-            "streak_reminder_title": "Seri Seni Bekliyor",
-            "streak_reminder_body": "{count} günlük serin seni bekliyor! Hızlı bir kayıt seriyi sürdürür.",
+            "streak_reminder_title": "Serine Devam Et",
+            "streak_reminder_body": "{count} günlük serin devam ediyor! Hızlı bir kayıt seriyi sürdürür.",
             "insight_teaser_title": "İlginç Bir Şey Var",
             "insight_teaser_body": "Bu hafta kalıplarında ilginç bir şey fark ettik...",
             "mood_checkin_title": "Hızlı Kontrol",
@@ -3079,12 +3079,12 @@
             "seasonal_new_moon_body": "Bu gece yeni ay var — yansıtma için mükemmel bir zaman.",
             "seasonal_full_moon_title": "Bu Gece Dolunay",
             "seasonal_full_moon_body": "Bu gece dolunay var — şükran için harika bir an.",
-            "re_engagement_3day_title": "Günlüğün Seni Bekliyor",
-            "re_engagement_3day_body": "Yansıtmalarını özledik. Günlüğün seni bekliyor.",
+            "re_engagement_3day_title": "Günlüğüne Dön",
+            "re_engagement_3day_body": "Yansıtmalarını özledik. Günlüğüne dönmeye ne dersin?",
             "re_engagement_7day_title": "Bir Cümle Bile Yeter",
             "re_engagement_7day_body": "Biraz zaman oldu — bir cümle bile değerli.",
             "re_engagement_14day_title": "Hâlâ Buradayız",
-            "re_engagement_14day_body": "Kalıpların hâlâ burada, hazır olduğunda seni bekliyor.",
+            "re_engagement_14day_body": "Kalıpların hâlâ burada, hazır olduğunda burada.",
             "re_engagement_30day_title": "Hoş Geldin?",
             "re_engagement_30day_body": "Bazen en iyi kayıtlar bir aradan sonra gelir. Hoş geldin?",
             "weekly_digest_title": "Haftalık Yansıtma",
@@ -3382,7 +3382,7 @@
         "light_shadow": {
             "empty_light": "Bu rüya, iç dünyanın temiz ve aydınlık bir alanından geliyor.",
             "light_aspect": "Işık yönü: {aspects} Bu potansiyeli kucakla.",
-            "empty_shadow": "Gölge her zaman vardır, ama bu rüyada nazikçe bekliyor.",
+            "empty_shadow": "Gölge her zaman vardır, ama bu rüyada sessizce duruyor.",
             "shadow_aspect": "Gölge uyarısı: {aspects} Farkında ol, ama korkma."
         },
         "archetype_integration": {
@@ -3438,8 +3438,8 @@
             "personal_profile_desc": "Rüya sembollerinin iç kalıplarınla bağlantısını gör",
             "moon_calendar_title": "Ay Takvimine Bak",
             "moon_calendar_desc": "Rüyanın geldiği ay fazının anlamını öğren",
-            "transits_title": "Döngülerini İncele",
-            "transits_desc": "Şu anki döngüsel geçişlerin rüyana etkisi",
+            "cycles_title": "Döngülerini İncele",
+            "cycles_desc": "Şu anki döngüsel geçişlerin rüyana etkisi",
             "timing_insights_title": "Zamanlama İçgörüleri",
             "timing_insights_desc": "Kişisel ritimlerin rüya kalıplarını nasıl etkilediğini keşfet",
             "card_insight_title": "Refleksiyon Çek",
