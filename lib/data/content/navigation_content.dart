@@ -207,7 +207,7 @@ class InsightHubNavigation {
       ),
       NavigationCard(
         title: 'Haftalık Genel Bakış',
-        description: 'Bu hafta seni neler bekliyor?',
+        description: 'Bu hafta neler keşfedebilirsin?',
         route: '/journal',
         emoji: '📅',
         titleKey: 'navigation.cards.weekly_overview.title',

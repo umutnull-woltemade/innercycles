@@ -3,7 +3,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 // Helps users reflect on their relationships through structured questions.
 // Framed as a REFLECTION tool — how YOU experience this relationship.
-// NEVER uses: "compatible", "meant to be", "soulmate", or predictions.
+// NEVER uses predictive or destined-partner language.
 // USES: "Your reflections suggest", "You value", "Areas for growth together".
 // ════════════════════════════════════════════════════════════════════════════
 

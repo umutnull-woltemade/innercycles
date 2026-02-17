@@ -336,7 +336,7 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
         return [
           'Okyanus Kalbi',
           'Canlı Rüya',
-          'Mistik Sezgi',
+          'Derin Sezgi',
           'Sınırsız Hayal',
         ];
     }

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,10 +9,12 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/personality_archetype.dart' as archetype;
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
+import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/entertainment_disclaimer.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 
 /// Inner Dream Guide - AI-Powered Dream Chatbot
 /// Conversational dream interpretation experience
@@ -422,12 +426,12 @@ class _DreamInterpretationScreenState
           'widgets.dreams.prompts.seeing_future',
           language,
         ),
-        'category': 'mistik',
+        'category': 'sezgisel',
       },
       {
         'emoji': '👼',
         'text': L10nService.get('widgets.dreams.prompts.angel_light', language),
-        'category': 'mistik',
+        'category': 'sezgisel',
       },
       {
         'emoji': '🌙',
@@ -435,7 +439,7 @@ class _DreamInterpretationScreenState
           'widgets.dreams.prompts.moon_message',
           language,
         ),
-        'category': 'mistik',
+        'category': 'sezgisel',
       },
       {
         'emoji': '⭐',
@@ -443,7 +447,7 @@ class _DreamInterpretationScreenState
           'widgets.dreams.prompts.stars_rising',
           language,
         ),
-        'category': 'mistik',
+        'category': 'sezgisel',
       },
       {
         'emoji': '🪬',
@@ -451,7 +455,7 @@ class _DreamInterpretationScreenState
           'widgets.dreams.prompts.portal_world',
           language,
         ),
-        'category': 'mistik',
+        'category': 'sezgisel',
       },
     ];
   }
@@ -537,17 +541,32 @@ class _DreamInterpretationScreenState
 
   void _generateInterpretation(String dreamText) {
     final sign = _resolveArchetype();
+    final isPremium = ref.read(isPremiumUserProvider);
 
     // Generate interpretation based on dream content and personality profile
-    final interpretation = _interpretDream(dreamText, sign);
+    final result = _interpretDreamWithPerspectives(dreamText, sign);
+    final fullInterpretation = result.fullText;
+    final perspectiveCount = result.perspectiveCount;
+
+    // For free users with multiple perspectives, show only the first perspective
+    final int lockedCount;
+    final String displayText;
+    if (!isPremium && perspectiveCount > 1) {
+      displayText = result.firstPerspective;
+      lockedCount = perspectiveCount - 1;
+    } else {
+      displayText = fullInterpretation;
+      lockedCount = 0;
+    }
 
     setState(() {
       _isTyping = false;
       _messages.add(
         ChatMessage(
-          text: interpretation,
+          text: displayText,
           isUser: false,
           timestamp: DateTime.now(),
+          lockedPerspectiveCount: lockedCount,
         ),
       );
     });
@@ -555,10 +574,13 @@ class _DreamInterpretationScreenState
     _scrollToBottom();
   }
 
-  String _interpretDream(String dreamText, archetype.PersonalityArchetype sign) {
+  /// Generates interpretation and returns structured result with perspective count.
+  _InterpretationResult _interpretDreamWithPerspectives(
+    String dreamText,
+    archetype.PersonalityArchetype sign,
+  ) {
     final lowerDream = dreamText.toLowerCase();
-
-    // Analyze dream themes
+    final language = ref.read(languageProvider);
     final themes = <String, String>{};
 
     // Water themes
@@ -566,99 +588,130 @@ class _DreamInterpretationScreenState
         lowerDream.contains('deniz') ||
         lowerDream.contains('okyanus') ||
         lowerDream.contains('nehir') ||
-        lowerDream.contains('yagmur')) {
+        lowerDream.contains('yagmur') ||
+        lowerDream.contains('water') ||
+        lowerDream.contains('ocean') ||
+        lowerDream.contains('sea') ||
+        lowerDream.contains('rain') ||
+        lowerDream.contains('river')) {
       themes['water'] = _getWaterInterpretation(sign);
     }
-
-    // Flying themes
     if (lowerDream.contains('ucmak') ||
         lowerDream.contains('uctum') ||
         lowerDream.contains('ucuyordum') ||
-        lowerDream.contains('havada')) {
+        lowerDream.contains('havada') ||
+        lowerDream.contains('flying') ||
+        lowerDream.contains('fly') ||
+        lowerDream.contains('flew')) {
       themes['flying'] = _getFlyingInterpretation(sign);
     }
-
-    // Falling themes
     if (lowerDream.contains('dusmek') ||
         lowerDream.contains('dustum') ||
         lowerDream.contains('dusuyordum') ||
-        lowerDream.contains('ucurum')) {
+        lowerDream.contains('ucurum') ||
+        lowerDream.contains('falling') ||
+        lowerDream.contains('fell') ||
+        lowerDream.contains('fall')) {
       themes['falling'] = _getFallingInterpretation(sign);
     }
-
-    // Death/Transformation themes
     if (lowerDream.contains('olum') ||
         lowerDream.contains('oldum') ||
         lowerDream.contains('oldu') ||
-        lowerDream.contains('cenaze')) {
+        lowerDream.contains('cenaze') ||
+        lowerDream.contains('death') ||
+        lowerDream.contains('died') ||
+        lowerDream.contains('funeral')) {
       themes['death'] = _getDeathInterpretation(sign);
     }
-
-    // Chase themes
     if (lowerDream.contains('kovalamak') ||
         lowerDream.contains('kacmak') ||
         lowerDream.contains('takip') ||
-        lowerDream.contains('kaciyordum')) {
+        lowerDream.contains('kaciyordum') ||
+        lowerDream.contains('chase') ||
+        lowerDream.contains('chasing') ||
+        lowerDream.contains('running')) {
       themes['chase'] = _getChaseInterpretation(sign);
     }
-
-    // Animal themes
     if (lowerDream.contains('yilan') ||
         lowerDream.contains('kopek') ||
         lowerDream.contains('kedi') ||
         lowerDream.contains('hayvan') ||
-        lowerDream.contains('kus')) {
+        lowerDream.contains('kus') ||
+        lowerDream.contains('snake') ||
+        lowerDream.contains('dog') ||
+        lowerDream.contains('cat') ||
+        lowerDream.contains('animal') ||
+        lowerDream.contains('bird')) {
       themes['animal'] = _getAnimalInterpretation(sign);
     }
-
-    // House/Building themes
     if (lowerDream.contains('ev') ||
         lowerDream.contains('bina') ||
         lowerDream.contains('oda') ||
-        lowerDream.contains('kapi')) {
+        lowerDream.contains('kapi') ||
+        lowerDream.contains('house') ||
+        lowerDream.contains('building') ||
+        lowerDream.contains('room') ||
+        lowerDream.contains('door')) {
       themes['house'] = _getHouseInterpretation(sign);
     }
-
-    // Love/Relationship themes
     if (lowerDream.contains('ask') ||
         lowerDream.contains('sevgili') ||
         lowerDream.contains('opusmek') ||
-        lowerDream.contains('iliski')) {
+        lowerDream.contains('iliski') ||
+        lowerDream.contains('love') ||
+        lowerDream.contains('kiss') ||
+        lowerDream.contains('relationship')) {
       themes['love'] = _getLoveInterpretation(sign);
     }
-
-    // Money/Wealth themes
     if (lowerDream.contains('para') ||
         lowerDream.contains('altin') ||
         lowerDream.contains('zengin') ||
-        lowerDream.contains('hazine')) {
+        lowerDream.contains('hazine') ||
+        lowerDream.contains('money') ||
+        lowerDream.contains('gold') ||
+        lowerDream.contains('treasure') ||
+        lowerDream.contains('rich')) {
       themes['money'] = _getMoneyInterpretation(sign);
     }
 
-    // Build final interpretation
-    final buffer = StringBuffer();
-    final language = ref.read(languageProvider);
-
     if (themes.isEmpty) {
-      // Generic interpretation based on personality archetype
-      buffer.writeln(_getGenericInterpretation(sign, dreamText));
-    } else {
-      final signPerspective = L10nService.getWithParams(
-        'widgets.dreams.interpretations.sign_perspective',
-        language,
-        params: {'archetype': sign.localizedName(language)},
+      // Generic interpretation - counts as 1 perspective
+      final text = _getGenericInterpretation(sign, dreamText);
+      return _InterpretationResult(
+        fullText: text,
+        firstPerspective: text,
+        perspectiveCount: 1,
       );
-      buffer.writeln('$signPerspective\n');
-
-      for (final entry in themes.entries) {
-        buffer.writeln(entry.value);
-        buffer.writeln();
-      }
-
-      buffer.writeln(_getPersonalAdvice(sign));
     }
 
-    return buffer.toString().trim();
+    final signPerspective = L10nService.getWithParams(
+      'widgets.dreams.interpretations.sign_perspective',
+      language,
+      params: {'archetype': sign.localizedName(language)},
+    );
+
+    // Build full interpretation with all themes
+    final buffer = StringBuffer();
+    buffer.writeln('$signPerspective\n');
+    for (final entry in themes.entries) {
+      buffer.writeln(entry.value);
+      buffer.writeln();
+    }
+    buffer.writeln(_getPersonalAdvice(sign));
+
+    // Build first perspective only
+    final firstBuffer = StringBuffer();
+    firstBuffer.writeln('$signPerspective\n');
+    final firstEntry = themes.entries.first;
+    firstBuffer.writeln(firstEntry.value);
+    firstBuffer.writeln();
+    firstBuffer.writeln(_getPersonalAdvice(sign));
+
+    return _InterpretationResult(
+      fullText: buffer.toString().trim(),
+      firstPerspective: firstBuffer.toString().trim(),
+      perspectiveCount: themes.length,
+    );
   }
 
   String _getWaterInterpretation(archetype.PersonalityArchetype sign) {
@@ -1824,114 +1877,262 @@ ${_getPersonalAdvice(sign)}''';
 
   Widget _buildMessageBubble(ChatMessage message, int index) {
     final isUser = message.isUser;
+    final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
 
     return Padding(
           padding: const EdgeInsets.only(bottom: 12),
-          child: Row(
-            mainAxisAlignment: isUser
-                ? MainAxisAlignment.end
-                : MainAxisAlignment.start,
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (!isUser) ...[
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        AppColors.amethyst.withValues(alpha: 0.5),
-                        AppColors.nebulaPurple.withValues(alpha: 0.3),
-                      ],
-                    ),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Text(
-                    '\u{1F319}',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-                const SizedBox(width: 8),
-              ],
-              Flexible(
-                child: GlassPanel(
-                  elevation: isUser ? GlassElevation.g2 : GlassElevation.g2,
-                  borderRadius: BorderRadius.only(
-                    topLeft: const Radius.circular(18),
-                    topRight: const Radius.circular(18),
-                    bottomLeft: Radius.circular(isUser ? 18 : 4),
-                    bottomRight: Radius.circular(isUser ? 4 : 18),
-                  ),
-                  padding: const EdgeInsets.all(14),
-                  glowColor: isUser
-                      ? AppColors.cosmicPurple.withValues(alpha: 0.2)
-                      : AppColors.amethyst.withValues(alpha: 0.2),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (message.isInterpretation) ...[
-                        Row(
-                          children: [
-                            const Text(
-                              '\u{2728}',
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            const SizedBox(width: 6),
-                            Text(
-                              L10nService.get(
-                                'widgets.dreams.interpretation_label',
-                                ref.watch(languageProvider),
-                              ),
-                              style: Theme.of(context).textTheme.labelSmall
-                                  ?.copyWith(
-                                    color: AppColors.starGold,
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: 1,
-                                  ),
-                            ),
+              Row(
+                mainAxisAlignment: isUser
+                    ? MainAxisAlignment.end
+                    : MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (!isUser) ...[
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.amethyst.withValues(alpha: 0.5),
+                            AppColors.nebulaPurple.withValues(alpha: 0.3),
                           ],
                         ),
-                        const SizedBox(height: 8),
-                      ],
-                      if (message.isQuestion) ...[
-                        Row(
-                          children: [
-                            const Text(
-                              '\u{2753}',
-                              style: TextStyle(fontSize: 12),
-                            ),
-                            const SizedBox(width: 4),
-                            Text(
-                              L10nService.get(
-                                'widgets.dreams.question_label',
-                                ref.watch(languageProvider),
-                              ),
-                              style: Theme.of(context).textTheme.labelSmall
-                                  ?.copyWith(
-                                    color: AppColors.amethyst,
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: 1,
-                                  ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 4),
-                      ],
-                      Text(
-                        message.text,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppColors.textPrimary,
-                          height: 1.5,
-                        ),
+                        shape: BoxShape.circle,
                       ),
-                    ],
+                      child: const Text(
+                        '\u{1F319}',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                  ],
+                  Flexible(
+                    child: GlassPanel(
+                      elevation: isUser ? GlassElevation.g2 : GlassElevation.g2,
+                      borderRadius: BorderRadius.only(
+                        topLeft: const Radius.circular(18),
+                        topRight: const Radius.circular(18),
+                        bottomLeft: Radius.circular(isUser ? 18 : 4),
+                        bottomRight: Radius.circular(isUser ? 4 : 18),
+                      ),
+                      padding: const EdgeInsets.all(14),
+                      glowColor: isUser
+                          ? AppColors.cosmicPurple.withValues(alpha: 0.2)
+                          : AppColors.amethyst.withValues(alpha: 0.2),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (message.isInterpretation) ...[
+                            Row(
+                              children: [
+                                const Text(
+                                  '\u{2728}',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                                const SizedBox(width: 6),
+                                Text(
+                                  L10nService.get(
+                                    'widgets.dreams.interpretation_label',
+                                    language,
+                                  ),
+                                  style: Theme.of(context).textTheme.labelSmall
+                                      ?.copyWith(
+                                        color: AppColors.starGold,
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 1,
+                                      ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                          ],
+                          if (message.isQuestion) ...[
+                            Row(
+                              children: [
+                                const Text(
+                                  '\u{2753}',
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  L10nService.get(
+                                    'widgets.dreams.question_label',
+                                    language,
+                                  ),
+                                  style: Theme.of(context).textTheme.labelSmall
+                                      ?.copyWith(
+                                        color: AppColors.amethyst,
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 1,
+                                      ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                          ],
+                          Text(
+                            message.text,
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: AppColors.textPrimary,
+                              height: 1.5,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  if (isUser) const SizedBox(width: 8),
+                ],
+              ),
+              // Premium lock card for locked perspectives
+              if (message.lockedPerspectiveCount > 0) ...[
+                const SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.only(left: 42),
+                  child: _buildLockedPerspectivesCard(
+                    message.lockedPerspectiveCount,
+                    isEn,
                   ),
                 ),
-              ),
-              if (isUser) const SizedBox(width: 8),
+              ],
             ],
           ),
         )
         .glassListItem(context: context, index: index);
+  }
+
+  Widget _buildLockedPerspectivesCard(int lockedCount, bool isEn) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: Stack(
+        children: [
+          // Blurred background hint
+          ImageFiltered(
+            imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+            child: GlassPanel(
+              elevation: GlassElevation.g1,
+              borderRadius: BorderRadius.circular(16),
+              padding: const EdgeInsets.all(14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    isEn
+                        ? 'Psychological Perspective\n━━━━━━━━━━━━━━━━━\nYour subconscious is revealing...'
+                        : 'Psikolojik Perspektif\n━━━━━━━━━━━━━━━━━\nBilinaltiniz ortaya koyuyor...',
+                    style: TextStyle(
+                      color: AppColors.textPrimary.withValues(alpha: 0.5),
+                      fontSize: 13,
+                      height: 1.5,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // Lock overlay
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    const Color(0xFF1A1A2E).withValues(alpha: 0.85),
+                    const Color(0xFF1A1A2E).withValues(alpha: 0.95),
+                  ],
+                  stops: const [0.0, 0.3, 1.0],
+                ),
+              ),
+            ),
+          ),
+          // CTA content
+          Positioned.fill(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.lock_outline,
+                      color: const Color(0xFF7B68EE),
+                      size: 28,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      isEn
+                          ? '$lockedCount more perspectives available'
+                          : '$lockedCount perspektif daha mevcut',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      isEn
+                          ? 'See your dream through every lens'
+                          : 'Ruyanizi her acidan gorun',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white.withValues(alpha: 0.6),
+                        fontSize: 12,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    GestureDetector(
+                      onTap: () => showContextualPaywall(
+                        context,
+                        ref,
+                        paywallContext: PaywallContext.dreams,
+                      ),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFF7B68EE), Color(0xFF9B59B6)],
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(0xFF7B68EE).withValues(alpha: 0.4),
+                              blurRadius: 12,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          isEn
+                              ? 'Unlock All Perspectives'
+                              : 'Tum Perspektifleri Ac',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ).animate().fadeIn(duration: 500.ms, delay: 300.ms);
   }
 
   Widget _buildTypingIndicator() {
@@ -2096,6 +2297,7 @@ class ChatMessage {
   final DateTime timestamp;
   final bool isQuestion;
   final bool isInterpretation;
+  final int lockedPerspectiveCount;
 
   ChatMessage({
     required this.text,
@@ -2103,6 +2305,20 @@ class ChatMessage {
     required this.timestamp,
     this.isQuestion = false,
     this.isInterpretation = false,
+    this.lockedPerspectiveCount = 0,
+  });
+}
+
+/// Structured result from dream interpretation with perspective metadata
+class _InterpretationResult {
+  final String fullText;
+  final String firstPerspective;
+  final int perspectiveCount;
+
+  const _InterpretationResult({
+    required this.fullText,
+    required this.firstPerspective,
+    required this.perspectiveCount,
   });
 }
 

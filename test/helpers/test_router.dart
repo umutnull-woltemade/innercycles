@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 /// Builds a minimal test router for widget testing.
-/// All astrology routes have been removed for App Store compliance.
+/// All legacy routes have been removed for App Store compliance.
 GoRouter buildTestRouter({String initialLocation = '/'}) {
   return GoRouter(
     initialLocation: initialLocation,

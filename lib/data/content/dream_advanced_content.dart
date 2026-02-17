@@ -221,7 +221,7 @@ class PsikolojikRuyaTemalari {
         'Keşif & Anlam': 'Seyahat, felsefe, eğitim, yabancı kültür temaları',
         'Hedef & Yapı': 'Kariyer, otorite, yapı, baba figürü temaları',
         'Yenilik & Vizyon': 'Grup, teknoloji, gelecek, sıra dışı temalar',
-        'Sezgi & Hayal Gücü': 'Sezgisel, mistik, su, kaybolma, sezgisel mesajlar',
+        'Sezgi & Hayal Gücü': 'Sezgisel, derin, su, kaybolma, sezgisel mesajlar',
       },
       notes:
           'Uyku kalitesi yüksek olduğunda rüyalar daha canlı hatırlanabilir. Derin uyku dönemlerinde rüya hatırlama azalabilir.',
@@ -322,7 +322,7 @@ class PsikolojikRuyaTemalari {
         'Kolektif': 'Kolektif bilinç rüyaları, insanlık temaları',
       },
       notes:
-          'Canlı ve mistik rüyalar, hayal gücünün aktif olduğu dönemlerde daha sık görülme eğilimindedir.',
+          'Canlı ve etkileyici rüyalar, hayal gücünün aktif olduğu dönemlerde daha sık görülme eğilimindedir.',
     ),
     DreamThemeCategory(
       category: 'Dönüşüm & Yeniden Doğuş',

@@ -553,102 +553,126 @@
         }
     },
     "premium": {
-        "cosmic_powers": "Premium Özellikler",
-        "cosmic_powers_active": "Premium Özellikler Aktif",
+        "cosmic_powers": "Neler Açılıyor",
+        "cosmic_powers_active": "Pro Özellikler Aktif",
         "lifetime_access": "Ömür boyu erişiminiz var!",
-        "open_cosmic_door": "Premium'u Aç",
-        "cosmic_door_opened": "Premium Açıldı!",
-        "success_message": "Tüm özelliklere tam erişim artık seninle. Sınırsız keşfe hazırsın.",
-        "view_plans": "Planları Görüntüle",
+        "open_cosmic_door": "Tüm İçgörüleri Aç",
+        "cosmic_door_opened": "Tüm İçgörüler Açıldı!",
+        "success_message": "Tam kalıp analizi, tüm rüya perspektifleri ve büyüme araç setin artık aktif.",
+        "view_plans": "İçgörülerimi Gör",
         "manage_subscription": "Aboneliği Yönet",
         "restore_purchases": "Satın Alımları Geri Yükle",
         "purchases_restored": "Satın alımlar geri yüklendi!",
         "no_purchases_found": "Geri yüklenecek satın alım bulunamadı.",
         "lifetime": "Ömür Boyu",
-        "best_value": "En İyi Değer",
+        "best_value": "En Popüler",
         "terms_text": "Abonelik, mevcut dönemin bitiminden 24 saat önce iptal edilmediği sürece otomatik olarak yenilenir. Hesabınız, mevcut dönemin bitiminden 24 saat önce yenileme için ücretlendirilecektir. Aboneliğinizi istediğiniz zaman App Store hesap ayarlarınızdan yönetebilir ve iptal edebilirsiniz.",
+        "risk_reversal": "Dilediğin zaman iptal et. Kayıtların her zaman senin.",
+        "price_anchor": "Yıllık faturayla $2,50/ay",
+        "price_monthly_crossed": "$7,99/ay",
         "paywall": {
-            "title": "Yolculuğunun Tamamını Aç",
-            "subtitle": "Öz farkındalığı kesintisiz deneyimle",
-            "benefit_ad_free": "Reklamsız, huzurlu deneyim",
-            "benefit_unlimited": "Sınırsız kişisel içgörüler",
-            "benefit_priority": "Öncelikli kişisel rehberlik",
-            "continue_pro": "Pro ile Devam Et",
-            "not_now": "Şimdi değil, belki sonra",
-            "legal_text": "Aylık otomatik yenilenir. Ayarlardan istediğiniz zaman iptal edebilirsiniz.",
+            "title": "Günlüğün sana bir şey söylüyor",
+            "subtitle": "Hikayeni yazıyordun. Premium onu okumanı sağlar.",
+            "benefit_ad_free": "Reklamsız yansıma alanı",
+            "benefit_unlimited": "Tam kalıp analizi ve tekrar tespiti",
+            "benefit_priority": "5 rüya yorumlama perspektifi",
+            "benefit_export": "Tam veri dışa aktarma (CSV, JSON)",
+            "benefit_reports": "Aylık ve yıllık büyüme raporları",
+            "benefit_programs": "Premium programlar, meydan okumalar ve araçlar",
+            "continue_pro": "Tüm İçgörüleri Aç — $2,50/ay",
+            "not_now": "Şimdi değil",
+            "legal_text": "Yıllık otomatik yenilenir. Ayarlardan istediğiniz zaman iptal edebilirsiniz.",
             "privacy_policy": "Gizlilik Politikası",
             "terms_of_use": "Kullanım Koşulları"
         },
         "retention": {
             "title": "Burada olacağız",
-            "message": "İhtiyacın olan tüm zamanı al. Yolculuğun hazır olduğunda devam ediyor.",
+            "message": "İhtiyacın olan tüm zamanı al. Günlüğün hazır olduğunda büyümeye devam ediyor.",
             "got_it": "Anladım"
         },
+        "comparison": {
+            "title": "Ücretsiz vs Pro",
+            "feature_journal": "Günlük tutma",
+            "feature_journal_free": "Sınırsız",
+            "feature_journal_pro": "Sınırsız",
+            "feature_dreams": "Rüya yorumlama",
+            "feature_dreams_free": "1 perspektif",
+            "feature_dreams_pro": "5 perspektif",
+            "feature_patterns": "Kalıp analizi",
+            "feature_patterns_free": "Özet trendler",
+            "feature_patterns_pro": "Tam derinlik + korelasyonlar",
+            "feature_reports": "Büyüme raporları",
+            "feature_reports_free": "—",
+            "feature_reports_pro": "Aylık ve yıllık",
+            "feature_streaks": "Seri dondurma",
+            "feature_streaks_free": "Haftada 1",
+            "feature_streaks_pro": "Haftada 3",
+            "feature_export": "Veri dışa aktarma",
+            "feature_export_free": "Son 7 gün",
+            "feature_export_pro": "Tam geçmiş",
+            "feature_ads": "Reklamlar",
+            "feature_ads_free": "Var",
+            "feature_ads_pro": "Yok",
+            "feature_programs": "Rehberli programlar",
+            "feature_programs_free": "2 ücretsiz",
+            "feature_programs_pro": "Tüm programlar"
+        },
         "features": {
-            "daily_whispers": "Günlük içgörü fısıltıları",
-            "pure_cosmic_experience": "Reklamsız, huzurlu deneyim",
-            "deep_pattern_analysis": "Derin kişisel içgörüler",
-            "unlimited_card_insight": "Sınırsız refleksiyon seansları",
-            "relationship_mapping": "İlişki yansıtma araçları",
-            "inner_wisdom_tools": "Sembolik keşif araçları",
+            "daily_whispers": "Tam kalıp analizi ve tekrar tespiti",
+            "pure_cosmic_experience": "Reklamsız yansıma alanı",
+            "deep_pattern_analysis": "5 rüya yorumlama perspektifi",
+            "unlimited_card_insight": "Aylık ve yıllık büyüme raporları",
+            "relationship_mapping": "Tam veri dışa aktarma",
+            "inner_wisdom_tools": "Premium programlar, meydan okumalar ve araçlar",
             "energy_awareness": "Enerji farkındalık günlüğü",
-            "recurrence_detection": "Döngüsel tema takibi",
-            "priority_guidance": "Öncelikli kişisel rehberlik"
+            "recurrence_detection": "Tam tekrar tespit motoru",
+            "priority_guidance": "Öncelikli döngüsel zeka raporları"
         },
         "tiers": {
             "free": {
                 "name": "Ücretsiz",
                 "savings": "",
                 "features": [
-                    "Günlük içgörü fısıltıları",
-                    "Temel kişisel profil",
-                    "Günlük refleksiyon kartı",
+                    "Günlük tutma (sınırsız)",
+                    "1 rüya perspektifi",
+                    "Özet kalıp trendleri",
                     "Reklam destekli"
                 ]
             },
             "monthly": {
-                "name": "Aylık Premium",
+                "name": "Aylık",
                 "savings": "",
                 "features": [
-                    "Tüm temel özellikler",
-                    "Reklamsız, huzurlu deneyim",
-                    "Derin kişisel içgörüler",
-                    "Sınırsız refleksiyon seansları",
-                    "İlişki yansıtma araçları",
-                    "Sembolik keşif araçları",
-                    "Enerji farkındalık günlüğü",
-                    "Döngüsel tema takibi",
-                    "Öncelikli kişisel rehberlik"
+                    "Tam kalıp analizi ve tekrar tespiti",
+                    "5 rüya yorumlama perspektifi",
+                    "Reklamsız yansıma alanı",
+                    "Aylık ve yıllık büyüme raporları",
+                    "Sınırsız dışa aktarma (CSV, JSON)",
+                    "Premium programlar, meydan okumalar ve araçlar"
                 ]
             },
             "yearly": {
-                "name": "Yıllık Premium",
-                "savings": "",
+                "name": "Yıllık",
+                "savings": "%69 tasarruf — sadece $2,50/ay",
                 "features": [
-                    "Tüm temel özellikler",
-                    "Reklamsız, huzurlu deneyim",
-                    "Derin kişisel içgörüler",
-                    "Sınırsız refleksiyon seansları",
-                    "İlişki yansıtma araçları",
-                    "Sembolik keşif araçları",
-                    "Enerji farkındalık günlüğü",
-                    "Döngüsel tema takibi",
-                    "Öncelikli kişisel rehberlik"
+                    "Tam kalıp analizi ve tekrar tespiti",
+                    "5 rüya yorumlama perspektifi",
+                    "Reklamsız yansıma alanı",
+                    "Aylık ve yıllık büyüme raporları",
+                    "Sınırsız dışa aktarma (CSV, JSON)",
+                    "Premium programlar, meydan okumalar ve araçlar"
                 ]
             },
             "lifetime": {
-                "name": "Ömür Boyu Premium",
-                "savings": "Tek seferlik ödeme",
+                "name": "Ömür Boyu",
+                "savings": "Bir kez öde, sonsuza kadar senin",
                 "features": [
-                    "Tüm temel özellikler",
-                    "Reklamsız, huzurlu deneyim",
-                    "Derin kişisel içgörüler",
-                    "Sınırsız refleksiyon seansları",
-                    "İlişki yansıtma araçları",
-                    "Sembolik keşif araçları",
-                    "Enerji farkındalık günlüğü",
-                    "Döngüsel tema takibi",
-                    "Öncelikli kişisel rehberlik"
+                    "Tam kalıp analizi ve tekrar tespiti",
+                    "5 rüya yorumlama perspektifi",
+                    "Reklamsız yansıma alanı",
+                    "Aylık ve yıllık büyüme raporları",
+                    "Sınırsız dışa aktarma (CSV, JSON)",
+                    "Premium programlar, meydan okumalar ve araçlar"
                 ]
             }
         }
@@ -1725,7 +1749,7 @@
                 "description": "10 boyut anlamları"
             },
             "my_personal_profile": {
-                "title": "Doğum Haritam",
+                "title": "Kişisel Profilim",
                 "description": "Kişisel kimliğin"
             },
             "this_years_chart": {

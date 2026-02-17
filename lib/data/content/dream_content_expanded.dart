@@ -21,7 +21,7 @@ class KadimGirisTemplates {
     'Eski Yunan\'da rüyalar Hypnos\'un armağanıydı. Uyku tanrısı bu gece sana ne fısıldadı?',
     'Tibet bilgeleri rüyayı "Bardo" - ara boyut olarak görür. Bu gece hangi boyuta geçtin?',
     'Kızılderili gelenekte rüya, ataların sesini taşır. Bu gece atalarından ne duydun?',
-    'İslam mistiklerince rüya üç türdür: rahmani, nefsani, şeytani. Bu rüya hangi kapıdan geldi?',
+    'İslam bilginlerince rüya üç türdür: rahmani, nefsani, şeytani. Bu rüya hangi kapıdan geldi?',
   ];
 
   /// Ay fazına göre girişler
