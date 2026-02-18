@@ -1058,7 +1058,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           child: InkWell(
             onTap: () {
               HapticFeedback.mediumImpact();
-              context.push(Routes.shareInsight);
+              context.push(Routes.shareCardGallery);
             },
             borderRadius: BorderRadius.circular(AppConstants.radiusLg),
             child: Padding(

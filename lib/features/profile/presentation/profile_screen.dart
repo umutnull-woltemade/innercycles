@@ -475,12 +475,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
           ),
           const SizedBox(height: AppConstants.spacingLg),
-          // App Store 4.3(b): Navigate to Insight
+          // Navigate to Mood Trends (CORE Insights)
           SizedBox(
             width: double.infinity,
             child: OutlinedButton.icon(
-              onPressed: () => context.push(Routes.insight),
-              icon: const Icon(Icons.auto_awesome),
+              onPressed: () => context.push(Routes.moodTrends),
+              icon: const Icon(Icons.insights),
               label: Text(isEn ? 'View Insights' : 'İçgörüleri Gör'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.auroraStart,
