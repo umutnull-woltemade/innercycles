@@ -413,7 +413,10 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
             ),
           ),
           const SizedBox(width: 12),
-          GestureDetector(
+          Semantics(
+            label: isEn ? 'Send message' : 'Mesaj gönder',
+            button: true,
+            child: GestureDetector(
             onTap: _sendMessage,
             child: Container(
               width: 48,
