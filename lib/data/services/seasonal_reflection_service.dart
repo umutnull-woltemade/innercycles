@@ -65,7 +65,10 @@ class SeasonalProgress {
 
   factory SeasonalProgress.fromJson(Map<String, dynamic> json) =>
       SeasonalProgress(
-        season: Season.values.firstWhere((s) => s.name == json['season']),
+        season: Season.values.firstWhere(
+          (s) => s.name == json['season'],
+          orElse: () => Season.spring,
+        ),
         year: json['year'] as int,
         completedPrompts:
             (json['completedPrompts'] as List<dynamic>).cast<int>().toSet(),
@@ -102,7 +105,10 @@ class SeasonalReflectionService {
 
   /// Get a specific seasonal module
   SeasonalModule getModule(Season season) {
-    return allModules.firstWhere((m) => m.season == season);
+    return allModules.firstWhere(
+      (m) => m.season == season,
+      orElse: () => allModules.first,
+    );
   }
 
   /// Get progress for current season

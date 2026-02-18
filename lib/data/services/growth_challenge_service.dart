@@ -118,7 +118,14 @@ class GrowthChallengeService {
   // ══════════════════════════════════════════════════════════════════════════
 
   Future<ChallengeProgress> startChallenge(String challengeId) async {
-    final challenge = allChallenges.firstWhere((c) => c.id == challengeId);
+    final challenge = allChallenges.where((c) => c.id == challengeId).firstOrNull;
+    if (challenge == null) {
+      return ChallengeProgress(
+        challengeId: challengeId,
+        startedAt: DateTime.now(),
+        targetCount: 7,
+      );
+    }
     final progress = ChallengeProgress(
       challengeId: challengeId,
       startedAt: DateTime.now(),

@@ -90,6 +90,7 @@ class _AffirmationLibraryScreenState
                         isEn: isEn,
                         onToggleFavorite: () async {
                           await service.toggleFavorite(a.id);
+                          if (!mounted) return;
                           setState(() {});
                         },
                       ),

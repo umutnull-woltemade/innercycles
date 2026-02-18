@@ -99,6 +99,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                         } else {
                           await service.checkOffToday(habit.id);
                         }
+                        if (!mounted) return;
                         setState(() {});
                       },
                     ),

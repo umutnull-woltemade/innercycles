@@ -673,6 +673,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       final ext = p.extension(picked.path);
       final savedPath = '${journalDir.path}/${DateTime.now().millisecondsSinceEpoch}$ext';
       await File(picked.path).copy(savedPath);
+      if (!mounted) return;
       setState(() => _selectedImagePath = savedPath);
     }
   }

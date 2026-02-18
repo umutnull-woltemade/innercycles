@@ -59,6 +59,7 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
           onSelect: (mood, emoji) async {
             await service.logMood(mood, emoji);
             HapticFeedback.mediumImpact();
+            if (!mounted) return;
             setState(() => _justLogged = true);
             ref.invalidate(moodCheckinServiceProvider);
             Future.delayed(const Duration(seconds: 3), () {

@@ -92,6 +92,7 @@ class _CompatibilityReflectionScreenState
     if (service == null) return;
 
     final profile = await service.createProfile(name, _selectedType);
+    if (!mounted) return;
     setState(() {
       _activeProfile = profile;
       _pendingAnswers.clear();
@@ -135,12 +136,13 @@ class _CompatibilityReflectionScreenState
       await service.answerQuestion(_activeProfile!.id, i, _pendingAnswers[i]);
     }
 
-    // Calculate scores
-    final result = await service.calculateScores(_activeProfile!.id);
+    // Calculate scores (stored in the profile by the service)
+    await service.calculateScores(_activeProfile!.id);
 
     // Reload profile with result
     final profiles = await service.getProfiles();
-    final updated = profiles.firstWhere((p) => p.id == _activeProfile!.id);
+    final updated = profiles.where((p) => p.id == _activeProfile!.id).firstOrNull;
+    if (!mounted || updated == null) return;
 
     setState(() {
       _profiles = profiles;
@@ -149,8 +151,6 @@ class _CompatibilityReflectionScreenState
     });
 
     HapticFeedback.heavyImpact();
-    // ignore: unused_local_variable
-    final _ = result; // result is stored in the profile
   }
 
   Future<void> _deleteProfile(String id) async {

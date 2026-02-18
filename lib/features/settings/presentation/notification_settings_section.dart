@@ -45,6 +45,7 @@ class _NotificationSettingsSectionState
     _permissionsGranted = await _notificationService.areNotificationsEnabled();
 
     final settings = await _notificationService.getSettings();
+    if (!mounted) return;
     setState(() {
       _isInitialized = true;
       _dailyInsightEnabled = settings.dailyReflectionEnabled;
@@ -59,6 +60,7 @@ class _NotificationSettingsSectionState
 
   Future<void> _requestPermissions() async {
     final granted = await _notificationService.requestPermissions();
+    if (!mounted) return;
     setState(() {
       _permissionsGranted = granted;
     });

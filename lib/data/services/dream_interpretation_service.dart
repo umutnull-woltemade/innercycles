@@ -1386,6 +1386,7 @@ class DreamThemeCategoryService {
   static DreamThemeCategory get imaginationTheme {
     return PsikolojikRuyaTemalari.temaKategorileri.firstWhere(
       (t) => t.category == 'Hayal Gücü & Sezgi',
+      orElse: () => PsikolojikRuyaTemalari.temaKategorileri.first,
     );
   }
 
@@ -1393,6 +1394,7 @@ class DreamThemeCategoryService {
   static String getEmotionalThemeEffect(String themeKey) {
     final emotionalTheme = PsikolojikRuyaTemalari.temaKategorileri.firstWhere(
       (t) => t.category == 'Duygusal Dünya',
+      orElse: () => PsikolojikRuyaTemalari.temaKategorileri.first,
     );
     return emotionalTheme.themeDetails[themeKey] ?? 'Genel duygusal temalar aktif olabilir.';
   }

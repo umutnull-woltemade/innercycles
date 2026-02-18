@@ -26,7 +26,10 @@ class MonthlyThemeService {
 
   MonthlyTheme getCurrentTheme() {
     final month = DateTime.now().month;
-    return allMonthlyThemes.firstWhere((t) => t.month == month);
+    return allMonthlyThemes.firstWhere(
+      (t) => t.month == month,
+      orElse: () => allMonthlyThemes.first,
+    );
   }
 
   int getCurrentWeek() {

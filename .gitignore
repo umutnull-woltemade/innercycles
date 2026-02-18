@@ -72,3 +72,9 @@ web/flutter_service_worker.js
 .recovery_run/
 .cleanup_run/
 .firebase/
+.worktrees/
+autonomous_submit.sh
+.agent_state.json
+.last_build_cmd
+.crash_log.txt
+release_package/

@@ -519,16 +519,20 @@ class MilestoneService {
 
     // Meta-milestones that depend on how many we have earned so far
     if (!_earned.containsKey('growth_half') && _earned.length >= 15) {
-      final m = _allMilestones.firstWhere((ms) => ms.id == 'growth_half');
-      _earned[m.id] = now;
-      newlyEarned.add(m);
+      final m = _allMilestones.where((ms) => ms.id == 'growth_half').firstOrNull;
+      if (m != null) {
+        _earned[m.id] = now;
+        newlyEarned.add(m);
+      }
     }
     if (!_earned.containsKey('growth_all_milestones') && _earned.length >= 26) {
       // 25 *other* milestones + this one itself would be 26
       final m =
-          _allMilestones.firstWhere((ms) => ms.id == 'growth_all_milestones');
-      _earned[m.id] = now;
-      newlyEarned.add(m);
+          _allMilestones.where((ms) => ms.id == 'growth_all_milestones').firstOrNull;
+      if (m != null) {
+        _earned[m.id] = now;
+        newlyEarned.add(m);
+      }
     }
 
     if (newlyEarned.isNotEmpty) {

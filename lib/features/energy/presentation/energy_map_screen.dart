@@ -288,6 +288,7 @@ class _HeatmapGrid extends StatelessWidget {
                 ...List.generate(7, (dayIdx) {
                   final cell = data.cells.firstWhere(
                     (c) => c.weekday == dayIdx + 1 && c.area == area,
+                    orElse: () => HeatmapCell(weekday: dayIdx + 1, area: area, averageRating: 0.0, entryCount: 0),
                   );
                   return Expanded(
                     child: Padding(

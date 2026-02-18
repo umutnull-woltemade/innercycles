@@ -955,6 +955,7 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                         HapticFeedback.lightImpact();
                         final result =
                             await widget.service.toggleBookmark(habit.id);
+                        if (!mounted) return;
                         setState(() => _isBookmarked = result);
                         widget.onChanged();
                       },
@@ -1011,6 +1012,7 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                             : () async {
                                 HapticFeedback.mediumImpact();
                                 await widget.service.markAsTried(habit.id);
+                                if (!mounted) return;
                                 setState(() => _isTried = true);
                                 widget.onChanged();
                               },
@@ -1032,9 +1034,11 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                           HapticFeedback.mediumImpact();
                           if (_isAdopted) {
                             await widget.service.removeAdopted(habit.id);
+                            if (!mounted) return;
                             setState(() => _isAdopted = false);
                           } else {
                             await widget.service.markAsAdopted(habit.id);
+                            if (!mounted) return;
                             setState(() {
                               _isAdopted = true;
                               _isTried = true;

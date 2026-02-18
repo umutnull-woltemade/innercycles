@@ -187,6 +187,7 @@ class EmotionalReading {
       EmotionalReading(
         dominantEmotion: EmotionalTone.values.firstWhere(
           (e) => e.name == json['dominantEmotion'],
+          orElse: () => EmotionalTone.merak,
         ),
         surfaceMessage: json['surfaceMessage'],
         deeperMeaning: json['deeperMeaning'],
@@ -223,7 +224,10 @@ class DreamTiming {
   };
 
   factory DreamTiming.fromJson(Map<String, dynamic> json) => DreamTiming(
-    moonPhase: MoonPhase.values.firstWhere((e) => e.name == json['moonPhase']),
+    moonPhase: MoonPhase.values.firstWhere(
+      (e) => e.name == json['moonPhase'],
+      orElse: () => MoonPhase.yeniay,
+    ),
     emotionalTone: json['emotionalTone'],
     currentTheme: json['currentTheme'],
     timingMessage: json['timingMessage'],
@@ -484,10 +488,10 @@ class FullDreamInterpretation {
             .map((l) => DreamExplorationLink.fromJson(l))
             .toList(),
         userRole: json['userRole'] != null
-            ? DreamRole.values.firstWhere((e) => e.name == json['userRole'])
+            ? DreamRole.values.where((e) => e.name == json['userRole']).firstOrNull
             : null,
         timeLayer: json['timeLayer'] != null
-            ? TimeLayer.values.firstWhere((e) => e.name == json['timeLayer'])
+            ? TimeLayer.values.where((e) => e.name == json['timeLayer']).firstOrNull
             : null,
         isRecurring: json['isRecurring'] ?? false,
         recurringCount: json['recurringCount'],

@@ -148,10 +148,10 @@ class DreamEntry {
         : null,
     metadata: json['metadata'],
     userRole: json['userRole'] != null
-        ? DreamRole.values.firstWhere((e) => e.name == json['userRole'])
+        ? DreamRole.values.where((e) => e.name == json['userRole']).firstOrNull
         : null,
     timeLayer: json['timeLayer'] != null
-        ? TimeLayer.values.firstWhere((e) => e.name == json['timeLayer'])
+        ? TimeLayer.values.where((e) => e.name == json['timeLayer']).firstOrNull
         : null,
     characters: json['characters'] != null
         ? List<String>.from(json['characters'])

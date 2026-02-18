@@ -103,6 +103,7 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
                         },
                         onToggleBookmark: () async {
                           await service.toggleBookmark(module.id);
+                          if (!mounted) return;
                           setState(() {});
                         },
                       ),

@@ -488,6 +488,7 @@ class _InsightsDiscoveryScreenState
                   onTap: () async {
                     HapticFeedback.lightImpact();
                     await service.toggleBookmark(module.id);
+                    if (!mounted) return;
                     setState(() {});
                   },
                   child: Icon(

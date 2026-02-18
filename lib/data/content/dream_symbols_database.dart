@@ -1672,23 +1672,24 @@ class ShareableQuoteTemplates {
 
   /// Duygusal tona uygun alıntı seç
   static ShareableCard getQuoteForEmotion(EmotionalTone tone) {
+    final fallback = quotes.first;
     switch (tone) {
       case EmotionalTone.korku:
-        return quotes.firstWhere((q) => q.category == 'Cesaret');
+        return quotes.firstWhere((q) => q.category == 'Cesaret', orElse: () => fallback);
       case EmotionalTone.huzur:
-        return quotes.firstWhere((q) => q.category == 'Kabul');
+        return quotes.firstWhere((q) => q.category == 'Kabul', orElse: () => fallback);
       case EmotionalTone.merak:
-        return quotes.firstWhere((q) => q.category == 'Keşif');
+        return quotes.firstWhere((q) => q.category == 'Keşif', orElse: () => fallback);
       case EmotionalTone.sucluluk:
-        return quotes.firstWhere((q) => q.category == 'Kabullenme');
+        return quotes.firstWhere((q) => q.category == 'Kabullenme', orElse: () => fallback);
       case EmotionalTone.ozlem:
-        return quotes.firstWhere((q) => q.category == 'Umut');
+        return quotes.firstWhere((q) => q.category == 'Umut', orElse: () => fallback);
       case EmotionalTone.heyecan:
-        return quotes.firstWhere((q) => q.category == 'Yeni Başlangıç');
+        return quotes.firstWhere((q) => q.category == 'Yeni Başlangıç', orElse: () => fallback);
       case EmotionalTone.donukluk:
-        return quotes.firstWhere((q) => q.category == 'Farkındalık');
+        return quotes.firstWhere((q) => q.category == 'Farkındalık', orElse: () => fallback);
       case EmotionalTone.ofke:
-        return quotes.firstWhere((q) => q.category == 'Dönüşüm');
+        return quotes.firstWhere((q) => q.category == 'Dönüşüm', orElse: () => fallback);
     }
   }
 }

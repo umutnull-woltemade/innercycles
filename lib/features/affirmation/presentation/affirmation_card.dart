@@ -293,6 +293,7 @@ class _AffirmationCardState extends ConsumerState<AffirmationCard> {
   void _toggleFavorite(AffirmationService service, String id) async {
     HapticFeedback.mediumImpact();
     final newState = await service.toggleFavorite(id);
+    if (!mounted) return;
     setState(() {
       _isFavorite = newState;
       if (newState) {
