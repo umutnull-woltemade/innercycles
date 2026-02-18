@@ -1043,7 +1043,7 @@ JSON FORMATI:
             language,
           ),
           route: Routes.insightsDiscovery,
-          emoji: '♇',
+          emoji: '🦋',
           category: L10nService.get(
             'dream_interpretation.exploration.category_self_awareness',
             language,

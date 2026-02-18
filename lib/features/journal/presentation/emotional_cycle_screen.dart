@@ -25,8 +25,6 @@ import '../../../data/services/emotional_cycle_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
-import '../../../data/services/pattern_loop_service.dart'; // ignore: unused_import
-import '../../../data/services/shift_forecast_service.dart'; // ignore: unused_import
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';

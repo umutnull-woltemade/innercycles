@@ -610,7 +610,7 @@ class SettingsScreen extends ConsumerWidget {
               try {
                 await NotificationService().cancelAll();
               } catch (e) {
-                debugPrint('Cancel notifications failed: $e');
+                if (kDebugMode) debugPrint('Cancel notifications failed: $e');
               }
               await StorageService.clearAllData();
               if (!context.mounted) return;
