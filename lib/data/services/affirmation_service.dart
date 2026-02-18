@@ -175,6 +175,7 @@ class AffirmationService {
         weightedCategories[rng.nextInt(weightedCategories.length)];
     final categoryAffirmations =
         _allAffirmations.where((a) => a.category == selectedCategory).toList();
+    if (categoryAffirmations.isEmpty) return _allAffirmations.first;
     final index = seed % categoryAffirmations.length;
     return categoryAffirmations[index];
   }
@@ -189,6 +190,7 @@ class AffirmationService {
     final dayHash = now.year * 10000 + now.month * 100 + now.day;
     final categoryAffirmations =
         _allAffirmations.where((a) => a.category == category).toList();
+    if (categoryAffirmations.isEmpty) return _allAffirmations.first;
     final index = dayHash % categoryAffirmations.length;
 
     // Track engagement

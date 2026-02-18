@@ -13,7 +13,9 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/providers/app_providers.dart';
+import '../../../../data/services/premium_service.dart';
 import '../../../../data/services/voice_journal_service.dart';
+import '../../../premium/presentation/contextual_paywall_modal.dart';
 
 class VoiceInputButton extends ConsumerStatefulWidget {
   /// Called whenever new text is recognized from speech.
@@ -107,6 +109,17 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
   }
 
   Future<void> _toggleListening() async {
+    // GUARDRAIL: Voice journaling is a premium feature
+    final isPremium = ref.read(premiumProvider).isPremium;
+    if (!isPremium) {
+      HapticFeedback.lightImpact();
+      if (mounted) {
+        await showContextualPaywall(context, ref,
+            paywallContext: PaywallContext.general);
+      }
+      return;
+    }
+
     if (_service == null || !_isAvailable) {
       _showError(_getUnavailableMessage());
       return;
@@ -156,6 +169,11 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isPremium = ref.watch(premiumProvider).isPremium;
+
+    if (!isPremium) {
+      return _buildLockedButton(isDark);
+    }
 
     if (_isLoading) {
       return SizedBox(
@@ -175,6 +193,66 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
     }
 
     return _buildMicButton(isDark);
+  }
+
+  Widget _buildLockedButton(bool isDark) {
+    final mutedColor = isDark ? AppColors.textMuted : AppColors.lightTextMuted;
+    return GestureDetector(
+      onTap: _toggleListening,
+      child: Semantics(
+        label: 'Voice input (premium)',
+        button: true,
+        child: SizedBox(
+          width: widget.size,
+          height: widget.size,
+          child: Stack(
+            children: [
+              Center(
+                child: Container(
+                  width: widget.size,
+                  height: widget.size,
+                  decoration: BoxDecoration(
+                    color: mutedColor.withValues(alpha: 0.1),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: mutedColor.withValues(alpha: 0.2),
+                    ),
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.mic_rounded,
+                      color: mutedColor,
+                      size: widget.size * 0.5,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                right: 0,
+                bottom: 0,
+                child: Container(
+                  width: 16,
+                  height: 16,
+                  decoration: BoxDecoration(
+                    color: AppColors.celestialGold,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: isDark ? AppColors.surfaceDark : Colors.white,
+                      width: 1.5,
+                    ),
+                  ),
+                  child: const Icon(
+                    Icons.lock,
+                    size: 9,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _buildMicButton(bool isDark) {

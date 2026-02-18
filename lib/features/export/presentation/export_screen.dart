@@ -257,6 +257,17 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
   }
 
   Future<void> _doExport(bool isPremium, bool isEn) async {
+    // GUARDRAIL: Double-check entitlement with RevenueCat before export
+    if (isPremium) {
+      final verified =
+          await ref.read(premiumProvider.notifier).verifyEntitlementForFeature();
+      if (!verified && mounted) {
+        await showContextualPaywall(context, ref,
+            paywallContext: PaywallContext.general);
+        return;
+      }
+    }
+
     final service = ref.read(exportServiceProvider).valueOrNull;
     if (service == null) return;
 
@@ -277,6 +288,17 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
   }
 
   Future<void> _copyToClipboard(bool isPremium, bool isEn) async {
+    // GUARDRAIL: Double-check entitlement with RevenueCat before clipboard export
+    if (isPremium) {
+      final verified =
+          await ref.read(premiumProvider.notifier).verifyEntitlementForFeature();
+      if (!verified && mounted) {
+        await showContextualPaywall(context, ref,
+            paywallContext: PaywallContext.general);
+        return;
+      }
+    }
+
     final service = ref.read(exportServiceProvider).valueOrNull;
     if (service == null) return;
 
@@ -520,7 +542,7 @@ class _LockedEntriesCta extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Text(
-                isEn ? 'Unlock' : 'Ac',
+                isEn ? 'Unlock' : 'Aç',
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,

@@ -23,7 +23,18 @@ class GratitudeArchiveScreen extends ConsumerWidget {
       body: CosmicBackground(
         child: serviceAsync.when(
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (_, _) => const SizedBox.shrink(),
+          error: (_, _) => Center(
+            child: Padding(
+              padding: const EdgeInsets.all(32),
+              child: Text(
+                isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                ),
+              ),
+            ),
+          ),
           data: (service) => _buildContent(context, service, isDark, isEn),
         ),
       ),
@@ -156,6 +167,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     Map<String, int> themes,
   ) {
     final topThemes = themes.entries.take(10).toList();
+    if (topThemes.isEmpty) return const SizedBox.shrink();
     final maxFreq = topThemes.first.value;
 
     return GlassPanel(

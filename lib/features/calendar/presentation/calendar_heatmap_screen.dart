@@ -729,7 +729,7 @@ class _DayDetail extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
-                    ratingLabels[entry!.overallRating - 1],
+                    ratingLabels[(entry!.overallRating - 1).clamp(0, ratingLabels.length - 1)],
                     style: TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.w600,

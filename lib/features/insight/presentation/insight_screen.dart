@@ -93,6 +93,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
 
     // Generate response
     await Future.delayed(const Duration(milliseconds: 800));
+    if (!mounted) return;
     _generateResponse(text);
   }
 

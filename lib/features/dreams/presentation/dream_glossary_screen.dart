@@ -493,33 +493,42 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
 
   Widget _buildAlphabetSidebar() {
     return Container(
-      width: 28,
+      width: 32,
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         itemCount: _alphabet.length,
         itemBuilder: (context, index) {
           final letter = _alphabet[index];
           final isSelected = letter == _selectedLetter;
 
           return GestureDetector(
+            behavior: HitTestBehavior.opaque,
             onTap: () => _onLetterSelected(letter),
-            child: Container(
-              height: 20,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: isSelected
-                    ? CosmicPalette.starGold.withValues(alpha: 0.3)
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: Text(
-                letter,
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                  color: isSelected
-                      ? CosmicPalette.starGold
-                      : AppColors.textSecondary,
+            child: SizedBox(
+              height: 28,
+              child: Center(
+                child: Container(
+                  width: 28,
+                  height: 24,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: isSelected
+                        ? CosmicPalette.starGold.withValues(alpha: 0.3)
+                        : Colors.transparent,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Text(
+                    letter,
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.normal,
+                      color: isSelected
+                          ? CosmicPalette.starGold
+                          : AppColors.textSecondary,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -656,7 +665,9 @@ class _SymbolCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        symbol.universalMeanings.first,
+                        symbol.universalMeanings.isNotEmpty
+                            ? symbol.universalMeanings.first
+                            : '',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.textSecondary,
                         ),
@@ -1279,7 +1290,9 @@ class _SymbolDetailSheet extends StatelessWidget {
   // Interpretation helpers
   String _getTurkishInterpretation() {
     // Generate context-aware Turkish interpretation
-    final base = symbol.universalMeanings.first;
+    final base = symbol.universalMeanings.isNotEmpty
+        ? symbol.universalMeanings.first
+        : symbol.symbol;
     return L10nService.get(
           'screens.dream_glossary.interpretation_templates.turkish',
           language,
@@ -1303,7 +1316,9 @@ class _SymbolDetailSheet extends StatelessWidget {
           language,
         )
         .replaceAll('{symbol}', symbol.symbolTr.toLowerCase())
-        .replaceAll('{meaning}', symbol.universalMeanings.first.toLowerCase());
+        .replaceAll('{meaning}', (symbol.universalMeanings.isNotEmpty
+            ? symbol.universalMeanings.first
+            : symbol.symbol).toLowerCase());
   }
 
   String _getJungianInterpretation() {

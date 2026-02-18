@@ -60,13 +60,23 @@ class _ShareCardGalleryScreenState
   // =========================================================================
 
   Future<void> _onShare(bool isEn, AppLanguage language) async {
-    // Check premium / first-taste before sharing
+    // GUARDRAIL: Double-check entitlement with RevenueCat before sharing
     final isPremium = ref.read(premiumProvider).isPremium;
+    if (isPremium) {
+      final verified =
+          await ref.read(premiumProvider.notifier).verifyEntitlementForFeature();
+      if (!verified && mounted) {
+        await showContextualPaywall(context, ref,
+            paywallContext: PaywallContext.general);
+        return;
+      }
+    }
     if (!isPremium) {
       final firstTaste = ref.read(firstTasteServiceProvider).whenOrNull(data: (s) => s);
       final allowFree = firstTaste?.shouldAllowFree(FirstTasteFeature.shareCards) ?? false;
       if (!allowFree) {
         // Free uses exhausted — show paywall
+        if (!mounted) return;
         await showContextualPaywall(context, ref, paywallContext: PaywallContext.general);
         return;
       }
@@ -111,7 +121,7 @@ class _ShareCardGalleryScreenState
         '\n\n- InnerCycles';
     await Clipboard.setData(ClipboardData(text: text));
     if (!mounted) return;
-    _showSnackBar(isEn ? 'Copied to clipboard' : 'Panoya kopyalandi');
+    _showSnackBar(isEn ? 'Copied to clipboard' : 'Panoya kopyalandı');
   }
 
   void _showSnackBar(String message) {

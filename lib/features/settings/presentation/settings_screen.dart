@@ -280,6 +280,30 @@ class SettingsScreen extends ConsumerWidget {
                           ],
                           _GroupedSeparator(isDark: isDark),
                           _GroupedTile(
+                            icon: Icons.restore,
+                            title: language == AppLanguage.en
+                                ? 'Restore Purchases'
+                                : 'Satın Alımları Geri Yükle',
+                            isDark: isDark,
+                            onTap: () async {
+                              await ref
+                                  .read(premiumProvider.notifier)
+                                  .restorePurchases();
+                              if (context.mounted) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      language == AppLanguage.en
+                                          ? 'Purchases restored'
+                                          : 'Satın alımlar geri yüklendi',
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                          _GroupedSeparator(isDark: isDark),
+                          _GroupedTile(
                             icon: Icons.delete_outline,
                             title: L10nService.get(
                               'settings.clear_data',

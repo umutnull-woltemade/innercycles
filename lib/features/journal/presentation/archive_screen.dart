@@ -41,7 +41,18 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
         child: SafeArea(
           child: serviceAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (_, _) => const SizedBox.shrink(),
+            error: (_, _) => Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Text(
+                  isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  ),
+                ),
+              ),
+            ),
             data: (service) {
               var entries = service.getAllEntries();
 
@@ -277,7 +288,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     return Padding(
       padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       child: GestureDetector(
-        onTap: () => context.push('${Routes.journal}/entry/${entry.id}'),
+        onTap: () => context.push(Routes.journalEntryDetail.replaceFirst(':id', entry.id)),
         child: Container(
           padding: const EdgeInsets.all(AppConstants.spacingLg),
           decoration: BoxDecoration(

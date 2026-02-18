@@ -2,20 +2,22 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
-
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
-
+import '../../../core/theme/liquid_glass/glass_tokens.dart';
+import '../../../data/models/journal_entry.dart';
 import '../../../data/models/user_profile.dart';
-
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/archetype_service.dart';
 import '../../../data/services/auth_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/services/notification_service.dart';
@@ -24,6 +26,125 @@ import '../../../shared/widgets/birth_date_picker.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
+
+// ════════════════════════════════════════════════════════════════════════════
+// ONBOARDING QUIZ DATA (3 key questions from archetype quiz)
+// ════════════════════════════════════════════════════════════════════════════
+
+class _QuizOption {
+  final String textEn;
+  final String textTr;
+  final Map<String, int> scores;
+
+  const _QuizOption({
+    required this.textEn,
+    required this.textTr,
+    required this.scores,
+  });
+}
+
+class _QuizQuestion {
+  final String questionEn;
+  final String questionTr;
+  final List<_QuizOption> options;
+
+  const _QuizQuestion({
+    required this.questionEn,
+    required this.questionTr,
+    required this.options,
+  });
+}
+
+const List<_QuizQuestion> _onboardingQuestions = [
+  _QuizQuestion(
+    questionEn: 'When you have free time, you tend to...',
+    questionTr: 'Boş zamanın olduğunda genellikle...',
+    options: [
+      _QuizOption(
+        textEn: 'Create something new',
+        textTr: 'Yeni bir şey yaratırsın',
+        scores: {'creator': 3, 'magician': 1},
+      ),
+      _QuizOption(
+        textEn: 'Explore somewhere unfamiliar',
+        textTr: 'Tanımadığın bir yeri keşfedersin',
+        scores: {'explorer': 3, 'hero': 1},
+      ),
+      _QuizOption(
+        textEn: 'Learn or read something deep',
+        textTr: 'Derin bir şey öğrenirsin',
+        scores: {'sage': 3, 'ruler': 1},
+      ),
+      _QuizOption(
+        textEn: 'Spend time with people you love',
+        textTr: 'Sevdiğin insanlarla vakit geçirirsin',
+        scores: {'lover': 2, 'caregiver': 2},
+      ),
+    ],
+  ),
+  _QuizQuestion(
+    questionEn: 'When facing a difficult situation, your first instinct is to...',
+    questionTr: 'Zor bir durumla karşılaştığında ilk içgüdün...',
+    options: [
+      _QuizOption(
+        textEn: 'Face it head-on with courage',
+        textTr: 'Cesaretle yüzyüze gelmek',
+        scores: {'hero': 3, 'rebel': 1},
+      ),
+      _QuizOption(
+        textEn: 'Analyze and find a clever solution',
+        textTr: 'Analiz edip akıllıca bir çözüm bulmak',
+        scores: {'sage': 2, 'magician': 2},
+      ),
+      _QuizOption(
+        textEn: 'Support others through it first',
+        textTr: 'Önce başkalarını desteklemek',
+        scores: {'caregiver': 3, 'lover': 1},
+      ),
+      _QuizOption(
+        textEn: 'Trust that things will work out',
+        textTr: 'İşlerin yoluna gireceğine güven',
+        scores: {'innocent': 3, 'orphan': 1},
+      ),
+    ],
+  ),
+  _QuizQuestion(
+    questionEn: 'What drives you most in life?',
+    questionTr: 'Hayatta seni en çok ne motive eder?',
+    options: [
+      _QuizOption(
+        textEn: 'Freedom and self-expression',
+        textTr: 'Özgürlük ve kendini ifade etmek',
+        scores: {'creator': 2, 'explorer': 2},
+      ),
+      _QuizOption(
+        textEn: 'Making a meaningful impact',
+        textTr: 'Anlamlı bir etki bırakmak',
+        scores: {'hero': 2, 'ruler': 2},
+      ),
+      _QuizOption(
+        textEn: 'Deep connections with others',
+        textTr: 'Başkalarla derin bağlar kurmak',
+        scores: {'lover': 3, 'orphan': 1},
+      ),
+      _QuizOption(
+        textEn: 'Transforming and reinventing yourself',
+        textTr: 'Dönüşmek ve kendini yeniden keşfetmek',
+        scores: {'magician': 3, 'rebel': 1},
+      ),
+    ],
+  ),
+];
+
+// ════════════════════════════════════════════════════════════════════════════
+// ONBOARDING SCREEN — 5-Step Premium Flow
+// ════════════════════════════════════════════════════════════════════════════
+// Step 0: Identity — Name + Apple Sign-In
+// Step 1: First Cycle — Focus area selection
+// Step 2: Birth Moment — Optional date picker
+// Step 3: Archetype Reveal — 3 quick questions + animated result
+// Step 4: Permission + Start — Notifications + CTA
+// ════════════════════════════════════════════════════════════════════════════
 
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
@@ -35,8 +156,26 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  DateTime? _selectedDate;
+
+  // Step 0: Identity
   String? _userName;
+
+  // Step 1: Focus Area
+  FocusArea? _selectedFocusArea;
+
+  // Step 2: Birth Date
+  DateTime? _selectedDate;
+
+  // Step 3: Archetype Quiz
+  int _quizQuestion = 0;
+  final Map<String, int> _quizScores = {};
+  Archetype? _archetypeResult;
+  bool _showArchetypeResult = false;
+
+  // Step 4: Notifications
+  bool _notificationsRequested = false;
+
+  static const int _totalPages = 5;
 
   @override
   void dispose() {
@@ -44,69 +183,157 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     super.dispose();
   }
 
+  void _goToPage(int page) {
+    HapticFeedback.lightImpact();
+    _pageController.animateToPage(
+      page,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeOutCubic,
+    );
+  }
+
   void _nextPage() {
-    if (_currentPage < 2) {
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
+    if (_currentPage < _totalPages - 1) {
+      _goToPage(_currentPage + 1);
     } else {
       _completeOnboarding();
     }
   }
 
+  void _selectQuizOption(_QuizOption option) {
+    HapticFeedback.lightImpact();
+
+    for (final entry in option.scores.entries) {
+      _quizScores[entry.key] = (_quizScores[entry.key] ?? 0) + entry.value;
+    }
+
+    if (_quizQuestion < _onboardingQuestions.length - 1) {
+      setState(() => _quizQuestion++);
+    } else {
+      _computeArchetypeResult();
+    }
+  }
+
+  void _computeArchetypeResult() {
+    String? topId;
+    int topScore = 0;
+    for (final entry in _quizScores.entries) {
+      if (entry.value > topScore) {
+        topScore = entry.value;
+        topId = entry.key;
+      }
+    }
+
+    if (topId != null) {
+      _archetypeResult = ArchetypeService.archetypes.firstWhere(
+        (a) => a.id == topId,
+        orElse: () => ArchetypeService.archetypes.first,
+      );
+      _saveArchetype(topId);
+    }
+
+    HapticFeedback.mediumImpact();
+    setState(() => _showArchetypeResult = true);
+  }
+
+  Future<void> _saveArchetype(String archetypeId) async {
+    try {
+      final service = await ref.read(archetypeServiceProvider.future);
+      await service.setInitialArchetype(archetypeId);
+    } catch (_) {
+      // Non-critical
+    }
+  }
+
+  void _skipArchetypeQuiz() {
+    setState(() {
+      _showArchetypeResult = false;
+      _archetypeResult = null;
+    });
+    _nextPage();
+  }
+
+  Future<void> _requestNotifications() async {
+    if (kIsWeb || _notificationsRequested) return;
+
+    setState(() => _notificationsRequested = true);
+    try {
+      final notifService = NotificationService();
+      await notifService.initialize();
+      final granted = await notifService.requestPermissions();
+      if (granted) {
+        await notifService.scheduleDailyReflection(hour: 9, minute: 0);
+        await notifService.scheduleMoonPhaseNotifications();
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('Onboarding notification setup failed: $e');
+      }
+    }
+  }
+
   void _completeOnboarding() async {
+    HapticFeedback.selectionClick();
+
     if (_userName != null && _userName!.isNotEmpty) {
       final profile = UserProfile(
         name: _userName,
         birthDate: _selectedDate ?? DateTime(2000, 1, 1),
       );
 
-      // Save to state
       ref.read(userProfileProvider.notifier).setProfile(profile);
       ref.read(onboardingCompleteProvider.notifier).state = true;
 
-      // Persist to local storage
       await StorageService.saveUserProfile(profile);
       await StorageService.saveOnboardingComplete(true);
 
-      // Request notification permissions and set default schedule (mobile only)
-      if (!kIsWeb) {
-        try {
-          final notifService = NotificationService();
-          await notifService.initialize();
-          final granted = await notifService.requestPermissions();
-          if (granted) {
-            // Schedule default daily reflection at 9:00 AM
-            await notifService.scheduleDailyReflection(hour: 9, minute: 0);
-            // Enable moon phase notifications
-            await notifService.scheduleMoonPhaseNotifications();
-          }
-        } catch (e) {
-          if (kDebugMode) {
-            debugPrint('⚠️ Onboarding notification setup failed: $e');
-          }
-        }
+      // Save selected focus area preference
+      if (_selectedFocusArea != null) {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString(
+          'preferred_focus_area',
+          _selectedFocusArea!.name,
+        );
       }
 
-      // Wait for state to propagate before navigation
       await Future.delayed(const Duration(milliseconds: 100));
 
       if (mounted) {
-        context.go(Routes.archetypeQuiz);
+        context.go(Routes.home);
       }
     }
+  }
+
+  bool _canProceed() {
+    switch (_currentPage) {
+      case 0: // Identity
+        return _userName != null && _userName!.isNotEmpty;
+      case 1: // Focus area
+        return _selectedFocusArea != null;
+      case 2: // Birth date (optional)
+        return true;
+      case 3: // Archetype quiz
+        return _showArchetypeResult;
+      case 4: // Permission + start
+        return true;
+      default:
+        return true;
+    }
+  }
+
+  // Should we show the bottom nav section (indicators + button)?
+  bool _showBottomNav() {
+    // Hide bottom nav during archetype quiz questions (not result)
+    if (_currentPage == 3 && !_showArchetypeResult) return false;
+    return true;
   }
 
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
 
-    // ═══════════════════════════════════════════════════════════════════════════
-    // BOTH WEB AND MOBILE: Same onboarding UI
-    // ═══════════════════════════════════════════════════════════════════════════
     return Scaffold(
-      backgroundColor: const Color(0xFF0D0D1A), // Fallback dark background
+      backgroundColor: const Color(0xFF0D0D1A),
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
@@ -114,32 +341,47 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               Expanded(
                 child: PageView(
                   controller: _pageController,
+                  physics: const NeverScrollableScrollPhysics(),
                   onPageChanged: (index) {
                     setState(() => _currentPage = index);
                   },
                   children: [
-                    _WelcomePage(onContinue: _nextPage, language: language),
-                    _BirthDataPage(
-                      selectedDate: _selectedDate,
-                      onDateSelected: (date) {
-                        setState(() => _selectedDate = date);
-                      },
+                    _IdentityPage(
                       userName: _userName,
-                      onNameChanged: (name) {
-                        setState(() => _userName = name);
-                      },
+                      onNameChanged: (name) =>
+                          setState(() => _userName = name),
                       onContinue: _nextPage,
                       language: language,
                     ),
-                    _ReadyPage(
-                            selectedDate: _selectedDate,
-                            onComplete: _completeOnboarding,
-                            language: language,
-                          ),
+                    _FirstCyclePage(
+                      selectedFocusArea: _selectedFocusArea,
+                      onFocusAreaSelected: (area) =>
+                          setState(() => _selectedFocusArea = area),
+                      language: language,
+                    ),
+                    _BirthMomentPage(
+                      selectedDate: _selectedDate,
+                      onDateSelected: (date) =>
+                          setState(() => _selectedDate = date),
+                      language: language,
+                    ),
+                    _ArchetypeRevealPage(
+                      quizQuestion: _quizQuestion,
+                      showResult: _showArchetypeResult,
+                      result: _archetypeResult,
+                      onSelectOption: _selectQuizOption,
+                      onSkip: _skipArchetypeQuiz,
+                      language: language,
+                    ),
+                    _PermissionStartPage(
+                      notificationsRequested: _notificationsRequested,
+                      onRequestNotifications: _requestNotifications,
+                      language: language,
+                    ),
                   ],
                 ),
               ),
-              _buildBottomSection(),
+              if (_showBottomNav()) _buildBottomSection(language),
             ],
           ),
         ),
@@ -147,42 +389,42 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     );
   }
 
-  Widget _buildBottomSection() {
+  Widget _buildBottomSection(AppLanguage language) {
+    final isLastPage = _currentPage == _totalPages - 1;
+
     return Padding(
-      padding: const EdgeInsets.all(AppConstants.spacingXl),
+      padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
       child: Column(
         children: [
-          // Page indicators
+          // 5 page indicators
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(3, (index) {
+            children: List.generate(_totalPages, (index) {
+              final isActive = _currentPage == index;
+              final isPast = index < _currentPage;
               return AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
+                duration: const Duration(milliseconds: 250),
                 margin: const EdgeInsets.symmetric(horizontal: 4),
-                width: _currentPage == index ? 24 : 8,
+                width: isActive ? 28 : 8,
                 height: 8,
                 decoration: BoxDecoration(
-                  color: _currentPage == index
-                      ? AppColors.auroraStart
-                      : AppColors.surfaceLight,
+                  color: isActive
+                      ? AppColors.starGold
+                      : isPast
+                          ? AppColors.starGold.withAlpha(120)
+                          : AppColors.surfaceLight.withAlpha(80),
                   borderRadius: BorderRadius.circular(4),
                 ),
               );
             }),
           ),
-          const SizedBox(height: AppConstants.spacingXl),
-          // Continue button
+          const SizedBox(height: 20),
+          // CTA button
           GradientButton(
-            label: _currentPage == 2
-                ? L10nService.get(
-                    'common.start_journey',
-                    ref.watch(languageProvider),
-                  )
-                : L10nService.get(
-                    'common.continue',
-                    ref.watch(languageProvider),
-                  ),
-            icon: _currentPage == 2 ? Icons.auto_awesome : Icons.arrow_forward,
+            label: isLastPage
+                ? L10nService.get('common.start_journey', language)
+                : L10nService.get('common.continue', language),
+            icon: isLastPage ? Icons.auto_awesome : Icons.arrow_forward,
             width: double.infinity,
             onPressed: _canProceed() ? _nextPage : null,
           ),
@@ -190,43 +432,40 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       ),
     );
   }
-
-  bool _canProceed() {
-    if (_currentPage == 1) {
-      // Only name is required; date is optional
-      return _userName != null && _userName!.isNotEmpty;
-    }
-    return true;
-  }
 }
 
-class _WelcomePage extends StatefulWidget {
+// ════════════════════════════════════════════════════════════════════════════
+// STEP 0: IDENTITY PAGE — Name + Apple Sign-In
+// ════════════════════════════════════════════════════════════════════════════
+
+class _IdentityPage extends StatefulWidget {
+  final String? userName;
+  final ValueChanged<String> onNameChanged;
   final VoidCallback onContinue;
   final AppLanguage language;
 
-  const _WelcomePage({required this.onContinue, required this.language});
+  const _IdentityPage({
+    required this.userName,
+    required this.onNameChanged,
+    required this.onContinue,
+    required this.language,
+  });
 
   @override
-  State<_WelcomePage> createState() => _WelcomePageState();
+  State<_IdentityPage> createState() => _IdentityPageState();
 }
 
-class _WelcomePageState extends State<_WelcomePage>
+class _IdentityPageState extends State<_IdentityPage>
     with SingleTickerProviderStateMixin {
   bool _isAppleLoading = false;
   late AnimationController _glowController;
-  late final Stream<AuthState> _authStateStream;
   StreamSubscription<AuthState>? _authSubscription;
 
   @override
   void initState() {
     super.initState();
 
-    // Skip ALL complex initialization on web to prevent white screen
     if (kIsWeb) {
-      if (kDebugMode) {
-        debugPrint('⚠️ Web: Using simplified onboarding (no animations)');
-      }
-      // Create a dummy controller that won't cause issues
       _glowController = AnimationController(
         duration: const Duration(seconds: 1),
         vsync: this,
@@ -234,55 +473,38 @@ class _WelcomePageState extends State<_WelcomePage>
       return;
     }
 
-    // MOBILE: Full animated experience
     _glowController = AnimationController(
       duration: const Duration(seconds: 3),
       vsync: this,
     )..repeat(reverse: true);
 
-    // Guard Supabase access (may not be initialized in tests)
-    if (!AuthService.isSupabaseInitialized) {
-      if (kDebugMode) debugPrint('⚠️ Supabase not initialized - skipping auth listeners');
-      return;
-    }
+    if (!AuthService.isSupabaseInitialized) return;
 
-    // Listen for OAuth callbacks (mobile only)
-    _authStateStream = AuthService.authStateChanges;
-    _authSubscription = _authStateStream.listen((state) {
-      if (kDebugMode) debugPrint('🔐 Auth state changed: ${state.event}');
+    _authSubscription = AuthService.authStateChanges.listen((state) {
       if (state.event == AuthChangeEvent.signedIn && state.session != null) {
-        if (kDebugMode) debugPrint('🔐 User signed in via OAuth callback!');
         _handleOAuthSuccess(state.session!.user);
       }
     });
 
-    // Check if user is already signed in when page loads
     final currentUser = AuthService.currentUser;
     if (currentUser != null) {
-      if (kDebugMode) debugPrint('🔐 User already signed in: ${currentUser.email}');
-      // Wait briefly for UI to be ready
       Future.delayed(const Duration(milliseconds: 500), () {
-        if (mounted) {
-          _handleOAuthSuccess(currentUser);
-        }
+        if (mounted) _handleOAuthSuccess(currentUser);
       });
     }
   }
 
   void _handleOAuthSuccess(User user) {
     if (!mounted) return;
-
     final displayName =
         user.userMetadata?['full_name'] as String? ??
         user.userMetadata?['name'] as String? ??
         user.email?.split('@').first;
 
-    // Show welcome overlay
     _showCosmicWelcome(displayName);
   }
 
   void _showCosmicWelcome(String? name) {
-    // Welcome greeting messages - from locale
     final cosmicGreetings = L10nService.getList(
       'greetings.cosmic_welcome',
       widget.language,
@@ -303,6 +525,10 @@ class _WelcomePageState extends State<_WelcomePage>
           language: widget.language,
           onComplete: () {
             Navigator.of(context).pop();
+            // Auto-fill name if available from OAuth
+            if (name != null && name.isNotEmpty) {
+              widget.onNameChanged(name);
+            }
             widget.onContinue();
           },
         );
@@ -323,492 +549,22 @@ class _WelcomePageState extends State<_WelcomePage>
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    // WEB: Simple static version without animations (prevents white screen)
-    // The animated version causes layout/animation issues on web
-    if (kIsWeb) {
-      if (kDebugMode) {
-        debugPrint('WEB: _WelcomePage building static version');
-      }
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Logo - Use actual InnerCycles logo with fallback for web
-              Image.asset(
-                'assets/brand/app-logo/png/app-logo-256.png',
-                width: 120,
-                height: 120,
-                fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) {
-                  // Fallback: gradient circle with star icon (if asset fails on web)
-                  return Container(
-                    width: 120,
-                    height: 120,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Color(0xFF667EEA), Color(0xFF764BA2)],
-                      ),
-                    ),
-                    child: const Icon(
-                      Icons.auto_awesome,
-                      color: Colors.white,
-                      size: 60,
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(height: 24),
-              // App name
-              Text(
-                L10nService.get('app.name', widget.language),
-                style: const TextStyle(
-                  fontSize: 48,
-                  fontWeight: FontWeight.w100,
-                  color: Colors.white,
-                  letterSpacing: 4,
-                ),
-              ),
-              const SizedBox(height: 8),
-              // Tagline
-              Text(
-                L10nService.get(
-                  'onboarding.start_cosmic_journey',
-                  widget.language,
-                ),
-                style: const TextStyle(color: Colors.white70, fontSize: 16),
-              ),
-              const SizedBox(height: 48),
-              // Continue button
-              ElevatedButton(
-                onPressed: widget.onContinue,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF667EEA),
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 48,
-                    vertical: 16,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                child: Text(
-                  L10nService.get('common.continue', widget.language),
-                  style: const TextStyle(fontSize: 18),
-                ),
-              ),
-              const SizedBox(height: 32),
-              // ═══════════════════════════════════════════════════════════════
-              // CONTENT DISCLAIMER - App Store 4.3(b) Compliance
-              // ═══════════════════════════════════════════════════════════════
-              ContentDisclaimer(language: widget.language, compact: true),
-            ],
-          ),
-        ),
-      );
-    }
-
-    // MOBILE: Original animated version
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 40),
-            // ══════════════════════════════════════════════════════
-            // ANIMATED LOGO with cosmic glow
-            // ══════════════════════════════════════════════════════
-            _buildAnimatedLogo(),
-            const SizedBox(height: 24),
-
-            // App name - ultra thin font
-            Text(
-              L10nService.get('app.name', widget.language),
-              style: const TextStyle(
-                fontSize: 56,
-                fontWeight: FontWeight.w100,
-                color: Colors.white,
-                letterSpacing: 4,
-              ),
-            ).glassReveal(context: context),
-
-            const SizedBox(height: 8),
-
-            // Tagline
-            Text(
-              L10nService.get(
-                'onboarding.start_cosmic_journey',
-                widget.language,
-              ),
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: AppColors.textSecondary,
-                fontSize: 16,
-                letterSpacing: 1,
-              ),
-              textAlign: TextAlign.center,
-            ).glassListItem(context: context, index: 1),
-
-            const SizedBox(height: 48),
-
-            // ══════════════════════════════════════════════════════
-            // SIGN-IN BUTTONS - Premium Design
-            // ══════════════════════════════════════════════════════
-
-            // Apple Sign-In Button
-            _buildAppleSignInButton(),
-
-            const SizedBox(height: 24),
-
-            // Divider with text
-            _buildDivider(),
-
-            const SizedBox(height: 24),
-
-            // Guest continue button
-            _buildGuestButton(),
-
-            const SizedBox(height: 32),
-
-            // Features preview
-            _buildFeaturesPreview(),
-
-            const SizedBox(height: 24),
-
-            // Terms text
-            Text(
-              L10nService.get('onboarding.by_continuing', widget.language),
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppColors.textMuted.withAlpha(150),
-                fontSize: 14,
-              ),
-              textAlign: TextAlign.center,
-            ).glassListItem(context: context, index: 9),
-
-            const SizedBox(height: 24),
-
-            // ═══════════════════════════════════════════════════════════════
-            // CONTENT DISCLAIMER - App Store 4.3(b) Compliance
-            // ═══════════════════════════════════════════════════════════════
-            ContentDisclaimer(language: widget.language, compact: true),
-
-            const SizedBox(height: 20),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAnimatedLogo() {
-    return AnimatedBuilder(
-          animation: _glowController,
-          builder: (context, child) {
-            return Container(
-              width: 160,
-              height: 160,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(
-                      0xFF667EEA,
-                    ).withAlpha((100 * _glowController.value).toInt() + 50),
-                    blurRadius: 40 + (20 * _glowController.value),
-                    spreadRadius: 10 + (10 * _glowController.value),
-                  ),
-                  BoxShadow(
-                    color: const Color(
-                      0xFF9B59B6,
-                    ).withAlpha((80 * _glowController.value).toInt() + 30),
-                    blurRadius: 60 + (30 * _glowController.value),
-                    spreadRadius: 5,
-                  ),
-                  BoxShadow(
-                    color: const Color(
-                      0xFFFFD700,
-                    ).withAlpha((60 * _glowController.value).toInt() + 20),
-                    blurRadius: 80,
-                    spreadRadius: 0,
-                  ),
-                ],
-              ),
-              child: child,
-            );
-          },
-          child: Image.asset(
-            'assets/brand/app-logo/png/app-logo-256.png',
-            width: 160,
-            height: 160,
-            fit: BoxFit.contain,
-          ),
-        )
-        .glassReveal(context: context);
-  }
-
-  Widget _buildAppleSignInButton() {
-    return GestureDetector(
-      onTap: _isAppleLoading ? null : _handleAppleSignIn,
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withAlpha(50),
-              blurRadius: 20,
-              offset: const Offset(0, 8),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (_isAppleLoading)
-              const SizedBox(
-                width: 24,
-                height: 24,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2.5,
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                ),
-              )
-            else
-              const Icon(Icons.apple, color: Colors.white, size: 28),
-            const SizedBox(width: 14),
-            Text(
-              _isAppleLoading
-                  ? L10nService.get('onboarding.connecting', widget.language)
-                  : L10nService.get(
-                      'onboarding.connect_with_apple',
-                      widget.language,
-                    ),
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 0.3,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ).glassListItem(context: context, index: 2);
-  }
-
-  Widget _buildDivider() {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            height: 1,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.transparent,
-                  AppColors.textMuted.withAlpha(100),
-                ],
-              ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Text(
-            L10nService.get('common.or', widget.language),
-            style: TextStyle(
-              color: AppColors.textMuted,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-        Expanded(
-          child: Container(
-            height: 1,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.textMuted.withAlpha(100),
-                  Colors.transparent,
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
-    ).glassListItem(context: context, index: 3);
-  }
-
-  Widget _buildGuestButton() {
-    return GestureDetector(
-      onTap: widget.onContinue,
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              const Color(0xFF667EEA).withAlpha(40),
-              const Color(0xFF9B59B6).withAlpha(40),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: const Color(0xFF667EEA).withAlpha(100),
-            width: 1.5,
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ShaderMask(
-              shaderCallback: (bounds) => const LinearGradient(
-                colors: [Color(0xFF667EEA), Color(0xFF9B59B6)],
-              ).createShader(bounds),
-              child: const Icon(
-                Icons.auto_awesome,
-                color: Colors.white,
-                size: 22,
-              ),
-            ),
-            const SizedBox(width: 12),
-            ShaderMask(
-              shaderCallback: (bounds) => const LinearGradient(
-                colors: [Color(0xFF667EEA), Color(0xFF9B59B6)],
-              ).createShader(bounds),
-              child: Text(
-                L10nService.get('onboarding.explore_now', widget.language),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 0.3,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ).glassListItem(context: context, index: 4);
-  }
-
-  Widget _buildFeaturesPreview() {
-    final features = [
-      {
-        'icon': '🌙',
-        'text': L10nService.get(
-          'onboarding.features.personal_profile',
-          widget.language,
-        ),
-      },
-      {
-        'icon': '✨',
-        'text': L10nService.get(
-          'onboarding.features.daily_reading',
-          widget.language,
-        ),
-      },
-      {
-        'icon': '📓',
-        'text': L10nService.get(
-          'onboarding.features.dream_journal',
-          widget.language,
-        ),
-      },
-      {
-        'icon': '📊',
-        'text': L10nService.get(
-          'onboarding.features.patterns',
-          widget.language,
-        ),
-      },
-    ];
-
-    return Wrap(
-      alignment: WrapAlignment.spaceEvenly,
-      spacing: 8,
-      runSpacing: 12,
-      children: features.asMap().entries.map((entry) {
-        final index = entry.key;
-        final feature = entry.value;
-
-        return Column(
-              children: [
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: AppColors.surfaceLight.withAlpha(50),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: const Color(0xFF667EEA).withAlpha(50),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      feature['icon']!,
-                      style: const TextStyle(fontSize: 24),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  feature['text']!,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textMuted,
-                    fontSize: 14,
-                  ),
-                ),
-              ],
-            )
-            .glassListItem(context: context, index: 5 + index);
-      }).toList(),
-    );
-  }
-
   Future<void> _handleAppleSignIn() async {
     setState(() => _isAppleLoading = true);
-
     try {
-      // Import and use AuthService for Apple Sign-In
       final userInfo = await AuthService.signInWithApple();
-
       if (!mounted) return;
-
       if (userInfo != null) {
-        // Show welcome overlay
         _showCosmicWelcome(userInfo.displayName);
       }
-      // If userInfo is null, web will do OAuth redirect
-      // authStateChanges listener will catch successful sign-in
-      // Keep loading state until redirect completes
     } catch (e) {
       if (!mounted) return;
       final errorStr = e.toString();
-
-      // Don't show JS interop errors on web - OAuth may still be in progress
       if (errorStr.contains('TypeError') ||
           errorStr.contains('JSObject') ||
           errorStr.contains('minified')) {
-        if (kDebugMode) {
-          debugPrint('JS interop error caught - waiting for OAuth redirect');
-        }
-        // Keep loading state active
         return;
       }
-
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -823,80 +579,141 @@ class _WelcomePageState extends State<_WelcomePage>
       );
       setState(() => _isAppleLoading = false);
     }
-    // Removed finally block - loading state only cleared on error
-    // On successful OAuth, redirect will happen so loading should persist
   }
-}
-
-class _BirthDataPage extends StatelessWidget {
-  final DateTime? selectedDate;
-  final ValueChanged<DateTime> onDateSelected;
-  final String? userName;
-  final ValueChanged<String> onNameChanged;
-  final VoidCallback onContinue;
-  final AppLanguage language;
-
-  const _BirthDataPage({
-    required this.selectedDate,
-    required this.onDateSelected,
-    required this.userName,
-    required this.onNameChanged,
-    required this.onContinue,
-    required this.language,
-  });
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 16),
+    if (kIsWeb) {
+      return _buildWebVersion();
+    }
+    return _buildMobileVersion();
+  }
 
-          // Name input
-          _buildSectionTitle(
-            context,
-            L10nService.get('input.name_required', language),
-          ),
-          const SizedBox(height: 8),
-          _NameInput(
-            userName: userName,
-            onNameChanged: onNameChanged,
-            language: language,
-          ).glassListItem(context: context, index: 0),
-          const SizedBox(height: AppConstants.spacingLg),
-
-          // Birth Date (optional)
-          _buildSectionTitle(
-            context,
-            L10nService.get('input.birth_date', language),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            language == AppLanguage.en
-                ? 'Optional — helps personalize your experience'
-                : 'İsteğe bağlı — deneyiminizi kişiselleştirmeye yardımcı olur',
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? AppColors.textMuted
-                  : AppColors.lightTextMuted,
-              fontSize: 12,
+  Widget _buildWebVersion() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/brand/app-logo/png/app-logo-256.png',
+              width: 100,
+              height: 100,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  width: 100,
+                  height: 100,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      colors: [Color(0xFF667EEA), Color(0xFF764BA2)],
+                    ),
+                  ),
+                  child: const Icon(
+                    Icons.auto_awesome,
+                    color: Colors.white,
+                    size: 48,
+                  ),
+                );
+              },
             ),
-          ),
+            const SizedBox(height: 16),
+            Text(
+              L10nService.get('app.name', widget.language),
+              style: const TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.w100,
+                color: Colors.white,
+                letterSpacing: 4,
+              ),
+            ),
+            const SizedBox(height: 32),
+            SizedBox(
+              width: 300,
+              child: _NameInput(
+                userName: widget.userName,
+                onNameChanged: widget.onNameChanged,
+                language: widget.language,
+              ),
+            ),
+            const SizedBox(height: 24),
+            ContentDisclaimer(language: widget.language, compact: true),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMobileVersion() {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      child: Column(
+        children: [
+          const SizedBox(height: 32),
+
+          // Animated logo with cosmic glow
+          _buildAnimatedLogo(),
+          const SizedBox(height: 20),
+
+          // App name
+          Text(
+            L10nService.get('app.name', widget.language),
+            style: const TextStyle(
+              fontSize: 48,
+              fontWeight: FontWeight.w100,
+              color: Colors.white,
+              letterSpacing: 4,
+            ),
+          ).glassReveal(context: context),
+
           const SizedBox(height: 8),
-          BirthDatePicker(
-            initialDate: selectedDate,
-            onDateChanged: onDateSelected,
-            language: language,
+
+          // Tagline
+          Text(
+            L10nService.get(
+              'onboarding.start_cosmic_journey',
+              widget.language,
+            ),
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              color: AppColors.textSecondary,
+              fontSize: 15,
+              letterSpacing: 1,
+            ),
+            textAlign: TextAlign.center,
           ).glassListItem(context: context, index: 1),
 
-          const SizedBox(height: AppConstants.spacingLg),
+          const SizedBox(height: 36),
 
-          // Info box
-          _InfoBox(
-            language: language,
+          // Name input — primary action
+          _NameInput(
+            userName: widget.userName,
+            onNameChanged: widget.onNameChanged,
+            language: widget.language,
           ).glassListItem(context: context, index: 2),
+
+          const SizedBox(height: 28),
+
+          // Apple Sign-In button
+          _buildAppleSignInButton(),
+
+          const SizedBox(height: 16),
+
+          // Terms text
+          Text(
+            L10nService.get('onboarding.by_continuing', widget.language),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: AppColors.textMuted.withAlpha(150),
+              fontSize: 13,
+            ),
+            textAlign: TextAlign.center,
+          ).glassListItem(context: context, index: 5),
+
+          const SizedBox(height: 16),
+
+          ContentDisclaimer(language: widget.language, compact: true),
 
           const SizedBox(height: 20),
         ],
@@ -904,17 +721,1021 @@ class _BirthDataPage extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionTitle(BuildContext context, String title) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Text(
-      title,
-      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-        color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-        fontWeight: FontWeight.w500,
+  Widget _buildAnimatedLogo() {
+    return AnimatedBuilder(
+          animation: _glowController,
+          builder: (context, child) {
+            return Container(
+              width: 130,
+              height: 130,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFF667EEA)
+                        .withAlpha((100 * _glowController.value).toInt() + 50),
+                    blurRadius: 40 + (20 * _glowController.value),
+                    spreadRadius: 10 + (10 * _glowController.value),
+                  ),
+                  BoxShadow(
+                    color: const Color(0xFF9B59B6)
+                        .withAlpha((80 * _glowController.value).toInt() + 30),
+                    blurRadius: 60 + (30 * _glowController.value),
+                    spreadRadius: 5,
+                  ),
+                ],
+              ),
+              child: child,
+            );
+          },
+          child: Image.asset(
+            'assets/brand/app-logo/png/app-logo-256.png',
+            width: 130,
+            height: 130,
+            fit: BoxFit.contain,
+          ),
+        )
+        .glassReveal(context: context);
+  }
+
+  Widget _buildAppleSignInButton() {
+    return GestureDetector(
+      onTap: _isAppleLoading ? null : _handleAppleSignIn,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 14),
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withAlpha(50),
+              blurRadius: 16,
+              offset: const Offset(0, 6),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (_isAppleLoading)
+              const SizedBox(
+                width: 22,
+                height: 22,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2.5,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              )
+            else
+              const Icon(Icons.apple, color: Colors.white, size: 26),
+            const SizedBox(width: 12),
+            Text(
+              _isAppleLoading
+                  ? L10nService.get('onboarding.connecting', widget.language)
+                  : L10nService.get(
+                      'onboarding.connect_with_apple',
+                      widget.language,
+                    ),
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 0.3,
+              ),
+            ),
+          ],
+        ),
+      ),
+    ).glassListItem(context: context, index: 3);
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// STEP 1: FIRST CYCLE — Focus Area Selection
+// ════════════════════════════════════════════════════════════════════════════
+
+class _FirstCyclePage extends StatelessWidget {
+  final FocusArea? selectedFocusArea;
+  final ValueChanged<FocusArea> onFocusAreaSelected;
+  final AppLanguage language;
+
+  const _FirstCyclePage({
+    required this.selectedFocusArea,
+    required this.onFocusAreaSelected,
+    required this.language,
+  });
+
+  static const _focusAreas = [
+    FocusArea.energy,
+    FocusArea.emotions,
+    FocusArea.focus,
+    FocusArea.social,
+  ];
+
+  static const Map<FocusArea, IconData> _focusIcons = {
+    FocusArea.energy: Icons.bolt_rounded,
+    FocusArea.emotions: Icons.favorite_rounded,
+    FocusArea.focus: Icons.center_focus_strong_rounded,
+    FocusArea.social: Icons.people_rounded,
+  };
+
+  static const Map<FocusArea, String> _focusDescEn = {
+    FocusArea.energy: 'Track physical & mental energy',
+    FocusArea.emotions: 'Explore emotional patterns',
+    FocusArea.focus: 'Monitor clarity & productivity',
+    FocusArea.social: 'Understand social rhythms',
+  };
+
+  static const Map<FocusArea, String> _focusDescTr = {
+    FocusArea.energy: 'Fiziksel ve zihinsel enerji',
+    FocusArea.emotions: 'Duygusal kalıpları keşfet',
+    FocusArea.focus: 'Netlik ve verimliliği takip et',
+    FocusArea.social: 'Sosyal ritimlerini anla',
+  };
+
+  static const Map<FocusArea, Color> _focusColors = {
+    FocusArea.energy: Color(0xFFFF6B6B),
+    FocusArea.emotions: Color(0xFF9B59B6),
+    FocusArea.focus: Color(0xFF667EEA),
+    FocusArea.social: Color(0xFF4ECDC4),
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final isEn = language == AppLanguage.en;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 24),
+
+          // Title
+          Text(
+            isEn ? 'Choose Your First Cycle' : 'İlk Döngünü Seç',
+            style: const TextStyle(
+              fontSize: 26,
+              fontWeight: FontWeight.w300,
+              color: Colors.white,
+              letterSpacing: 0.5,
+            ),
+          ).glassEntrance(context: context),
+
+          const SizedBox(height: 8),
+
+          Text(
+            isEn
+                ? 'What would you like to track first?'
+                : 'İlk olarak neyi takip etmek istersin?',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: AppColors.textMuted,
+              fontSize: 15,
+            ),
+          ).glassListItem(context: context, index: 0),
+
+          const SizedBox(height: 32),
+
+          // 2x2 Focus Area Grid
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: 2,
+              mainAxisSpacing: 14,
+              crossAxisSpacing: 14,
+              childAspectRatio: 1.05,
+              physics: const NeverScrollableScrollPhysics(),
+              children: _focusAreas.asMap().entries.map((entry) {
+                final index = entry.key;
+                final area = entry.value;
+                final isSelected = selectedFocusArea == area;
+                final color = _focusColors[area]!;
+
+                return GestureDetector(
+                  onTap: () {
+                    HapticFeedback.lightImpact();
+                    onFocusAreaSelected(area);
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 250),
+                    curve: Curves.easeOutCubic,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: isSelected
+                            ? color
+                            : Colors.white.withAlpha(30),
+                        width: isSelected ? 2 : 1,
+                      ),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          color.withAlpha(isSelected ? 50 : 20),
+                          color.withAlpha(isSelected ? 30 : 8),
+                        ],
+                      ),
+                      boxShadow: isSelected
+                          ? [
+                              BoxShadow(
+                                color: color.withAlpha(40),
+                                blurRadius: 20,
+                                spreadRadius: 2,
+                              ),
+                            ]
+                          : null,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            _focusIcons[area],
+                            size: 36,
+                            color: isSelected
+                                ? color
+                                : color.withAlpha(180),
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            isEn
+                                ? area.displayNameEn
+                                : area.displayNameTr,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: isSelected
+                                  ? Colors.white
+                                  : Colors.white.withAlpha(200),
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            isEn
+                                ? (_focusDescEn[area] ?? '')
+                                : (_focusDescTr[area] ?? ''),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: AppColors.textMuted.withAlpha(180),
+                            ),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ).glassListItem(context: context, index: index);
+              }).toList(),
+            ),
+          ),
+
+          // Info note
+          GlassPanel(
+            elevation: GlassElevation.g1,
+            borderRadius: BorderRadius.circular(10),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.info_outline,
+                  size: 16,
+                  color: AppColors.textMuted,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    isEn
+                        ? 'You can track all areas later'
+                        : 'Diğer alanları sonra takip edebilirsin',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppColors.textMuted,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ).glassListItem(context: context, index: 5),
+
+          const SizedBox(height: 8),
+        ],
       ),
     );
   }
 }
+
+// ════════════════════════════════════════════════════════════════════════════
+// STEP 2: BIRTH MOMENT — Optional Date Picker
+// ════════════════════════════════════════════════════════════════════════════
+
+class _BirthMomentPage extends StatelessWidget {
+  final DateTime? selectedDate;
+  final ValueChanged<DateTime> onDateSelected;
+  final AppLanguage language;
+
+  const _BirthMomentPage({
+    required this.selectedDate,
+    required this.onDateSelected,
+    required this.language,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isEn = language == AppLanguage.en;
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 24),
+
+          // Title
+          Text(
+            isEn ? 'Your Birth Moment' : 'Doğum Anın',
+            style: const TextStyle(
+              fontSize: 26,
+              fontWeight: FontWeight.w300,
+              color: Colors.white,
+              letterSpacing: 0.5,
+            ),
+          ).glassEntrance(context: context),
+
+          const SizedBox(height: 8),
+
+          Text(
+            isEn
+                ? 'Optional — helps personalize your experience'
+                : 'İsteğe bağlı — deneyimini kişiselleştirir',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: AppColors.textMuted,
+              fontSize: 15,
+            ),
+          ).glassListItem(context: context, index: 0),
+
+          const SizedBox(height: 32),
+
+          // Date picker
+          BirthDatePicker(
+            initialDate: selectedDate,
+            onDateChanged: onDateSelected,
+            language: language,
+          ).glassListItem(context: context, index: 1),
+
+          const SizedBox(height: 24),
+
+          // Privacy info box
+          GlassPanel(
+            elevation: GlassElevation.g2,
+            borderRadius: BorderRadius.circular(12),
+            padding: const EdgeInsets.all(AppConstants.spacingMd),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.lock_outline,
+                  color: Theme.of(context).colorScheme.primary,
+                  size: 20,
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    isEn
+                        ? 'Your data stays on your device. We never share personal information.'
+                        : 'Verilerin cihazında kalır. Kişisel bilgileri asla paylaşmayız.',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ).glassListItem(context: context, index: 2),
+
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// STEP 3: ARCHETYPE REVEAL — 3 Quick Questions + Animated Result
+// ════════════════════════════════════════════════════════════════════════════
+
+class _ArchetypeRevealPage extends StatelessWidget {
+  final int quizQuestion;
+  final bool showResult;
+  final Archetype? result;
+  final ValueChanged<_QuizOption> onSelectOption;
+  final VoidCallback onSkip;
+  final AppLanguage language;
+
+  const _ArchetypeRevealPage({
+    required this.quizQuestion,
+    required this.showResult,
+    required this.result,
+    required this.onSelectOption,
+    required this.onSkip,
+    required this.language,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isEn = language == AppLanguage.en;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    if (showResult && result != null) {
+      return _buildResult(context, isDark, isEn);
+    }
+
+    return _buildQuestion(context, isDark, isEn);
+  }
+
+  Widget _buildQuestion(BuildContext context, bool isDark, bool isEn) {
+    final question = _onboardingQuestions[quizQuestion];
+    final progress = (quizQuestion + 1) / _onboardingQuestions.length;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Skip + title row
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                isEn ? 'Discover Your Archetype' : 'Arketipini Keşfet',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.starGold,
+                  letterSpacing: 1,
+                ),
+              ),
+              TextButton(
+                onPressed: onSkip,
+                child: Text(
+                  isEn ? 'Skip' : 'Atla',
+                  style: TextStyle(
+                    color: AppColors.textMuted.withValues(alpha: 0.7),
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 12),
+
+          // Progress bar
+          ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: LinearProgressIndicator(
+              value: progress,
+              backgroundColor: isDark
+                  ? Colors.white.withValues(alpha: 0.1)
+                  : Colors.black.withValues(alpha: 0.1),
+              valueColor:
+                  const AlwaysStoppedAnimation<Color>(AppColors.starGold),
+              minHeight: 4,
+            ),
+          ),
+
+          const SizedBox(height: 6),
+
+          Text(
+            '${quizQuestion + 1}/${_onboardingQuestions.length}',
+            style: TextStyle(
+              fontSize: 12,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
+          ),
+
+          const SizedBox(height: 28),
+
+          // Question text
+          Text(
+            isEn ? question.questionEn : question.questionTr,
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w600,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+              height: 1.3,
+            ),
+          ).glassEntrance(context: context),
+
+          const SizedBox(height: 28),
+
+          // Options
+          ...List.generate(question.options.length, (index) {
+            final option = question.options[index];
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: GestureDetector(
+                onTap: () => onSelectOption(option),
+                child: GlassPanel(
+                  elevation: GlassElevation.g2,
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(16),
+                  borderRadius: BorderRadius.circular(14),
+                  child: Text(
+                    isEn ? option.textEn : option.textTr,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                    ),
+                  ),
+                ),
+              ),
+            ).glassListItem(context: context, index: index);
+          }),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildResult(BuildContext context, bool isDark, bool isEn) {
+    final archetype = result!;
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      child: Column(
+        children: [
+          const SizedBox(height: 16),
+
+          // Archetype emoji with gold glow
+          Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.starGold.withAlpha(60),
+                  blurRadius: 40,
+                  spreadRadius: 10,
+                ),
+                BoxShadow(
+                  color: const Color(0xFF9B59B6).withAlpha(30),
+                  blurRadius: 60,
+                  spreadRadius: 5,
+                ),
+              ],
+            ),
+            child: Center(
+              child: Text(
+                archetype.emoji,
+                style: const TextStyle(fontSize: 56),
+              ),
+            ),
+          ).glassReveal(context: context),
+
+          const SizedBox(height: 16),
+
+          // Label
+          Text(
+            isEn ? 'Your Inner Archetype' : 'İç Arketipin',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: AppColors.starGold,
+              letterSpacing: 1.5,
+            ),
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 300),
+          ),
+
+          const SizedBox(height: 8),
+
+          // Name
+          Text(
+            archetype.getName(isEnglish: isEn),
+            style: TextStyle(
+              fontSize: 26,
+              fontWeight: FontWeight.w700,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 400),
+          ),
+
+          const SizedBox(height: 12),
+
+          // Description
+          Text(
+            archetype.getDescription(isEnglish: isEn),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 14,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              height: 1.5,
+            ),
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 500),
+          ),
+
+          const SizedBox(height: 24),
+
+          // Strengths card with gold glow
+          GlassPanel(
+            elevation: GlassElevation.g3,
+            glowColor: GlassTokens.glowGold,
+            width: double.infinity,
+            padding: const EdgeInsets.all(16),
+            borderRadius: BorderRadius.circular(14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  isEn ? 'Your Strengths' : 'Güçlü Yönlerin',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.starGold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                ...archetype.getStrengths(isEnglish: isEn).map(
+                  (s) => Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: Row(
+                      children: [
+                        Icon(Icons.star_rounded,
+                            size: 16, color: AppColors.starGold),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            s,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 600),
+          ),
+
+          const SizedBox(height: 14),
+
+          // Growth tip card with amethyst glow
+          GlassPanel(
+            elevation: GlassElevation.g3,
+            glowColor: GlassTokens.glowAmethyst,
+            width: double.infinity,
+            padding: const EdgeInsets.all(16),
+            borderRadius: BorderRadius.circular(14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  isEn ? 'Growth Tip' : 'Büyüme İpucu',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.cosmicPurple,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  archetype.getGrowthTip(isEnglish: isEn),
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                    height: 1.4,
+                  ),
+                ),
+              ],
+            ),
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 700),
+          ),
+
+          const SizedBox(height: 16),
+        ],
+      ),
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// STEP 4: PERMISSION + START
+// ════════════════════════════════════════════════════════════════════════════
+
+class _PermissionStartPage extends StatelessWidget {
+  final bool notificationsRequested;
+  final VoidCallback onRequestNotifications;
+  final AppLanguage language;
+
+  const _PermissionStartPage({
+    required this.notificationsRequested,
+    required this.onRequestNotifications,
+    required this.language,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isEn = language == AppLanguage.en;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Spacer(),
+
+          // Success icon
+          Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  const Color(0xFF667EEA).withAlpha(40),
+                  const Color(0xFF9B59B6).withAlpha(40),
+                ],
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xFF667EEA).withAlpha(50),
+                  blurRadius: 40,
+                  spreadRadius: 8,
+                ),
+              ],
+            ),
+            child: const Icon(
+              Icons.check_circle_outline,
+              size: 56,
+              color: Color(0xFF4CAF50),
+            ),
+          ).glassReveal(context: context),
+
+          const SizedBox(height: 28),
+
+          Text(
+            isEn ? 'You\'re All Set' : 'Her Şey Hazır',
+            style: const TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.w300,
+              color: Colors.white,
+              letterSpacing: 1,
+            ),
+          ).glassListItem(context: context, index: 1),
+
+          const SizedBox(height: 12),
+
+          Text(
+            isEn
+                ? 'One last thing — stay on track with gentle reminders'
+                : 'Son bir şey — nazik hatırlatıcılarla yolda kal',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: AppColors.textSecondary,
+              fontSize: 15,
+            ),
+            textAlign: TextAlign.center,
+          ).glassListItem(context: context, index: 2),
+
+          const SizedBox(height: 32),
+
+          // Notification toggle card
+          if (!kIsWeb)
+            GlassPanel(
+              elevation: GlassElevation.g2,
+              borderRadius: BorderRadius.circular(14),
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      gradient: LinearGradient(
+                        colors: [
+                          const Color(0xFF667EEA).withAlpha(40),
+                          const Color(0xFF9B59B6).withAlpha(40),
+                        ],
+                      ),
+                    ),
+                    child: Icon(
+                      notificationsRequested
+                          ? Icons.notifications_active_rounded
+                          : Icons.notifications_outlined,
+                      color: notificationsRequested
+                          ? AppColors.starGold
+                          : const Color(0xFF667EEA),
+                      size: 24,
+                    ),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          isEn
+                              ? 'Daily Reflection Reminder'
+                              : 'Günlük Yansıma Hatırlatıcı',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.textPrimary,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          isEn
+                              ? 'A gentle nudge at 9:00 AM'
+                              : 'Sabah 9:00\'da nazik bir hatırlatma',
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: AppColors.textMuted,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: notificationsRequested
+                        ? null
+                        : onRequestNotifications,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 250),
+                      width: 52,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: notificationsRequested
+                            ? AppColors.starGold
+                            : Colors.white.withAlpha(25),
+                        border: Border.all(
+                          color: notificationsRequested
+                              ? AppColors.starGold
+                              : Colors.white.withAlpha(50),
+                        ),
+                      ),
+                      child: AnimatedAlign(
+                        duration: const Duration(milliseconds: 250),
+                        curve: Curves.easeOutBack,
+                        alignment: notificationsRequested
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
+                        child: Container(
+                          width: 24,
+                          height: 24,
+                          margin: const EdgeInsets.symmetric(horizontal: 2),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: notificationsRequested
+                                ? Colors.white
+                                : Colors.white.withAlpha(180),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ).glassListItem(context: context, index: 3),
+
+          const SizedBox(height: 24),
+
+          // Features summary
+          GlassPanel(
+            elevation: GlassElevation.g2,
+            borderRadius: BorderRadius.circular(14),
+            padding: const EdgeInsets.all(18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  isEn ? 'What\'s Included' : 'Neler Dahil',
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFFE6E6FA),
+                  ),
+                ),
+                const SizedBox(height: 14),
+                _FeatureRow(
+                  icon: Icons.edit_note,
+                  text: isEn
+                      ? 'Daily reflection journal'
+                      : 'Günlük yansıma günlüğü',
+                ),
+                _FeatureRow(
+                  icon: Icons.nights_stay,
+                  text: isEn ? 'Dream journal' : 'Rüya günlüğü',
+                ),
+                _FeatureRow(
+                  icon: Icons.auto_graph,
+                  text: isEn
+                      ? 'Pattern recognition'
+                      : 'Kalıp tanıma',
+                ),
+                _FeatureRow(
+                  icon: Icons.library_books,
+                  text: isEn
+                      ? 'Symbol glossary'
+                      : 'Sembol sözlüğü',
+                ),
+              ],
+            ),
+          ).glassListItem(context: context, index: 4),
+
+          const Spacer(),
+
+          // Disclaimer
+          GlassPanel(
+            elevation: GlassElevation.g1,
+            borderRadius: BorderRadius.circular(8),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.info_outline,
+                  size: 14,
+                  color: AppColors.textMuted,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    L10nService.get('disclaimer.reflection_only', language),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppColors.textMuted,
+                      fontSize: 11,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ).glassListItem(context: context, index: 5),
+
+          const SizedBox(height: 8),
+        ],
+      ),
+    );
+  }
+}
+
+class _FeatureRow extends StatelessWidget {
+  final IconData icon;
+  final String text;
+
+  const _FeatureRow({required this.icon, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Row(
+        children: [
+          Icon(icon, size: 20, color: const Color(0xFF667EEA)),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              text,
+              style: const TextStyle(fontSize: 14, color: Colors.white70),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// SHARED WIDGETS
+// ════════════════════════════════════════════════════════════════════════════
 
 class _NameInput extends StatelessWidget {
   final String? userName;
@@ -979,37 +1800,10 @@ class _NameInput extends StatelessWidget {
   }
 }
 
-class _InfoBox extends StatelessWidget {
-  final AppLanguage language;
-  const _InfoBox({required this.language});
+// ════════════════════════════════════════════════════════════════════════════
+// COSMIC WELCOME OVERLAY — Full screen animated welcome for OAuth
+// ════════════════════════════════════════════════════════════════════════════
 
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return GlassPanel(
-      elevation: GlassElevation.g2,
-      borderRadius: BorderRadius.circular(12),
-      padding: const EdgeInsets.all(AppConstants.spacingMd),
-      child: Row(
-        children: [
-          Icon(Icons.info_outline, color: colorScheme.primary, size: 20),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              L10nService.get('onboarding.info_box_text', language),
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: colorScheme.primary),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Welcome overlay - full screen, animated
 class _CosmicWelcomeOverlay extends StatefulWidget {
   final String greeting;
   final String? name;
@@ -1045,7 +1839,6 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
       duration: const Duration(milliseconds: 800),
     )..forward();
 
-    // Auto-advance after 2.5 seconds
     Future.delayed(const Duration(milliseconds: 2500), () {
       if (mounted) widget.onComplete();
     });
@@ -1127,11 +1920,9 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        // Moon/Star icon
                         const Text('🌙', style: TextStyle(fontSize: 64)),
                         const SizedBox(height: 32),
 
-                        // Welcome message
                         ShaderMask(
                           shaderCallback: (bounds) => const LinearGradient(
                             colors: [
@@ -1152,8 +1943,8 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                           ),
                         ),
 
-                        // Show name if available
-                        if (widget.name != null && widget.name!.isNotEmpty) ...[
+                        if (widget.name != null &&
+                            widget.name!.isNotEmpty) ...[
                           const SizedBox(height: 16),
                           Text(
                             widget.name!,
@@ -1168,9 +1959,11 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
 
                         const SizedBox(height: 48),
 
-                        // Bottom message
                         Text(
-                          '✨ ${L10nService.get('onboarding.tap_to_continue', widget.language)} ✨',
+                          L10nService.get(
+                            'onboarding.tap_to_continue',
+                            widget.language,
+                          ),
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.white.withValues(alpha: 0.5),
@@ -1185,189 +1978,6 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-/// ════════════════════════════════════════════════════════════════════════════
-/// APP STORE 4.3(b) COMPLIANT READY PAGE
-/// ════════════════════════════════════════════════════════════════════════════
-/// Neutral completion page for App Store 4.3(b) compliance.
-/// Shows a safe, personality-type-free ready screen.
-class _ReadyPage extends StatelessWidget {
-  final DateTime? selectedDate;
-  final VoidCallback onComplete;
-  final AppLanguage language;
-
-  const _ReadyPage({
-    required this.selectedDate,
-    required this.onComplete,
-    required this.language,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 40),
-
-            // Success checkmark with glow
-            Container(
-              width: 120,
-              height: 120,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    const Color(0xFF667EEA).withAlpha(40),
-                    const Color(0xFF9B59B6).withAlpha(40),
-                  ],
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0xFF667EEA).withAlpha(60),
-                    blurRadius: 40,
-                    spreadRadius: 10,
-                  ),
-                ],
-              ),
-              child: const Icon(
-                Icons.check_circle_outline,
-                size: 64,
-                color: Color(0xFF4CAF50),
-              ),
-            ).glassReveal(context: context),
-
-            const SizedBox(height: 32),
-
-            // Title - neutral
-            Text(
-              L10nService.get('onboarding.profile_ready', language),
-              style: const TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.w300,
-                color: Colors.white,
-                letterSpacing: 1,
-              ),
-              textAlign: TextAlign.center,
-            ).glassListItem(context: context, index: 1),
-
-            const SizedBox(height: 16),
-
-            // Subtitle - reflection focused
-            Text(
-              L10nService.get('onboarding.ready_subtitle', language),
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppColors.textSecondary,
-                fontSize: 16,
-              ),
-              textAlign: TextAlign.center,
-            ).glassListItem(context: context, index: 2),
-
-            const SizedBox(height: 48),
-
-            // Feature preview - safe features only
-            GlassPanel(
-                  elevation: GlassElevation.g2,
-                  borderRadius: BorderRadius.circular(16),
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        L10nService.get('onboarding.whats_included', language),
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFFE6E6FA),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      _buildFeatureItem(
-                        context,
-                        Icons.edit_note,
-                        L10nService.get(
-                          'onboarding.feature_reflection',
-                          language,
-                        ),
-                      ),
-                      _buildFeatureItem(
-                        context,
-                        Icons.nights_stay,
-                        L10nService.get('onboarding.feature_dreams', language),
-                      ),
-                      _buildFeatureItem(
-                        context,
-                        Icons.auto_graph,
-                        L10nService.get(
-                          'onboarding.feature_patterns',
-                          language,
-                        ),
-                      ),
-                      _buildFeatureItem(
-                        context,
-                        Icons.library_books,
-                        L10nService.get('onboarding.feature_symbols', language),
-                      ),
-                    ],
-                  ),
-                )
-                .glassListItem(context: context, index: 3),
-
-            const SizedBox(height: 24),
-
-            // Disclaimer
-            GlassPanel(
-              elevation: GlassElevation.g2,
-              borderRadius: BorderRadius.circular(8),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.info_outline,
-                    size: 16,
-                    color: AppColors.textMuted,
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      L10nService.get('disclaimer.reflection_only', language),
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textMuted,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ).glassListItem(context: context, index: 4),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFeatureItem(BuildContext context, IconData icon, String text) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: Row(
-        children: [
-          Icon(icon, size: 20, color: const Color(0xFF667EEA)),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              text,
-              style: const TextStyle(fontSize: 14, color: Colors.white70),
-            ),
-          ),
-        ],
       ),
     );
   }

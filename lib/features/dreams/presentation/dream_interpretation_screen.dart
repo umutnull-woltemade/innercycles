@@ -539,6 +539,7 @@ class _DreamInterpretationScreenState
   /// Start dream interpretation using local pattern-based engine
   Future<void> _startApexInterpretation(String dreamText) async {
     await Future.delayed(const Duration(milliseconds: 800));
+    if (!mounted) return;
     _generateInterpretation(dreamText);
   }
 

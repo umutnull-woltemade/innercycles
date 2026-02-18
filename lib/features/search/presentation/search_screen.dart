@@ -279,7 +279,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
             Text(
               isEn
                   ? 'Search across all your entries'
-                  : 'Tum kayitlariniz arasinda arayin',
+                  : 'Tüm kayıtlarınız arasında arayın',
               style: TextStyle(
                 fontSize: 16,
                 color: isDark
@@ -292,7 +292,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
             Text(
               isEn
                   ? 'Journals, dreams, and gratitude notes'
-                  : 'Gunlukler, ruyalar ve minnettarlik notlari',
+                  : 'Günlükler, rüyalar ve minnettarlık notları',
               style: TextStyle(
                 fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -319,7 +319,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
             ),
             const SizedBox(height: 16),
             Text(
-              isEn ? 'No results found' : 'Sonuc bulunamadi',
+              isEn ? 'No results found' : 'Sonuç bulunamadı',
               style: TextStyle(
                 fontSize: 17,
                 fontWeight: FontWeight.w600,
@@ -332,7 +332,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
             Text(
               isEn
                   ? 'Try a different keyword'
-                  : 'Farkli bir anahtar kelime deneyin',
+                  : 'Farklı bir anahtar kelime deneyin',
               style: TextStyle(
                 fontSize: 14,
                 color: isDark
@@ -358,7 +358,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
     if (journalResults.isNotEmpty) {
       sections.add(_buildSectionHeader(
-        isEn ? 'Journal' : 'Gunluk',
+        isEn ? 'Journal' : 'Günlük',
         Icons.book_outlined,
         journalResults.length,
         isDark,
@@ -370,7 +370,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
     if (dreamResults.isNotEmpty) {
       sections.add(_buildSectionHeader(
-        isEn ? 'Dreams' : 'Ruyalar',
+        isEn ? 'Dreams' : 'Rüyalar',
         Icons.nights_stay_outlined,
         dreamResults.length,
         isDark,
@@ -382,7 +382,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
     if (gratitudeResults.isNotEmpty) {
       sections.add(_buildSectionHeader(
-        isEn ? 'Gratitude' : 'Minnettarlik',
+        isEn ? 'Gratitude' : 'Şükran',
         Icons.favorite_outline,
         gratitudeResults.length,
         isDark,
@@ -793,7 +793,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          isEn ? 'Gratitude' : 'Minnettarlik',
+                          isEn ? 'Gratitude' : 'Şükran',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w700,

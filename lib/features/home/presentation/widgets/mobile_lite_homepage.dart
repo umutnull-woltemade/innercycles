@@ -30,6 +30,9 @@ import '../../../referral/presentation/referral_progress_card.dart';
 import '../../../cosmic/presentation/cosmic_message_card.dart';
 import '../../../quiz/presentation/quiz_suggestion_card.dart';
 import '../../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../journal/presentation/widgets/phase_ring.dart';
+import '../../../journal/presentation/widgets/shift_forecast_card.dart';
+import '../../../journal/presentation/widgets/pattern_loop_analyzer.dart';
 import 'whats_new_card.dart';
 
 /// MOBILE LITE HOMEPAGE - InnerCycles
@@ -279,6 +282,11 @@ class _AboveTheFold extends ConsumerWidget {
 
           const SizedBox(height: 20),
 
+          // Phase Ring - Emotional cycle position
+          _PhaseRingSection(isDark: isDark, isEn: isEn),
+
+          const SizedBox(height: 20),
+
           // Reflection headline
           Text(
             headline,
@@ -446,6 +454,10 @@ class _BelowTheFold extends ConsumerWidget {
           const MoodCheckinCard(),
           const SizedBox(height: 16),
 
+          // ═══ P0: Shift Forecast (premium, emotion intelligence) ═══
+          _ShiftForecastSection(isDark: isDark, isEn: language == AppLanguage.en),
+          const SizedBox(height: 16),
+
           // ═══ P0: Referral Progress (non-premium only) ═══
           const ReferralProgressCard(),
           const SizedBox(height: 16),
@@ -527,6 +539,10 @@ class _BelowTheFold extends ConsumerWidget {
                   : AppColors.lightTextPrimary,
             ),
           ),
+          const SizedBox(height: 16),
+
+          // ═══ Pattern Loop Analyzer (emotion intelligence) ═══
+          _PatternLoopSection(isDark: isDark, isEn: language == AppLanguage.en),
           const SizedBox(height: 16),
 
           _EntryPointTile(
@@ -1516,5 +1532,93 @@ class _UpgradeTriggerBanner extends ConsumerWidget {
       case UpgradeTrigger.removeAds:
         return PaywallContext.adRemoval;
     }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// PHASE RING SECTION (Emotion Intelligence - AboveTheFold)
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _PhaseRingSection extends ConsumerWidget {
+  final bool isDark;
+  final bool isEn;
+
+  const _PhaseRingSection({required this.isDark, required this.isEn});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cycleAsync = ref.watch(emotionalCycleAnalysisProvider);
+
+    return cycleAsync.maybeWhen(
+      data: (analysis) {
+        if (analysis.overallPhase == null) return const SizedBox.shrink();
+        return Center(
+          child: PhaseRing(
+            phase: analysis.overallPhase!,
+            arc: analysis.overallArc,
+            isDark: isDark,
+            isEn: isEn,
+            size: 140,
+          ),
+        );
+      },
+      orElse: () => const SizedBox.shrink(),
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SHIFT FORECAST SECTION (Emotion Intelligence - Premium)
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _ShiftForecastSection extends ConsumerWidget {
+  final bool isDark;
+  final bool isEn;
+
+  const _ShiftForecastSection({required this.isDark, required this.isEn});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isPremium = ref.watch(premiumProvider).isPremium;
+    if (!isPremium) return const SizedBox.shrink();
+
+    final forecastAsync = ref.watch(shiftForecastProvider);
+
+    return forecastAsync.maybeWhen(
+      data: (forecast) => ShiftForecastCard(
+        forecast: forecast,
+        isDark: isDark,
+        isEn: isEn,
+      ),
+      orElse: () => const SizedBox.shrink(),
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// PATTERN LOOP SECTION (Emotion Intelligence)
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _PatternLoopSection extends ConsumerWidget {
+  final bool isDark;
+  final bool isEn;
+
+  const _PatternLoopSection({required this.isDark, required this.isEn});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final loopAsync = ref.watch(patternLoopAnalysisProvider);
+
+    return loopAsync.maybeWhen(
+      data: (analysis) {
+        if (analysis.detectedLoops.isEmpty) return const SizedBox.shrink();
+        return PatternLoopAnalyzer(
+          analysis: analysis,
+          isDark: isDark,
+          isEn: isEn,
+        );
+      },
+      orElse: () => const SizedBox.shrink(),
+    );
   }
 }
