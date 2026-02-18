@@ -47,7 +47,10 @@ class ReferralProgressCard extends ConsumerWidget {
         }
 
         // Show share progress card
-        return GestureDetector(
+        return Semantics(
+          button: true,
+          label: isEn ? 'Share & Unlock Premium' : 'Payla\u015f ve Premium A\u00e7',
+          child: GestureDetector(
           onTap: () async {
             HapticFeedback.lightImpact();
             final unlocked = await service.shareApp(language: language);
@@ -188,6 +191,7 @@ class ReferralProgressCard extends ConsumerWidget {
               ],
             ),
           ),
+        ),
         ).animate().fadeIn(duration: 400.ms).slideY(
               begin: 0.06,
               duration: 400.ms,

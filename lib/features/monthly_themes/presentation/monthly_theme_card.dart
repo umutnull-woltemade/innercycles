@@ -217,6 +217,7 @@ class MonthlyThemeCard extends ConsumerWidget {
               ],
             ),
           ),
+        ),
         ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.08, duration: 500.ms);
       },
     );
