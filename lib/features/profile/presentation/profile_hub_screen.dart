@@ -77,7 +77,7 @@ class ProfileHubScreen extends ConsumerWidget {
                       score: growthScore,
                       isDark: isDark,
                       isEn: isEn,
-                      onTap: () => context.push(Routes.growthDashboard),
+                      onTap: () => context.push(Routes.streakStats),
                     ).animate().fadeIn(duration: 500.ms, delay: 100.ms),
                     const SizedBox(height: AppConstants.spacingLg),
 

@@ -384,33 +384,6 @@ class SettingsScreen extends ConsumerWidget {
                             ),
                             _GroupedSeparator(isDark: isDark),
                             _GroupedTile(
-                              icon: Icons.emoji_events_outlined,
-                              title: language == AppLanguage.en
-                                  ? 'Growth Challenges'
-                                  : 'Büyüme Görevleri',
-                              isDark: isDark,
-                              onTap: () => context.push(Routes.challenges),
-                            ),
-                            _GroupedSeparator(isDark: isDark),
-                            _GroupedTile(
-                              icon: Icons.eco_outlined,
-                              title: language == AppLanguage.en
-                                  ? 'Seasonal Reflections'
-                                  : 'Mevsimsel Yansımalar',
-                              isDark: isDark,
-                              onTap: () => context.push(Routes.seasonal),
-                            ),
-                            _GroupedSeparator(isDark: isDark),
-                            _GroupedTile(
-                              icon: Icons.dark_mode_outlined,
-                              title: language == AppLanguage.en
-                                  ? 'Moon Calendar'
-                                  : 'Ay Takvimi',
-                              isDark: isDark,
-                              onTap: () => context.push(Routes.moonCalendar),
-                            ),
-                            _GroupedSeparator(isDark: isDark),
-                            _GroupedTile(
                               icon: Icons.file_download_outlined,
                               title: language == AppLanguage.en
                                   ? 'Export Data'
