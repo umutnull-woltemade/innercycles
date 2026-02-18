@@ -11,11 +11,13 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/models/cross_correlation_result.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/pattern_engine_service.dart';
 import '../../../data/services/pattern_health_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
@@ -34,12 +36,12 @@ class PatternsScreen extends ConsumerWidget {
       body: CosmicBackground(
         child: SafeArea(
           child: engineAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const CosmicLoadingIndicator(),
             error: (_, _) => Center(
               child: Padding(
                 padding: const EdgeInsets.all(32),
                 child: Text(
-                  isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+                  CommonStrings.somethingWentWrong(language),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,

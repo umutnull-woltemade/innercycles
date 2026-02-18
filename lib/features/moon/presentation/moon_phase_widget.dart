@@ -33,7 +33,7 @@ class MoonPhaseCard extends ConsumerWidget {
           colors: isDark
               ? [
                   AppColors.surfaceDark.withValues(alpha: 0.9),
-                  const Color(0xFF1A1A3E).withValues(alpha: 0.8),
+                  AppColors.cosmicPurple.withValues(alpha: 0.8),
                 ]
               : [
                   AppColors.lightCard,

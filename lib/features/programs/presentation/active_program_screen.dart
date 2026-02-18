@@ -10,9 +10,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/guided_program_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class ActiveProgramScreen extends ConsumerStatefulWidget {
@@ -45,11 +47,10 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: serviceAsync.when(
-            loading: () =>
-                const Center(child: CircularProgressIndicator()),
+            loading: () => const CosmicLoadingIndicator(),
             error: (_, _) => Center(
               child: Text(
-                isEn ? 'Error loading program' : 'Program yüklenemedi',
+                CommonStrings.errorLoadingProgram(language),
                 style: TextStyle(color: AppColors.textMuted),
               ),
             ),

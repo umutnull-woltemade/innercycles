@@ -373,7 +373,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       child: Container(
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            colors: [AppColors.starGold, Color(0xFFFFA500)],
+            colors: [AppColors.starGold, AppColors.chartOrange],
           ),
           borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           boxShadow: [
@@ -489,7 +489,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           child: Container(
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [AppColors.starGold, Color(0xFFFFA500)],
+                colors: [AppColors.starGold, AppColors.chartOrange],
               ),
               borderRadius: BorderRadius.circular(AppConstants.radiusMd),
               boxShadow: [
@@ -912,7 +912,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? const Color(0xFF1A1A2E)
+            ? AppColors.cosmicPurple
             : AppColors.lightSurface,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -1147,7 +1147,7 @@ class _BestValueBadge extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [AppColors.starGold, Color(0xFFFFA500)],
+          colors: [AppColors.starGold, AppColors.chartOrange],
         ),
         borderRadius: BorderRadius.circular(12),
       ),

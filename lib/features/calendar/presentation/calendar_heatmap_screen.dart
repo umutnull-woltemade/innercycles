@@ -10,11 +10,13 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
@@ -50,10 +52,10 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
     return Scaffold(
       body: CosmicBackground(
         child: serviceAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const CosmicLoadingIndicator(),
           error: (_, _) => Center(
             child: Text(
-              isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+              CommonStrings.somethingWentWrong(language),
               style: TextStyle(
                 color: isDark
                     ? AppColors.textSecondary

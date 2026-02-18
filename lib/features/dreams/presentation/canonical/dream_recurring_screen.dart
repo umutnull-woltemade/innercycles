@@ -7,6 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/content_disclaimer.dart';
+import '../../../../shared/widgets/cosmic_background.dart';
 
 /// Tekrar Eden Rüyalar Neden Olur? - AI-First Canonical Sayfa
 class DreamRecurringScreen extends ConsumerWidget {
@@ -18,13 +19,14 @@ class DreamRecurringScreen extends ConsumerWidget {
     final language = ref.watch(languageProvider);
 
     return Scaffold(
-      body: Container(
+      body: CosmicBackground(
+        child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: isDark
-                ? [const Color(0xFF0D0D1A), const Color(0xFF1A1A2E)]
+                ? [AppColors.deepSpace, AppColors.cosmicPurple]
                 : [const Color(0xFFFAF8FF), const Color(0xFFF5F0FF)],
           ),
         ),
@@ -202,6 +204,7 @@ class DreamRecurringScreen extends ConsumerWidget {
             ),
           ),
         ),
+      ),
       ),
     );
   }

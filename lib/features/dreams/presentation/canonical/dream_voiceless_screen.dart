@@ -7,6 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/content_disclaimer.dart';
+import '../../../../shared/widgets/cosmic_background.dart';
 
 /// Rüyada Ses Çıkaramamak Ne Demek? - AI-First Canonical Sayfa
 class DreamVoicelessScreen extends ConsumerWidget {
@@ -19,13 +20,14 @@ class DreamVoicelessScreen extends ConsumerWidget {
     final color = const Color(0xFFE91E63);
 
     return Scaffold(
-      body: Container(
+      body: CosmicBackground(
+        child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: isDark
-                ? [const Color(0xFF0D0D1A), const Color(0xFF1A0A15)]
+                ? [AppColors.deepSpace, const Color(0xFF1A0A15)]
                 : [const Color(0xFFFFF5F8), const Color(0xFFFFE8EF)],
           ),
         ),
@@ -172,6 +174,7 @@ class DreamVoicelessScreen extends ConsumerWidget {
             ),
           ),
         ),
+      ),
       ),
     );
   }

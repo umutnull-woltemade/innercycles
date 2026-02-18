@@ -17,6 +17,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/archetype_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class ArchetypeScreen extends ConsumerWidget {
@@ -47,7 +48,7 @@ class ArchetypeScreen extends ConsumerWidget {
                   padding: const EdgeInsets.all(16),
                   sliver: archetypeAsync.when(
                     loading: () => const SliverToBoxAdapter(
-                      child: Center(child: CircularProgressIndicator()),
+                      child: Center(child: CosmicLoadingIndicator()),
                     ),
                     error: (e, s) => SliverToBoxAdapter(
                       child: Center(
@@ -66,7 +67,7 @@ class ArchetypeScreen extends ConsumerWidget {
                     data: (archetypeService) {
                       return journalAsync.when(
                         loading: () => const SliverToBoxAdapter(
-                          child: Center(child: CircularProgressIndicator()),
+                          child: Center(child: CosmicLoadingIndicator()),
                         ),
                         error: (e, s) => SliverToBoxAdapter(
                           child: Center(

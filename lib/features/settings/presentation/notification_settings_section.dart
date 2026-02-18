@@ -5,6 +5,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/services/notification_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 
 /// Notification settings provider
 final notificationSettingsProvider = FutureProvider<NotificationSettings>((
@@ -134,7 +135,7 @@ class _NotificationSettingsSectionState
     final isEnglish = language == AppLanguage.en;
 
     if (!_isInitialized) {
-      return const Center(child: CircularProgressIndicator());
+      return const Center(child: CosmicLoadingIndicator());
     }
 
     return Container(

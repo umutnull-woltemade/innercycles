@@ -18,6 +18,7 @@ import '../../../data/services/compatibility_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
@@ -235,7 +236,7 @@ class _CompatibilityReflectionScreenState
         ),
         if (_loading)
           const SliverFillRemaining(
-            child: Center(child: CircularProgressIndicator()),
+            child: CosmicLoadingIndicator(),
           )
         else if (_profiles.isEmpty)
           SliverFillRemaining(
@@ -864,7 +865,7 @@ class _CompatibilityReflectionScreenState
   Widget _buildResultView(BuildContext context, bool isDark, bool isEn) {
     final profile = _viewingProfile;
     if (profile == null || profile.result == null) {
-      return const Center(child: CircularProgressIndicator());
+      return const CosmicLoadingIndicator();
     }
 
     final result = profile.result!;

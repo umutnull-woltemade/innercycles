@@ -10,6 +10,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/weekly_digest_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class WeeklyDigestScreen extends ConsumerWidget {
@@ -38,7 +39,7 @@ class WeeklyDigestScreen extends ConsumerWidget {
                 padding: const EdgeInsets.all(16),
                 sliver: digestAsync.when(
                   loading: () => const SliverToBoxAdapter(
-                    child: Center(child: CircularProgressIndicator()),
+                    child: Center(child: CosmicLoadingIndicator()),
                   ),
                   error: (_, _) => SliverToBoxAdapter(
                     child: _EmptyDigest(isDark: isDark, isEn: isEn),
@@ -46,7 +47,7 @@ class WeeklyDigestScreen extends ConsumerWidget {
                   data: (digestService) {
                     return journalAsync.when(
                       loading: () => const SliverToBoxAdapter(
-                        child: Center(child: CircularProgressIndicator()),
+                        child: Center(child: CosmicLoadingIndicator()),
                       ),
                       error: (_, _) => SliverToBoxAdapter(
                         child: _EmptyDigest(isDark: isDark, isEn: isEn),

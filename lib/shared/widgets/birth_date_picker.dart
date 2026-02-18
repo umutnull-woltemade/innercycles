@@ -309,7 +309,7 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
             value: value,
             isExpanded: true,
             underline: const SizedBox(),
-            dropdownColor: const Color(0xFF1a1a2e),
+            dropdownColor: AppColors.cosmicPurple,
             style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
             items: items.map((item) {
               return DropdownMenuItem<T>(

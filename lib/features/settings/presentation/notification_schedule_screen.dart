@@ -7,6 +7,7 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/notification_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class NotificationScheduleScreen extends ConsumerStatefulWidget {
@@ -115,7 +116,7 @@ class _NotificationScheduleScreenState
     return Scaffold(
       body: CosmicBackground(
         child: _isLoading
-            ? const Center(child: CircularProgressIndicator())
+            ? const CosmicLoadingIndicator()
             : CupertinoScrollbar(
                 child: CustomScrollView(
                   physics: const BouncingScrollPhysics(
@@ -174,7 +175,7 @@ class _NotificationScheduleScreenState
                             isDark: isDark,
                             isEn: isEn,
                             icon: Icons.dark_mode_outlined,
-                            iconColor: const Color(0xFF9B59B6),
+                            iconColor: AppColors.amethyst,
                             titleEn: 'Moon Phase Awareness',
                             titleTr: 'Ay Evresi Farkındalığı',
                             subtitleEn: 'Get notified during new and full moon phases',

@@ -14,6 +14,7 @@ import '../../../data/services/l10n_service.dart';
 import '../services/insight_routing_service.dart';
 import '../services/insight_response_service.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
+import '../../../shared/widgets/cosmic_background.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 
@@ -169,7 +170,8 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
         ),
         centerTitle: true,
       ),
-      body: SafeArea(
+      body: CosmicBackground(
+        child: SafeArea(
         child: Column(
           children: [
             // Chat messages
@@ -202,6 +204,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
             _buildInputArea(isDark, language),
           ],
         ),
+      ),
       ),
     );
   }

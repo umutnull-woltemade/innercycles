@@ -15,6 +15,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/tool_manifest.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/cosmic_background.dart';
 
 class GlobalSearchScreen extends ConsumerStatefulWidget {
   const GlobalSearchScreen({super.key});
@@ -71,8 +72,9 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
 
     return Scaffold(
       backgroundColor: isDark ? AppColors.deepSpace : AppColors.lightBackground,
-      body: SafeArea(
-        child: Column(
+      body: CosmicBackground(
+        child: SafeArea(
+          child: Column(
           children: [
             // Search bar + close button
             Padding(
@@ -120,6 +122,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             ),
           ],
         ),
+      ),
       ),
     );
   }

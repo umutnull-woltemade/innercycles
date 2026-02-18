@@ -13,6 +13,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/blind_spot_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class BlindSpotScreen extends ConsumerWidget {
@@ -31,7 +32,7 @@ class BlindSpotScreen extends ConsumerWidget {
       body: CosmicBackground(
         child: SafeArea(
           child: blindSpotAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const CosmicLoadingIndicator(),
             error: (e, s) => Center(
               child: Text(
                 isEn ? 'Could not load data' : 'Veri yüklenemedi',
@@ -43,8 +44,7 @@ class BlindSpotScreen extends ConsumerWidget {
               ),
             ),
             data: (blindSpotService) => journalAsync.when(
-              loading: () =>
-                  const Center(child: CircularProgressIndicator()),
+              loading: () => const CosmicLoadingIndicator(),
               error: (e, s) => Center(
                 child: Text(
                   isEn ? 'Could not load data' : 'Veri yüklenemedi',
@@ -167,7 +167,7 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
           else if (_isGenerating || _report == null)
             const SliverFillRemaining(
               hasScrollBody: false,
-              child: Center(child: CircularProgressIndicator()),
+              child: CosmicLoadingIndicator(),
             )
           else if (_report case final report?)
             SliverPadding(

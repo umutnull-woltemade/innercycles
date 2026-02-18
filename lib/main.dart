@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
 import 'shared/services/router_service.dart';
 import 'shared/widgets/app_error_widget.dart';
@@ -330,12 +331,12 @@ class _AppInitializerState extends State<AppInitializer> {
         // LOADING STATE - Always show visible UI
         if (snapshot.connectionState != ConnectionState.done) {
           return const Scaffold(
-            backgroundColor: Color(0xFF0D0D1A),
+            backgroundColor: AppColors.deepSpace,
             body: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  CircularProgressIndicator(color: Color(0xFFFFD700)),
+                  CircularProgressIndicator(color: AppColors.starGold),
                   SizedBox(height: 16),
                   Text(
                     'Loading...',
@@ -350,7 +351,7 @@ class _AppInitializerState extends State<AppInitializer> {
         // ERROR STATE - Show error message (never white screen)
         if (snapshot.hasError) {
           return Scaffold(
-            backgroundColor: const Color(0xFF0D0D1A),
+            backgroundColor: AppColors.deepSpace,
             body: Center(
               child: Padding(
                 padding: const EdgeInsets.all(32),
@@ -390,8 +391,8 @@ class _AppInitializerState extends State<AppInitializer> {
         // SUCCESS - Launch the real app with providers
         if (snapshot.data == null) {
           return const Scaffold(
-            backgroundColor: Color(0xFF0D0D1A),
-            body: Center(child: CircularProgressIndicator(color: Color(0xFFFFD700))),
+            backgroundColor: AppColors.deepSpace,
+            body: Center(child: CircularProgressIndicator(color: AppColors.starGold)),
           );
         }
         final result = snapshot.data!;

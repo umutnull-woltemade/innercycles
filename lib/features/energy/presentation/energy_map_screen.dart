@@ -14,6 +14,7 @@ import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/energy_map_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class EnergyMapScreen extends ConsumerWidget {
@@ -42,7 +43,7 @@ class EnergyMapScreen extends ConsumerWidget {
                 padding: const EdgeInsets.all(16),
                 sliver: energyAsync.when(
                   loading: () => const SliverToBoxAdapter(
-                    child: Center(child: CircularProgressIndicator()),
+                    child: Center(child: CosmicLoadingIndicator()),
                   ),
                   error: (e, s) => SliverToBoxAdapter(
                     child: Center(

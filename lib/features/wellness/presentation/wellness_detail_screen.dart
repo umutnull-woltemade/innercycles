@@ -8,6 +8,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/wellness_score_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class WellnessDetailScreen extends ConsumerWidget {
@@ -41,7 +42,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                     // Score hero
                     scoreAsync.when(
                       loading: () => const Center(
-                        child: CircularProgressIndicator(),
+                        child: CosmicLoadingIndicator(),
                       ),
                       error: (_, _) => Center(
                         child: Padding(

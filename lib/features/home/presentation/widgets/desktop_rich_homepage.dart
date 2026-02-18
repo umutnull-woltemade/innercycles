@@ -27,13 +27,13 @@ class DesktopRichHomepage extends ConsumerWidget {
         userProfile.name!.isEmpty) {
       return Scaffold(
         backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? const Color(0xFF0D0D1A)
+            ? AppColors.deepSpace
             : AppColors.lightBackground,
         body: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const CircularProgressIndicator(color: Color(0xFFFFD700)),
+              const CircularProgressIndicator(color: AppColors.starGold),
               const SizedBox(height: 16),
               Text(
                 L10nService.get('common.loading', language),

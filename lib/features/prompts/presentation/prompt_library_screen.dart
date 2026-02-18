@@ -12,9 +12,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_prompt_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class PromptLibraryScreen extends ConsumerWidget {
@@ -30,10 +32,10 @@ class PromptLibraryScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: serviceAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const CosmicLoadingIndicator(),
           error: (_, _) => Center(
             child: Text(
-              isEn ? 'Something went wrong' : 'Bir hata olustu',
+              CommonStrings.somethingWentWrong(language),
               style: TextStyle(
                 color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
               ),

@@ -95,8 +95,8 @@ class _ContextualPaywallSheetState
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                const Color(0xFF1A1A2E).withValues(alpha: 0.95),
-                const Color(0xFF0D0D1A).withValues(alpha: 0.98),
+                AppColors.cosmicPurple.withValues(alpha: 0.95),
+                AppColors.deepSpace.withValues(alpha: 0.98),
               ],
             ),
             borderRadius:
@@ -504,7 +504,7 @@ class _ContextualPaywallSheetState
       case PaywallContext.dreams:
         return _PaywallConfig(
           icon: Icons.nightlight_round,
-          accentColor: const Color(0xFF7B68EE),
+          accentColor: AppColors.mediumSlateBlue,
           headline: isEn
               ? 'Your dream has more to say'
               : 'Rüyanın söyleyecekleri bitmedi',
@@ -519,7 +519,7 @@ class _ContextualPaywallSheetState
       case PaywallContext.streakFreeze:
         return _PaywallConfig(
           icon: Icons.local_fire_department,
-          accentColor: const Color(0xFFFF6B35),
+          accentColor: AppColors.streakOrange,
           headline: isEn
               ? "Don't lose what you've built"
               : 'İnşa ettiğini kaybetme',
@@ -537,7 +537,7 @@ class _ContextualPaywallSheetState
       case PaywallContext.monthlyReport:
         return _PaywallConfig(
           icon: Icons.insert_chart_outlined,
-          accentColor: const Color(0xFF4FC3F7),
+          accentColor: AppColors.chartBlue,
           headline: isEn
               ? "You've done the work. See the growth."
               : 'Emeği verdin. Büyümeyi gör.',
@@ -550,7 +550,7 @@ class _ContextualPaywallSheetState
       case PaywallContext.export:
         return _PaywallConfig(
           icon: Icons.download_rounded,
-          accentColor: const Color(0xFF66BB6A),
+          accentColor: AppColors.exportGreen,
           headline: isEn
               ? 'Your data belongs to you'
               : 'Verilerin sana ait',

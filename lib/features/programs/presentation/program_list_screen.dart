@@ -18,6 +18,7 @@ import '../../../data/services/first_taste_service.dart';
 import '../../../data/services/guided_program_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
@@ -48,7 +49,7 @@ class ProgramListScreen extends ConsumerWidget {
                 padding: const EdgeInsets.all(16),
                 sliver: serviceAsync.when(
                   loading: () => const SliverToBoxAdapter(
-                    child: Center(child: CircularProgressIndicator()),
+                    child: Center(child: CosmicLoadingIndicator()),
                   ),
                   error: (_, _) => SliverToBoxAdapter(
                     child: Center(

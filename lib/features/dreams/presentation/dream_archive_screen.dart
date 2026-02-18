@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
@@ -10,6 +11,7 @@ import '../../../data/services/dream_journal_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/ecosystem_widgets.dart';
 import '../../../core/constants/routes.dart';
@@ -134,7 +136,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     return Scaffold(
       body: CosmicBackground(
         child: serviceAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const CosmicLoadingIndicator(),
           error: (_, _) => Center(
             child: Text(
               isEn ? 'Failed to load dreams' : 'Rüyalar yüklenemedi',
@@ -305,7 +307,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                   child: SizedBox(height: AppConstants.spacingHuge),
                 ),
               ],
-            );
+            ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.02, duration: 400.ms);
           },
         ),
       ),

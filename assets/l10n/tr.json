@@ -60,7 +60,13 @@
         "copied": "Kopyalandı!",
         "text_copied": "Metin kopyalandı! Sosyal medyada paylaşabilirsin.",
         "open_instagram": "Instagram'ı Aç",
-        "explore_more": "Daha Fazla Keşfet"
+        "explore_more": "Daha Fazla Keşfet",
+        "something_went_wrong": "Bir şeyler yanlış gitti",
+        "error_loading": "Yüklenemedi",
+        "no_entries_yet": "Henüz giriş yok",
+        "try_again": "Tekrar dene",
+        "could_not_share_try_again": "Paylaşılamadı. Tekrar dene.",
+        "error_loading_program": "Program yüklenemedi"
     },
     "greetings": {
         "night": "Hâlâ ayakta mısın? Yazmak için iyi bir zaman.",

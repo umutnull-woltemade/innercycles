@@ -140,11 +140,11 @@ class StreakRecoveryBanner extends ConsumerWidget {
                     ),
                     decoration: BoxDecoration(
                       color: isDark
-                          ? const Color(0xFFFF6B35).withValues(alpha: 0.08)
-                          : const Color(0xFFFF6B35).withValues(alpha: 0.05),
+                          ? AppColors.streakOrange.withValues(alpha: 0.08)
+                          : AppColors.streakOrange.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: const Color(0xFFFF6B35).withValues(alpha: 0.2),
+                        color: AppColors.streakOrange.withValues(alpha: 0.2),
                       ),
                     ),
                     child: Row(
@@ -152,7 +152,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                         Icon(
                           Icons.ac_unit_rounded,
                           size: 18,
-                          color: const Color(0xFFFF6B35),
+                          color: AppColors.streakOrange,
                         ),
                         const SizedBox(width: 10),
                         Expanded(
@@ -162,7 +162,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                                 : 'Premium seri dondurmalar bunu kurtarabilirdi',
                             style: TextStyle(
                               fontSize: 12,
-                              color: const Color(0xFFFF6B35),
+                              color: AppColors.streakOrange,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -171,7 +171,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                           isEn ? 'Learn more' : 'Daha fazla',
                           style: TextStyle(
                             fontSize: 11,
-                            color: const Color(0xFFFF6B35).withValues(alpha: 0.7),
+                            color: AppColors.streakOrange.withValues(alpha: 0.7),
                             fontWeight: FontWeight.w600,
                           ),
                         ),

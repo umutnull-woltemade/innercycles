@@ -10,9 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/milestone_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -32,12 +34,12 @@ class MilestoneScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: milestoneAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const CosmicLoadingIndicator(),
           error: (_, _) => Center(
             child: Padding(
               padding: const EdgeInsets.all(32),
               child: Text(
-                isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+                CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,

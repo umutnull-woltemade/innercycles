@@ -7,6 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/content_disclaimer.dart';
+import '../../../../shared/widgets/cosmic_background.dart';
 
 /// Rüyada Düşmek Ne Demek? - AI-First Canonical Sayfa
 /// H1: Soru formatı
@@ -21,13 +22,14 @@ class DreamFallingScreen extends ConsumerWidget {
     final language = ref.watch(languageProvider);
 
     return Scaffold(
-      body: Container(
+      body: CosmicBackground(
+        child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: isDark
-                ? [const Color(0xFF0D0D1A), const Color(0xFF1A0A2E)]
+                ? [AppColors.deepSpace, const Color(0xFF1A0A2E)]
                 : [const Color(0xFFFAF8FF), const Color(0xFFF0E8FF)],
           ),
         ),
@@ -202,6 +204,7 @@ class DreamFallingScreen extends ConsumerWidget {
             ),
           ),
         ),
+      ),
       ),
     );
   }

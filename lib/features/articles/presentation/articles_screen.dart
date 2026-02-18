@@ -5,9 +5,11 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/content/context_modules_content.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/context_module_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class ArticlesScreen extends ConsumerStatefulWidget {
@@ -31,12 +33,12 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
     return Scaffold(
       body: CosmicBackground(
         child: serviceAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const CosmicLoadingIndicator(),
           error: (_, _) => Center(
             child: Padding(
               padding: const EdgeInsets.all(32),
               child: Text(
-                isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+                CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,

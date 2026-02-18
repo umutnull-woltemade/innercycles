@@ -9,6 +9,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
@@ -407,7 +408,7 @@ class _BreathingTimerScreenState
                 ),
               ),
             ],
-          ),
+          ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.02, duration: 400.ms),
           ),
         ),
       ),

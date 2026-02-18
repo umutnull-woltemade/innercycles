@@ -26,6 +26,7 @@ import '../../rituals/presentation/ritual_checkoff_card.dart';
 import '../../prompts/presentation/today_prompt_card.dart';
 import '../../quiz/presentation/quiz_suggestion_card.dart';
 import '../../cosmic/presentation/cosmic_message_card.dart';
+import '../../../shared/widgets/cosmic_background.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
   const TodayFeedScreen({super.key});
@@ -44,9 +45,9 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
     final userName = userProfile?.name ?? '';
 
     return Scaffold(
-      backgroundColor: isDark ? AppColors.deepSpace : AppColors.lightBackground,
-      body: SafeArea(
-        child: CustomScrollView(
+      body: CosmicBackground(
+        child: SafeArea(
+          child: CustomScrollView(
           physics: const BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
@@ -197,6 +198,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
             ),
           ],
         ),
+      ),
       ),
     );
   }

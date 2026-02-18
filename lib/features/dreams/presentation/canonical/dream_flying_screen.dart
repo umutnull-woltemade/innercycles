@@ -7,6 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/content_disclaimer.dart';
+import '../../../../shared/widgets/cosmic_background.dart';
 
 /// Rüyada Uçmak Ne Anlama Gelir? - AI-First Canonical Sayfa
 class DreamFlyingScreen extends ConsumerWidget {
@@ -19,13 +20,14 @@ class DreamFlyingScreen extends ConsumerWidget {
     final color = const Color(0xFF42A5F5);
 
     return Scaffold(
-      body: Container(
+      body: CosmicBackground(
+        child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: isDark
-                ? [const Color(0xFF0D0D1A), const Color(0xFF0A1A2E)]
+                ? [AppColors.deepSpace, const Color(0xFF0A1A2E)]
                 : [const Color(0xFFF5FAFF), const Color(0xFFE8F4FF)],
           ),
         ),
@@ -172,6 +174,7 @@ class DreamFlyingScreen extends ConsumerWidget {
             ),
           ),
         ),
+      ),
       ),
     );
   }

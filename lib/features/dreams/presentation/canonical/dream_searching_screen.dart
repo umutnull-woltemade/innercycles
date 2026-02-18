@@ -6,6 +6,7 @@ import '../../../../core/constants/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/providers/app_providers.dart';
+import '../../../../shared/widgets/cosmic_background.dart';
 
 /// Rüyada Bir Şey Aramak Ne Anlama Gelir? - AI-First Canonical Sayfa
 class DreamSearchingScreen extends ConsumerWidget {
@@ -18,13 +19,14 @@ class DreamSearchingScreen extends ConsumerWidget {
     final color = const Color(0xFFFFB300);
 
     return Scaffold(
-      body: Container(
+      body: CosmicBackground(
+        child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: isDark
-                ? [const Color(0xFF0D0D1A), const Color(0xFF1A1508)]
+                ? [AppColors.deepSpace, const Color(0xFF1A1508)]
                 : [const Color(0xFFFFFCF5), const Color(0xFFFFF8E8)],
           ),
         ),
@@ -180,6 +182,7 @@ class DreamSearchingScreen extends ConsumerWidget {
             ),
           ),
         ),
+      ),
       ),
     );
   }

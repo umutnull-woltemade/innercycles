@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../core/theme/app_colors.dart';
 import '../../data/services/l10n_service.dart';
 import '../../data/providers/app_providers.dart';
 
@@ -23,7 +24,7 @@ class AppErrorWidget extends ConsumerWidget {
     }
 
     return Container(
-      color: const Color(0xFF0D0D1A),
+      color: AppColors.deepSpace,
       child: SafeArea(
         child: Center(
           child: Padding(
@@ -103,8 +104,8 @@ class AppErrorWidget extends ConsumerWidget {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFFFD700),
-                      foregroundColor: const Color(0xFF0D0D1A),
+                      backgroundColor: AppColors.starGold,
+                      foregroundColor: AppColors.deepSpace,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -165,7 +166,7 @@ class ProductionErrorWidget extends ConsumerWidget {
     final language = ref.watch(languageProvider);
 
     return Container(
-      color: const Color(0xFF0D0D1A),
+      color: AppColors.deepSpace,
       child: SafeArea(
         child: Center(
           child: Column(

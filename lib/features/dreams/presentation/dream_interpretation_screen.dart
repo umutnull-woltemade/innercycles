@@ -2074,10 +2074,10 @@ ${_getPersonalAdvice(sign)}''';
                   colors: [
                     Colors.transparent,
                     isDark
-                        ? const Color(0xFF1A1A2E).withValues(alpha: 0.85)
+                        ? AppColors.cosmicPurple.withValues(alpha: 0.85)
                         : AppColors.lightSurface.withValues(alpha: 0.85),
                     isDark
-                        ? const Color(0xFF1A1A2E).withValues(alpha: 0.95)
+                        ? AppColors.cosmicPurple.withValues(alpha: 0.95)
                         : AppColors.lightSurface.withValues(alpha: 0.95),
                   ],
                   stops: const [0.0, 0.3, 1.0],
@@ -2095,7 +2095,7 @@ ${_getPersonalAdvice(sign)}''';
                   children: [
                     Icon(
                       Icons.lock_outline,
-                      color: const Color(0xFF7B68EE),
+                      color: AppColors.mediumSlateBlue,
                       size: 28,
                     ),
                     const SizedBox(height: 8),
@@ -2137,12 +2137,12 @@ ${_getPersonalAdvice(sign)}''';
                         ),
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
-                            colors: [Color(0xFF7B68EE), Color(0xFF9B59B6)],
+                            colors: [AppColors.mediumSlateBlue, AppColors.amethyst],
                           ),
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(
-                              color: const Color(0xFF7B68EE).withValues(alpha: 0.4),
+                              color: AppColors.mediumSlateBlue.withValues(alpha: 0.4),
                               blurRadius: 12,
                               offset: const Offset(0, 4),
                             ),
@@ -2475,7 +2475,7 @@ class _DreamSymbolsSheet extends ConsumerWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: isDark
-              ? [AppColors.nebulaPurple, const Color(0xFF0D0D1A)]
+              ? [AppColors.nebulaPurple, AppColors.deepSpace]
               : [AppColors.lightSurfaceVariant, AppColors.lightSurface],
         ),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),

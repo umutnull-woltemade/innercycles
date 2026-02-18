@@ -150,4 +150,9 @@ class AppColors {
     chartGreen, // Decisions
     chartPurple, // Social
   ];
+
+  // ========== FEATURE-SPECIFIC ACCENT COLORS ==========
+  static const Color exportGreen = Color(0xFF66BB6A);
+  static const Color streakOrange = Color(0xFFFF6B35);
+  static const Color mediumSlateBlue = Color(0xFF7B68EE);
 }

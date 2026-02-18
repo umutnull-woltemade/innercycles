@@ -18,6 +18,7 @@ import '../../../data/services/context_module_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class InsightsDiscoveryScreen extends ConsumerStatefulWidget {
@@ -53,7 +54,7 @@ class _InsightsDiscoveryScreenState
       body: CosmicBackground(
         child: SafeArea(
           child: serviceAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const CosmicLoadingIndicator(),
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Could not load insights' : 'İçgörüler yüklenemedi',

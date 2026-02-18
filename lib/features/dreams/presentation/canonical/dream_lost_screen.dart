@@ -7,6 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/content_disclaimer.dart';
+import '../../../../shared/widgets/cosmic_background.dart';
 
 /// Rüyada Kaybolmak Ne Anlama Gelir? - AI-First Canonical Sayfa
 class DreamLostScreen extends ConsumerWidget {
@@ -19,13 +20,14 @@ class DreamLostScreen extends ConsumerWidget {
     final color = const Color(0xFF66BB6A);
 
     return Scaffold(
-      body: Container(
+      body: CosmicBackground(
+        child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: isDark
-                ? [const Color(0xFF0D0D1A), const Color(0xFF0A1A15)]
+                ? [AppColors.deepSpace, const Color(0xFF0A1A15)]
                 : [const Color(0xFFF5FFF8), const Color(0xFFE8FFF0)],
           ),
         ),
@@ -152,6 +154,7 @@ class DreamLostScreen extends ConsumerWidget {
             ),
           ),
         ),
+      ),
       ),
     );
   }

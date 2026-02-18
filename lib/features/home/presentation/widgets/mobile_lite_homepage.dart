@@ -11,6 +11,7 @@ import '../../../../data/services/ad_service.dart';
 import '../../../../data/services/premium_service.dart';
 import '../../../../data/services/upgrade_trigger_service.dart';
 import '../../../../data/services/paywall_experiment_service.dart';
+import '../../../../shared/widgets/cosmic_background.dart';
 import '../../../streak/presentation/streak_card.dart';
 import '../../../gratitude/presentation/gratitude_section.dart';
 import '../../../rituals/presentation/ritual_checkoff_card.dart';
@@ -52,19 +53,21 @@ class MobileLiteHomepage extends ConsumerWidget {
       final language = ref.watch(languageProvider);
       return Scaffold(
         backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? const Color(0xFF0D0D1A)
+            ? AppColors.deepSpace
             : AppColors.lightBackground,
-        body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const CircularProgressIndicator(color: Color(0xFFFFD700)),
-              const SizedBox(height: 16),
-              Text(
-                L10nService.get('common.loading', language),
-                style: const TextStyle(color: Colors.white70),
-              ),
-            ],
+        body: CosmicBackground(
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const CircularProgressIndicator(color: AppColors.starGold),
+                const SizedBox(height: 16),
+                Text(
+                  L10nService.get('common.loading', language),
+                  style: const TextStyle(color: Colors.white70),
+                ),
+              ],
+            ),
           ),
         ),
       );
@@ -74,8 +77,9 @@ class MobileLiteHomepage extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: isDark ? AppColors.deepSpace : AppColors.lightBackground,
-      body: SafeArea(
-        child: RepaintBoundary(
+      body: CosmicBackground(
+        child: SafeArea(
+          child: RepaintBoundary(
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
             slivers: [
@@ -90,6 +94,7 @@ class MobileLiteHomepage extends ConsumerWidget {
             ],
           ),
         ),
+      ),
       ),
     );
   }

@@ -13,9 +13,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/growth_challenge_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
@@ -47,10 +49,10 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
     return Scaffold(
       body: CosmicBackground(
         child: challengeAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const CosmicLoadingIndicator(),
           error: (_, _) => Center(
             child: Text(
-              isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+              CommonStrings.somethingWentWrong(language),
               style: TextStyle(
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),

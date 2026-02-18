@@ -7,6 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/content_disclaimer.dart';
+import '../../../../shared/widgets/cosmic_background.dart';
 
 /// Rüyada Geçmişten Biri Çıkması Ne Demek? - AI-First Canonical Sayfa
 class DreamPastScreen extends ConsumerWidget {
@@ -19,13 +20,14 @@ class DreamPastScreen extends ConsumerWidget {
     final color = const Color(0xFFAB47BC);
 
     return Scaffold(
-      body: Container(
+      body: CosmicBackground(
+        child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: isDark
-                ? [const Color(0xFF0D0D1A), const Color(0xFF1A0A20)]
+                ? [AppColors.deepSpace, const Color(0xFF1A0A20)]
                 : [const Color(0xFFFAF5FC), const Color(0xFFF5E8F8)],
           ),
         ),
@@ -161,6 +163,7 @@ class DreamPastScreen extends ConsumerWidget {
             ),
           ),
         ),
+      ),
       ),
     );
   }

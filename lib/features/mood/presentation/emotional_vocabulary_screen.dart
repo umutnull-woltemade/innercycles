@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
@@ -131,7 +132,7 @@ class _EmotionalVocabularyScreenState
                 ),
               ),
             ],
-          ),
+          ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.02, duration: 400.ms),
         ),
       ),
     );

@@ -479,13 +479,13 @@ class _LockedEntriesCta extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              const Color(0xFF66BB6A).withValues(alpha: 0.08),
-              const Color(0xFF66BB6A).withValues(alpha: 0.02),
+              AppColors.exportGreen.withValues(alpha: 0.08),
+              AppColors.exportGreen.withValues(alpha: 0.02),
             ],
           ),
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: const Color(0xFF66BB6A).withValues(alpha: 0.3),
+            color: AppColors.exportGreen.withValues(alpha: 0.3),
           ),
         ),
         child: Row(
@@ -493,13 +493,13 @@ class _LockedEntriesCta extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: const Color(0xFF66BB6A).withValues(alpha: 0.15),
+                color: AppColors.exportGreen.withValues(alpha: 0.15),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
                 Icons.lock_outline,
                 size: 20,
-                color: Color(0xFF66BB6A),
+                color: AppColors.exportGreen,
               ),
             ),
             const SizedBox(width: 14),
@@ -538,7 +538,7 @@ class _LockedEntriesCta extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
-                  colors: [Color(0xFF66BB6A), Color(0xFF4CAF50)],
+                  colors: [AppColors.exportGreen, Color(0xFF4CAF50)],
                 ),
                 borderRadius: BorderRadius.circular(16),
               ),

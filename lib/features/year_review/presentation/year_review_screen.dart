@@ -21,6 +21,7 @@ import '../../../data/services/year_review_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
@@ -134,7 +135,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                     loading: () => const SliverToBoxAdapter(
                       child: Padding(
                         padding: EdgeInsets.only(top: 80),
-                        child: Center(child: CircularProgressIndicator()),
+                        child: Center(child: CosmicLoadingIndicator()),
                       ),
                     ),
                     error: (_, _) => SliverToBoxAdapter(
@@ -687,11 +688,11 @@ class _FocusAreasCard extends StatelessWidget {
   });
 
   static const _areaColors = {
-    FocusArea.energy: Color(0xFFFFD700),
-    FocusArea.focus: Color(0xFF4FC3F7),
-    FocusArea.emotions: Color(0xFFFF6B9D),
-    FocusArea.decisions: Color(0xFF81C784),
-    FocusArea.social: Color(0xFFCE93D8),
+    FocusArea.energy: AppColors.starGold,
+    FocusArea.focus: AppColors.chartBlue,
+    FocusArea.emotions: AppColors.chartPink,
+    FocusArea.decisions: AppColors.chartGreen,
+    FocusArea.social: AppColors.chartPurple,
   };
 
   @override

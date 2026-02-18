@@ -334,7 +334,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
     return Scaffold(
       backgroundColor: Theme.of(context).brightness == Brightness.dark
-          ? const Color(0xFF0D0D1A)
+          ? AppColors.deepSpace
           : AppColors.lightBackground,
       body: CosmicBackground(
         child: SafeArea(
@@ -609,10 +609,10 @@ class _IdentityPageState extends State<_IdentityPage>
                 return Container(
                   width: 100,
                   height: 100,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: LinearGradient(
-                      colors: [Color(0xFF667EEA), Color(0xFF764BA2)],
+                      colors: [AppColors.auroraStart, AppColors.auroraEnd],
                     ),
                   ),
                   child: const Icon(
@@ -735,13 +735,13 @@ class _IdentityPageState extends State<_IdentityPage>
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF667EEA)
+                    color: AppColors.auroraStart
                         .withAlpha((100 * _glowController.value).toInt() + 50),
                     blurRadius: 40 + (20 * _glowController.value),
                     spreadRadius: 10 + (10 * _glowController.value),
                   ),
                   BoxShadow(
-                    color: const Color(0xFF9B59B6)
+                    color: AppColors.amethyst
                         .withAlpha((80 * _glowController.value).toInt() + 30),
                     blurRadius: 60 + (30 * _glowController.value),
                     spreadRadius: 5,
@@ -860,8 +860,8 @@ class _FirstCyclePage extends StatelessWidget {
 
   static const Map<FocusArea, Color> _focusColors = {
     FocusArea.energy: Color(0xFFFF6B6B),
-    FocusArea.emotions: Color(0xFF9B59B6),
-    FocusArea.focus: Color(0xFF667EEA),
+    FocusArea.emotions: AppColors.amethyst,
+    FocusArea.focus: AppColors.auroraStart,
     FocusArea.social: Color(0xFF4ECDC4),
   };
 
@@ -913,7 +913,7 @@ class _FirstCyclePage extends StatelessWidget {
                 final index = entry.key;
                 final area = entry.value;
                 final isSelected = selectedFocusArea == area;
-                final color = _focusColors[area] ?? const Color(0xFF667EEA);
+                final color = _focusColors[area] ?? AppColors.auroraStart;
 
                 return GestureDetector(
                   onTap: () {
@@ -1289,7 +1289,7 @@ class _ArchetypeRevealPage extends StatelessWidget {
                   spreadRadius: 10,
                 ),
                 BoxShadow(
-                  color: const Color(0xFF9B59B6).withAlpha(30),
+                  color: AppColors.amethyst.withAlpha(30),
                   blurRadius: 60,
                   spreadRadius: 5,
                 ),
@@ -1484,13 +1484,13 @@ class _PermissionStartPage extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  const Color(0xFF667EEA).withAlpha(40),
-                  const Color(0xFF9B59B6).withAlpha(40),
+                  AppColors.auroraStart.withAlpha(40),
+                  AppColors.amethyst.withAlpha(40),
                 ],
               ),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFF667EEA).withAlpha(50),
+                  color: AppColors.auroraStart.withAlpha(50),
                   blurRadius: 40,
                   spreadRadius: 8,
                 ),
@@ -1545,8 +1545,8 @@ class _PermissionStartPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       gradient: LinearGradient(
                         colors: [
-                          const Color(0xFF667EEA).withAlpha(40),
-                          const Color(0xFF9B59B6).withAlpha(40),
+                          AppColors.auroraStart.withAlpha(40),
+                          AppColors.amethyst.withAlpha(40),
                         ],
                       ),
                     ),
@@ -1556,7 +1556,7 @@ class _PermissionStartPage extends StatelessWidget {
                           : Icons.notifications_outlined,
                       color: notificationsRequested
                           ? AppColors.starGold
-                          : const Color(0xFF667EEA),
+                          : AppColors.auroraStart,
                       size: 24,
                     ),
                   ),
@@ -1723,7 +1723,7 @@ class _FeatureRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
         children: [
-          Icon(icon, size: 20, color: const Color(0xFF667EEA)),
+          Icon(icon, size: 20, color: AppColors.auroraStart),
           const SizedBox(width: 12),
           Expanded(
             child: Text(
@@ -1869,10 +1869,10 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Color(0xFF0D0D1A),
-                Color(0xFF1A1A2E),
-                Color(0xFF16213E),
-                Color(0xFF0F3460),
+                AppColors.deepSpace,
+                AppColors.cosmicPurple,
+                AppColors.nebulaPurple,
+                AppColors.amethystBlue,
               ],
             ),
           ),
@@ -1895,7 +1895,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                           Icons.star,
                           size: 4 + (index % 4) * 2.0,
                           color: index % 3 == 0
-                              ? const Color(0xFFFFD700)
+                              ? AppColors.starGold
                               : index % 3 == 1
                               ? const Color(0xFFE6E6FA)
                               : Colors.white,
@@ -1930,9 +1930,9 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                         ShaderMask(
                           shaderCallback: (bounds) => const LinearGradient(
                             colors: [
-                              Color(0xFFFFD700),
-                              Color(0xFFFF6B9D),
-                              Color(0xFF9B59B6),
+                              AppColors.starGold,
+                              AppColors.chartPink,
+                              AppColors.amethyst,
                             ],
                           ).createShader(bounds),
                           child: Text(
@@ -1955,7 +1955,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                             style: const TextStyle(
                               fontSize: 36,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFFFFD700),
+                              color: AppColors.starGold,
                               letterSpacing: 2,
                             ),
                           ),

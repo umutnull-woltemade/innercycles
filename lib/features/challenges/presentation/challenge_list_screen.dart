@@ -8,10 +8,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/growth_challenge_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
@@ -42,14 +44,14 @@ class ChallengeListScreen extends ConsumerWidget {
                 padding: const EdgeInsets.all(16),
                 sliver: serviceAsync.when(
                   loading: () => const SliverToBoxAdapter(
-                    child: Center(child: CircularProgressIndicator()),
+                    child: Center(child: CosmicLoadingIndicator()),
                   ),
                   error: (_, _) => SliverToBoxAdapter(
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(32),
                         child: Text(
-                          isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+                          CommonStrings.somethingWentWrong(language),
                           style: TextStyle(
                             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                           ),

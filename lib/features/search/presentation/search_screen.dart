@@ -13,6 +13,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/dream_journal_service.dart';
 import '../../../data/services/gratitude_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 enum _ResultType { journal, dream, gratitude }
@@ -181,7 +182,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 if (_isSearching)
                   const SliverFillRemaining(
                     hasScrollBody: false,
-                    child: Center(child: CircularProgressIndicator()),
+                    child: CosmicLoadingIndicator(),
                   )
                 else if (!_hasSearched)
                   SliverFillRemaining(

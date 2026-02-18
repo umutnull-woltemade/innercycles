@@ -7,6 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/content_disclaimer.dart';
+import '../../../../shared/widgets/cosmic_background.dart';
 
 /// Rüyada Karanlık Yer Ne Anlama Gelir? - AI-First Canonical Sayfa
 class DreamDarknessScreen extends ConsumerWidget {
@@ -19,13 +20,14 @@ class DreamDarknessScreen extends ConsumerWidget {
     final color = const Color(0xFF546E7A);
 
     return Scaffold(
-      body: Container(
+      body: CosmicBackground(
+        child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: isDark
-                ? [const Color(0xFF0D0D1A), const Color(0xFF0D1520)]
+                ? [AppColors.deepSpace, const Color(0xFF0D1520)]
                 : [const Color(0xFFF5F7F9), const Color(0xFFECF0F3)],
           ),
         ),
@@ -176,6 +178,7 @@ class DreamDarknessScreen extends ConsumerWidget {
             ),
           ),
         ),
+      ),
       ),
     );
   }

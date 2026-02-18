@@ -7,9 +7,11 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/ritual_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class RitualsScreen extends ConsumerWidget {
@@ -38,14 +40,14 @@ class RitualsScreen extends ConsumerWidget {
                 padding: const EdgeInsets.all(AppConstants.spacingLg),
                 sliver: stacksAsync.when(
                   loading: () => const SliverToBoxAdapter(
-                    child: Center(child: CircularProgressIndicator()),
+                    child: Center(child: CosmicLoadingIndicator()),
                   ),
                   error: (_, _) => SliverToBoxAdapter(
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(32),
                         child: Text(
-                          isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+                          CommonStrings.somethingWentWrong(language),
                           style: TextStyle(
                             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                           ),

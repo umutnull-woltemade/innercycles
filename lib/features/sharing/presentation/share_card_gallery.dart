@@ -16,11 +16,13 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/share_card_models.dart';
 import '../../../data/content/share_card_templates.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/first_taste_service.dart';
 import '../../../data/services/instagram_share_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../shared/widgets/cosmic_background.dart';
 import 'widgets/share_card_renderer.dart';
 
 // ============================================================================
@@ -112,7 +114,7 @@ class _ShareCardGalleryScreenState
       // user cancelled
     } else {
       _showSnackBar(
-        isEn ? 'Could not share. Try again.' : 'Paylaşılamadı. Tekrar dene.',
+        CommonStrings.couldNotShareTryAgain(language),
       );
     }
   }
@@ -173,9 +175,11 @@ class _ShareCardGalleryScreenState
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: _previewTemplate != null
-          ? _buildPreview(isDark, isEn, language, streak)
-          : _buildGallery(isDark, isEn, streak),
+      body: CosmicBackground(
+        child: _previewTemplate != null
+            ? _buildPreview(isDark, isEn, language, streak)
+            : _buildGallery(isDark, isEn, streak),
+      ),
     );
   }
 
