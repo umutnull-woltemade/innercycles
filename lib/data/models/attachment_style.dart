@@ -7,6 +7,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:ui';
+import '../../core/theme/app_colors.dart';
 
 /// The four primary attachment style archetypes used for self-reflection
 enum AttachmentStyle {
@@ -224,13 +225,13 @@ enum AttachmentStyle {
   Color get color {
     switch (this) {
       case AttachmentStyle.secure:
-        return const Color(0xFF27AE60);
+        return AppColors.greenAccent;
       case AttachmentStyle.anxiousPreoccupied:
-        return const Color(0xFFE74C3C);
+        return AppColors.warmAccent;
       case AttachmentStyle.dismissiveAvoidant:
-        return const Color(0xFF3498DB);
+        return AppColors.blueAccent;
       case AttachmentStyle.fearfulAvoidant:
-        return const Color(0xFF9B59B6);
+        return AppColors.amethyst;
     }
   }
 

@@ -342,7 +342,9 @@ class EntryDetailScreen extends ConsumerWidget {
                 await service.deleteEntry(id);
                 ref.invalidate(todayJournalEntryProvider);
                 ref.invalidate(journalStreakProvider);
-              } catch (_) {}
+              } catch (e) {
+                debugPrint('Failed to delete entry: $e');
+              }
               if (context.mounted) context.pop();
             },
             child: Text(

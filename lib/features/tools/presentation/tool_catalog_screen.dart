@@ -15,7 +15,9 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/tool_manifest.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/premium_service.dart';
 import '../../../data/services/smart_router_service.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
@@ -67,6 +69,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
     final isEn = language == AppLanguage.en;
     final smartRouterAsync = ref.watch(smartRouterServiceProvider);
 
+    final isPremium = ref.watch(isPremiumUserProvider);
     final allTools = ToolManifestRegistry.all;
     final filteredTools = _filterTools(allTools, isEn);
 
@@ -92,10 +95,10 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
                       if (filteredTools.isEmpty)
                         _buildEmptySearch(isDark, isEn).animate().fadeIn(duration: 400.ms)
                       else
-                        _buildToolGrid(filteredTools, isDark, isEn, smartRouterAsync, 0),
+                        _buildToolGrid(filteredTools, isDark, isEn, smartRouterAsync, 0, isPremium),
                     ] else ...[
                       // Category Sections
-                      ..._buildCategorySections(isDark, isEn, smartRouterAsync),
+                      ..._buildCategorySections(isDark, isEn, smartRouterAsync, isPremium),
                     ],
 
                     const SizedBox(height: AppConstants.spacingHuge),
@@ -148,7 +151,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
     );
   }
 
-  List<Widget> _buildCategorySections(bool isDark, bool isEn, AsyncValue<SmartRouterService> smartRouterAsync) {
+  List<Widget> _buildCategorySections(bool isDark, bool isEn, AsyncValue<SmartRouterService> smartRouterAsync, bool isPremium) {
     final widgets = <Widget>[];
     int sectionIndex = 0;
 
@@ -168,7 +171,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
             .slideY(begin: 0.05, end: 0, duration: 500.ms, delay: Duration(milliseconds: delay)),
       );
       widgets.add(const SizedBox(height: AppConstants.spacingMd));
-      widgets.add(_buildToolGrid(tools, isDark, isEn, smartRouterAsync, delay + 100));
+      widgets.add(_buildToolGrid(tools, isDark, isEn, smartRouterAsync, delay + 100, isPremium));
       widgets.add(const SizedBox(height: AppConstants.spacingXl));
       sectionIndex++;
     }
@@ -189,7 +192,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
     );
   }
 
-  Widget _buildToolGrid(List<ToolManifest> tools, bool isDark, bool isEn, AsyncValue<SmartRouterService> smartRouterAsync, int baseDelay) {
+  Widget _buildToolGrid(List<ToolManifest> tools, bool isDark, bool isEn, AsyncValue<SmartRouterService> smartRouterAsync, int baseDelay, bool isPremium) {
     final rows = <Widget>[];
     for (int i = 0; i < tools.length; i += 2) {
       final left = tools[i];

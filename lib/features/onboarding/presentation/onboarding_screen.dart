@@ -1604,7 +1604,7 @@ class _PermissionStartPage extends StatelessWidget {
                         border: Border.all(
                           color: notificationsRequested
                               ? AppColors.starGold
-                              : Colors.white.withAlpha(50),
+                              : Colors.white.withValues(alpha: 0.2),
                         ),
                       ),
                       child: AnimatedAlign(
@@ -1621,7 +1621,7 @@ class _PermissionStartPage extends StatelessWidget {
                             shape: BoxShape.circle,
                             color: notificationsRequested
                                 ? Colors.white
-                                : Colors.white.withAlpha(180),
+                                : Colors.white.withValues(alpha: 0.71),
                           ),
                         ),
                       ),
@@ -1781,7 +1781,7 @@ class _NameInput extends StatelessWidget {
             : null,
         filled: true,
         fillColor: isDark
-            ? AppColors.surfaceDark.withAlpha(128)
+            ? AppColors.surfaceDark.withValues(alpha: 0.5)
             : AppColors.lightSurfaceVariant,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),

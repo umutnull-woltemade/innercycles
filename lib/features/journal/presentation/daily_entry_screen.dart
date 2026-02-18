@@ -753,6 +753,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         imagePath: _selectedImagePath,
       );
 
+      if (!mounted) return;
+
       // Invalidate providers to refresh data
       ref.invalidate(todayJournalEntryProvider);
       ref.invalidate(journalStreakProvider);

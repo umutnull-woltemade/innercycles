@@ -612,7 +612,7 @@ class SettingsScreen extends ConsumerWidget {
             onPressed: () async {
               Navigator.pop(context);
               // Cancel scheduled notifications
-              try { await NotificationService().cancelAll(); } catch (_) {}
+              try { await NotificationService().cancelAll(); } catch (e) { debugPrint('Cancel notifications failed: $e'); }
               await StorageService.clearAllData();
               ref.read(userProfileProvider.notifier).clearProfile();
               ref.read(onboardingCompleteProvider.notifier).state = false;

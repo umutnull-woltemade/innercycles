@@ -5,6 +5,7 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz_data;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/constants/routes.dart';
+import '../../core/theme/app_colors.dart';
 
 /// Global navigator key for notification navigation
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -182,7 +183,7 @@ class NotificationService {
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
-          color: const Color(0xFFFFD700),
+          color: AppColors.starGold,
         ),
         iOS: const DarwinNotificationDetails(
           presentAlert: true,
@@ -244,7 +245,7 @@ class NotificationService {
           importance: Importance.defaultImportance,
           priority: Priority.defaultPriority,
           icon: '@mipmap/ic_launcher',
-          color: const Color(0xFF9B59B6),
+          color: AppColors.amethyst,
         ),
         iOS: const DarwinNotificationDetails(
           presentAlert: true,
@@ -317,7 +318,7 @@ class NotificationService {
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
-          color: const Color(0xFF1A1A2E),
+          color: AppColors.cosmicPurple,
         ),
         iOS: const DarwinNotificationDetails(
           presentAlert: true,

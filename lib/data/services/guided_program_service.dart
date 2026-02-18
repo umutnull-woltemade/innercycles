@@ -262,7 +262,7 @@ class GuidedProgramService {
     if (jsonString != null) {
       try {
         final List<dynamic> list = json.decode(jsonString);
-        _completedProgramIds = list.cast<String>().toSet();
+        _completedProgramIds = list.whereType<String>().toSet();
       } catch (_) {
         _completedProgramIds = {};
       }

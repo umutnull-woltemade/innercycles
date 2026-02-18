@@ -98,8 +98,7 @@ class ContextModuleService {
   List<ContextModule> getRelatedModules(ContextModule module) {
     return module.relatedModuleIds
         .map((id) => getModuleById(id))
-        .where((m) => m != null)
-        .cast<ContextModule>()
+        .whereType<ContextModule>()
         .toList();
   }
 

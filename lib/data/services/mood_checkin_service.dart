@@ -97,14 +97,12 @@ class MoodCheckinService {
     final result = <MoodEntry?>[];
     for (int i = 6; i >= 0; i--) {
       final day = now.subtract(Duration(days: i));
-      final entry = _entries.cast<MoodEntry?>().firstWhere(
-            (e) =>
-                e != null &&
+      final entry = _entries
+            .where((e) =>
                 e.date.year == day.year &&
                 e.date.month == day.month &&
-                e.date.day == day.day,
-            orElse: () => null,
-          );
+                e.date.day == day.day)
+            .firstOrNull;
       result.add(entry);
     }
     return result;

@@ -73,9 +73,9 @@ class _SimplifiedWebBackground extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color(0xFF0D0D1A), // Deep space black
-            Color(0xFF1A1A2E), // Dark purple
-            Color(0xFF16213E), // Navy blue
+            AppColors.deepSpace, // Deep space black
+            AppColors.cosmicPurple, // Dark purple
+            AppColors.nebulaPurple, // Navy blue
             Color(0xFF0F0F1A), // Deep black
           ],
           stops: [0.0, 0.3, 0.7, 1.0],
@@ -245,7 +245,7 @@ class _CosmicPainter extends CustomPainter {
       Colors.white,
       const Color(0xFFFFE4B5), // Sıcak sarı
       const Color(0xFFADD8E6), // Açık mavi
-      const Color(0xFFFFB6C1), // Pembe
+      AppColors.softPink, // Pembe
       const Color(0xFFE6E6FA), // Lavanta
     ];
     return colors[random.nextInt(colors.length)];

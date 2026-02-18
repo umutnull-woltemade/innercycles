@@ -187,7 +187,7 @@ class GrowthChallengeService {
     if (jsonString != null) {
       try {
         final List<dynamic> list = json.decode(jsonString);
-        _completedIds = list.cast<String>().toSet();
+        _completedIds = list.whereType<String>().toSet();
       } catch (_) {
         _completedIds = {};
       }
