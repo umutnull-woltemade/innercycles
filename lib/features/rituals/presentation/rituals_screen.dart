@@ -13,6 +13,7 @@ import '../../../data/services/ritual_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class RitualsScreen extends ConsumerWidget {
   const RitualsScreen({super.key});

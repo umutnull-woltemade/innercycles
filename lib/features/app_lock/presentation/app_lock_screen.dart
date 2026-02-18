@@ -6,6 +6,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/storage_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 class AppLockScreen extends ConsumerStatefulWidget {
@@ -37,8 +38,9 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
     final canBio = await service.canUseBiometrics();
     if (!canBio) return;
 
+    final isEn = StorageService.loadLanguage() == AppLanguage.en;
     final success = await service.authenticateWithBiometrics(
-      reason: 'Unlock InnerCycles',
+      reason: isEn ? 'Unlock InnerCycles' : 'InnerCycles Kilidini Aç',
     );
     if (success && mounted) {
       context.go(Routes.home);
