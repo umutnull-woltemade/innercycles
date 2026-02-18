@@ -70,8 +70,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      body: ExcludeSemantics(
-        child: GestureDetector(
+      body: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           behavior: HitTestBehavior.opaque,
           child: CosmicBackground(
@@ -104,7 +103,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     .fadeIn(duration: 400.ms)
                     .slideY(begin: 0.05, duration: 400.ms),
           ),
-        ),
         ),
       ),
     );
@@ -475,12 +473,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
           ),
           const SizedBox(height: AppConstants.spacingLg),
-          // App Store 4.3(b): Navigate to Insight
+          // Navigate to Mood Trends (CORE Insights)
           SizedBox(
             width: double.infinity,
             child: OutlinedButton.icon(
-              onPressed: () => context.push(Routes.insight),
-              icon: const Icon(Icons.auto_awesome),
+              onPressed: () => context.push(Routes.moodTrends),
+              icon: const Icon(Icons.insights),
               label: Text(isEn ? 'View Insights' : 'İçgörüleri Gör'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.auroraStart,

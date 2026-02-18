@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
-import '../services/localization_service.dart';
-import '../services/l10n_service.dart';
 import '../providers/app_providers.dart';
+import '../services/l10n_service.dart';
 
 /// Personality element archetypes used for dream interpretation and reflection
 enum Element { fire, earth, air, water }
@@ -432,15 +431,16 @@ extension ElementExtension on Element {
 
   /// Get localized element name based on app language
   String localizedName(AppLanguage language) {
+    final isEn = language == AppLanguage.en;
     switch (this) {
       case Element.fire:
-        return L10n.get('element_fire', language);
+        return isEn ? 'Fire' : 'Ateş';
       case Element.earth:
-        return L10n.get('element_earth', language);
+        return isEn ? 'Earth' : 'Toprak';
       case Element.air:
-        return L10n.get('element_air', language);
+        return isEn ? 'Air' : 'Hava';
       case Element.water:
-        return L10n.get('element_water', language);
+        return isEn ? 'Water' : 'Su';
     }
   }
 

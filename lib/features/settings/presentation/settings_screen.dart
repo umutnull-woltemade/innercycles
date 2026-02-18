@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
-import '../../../data/services/localization_service.dart';
 import '../../../data/services/l10n_service.dart';
 
 import '../../../data/services/notification_service.dart';
@@ -45,7 +44,7 @@ class SettingsScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10n.get('settings.title', language),
+                  title: language == AppLanguage.en ? 'Settings' : 'Ayarlar',
                   largeTitleMode: true,
                 ),
                 SliverPadding(
@@ -57,7 +56,8 @@ class SettingsScreen extends ConsumerWidget {
                     delegate: SliverChildListDelegate([
                       // ═══ APPEARANCE SECTION ═══
                       _SectionHeader(
-                        title: L10n.get('theme', language).toUpperCase(),
+                        title: (language == AppLanguage.en ? 'Theme' : 'Tema')
+                            .toUpperCase(),
                         isDark: isDark,
                       ),
                       _GroupedContainer(
@@ -66,10 +66,9 @@ class SettingsScreen extends ConsumerWidget {
                           children: [
                             Expanded(
                               child: _ThemeOption(
-                                label: L10n.get(
-                                  'settings.light_mode',
-                                  language,
-                                ),
+                                label: language == AppLanguage.en
+                                    ? 'Light'
+                                    : 'Açık',
                                 icon: Icons.light_mode,
                                 isSelected: themeMode == ThemeMode.light,
                                 isDark: isDark,
@@ -84,7 +83,9 @@ class SettingsScreen extends ConsumerWidget {
                             const SizedBox(width: 8),
                             Expanded(
                               child: _ThemeOption(
-                                label: L10n.get('settings.dark_mode', language),
+                                label: language == AppLanguage.en
+                                    ? 'Dark'
+                                    : 'Koyu',
                                 icon: Icons.dark_mode,
                                 isSelected: themeMode == ThemeMode.dark,
                                 isDark: isDark,
@@ -103,7 +104,8 @@ class SettingsScreen extends ConsumerWidget {
 
                       // ═══ LANGUAGE SECTION ═══
                       _SectionHeader(
-                        title: L10n.get('language', language).toUpperCase(),
+                        title: (language == AppLanguage.en ? 'Language' : 'Dil')
+                            .toUpperCase(),
                         isDark: isDark,
                       ),
                       _GroupedContainer(
@@ -384,33 +386,6 @@ class SettingsScreen extends ConsumerWidget {
                             ),
                             _GroupedSeparator(isDark: isDark),
                             _GroupedTile(
-                              icon: Icons.emoji_events_outlined,
-                              title: language == AppLanguage.en
-                                  ? 'Growth Challenges'
-                                  : 'Büyüme Görevleri',
-                              isDark: isDark,
-                              onTap: () => context.push(Routes.challenges),
-                            ),
-                            _GroupedSeparator(isDark: isDark),
-                            _GroupedTile(
-                              icon: Icons.eco_outlined,
-                              title: language == AppLanguage.en
-                                  ? 'Seasonal Reflections'
-                                  : 'Mevsimsel Yansımalar',
-                              isDark: isDark,
-                              onTap: () => context.push(Routes.seasonal),
-                            ),
-                            _GroupedSeparator(isDark: isDark),
-                            _GroupedTile(
-                              icon: Icons.dark_mode_outlined,
-                              title: language == AppLanguage.en
-                                  ? 'Moon Calendar'
-                                  : 'Ay Takvimi',
-                              isDark: isDark,
-                              onTap: () => context.push(Routes.moonCalendar),
-                            ),
-                            _GroupedSeparator(isDark: isDark),
-                            _GroupedTile(
                               icon: Icons.file_download_outlined,
                               title: language == AppLanguage.en
                                   ? 'Export Data'
@@ -518,10 +493,9 @@ class SettingsScreen extends ConsumerWidget {
                               isDark: isDark,
                               onTap: () async {
                                 await urlLauncher.openSupportEmail(
-                                  subject: L10n.get(
-                                    'settings.support',
-                                    language,
-                                  ),
+                                  subject: language == AppLanguage.en
+                                      ? 'Support Request'
+                                      : 'Destek Talebi',
                                   body: '\n\n---\nApp Version: 1.0.0',
                                 );
                               },
@@ -623,7 +597,7 @@ class SettingsScreen extends ConsumerWidget {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              L10n.get('common.cancel', language),
+              language == AppLanguage.en ? 'Cancel' : 'İptal',
               style: TextStyle(
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -736,7 +710,7 @@ class SettingsScreen extends ConsumerWidget {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              L10n.get('common.ok', language),
+              language == AppLanguage.en ? 'OK' : 'Tamam',
               style: TextStyle(color: AppColors.starGold),
             ),
           ),

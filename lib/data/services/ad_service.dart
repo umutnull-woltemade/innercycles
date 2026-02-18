@@ -1,3 +1,4 @@
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -89,21 +90,34 @@ class AdService {
     _analytics = analytics;
 
     try {
+      // Load premium status first
+      final prefs = await SharedPreferences.getInstance();
+      _isPremium = prefs.getBool('is_premium') ?? false;
+
+      // Request ATT only for free-tier users (contextual, right before ads)
+      if (!_isPremium) {
+        try {
+          final attStatus =
+              await AppTrackingTransparency.requestTrackingAuthorization();
+          if (kDebugMode) {
+            debugPrint('AdService: ATT status: $attStatus');
+          }
+        } catch (e) {
+          if (kDebugMode) {
+            debugPrint('AdService: ATT request failed: $e');
+          }
+        }
+      }
+
       await MobileAds.instance.initialize();
       _isInitialized = true;
 
       // Configure test devices in debug mode
       if (kDebugMode) {
         MobileAds.instance.updateRequestConfiguration(
-          RequestConfiguration(
-            testDeviceIds: ['YOUR_TEST_DEVICE_ID'], // Add your test device IDs
-          ),
+          RequestConfiguration(testDeviceIds: <String>[]),
         );
       }
-
-      // Load premium status
-      final prefs = await SharedPreferences.getInstance();
-      _isPremium = prefs.getBool('is_premium') ?? false;
 
       if (!_isPremium) {
         _loadInterstitialAd();

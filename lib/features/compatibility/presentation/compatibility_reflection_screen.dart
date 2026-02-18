@@ -212,8 +212,7 @@ class _CompatibilityReflectionScreenState
 
     return Scaffold(
       body: CosmicBackground(
-        child: ExcludeSemantics(
-          child: GestureDetector(
+        child: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             behavior: HitTestBehavior.opaque,
             child: SafeArea(
@@ -236,7 +235,6 @@ class _CompatibilityReflectionScreenState
               _ScreenMode.resultView => _buildResultView(context, isDark, isEn),
             },
           ),
-        ),
         ),
       ),
     );

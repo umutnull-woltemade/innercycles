@@ -1,5 +1,8 @@
 // ════════════════════════════════════════════════════════════════════════════
-// ROUTER SERVICE - InnerCycles Navigation (App Store 4.3(b) Compliant)
+// ROUTER SERVICE - InnerCycles Navigation (Survival Release)
+// ════════════════════════════════════════════════════════════════════════════
+// 5-Tab: Home | Journal | Insights | Breathe | Profile
+// SECONDARY features soft-archived: code preserved, routes removed.
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/foundation.dart';
@@ -8,82 +11,32 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/constants/routes.dart';
+
+// ── CORE screen imports ──
 import '../../features/disclaimer/presentation/disclaimer_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
-import '../../features/premium/presentation/premium_screen.dart';
-import '../../features/settings/presentation/settings_screen.dart';
-import '../../features/profile/presentation/profile_screen.dart';
-import '../../features/insight/presentation/insight_screen.dart';
-import '../../features/insight/presentation/insights_discovery_screen.dart';
-import '../../features/dreams/presentation/dream_interpretation_screen.dart';
-import '../../features/dreams/presentation/dream_glossary_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_falling_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_water_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_recurring_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_running_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_flying_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_losing_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_darkness_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_past_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_searching_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_voiceless_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_lost_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_unable_to_fly_screen.dart';
+import '../../features/onboarding/presentation/archetype_quiz_screen.dart';
+import '../../features/today/presentation/today_feed_screen.dart';
 import '../../features/journal/presentation/daily_entry_screen.dart';
 import '../../features/journal/presentation/entry_detail_screen.dart';
 import '../../features/journal/presentation/patterns_screen.dart';
 import '../../features/journal/presentation/archive_screen.dart';
 import '../../features/journal/presentation/monthly_reflection_screen.dart';
+import '../../features/journal/presentation/emotional_cycle_screen.dart';
+import '../../features/mood/presentation/mood_trends_screen.dart';
+import '../../features/calendar/presentation/calendar_heatmap_screen.dart';
+import '../../features/breathing/presentation/breathing_timer_screen.dart';
+import '../../features/meditation/presentation/meditation_timer_screen.dart';
+import '../../features/profile/presentation/profile_hub_screen.dart';
+import '../../features/profile/presentation/profile_screen.dart';
+import '../../features/settings/presentation/settings_screen.dart';
+import '../../features/premium/presentation/premium_screen.dart';
+import '../../features/settings/presentation/notification_schedule_screen.dart';
+import '../../features/export/presentation/export_screen.dart';
+import '../../features/streak/presentation/streak_stats_screen.dart';
+import '../../features/app_lock/presentation/app_lock_screen.dart';
 import '../../features/admin/presentation/admin_login_screen.dart';
 import '../../features/admin/presentation/admin_dashboard_screen.dart';
-import '../../features/quiz/presentation/attachment_quiz_screen.dart';
-import '../../features/quiz/presentation/quiz_hub_screen.dart';
-import '../../features/quiz/presentation/generic_quiz_screen.dart';
-import '../../features/sharing/presentation/share_card_gallery.dart';
-import '../../features/journal/presentation/emotional_cycle_screen.dart';
-import '../../features/growth/presentation/growth_dashboard_screen.dart';
-import '../../features/rituals/presentation/rituals_screen.dart';
-import '../../features/rituals/presentation/ritual_create_screen.dart';
-import '../../features/wellness/presentation/wellness_detail_screen.dart';
-import '../../features/energy/presentation/energy_map_screen.dart';
-import '../../features/programs/presentation/program_list_screen.dart';
-import '../../features/programs/presentation/active_program_screen.dart';
-import '../../features/seasonal/presentation/seasonal_reflection_screen.dart';
-import '../../features/breathing/presentation/breathing_timer_screen.dart';
-import '../../features/moon/presentation/moon_calendar_screen.dart';
-import '../../features/challenges/presentation/challenge_list_screen.dart';
-import '../../features/digest/presentation/weekly_digest_screen.dart';
-import '../../features/archetype/presentation/archetype_screen.dart';
-import '../../features/compatibility/presentation/compatibility_reflection_screen.dart';
-import '../../features/blind_spot/presentation/blind_spot_screen.dart';
-import '../../features/export/presentation/export_screen.dart';
-import '../../features/meditation/presentation/meditation_timer_screen.dart';
-import '../../features/gratitude/presentation/gratitude_screen.dart';
-import '../../features/sleep/presentation/sleep_detail_screen.dart';
-import '../../features/prompts/presentation/prompt_library_screen.dart';
-import '../../features/milestones/presentation/milestone_screen.dart';
-import '../../features/onboarding/presentation/archetype_quiz_screen.dart';
-import '../../features/habits/presentation/habit_suggestions_screen.dart';
-import '../../features/habits/presentation/daily_habits_screen.dart';
-import '../../features/year_review/presentation/year_review_screen.dart';
-import '../../features/calendar/presentation/calendar_heatmap_screen.dart';
-import '../../features/search/presentation/global_search_screen.dart';
-import '../../features/mood/presentation/mood_trends_screen.dart';
-import '../../features/gratitude/presentation/gratitude_archive_screen.dart';
-import '../../features/sleep/presentation/sleep_trends_screen.dart';
-import '../../features/app_lock/presentation/app_lock_screen.dart';
-import '../../features/affirmation/presentation/affirmation_library_screen.dart';
-import '../../features/mood/presentation/emotional_vocabulary_screen.dart';
-import '../../features/articles/presentation/articles_screen.dart';
-import '../../features/streak/presentation/streak_stats_screen.dart';
-import '../../features/dreams/presentation/dream_archive_screen.dart';
-import '../../features/settings/presentation/notification_schedule_screen.dart';
-import '../../features/programs/presentation/program_completion_screen.dart';
-import '../../features/today/presentation/today_feed_screen.dart';
-import '../../features/tools/presentation/tool_catalog_screen.dart';
-import '../../features/challenges/presentation/challenge_hub_screen.dart';
-import '../../features/library/presentation/library_hub_screen.dart';
-import '../../features/profile/presentation/profile_hub_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/app_lock_service.dart';
@@ -127,17 +80,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         return Routes.onboarding;
       }
 
-      // Legacy route redirects
-      final redirect = Routes.legacyRouteRedirects[path];
-      if (redirect != null) {
-        return redirect;
-      }
-
       return null;
     },
     routes: [
       // ════════════════════════════════════════════════════════════════
-      // CORE ROUTES
+      // SYSTEM ROUTES
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.splash,
@@ -155,17 +102,15 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.archetypeQuiz,
         builder: (context, state) => const ArchetypeQuizScreen(),
       ),
-      GoRoute(path: Routes.home, redirect: (_, _) => Routes.today),
-
       // ════════════════════════════════════════════════════════════════
-      // STATEFUL SHELL ROUTE - 5-Tab Bottom Navigation
+      // 5-TAB SHELL: Home | Journal | Insights | Breathe | Profile
       // ════════════════════════════════════════════════════════════════
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return MainShellScreen(navigationShell: navigationShell);
         },
         branches: [
-          // Tab 0: Today
+          // Tab 0: Home
           StatefulShellBranch(
             routes: [
               GoRoute(
@@ -174,30 +119,30 @@ final routerProvider = Provider<GoRouter>((ref) {
               ),
             ],
           ),
-          // Tab 1: Tools
+          // Tab 1: Journal
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: Routes.tools,
-                builder: (context, state) => const ToolCatalogScreen(),
+                path: Routes.journal,
+                builder: (context, state) => const DailyEntryScreen(),
               ),
             ],
           ),
-          // Tab 2: Challenges
+          // Tab 2: Insights
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: Routes.challengeHub,
-                builder: (context, state) => const ChallengeHubScreen(),
+                path: Routes.moodTrends,
+                builder: (context, state) => const MoodTrendsScreen(),
               ),
             ],
           ),
-          // Tab 3: Library
+          // Tab 3: Breathe
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: Routes.library,
-                builder: (context, state) => const LibraryHubScreen(),
+                path: Routes.breathing,
+                builder: (context, state) => const BreathingTimerScreen(),
               ),
             ],
           ),
@@ -214,28 +159,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       // ════════════════════════════════════════════════════════════════
-      // INSIGHT - Personal Reflection
+      // JOURNAL (sub-screens, outside shell)
       // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.insight,
-        builder: (context, state) => const InsightScreen(),
-        routes: [
-          // Catch-all for legacy archetype sub-routes like /insight/ateş-ruhu
-          GoRoute(path: ':archetype', redirect: (_, _) => Routes.insight),
-        ],
-      ),
-      GoRoute(
-        path: Routes.insightsDiscovery,
-        builder: (context, state) => const InsightsDiscoveryScreen(),
-      ),
-
-      // ════════════════════════════════════════════════════════════════
-      // JOURNAL - Personal Cycle Tracking (PRIMARY FEATURE)
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.journal,
-        builder: (context, state) => const DailyEntryScreen(),
-      ),
       GoRoute(
         path: Routes.journalEntryDetail,
         builder: (context, state) {
@@ -257,330 +182,23 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       // ════════════════════════════════════════════════════════════════
-      // DREAM JOURNAL
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.dreamInterpretation,
-        builder: (context, state) => const DreamInterpretationScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamGlossary,
-        builder: (context, state) => const DreamGlossaryScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamShare,
-        redirect: (_, _) => Routes.dreamGlossary,
-      ),
-      GoRoute(
-        path: Routes.dreamFalling,
-        builder: (context, state) => const DreamFallingScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamWater,
-        builder: (context, state) => const DreamWaterScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamRecurring,
-        builder: (context, state) => const DreamRecurringScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamRunning,
-        builder: (context, state) => const DreamRunningScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamFlying,
-        builder: (context, state) => const DreamFlyingScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamLosing,
-        builder: (context, state) => const DreamLosingScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamDarkness,
-        builder: (context, state) => const DreamDarknessScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamPast,
-        builder: (context, state) => const DreamPastScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamSearching,
-        builder: (context, state) => const DreamSearchingScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamVoiceless,
-        builder: (context, state) => const DreamVoicelessScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamLost,
-        builder: (context, state) => const DreamLostScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamUnableToFly,
-        builder: (context, state) => const DreamUnableToFlyScreen(),
-      ),
-
-      // ════════════════════════════════════════════════════════════════
-      // GROWTH & ENGAGEMENT
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.quizHub,
-        builder: (context, state) => const QuizHubScreen(),
-      ),
-      GoRoute(
-        path: Routes.attachmentQuiz,
-        builder: (context, state) => const AttachmentQuizScreen(),
-      ),
-      GoRoute(
-        path: Routes.quizGeneric,
-        builder: (context, state) {
-          final quizId = state.pathParameters['quizId'] ?? '';
-          return GenericQuizScreen(quizId: quizId);
-        },
-      ),
-      GoRoute(
-        path: Routes.shareInsight,
-        redirect: (context, state) => Routes.shareCardGallery,
-      ),
-      GoRoute(
-        path: Routes.shareCardGallery,
-        builder: (context, state) => const ShareCardGalleryScreen(),
-      ),
-      GoRoute(
-        path: Routes.emotionalCycles,
-        builder: (context, state) => const EmotionalCycleScreen(),
-      ),
-      GoRoute(
-        path: Routes.growthDashboard,
-        builder: (context, state) => const GrowthDashboardScreen(),
-      ),
-
-      // ════════════════════════════════════════════════════════════════
-      // RITUALS & HABITS
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.rituals,
-        builder: (context, state) => const RitualsScreen(),
-      ),
-      GoRoute(
-        path: Routes.ritualCreate,
-        builder: (context, state) => const RitualCreateScreen(),
-      ),
-
-      // ════════════════════════════════════════════════════════════════
-      // WELLNESS & SLEEP
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.wellnessDetail,
-        builder: (context, state) => const WellnessDetailScreen(),
-      ),
-      GoRoute(
-        path: Routes.energyMap,
-        builder: (context, state) => const EnergyMapScreen(),
-      ),
-
-      // ════════════════════════════════════════════════════════════════
-      // GUIDED PROGRAMS
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.programs,
-        builder: (context, state) => const ProgramListScreen(),
-      ),
-      GoRoute(
-        path: Routes.programDetail,
-        builder: (context, state) {
-          final id = state.pathParameters['id'] ?? '';
-          return ActiveProgramScreen(programId: id);
-        },
-      ),
-
-      // ════════════════════════════════════════════════════════════════
-      // P2: SEASONAL, BREATHING, MOON CALENDAR, CHALLENGES
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.seasonal,
-        builder: (context, state) => const SeasonalReflectionScreen(),
-      ),
-      GoRoute(
-        path: Routes.breathing,
-        builder: (context, state) => const BreathingTimerScreen(),
-      ),
-      GoRoute(
-        path: Routes.moonCalendar,
-        builder: (context, state) => const MoonCalendarScreen(),
-      ),
-      GoRoute(
-        path: Routes.challenges,
-        builder: (context, state) => const ChallengeListScreen(),
-      ),
-
-      // ════════════════════════════════════════════════════════════════
-      // TIER 2 FEATURES
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.weeklyDigest,
-        builder: (context, state) => const WeeklyDigestScreen(),
-      ),
-      GoRoute(
-        path: Routes.archetype,
-        builder: (context, state) => const ArchetypeScreen(),
-      ),
-      GoRoute(
-        path: Routes.compatibilityReflection,
-        builder: (context, state) => const CompatibilityReflectionScreen(),
-      ),
-      GoRoute(
-        path: Routes.blindSpot,
-        builder: (context, state) => const BlindSpotScreen(),
-      ),
-      GoRoute(
-        path: Routes.promptLibrary,
-        builder: (context, state) => const PromptLibraryScreen(),
-      ),
-      GoRoute(
-        path: Routes.milestones,
-        builder: (context, state) => const MilestoneScreen(),
-      ),
-      GoRoute(
-        path: Routes.yearReview,
-        builder: (context, state) => const YearReviewScreen(),
-      ),
-      GoRoute(
-        path: Routes.habitSuggestions,
-        builder: (context, state) => const HabitSuggestionsScreen(),
-      ),
-      GoRoute(
-        path: Routes.dailyHabits,
-        builder: (context, state) => const DailyHabitsScreen(),
-      ),
-
-      // ════════════════════════════════════════════════════════════════
-      // CALENDAR & SEARCH
+      // INSIGHTS (sub-screens, outside shell)
       // ════════════════════════════════════════════════════════════════
       GoRoute(
         path: Routes.calendarHeatmap,
         builder: (context, state) => const CalendarHeatmapScreen(),
       ),
       GoRoute(
-        path: Routes.search,
-        builder: (context, state) => const GlobalSearchScreen(),
+        path: Routes.emotionalCycles,
+        builder: (context, state) => const EmotionalCycleScreen(),
       ),
 
       // ════════════════════════════════════════════════════════════════
-      // EXPORT, MEDITATION, GRATITUDE, SLEEP DETAIL
+      // BREATHE (sub-screens, outside shell)
       // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.exportData,
-        builder: (context, state) => const ExportScreen(),
-      ),
       GoRoute(
         path: Routes.meditation,
         builder: (context, state) => const MeditationTimerScreen(),
-      ),
-      GoRoute(
-        path: Routes.gratitudeJournal,
-        builder: (context, state) => const GratitudeScreen(),
-      ),
-      GoRoute(
-        path: Routes.sleepDetail,
-        builder: (context, state) => const SleepDetailScreen(),
-      ),
-
-      // ════════════════════════════════════════════════════════════════
-      // TRENDS & HISTORY
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.moodTrends,
-        builder: (context, state) => const MoodTrendsScreen(),
-      ),
-      GoRoute(
-        path: Routes.gratitudeArchive,
-        builder: (context, state) => const GratitudeArchiveScreen(),
-      ),
-      GoRoute(
-        path: Routes.sleepTrends,
-        builder: (context, state) => const SleepTrendsScreen(),
-      ),
-
-      // ════════════════════════════════════════════════════════════════
-      // AFFIRMATIONS, EMOTIONAL VOCABULARY
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.affirmations,
-        builder: (context, state) => const AffirmationLibraryScreen(),
-      ),
-      GoRoute(
-        path: Routes.emotionalVocabulary,
-        builder: (context, state) => const EmotionalVocabularyScreen(),
-      ),
-
-      // ════════════════════════════════════════════════════════════════
-      // STREAK, DREAM ARCHIVE, NOTIFICATIONS, PROGRAM COMPLETION
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.streakStats,
-        builder: (context, state) => const StreakStatsScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamArchive,
-        builder: (context, state) => const DreamArchiveScreen(),
-      ),
-      GoRoute(
-        path: Routes.notifications,
-        builder: (context, state) => const NotificationScheduleScreen(),
-      ),
-      GoRoute(
-        path: Routes.programCompletion,
-        builder: (context, state) {
-          final extra = state.extra is Map<String, dynamic>
-              ? state.extra as Map<String, dynamic>
-              : <String, dynamic>{};
-          return ProgramCompletionScreen(
-            programTitle: extra['title'] as String? ?? '',
-            programEmoji: extra['emoji'] as String? ?? '',
-            durationDays: extra['durationDays'] as int? ?? 0,
-            completedDays: extra['completedDays'] as int? ?? 0,
-          );
-        },
-      ),
-
-      // ════════════════════════════════════════════════════════════════
-      // REFERENCE & CONTENT
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.glossary,
-        redirect: (context, state) => Routes.emotionalVocabulary,
-      ),
-      GoRoute(
-        path: Routes.articles,
-        builder: (context, state) => const ArticlesScreen(),
-      ),
-      // ════════════════════════════════════════════════════════════════
-      // LEGACY ROUTE REDIRECTS (archived features → valid screens)
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(path: '/legacy-home', redirect: (_, _) => Routes.insight),
-      GoRoute(path: '/energy-profile', redirect: (_, _) => Routes.insight),
-      GoRoute(
-        path: '/number-patterns',
-        redirect: (_, _) => Routes.insightsDiscovery,
-      ),
-      GoRoute(path: '/legacy-analysis', redirect: (_, _) => Routes.insight),
-      GoRoute(path: '/moon-rituals', redirect: (_, _) => Routes.rituals),
-      GoRoute(path: '/legacy-insight', redirect: (_, _) => Routes.insight),
-      GoRoute(path: '/timing', redirect: (_, _) => Routes.journalPatterns),
-      GoRoute(path: '/celebrities', redirect: (_, _) => Routes.insight),
-      GoRoute(path: '/daily-rituals', redirect: (_, _) => Routes.rituals),
-      GoRoute(
-        path: '/kesif/ruhsal-donusum',
-        redirect: (_, _) => Routes.insight,
-      ),
-
-      // ════════════════════════════════════════════════════════════════
-      // APP LOCK
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.appLock,
-        builder: (context, state) => const AppLockScreen(),
       ),
 
       // ════════════════════════════════════════════════════════════════
@@ -590,7 +208,6 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.profile,
         builder: (context, state) => const ProfileScreen(),
       ),
-      // savedProfiles and comparison legacy redirects removed (dead routes)
       GoRoute(
         path: Routes.settings,
         builder: (context, state) => const SettingsScreen(),
@@ -598,6 +215,30 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.premium,
         builder: (context, state) => const PremiumScreen(),
+      ),
+      GoRoute(
+        path: Routes.notifications,
+        builder: (context, state) => const NotificationScheduleScreen(),
+      ),
+      GoRoute(
+        path: Routes.exportData,
+        builder: (context, state) => const ExportScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // STREAK
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.streakStats,
+        builder: (context, state) => const StreakStatsScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // APP LOCK
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.appLock,
+        builder: (context, state) => const AppLockScreen(),
       ),
 
       // ════════════════════════════════════════════════════════════════
@@ -619,11 +260,69 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       // ════════════════════════════════════════════════════════════════
-      // LEGACY REDIRECTS (all old routes -> insight)
+      // SOFT-ARCHIVE REDIRECTS
+      // All removed routes redirect to Home gracefully
       // ════════════════════════════════════════════════════════════════
+      GoRoute(path: Routes.insight, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.insightsDiscovery, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.tools, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.challengeHub, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.library, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.dreamInterpretation, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.dreamGlossary, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.dreamArchive, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.quizHub, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.attachmentQuiz, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.shareCardGallery, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.growthDashboard, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.rituals, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.ritualCreate, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.wellnessDetail, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.energyMap, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.programs, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.seasonal, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.moonCalendar, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.challenges, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.weeklyDigest, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.archetype, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.compatibilityReflection, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.blindSpot, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.promptLibrary, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.milestones, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.yearReview, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.habitSuggestions, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.dailyHabits, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.gratitudeJournal, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.sleepDetail, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.gratitudeArchive, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.sleepTrends, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.affirmations, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.emotionalVocabulary, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.articles, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.glossary, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.search, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.programCompletion, redirect: (_, _) => Routes.today),
+      GoRoute(path: Routes.shareInsight, redirect: (_, _) => Routes.today),
+
+      // ════════════════════════════════════════════════════════════════
+      // LEGACY REDIRECTS (all → Home)
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(path: '/legacy-home', redirect: (_, _) => Routes.today),
+      GoRoute(path: '/energy-profile', redirect: (_, _) => Routes.today),
+      GoRoute(path: '/number-patterns', redirect: (_, _) => Routes.today),
+      GoRoute(path: '/legacy-analysis', redirect: (_, _) => Routes.today),
+      GoRoute(path: '/moon-rituals', redirect: (_, _) => Routes.today),
+      GoRoute(path: '/legacy-insight', redirect: (_, _) => Routes.today),
+      GoRoute(path: '/timing', redirect: (_, _) => Routes.today),
+      GoRoute(path: '/celebrities', redirect: (_, _) => Routes.today),
+      GoRoute(path: '/daily-rituals', redirect: (_, _) => Routes.today),
+      GoRoute(
+        path: '/kesif/ruhsal-donusum',
+        redirect: (_, _) => Routes.today,
+      ),
       ...Routes.legacyRouteRedirects.entries.map(
         (entry) =>
-            GoRoute(path: entry.key, redirect: (context, state) => entry.value),
+            GoRoute(path: entry.key, redirect: (context, state) => Routes.today),
       ),
     ],
   );

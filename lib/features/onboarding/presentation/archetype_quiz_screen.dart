@@ -248,12 +248,12 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
   }
 
   void _skipQuiz() {
-    context.go(Routes.home);
+    context.go(Routes.today);
   }
 
   void _goHome() {
     HapticFeedback.mediumImpact();
-    context.go(Routes.home);
+    context.go(Routes.today);
   }
 
   @override

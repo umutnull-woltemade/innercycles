@@ -86,8 +86,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
       backgroundColor: isDark ? AppColors.deepSpace : AppColors.lightBackground,
       body: CosmicBackground(
         child: SafeArea(
-          child: ExcludeSemantics(
-            child: GestureDetector(
+          child: GestureDetector(
               onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
               behavior: HitTestBehavior.opaque,
               child: Column(
@@ -178,7 +177,6 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                 ),
               ],
             ),
-          ),
           ),
         ),
       ),

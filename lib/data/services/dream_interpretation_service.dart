@@ -1,5 +1,5 @@
 /// Dream Interpretation Service - 7-Dimensional Dream Interpretation Engine
-/// AI-powered ancient wisdom + Jungian analysis + timing awareness
+/// Ancient wisdom + Jungian analysis + timing awareness
 library;
 
 import 'dart:math';

@@ -20,10 +20,8 @@ import '../services/streak_service.dart';
 import '../services/gratitude_service.dart';
 import '../services/ritual_service.dart';
 import '../services/review_service.dart';
-import '../services/content_engine_service.dart';
 import '../services/attachment_style_service.dart';
 import '../services/daily_hook_service.dart';
-import '../services/upgrade_trigger_service.dart';
 import '../services/sleep_service.dart';
 import '../services/wellness_score_service.dart';
 import '../services/energy_map_service.dart';
@@ -356,16 +354,6 @@ final reviewServiceProvider = FutureProvider<ReviewService>((ref) async {
 });
 
 // =============================================================================
-// CONTENT ENGINE PROVIDER
-// =============================================================================
-
-final contentEngineServiceProvider = FutureProvider<ContentEngineService>((
-  ref,
-) async {
-  return await ContentEngineService.init();
-});
-
-// =============================================================================
 // ATTACHMENT STYLE PROVIDER
 // =============================================================================
 
@@ -381,16 +369,6 @@ final attachmentStyleServiceProvider = FutureProvider<AttachmentStyleService>((
 
 final dailyHookServiceProvider = FutureProvider<DailyHookService>((ref) async {
   return await DailyHookService.init();
-});
-
-// =============================================================================
-// UPGRADE TRIGGER PROVIDER
-// =============================================================================
-
-final upgradeTriggerServiceProvider = FutureProvider<UpgradeTriggerService>((
-  ref,
-) async {
-  return await UpgradeTriggerService.init();
 });
 
 // =============================================================================

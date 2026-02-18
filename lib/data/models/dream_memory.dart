@@ -1,4 +1,4 @@
-/// Dream Memory System - Core data model for AI-powered dream tracking
+/// Dream Memory System - Core data model for pattern-based dream tracking
 /// This is the UNIQUE MOAT - no competitor has this feature
 /// Enables pattern detection, symbol tracking, and personalized interpretations
 library;

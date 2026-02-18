@@ -15,11 +15,12 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
+import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
-import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class CalendarHeatmapScreen extends ConsumerStatefulWidget {
   const CalendarHeatmapScreen({super.key});
@@ -55,6 +56,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(journalServiceProvider);
+    final isPremium = ref.watch(isPremiumUserProvider);
 
     return Scaffold(
       body: CosmicBackground(
@@ -70,7 +72,8 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
               ),
             ),
           ),
-          data: (service) => _buildContent(context, service, isDark, isEn),
+          data: (service) =>
+              _buildContent(context, service, isDark, isEn, isPremium),
         ),
       ),
     );
@@ -81,6 +84,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
     JournalService service,
     bool isDark,
     bool isEn,
+    bool isPremium,
   ) {
     final allEntries = service.getAllEntries();
     final monthEntries = service.getEntriesForMonth(
@@ -126,6 +130,13 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                 isDark: isDark,
                 isEn: isEn,
                 onPrevious: () {
+                  if (!isPremium) {
+                    showContextualPaywall(
+                      context, ref,
+                      paywallContext: PaywallContext.patterns,
+                    );
+                    return;
+                  }
                   HapticFeedback.selectionClick();
                   setState(() {
                     _selectedMonth--;
@@ -194,20 +205,18 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                 const SizedBox(height: 20),
               ],
 
-              // Year heatmap (mini)
-              _YearHeatmap(
-                year: _selectedYear,
-                entryMap: entryMap,
-                isDark: isDark,
-                isEn: isEn,
-              ),
+              // Year heatmap (mini) — PREMIUM
+              if (isPremium)
+                _YearHeatmap(
+                  year: _selectedYear,
+                  entryMap: entryMap,
+                  isDark: isDark,
+                  isEn: isEn,
+                )
+              else
+                _PremiumYearOverlay(isDark: isDark, isEn: isEn),
 
               ContentDisclaimer(language: isEn ? AppLanguage.en : AppLanguage.tr),
-              ToolEcosystemFooter(
-                currentToolId: 'calendarHeatmap',
-                isEn: isEn,
-                isDark: isDark,
-              ),
               const SizedBox(height: 40),
             ]),
           ),
@@ -1026,5 +1035,80 @@ class _YearHeatmap extends StatelessWidget {
         ],
       ),
     ).animate().fadeIn(duration: 400.ms, delay: 200.ms);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// PREMIUM YEAR OVERLAY — shown to free users in place of year heatmap
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _PremiumYearOverlay extends ConsumerWidget {
+  final bool isDark;
+  final bool isEn;
+
+  const _PremiumYearOverlay({required this.isDark, required this.isEn});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: isDark
+            ? AppColors.starGold.withValues(alpha: 0.06)
+            : AppColors.lightStarGold.withValues(alpha: 0.06),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppColors.starGold.withValues(alpha: 0.2),
+        ),
+      ),
+      child: Column(
+        children: [
+          Icon(Icons.calendar_today, size: 32, color: AppColors.starGold),
+          const SizedBox(height: 12),
+          Text(
+            isEn ? 'Year Heatmap' : 'Yıl Isı Haritası',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            isEn
+                ? 'See your full year at a glance with Premium'
+                : 'Premium ile tüm yılını bir bakışta gör',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 13,
+              color: isDark
+                  ? AppColors.textMuted
+                  : AppColors.lightTextMuted,
+            ),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () => showContextualPaywall(
+              context, ref,
+              paywallContext: PaywallContext.patterns,
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.starGold,
+              foregroundColor: AppColors.deepSpace,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            child: Text(
+              isEn ? 'Upgrade to Premium' : 'Premium\'a Yükselt',
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

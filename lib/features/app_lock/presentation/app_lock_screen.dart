@@ -43,7 +43,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
       reason: isEn ? 'Unlock InnerCycles' : 'InnerCycles Kilidini Aç',
     );
     if (success && mounted) {
-      context.go(Routes.home);
+      context.go(Routes.today);
     }
   }
 
@@ -74,7 +74,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
     if (service == null) return;
 
     if (service.verifyPin(_enteredPin)) {
-      context.go(Routes.home);
+      context.go(Routes.today);
     } else {
       HapticFeedback.heavyImpact();
       setState(() {

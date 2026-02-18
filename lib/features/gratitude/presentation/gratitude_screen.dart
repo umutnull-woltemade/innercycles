@@ -63,8 +63,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: ExcludeSemantics(
-          child: GestureDetector(
+        child: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             behavior: HitTestBehavior.opaque,
             child: SafeArea(
@@ -200,7 +199,6 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
               ],
             ),
           ),
-        ),
         ),
       ),
     );

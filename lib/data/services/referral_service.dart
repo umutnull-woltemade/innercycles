@@ -68,8 +68,8 @@ class ReferralService {
     final isEn = language == AppLanguage.en;
 
     final shareText = isEn
-        ? 'I\'m discovering my emotional patterns with InnerCycles! Track moods, decode dreams, and see what your inner cycles reveal. Try it free:'
-        : 'InnerCycles ile duygusal kalıplarımı keşfediyorum! Ruh halini takip et, rüyalarını çöz ve iç döngülerinin ne anlattığını gör. Ücretsiz dene:';
+        ? 'I\'m discovering my emotional patterns with InnerCycles! Track moods, explore journal insights, and see what your inner cycles reveal. Try it free:'
+        : 'InnerCycles ile duygusal kalıplarımı keşfediyorum! Ruh halini takip et, günlük içgörülerini keşfet ve iç döngülerinin ne anlattığını gör. Ücretsiz dene:';
 
     const appUrl = 'https://apps.apple.com/app/innercycles/id6758612716';
 

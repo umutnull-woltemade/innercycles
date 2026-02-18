@@ -45,8 +45,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: ExcludeSemantics(
-          child: GestureDetector(
+        child: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             behavior: HitTestBehavior.opaque,
             child: SafeArea(
@@ -143,7 +142,6 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
               },
             ),
           ),
-        ),
         ),
       ),
     );

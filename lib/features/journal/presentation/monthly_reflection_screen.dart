@@ -17,7 +17,6 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
-import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
@@ -178,11 +177,6 @@ class _MonthlyReflectionScreenState
                                 duration: 400.ms,
                               ),
                           ContentDisclaimer(language: language),
-                          ToolEcosystemFooter(
-                            currentToolId: 'monthlyReflection',
-                            isEn: isEn,
-                            isDark: isDark,
-                          ),
                           const SizedBox(height: 40),
                         ]),
                       ),

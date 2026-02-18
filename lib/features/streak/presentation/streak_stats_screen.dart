@@ -14,7 +14,6 @@ import '../../../data/services/streak_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
-import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class StreakStatsScreen extends ConsumerWidget {
   const StreakStatsScreen({super.key});
@@ -117,11 +116,6 @@ class StreakStatsScreen extends ConsumerWidget {
 
                 // Quick action
                 _buildQuickAction(context, isDark, isEn),
-                ToolEcosystemFooter(
-                  currentToolId: 'streakStats',
-                  isEn: isEn,
-                  isDark: isDark,
-                ),
                 const SizedBox(height: 40),
               ]),
             ),

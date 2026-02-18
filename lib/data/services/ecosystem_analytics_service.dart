@@ -8,6 +8,7 @@
 import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'analytics_service.dart';
 
 class AnalyticsEvent {
   final String name;
@@ -193,6 +194,9 @@ class EcosystemAnalyticsService {
       _events = _events.sublist(0, _maxEvents);
     }
     _persistEvents();
+
+    // Forward to main AnalyticsService for Supabase batch flush
+    AnalyticsService().logEvent('eco_$name', properties);
   }
 
   void _loadEvents() {
