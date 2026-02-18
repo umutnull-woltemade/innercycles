@@ -26,7 +26,9 @@ import '../../../data/services/growth_challenge_service.dart';
 import '../../../data/services/gratitude_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 
@@ -226,6 +228,14 @@ class _GrowthDashboardScreenState
                     isDark,
                     isEn,
                   ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+                  ContentDisclaimer(
+                    language: isEn ? AppLanguage.en : AppLanguage.tr,
+                  ),
+                  ToolEcosystemFooter(
+                    currentToolId: 'growthDashboard',
+                    isEn: isEn,
+                    isDark: isDark,
+                  ),
                   const SizedBox(height: 40),
                 ]),
               ),

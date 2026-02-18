@@ -8,14 +8,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../core/constants/app_constants.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/tool_manifest.dart';
+import '../../data/services/ecosystem_analytics_service.dart';
+import '../../data/services/smart_router_service.dart';
 
-class ToolEcosystemFooter extends StatelessWidget {
+class ToolEcosystemFooter extends ConsumerWidget {
   final String currentToolId;
   final bool isEn;
   final bool isDark;
@@ -37,7 +40,7 @@ class ToolEcosystemFooter extends StatelessWidget {
   };
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final manifest = ToolManifestRegistry.findById(currentToolId);
     if (manifest == null) return const SizedBox.shrink();
 
@@ -84,6 +87,12 @@ class ToolEcosystemFooter extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     HapticFeedback.selectionClick();
+                    ref.read(ecosystemAnalyticsServiceProvider).whenData(
+                      (s) => s.trackNextToolTap(currentToolId, tool.id, 'footer'),
+                    );
+                    ref.read(smartRouterServiceProvider).whenData(
+                      (s) => s.recordToolVisit(tool.id),
+                    );
                     context.push(tool.route);
                   },
                   child: Container(

@@ -89,6 +89,7 @@ class _CycleWaveChartState extends State<CycleWaveChart> {
     final now = DateTime.now();
     final rangeStart = now.subtract(Duration(days: widget.displayDays));
     final totalMs = now.difference(rangeStart).inMilliseconds.toDouble();
+    if (totalMs <= 0) return;
 
     const leftPadding = 28.0;
     const rightPadding = 12.0;
@@ -190,6 +191,7 @@ class _CycleWavePainterImpl extends CustomPainter {
     final now = DateTime.now();
     final rangeStart = now.subtract(Duration(days: displayDays));
     final totalMs = now.difference(rangeStart).inMilliseconds.toDouble();
+    if (totalMs <= 0) return;
 
     const leftPadding = 28.0;
     const rightPadding = 12.0;

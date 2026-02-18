@@ -827,9 +827,9 @@ class _DayDetail extends StatelessWidget {
   Color _ratingColor(int rating) {
     switch (rating) {
       case 1:
-        return Colors.red.shade400;
+        return AppColors.error;
       case 2:
-        return Colors.orange.shade400;
+        return AppColors.warning;
       case 3:
         return AppColors.starGold;
       case 4:

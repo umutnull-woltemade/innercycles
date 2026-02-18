@@ -366,9 +366,13 @@ class StorageService {
 
   // ========== CLEAR ALL DATA ==========
 
-  /// Clear all stored data
+  /// Clear all stored data (Hive boxes + SharedPreferences)
+  /// Required for App Store compliance: "Clear Data" must remove ALL user data
   static Future<void> clearAllData() async {
     await _profileBox?.clear();
     await _settingsBox?.clear();
+    // Also clear SharedPreferences (journal entries, dreams, moods, etc.)
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
   }
 }

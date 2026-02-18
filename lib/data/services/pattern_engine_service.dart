@@ -764,9 +764,9 @@ class PatternEngineService {
 
     final numerator = n * sumXY - sumX * sumY;
     final denominator =
-        sqrt((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY));
+        sqrt(((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY)).clamp(0, double.infinity));
 
-    if (denominator == 0) return 0;
+    if (denominator == 0 || denominator.isNaN) return 0;
     return numerator / denominator;
   }
 
@@ -787,9 +787,9 @@ class PatternEngineService {
 
     final numerator = n * sumXY - sumX * sumY;
     final denominator =
-        sqrt((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY));
+        sqrt(((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY)).clamp(0, double.infinity));
 
-    if (denominator == 0) return 0;
+    if (denominator == 0 || denominator.isNaN) return 0;
     return (numerator / denominator).clamp(-1.0, 1.0);
   }
 

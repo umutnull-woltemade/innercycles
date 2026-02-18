@@ -1017,9 +1017,9 @@ class EmotionalCycleService {
 
     final numerator = n * sumXY - sumX * sumY;
     final denominator =
-        math.sqrt((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY));
+        math.sqrt(((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY)).clamp(0, double.infinity));
 
-    if (denominator == 0) return 0;
+    if (denominator == 0 || denominator.isNaN) return 0;
     return numerator / denominator;
   }
 }

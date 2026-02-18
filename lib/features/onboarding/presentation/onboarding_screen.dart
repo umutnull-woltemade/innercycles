@@ -1505,7 +1505,7 @@ class _PermissionStartPage extends StatelessWidget {
             child: const Icon(
               Icons.check_circle_outline,
               size: 56,
-              color: Color(0xFF4CAF50),
+              color: AppColors.success,
             ),
           ).glassReveal(context: context),
 

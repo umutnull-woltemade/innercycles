@@ -766,7 +766,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       child: Row(
         children: [
-          const Icon(Icons.science, color: Colors.orange, size: 20),
+          const Icon(Icons.science, color: AppColors.streakOrange, size: 20),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
@@ -774,14 +774,14 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
               style: Theme.of(context)
                   .textTheme
                   .bodySmall
-                  ?.copyWith(color: Colors.orange),
+                  ?.copyWith(color: AppColors.streakOrange),
             ),
           ),
           Switch(
             value: _useRevenueCatPaywall,
             onChanged: (value) =>
                 setState(() => _useRevenueCatPaywall = value),
-            activeThumbColor: Colors.orange,
+            activeThumbColor: AppColors.streakOrange,
           ),
         ],
       ),

@@ -13,6 +13,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../data/providers/app_providers.dart';
+import '../../data/services/ecosystem_analytics_service.dart';
 import '../../data/services/premium_service.dart';
 
 class MainShellScreen extends ConsumerStatefulWidget {
@@ -56,6 +57,12 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
   }
 
   void _onTabTapped(int index) {
+    final from = widget.navigationShell.currentIndex;
+    if (from != index) {
+      ref.read(ecosystemAnalyticsServiceProvider).whenData(
+        (s) => s.trackTabSwitch(from, index),
+      );
+    }
     widget.navigationShell.goBranch(
       index,
       initialLocation: index == widget.navigationShell.currentIndex,

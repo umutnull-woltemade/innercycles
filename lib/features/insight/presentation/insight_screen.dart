@@ -360,12 +360,12 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: isDark ? AppColors.chatInputField : Colors.grey[100],
+                color: isDark ? AppColors.chatInputField : AppColors.lightSurfaceVariant,
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(
                   color: isDark
                       ? Colors.white.withValues(alpha: 0.15)
-                      : Colors.grey.withValues(alpha: 0.2),
+                      : AppColors.textMuted.withValues(alpha: 0.2),
                 ),
               ),
               child: TextField(

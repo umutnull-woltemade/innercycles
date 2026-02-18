@@ -451,7 +451,9 @@ class _ThemeCloud extends StatelessWidget {
             children: themes.entries.map((e) {
               final maxCount = themes.values
                   .reduce((a, b) => a > b ? a : b);
-              final opacity = 0.3 + (e.value / maxCount) * 0.7;
+              final opacity = maxCount > 0
+                  ? 0.3 + (e.value / maxCount) * 0.7
+                  : 0.3;
               return Container(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 12, vertical: 6),

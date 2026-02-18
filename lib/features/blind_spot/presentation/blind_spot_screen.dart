@@ -15,6 +15,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/blind_spot_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class BlindSpotScreen extends ConsumerWidget {
@@ -193,9 +194,8 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
                     isEn: widget.isEn,
                   ),
                   const SizedBox(height: 24),
-                  _DisclaimerFooter(
-                    isDark: widget.isDark,
-                    isEn: widget.isEn,
+                  ContentDisclaimer(
+                    language: widget.isEn ? AppLanguage.en : AppLanguage.tr,
                   ),
                   const SizedBox(height: 20),
                   _ShareInsightsButton(
@@ -902,49 +902,6 @@ class _GrowthSuggestionsCard extends StatelessWidget {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// DISCLAIMER FOOTER
-// ═══════════════════════════════════════════════════════════════════════════
-
-class _DisclaimerFooter extends StatelessWidget {
-  final bool isDark;
-  final bool isEn;
-
-  const _DisclaimerFooter({required this.isDark, required this.isEn});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Row(
-        children: [
-          Icon(
-            Icons.info_outline,
-            size: 14,
-            color: isDark
-                ? AppColors.textMuted.withValues(alpha: 0.6)
-                : AppColors.lightTextMuted.withValues(alpha: 0.6),
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              isEn
-                  ? 'Based on your journal patterns. These observations are not professional advice and are meant for personal reflection only.'
-                  : 'Günlük örüntülerini temel alıyor. Bu gözlemler profesyonel tavsiye değildir ve yalnızca kişisel düşünce için tasarlanmıştır.',
-              style: TextStyle(
-                fontSize: 11,
-                height: 1.4,
-                color: isDark
-                    ? AppColors.textMuted.withValues(alpha: 0.6)
-                    : AppColors.lightTextMuted.withValues(alpha: 0.6),
-              ),
-            ),
-          ),
-        ],
-      ),
-    ).animate().fadeIn(delay: 500.ms, duration: 300.ms);
-  }
-}
-
 // ═══════════════════════════════════════════════════════════════════════════
 // SHARE INSIGHTS BUTTON
 // ═══════════════════════════════════════════════════════════════════════════

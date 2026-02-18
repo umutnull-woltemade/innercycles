@@ -538,7 +538,7 @@ class _LockedEntriesCta extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
-                  colors: [AppColors.exportGreen, Color(0xFF4CAF50)],
+                  colors: [AppColors.exportGreen, AppColors.success],
                 ),
                 borderRadius: BorderRadius.circular(16),
               ),

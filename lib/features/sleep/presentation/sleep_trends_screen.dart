@@ -9,6 +9,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/sleep_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
 class SleepTrendsScreen extends ConsumerWidget {
@@ -127,6 +128,10 @@ class SleepTrendsScreen extends ConsumerWidget {
                 // Recent entries with notes
                 _buildRecentCard(context, isDark, isEn,
                     allEntries.where((e) => e.note != null && e.note!.isNotEmpty).take(10).toList()),
+                ContentDisclaimer(
+                  language: isEn ? AppLanguage.en : AppLanguage.tr,
+                ),
+                const SizedBox(height: 40),
               ]),
             ),
           ),
@@ -192,7 +197,7 @@ class SleepTrendsScreen extends ConsumerWidget {
         text = isEn ? 'Your sleep quality is improving' : 'Uyku kaliten iyileşiyor';
       case 'declining':
         icon = Icons.trending_down;
-        color = Colors.orange;
+        color = AppColors.chartOrange;
         text = isEn ? 'Your sleep quality has dipped recently' : 'Uyku kaliten son zamanlarda düştü';
       default:
         icon = Icons.trending_flat;
@@ -478,7 +483,7 @@ class SleepTrendsScreen extends ConsumerWidget {
       case 1:
         return AppColors.error;
       case 2:
-        return Colors.orange;
+        return AppColors.chartOrange;
       case 3:
         return AppColors.starGold;
       case 4:

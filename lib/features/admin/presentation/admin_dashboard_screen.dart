@@ -1523,7 +1523,7 @@ class _SimpleChartPainter extends CustomPainter {
     final d1Path = Path();
     final d7Path = Path();
 
-    if (data.isEmpty) return;
+    if (data.length < 2) return;
     final maxY = data
         .map((p) => [p.d1, p.d7])
         .expand((e) => e)

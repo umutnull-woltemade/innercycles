@@ -8,6 +8,7 @@ import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/mood_checkin_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
@@ -92,6 +93,10 @@ class MoodTrendsScreen extends ConsumerWidget {
                 // Recent entries
                 if (allEntries.isNotEmpty)
                   _buildRecentCard(context, isDark, isEn, allEntries.take(20).toList()),
+                ContentDisclaimer(
+                  language: isEn ? AppLanguage.en : AppLanguage.tr,
+                ),
+                const SizedBox(height: 40),
               ]),
             ),
           ),
@@ -370,7 +375,7 @@ class MoodTrendsScreen extends ConsumerWidget {
       case 1:
         return AppColors.error;
       case 2:
-        return Colors.orange;
+        return AppColors.chartOrange;
       case 3:
         return AppColors.starGold;
       case 4:

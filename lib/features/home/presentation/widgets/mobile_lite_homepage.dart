@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/routes.dart';
@@ -1186,7 +1187,10 @@ class _BelowTheFold extends ConsumerWidget {
               label: isEn ? 'InnerCycles. Open settings' : 'InnerCycles. Ayarları aç',
               button: true,
               child: GestureDetector(
-                onTap: () => context.push(Routes.settings),
+                onTap: () {
+                  HapticFeedback.lightImpact();
+                  context.push(Routes.settings);
+                },
                 child: Text(
                   'InnerCycles',
                   style: TextStyle(
@@ -1458,6 +1462,7 @@ class _UpgradeTriggerBanner extends ConsumerWidget {
           button: true,
           child: GestureDetector(
           onTap: () {
+            HapticFeedback.lightImpact();
             upgradeService.markTriggerShown(trigger);
             showContextualPaywall(
               context,
