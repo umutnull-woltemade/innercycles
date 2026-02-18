@@ -130,7 +130,7 @@ class SleepService {
     final now = DateTime.now();
     final weekAgo = now.subtract(const Duration(days: 7));
     final recentEntries = _entries.values.where((e) {
-      final date = DateTime.parse('${e.dateKey}T00:00:00');
+      final date = DateTime.tryParse('${e.dateKey}T00:00:00') ?? DateTime.now();
       return !date.isBefore(weekAgo);
     }).toList();
 
@@ -183,7 +183,7 @@ class SleepService {
     final startDay = DateTime(start.year, start.month, start.day);
     final endDay = DateTime(end.year, end.month, end.day);
     final entries = _entries.values.where((e) {
-      final date = DateTime.parse('${e.dateKey}T00:00:00');
+      final date = DateTime.tryParse('${e.dateKey}T00:00:00') ?? DateTime.now();
       return !date.isBefore(startDay) && !date.isAfter(endDay);
     }).toList();
 

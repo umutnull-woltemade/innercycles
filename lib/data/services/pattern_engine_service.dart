@@ -518,7 +518,7 @@ class PatternEngineService {
     // Get unique dates from journal to check ritual completion
     final pairs = <List<double>>[];
     for (final dateKey in journalSumByDate.keys) {
-      final date = DateTime.parse('${dateKey}T00:00:00');
+      final date = DateTime.tryParse('${dateKey}T00:00:00') ?? DateTime.now();
       // Calculate ritual completion for this date
       final stacks = ritual.getStacks();
       if (stacks.isEmpty) continue;
@@ -628,7 +628,7 @@ class PatternEngineService {
       final weekKey = _weekKeyFromDateKey(dateStr);
       // Count backward streak from this date
       int s = 0;
-      DateTime checkDate = DateTime.parse('${dateStr}T00:00:00');
+      DateTime checkDate = DateTime.tryParse('${dateStr}T00:00:00') ?? DateTime.now();
       for (int i = 0; i < 90; i++) {
         final key = _dateToKey(checkDate);
         if (journalDates.contains(key)) {
@@ -792,7 +792,7 @@ class PatternEngineService {
 
   /// Get ISO week key from a yyyy-MM-dd date key string
   String _weekKeyFromDateKey(String dateKey) {
-    final date = DateTime.parse('${dateKey}T00:00:00');
+    final date = DateTime.tryParse('${dateKey}T00:00:00') ?? DateTime.now();
     return _weekKeyFromDate(date);
   }
 

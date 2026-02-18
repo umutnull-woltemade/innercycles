@@ -117,7 +117,7 @@ class GratitudeService {
     final now = DateTime.now();
     final weekAgo = now.subtract(const Duration(days: 7));
     final recentEntries = _entries.values.where((e) {
-      final date = DateTime.parse('${e.dateKey}T00:00:00');
+      final date = DateTime.tryParse('${e.dateKey}T00:00:00') ?? DateTime.now();
       return !date.isBefore(weekAgo);
     }).toList();
 

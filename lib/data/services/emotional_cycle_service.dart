@@ -962,7 +962,7 @@ class EmotionalCycleService {
     for (final entry in byDate.entries) {
       final avg = entry.value.reduce((a, b) => a + b) / entry.value.length;
       points.add(CycleDataPoint(
-        date: DateTime.parse('${entry.key}T00:00:00'),
+        date: DateTime.tryParse('${entry.key}T00:00:00') ?? DateTime.now(),
         value: avg,
       ));
     }
