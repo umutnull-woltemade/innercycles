@@ -145,13 +145,19 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                     button: true,
                     child: GestureDetector(
                     onTap: () => context.push(Routes.habitSuggestions),
-                    child: Text(
+                    behavior: HitTestBehavior.opaque,
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(minHeight: 44),
+                      child: Center(
+                        child: Text(
                       isEn ? 'Browse all habits' : 'Tüm alışkanlıkları gözat',
                       style: TextStyle(
                         fontSize: 14,
                         color: AppColors.auroraStart,
                         fontWeight: FontWeight.w500,
                       ),
+                    ),
+                    ),
                     ),
                   ),
                   ),

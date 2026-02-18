@@ -395,7 +395,12 @@ class _RecentEntriesSection extends ConsumerWidget {
                       HapticFeedback.selectionClick();
                       context.push(Routes.journalArchive);
                     },
-                    child: Text(
+                    behavior: HitTestBehavior.opaque,
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(minHeight: 44),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
                       isEn ? 'See All' : 'Tümünü Gör',
                       style: TextStyle(
                         fontSize: 13,
@@ -404,6 +409,8 @@ class _RecentEntriesSection extends ConsumerWidget {
                             ? AppColors.starGold
                             : AppColors.lightStarGold,
                       ),
+                    ),
+                    ),
                     ),
                   ),
                   ),
