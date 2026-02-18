@@ -2173,7 +2173,10 @@ ${_getPersonalAdvice(sign)}''';
                       ),
                     ),
                     const SizedBox(height: 12),
-                    GestureDetector(
+                    Semantics(
+                      label: isEn ? 'Unlock all perspectives' : 'Tüm perspektifleri aç',
+                      button: true,
+                      child: GestureDetector(
                       onTap: () => showContextualPaywall(
                         context,
                         ref,
@@ -2213,6 +2216,7 @@ ${_getPersonalAdvice(sign)}''';
                           ),
                         ),
                       ),
+                    ),
                     ),
                   ],
                 ),
@@ -2335,7 +2339,10 @@ ${_getPersonalAdvice(sign)}''';
                 ),
               ),
               const SizedBox(width: 10),
-              GestureDetector(
+              Semantics(
+                label: 'Send message',
+                button: true,
+                child: GestureDetector(
                     onTap: _sendMessage,
                     child: Container(
                       padding: const EdgeInsets.all(14),
@@ -2368,6 +2375,7 @@ ${_getPersonalAdvice(sign)}''';
                     end: const Offset(1.05, 1.05),
                     duration: 1500.ms,
                   ),
+              ),
             ],
           ),
         ],

@@ -266,7 +266,11 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: GestureDetector(
+        child: Semantics(
+          label: label,
+          button: true,
+          selected: isSelected,
+          child: GestureDetector(
           onTap: () => setState(() => _selectedIndex = index),
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 10),
@@ -308,6 +312,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
               ],
             ),
           ),
+        ),
         ),
       ),
     );

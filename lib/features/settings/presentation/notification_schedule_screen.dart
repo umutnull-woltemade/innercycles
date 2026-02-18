@@ -376,7 +376,10 @@ class _NotificationScheduleScreenState
         _settings?.dailyReflectionTime ?? const TimeOfDay(hour: 9, minute: 0);
     final formatted = time.format(context);
 
-    return GestureDetector(
+    return Semantics(
+      label: isEn ? 'Change reminder time: $formatted' : 'Hatırlatma saatini değiştir: $formatted',
+      button: true,
+      child: GestureDetector(
       onTap: _pickDailyTime,
       child: Container(
         padding: const EdgeInsets.symmetric(
@@ -417,6 +420,7 @@ class _NotificationScheduleScreenState
             ),
           ],
         ),
+      ),
       ),
     );
   }

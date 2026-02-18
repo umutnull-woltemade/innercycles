@@ -305,7 +305,11 @@ class _CalendarGrid extends StatelessWidget {
             selectedDay?.date.day == dayNum &&
             selectedDay?.date.month == month.month;
 
-        return GestureDetector(
+        return Semantics(
+          label: '$dayNum${phaseData != null ? ' ${phaseData.phase.emoji}' : ''}',
+          button: phaseData != null,
+          selected: isSelected,
+          child: GestureDetector(
           onTap: phaseData != null ? () => onDayTap(phaseData) : null,
           child: Container(
             decoration: BoxDecoration(
@@ -346,6 +350,7 @@ class _CalendarGrid extends StatelessWidget {
               ],
             ),
           ),
+        ),
         );
       },
     ).animate().fadeIn(duration: 300.ms);

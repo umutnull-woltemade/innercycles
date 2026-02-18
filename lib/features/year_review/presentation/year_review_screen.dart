@@ -286,7 +286,11 @@ class _YearSelector extends StatelessWidget {
         itemBuilder: (context, index) {
           final year = years[index];
           final isSelected = year == selectedYear;
-          return GestureDetector(
+          return Semantics(
+            label: '$year',
+            button: true,
+            selected: isSelected,
+            child: GestureDetector(
             onTap: () {
               HapticFeedback.selectionClick();
               onYearSelected(year);
@@ -323,6 +327,7 @@ class _YearSelector extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
             ),
           );
         },

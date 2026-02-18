@@ -226,7 +226,12 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Header (tappable)
-          GestureDetector(
+          Semantics(
+            label: widget.isEn
+                ? '${loop.primaryArea.displayNameEn} pattern: ${loop.insightEn}'
+                : '${loop.primaryArea.displayNameTr} kalıbı: ${loop.insightTr}',
+            button: true,
+            child: GestureDetector(
             onTap: () => setState(() => _expanded = !_expanded),
             behavior: HitTestBehavior.opaque,
             child: Padding(
@@ -329,6 +334,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                 ],
               ),
             ),
+          ),
           ),
 
           // Expanded content: 5-stage chain
