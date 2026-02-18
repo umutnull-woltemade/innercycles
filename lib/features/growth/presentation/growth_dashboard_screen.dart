@@ -892,7 +892,10 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           itemCount: tools.length,
           itemBuilder: (context, index) {
             final tool = tools[index];
-            return GestureDetector(
+            return Semantics(
+                  label: tool.title,
+                  button: true,
+                  child: GestureDetector(
                   onTap: () {
                     HapticFeedback.lightImpact();
                     context.push(tool.route);
@@ -950,6 +953,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                         ),
                       ],
                     ),
+                  ),
                   ),
                 )
                 .animate(delay: Duration(milliseconds: 50 * index))

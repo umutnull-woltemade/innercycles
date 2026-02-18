@@ -140,7 +140,10 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
 
                 // Browse more habits link
                 Center(
-                  child: GestureDetector(
+                  child: Semantics(
+                    label: isEn ? 'Browse all habits' : 'Tüm alışkanlıkları gözat',
+                    button: true,
+                    child: GestureDetector(
                     onTap: () => context.push(Routes.habitSuggestions),
                     child: Text(
                       isEn ? 'Browse all habits' : 'Tüm alışkanlıkları gözat',
@@ -150,6 +153,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
+                  ),
                   ),
                 ),
               ],

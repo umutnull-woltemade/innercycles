@@ -244,7 +244,11 @@ class _CategoryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Semantics(
+      label: label,
+      button: true,
+      selected: isSelected,
+      child: GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
@@ -276,6 +280,7 @@ class _CategoryChip extends StatelessWidget {
           ),
         ),
       ),
+      ),
     );
   }
 }
@@ -303,7 +308,10 @@ class _ModuleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Semantics(
+      label: isEn ? module.titleEn : module.titleTr,
+      button: true,
+      child: GestureDetector(
       onTap: onTap,
       child: GlassPanel(
         elevation: isExpanded ? GlassElevation.g3 : GlassElevation.g2,
@@ -398,16 +406,29 @@ class _ModuleCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                GestureDetector(
-                  onTap: onToggleBookmark,
-                  child: Icon(
-                    isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-                    size: 20,
-                    color: isBookmarked
-                        ? AppColors.starGold
-                        : (isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted),
+                Semantics(
+                  label: isBookmarked
+                      ? (isEn ? 'Remove bookmark' : 'Yer imini kaldır')
+                      : (isEn ? 'Add bookmark' : 'Yer imi ekle'),
+                  button: true,
+                  child: GestureDetector(
+                    onTap: onToggleBookmark,
+                    behavior: HitTestBehavior.opaque,
+                    child: SizedBox(
+                      width: 44,
+                      height: 44,
+                      child: Center(
+                        child: Icon(
+                          isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                          size: 20,
+                          color: isBookmarked
+                              ? AppColors.starGold
+                              : (isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -522,6 +543,7 @@ class _ModuleCard extends StatelessWidget {
             ],
           ],
         ),
+      ),
       ),
     );
   }

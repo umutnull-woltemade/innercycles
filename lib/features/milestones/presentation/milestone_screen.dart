@@ -352,7 +352,10 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   Widget _buildBadgeTile(Milestone milestone, bool earned, int index) {
     final name = isEn ? milestone.nameEn : milestone.nameTr;
 
-    return GestureDetector(
+    return Semantics(
+          label: name,
+          button: earned,
+          child: GestureDetector(
           onTap: earned ? () => _showBadgeDetail(milestone) : null,
           child: Container(
             padding: const EdgeInsets.all(10),
@@ -446,6 +449,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                 ],
               ],
             ),
+          ),
           ),
         )
         .animate(delay: (40 * index).ms)
