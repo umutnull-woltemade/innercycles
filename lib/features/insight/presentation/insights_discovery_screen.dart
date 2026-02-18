@@ -252,7 +252,10 @@ class _InsightsDiscoveryScreenState
     bool isDark,
     bool isEn,
   ) {
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      label: isEn ? 'Today\'s Insight: ${module.titleEn}' : 'Bugünün İçgörüsü: ${module.titleTr}',
+      child: GestureDetector(
       onTap: () => _openModuleDetail(module, service),
       child: Container(
         padding: const EdgeInsets.all(20),
@@ -353,6 +356,7 @@ class _InsightsDiscoveryScreenState
           ],
         ),
       ),
+      ),
     ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.08, duration: 500.ms);
   }
 
@@ -392,7 +396,11 @@ class _InsightsDiscoveryScreenState
     required bool isDark,
     required VoidCallback onTap,
   }) {
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      label: label,
+      selected: isSelected,
+      child: GestureDetector(
       onTap: () {
         HapticFeedback.lightImpact();
         onTap();
@@ -426,6 +434,7 @@ class _InsightsDiscoveryScreenState
           ),
         ),
       ),
+      ),
     );
   }
 
@@ -442,7 +451,10 @@ class _InsightsDiscoveryScreenState
     final isRead = service.isRead(module.id);
     final isBookmarked = service.isBookmarked(module.id);
 
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      label: isEn ? module.titleEn : module.titleTr,
+      child: GestureDetector(
       onTap: () => _openModuleDetail(module, service),
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -489,23 +501,29 @@ class _InsightsDiscoveryScreenState
                   ),
                 ),
                 // Bookmark button
-                GestureDetector(
-                  onTap: () async {
-                    HapticFeedback.lightImpact();
-                    await service.toggleBookmark(module.id);
-                    if (!mounted) return;
-                    setState(() {});
-                  },
-                  child: Icon(
-                    isBookmarked
-                        ? Icons.bookmark_rounded
-                        : Icons.bookmark_border_rounded,
-                    size: 20,
-                    color: isBookmarked
-                        ? AppColors.starGold
-                        : (isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted),
+                Semantics(
+                  button: true,
+                  label: isBookmarked
+                      ? (isEn ? 'Remove bookmark' : 'Yer işaretini kaldır')
+                      : (isEn ? 'Add bookmark' : 'Yer işareti ekle'),
+                  child: GestureDetector(
+                    onTap: () async {
+                      HapticFeedback.lightImpact();
+                      await service.toggleBookmark(module.id);
+                      if (!mounted) return;
+                      setState(() {});
+                    },
+                    child: Icon(
+                      isBookmarked
+                          ? Icons.bookmark_rounded
+                          : Icons.bookmark_border_rounded,
+                      size: 20,
+                      color: isBookmarked
+                          ? AppColors.starGold
+                          : (isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted),
+                    ),
                   ),
                 ),
               ],
@@ -533,6 +551,7 @@ class _InsightsDiscoveryScreenState
             ),
           ],
         ),
+      ),
       ),
     );
   }
@@ -751,7 +770,10 @@ class _InsightsDiscoveryScreenState
                 ...service.getRelatedModules(module).map(
                       (related) => Padding(
                         padding: const EdgeInsets.only(bottom: 8),
-                        child: GestureDetector(
+                        child: Semantics(
+                          button: true,
+                          label: isEn ? related.titleEn : related.titleTr,
+                          child: GestureDetector(
                           onTap: () {
                             Navigator.of(ctx).pop();
                             Future.delayed(
@@ -792,6 +814,7 @@ class _InsightsDiscoveryScreenState
                                 ),
                               ],
                             ),
+                          ),
                           ),
                         ),
                       ),

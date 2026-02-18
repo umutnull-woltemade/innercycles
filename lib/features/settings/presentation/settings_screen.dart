@@ -239,7 +239,9 @@ class SettingsScreen extends ConsumerWidget {
                               language,
                             ),
                             isDark: isDark,
-                            onTap: () => showContextualPaywall(context, ref, paywallContext: PaywallContext.general),
+                            onTap: () => isPremium
+                                ? context.push(Routes.premium)
+                                : showContextualPaywall(context, ref, paywallContext: PaywallContext.general),
                             trailing: Container(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 8,

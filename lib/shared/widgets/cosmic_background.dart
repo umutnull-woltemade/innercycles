@@ -295,7 +295,7 @@ class _CosmicPainter extends CustomPainter {
         y: 0.15,
         radiusX: 0.2,
         radiusY: 0.2,
-        color: const Color(0xFFFFD700),
+        color: AppColors.starGold,
         opacity: 0.06,
       ),
     ];
@@ -340,7 +340,7 @@ class _CosmicPainter extends CustomPainter {
         x: 0.75,
         y: 0.2,
         size: 0.08,
-        color: const Color(0xFFFFD700),
+        color: AppColors.starGold,
         opacity: 0.15,
       ),
     ];
@@ -363,15 +363,15 @@ class _CosmicPainter extends CustomPainter {
     const geometricSymbols = ['◇', '△', '○', '⬡', '◆', '☆', '✶', '❋'];
 
     // Pastel colors
-    const pastelColors = [
-      Color(0xFFE6E6FA), // Lavender
-      Color(0xFFFFB6C1), // Pink
-      Color(0xFFADD8E6), // Light blue
-      Color(0xFFFFE4B5), // Warm yellow
-      Color(0xFFB0E0E6), // Turquoise
-      Color(0xFFDDA0DD), // Purple
-      Color(0xFF98FB98), // Green
-      Color(0xFFF0E68C), // Gold
+    final pastelColors = [
+      const Color(0xFFE6E6FA), // Lavender
+      AppColors.softPink, // Pink
+      const Color(0xFFADD8E6), // Light blue
+      const Color(0xFFFFE4B5), // Warm yellow
+      const Color(0xFFB0E0E6), // Turquoise
+      const Color(0xFFDDA0DD), // Purple
+      const Color(0xFF98FB98), // Green
+      const Color(0xFFF0E68C), // Gold
     ];
 
     final allSymbols = [...decorativeSymbols, ...natureSymbols, ...geometricSymbols];
@@ -417,10 +417,10 @@ class _CosmicPainter extends CustomPainter {
       Offset(size.width * 0.3, 0),
       Offset(size.width * 0.7, size.height),
       [
-        const Color(0xFF0D0D1A), // Derin uzay siyahı
-        const Color(0xFF1A1A2E), // Koyu mor
-        const Color(0xFF16213E), // Lacivert
-        const Color(0xFF1A1A2E), // Koyu mor
+        AppColors.deepSpace, // Derin uzay siyahı
+        AppColors.cosmicPurple, // Koyu mor
+        AppColors.nebulaPurple, // Lacivert
+        AppColors.cosmicPurple, // Koyu mor
         const Color(0xFF0F0F1A), // Derin siyah
       ],
       [0.0, 0.25, 0.5, 0.75, 1.0],

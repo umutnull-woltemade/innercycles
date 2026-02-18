@@ -204,9 +204,9 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
           child: Row(
             children: [
-              Expanded(child: _ToolCard(tool: left, isDark: isDark, isEn: isEn, smartRouterAsync: smartRouterAsync, onFavoriteToggle: () => _toggleFavorite(left))),
+              Expanded(child: _ToolCard(tool: left, isDark: isDark, isEn: isEn, smartRouterAsync: smartRouterAsync, isPremium: isPremium, onFavoriteToggle: () => _toggleFavorite(left), onPremiumTap: () => showContextualPaywall(context, ref, paywallContext: PaywallContext.general))),
               const SizedBox(width: AppConstants.spacingMd),
-              Expanded(child: right != null ? _ToolCard(tool: right, isDark: isDark, isEn: isEn, smartRouterAsync: smartRouterAsync, onFavoriteToggle: () => _toggleFavorite(right)) : const SizedBox.shrink()),
+              Expanded(child: right != null ? _ToolCard(tool: right, isDark: isDark, isEn: isEn, smartRouterAsync: smartRouterAsync, isPremium: isPremium, onFavoriteToggle: () => _toggleFavorite(right), onPremiumTap: () => showContextualPaywall(context, ref, paywallContext: PaywallContext.general)) : const SizedBox.shrink()),
             ],
           ),
         ).animate().fadeIn(duration: 400.ms, delay: Duration(milliseconds: rowDelay)).slideY(begin: 0.04, end: 0, duration: 400.ms, delay: Duration(milliseconds: rowDelay)),
@@ -228,18 +228,29 @@ class _ToolCard extends StatelessWidget {
   final ToolManifest tool;
   final bool isDark;
   final bool isEn;
+  final bool isPremium;
   final AsyncValue<SmartRouterService> smartRouterAsync;
   final VoidCallback onFavoriteToggle;
+  final VoidCallback onPremiumTap;
 
-  const _ToolCard({required this.tool, required this.isDark, required this.isEn, required this.smartRouterAsync, required this.onFavoriteToggle});
+  const _ToolCard({required this.tool, required this.isDark, required this.isEn, required this.smartRouterAsync, required this.isPremium, required this.onFavoriteToggle, required this.onPremiumTap});
 
   @override
   Widget build(BuildContext context) {
     final isFavorite = smartRouterAsync.whenOrNull(data: (service) => service.isFavorite(tool.id)) ?? false;
 
-    return GestureDetector(
-      onTap: () => context.push(tool.route),
-      child: Container(
+    return Semantics(
+      button: true,
+      label: isEn ? tool.nameEn : tool.nameTr,
+      child: GestureDetector(
+        onTap: () {
+          if (tool.requiresPremium && !isPremium) {
+            onPremiumTap();
+            return;
+          }
+          context.push(tool.route);
+        },
+        child: Container(
         padding: const EdgeInsets.all(AppConstants.spacingMd),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
@@ -261,9 +272,13 @@ class _ToolCard extends StatelessWidget {
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppConstants.radiusSm), gradient: AppColors.primaryGradient),
                     child: Text('PRO', style: GoogleFonts.inter(fontSize: 9, fontWeight: FontWeight.w700, color: Colors.white, letterSpacing: 0.5)),
                   ),
-                GestureDetector(
-                  onTap: onFavoriteToggle,
-                  child: Icon(isFavorite ? Icons.star_rounded : Icons.star_outline_rounded, size: 20, color: isFavorite ? AppColors.starGold : (isDark ? AppColors.textMuted.withValues(alpha: 0.5) : AppColors.lightTextMuted)),
+                Semantics(
+                  button: true,
+                  label: isFavorite ? 'Remove from favorites' : 'Add to favorites',
+                  child: GestureDetector(
+                    onTap: onFavoriteToggle,
+                    child: Icon(isFavorite ? Icons.star_rounded : Icons.star_outline_rounded, size: 20, color: isFavorite ? AppColors.starGold : (isDark ? AppColors.textMuted.withValues(alpha: 0.5) : AppColors.lightTextMuted)),
+                  ),
                 ),
               ],
             ),
@@ -272,6 +287,7 @@ class _ToolCard extends StatelessWidget {
             const SizedBox(height: 2),
             Text(isEn ? tool.valuePropositionEn : tool.valuePropositionTr, style: TextStyle(fontSize: 12, color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary, height: 1.3), maxLines: 2, overflow: TextOverflow.ellipsis),
           ],
+        ),
         ),
       ),
     );

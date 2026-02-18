@@ -98,7 +98,7 @@ class YearReview {
   factory YearReview.fromJson(Map<String, dynamic> json) {
     final focusCounts = <FocusArea, int>{};
     if (json['focusAreaCounts'] != null) {
-      final raw = json['focusAreaCounts'] as Map;
+      final raw = json['focusAreaCounts'] is Map ? json['focusAreaCounts'] as Map : {};
       for (final entry in raw.entries) {
         final area = FocusArea.values.firstWhere(
           (e) => e.name == entry.key.toString(),

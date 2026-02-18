@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
@@ -186,7 +187,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 ),
               ],
               ),
-            ),
+            ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms),
           ),
         ),
       ),
@@ -278,7 +279,11 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         final label = isEn ? area.displayNameEn : area.displayNameTr;
         final icon = _getAreaIcon(area);
 
-        return GestureDetector(
+        return Semantics(
+          button: true,
+          label: label,
+          selected: isSelected,
+          child: GestureDetector(
           onTap: () {
             HapticFeedback.selectionClick();
             setState(() {
@@ -338,6 +343,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
             ),
           ),
           ),
+          ),
         );
       }).toList(),
     ).glassListItem(context: context, index: 1);
@@ -364,7 +370,11 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
             children: List.generate(5, (i) {
               final rating = i + 1;
               final isActive = rating == value;
-              return GestureDetector(
+              return Semantics(
+                button: true,
+                label: '${isEn ? 'Rating' : 'Puan'} $rating',
+                selected: isActive,
+                child: GestureDetector(
                 onTap: () {
                   HapticFeedback.selectionClick();
                   onChanged(rating);
@@ -402,6 +412,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                       ),
                     ),
                   ),
+                ),
                 ),
               );
             }),

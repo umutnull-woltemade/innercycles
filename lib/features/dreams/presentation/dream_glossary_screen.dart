@@ -1676,8 +1676,12 @@ class PersonalDictionaryService {
     // Skip on web - Hive's IndexedDB can hang and cause white screen
     if (kIsWeb) return;
 
-    _box = await Hive.openBox(_boxName);
-    _loadEntries();
+    try {
+      _box = await Hive.openBox(_boxName);
+      _loadEntries();
+    } catch (e) {
+      if (kDebugMode) debugPrint('PersonalDictionaryService init error: $e');
+    }
   }
 
   void _loadEntries() {

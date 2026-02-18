@@ -297,23 +297,27 @@ class NextBestActions extends StatelessWidget {
           final action = entry.value;
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg, vertical: 4),
-            child: GestureDetector(
-              onTap: () => context.push(action.route),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg, vertical: AppConstants.spacingMd),
-                decoration: BoxDecoration(
-                  color: action.isPrimary ? null : (isDark ? AppColors.surfaceDark : AppColors.lightCard),
-                  gradient: action.isPrimary ? AppColors.primaryGradient : null,
-                  borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-                  border: action.isPrimary ? null : Border.all(color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.06)),
-                ),
-                child: Row(
-                  children: [
-                    Icon(action.icon, size: 18, color: action.isPrimary ? Colors.white : (isDark ? AppColors.auroraStart : AppColors.lightAuroraStart)),
-                    const SizedBox(width: AppConstants.spacingMd),
-                    Expanded(child: Text(isEn ? action.labelEn : action.labelTr, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: action.isPrimary ? Colors.white : (isDark ? AppColors.textPrimary : AppColors.lightTextPrimary)))),
-                    Icon(Icons.arrow_forward_ios, size: 14, color: action.isPrimary ? Colors.white.withValues(alpha: 0.6) : (isDark ? AppColors.textMuted : AppColors.lightTextMuted)),
-                  ],
+            child: Semantics(
+              button: true,
+              label: isEn ? action.labelEn : action.labelTr,
+              child: GestureDetector(
+                onTap: () => context.push(action.route),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg, vertical: AppConstants.spacingMd),
+                  decoration: BoxDecoration(
+                    color: action.isPrimary ? null : (isDark ? AppColors.surfaceDark : AppColors.lightCard),
+                    gradient: action.isPrimary ? AppColors.primaryGradient : null,
+                    borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                    border: action.isPrimary ? null : Border.all(color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.06)),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(action.icon, size: 18, color: action.isPrimary ? Colors.white : (isDark ? AppColors.auroraStart : AppColors.lightAuroraStart)),
+                      const SizedBox(width: AppConstants.spacingMd),
+                      Expanded(child: Text(isEn ? action.labelEn : action.labelTr, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: action.isPrimary ? Colors.white : (isDark ? AppColors.textPrimary : AppColors.lightTextPrimary)))),
+                      Icon(Icons.arrow_forward_ios, size: 14, color: action.isPrimary ? Colors.white.withValues(alpha: 0.6) : (isDark ? AppColors.textMuted : AppColors.lightTextMuted)),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -363,27 +367,31 @@ class RelatedToolsStrip extends StatelessWidget {
             separatorBuilder: (_, _) => const SizedBox(width: AppConstants.spacingSm),
             itemBuilder: (context, index) {
               final tool = tools[index];
-              return GestureDetector(
-                onTap: () => context.push(tool.route),
-                child: Container(
-                  width: 88,
-                  padding: const EdgeInsets.symmetric(vertical: AppConstants.spacingMd, horizontal: AppConstants.spacingSm),
-                  decoration: BoxDecoration(
-                    color: isDark ? AppColors.surfaceDark : AppColors.lightCard,
-                    borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-                    border: Border.all(color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.06)),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 36, height: 36,
-                        decoration: BoxDecoration(color: tool.color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(AppConstants.radiusSm)),
-                        child: Icon(tool.icon, size: 20, color: tool.color),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(isEn ? tool.nameEn : tool.nameTr, textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis, style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w500, color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary)),
-                    ],
+              return Semantics(
+                button: true,
+                label: isEn ? tool.nameEn : tool.nameTr,
+                child: GestureDetector(
+                  onTap: () => context.push(tool.route),
+                  child: Container(
+                    width: 88,
+                    padding: const EdgeInsets.symmetric(vertical: AppConstants.spacingMd, horizontal: AppConstants.spacingSm),
+                    decoration: BoxDecoration(
+                      color: isDark ? AppColors.surfaceDark : AppColors.lightCard,
+                      borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                      border: Border.all(color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.06)),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 36, height: 36,
+                          decoration: BoxDecoration(color: tool.color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(AppConstants.radiusSm)),
+                          child: Icon(tool.icon, size: 20, color: tool.color),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(isEn ? tool.nameEn : tool.nameTr, textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis, style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w500, color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary)),
+                      ],
+                    ),
                   ),
                 ),
               ).animate().fadeIn(delay: Duration(milliseconds: 80 + index * 60), duration: 400.ms);
@@ -439,12 +447,15 @@ class _ToolFeedbackFooterState extends State<ToolFeedbackFooter> {
 
   Widget _buildFeedbackButton(IconData icon, IconData activeIcon, bool isPositive, Color activeColor) {
     final isActive = _selectedFeedback == isPositive;
-    return GestureDetector(
-      onTap: () {
-        setState(() => _selectedFeedback = isPositive);
-        widget.onFeedback(isPositive);
-      },
-      child: AnimatedContainer(
+    return Semantics(
+      button: true,
+      label: isPositive ? 'Thumbs up' : 'Thumbs down',
+      child: GestureDetector(
+        onTap: () {
+          setState(() => _selectedFeedback = isPositive);
+          widget.onFeedback(isPositive);
+        },
+        child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
@@ -453,6 +464,7 @@ class _ToolFeedbackFooterState extends State<ToolFeedbackFooter> {
           border: Border.all(color: isActive ? activeColor.withValues(alpha: 0.4) : (widget.isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.08))),
         ),
         child: Icon(isActive ? activeIcon : icon, size: 18, color: isActive ? activeColor : (widget.isDark ? AppColors.textMuted : AppColors.lightTextMuted)),
+        ),
       ),
     );
   }
@@ -645,12 +657,16 @@ class _QuickActionFABState extends State<QuickActionFAB> with SingleTickerProvid
             ),
           ),
         ),
-        GestureDetector(
-          onTap: _toggle,
-          child: Container(
-            width: 56, height: 56,
-            decoration: BoxDecoration(gradient: AppColors.primaryGradient, shape: BoxShape.circle, boxShadow: [BoxShadow(color: AppColors.auroraStart.withValues(alpha: 0.4), blurRadius: 16, offset: const Offset(0, 4))]),
-            child: AnimatedRotation(turns: _isExpanded ? 0.125 : 0, duration: const Duration(milliseconds: 300), child: const Icon(Icons.add, color: Colors.white, size: 28)),
+        Semantics(
+          button: true,
+          label: _isExpanded ? 'Close quick actions' : 'Open quick actions',
+          child: GestureDetector(
+            onTap: _toggle,
+            child: Container(
+              width: 56, height: 56,
+              decoration: BoxDecoration(gradient: AppColors.primaryGradient, shape: BoxShape.circle, boxShadow: [BoxShadow(color: AppColors.auroraStart.withValues(alpha: 0.4), blurRadius: 16, offset: const Offset(0, 4))]),
+              child: AnimatedRotation(turns: _isExpanded ? 0.125 : 0, duration: const Duration(milliseconds: 300), child: const Icon(Icons.add, color: Colors.white, size: 28)),
+            ),
           ),
         ),
       ],
@@ -658,9 +674,12 @@ class _QuickActionFABState extends State<QuickActionFAB> with SingleTickerProvid
   }
 
   Widget _buildChip(_FABAction action) {
-    return GestureDetector(
-      onTap: action.onTap,
-      child: Row(
+    return Semantics(
+      button: true,
+      label: action.label,
+      child: GestureDetector(
+        onTap: action.onTap,
+        child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
@@ -679,6 +698,7 @@ class _QuickActionFABState extends State<QuickActionFAB> with SingleTickerProvid
             child: Icon(action.icon, size: 20, color: action.color),
           ),
         ],
+        ),
       ),
     );
   }

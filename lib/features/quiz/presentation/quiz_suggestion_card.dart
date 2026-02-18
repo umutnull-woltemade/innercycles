@@ -161,7 +161,7 @@ class QuizSuggestionCard extends ConsumerWidget {
                         child: Text(
                           '${dim.emoji} ${isEn ? dim.nameEn : dim.nameTr}',
                           style: TextStyle(
-                            fontSize: 9,
+                            fontSize: 10,
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,

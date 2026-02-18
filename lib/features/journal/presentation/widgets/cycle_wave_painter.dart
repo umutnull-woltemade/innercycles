@@ -19,7 +19,7 @@ import '../../../../data/services/emotional_cycle_service.dart';
 const Map<FocusArea, Color> kAreaColors = {
   FocusArea.energy: Color(0xFFFF6B6B), // Warm coral red
   FocusArea.focus: Color(0xFF4ECDC4), // Teal cyan
-  FocusArea.emotions: Color(0xFFCE93D8), // Soft purple
+  FocusArea.emotions: AppColors.chartPurple, // Soft purple
   FocusArea.decisions: Color(0xFFFFD93D), // Warm gold
   FocusArea.social: Color(0xFF6BCB77), // Fresh green
 };

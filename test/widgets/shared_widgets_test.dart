@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:inner_cycles/shared/widgets/gradient_button.dart';
@@ -52,7 +53,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      expect(find.byType(CupertinoActivityIndicator), findsOneWidget);
       expect(find.text('Loading'), findsNothing); // Label hidden when loading
     });
 

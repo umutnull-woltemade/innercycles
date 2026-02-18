@@ -373,15 +373,18 @@ class PatternsScreen extends ConsumerWidget {
     bool isDark, {
     required Widget child,
   }) {
-    return GestureDetector(
-      onTap: () {
-        showContextualPaywall(
-          context,
-          ref,
-          paywallContext: PaywallContext.patterns,
-        );
-      },
-      child: Stack(
+    return Semantics(
+      button: true,
+      label: 'See full analysis',
+      child: GestureDetector(
+        onTap: () {
+          showContextualPaywall(
+            context,
+            ref,
+            paywallContext: PaywallContext.patterns,
+          );
+        },
+        child: Stack(
         children: [
           // Blurred content
           ClipRRect(
@@ -441,6 +444,7 @@ class PatternsScreen extends ConsumerWidget {
             ),
           ),
         ],
+        ),
       ),
     );
   }

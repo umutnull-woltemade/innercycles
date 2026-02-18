@@ -274,36 +274,40 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
   ) {
     return Padding(
       padding: const EdgeInsets.only(right: 8),
-      child: GestureDetector(
-        onTap: onTap,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: 44),
-          child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-          decoration: BoxDecoration(
-            color: isSelected
-                ? AppColors.starGold.withValues(alpha: 0.2)
-                : (isDark
-                      ? AppColors.surfaceDark.withValues(alpha: 0.5)
-                      : AppColors.lightSurfaceVariant),
-            borderRadius: BorderRadius.circular(AppConstants.radiusFull),
-            border: Border.all(
-              color: isSelected ? AppColors.starGold : Colors.transparent,
-            ),
-          ),
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+      child: Semantics(
+        button: true,
+        label: 'Filter: $label',
+        child: GestureDetector(
+          onTap: onTap,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 44),
+            child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+            decoration: BoxDecoration(
               color: isSelected
-                  ? AppColors.starGold
+                  ? AppColors.starGold.withValues(alpha: 0.2)
                   : (isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary),
+                        ? AppColors.surfaceDark.withValues(alpha: 0.5)
+                        : AppColors.lightSurfaceVariant),
+              borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+              border: Border.all(
+                color: isSelected ? AppColors.starGold : Colors.transparent,
+              ),
+            ),
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 13,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                color: isSelected
+                    ? AppColors.starGold
+                    : (isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary),
+              ),
             ),
           ),
-        ),
+          ),
         ),
       ),
     );
@@ -322,10 +326,13 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
 
     return Padding(
       padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
-      child: GestureDetector(
-        onTap: () => context.push(Routes.journalEntryDetail.replaceFirst(':id', entry.id)),
-        child: Container(
-          padding: const EdgeInsets.all(AppConstants.spacingLg),
+      child: Semantics(
+        button: true,
+        label: '$areaLabel entry, $dateStr',
+        child: GestureDetector(
+          onTap: () => context.push(Routes.journalEntryDetail.replaceFirst(':id', entry.id)),
+          child: Container(
+            padding: const EdgeInsets.all(AppConstants.spacingLg),
           decoration: BoxDecoration(
             color: isDark
                 ? AppColors.surfaceDark.withValues(alpha: 0.85)
@@ -409,6 +416,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
               ),
             ],
           ),
+        ),
         ),
       ),
     );

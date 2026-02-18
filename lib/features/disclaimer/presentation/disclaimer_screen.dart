@@ -113,7 +113,7 @@ class DisclaimerScreen extends ConsumerWidget {
         border: Border.all(
           color: isDark
               ? AppColors.surfaceLight.withValues(alpha: 0.2)
-              : Colors.grey.shade300,
+              : AppColors.lightSurfaceVariant,
         ),
       ),
       child: Column(

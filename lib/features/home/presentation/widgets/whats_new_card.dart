@@ -107,12 +107,16 @@ class _WhatsNewCardState extends ConsumerState<WhatsNewCard> {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: _dismiss,
-                child: Icon(
-                  Icons.close,
-                  size: 18,
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              Semantics(
+                button: true,
+                label: 'Dismiss',
+                child: GestureDetector(
+                  onTap: _dismiss,
+                  child: Icon(
+                    Icons.close,
+                    size: 18,
+                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  ),
                 ),
               ),
             ],
@@ -123,9 +127,12 @@ class _WhatsNewCardState extends ConsumerState<WhatsNewCard> {
             runSpacing: 8,
             children: features.map((f) {
               final (icon, label, route) = f;
-              return GestureDetector(
-                onTap: () => context.push(route),
-                child: Container(
+              return Semantics(
+                button: true,
+                label: label,
+                child: GestureDetector(
+                  onTap: () => context.push(route),
+                  child: Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   decoration: BoxDecoration(
@@ -155,6 +162,7 @@ class _WhatsNewCardState extends ConsumerState<WhatsNewCard> {
                       ),
                     ],
                   ),
+                ),
                 ),
               );
             }).toList(),

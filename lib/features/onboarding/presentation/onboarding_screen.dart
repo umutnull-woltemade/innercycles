@@ -770,45 +770,49 @@ class _IdentityPageState extends State<_IdentityPage>
   }
 
   Widget _buildAppleSignInButton() {
-    return GestureDetector(
-      onTap: _isAppleLoading ? null : _handleAppleSignIn,
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 14),
-        decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(14),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.2),
-              blurRadius: 16,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (_isAppleLoading)
-              const CosmicLoadingIndicator(size: 22)
-            else
-              const Icon(Icons.apple, color: Colors.white, size: 26),
-            const SizedBox(width: 12),
-            Text(
-              _isAppleLoading
-                  ? L10nService.get('onboarding.connecting', widget.language)
-                  : L10nService.get(
-                      'onboarding.connect_with_apple',
-                      widget.language,
-                    ),
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 0.3,
+    return Semantics(
+      button: true,
+      label: 'Sign in with Apple',
+      child: GestureDetector(
+        onTap: _isAppleLoading ? null : _handleAppleSignIn,
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(14),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.2),
+                blurRadius: 16,
+                offset: const Offset(0, 6),
               ),
-            ),
-          ],
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (_isAppleLoading)
+                const CosmicLoadingIndicator(size: 22)
+              else
+                const Icon(Icons.apple, color: Colors.white, size: 26),
+              const SizedBox(width: 12),
+              Text(
+                _isAppleLoading
+                    ? L10nService.get('onboarding.connecting', widget.language)
+                    : L10nService.get(
+                        'onboarding.connect_with_apple',
+                        widget.language,
+                      ),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 0.3,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     ).glassListItem(context: context, index: 3);
@@ -915,12 +919,15 @@ class _FirstCyclePage extends StatelessWidget {
                 final isSelected = selectedFocusArea == area;
                 final color = _focusColors[area] ?? AppColors.auroraStart;
 
-                return GestureDetector(
-                  onTap: () {
-                    HapticFeedback.lightImpact();
-                    onFocusAreaSelected(area);
-                  },
-                  child: AnimatedContainer(
+                return Semantics(
+                  button: true,
+                  label: isEn ? area.displayNameEn : area.displayNameTr,
+                  child: GestureDetector(
+                    onTap: () {
+                      HapticFeedback.lightImpact();
+                      onFocusAreaSelected(area);
+                    },
+                    child: AnimatedContainer(
                     duration: const Duration(milliseconds: 250),
                     curve: Curves.easeOutCubic,
                     decoration: BoxDecoration(
@@ -989,6 +996,7 @@ class _FirstCyclePage extends StatelessWidget {
                           ),
                         ],
                       ),
+                    ),
                     ),
                   ),
                 ).glassListItem(context: context, index: index);
@@ -1242,22 +1250,26 @@ class _ArchetypeRevealPage extends StatelessWidget {
             final option = question.options[index];
             return Padding(
               padding: const EdgeInsets.only(bottom: 12),
-              child: GestureDetector(
-                onTap: () => onSelectOption(option),
-                child: GlassPanel(
-                  elevation: GlassElevation.g2,
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  borderRadius: BorderRadius.circular(14),
-                  child: Text(
-                    isEn ? option.textEn : option.textTr,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
+              child: Semantics(
+                button: true,
+                label: isEn ? option.textEn : option.textTr,
+                child: GestureDetector(
+                  onTap: () => onSelectOption(option),
+                  child: GlassPanel(
+                    elevation: GlassElevation.g2,
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(16),
+                    borderRadius: BorderRadius.circular(14),
+                    child: Text(
+                      isEn ? option.textEn : option.textTr,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
                     ),
-                  ),
+                ),
                 ),
               ),
             ).glassListItem(context: context, index: index);
@@ -1588,40 +1600,44 @@ class _PermissionStartPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  GestureDetector(
-                    onTap: notificationsRequested
-                        ? null
-                        : onRequestNotifications,
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 250),
-                      width: 52,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: notificationsRequested
-                            ? AppColors.starGold
-                            : Colors.white.withValues(alpha: 0.1),
-                        border: Border.all(
+                  Semantics(
+                    button: true,
+                    label: 'Enable notifications',
+                    child: GestureDetector(
+                      onTap: notificationsRequested
+                          ? null
+                          : onRequestNotifications,
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 250),
+                        width: 52,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
                           color: notificationsRequested
                               ? AppColors.starGold
-                              : Colors.white.withValues(alpha: 0.2),
-                        ),
-                      ),
-                      child: AnimatedAlign(
-                        duration: const Duration(milliseconds: 250),
-                        curve: Curves.easeOutBack,
-                        alignment: notificationsRequested
-                            ? Alignment.centerRight
-                            : Alignment.centerLeft,
-                        child: Container(
-                          width: 24,
-                          height: 24,
-                          margin: const EdgeInsets.symmetric(horizontal: 2),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
+                              : Colors.white.withValues(alpha: 0.1),
+                          border: Border.all(
                             color: notificationsRequested
-                                ? Colors.white
-                                : Colors.white.withValues(alpha: 0.71),
+                                ? AppColors.starGold
+                                : Colors.white.withValues(alpha: 0.2),
+                          ),
+                        ),
+                        child: AnimatedAlign(
+                          duration: const Duration(milliseconds: 250),
+                          curve: Curves.easeOutBack,
+                          alignment: notificationsRequested
+                              ? Alignment.centerRight
+                              : Alignment.centerLeft,
+                          child: Container(
+                            width: 24,
+                            height: 24,
+                            margin: const EdgeInsets.symmetric(horizontal: 2),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: notificationsRequested
+                                  ? Colors.white
+                                  : Colors.white.withValues(alpha: 0.71),
+                            ),
                           ),
                         ),
                       ),
@@ -1792,7 +1808,7 @@ class _NameInput extends StatelessWidget {
           borderSide: BorderSide(
             color: hasValue
                 ? colorScheme.primary
-                : (isDark ? AppColors.surfaceLight : Colors.grey.shade300),
+                : (isDark ? AppColors.surfaceLight : AppColors.lightSurfaceVariant),
           ),
         ),
         focusedBorder: OutlineInputBorder(
@@ -1859,9 +1875,12 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      child: GestureDetector(
-        onTap: widget.onComplete,
-        child: Container(
+      child: Semantics(
+        button: true,
+        label: 'Tap to continue',
+        child: GestureDetector(
+          onTap: widget.onComplete,
+          child: Container(
           width: double.infinity,
           height: double.infinity,
           decoration: const BoxDecoration(
@@ -1981,6 +2000,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
               ),
             ],
           ),
+        ),
         ),
       ),
     );

@@ -213,7 +213,7 @@ class CompatibilityProfile {
           (e) => e.name == json['relationshipType'],
           orElse: () => RelationshipType.friend,
         ),
-        answers: List<int>.from(json['answers'] ?? []),
+        answers: (json['answers'] as List?)?.whereType<int>().toList() ?? [],
         result: json['result'] != null
             ? CompatibilityResult.fromJson(json['result'])
             : null,

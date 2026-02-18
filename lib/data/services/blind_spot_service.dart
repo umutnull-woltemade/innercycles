@@ -121,9 +121,9 @@ class BlindSpotReport {
         overallInsightEn: json['overallInsightEn'] as String? ?? '',
         overallInsightTr: json['overallInsightTr'] as String? ?? '',
         growthSuggestionsEn:
-            List<String>.from(json['growthSuggestionsEn'] as List? ?? []),
+            (json['growthSuggestionsEn'] as List?)?.whereType<String>().toList() ?? [],
         growthSuggestionsTr:
-            List<String>.from(json['growthSuggestionsTr'] as List? ?? []),
+            (json['growthSuggestionsTr'] as List?)?.whereType<String>().toList() ?? [],
       );
 }
 

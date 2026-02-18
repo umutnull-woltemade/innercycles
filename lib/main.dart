@@ -366,7 +366,7 @@ class _AppInitializerState extends State<AppInitializer> {
                   children: [
                     const Icon(
                       Icons.error_outline,
-                      color: Colors.amber,
+                      color: AppColors.warning,
                       size: 64,
                     ),
                     const SizedBox(height: 24),
@@ -382,7 +382,7 @@ class _AppInitializerState extends State<AppInitializer> {
                     Text(
                       'Error: ${snapshot.error}',
                       style: const TextStyle(
-                        color: Colors.redAccent,
+                        color: AppColors.error,
                         fontSize: 14,
                       ),
                       textAlign: TextAlign.center,

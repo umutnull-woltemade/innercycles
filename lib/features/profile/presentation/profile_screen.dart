@@ -370,7 +370,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ),
         ),
         const SizedBox(height: 6),
-        GestureDetector(
+        Semantics(
+          button: true,
+          label: '$label: $value',
+          child: GestureDetector(
           onTap: onTap,
           child: Container(
             padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -407,6 +410,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 ),
               ],
             ),
+          ),
           ),
         ),
       ],
@@ -614,7 +618,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       filled: true,
                       fillColor: isDark
                           ? AppColors.surfaceLight.withValues(alpha: 0.12)
-                          : Colors.grey.shade100,
+                          : AppColors.lightSurfaceVariant,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -644,7 +648,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         selectedColor: colorScheme.primary,
                         backgroundColor: isDark
                             ? AppColors.surfaceLight.withValues(alpha: 0.12)
-                            : Colors.grey.shade200,
+                            : AppColors.lightSurfaceVariant,
                         onSelected: (selected) {
                           setModalState(() => showTurkeyOnly = selected);
                         },
@@ -664,7 +668,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         selectedColor: colorScheme.primary,
                         backgroundColor: isDark
                             ? AppColors.surfaceLight.withValues(alpha: 0.12)
-                            : Colors.grey.shade200,
+                            : AppColors.lightSurfaceVariant,
                         onSelected: (selected) {
                           setModalState(() => showTurkeyOnly = !selected);
                         },

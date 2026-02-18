@@ -155,6 +155,11 @@ class _ShareCardGalleryScreenState
 
     return Scaffold(
       backgroundColor: isDark ? AppColors.deepSpace : AppColors.lightBackground,
+      // NOTE: Keeping plain AppBar here intentionally. This gallery screen
+      // switches between gallery mode (Column with Expanded GridView) and
+      // preview mode (SafeArea > Column). Converting to GlassSliverAppBar
+      // inside a CustomScrollView would require major restructuring of both
+      // layout modes due to the Expanded GridView pattern.
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -217,12 +222,15 @@ class _ShareCardGalleryScreenState
           final isSelected = category == _selectedCategory;
           final accent = _categoryAccent(category);
 
-          return GestureDetector(
-            onTap: () {
-              HapticFeedback.selectionClick();
-              setState(() => _selectedCategory = category);
-            },
-            child: AnimatedContainer(
+          return Semantics(
+            button: true,
+            label: 'Category: ${category.label(isEn)}',
+            child: GestureDetector(
+              onTap: () {
+                HapticFeedback.selectionClick();
+                setState(() => _selectedCategory = category);
+              },
+              child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               decoration: BoxDecoration(
@@ -269,6 +277,7 @@ class _ShareCardGalleryScreenState
                   ),
                 ],
               ),
+              ),
             ),
           );
         },
@@ -293,30 +302,34 @@ class _ShareCardGalleryScreenState
         final data = _buildDataForTemplate(template, isEn, streak);
         final accent = ShareCardTemplates.accentColor(template);
 
-        return GestureDetector(
-          onTap: () {
-            HapticFeedback.lightImpact();
-            setState(() => _previewTemplate = template);
-          },
-          child: _ThumbnailCard(
-            template: template,
-            data: data,
-            accent: accent,
-            isDark: isDark,
-            isEn: isEn,
-          )
-              .animate()
-              .fadeIn(
-                duration: 400.ms,
-                delay: (index * 80).ms,
-              )
-              .scale(
-                begin: const Offset(0.92, 0.92),
-                end: const Offset(1.0, 1.0),
-                duration: 400.ms,
-                delay: (index * 80).ms,
-                curve: Curves.easeOutCubic,
-              ),
+        return Semantics(
+          button: true,
+          label: 'Preview ${template.title(isEn)} card',
+          child: GestureDetector(
+            onTap: () {
+              HapticFeedback.lightImpact();
+              setState(() => _previewTemplate = template);
+            },
+            child: _ThumbnailCard(
+              template: template,
+              data: data,
+              accent: accent,
+              isDark: isDark,
+              isEn: isEn,
+            )
+                .animate()
+                .fadeIn(
+                  duration: 400.ms,
+                  delay: (index * 80).ms,
+                )
+                .scale(
+                  begin: const Offset(0.92, 0.92),
+                  end: const Offset(1.0, 1.0),
+                  duration: 400.ms,
+                  delay: (index * 80).ms,
+                  curve: Curves.easeOutCubic,
+                ),
+          ),
         );
       },
     );
@@ -510,7 +523,7 @@ class _ThumbnailCard extends StatelessWidget {
               child: Text(
                 template.badge(isEn),
                 style: GoogleFonts.plusJakartaSans(
-                  fontSize: 8,
+                  fontSize: 10,
                   fontWeight: FontWeight.w700,
                   color: accent,
                   letterSpacing: 0.5,

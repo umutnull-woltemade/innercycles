@@ -149,13 +149,13 @@ class SymbolInterpretation {
 
   factory SymbolInterpretation.fromJson(Map<String, dynamic> json) =>
       SymbolInterpretation(
-        symbol: json['symbol'],
-        symbolEmoji: json['symbolEmoji'],
-        universalMeaning: json['universalMeaning'],
-        personalContext: json['personalContext'],
-        shadowAspect: json['shadowAspect'],
-        lightAspect: json['lightAspect'],
-        relatedSymbols: List<String>.from(json['relatedSymbols'] ?? []),
+        symbol: json['symbol'] as String? ?? '',
+        symbolEmoji: json['symbolEmoji'] as String? ?? '',
+        universalMeaning: json['universalMeaning'] as String? ?? '',
+        personalContext: json['personalContext'] as String? ?? '',
+        shadowAspect: json['shadowAspect'] as String? ?? '',
+        lightAspect: json['lightAspect'] as String? ?? '',
+        relatedSymbols: (json['relatedSymbols'] as List?)?.whereType<String>().toList() ?? [],
       );
 }
 
@@ -189,10 +189,10 @@ class EmotionalReading {
           (e) => e.name == json['dominantEmotion'],
           orElse: () => EmotionalTone.merak,
         ),
-        surfaceMessage: json['surfaceMessage'],
-        deeperMeaning: json['deeperMeaning'],
-        shadowQuestion: json['shadowQuestion'],
-        integrationPath: json['integrationPath'],
+        surfaceMessage: json['surfaceMessage'] as String? ?? '',
+        deeperMeaning: json['deeperMeaning'] as String? ?? '',
+        shadowQuestion: json['shadowQuestion'] as String? ?? '',
+        integrationPath: json['integrationPath'] as String? ?? '',
       );
 }
 
@@ -228,11 +228,11 @@ class DreamTiming {
       (e) => e.name == json['moonPhase'],
       orElse: () => MoonPhase.yeniay,
     ),
-    emotionalTone: json['emotionalTone'],
-    currentTheme: json['currentTheme'],
-    timingMessage: json['timingMessage'],
-    whyNow: json['whyNow'],
-    isIntense: json['isIntense'] ?? false,
+    emotionalTone: json['emotionalTone'] as String?,
+    currentTheme: json['currentTheme'] as String?,
+    timingMessage: json['timingMessage'] as String? ?? '',
+    whyNow: json['whyNow'] as String? ?? '',
+    isIntense: json['isIntense'] as bool? ?? false,
   );
 }
 
@@ -259,10 +259,10 @@ class LightShadowReading {
 
   factory LightShadowReading.fromJson(Map<String, dynamic> json) =>
       LightShadowReading(
-        lightMessage: json['lightMessage'],
-        shadowMessage: json['shadowMessage'],
-        integrationPath: json['integrationPath'],
-        archetype: json['archetype'],
+        lightMessage: json['lightMessage'] as String? ?? '',
+        shadowMessage: json['shadowMessage'] as String? ?? '',
+        integrationPath: json['integrationPath'] as String? ?? '',
+        archetype: json['archetype'] as String? ?? '',
       );
 }
 
@@ -289,10 +289,10 @@ class PracticalGuidance {
 
   factory PracticalGuidance.fromJson(Map<String, dynamic> json) =>
       PracticalGuidance(
-        todayAction: json['todayAction'],
-        reflectionQuestion: json['reflectionQuestion'],
-        weeklyFocus: json['weeklyFocus'],
-        avoidance: json['avoidance'],
+        todayAction: json['todayAction'] as String? ?? '',
+        reflectionQuestion: json['reflectionQuestion'] as String? ?? '',
+        weeklyFocus: json['weeklyFocus'] as String? ?? '',
+        avoidance: json['avoidance'] as String? ?? '',
       );
 }
 
@@ -317,9 +317,9 @@ class ShareableCard {
   };
 
   factory ShareableCard.fromJson(Map<String, dynamic> json) => ShareableCard(
-    emoji: json['emoji'],
-    quote: json['quote'],
-    category: json['category'],
+    emoji: json['emoji'] as String? ?? '',
+    quote: json['quote'] as String? ?? '',
+    category: json['category'] as String? ?? '',
   );
 }
 
@@ -349,11 +349,11 @@ class DreamExplorationLink {
 
   factory DreamExplorationLink.fromJson(Map<String, dynamic> json) =>
       DreamExplorationLink(
-        title: json['title'],
-        description: json['description'],
-        route: json['route'],
-        emoji: json['emoji'],
-        category: json['category'],
+        title: json['title'] as String? ?? '',
+        description: json['description'] as String? ?? '',
+        route: json['route'] as String? ?? '',
+        emoji: json['emoji'] as String? ?? '',
+        category: json['category'] as String? ?? '',
       );
 }
 
@@ -467,35 +467,35 @@ class FullDreamInterpretation {
 
   factory FullDreamInterpretation.fromJson(Map<String, dynamic> json) =>
       FullDreamInterpretation(
-        dreamId: json['dreamId'],
-        oderId: json['userId'],
-        dreamText: json['dreamText'],
+        dreamId: json['dreamId'] as String? ?? '',
+        oderId: json['userId'] as String? ?? '',
+        dreamText: json['dreamText'] as String? ?? '',
         interpretedAt: DateTime.tryParse(json['interpretedAt']?.toString() ?? '') ?? DateTime.now(),
-        ancientIntro: json['ancientIntro'],
-        coreMessage: json['coreMessage'],
-        symbols: json['symbols'] != null
-            ? (json['symbols'] as List).map((s) => SymbolInterpretation.fromJson(s)).toList()
+        ancientIntro: json['ancientIntro'] as String? ?? '',
+        coreMessage: json['coreMessage'] as String? ?? '',
+        symbols: json['symbols'] is List
+            ? (json['symbols'] as List).whereType<Map<String, dynamic>>().map((s) => SymbolInterpretation.fromJson(s)).toList()
             : [],
-        archetypeConnection: json['archetypeConnection'],
-        archetypeName: json['archetypeName'],
-        emotionalReading: json['emotionalReading'] != null
-            ? EmotionalReading.fromJson(json['emotionalReading'])
+        archetypeConnection: json['archetypeConnection'] as String? ?? '',
+        archetypeName: json['archetypeName'] as String? ?? '',
+        emotionalReading: json['emotionalReading'] is Map
+            ? EmotionalReading.fromJson(json['emotionalReading'] as Map<String, dynamic>)
             : EmotionalReading.fromJson({}),
-        dreamTiming: json['dreamTiming'] != null
-            ? DreamTiming.fromJson(json['dreamTiming'])
+        dreamTiming: json['dreamTiming'] is Map
+            ? DreamTiming.fromJson(json['dreamTiming'] as Map<String, dynamic>)
             : DreamTiming.fromJson({}),
-        lightShadow: json['lightShadow'] != null
-            ? LightShadowReading.fromJson(json['lightShadow'])
+        lightShadow: json['lightShadow'] is Map
+            ? LightShadowReading.fromJson(json['lightShadow'] as Map<String, dynamic>)
             : LightShadowReading.fromJson({}),
-        guidance: json['guidance'] != null
-            ? PracticalGuidance.fromJson(json['guidance'])
+        guidance: json['guidance'] is Map
+            ? PracticalGuidance.fromJson(json['guidance'] as Map<String, dynamic>)
             : PracticalGuidance.fromJson({}),
-        whisperQuote: json['whisperQuote'],
-        shareCard: json['shareCard'] != null
-            ? ShareableCard.fromJson(json['shareCard'])
+        whisperQuote: json['whisperQuote'] as String? ?? '',
+        shareCard: json['shareCard'] is Map
+            ? ShareableCard.fromJson(json['shareCard'] as Map<String, dynamic>)
             : ShareableCard.fromJson({}),
-        explorationLinks: json['explorationLinks'] != null
-            ? (json['explorationLinks'] as List).map((l) => DreamExplorationLink.fromJson(l)).toList()
+        explorationLinks: json['explorationLinks'] is List
+            ? (json['explorationLinks'] as List).whereType<Map<String, dynamic>>().map((l) => DreamExplorationLink.fromJson(l)).toList()
             : [],
         userRole: json['userRole'] != null
             ? DreamRole.values.where((e) => e.name == json['userRole']).firstOrNull

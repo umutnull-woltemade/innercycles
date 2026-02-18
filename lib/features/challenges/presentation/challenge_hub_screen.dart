@@ -16,6 +16,8 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/growth_challenge_service.dart';
+import '../../../data/services/premium_service.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -151,6 +153,17 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
   }
 
   Future<void> _startChallenge(GrowthChallengeService service, String id) async {
+    // Check if this is a premium challenge and user is not premium
+    final challenge = GrowthChallengeService.allChallenges.where((c) => c.id == id).firstOrNull;
+    if (challenge != null && challenge.isPremium) {
+      final isPremium = ref.read(isPremiumUserProvider);
+      if (!isPremium) {
+        if (mounted) {
+          await showContextualPaywall(context, ref, paywallContext: PaywallContext.challenges);
+        }
+        return;
+      }
+    }
     await service.startChallenge(id);
     if (!mounted) return;
     setState(() {});

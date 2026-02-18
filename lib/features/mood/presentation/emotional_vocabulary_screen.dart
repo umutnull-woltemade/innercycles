@@ -242,7 +242,11 @@ class _FamilyChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      label: '$emoji $label',
+      selected: isSelected,
+      child: GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
@@ -281,6 +285,7 @@ class _FamilyChip extends StatelessWidget {
           ],
         ),
       ),
+      ),
     );
   }
 }
@@ -309,7 +314,10 @@ class _EmotionCardState extends State<_EmotionCard> {
     final isDark = widget.isDark;
     final isEn = widget.isEn;
 
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      label: isEn ? e.nameEn : e.nameTr,
+      child: GestureDetector(
       onTap: () => setState(() => _isExpanded = !_isExpanded),
       child: GlassPanel(
         elevation: GlassElevation.g2,
@@ -452,6 +460,7 @@ class _EmotionCardState extends State<_EmotionCard> {
             ],
           ],
         ),
+      ),
       ),
     );
   }

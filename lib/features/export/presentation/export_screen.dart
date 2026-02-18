@@ -465,7 +465,10 @@ class _LockedEntriesCta extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      label: isEn ? 'Unlock $lockedEntries locked entries' : '$lockedEntries kilitli kaydı aç',
+      child: GestureDetector(
       onTap: onUnlock,
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -549,6 +552,7 @@ class _LockedEntriesCta extends StatelessWidget {
           ],
         ),
       ),
+      ),
     ).animate().fadeIn(duration: 400.ms, delay: 200.ms);
   }
 }
@@ -576,7 +580,11 @@ class _FormatOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      label: title,
+      selected: isSelected,
+      child: GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
@@ -659,6 +667,7 @@ class _FormatOption extends StatelessWidget {
               ),
           ],
         ),
+      ),
       ),
     );
   }

@@ -674,30 +674,34 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
             data: (forecast) => ShiftForecastCard(forecast: forecast, isDark: isDark, isEn: isEn),
           )
         else
-          GestureDetector(
-            onTap: () {
-              HapticFeedback.lightImpact();
-              showContextualPaywall(context, ref, paywallContext: PaywallContext.patterns);
-            },
-            child: Container(
-              padding: const EdgeInsets.all(AppConstants.spacingLg),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  AppColors.auroraStart.withValues(alpha: 0.08),
-                  AppColors.auroraEnd.withValues(alpha: 0.08)]),
-                borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-                border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
+          Semantics(
+            button: true,
+            label: 'Unlock Shift Outlook',
+            child: GestureDetector(
+              onTap: () {
+                HapticFeedback.lightImpact();
+                showContextualPaywall(context, ref, paywallContext: PaywallContext.patterns);
+              },
+              child: Container(
+                padding: const EdgeInsets.all(AppConstants.spacingLg),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                    AppColors.auroraStart.withValues(alpha: 0.08),
+                    AppColors.auroraEnd.withValues(alpha: 0.08)]),
+                  borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+                  border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
+                ),
+                child: Row(children: [
+                  const Icon(Icons.lock_outline, color: AppColors.starGold, size: 20),
+                  const SizedBox(width: 12),
+                  Expanded(child: Text(
+                      isEn ? 'Unlock Shift Outlook to see when your emotional phases may shift'
+                          : 'Duygusal evrelerinin ne zaman kayabileceğini görmek için Kayma Görünümünü aç',
+                      style: TextStyle(fontSize: 13,
+                          color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary))),
+                  const Icon(Icons.chevron_right, color: AppColors.starGold, size: 20),
+                ]),
               ),
-              child: Row(children: [
-                const Icon(Icons.lock_outline, color: AppColors.starGold, size: 20),
-                const SizedBox(width: 12),
-                Expanded(child: Text(
-                    isEn ? 'Unlock Shift Outlook to see when your emotional phases may shift'
-                        : 'Duygusal evrelerinin ne zaman kayabileceğini görmek için Kayma Görünümünü aç',
-                    style: TextStyle(fontSize: 13,
-                        color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary))),
-                const Icon(Icons.chevron_right, color: AppColors.starGold, size: 20),
-              ]),
             ),
           ),
       ],

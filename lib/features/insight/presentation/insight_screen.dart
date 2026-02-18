@@ -134,6 +134,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
 
   void _scrollToBottom() {
     Future.delayed(const Duration(milliseconds: 100), () {
+      if (!mounted) return;
       if (_scrollController.hasClients) {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
@@ -151,6 +152,10 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
 
     return Scaffold(
       backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightBackground,
+      // NOTE: Keeping plain AppBar here intentionally. This is a chat screen
+      // with a fixed input area pinned at the bottom (Column with Expanded
+      // ListView + fixed _buildInputArea). Converting to GlassSliverAppBar
+      // inside a CustomScrollView would break the chat layout pattern.
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,

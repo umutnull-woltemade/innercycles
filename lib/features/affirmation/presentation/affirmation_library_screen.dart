@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
@@ -154,7 +155,7 @@ class _AffirmationLibraryScreenState
           ),
         ],
       ),
-    );
+    ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms);
   }
 
   Widget _buildTodayHero(
@@ -291,51 +292,55 @@ class _FilterChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? AppColors.starGold.withValues(alpha: 0.2)
-              : (isDark
-                  ? AppColors.surfaceLight.withValues(alpha: 0.1)
-                  : AppColors.lightSurfaceVariant),
-          borderRadius: BorderRadius.circular(AppConstants.radiusFull),
-          border: Border.all(
+    return Semantics(
+      button: true,
+      label: 'Filter: $label',
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          decoration: BoxDecoration(
             color: isSelected
-                ? AppColors.starGold
+                ? AppColors.starGold.withValues(alpha: 0.2)
                 : (isDark
-                    ? Colors.white.withValues(alpha: 0.1)
-                    : Colors.black.withValues(alpha: 0.05)),
-          ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (icon != null) ...[
-              Icon(
-                icon,
-                size: 14,
-                color: isSelected
-                    ? AppColors.starGold
-                    : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
-              ),
-              const SizedBox(width: 4),
-            ],
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                color: isSelected
-                    ? AppColors.starGold
-                    : (isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary),
-              ),
+                    ? AppColors.surfaceLight.withValues(alpha: 0.1)
+                    : AppColors.lightSurfaceVariant),
+            borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+            border: Border.all(
+              color: isSelected
+                  ? AppColors.starGold
+                  : (isDark
+                      ? Colors.white.withValues(alpha: 0.1)
+                      : Colors.black.withValues(alpha: 0.05)),
             ),
-          ],
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (icon != null) ...[
+                Icon(
+                  icon,
+                  size: 14,
+                  color: isSelected
+                      ? AppColors.starGold
+                      : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                ),
+                const SizedBox(width: 4),
+              ],
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                  color: isSelected
+                      ? AppColors.starGold
+                      : (isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -418,14 +423,18 @@ class _AffirmationTile extends StatelessWidget {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: onToggleFavorite,
-            child: Icon(
-              isFavorite ? Icons.favorite : Icons.favorite_border,
-              size: 20,
-              color: isFavorite
-                  ? AppColors.starGold
-                  : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+          Semantics(
+            button: true,
+            label: isFavorite ? 'Remove from favorites' : 'Add to favorites',
+            child: GestureDetector(
+              onTap: onToggleFavorite,
+              child: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_border,
+                size: 20,
+                color: isFavorite
+                    ? AppColors.starGold
+                    : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+              ),
             ),
           ),
         ],

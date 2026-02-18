@@ -20,7 +20,11 @@ class AdminAnalyticsService {
       }
       return;
     }
-    _analyticsBox = await Hive.openBox(_analyticsBoxName);
+    try {
+      _analyticsBox = await Hive.openBox(_analyticsBoxName);
+    } catch (e) {
+      if (kDebugMode) debugPrint('AdminAnalyticsService init error: $e');
+    }
   }
 
   // ═══════════════════════════════════════════════════════════════════

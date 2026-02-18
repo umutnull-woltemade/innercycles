@@ -182,7 +182,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
         border: Border.all(
           color: isDark
               ? Colors.white.withValues(alpha: 0.1)
-              : Colors.grey.withValues(alpha: 0.2),
+              : AppColors.textMuted.withValues(alpha: 0.2),
         ),
       ),
       child: Column(
@@ -219,7 +219,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
               minHeight: 8,
               backgroundColor: isDark
                   ? Colors.white.withValues(alpha: 0.1)
-                  : Colors.grey.withValues(alpha: 0.15),
+                  : AppColors.textMuted.withValues(alpha: 0.15),
               valueColor: const AlwaysStoppedAnimation<Color>(
                 AppColors.auroraStart,
               ),
@@ -401,7 +401,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
               ? AppColors.auroraStart.withValues(alpha: 0.6)
               : (isDark
                   ? Colors.white.withValues(alpha: 0.12)
-                  : Colors.grey.withValues(alpha: 0.2)),
+                  : AppColors.textMuted.withValues(alpha: 0.2)),
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
@@ -433,7 +433,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
               ? AppColors.success.withValues(alpha: 0.3)
               : (isDark
                   ? Colors.white.withValues(alpha: 0.1)
-                  : Colors.grey.withValues(alpha: 0.2)),
+                  : AppColors.textMuted.withValues(alpha: 0.2)),
         ),
       ),
       child: InkWell(
@@ -507,7 +507,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                   size: 22,
                   color: isDark
                       ? Colors.white.withValues(alpha: 0.3)
-                      : Colors.grey.withValues(alpha: 0.4),
+                      : AppColors.textMuted.withValues(alpha: 0.4),
                 ),
               ),
           ],
@@ -547,7 +547,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                 decoration: BoxDecoration(
                   color: isDark
                       ? Colors.white.withValues(alpha: 0.2)
-                      : Colors.grey.withValues(alpha: 0.3),
+                      : AppColors.textMuted.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -623,7 +623,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                       side: BorderSide(
                         color: isDark
                             ? Colors.white.withValues(alpha: 0.15)
-                            : Colors.grey.withValues(alpha: 0.3),
+                            : AppColors.textMuted.withValues(alpha: 0.3),
                       ),
                       padding: const EdgeInsets.symmetric(vertical: 13),
                       shape: RoundedRectangleBorder(

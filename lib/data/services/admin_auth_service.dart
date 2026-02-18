@@ -32,7 +32,11 @@ class AdminAuthService {
       }
       return;
     }
-    _adminBox = await Hive.openBox(_adminBoxName);
+    try {
+      _adminBox = await Hive.openBox(_adminBoxName);
+    } catch (e) {
+      if (kDebugMode) debugPrint('AdminAuthService init error: $e');
+    }
   }
 
   /// Get PIN from environment or use default

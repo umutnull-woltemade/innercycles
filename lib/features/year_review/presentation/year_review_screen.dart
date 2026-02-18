@@ -9,6 +9,7 @@ import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -218,7 +219,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                 ),
               ],
             ),
-          ),
+          ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms),
         ),
       ),
     );

@@ -116,7 +116,10 @@ class JournalPromptService {
 
       final recentJson = _prefs.getString(_recentKey);
       if (recentJson != null) {
-        _recentIds = List<String>.from(jsonDecode(recentJson) as List);
+        final recentDecoded = jsonDecode(recentJson);
+        if (recentDecoded is List) {
+          _recentIds = recentDecoded.whereType<String>().toList();
+        }
       }
     } catch (_) {
       _completedIds = {};

@@ -793,28 +793,31 @@ class _CompatibilityReflectionScreenState
     required bool isDark,
     required VoidCallback onTap,
   }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: isSelected
-                ? AppColors.auroraStart
-                : isDark
-                    ? AppColors.surfaceLight.withValues(alpha: 0.4)
-                    : AppColors.lightSurfaceVariant,
-            width: isSelected ? 2 : 1,
-          ),
-          gradient: isSelected
-              ? LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    AppColors.auroraStart.withValues(alpha: 0.15),
+    return Semantics(
+      button: true,
+      label: text,
+      child: GestureDetector(
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: isSelected
+                  ? AppColors.auroraStart
+                  : isDark
+                      ? AppColors.surfaceLight.withValues(alpha: 0.4)
+                      : AppColors.lightSurfaceVariant,
+              width: isSelected ? 2 : 1,
+            ),
+            gradient: isSelected
+                ? LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppColors.auroraStart.withValues(alpha: 0.15),
                     AppColors.auroraEnd.withValues(alpha: 0.10),
                   ],
                 )
@@ -860,6 +863,7 @@ class _CompatibilityReflectionScreenState
               ),
             ),
           ],
+          ),
         ),
       ),
     );
@@ -1380,10 +1384,13 @@ class _ProfileCard extends StatelessWidget {
     final hasResult = profile.result != null;
     final scoreColor = hasResult ? _scoreColor(profile.overallScore) : AppColors.textMuted;
 
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(16),
+    return Semantics(
+      button: true,
+      label: 'View ${profile.name} profile',
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: isDark
@@ -1477,15 +1484,20 @@ class _ProfileCard extends StatelessWidget {
             const SizedBox(width: 8),
 
             // Delete button
-            GestureDetector(
-              onTap: onDelete,
-              child: Icon(
-                Icons.close_rounded,
-                size: 18,
-                color: AppColors.textMuted.withValues(alpha: 0.5),
+            Semantics(
+              button: true,
+              label: 'Delete profile',
+              child: GestureDetector(
+                onTap: onDelete,
+                child: Icon(
+                  Icons.close_rounded,
+                  size: 18,
+                  color: AppColors.textMuted.withValues(alpha: 0.5),
+                ),
               ),
             ),
           ],
+        ),
         ),
       ),
     );

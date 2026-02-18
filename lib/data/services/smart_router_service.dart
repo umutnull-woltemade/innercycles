@@ -104,19 +104,33 @@ class SmartRouterService {
     try {
       final recentJson = prefs.getString(_recentToolsKey);
       if (recentJson != null) {
-        recentTools = List<String>.from(jsonDecode(recentJson) as List);
+        final recentDecoded = jsonDecode(recentJson);
+        if (recentDecoded is List) {
+          recentTools = recentDecoded.whereType<String>().toList();
+        }
       }
       final favJson = prefs.getString(_favoriteToolsKey);
       if (favJson != null) {
-        favoriteTools = Set<String>.from(jsonDecode(favJson) as List);
+        final favDecoded = jsonDecode(favJson);
+        if (favDecoded is List) {
+          favoriteTools = favDecoded.whereType<String>().toSet();
+        }
       }
       final countsJson = prefs.getString(_toolVisitCountsKey);
       if (countsJson != null) {
-        toolVisitCounts = Map<String, int>.from(jsonDecode(countsJson) as Map);
+        final countsDecoded = jsonDecode(countsJson);
+        if (countsDecoded is Map) {
+          toolVisitCounts = countsDecoded.map(
+            (k, v) => MapEntry(k.toString(), v is int ? v : 0),
+          );
+        }
       }
       final goalsJson = prefs.getString(_userGoalsKey);
       if (goalsJson != null) {
-        userGoals = Set<String>.from(jsonDecode(goalsJson) as List);
+        final goalsDecoded = jsonDecode(goalsJson);
+        if (goalsDecoded is List) {
+          userGoals = goalsDecoded.whereType<String>().toSet();
+        }
       }
     } catch (_) {
       // Reset to defaults on corrupted data

@@ -43,18 +43,18 @@ class Dream {
   };
 
   factory Dream.fromJson(Map<String, dynamic> json) => Dream(
-    id: json['id'],
-    content: json['content'],
+    id: json['id'] as String? ?? '',
+    content: json['content'] as String? ?? '',
     dreamDate: DateTime.tryParse(json['dreamDate']?.toString() ?? '') ?? DateTime.now(),
     createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
-    symbols: List<String>.from(json['symbols'] ?? []),
-    dominantEmotion: json['dominantEmotion'],
-    themes: List<String>.from(json['themes'] ?? []),
-    mood: json['mood'],
-    interpretation: json['interpretation'] != null
-        ? DreamInterpretation.fromJson(json['interpretation'])
+    symbols: (json['symbols'] as List?)?.whereType<String>().toList() ?? [],
+    dominantEmotion: json['dominantEmotion'] as String?,
+    themes: (json['themes'] as List?)?.whereType<String>().toList() ?? [],
+    mood: json['mood'] as String?,
+    interpretation: json['interpretation'] is Map
+        ? DreamInterpretation.fromJson(json['interpretation'] as Map<String, dynamic>)
         : null,
-    isSaved: json['isSaved'] ?? true,
+    isSaved: json['isSaved'] as bool? ?? true,
   );
 
   Dream copyWith({
@@ -162,11 +162,11 @@ class InterpretationLayer {
 
   factory InterpretationLayer.fromJson(Map<String, dynamic> json) =>
       InterpretationLayer(
-        title: json['title'],
-        content: json['content'],
-        teaser: json['teaser'],
-        isLocked: json['isLocked'] ?? false,
-        connectionCount: json['connectionCount'],
+        title: json['title'] as String? ?? '',
+        content: json['content'] as String? ?? '',
+        teaser: json['teaser'] as String? ?? '',
+        isLocked: json['isLocked'] as bool? ?? false,
+        connectionCount: json['connectionCount'] as int?,
       );
 }
 
@@ -198,7 +198,7 @@ class DreamMemory {
   };
 
   factory DreamMemory.fromJson(Map<String, dynamic> json) => DreamMemory(
-    userId: json['userId'],
+    userId: json['userId'] as String? ?? '',
     symbols:
         (json['symbols'] as Map<String, dynamic>?)?.map(
           (key, value) => MapEntry(key, SymbolOccurrence.fromJson(value)),
@@ -267,10 +267,8 @@ class SymbolOccurrence {
         count: json['count'] ?? 1,
         firstSeen: DateTime.tryParse(json['firstSeen']?.toString() ?? '') ?? DateTime.now(),
         lastSeen: DateTime.tryParse(json['lastSeen']?.toString() ?? '') ?? DateTime.now(),
-        contexts: List<String>.from(json['contexts'] ?? []),
-        emotionalAssociations: List<String>.from(
-          json['emotionalAssociations'] ?? [],
-        ),
+        contexts: (json['contexts'] as List?)?.whereType<String>().toList() ?? [],
+        emotionalAssociations: (json['emotionalAssociations'] as List?)?.whereType<String>().toList() ?? [],
       );
 
   SymbolOccurrence increment({String? context, String? emotion}) =>
@@ -305,7 +303,7 @@ class EmotionalProfile {
 
   factory EmotionalProfile.fromJson(Map<String, dynamic> json) =>
       EmotionalProfile(
-        dominantTones: List<String>.from(json['dominantTones'] ?? []),
+        dominantTones: (json['dominantTones'] as List?)?.whereType<String>().toList() ?? [],
         recentTrend: json['recentTrend'] ?? 'seeking',
         weeklySnapshots:
             (json['weeklySnapshots'] as List<dynamic>?)
@@ -333,9 +331,9 @@ class WeeklySnapshot {
   };
 
   factory WeeklySnapshot.fromJson(Map<String, dynamic> json) => WeeklySnapshot(
-    week: json['week'],
-    dominantEmotion: json['dominantEmotion'],
-    symbolHighlight: json['symbolHighlight'],
+    week: json['week'] as String? ?? '',
+    dominantEmotion: json['dominantEmotion'] as String? ?? '',
+    symbolHighlight: json['symbolHighlight'] as String? ?? '',
   );
 }
 
@@ -360,7 +358,7 @@ class ThemeOccurrence {
   factory ThemeOccurrence.fromJson(Map<String, dynamic> json) =>
       ThemeOccurrence(
         count: json['count'] ?? 1,
-        evolution: List<String>.from(json['evolution'] ?? []),
+        evolution: (json['evolution'] as List?)?.whereType<String>().toList() ?? [],
         lastSeen: DateTime.tryParse(json['lastSeen']?.toString() ?? '') ?? DateTime.now(),
       );
 }
@@ -403,7 +401,7 @@ class DreamMilestones {
         lastDreamAt: json['lastDreamAt'] != null
             ? DateTime.tryParse(json['lastDreamAt'].toString())
             : null,
-        achievements: List<String>.from(json['achievements'] ?? []),
+        achievements: (json['achievements'] as List?)?.whereType<String>().toList() ?? [],
       );
 
   /// Check if streak continues (dream logged within 36 hours)
