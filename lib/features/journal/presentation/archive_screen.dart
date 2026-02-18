@@ -16,7 +16,6 @@ import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
-import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../shared/widgets/ecosystem_widgets.dart';
 
 class ArchiveScreen extends ConsumerStatefulWidget {
@@ -183,17 +182,6 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                             }, childCount: entries.length),
                           ),
                         ),
-                      // Related tools footer
-                      SliverToBoxAdapter(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: ToolEcosystemFooter(
-                            currentToolId: 'journalArchive',
-                            isEn: isEn,
-                            isDark: isDark,
-                          ),
-                        ),
-                      ),
                       const SliverToBoxAdapter(child: SizedBox(height: 40)),
                     ],
                   ),

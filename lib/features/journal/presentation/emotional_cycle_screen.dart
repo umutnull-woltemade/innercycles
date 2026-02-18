@@ -31,7 +31,6 @@ import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
-import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import 'widgets/cycle_wave_painter.dart';
 import 'widgets/cycle_summary_card.dart';
 import 'widgets/phase_ring.dart';
@@ -530,11 +529,6 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 ],
                 ContentDisclaimer(
                   language: isEn ? AppLanguage.en : AppLanguage.tr,
-                ),
-                ToolEcosystemFooter(
-                  currentToolId: 'emotionalCycles',
-                  isEn: isEn,
-                  isDark: isDark,
                 ),
                 const SizedBox(height: 48),
               ]),

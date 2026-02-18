@@ -21,7 +21,6 @@ import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
-import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class PatternsScreen extends ConsumerWidget {
   const PatternsScreen({super.key});
@@ -414,11 +413,6 @@ class PatternsScreen extends ConsumerWidget {
                 ],
                 ContentDisclaimer(
                   language: isEn ? AppLanguage.en : AppLanguage.tr,
-                ),
-                ToolEcosystemFooter(
-                  currentToolId: 'patterns',
-                  isEn: isEn,
-                  isDark: isDark,
                 ),
                 const SizedBox(height: 40),
               ]),

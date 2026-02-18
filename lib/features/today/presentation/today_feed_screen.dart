@@ -305,7 +305,7 @@ class _TodaysInsightSection extends ConsumerWidget {
         child: GestureDetector(
           onTap: () {
             HapticFeedback.lightImpact();
-            context.push(Routes.insight);
+            context.push(Routes.moodTrends);
           },
           child: Container(
         width: double.infinity,
