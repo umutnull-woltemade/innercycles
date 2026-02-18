@@ -50,9 +50,9 @@ class _StreakCardContent extends StatelessWidget {
           : 'Seri: ${stats.currentStreak} gün. Detaylar için dokun',
       button: true,
       child: GestureDetector(
-      onTap: () => context.push(Routes.streakStats),
-      child: Container(
-      padding: const EdgeInsets.all(20),
+        onTap: () => context.push(Routes.streakStats),
+        child: Container(
+        padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -188,6 +188,7 @@ class _StreakCardContent extends StatelessWidget {
             ),
           ],
         ],
+      ),
       ),
       ),
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.1, duration: 400.ms);

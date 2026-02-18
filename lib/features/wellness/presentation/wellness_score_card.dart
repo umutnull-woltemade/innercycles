@@ -25,7 +25,12 @@ class WellnessScoreCard extends ConsumerWidget {
           return _EmptyWellnessCard(isDark: isDark, isEn: isEn);
         }
 
-        return GestureDetector(
+        return Semantics(
+          label: isEn
+              ? 'Wellness score: ${score.score}. Tap for details'
+              : 'Sağlık puanı: ${score.score}. Detaylar için dokun',
+          button: true,
+          child: GestureDetector(
           onTap: () => context.push(Routes.wellnessDetail),
           child: Container(
             padding: const EdgeInsets.all(16),
@@ -111,6 +116,7 @@ class WellnessScoreCard extends ConsumerWidget {
               ],
             ),
           ).animate().fadeIn(duration: 300.ms),
+        ),
         );
       },
     );

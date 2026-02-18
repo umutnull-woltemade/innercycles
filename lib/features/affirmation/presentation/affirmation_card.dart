@@ -38,7 +38,12 @@ class _AffirmationCardState extends ConsumerState<AffirmationCard> {
         if (affirmation == null) return const SizedBox.shrink();
         _isFavorite = service.isFavorite(affirmation.id);
 
-        return GestureDetector(
+        return Semantics(
+          label: isEn
+              ? 'Daily Affirmation: ${affirmation.textEn}. Tap for next'
+              : 'Günün Olumlaması: ${affirmation.textTr}. Sonraki için dokun',
+          button: true,
+          child: GestureDetector(
           onTap: () => _onTap(service),
           child: Container(
             padding: const EdgeInsets.all(20),
@@ -125,7 +130,13 @@ class _AffirmationCardState extends ConsumerState<AffirmationCard> {
                           ),
                         ),
                         // Favorite toggle
-                        GestureDetector(
+                        Semantics(
+                          label: _isFavorite
+                              ? (isEn ? 'Remove from favorites' : 'Favorilerden kaldır')
+                              : (isEn ? 'Add to favorites' : 'Favorilere ekle'),
+                          button: true,
+                          toggled: _isFavorite,
+                          child: GestureDetector(
                           onTap: () => _toggleFavorite(service, affirmation.id),
                           child: AnimatedSwitcher(
                             duration: const Duration(milliseconds: 250),
@@ -148,6 +159,7 @@ class _AffirmationCardState extends ConsumerState<AffirmationCard> {
                               size: 22,
                             ),
                           ),
+                        ),
                         ),
                       ],
                     ),
@@ -272,6 +284,7 @@ class _AffirmationCardState extends ConsumerState<AffirmationCard> {
               ],
             ),
           ),
+        ),
         ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.08, duration: 500.ms);
       },
     );

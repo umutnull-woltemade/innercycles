@@ -1056,7 +1056,7 @@
                     "psychological_label": "🌙 PSİKOLOJİK BOYUT",
                     "psychological": "• Hayvan davranışı: Senin bastırdığın davranış\n• Hayvanla ilişkin: İçgüdülerinle ilişkin\n• Hayvanın rengi: Duygusal ton\n• Hayvan saldırıyorsa: Bastırılmış enerji patlaması",
                     "practice_label": "✨ PRATİK UYGULAMA",
-                    "practice": "• O hayvanı araştır - mitoloji, sembolizm\n• Hayvan meditasyonu yap\n• Totem kartları çek\n• O hayvanla ilgili bir nesne edin",
+                    "practice": "• O hayvanı araştır - mitoloji, sembolizm\n• Hayvanı hayal ederek rehberli meditasyon yap\n• Hayvanın senin için neyi temsil ettiğini günlüğüne yaz\n• Günlük hayatta o hayvana dikkat et",
                     "cosmic_message_label": "💫 KİŞİSEL MESAJ",
                     "cosmic_message": "Rüyalardaki hayvanlar genellikle içgüdülerini ve iç güçlerini temsil eder. {element} arketipi olarak bu sembolizm özellikle anlamlı olabilir."
                 },
@@ -1129,10 +1129,10 @@
                     "earth_love": "güvenlik ve sadakat arıyor",
                     "air_love": "iletişim ve zihinsel bağ öncelikli",
                     "water_love": "derin duygusal bağ kurmak istiyor",
-                    "fire_money": "cesaretli yatırımlar önerir",
-                    "earth_money": "güvenli ve kararlı birikimi destekler",
-                    "air_money": "çoklu gelir kaynaklarını işaret eder",
-                    "water_money": "sezgisel finansal kararlar önerir",
+                    "fire_money": "cesur adımlar atma isteğini yansıtıyor olabilir",
+                    "earth_money": "istikrar ve güvenlik arzusunu yansıtıyor olabilir",
+                    "air_money": "yeni olasılıklara merak duyduğunu yansıtıyor olabilir",
+                    "water_money": "içgüdülerine güvenme ihtiyacını yansıtıyor olabilir",
                     "fire_generic": "tutku, aksiyon ve yaratıcı güç",
                     "earth_generic": "güvenlik, maddi dünya ve pratik adımlar",
                     "air_generic": "iletişim, fikirler ve sosyal bağlantılar",
@@ -3125,12 +3125,12 @@
     },
     "insights": {
         "daily_energy_title": "Bugünün Enerjisi",
-        "daily_energy_content": "Ay'ın mevcut konumu duygusal derinlik getiriyor. İç sesinize kulak vermenin tam zamanı.",
+        "daily_energy_content": "Bugünkü döngü duygusal derinlik getiriyor. İç sesinize kulak vermenin tam zamanı.",
         "cycle_effect_title": "Döngü Etkisi",
         "dream_guide_title": "Rüya Rehberi",
         "dream_guide_content": "Bu gece gördüğünüz rüyalar önemli mesajlar taşıyabilir. Rüyalarınızı kaydetmeyi unutmayın.",
         "weekly_preview_title": "Haftalık Bakış",
-        "weekly_preview_content": "Haftanın geri kalanı için kişisel enerjiler sizin lehinize çalışıyor."
+        "weekly_preview_content": "Kalıplarınız haftanın geri kalanı için olumlu gelişiyor."
     },
     "nav": {
         "also_viewed_subtitle": "Merak edenler bunlara da göz attı",

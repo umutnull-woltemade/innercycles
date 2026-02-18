@@ -198,28 +198,29 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
       label: '$digit',
       button: true,
       child: GestureDetector(
-      onTap: () => _onDigit(digit),
-      child: Container(
-        width: 72,
-        height: 72,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: isDark
-              ? AppColors.surfaceLight.withValues(alpha: 0.1)
-              : AppColors.lightSurfaceVariant.withValues(alpha: 0.5),
-          border: Border.all(
+        onTap: () => _onDigit(digit),
+        child: Container(
+          width: 72,
+          height: 72,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
             color: isDark
-                ? AppColors.surfaceLight.withValues(alpha: 0.2)
-                : AppColors.lightTextMuted.withValues(alpha: 0.2),
+                ? AppColors.surfaceLight.withValues(alpha: 0.1)
+                : AppColors.lightSurfaceVariant.withValues(alpha: 0.5),
+            border: Border.all(
+              color: isDark
+                  ? AppColors.surfaceLight.withValues(alpha: 0.2)
+                  : AppColors.lightTextMuted.withValues(alpha: 0.2),
+            ),
           ),
-        ),
-        child: Center(
-          child: Text(
-            '$digit',
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.w300,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+          child: Center(
+            child: Text(
+              '$digit',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.w300,
+                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              ),
             ),
           ),
         ),
@@ -232,15 +233,16 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
       label: 'Delete',
       button: true,
       child: GestureDetector(
-      onTap: _onDelete,
-      child: SizedBox(
-        width: 72,
-        height: 72,
-        child: Center(
-          child: Icon(
-            Icons.backspace_outlined,
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-            size: 24,
+        onTap: _onDelete,
+        child: SizedBox(
+          width: 72,
+          height: 72,
+          child: Center(
+            child: Icon(
+              Icons.backspace_outlined,
+              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              size: 24,
+            ),
           ),
         ),
       ),
@@ -252,18 +254,19 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
       label: 'Unlock with biometrics',
       button: true,
       child: GestureDetector(
-      onTap: () {
-        _biometricsAttempted = false;
-        _tryBiometrics();
-      },
-      child: SizedBox(
-        width: 72,
-        height: 72,
-        child: Center(
-          child: Icon(
-            Icons.fingerprint,
-            color: AppColors.starGold.withValues(alpha: 0.7),
-            size: 28,
+        onTap: () {
+          _biometricsAttempted = false;
+          _tryBiometrics();
+        },
+        child: SizedBox(
+          width: 72,
+          height: 72,
+          child: Center(
+            child: Icon(
+              Icons.fingerprint,
+              color: AppColors.starGold.withValues(alpha: 0.7),
+              size: 28,
+            ),
           ),
         ),
       ),

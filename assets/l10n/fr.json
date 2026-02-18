@@ -1056,7 +1056,7 @@
           "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
           "psychological": "• Animal's behavior: Your suppressed behavior\n• Your relationship with animal: Your relationship with instincts\n• Animal's color: Emotional tone\n• If animal attacks: Suppressed energy eruption",
           "practice_label": "✨ PRACTICAL APPLICATION",
-          "practice": "• Research that animal - mythology, symbolism\n• Do animal meditation\n• Draw totem cards\n• Get an object related to that animal",
+          "practice": "• Research that animal - mythology, symbolism\n• Do a guided meditation visualizing the animal\n• Journal about what the animal represents to you\n• Notice that animal in your daily life",
           "cosmic_message_label": "💫 PERSONAL MESSAGE",
           "cosmic_message": "Les animaux dans les rêves représentent souvent vos instincts et forces intérieures. En tant qu'archétype {element}, ce symbolisme peut être particulièrement significatif."
         },
@@ -1129,10 +1129,10 @@
           "earth_love": "seeks security and loyalty",
           "air_love": "prioritizes communication and mental connection",
           "water_love": "wants to create deep emotional bonds",
-          "fire_money": "suggests bold investments",
-          "earth_money": "supports safe and steady accumulation",
-          "air_money": "indicates multiple income sources",
-          "water_money": "suggests intuitive financial decisions",
+          "fire_money": "peut refléter un désir d'action audacieuse",
+          "earth_money": "peut refléter un désir de stabilité et de sécurité",
+          "air_money": "peut refléter une curiosité pour de nouvelles possibilités",
+          "water_money": "peut refléter un besoin de faire confiance à vos instincts",
           "fire_generic": "passion, action and creative power",
           "earth_generic": "security, material world and practical steps",
           "air_generic": "communication, ideas and social connections",
@@ -3121,12 +3121,12 @@
   },
   "insights": {
     "daily_energy_title": "Today's Energy",
-    "daily_energy_content": "The Moon's current position brings emotional depth. It's the perfect time to listen to your inner voice.",
-    "cycle_effect_title": "Cycle Effect",
-    "dream_guide_title": "Dream Guide",
-    "dream_guide_content": "Dreams you have tonight may carry important messages. Don't forget to record your dreams.",
-    "weekly_preview_title": "Weekly Preview",
-    "weekly_preview_content": "Personal energies are working in your favor for the rest of the week."
+    "daily_energy_content": "Le cycle d'aujourd'hui apporte de la profondeur émotionnelle. C'est le moment idéal pour écouter votre voix intérieure.",
+    "cycle_effect_title": "Effet du cycle",
+    "dream_guide_title": "Guide des rêves",
+    "dream_guide_content": "Les rêves de cette nuit peuvent porter des messages importants. N'oubliez pas d'enregistrer vos rêves.",
+    "weekly_preview_title": "Aperçu hebdomadaire",
+    "weekly_preview_content": "Vos schémas évoluent positivement pour le reste de la semaine."
   },
   "nav": {
     "also_viewed_subtitle": "D'autres curieux ont également consulté ceci",
