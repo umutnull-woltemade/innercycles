@@ -14,6 +14,8 @@ import '../../../data/services/l10n_service.dart';
 import '../services/insight_routing_service.dart';
 import '../services/insight_response_service.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
+import '../../../data/services/smart_router_service.dart';
+import '../../../data/services/ecosystem_analytics_service.dart';
 
 /// Insight - Personal Reflection Assistant
 /// Single unified chat interface for self-reflection
@@ -38,6 +40,10 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('insight'));
+      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('insight', source: 'direct'));
+    });
     _pulseController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1500),
@@ -224,9 +230,9 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
                   decoration: BoxDecoration(
                     color: isUser
                         ? (isDark
-                              ? const Color(0xFF2D5A7B)
-                              : const Color(0xFF4A90A4))
-                        : (isDark ? const Color(0xFF1C2128) : Colors.white),
+                              ? AppColors.chatBubbleUser
+                              : AppColors.chatAccent)
+                        : (isDark ? AppColors.chatSurface : Colors.white),
                     borderRadius: BorderRadius.only(
                       topLeft: const Radius.circular(16),
                       topRight: const Radius.circular(16),
@@ -267,11 +273,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
       width: 36,
       height: 36,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [const Color(0xFF4A90A4), const Color(0xFF357A8C)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        gradient: AppColors.chatAccentGradient,
         borderRadius: BorderRadius.circular(12),
       ),
       child: const Icon(
@@ -293,7 +295,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF1C2128) : Colors.white,
+              color: isDark ? AppColors.chatSurface : Colors.white,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(16),
                 topRight: Radius.circular(16),
@@ -338,7 +340,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF161B22) : Colors.white,
+        color: isDark ? AppColors.chatInputArea : Colors.white,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.05),
@@ -352,7 +354,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF0D1117) : Colors.grey[100],
+                color: isDark ? AppColors.chatInputField : Colors.grey[100],
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(
                   color: isDark
@@ -392,15 +394,11 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF4A90A4), Color(0xFF357A8C)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
+                gradient: AppColors.chatAccentGradient,
                 borderRadius: BorderRadius.circular(24),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF4A90A4).withValues(alpha: 0.3),
+                    color: AppColors.chatAccent.withValues(alpha: 0.3),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),

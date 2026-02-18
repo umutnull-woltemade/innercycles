@@ -11,6 +11,8 @@ import '../../../data/content/habit_suggestions_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/habit_suggestion_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../data/services/smart_router_service.dart';
+import '../../../data/services/ecosystem_analytics_service.dart';
 
 class HabitSuggestionsScreen extends ConsumerStatefulWidget {
   const HabitSuggestionsScreen({super.key});
@@ -24,6 +26,15 @@ class _HabitSuggestionsScreenState
     extends ConsumerState<HabitSuggestionsScreen> {
   String? _selectedCategory;
   bool _showBookmarksOnly = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('habitSuggestions'));
+      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('habitSuggestions', source: 'direct'));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

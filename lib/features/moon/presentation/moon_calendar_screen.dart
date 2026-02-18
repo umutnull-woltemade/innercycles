@@ -14,6 +14,8 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/moon_phase_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../data/services/smart_router_service.dart';
+import '../../../data/services/ecosystem_analytics_service.dart';
 
 class MoonCalendarScreen extends ConsumerStatefulWidget {
   const MoonCalendarScreen({super.key});
@@ -32,6 +34,10 @@ class _MoonCalendarScreenState extends ConsumerState<MoonCalendarScreen> {
     super.initState();
     final now = DateTime.now();
     _currentMonth = DateTime(now.year, now.month, 1);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('moonCalendar'));
+      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('moonCalendar', source: 'direct'));
+    });
   }
 
   @override

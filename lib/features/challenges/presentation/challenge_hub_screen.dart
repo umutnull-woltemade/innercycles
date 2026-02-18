@@ -17,6 +17,8 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/growth_challenge_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../data/services/smart_router_service.dart';
+import '../../../data/services/ecosystem_analytics_service.dart';
 
 class ChallengeHubScreen extends ConsumerStatefulWidget {
   const ChallengeHubScreen({super.key});
@@ -26,6 +28,15 @@ class ChallengeHubScreen extends ConsumerStatefulWidget {
 }
 
 class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('challenges'));
+      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('challenges', source: 'direct'));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);

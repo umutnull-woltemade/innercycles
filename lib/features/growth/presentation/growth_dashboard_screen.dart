@@ -25,6 +25,8 @@ import '../../../data/services/growth_challenge_service.dart';
 import '../../../data/services/gratitude_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../data/services/smart_router_service.dart';
+import '../../../data/services/ecosystem_analytics_service.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // GROWTH DASHBOARD SCREEN
@@ -41,6 +43,15 @@ class GrowthDashboardScreen extends ConsumerStatefulWidget {
 class _GrowthDashboardScreenState
     extends ConsumerState<GrowthDashboardScreen> {
   bool _scoreAnimated = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('growthDashboard'));
+      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('growthDashboard', source: 'direct'));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

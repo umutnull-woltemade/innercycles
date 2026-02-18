@@ -15,6 +15,8 @@ import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../data/services/smart_router_service.dart';
+import '../../../data/services/ecosystem_analytics_service.dart';
 
 class MonthlyReflectionScreen extends ConsumerStatefulWidget {
   const MonthlyReflectionScreen({super.key});
@@ -36,6 +38,10 @@ class _MonthlyReflectionScreenState
     final now = DateTime.now();
     _selectedYear = now.year;
     _selectedMonth = now.month;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('monthlyReflection'));
+      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('monthlyReflection', source: 'direct'));
+    });
   }
 
   @override

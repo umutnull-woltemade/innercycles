@@ -14,6 +14,8 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/habit_suggestion_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../data/services/smart_router_service.dart';
+import '../../../data/services/ecosystem_analytics_service.dart';
 
 class DailyHabitsScreen extends ConsumerStatefulWidget {
   const DailyHabitsScreen({super.key});
@@ -23,6 +25,15 @@ class DailyHabitsScreen extends ConsumerStatefulWidget {
 }
 
 class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('dailyHabits'));
+      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('dailyHabits', source: 'direct'));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
