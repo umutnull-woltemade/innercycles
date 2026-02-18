@@ -44,8 +44,18 @@ class ChallengeListScreen extends ConsumerWidget {
                   loading: () => const SliverToBoxAdapter(
                     child: Center(child: CircularProgressIndicator()),
                   ),
-                  error: (_, _) => const SliverToBoxAdapter(
-                    child: SizedBox.shrink(),
+                  error: (_, _) => SliverToBoxAdapter(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(32),
+                        child: Text(
+                          isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+                          style: TextStyle(
+                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   data: (service) {
                     final challenges = GrowthChallengeService.allChallenges;

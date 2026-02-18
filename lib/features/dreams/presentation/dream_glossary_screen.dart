@@ -44,6 +44,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
   SymbolCategory? _selectedCategory;
   String _searchQuery = '';
   String? _selectedLetter;
+  Timer? _searchDebounce;
 
   // Personal dictionary
   final PersonalDictionaryService _personalDictionary =
@@ -134,6 +135,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
 
   @override
   void dispose() {
+    _searchDebounce?.cancel();
     _searchController.dispose();
     _scrollController.dispose();
     _searchFocusNode.dispose();
@@ -189,10 +191,14 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
   }
 
   void _onSearchChanged(String value) {
-    setState(() {
-      _searchQuery = value;
-      _selectedLetter = null; // Clear letter filter when searching
-      _filterSymbols();
+    _searchDebounce?.cancel();
+    _searchDebounce = Timer(const Duration(milliseconds: 300), () {
+      if (!mounted) return;
+      setState(() {
+        _searchQuery = value;
+        _selectedLetter = null; // Clear letter filter when searching
+        _filterSymbols();
+      });
     });
   }
 
