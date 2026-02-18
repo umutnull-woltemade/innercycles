@@ -50,6 +50,9 @@ import '../services/context_module_service.dart';
 import '../services/habit_suggestion_service.dart';
 import '../services/monthly_theme_service.dart';
 import '../services/app_lock_service.dart';
+import '../services/pattern_loop_service.dart';
+import '../services/shift_forecast_service.dart';
+import '../services/emotional_cycle_service.dart';
 import '../models/journal_entry.dart';
 import '../models/cross_correlation_result.dart';
 
@@ -709,4 +712,53 @@ final habitSuggestionServiceProvider =
 final monthlyThemeServiceProvider =
     FutureProvider<MonthlyThemeService>((ref) async {
   return await MonthlyThemeService.init();
+});
+
+// =============================================================================
+// PATTERN LOOP SERVICE PROVIDER (Emotion Intelligence)
+// =============================================================================
+
+final patternLoopServiceProvider =
+    FutureProvider<PatternLoopService>((ref) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  return await PatternLoopService.init(journalService);
+});
+
+final patternLoopAnalysisProvider =
+    FutureProvider<PatternLoopAnalysis>((ref) async {
+  final service = await ref.watch(patternLoopServiceProvider.future);
+  return service.analyze();
+});
+
+// =============================================================================
+// SHIFT FORECAST SERVICE PROVIDER (Emotion Intelligence — Premium)
+// =============================================================================
+
+final shiftForecastServiceProvider =
+    FutureProvider<ShiftForecastService>((ref) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  return ShiftForecastService(journalService);
+});
+
+final shiftForecastProvider = FutureProvider<ShiftForecast>((ref) async {
+  final service = await ref.watch(shiftForecastServiceProvider.future);
+  return service.generateForecast();
+});
+
+// =============================================================================
+// EMOTIONAL CYCLE ANALYSIS PROVIDER (Emotion Intelligence)
+// =============================================================================
+
+final emotionalCycleAnalysisProvider =
+    FutureProvider<EmotionalCycleAnalysis>((ref) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  final cycleService = EmotionalCycleService(journalService);
+  if (!cycleService.hasEnoughData()) {
+    return EmotionalCycleAnalysis(
+      areaSummaries: {},
+      insights: [],
+      totalEntries: journalService.entryCount,
+    );
+  }
+  return cycleService.analyze();
 });
