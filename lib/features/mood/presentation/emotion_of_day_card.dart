@@ -33,7 +33,10 @@ class _EmotionOfDayCardState extends ConsumerState<EmotionOfDayCard> {
     final isEn = language == AppLanguage.en;
     final emotion = _getDailyEmotion();
 
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      label: isEn ? 'Emotion of the Day' : 'Günün Duygusu',
+      child: GestureDetector(
       onTap: () {
         HapticFeedback.lightImpact();
         setState(() => _showBody = !_showBody);
@@ -270,6 +273,7 @@ class _EmotionOfDayCardState extends ConsumerState<EmotionOfDayCard> {
           ],
         ),
       ),
+    ),
     ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.08, duration: 500.ms);
   }
 

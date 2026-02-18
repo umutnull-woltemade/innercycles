@@ -29,7 +29,10 @@ class TodayPromptCard extends ConsumerWidget {
         final isCompleted = service.isCompleted(prompt.id);
         final progress = service.getCompletionPercent();
 
-        return GestureDetector(
+        return Semantics(
+          button: true,
+          label: isEn ? 'Today\'s Prompt' : 'Günün Sorusu',
+          child: GestureDetector(
           onTap: () {
             HapticFeedback.lightImpact();
             context.push(Routes.promptLibrary);
@@ -198,6 +201,7 @@ class TodayPromptCard extends ConsumerWidget {
               ],
             ),
           ),
+        ),
         ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.06, duration: 400.ms);
       },
     );

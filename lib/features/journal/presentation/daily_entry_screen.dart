@@ -78,9 +78,12 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: SafeArea(
-          child: CupertinoScrollbar(
-            child: CustomScrollView(
+        child: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.opaque,
+          child: SafeArea(
+            child: CupertinoScrollbar(
+              child: CustomScrollView(
               physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics(),
               ),
@@ -182,6 +185,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                   ),
                 ),
               ],
+              ),
             ),
           ),
         ),
@@ -749,6 +753,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       // Invalidate providers to refresh data
       ref.invalidate(todayJournalEntryProvider);
       ref.invalidate(journalStreakProvider);
+
+      // Track output for SmartRouter (feeds rule R3)
+      ref.read(smartRouterServiceProvider).whenData((s) => s.recordOutput('journal', 'entry'));
+      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOutput('journal', 'entry'));
 
       // Update notification lifecycle with new activity
       _updateNotificationLifecycle(service);

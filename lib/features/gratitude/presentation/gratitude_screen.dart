@@ -59,8 +59,11 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: SafeArea(
-          child: CustomScrollView(
+        child: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.opaque,
+          child: SafeArea(
+            child: CustomScrollView(
             physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics(),
             ),
@@ -129,6 +132,8 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                               items: items,
                             );
                             ref.invalidate(gratitudeServiceProvider);
+                            ref.read(smartRouterServiceProvider).whenData((s) => s.recordOutput('gratitude', 'entry'));
+                            ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOutput('gratitude', 'entry'));
                             HapticFeedback.mediumImpact();
                           },
                         ),
@@ -177,6 +182,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
               ),
             ],
           ),
+        ),
         ),
       ),
     );

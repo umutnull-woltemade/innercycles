@@ -154,6 +154,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                 entryMap: entryMap,
                 selectedDateKey: _selectedDateKey,
                 isDark: isDark,
+                isEn: isEn,
                 onDayTap: (dateKey) {
                   HapticFeedback.lightImpact();
                   setState(() {
@@ -347,6 +348,7 @@ class _MonthNavigator extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
+          tooltip: isEn ? 'Previous month' : 'Önceki ay',
           icon: Icon(
             Icons.chevron_left_rounded,
             color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
@@ -362,6 +364,7 @@ class _MonthNavigator extends StatelessWidget {
           ),
         ),
         IconButton(
+          tooltip: isEn ? 'Next month' : 'Sonraki ay',
           icon: Icon(
             Icons.chevron_right_rounded,
             color: isCurrentMonth
@@ -386,6 +389,7 @@ class _CalendarGrid extends StatelessWidget {
   final Map<String, JournalEntry> entryMap;
   final String? selectedDateKey;
   final bool isDark;
+  final bool isEn;
   final ValueChanged<String> onDayTap;
 
   const _CalendarGrid({
@@ -394,6 +398,7 @@ class _CalendarGrid extends StatelessWidget {
     required this.entryMap,
     this.selectedDateKey,
     required this.isDark,
+    required this.isEn,
     required this.onDayTap,
   });
 
@@ -462,7 +467,10 @@ class _CalendarGrid extends StatelessWidget {
                   final isSelected = dateKey == selectedDateKey;
 
                   return Expanded(
-                    child: GestureDetector(
+                    child: Semantics(
+                      label: '${date.day}/${date.month}${entry != null ? (isEn ? ', has entry' : ', kayıt var') : ''}',
+                      button: !isFuture,
+                      child: GestureDetector(
                       onTap: isFuture ? null : () => onDayTap(dateKey),
                       child: Container(
                         height: 40,
@@ -506,6 +514,7 @@ class _CalendarGrid extends StatelessWidget {
                           ),
                         ),
                       ),
+                    ),
                     ),
                   );
                 }),
@@ -697,7 +706,12 @@ class _DayDetail extends StatelessWidget {
         ? ['Low', 'Below Avg', 'Average', 'Good', 'Excellent']
         : ['Düşük', 'Ortanın Altı', 'Orta', 'İyi', 'Mükemmel'];
 
-    return GestureDetector(
+    return Semantics(
+      label: isEn
+          ? 'View entry: ${e.focusArea.displayNameEn}, rating ${e.overallRating}'
+          : 'Kaydı gör: ${e.focusArea.displayNameTr}, puan ${e.overallRating}',
+      button: true,
+      child: GestureDetector(
       onTap: () => onViewEntry(e.id),
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -805,6 +819,7 @@ class _DayDetail extends StatelessWidget {
             ),
           ],
         ),
+      ),
       ),
     ).animate().fadeIn(duration: 200.ms);
   }

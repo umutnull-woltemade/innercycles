@@ -527,6 +527,7 @@ class _DreamInterpretationScreenState
   Future<void> _sendMessage() async {
     final text = _dreamController.text.trim();
     if (text.isEmpty) return;
+    HapticFeedback.mediumImpact();
 
     setState(() {
       _messages.add(
@@ -591,6 +592,10 @@ class _DreamInterpretationScreenState
         ),
       );
     });
+
+    // Track output for SmartRouter intelligence
+    ref.read(smartRouterServiceProvider).whenData((s) => s.recordOutput('dreamInterpretation', 'interpretation'));
+    ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOutput('dreamInterpretation', 'interpretation'));
 
     _scrollToBottom();
   }
