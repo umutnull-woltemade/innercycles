@@ -20,6 +20,7 @@ import '../../../data/services/archetype_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class ArchetypeScreen extends ConsumerWidget {
   const ArchetypeScreen({super.key});
@@ -153,6 +154,12 @@ class ArchetypeScreen extends ConsumerWidget {
                                 archetype: result.dominant,
                                 isDark: isDark,
                                 isEn: isEn,
+                              ),
+                              const SizedBox(height: 20),
+                              ToolEcosystemFooter(
+                                currentToolId: 'archetype',
+                                isEn: isEn,
+                                isDark: isDark,
                               ),
                               const SizedBox(height: 40),
                             ]),

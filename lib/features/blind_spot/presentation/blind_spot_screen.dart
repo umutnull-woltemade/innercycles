@@ -17,6 +17,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class BlindSpotScreen extends ConsumerWidget {
   const BlindSpotScreen({super.key});
@@ -202,6 +203,12 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
                     spotCount: report.blindSpots.length,
                     isDark: widget.isDark,
                     isEn: widget.isEn,
+                  ),
+                  const SizedBox(height: 24),
+                  ToolEcosystemFooter(
+                    currentToolId: 'blindSpot',
+                    isEn: widget.isEn,
+                    isDark: widget.isDark,
                   ),
                   const SizedBox(height: 40),
                 ]),

@@ -554,7 +554,7 @@ class _ContextualPaywallSheetState
       case PaywallContext.adRemoval:
         return _PaywallConfig(
           icon: Icons.visibility_off,
-          accentColor: const Color(0xFFAB47BC),
+          accentColor: AppColors.amethyst,
           headline: isEn
               ? 'Your reflection space, uninterrupted'
               : 'Yansıma alanın, kesintisiz',
@@ -567,7 +567,7 @@ class _ContextualPaywallSheetState
       case PaywallContext.programs:
         return _PaywallConfig(
           icon: Icons.school_rounded,
-          accentColor: const Color(0xFF26A69A),
+          accentColor: AppColors.greenAccent,
           headline: isEn
               ? 'Go deeper with guided growth'
               : 'Rehberli büyüme ile derinleş',
@@ -580,7 +580,7 @@ class _ContextualPaywallSheetState
       case PaywallContext.challenges:
         return _PaywallConfig(
           icon: Icons.emoji_events_rounded,
-          accentColor: const Color(0xFFFFCA28),
+          accentColor: AppColors.celestialGold,
           headline: isEn
               ? 'Push your limits'
               : 'Sınırlarını zorla',

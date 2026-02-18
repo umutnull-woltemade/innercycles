@@ -106,12 +106,18 @@ class JournalPromptService {
     try {
       final completedJson = _prefs.getString(_completedKey);
       if (completedJson != null) {
-        _completedIds = Set<String>.from(jsonDecode(completedJson) as List);
+        final completedDecoded = jsonDecode(completedJson);
+        if (completedDecoded is List) {
+          _completedIds = completedDecoded.whereType<String>().toSet();
+        }
       }
 
       final skippedJson = _prefs.getString(_skippedKey);
       if (skippedJson != null) {
-        _skippedIds = Set<String>.from(jsonDecode(skippedJson) as List);
+        final skippedDecoded = jsonDecode(skippedJson);
+        if (skippedDecoded is List) {
+          _skippedIds = skippedDecoded.whereType<String>().toSet();
+        }
       }
 
       final recentJson = _prefs.getString(_recentKey);

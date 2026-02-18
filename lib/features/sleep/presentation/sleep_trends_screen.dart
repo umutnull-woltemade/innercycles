@@ -12,6 +12,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class SleepTrendsScreen extends ConsumerWidget {
   const SleepTrendsScreen({super.key});
@@ -134,6 +135,12 @@ class SleepTrendsScreen extends ConsumerWidget {
                     allEntries.where((e) => e.note != null && e.note!.isNotEmpty).take(10).toList()),
                 ContentDisclaimer(
                   language: isEn ? AppLanguage.en : AppLanguage.tr,
+                ),
+                const SizedBox(height: 16),
+                ToolEcosystemFooter(
+                  currentToolId: 'sleepTrends',
+                  isEn: isEn,
+                  isDark: isDark,
                 ),
                 const SizedBox(height: 40),
               ]),

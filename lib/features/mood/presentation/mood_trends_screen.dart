@@ -12,6 +12,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class MoodTrendsScreen extends ConsumerWidget {
   const MoodTrendsScreen({super.key});
@@ -96,6 +97,12 @@ class MoodTrendsScreen extends ConsumerWidget {
                   _buildRecentCard(context, isDark, isEn, allEntries.take(20).toList()),
                 ContentDisclaimer(
                   language: isEn ? AppLanguage.en : AppLanguage.tr,
+                ),
+                const SizedBox(height: 16),
+                ToolEcosystemFooter(
+                  currentToolId: 'moodTrends',
+                  isEn: isEn,
+                  isDark: isDark,
                 ),
                 const SizedBox(height: 40),
               ]),

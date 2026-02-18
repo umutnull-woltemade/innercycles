@@ -171,7 +171,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildBioButton(isDark),
+                        _buildBioButton(isDark, isEn),
                         _buildDigitButton(0, isDark),
                         _buildDeleteButton(isDark),
                       ],

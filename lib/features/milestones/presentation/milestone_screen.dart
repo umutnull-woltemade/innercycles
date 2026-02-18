@@ -16,6 +16,7 @@ import '../../../data/services/milestone_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // MILESTONE SCREEN
@@ -140,6 +141,18 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                 return _buildBadgeTile(milestone, earned, index);
               },
               childCount: filtered.length,
+            ),
+          ),
+        ),
+
+        // Footer
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: ToolEcosystemFooter(
+              currentToolId: 'milestones',
+              isEn: isEn,
+              isDark: isDark,
             ),
           ),
         ),

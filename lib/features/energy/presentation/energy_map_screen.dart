@@ -16,6 +16,7 @@ import '../../../data/services/energy_map_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class EnergyMapScreen extends ConsumerWidget {
   const EnergyMapScreen({super.key});
@@ -73,6 +74,12 @@ class EnergyMapScreen extends ConsumerWidget {
                         _DailyChart(data: data, isDark: isDark, isEn: isEn),
                         const SizedBox(height: 24),
                         _InsightTips(data: data, isDark: isDark, isEn: isEn),
+                        const SizedBox(height: 24),
+                        ToolEcosystemFooter(
+                          currentToolId: 'energyMap',
+                          isEn: isEn,
+                          isDark: isDark,
+                        ),
                         const SizedBox(height: 40),
                       ]),
                     );

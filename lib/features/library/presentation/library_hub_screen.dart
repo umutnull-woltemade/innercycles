@@ -18,6 +18,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class LibraryHubScreen extends ConsumerWidget {
   const LibraryHubScreen({super.key});
@@ -67,6 +68,11 @@ class LibraryHubScreen extends ConsumerWidget {
                       ).animate().fadeIn(delay: Duration(milliseconds: 100 + index * 60), duration: 400.ms).slideY(begin: 0.03, end: 0, delay: Duration(milliseconds: 100 + index * 60), duration: 400.ms);
                     }),
 
+                    ToolEcosystemFooter(
+                      currentToolId: 'libraryHub',
+                      isEn: isEn,
+                      isDark: isDark,
+                    ),
                     const SizedBox(height: AppConstants.spacingHuge),
                   ]),
                 ),

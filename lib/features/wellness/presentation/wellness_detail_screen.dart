@@ -10,6 +10,7 @@ import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class WellnessDetailScreen extends ConsumerWidget {
   const WellnessDetailScreen({super.key});
@@ -107,6 +108,12 @@ class WellnessDetailScreen extends ConsumerWidget {
                     // Tips
                     _buildTips(isDark, isEn),
 
+                    const SizedBox(height: 24),
+                    ToolEcosystemFooter(
+                      currentToolId: 'wellnessDetail',
+                      isEn: isEn,
+                      isDark: isDark,
+                    ),
                     const SizedBox(height: 40),
                   ]),
                 ),
