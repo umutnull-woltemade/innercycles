@@ -59,7 +59,10 @@ class _EmptyRitualCard extends StatelessWidget {
         ),
       ),
       child: InkWell(
-        onTap: () => context.push(Routes.ritualCreate),
+        onTap: () {
+          HapticFeedback.lightImpact();
+          context.push(Routes.ritualCreate);
+        },
         borderRadius: BorderRadius.circular(20),
         child: Row(
           children: [

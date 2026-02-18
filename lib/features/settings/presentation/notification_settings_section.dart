@@ -114,11 +114,13 @@ class _NotificationSettingsSectionState
     } else {
       await _notificationService.cancelMoonPhaseNotifications();
     }
+    if (!mounted) return;
   }
 
   Future<void> _toggleWellnessReminders(bool value) async {
     setState(() => _wellnessRemindersEnabled = value);
     await _notificationService.setWellnessRemindersEnabled(value);
+    if (!mounted) return;
   }
 
   @override

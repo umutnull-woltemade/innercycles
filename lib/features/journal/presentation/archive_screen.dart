@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -339,9 +340,12 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
         button: true,
         label: '$areaLabel entry, $dateStr',
         child: GestureDetector(
-          onTap: () => context.push(
-            Routes.journalEntryDetail.replaceFirst(':id', entry.id),
-          ),
+          onTap: () {
+            HapticFeedback.lightImpact();
+            context.push(
+              Routes.journalEntryDetail.replaceFirst(':id', entry.id),
+            );
+          },
           child: Container(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             decoration: BoxDecoration(

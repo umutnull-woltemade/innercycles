@@ -3,6 +3,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -42,7 +43,10 @@ class StreakRecoveryBanner extends ConsumerWidget {
               label: isEn ? 'Start a new streak' : 'Yeni seri başlat',
               button: true,
               child: GestureDetector(
-                onTap: () => context.push(Routes.journal),
+                onTap: () {
+                  HapticFeedback.lightImpact();
+                  context.push(Routes.journal);
+                },
                 child: Container(
                   margin: EdgeInsets.only(bottom: isPremium ? 16 : 8),
                   padding: const EdgeInsets.all(16),

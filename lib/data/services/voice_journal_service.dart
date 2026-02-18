@@ -10,6 +10,8 @@ import 'dart:async';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
+import '../providers/app_providers.dart';
+import 'storage_service.dart';
 
 /// Voice input service for journal entries.
 /// Wraps the speech_to_text package with a clean API for the app.
@@ -26,6 +28,8 @@ class VoiceJournalService {
 
   /// Stream controller for error events.
   final _errorController = StreamController<String>.broadcast();
+
+  bool get _isEn => StorageService.loadLanguage() == AppLanguage.en;
 
   /// The most recent recognized text from the current listening session.
   String _lastRecognizedText = '';
@@ -49,7 +53,7 @@ class VoiceJournalService {
       );
     } catch (e) {
       _isInitialized = false;
-      _errorController.add('Failed to initialize voice input: $e');
+      _errorController.add(_isEn ? 'Failed to initialize voice input' : 'Sesli giriş başlatılamadı');
     }
   }
 
@@ -82,7 +86,7 @@ class VoiceJournalService {
   /// Returns true if listening started successfully.
   Future<bool> startListening({String? localeId}) async {
     if (!_isInitialized) {
-      _errorController.add('Voice input is not available on this device.');
+      _errorController.add(_isEn ? 'Voice input is not available on this device.' : 'Bu cihazda sesli giriş kullanılamıyor.');
       return false;
     }
 
@@ -107,7 +111,7 @@ class VoiceJournalService {
       _listeningStateController.add(true);
       return true;
     } catch (e) {
-      _errorController.add('Could not start listening: $e');
+      _errorController.add(_isEn ? 'Could not start listening' : 'Dinleme başlatılamadı');
       return false;
     }
   }
@@ -119,7 +123,7 @@ class VoiceJournalService {
     try {
       await _speech.stop();
     } catch (e) {
-      _errorController.add('Error stopping voice input: $e');
+      _errorController.add(_isEn ? 'Error stopping voice input' : 'Sesli giriş durdurulurken hata oluştu');
     } finally {
       _isListening = false;
       _listeningStateController.add(false);

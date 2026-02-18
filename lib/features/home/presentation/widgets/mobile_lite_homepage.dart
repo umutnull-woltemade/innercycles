@@ -1272,7 +1272,10 @@ class _EntryPointTile extends StatelessWidget {
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: () => context.push(route),
+            onTap: () {
+              HapticFeedback.lightImpact();
+              context.push(route);
+            },
             borderRadius: BorderRadius.circular(12),
             child: GlassPanel(
               elevation: isHighlighted ? GlassElevation.g3 : GlassElevation.g2,
