@@ -147,7 +147,7 @@ class NotificationService {
         route = Routes.journal;
         break;
       default:
-        route = Routes.home;
+        route = Routes.today;
     }
 
     final state = navigatorKey.currentState;

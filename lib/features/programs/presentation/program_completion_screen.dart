@@ -247,7 +247,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
                   width: double.infinity,
                   height: 52,
                   child: OutlinedButton(
-                    onPressed: () => context.go(Routes.home),
+                    onPressed: () => context.go(Routes.today),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: isDark
                           ? AppColors.textSecondary

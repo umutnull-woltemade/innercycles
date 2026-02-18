@@ -102,8 +102,6 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.archetypeQuiz,
         builder: (context, state) => const ArchetypeQuizScreen(),
       ),
-      GoRoute(path: Routes.home, redirect: (_, _) => Routes.today),
-
       // ════════════════════════════════════════════════════════════════
       // 5-TAB SHELL: Home | Journal | Insights | Breathe | Profile
       // ════════════════════════════════════════════════════════════════

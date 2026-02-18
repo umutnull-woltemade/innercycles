@@ -304,7 +304,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       await Future.delayed(const Duration(milliseconds: 100));
 
       if (mounted) {
-        context.go(Routes.home);
+        context.go(Routes.today);
       }
     }
   }
