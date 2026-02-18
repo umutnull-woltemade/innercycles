@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'analytics_service.dart';
 
 /// Admin analytics service for tracking growth events
 /// Tracks page views, clicks, shares, and custom events
@@ -70,6 +71,9 @@ class AdminAnalyticsService {
     }
 
     await box.put(_eventsKey, jsonEncode(events));
+
+    // Forward to main AnalyticsService for Supabase batch flush
+    AnalyticsService().logEvent('admin_$eventName', payload);
   }
 
   /// Get all events
