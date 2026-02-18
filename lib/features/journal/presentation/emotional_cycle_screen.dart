@@ -6,6 +6,9 @@
 // phase analysis, per-area summary cards, insights, and share.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:math' as math;
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -131,8 +134,53 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.waves, size: 72,
-                        color: AppColors.auroraStart.withValues(alpha: 0.6)),
+                    // Blurred wave preview teaser
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: ImageFiltered(
+                            imageFilter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                            child: Container(
+                              width: double.infinity,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    AppColors.auroraStart.withValues(alpha: 0.12),
+                                    AppColors.amethyst.withValues(alpha: 0.08),
+                                    AppColors.success.withValues(alpha: 0.1),
+                                  ],
+                                ),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: CustomPaint(
+                                painter: _WavePreviewPainter(
+                                  color: AppColors.auroraStart.withValues(alpha: 0.3),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(14),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: isDark
+                                ? AppColors.surfaceDark.withValues(alpha: 0.8)
+                                : Colors.white.withValues(alpha: 0.8),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.auroraStart.withValues(alpha: 0.3),
+                                blurRadius: 20,
+                              ),
+                            ],
+                          ),
+                          child: const Icon(Icons.waves, size: 28, color: AppColors.auroraStart),
+                        ),
+                      ],
+                    ),
                     const SizedBox(height: 24),
                     Text(
                       isEn ? 'Your Cycles Are Forming' : 'Döngülerin Oluşturuluyor',
@@ -150,35 +198,49 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                             color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 32),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: LinearProgressIndicator(
-                        value: current / 7,
-                        backgroundColor: isDark
-                            ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                            : AppColors.lightSurfaceVariant,
-                        valueColor: const AlwaysStoppedAnimation(AppColors.auroraStart),
-                        minHeight: 12,
+                    const SizedBox(height: 28),
+                    // Animated circular progress
+                    SizedBox(
+                      width: 80,
+                      height: 80,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          SizedBox(
+                            width: 80,
+                            height: 80,
+                            child: CircularProgressIndicator(
+                              value: (current / 7).clamp(0.0, 1.0),
+                              strokeWidth: 6,
+                              backgroundColor: isDark
+                                  ? AppColors.surfaceLight.withValues(alpha: 0.2)
+                                  : AppColors.lightSurfaceVariant,
+                              valueColor: const AlwaysStoppedAnimation(AppColors.auroraStart),
+                              strokeCap: StrokeCap.round,
+                            ),
+                          ),
+                          Text('$current/7',
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w700, color: AppColors.auroraStart)),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    Text('$current / 7',
-                        style: const TextStyle(
-                            color: AppColors.auroraStart, fontWeight: FontWeight.bold, fontSize: 14)),
-                    const SizedBox(height: 32),
-                    FilledButton.icon(
-                      onPressed: () => context.push(Routes.journal),
-                      style: FilledButton.styleFrom(
-                        backgroundColor: AppColors.auroraStart,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(AppConstants.radiusLg)),
+                    const SizedBox(height: 24),
+                    SizedBox(
+                      width: double.infinity,
+                      child: FilledButton.icon(
+                        onPressed: () => context.push(Routes.journal),
+                        style: FilledButton.styleFrom(
+                          backgroundColor: AppColors.auroraStart,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(AppConstants.radiusLg)),
+                        ),
+                        icon: const Icon(Icons.edit_note, size: 20),
+                        label: Text(isEn ? 'Start Journaling' : 'Kayıt Yapmaya Başla',
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
                       ),
-                      icon: const Icon(Icons.edit_note, size: 20),
-                      label: Text(isEn ? 'Start Journaling' : 'Kayıt Yapmaya Başla',
-                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
                     ),
                   ].animate(interval: 80.ms).fadeIn(duration: 400.ms),
                 ),
@@ -710,4 +772,58 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
       ]),
     );
   }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// WAVE PREVIEW PAINTER (Locked View Teaser)
+// ════════════════════════════════════════════════════════════════════════════
+
+class _WavePreviewPainter extends CustomPainter {
+  final Color color;
+
+  _WavePreviewPainter({required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.5
+      ..strokeCap = StrokeCap.round;
+
+    final path = Path();
+    final midY = size.height / 2;
+    const amplitude = 20.0;
+
+    path.moveTo(0, midY);
+    for (double x = 0; x <= size.width; x += 1) {
+      final y = midY +
+          amplitude * math.sin(x * 0.03) +
+          (amplitude * 0.5) * math.sin(x * 0.07 + 1.5);
+      path.lineTo(x, y);
+    }
+
+    canvas.drawPath(path, paint);
+
+    // Second wave (offset)
+    final path2 = Path();
+    final paint2 = Paint()
+      ..color = color.withValues(alpha: 0.4)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.5;
+
+    path2.moveTo(0, midY + 10);
+    for (double x = 0; x <= size.width; x += 1) {
+      final y = midY +
+          10 +
+          (amplitude * 0.7) * math.sin(x * 0.04 + 2) +
+          (amplitude * 0.3) * math.sin(x * 0.08 + 3);
+      path2.lineTo(x, y);
+    }
+
+    canvas.drawPath(path2, paint2);
+  }
+
+  @override
+  bool shouldRepaint(covariant _WavePreviewPainter old) => old.color != color;
 }

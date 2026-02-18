@@ -62,39 +62,6 @@ class ErrorReportingService {
     );
   }
 
-  /// Report a non-fatal error
-  static Future<void> reportError({
-    required String message,
-    String? stackTrace,
-    Map<String, dynamic>? context,
-  }) async {
-    await _report(
-      errorType: 'error',
-      message: message,
-      stackTrace: stackTrace,
-      context: context,
-    );
-  }
-
-  /// Report a warning
-  static Future<void> reportWarning({
-    required String message,
-    Map<String, dynamic>? context,
-  }) async {
-    await _report(errorType: 'warning', message: message, context: context);
-  }
-
-  /// Report an info-level event
-  static Future<void> reportInfo({
-    required String message,
-    Map<String, dynamic>? context,
-  }) async {
-    if (kDebugMode) {
-      debugPrint('ErrorReportingService [INFO]: $message');
-    }
-    // Info level not stored in database, only logged in debug mode
-  }
-
   /// Internal report method
   static Future<void> _report({
     required String errorType,

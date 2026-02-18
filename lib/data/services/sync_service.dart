@@ -11,7 +11,6 @@ class SyncService {
   static const String _syncQueueBoxName = 'sync_queue_box';
   static Box? _syncBox;
   static bool _isSyncing = false;
-  static StreamSubscription? _connectivitySubscription;
 
   /// Initialize the sync service
   static Future<void> initialize() async {
@@ -27,7 +26,7 @@ class SyncService {
       _syncBox = await Hive.openBox(_syncQueueBoxName);
 
       // Listen for connectivity changes
-      _connectivitySubscription = Connectivity().onConnectivityChanged.listen((
+      Connectivity().onConnectivityChanged.listen((
         List<ConnectivityResult> result,
       ) {
         if (!result.contains(ConnectivityResult.none)) {
@@ -50,65 +49,13 @@ class SyncService {
     }
   }
 
-  /// Dispose resources
-  static void dispose() {
-    _connectivitySubscription?.cancel();
-  }
-
   /// Check if device is online
-  static Future<bool> get isOnline async {
+  static Future<bool> get _isOnline async {
     try {
       final result = await Connectivity().checkConnectivity();
       return !result.contains(ConnectivityResult.none);
     } catch (_) {
       return false;
-    }
-  }
-
-  /// Queue an operation for sync
-  static Future<void> queueOperation({
-    required String operation,
-    required String tableName,
-    required String recordId,
-    required Map<String, dynamic> payload,
-  }) async {
-    if (kIsWeb || _syncBox == null) {
-      // On web, try to execute immediately
-      if (await isOnline) {
-        await _executeOperation(
-          SyncQueueItem(
-            id: recordId,
-            operation: operation,
-            tableName: tableName,
-            recordId: recordId,
-            payload: payload,
-            createdAt: DateTime.now(),
-            status: 'pending',
-          ),
-        );
-      }
-      return;
-    }
-
-    final item = SyncQueueItem(
-      id: '${DateTime.now().millisecondsSinceEpoch}_$recordId',
-      operation: operation,
-      tableName: tableName,
-      recordId: recordId,
-      payload: payload,
-      createdAt: DateTime.now(),
-      status: 'pending',
-    );
-
-    await _syncBox!.put(item.id, jsonEncode(item.toJson()));
-
-    if (kDebugMode) {
-      debugPrint('SyncService: Queued $operation on $tableName/$recordId');
-    }
-
-    // Try to sync immediately if online
-    if (await isOnline) {
-      syncPendingOperations();
     }
   }
 
@@ -126,7 +73,7 @@ class SyncService {
       return SyncResult(synced: 0, failed: 0, message: 'Sync not available');
     }
 
-    if (!await isOnline) {
+    if (!await _isOnline) {
       return SyncResult(synced: 0, failed: 0, message: 'Offline');
     }
 
@@ -218,18 +165,6 @@ class SyncService {
     }
   }
 
-  /// Get pending operation count
-  static int get pendingCount {
-    if (kIsWeb || _syncBox == null) return 0;
-    return _syncBox!.length;
-  }
-
-  /// Clear all pending operations
-  static Future<void> clearQueue() async {
-    if (_syncBox != null) {
-      await _syncBox!.clear();
-    }
-  }
 }
 
 /// Sync queue item model

@@ -96,30 +96,9 @@ class AuthService {
   /// Current user
   static User? get currentUser => _supabase.auth.currentUser;
 
-  /// Is user signed in?
-  static bool get isSignedIn => _supabase.auth.currentUser != null;
-
   /// Listen to auth state changes
   static Stream<AuthState> get authStateChanges =>
       _supabase.auth.onAuthStateChange;
-
-  /// Get current user information
-  static AuthUserInfo? getCurrentUserInfo() {
-    final user = _supabase.auth.currentUser;
-    if (user == null) return null;
-
-    // Provider'i belirle
-    AuthProvider provider = AuthProvider.email;
-    final identities = user.identities;
-    if (identities != null && identities.isNotEmpty) {
-      final providerName = identities.first.provider;
-      if (providerName == 'apple') {
-        provider = AuthProvider.apple;
-      }
-    }
-
-    return AuthUserInfo.fromSupabaseUser(user, provider);
-  }
 
   /// Check if Supabase connection is configured
   static bool get _isSupabaseConfigured {
@@ -130,45 +109,6 @@ class AuthService {
   }
 
   // ==================== Apple Sign In ====================
-
-  /// Sign in with Apple with automatic retry on transient failures
-  /// Retries up to [maxRetries] times for timeout/network errors
-  /// Returns null if user cancels, throws AppleAuthException on persistent failure
-  static Future<AuthUserInfo?> signInWithAppleWithRetry({
-    int maxRetries = 2,
-  }) async {
-    AppleAuthException? lastError;
-
-    for (int attempt = 1; attempt <= maxRetries; attempt++) {
-      try {
-        if (kDebugMode) debugPrint('🍎 Sign-in attempt $attempt of $maxRetries');
-        return await signInWithApple();
-      } on AppleAuthException catch (e) {
-        lastError = e;
-        if (kDebugMode) debugPrint('🍎 Attempt $attempt failed: ${e.type}');
-
-        // Only retry on transient errors (timeout, network)
-        if (e.type == AppleAuthErrorType.timeout ||
-            e.type == AppleAuthErrorType.networkError ||
-            e.type == AppleAuthErrorType.serverError) {
-          if (attempt < maxRetries) {
-            if (kDebugMode) debugPrint('🍎 Retrying in 2 seconds...');
-            await Future.delayed(const Duration(seconds: 2));
-            continue;
-          }
-        }
-
-        // Don't retry on user cancellation or auth errors
-        rethrow;
-      }
-    }
-
-    // All retries exhausted
-    throw lastError ?? const AppleAuthException(
-      AppleAuthErrorType.failed,
-      'Sign in failed after multiple attempts.',
-    );
-  }
 
   /// Sign in with Apple
   /// Uses Supabase OAuth on web, native Apple Sign-In on mobile
@@ -425,111 +365,6 @@ class AuthService {
     return AuthUserInfo.fromSupabaseUser(user, AuthProvider.apple);
   }
 
-  // ==================== Email/Password Auth ====================
-
-  /// Sign up with email and password
-  static Future<AuthUserInfo?> signUpWithEmail({
-    required String email,
-    required String password,
-    String? displayName,
-  }) async {
-    if (!_isSupabaseConfigured) {
-      throw 'Server connection required for email sign in.';
-    }
-
-    try {
-      final response = await _supabase.auth.signUp(
-        email: email,
-        password: password,
-        data: displayName != null ? {'full_name': displayName} : null,
-      );
-
-      final user = response.user;
-      if (user == null) return null;
-
-      return AuthUserInfo.fromSupabaseUser(user, AuthProvider.email);
-    } on AuthException catch (e) {
-      throw _handleSupabaseAuthError(e);
-    }
-  }
-
-  /// Sign in with email and password
-  static Future<AuthUserInfo?> signInWithEmail({
-    required String email,
-    required String password,
-  }) async {
-    if (!_isSupabaseConfigured) {
-      throw 'Server connection required for email sign in.';
-    }
-
-    try {
-      final response = await _supabase.auth.signInWithPassword(
-        email: email,
-        password: password,
-      );
-
-      final user = response.user;
-      if (user == null) return null;
-
-      return AuthUserInfo.fromSupabaseUser(user, AuthProvider.email);
-    } on AuthException catch (e) {
-      throw _handleSupabaseAuthError(e);
-    }
-  }
-
-  /// Send password reset email
-  static Future<void> sendPasswordResetEmail(String email) async {
-    try {
-      await _supabase.auth.resetPasswordForEmail(email);
-    } on AuthException catch (e) {
-      throw _handleSupabaseAuthError(e);
-    }
-  }
-
-  // ==================== Sign Out ====================
-
-  /// Sign out
-  static Future<void> signOut() async {
-    await _supabase.auth.signOut();
-  }
-
-  /// Delete account and all data
-  static Future<void> deleteAccount() async {
-    try {
-      if (_isSupabaseConfigured) {
-        final user = _supabase.auth.currentUser;
-        if (user != null) {
-          // Delete user data
-          try {
-            await _supabase.from('profiles').delete().eq('id', user.id);
-          } catch (e) {
-            if (kDebugMode) debugPrint('Failed to delete profiles: $e');
-          }
-
-          try {
-            await _supabase.from('user_charts').delete().eq('user_id', user.id);
-          } catch (e) {
-            if (kDebugMode) debugPrint('Failed to delete user_charts: $e');
-          }
-
-          try {
-            await _supabase
-                .from('saved_readings')
-                .delete()
-                .eq('user_id', user.id);
-          } catch (e) {
-            if (kDebugMode) debugPrint('Failed to delete saved_readings: $e');
-          }
-
-          await _supabase.auth.signOut();
-        }
-      }
-    } catch (e) {
-      if (kDebugMode) debugPrint('Account deletion error: $e');
-      rethrow;
-    }
-  }
-
   // ==================== Helper Methods ====================
 
   /// Generate nonce (for Apple Sign In)
@@ -550,38 +385,4 @@ class AuthService {
     return digest.toString();
   }
 
-  /// Convert Supabase Auth errors to user-friendly messages
-  static String _handleSupabaseAuthError(AuthException e) {
-    final message = e.message.toLowerCase();
-
-    if (message.contains('email already registered') ||
-        message.contains('user already registered')) {
-      return 'This email address is already in use';
-    }
-    if (message.contains('invalid email')) {
-      return 'Invalid email address';
-    }
-    if (message.contains('password') && message.contains('weak')) {
-      return 'Password is too weak (minimum 6 characters)';
-    }
-    if (message.contains('invalid login credentials') ||
-        message.contains('invalid password')) {
-      return 'Invalid email or password';
-    }
-    if (message.contains('email not confirmed')) {
-      return 'Please verify your email address';
-    }
-    if (message.contains('too many requests') ||
-        message.contains('rate limit')) {
-      return 'Too many attempts. Please wait a moment';
-    }
-    if (message.contains('network') || message.contains('connection')) {
-      return 'No internet connection';
-    }
-    if (message.contains('user not found')) {
-      return 'No account found with this email';
-    }
-
-    return 'An error occurred: ${e.message}';
-  }
 }

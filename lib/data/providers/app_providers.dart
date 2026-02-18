@@ -136,20 +136,6 @@ class SavedProfilesNotifier extends Notifier<List<UserProfile>> {
   }
 }
 
-/// Primary profile provider
-final primaryProfileProvider = Provider<UserProfile?>((ref) {
-  final profiles = ref.watch(savedProfilesProvider);
-  final primaryId = StorageService.getPrimaryProfileId();
-
-  if (primaryId != null) {
-    final primary = profiles.where((p) => p.id == primaryId).firstOrNull;
-    if (primary != null) return primary;
-  }
-
-  return profiles.isNotEmpty ? profiles.first : null;
-});
-
-
 // =============================================================================
 // APP STATE PROVIDERS
 // =============================================================================

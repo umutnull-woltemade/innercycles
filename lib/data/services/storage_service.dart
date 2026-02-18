@@ -241,7 +241,7 @@ class StorageService {
     final box = _settingsBox;
     if (box == null) return false;
 
-    final isComplete = box.get(_onboardingKey, defaultValue: false) as bool;
+    final isComplete = box.get(_onboardingKey, defaultValue: false) as bool? ?? false;
 
     // If onboarding is marked complete but there's no valid profile, reset it
     if (isComplete) {
@@ -273,7 +273,7 @@ class StorageService {
     final box = _settingsBox;
     if (box == null) return false;
 
-    return box.get(_disclaimerKey, defaultValue: false) as bool;
+    return box.get(_disclaimerKey, defaultValue: false) as bool? ?? false;
   }
 
   // ========== LANGUAGE ==========
@@ -314,7 +314,7 @@ class StorageService {
     if (box == null) return AppLanguage.en;
 
     final index =
-        box.get(_languageKey, defaultValue: AppLanguage.en.index) as int;
+        box.get(_languageKey, defaultValue: AppLanguage.en.index) as int? ?? AppLanguage.en.index;
     if (index >= 0 && index < AppLanguage.values.length) {
       return AppLanguage.values[index];
     }
@@ -356,7 +356,7 @@ class StorageService {
     if (box == null) return ThemeMode.dark;
 
     final index =
-        box.get(_themeModeKey, defaultValue: ThemeMode.dark.index) as int;
+        box.get(_themeModeKey, defaultValue: ThemeMode.dark.index) as int? ?? ThemeMode.dark.index;
     if (index >= 0 && index < ThemeMode.values.length) {
       return ThemeMode.values[index];
     }

@@ -91,7 +91,7 @@ class AdminAuthService {
       }
     }
 
-    return box.get(_attemptsKey, defaultValue: 0) as int;
+    return box.get(_attemptsKey, defaultValue: 0) as int? ?? 0;
   }
 
   /// Remaining attempts before lockout

@@ -54,31 +54,11 @@ class WellnessScoreCard extends ConsumerWidget {
                 // Header with score
                 Row(
                   children: [
-                    // Score circle
-                    Container(
-                      width: 56,
-                      height: 56,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            _scoreColor(score.score),
-                            _scoreColor(score.score).withValues(alpha: 0.6),
-                          ],
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          '${score.score}',
-                          style: const TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w800,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                    // Animated score ring
+                    _AnimatedScoreRing(
+                      score: score.score,
+                      color: _scoreColor(score.score),
+                      isDark: isDark,
                     ),
                     const SizedBox(width: 14),
                     Expanded(
@@ -170,6 +150,59 @@ class WellnessScoreCard extends ConsumerWidget {
   }
 }
 
+class _AnimatedScoreRing extends StatelessWidget {
+  final int score;
+  final Color color;
+  final bool isDark;
+
+  const _AnimatedScoreRing({
+    required this.score,
+    required this.color,
+    required this.isDark,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: score / 100),
+      duration: const Duration(milliseconds: 1200),
+      curve: Curves.easeOutCubic,
+      builder: (context, value, child) {
+        return SizedBox(
+          width: 56,
+          height: 56,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              SizedBox(
+                width: 56,
+                height: 56,
+                child: CircularProgressIndicator(
+                  value: value,
+                  strokeWidth: 4,
+                  backgroundColor: isDark
+                      ? Colors.white.withValues(alpha: 0.08)
+                      : Colors.black.withValues(alpha: 0.06),
+                  valueColor: AlwaysStoppedAnimation(color),
+                  strokeCap: StrokeCap.round,
+                ),
+              ),
+              Text(
+                '${(value * 100).round()}',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
+                  color: color,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
 class _BreakdownBar extends StatelessWidget {
   final String label;
   final double score;
@@ -183,47 +216,57 @@ class _BreakdownBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          width: 72,
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 11,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-            ),
-          ),
-        ),
-        Expanded(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child: LinearProgressIndicator(
-              value: (score / 100).clamp(0, 1),
-              minHeight: 6,
-              backgroundColor: isDark
-                  ? Colors.white.withValues(alpha: 0.08)
-                  : Colors.black.withValues(alpha: 0.06),
-              valueColor: AlwaysStoppedAnimation(
-                WellnessScoreCard._scoreColor(score.round()),
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: (score / 100).clamp(0, 1)),
+      duration: const Duration(milliseconds: 800),
+      curve: Curves.easeOutCubic,
+      builder: (context, value, _) {
+        return Row(
+          children: [
+            SizedBox(
+              width: 72,
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontSize: 11,
+                  color:
+                      isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                ),
               ),
             ),
-          ),
-        ),
-        const SizedBox(width: 8),
-        SizedBox(
-          width: 28,
-          child: Text(
-            '${score.round()}',
-            textAlign: TextAlign.right,
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(4),
+                child: LinearProgressIndicator(
+                  value: value,
+                  minHeight: 6,
+                  backgroundColor: isDark
+                      ? Colors.white.withValues(alpha: 0.08)
+                      : Colors.black.withValues(alpha: 0.06),
+                  valueColor: AlwaysStoppedAnimation(
+                    WellnessScoreCard._scoreColor(score.round()),
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ],
+            const SizedBox(width: 8),
+            SizedBox(
+              width: 28,
+              child: Text(
+                '${score.round()}',
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
