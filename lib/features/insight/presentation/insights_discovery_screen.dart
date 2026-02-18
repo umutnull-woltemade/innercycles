@@ -19,6 +19,7 @@ import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class InsightsDiscoveryScreen extends ConsumerStatefulWidget {
@@ -88,30 +89,14 @@ class _InsightsDiscoveryScreenState
       ),
       slivers: [
         // App Bar
-        SliverAppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          pinned: true,
-          expandedHeight: 60,
-          leading: IconButton(
-            icon: Icon(
-              Icons.chevron_left,
-              size: 28,
-              color: isDark ? Colors.white70 : Colors.black87,
-            ),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          title: Text(
-            isEn ? 'Discover Insights' : 'İçgörüleri Keşfet',
-            style: TextStyle(
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-              fontWeight: FontWeight.w700,
-              fontSize: 20,
-            ),
-          ),
+        GlassSliverAppBar(
+          title: isEn ? 'Discover Insights' : 'İçgörüleri Keşfet',
           actions: [
             // Bookmark filter toggle
             IconButton(
+              tooltip: _showBookmarksOnly
+                  ? (isEn ? 'Show all insights' : 'Tüm içgörüleri göster')
+                  : (isEn ? 'Show bookmarks' : 'Kaydedilenleri göster'),
               icon: Icon(
                 _showBookmarksOnly
                     ? Icons.bookmark_rounded

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
@@ -68,24 +69,28 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      body: CosmicBackground(
-        child: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(AppConstants.spacingLg),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildHeader(context, language),
-                const SizedBox(height: AppConstants.spacingXl),
-                if (profile != null) ...[
-                  _buildProfileHeader(context, profile, isDark),
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        behavior: HitTestBehavior.opaque,
+        child: CosmicBackground(
+          child: SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(AppConstants.spacingLg),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildHeader(context, language),
                   const SizedBox(height: AppConstants.spacingXl),
+                  if (profile != null) ...[
+                    _buildProfileHeader(context, profile, isDark),
+                    const SizedBox(height: AppConstants.spacingXl),
+                  ],
+                  _buildEditSection(context, language, isDark),
+                  const SizedBox(height: AppConstants.spacingXl),
+                  if (profile != null)
+                    _buildCosmicInfo(context, profile, language, isDark),
                 ],
-                _buildEditSection(context, language, isDark),
-                const SizedBox(height: AppConstants.spacingXl),
-                if (profile != null)
-                  _buildCosmicInfo(context, profile, language, isDark),
-              ],
+              ),
             ),
           ),
         ),
@@ -720,6 +725,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   }
 
   void _saveProfile() {
+    HapticFeedback.mediumImpact();
     final currentProfile = ref.read(userProfileProvider);
     if (currentProfile == null || _selectedDate == null) return;
 

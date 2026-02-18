@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -146,6 +147,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
 
   void _onTabChanged() {
     if (_tabController.indexIsChanging) return;
+    HapticFeedback.lightImpact();
     final language = ref.read(languageProvider);
     final categories = _buildCategories(language);
     setState(() {
@@ -203,6 +205,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
   }
 
   void _onLetterSelected(String? letter) {
+    HapticFeedback.lightImpact();
     setState(() {
       _selectedLetter = letter == _selectedLetter ? null : letter;
       _searchQuery = ''; // Clear search when selecting letter
@@ -217,6 +220,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
   }
 
   void _showSymbolDetails(DreamSymbolData symbol, AppLanguage language) {
+    HapticFeedback.mediumImpact();
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,

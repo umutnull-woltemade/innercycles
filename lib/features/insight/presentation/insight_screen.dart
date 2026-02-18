@@ -4,6 +4,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
@@ -86,6 +87,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
   }
 
   Future<void> _sendMessage([String? quickMessage]) async {
+    HapticFeedback.mediumImpact();
     final text = quickMessage ?? _messageController.text.trim();
     if (text.isEmpty) return;
 
@@ -153,6 +155,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
+          tooltip: language == AppLanguage.en ? 'Back' : 'Geri',
           icon: Icon(
             Icons.chevron_left,
             size: 28,

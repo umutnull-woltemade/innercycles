@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
@@ -328,6 +329,7 @@ class EntryDetailScreen extends ConsumerWidget {
           ),
           TextButton(
             onPressed: () async {
+              HapticFeedback.heavyImpact();
               Navigator.pop(ctx);
               final service = await ref.read(journalServiceProvider.future);
               await service.deleteEntry(id);

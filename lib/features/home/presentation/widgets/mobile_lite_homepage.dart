@@ -12,6 +12,7 @@ import '../../../../data/services/premium_service.dart';
 import '../../../../data/services/upgrade_trigger_service.dart';
 import '../../../../data/services/paywall_experiment_service.dart';
 import '../../../../shared/widgets/cosmic_background.dart';
+import '../../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../streak/presentation/streak_card.dart';
 import '../../../gratitude/presentation/gratitude_section.dart';
 import '../../../rituals/presentation/ritual_checkoff_card.dart';
@@ -50,25 +51,12 @@ class MobileLiteHomepage extends ConsumerWidget {
     if (userProfile == null ||
         userProfile.name == null ||
         userProfile.name!.isEmpty) {
-      final language = ref.watch(languageProvider);
       return Scaffold(
         backgroundColor: Theme.of(context).brightness == Brightness.dark
             ? AppColors.deepSpace
             : AppColors.lightBackground,
-        body: CosmicBackground(
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const CircularProgressIndicator(color: AppColors.starGold),
-                const SizedBox(height: 16),
-                Text(
-                  L10nService.get('common.loading', language),
-                  style: const TextStyle(color: Colors.white70),
-                ),
-              ],
-            ),
-          ),
+        body: const CosmicBackground(
+          child: CosmicLoadingIndicator(),
         ),
       );
     }
@@ -1194,17 +1182,21 @@ class _BelowTheFold extends ConsumerWidget {
 
           // Footer branding
           Center(
-            child: GestureDetector(
-              onTap: () => context.push(Routes.settings),
-              child: Text(
-                'InnerCycles',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: isDark
-                      ? AppColors.textMuted.withValues(alpha: 0.7)
-                      : AppColors.lightTextMuted.withValues(alpha: 0.7),
-                  letterSpacing: 2,
+            child: Semantics(
+              label: isEn ? 'InnerCycles. Open settings' : 'InnerCycles. Ayarları aç',
+              button: true,
+              child: GestureDetector(
+                onTap: () => context.push(Routes.settings),
+                child: Text(
+                  'InnerCycles',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: isDark
+                        ? AppColors.textMuted.withValues(alpha: 0.7)
+                        : AppColors.lightTextMuted.withValues(alpha: 0.7),
+                    letterSpacing: 2,
+                  ),
                 ),
               ),
             ),
@@ -1460,7 +1452,11 @@ class _UpgradeTriggerBanner extends ConsumerWidget {
 
         final prompt = upgradeService.getPromptForTrigger(trigger);
 
-        return GestureDetector(
+        return Semantics(
+          label: isEn ? prompt.headlineEn : prompt.headlineTr,
+          hint: isEn ? prompt.ctaEn : prompt.ctaTr,
+          button: true,
+          child: GestureDetector(
           onTap: () {
             upgradeService.markTriggerShown(trigger);
             showContextualPaywall(
@@ -1514,6 +1510,7 @@ class _UpgradeTriggerBanner extends ConsumerWidget {
               ],
             ),
           ),
+        ),
         ).glassReveal(context: context);
       },
       orElse: () => const SizedBox.shrink(),

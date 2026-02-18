@@ -167,6 +167,7 @@ class _ShareCardGalleryScreenState
         ),
         centerTitle: true,
         leading: IconButton(
+          tooltip: isEn ? 'Back' : 'Geri',
           icon: Icon(
             Icons.chevron_left,
             size: 28,

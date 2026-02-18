@@ -699,10 +699,10 @@ class _SplashScreenState extends State<_SplashScreen> {
             ).animate().fadeIn(delay: 300.ms, duration: 600.ms),
             const SizedBox(height: 8),
             Text(
-              'Emotional Cycle Intelligence',
+              'Your Wellness Journal / Ki\u015fisel G\u00fcnl\u00fc\u011f\u00fcn',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Colors.white54,
-                    letterSpacing: 2,
+                    letterSpacing: 1,
                   ),
             ).animate().fadeIn(delay: 500.ms, duration: 600.ms),
           ],
@@ -736,10 +736,11 @@ class _NotFoundScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Text(
-              'Page Not Found',
+              'Page Not Found / Sayfa Bulunamad\u0131',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: Colors.white,
                   ),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             Text(
@@ -754,7 +755,7 @@ class _NotFoundScreen extends StatelessWidget {
               onPressed: () => context.go(Routes.today),
               icon: const Icon(Icons.home, color: Colors.white70),
               label: const Text(
-                'Go Home',
+                'Home / Ana Sayfa',
                 style: TextStyle(color: Colors.white70),
               ),
             ),

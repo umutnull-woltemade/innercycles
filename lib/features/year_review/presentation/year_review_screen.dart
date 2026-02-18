@@ -8,6 +8,7 @@
 import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -251,7 +252,10 @@ class _YearSelector extends StatelessWidget {
           final year = years[index];
           final isSelected = year == selectedYear;
           return GestureDetector(
-            onTap: () => onYearSelected(year),
+            onTap: () {
+              HapticFeedback.selectionClick();
+              onYearSelected(year);
+            },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 250),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
@@ -1227,6 +1231,7 @@ class _ShareableSummaryCard extends StatelessWidget {
             width: double.infinity,
             child: OutlinedButton.icon(
               onPressed: () {
+                HapticFeedback.mediumImpact();
                 final shareText = isEn
                     ? 'My ${review.year} in Review\n\n'
                       '${review.totalEntries} entries across ${review.totalJournalingDays} days\n'

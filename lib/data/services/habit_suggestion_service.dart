@@ -153,6 +153,7 @@ class HabitSuggestionService {
 
   HabitSuggestion getRandomFromCategory(String category) {
     final pool = getByCategory(category);
+    if (pool.isEmpty) return allHabitSuggestions.first;
     return pool[Random().nextInt(pool.length)];
   }
 

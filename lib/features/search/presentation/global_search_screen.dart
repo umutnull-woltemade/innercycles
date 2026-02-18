@@ -74,8 +74,11 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
       backgroundColor: isDark ? AppColors.deepSpace : AppColors.lightBackground,
       body: CosmicBackground(
         child: SafeArea(
-          child: Column(
-          children: [
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            behavior: HitTestBehavior.opaque,
+            child: Column(
+            children: [
             // Search bar + close button
             Padding(
               padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -122,6 +125,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             ),
           ],
         ),
+      ),
       ),
       ),
     );
@@ -200,32 +204,37 @@ class _SearchResultTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).pop();
-        context.push(tool.route);
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg, vertical: AppConstants.spacingMd),
-        decoration: BoxDecoration(
-          color: isDark ? AppColors.surfaceDark.withValues(alpha: 0.5) : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        ),
-        child: Row(
-          children: [
-            Text(tool.icon, style: const TextStyle(fontSize: 24)),
-            const SizedBox(width: AppConstants.spacingMd),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(isEn ? tool.nameEn : tool.nameTr, style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w600, color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary)),
-                  Text(isEn ? tool.valuePropositionEn : tool.valuePropositionTr, style: TextStyle(fontSize: 12, color: isDark ? AppColors.textMuted : AppColors.lightTextMuted), maxLines: 1, overflow: TextOverflow.ellipsis),
-                ],
+    return Semantics(
+      label: isEn ? tool.nameEn : tool.nameTr,
+      hint: isEn ? 'Double tap to open' : 'Açmak için çift dokun',
+      button: true,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).pop();
+          context.push(tool.route);
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg, vertical: AppConstants.spacingMd),
+          decoration: BoxDecoration(
+            color: isDark ? AppColors.surfaceDark.withValues(alpha: 0.5) : AppColors.lightCard,
+            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+          ),
+          child: Row(
+            children: [
+              Text(tool.icon, style: const TextStyle(fontSize: 24)),
+              const SizedBox(width: AppConstants.spacingMd),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(isEn ? tool.nameEn : tool.nameTr, style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w600, color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary)),
+                    Text(isEn ? tool.valuePropositionEn : tool.valuePropositionTr, style: TextStyle(fontSize: 12, color: isDark ? AppColors.textMuted : AppColors.lightTextMuted), maxLines: 1, overflow: TextOverflow.ellipsis),
+                  ],
+                ),
               ),
-            ),
-            Icon(Icons.arrow_forward_ios, size: 14, color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
-          ],
+              Icon(Icons.arrow_forward_ios, size: 14, color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+            ],
+          ),
         ),
       ),
     );

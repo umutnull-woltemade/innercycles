@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
@@ -75,6 +76,7 @@ class DisclaimerScreen extends ConsumerWidget {
                   icon: Icons.arrow_forward,
                   width: double.infinity,
                   onPressed: () async {
+                    HapticFeedback.mediumImpact();
                     // Persist disclaimer acceptance for App Store compliance
                     await StorageService.saveDisclaimerAccepted(true);
                     if (context.mounted) {

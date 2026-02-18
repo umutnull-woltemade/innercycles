@@ -29,7 +29,10 @@ class ContextModuleCard extends ConsumerWidget {
         final module = service.getDailyModule();
         final progress = service.readProgress;
 
-        return GestureDetector(
+        return Semantics(
+          button: true,
+          label: isEn ? 'Daily Insight' : 'G\u00fcnl\u00fck \u0130\u00e7g\u00f6r\u00fc',
+          child: GestureDetector(
           onTap: () {
             HapticFeedback.lightImpact();
             context.push(Routes.insightsDiscovery);
@@ -232,6 +235,7 @@ class ContextModuleCard extends ConsumerWidget {
               ],
             ),
           ),
+        ),
         ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.08, duration: 500.ms);
       },
     );

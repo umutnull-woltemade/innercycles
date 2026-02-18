@@ -179,17 +179,27 @@ class CycleSummaryCard extends StatelessWidget {
           if (!hasData)
             Padding(
               padding: const EdgeInsets.only(top: AppConstants.spacingSm),
-              child: Text(
-                isEn
-                    ? 'No entries yet for $areaName'
-                    : '$areaName için henüz kayıt yok',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted,
-                  fontStyle: FontStyle.italic,
-                ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.edit_note_rounded,
+                    size: 16,
+                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    isEn
+                        ? 'No entries yet for $areaName'
+                        : '$areaName için henüz kayıt yok',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ],
               ),
             ),
         ],

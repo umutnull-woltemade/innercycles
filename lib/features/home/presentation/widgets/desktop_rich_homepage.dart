@@ -7,6 +7,7 @@ import '../../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/cosmic_background.dart';
+import '../../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../../shared/widgets/page_bottom_navigation.dart';
 import '../../../../data/services/l10n_service.dart';
 
@@ -29,18 +30,8 @@ class DesktopRichHomepage extends ConsumerWidget {
         backgroundColor: Theme.of(context).brightness == Brightness.dark
             ? AppColors.deepSpace
             : AppColors.lightBackground,
-        body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const CircularProgressIndicator(color: AppColors.starGold),
-              const SizedBox(height: 16),
-              Text(
-                L10nService.get('common.loading', language),
-                style: const TextStyle(color: Colors.white70),
-              ),
-            ],
-          ),
+        body: const Center(
+          child: CosmicLoadingIndicator(),
         ),
       );
     }

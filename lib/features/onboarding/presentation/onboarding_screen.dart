@@ -175,6 +175,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   // Step 4: Notifications
   bool _notificationsRequested = false;
 
+  // Double-tap guard
+  bool _isCompleting = false;
+
   static const int _totalPages = 5;
 
   @override
@@ -273,6 +276,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   Future<void> _completeOnboarding() async {
+    if (_isCompleting) return;
+    _isCompleting = true;
+
     HapticFeedback.selectionClick();
 
     if (_userName != null && _userName!.isNotEmpty) {

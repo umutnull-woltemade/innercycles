@@ -163,6 +163,7 @@ class _MonthNavigator extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
+          tooltip: isEn ? 'Previous month' : 'Önceki ay',
           onPressed: onPrevious,
           icon: Icon(
             Icons.chevron_left,
@@ -178,6 +179,7 @@ class _MonthNavigator extends StatelessWidget {
           ),
         ),
         IconButton(
+          tooltip: isEn ? 'Next month' : 'Sonraki ay',
           onPressed: onNext,
           icon: Icon(
             Icons.chevron_right,

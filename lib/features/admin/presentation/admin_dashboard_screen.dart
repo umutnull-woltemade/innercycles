@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -64,7 +65,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             child: Text(L10nService.get('admin.cancel', lang)),
           ),
           TextButton(
-            onPressed: () => Navigator.pop(context, true),
+            onPressed: () {
+              HapticFeedback.heavyImpact();
+              Navigator.pop(context, true);
+            },
             style: TextButton.styleFrom(foregroundColor: AppColors.error),
             child: Text(L10nService.get('admin.logout', lang)),
           ),
@@ -1279,6 +1283,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
                     ),
                   ),
                   trailing: IconButton(
+                    tooltip: ref.read(languageProvider) == AppLanguage.en ? 'View details' : 'Detayları gör',
                     icon: Icon(
                       Icons.expand_more,
                       color: isDark
@@ -1367,8 +1372,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton.icon(
-                onPressed: () =>
-                    _showSnackbar(L10nService.get('admin.note_saved', lang)),
+                onPressed: () {
+                    HapticFeedback.mediumImpact();
+                    _showSnackbar(L10nService.get('admin.note_saved', lang));
+                },
                 icon: const Icon(Icons.save, size: 18),
                 label: Text(L10nService.get('admin.save_note', lang)),
                 style: TextButton.styleFrom(

@@ -33,7 +33,10 @@ class WeeklyDigestCard extends ConsumerWidget {
         final digest = service.generateDigest(entries);
         if (digest.entryCount == 0) return const SizedBox.shrink();
 
-        return GestureDetector(
+        return Semantics(
+          button: true,
+          label: isEn ? 'Weekly Digest' : 'Haftalık Özet',
+          child: GestureDetector(
           onTap: () {
             HapticFeedback.lightImpact();
             context.push(Routes.weeklyDigest);
@@ -205,6 +208,7 @@ class WeeklyDigestCard extends ConsumerWidget {
               ],
             ),
           ),
+        ),
         ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.06, duration: 400.ms);
       },
     );

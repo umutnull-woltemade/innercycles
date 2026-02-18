@@ -32,7 +32,10 @@ class MonthlyThemeCard extends ConsumerWidget {
             : theme.weeklyPromptsTr[weekIndex];
         final progress = service.monthProgress(theme.month);
 
-        return GestureDetector(
+        return Semantics(
+          button: true,
+          label: isEn ? 'Monthly Theme' : 'Aylık Tema',
+          child: GestureDetector(
           onTap: () {
             HapticFeedback.lightImpact();
             context.push(Routes.journalMonthly);

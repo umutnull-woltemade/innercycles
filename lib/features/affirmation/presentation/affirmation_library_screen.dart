@@ -125,14 +125,25 @@ class _AffirmationLibraryScreenState
                   Padding(
                     padding: const EdgeInsets.all(AppConstants.spacingXl),
                     child: Center(
-                      child: Text(
-                        isEn ? 'No favorites yet' : 'Henüz favori yok',
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.favorite_border_rounded,
+                            size: 48,
+                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            isEn ? 'No favorites yet' : 'Henüz favori yok',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

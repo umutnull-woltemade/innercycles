@@ -339,8 +339,13 @@ class _AppInitializerState extends State<AppInitializer> {
                   CircularProgressIndicator(color: AppColors.starGold),
                   SizedBox(height: 16),
                   Text(
-                    'Loading...',
-                    style: TextStyle(color: Colors.white70, fontSize: 16),
+                    'InnerCycles',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                      letterSpacing: 2,
+                    ),
                   ),
                 ],
               ),

@@ -6,6 +6,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
@@ -573,7 +574,10 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
     final isEn = widget.isEn;
 
     return GestureDetector(
-      onTap: () => setState(() => _expanded = !_expanded),
+      onTap: () {
+        HapticFeedback.selectionClick();
+        setState(() => _expanded = !_expanded);
+      },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeInOut,
@@ -963,6 +967,7 @@ class _ShareInsightsButton extends StatelessWidget {
       height: 48,
       child: ElevatedButton.icon(
         onPressed: () {
+          HapticFeedback.mediumImpact();
           final text = isEn
               ? 'I uncovered $spotCount emotional blind spots through self-reflection with InnerCycles.\n\n'
                 'Discover your hidden patterns:\nhttps://apps.apple.com/app/innercycles/id6758612716'

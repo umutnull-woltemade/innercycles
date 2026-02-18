@@ -27,6 +27,7 @@ class PremiumScreen extends ConsumerStatefulWidget {
 class _PremiumScreenState extends ConsumerState<PremiumScreen> {
   PremiumTier _selectedTier = PremiumTier.yearly;
   bool _useRevenueCatPaywall = true;
+  bool _isManagingSubscription = false;
 
   @override
   Widget build(BuildContext context) {
@@ -727,9 +728,16 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     return SizedBox(
       width: double.infinity,
       child: OutlinedButton.icon(
-        onPressed: () async {
-          await ref.read(paywallServiceProvider).presentCustomerCenter();
-        },
+        onPressed: _isManagingSubscription
+            ? null
+            : () async {
+                setState(() => _isManagingSubscription = true);
+                try {
+                  await ref.read(paywallServiceProvider).presentCustomerCenter();
+                } finally {
+                  if (mounted) setState(() => _isManagingSubscription = false);
+                }
+              },
         icon: const Icon(Icons.settings, color: AppColors.starGold),
         label: Text(
           L10nService.get('premium.manage_subscription', language),

@@ -135,7 +135,10 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: serviceAsync.when(
+        child: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.opaque,
+          child: serviceAsync.when(
           loading: () => const CosmicLoadingIndicator(),
           error: (_, _) => Center(
             child: Text(
@@ -309,6 +312,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
               ],
             ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.02, duration: 400.ms);
           },
+        ),
         ),
       ),
     );

@@ -17,6 +17,7 @@ import '../../../core/theme/liquid_glass/glass_tokens.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/archetype_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // QUIZ DATA
@@ -370,8 +371,8 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
 
   Widget _buildResult(bool isDark, bool isEn) {
     if (_result == null) {
-      return Center(
-        child: CircularProgressIndicator(color: AppColors.starGold),
+      return const Center(
+        child: CosmicLoadingIndicator(),
       );
     }
 

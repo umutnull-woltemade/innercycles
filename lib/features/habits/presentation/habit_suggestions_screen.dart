@@ -13,6 +13,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/habit_suggestion_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 
@@ -89,22 +90,9 @@ class _HabitSuggestionsScreenState
       ),
       slivers: [
         // ═══ APP BAR ═══
-        SliverAppBar(
-          expandedHeight: 120,
-          floating: true,
-          pinned: true,
-          backgroundColor: isDark ? AppColors.deepSpace : AppColors.lightBackground,
-          flexibleSpace: FlexibleSpaceBar(
-            title: Text(
-              isEn ? 'Micro-Habits' : 'Mikro Alışkanlıklar',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-              ),
-            ),
-            titlePadding: const EdgeInsets.only(left: 52, bottom: 16),
-          ),
+        GlassSliverAppBar(
+          title: isEn ? 'Micro-Habits' : 'Mikro Alışkanlıklar',
+          largeTitleMode: true,
           actions: [
             // Bookmark filter toggle
             IconButton(

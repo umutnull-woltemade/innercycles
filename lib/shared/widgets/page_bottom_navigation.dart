@@ -254,7 +254,11 @@ class _NavigationCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      label: card.getLocalizedTitle(language),
+      hint: card.getLocalizedDescription(language),
+      child: GestureDetector(
       onTap: () => context.push(card.route),
       child: Container(
         width: 180,
@@ -352,6 +356,7 @@ class _NavigationCardWidget extends StatelessWidget {
           ],
         ),
       ),
+    ),
     );
   }
 }
@@ -451,42 +456,46 @@ class _QuickLinkChip extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
 
-    return GestureDetector(
-      onTap: () => context.push(card.route),
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: 44),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                : AppColors.lightSurfaceVariant,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
+    return Semantics(
+      button: true,
+      label: card.getLocalizedTitle(language),
+      child: GestureDetector(
+        onTap: () => context.push(card.route),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 44),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
               color: isDark
-                  ? AppColors.textMuted.withValues(alpha: 0.15)
-                  : AppColors.lightTextMuted.withValues(alpha: 0.2),
-              width: 1,
-            ),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (card.emoji != null) ...[
-                Text(card.emoji!, style: const TextStyle(fontSize: 16)),
-                const SizedBox(width: 8),
-              ],
-              Text(
-                card.getLocalizedTitle(language),
-                style: GoogleFonts.raleway(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                ),
+                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                  : AppColors.lightSurfaceVariant,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: isDark
+                    ? AppColors.textMuted.withValues(alpha: 0.15)
+                    : AppColors.lightTextMuted.withValues(alpha: 0.2),
+                width: 1,
               ),
-            ],
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (card.emoji != null) ...[
+                  Text(card.emoji!, style: const TextStyle(fontSize: 16)),
+                  const SizedBox(width: 8),
+                ],
+                Text(
+                  card.getLocalizedTitle(language),
+                  style: GoogleFonts.raleway(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

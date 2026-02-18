@@ -374,15 +374,27 @@ class _MonthlyReflectionScreenState
           ),
           if (summary.totalEntries == 0) ...[
             const SizedBox(height: 24),
-            Text(
-              isEn
-                  ? 'No entries for this month yet.'
-                  : 'Bu ay için henüz kayıt yok.',
-              style: TextStyle(
-                color: isDark
-                    ? AppColors.textMuted
-                    : AppColors.lightTextMuted,
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.calendar_today_outlined,
+                  size: 48,
+                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  isEn
+                      ? 'No entries for this month yet.'
+                      : 'Bu ay için henüz kayıt yok.',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                  ),
+                ),
+              ],
             ),
           ],
           if (summary.strongestArea != null) ...[

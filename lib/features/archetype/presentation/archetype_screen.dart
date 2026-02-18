@@ -10,6 +10,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
@@ -934,6 +935,7 @@ class _ShareArchetypeButton extends StatelessWidget {
       height: 48,
       child: ElevatedButton.icon(
         onPressed: () {
+          HapticFeedback.mediumImpact();
           final name = isEn ? archetype.nameEn : archetype.nameTr;
           final text = isEn
               ? 'My emotional archetype is "$name" — discovered through self-reflection with InnerCycles.\n\n'

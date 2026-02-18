@@ -11,6 +11,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
@@ -27,6 +28,7 @@ import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../data/services/pattern_loop_service.dart'; // ignore: unused_import
 import '../../../data/services/shift_forecast_service.dart'; // ignore: unused_import
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import 'widgets/cycle_wave_painter.dart';
@@ -90,9 +92,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
       body: CosmicBackground(
         child: SafeArea(
           child: cycleServiceAsync.when(
-            loading: () => const Center(
-              child: CircularProgressIndicator(color: AppColors.starGold),
-            ),
+            loading: () => const CosmicLoadingIndicator(),
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Unable to load data' : 'Veri yüklenemedi',
@@ -110,9 +110,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
               }
               final analysis = analysisAsync.valueOrNull;
               if (analysis == null) {
-                return const Center(
-                  child: CircularProgressIndicator(color: AppColors.starGold),
-                );
+                return const CosmicLoadingIndicator();
               }
               return _buildContent(
                   context, cycleService, analysis, isDark, isEn);
@@ -545,9 +543,12 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
               toggled: isVisible,
               button: true,
               child: GestureDetector(
-              onTap: () => setState(() {
-                isVisible ? _visibleAreas.remove(area) : _visibleAreas.add(area);
-              }),
+              onTap: () {
+                HapticFeedback.lightImpact();
+                setState(() {
+                  isVisible ? _visibleAreas.remove(area) : _visibleAreas.add(area);
+                });
+              },
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minHeight: 44),
                 child: AnimatedContainer(
@@ -664,13 +665,16 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         if (isPremium)
           forecastAsync.when(
             loading: () => const SizedBox(height: 80,
-                child: Center(child: CircularProgressIndicator(color: AppColors.auroraStart, strokeWidth: 2))),
+                child: Center(child: CupertinoActivityIndicator())),
             error: (_, _) => const SizedBox.shrink(),
             data: (forecast) => ShiftForecastCard(forecast: forecast, isDark: isDark, isEn: isEn),
           )
         else
           GestureDetector(
-            onTap: () => showContextualPaywall(context, ref, paywallContext: PaywallContext.patterns),
+            onTap: () {
+              HapticFeedback.lightImpact();
+              showContextualPaywall(context, ref, paywallContext: PaywallContext.patterns);
+            },
             child: Container(
               padding: const EdgeInsets.all(AppConstants.spacingLg),
               decoration: BoxDecoration(
@@ -729,7 +733,10 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () => context.push(Routes.shareInsight),
+          onTap: () {
+            HapticFeedback.mediumImpact();
+            context.push(Routes.shareInsight);
+          },
           borderRadius: BorderRadius.circular(AppConstants.radiusLg),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),

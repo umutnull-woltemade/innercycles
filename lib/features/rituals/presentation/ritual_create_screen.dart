@@ -63,8 +63,11 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: SafeArea(
-          child: CupertinoScrollbar(
+        child: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.opaque,
+          child: SafeArea(
+            child: CupertinoScrollbar(
             child: CustomScrollView(
               physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics(),
@@ -363,6 +366,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
             ],
           ),
           ),
+        ),
         ),
       ),
     );
