@@ -17,7 +17,7 @@ class DreamVoicelessScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
-    final color = const Color(0xFFE91E63);
+    final color = AppColors.brandPink;
 
     return Scaffold(
       body: CosmicBackground(

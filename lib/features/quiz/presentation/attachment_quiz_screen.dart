@@ -185,6 +185,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
       child: Row(
         children: [
           IconButton(
+            tooltip: isEn ? 'Back' : 'Geri',
             onPressed: () {
               if (_currentPage > 0) {
                 _pageController.previousPage(

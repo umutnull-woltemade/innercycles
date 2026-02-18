@@ -14,6 +14,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/ecosystem_widgets.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../core/constants/routes.dart';
 import 'package:go_router/go_router.dart';
 
@@ -304,6 +305,20 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                       ],
                     );
                   }),
+
+                // Footer
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppConstants.spacingLg,
+                    ),
+                    child: ToolEcosystemFooter(
+                      currentToolId: 'dreamArchive',
+                      isEn: isEn,
+                      isDark: isDark,
+                    ),
+                  ),
+                ),
 
                 // Bottom padding
                 const SliverToBoxAdapter(

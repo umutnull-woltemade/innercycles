@@ -16,7 +16,7 @@ class DreamSearchingScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
-    final color = const Color(0xFFFFB300);
+    final color = AppColors.warning;
 
     return Scaffold(
       body: CosmicBackground(
@@ -26,7 +26,7 @@ class DreamSearchingScreen extends ConsumerWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: isDark
-                ? [AppColors.deepSpace, const Color(0xFF1A1508)]
+                ? [AppColors.deepSpace, AppColors.deepSpace]
                 : [const Color(0xFFFFFCF5), const Color(0xFFFFF8E8)],
           ),
         ),

@@ -12,6 +12,7 @@ import '../../../data/services/weekly_digest_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class WeeklyDigestScreen extends ConsumerWidget {
   const WeeklyDigestScreen({super.key});
@@ -104,6 +105,11 @@ class WeeklyDigestScreen extends ConsumerWidget {
                                 isEn: isEn,
                               ),
                             ],
+                            ToolEcosystemFooter(
+                              currentToolId: 'weeklyDigest',
+                              isEn: isEn,
+                              isDark: isDark,
+                            ),
                             const SizedBox(height: 40),
                           ]),
                         );

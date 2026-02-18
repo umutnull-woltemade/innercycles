@@ -670,6 +670,7 @@ class _CompatibilityReflectionScreenState
                 _backToList();
               }
             },
+            tooltip: isEn ? 'Back' : 'Geri',
             icon: Icon(
               Icons.chevron_left,
               size: 28,

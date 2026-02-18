@@ -1831,18 +1831,17 @@ ${_getPersonalAdvice(sign)}''';
               ],
             ),
           ),
-          SizedBox(
-            height: 110,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-              itemCount: _getSuggestedDreamPrompts(
-                ref.read(languageProvider),
-              ).length,
-              itemBuilder: (context, index) {
-                final prompt = _getSuggestedDreamPrompts(
-                  ref.read(languageProvider),
-                )[index];
+          Builder(builder: (context) {
+            final prompts = _getSuggestedDreamPrompts(ref.read(languageProvider));
+            return SizedBox(
+              height: 110,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                itemCount: prompts.length,
+                itemBuilder: (context, index) {
+                  if (index >= prompts.length) return const SizedBox.shrink();
+                  final prompt = prompts[index];
                 return Padding(
                       padding: const EdgeInsets.only(right: 10),
                       child: InkWell(
@@ -1883,9 +1882,10 @@ ${_getPersonalAdvice(sign)}''';
                       ),
                     )
                     .glassListItem(context: context, index: index);
-              },
-            ),
-          ),
+                },
+              ),
+            );
+          }),
           const SizedBox(height: 8),
           Center(
             child: Text(

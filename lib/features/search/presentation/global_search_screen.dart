@@ -108,6 +108,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                   ).animate().fadeIn(duration: 300.ms).slideX(begin: -0.05, end: 0, duration: 300.ms),
                   const SizedBox(width: AppConstants.spacingSm),
                   IconButton(
+                    tooltip: isEn ? 'Close search' : 'Aramayı kapat',
                     onPressed: () => Navigator.of(context).pop(),
                     icon: Icon(Icons.close_rounded, color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
                   ),

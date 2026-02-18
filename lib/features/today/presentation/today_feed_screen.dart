@@ -295,6 +295,7 @@ class _TodayHeader extends ConsumerWidget {
                 ),
               ),
               IconButton(
+                tooltip: isEn ? 'Settings' : 'Ayarlar',
                 onPressed: () => context.push(Routes.settings),
                 icon: Icon(
                   Icons.settings_outlined,

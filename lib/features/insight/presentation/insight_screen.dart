@@ -196,6 +196,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
                   if (_isTyping && index == _messages.length) {
                     return _buildTypingIndicator(isDark, language);
                   }
+                  if (index >= _messages.length) return const SizedBox.shrink();
                   return _buildMessageBubble(_messages[index], isDark);
                 },
               ),
@@ -339,7 +340,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
           width: 8,
           height: 8,
           decoration: BoxDecoration(
-            color: Colors.grey.withValues(alpha: 0.3 + value * 0.4),
+            color: AppColors.textMuted.withValues(alpha: 0.3 + value * 0.4),
             shape: BoxShape.circle,
           ),
         );
@@ -386,7 +387,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
                 decoration: InputDecoration(
                   hintText: L10nService.get('insight.input_hint', language),
                   hintStyle: TextStyle(
-                    color: isDark ? Colors.white38 : Colors.grey,
+                    color: isDark ? AppColors.textMuted.withValues(alpha: 0.38) : AppColors.textMuted,
                     fontSize: 15,
                   ),
                   border: InputBorder.none,

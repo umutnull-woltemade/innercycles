@@ -17,7 +17,7 @@ class DreamRunningScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
-    final color = const Color(0xFFFF7043);
+    final color = AppColors.streakOrange;
 
     return Scaffold(
       body: CosmicBackground(

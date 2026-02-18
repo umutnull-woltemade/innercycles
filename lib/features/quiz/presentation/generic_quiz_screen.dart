@@ -186,6 +186,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
       child: Row(
         children: [
           IconButton(
+            tooltip: isEn ? 'Back' : 'Geri',
             onPressed: () {
               if (_currentPage > 0) {
                 _pageController.previousPage(

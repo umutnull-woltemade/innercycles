@@ -129,7 +129,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           hintStyle: TextStyle(color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
           prefixIcon: Icon(Icons.search_rounded, color: isDark ? AppColors.textMuted : AppColors.lightTextMuted, size: 22),
           suffixIcon: _searchController.text.isNotEmpty
-              ? IconButton(onPressed: () { _searchController.clear(); setState(() => _searchQuery = ''); }, icon: Icon(Icons.close_rounded, color: isDark ? AppColors.textMuted : AppColors.lightTextMuted, size: 20))
+              ? IconButton(tooltip: isEn ? 'Clear search' : 'Aramayı temizle', onPressed: () { _searchController.clear(); setState(() => _searchQuery = ''); }, icon: Icon(Icons.close_rounded, color: isDark ? AppColors.textMuted : AppColors.lightTextMuted, size: 20))
               : null,
           border: InputBorder.none,
           contentPadding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg, vertical: AppConstants.spacingMd),

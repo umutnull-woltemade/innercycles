@@ -597,12 +597,15 @@ class _ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: isLoading ? null : () {
-        HapticFeedback.mediumImpact();
-        onTap();
-      },
-      child: AnimatedContainer(
+    return Semantics(
+      button: true,
+      label: label,
+      child: GestureDetector(
+        onTap: isLoading ? null : () {
+          HapticFeedback.mediumImpact();
+          onTap();
+        },
+        child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(vertical: 14),
         decoration: BoxDecoration(

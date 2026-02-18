@@ -17,7 +17,7 @@ class DreamFlyingScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
-    final color = const Color(0xFF42A5F5);
+    final color = AppColors.chartBlue;
 
     return Scaffold(
       body: CosmicBackground(

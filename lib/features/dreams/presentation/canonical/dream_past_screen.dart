@@ -17,7 +17,7 @@ class DreamPastScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
-    final color = const Color(0xFFAB47BC);
+    final color = AppColors.amethyst;
 
     return Scaffold(
       body: CosmicBackground(

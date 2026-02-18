@@ -23,6 +23,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class ChallengeHubScreen extends ConsumerStatefulWidget {
   const ChallengeHubScreen({super.key});
@@ -122,6 +123,11 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
                   )),
                 ],
 
+                ToolEcosystemFooter(
+                  currentToolId: 'challengeHub',
+                  isEn: isEn,
+                  isDark: isDark,
+                ),
                 const SizedBox(height: AppConstants.spacingHuge),
               ]),
             ),

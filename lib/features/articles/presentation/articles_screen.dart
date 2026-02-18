@@ -12,6 +12,7 @@ import '../../../data/services/context_module_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class ArticlesScreen extends ConsumerStatefulWidget {
   const ArticlesScreen({super.key});
@@ -122,6 +123,12 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
                         },
                       ),
                     )),
+                ToolEcosystemFooter(
+                  currentToolId: 'articles',
+                  isEn: isEn,
+                  isDark: isDark,
+                ),
+                const SizedBox(height: 40),
               ]),
             ),
           ),

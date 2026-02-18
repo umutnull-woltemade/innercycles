@@ -231,6 +231,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                         ),
                         if (_itemControllers.length < maxItems)
                           IconButton(
+                            tooltip: isEn ? 'Add step' : 'Adım ekle',
                             onPressed: () {
                               setState(() {
                                 _itemControllers.add(TextEditingController());
@@ -302,6 +303,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                               ),
                               if (_itemControllers.length > 1)
                                 IconButton(
+                                  tooltip: isEn ? 'Remove step' : 'Adımı kaldır',
                                   onPressed: () {
                                     setState(() {
                                       _itemControllers[i].dispose();

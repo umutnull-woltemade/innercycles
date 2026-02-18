@@ -105,6 +105,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     return Row(
       children: [
         IconButton(
+          tooltip: language == AppLanguage.en ? 'Back' : 'Geri',
           onPressed: () {
             if (_hasChanges) {
               _showDiscardDialog(context, language);

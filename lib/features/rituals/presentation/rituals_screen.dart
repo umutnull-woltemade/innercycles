@@ -73,6 +73,12 @@ class RitualsScreen extends ConsumerWidget {
                         }),
                         const SizedBox(height: 24),
                         _AddButton(isDark: isDark, isEn: isEn),
+                        const SizedBox(height: 24),
+                        ToolEcosystemFooter(
+                          currentToolId: 'rituals',
+                          isEn: isEn,
+                          isDark: isDark,
+                        ),
                         const SizedBox(height: 40),
                       ]),
                     );
@@ -207,6 +213,7 @@ class _StackCard extends ConsumerWidget {
                   ),
                 ),
                 IconButton(
+                  tooltip: isEn ? 'Delete ritual' : 'Ritüeli sil',
                   onPressed: () => _confirmDelete(context, ref),
                   icon: Icon(
                     Icons.delete_outline,

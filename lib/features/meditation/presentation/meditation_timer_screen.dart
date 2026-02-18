@@ -111,6 +111,7 @@ class _MeditationTimerScreenState
     _timer?.cancel();
     _pulseController.stop();
     HapticFeedback.heavyImpact();
+    if (!mounted) return;
     setState(() {
       _isRunning = false;
       _remainingSeconds = 0;
