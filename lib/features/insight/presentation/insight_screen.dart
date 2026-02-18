@@ -414,28 +414,29 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
           ),
           const SizedBox(width: 12),
           Semantics(
-            label: isEn ? 'Send message' : 'Mesaj gönder',
+            label: language == AppLanguage.en ? 'Send message' : 'Mesaj gönder',
             button: true,
             child: GestureDetector(
-            onTap: _sendMessage,
-            child: Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                gradient: AppColors.chatAccentGradient,
-                borderRadius: BorderRadius.circular(24),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.chatAccent.withValues(alpha: 0.3),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: const Icon(
-                Icons.send_rounded,
-                color: Colors.white,
-                size: 22,
+              onTap: _sendMessage,
+              child: Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  gradient: AppColors.chatAccentGradient,
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.chatAccent.withValues(alpha: 0.3),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: const Icon(
+                  Icons.send_rounded,
+                  color: Colors.white,
+                  size: 22,
+                ),
               ),
             ),
           ),

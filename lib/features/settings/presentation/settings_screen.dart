@@ -1169,43 +1169,49 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
               ),
               if (isEnabled) ...[
                 _GroupedSeparator(isDark: widget.isDark),
-                GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () => _showPinSetup(service),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 12,
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.pin_outlined,
-                          color: widget.isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary,
-                          size: 22,
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Text(
-                            isEn ? 'Change PIN' : 'PIN Değiştir',
-                            style: TextStyle(
-                              fontSize: 17,
-                              color: widget.isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
+                Semantics(
+                  label: isEn ? 'Change PIN' : 'PIN Değiştir',
+                  button: true,
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => _showPinSetup(service),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.pin_outlined,
+                            color: widget.isDark
+                                ? AppColors.textSecondary
+                                : AppColors.lightTextSecondary,
+                            size: 22,
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Text(
+                              isEn ? 'Change PIN' : 'PIN Değiştir',
+                              style: TextStyle(
+                                fontSize: 17,
+                                color: widget.isDark
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary,
+                              ),
                             ),
                           ),
-                        ),
-                        Icon(
-                          Icons.chevron_right,
-                          size: 20,
-                          color: widget.isDark
-                              ? AppColors.textMuted.withValues(alpha: 0.5)
-                              : AppColors.lightTextMuted.withValues(alpha: 0.5),
-                        ),
-                      ],
+                          Icon(
+                            Icons.chevron_right,
+                            size: 20,
+                            color: widget.isDark
+                                ? AppColors.textMuted.withValues(alpha: 0.5)
+                                : AppColors.lightTextMuted.withValues(
+                                    alpha: 0.5,
+                                  ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
