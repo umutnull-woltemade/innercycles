@@ -18,6 +18,7 @@ import '../../../data/services/context_module_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class InsightsDiscoveryScreen extends ConsumerStatefulWidget {
   const InsightsDiscoveryScreen({super.key});
@@ -188,6 +189,13 @@ class _InsightsDiscoveryScreenState
             ),
           ),
 
+        // Related tools
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: ToolEcosystemFooter(currentToolId: 'insightsDiscovery', isEn: isEn, isDark: isDark),
+          ),
+        ),
         // Bottom padding
         const SliverToBoxAdapter(child: SizedBox(height: 40)),
       ],

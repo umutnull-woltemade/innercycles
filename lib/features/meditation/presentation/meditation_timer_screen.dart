@@ -15,6 +15,7 @@ import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class MeditationTimerScreen extends ConsumerStatefulWidget {
   const MeditationTimerScreen({super.key});
@@ -442,6 +443,8 @@ class _MeditationTimerScreenState
                           ],
                         ),
 
+                      const SizedBox(height: 24),
+                      ToolEcosystemFooter(currentToolId: 'meditation', isEn: isEn, isDark: isDark),
                       const SizedBox(height: 24),
                     ],
                   ),

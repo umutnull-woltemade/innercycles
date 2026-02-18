@@ -10,6 +10,7 @@ import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class AffirmationLibraryScreen extends ConsumerStatefulWidget {
   const AffirmationLibraryScreen({super.key});
@@ -133,6 +134,8 @@ class _AffirmationLibraryScreenState
                       ),
                     ),
                   ),
+                ToolEcosystemFooter(currentToolId: 'affirmations', isEn: isEn, isDark: isDark),
+                const SizedBox(height: 40),
               ]),
             ),
           ),
