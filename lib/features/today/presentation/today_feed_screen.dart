@@ -27,6 +27,7 @@ import '../../prompts/presentation/today_prompt_card.dart';
 import '../../quiz/presentation/quiz_suggestion_card.dart';
 import '../../cosmic/presentation/cosmic_message_card.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
   const TodayFeedScreen({super.key});
@@ -192,6 +193,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   const RitualCheckoffCard(),
                   const SizedBox(height: 24),
                   _SuggestedToolsSection(isEn: isEn, isDark: isDark),
+                  const SizedBox(height: 24),
+                  ToolEcosystemFooter(
+                    currentToolId: 'todayFeed',
+                    isEn: isEn,
+                    isDark: isDark,
+                  ),
                   const SizedBox(height: 32),
                 ]),
               ),

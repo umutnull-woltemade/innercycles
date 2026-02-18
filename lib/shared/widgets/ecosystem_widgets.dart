@@ -449,7 +449,7 @@ class _ToolFeedbackFooterState extends State<ToolFeedbackFooter> {
     final isActive = _selectedFeedback == isPositive;
     return Semantics(
       button: true,
-      label: isPositive ? 'Thumbs up' : 'Thumbs down',
+      label: isPositive ? (widget.isEn ? 'Thumbs up' : 'Beğen') : (widget.isEn ? 'Thumbs down' : 'Beğenme'),
       child: GestureDetector(
         onTap: () {
           setState(() => _selectedFeedback = isPositive);

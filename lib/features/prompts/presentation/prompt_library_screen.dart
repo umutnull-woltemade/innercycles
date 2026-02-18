@@ -18,6 +18,7 @@ import '../../../data/services/journal_prompt_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class PromptLibraryScreen extends ConsumerWidget {
   const PromptLibraryScreen({super.key});
@@ -158,6 +159,19 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
               ),
             ),
           ),
+
+          // Tool ecosystem footer
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+              child: ToolEcosystemFooter(
+                currentToolId: 'promptLibrary',
+                isEn: isEn,
+                isDark: isDark,
+              ),
+            ),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
       ),
     );

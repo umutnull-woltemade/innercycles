@@ -375,7 +375,7 @@ class PatternsScreen extends ConsumerWidget {
   }) {
     return Semantics(
       button: true,
-      label: 'See full analysis',
+      label: isEn ? 'See full analysis' : 'Tam analizi gör',
       child: GestureDetector(
         onTap: () {
           showContextualPaywall(

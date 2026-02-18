@@ -425,7 +425,7 @@ class _AffirmationTile extends StatelessWidget {
           ),
           Semantics(
             button: true,
-            label: isFavorite ? 'Remove from favorites' : 'Add to favorites',
+            label: isFavorite ? (isEn ? 'Remove from favorites' : 'Favorilerden kaldır') : (isEn ? 'Add to favorites' : 'Favorilere ekle'),
             child: GestureDetector(
               onTap: onToggleFavorite,
               child: Icon(

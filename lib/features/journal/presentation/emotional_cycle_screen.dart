@@ -676,7 +676,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         else
           Semantics(
             button: true,
-            label: 'Unlock Shift Outlook',
+            label: isEn ? 'Unlock Shift Outlook' : 'Değişim Görünümünü Aç',
             child: GestureDetector(
               onTap: () {
                 HapticFeedback.lightImpact();

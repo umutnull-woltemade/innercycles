@@ -109,7 +109,7 @@ class _WhatsNewCardState extends ConsumerState<WhatsNewCard> {
               ),
               Semantics(
                 button: true,
-                label: 'Dismiss',
+                label: isEn ? 'Dismiss' : 'Kapat',
                 child: GestureDetector(
                   onTap: _dismiss,
                   child: Icon(

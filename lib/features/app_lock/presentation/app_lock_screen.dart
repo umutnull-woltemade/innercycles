@@ -173,7 +173,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
                       children: [
                         _buildBioButton(isDark, isEn),
                         _buildDigitButton(0, isDark),
-                        _buildDeleteButton(isDark),
+                        _buildDeleteButton(isDark, isEn),
                       ],
                     ),
                   ],
@@ -230,9 +230,9 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
     );
   }
 
-  Widget _buildDeleteButton(bool isDark) {
+  Widget _buildDeleteButton(bool isDark, bool isEn) {
     return Semantics(
-      label: 'Delete',
+      label: isEn ? 'Delete' : 'Sil',
       button: true,
       child: GestureDetector(
         onTap: _onDelete,
@@ -251,9 +251,9 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
     );
   }
 
-  Widget _buildBioButton(bool isDark) {
+  Widget _buildBioButton(bool isDark, bool isEn) {
     return Semantics(
-      label: 'Unlock with biometrics',
+      label: isEn ? 'Unlock with biometrics' : 'Biyometrik ile kilidi aç',
       button: true,
       child: GestureDetector(
         onTap: () {
