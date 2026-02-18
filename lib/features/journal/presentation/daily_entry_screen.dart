@@ -196,7 +196,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           firstDate: DateTime.now().subtract(const Duration(days: 365)),
           lastDate: DateTime.now(),
         );
-        if (picked != null) setState(() => _selectedDate = picked);
+        if (picked != null && mounted) setState(() => _selectedDate = picked);
       },
       child: GlassPanel(
         elevation: GlassElevation.g2,

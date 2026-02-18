@@ -75,6 +75,7 @@ class _CompatibilityReflectionScreenState
     final service = await _getService();
     if (service != null && mounted) {
       final profiles = await service.getProfiles();
+      if (!mounted) return;
       setState(() {
         _profiles = profiles;
         _loading = false;

@@ -91,8 +91,8 @@ class _ShareCardGalleryScreenState
       language: language,
     );
 
-    setState(() => _isSharing = false);
     if (!mounted) return;
+    setState(() => _isSharing = false);
 
     if (result.success) {
       _showSnackBar(isEn ? 'Shared successfully!' : 'Başarıyla paylaşıldı!');
