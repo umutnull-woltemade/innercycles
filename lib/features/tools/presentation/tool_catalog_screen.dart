@@ -499,7 +499,12 @@ class _ToolCard extends StatelessWidget {
                         : 'Add to favorites',
                     child: GestureDetector(
                       onTap: onFavoriteToggle,
-                      child: Icon(
+                      behavior: HitTestBehavior.opaque,
+                      child: SizedBox(
+                        width: 44,
+                        height: 44,
+                        child: Center(
+                          child: Icon(
                         isFavorite
                             ? Icons.star_rounded
                             : Icons.star_outline_rounded,
@@ -509,6 +514,8 @@ class _ToolCard extends StatelessWidget {
                             : (isDark
                                   ? AppColors.textMuted.withValues(alpha: 0.5)
                                   : AppColors.lightTextMuted),
+                          ),
+                        ),
                       ),
                     ),
                   ),

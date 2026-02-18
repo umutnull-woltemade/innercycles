@@ -232,7 +232,12 @@ class _GrowthScoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Semantics(
+      label: isEn
+          ? 'Growth score $score. Tap for details'
+          : 'Gelişim puanı $score. Detaylar için dokun',
+      button: true,
+      child: GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -319,6 +324,7 @@ class _GrowthScoreCard extends StatelessWidget {
           ],
         ),
       ),
+    ),
     );
   }
 }
@@ -421,7 +427,10 @@ class _SettingsLinkTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Semantics(
+      label: link.name,
+      button: true,
+      child: GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(
@@ -465,6 +474,7 @@ class _SettingsLinkTile extends StatelessWidget {
           ],
         ),
       ),
+    ),
     );
   }
 }
