@@ -604,6 +604,7 @@ class _IdentityPageState extends State<_IdentityPage>
               width: 100,
               height: 100,
               fit: BoxFit.contain,
+              semanticLabel: 'InnerCycles logo',
               errorBuilder: (context, error, stackTrace) {
                 return Container(
                   width: 100,
@@ -755,6 +756,7 @@ class _IdentityPageState extends State<_IdentityPage>
             width: 130,
             height: 130,
             fit: BoxFit.contain,
+            semanticLabel: 'InnerCycles logo',
           ),
         )
         .glassReveal(context: context);

@@ -188,17 +188,21 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     final dateStr =
         '${_selectedDate.day}.${_selectedDate.month}.${_selectedDate.year}';
 
-    return GestureDetector(
-      onTap: () async {
-        final picked = await showDatePicker(
-          context: context,
-          initialDate: _selectedDate,
-          firstDate: DateTime.now().subtract(const Duration(days: 365)),
-          lastDate: DateTime.now(),
-        );
-        if (picked != null && mounted) setState(() => _selectedDate = picked);
-      },
-      child: GlassPanel(
+    return Semantics(
+      label: isEn ? 'Select date: $dayName $dateStr' : 'Tarih seç: $dayName $dateStr',
+      button: true,
+      child: GestureDetector(
+        onTap: () async {
+          HapticFeedback.selectionClick();
+          final picked = await showDatePicker(
+            context: context,
+            initialDate: _selectedDate,
+            firstDate: DateTime.now().subtract(const Duration(days: 365)),
+            lastDate: DateTime.now(),
+          );
+          if (picked != null && mounted) setState(() => _selectedDate = picked);
+        },
+        child: GlassPanel(
         elevation: GlassElevation.g2,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -234,6 +238,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
               size: 20,
             ),
           ],
+        ),
         ),
       ),
     ).glassReveal(context: context);
@@ -596,6 +601,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 fit: BoxFit.cover,
                 cacheWidth: 800,
                 cacheHeight: 360,
+                semanticLabel: isEn ? 'Journal photo' : 'Günlük fotoğrafı',
               ),
             ),
             const SizedBox(height: AppConstants.spacingSm),
@@ -629,29 +635,36 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       ).glassListItem(context: context, index: 4);
     }
 
-    return GestureDetector(
-      onTap: _pickImage,
-      child: GlassPanel(
-        elevation: GlassElevation.g2,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        padding: const EdgeInsets.all(AppConstants.spacingLg),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.add_a_photo_outlined,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              size: 22,
-            ),
-            const SizedBox(width: AppConstants.spacingSm),
-            Text(
-              isEn ? 'Add a photo' : 'Fotoğraf ekle',
+    return Semantics(
+      label: isEn ? 'Add a photo' : 'Fotoğraf ekle',
+      button: true,
+      child: GestureDetector(
+        onTap: () {
+          HapticFeedback.lightImpact();
+          _pickImage();
+        },
+        child: GlassPanel(
+          elevation: GlassElevation.g2,
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          padding: const EdgeInsets.all(AppConstants.spacingLg),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.add_a_photo_outlined,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                size: 22,
+              ),
+              const SizedBox(width: AppConstants.spacingSm),
+              Text(
+                isEn ? 'Add a photo' : 'Fotoğraf ekle',
               style: TextStyle(
                 fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
             ),
-          ],
+            ],
+          ),
         ),
       ),
     ).glassListItem(context: context, index: 4);

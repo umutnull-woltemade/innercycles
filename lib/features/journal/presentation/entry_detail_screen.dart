@@ -260,6 +260,7 @@ class EntryDetailScreen extends ConsumerWidget {
           width: double.infinity,
           fit: BoxFit.cover,
           cacheWidth: 800,
+          semanticLabel: 'Journal entry photo',
         ),
       ),
     );

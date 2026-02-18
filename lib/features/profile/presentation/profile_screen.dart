@@ -169,6 +169,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               child: Image.asset(
                 'assets/brand/app-logo/png/app-logo-96.png',
                 fit: BoxFit.contain,
+                semanticLabel: 'InnerCycles logo',
               ),
             ),
           ),
