@@ -252,7 +252,11 @@ class EntryDetailScreen extends ConsumerWidget {
     bool isDark,
   ) {
     final file = File(imagePath);
-    if (!file.existsSync()) return const SizedBox.shrink();
+    try {
+      if (!file.existsSync()) return const SizedBox.shrink();
+    } catch (_) {
+      return const SizedBox.shrink();
+    }
 
     return Padding(
       padding: const EdgeInsets.only(bottom: AppConstants.spacingLg),
@@ -264,6 +268,7 @@ class EntryDetailScreen extends ConsumerWidget {
           fit: BoxFit.cover,
           cacheWidth: 800,
           semanticLabel: 'Journal entry photo',
+          errorBuilder: (_, _, _) => const SizedBox.shrink(),
         ),
       ),
     );

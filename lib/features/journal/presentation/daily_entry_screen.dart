@@ -612,6 +612,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 cacheWidth: 800,
                 cacheHeight: 360,
                 semanticLabel: isEn ? 'Journal photo' : 'Günlük fotoğrafı',
+                errorBuilder: (_, _, _) => const SizedBox.shrink(),
               ),
             ),
             const SizedBox(height: AppConstants.spacingSm),
@@ -689,17 +690,22 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       imageQuality: 85,
     );
     if (picked != null) {
-      // Copy to app documents directory for persistence
-      final appDir = await getApplicationDocumentsDirectory();
-      final journalDir = Directory('${appDir.path}/journal_photos');
-      if (!await journalDir.exists()) {
-        await journalDir.create(recursive: true);
+      try {
+        // Copy to app documents directory for persistence
+        final appDir = await getApplicationDocumentsDirectory();
+        final journalDir = Directory('${appDir.path}/journal_photos');
+        if (!await journalDir.exists()) {
+          await journalDir.create(recursive: true);
+        }
+        final ext = p.extension(picked.path);
+        final savedPath = '${journalDir.path}/${DateTime.now().millisecondsSinceEpoch}$ext';
+        await File(picked.path).copy(savedPath);
+        if (!mounted) return;
+        setState(() => _selectedImagePath = savedPath);
+      } catch (_) {
+        // File copy failed (disk full, permission denied, etc.)
+        if (!mounted) return;
       }
-      final ext = p.extension(picked.path);
-      final savedPath = '${journalDir.path}/${DateTime.now().millisecondsSinceEpoch}$ext';
-      await File(picked.path).copy(savedPath);
-      if (!mounted) return;
-      setState(() => _selectedImagePath = savedPath);
     }
   }
 

@@ -14,6 +14,7 @@ import '../../../data/services/habit_suggestion_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 
@@ -231,6 +232,16 @@ class _HabitSuggestionsScreenState
               ),
             ),
           ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
+            child: ToolEcosystemFooter(
+              currentToolId: 'habitSuggestions',
+              isEn: isEn,
+              isDark: isDark,
+            ),
+          ),
+        ),
       ],
     );
   }

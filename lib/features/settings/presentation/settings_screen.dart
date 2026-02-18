@@ -10,6 +10,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/localization_service.dart';
 import '../../../data/services/l10n_service.dart';
 
+import '../../../data/services/notification_service.dart';
 import '../../../data/services/storage_service.dart';
 import '../../../data/services/url_launcher_service.dart';
 import '../../../data/services/premium_service.dart';
@@ -610,6 +611,8 @@ class SettingsScreen extends ConsumerWidget {
           TextButton(
             onPressed: () async {
               Navigator.pop(context);
+              // Cancel scheduled notifications
+              try { await NotificationService().cancelAll(); } catch (_) {}
               await StorageService.clearAllData();
               ref.read(userProfileProvider.notifier).clearProfile();
               ref.read(onboardingCompleteProvider.notifier).state = false;

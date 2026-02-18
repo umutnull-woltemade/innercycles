@@ -230,13 +230,21 @@ class ContextModuleService {
 
   /// Import read/bookmark data
   Future<void> importData(Map<String, dynamic> data) async {
-    if (data['readHistory'] is List) {
-      final history = (data['readHistory'] as List).cast<String>();
-      await _prefs.setStringList(_readHistoryKey, history);
-    }
-    if (data['bookmarks'] is List) {
-      final bookmarks = (data['bookmarks'] as List).cast<String>();
-      await _prefs.setStringList(_bookmarksKey, bookmarks);
+    try {
+      if (data['readHistory'] is List) {
+        final history = (data['readHistory'] as List)
+            .whereType<String>()
+            .toList();
+        await _prefs.setStringList(_readHistoryKey, history);
+      }
+      if (data['bookmarks'] is List) {
+        final bookmarks = (data['bookmarks'] as List)
+            .whereType<String>()
+            .toList();
+        await _prefs.setStringList(_bookmarksKey, bookmarks);
+      }
+    } catch (_) {
+      // Corrupted import data — skip silently
     }
   }
 }
