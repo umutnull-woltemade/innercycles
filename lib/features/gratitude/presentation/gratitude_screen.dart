@@ -13,6 +13,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/gratitude_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class GratitudeScreen extends ConsumerStatefulWidget {
   const GratitudeScreen({super.key});
@@ -140,6 +141,11 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                               )),
                         ],
 
+                        ToolEcosystemFooter(
+                          currentToolId: 'gratitude',
+                          isEn: isEn,
+                          isDark: isDark,
+                        ),
                         const SizedBox(height: 40),
                       ]),
                     );

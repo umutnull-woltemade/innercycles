@@ -18,6 +18,7 @@ import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class PatternsScreen extends ConsumerWidget {
   const PatternsScreen({super.key});
@@ -344,6 +345,11 @@ class PatternsScreen extends ConsumerWidget {
                     context, crossCorrelations, isDark, isEn,
                   ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
               ],
+              ToolEcosystemFooter(
+                currentToolId: 'journalPatterns',
+                isEn: isEn,
+                isDark: isDark,
+              ),
               const SizedBox(height: 40),
             ]),
           ),

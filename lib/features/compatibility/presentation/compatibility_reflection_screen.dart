@@ -977,7 +977,7 @@ class _CompatibilityReflectionScreenState
                 child: OutlinedButton.icon(
                   onPressed: _backToList,
                   icon: Icon(
-                    Icons.arrow_back_rounded,
+                    Icons.chevron_left,
                     size: 20,
                     color: isDark
                         ? AppColors.textPrimary

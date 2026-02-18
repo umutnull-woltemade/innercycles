@@ -26,6 +26,7 @@ import '../../../data/services/pattern_loop_service.dart'; // ignore: unused_imp
 import '../../../data/services/shift_forecast_service.dart'; // ignore: unused_import
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import 'widgets/cycle_wave_painter.dart';
 import 'widgets/cycle_summary_card.dart';
 import 'widgets/phase_ring.dart';
@@ -393,6 +394,11 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                   _buildPremiumGate(context, isDark, isEn, analysis.totalEntries)
                       .animate().fadeIn(delay: 1000.ms, duration: 400.ms),
                 ],
+                ToolEcosystemFooter(
+                  currentToolId: 'emotionalCycles',
+                  isEn: isEn,
+                  isDark: isDark,
+                ),
                 const SizedBox(height: 48),
               ]),
             ),
