@@ -343,8 +343,9 @@ class PremiumNotifier extends Notifier<PremiumState> {
       }
 
       // Get expiry date (null for lifetime)
-      if (!isLifetime && entitlement.expirationDate != null) {
-        expiryDate = DateTime.tryParse(entitlement.expirationDate!);
+      final expirationStr = entitlement.expirationDate;
+      if (!isLifetime && expirationStr != null) {
+        expiryDate = DateTime.tryParse(expirationStr);
       }
     }
 

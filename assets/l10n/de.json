@@ -969,7 +969,7 @@
                         "basic_meaning": "Water is your element - this dream is extremely meaningful! There is a powerful message from your inner depths.",
                         "element_perspective": "This dream indicates a deep connection with home, family and your roots. The mother archetype is active. Your inner home is calling.",
                         "psychological": "Water: Subconscious, intuition, protective instinct\nAs a Nurturer: The need for emotional protection and home\nMessage: Return home - to your inner home, your inner home",
-                        "practice": "• Fill water under moonlight and drink\n• Look at family photos\n• Take a sea salt bath\n• Clean the house - renew the energy\n• Connect with mother figures"
+                        "practice": "• Drink a warm cup of tea mindfully\n• Look at family photos\n• Take a relaxing bath\n• Clean the house - renew the energy\n• Connect with mother figures"
                     },
                     "transformer": {
                         "basic_meaning": "Water is your element and this dream indicates deep transformation! Time for renewal has come.",
@@ -1058,7 +1058,7 @@
                     "practice_label": "✨ PRACTICAL APPLICATION",
                     "practice": "• Research that animal - mythology, symbolism\n• Do animal meditation\n• Draw totem cards\n• Get an object related to that animal",
                     "cosmic_message_label": "💫 PERSONAL MESSAGE",
-                    "cosmic_message": "Your animal guide is communicating with you. As a {element} element, this connection is especially strong."
+                    "cosmic_message": "Tiere in Träumen repräsentieren oft deine Instinkte und inneren Stärken. Als {element}-Archetyp kann diese Symbolik besonders bedeutsam sein."
                 },
                 "house": {
                     "title": "🏠 HOUSE/BUILDING DREAM - {archetype} INTERPRETATION",
@@ -1142,7 +1142,7 @@
                     "pioneer": "Advice: Write down your first thoughts when you wake up in the morning. Your fire energy can quickly make you forget subconscious messages.",
                     "builder": "Advice: Write your dreams in a dream journal. Your earth energy works better with tangible records.",
                     "communicator": "Advice: Tell your dream to someone. Your air energy loves to find meaning through verbal expression.",
-                    "nurturer": "Advice: Pay attention to moon phases. Your dreams tend to be more vivid during full moon and new moon times.",
+                    "nurturer": "Tipp: Verfolge deine Traummuster im Laufe der Zeit. Deine Wasserenergie erzeugt tendenziell lebhafte, emotional reiche Träume.",
                     "performer": "Advice: Express your dreams creatively - draw, write, share. Your fire energy loves expression.",
                     "analyst": "Advice: Keep a list of dream symbols. Your earth energy appreciates systematic analysis.",
                     "harmonizer": "Advice: Focus on relationships in your dreams. Your air energy draws lessons from social dynamics.",
@@ -1797,7 +1797,7 @@
             },
             "moon_phase": {
                 "title": "Mondphase",
-                "description": "Der heutige Mondeinfluss."
+                "description": "Heutige Zyklusphase."
             },
             "sky_today": {
                 "description": "Der Himmel heute."

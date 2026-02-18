@@ -194,7 +194,10 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
   }
 
   Widget _buildDigitButton(int digit, bool isDark) {
-    return GestureDetector(
+    return Semantics(
+      label: '$digit',
+      button: true,
+      child: GestureDetector(
       onTap: () => _onDigit(digit),
       child: Container(
         width: 72,
@@ -225,7 +228,10 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
   }
 
   Widget _buildDeleteButton(bool isDark) {
-    return GestureDetector(
+    return Semantics(
+      label: 'Delete',
+      button: true,
+      child: GestureDetector(
       onTap: _onDelete,
       child: SizedBox(
         width: 72,
@@ -242,7 +248,10 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
   }
 
   Widget _buildBioButton(bool isDark) {
-    return GestureDetector(
+    return Semantics(
+      label: 'Unlock with biometrics',
+      button: true,
+      child: GestureDetector(
       onTap: () {
         _biometricsAttempted = false;
         _tryBiometrics();

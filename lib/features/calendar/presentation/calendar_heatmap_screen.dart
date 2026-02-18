@@ -673,12 +673,13 @@ class _DayDetail extends StatelessWidget {
       ).animate().fadeIn(duration: 200.ms);
     }
 
+    final e = entry!;
     final ratingLabels = isEn
         ? ['Low', 'Below Avg', 'Average', 'Good', 'Excellent']
         : ['Düşük', 'Ortanın Altı', 'Orta', 'İyi', 'Mükemmel'];
 
     return GestureDetector(
-      onTap: () => onViewEntry(entry!.id),
+      onTap: () => onViewEntry(e.id),
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -716,8 +717,8 @@ class _DayDetail extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text(
                   isEn
-                      ? entry!.focusArea.displayNameEn
-                      : entry!.focusArea.displayNameTr,
+                      ? e.focusArea.displayNameEn
+                      : e.focusArea.displayNameTr,
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
@@ -733,27 +734,27 @@ class _DayDetail extends StatelessWidget {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: _ratingColor(entry!.overallRating)
+                    color: _ratingColor(e.overallRating)
                         .withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
-                    ratingLabels[(entry!.overallRating - 1).clamp(0, ratingLabels.length - 1)],
+                    ratingLabels[(e.overallRating - 1).clamp(0, ratingLabels.length - 1)],
                     style: TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
-                      color: _ratingColor(entry!.overallRating),
+                      color: _ratingColor(e.overallRating),
                     ),
                   ),
                 ),
               ],
             ),
-            if (entry!.note != null && entry!.note!.isNotEmpty) ...[
+            if (e.note case final note? when note.isNotEmpty) ...[
               const SizedBox(height: 10),
               Text(
-                entry!.note!.length > 120
-                    ? '${entry!.note!.substring(0, 120)}...'
-                    : entry!.note!,
+                note.length > 120
+                    ? '${note.substring(0, 120)}...'
+                    : note,
                 style: TextStyle(
                   fontSize: 13,
                   height: 1.5,

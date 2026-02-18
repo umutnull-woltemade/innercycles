@@ -837,7 +837,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
+              Semantics(
+                label: isEn ? 'Privacy Policy' : 'Gizlilik Politikası',
+                link: true,
+                child: GestureDetector(
                 onTap: () =>
                     ref.read(urlLauncherServiceProvider).openPrivacyPolicy(),
                 child: Text(
@@ -862,7 +865,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                       ?.copyWith(color: AppColors.textMuted, fontSize: 11),
                 ),
               ),
-              GestureDetector(
+              Semantics(
+                label: isEn ? 'Terms of Service' : 'Kullanım Şartları',
+                link: true,
+                child: GestureDetector(
                 onTap: () =>
                     ref.read(urlLauncherServiceProvider).openTermsOfService(),
                 child: Text(

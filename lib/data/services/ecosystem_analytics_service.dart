@@ -27,7 +27,7 @@ class AnalyticsEvent {
       };
 
   factory AnalyticsEvent.fromJson(Map<String, dynamic> json) => AnalyticsEvent(
-        name: json['name'] as String,
+        name: json['name'] as String? ?? '',
         properties: Map<String, dynamic>.from(json['properties'] as Map? ?? {}),
         timestamp: DateTime.tryParse(json['timestamp']?.toString() ?? '') ?? DateTime.now(),
       );

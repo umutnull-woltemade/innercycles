@@ -44,7 +44,12 @@ class _StreakCardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Semantics(
+      label: isEn
+          ? 'Streak: ${stats.currentStreak} days. Tap for details'
+          : 'Seri: ${stats.currentStreak} gün. Detaylar için dokun',
+      button: true,
+      child: GestureDetector(
       onTap: () => context.push(Routes.streakStats),
       child: Container(
       padding: const EdgeInsets.all(20),

@@ -132,6 +132,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
 
   Future<void> _startChallenge(GrowthChallengeService service, String id) async {
     await service.startChallenge(id);
+    if (!mounted) return;
     setState(() {});
   }
 }

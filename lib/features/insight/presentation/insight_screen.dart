@@ -77,7 +77,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
     });
   }
 
-  void _sendMessage([String? quickMessage]) async {
+  Future<void> _sendMessage([String? quickMessage]) async {
     final text = quickMessage ?? _messageController.text.trim();
     if (text.isEmpty) return;
 

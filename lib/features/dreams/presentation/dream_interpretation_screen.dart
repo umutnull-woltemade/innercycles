@@ -518,7 +518,7 @@ class _DreamInterpretationScreenState
     });
   }
 
-  void _sendMessage() async {
+  Future<void> _sendMessage() async {
     final text = _dreamController.text.trim();
     if (text.isEmpty) return;
 

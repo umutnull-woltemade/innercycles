@@ -303,10 +303,11 @@ class AdService {
   }) async {
     if (kIsWeb) return false;
 
-    if (_isRewardedReady && _rewardedAd != null) {
+    final ad = _rewardedAd;
+    if (_isRewardedReady && ad != null) {
       _logAdEvent('rewarded', 'show_requested', placement: placement);
 
-      await _rewardedAd!.show(
+      await ad.show(
         onUserEarnedReward: (ad, reward) {
           _logAdEvent('rewarded', 'reward_earned', placement: placement);
           onRewardEarned();

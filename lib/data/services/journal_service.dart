@@ -16,6 +16,7 @@ class JournalService {
 
   final SharedPreferences _prefs;
   List<JournalEntry> _entries = [];
+  List<JournalEntry>? _sortedCache;
 
   JournalService._(this._prefs) {
     _loadEntries();
@@ -52,6 +53,7 @@ class JournalService {
     );
 
     _entries.add(entry);
+    _sortedCache = null;
     await _persistEntries();
     return entry;
   }
@@ -61,6 +63,7 @@ class JournalService {
     final index = _entries.indexWhere((e) => e.id == updated.id);
     if (index >= 0) {
       _entries[index] = updated;
+      _sortedCache = null;
       await _persistEntries();
     }
   }
@@ -68,6 +71,7 @@ class JournalService {
   /// Delete an entry by ID
   Future<void> deleteEntry(String id) async {
     _entries.removeWhere((e) => e.id == id);
+    _sortedCache = null;
     await _persistEntries();
   }
 
@@ -76,11 +80,13 @@ class JournalService {
     return _entries.where((e) => e.id == id).firstOrNull;
   }
 
-  /// Get all entries, sorted by date descending
+  /// Get all entries, sorted by date descending (cached)
   List<JournalEntry> getAllEntries() {
-    final sorted = List<JournalEntry>.from(_entries);
-    sorted.sort((a, b) => b.date.compareTo(a.date));
-    return sorted;
+    if (_sortedCache != null) return List.unmodifiable(_sortedCache!);
+    final sorted = List<JournalEntry>.from(_entries)
+      ..sort((a, b) => b.date.compareTo(a.date));
+    _sortedCache = sorted;
+    return List.unmodifiable(sorted);
   }
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -205,6 +211,7 @@ class JournalService {
   // ══════════════════════════════════════════════════════════════════════════
 
   void _loadEntries() {
+    _sortedCache = null;
     final jsonString = _prefs.getString(_storageKey);
     if (jsonString != null) {
       try {
