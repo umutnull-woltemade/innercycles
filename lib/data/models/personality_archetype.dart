@@ -8,7 +8,7 @@ import '../providers/app_providers.dart';
 /// Personality element archetypes used for dream interpretation and reflection
 enum Element { fire, earth, air, water }
 
-/// Personality archetype signs derived from birth date
+/// Personality archetypes derived from journal patterns and quiz responses
 /// Used internally for personalized dream interpretation and journaling themes
 enum PersonalityArchetype {
   pioneer,
