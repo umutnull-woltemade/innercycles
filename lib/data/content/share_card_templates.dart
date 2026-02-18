@@ -305,11 +305,7 @@ class ShareCardTemplates {
   }
 
   static ShareCardTemplate? byId(String id) {
-    try {
-      return all.firstWhere((t) => t.id == id);
-    } catch (_) {
-      return null;
-    }
+    return all.where((t) => t.id == id).firstOrNull;
   }
 
   // =========================================================================

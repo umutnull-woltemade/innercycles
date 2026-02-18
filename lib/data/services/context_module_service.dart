@@ -71,11 +71,7 @@ class ContextModuleService {
 
   /// Get a module by ID
   ContextModule? getModuleById(String id) {
-    try {
-      return allContextModules.firstWhere((m) => m.id == id);
-    } catch (_) {
-      return null;
-    }
+    return allContextModules.where((m) => m.id == id).firstOrNull;
   }
 
   /// Get all modules

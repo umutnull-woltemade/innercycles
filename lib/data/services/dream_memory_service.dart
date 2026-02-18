@@ -64,11 +64,7 @@ class DreamMemoryService {
   /// Get dream by ID
   Future<Dream?> getDreamById(String id) async {
     final dreams = await getAllDreams();
-    try {
-      return dreams.firstWhere((d) => d.id == id);
-    } catch (e) {
-      return null;
-    }
+    return dreams.where((d) => d.id == id).firstOrNull;
   }
 
   /// Update existing dream

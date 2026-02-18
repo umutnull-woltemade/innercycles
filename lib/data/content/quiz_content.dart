@@ -23,11 +23,7 @@ class QuizContent {
       ];
 
   static QuizDefinition? getById(String id) {
-    try {
-      return allQuizzes.firstWhere((q) => q.id == id);
-    } catch (_) {
-      return null;
-    }
+    return allQuizzes.where((q) => q.id == id).firstOrNull;
   }
 
   // ══════════════════════════════════════════════════════════════════════════

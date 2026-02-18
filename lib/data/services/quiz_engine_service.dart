@@ -12,6 +12,7 @@
 // NOT clinical diagnostic instruments.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/quiz_models.dart';
@@ -101,7 +102,7 @@ class QuizEngineService {
 
     // Persist
     _getResultsForQuiz(definition.id).add(result);
-    _persistResults(definition.id);
+    unawaited(_persistResults(definition.id));
 
     return result;
   }

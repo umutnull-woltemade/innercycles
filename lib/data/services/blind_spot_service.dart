@@ -11,6 +11,7 @@
 // All insights use safe, non-judgmental language.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -193,7 +194,7 @@ class BlindSpotService {
     );
 
     _cachedReport = report;
-    _persistReport(report);
+    unawaited(_persistReport(report));
 
     return report;
   }

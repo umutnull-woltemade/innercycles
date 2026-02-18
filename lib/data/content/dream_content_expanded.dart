@@ -1337,11 +1337,7 @@ class TekrarlayanRuyaKaliplari {
 
   /// Kalıp ID\'sine göre bul
   static RecurringDreamPattern? getByPatternId(String id) {
-    try {
-      return kaliplar.firstWhere((k) => k.patternId == id);
-    } catch (e) {
-      return null;
-    }
+    return kaliplar.where((k) => k.patternId == id).firstOrNull;
   }
 
   /// Sembole göre kalıp bul
@@ -1513,11 +1509,7 @@ class KabusDonusumRehberi {
 
   /// Tip\'e göre rehber bul
   static NightmareGuide? getByType(String type) {
-    try {
-      return rehberler.firstWhere((r) => r.nightmareType == type);
-    } catch (e) {
-      return null;
-    }
+    return rehberler.where((r) => r.nightmareType == type).firstOrNull;
   }
 }
 

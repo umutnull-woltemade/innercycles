@@ -5,6 +5,7 @@
 // Drives D7 retention by giving users a reason to return every week.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/journal_entry.dart';
@@ -186,7 +187,7 @@ class WeeklyDigestService {
     // Cache the digest
     _digests.insert(0, digest);
     if (_digests.length > 12) _digests = _digests.sublist(0, 12);
-    _persistDigests();
+    unawaited(_persistDigests());
 
     return digest;
   }

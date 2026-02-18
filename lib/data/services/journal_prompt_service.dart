@@ -5,6 +5,7 @@
 // Deterministic daily prompt, smart selection, and completion tracking.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -189,7 +190,7 @@ class JournalPromptService {
     if (_recentIds.length > 20) {
       _recentIds = _recentIds.sublist(0, 20);
     }
-    _persistRecent();
+    unawaited(_persistRecent());
   }
 
   // ══════════════════════════════════════════════════════════════════════════

@@ -51,11 +51,7 @@ class MonthlyThemeService {
   }
 
   MonthlyTheme? getThemeForMonth(int month) {
-    try {
-      return allMonthlyThemes.firstWhere((t) => t.month == month);
-    } catch (_) {
-      return null;
-    }
+    return allMonthlyThemes.where((t) => t.month == month).firstOrNull;
   }
 
   // ═══════════════════════════════════════════════════════════════

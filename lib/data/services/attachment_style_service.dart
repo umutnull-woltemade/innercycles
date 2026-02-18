@@ -9,6 +9,7 @@
 // and non-prescriptive - using "you may tend to..." and "you might notice..."
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/attachment_style.dart';
@@ -352,7 +353,7 @@ class AttachmentStyleService {
     );
 
     _results.add(result);
-    _persistResults();
+    unawaited(_persistResults());
 
     return result;
   }

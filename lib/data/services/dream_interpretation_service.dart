@@ -1052,20 +1052,12 @@ JSON FORMATI:
   // Yardımcı parserlar
   DreamRole? _parseRole(String? role) {
     if (role == null) return null;
-    try {
-      return DreamRole.values.firstWhere((r) => r.name == role);
-    } catch (_) {
-      return null;
-    }
+    return DreamRole.values.where((r) => r.name == role).firstOrNull;
   }
 
   TimeLayer? _parseTimeLayer(String? layer) {
     if (layer == null) return null;
-    try {
-      return TimeLayer.values.firstWhere((t) => t.name == layer);
-    } catch (_) {
-      return null;
-    }
+    return TimeLayer.values.where((t) => t.name == layer).firstOrNull;
   }
 
   EmotionalReading _defaultEmotionalReading({

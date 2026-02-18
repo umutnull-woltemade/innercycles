@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,8 +12,7 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
-// ignore: unused_import
-import '../../../core/theme/app_typography.dart';
+
 import '../../../data/models/user_profile.dart';
 
 import '../../../data/providers/app_providers.dart';
@@ -214,6 +215,7 @@ class _WelcomePageState extends State<_WelcomePage>
   bool _isAppleLoading = false;
   late AnimationController _glowController;
   late final Stream<AuthState> _authStateStream;
+  StreamSubscription<AuthState>? _authSubscription;
 
   @override
   void initState() {
@@ -246,7 +248,7 @@ class _WelcomePageState extends State<_WelcomePage>
 
     // Listen for OAuth callbacks (mobile only)
     _authStateStream = AuthService.authStateChanges;
-    _authStateStream.listen((state) {
+    _authSubscription = _authStateStream.listen((state) {
       if (kDebugMode) debugPrint('🔐 Auth state changed: ${state.event}');
       if (state.event == AuthChangeEvent.signedIn && state.session != null) {
         if (kDebugMode) debugPrint('🔐 User signed in via OAuth callback!');
@@ -316,6 +318,7 @@ class _WelcomePageState extends State<_WelcomePage>
 
   @override
   void dispose() {
+    _authSubscription?.cancel();
     _glowController.dispose();
     super.dispose();
   }

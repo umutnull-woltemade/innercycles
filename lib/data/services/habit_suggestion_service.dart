@@ -142,11 +142,7 @@ class HabitSuggestionService {
   // ═══════════════════════════════════════════════════════════════
 
   HabitSuggestion? getHabitById(String id) {
-    try {
-      return allHabitSuggestions.firstWhere((h) => h.id == id);
-    } catch (_) {
-      return null;
-    }
+    return allHabitSuggestions.where((h) => h.id == id).firstOrNull;
   }
 
   List<HabitSuggestion> getAllHabits() => allHabitSuggestions;

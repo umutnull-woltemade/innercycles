@@ -502,18 +502,24 @@ class AuthService {
           // Delete user data
           try {
             await _supabase.from('profiles').delete().eq('id', user.id);
-          } catch (_) {}
+          } catch (e) {
+            if (kDebugMode) debugPrint('Failed to delete profiles: $e');
+          }
 
           try {
             await _supabase.from('user_charts').delete().eq('user_id', user.id);
-          } catch (_) {}
+          } catch (e) {
+            if (kDebugMode) debugPrint('Failed to delete user_charts: $e');
+          }
 
           try {
             await _supabase
                 .from('saved_readings')
                 .delete()
                 .eq('user_id', user.id);
-          } catch (_) {}
+          } catch (e) {
+            if (kDebugMode) debugPrint('Failed to delete saved_readings: $e');
+          }
 
           await _supabase.auth.signOut();
         }

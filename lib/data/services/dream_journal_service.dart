@@ -621,11 +621,7 @@ class DreamJournalService {
   /// Get a specific dream by ID
   Future<DreamEntry?> getDream(String id) async {
     final dreams = await getAllDreams();
-    try {
-      return dreams.firstWhere((d) => d.id == id);
-    } catch (e) {
-      return null;
-    }
+    return dreams.where((d) => d.id == id).firstOrNull;
   }
 
   /// Get all dreams

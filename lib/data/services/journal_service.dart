@@ -73,11 +73,7 @@ class JournalService {
 
   /// Get a single entry by ID
   JournalEntry? getEntry(String id) {
-    try {
-      return _entries.firstWhere((e) => e.id == id);
-    } catch (_) {
-      return null;
-    }
+    return _entries.where((e) => e.id == id).firstOrNull;
   }
 
   /// Get all entries, sorted by date descending
@@ -112,11 +108,7 @@ class JournalService {
     final today = DateTime.now();
     final todayKey =
         '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
-    try {
-      return _entries.firstWhere((e) => e.dateKey == todayKey);
-    } catch (_) {
-      return null;
-    }
+    return _entries.where((e) => e.dateKey == todayKey).firstOrNull;
   }
 
   /// Check if user has logged today

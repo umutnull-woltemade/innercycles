@@ -85,14 +85,10 @@ class MoodCheckinService {
   /// Get today's mood
   MoodEntry? getTodayMood() {
     final now = DateTime.now();
-    try {
-      return _entries.firstWhere((e) =>
-          e.date.year == now.year &&
-          e.date.month == now.month &&
-          e.date.day == now.day);
-    } catch (_) {
-      return null;
-    }
+    return _entries.where((e) =>
+        e.date.year == now.year &&
+        e.date.month == now.month &&
+        e.date.day == now.day).firstOrNull;
   }
 
   /// Get last 7 days of moods
