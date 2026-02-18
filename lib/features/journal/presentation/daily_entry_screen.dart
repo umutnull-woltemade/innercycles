@@ -83,11 +83,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: ExcludeSemantics(
-          child: GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            behavior: HitTestBehavior.opaque,
-            child: SafeArea(
+        child: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.opaque,
+          child: SafeArea(
             child:
                 CupertinoScrollbar(
                       child: CustomScrollView(
@@ -210,7 +209,6 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     .fadeIn(duration: 400.ms)
                     .slideY(begin: 0.05, duration: 400.ms),
           ),
-        ),
         ),
       ),
     );

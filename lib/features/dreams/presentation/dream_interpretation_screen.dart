@@ -19,8 +19,8 @@ import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
-/// Inner Dream Guide - AI-Powered Dream Chatbot
-/// Conversational dream interpretation experience
+/// Inner Dream Guide - Conversational Dream Reflection
+/// Rule-based dream interpretation experience using symbol analysis
 class DreamInterpretationScreen extends ConsumerStatefulWidget {
   const DreamInterpretationScreen({super.key});
 

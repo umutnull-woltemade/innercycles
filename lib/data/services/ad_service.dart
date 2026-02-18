@@ -95,9 +95,7 @@ class AdService {
       // Configure test devices in debug mode
       if (kDebugMode) {
         MobileAds.instance.updateRequestConfiguration(
-          RequestConfiguration(
-            testDeviceIds: ['YOUR_TEST_DEVICE_ID'], // Add your test device IDs
-          ),
+          RequestConfiguration(testDeviceIds: <String>[]),
         );
       }
 
