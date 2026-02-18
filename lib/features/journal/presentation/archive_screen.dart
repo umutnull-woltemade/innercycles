@@ -61,8 +61,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: ExcludeSemantics(
-          child: GestureDetector(
+        child: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             behavior: HitTestBehavior.opaque,
             child: SafeArea(
@@ -202,7 +201,6 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
               },
             ),
           ),
-        ),
         ),
       ),
     );

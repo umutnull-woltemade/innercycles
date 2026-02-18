@@ -160,8 +160,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: ExcludeSemantics(
-          child: GestureDetector(
+        child: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             behavior: HitTestBehavior.opaque,
             child: serviceAsync.when(
@@ -356,7 +355,6 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                   .slideY(begin: 0.02, duration: 400.ms);
             },
           ),
-        ),
         ),
       ),
     );

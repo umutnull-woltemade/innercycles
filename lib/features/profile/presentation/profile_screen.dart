@@ -70,8 +70,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      body: ExcludeSemantics(
-        child: GestureDetector(
+      body: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           behavior: HitTestBehavior.opaque,
           child: CosmicBackground(
@@ -104,7 +103,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     .fadeIn(duration: 400.ms)
                     .slideY(begin: 0.05, duration: 400.ms),
           ),
-        ),
         ),
       ),
     );
