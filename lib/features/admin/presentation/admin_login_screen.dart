@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -70,11 +72,11 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
     if (!mounted) return;
 
     if (result.success) {
-      AdminAnalyticsService.trackAdminLoginSuccess();
+      unawaited(AdminAnalyticsService.trackAdminLoginSuccess());
       ref.invalidate(adminAuthProvider);
       context.go(Routes.admin);
     } else {
-      AdminAnalyticsService.trackAdminLoginFail();
+      unawaited(AdminAnalyticsService.trackAdminLoginFail());
       setState(() {
         _isLoading = false;
         _error = result.error;

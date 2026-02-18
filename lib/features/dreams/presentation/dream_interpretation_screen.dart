@@ -32,6 +32,7 @@ class _DreamInterpretationScreenState
     with SingleTickerProviderStateMixin {
   final TextEditingController _dreamController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
+  final FocusNode _keyboardFocusNode = FocusNode();
   final List<ChatMessage> _messages = [];
   bool _isTyping = false;
   late AnimationController _pulseController;
@@ -477,6 +478,7 @@ class _DreamInterpretationScreenState
   void dispose() {
     _dreamController.dispose();
     _scrollController.dispose();
+    _keyboardFocusNode.dispose();
     _pulseController.dispose();
     super.dispose();
   }
@@ -2216,7 +2218,7 @@ ${_getPersonalAdvice(sign)}''';
                   borderRadius: BorderRadius.circular(24),
                   padding: EdgeInsets.zero,
                   child: KeyboardListener(
-                    focusNode: FocusNode(),
+                    focusNode: _keyboardFocusNode,
                     onKeyEvent: (event) {
                       if (event is KeyDownEvent &&
                           event.logicalKey == LogicalKeyboardKey.enter &&

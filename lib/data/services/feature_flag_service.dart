@@ -142,7 +142,9 @@ class FeatureFlagService {
       if (userId != null) {
         return (userId.hashCode + flagName.hashCode).abs() % 100;
       }
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) debugPrint('FeatureFlag: user hash failed: $e');
+    }
 
     // For anonymous users, use a semi-stable hash based on flag name
     return flagName.hashCode.abs() % 100;

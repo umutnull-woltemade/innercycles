@@ -1,5 +1,5 @@
 import 'dart:js_interop';
-import 'dart:typed_data';
+import 'package:flutter/foundation.dart';
 import 'package:web/web.dart' as web;
 
 /// Web implementation - downloads image using HTML5 anchor element
@@ -26,6 +26,6 @@ void downloadImageOnWeb(Uint8List bytes, String fileName) {
     anchor.remove();
     web.URL.revokeObjectURL(url);
   } catch (e) {
-    // ignore errors on web download
+    if (kDebugMode) debugPrint('Web download failed: $e');
   }
 }

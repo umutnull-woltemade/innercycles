@@ -495,6 +495,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     );
 
     if (date != null) {
+      if (!mounted) return;
       setState(() {
         _selectedDate = date;
         _hasChanges = true;
@@ -517,6 +518,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     );
 
     if (time != null) {
+      if (!mounted) return;
       setState(() {
         _selectedTime = time;
         _hasChanges = true;
@@ -705,6 +707,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     );
 
     if (result != null) {
+      if (!mounted) return;
       setState(() {
         _selectedCity = result.name;
         _selectedLatitude = result.lat;

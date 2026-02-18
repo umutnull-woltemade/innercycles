@@ -97,6 +97,7 @@ class _NotificationSettingsSectionState
     );
 
     if (time != null) {
+      if (!mounted) return;
       setState(() {
         _dailyHour = time.hour;
         _dailyMinute = time.minute;

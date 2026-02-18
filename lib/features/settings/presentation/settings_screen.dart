@@ -1244,6 +1244,9 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
           ),
         ],
       ),
-    );
+    ).then((_) {
+      controller.dispose();
+      confirmController.dispose();
+    });
   }
 }

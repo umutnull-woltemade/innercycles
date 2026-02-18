@@ -159,7 +159,7 @@ class VoiceJournalService {
 
   /// Dispose of resources. Call when the service is no longer needed.
   void dispose() {
-    stopListening();
+    unawaited(stopListening());
     _textController.close();
     _listeningStateController.close();
     _errorController.close();

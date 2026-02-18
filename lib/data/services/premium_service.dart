@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
@@ -357,10 +359,10 @@ class PremiumNotifier extends Notifier<PremiumState> {
     );
 
     // Sync with AdService
-    _adService.setPremiumStatus(isPremium);
+    unawaited(_adService.setPremiumStatus(isPremium));
 
     // Save to local storage as backup
-    _savePremiumStatusLocally(isPremium, tier, expiryDate, isLifetime);
+    unawaited(_savePremiumStatusLocally(isPremium, tier, expiryDate, isLifetime));
 
     if (kDebugMode) {
       debugPrint(

@@ -7,6 +7,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -92,7 +93,9 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     try {
       final reviewService = await ref.read(reviewServiceProvider.future);
       await reviewService.checkAndPromptReview(ReviewTrigger.quizCompleted);
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) debugPrint('Review prompt failed: $e');
+    }
   }
 
   void _restartQuiz() {

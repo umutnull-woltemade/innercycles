@@ -160,8 +160,8 @@ class UrlLauncherService {
       } else if (Platform.isAndroid) {
         return 'https://play.google.com/store/apps/details?id=${AppConstants.playStoreId}';
       }
-    } catch (_) {
-      // Platform erişimi başarısız
+    } catch (e) {
+      if (kDebugMode) debugPrint('Platform store URL lookup failed: $e');
     }
     return 'https://innercycles.app';
   }

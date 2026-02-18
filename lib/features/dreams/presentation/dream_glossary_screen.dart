@@ -2,6 +2,7 @@
 /// Arama, kategori filtreleme, alfabe navigasyonu, kisisel sozluk
 library;
 
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -1690,7 +1691,7 @@ class PersonalDictionaryService {
       );
     }
 
-    _saveEntries();
+    unawaited(_saveEntries());
   }
 
   List<PersonalSymbolEntry> getDreamedSymbols() {

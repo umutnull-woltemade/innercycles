@@ -12,6 +12,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/journal_entry.dart';
 
@@ -967,8 +968,8 @@ class ArchetypeService {
         if (lastDate.year == year && lastDate.month == month) {
           return; // Already captured this month
         }
-      } catch (_) {
-        // Continue with save
+      } catch (e) {
+        if (kDebugMode) debugPrint('Snapshot date parse failed: $e');
       }
     }
 

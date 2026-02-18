@@ -56,6 +56,181 @@ enum CyclePhase {
   }
 }
 
+// ══════════════════════════════════════════════════════════════════════════
+// EMOTIONAL PHASE MODEL - 5-Phase Emotion Intelligence System
+// ══════════════════════════════════════════════════════════════════════════
+
+/// The 5 emotional phases that define the Emotion Intelligence Cycle.
+/// Unlike CyclePhase (trajectory shape), EmotionalPhase describes the
+/// psychological state the user is experiencing within their cycle.
+enum EmotionalPhase {
+  /// High energy, openness, growth — things feel expansive
+  expansion,
+
+  /// Grounding period — integrating gains, steady state
+  stabilization,
+
+  /// Pulling inward — reduced capacity, emotional narrowing
+  contraction,
+
+  /// Looking back — processing, meaning-making, understanding
+  reflection,
+
+  /// Rebuilding — restoring capacity, gentle upward movement
+  recovery;
+
+  String labelEn() {
+    switch (this) {
+      case EmotionalPhase.expansion:
+        return 'Expansion';
+      case EmotionalPhase.stabilization:
+        return 'Stabilization';
+      case EmotionalPhase.contraction:
+        return 'Contraction';
+      case EmotionalPhase.reflection:
+        return 'Reflection';
+      case EmotionalPhase.recovery:
+        return 'Recovery';
+    }
+  }
+
+  String labelTr() {
+    switch (this) {
+      case EmotionalPhase.expansion:
+        return 'Genişleme';
+      case EmotionalPhase.stabilization:
+        return 'Dengelenme';
+      case EmotionalPhase.contraction:
+        return 'Daralma';
+      case EmotionalPhase.reflection:
+        return 'Yansıma';
+      case EmotionalPhase.recovery:
+        return 'Toparlanma';
+    }
+  }
+
+  /// Safe-language description of this phase
+  String descriptionEn() {
+    switch (this) {
+      case EmotionalPhase.expansion:
+        return 'Your recent entries suggest a period of openness and growth';
+      case EmotionalPhase.stabilization:
+        return 'Your patterns indicate a grounding period of integration';
+      case EmotionalPhase.contraction:
+        return 'Your data suggests a natural inward turn — this is part of the cycle';
+      case EmotionalPhase.reflection:
+        return 'Your entries show a reflective period of processing and understanding';
+      case EmotionalPhase.recovery:
+        return 'Your patterns suggest capacity is gently rebuilding';
+    }
+  }
+
+  String descriptionTr() {
+    switch (this) {
+      case EmotionalPhase.expansion:
+        return 'Son kayıtların açıklık ve büyüme dönemi öneriyor';
+      case EmotionalPhase.stabilization:
+        return 'Kalıpların bütünleşme ve dengelenme dönemi gösteriyor';
+      case EmotionalPhase.contraction:
+        return 'Verilerin doğal bir içe dönüş öneriyor — bu döngünün bir parçası';
+      case EmotionalPhase.reflection:
+        return 'Kayıtların işleme ve anlama odaklı yansıtıcı bir dönem gösteriyor';
+      case EmotionalPhase.recovery:
+        return 'Kalıpların kapasitenin yavaşça yeniden inşa edildiğini öneriyor';
+    }
+  }
+
+  /// Recommended action for this phase (safe language)
+  String actionEn() {
+    switch (this) {
+      case EmotionalPhase.expansion:
+        return 'You may find this a good time for new initiatives';
+      case EmotionalPhase.stabilization:
+        return 'Consider consolidating recent gains';
+      case EmotionalPhase.contraction:
+        return 'Gentle self-care may be especially helpful now';
+      case EmotionalPhase.reflection:
+        return 'Journaling about recent experiences may add clarity';
+      case EmotionalPhase.recovery:
+        return 'Small, manageable steps tend to work well in this phase';
+    }
+  }
+
+  String actionTr() {
+    switch (this) {
+      case EmotionalPhase.expansion:
+        return 'Yeni girişimler için iyi bir zaman olabilir';
+      case EmotionalPhase.stabilization:
+        return 'Son kazanımları pekiştirmeyi düşünebilirsin';
+      case EmotionalPhase.contraction:
+        return 'Nazik öz bakım şu anda özellikle faydalı olabilir';
+      case EmotionalPhase.reflection:
+        return 'Son deneyimler hakkında yazmak netlik katabilir';
+      case EmotionalPhase.recovery:
+        return 'Küçük, yönetilebilir adımlar bu dönemde iyi çalışma eğiliminde';
+    }
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// EMOTIONAL ARC MODEL - Trajectory Shape
+// ══════════════════════════════════════════════════════════════════════════
+
+/// Describes the shape of the emotional trajectory over a window.
+/// Arcs are about the movement direction, while Phases describe
+/// the psychological state.
+enum EmotionalArc {
+  rising,
+  peak,
+  drop,
+  plateau;
+
+  String labelEn() {
+    switch (this) {
+      case EmotionalArc.rising:
+        return 'Rising';
+      case EmotionalArc.peak:
+        return 'Peak';
+      case EmotionalArc.drop:
+        return 'Drop';
+      case EmotionalArc.plateau:
+        return 'Plateau';
+    }
+  }
+
+  String labelTr() {
+    switch (this) {
+      case EmotionalArc.rising:
+        return 'Yükseliş';
+      case EmotionalArc.peak:
+        return 'Zirve';
+      case EmotionalArc.drop:
+        return 'Düşüş';
+      case EmotionalArc.plateau:
+        return 'Plato';
+    }
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PHASE TRANSITION
+// ══════════════════════════════════════════════════════════════════════════
+
+/// Records a detected transition between emotional phases
+class PhaseTransition {
+  final EmotionalPhase fromPhase;
+  final EmotionalPhase toPhase;
+  final DateTime detectedAt;
+  final double confidence; // 0.0 - 1.0
+
+  const PhaseTransition({
+    required this.fromPhase,
+    required this.toPhase,
+    required this.detectedAt,
+    required this.confidence,
+  });
+}
+
 /// Trend direction for an area
 enum CycleTrend {
   improving,
@@ -90,6 +265,8 @@ class FocusAreaCycleSummary {
   final FocusArea area;
   final int? cycleLengthDays;
   final CyclePhase? currentPhase;
+  final EmotionalPhase? emotionalPhase;
+  final EmotionalArc? currentArc;
   final CycleTrend trend;
   final double currentAverage;
   final List<CycleDataPoint> rollingAverage7;
@@ -101,6 +278,8 @@ class FocusAreaCycleSummary {
     required this.area,
     this.cycleLengthDays,
     this.currentPhase,
+    this.emotionalPhase,
+    this.currentArc,
     required this.trend,
     required this.currentAverage,
     required this.rollingAverage7,
@@ -147,11 +326,23 @@ class EmotionalCycleAnalysis {
   final int? bestWeekday;
   final int totalEntries;
 
+  /// Overall emotional phase across all dimensions
+  final EmotionalPhase? overallPhase;
+
+  /// Overall emotional arc across all dimensions
+  final EmotionalArc? overallArc;
+
+  /// Recent phase transitions detected
+  final List<PhaseTransition> recentTransitions;
+
   const EmotionalCycleAnalysis({
     required this.areaSummaries,
     required this.insights,
     this.bestWeekday,
     required this.totalEntries,
+    this.overallPhase,
+    this.overallArc,
+    this.recentTransitions = const [],
   });
 }
 
@@ -186,11 +377,19 @@ class EmotionalCycleService {
     final insights = _generateInsights(allEntries, summaries);
     final bestWeekday = _findBestWeekday(allEntries);
 
+    // Compute overall phase and arc from all dimensions
+    final overallPhase = _detectOverallEmotionalPhase(summaries);
+    final overallArc = _detectOverallArc(summaries);
+    final transitions = _detectPhaseTransitions(allEntries);
+
     return EmotionalCycleAnalysis(
       areaSummaries: summaries,
       insights: insights,
       bestWeekday: bestWeekday,
       totalEntries: allEntries.length,
+      overallPhase: overallPhase,
+      overallArc: overallArc,
+      recentTransitions: transitions,
     );
   }
 
@@ -272,10 +471,18 @@ class EmotionalCycleService {
                 0, (s, e) => s + e.overallRating) /
             recentEntries.length;
 
+    // Detect emotional phase (5-phase model)
+    final emotionalPhase = _detectEmotionalPhase(rawPoints, trend);
+
+    // Detect emotional arc (trajectory shape)
+    final arc = _detectArc(rawPoints);
+
     return FocusAreaCycleSummary(
       area: area,
       cycleLengthDays: cycleLength,
       currentPhase: phase,
+      emotionalPhase: emotionalPhase,
+      currentArc: arc,
       trend: trend,
       currentAverage: currentAvg,
       rollingAverage7: rolling7,
@@ -548,6 +755,219 @@ class EmotionalCycleService {
     }
 
     return insights;
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // EMOTIONAL PHASE DETECTION (5-Phase Model)
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Detect the emotional phase from raw data points and trend.
+  /// Maps the trajectory shape + value level to a psychological state.
+  EmotionalPhase? _detectEmotionalPhase(
+    List<CycleDataPoint> points,
+    CycleTrend trend,
+  ) {
+    if (points.length < 3) return null;
+
+    final recent5 = points.length >= 5
+        ? points.sublist(points.length - 5)
+        : points;
+    final recentAvg =
+        recent5.fold<double>(0, (s, p) => s + p.value) / recent5.length;
+    final latestValue = points.last.value;
+
+    // Calculate velocity (rate of change over last 3 points)
+    final last3 = points.sublist(points.length - 3);
+    final velocity = (last3.last.value - last3.first.value) / 2;
+
+    // Calculate variability (standard deviation of recent values)
+    final meanRecent = recentAvg;
+    final variance = recent5.fold<double>(
+            0, (s, p) => s + (p.value - meanRecent) * (p.value - meanRecent)) /
+        recent5.length;
+    final stdDev = math.sqrt(variance);
+
+    // Phase detection logic based on value level, velocity, and stability
+    //
+    // Expansion: High values + rising or high velocity
+    if (recentAvg >= 3.5 && velocity > 0.2) return EmotionalPhase.expansion;
+    if (latestValue >= 4.0 && velocity >= 0) return EmotionalPhase.expansion;
+
+    // Stabilization: Moderate-high values + low variability + stable
+    if (recentAvg >= 3.0 && stdDev < 0.5 && velocity.abs() < 0.3) {
+      return EmotionalPhase.stabilization;
+    }
+
+    // Contraction: Falling values or low values
+    if (velocity < -0.3 && recentAvg < 3.5) return EmotionalPhase.contraction;
+    if (latestValue <= 2.0) return EmotionalPhase.contraction;
+
+    // Reflection: Low variability at moderate levels, slight downward or flat
+    if (recentAvg >= 2.5 && recentAvg <= 3.5 && stdDev < 0.6 &&
+        velocity >= -0.2 && velocity <= 0.1) {
+      return EmotionalPhase.reflection;
+    }
+
+    // Recovery: Rising from low values
+    if (velocity > 0.1 && recentAvg < 3.5 && trend == CycleTrend.improving) {
+      return EmotionalPhase.recovery;
+    }
+    if (latestValue > recent5.first.value && recentAvg < 3.0) {
+      return EmotionalPhase.recovery;
+    }
+
+    // Fallback: use trend to infer
+    switch (trend) {
+      case CycleTrend.improving:
+        return recentAvg >= 3.5
+            ? EmotionalPhase.expansion
+            : EmotionalPhase.recovery;
+      case CycleTrend.declining:
+        return EmotionalPhase.contraction;
+      case CycleTrend.stable:
+        return recentAvg >= 3.0
+            ? EmotionalPhase.stabilization
+            : EmotionalPhase.reflection;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // EMOTIONAL ARC DETECTION
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Detect the trajectory arc shape from recent data points.
+  EmotionalArc? _detectArc(List<CycleDataPoint> points) {
+    if (points.length < 3) return null;
+
+    final last5 = points.length >= 5
+        ? points.sublist(points.length - 5)
+        : points;
+
+    final first = last5.first.value;
+    final last = last5.last.value;
+    final mid = last5[last5.length ~/ 2].value;
+    final maxVal = last5.fold<double>(0, (m, p) => math.max(m, p.value));
+    final minVal = last5.fold<double>(5, (m, p) => math.min(m, p.value));
+
+    // Rising: consistently increasing
+    if (last > first + 0.3 && last >= mid) return EmotionalArc.rising;
+
+    // Peak: high middle, lower ends
+    if (mid >= first && mid >= last && maxVal >= 3.5 && (maxVal - minVal) > 0.5) {
+      return EmotionalArc.peak;
+    }
+
+    // Drop: consistently decreasing
+    if (last < first - 0.3 && last <= mid) return EmotionalArc.drop;
+
+    // Plateau: low variance
+    return EmotionalArc.plateau;
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // OVERALL PHASE & ARC (across all dimensions)
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Compute the overall emotional phase by voting across dimensions
+  EmotionalPhase? _detectOverallEmotionalPhase(
+    Map<FocusArea, FocusAreaCycleSummary> summaries,
+  ) {
+    final votes = <EmotionalPhase, int>{};
+    for (final summary in summaries.values) {
+      if (summary.emotionalPhase != null) {
+        votes[summary.emotionalPhase!] =
+            (votes[summary.emotionalPhase!] ?? 0) + 1;
+      }
+    }
+    if (votes.isEmpty) return null;
+
+    // Return the phase with the most votes
+    final sorted = votes.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    return sorted.first.key;
+  }
+
+  /// Compute the overall arc by voting across dimensions
+  EmotionalArc? _detectOverallArc(
+    Map<FocusArea, FocusAreaCycleSummary> summaries,
+  ) {
+    final votes = <EmotionalArc, int>{};
+    for (final summary in summaries.values) {
+      if (summary.currentArc != null) {
+        votes[summary.currentArc!] =
+            (votes[summary.currentArc!] ?? 0) + 1;
+      }
+    }
+    if (votes.isEmpty) return null;
+
+    final sorted = votes.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    return sorted.first.key;
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // PHASE TRANSITION DETECTION
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Detect phase transitions by comparing phase at different time windows
+  List<PhaseTransition> _detectPhaseTransitions(
+    List<JournalEntry> allEntries,
+  ) {
+    if (allEntries.length < 10) return [];
+
+    final sorted = List.of(allEntries)
+      ..sort((a, b) => a.date.compareTo(b.date));
+
+    // Split into two halves and detect phase for each
+    final mid = sorted.length ~/ 2;
+    final olderHalf = sorted.sublist(0, mid);
+    final newerHalf = sorted.sublist(mid);
+
+    final olderPoints = _entriesToAggregatePoints(olderHalf);
+    final newerPoints = _entriesToAggregatePoints(newerHalf);
+
+    final olderTrend = _detectTrend(olderPoints);
+    final newerTrend = _detectTrend(newerPoints);
+
+    final olderPhase = _detectEmotionalPhase(olderPoints, olderTrend);
+    final newerPhase = _detectEmotionalPhase(newerPoints, newerTrend);
+
+    if (olderPhase != null && newerPhase != null && olderPhase != newerPhase) {
+      // Calculate confidence based on data density
+      final daySpan = sorted.last.date.difference(sorted.first.date).inDays;
+      final density = sorted.length / math.max(daySpan, 1);
+      final confidence = (density * 2).clamp(0.3, 0.95);
+
+      return [
+        PhaseTransition(
+          fromPhase: olderPhase,
+          toPhase: newerPhase,
+          detectedAt: newerHalf.first.date,
+          confidence: confidence,
+        ),
+      ];
+    }
+
+    return [];
+  }
+
+  /// Aggregate entries into daily average data points
+  List<CycleDataPoint> _entriesToAggregatePoints(List<JournalEntry> entries) {
+    final byDate = <String, List<int>>{};
+    for (final e in entries) {
+      byDate.putIfAbsent(e.dateKey, () => []).add(e.overallRating);
+    }
+
+    final points = <CycleDataPoint>[];
+    for (final entry in byDate.entries) {
+      final avg = entry.value.reduce((a, b) => a + b) / entry.value.length;
+      points.add(CycleDataPoint(
+        date: DateTime.parse('${entry.key}T00:00:00'),
+        value: avg,
+      ));
+    }
+    points.sort((a, b) => a.date.compareTo(b.date));
+    return points;
   }
 
   // ══════════════════════════════════════════════════════════════════════════
