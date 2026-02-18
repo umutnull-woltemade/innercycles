@@ -1,8 +1,11 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -36,6 +39,8 @@ class DailyEntryScreen extends ConsumerStatefulWidget {
 }
 
 class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
+  static const _draftKey = 'journal_draft';
+
   DateTime _selectedDate = DateTime.now();
   FocusArea _selectedArea = FocusArea.energy;
   int _overallRating = 3;
@@ -43,6 +48,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   final _noteController = TextEditingController();
   bool _isSaving = false;
   String? _selectedImagePath;
+  Timer? _autosaveTimer;
 
   /// Stores the note text before a voice session starts, so partial
   /// results can be appended without duplicating previous voice output.
@@ -52,6 +58,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   void initState() {
     super.initState();
     _initSubRatings();
+    _loadDraft();
+    _noteController.addListener(_scheduleDraftSave);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .read(smartRouterServiceProvider)
@@ -71,8 +79,66 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
   @override
   void dispose() {
+    _autosaveTimer?.cancel();
+    _saveDraft();
+    _noteController.removeListener(_scheduleDraftSave);
     _noteController.dispose();
     super.dispose();
+  }
+
+  void _scheduleDraftSave() {
+    _autosaveTimer?.cancel();
+    _autosaveTimer = Timer(const Duration(seconds: 2), _saveDraft);
+  }
+
+  Future<void> _saveDraft() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final draft = {
+        'date': _selectedDate.toIso8601String(),
+        'area': _selectedArea.index,
+        'rating': _overallRating,
+        'subRatings': _subRatings,
+        'note': _noteController.text,
+        'image': _selectedImagePath,
+      };
+      await prefs.setString(_draftKey, jsonEncode(draft));
+    } catch (_) {}
+  }
+
+  Future<void> _loadDraft() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final raw = prefs.getString(_draftKey);
+      if (raw == null) return;
+      final draft = jsonDecode(raw) as Map<String, dynamic>;
+      if (!mounted) return;
+      setState(() {
+        _selectedDate =
+            DateTime.tryParse(draft['date'] as String? ?? '') ?? DateTime.now();
+        final areaIdx = draft['area'] as int? ?? 0;
+        _selectedArea =
+            FocusArea.values[areaIdx.clamp(0, FocusArea.values.length - 1)];
+        _overallRating = (draft['rating'] as int? ?? 3).clamp(1, 5);
+        _initSubRatings();
+        final saved = draft['subRatings'] as Map<String, dynamic>? ?? {};
+        for (final e in saved.entries) {
+          if (_subRatings.containsKey(e.key)) {
+            _subRatings[e.key] = (e.value as int? ?? 3).clamp(1, 5);
+          }
+        }
+        final note = draft['note'] as String? ?? '';
+        if (note.isNotEmpty) _noteController.text = note;
+        _selectedImagePath = draft['image'] as String?;
+      });
+    } catch (_) {}
+  }
+
+  Future<void> _clearDraft() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove(_draftKey);
+    } catch (_) {}
   }
 
   @override
@@ -141,7 +207,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                                   isDark,
                                   isEn,
                                   _overallRating,
-                                  (v) => setState(() => _overallRating = v),
+                                  (v) {
+                                    setState(() => _overallRating = v);
+                                    _scheduleDraftSave();
+                                  },
                                 ),
                                 const SizedBox(height: AppConstants.spacingXl),
 
@@ -233,7 +302,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
             firstDate: DateTime.now().subtract(const Duration(days: 365)),
             lastDate: DateTime.now(),
           );
-          if (picked != null && mounted) setState(() => _selectedDate = picked);
+          if (picked != null && mounted) {
+            setState(() => _selectedDate = picked);
+            _scheduleDraftSave();
+          }
         },
         child: GlassPanel(
           elevation: GlassElevation.g2,
@@ -309,6 +381,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 _selectedArea = area;
                 _initSubRatings();
               });
+              _scheduleDraftSave();
             },
             child: ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 44),
@@ -498,6 +571,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                       onChanged: (v) {
                         HapticFeedback.selectionClick();
                         setState(() => _subRatings[key] = v.round());
+                        _scheduleDraftSave();
                       },
                     ),
                   ),
@@ -535,7 +609,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
               TextField(
                 controller: _noteController,
                 maxLines: 4,
-                maxLength: 500,
+                maxLength: 2000,
                 style: TextStyle(
                   color: isDark
                       ? AppColors.textPrimary
@@ -660,7 +734,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                   ),
                 ),
                 TextButton.icon(
-                  onPressed: () => setState(() => _selectedImagePath = null),
+                  onPressed: () {
+                    setState(() => _selectedImagePath = null);
+                    _scheduleDraftSave();
+                  },
                   icon: Icon(
                     Icons.close,
                     size: 18,
@@ -744,6 +821,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         await File(picked.path).copy(savedPath);
         if (!mounted) return;
         setState(() => _selectedImagePath = savedPath);
+        _scheduleDraftSave();
       } catch (_) {
         // File copy failed (disk full, permission denied, etc.)
         if (!mounted) return;
@@ -796,6 +874,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       );
 
       if (!mounted) return;
+
+      // Clear draft on successful save
+      await _clearDraft();
 
       // Invalidate providers to refresh data
       ref.invalidate(todayJournalEntryProvider);
