@@ -1053,7 +1053,7 @@ class _HighlightsCard extends StatelessWidget {
           }
         case 'best_month':
           if (parts.length >= 3) {
-            final month = int.tryParse(parts[1]) ?? 1;
+            final month = (int.tryParse(parts[1]) ?? 1).clamp(1, 12);
             final avg = parts[2];
             final name = isEn ? monthNamesEn[month] : monthNamesTr[month];
             results.add(_Highlight(

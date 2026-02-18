@@ -735,15 +735,20 @@ final shiftForecastProvider = FutureProvider<ShiftForecast>((ref) async {
 // EMOTIONAL CYCLE ANALYSIS PROVIDER (Emotion Intelligence)
 // =============================================================================
 
+final emotionalCycleServiceProvider =
+    FutureProvider<EmotionalCycleService>((ref) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  return EmotionalCycleService(journalService);
+});
+
 final emotionalCycleAnalysisProvider =
     FutureProvider<EmotionalCycleAnalysis>((ref) async {
-  final journalService = await ref.watch(journalServiceProvider.future);
-  final cycleService = EmotionalCycleService(journalService);
+  final cycleService = await ref.watch(emotionalCycleServiceProvider.future);
   if (!cycleService.hasEnoughData()) {
     return EmotionalCycleAnalysis(
       areaSummaries: {},
       insights: [],
-      totalEntries: journalService.entryCount,
+      totalEntries: cycleService.entryCount,
     );
   }
   return cycleService.analyze();

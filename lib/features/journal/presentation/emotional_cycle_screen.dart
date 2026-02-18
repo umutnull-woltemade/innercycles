@@ -78,12 +78,12 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
-    final serviceAsync = ref.watch(journalServiceProvider);
+    final cycleServiceAsync = ref.watch(emotionalCycleServiceProvider);
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
-          child: serviceAsync.when(
+          child: cycleServiceAsync.when(
             loading: () => const Center(
               child: CircularProgressIndicator(color: AppColors.starGold),
             ),
@@ -97,15 +97,14 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 ),
               ),
             ),
-            data: (service) {
-              final cycleService = EmotionalCycleService(service);
+            data: (cycleService) {
               if (!cycleService.hasEnoughData()) {
                 return _buildLockedView(context, isDark, isEn,
-                    cycleService.entriesNeeded(), service.entryCount);
+                    cycleService.entriesNeeded(), cycleService.entryCount);
               }
               final analysis = cycleService.analyze();
               return _buildContent(
-                  context, service, cycleService, analysis, isDark, isEn);
+                  context, cycleService, analysis, isDark, isEn);
             },
           ),
         ),
@@ -256,7 +255,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   // MAIN CONTENT
   // ══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildContent(BuildContext context, dynamic service,
+  Widget _buildContent(BuildContext context,
       EmotionalCycleService cycleService, EmotionalCycleAnalysis analysis,
       bool isDark, bool isEn) {
     final now = DateTime.now();

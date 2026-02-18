@@ -358,6 +358,9 @@ class EmotionalCycleService {
   /// Minimum entries needed for cycle analysis
   static const int minimumEntries = 7;
 
+  /// Current entry count (for progress displays)
+  int get entryCount => _journalService.entryCount;
+
   /// Whether enough data exists for analysis
   bool hasEnoughData() => _journalService.entryCount >= minimumEntries;
 

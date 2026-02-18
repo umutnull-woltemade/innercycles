@@ -21,7 +21,6 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_service.dart';
-import '../../../data/services/dream_journal_service.dart';
 import '../../../data/services/growth_challenge_service.dart';
 import '../../../data/services/gratitude_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -49,7 +48,7 @@ class _GrowthDashboardScreenState
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
     final journalAsync = ref.watch(journalServiceProvider);
-    final dreamAsync = ref.watch(dreamJournalServiceProvider);
+    final dreamCountAsync = ref.watch(dreamCountProvider);
     final challengeAsync = ref.watch(growthChallengeServiceProvider);
     final gratitudeAsync = ref.watch(gratitudeServiceProvider);
 
@@ -60,23 +59,17 @@ class _GrowthDashboardScreenState
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (_, _) => const SizedBox.shrink(),
             data: (journalService) {
-              return dreamAsync.when(
-                loading: () =>
-                    const Center(child: CircularProgressIndicator()),
-                error: (_, _) => const SizedBox.shrink(),
-                data: (dreamService) {
-                  final challengeService = challengeAsync.valueOrNull;
-                  final gratitudeService = gratitudeAsync.valueOrNull;
-                  return _buildDashboard(
-                    context,
-                    journalService,
-                    dreamService,
-                    challengeService,
-                    gratitudeService,
-                    isDark,
-                    isEn,
-                  );
-                },
+              final dreamCount = dreamCountAsync.valueOrNull ?? 0;
+              final challengeService = challengeAsync.valueOrNull;
+              final gratitudeService = gratitudeAsync.valueOrNull;
+              return _buildDashboard(
+                context,
+                journalService,
+                dreamCount,
+                challengeService,
+                gratitudeService,
+                isDark,
+                isEn,
               );
             },
           ),
@@ -88,7 +81,7 @@ class _GrowthDashboardScreenState
   Widget _buildDashboard(
     BuildContext context,
     JournalService journalService,
-    DreamJournalService dreamService,
+    int dreamCount,
     GrowthChallengeService? challengeService,
     GratitudeService? gratitudeService,
     bool isDark,
@@ -106,22 +99,17 @@ class _GrowthDashboardScreenState
     final completedChallenges = challengeService?.completedChallengeCount ?? 0;
     final gratitudeCount = gratitudeService?.entryCount ?? 0;
 
-    return FutureBuilder<int>(
-      future: dreamService.getDreamCount(),
-      builder: (context, dreamSnapshot) {
-        final dreamCount = dreamSnapshot.data ?? 0;
+    final growthScore = calculateGrowthScore(
+      currentStreak: currentStreak,
+      totalEntries: entries.length,
+      focusAreasCovered: focusAreasCoveredThisMonth,
+      consistencyDays: consistencyDays,
+      dreamCount: dreamCount,
+      completedChallenges: completedChallenges,
+      gratitudeCount: gratitudeCount,
+    );
 
-        final growthScore = calculateGrowthScore(
-          currentStreak: currentStreak,
-          totalEntries: entries.length,
-          focusAreasCovered: focusAreasCoveredThisMonth,
-          consistencyDays: consistencyDays,
-          dreamCount: dreamCount,
-          completedChallenges: completedChallenges,
-          gratitudeCount: gratitudeCount,
-        );
-
-        return CupertinoScrollbar(
+    return CupertinoScrollbar(
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics(),
@@ -221,8 +209,6 @@ class _GrowthDashboardScreenState
           ],
         ),
         );
-      },
-    );
   }
 
   // ══════════════════════════════════════════════════════════════════════════

@@ -1138,12 +1138,13 @@ class DreamSymbolsDatabase {
   /// Sembol arama (Türkçe veya İngilizce)
   static DreamSymbolData? findSymbol(String query) {
     final lowerQuery = query.toLowerCase().trim();
-    return allSymbols.cast<DreamSymbolData?>().firstWhere(
-      (s) =>
-          s!.symbol.toLowerCase() == lowerQuery ||
-          s.symbolTr.toLowerCase() == lowerQuery,
-      orElse: () => null,
-    );
+    for (final s in allSymbols) {
+      if (s.symbol.toLowerCase() == lowerQuery ||
+          s.symbolTr.toLowerCase() == lowerQuery) {
+        return s;
+      }
+    }
+    return null;
   }
 
   /// Kategoriye göre sembolleri getir
@@ -1428,12 +1429,13 @@ class ArchetypeDatabase {
   /// Arketip bul
   static ArchetypeData? findArchetype(String name) {
     final lowerName = name.toLowerCase();
-    return allArchetypes.cast<ArchetypeData?>().firstWhere(
-      (a) =>
-          a!.name.toLowerCase() == lowerName ||
-          a.nameTr.toLowerCase() == lowerName,
-      orElse: () => null,
-    );
+    for (final a in allArchetypes) {
+      if (a.name.toLowerCase() == lowerName ||
+          a.nameTr.toLowerCase() == lowerName) {
+        return a;
+      }
+    }
+    return null;
   }
 }
 

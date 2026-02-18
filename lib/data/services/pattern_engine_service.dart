@@ -144,6 +144,9 @@ class PatternEngineService {
   /// Minimum |coefficient| for significance
   static const double _minSignificantCoefficient = 0.3;
 
+  /// Current entry count (for progress displays)
+  int get entryCount => _journalService.entryCount;
+
   /// Check if user has enough data
   bool hasEnoughData() => _journalService.entryCount >= minimumEntries;
 

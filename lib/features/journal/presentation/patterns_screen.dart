@@ -27,12 +27,12 @@ class PatternsScreen extends ConsumerWidget {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
-    final serviceAsync = ref.watch(journalServiceProvider);
+    final engineAsync = ref.watch(patternEngineServiceProvider);
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
-          child: serviceAsync.when(
+          child: engineAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (_, _) => Center(
               child: Padding(
@@ -46,16 +46,14 @@ class PatternsScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            data: (service) {
-              final engine = PatternEngineService(service);
-
+            data: (engine) {
               if (!engine.hasEnoughData()) {
                 return _buildLockedView(
                   context,
                   isDark,
                   isEn,
                   engine.entriesNeeded(),
-                  service.entryCount,
+                  engine.entryCount,
                 );
               }
 

@@ -43,7 +43,7 @@ class _MonthlyReflectionScreenState
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
-    final serviceAsync = ref.watch(journalServiceProvider);
+    final engineAsync = ref.watch(patternEngineServiceProvider);
     final isPremium = ref.watch(premiumProvider).isPremium;
     final firstTasteAsync = ref.watch(firstTasteServiceProvider);
 
@@ -63,11 +63,10 @@ class _MonthlyReflectionScreenState
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
-          child: serviceAsync.when(
+          child: engineAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (_, _) => const SizedBox.shrink(),
-            data: (service) {
-              final engine = PatternEngineService(service);
+            data: (engine) {
               final summary =
                   engine.getMonthSummary(_selectedYear, _selectedMonth);
 
