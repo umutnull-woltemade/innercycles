@@ -470,23 +470,33 @@ class FullDreamInterpretation {
         dreamId: json['dreamId'],
         oderId: json['userId'],
         dreamText: json['dreamText'],
-        interpretedAt: DateTime.parse(json['interpretedAt']),
+        interpretedAt: DateTime.tryParse(json['interpretedAt']?.toString() ?? '') ?? DateTime.now(),
         ancientIntro: json['ancientIntro'],
         coreMessage: json['coreMessage'],
-        symbols: (json['symbols'] as List)
-            .map((s) => SymbolInterpretation.fromJson(s))
-            .toList(),
+        symbols: json['symbols'] != null
+            ? (json['symbols'] as List).map((s) => SymbolInterpretation.fromJson(s)).toList()
+            : [],
         archetypeConnection: json['archetypeConnection'],
         archetypeName: json['archetypeName'],
-        emotionalReading: EmotionalReading.fromJson(json['emotionalReading']),
-        dreamTiming: DreamTiming.fromJson(json['dreamTiming']),
-        lightShadow: LightShadowReading.fromJson(json['lightShadow']),
-        guidance: PracticalGuidance.fromJson(json['guidance']),
+        emotionalReading: json['emotionalReading'] != null
+            ? EmotionalReading.fromJson(json['emotionalReading'])
+            : EmotionalReading.fromJson({}),
+        dreamTiming: json['dreamTiming'] != null
+            ? DreamTiming.fromJson(json['dreamTiming'])
+            : DreamTiming.fromJson({}),
+        lightShadow: json['lightShadow'] != null
+            ? LightShadowReading.fromJson(json['lightShadow'])
+            : LightShadowReading.fromJson({}),
+        guidance: json['guidance'] != null
+            ? PracticalGuidance.fromJson(json['guidance'])
+            : PracticalGuidance.fromJson({}),
         whisperQuote: json['whisperQuote'],
-        shareCard: ShareableCard.fromJson(json['shareCard']),
-        explorationLinks: (json['explorationLinks'] as List)
-            .map((l) => DreamExplorationLink.fromJson(l))
-            .toList(),
+        shareCard: json['shareCard'] != null
+            ? ShareableCard.fromJson(json['shareCard'])
+            : ShareableCard.fromJson({}),
+        explorationLinks: json['explorationLinks'] != null
+            ? (json['explorationLinks'] as List).map((l) => DreamExplorationLink.fromJson(l)).toList()
+            : [],
         userRole: json['userRole'] != null
             ? DreamRole.values.where((e) => e.name == json['userRole']).firstOrNull
             : null,

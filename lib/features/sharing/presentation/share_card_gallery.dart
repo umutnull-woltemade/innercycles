@@ -154,7 +154,7 @@ class _ShareCardGalleryScreenState
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          isEn ? 'Share Cards' : 'Paylasim Kartlari',
+          isEn ? 'Share Cards' : 'Paylaşım Kartları',
           style: GoogleFonts.plusJakartaSans(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontWeight: FontWeight.w600,
@@ -331,7 +331,7 @@ class _ShareCardGalleryScreenState
                 color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
               ),
               label: Text(
-                isEn ? 'Back to gallery' : 'Galeriye don',
+                isEn ? 'Back to gallery' : 'Galeriye dön',
                 style: GoogleFonts.plusJakartaSans(
                   fontSize: 13,
                   color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,

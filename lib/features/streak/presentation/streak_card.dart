@@ -166,6 +166,12 @@ class _StreakCardContent extends StatelessWidget {
           // Weekly mini-calendar
           _WeekCalendar(isDark: isDark, isEn: isEn),
 
+          // 14-day chain visualization
+          if (stats.currentStreak > 0) ...[
+            const SizedBox(height: 14),
+            _StreakChain(isDark: isDark, isEn: isEn),
+          ],
+
           // Progress to next milestone
           if (stats.nextMilestone != null) ...[
             const SizedBox(height: 12),
@@ -340,6 +346,143 @@ class _MilestoneProgress extends StatelessWidget {
   }
 }
 
+/// 14-day "Don't Break the Chain" visualization
+class _StreakChain extends ConsumerWidget {
+  final bool isDark;
+  final bool isEn;
+
+  const _StreakChain({required this.isDark, required this.isEn});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final journalAsync = ref.watch(journalServiceProvider);
+
+    return journalAsync.maybeWhen(
+      data: (journal) {
+        final now = DateTime.now();
+        final days = <_ChainDay>[];
+
+        for (int i = 13; i >= 0; i--) {
+          final day = DateTime(now.year, now.month, now.day - i);
+          final entries = journal.getEntriesByDateRange(day, day);
+          days.add(_ChainDay(
+            date: day,
+            hasEntry: entries.isNotEmpty,
+            isToday: i == 0,
+          ));
+        }
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              isEn ? '14-Day Chain' : '14 Günlük Zincir',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: isDark
+                    ? AppColors.textMuted
+                    : AppColors.lightTextMuted,
+              ),
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              height: 28,
+              child: Row(
+                children: List.generate(days.length, (i) {
+                  final day = days[i];
+                  final isConnectedLeft =
+                      i > 0 && days[i - 1].hasEntry && day.hasEntry;
+                  final isConnectedRight = i < days.length - 1 &&
+                      days[i + 1].hasEntry &&
+                      day.hasEntry;
+
+                  return Expanded(
+                    child: Row(
+                      children: [
+                        // Left connector
+                        if (i > 0)
+                          Expanded(
+                            child: Container(
+                              height: 3,
+                              color: isConnectedLeft
+                                  ? AppColors.starGold.withValues(alpha: 0.6)
+                                  : (isDark
+                                      ? AppColors.surfaceLight
+                                          .withValues(alpha: 0.15)
+                                      : AppColors.lightSurfaceVariant
+                                          .withValues(alpha: 0.5)),
+                            ),
+                          ),
+                        // Chain link dot
+                        Container(
+                          width: day.isToday ? 14 : 10,
+                          height: day.isToday ? 14 : 10,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: day.hasEntry
+                                ? AppColors.starGold
+                                : (isDark
+                                    ? AppColors.surfaceLight
+                                        .withValues(alpha: 0.3)
+                                    : AppColors.lightSurfaceVariant),
+                            border: day.isToday
+                                ? Border.all(
+                                    color: AppColors.starGold,
+                                    width: 2,
+                                  )
+                                : null,
+                            boxShadow: day.hasEntry
+                                ? [
+                                    BoxShadow(
+                                      color: AppColors.starGold
+                                          .withValues(alpha: 0.3),
+                                      blurRadius: 4,
+                                    ),
+                                  ]
+                                : null,
+                          ),
+                        ),
+                        // Right connector
+                        if (i < days.length - 1)
+                          Expanded(
+                            child: Container(
+                              height: 3,
+                              color: isConnectedRight
+                                  ? AppColors.starGold.withValues(alpha: 0.6)
+                                  : (isDark
+                                      ? AppColors.surfaceLight
+                                          .withValues(alpha: 0.15)
+                                      : AppColors.lightSurfaceVariant
+                                          .withValues(alpha: 0.5)),
+                            ),
+                          ),
+                      ],
+                    ),
+                  );
+                }),
+              ),
+            ),
+          ],
+        );
+      },
+      orElse: () => const SizedBox.shrink(),
+    );
+  }
+}
+
+class _ChainDay {
+  final DateTime date;
+  final bool hasEntry;
+  final bool isToday;
+
+  const _ChainDay({
+    required this.date,
+    required this.hasEntry,
+    required this.isToday,
+  });
+}
+
 /// Milestone celebration dialog
 class StreakMilestoneCelebration {
   static Future<void> show(
@@ -352,77 +495,142 @@ class StreakMilestoneCelebration {
         ? StreakService.getMilestoneMessageEn(milestone)
         : StreakService.getMilestoneMessageTr(milestone);
 
-    await showDialog(
+    await showGeneralDialog(
       context: context,
-      builder: (ctx) {
-        final isDark = Theme.of(ctx).brightness == Brightness.dark;
-        return Dialog(
-          backgroundColor:
-              isDark ? AppColors.surfaceDark : AppColors.lightSurface,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
+      barrierDismissible: true,
+      barrierLabel: 'Dismiss',
+      barrierColor: Colors.black54,
+      transitionDuration: const Duration(milliseconds: 400),
+      transitionBuilder: (ctx, anim, secondAnim, child) {
+        return ScaleTransition(
+          scale: CurvedAnimation(
+            parent: anim,
+            curve: Curves.elasticOut,
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(32),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
+          child: FadeTransition(opacity: anim, child: child),
+        );
+      },
+      pageBuilder: (ctx, anim, secondAnim) {
+        final isDark = Theme.of(ctx).brightness == Brightness.dark;
+        return Center(
+          child: Material(
+            color: Colors.transparent,
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 32),
+              padding: const EdgeInsets.all(32),
+              decoration: BoxDecoration(
+                color: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
+                borderRadius: BorderRadius.circular(28),
+                border: Border.all(
+                  color: AppColors.starGold.withValues(alpha: 0.4),
+                ),
+                boxShadow: [
+                  BoxShadow(
                     color: AppColors.starGold.withValues(alpha: 0.2),
+                    blurRadius: 40,
+                    spreadRadius: 4,
                   ),
-                  child: Icon(
-                    Icons.celebration_rounded,
-                    size: 48,
-                    color: AppColors.starGold,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  '$milestone ${isEn ? 'Days' : 'Gün'}',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.starGold,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  message,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 15,
-                    height: 1.5,
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
-                  ),
-                ),
-                const SizedBox(height: 24),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () => Navigator.pop(ctx),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.starGold,
-                      foregroundColor: AppColors.deepSpace,
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Animated celebration icon
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(
+                        colors: [
+                          AppColors.starGold.withValues(alpha: 0.3),
+                          AppColors.starGold.withValues(alpha: 0.05),
+                        ],
                       ),
                     ),
-                    child: Text(
-                      isEn ? 'Continue' : 'Devam',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                    child: Icon(
+                      Icons.celebration_rounded,
+                      size: 48,
+                      color: AppColors.starGold,
+                    ),
+                  )
+                      .animate()
+                      .scale(
+                        begin: const Offset(0.5, 0.5),
+                        duration: 600.ms,
+                        curve: Curves.elasticOut,
+                      )
+                      .shimmer(
+                        delay: 400.ms,
+                        duration: 1200.ms,
+                        color: AppColors.starGold.withValues(alpha: 0.3),
+                      ),
+                  const SizedBox(height: 20),
+
+                  // Milestone number
+                  Text(
+                    '$milestone ${isEn ? 'Days' : 'Gün'}',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.starGold,
+                      letterSpacing: 1,
+                    ),
+                  )
+                      .animate()
+                      .fadeIn(delay: 200.ms, duration: 400.ms)
+                      .slideY(begin: 0.3, duration: 400.ms),
+                  const SizedBox(height: 4),
+
+                  Text(
+                    isEn ? 'Milestone Reached' : 'Hedefe Ulaşıldı',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold.withValues(alpha: 0.7),
+                      letterSpacing: 1.5,
+                    ),
+                  ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
+                  const SizedBox(height: 16),
+
+                  // Message
+                  Text(
+                    message,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 15,
+                      height: 1.5,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+                  const SizedBox(height: 28),
+
+                  // CTA
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () => Navigator.pop(ctx),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.starGold,
+                        foregroundColor: AppColors.deepSpace,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        elevation: 0,
+                      ),
+                      child: Text(
+                        isEn ? 'Keep Going' : 'Devam Et',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ],
+                  ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
+                ],
+              ),
             ),
           ),
         );

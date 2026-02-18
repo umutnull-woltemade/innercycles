@@ -107,14 +107,20 @@ class AdminAnalyticsService {
 
   /// Get all event logs
   static List<EventLog> getAllEvents() {
-    return _getEvents().map((e) {
-      return EventLog(
-        name: e['name'] as String,
-        count: e['count'] as int,
-        lastFired: DateTime.parse(e['lastFired'] as String),
-        firstFired: DateTime.parse(e['firstFired'] as String),
-      );
-    }).toList();
+    final results = <EventLog>[];
+    for (final e in _getEvents()) {
+      try {
+        results.add(EventLog(
+          name: e['name'] as String,
+          count: e['count'] as int,
+          lastFired: DateTime.parse(e['lastFired'] as String),
+          firstFired: DateTime.parse(e['firstFired'] as String),
+        ));
+      } catch (_) {
+        // Skip corrupted event entries
+      }
+    }
+    return results;
   }
 
   // ═══════════════════════════════════════════════════════════════════

@@ -761,7 +761,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
       child: TextButton(
         onPressed: () => context.go(Routes.quizHub),
         child: Text(
-          isEn ? 'Back to All Quizzes' : 'Tum Testlere Don',
+          isEn ? 'Back to All Quizzes' : 'Tüm Testlere Dön',
           style: TextStyle(color: AppColors.textSecondary, fontSize: 15),
         ),
       ),

@@ -3,6 +3,7 @@
 /// Every page ends with 4 mandatory exploration sections
 library;
 
+import '../../core/constants/routes.dart';
 import '../providers/app_providers.dart';
 import '../services/l10n_service.dart';
 
@@ -70,14 +71,14 @@ class PageNavigation {
 
 class HomepageNavigation {
   static const navigation = PageNavigation(
-    pageRoute: '/',
+    pageRoute: Routes.splash,
     pageType: 'homepage',
     alsoViewed: [
       NavigationCard(
         title: 'Bugünün İç Enerjisi',
         description:
             'Bugün kendini nasıl hissediyorsun? Günlük yansımalarına göz at.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🌟',
         titleKey: 'navigation.cards.todays_inner_energy.title',
         descriptionKey: 'navigation.cards.todays_inner_energy.description',
@@ -85,7 +86,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'Kişisel Profilim Ne Söylüyor?',
         description: 'Kendini daha yakından keşfet.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🗺️',
         titleKey: 'navigation.cards.personal_profile_question.title',
         descriptionKey: 'navigation.cards.personal_profile_question.description',
@@ -93,7 +94,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'İlişkilerimde Uyumlu muyuz?',
         description: 'İki kişinin dinamiklerini keşfet.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '💑',
         titleKey: 'navigation.cards.partner_compatible.title',
         descriptionKey: 'navigation.cards.partner_compatible.description',
@@ -101,7 +102,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'Şu Anki Döngüm',
         description: 'Hayatındaki değişimler seni nasıl etkiliyor?',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🔄',
         titleKey: 'navigation.cards.current_cycle.title',
         descriptionKey: 'navigation.cards.current_cycle.description',
@@ -111,7 +112,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'Rüyanı Anlat, Birlikte Keşfedelim',
         description: 'Bu gece ne gördün? Sembolik bir yolculuğa çıkalım.',
-        route: '/dream-interpretation',
+        route: Routes.dreamInterpretation,
         emoji: '🌙',
         titleKey: 'navigation.cards.dream_interpretation.title',
         descriptionKey: 'navigation.cards.dream_interpretation.description',
@@ -119,7 +120,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'İçsel Rehberlik Al',
         description: 'İçindeki soruyu sor, cevaplar gelsin.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '✨',
         titleKey: 'navigation.cards.inner_guidance.title',
         descriptionKey: 'navigation.cards.inner_guidance.description',
@@ -129,7 +130,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'Günlük Yansıma',
         description: 'Bilinçaltının aynasına bak -- bugünkü içgörünü keşfet.',
-        route: '/journal',
+        route: Routes.journal,
         emoji: '📝',
         titleKey: 'navigation.cards.daily_reflection.title',
         descriptionKey: 'navigation.cards.daily_reflection_insight.description',
@@ -137,7 +138,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'Sayılarının Sırrı',
         description: 'Doğum tarihin ve ismin ne anlatıyor?',
-        route: '/insights-discovery',
+        route: Routes.insightsDiscovery,
         emoji: '🔢',
         titleKey: 'navigation.cards.number_secrets.title',
         descriptionKey: 'navigation.cards.number_secrets.description',
@@ -145,7 +146,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'Enerji Alanın',
         description: 'Enerjini ve dengenı keşfet.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🌈',
         titleKey: 'navigation.cards.energy_field.title',
         descriptionKey: 'navigation.cards.energy_field.description',
@@ -155,7 +156,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'Keşif Merkezi',
         description: 'Tüm özellikler tek yerde',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '✨',
         titleKey: 'navigation.cards.discovery_center.title',
         descriptionKey: 'navigation.cards.discovery_center.description',
@@ -163,7 +164,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'Kavram Sözlüğü',
         description: 'Terimleri öğren',
-        route: '/glossary',
+        route: Routes.glossary,
         emoji: '📖',
         titleKey: 'navigation.cards.wellness_glossary.title',
         descriptionKey: 'navigation.cards.wellness_glossary.description',
@@ -171,7 +172,7 @@ class HomepageNavigation {
       NavigationCard(
         title: 'Premium Özellikler',
         description: 'Gelişmiş kişisel gelişim araçları',
-        route: '/premium',
+        route: Routes.premium,
         emoji: '👑',
         titleKey: 'navigation.cards.premium_features.title',
         descriptionKey: 'navigation.cards.premium_features.description',
@@ -186,13 +187,13 @@ class HomepageNavigation {
 
 class InsightHubNavigation {
   static const navigation = PageNavigation(
-    pageRoute: '/insight',
+    pageRoute: Routes.insight,
     pageType: 'hub',
     alsoViewed: [
       NavigationCard(
         title: 'En Çok Okunan Yansıma',
         description: 'Derinliklere dalmak için bir adım at.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🔍',
         titleKey: 'navigation.cards.most_read_reflection.title',
         descriptionKey: 'navigation.cards.most_read_reflection.description',
@@ -200,7 +201,7 @@ class InsightHubNavigation {
       NavigationCard(
         title: 'Trend: Değişim Dönemi',
         description: 'Değişimin rüzgarları esiyor.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🌊',
         titleKey: 'navigation.cards.trending_change_period.title',
         descriptionKey: 'navigation.cards.trending_change_period.description',
@@ -208,7 +209,7 @@ class InsightHubNavigation {
       NavigationCard(
         title: 'Haftalık Genel Bakış',
         description: 'Bu hafta neler keşfedebilirsin?',
-        route: '/journal',
+        route: Routes.journal,
         emoji: '📅',
         titleKey: 'navigation.cards.weekly_overview.title',
         descriptionKey: 'navigation.cards.weekly_overview.description',
@@ -216,7 +217,7 @@ class InsightHubNavigation {
       NavigationCard(
         title: 'Aylık Derinlik',
         description: 'Ayın büyük teması ne?',
-        route: '/journal',
+        route: Routes.journal,
         emoji: '🌕',
         titleKey: 'navigation.cards.monthly_depth.title',
         descriptionKey: 'navigation.cards.monthly_depth.description',
@@ -226,7 +227,7 @@ class InsightHubNavigation {
       NavigationCard(
         title: 'Bu Gece Rüyanda Ne Gördün?',
         description: 'İç enerjin rüyalarına nasıl yansıyor?',
-        route: '/dream-interpretation',
+        route: Routes.dreamInterpretation,
         emoji: '🌙',
         titleKey: 'navigation.cards.dream_tonight.title',
         descriptionKey: 'navigation.cards.dream_tonight.description',
@@ -234,7 +235,7 @@ class InsightHubNavigation {
       NavigationCard(
         title: 'Günlük İçsel Mesajın',
         description: 'Bugün içindeki ses sana ne söylemek istiyor?',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '💫',
         titleKey: 'navigation.cards.daily_inner_message.title',
         descriptionKey: 'navigation.cards.daily_inner_message.description',
@@ -244,7 +245,7 @@ class InsightHubNavigation {
       NavigationCard(
         title: 'Kişisel Profilini Gör',
         description: 'Kendini daha derinlemesine tanı.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🗺️',
         titleKey: 'navigation.cards.view_personal_profile.title',
         descriptionKey: 'navigation.cards.view_personal_profile.description',
@@ -252,7 +253,7 @@ class InsightHubNavigation {
       NavigationCard(
         title: 'İlişki Uyumu',
         description: 'Sen ve o — dinamikler nasıl?',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '💕',
         titleKey: 'navigation.cards.relationship_compatibility.title',
         descriptionKey:
@@ -261,7 +262,7 @@ class InsightHubNavigation {
       NavigationCard(
         title: 'Günlük İçgörü',
         description: 'Bugün sana ne söylüyor?',
-        route: '/journal',
+        route: Routes.journal,
         emoji: '📝',
         titleKey: 'navigation.cards.daily_insight.title',
         descriptionKey: 'navigation.cards.daily_insight.description',
@@ -271,7 +272,7 @@ class InsightHubNavigation {
       NavigationCard(
         title: 'Ana Sayfa',
         description: 'Başa dön',
-        route: '/',
+        route: Routes.splash,
         emoji: '🏠',
         titleKey: 'navigation.cards.home.title',
         descriptionKey: 'navigation.cards.home.description',
@@ -279,7 +280,7 @@ class InsightHubNavigation {
       NavigationCard(
         title: 'Keşif Merkezi',
         description: 'Tüm özellikler',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '✨',
         titleKey: 'navigation.cards.discovery_center.title',
         descriptionKey: 'navigation.cards.discovery_center.description',
@@ -287,7 +288,7 @@ class InsightHubNavigation {
       NavigationCard(
         title: 'Kavram Sözlüğü',
         description: 'Kavramları öğren',
-        route: '/glossary',
+        route: Routes.glossary,
         emoji: '📖',
         titleKey: 'navigation.cards.wellness_glossary.title',
         descriptionKey: 'navigation.cards.wellness_glossary.description',
@@ -306,13 +307,13 @@ class ArchetypeNavigation {
     if (archetypeData == null) return _defaultArchetypeNavigation(archetype);
 
     return PageNavigation(
-      pageRoute: '/insight/$archetype',
+      pageRoute: '${Routes.insight}/$archetype',
       pageType: 'archetype',
       alsoViewed: [
         NavigationCard(
           title: '${archetypeData['compatibleSign1']} ile Benzerliğin',
           description: 'Bu iki profil nasıl etkileşiyor?',
-          route: '/insight',
+          route: Routes.insight,
           emoji: archetypeData['compatibleEmoji1'],
           titleKey: 'navigation.phrases.compatibility_with',
           descriptionKey: 'navigation.phrases.how_this_pair_dances',
@@ -320,7 +321,7 @@ class ArchetypeNavigation {
         NavigationCard(
           title: '${archetypeData['elementBuddy1']} Arketipi',
           description: 'Aynı element, farklı enerji.',
-          route: '/insight/${archetypeData['elementBuddyRoute1']}',
+          route: '${Routes.insight}/${archetypeData['elementBuddyRoute1']}',
           emoji: archetypeData['elementBuddyEmoji1'],
           titleKey:
               'navigation.archetype.${archetypeData['elementBuddyRoute1']}.title',
@@ -329,7 +330,7 @@ class ArchetypeNavigation {
         NavigationCard(
           title: '${archetypeData['elementBuddy2']} Arketipi',
           description: 'Kardeş element enerjisi.',
-          route: '/insight/${archetypeData['elementBuddyRoute2']}',
+          route: '${Routes.insight}/${archetypeData['elementBuddyRoute2']}',
           emoji: archetypeData['elementBuddyEmoji2'],
           titleKey:
               'navigation.archetype.${archetypeData['elementBuddyRoute2']}.title',
@@ -338,7 +339,7 @@ class ArchetypeNavigation {
         NavigationCard(
           title: 'Haftalık ${archetypeData['name']} Yansıması',
           description: 'Bu haftanın yansıma temaları',
-          route: '/journal',
+          route: Routes.journal,
           emoji: '📅',
           titleKey: 'navigation.cards.weekly_overview.title',
           descriptionKey: 'navigation.phrases.weekly_exploration',
@@ -348,7 +349,7 @@ class ArchetypeNavigation {
         NavigationCard(
           title: '${archetypeData['name']} Rüyaları',
           description: 'Bu kişilik tipindekiler en çok hangi rüyaları görür?',
-          route: '/dream-interpretation',
+          route: Routes.dreamInterpretation,
           emoji: '🌙',
           titleKey: 'navigation.archetype.$archetype.dreams_title',
           descriptionKey: 'navigation.phrases.which_dreams_this_type_sees',
@@ -356,7 +357,7 @@ class ArchetypeNavigation {
         NavigationCard(
           title: 'Bugün Sana Özel Mesaj',
           description: 'İçsel rehberlik al.',
-          route: '/insight',
+          route: Routes.insight,
           emoji: '✨',
           titleKey: 'navigation.phrases.special_message_for_today',
           descriptionKey: 'navigation.phrases.inner_guidance',
@@ -366,7 +367,7 @@ class ArchetypeNavigation {
         NavigationCard(
           title: 'Kişisel Profilini Gör',
           description: '${archetypeData['name']} profilinin ötesinde ne var?',
-          route: '/insight',
+          route: Routes.insight,
           emoji: '🗺️',
           titleKey: 'navigation.cards.view_personal_profile.title',
           descriptionKey: 'navigation.phrases.beyond_your_profile',
@@ -374,7 +375,7 @@ class ArchetypeNavigation {
         NavigationCard(
           title: '${archetypeData['ruler']} Döngüsü',
           description: 'Yönetici enerjin şu an nerede?',
-          route: '/insight',
+          route: Routes.insight,
           emoji: '🔄',
           titleKey: 'navigation.archetype.$archetype.ruler_cycle',
           descriptionKey: 'navigation.phrases.where_is_your_ruler',
@@ -382,7 +383,7 @@ class ArchetypeNavigation {
         NavigationCard(
           title: 'Günlük Yansıma',
           description: '${archetypeData['name']} enerjisiyle uyumlu bir içgörü.',
-          route: '/journal',
+          route: Routes.journal,
           emoji: '📝',
           titleKey: 'navigation.cards.daily_reflection.title',
           descriptionKey: 'navigation.phrases.reading_aligned_with_energy',
@@ -392,7 +393,7 @@ class ArchetypeNavigation {
         NavigationCard(
           title: 'Tüm Kişilik Tipleri',
           description: '12 arketipi gez',
-          route: '/insight',
+          route: Routes.insight,
           emoji: '🧭',
           titleKey: 'navigation.cards.all_archetypes.title',
           descriptionKey: 'navigation.cards.all_archetypes.description',
@@ -400,7 +401,7 @@ class ArchetypeNavigation {
         NavigationCard(
           title: 'Ana Sayfa',
           description: 'Başa dön',
-          route: '/',
+          route: Routes.splash,
           emoji: '🏠',
           titleKey: 'navigation.cards.home.title',
           descriptionKey: 'navigation.cards.home.description',
@@ -408,7 +409,7 @@ class ArchetypeNavigation {
         NavigationCard(
           title: 'Kişilik Uyumu',
           description: 'İkili analiz',
-          route: '/insight',
+          route: Routes.insight,
           emoji: '💕',
           titleKey: 'navigation.cards.personality_compatibility.title',
           descriptionKey: 'navigation.cards.personality_compatibility.description',
@@ -566,7 +567,7 @@ class ArchetypeNavigation {
 
   static PageNavigation _defaultArchetypeNavigation(String archetype) {
     return PageNavigation(
-      pageRoute: '/insight/$archetype',
+      pageRoute: '${Routes.insight}/$archetype',
       pageType: 'archetype',
       alsoViewed: const [],
       goDeeper: const [],
@@ -582,13 +583,13 @@ class ArchetypeNavigation {
 
 class PersonalProfileNavigation {
   static const navigation = PageNavigation(
-    pageRoute: '/insight',
+    pageRoute: Routes.insight,
     pageType: 'tool',
     alsoViewed: [
       NavigationCard(
         title: 'Şu Anki Döngüler',
         description: 'Profilini bugünün enerjisiyle karşılaştır.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🔄',
         titleKey: 'navigation.cards.current_cycles.title',
         descriptionKey: 'navigation.cards.compare_profile_today.description',
@@ -596,7 +597,7 @@ class PersonalProfileNavigation {
       NavigationCard(
         title: 'İlişki Analizi',
         description: 'Profilini bir başkasıyla birleştir.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '💑',
         titleKey: 'navigation.cards.relationship_analysis.title',
         descriptionKey: 'navigation.cards.relationship_analysis.description',
@@ -604,7 +605,7 @@ class PersonalProfileNavigation {
       NavigationCard(
         title: 'Yıllık Yansıma',
         description: 'Bu yılın teması nasıl?',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🎂',
         titleKey: 'navigation.cards.yearly_reflection.title',
         descriptionKey: 'navigation.cards.yearly_reflection.description',
@@ -612,7 +613,7 @@ class PersonalProfileNavigation {
       NavigationCard(
         title: 'Kişisel Gelişim',
         description: 'İçsel evrimini takip et.',
-        route: '/journal',
+        route: Routes.journal,
         emoji: '📈',
         titleKey: 'navigation.cards.personal_growth.title',
         descriptionKey: 'navigation.cards.personal_growth.description',
@@ -622,7 +623,7 @@ class PersonalProfileNavigation {
       NavigationCard(
         title: 'Profilinle Bağlantılı Rüyalar',
         description: 'İç dünyan rüyalarına nasıl yansıyor?',
-        route: '/dream-interpretation',
+        route: Routes.dreamInterpretation,
         emoji: '🌙',
         titleKey: 'navigation.cards.profile_connected_dreams.title',
         descriptionKey: 'navigation.cards.profile_connected_dreams.description',
@@ -630,7 +631,7 @@ class PersonalProfileNavigation {
       NavigationCard(
         title: 'Kişisel İçsel Mesaj',
         description: 'Profiline özel rehberlik.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '✨',
         titleKey: 'navigation.cards.personal_inner_message.title',
         descriptionKey: 'navigation.cards.personal_inner_message.description',
@@ -640,7 +641,7 @@ class PersonalProfileNavigation {
       NavigationCard(
         title: 'Farklı Bakış Açısı',
         description: 'Doğu felsefesi perspektifi.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🕉️',
         titleKey: 'navigation.cards.different_perspective.title',
         descriptionKey: 'navigation.cards.different_perspective.description',
@@ -648,7 +649,7 @@ class PersonalProfileNavigation {
       NavigationCard(
         title: 'Derin Profil',
         description: 'Ruhsal kökenin.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🐉',
         titleKey: 'navigation.cards.deep_profile.title',
         descriptionKey: 'navigation.cards.deep_profile.description',
@@ -656,7 +657,7 @@ class PersonalProfileNavigation {
       NavigationCard(
         title: 'Detaylı Analiz',
         description: 'Chiron, Lilith ve diğerleri.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '☄️',
         titleKey: 'navigation.cards.detailed_analysis.title',
         descriptionKey: 'navigation.cards.detailed_analysis.description',
@@ -666,7 +667,7 @@ class PersonalProfileNavigation {
       NavigationCard(
         title: 'Tüm Kişilik Tipleri',
         description: 'Arketip sayfaları',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🧭',
         titleKey: 'navigation.cards.all_archetypes.title',
         descriptionKey: 'navigation.cards.all_archetypes.description',
@@ -674,7 +675,7 @@ class PersonalProfileNavigation {
       NavigationCard(
         title: 'Ana Sayfa',
         description: 'Başa dön',
-        route: '/',
+        route: Routes.splash,
         emoji: '🏠',
         titleKey: 'navigation.cards.home.title',
         descriptionKey: 'navigation.cards.home.description',
@@ -682,7 +683,7 @@ class PersonalProfileNavigation {
       NavigationCard(
         title: 'Kavram Sözlüğü',
         description: 'Terimleri öğren',
-        route: '/glossary',
+        route: Routes.glossary,
         emoji: '📖',
         titleKey: 'navigation.cards.wellness_glossary.title',
         descriptionKey: 'navigation.cards.wellness_glossary.description',
@@ -697,13 +698,13 @@ class PersonalProfileNavigation {
 
 class JournalNavigation {
   static const navigation = PageNavigation(
-    pageRoute: '/journal',
+    pageRoute: Routes.journal,
     pageType: 'tool',
     alsoViewed: [
       NavigationCard(
         title: 'Günlük Yansıma',
         description: 'Bugünün iç enerjisi.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '⭐',
         titleKey: 'navigation.cards.daily_reflection.title',
         descriptionKey: 'navigation.cards.todays_inner_energy.description',
@@ -711,7 +712,7 @@ class JournalNavigation {
       NavigationCard(
         title: 'Rüya Yorumu',
         description: 'Bu gece ne gördün?',
-        route: '/dream-interpretation',
+        route: Routes.dreamInterpretation,
         emoji: '🌙',
         titleKey: 'navigation.cards.dream_interpretation.title',
         descriptionKey: 'navigation.cards.dream_tonight.description',
@@ -719,7 +720,7 @@ class JournalNavigation {
       NavigationCard(
         title: 'Kişisel Profil',
         description: 'İçsel kimliğin.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🗺️',
         titleKey: 'navigation.cards.personal_profile.title',
         descriptionKey: 'navigation.cards.inner_identity.description',
@@ -729,7 +730,7 @@ class JournalNavigation {
       NavigationCard(
         title: 'Rüyandaki Sembolleri Çöz',
         description: 'Rüyalar ve günlük yazılar benzer bir dil konuşur.',
-        route: '/dream-interpretation',
+        route: Routes.dreamInterpretation,
         emoji: '🌙',
         titleKey: 'navigation.cards.decode_dream_symbols.title',
         descriptionKey: 'navigation.cards.decode_dream_symbols.description',
@@ -737,7 +738,7 @@ class JournalNavigation {
       NavigationCard(
         title: 'İçsel Rehberlik',
         description: 'Günlüğünün ötesinde bir mesaj.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '✨',
         titleKey: 'navigation.cards.inner_guidance_beyond.title',
         descriptionKey: 'navigation.cards.inner_guidance_beyond.description',
@@ -747,7 +748,7 @@ class JournalNavigation {
       NavigationCard(
         title: 'Keşif Merkezi',
         description: 'Tüm özellikler.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '✨',
         titleKey: 'navigation.cards.discovery_center.title',
         descriptionKey: 'navigation.cards.discovery_center.description',
@@ -755,7 +756,7 @@ class JournalNavigation {
       NavigationCard(
         title: 'Kavram Sözlüğü',
         description: 'Terimleri öğren.',
-        route: '/glossary',
+        route: Routes.glossary,
         emoji: '📖',
         titleKey: 'navigation.cards.wellness_glossary.title',
         descriptionKey: 'navigation.cards.wellness_glossary.description',
@@ -765,7 +766,7 @@ class JournalNavigation {
       NavigationCard(
         title: 'Ana Sayfa',
         description: 'Başa dön',
-        route: '/',
+        route: Routes.splash,
         emoji: '🏠',
         titleKey: 'navigation.cards.home.title',
         descriptionKey: 'navigation.cards.home.description',
@@ -773,7 +774,7 @@ class JournalNavigation {
       NavigationCard(
         title: 'Kavram Sözlüğü',
         description: 'Günlük terimleri',
-        route: '/glossary',
+        route: Routes.glossary,
         emoji: '📖',
         titleKey: 'navigation.cards.wellness_glossary.title',
         descriptionKey: 'navigation.cards.wellness_glossary.description',
@@ -788,13 +789,13 @@ class JournalNavigation {
 
 class CompatibilityNavigation {
   static const navigation = PageNavigation(
-    pageRoute: '/insight',
+    pageRoute: Routes.insight,
     pageType: 'tool',
     alsoViewed: [
       NavigationCard(
         title: 'İlişki Derinliği',
         description: 'Profilleri detaylı karşılaştır.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🔍',
         titleKey: 'navigation.cards.relationship_depth.title',
         descriptionKey: 'navigation.cards.relationship_depth.description',
@@ -802,7 +803,7 @@ class CompatibilityNavigation {
       NavigationCard(
         title: 'Birlikte Profil',
         description: 'İlişkinin kendi profili.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '💞',
         titleKey: 'navigation.cards.combined_profile.title',
         descriptionKey: 'navigation.cards.combined_profile.description',
@@ -810,7 +811,7 @@ class CompatibilityNavigation {
       NavigationCard(
         title: 'Aşk Yansıması',
         description: 'Haftalık aşk enerjisi',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '💕',
         titleKey: 'navigation.cards.love_reflection.title',
         descriptionKey: 'navigation.cards.love_reflection.description',
@@ -818,7 +819,7 @@ class CompatibilityNavigation {
       NavigationCard(
         title: 'İlişki Enerjisi',
         description: 'Aşk enerjilerini incele.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '💞',
         titleKey: 'navigation.cards.relationship_energy.title',
         descriptionKey: 'navigation.cards.relationship_energy.description',
@@ -828,7 +829,7 @@ class CompatibilityNavigation {
       NavigationCard(
         title: 'İlişki Rüyaları',
         description: 'Partnerinle ilgili rüyalar ne anlatıyor?',
-        route: '/dream-interpretation',
+        route: Routes.dreamInterpretation,
         emoji: '🌙',
         titleKey: 'navigation.cards.relationship_dreams.title',
         descriptionKey: 'navigation.cards.relationship_dreams.description',
@@ -836,7 +837,7 @@ class CompatibilityNavigation {
       NavigationCard(
         title: 'İlişki Rehberliği',
         description: 'İçsel perspektif.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '✨',
         titleKey: 'navigation.cards.relationship_guidance.title',
         descriptionKey: 'navigation.cards.inner_perspective.description',
@@ -846,7 +847,7 @@ class CompatibilityNavigation {
       NavigationCard(
         title: 'İlişki Günlüğü',
         description: 'İlişki yansımalarını keşfet.',
-        route: '/journal',
+        route: Routes.journal,
         emoji: '💕',
         titleKey: 'navigation.cards.relationship_journal.title',
         descriptionKey: 'navigation.cards.relationship_journal.description',
@@ -854,7 +855,7 @@ class CompatibilityNavigation {
       NavigationCard(
         title: 'Sayısal Uyum',
         description: 'İsimlerle keşif.',
-        route: '/insights-discovery',
+        route: Routes.insightsDiscovery,
         emoji: '🔢',
         titleKey: 'navigation.cards.numerical_harmony.title',
         descriptionKey: 'navigation.cards.numerical_harmony.description',
@@ -862,7 +863,7 @@ class CompatibilityNavigation {
       NavigationCard(
         title: 'Duygusal Döngü',
         description: 'İlişki enerjin nerede?',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '💖',
         titleKey: 'navigation.cards.emotional_cycle.title',
         descriptionKey: 'navigation.cards.emotional_cycle.description',
@@ -872,7 +873,7 @@ class CompatibilityNavigation {
       NavigationCard(
         title: 'Tüm Kişilik Tipleri',
         description: 'Arketip sayfaları',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🧭',
         titleKey: 'navigation.cards.all_archetypes.title',
         descriptionKey: 'navigation.cards.archetype_pages.description',
@@ -880,7 +881,7 @@ class CompatibilityNavigation {
       NavigationCard(
         title: 'Ana Sayfa',
         description: 'Başa dön',
-        route: '/',
+        route: Routes.splash,
         emoji: '🏠',
         titleKey: 'navigation.cards.home.title',
         descriptionKey: 'navigation.cards.home.description',
@@ -888,7 +889,7 @@ class CompatibilityNavigation {
       NavigationCard(
         title: 'Ünlü Çiftler',
         description: 'Ünlülerin uyumu',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🌟',
         titleKey: 'navigation.cards.celebrity_couples.title',
         descriptionKey: 'navigation.cards.celebrity_couples.description',
@@ -903,13 +904,13 @@ class CompatibilityNavigation {
 
 class LifeCyclesNavigation {
   static const navigation = PageNavigation(
-    pageRoute: '/insight',
+    pageRoute: Routes.insight,
     pageType: 'tool',
     alsoViewed: [
       NavigationCard(
         title: 'Kişisel Profilim',
         description: 'Döngüler profilime nasıl etkiliyor?',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🗺️',
         titleKey: 'navigation.cards.my_personal_profile.title',
         descriptionKey: 'navigation.cards.cycles_affecting_profile.description',
@@ -917,7 +918,7 @@ class LifeCyclesNavigation {
       NavigationCard(
         title: 'Yıllık Yansıma',
         description: 'Bu yılın teması.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🎂',
         titleKey: 'navigation.cards.yearly_reflection.title',
         descriptionKey: 'navigation.cards.this_years_theme.description',
@@ -925,7 +926,7 @@ class LifeCyclesNavigation {
       NavigationCard(
         title: 'Kişisel Gelişim',
         description: 'İçsel evrim takibi.',
-        route: '/journal',
+        route: Routes.journal,
         emoji: '📈',
         titleKey: 'navigation.cards.personal_growth.title',
         descriptionKey: 'navigation.cards.inner_evolution_tracking.description',
@@ -933,7 +934,7 @@ class LifeCyclesNavigation {
       NavigationCard(
         title: 'Hayat Dönüm Noktası',
         description: '29 yaş dönüm noktası.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🔄',
         titleKey: 'navigation.cards.life_milestone.title',
         descriptionKey: 'navigation.cards.life_milestone.description',
@@ -943,7 +944,7 @@ class LifeCyclesNavigation {
       NavigationCard(
         title: 'Değişim Döneminde Rüyalar',
         description: 'Yoğun dönemlerde rüyalar ne anlatır?',
-        route: '/dream-interpretation',
+        route: Routes.dreamInterpretation,
         emoji: '🌙',
         titleKey: 'navigation.cards.transition_dreams.title',
         descriptionKey: 'navigation.cards.transition_dreams.description',
@@ -951,7 +952,7 @@ class LifeCyclesNavigation {
       NavigationCard(
         title: 'Kişisel Dönem Rehberliği',
         description: 'Bu dönem için özel mesaj.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '✨',
         titleKey: 'navigation.cards.personal_cycle_guidance.title',
         descriptionKey:
@@ -962,7 +963,7 @@ class LifeCyclesNavigation {
       NavigationCard(
         title: 'Günlük Yansıma',
         description: 'Bugünün enerjisi.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '⭐',
         titleKey: 'navigation.cards.daily_reflection.title',
         descriptionKey: 'navigation.cards.todays_energy.description',
@@ -970,7 +971,7 @@ class LifeCyclesNavigation {
       NavigationCard(
         title: 'Zamanlama Rehberi',
         description: 'Uygun zamanları seç.',
-        route: '/journal/patterns',
+        route: Routes.journalPatterns,
         emoji: '📅',
         titleKey: 'navigation.cards.timing_guide.title',
         descriptionKey: 'navigation.cards.timing_guide.description',
@@ -978,7 +979,7 @@ class LifeCyclesNavigation {
       NavigationCard(
         title: 'Gözden Geçirme Takvimi',
         description: 'Gözden geçirme dönemi ne zaman?',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '↩️',
         titleKey: 'navigation.cards.review_calendar.title',
         descriptionKey: 'navigation.cards.review_calendar.description',
@@ -988,7 +989,7 @@ class LifeCyclesNavigation {
       NavigationCard(
         title: 'Kişisel Profilim',
         description: 'İçsel kimliğin',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🗺️',
         titleKey: 'navigation.cards.my_personal_profile.title',
         descriptionKey: 'navigation.cards.inner_identity.description',
@@ -996,7 +997,7 @@ class LifeCyclesNavigation {
       NavigationCard(
         title: 'Ana Sayfa',
         description: 'Başa dön',
-        route: '/',
+        route: Routes.splash,
         emoji: '🏠',
         titleKey: 'navigation.cards.home.title',
         descriptionKey: 'navigation.cards.home.description',
@@ -1004,7 +1005,7 @@ class LifeCyclesNavigation {
       NavigationCard(
         title: 'Kavram Sözlüğü',
         description: 'Döngü anlamları',
-        route: '/glossary',
+        route: Routes.glossary,
         emoji: '📖',
         titleKey: 'navigation.cards.concept_glossary.title',
         descriptionKey: 'navigation.cards.concept_glossary.description',
@@ -1019,13 +1020,13 @@ class LifeCyclesNavigation {
 
 class DreamInterpretationNavigation {
   static const navigation = PageNavigation(
-    pageRoute: '/dream-interpretation',
+    pageRoute: Routes.dreamInterpretation,
     pageType: 'tool',
     alsoViewed: [
       NavigationCard(
         title: 'Ay Fazları ve Rüyalar',
         description: 'Ayın döngüsü rüyaları nasıl etkiler?',
-        route: '/rituals',
+        route: Routes.rituals,
         emoji: '🌙',
         titleKey: 'navigation.cards.moon_phases_dreams.title',
         descriptionKey: 'navigation.cards.moon_phases_dreams.description',
@@ -1033,7 +1034,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'Kişilik ve Rüya Kalıpları',
         description: 'Kişiliğin rüyalarına nasıl yansıyor?',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '⭐',
         titleKey: 'navigation.cards.personality_dream_patterns.title',
         descriptionKey: 'navigation.cards.personality_dream_patterns.description',
@@ -1041,7 +1042,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'Bilinçaltı Keşfi',
         description: 'Rüyalar ve günlükler benzer dil konuşur.',
-        route: '/journal',
+        route: Routes.journal,
         emoji: '📝',
         titleKey: 'navigation.cards.subconscious_exploration.title',
         descriptionKey: 'navigation.cards.subconscious_exploration.description',
@@ -1049,7 +1050,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'İçsel Keşif ve Rüyalar',
         description: 'Kişisel profilinde rüya kalıpların.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🗺️',
         titleKey: 'navigation.cards.inner_discovery_dreams.title',
         descriptionKey: 'navigation.cards.inner_discovery_dreams.description',
@@ -1059,7 +1060,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'İçsel Mesajın',
         description: 'Rüyanın ötesinde rehberlik.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '✨',
         titleKey: 'navigation.cards.your_inner_message.title',
         descriptionKey: 'navigation.cards.guidance_beyond_dream.description',
@@ -1067,7 +1068,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'Başka Bir Rüya Anlat',
         description: 'Yeni bir yolculuğa başla.',
-        route: '/dream-interpretation',
+        route: Routes.dreamInterpretation,
         emoji: '🔮',
         titleKey: 'navigation.cards.tell_another_dream.title',
         descriptionKey: 'navigation.cards.tell_another_dream.description',
@@ -1077,7 +1078,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'Rüya Günlüğü',
         description: 'Rüyalarını kaydet ve takip et.',
-        route: '/journal',
+        route: Routes.journal,
         emoji: '📓',
         titleKey: 'navigation.cards.dream_journal.title',
         descriptionKey: 'navigation.cards.dream_journal.description',
@@ -1085,7 +1086,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'Uyku Kalitesi',
         description: 'Uyku düzenini keşfet.',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '😴',
         titleKey: 'navigation.cards.sleep_quality.title',
         descriptionKey: 'navigation.cards.sleep_quality.description',
@@ -1093,7 +1094,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'İçsel Keşif',
         description: 'Kişilik kalıplarını incele.',
-        route: '/insights-discovery',
+        route: Routes.insightsDiscovery,
         emoji: '🔍',
         titleKey: 'navigation.cards.inner_discovery.title',
         descriptionKey: 'navigation.cards.inner_discovery.description',
@@ -1103,7 +1104,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'Tüm Çözümlemeler',
         description: 'Diğer keşif yolları',
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🧰',
         titleKey: 'navigation.cards.all_analyses.title',
         descriptionKey: 'navigation.cards.other_exploration_paths.description',
@@ -1111,7 +1112,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'Ana Sayfa',
         description: 'Başa dön',
-        route: '/',
+        route: Routes.splash,
         emoji: '🏠',
         titleKey: 'navigation.cards.home.title',
         descriptionKey: 'navigation.cards.home.description',
@@ -1119,7 +1120,7 @@ class DreamInterpretationNavigation {
       NavigationCard(
         title: 'Sembol Sözlüğü',
         description: 'Rüya sembolleri',
-        route: '/glossary',
+        route: Routes.glossary,
         emoji: '📖',
         titleKey: 'navigation.cards.symbol_glossary.title',
         descriptionKey: 'navigation.cards.symbol_glossary.description',
@@ -1169,7 +1170,7 @@ class NavigationService {
         NavigationCard(
           title: 'Günlük Yansıma',
           description: 'Bugünün enerjisi.',
-          route: '/insight',
+          route: Routes.insight,
           emoji: '⭐',
           titleKey: 'navigation.cards.daily_reflection_reading.title',
           descriptionKey: 'navigation.cards.todays_energy.description',
@@ -1177,7 +1178,7 @@ class NavigationService {
         NavigationCard(
           title: 'Kişisel Profil',
           description: 'İçsel kimliğin.',
-          route: '/insight',
+          route: Routes.insight,
           emoji: '🗺️',
           titleKey: 'navigation.cards.personal_profile.title',
           descriptionKey: 'navigation.cards.inner_identity.description',
@@ -1185,7 +1186,7 @@ class NavigationService {
         NavigationCard(
           title: 'Günlük Yansıma',
           description: 'Günlük içgörü.',
-          route: '/journal',
+          route: Routes.journal,
           emoji: '📝',
           titleKey: 'navigation.cards.daily_reflection.title',
           descriptionKey: 'navigation.cards.daily_insight.description',
@@ -1195,7 +1196,7 @@ class NavigationService {
         NavigationCard(
           title: 'Rüyanı Anlat',
           description: 'Bilinçaltınla konuş.',
-          route: '/dream-interpretation',
+          route: Routes.dreamInterpretation,
           emoji: '🌙',
           titleKey: 'navigation.cards.tell_your_dream.title',
           descriptionKey: 'navigation.cards.speak_subconscious.description',
@@ -1203,7 +1204,7 @@ class NavigationService {
         NavigationCard(
           title: 'İçsel Rehberlik',
           description: 'Kişisel mesaj al.',
-          route: '/insight',
+          route: Routes.insight,
           emoji: '✨',
           titleKey: 'navigation.cards.inner_guidance.title',
           descriptionKey: 'navigation.cards.get_personal_message.description',
@@ -1213,7 +1214,7 @@ class NavigationService {
         NavigationCard(
           title: 'Kendini Keşfet',
           description: 'Kişilik testi ve içgörüler.',
-          route: '/insights-discovery',
+          route: Routes.insightsDiscovery,
           emoji: '🔍',
           titleKey: 'navigation.cards.discover_yourself.title',
           descriptionKey: 'navigation.cards.personality_test.description',
@@ -1221,7 +1222,7 @@ class NavigationService {
         NavigationCard(
           title: 'Günlük',
           description: 'Bugün nasıl hissediyorsun?',
-          route: '/journal',
+          route: Routes.journal,
           emoji: '📝',
           titleKey: 'navigation.cards.journal.title',
           descriptionKey: 'navigation.cards.how_feeling_today.description',
@@ -1229,7 +1230,7 @@ class NavigationService {
         NavigationCard(
           title: 'Ritüeller',
           description: 'Günlük pratikler.',
-          route: '/rituals',
+          route: Routes.rituals,
           emoji: '🌿',
           titleKey: 'navigation.cards.rituals.title',
           descriptionKey: 'navigation.cards.daily_practices.description',
@@ -1239,7 +1240,7 @@ class NavigationService {
         NavigationCard(
           title: 'Tüm Kişilik Tipleri',
           description: '12 arketip',
-          route: '/insight',
+          route: Routes.insight,
           emoji: '🧭',
           titleKey: 'navigation.cards.all_archetypes.title',
           descriptionKey: 'navigation.cards.twelve_archetypes.description',
@@ -1247,7 +1248,7 @@ class NavigationService {
         NavigationCard(
           title: 'Ana Sayfa',
           description: 'Başa dön',
-          route: '/',
+          route: Routes.splash,
           emoji: '🏠',
           titleKey: 'navigation.cards.home.title',
           descriptionKey: 'navigation.cards.home.description',
@@ -1255,7 +1256,7 @@ class NavigationService {
         NavigationCard(
           title: 'Sözlük',
           description: 'Terimler',
-          route: '/glossary',
+          route: Routes.glossary,
           emoji: '📖',
           titleKey: 'navigation.cards.glossary.title',
           descriptionKey: 'navigation.cards.terms.description',

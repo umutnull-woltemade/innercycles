@@ -629,8 +629,12 @@ class DreamJournalService {
     final dreamsJson = _prefs.getString(_dreamsKey);
     if (dreamsJson == null) return [];
 
-    final List<dynamic> decoded = jsonDecode(dreamsJson);
-    return decoded.map((d) => DreamEntry.fromJson(d)).toList();
+    try {
+      final List<dynamic> decoded = jsonDecode(dreamsJson);
+      return decoded.map((d) => DreamEntry.fromJson(d)).toList();
+    } catch (_) {
+      return [];
+    }
   }
 
   /// Get dreams for a specific date range

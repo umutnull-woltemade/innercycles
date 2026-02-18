@@ -4,6 +4,7 @@ library;
 
 import 'dart:math';
 import 'package:uuid/uuid.dart';
+import '../../core/constants/routes.dart';
 import '../models/dream_interpretation_models.dart';
 import '../content/dream_symbols_database.dart';
 import '../content/dream_content_expanded.dart';
@@ -946,7 +947,7 @@ JSON FORMATI:
           'dream_interpretation.exploration.personal_profile_desc',
           language,
         ),
-        route: '/insight',
+        route: Routes.insight,
         emoji: '🗺️',
         category: L10nService.get(
           'dream_interpretation.exploration.category_self_awareness',
@@ -962,7 +963,7 @@ JSON FORMATI:
           'dream_interpretation.exploration.moon_calendar_desc',
           language,
         ),
-        route: '/moon-rituals',
+        route: Routes.moonCalendar,
         emoji: '🌙',
         category: L10nService.get(
           'dream_interpretation.exploration.category_moon',
@@ -978,7 +979,7 @@ JSON FORMATI:
           'dream_interpretation.exploration.timing_insights_desc',
           language,
         ),
-        route: '/timing',
+        route: Routes.insightsDiscovery,
         emoji: '🪐',
         category: L10nService.get(
           'dream_interpretation.exploration.category_self_awareness',
@@ -994,7 +995,7 @@ JSON FORMATI:
           'dream_interpretation.exploration.journal_desc',
           language,
         ),
-        route: '/journal',
+        route: Routes.journal,
         emoji: '📝',
         category: L10nService.get(
           'dream_interpretation.exploration.category_symbols',
@@ -1015,7 +1016,7 @@ JSON FORMATI:
             'dream_interpretation.exploration.neptune_desc',
             language,
           ),
-          route: '/timing',
+          route: Routes.insightsDiscovery,
           emoji: '🌊',
           category: L10nService.get(
             'dream_interpretation.exploration.category_self_awareness',
@@ -1036,7 +1037,7 @@ JSON FORMATI:
             'dream_interpretation.exploration.pluto_desc',
             language,
           ),
-          route: '/timing',
+          route: Routes.insightsDiscovery,
           emoji: '♇',
           category: L10nService.get(
             'dream_interpretation.exploration.category_self_awareness',

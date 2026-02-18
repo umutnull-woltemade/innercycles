@@ -39,7 +39,16 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
       body: CosmicBackground(
         child: serviceAsync.when(
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (e, _) => Center(child: Text('Error: $e')),
+          error: (_, _) => Center(
+            child: Text(
+              isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+              style: TextStyle(
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
+              ),
+            ),
+          ),
           data: (service) => _buildContent(context, service, isDark, isEn),
         ),
       ),

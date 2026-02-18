@@ -199,7 +199,22 @@ class _ContextualPaywallSheetState
                       ),
                     ).animate().fadeIn(duration: 400.ms, delay: 250.ms),
                   ],
-                  const SizedBox(height: 28),
+
+                  const SizedBox(height: 16),
+
+                  // Social proof
+                  _buildSocialProof(isEn)
+                      .animate()
+                      .fadeIn(duration: 400.ms, delay: 270.ms),
+
+                  const SizedBox(height: 16),
+
+                  // Dynamic value recap
+                  _buildValueRecap(isEn, config.accentColor)
+                      .animate()
+                      .fadeIn(duration: 400.ms, delay: 290.ms),
+
+                  const SizedBox(height: 24),
 
                   // Primary CTA
                   SizedBox(
@@ -362,6 +377,110 @@ class _ContextualPaywallSheetState
     }
   }
 
+  Widget _buildSocialProof(bool isEn) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Icons.people_outline,
+          size: 14,
+          color: Colors.white.withValues(alpha: 0.5),
+        ),
+        const SizedBox(width: 6),
+        Text(
+          isEn
+              ? 'Join 12,000+ people reflecting with InnerCycles Pro'
+              : '12.000+ kişi InnerCycles Pro ile yansıma yapıyor',
+          style: TextStyle(
+            color: Colors.white.withValues(alpha: 0.5),
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildValueRecap(bool isEn, Color accentColor) {
+    final entryCount = widget.entryCount ??
+        ref.watch(journalServiceProvider).valueOrNull?.entryCount ??
+        0;
+    final streakDays = widget.streakDays ??
+        ref.watch(streakStatsProvider).valueOrNull?.currentStreak ??
+        0;
+    final dreamCount = ref.watch(dreamCountProvider).valueOrNull ?? 0;
+
+    // Only show if user has meaningful data
+    if (entryCount == 0 && streakDays == 0 && dreamCount == 0) {
+      return const SizedBox.shrink();
+    }
+
+    final items = <_ValueItem>[];
+    if (entryCount > 0) {
+      items.add(_ValueItem(
+        Icons.edit_note_outlined,
+        isEn ? '$entryCount entries' : '$entryCount kayıt',
+      ));
+    }
+    if (streakDays > 0) {
+      items.add(_ValueItem(
+        Icons.local_fire_department_outlined,
+        isEn ? '$streakDays-day streak' : '$streakDays gün seri',
+      ));
+    }
+    if (dreamCount > 0) {
+      items.add(_ValueItem(
+        Icons.nights_stay_outlined,
+        isEn ? '$dreamCount dreams' : '$dreamCount rüya',
+      ));
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: accentColor.withValues(alpha: 0.06),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: accentColor.withValues(alpha: 0.12),
+        ),
+      ),
+      child: Column(
+        children: [
+          Text(
+            isEn ? 'Your investment so far' : 'Şimdiye kadarki yatırımın',
+            style: TextStyle(
+              color: Colors.white.withValues(alpha: 0.6),
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.5,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: items
+                .map((item) => Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(item.icon, size: 14, color: accentColor),
+                        const SizedBox(width: 4),
+                        Text(
+                          item.label,
+                          style: TextStyle(
+                            color: Colors.white.withValues(alpha: 0.8),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ))
+                .toList(),
+          ),
+        ],
+      ),
+    );
+  }
+
   _PaywallConfig _getConfig(bool isEn) {
     switch (widget.paywallContext) {
       case PaywallContext.patterns:
@@ -512,4 +631,10 @@ class _PaywallConfig {
     this.detail,
     required this.cta,
   });
+}
+
+class _ValueItem {
+  final IconData icon;
+  final String label;
+  const _ValueItem(this.icon, this.label);
 }

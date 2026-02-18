@@ -30,7 +30,18 @@ class EntryDetailScreen extends ConsumerWidget {
         child: SafeArea(
           child: serviceAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (_, _) => const SizedBox.shrink(),
+            error: (_, _) => Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Text(
+                  isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  ),
+                ),
+              ),
+            ),
             data: (service) {
               final entry = service.getEntry(entryId);
               if (entry == null) {

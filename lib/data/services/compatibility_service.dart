@@ -782,6 +782,10 @@ class CompatibilityService {
 
   CompatibilityResult _computeResult(CompatibilityProfile profile) {
     final answers = profile.answers;
+    if (answers.length < 10) {
+      // Incomplete quiz - return neutral result
+      return _neutralResult(profile);
+    }
 
     // Dimension index mapping: 2 questions each
     // Communication: Q0, Q1
@@ -841,6 +845,15 @@ class CompatibilityService {
       overallScore: overall,
       summaryEn: _overallSummaryEn(overall, profile.name),
       summaryTr: _overallSummaryTr(overall, profile.name),
+    );
+  }
+
+  CompatibilityResult _neutralResult(CompatibilityProfile profile) {
+    return CompatibilityResult(
+      dimensions: [],
+      overallScore: 50,
+      summaryEn: 'Complete all questions to see your result.',
+      summaryTr: 'Sonucunuzu görmek için tüm soruları tamamlayın.',
     );
   }
 

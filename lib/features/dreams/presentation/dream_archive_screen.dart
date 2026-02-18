@@ -122,7 +122,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (_, _) => Center(
             child: Text(
-              isEn ? 'Failed to load dreams' : 'Ruyalar yuklenemedi',
+              isEn ? 'Failed to load dreams' : 'Rüyalar yüklenemedi',
               style: TextStyle(
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -149,7 +149,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Dream Archive' : 'Ruya Arsivi',
+                  title: isEn ? 'Dream Archive' : 'Rüya Arşivi',
                 ),
 
                 // Stats row
@@ -181,7 +181,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                         const SizedBox(width: AppConstants.spacingSm),
                         Expanded(
                           child: _StatTile(
-                            label: isEn ? 'Lucid' : 'Lusid',
+                            label: isEn ? 'Lucid' : 'Lüsid',
                             value: '$lucidCount',
                             isDark: isDark,
                           ),
@@ -232,7 +232,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                           Text(
                             isEn
                                 ? 'No dreams recorded yet'
-                                : 'Henuz ruya kaydedilmedi',
+                                : 'Henüz rüya kaydedilmedi',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
@@ -245,7 +245,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                           Text(
                             isEn
                                 ? 'Your dream journal entries will appear here'
-                                : 'Ruya gunlugu kayitlariniz burada gorunecek',
+                                : 'Rüya günlüğü kayıtlarınız burada görünecek',
                             style: TextStyle(
                               fontSize: 13,
                               color: isDark

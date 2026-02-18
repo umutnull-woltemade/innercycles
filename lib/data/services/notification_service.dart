@@ -4,6 +4,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz_data;
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../core/constants/routes.dart';
 
 /// Global navigator key for notification navigation
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -118,21 +119,21 @@ class NotificationService {
     String? route;
     switch (payload) {
       case 'daily_reflection':
-        route = '/journal';
+        route = Routes.journal;
         break;
       case 'moon_cycle':
       case 'new_moon':
       case 'full_moon':
-        route = '/journal';
+        route = Routes.journal;
         break;
       case 'wellness':
-        route = '/insight';
+        route = Routes.insight;
         break;
       case 'evening_reflection':
-        route = '/journal';
+        route = Routes.journal;
         break;
       default:
-        route = '/home';
+        route = Routes.home;
     }
 
     if (navigatorKey.currentState != null) {

@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import 'dart:ui';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/models/cross_correlation_result.dart';
@@ -32,7 +34,18 @@ class PatternsScreen extends ConsumerWidget {
         child: SafeArea(
           child: serviceAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (_, _) => const SizedBox.shrink(),
+            error: (_, _) => Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Text(
+                  isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  ),
+                ),
+              ),
+            ),
             data: (service) {
               final engine = PatternEngineService(service);
 
@@ -61,6 +74,8 @@ class PatternsScreen extends ConsumerWidget {
     int needed,
     int current,
   ) {
+    final progress = (current / 7).clamp(0.0, 1.0);
+
     return CupertinoScrollbar(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
@@ -76,12 +91,71 @@ class PatternsScreen extends ConsumerWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    Icons.lock_outline,
-                    size: 64,
-                    color: AppColors.starGold.withValues(alpha: 0.5),
+                  // Blurred preview teaser
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      // Fake chart preview (blurred)
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: ImageFiltered(
+                          imageFilter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                          child: Container(
+                            width: double.infinity,
+                            height: 120,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  AppColors.starGold.withValues(alpha: 0.1),
+                                  AppColors.amethyst.withValues(alpha: 0.08),
+                                  AppColors.auroraStart.withValues(alpha: 0.1),
+                                ],
+                              ),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: List.generate(7, (i) {
+                                final h = 30.0 + (i * 8.0) + (i.isEven ? 15 : 0);
+                                return Container(
+                                  width: 24,
+                                  height: h,
+                                  margin: const EdgeInsets.only(bottom: 16),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.starGold.withValues(alpha: 0.4),
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                );
+                              }),
+                            ),
+                          ),
+                        ),
+                      ),
+                      // Lock overlay
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: isDark
+                              ? AppColors.surfaceDark.withValues(alpha: 0.8)
+                              : Colors.white.withValues(alpha: 0.8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.starGold.withValues(alpha: 0.3),
+                              blurRadius: 20,
+                            ),
+                          ],
+                        ),
+                        child: Icon(
+                          Icons.lock_outline,
+                          size: 32,
+                          color: AppColors.starGold,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 28),
                   Text(
                     isEn
                         ? 'Patterns Unlock After 7 Entries'
@@ -90,7 +164,7 @@ class PatternsScreen extends ConsumerWidget {
                       color: isDark
                           ? AppColors.textPrimary
                           : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w700,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -107,27 +181,67 @@ class PatternsScreen extends ConsumerWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 32),
-                  // Progress bar
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: LinearProgressIndicator(
-                      value: current / 7,
-                      backgroundColor: isDark
-                          ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                          : AppColors.lightSurfaceVariant,
-                      valueColor: AlwaysStoppedAnimation(AppColors.starGold),
-                      minHeight: 12,
+                  // Animated progress ring
+                  SizedBox(
+                    width: 80,
+                    height: 80,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        SizedBox(
+                          width: 80,
+                          height: 80,
+                          child: CircularProgressIndicator(
+                            value: progress,
+                            strokeWidth: 6,
+                            backgroundColor: isDark
+                                ? AppColors.surfaceLight.withValues(alpha: 0.2)
+                                : AppColors.lightSurfaceVariant,
+                            valueColor: AlwaysStoppedAnimation(AppColors.starGold),
+                            strokeCap: StrokeCap.round,
+                          ),
+                        ),
+                        Text(
+                          '$current/7',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.starGold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    '$current / 7',
-                    style: TextStyle(
-                      color: AppColors.starGold,
-                      fontWeight: FontWeight.bold,
+                  const SizedBox(height: 24),
+                  // CTA to journal
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton.icon(
+                      onPressed: () => context.push(Routes.journal),
+                      icon: const Icon(Icons.edit_note_outlined, size: 20),
+                      label: Text(
+                        isEn ? 'Write Entry' : 'Kayıt Yaz',
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.starGold,
+                        foregroundColor: AppColors.deepSpace,
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        elevation: 0,
+                      ),
                     ),
                   ),
-                ].animate(interval: 100.ms).fadeIn(duration: 400.ms),
+                ].animate(interval: 80.ms).fadeIn(duration: 400.ms).slideY(
+                      begin: 0.08,
+                      duration: 400.ms,
+                      curve: Curves.easeOut,
+                    ),
               ),
             ),
           ),

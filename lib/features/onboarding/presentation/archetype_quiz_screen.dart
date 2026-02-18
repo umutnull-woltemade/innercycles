@@ -393,7 +393,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
 
           // Title
           Text(
-            isEn ? 'Your Inner Archetype' : 'Ic Arketipin',
+            isEn ? 'Your Inner Archetype' : 'İç Arketipin',
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
@@ -488,7 +488,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isEn ? 'Growth Tip' : 'Buyume Ipucu',
+                  isEn ? 'Growth Tip' : 'Büyüme İpucu',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -541,7 +541,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
           TextButton(
             onPressed: _goHome,
             child: Text(
-              isEn ? 'Skip for now' : 'Simdilik atla',
+              isEn ? 'Skip for now' : 'Şimdilik atla',
               style: TextStyle(
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                 fontSize: 14,
