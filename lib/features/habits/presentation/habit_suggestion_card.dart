@@ -204,7 +204,7 @@ class HabitSuggestionCard extends ConsumerWidget {
                           ),
                           const SizedBox(width: 3),
                           Text(
-                            '${habit.durationMinutes} min',
+                            '${habit.durationMinutes} ${isEn ? 'min' : 'dk'}',
                             style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.w500,

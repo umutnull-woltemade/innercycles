@@ -437,7 +437,7 @@ class _DailySpotlightCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        '${habit.durationMinutes} min',
+                        '${habit.durationMinutes} ${isEn ? 'min' : 'dk'}',
                         style: TextStyle(
                           fontSize: 10,
                           fontWeight: FontWeight.w500,
@@ -761,7 +761,7 @@ class _HabitCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 3),
                       Text(
-                        '${habit.durationMinutes} min',
+                        '${habit.durationMinutes} ${isEn ? 'min' : 'dk'}',
                         style: TextStyle(
                           fontSize: 11,
                           color: isDark
