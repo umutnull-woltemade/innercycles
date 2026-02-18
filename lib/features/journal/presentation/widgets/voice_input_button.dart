@@ -16,6 +16,7 @@ import '../../../../data/providers/app_providers.dart';
 import '../../../../data/services/premium_service.dart';
 import '../../../../data/services/voice_journal_service.dart';
 import '../../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../../shared/widgets/cosmic_loading_indicator.dart';
 
 class VoiceInputButton extends ConsumerStatefulWidget {
   /// Called whenever new text is recognized from speech.
@@ -180,16 +181,7 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
       return SizedBox(
         width: widget.size,
         height: widget.size,
-        child: Center(
-          child: SizedBox(
-            width: 20,
-            height: 20,
-            child: CircularProgressIndicator(
-              strokeWidth: 2,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-            ),
-          ),
-        ),
+        child: const CosmicLoadingIndicator(size: 20),
       );
     }
 

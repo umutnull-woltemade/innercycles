@@ -72,7 +72,10 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: CupertinoScrollbar(
+        child: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.opaque,
+          child: CupertinoScrollbar(
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
             slivers: [
@@ -101,6 +104,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
               ),
             ],
           ),
+        ),
         ),
       ),
     );

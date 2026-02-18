@@ -27,6 +27,7 @@ import 'data/services/paywall_experiment_service.dart';
 import 'data/providers/app_providers.dart';
 import 'data/services/premium_service.dart';
 import 'data/models/user_profile.dart';
+import 'shared/widgets/cosmic_loading_indicator.dart';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SAFE STARTUP PATTERN - Prevents white screen on Flutter Web
@@ -330,15 +331,15 @@ class _AppInitializerState extends State<AppInitializer> {
       builder: (context, snapshot) {
         // LOADING STATE - Always show visible UI
         if (snapshot.connectionState != ConnectionState.done) {
-          return const Scaffold(
+          return Scaffold(
             backgroundColor: AppColors.deepSpace,
             body: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  CircularProgressIndicator(color: AppColors.starGold),
-                  SizedBox(height: 16),
-                  Text(
+                  const CosmicLoadingIndicator(),
+                  const SizedBox(height: 16),
+                  const Text(
                     'InnerCycles',
                     style: TextStyle(
                       color: Colors.white70,
@@ -397,7 +398,7 @@ class _AppInitializerState extends State<AppInitializer> {
         if (snapshot.data == null) {
           return const Scaffold(
             backgroundColor: AppColors.deepSpace,
-            body: Center(child: CircularProgressIndicator(color: AppColors.starGold)),
+            body: CosmicLoadingIndicator(),
           );
         }
         final result = snapshot.data!;

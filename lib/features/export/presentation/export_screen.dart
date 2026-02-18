@@ -17,6 +17,7 @@ import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 
 class ExportScreen extends ConsumerStatefulWidget {
   const ExportScreen({super.key});
@@ -179,14 +180,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                           elevation: 0,
                         ),
                         child: _isExporting
-                            ? const SizedBox(
-                                width: 24,
-                                height: 24,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: Colors.white,
-                                ),
-                              )
+                            ? const CosmicLoadingIndicator(size: 24)
                             : Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [

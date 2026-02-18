@@ -141,11 +141,11 @@ class _NotificationSettingsSectionState
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceLight.withAlpha(20) : Colors.white,
+        color: isDark ? AppColors.surfaceLight.withValues(alpha: 0.08) : Colors.white,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
-              ? AppColors.surfaceLight.withAlpha(30)
+              ? AppColors.surfaceLight.withValues(alpha: 0.12)
               : Colors.grey.shade200,
         ),
       ),
@@ -234,9 +234,9 @@ class _NotificationSettingsSectionState
       margin: const EdgeInsets.only(bottom: AppConstants.spacingMd),
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
-        color: AppColors.starGold.withAlpha(20),
+        color: AppColors.starGold.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-        border: Border.all(color: AppColors.starGold.withAlpha(40)),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.16)),
       ),
       child: Row(
         children: [
@@ -283,7 +283,7 @@ class _NotificationSettingsSectionState
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: (value ? AppColors.starGold : AppColors.textMuted)
-                  .withAlpha(20),
+                  .withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(

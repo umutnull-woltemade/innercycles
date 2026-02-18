@@ -49,9 +49,8 @@ class AdminAnalyticsService {
       events[existingIndex]['lastFired'] = now.toIso8601String();
 
       // Update daily count
-      final dailyCounts = Map<String, int>.from(
-        events[existingIndex]['dailyCounts'] as Map? ?? {},
-      );
+      final dailyCounts = (events[existingIndex]['dailyCounts'] as Map? ?? {})
+          .map((k, v) => MapEntry(k.toString(), v is int ? v : 0));
       dailyCounts[dateKey] = (dailyCounts[dateKey] ?? 0) + 1;
       events[existingIndex]['dailyCounts'] = dailyCounts;
     } else {
@@ -79,7 +78,7 @@ class AdminAnalyticsService {
 
     try {
       final list = jsonDecode(json) as List;
-      return list.cast<Map<String, dynamic>>();
+      return list.whereType<Map<String, dynamic>>().toList();
     } catch (e) {
       return [];
     }
@@ -262,7 +261,7 @@ class AdminAnalyticsService {
 
     try {
       final list = jsonDecode(json) as List;
-      return list.cast<Map<String, dynamic>>();
+      return list.whereType<Map<String, dynamic>>().toList();
     } catch (e) {
       return [];
     }

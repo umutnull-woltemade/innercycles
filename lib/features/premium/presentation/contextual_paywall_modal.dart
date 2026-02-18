@@ -11,6 +11,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/analytics_service.dart';
 import '../../../data/services/paywall_experiment_service.dart';
 import '../../../data/services/paywall_service.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 
 /// The type of contextual paywall to show — each has unique visuals and copy.
 enum PaywallContext {
@@ -247,17 +248,7 @@ class _ContextualPaywallSheetState
                             padding: const EdgeInsets.symmetric(vertical: 16),
                             child: Center(
                               child: _isLoading
-                                  ? const SizedBox(
-                                      width: 22,
-                                      height: 22,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          Colors.black,
-                                        ),
-                                      ),
-                                    )
+                                  ? const CosmicLoadingIndicator(size: 22)
                                   : Text(
                                       config.cta,
                                       style: const TextStyle(

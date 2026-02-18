@@ -334,6 +334,9 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             builder: (context) {
               final lang = ref.watch(languageProvider);
               return ListView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 padding: const EdgeInsets.all(AppConstants.spacingMd),
                 children: [
                   _buildSidebarItem(

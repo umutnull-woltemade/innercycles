@@ -66,6 +66,7 @@ class _MeditationTimerScreenState
     HapticFeedback.mediumImpact();
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) { timer.cancel(); return; }
       if (_remainingSeconds <= 1) {
         _complete();
       } else {
@@ -85,6 +86,7 @@ class _MeditationTimerScreenState
     _isRunning = true;
     _pulseController.repeat(reverse: true);
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) { timer.cancel(); return; }
       if (_remainingSeconds <= 1) {
         _complete();
       } else {

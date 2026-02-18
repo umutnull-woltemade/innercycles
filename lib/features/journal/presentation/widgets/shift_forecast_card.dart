@@ -88,7 +88,7 @@ class ShiftForecastCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${window.confidence.labelEn()} ${isEn ? 'confidence' : 'güven'}',
+                      '${isEn ? window.confidence.labelEn() : window.confidence.labelTr()} ${isEn ? 'confidence' : 'güven'}',
                       style: TextStyle(
                         fontSize: 11,
                         color: _confidenceColor(window.confidence),

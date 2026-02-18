@@ -16,6 +16,7 @@ import '../../../data/services/paywall_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../data/services/url_launcher_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 
 class PremiumScreen extends ConsumerStatefulWidget {
   const PremiumScreen({super.key});
@@ -403,15 +404,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: Center(
                 child: premiumState.isLoading
-                    ? const SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.black),
-                        ),
-                      )
+                    ? const CosmicLoadingIndicator(size: 24)
                     : Column(
                         children: [
                           Text(
@@ -527,15 +520,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Center(
                     child: premiumState.isLoading
-                        ? const SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(Colors.white),
-                            ),
-                          )
+                        ? const CosmicLoadingIndicator(size: 24)
                         : Text(
                             L10nService.get(
                               'premium.paywall.continue_pro',
@@ -949,7 +934,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              Navigator.pop(context);
+              if (Navigator.of(context).canPop()) {
+                Navigator.pop(context);
+              }
             },
             child: Text(
               L10nService.get('common.start_journey', language),

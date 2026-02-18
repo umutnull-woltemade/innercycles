@@ -209,6 +209,7 @@ class _BreathingTimerScreenState
 
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) { timer.cancel(); return; }
       if (_phaseCountdown <= 1) {
         timer.cancel();
         _nextPhase();

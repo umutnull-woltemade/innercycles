@@ -6,9 +6,10 @@ import '../../core/theme/app_colors.dart';
 /// Themed loading indicator matching the cosmic design system.
 /// Replaces bare CircularProgressIndicator across all screens.
 class CosmicLoadingIndicator extends StatelessWidget {
+  final double size;
   final String? message;
 
-  const CosmicLoadingIndicator({super.key, this.message});
+  const CosmicLoadingIndicator({super.key, this.size = 32, this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +20,11 @@ class CosmicLoadingIndicator extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            width: 32,
-            height: 32,
+            width: size,
+            height: size,
             child: CircularProgressIndicator(
               color: isDark ? AppColors.starGold : AppColors.lightStarGold,
-              strokeWidth: 2.5,
+              strokeWidth: size < 24 ? 2.0 : 2.5,
             ),
           ),
           if (message != null) ...[

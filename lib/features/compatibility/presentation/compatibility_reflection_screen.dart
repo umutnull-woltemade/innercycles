@@ -205,8 +205,11 @@ class _CompatibilityReflectionScreenState
 
     return Scaffold(
       body: CosmicBackground(
-        child: SafeArea(
-          child: switch (_mode) {
+        child: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.opaque,
+          child: SafeArea(
+            child: switch (_mode) {
             _ScreenMode.profileList =>
               _buildProfileList(context, isDark, isEn),
             _ScreenMode.createProfile =>
@@ -216,6 +219,7 @@ class _CompatibilityReflectionScreenState
             _ScreenMode.resultView =>
               _buildResultView(context, isDark, isEn),
           },
+        ),
         ),
       ),
     );
@@ -722,6 +726,9 @@ class _CompatibilityReflectionScreenState
         _pendingAnswers.length > index ? _pendingAnswers[index] : -1;
 
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       slivers: [
         SliverPadding(
           padding: const EdgeInsets.all(16),

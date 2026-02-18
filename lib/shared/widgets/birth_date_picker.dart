@@ -98,9 +98,9 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
     return Container(
       height: 200,
       decoration: BoxDecoration(
-        color: AppColors.surfaceLight.withAlpha(128),
+        color: AppColors.surfaceLight.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: AppColors.auroraStart.withAlpha(76)),
+        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.3)),
       ),
       child: Row(
         children: [
@@ -192,9 +192,9 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.surfaceLight.withAlpha(128),
+        color: AppColors.surfaceLight.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(color: AppColors.auroraStart.withAlpha(76)),
+        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.3)),
       ),
       child: Row(
         children: [
@@ -301,9 +301,9 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
-            color: AppColors.auroraStart.withAlpha(30),
+            color: AppColors.auroraStart.withValues(alpha: 0.12),
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: AppColors.auroraStart.withAlpha(76)),
+            border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.3)),
           ),
           child: DropdownButton<T>(
             value: value,
@@ -365,10 +365,10 @@ class _WheelPicker extends StatelessWidget {
                   height: 40,
                   margin: const EdgeInsets.symmetric(horizontal: 4),
                   decoration: BoxDecoration(
-                    color: AppColors.auroraStart.withAlpha(30),
+                    color: AppColors.auroraStart.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color: AppColors.auroraStart.withAlpha(76),
+                      color: AppColors.auroraStart.withValues(alpha: 0.3),
                     ),
                   ),
                 ),
@@ -458,12 +458,12 @@ class SelectedDateDisplay extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              AppColors.auroraStart.withAlpha(51),
-              AppColors.auroraEnd.withAlpha(51),
+              AppColors.auroraStart.withValues(alpha: 0.2),
+              AppColors.auroraEnd.withValues(alpha: 0.2),
             ],
           ),
           borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-          border: Border.all(color: AppColors.auroraStart.withAlpha(76)),
+          border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.3)),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

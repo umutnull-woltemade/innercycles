@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
@@ -128,7 +129,7 @@ class EntryDetailScreen extends ConsumerWidget {
           ),
         ],
       ),
-    );
+    ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms);
   }
 
   Widget _buildHeaderCard(
@@ -336,10 +337,12 @@ class EntryDetailScreen extends ConsumerWidget {
             onPressed: () async {
               HapticFeedback.heavyImpact();
               Navigator.pop(ctx);
-              final service = await ref.read(journalServiceProvider.future);
-              await service.deleteEntry(id);
-              ref.invalidate(todayJournalEntryProvider);
-              ref.invalidate(journalStreakProvider);
+              try {
+                final service = await ref.read(journalServiceProvider.future);
+                await service.deleteEntry(id);
+                ref.invalidate(todayJournalEntryProvider);
+                ref.invalidate(journalStreakProvider);
+              } catch (_) {}
               if (context.mounted) context.pop();
             },
             child: Text(

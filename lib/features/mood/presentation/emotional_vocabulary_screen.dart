@@ -53,7 +53,10 @@ class _EmotionalVocabularyScreenState
 
     return Scaffold(
       body: CosmicBackground(
-        child: CupertinoScrollbar(
+        child: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.opaque,
+          child: CupertinoScrollbar(
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics(),
@@ -133,6 +136,7 @@ class _EmotionalVocabularyScreenState
               ),
             ],
           ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.02, duration: 400.ms),
+        ),
         ),
       ),
     );

@@ -23,6 +23,7 @@ import '../../../data/services/instagram_share_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import 'widgets/share_card_renderer.dart';
 
 // ============================================================================
@@ -626,16 +627,7 @@ class _ActionButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (isLoading)
-              SizedBox(
-                width: 18,
-                height: 18,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    isPrimary ? Colors.white : AppColors.textSecondary,
-                  ),
-                ),
-              )
+              const CosmicLoadingIndicator(size: 18)
             else
               Icon(
                 icon,

@@ -26,6 +26,7 @@ import '../../../shared/widgets/birth_date_picker.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // ONBOARDING QUIZ DATA (3 key questions from archetype quiz)
@@ -419,8 +420,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   color: isActive
                       ? AppColors.starGold
                       : isPast
-                          ? AppColors.starGold.withAlpha(120)
-                          : AppColors.surfaceLight.withAlpha(80),
+                          ? AppColors.starGold.withValues(alpha: 0.47)
+                          : AppColors.surfaceLight.withValues(alpha: 0.31),
                   borderRadius: BorderRadius.circular(4),
                 ),
               );
@@ -714,7 +715,7 @@ class _IdentityPageState extends State<_IdentityPage>
           Text(
             L10nService.get('onboarding.by_continuing', widget.language),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.textMuted.withAlpha(150),
+              color: AppColors.textMuted.withValues(alpha: 0.59),
               fontSize: 13,
             ),
             textAlign: TextAlign.center,
@@ -742,13 +743,13 @@ class _IdentityPageState extends State<_IdentityPage>
                 boxShadow: [
                   BoxShadow(
                     color: AppColors.auroraStart
-                        .withAlpha((100 * _glowController.value).toInt() + 50),
+                        .withValues(alpha: (100 * _glowController.value + 50) / 255),
                     blurRadius: 40 + (20 * _glowController.value),
                     spreadRadius: 10 + (10 * _glowController.value),
                   ),
                   BoxShadow(
                     color: AppColors.amethyst
-                        .withAlpha((80 * _glowController.value).toInt() + 30),
+                        .withValues(alpha: (80 * _glowController.value + 30) / 255),
                     blurRadius: 60 + (30 * _glowController.value),
                     spreadRadius: 5,
                   ),
@@ -779,7 +780,7 @@ class _IdentityPageState extends State<_IdentityPage>
           borderRadius: BorderRadius.circular(14),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withAlpha(50),
+              color: Colors.black.withValues(alpha: 0.2),
               blurRadius: 16,
               offset: const Offset(0, 6),
             ),
@@ -789,14 +790,7 @@ class _IdentityPageState extends State<_IdentityPage>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (_isAppleLoading)
-              const SizedBox(
-                width: 22,
-                height: 22,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2.5,
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                ),
-              )
+              const CosmicLoadingIndicator(size: 22)
             else
               const Icon(Icons.apple, color: Colors.white, size: 26),
             const SizedBox(width: 12),
@@ -934,21 +928,21 @@ class _FirstCyclePage extends StatelessWidget {
                       border: Border.all(
                         color: isSelected
                             ? color
-                            : Colors.white.withAlpha(30),
+                            : Colors.white.withValues(alpha: 0.12),
                         width: isSelected ? 2 : 1,
                       ),
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          color.withAlpha(isSelected ? 50 : 20),
-                          color.withAlpha(isSelected ? 30 : 8),
+                          color.withValues(alpha: isSelected ? 0.2 : 0.08),
+                          color.withValues(alpha: isSelected ? 0.12 : 0.03),
                         ],
                       ),
                       boxShadow: isSelected
                           ? [
                               BoxShadow(
-                                color: color.withAlpha(40),
+                                color: color.withValues(alpha: 0.16),
                                 blurRadius: 20,
                                 spreadRadius: 2,
                               ),
@@ -965,7 +959,7 @@ class _FirstCyclePage extends StatelessWidget {
                             size: 36,
                             color: isSelected
                                 ? color
-                                : color.withAlpha(180),
+                                : color.withValues(alpha: 0.71),
                           ),
                           const SizedBox(height: 12),
                           Text(
@@ -977,7 +971,7 @@ class _FirstCyclePage extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                               color: isSelected
                                   ? Colors.white
-                                  : Colors.white.withAlpha(200),
+                                  : Colors.white.withValues(alpha: 0.78),
                             ),
                           ),
                           const SizedBox(height: 4),
@@ -987,7 +981,7 @@ class _FirstCyclePage extends StatelessWidget {
                                 : (_focusDescTr[area] ?? ''),
                             style: TextStyle(
                               fontSize: 12,
-                              color: AppColors.textMuted.withAlpha(180),
+                              color: AppColors.textMuted.withValues(alpha: 0.71),
                             ),
                             textAlign: TextAlign.center,
                             maxLines: 2,
@@ -1290,12 +1284,12 @@ class _ArchetypeRevealPage extends StatelessWidget {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.starGold.withAlpha(60),
+                  color: AppColors.starGold.withValues(alpha: 0.24),
                   blurRadius: 40,
                   spreadRadius: 10,
                 ),
                 BoxShadow(
-                  color: AppColors.amethyst.withAlpha(30),
+                  color: AppColors.amethyst.withValues(alpha: 0.12),
                   blurRadius: 60,
                   spreadRadius: 5,
                 ),
@@ -1490,13 +1484,13 @@ class _PermissionStartPage extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  AppColors.auroraStart.withAlpha(40),
-                  AppColors.amethyst.withAlpha(40),
+                  AppColors.auroraStart.withValues(alpha: 0.16),
+                  AppColors.amethyst.withValues(alpha: 0.16),
                 ],
               ),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.auroraStart.withAlpha(50),
+                  color: AppColors.auroraStart.withValues(alpha: 0.2),
                   blurRadius: 40,
                   spreadRadius: 8,
                 ),
@@ -1551,8 +1545,8 @@ class _PermissionStartPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       gradient: LinearGradient(
                         colors: [
-                          AppColors.auroraStart.withAlpha(40),
-                          AppColors.amethyst.withAlpha(40),
+                          AppColors.auroraStart.withValues(alpha: 0.16),
+                          AppColors.amethyst.withValues(alpha: 0.16),
                         ],
                       ),
                     ),
@@ -1606,7 +1600,7 @@ class _PermissionStartPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                         color: notificationsRequested
                             ? AppColors.starGold
-                            : Colors.white.withAlpha(25),
+                            : Colors.white.withValues(alpha: 0.1),
                         border: Border.all(
                           color: notificationsRequested
                               ? AppColors.starGold

@@ -150,7 +150,7 @@ class RitualCompletion {
         dateKey: json['dateKey'] as String? ?? '',
         stackId: json['stackId'] as String? ?? '',
         completedItemIds:
-            (json['completedItemIds'] as List<dynamic>? ?? []).cast<String>().toSet(),
+            (json['completedItemIds'] as List<dynamic>? ?? []).whereType<String>().toSet(),
         updatedAt: DateTime.tryParse(json['updatedAt']?.toString() ?? '') ?? DateTime.now(),
       );
 }

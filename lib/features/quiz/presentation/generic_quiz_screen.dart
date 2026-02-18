@@ -253,6 +253,9 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
     final selectedAnswer = _answers.length > index ? _answers[index] : -1;
 
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       slivers: [
         SliverPadding(
           padding: const EdgeInsets.all(AppConstants.spacingLg),

@@ -209,7 +209,9 @@ class SyncQueueItem {
     operation: json['operation'],
     tableName: json['table_name'],
     recordId: json['record_id'],
-    payload: Map<String, dynamic>.from(json['payload']),
+    payload: json['payload'] is Map
+        ? Map<String, dynamic>.from(json['payload'] as Map)
+        : <String, dynamic>{},
     createdAt: DateTime.tryParse(json['created_at']?.toString() ?? '') ?? DateTime.now(),
     status: json['status'] ?? 'pending',
     retryCount: json['retry_count'] ?? 0,

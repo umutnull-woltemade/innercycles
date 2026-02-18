@@ -55,6 +55,9 @@ class SleepTrendsScreen extends ConsumerWidget {
 
     if (allEntries.isEmpty) {
       return CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
         slivers: [
           GlassSliverAppBar(
             title: isEn ? 'Sleep Trends' : 'Uyku Trendleri',

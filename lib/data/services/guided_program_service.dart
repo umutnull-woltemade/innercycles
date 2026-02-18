@@ -85,7 +85,7 @@ class ProgramProgress {
         programId: json['programId'] as String? ?? '',
         startedAt: DateTime.tryParse(json['startedAt']?.toString() ?? '') ?? DateTime.now(),
         completedDays:
-            (json['completedDays'] as List<dynamic>? ?? []).cast<int>().toSet(),
+            (json['completedDays'] as List<dynamic>? ?? []).whereType<int>().toSet(),
         reflections: json['reflections'] != null
             ? (json['reflections'] as Map<String, dynamic>).map(
                 (k, v) => MapEntry(int.tryParse(k) ?? 0, v as String? ?? ''))

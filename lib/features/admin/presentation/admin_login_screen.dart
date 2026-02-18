@@ -14,6 +14,7 @@ import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/admin_providers.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 
 class AdminLoginScreen extends ConsumerStatefulWidget {
   const AdminLoginScreen({super.key});
@@ -368,16 +369,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
                   elevation: 4,
                 ),
                 child: _isLoading
-                    ? const SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          valueColor: AlwaysStoppedAnimation(
-                            AppColors.deepSpace,
-                          ),
-                        ),
-                      )
+                    ? const CosmicLoadingIndicator(size: 24)
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

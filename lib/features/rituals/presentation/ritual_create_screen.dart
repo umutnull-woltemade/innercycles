@@ -344,10 +344,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                             ? const SizedBox(
                                 width: 24,
                                 height: 24,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: Colors.white,
-                                ),
+                                child: CupertinoActivityIndicator(),
                               )
                             : Text(
                                 isEn ? 'Create Ritual' : 'Ritüel Oluştur',

@@ -147,7 +147,11 @@ class _QuizCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      label: isEn ? quiz.title : quiz.titleTr,
+      hint: isCompleted ? (isEn ? 'Completed' : 'Tamamlandı') : null,
+      child: GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -282,6 +286,7 @@ class _QuizCard extends StatelessWidget {
           ],
         ),
       ),
+    ),
     );
   }
 }

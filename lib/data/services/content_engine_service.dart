@@ -449,7 +449,7 @@ class ContentEngineService {
     if (historyJson == null) return [];
     try {
       final List<dynamic> decoded = json.decode(historyJson);
-      return decoded.cast<Map<String, dynamic>>();
+      return decoded.whereType<Map<String, dynamic>>().toList();
     } catch (_) {
       return [];
     }
@@ -496,7 +496,7 @@ class ContentEngineService {
     if (historyJson == null) return [];
     try {
       final List<dynamic> decoded = json.decode(historyJson);
-      return decoded.cast<Map<String, dynamic>>();
+      return decoded.whereType<Map<String, dynamic>>().toList();
     } catch (_) {
       return [];
     }
@@ -547,7 +547,7 @@ class ContentEngineService {
     if (historyJson == null) return [];
     try {
       final List<dynamic> decoded = json.decode(historyJson);
-      return decoded.cast<Map<String, dynamic>>();
+      return decoded.whereType<Map<String, dynamic>>().toList();
     } catch (_) {
       return [];
     }
@@ -594,7 +594,7 @@ class ContentEngineService {
     if (historyJson == null) return [];
     try {
       final List<dynamic> decoded = json.decode(historyJson);
-      return decoded.cast<Map<String, dynamic>>();
+      return decoded.whereType<Map<String, dynamic>>().toList();
     } catch (_) {
       return [];
     }

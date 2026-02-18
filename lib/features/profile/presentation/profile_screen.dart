@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
@@ -91,7 +92,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     _buildCosmicInfo(context, profile, language, isDark),
                 ],
               ),
-            ),
+            ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms),
           ),
         ),
       ),
@@ -612,7 +613,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       ),
                       filled: true,
                       fillColor: isDark
-                          ? AppColors.surfaceLight.withAlpha(30)
+                          ? AppColors.surfaceLight.withValues(alpha: 0.12)
                           : Colors.grey.shade100,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -642,7 +643,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         selected: showTurkeyOnly,
                         selectedColor: colorScheme.primary,
                         backgroundColor: isDark
-                            ? AppColors.surfaceLight.withAlpha(30)
+                            ? AppColors.surfaceLight.withValues(alpha: 0.12)
                             : Colors.grey.shade200,
                         onSelected: (selected) {
                           setModalState(() => showTurkeyOnly = selected);
@@ -662,7 +663,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         selected: !showTurkeyOnly,
                         selectedColor: colorScheme.primary,
                         backgroundColor: isDark
-                            ? AppColors.surfaceLight.withAlpha(30)
+                            ? AppColors.surfaceLight.withValues(alpha: 0.12)
                             : Colors.grey.shade200,
                         onSelected: (selected) {
                           setModalState(() => showTurkeyOnly = !selected);
@@ -800,7 +801,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              context.pop();
+              if (context.canPop()) context.pop();
             },
             child: Text(
               L10nService.get('common.delete', language),

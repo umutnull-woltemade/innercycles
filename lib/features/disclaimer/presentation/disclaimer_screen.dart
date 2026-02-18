@@ -107,12 +107,12 @@ class DisclaimerScreen extends ConsumerWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceLight.withAlpha(25)
-            : AppColors.lightSurfaceVariant.withAlpha(200),
+            ? AppColors.surfaceLight.withValues(alpha: 0.1)
+            : AppColors.lightSurfaceVariant.withValues(alpha: 0.78),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isDark
-              ? AppColors.surfaceLight.withAlpha(50)
+              ? AppColors.surfaceLight.withValues(alpha: 0.2)
               : Colors.grey.shade300,
         ),
       ),

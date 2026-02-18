@@ -34,7 +34,7 @@ class GratitudeEntry {
 
   factory GratitudeEntry.fromJson(Map<String, dynamic> json) => GratitudeEntry(
         dateKey: json['dateKey'] as String? ?? '',
-        items: (json['items'] as List<dynamic>? ?? []).cast<String>(),
+        items: (json['items'] as List<dynamic>? ?? []).whereType<String>().toList(),
         createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
       );
 }

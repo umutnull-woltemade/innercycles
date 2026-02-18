@@ -255,7 +255,7 @@ class StreakService {
     if (jsonString != null) {
       try {
         final List<dynamic> jsonList = json.decode(jsonString);
-        _celebratedMilestones = jsonList.cast<int>();
+        _celebratedMilestones = jsonList.whereType<int>().toList();
       } catch (_) {
         _celebratedMilestones = [];
       }

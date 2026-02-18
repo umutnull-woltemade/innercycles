@@ -170,7 +170,9 @@ class QuizResult {
   factory QuizResult.fromJson(Map<String, dynamic> json) {
     return QuizResult(
       quizId: json['quizId'] as String? ?? '',
-      scores: Map<String, int>.from(json['scores'] as Map? ?? {}),
+      scores: (json['scores'] as Map? ?? {}).map(
+        (k, v) => MapEntry(k.toString(), v is int ? v : (v is num ? v.toInt() : 0)),
+      ),
       percentages: (json['percentages'] as Map? ?? {}).map(
         (key, value) => MapEntry(key as String? ?? '', (value as num? ?? 0).toDouble()),
       ),
