@@ -179,8 +179,8 @@ class NotificationService {
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'daily_reflection',
-          'Daily Reflection',
-          channelDescription: 'Daily journal reflection reminders',
+          _isEn ? 'Daily Reflection' : 'Günlük Yansıma',
+          channelDescription: _isEn ? 'Daily journal reflection reminders' : 'Günlük yansıma hatırlatıcıları',
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
@@ -241,8 +241,8 @@ class NotificationService {
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'evening_reflection',
-          'Evening Reflection',
-          channelDescription: 'Evening journal reflection reminders',
+          _isEn ? 'Evening Reflection' : 'Akşam Yansıması',
+          channelDescription: _isEn ? 'Evening journal reflection reminders' : 'Akşam yansıma hatırlatıcıları',
           importance: Importance.defaultImportance,
           priority: Priority.defaultPriority,
           icon: '@mipmap/ic_launcher',
@@ -285,8 +285,8 @@ class NotificationService {
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'moon_cycle',
-          'Moon Cycle Awareness',
-          channelDescription: 'Moon cycle mindfulness reminders',
+          _isEn ? 'Moon Cycle Awareness' : 'Ay Döngüsü Farkındalığı',
+          channelDescription: _isEn ? 'Moon cycle mindfulness reminders' : 'Ay döngüsü farkındalık hatırlatıcıları',
           importance: Importance.defaultImportance,
           priority: Priority.defaultPriority,
           icon: '@mipmap/ic_launcher',
@@ -315,8 +315,8 @@ class NotificationService {
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'moon_cycle',
-          'Moon Cycle Awareness',
-          channelDescription: 'Moon cycle mindfulness reminders',
+          _isEn ? 'Moon Cycle Awareness' : 'Ay Döngüsü Farkındalığı',
+          channelDescription: _isEn ? 'Moon cycle mindfulness reminders' : 'Ay döngüsü farkındalık hatırlatıcıları',
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
@@ -346,8 +346,8 @@ class NotificationService {
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'moon_cycle',
-          'Moon Cycle Awareness',
-          channelDescription: 'Moon cycle mindfulness reminders',
+          _isEn ? 'Moon Cycle Awareness' : 'Ay Döngüsü Farkındalığı',
+          channelDescription: _isEn ? 'Moon cycle mindfulness reminders' : 'Ay döngüsü farkındalık hatırlatıcıları',
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
