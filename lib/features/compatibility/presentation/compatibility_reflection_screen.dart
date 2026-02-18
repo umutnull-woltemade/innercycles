@@ -17,6 +17,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/compatibility_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
+import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -211,11 +212,12 @@ class _CompatibilityReflectionScreenState
 
     return Scaffold(
       body: CosmicBackground(
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          behavior: HitTestBehavior.opaque,
-          child: SafeArea(
-            child: switch (_mode) {
+        child: ExcludeSemantics(
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            behavior: HitTestBehavior.opaque,
+            child: SafeArea(
+              child: switch (_mode) {
               _ScreenMode.profileList => _buildProfileList(
                 context,
                 isDark,
@@ -234,6 +236,7 @@ class _CompatibilityReflectionScreenState
               _ScreenMode.resultView => _buildResultView(context, isDark, isEn),
             },
           ),
+        ),
         ),
       ),
     );
@@ -1042,6 +1045,10 @@ class _CompatibilityReflectionScreenState
                   ),
                 ),
               ).animate().fadeIn(duration: 500.ms, delay: 900.ms),
+              ContentDisclaimer(
+                language: isEn ? AppLanguage.en : AppLanguage.tr,
+                customText: DisclaimerTexts.compatibility(isEn ? AppLanguage.en : AppLanguage.tr),
+              ),
               ToolEcosystemFooter(
                 currentToolId: 'compatibility',
                 isEn: isEn,

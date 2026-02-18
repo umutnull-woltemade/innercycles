@@ -244,10 +244,11 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
 
     return Scaffold(
       body: CosmicBackground(
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          behavior: HitTestBehavior.opaque,
-          child: SafeArea(
+        child: ExcludeSemantics(
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            behavior: HitTestBehavior.opaque,
+            child: SafeArea(
             child: Column(
               children: [
                 // Header
@@ -274,6 +275,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
               ],
             ),
           ),
+        ),
         ),
       ),
     );

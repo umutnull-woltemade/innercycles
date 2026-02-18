@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -160,10 +159,11 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          behavior: HitTestBehavior.opaque,
-          child: serviceAsync.when(
+        child: ExcludeSemantics(
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            behavior: HitTestBehavior.opaque,
+            child: serviceAsync.when(
             loading: () => const CosmicLoadingIndicator(),
             error: (_, _) => Center(
               child: Text(
@@ -261,7 +261,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                         SliverFillRemaining(
                           hasScrollBody: false,
                           child: ToolEmptyState(
-                            icon: CupertinoIcons.moon_zzz,
+                            icon: Icons.nightlight_round,
                             titleEn: 'No dreams recorded yet',
                             titleTr: 'Henüz rüya kaydedilmedi',
                             descriptionEn:
@@ -356,6 +356,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
             },
           ),
         ),
+        ),
       ),
     );
   }
@@ -399,14 +400,14 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
           prefixIcon: Icon(
-            CupertinoIcons.search,
+            Icons.search,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
                   tooltip: isEn ? 'Clear search' : 'Aramayı temizle',
                   icon: Icon(
-                    CupertinoIcons.clear_circled_solid,
+                    Icons.cancel,
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,

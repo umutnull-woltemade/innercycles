@@ -45,11 +45,12 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          behavior: HitTestBehavior.opaque,
-          child: SafeArea(
-            child: serviceAsync.when(
+        child: ExcludeSemantics(
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            behavior: HitTestBehavior.opaque,
+            child: SafeArea(
+              child: serviceAsync.when(
               loading: () => const CosmicLoadingIndicator(),
               error: (_, _) => Center(
                 child: Text(
@@ -142,6 +143,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
               },
             ),
           ),
+        ),
         ),
       ),
     );

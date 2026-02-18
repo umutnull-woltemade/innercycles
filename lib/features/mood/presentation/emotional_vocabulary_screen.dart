@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -53,10 +52,11 @@ class _EmotionalVocabularyScreenState
 
     return Scaffold(
       body: CosmicBackground(
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          behavior: HitTestBehavior.opaque,
-          child: CupertinoScrollbar(
+        child: ExcludeSemantics(
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            behavior: HitTestBehavior.opaque,
+            child: CupertinoScrollbar(
             child:
                 CustomScrollView(
                       physics: const BouncingScrollPhysics(
@@ -117,7 +117,7 @@ class _EmotionalVocabularyScreenState
                                     child: Column(
                                       children: [
                                         Icon(
-                                          CupertinoIcons.search,
+                                          Icons.search,
                                           size: 40,
                                           color: isDark
                                               ? AppColors.textMuted
@@ -150,6 +150,7 @@ class _EmotionalVocabularyScreenState
                     .fadeIn(duration: 400.ms)
                     .slideY(begin: 0.02, duration: 400.ms),
           ),
+        ),
         ),
       ),
     );
@@ -210,14 +211,14 @@ class _EmotionalVocabularyScreenState
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
           prefixIcon: Icon(
-            CupertinoIcons.search,
+            Icons.search,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
                   tooltip: isEn ? 'Clear search' : 'Aramayı temizle',
                   icon: Icon(
-                    CupertinoIcons.clear_circled_solid,
+                    Icons.cancel,
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,

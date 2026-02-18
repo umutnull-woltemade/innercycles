@@ -60,10 +60,11 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          behavior: HitTestBehavior.opaque,
-          child: SafeArea(
+        child: ExcludeSemantics(
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            behavior: HitTestBehavior.opaque,
+            child: SafeArea(
             child: serviceAsync.when(
               loading: () => const CosmicLoadingIndicator(),
               error: (_, _) => Center(
@@ -200,6 +201,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
               },
             ),
           ),
+        ),
         ),
       ),
     );
