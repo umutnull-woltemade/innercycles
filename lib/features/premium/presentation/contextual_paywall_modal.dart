@@ -296,7 +296,7 @@ class _ContextualPaywallSheetState
                     child: Text(
                       isEn ? 'Not now' : 'Şimdi değil',
                       style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.4),
+                        color: Colors.white.withValues(alpha: 0.7),
                         fontSize: 13,
                       ),
                     ),
@@ -381,8 +381,8 @@ class _ContextualPaywallSheetState
         const SizedBox(width: 6),
         Text(
           isEn
-              ? 'Join 12,000+ people reflecting with InnerCycles Pro'
-              : '12.000+ kişi InnerCycles Pro ile yansıma yapıyor',
+              ? 'Start your reflection journey with InnerCycles Pro'
+              : 'InnerCycles Pro ile yansıma yolculuğuna başla',
           style: TextStyle(
             color: Colors.white.withValues(alpha: 0.5),
             fontSize: 12,

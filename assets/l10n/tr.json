@@ -572,7 +572,7 @@
         "no_purchases_found": "Geri yüklenecek satın alım bulunamadı.",
         "lifetime": "Ömür Boyu",
         "best_value": "En Popüler",
-        "terms_text": "Abonelik, mevcut dönemin bitiminden 24 saat önce iptal edilmediği sürece otomatik olarak yenilenir. Hesabınız, mevcut dönemin bitiminden 24 saat önce yenileme için ücretlendirilecektir. Aboneliğinizi istediğiniz zaman App Store hesap ayarlarınızdan yönetebilir ve iptal edebilirsiniz.",
+        "terms_text": "Abonelik, mevcut dönemin bitiminden en az 24 saat önce iptal edilmediği takdirde seçilen plan fiyatı üzerinden otomatik olarak yenilenir. Hesabınızdan mevcut dönemin bitiminden 24 saat önce seçilen plan ücreti tahsil edilir. Aboneliğinizi istediğiniz zaman App Store hesap ayarlarından yönetebilir ve iptal edebilirsiniz.",
         "risk_reversal": "Dilediğin zaman iptal et. Kayıtların her zaman senin.",
         "price_anchor": "Yıllık faturayla $2,50/ay",
         "price_monthly_crossed": "$7,99/ay",

@@ -572,7 +572,7 @@
         "no_purchases_found": "No purchases found to restore.",
         "lifetime": "Lifetime",
         "best_value": "Most Popular",
-        "terms_text": "Subscription automatically renews unless canceled 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours before the end of the current period. You can manage and cancel your subscription at any time from your App Store account settings.",
+        "terms_text": "Subscription automatically renews at the selected plan price unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours prior to the end of the current period at the rate of your selected plan. You can manage and cancel your subscription at any time from your App Store account settings.",
         "risk_reversal": "Cancel anytime. Your entries are always yours.",
         "price_anchor": "$2.50/mo billed yearly",
         "price_monthly_crossed": "$7.99/mo",

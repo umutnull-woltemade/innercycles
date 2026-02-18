@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -542,40 +543,42 @@ class SettingsScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: 35),
 
-                      // ═══ ADMIN SECTION ═══
-                      _GroupedContainer(
-                        isDark: isDark,
-                        noPadding: true,
-                        child: _GroupedTile(
-                          icon: Icons.admin_panel_settings,
-                          title: L10nService.get('settings.admin', language),
+                      // ═══ ADMIN SECTION (debug only) ═══
+                      if (kDebugMode) ...[
+                        _GroupedContainer(
                           isDark: isDark,
-                          onTap: () => context.push(Routes.adminLogin),
-                          trailing: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  AppColors.starGold,
-                                  AppColors.celestialGold,
-                                ],
+                          noPadding: true,
+                          child: _GroupedTile(
+                            icon: Icons.admin_panel_settings,
+                            title: L10nService.get('settings.admin', language),
+                            isDark: isDark,
+                            onTap: () => context.push(Routes.adminLogin),
+                            trailing: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
                               ),
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: Text(
-                              L10nService.get('settings.pin', language),
-                              style: TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.deepSpace,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    AppColors.starGold,
+                                    AppColors.celestialGold,
+                                  ],
+                                ),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Text(
+                                L10nService.get('settings.pin', language),
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.deepSpace,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
+                      ],
                       const SizedBox(height: 40),
                     ]),
                   ),
