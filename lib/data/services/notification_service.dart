@@ -20,6 +20,19 @@ class NotificationService {
 
   bool _isInitialized = false;
 
+  /// Cached language preference (true = EN, false = TR)
+  bool _isEn = true;
+
+  /// Read language preference from SharedPreferences
+  Future<bool> _readIsEn() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      return (prefs.getInt('app_language') ?? 0) == 0;
+    } catch (_) {
+      return true;
+    }
+  }
+
   // Notification IDs
   static const int dailyReflectionId = 1;
   static const int weeklyReviewId = 2;
@@ -136,8 +149,9 @@ class NotificationService {
         route = Routes.home;
     }
 
-    if (navigatorKey.currentState != null) {
-      navigatorKey.currentState!.pushNamed(route);
+    final state = navigatorKey.currentState;
+    if (state != null) {
+      state.pushNamed(route);
     }
   }
 
@@ -149,12 +163,15 @@ class NotificationService {
     required int minute,
     String? personalizedMessage,
   }) async {
-    final message =
-        personalizedMessage ?? 'Take a moment to reflect on your day.';
+    _isEn = await _readIsEn();
+    final message = personalizedMessage ??
+        (_isEn
+            ? 'Take a moment to reflect on your day.'
+            : 'Bugününü düşünmek için bir an dur.');
 
     await _notifications.zonedSchedule(
       id: dailyReflectionId,
-      title: '✨ Your Daily Reflection',
+      title: _isEn ? '✨ Your Daily Reflection' : '✨ Günlük Yansıma',
       body: message,
       scheduledDate: _nextInstanceOfTime(hour, minute),
       notificationDetails: NotificationDetails(
@@ -211,10 +228,13 @@ class NotificationService {
     required int hour,
     required int minute,
   }) async {
+    _isEn = await _readIsEn();
     await _notifications.zonedSchedule(
       id: eveningReflectionId,
-      title: 'Evening Reflection',
-      body: 'How was your day? Take a moment to journal your thoughts.',
+      title: _isEn ? 'Evening Reflection' : 'Akşam Yansıması',
+      body: _isEn
+          ? 'How was your day? Take a moment to journal your thoughts.'
+          : 'Bugün nasıl geçti? Düşüncelerini günlüğüne yaz.',
       scheduledDate: _nextInstanceOfTime(hour, minute),
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
@@ -252,10 +272,13 @@ class NotificationService {
 
   /// Schedule moon cycle mindfulness reminders
   Future<void> scheduleMoonPhaseNotifications() async {
+    _isEn = await _readIsEn();
     await _notifications.zonedSchedule(
       id: moonCycleId,
-      title: 'Moon Cycle Awareness',
-      body: 'A new moon phase is here. A good time for mindful reflection.',
+      title: _isEn ? 'Moon Cycle Awareness' : 'Ay Döngüsü Farkındalığı',
+      body: _isEn
+          ? 'A new moon phase is here. A good time for mindful reflection.'
+          : 'Yeni bir ay evresi başladı. Bilinçli yansıma için güzel bir zaman.',
       scheduledDate: _nextInstanceOfTime(20, 0),
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
@@ -278,10 +301,14 @@ class NotificationService {
 
   /// Show new moon notification
   Future<void> showNewMoonNotification({String? message}) async {
+    _isEn = await _readIsEn();
     await _notifications.show(
       id: newMoonId,
-      title: '🌑 New Moon',
-      body: message ?? 'A time for new beginnings and setting intentions.',
+      title: _isEn ? '🌑 New Moon' : '🌑 Yeni Ay',
+      body: message ??
+          (_isEn
+              ? 'A time for new beginnings and setting intentions.'
+              : 'Yeni başlangıçlar ve niyet belirleme zamanı.'),
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'moon_cycle',
@@ -304,10 +331,14 @@ class NotificationService {
 
   /// Show full moon notification
   Future<void> showFullMoonNotification({String? message}) async {
+    _isEn = await _readIsEn();
     await _notifications.show(
       id: fullMoonId,
-      title: '🌕 Full Moon',
-      body: message ?? 'A time for reflection and gratitude.',
+      title: _isEn ? '🌕 Full Moon' : '🌕 Dolunay',
+      body: message ??
+          (_isEn
+              ? 'A time for reflection and gratitude.'
+              : 'Yansıma ve şükran zamanı.'),
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'moon_cycle',
