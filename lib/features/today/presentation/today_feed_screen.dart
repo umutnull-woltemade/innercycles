@@ -1,33 +1,24 @@
 // ════════════════════════════════════════════════════════════════════════════
-// TODAY FEED SCREEN - InnerCycles Personalized Daily Hub
+// TODAY FEED SCREEN - InnerCycles Focused Home (Survival Release)
 // ════════════════════════════════════════════════════════════════════════════
-// The "Today" tab. Shows personalized daily feed with smart suggestions,
-// active challenges, mood check-in, streak, and quick actions.
+// Core loop: Streak → Mood Check-in → Start Journaling → Insight → Entries
+// All SECONDARY feature cards removed. Clean, focused, retention-optimized.
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
-import '../../../data/services/growth_challenge_service.dart';
-import '../../../data/services/smart_router_service.dart';
-import '../../../data/models/tool_manifest.dart';
+import '../../../data/models/journal_entry.dart';
 import '../../streak/presentation/streak_card.dart';
 import '../../streak/presentation/streak_recovery_banner.dart';
 import '../../mood/presentation/mood_checkin_card.dart';
-import '../../affirmation/presentation/affirmation_card.dart';
-import '../../rituals/presentation/ritual_checkoff_card.dart';
-import '../../prompts/presentation/today_prompt_card.dart';
-import '../../quiz/presentation/quiz_suggestion_card.dart';
-import '../../cosmic/presentation/cosmic_message_card.dart';
 import '../../../shared/widgets/cosmic_background.dart';
-import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
   const TodayFeedScreen({super.key});
@@ -54,69 +45,40 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
             ),
             slivers: [
               // ═══════════════════════════════════════════════════════
-              // HEADER - Greeting + Quick Actions
+              // HEADER - Greeting + Settings
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
-                child: _TodayHeader(
+                child: _HomeHeader(
                   userName: userName,
                   isEn: isEn,
                   isDark: isDark,
-                  language: language,
                 ).animate().fadeIn(duration: 400.ms),
               ),
 
               // ═══════════════════════════════════════════════════════
-              // QUICK ACCESS CHIPS
+              // STREAK RECOVERY BANNER (if applicable)
               // ═══════════════════════════════════════════════════════
-              SliverToBoxAdapter(
+              const SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        _QuickChip(
-                          icon: Icons.edit_note_outlined,
-                          label: isEn ? 'Journal' : 'Günlük',
-                          onTap: () => context.push(Routes.journal),
-                          isDark: isDark,
-                        ),
-                        const SizedBox(width: 8),
-                        _QuickChip(
-                          icon: Icons.nights_stay_outlined,
-                          label: isEn ? 'Dream' : 'Rüya',
-                          onTap: () => context.push(Routes.dreamInterpretation),
-                          isDark: isDark,
-                        ),
-                        const SizedBox(width: 8),
-                        _QuickChip(
-                          icon: Icons.favorite_border,
-                          label: isEn ? 'Gratitude' : 'Şükran',
-                          onTap: () => context.push(Routes.gratitudeJournal),
-                          isDark: isDark,
-                        ),
-                        const SizedBox(width: 8),
-                        _QuickChip(
-                          icon: Icons.air_outlined,
-                          label: isEn ? 'Breathe' : 'Nefes',
-                          onTap: () => context.push(Routes.breathing),
-                          isDark: isDark,
-                        ),
-                        const SizedBox(width: 8),
-                        _QuickChip(
-                          icon: Icons.search_rounded,
-                          label: isEn ? 'Search' : 'Ara',
-                          onTap: () => context.push(Routes.search),
-                          isDark: isDark,
-                        ),
-                      ],
-                    ),
-                  ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: StreakRecoveryBanner(),
                 ),
               ),
 
               // ═══════════════════════════════════════════════════════
-              // PRIMARY CTA
+              // MOOD CHECK-IN
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: const MoodCheckinCard(),
+                ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
+              ),
+
+              const SliverToBoxAdapter(child: SizedBox(height: 16)),
+
+              // ═══════════════════════════════════════════════════════
+              // PRIMARY CTA - Start Journaling
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
                 child: Padding(
@@ -144,11 +106,11 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          Icon(Icons.edit_note_rounded, size: 20),
+                          const SizedBox(width: 8),
                           Flexible(
                             child: Text(
-                              isEn
-                                  ? 'Map Today\'s Cycle Position'
-                                  : 'Bugünün Döngü Pozisyonunu Haritalandır',
+                              isEn ? 'Start Journaling' : 'Günlüğe Başla',
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -156,8 +118,6 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          const SizedBox(width: 8),
-                          const Icon(Icons.arrow_forward_rounded, size: 18),
                         ],
                       ),
                     ),
@@ -168,48 +128,32 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               const SliverToBoxAdapter(child: SizedBox(height: 24)),
 
               // ═══════════════════════════════════════════════════════
-              // ACTIVE CHALLENGE CARD
+              // TODAY'S INSIGHT (pattern-based, if 3+ entries)
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
-                child: _ActiveChallengeSection(isEn: isEn, isDark: isDark),
+                child: _TodaysInsightSection(isEn: isEn, isDark: isDark),
               ),
 
               // ═══════════════════════════════════════════════════════
-              // FEED CARDS (lazy via SliverList)
+              // RECENT ENTRIES (last 3)
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _RecentEntriesSection(isEn: isEn, isDark: isDark),
+              ),
+
+              // ═══════════════════════════════════════════════════════
+              // STREAK CARD
               // ═══════════════════════════════════════════════════════
               SliverPadding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 8,
-                ),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    const StreakRecoveryBanner(),
-                    const MoodCheckinCard(),
-                    const SizedBox(height: 12),
-                    const AffirmationCard(),
-                    const SizedBox(height: 12),
-                    const CosmicMessageCard(),
-                    const SizedBox(height: 12),
-                    const TodayPromptCard(),
-                    const SizedBox(height: 12),
-                    const QuizSuggestionCard(),
-                    const SizedBox(height: 12),
-                    const StreakCard(),
-                    const SizedBox(height: 12),
-                    const RitualCheckoffCard(),
-                    const SizedBox(height: 24),
-                    _SuggestedToolsSection(isEn: isEn, isDark: isDark),
-                    const SizedBox(height: 24),
-                    ToolEcosystemFooter(
-                      currentToolId: 'todayFeed',
-                      isEn: isEn,
-                      isDark: isDark,
-                    ),
-                    const SizedBox(height: 32),
-                  ]),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                sliver: SliverToBoxAdapter(
+                  child: const StreakCard()
+                      .animate()
+                      .fadeIn(delay: 300.ms, duration: 400.ms),
                 ),
               ),
+
+              const SliverToBoxAdapter(child: SizedBox(height: 32)),
             ],
           ),
         ),
@@ -219,28 +163,23 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// TODAY HEADER
+// HOME HEADER
 // ════════════════════════════════════════════════════════════════════════════
 
-class _TodayHeader extends ConsumerWidget {
+class _HomeHeader extends StatelessWidget {
   final String userName;
   final bool isEn;
   final bool isDark;
-  final AppLanguage language;
 
-  const _TodayHeader({
+  const _HomeHeader({
     required this.userName,
     required this.isEn,
     required this.isDark,
-    required this.language,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final contentAsync = ref.watch(contentEngineServiceProvider);
-    final hookAsync = ref.watch(dailyHookServiceProvider);
+  Widget build(BuildContext context) {
     final hour = DateTime.now().hour;
-
     String greeting;
     if (hour < 12) {
       greeting = isEn ? 'Good morning' : 'Günaydın';
@@ -250,109 +189,55 @@ class _TodayHeader extends ConsumerWidget {
       greeting = isEn ? 'Good evening' : 'İyi akşamlar';
     }
 
-    final headline = contentAsync.maybeWhen(
-      data: (engine) {
-        final content = engine.generateDailyContent();
-        return content.reflectiveQuestion;
-      },
-      orElse: () => isEn
-          ? 'Which emotional cycle are you in right now?'
-          : 'Şu an hangi duygusal döngüdesin?',
-    );
-
-    final sentence = hookAsync.maybeWhen(
-      data: (hookService) => hour >= 18
-          ? hookService.getEveningHook(isEnglish: isEn)
-          : hookService.getMorningHook(isEnglish: isEn),
-      orElse: () => isEn
-          ? 'Your cycle engine is analyzing patterns across your recent entries.'
-          : 'Döngü motorun son kayıtlarındaki örüntüleri analiz ediyor.',
-    );
-
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          // Greeting row
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '$greeting, $userName',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      isEn
-                          ? 'Emotional Cycle Intelligence'
-                          : 'Duygusal Döngü Zekası',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
-                      ),
-                    ),
-                  ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  userName.isNotEmpty ? '$greeting, $userName' : greeting,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ),
-              IconButton(
-                tooltip: isEn ? 'Settings' : 'Ayarlar',
-                onPressed: () {
-                  HapticFeedback.lightImpact();
-                  context.push(Routes.settings);
-                },
-                icon: Icon(
-                  Icons.settings_outlined,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                  size: 22,
+                const SizedBox(height: 4),
+                Text(
+                  isEn
+                      ? 'How are you feeling today?'
+                      : 'Bugün nasıl hissediyorsun?',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
                 ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 16),
-
-          // Daily headline
-          Text(
-            headline,
-            style: GoogleFonts.cormorantGaramond(
-              fontSize: 22,
-              fontWeight: FontWeight.w700,
-              color: isDark ? AppColors.starGold : AppColors.lightStarGold,
-              height: 1.3,
+              ],
             ),
           ),
-
-          const SizedBox(height: 8),
-
-          // Daily sentence
-          Text(
-            sentence,
-            style: TextStyle(
-              fontSize: 14,
+          IconButton(
+            tooltip: isEn ? 'Settings' : 'Ayarlar',
+            onPressed: () {
+              HapticFeedback.lightImpact();
+              context.push(Routes.settings);
+            },
+            icon: Icon(
+              Icons.settings_outlined,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
-              height: 1.5,
+              size: 22,
             ),
           ),
-
-          const SizedBox(height: 16),
         ],
       ),
     );
@@ -360,132 +245,163 @@ class _TodayHeader extends ConsumerWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// QUICK CHIP
+// TODAY'S INSIGHT — Pattern-based note from journal history
 // ════════════════════════════════════════════════════════════════════════════
 
-class _QuickChip extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final VoidCallback onTap;
+class _TodaysInsightSection extends ConsumerWidget {
+  final bool isEn;
   final bool isDark;
 
-  const _QuickChip({
-    required this.icon,
-    required this.label,
-    required this.onTap,
-    required this.isDark,
-  });
+  const _TodaysInsightSection({required this.isEn, required this.isDark});
 
   @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: () {
-          HapticFeedback.selectionClick();
-          onTap();
-        },
-        borderRadius: BorderRadius.circular(20),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-          decoration: BoxDecoration(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final engineAsync = ref.watch(patternEngineServiceProvider);
+
+    return engineAsync.maybeWhen(
+      data: (engine) {
+        if (!engine.hasEnoughData()) {
+          final needed = engine.entriesNeeded();
+          return _buildCard(
+            context,
+            icon: Icons.auto_awesome_outlined,
+            text: isEn
+                ? 'Log $needed more entries to unlock your personal patterns'
+                : 'Kişisel örüntülerini keşfetmek için $needed kayıt daha ekle',
+          );
+        }
+
+        final trends = engine.detectTrends();
+        if (trends.isEmpty) return const SizedBox.shrink();
+
+        // Pick the most notable trend (largest change)
+        final best = trends.reduce(
+          (a, b) =>
+              a.changePercent.abs() > b.changePercent.abs() ? a : b,
+        );
+        final text = isEn ? best.getMessageEn() : best.getMessageTr();
+
+        return _buildCard(context, icon: Icons.lightbulb_outline, text: text);
+      },
+      orElse: () => const SizedBox.shrink(),
+    );
+  }
+
+  Widget _buildCard(BuildContext context, {required IconData icon, required String text}) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: isDark
+              ? AppColors.starGold.withValues(alpha: 0.08)
+              : AppColors.lightStarGold.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+          border: Border.all(
             color: isDark
-                ? AppColors.cosmicPurple.withValues(alpha: 0.3)
-                : AppColors.lightSurfaceVariant,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: isDark
-                  ? AppColors.starGold.withValues(alpha: 0.2)
-                  : AppColors.lightStarGold.withValues(alpha: 0.2),
-            ),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                icon,
-                size: 16,
-                color: isDark ? AppColors.starGold : AppColors.lightStarGold,
-              ),
-              const SizedBox(width: 6),
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                ),
-              ),
-            ],
+                ? AppColors.starGold.withValues(alpha: 0.2)
+                : AppColors.lightStarGold.withValues(alpha: 0.2),
           ),
         ),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              size: 20,
+              color: isDark ? AppColors.starGold : AppColors.lightStarGold,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                  height: 1.4,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-    );
+    ).animate().fadeIn(delay: 250.ms, duration: 400.ms);
   }
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// ACTIVE CHALLENGE SECTION
+// RECENT ENTRIES — Last 3 journal entries (compact)
 // ════════════════════════════════════════════════════════════════════════════
 
-class _ActiveChallengeSection extends ConsumerWidget {
+class _RecentEntriesSection extends ConsumerWidget {
   final bool isEn;
   final bool isDark;
 
-  const _ActiveChallengeSection({required this.isEn, required this.isDark});
+  const _RecentEntriesSection({required this.isEn, required this.isDark});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final challengeAsync = ref.watch(growthChallengeServiceProvider);
+    final journalAsync = ref.watch(journalServiceProvider);
 
-    return challengeAsync.maybeWhen(
+    return journalAsync.maybeWhen(
       data: (service) {
-        // Build list of active challenges
-        final activeList = <_ActiveChallengeData>[];
-        for (final challenge in GrowthChallengeService.allChallenges) {
-          final progress = service.getProgress(challenge.id);
-          if (progress != null && !progress.isCompleted) {
-            activeList.add(
-              _ActiveChallengeData(challenge: challenge, progress: progress),
-            );
-          }
-        }
-
-        if (activeList.isEmpty) return const SizedBox.shrink();
+        final entries = service.getRecentEntries(3);
+        if (entries.isEmpty) return const SizedBox.shrink();
 
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                isEn ? 'Active Challenges' : 'Aktif Görevler',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                ),
-              ),
-              const SizedBox(height: 12),
-              ...activeList
-                  .take(2)
-                  .map(
-                    (data) => Padding(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      child: _ActiveChallengeCard(
-                        data: data,
-                        isEn: isEn,
-                        isDark: isDark,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    isEn ? 'Recent Entries' : 'Son Kayıtlar',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      HapticFeedback.selectionClick();
+                      context.push(Routes.journalArchive);
+                    },
+                    child: Text(
+                      isEn ? 'See All' : 'Tümünü Gör',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: isDark
+                            ? AppColors.starGold
+                            : AppColors.lightStarGold,
                       ),
                     ),
                   ),
-              const SizedBox(height: 8),
+                ],
+              ),
+              const SizedBox(height: 12),
+              ...entries.asMap().entries.map((mapEntry) {
+                final index = mapEntry.key;
+                final entry = mapEntry.value;
+                return _RecentEntryRow(
+                  entry: entry,
+                  isEn: isEn,
+                  isDark: isDark,
+                  onTap: () => context.push('/journal/entry/${entry.id}'),
+                ).animate().fadeIn(
+                  delay: Duration(milliseconds: 250 + index * 60),
+                  duration: 400.ms,
+                );
+              }),
             ],
-          ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+          ),
         );
       },
       orElse: () => const SizedBox.shrink(),
@@ -493,420 +409,126 @@ class _ActiveChallengeSection extends ConsumerWidget {
   }
 }
 
-class _ActiveChallengeData {
-  final GrowthChallenge challenge;
-  final ChallengeProgress progress;
-
-  const _ActiveChallengeData({required this.challenge, required this.progress});
-}
-
-class _ActiveChallengeCard extends StatelessWidget {
-  final _ActiveChallengeData data;
+class _RecentEntryRow extends StatelessWidget {
+  final JournalEntry entry;
   final bool isEn;
   final bool isDark;
+  final VoidCallback onTap;
 
-  const _ActiveChallengeCard({
-    required this.data,
+  const _RecentEntryRow({
+    required this.entry,
     required this.isEn,
     required this.isDark,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    final challenge = data.challenge;
-    final progress = data.progress;
+    final dateStr = _formatDate(entry.date, isEn);
+    final areaLabel = _focusAreaLabel(entry.focusArea, isEn);
+    final rating = entry.overallRating;
 
-    return Container(
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Text(challenge.emoji, style: const TextStyle(fontSize: 24)),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      isEn ? challenge.titleEn : challenge.titleTr,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      '${progress.currentCount}/${progress.targetCount}',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-                  ],
+    return GestureDetector(
+      onTap: () {
+        HapticFeedback.selectionClick();
+        onTap();
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+        decoration: BoxDecoration(
+          color: isDark
+              ? AppColors.surfaceDark.withValues(alpha: 0.6)
+              : AppColors.lightCard,
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+          border: Border.all(
+            color: isDark
+                ? Colors.white.withValues(alpha: 0.06)
+                : Colors.black.withValues(alpha: 0.04),
+          ),
+        ),
+        child: Row(
+          children: [
+            // Date
+            SizedBox(
+              width: 70,
+              child: Text(
+                dateStr,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                 ),
               ),
-              Text(
-                '${(progress.percent * 100).round()}%',
+            ),
+            const SizedBox(width: 8),
+            // Focus area label
+            Expanded(
+              child: Text(
+                areaLabel,
                 style: TextStyle(
                   fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.starGold,
+                  fontWeight: FontWeight.w500,
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          // Progress bar
-          ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child: LinearProgressIndicator(
-              value: progress.percent,
-              backgroundColor: isDark
-                  ? Colors.white.withValues(alpha: 0.08)
-                  : Colors.black.withValues(alpha: 0.06),
-              valueColor: const AlwaysStoppedAnimation<Color>(
-                AppColors.starGold,
-              ),
-              minHeight: 6,
-            ),
-          ),
-          const SizedBox(height: 12),
-          // Apply button
-          SizedBox(
-            width: double.infinity,
-            child: OutlinedButton(
-              onPressed: () {
-                HapticFeedback.lightImpact();
-                // Route to the appropriate tool based on challenge
-                final route = _getChallengeRoute(challenge.id);
-                context.push(route);
-              },
-              style: OutlinedButton.styleFrom(
-                foregroundColor: AppColors.starGold,
-                side: const BorderSide(color: AppColors.starGold, width: 1),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-                ),
-                padding: const EdgeInsets.symmetric(vertical: 10),
-              ),
-              child: Text(
-                isEn ? 'Apply Now' : 'Şimdi Uygula',
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-          ),
-        ],
+            const SizedBox(width: 8),
+            // Rating dots (1-5)
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: List.generate(5, (i) {
+                final filled = i < rating;
+                return Container(
+                  width: 8,
+                  height: 8,
+                  margin: const EdgeInsets.only(left: 3),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: filled
+                        ? (isDark
+                            ? AppColors.starGold
+                            : AppColors.lightStarGold)
+                        : (isDark
+                            ? Colors.white.withValues(alpha: 0.12)
+                            : Colors.black.withValues(alpha: 0.08)),
+                  ),
+                );
+              }),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  String _getChallengeRoute(String challengeId) {
-    switch (challengeId) {
-      case 'journal_7day':
-      case 'all_areas':
-      case 'notes_master':
-      case 'monthly_30':
-        return Routes.journal;
-      case 'gratitude_5':
-        return Routes.gratitudeJournal;
-      case 'morning_ritual':
-        return Routes.rituals;
-      case 'sleep_week':
-        return Routes.sleepDetail;
-      case 'breathing_5':
-        return Routes.breathing;
-      case 'pattern_seeker':
-        return Routes.journalPatterns;
-      case 'dream_week':
-        return Routes.dreamInterpretation;
-      case 'wellness_high':
-        return Routes.wellnessDetail;
-      case 'share_3':
-        return Routes.shareCardGallery;
-      default:
-        return Routes.journal;
+  static String _formatDate(DateTime date, bool isEn) {
+    final months = isEn
+        ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+           'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        : ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
+           'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+    return '${months[date.month - 1]} ${date.day}';
+  }
+
+  static String _focusAreaLabel(FocusArea area, bool isEn) {
+    switch (area) {
+      case FocusArea.energy:
+        return isEn ? 'Energy' : 'Enerji';
+      case FocusArea.focus:
+        return isEn ? 'Focus' : 'Odak';
+      case FocusArea.emotions:
+        return isEn ? 'Emotions' : 'Duygular';
+      case FocusArea.decisions:
+        return isEn ? 'Decisions' : 'Kararlar';
+      case FocusArea.social:
+        return isEn ? 'Social' : 'Sosyal';
     }
   }
-}
-
-// ════════════════════════════════════════════════════════════════════════════
-// SUGGESTED TOOLS SECTION - SmartRouter-powered dynamic suggestions
-// ════════════════════════════════════════════════════════════════════════════
-
-class _SuggestedToolsSection extends ConsumerWidget {
-  final bool isEn;
-  final bool isDark;
-
-  const _SuggestedToolsSection({required this.isEn, required this.isDark});
-
-  static const _categoryColors = <ToolCategory, Color>{
-    ToolCategory.journal: AppColors.auroraStart,
-    ToolCategory.analysis: AppColors.amethyst,
-    ToolCategory.discovery: AppColors.brandPink,
-    ToolCategory.support: AppColors.success,
-    ToolCategory.reference: AppColors.starGold,
-    ToolCategory.data: AppColors.auroraEnd,
-  };
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final routerAsync = ref.watch(smartRouterServiceProvider);
-    final journalAsync = ref.watch(journalServiceProvider);
-    final streakAsync = ref.watch(journalStreakProvider);
-    final challengeAsync = ref.watch(growthChallengeServiceProvider);
-
-    return routerAsync.when(
-      loading: () => const SizedBox.shrink(),
-      error: (e, _) => _buildFallback(context),
-      data: (router) {
-        final totalEntries = journalAsync.valueOrNull?.entryCount ?? 0;
-        final streak = streakAsync.valueOrNull ?? 0;
-
-        String? activeChallenge;
-        final challengeService = challengeAsync.valueOrNull;
-        if (challengeService != null) {
-          for (final c in GrowthChallengeService.allChallenges) {
-            final p = challengeService.getProgress(c.id);
-            if (p != null && !p.isCompleted) {
-              activeChallenge = c.id;
-              break;
-            }
-          }
-        }
-
-        final ctx = SmartRouterContext(
-          currentScreen: '/today',
-          userGoals: router.getUserGoals(),
-          isNewUser: totalEntries < 3,
-          totalEntries: totalEntries,
-          currentStreak: streak,
-          activeChallenge: activeChallenge,
-          timeBudgetMinutes: router.getTimeBudget(),
-        );
-
-        final actions = router.getNextActions(ctx);
-        if (actions.isEmpty) return _buildFallback(context);
-
-        return _buildSection(context, actions);
-      },
-    );
-  }
-
-  Widget _buildSection(BuildContext context, List<ToolSuggestion> actions) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          isEn ? 'Suggested For You' : 'Senin İçin Öneriler',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-          ),
-        ),
-        const SizedBox(height: 12),
-        ...actions.asMap().entries.map((entry) {
-          final action = entry.value;
-          final manifest = ToolManifestRegistry.findById(action.toolId);
-          final color = manifest != null
-              ? (_categoryColors[manifest.category] ?? AppColors.auroraStart)
-              : AppColors.auroraStart;
-
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: GestureDetector(
-              onTap: () {
-                HapticFeedback.selectionClick();
-                context.push(action.route);
-              },
-              child: Container(
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: isDark
-                      ? color.withValues(alpha: 0.08)
-                      : color.withValues(alpha: 0.05),
-                  borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-                  border: Border.all(color: color.withValues(alpha: 0.2)),
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      manifest?.icon ?? '🔧',
-                      style: const TextStyle(fontSize: 24),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            manifest != null
-                                ? (isEn ? manifest.nameEn : manifest.nameTr)
-                                : action.toolId,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            isEn ? action.reasonEn : action.reasonTr,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
-                              height: 1.3,
-                            ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 14,
-                      color: isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ).animate().fadeIn(
-            delay: Duration(milliseconds: 300 + entry.key * 80),
-            duration: 400.ms,
-          );
-        }),
-      ],
-    ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
-  }
-
-  Widget _buildFallback(BuildContext context) {
-    final fallback = [
-      _FallbackTool('journalPatterns', Routes.journalPatterns),
-      _FallbackTool('emotionalCycles', Routes.emotionalCycles),
-      _FallbackTool('archetype', Routes.archetype),
-    ];
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          isEn ? 'Explore Tools' : 'Araçları Keşfet',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-          ),
-        ),
-        const SizedBox(height: 12),
-        SizedBox(
-          height: 110,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: fallback.length,
-            itemBuilder: (context, index) {
-              final item = fallback[index];
-              final manifest = ToolManifestRegistry.findById(item.id);
-              if (manifest == null) return const SizedBox.shrink();
-              final color =
-                  _categoryColors[manifest.category] ?? AppColors.auroraStart;
-              return Padding(
-                padding: EdgeInsets.only(
-                  right: index < fallback.length - 1 ? 12 : 0,
-                ),
-                child: GestureDetector(
-                  onTap: () {
-                    HapticFeedback.selectionClick();
-                    context.push(item.route);
-                  },
-                  child: Container(
-                    width: 150,
-                    padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      color: isDark
-                          ? color.withValues(alpha: 0.08)
-                          : color.withValues(alpha: 0.05),
-                      borderRadius: BorderRadius.circular(
-                        AppConstants.radiusMd,
-                      ),
-                      border: Border.all(color: color.withValues(alpha: 0.2)),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          manifest.icon,
-                          style: const TextStyle(fontSize: 24),
-                        ),
-                        const Spacer(),
-                        Text(
-                          isEn ? manifest.nameEn : manifest.nameTr,
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            color: isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          isEn
-                              ? manifest.valuePropositionEn
-                              : manifest.valuePropositionTr,
-                          style: TextStyle(
-                            fontSize: 11,
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ).animate(delay: (50 * index).ms).fadeIn(duration: 300.ms);
-            },
-          ),
-        ),
-      ],
-    ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
-  }
-}
-
-class _FallbackTool {
-  final String id;
-  final String route;
-  const _FallbackTool(this.id, this.route);
 }
