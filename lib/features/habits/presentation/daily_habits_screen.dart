@@ -320,7 +320,12 @@ class _HabitCheckCard extends StatelessWidget {
                 button: true,
                 child: GestureDetector(
                   onTap: onToggle,
-                  child: AnimatedContainer(
+                  behavior: HitTestBehavior.opaque,
+                  child: SizedBox(
+                    width: 44,
+                    height: 44,
+                    child: Center(
+                    child: AnimatedContainer(
                     duration: const Duration(milliseconds: 250),
                     width: 36,
                     height: 36,
@@ -347,6 +352,8 @@ class _HabitCheckCard extends StatelessWidget {
                             size: 20,
                           )
                         : null,
+                  ),
+                  ),
                   ),
                 ),
               ),

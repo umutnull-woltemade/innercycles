@@ -180,7 +180,10 @@ class _CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Semantics(
+      label: isEn ? category.nameEn : category.nameTr,
+      button: true,
+      child: GestureDetector(
       onTap: () {
         HapticFeedback.lightImpact();
         context.push(category.route);
@@ -227,6 +230,7 @@ class _CategoryCard extends StatelessWidget {
           ],
         ),
       ),
+    ),
     );
   }
 }

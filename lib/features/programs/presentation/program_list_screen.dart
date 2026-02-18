@@ -256,7 +256,10 @@ class _ProgramCard extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
-      child: GestureDetector(
+      child: Semantics(
+        label: isEn ? program.titleEn : program.titleTr,
+        button: true,
+        child: GestureDetector(
         onTap: () {
           HapticFeedback.lightImpact();
           onTap();
@@ -431,6 +434,7 @@ class _ProgramCard extends StatelessWidget {
             ],
           ),
         ).animate().fadeIn(duration: 300.ms),
+        ),
       ),
     );
   }

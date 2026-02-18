@@ -346,7 +346,10 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
             final option = question.options[index];
             return Padding(
               padding: const EdgeInsets.only(bottom: 12),
-              child: GestureDetector(
+              child: Semantics(
+                label: isEn ? option.textEn : option.textTr,
+                button: true,
+                child: GestureDetector(
                 onTap: () => _selectOption(option),
                 child: GlassPanel(
                   elevation: GlassElevation.g2,
@@ -363,6 +366,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                     ),
                   ),
                 ),
+              ),
               ),
             ).glassListItem(context: context, index: index);
           }),

@@ -504,7 +504,7 @@ class _CalendarGrid extends StatelessWidget {
                 children: List.generate(7, (weekday) {
                   final dayIndex = week * 7 + weekday - (startWeekday - 1);
                   if (dayIndex < 1 || dayIndex > daysInMonth) {
-                    return const Expanded(child: SizedBox(height: 40));
+                    return const Expanded(child: SizedBox(height: 44));
                   }
 
                   final date = DateTime(year, month, dayIndex);
@@ -526,7 +526,7 @@ class _CalendarGrid extends StatelessWidget {
                       child: GestureDetector(
                         onTap: isFuture ? null : () => onDayTap(dateKey),
                         child: Container(
-                          height: 40,
+                          height: 44,
                           margin: const EdgeInsets.all(1),
                           decoration: BoxDecoration(
                             color: _getCellColor(

@@ -1604,7 +1604,11 @@ class _PermissionStartPage extends StatelessWidget {
                       onTap: notificationsRequested
                           ? null
                           : onRequestNotifications,
-                      child: AnimatedContainer(
+                      child: SizedBox(
+                        width: 52,
+                        height: 44,
+                        child: Center(
+                        child: AnimatedContainer(
                         duration: const Duration(milliseconds: 250),
                         width: 52,
                         height: 30,
@@ -1637,6 +1641,8 @@ class _PermissionStartPage extends StatelessWidget {
                             ),
                           ),
                         ),
+                      ),
+                      ),
                       ),
                     ),
                   ),

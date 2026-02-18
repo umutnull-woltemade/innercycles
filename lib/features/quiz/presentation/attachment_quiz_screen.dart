@@ -339,7 +339,11 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
     required bool isDark,
     required VoidCallback onTap,
   }) {
-    return GestureDetector(
+    return Semantics(
+      label: optionText,
+      button: true,
+      selected: isSelected,
+      child: GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
@@ -412,6 +416,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
           ],
         ),
       ),
+    ),
     );
   }
 
