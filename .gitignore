@@ -88,3 +88,10 @@ RECOVERY_REPORT.md
 SECRETS_NEEDED.md
 SESSION_MAP.md
 release_notes_short.txt
+
+# Recovery artifacts
+.recovery/
+
+# Debug/preflight artifacts
+check_debug*.py
+preflight_reports/

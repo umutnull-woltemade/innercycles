@@ -13,7 +13,7 @@ struct MoodInsightProvider: TimelineProvider {
             currentMood: "Calm",
             moodEmoji: "😌",
             energyLevel: 75,
-            advice: "Focus on creativity and emotional connections",
+            advice: "You may find creative work and emotional connections rewarding",
             weekTrend: "Improving"
         )
     }
@@ -247,7 +247,7 @@ struct MoodInsightWidget_Previews: PreviewProvider {
                 currentMood: "Calm",
                 moodEmoji: "😌",
                 energyLevel: 85,
-                advice: "Great day for creative work and deep reflection",
+                advice: "You may find creative work and deep reflection rewarding",
                 weekTrend: "Improving"
             ))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
@@ -257,7 +257,7 @@ struct MoodInsightWidget_Previews: PreviewProvider {
                 currentMood: "Calm",
                 moodEmoji: "😌",
                 energyLevel: 85,
-                advice: "Great day for creative work and deep reflection",
+                advice: "You may find creative work and deep reflection rewarding",
                 weekTrend: "Improving"
             ))
             .previewContext(WidgetPreviewContext(family: .systemMedium))

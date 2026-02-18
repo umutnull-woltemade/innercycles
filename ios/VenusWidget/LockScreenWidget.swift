@@ -12,7 +12,7 @@ struct LockScreenProvider: TimelineProvider {
         LockScreenEntry(
             date: Date(),
             moodEmoji: "😊",
-            moonEmoji: "🌒",
+            accentEmoji: "✨",
             shortMessage: "Reflect on what matters",
             energyLevel: 4 // 1-5 scale for lock screen
         )
@@ -38,7 +38,7 @@ struct LockScreenProvider: TimelineProvider {
         let sharedDefaults = UserDefaults(suiteName: "group.com.venusone.innercycles")
 
         guard let moodEmoji = sharedDefaults?.string(forKey: "widget_mood_emoji"),
-              let moonEmoji = sharedDefaults?.string(forKey: "widget_moon_emoji"),
+              let accentEmoji = sharedDefaults?.string(forKey: "widget_accent_emoji"),
               let shortMessage = sharedDefaults?.string(forKey: "widget_short_message") else {
             return nil
         }
@@ -48,7 +48,7 @@ struct LockScreenProvider: TimelineProvider {
         return LockScreenEntry(
             date: Date(),
             moodEmoji: moodEmoji,
-            moonEmoji: moonEmoji,
+            accentEmoji: accentEmoji,
             shortMessage: shortMessage,
             energyLevel: energyLevel
         )
@@ -60,7 +60,7 @@ struct LockScreenProvider: TimelineProvider {
 struct LockScreenEntry: TimelineEntry {
     let date: Date
     let moodEmoji: String
-    let moonEmoji: String
+    let accentEmoji: String
     let shortMessage: String
     let energyLevel: Int // 1-5
 }
@@ -120,7 +120,7 @@ struct RectangularLockScreenView: View {
             VStack(spacing: 2) {
                 Text(entry.moodEmoji)
                     .font(.system(size: 24))
-                Text(entry.moonEmoji)
+                Text(entry.accentEmoji)
                     .font(.system(size: 14))
             }
 
@@ -179,7 +179,7 @@ struct LockScreenWidget_Previews: PreviewProvider {
             LockScreenWidgetEntryView(entry: LockScreenEntry(
                 date: Date(),
                 moodEmoji: "😊",
-                moonEmoji: "🌕",
+                accentEmoji: "✨",
                 shortMessage: "Reflect on what matters today",
                 energyLevel: 4
             ))
@@ -188,7 +188,7 @@ struct LockScreenWidget_Previews: PreviewProvider {
             LockScreenWidgetEntryView(entry: LockScreenEntry(
                 date: Date(),
                 moodEmoji: "😊",
-                moonEmoji: "🌕",
+                accentEmoji: "✨",
                 shortMessage: "Reflect on what matters today",
                 energyLevel: 4
             ))
@@ -197,7 +197,7 @@ struct LockScreenWidget_Previews: PreviewProvider {
             LockScreenWidgetEntryView(entry: LockScreenEntry(
                 date: Date(),
                 moodEmoji: "😊",
-                moonEmoji: "🌕",
+                accentEmoji: "✨",
                 shortMessage: "Reflect on what matters",
                 energyLevel: 4
             ))
