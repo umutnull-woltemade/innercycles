@@ -20,7 +20,7 @@ class WellnessDetailScreen extends ConsumerWidget {
     final isEn = language == AppLanguage.en;
     final scoreAsync = ref.watch(wellnessScoreProvider);
     final trendAsync = ref.watch(wellnessTrendProvider);
-    final isPremium = ref.watch(premiumProvider).isPremium;
+    final isPremium = ref.watch(isPremiumUserProvider);
 
     return Scaffold(
       body: CosmicBackground(
@@ -556,7 +556,7 @@ class _WeeklyTrendChart extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      score.dateKey.substring(8),
+                      score.dateKey.length > 8 ? score.dateKey.substring(8) : score.dateKey,
                       style: TextStyle(
                         fontSize: 10,
                         color: isDark

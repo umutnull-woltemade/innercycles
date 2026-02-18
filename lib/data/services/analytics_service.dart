@@ -92,7 +92,7 @@ class AnalyticsService {
     logEvent('app_error', {
       'error_type': errorType,
       'message': message,
-      if (stackTrace != null) 'stack_trace': stackTrace.substring(0, 100),
+      if (stackTrace != null) 'stack_trace': stackTrace.length > 100 ? stackTrace.substring(0, 100) : stackTrace,
     });
   }
 

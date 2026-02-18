@@ -29,7 +29,7 @@ class ProgramListScreen extends ConsumerWidget {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
-    final isPremium = ref.watch(premiumProvider).isPremium;
+    final isPremium = ref.watch(isPremiumUserProvider);
     final serviceAsync = ref.watch(guidedProgramServiceProvider);
 
     return Scaffold(

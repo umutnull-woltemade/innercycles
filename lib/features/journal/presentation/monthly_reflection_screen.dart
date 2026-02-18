@@ -44,7 +44,7 @@ class _MonthlyReflectionScreenState
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
     final engineAsync = ref.watch(patternEngineServiceProvider);
-    final isPremium = ref.watch(premiumProvider).isPremium;
+    final isPremium = ref.watch(isPremiumUserProvider);
     final firstTasteAsync = ref.watch(firstTasteServiceProvider);
 
     // Determine if deep content (theme + breakdown) should be visible

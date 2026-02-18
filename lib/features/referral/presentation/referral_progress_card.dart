@@ -16,7 +16,7 @@ class ReferralProgressCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isPremium = ref.watch(premiumProvider).isPremium;
+    final isPremium = ref.watch(isPremiumUserProvider);
     final language = ref.watch(languageProvider);
     final isEn = language == AppLanguage.en;
 

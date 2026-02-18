@@ -57,7 +57,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
     final language = ref.watch(languageProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
-    final isPremium = ref.watch(premiumProvider).isPremium;
+    final isPremium = ref.watch(isPremiumUserProvider);
     final maxItems =
         isPremium ? 5 : 3;
 

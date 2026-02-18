@@ -8,6 +8,9 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/gratitude_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/ecosystem_widgets.dart';
+import '../../../core/constants/routes.dart';
+import 'package:go_router/go_router.dart';
 
 class GratitudeArchiveScreen extends ConsumerWidget {
   const GratitudeArchiveScreen({super.key});
@@ -58,16 +61,16 @@ class GratitudeArchiveScreen extends ConsumerWidget {
             title: isEn ? 'Gratitude Archive' : 'Şükran Arşivi',
           ),
           SliverFillRemaining(
-            child: Center(
-              child: Text(
-                isEn
-                    ? 'No gratitude entries yet.\nStart your gratitude practice today!'
-                    : 'Henüz şükran kaydı yok.\nBugün şükran pratiğine başla!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                ),
-              ),
+            hasScrollBody: false,
+            child: ToolEmptyState(
+              icon: Icons.favorite_border,
+              titleEn: 'No gratitude entries yet',
+              titleTr: 'Henüz şükran kaydı yok',
+              descriptionEn: 'Start your gratitude practice to see your appreciation patterns grow.',
+              descriptionTr: 'Şükran kalıplarının büyümesini görmek için şükran pratiğine başla.',
+              onStartTemplate: () => context.push(Routes.gratitudeJournal),
+              isEn: isEn,
+              isDark: isDark,
             ),
           ),
         ],

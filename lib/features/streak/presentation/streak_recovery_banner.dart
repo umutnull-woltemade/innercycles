@@ -21,7 +21,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
     final streakAsync = ref.watch(streakStatsProvider);
-    final isPremium = ref.watch(premiumProvider).isPremium;
+    final isPremium = ref.watch(isPremiumUserProvider);
 
     return streakAsync.when(
       loading: () => const SizedBox.shrink(),

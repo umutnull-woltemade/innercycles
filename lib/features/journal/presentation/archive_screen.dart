@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -10,6 +11,7 @@ import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/ecosystem_widgets.dart';
 
 class ArchiveScreen extends ConsumerStatefulWidget {
   const ArchiveScreen({super.key});
@@ -22,9 +24,11 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
   FocusArea? _filterArea;
   String _searchQuery = '';
   final _searchController = TextEditingController();
+  Timer? _searchDebounce;
 
   @override
   void dispose() {
+    _searchDebounce?.cancel();
     _searchController.dispose();
     super.dispose();
   }
@@ -122,15 +126,15 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                   if (entries.isEmpty)
                     SliverFillRemaining(
                       hasScrollBody: false,
-                      child: Center(
-                        child: Text(
-                          isEn ? 'No entries yet' : 'Henüz kayıt yok',
-                          style: TextStyle(
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
-                        ),
+                      child: ToolEmptyState(
+                        icon: Icons.book_outlined,
+                        titleEn: 'No entries yet',
+                        titleTr: 'Henüz kayıt yok',
+                        descriptionEn: 'Your journal entries will appear here as you build your personal cycle map.',
+                        descriptionTr: 'Kişisel döngü haritanı oluşturdukça günlük kayıtların burada görünecek.',
+                        onStartTemplate: () => context.push(Routes.journal),
+                        isEn: isEn,
+                        isDark: isDark,
                       ),
                     )
                   else
@@ -182,7 +186,12 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
       ),
       child: TextField(
         controller: _searchController,
-        onChanged: (v) => setState(() => _searchQuery = v),
+        onChanged: (v) {
+          _searchDebounce?.cancel();
+          _searchDebounce = Timer(const Duration(milliseconds: 300), () {
+            if (mounted) setState(() => _searchQuery = v);
+          });
+        },
         style: TextStyle(
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),

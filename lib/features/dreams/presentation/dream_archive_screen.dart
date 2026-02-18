@@ -9,6 +9,9 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/dream_journal_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/ecosystem_widgets.dart';
+import '../../../core/constants/routes.dart';
+import 'package:go_router/go_router.dart';
 
 class DreamArchiveScreen extends ConsumerStatefulWidget {
   const DreamArchiveScreen({super.key});
@@ -218,44 +221,15 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                 else if (dreams.isEmpty)
                   SliverFillRemaining(
                     hasScrollBody: false,
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            CupertinoIcons.moon_zzz,
-                            size: 48,
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
-                          const SizedBox(height: AppConstants.spacingMd),
-                          Text(
-                            isEn
-                                ? 'No dreams recorded yet'
-                                : 'Henüz rüya kaydedilmedi',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: isDark
-                                  ? AppColors.textSecondary
-                                  : AppColors.lightTextSecondary,
-                            ),
-                          ),
-                          const SizedBox(height: AppConstants.spacingSm),
-                          Text(
-                            isEn
-                                ? 'Your dream journal entries will appear here'
-                                : 'Rüya günlüğü kayıtlarınız burada görünecek',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
-                            ),
-                          ),
-                        ],
-                      ),
+                    child: ToolEmptyState(
+                      icon: CupertinoIcons.moon_zzz,
+                      titleEn: 'No dreams recorded yet',
+                      titleTr: 'Henüz rüya kaydedilmedi',
+                      descriptionEn: 'Your dream journal entries will appear here. Start recording to discover patterns.',
+                      descriptionTr: 'Rüya günlüğü kayıtların burada görünecek. Kalıpları keşfetmek için kayda başla.',
+                      onStartTemplate: () => context.push(Routes.dreamInterpretation),
+                      isEn: isEn,
+                      isDark: isDark,
                     ),
                   )
 

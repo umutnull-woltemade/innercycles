@@ -169,7 +169,7 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isPremium = ref.watch(premiumProvider).isPremium;
+    final isPremium = ref.watch(isPremiumUserProvider);
 
     if (!isPremium) {
       return _buildLockedButton(isDark);
