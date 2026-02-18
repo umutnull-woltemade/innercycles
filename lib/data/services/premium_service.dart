@@ -10,6 +10,7 @@ import '../providers/app_providers.dart';
 import 'ad_service.dart';
 import 'analytics_service.dart';
 import 'l10n_service.dart';
+import 'storage_service.dart';
 
 /// Premium subscription tiers
 enum PremiumTier { free, monthly, yearly, lifetime }
@@ -529,25 +530,26 @@ class PremiumNotifier extends Notifier<PremiumState> {
 
       return state.isPremium;
     } on PurchasesErrorCode catch (e) {
+      final isEn = StorageService.loadLanguage() == AppLanguage.en;
       String errorMessage;
       switch (e) {
         case PurchasesErrorCode.purchaseCancelledError:
-          errorMessage = 'Purchase cancelled';
+          errorMessage = isEn ? 'Purchase cancelled' : 'Satın alma iptal edildi';
           break;
         case PurchasesErrorCode.purchaseNotAllowedError:
-          errorMessage = 'Purchase not allowed';
+          errorMessage = isEn ? 'Purchase not allowed' : 'Satın almaya izin verilmiyor';
           break;
         case PurchasesErrorCode.purchaseInvalidError:
-          errorMessage = 'Invalid purchase';
+          errorMessage = isEn ? 'Invalid purchase' : 'Geçersiz satın alma';
           break;
         case PurchasesErrorCode.productNotAvailableForPurchaseError:
-          errorMessage = 'Product not available';
+          errorMessage = isEn ? 'Product not available' : 'Ürün mevcut değil';
           break;
         case PurchasesErrorCode.networkError:
-          errorMessage = 'Network error. Please try again.';
+          errorMessage = isEn ? 'Network error. Please try again.' : 'Ağ hatası. Lütfen tekrar deneyin.';
           break;
         default:
-          errorMessage = 'Purchase failed: $e';
+          errorMessage = isEn ? 'Purchase failed: $e' : 'Satın alma başarısız: $e';
       }
 
       state = state.copyWith(isLoading: false, errorMessage: errorMessage);
@@ -564,9 +566,10 @@ class PremiumNotifier extends Notifier<PremiumState> {
       if (kDebugMode) {
         debugPrint('Purchase error: $e');
       }
+      final isEnFallback = StorageService.loadLanguage() == AppLanguage.en;
       state = state.copyWith(
         isLoading: false,
-        errorMessage: 'Purchase failed. Please try again.',
+        errorMessage: isEnFallback ? 'Purchase failed. Please try again.' : 'Satın alma başarısız. Lütfen tekrar deneyin.',
       );
 
       _analytics.logPurchase(
@@ -598,7 +601,8 @@ class PremiumNotifier extends Notifier<PremiumState> {
       });
 
       if (!state.isPremium) {
-        state = state.copyWith(errorMessage: 'No purchases found to restore');
+        final isEn = StorageService.loadLanguage() == AppLanguage.en;
+        state = state.copyWith(errorMessage: isEn ? 'No purchases found to restore' : 'Geri yüklenecek satın alma bulunamadı');
       }
 
       return state.isPremium;
@@ -606,9 +610,10 @@ class PremiumNotifier extends Notifier<PremiumState> {
       if (kDebugMode) {
         debugPrint('Restore error: $e');
       }
+      final isEn = StorageService.loadLanguage() == AppLanguage.en;
       state = state.copyWith(
         isLoading: false,
-        errorMessage: 'Restore failed. Please try again.',
+        errorMessage: isEn ? 'Restore failed. Please try again.' : 'Geri yükleme başarısız. Lütfen tekrar deneyin.',
       );
       return false;
     }
@@ -793,7 +798,4 @@ final isPremiumUserProvider = Provider<bool>((ref) {
   return ref.watch(premiumProvider).isPremium;
 });
 
-/// Quick access to lifetime status
-final isLifetimeUserProvider = Provider<bool>((ref) {
-  return ref.watch(premiumProvider).isLifetime;
-});
+// isLifetimeUserProvider removed (unused)

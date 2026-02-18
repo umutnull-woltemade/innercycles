@@ -103,7 +103,11 @@ class OutlineButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = borderColor ?? AppColors.auroraStart;
 
-    return Material(
+    return Semantics(
+      label: label,
+      button: true,
+      enabled: onPressed != null,
+      child: Material(
       color: Colors.transparent,
       child: InkWell(
         onTap: onPressed,
@@ -132,6 +136,7 @@ class OutlineButton extends StatelessWidget {
           ),
         ),
       ),
+    ),
     );
   }
 }

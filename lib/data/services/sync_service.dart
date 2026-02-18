@@ -11,6 +11,7 @@ class SyncService {
   static const String _syncQueueBoxName = 'sync_queue_box';
   static Box? _syncBox;
   static bool _isSyncing = false;
+  static StreamSubscription<List<ConnectivityResult>>? _connectivitySub;
 
   /// Initialize the sync service
   static Future<void> initialize() async {
@@ -25,8 +26,9 @@ class SyncService {
     try {
       _syncBox = await Hive.openBox(_syncQueueBoxName);
 
-      // Listen for connectivity changes
-      Connectivity().onConnectivityChanged.listen((
+      // Listen for connectivity changes (cancel previous if re-initialized)
+      _connectivitySub?.cancel();
+      _connectivitySub = Connectivity().onConnectivityChanged.listen((
         List<ConnectivityResult> result,
       ) {
         if (!result.contains(ConnectivityResult.none)) {

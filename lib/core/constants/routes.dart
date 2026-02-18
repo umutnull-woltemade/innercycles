@@ -166,8 +166,7 @@ class Routes {
   // PROFILE & SETTINGS
   // ════════════════════════════════════════════════════════════════
   static const String profile = '/profile';
-  static const String savedProfiles = '/saved-profiles';
-  static const String comparison = '/comparison';
+  // savedProfiles and comparison routes removed (dead code)
   static const String settings = '/settings';
   static const String premium = '/premium';
 

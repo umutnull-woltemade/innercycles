@@ -7,13 +7,6 @@ import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 
-/// Notification settings provider
-final notificationSettingsProvider = FutureProvider<NotificationSettings>((
-  ref,
-) async {
-  return NotificationService().getSettings();
-});
-
 /// Notification settings section for the settings screen
 class NotificationSettingsSection extends ConsumerStatefulWidget {
   const NotificationSettingsSection({super.key});
@@ -146,7 +139,7 @@ class _NotificationSettingsSectionState
         border: Border.all(
           color: isDark
               ? AppColors.surfaceLight.withValues(alpha: 0.12)
-              : Colors.grey.shade200,
+              : AppColors.lightSurfaceVariant,
         ),
       ),
       child: Column(

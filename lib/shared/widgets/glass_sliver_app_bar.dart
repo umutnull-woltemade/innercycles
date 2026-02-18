@@ -128,6 +128,7 @@ class GlassSliverAppBar extends StatelessWidget {
       label: 'Back',
       button: true,
       child: IconButton(
+        tooltip: 'Back',
         onPressed: () => Navigator.of(context).pop(),
         icon: Icon(
           Icons.chevron_left,

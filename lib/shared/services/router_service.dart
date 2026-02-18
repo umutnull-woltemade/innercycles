@@ -538,7 +538,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.programCompletion,
         builder: (context, state) {
-          final extra = state.extra as Map<String, dynamic>? ?? {};
+          final extra = state.extra is Map<String, dynamic>
+              ? state.extra as Map<String, dynamic>
+              : <String, dynamic>{};
           return ProgramCompletionScreen(
             programTitle: extra['title'] as String? ?? '',
             programEmoji: extra['emoji'] as String? ?? '',
@@ -588,14 +590,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.profile,
         builder: (context, state) => const ProfileScreen(),
       ),
-      GoRoute(
-        path: Routes.savedProfiles,
-        redirect: (_, _) => Routes.profile,
-      ),
-      GoRoute(
-        path: Routes.comparison,
-        redirect: (_, _) => Routes.profile,
-      ),
+      // savedProfiles and comparison legacy redirects removed (dead routes)
       GoRoute(
         path: Routes.settings,
         builder: (context, state) => const SettingsScreen(),

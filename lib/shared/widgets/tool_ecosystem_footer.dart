@@ -84,18 +84,21 @@ class ToolEcosystemFooter extends ConsumerWidget {
                 padding: EdgeInsets.only(
                   right: index < relatedTools.length - 1 ? 10 : 0,
                 ),
-                child: GestureDetector(
-                  onTap: () {
-                    HapticFeedback.selectionClick();
-                    ref.read(ecosystemAnalyticsServiceProvider).whenData(
-                      (s) => s.trackNextToolTap(currentToolId, tool.id, 'footer'),
-                    );
-                    ref.read(smartRouterServiceProvider).whenData(
-                      (s) => s.recordToolVisit(tool.id),
-                    );
-                    context.push(tool.route);
-                  },
-                  child: Container(
+                child: Semantics(
+                  button: true,
+                  label: isEn ? tool.nameEn : tool.nameTr,
+                  child: GestureDetector(
+                    onTap: () {
+                      HapticFeedback.selectionClick();
+                      ref.read(ecosystemAnalyticsServiceProvider).whenData(
+                        (s) => s.trackNextToolTap(currentToolId, tool.id, 'footer'),
+                      );
+                      ref.read(smartRouterServiceProvider).whenData(
+                        (s) => s.recordToolVisit(tool.id),
+                      );
+                      context.push(tool.route);
+                    },
+                    child: Container(
                     width: 120,
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
@@ -125,6 +128,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
                       ],
                     ),
                   ),
+                ),
                 ),
               ).animate(delay: Duration(milliseconds: 50 * index)).fadeIn(duration: 300.ms);
             },
