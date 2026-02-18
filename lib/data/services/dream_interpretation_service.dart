@@ -68,7 +68,7 @@ class DreamInterpretationService {
           : ShareableQuoteTemplates.getRandomQuote(),
       explorationLinks: _generateExplorationLinks(
         (aiResponse['symbols'] as List? ?? [])
-            .map((s) => s['symbol'] as String)
+            .map((s) => s['symbol'] as String? ?? '')
             .toList(),
       ),
       userRole: _parseRole(aiResponse['userRole']),
@@ -97,10 +97,14 @@ class DreamInterpretationService {
       return SymbolInterpretation(
         symbol: symbolData.symbolTr,
         symbolEmoji: symbolData.emoji,
-        universalMeaning: symbolData.universalMeanings.first,
+        universalMeaning: symbolData.universalMeanings.isNotEmpty
+            ? symbolData.universalMeanings.first
+            : symbolData.symbolTr,
         personalContext:
             symbolData.emotionVariants[dominantEmotion] ??
-            symbolData.universalMeanings.first,
+            (symbolData.universalMeanings.isNotEmpty
+                ? symbolData.universalMeanings.first
+                : symbolData.symbolTr),
         shadowAspect: symbolData.shadowAspect,
         lightAspect: symbolData.lightAspect,
         relatedSymbols: symbolData.relatedSymbols,

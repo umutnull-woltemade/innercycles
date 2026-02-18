@@ -38,9 +38,9 @@ class MonthlyBreakdown {
 
   factory MonthlyBreakdown.fromJson(Map<String, dynamic> json) =>
       MonthlyBreakdown(
-        month: json['month'] as int,
-        entryCount: json['entryCount'] as int,
-        averageMood: (json['averageMood'] as num).toDouble(),
+        month: json['month'] as int? ?? 1,
+        entryCount: json['entryCount'] as int? ?? 0,
+        averageMood: (json['averageMood'] as num? ?? 0).toDouble(),
         topFocusArea: json['topFocusArea'] != null
             ? FocusArea.values.firstWhere(
                 (e) => e.name == json['topFocusArea'],
@@ -104,28 +104,28 @@ class YearReview {
           (e) => e.name == entry.key.toString(),
           orElse: () => FocusArea.energy,
         );
-        focusCounts[area] = (entry.value as num).toInt();
+        focusCounts[area] = (entry.value as num? ?? 0).toInt();
       }
     }
 
     return YearReview(
-      year: json['year'] as int,
-      totalEntries: json['totalEntries'] as int,
-      averageMood: (json['averageMood'] as num).toDouble(),
+      year: json['year'] as int? ?? 2024,
+      totalEntries: json['totalEntries'] as int? ?? 0,
+      averageMood: (json['averageMood'] as num? ?? 0).toDouble(),
       topFocusArea: FocusArea.values.firstWhere(
         (e) => e.name == json['topFocusArea'],
         orElse: () => FocusArea.energy,
       ),
-      moodJourney: (json['moodJourney'] as List)
-          .map((e) => (e as num).toDouble())
+      moodJourney: (json['moodJourney'] as List? ?? [])
+          .map((e) => (e as num? ?? 0).toDouble())
           .toList(),
       topPatterns:
-          (json['topPatterns'] as List).map((e) => e as String).toList(),
-      streakBest: json['streakBest'] as int,
-      totalJournalingDays: json['totalJournalingDays'] as int,
-      growthScore: json['growthScore'] as int,
-      monthlyBreakdown: (json['monthlyBreakdown'] as List)
-          .map((m) => MonthlyBreakdown.fromJson(m as Map<String, dynamic>))
+          (json['topPatterns'] as List? ?? []).map((e) => e as String? ?? '').toList(),
+      streakBest: json['streakBest'] as int? ?? 0,
+      totalJournalingDays: json['totalJournalingDays'] as int? ?? 0,
+      growthScore: json['growthScore'] as int? ?? 0,
+      monthlyBreakdown: (json['monthlyBreakdown'] as List? ?? [])
+          .map((m) => MonthlyBreakdown.fromJson(m as Map<String, dynamic>? ?? {}))
           .toList(),
       focusAreaCounts: focusCounts,
     );
@@ -337,7 +337,7 @@ class YearReviewService {
 
     if (withData.length < 2) return 50; // Not enough data for trend
 
-    final half = withData.length ~/ 2;
+    final half = (withData.length ~/ 2).clamp(1, withData.length - 1);
     final firstHalf = withData.sublist(0, half);
     final secondHalf = withData.sublist(half);
 

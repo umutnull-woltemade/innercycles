@@ -1516,10 +1516,12 @@ class _SimpleChartPainter extends CustomPainter {
     final d1Path = Path();
     final d7Path = Path();
 
+    if (data.isEmpty) return;
     final maxY = data
         .map((p) => [p.d1, p.d7])
         .expand((e) => e)
         .reduce((a, b) => a > b ? a : b);
+    if (maxY == 0) return;
     final xStep = size.width / (data.length - 1);
 
     for (var i = 0; i < data.length; i++) {

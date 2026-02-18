@@ -393,7 +393,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            labels[value - 1],
+            labels[(value - 1).clamp(0, labels.length - 1)],
             style: TextStyle(
               fontSize: 14,
               color: AppColors.starGold,

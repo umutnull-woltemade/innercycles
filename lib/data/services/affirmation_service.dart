@@ -117,6 +117,13 @@ class AffirmationService {
   static const String _favoritesKey = 'affirmation_favorites';
   static const String _engagementKey = 'affirmation_category_engagement';
 
+  static const _defaultAffirmation = Affirmation(
+    id: 'default',
+    textEn: 'You are growing every day.',
+    textTr: 'Her gun buyuyorsun.',
+    category: AffirmationCategory.growth,
+  );
+
   final SharedPreferences _prefs;
 
   AffirmationService(this._prefs);
@@ -175,7 +182,10 @@ class AffirmationService {
         weightedCategories[rng.nextInt(weightedCategories.length)];
     final categoryAffirmations =
         _allAffirmations.where((a) => a.category == selectedCategory).toList();
-    if (categoryAffirmations.isEmpty) return _allAffirmations.first;
+    if (categoryAffirmations.isEmpty) {
+      if (_allAffirmations.isEmpty) return _defaultAffirmation;
+      return _allAffirmations.first;
+    }
     final index = seed % categoryAffirmations.length;
     return categoryAffirmations[index];
   }
@@ -190,7 +200,10 @@ class AffirmationService {
     final dayHash = now.year * 10000 + now.month * 100 + now.day;
     final categoryAffirmations =
         _allAffirmations.where((a) => a.category == category).toList();
-    if (categoryAffirmations.isEmpty) return _allAffirmations.first;
+    if (categoryAffirmations.isEmpty) {
+      if (_allAffirmations.isEmpty) return _defaultAffirmation;
+      return _allAffirmations.first;
+    }
     final index = dayHash % categoryAffirmations.length;
 
     // Track engagement
@@ -255,7 +268,7 @@ class AffirmationService {
     final raw = _prefs.getString(_engagementKey);
     if (raw == null) return {};
     final decoded = jsonDecode(raw) as Map<String, dynamic>;
-    return decoded.map((k, v) => MapEntry(k, v as int));
+    return decoded.map((k, v) => MapEntry(k, v as int? ?? 0));
   }
 
   // ═══════════════════════════════════════════════════════════════

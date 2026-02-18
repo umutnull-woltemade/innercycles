@@ -299,7 +299,8 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
   String _qualityLabel(int quality, bool isEn) {
     final labelsEn = ['Terrible', 'Poor', 'Fair', 'Good', 'Excellent'];
     final labelsTr = ['Berbat', 'Kötü', 'Orta', 'İyi', 'Mükemmel'];
-    return isEn ? labelsEn[quality - 1] : labelsTr[quality - 1];
+    final idx = (quality - 1).clamp(0, labelsEn.length - 1);
+    return isEn ? labelsEn[idx] : labelsTr[idx];
   }
 
   Color _qualityColor(int quality) {

@@ -79,6 +79,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
     final cycleServiceAsync = ref.watch(emotionalCycleServiceProvider);
+    final analysisAsync = ref.watch(emotionalCycleAnalysisProvider);
 
     return Scaffold(
       body: CosmicBackground(
@@ -102,7 +103,12 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 return _buildLockedView(context, isDark, isEn,
                     cycleService.entriesNeeded(), cycleService.entryCount);
               }
-              final analysis = cycleService.analyze();
+              final analysis = analysisAsync.valueOrNull;
+              if (analysis == null) {
+                return const Center(
+                  child: CircularProgressIndicator(color: AppColors.starGold),
+                );
+              }
               return _buildContent(
                   context, cycleService, analysis, isDark, isEn);
             },
