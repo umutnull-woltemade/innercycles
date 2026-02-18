@@ -1659,7 +1659,7 @@ class _PermissionStartPage extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFFE6E6FA),
+                    color: AppColors.lavender,
                   ),
                 ),
                 const SizedBox(height: 14),
@@ -1907,7 +1907,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                             color: index % 3 == 0
                                 ? AppColors.starGold
                                 : index % 3 == 1
-                                ? const Color(0xFFE6E6FA)
+                                ? AppColors.lavender
                                 : Colors.white,
                           ),
                         );

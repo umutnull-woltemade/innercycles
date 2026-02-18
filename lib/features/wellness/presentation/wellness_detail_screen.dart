@@ -9,6 +9,7 @@ import '../../../data/services/wellness_score_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
@@ -112,6 +113,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                       _buildTips(isDark, isEn),
 
                       const SizedBox(height: 24),
+                      ContentDisclaimer(language: language),
                       ToolEcosystemFooter(
                         currentToolId: 'wellnessDetail',
                         isEn: isEn,

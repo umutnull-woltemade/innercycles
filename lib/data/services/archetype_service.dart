@@ -487,7 +487,7 @@ class ArchetypeService {
       ],
       dailyIntentionStyleEn:
           'Begin the day by naming one relationship you want to '
-          'nurture and one way you will nurture yourself.',
+          'nurture and one way you might nurture yourself.',
       dailyIntentionStyleTr:
           'Güne beslemek istediğin bir ilişkiyi ve kendini '
           'besleyecek bir yolu adlandırarak başla.',

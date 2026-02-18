@@ -124,7 +124,10 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   child: SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () => context.push(Routes.journal),
+                      onPressed: () {
+                        HapticFeedback.lightImpact();
+                        context.push(Routes.journal);
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: isDark
                             ? AppColors.starGold
@@ -307,7 +310,10 @@ class _TodayHeader extends ConsumerWidget {
               ),
               IconButton(
                 tooltip: isEn ? 'Settings' : 'Ayarlar',
-                onPressed: () => context.push(Routes.settings),
+                onPressed: () {
+                  HapticFeedback.lightImpact();
+                  context.push(Routes.settings);
+                },
                 icon: Icon(
                   Icons.settings_outlined,
                   color: isDark

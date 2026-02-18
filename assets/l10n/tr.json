@@ -1523,7 +1523,7 @@
             },
             "number_secrets": {
                 "title": "Sayılarının Sırrı",
-                "description": "Doğum tarihin ve ismin ne anlatıyor?"
+                "description": "Kişisel sayılarındaki örüntüleri keşfet."
             },
             "energy_field": {
                 "title": "Enerji Alanın",

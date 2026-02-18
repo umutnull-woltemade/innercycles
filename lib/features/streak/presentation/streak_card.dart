@@ -47,7 +47,10 @@ class _StreakCardContent extends StatelessWidget {
           : 'Seri: ${stats.currentStreak} gün. Detaylar için dokun',
       button: true,
       child: GestureDetector(
-        onTap: () => context.push(Routes.streakStats),
+        onTap: () {
+          HapticFeedback.lightImpact();
+          context.push(Routes.streakStats);
+        },
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(

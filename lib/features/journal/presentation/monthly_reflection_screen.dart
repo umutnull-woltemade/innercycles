@@ -15,6 +15,7 @@ import '../../../data/services/pattern_engine_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
@@ -176,6 +177,7 @@ class _MonthlyReflectionScreenState
                                 delay: 100.ms,
                                 duration: 400.ms,
                               ),
+                          ContentDisclaimer(language: language),
                           ToolEcosystemFooter(
                             currentToolId: 'monthlyReflection',
                             isEn: isEn,

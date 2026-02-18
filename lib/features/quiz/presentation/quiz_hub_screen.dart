@@ -20,6 +20,7 @@ import '../../../data/models/quiz_models.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class QuizHubScreen extends ConsumerWidget {
   const QuizHubScreen({super.key});
@@ -121,7 +122,12 @@ class QuizHubScreen extends ConsumerWidget {
                           );
                     }),
 
-                    const SizedBox(height: AppConstants.spacingHuge),
+                    ToolEcosystemFooter(
+                      currentToolId: 'quizHub',
+                      isEn: isEn,
+                      isDark: isDark,
+                    ),
+                    const SizedBox(height: 40),
                   ]),
                 ),
               ),

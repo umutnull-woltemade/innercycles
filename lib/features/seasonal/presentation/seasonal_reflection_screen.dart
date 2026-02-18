@@ -13,6 +13,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/seasonal_reflection_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
@@ -100,6 +101,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                           // All seasons overview
                           _AllSeasonsRow(isDark: isDark, isEn: isEn),
                           const SizedBox(height: 24),
+                          ContentDisclaimer(language: language),
                           ToolEcosystemFooter(
                             currentToolId: 'seasonalReflection',
                             isEn: isEn,

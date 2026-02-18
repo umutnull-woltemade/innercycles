@@ -155,4 +155,5 @@ class AppColors {
   static const Color exportGreen = Color(0xFF66BB6A);
   static const Color streakOrange = Color(0xFFFF6B35);
   static const Color mediumSlateBlue = Color(0xFF7B68EE);
+  static const Color lavender = Color(0xFFE6E6FA);
 }

@@ -246,7 +246,7 @@ class _CosmicPainter extends CustomPainter {
       const Color(0xFFFFE4B5), // Sıcak sarı
       const Color(0xFFADD8E6), // Açık mavi
       AppColors.softPink, // Pembe
-      const Color(0xFFE6E6FA), // Lavanta
+      AppColors.lavender, // Lavanta
     ];
     return colors[random.nextInt(colors.length)];
   }
@@ -383,7 +383,7 @@ class _CosmicPainter extends CustomPainter {
 
     // Pastel colors
     final pastelColors = [
-      const Color(0xFFE6E6FA), // Lavender
+      AppColors.lavender, // Lavender
       AppColors.softPink, // Pink
       const Color(0xFFADD8E6), // Light blue
       const Color(0xFFFFE4B5), // Warm yellow
@@ -637,7 +637,7 @@ class _DecorativeSymbol {
     required this.size,
     required this.opacity,
     required this.rotation,
-    this.color = const Color(0xFFE6E6FA), // Lavanta - varsayılan
+    this.color = AppColors.lavender, // Lavanta - varsayılan
   });
 }
 
