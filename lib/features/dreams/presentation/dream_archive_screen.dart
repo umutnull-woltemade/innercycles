@@ -85,8 +85,9 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
 
   String _formatMonthHeader(String key, bool isEn) {
     final parts = key.split('-');
+    if (parts.length < 2) return key;
     final year = parts[0];
-    final month = int.parse(parts[1]);
+    final month = int.tryParse(parts[1]) ?? 1;
 
     final monthsEn = [
       'January', 'February', 'March', 'April', 'May', 'June',

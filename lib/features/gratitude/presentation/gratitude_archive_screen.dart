@@ -67,6 +67,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     final grouped = <String, List<GratitudeEntry>>{};
     for (final entry in allEntries) {
       final parts = entry.dateKey.split('-');
+      if (parts.length < 2) continue;
       final monthKey = '${parts[0]}-${parts[1]}';
       grouped.putIfAbsent(monthKey, () => []).add(entry);
     }
@@ -210,8 +211,9 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     int count,
   ) {
     final parts = monthKey.split('-');
+    if (parts.length < 2) return const SizedBox.shrink();
     final year = parts[0];
-    final month = int.parse(parts[1]);
+    final month = int.tryParse(parts[1]) ?? 1;
     final monthNames = isEn
         ? ['', 'January', 'February', 'March', 'April', 'May', 'June',
            'July', 'August', 'September', 'October', 'November', 'December']
@@ -251,7 +253,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     GratitudeEntry entry,
   ) {
     final parts = entry.dateKey.split('-');
-    final dayStr = '${parts[2]}.${parts[1]}.${parts[0]}';
+    final dayStr = parts.length >= 3 ? '${parts[2]}.${parts[1]}.${parts[0]}' : entry.dateKey;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),

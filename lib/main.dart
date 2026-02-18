@@ -400,6 +400,12 @@ class _AppInitializerState extends State<AppInitializer> {
         }
 
         // SUCCESS - Launch the real app with providers
+        if (snapshot.data == null) {
+          return const Scaffold(
+            backgroundColor: Color(0xFF0D0D1A),
+            body: Center(child: CircularProgressIndicator(color: Color(0xFFFFD700))),
+          );
+        }
         final result = snapshot.data!;
 
         if (kDebugMode) {

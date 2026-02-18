@@ -436,8 +436,8 @@ class ContentEngineService {
     // Prune entries older than 90 days
     final cutoff = DateTime.now().subtract(const Duration(days: 90));
     history.removeWhere((entry) {
-      final generatedAt = DateTime.parse(entry['generatedAt']);
-      return generatedAt.isBefore(cutoff);
+      final generatedAt = DateTime.tryParse(entry['generatedAt']?.toString() ?? '');
+      return generatedAt?.isBefore(cutoff) ?? true;
     });
 
     _prefs.setString(_contentHistoryKey, json.encode(history));
@@ -470,8 +470,8 @@ class ContentEngineService {
     // Prune entries older than 30 days
     final cutoff = DateTime.now().subtract(const Duration(days: 30));
     history.removeWhere((entry) {
-      final entryDate = DateTime.parse(entry['date']);
-      return entryDate.isBefore(cutoff);
+      final entryDate = DateTime.tryParse(entry['date']?.toString() ?? '');
+      return entryDate?.isBefore(cutoff) ?? true;
     });
 
     _prefs.setString(_archetypeHistoryKey, json.encode(history));
@@ -484,8 +484,8 @@ class ContentEngineService {
 
     return history
         .where((entry) {
-          final entryDate = DateTime.parse(entry['date']);
-          return entryDate.isAfter(cutoff);
+          final entryDate = DateTime.tryParse(entry['date']?.toString() ?? '');
+          return entryDate?.isAfter(cutoff) ?? false;
         })
         .map<String>((entry) => entry['archetype'] as String)
         .toList();
@@ -521,8 +521,8 @@ class ContentEngineService {
     // Prune entries older than 30 days
     final cutoff = DateTime.now().subtract(const Duration(days: 30));
     history.removeWhere((entry) {
-      final entryDate = DateTime.parse(entry['date']);
-      return entryDate.isBefore(cutoff);
+      final entryDate = DateTime.tryParse(entry['date']?.toString() ?? '');
+      return entryDate?.isBefore(cutoff) ?? true;
     });
 
     _prefs.setString(_comboHistoryKey, json.encode(history));
@@ -535,8 +535,8 @@ class ContentEngineService {
 
     return history
         .where((entry) {
-          final entryDate = DateTime.parse(entry['date']);
-          return entryDate.isAfter(cutoff);
+          final entryDate = DateTime.tryParse(entry['date']?.toString() ?? '');
+          return entryDate?.isAfter(cutoff) ?? false;
         })
         .map<String>((entry) => entry['combo'] as String)
         .toList();
@@ -568,8 +568,8 @@ class ContentEngineService {
     // Prune entries older than 30 days
     final cutoff = DateTime.now().subtract(const Duration(days: 30));
     history.removeWhere((entry) {
-      final entryDate = DateTime.parse(entry['date']);
-      return entryDate.isBefore(cutoff);
+      final entryDate = DateTime.tryParse(entry['date']?.toString() ?? '');
+      return entryDate?.isBefore(cutoff) ?? true;
     });
 
     _prefs.setString(_questionHistoryKey, json.encode(history));
@@ -582,8 +582,8 @@ class ContentEngineService {
 
     return history
         .where((entry) {
-          final entryDate = DateTime.parse(entry['date']);
-          return entryDate.isAfter(cutoff);
+          final entryDate = DateTime.tryParse(entry['date']?.toString() ?? '');
+          return entryDate?.isAfter(cutoff) ?? false;
         })
         .map<String>((entry) => entry['question'] as String)
         .toList();

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
@@ -152,7 +153,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                   isDark: isDark,
                   isEn: isEn,
                   onViewEntry: (id) => context.push('/journal/entry/$id'),
-                  onCreateEntry: () => context.push('/journal'),
+                  onCreateEntry: () => context.push(Routes.journal),
                 ),
                 const SizedBox(height: 20),
               ],

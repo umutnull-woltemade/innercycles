@@ -403,7 +403,7 @@ class SleepTrendsScreen extends ConsumerWidget {
           const SizedBox(height: AppConstants.spacingMd),
           ...entries.map((entry) {
             final parts = entry.dateKey.split('-');
-            final dateStr = '${parts[2]}.${parts[1]}.${parts[0]}';
+            final dateStr = parts.length >= 3 ? '${parts[2]}.${parts[1]}.${parts[0]}' : entry.dateKey;
             return Padding(
               padding: const EdgeInsets.only(bottom: 12),
               child: Row(

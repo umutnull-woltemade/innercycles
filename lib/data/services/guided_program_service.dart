@@ -88,7 +88,7 @@ class ProgramProgress {
             (json['completedDays'] as List<dynamic>).cast<int>().toSet(),
         reflections: json['reflections'] != null
             ? (json['reflections'] as Map<String, dynamic>).map(
-                (k, v) => MapEntry(int.parse(k), v as String))
+                (k, v) => MapEntry(int.tryParse(k) ?? 0, v as String))
             : {},
         isCompleted: json['isCompleted'] as bool? ?? false,
       );

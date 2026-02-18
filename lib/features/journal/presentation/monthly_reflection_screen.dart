@@ -449,7 +449,7 @@ class _MonthlyReflectionScreenState
   ) {
     final theme = allMonthlyThemes.firstWhere(
       (t) => t.month == month,
-      orElse: () => allMonthlyThemes[0],
+      orElse: () => allMonthlyThemes.first,
     );
 
     final prompts = isEn ? theme.weeklyPromptsEn : theme.weeklyPromptsTr;
