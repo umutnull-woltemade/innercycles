@@ -84,6 +84,8 @@ class _ShareCardGalleryScreenState
       firstTaste?.recordUse(FirstTasteFeature.shareCards);
     }
 
+    if (!mounted) return;
+
     final boundary = _repaintKey.currentContext?.findRenderObject()
         as RenderRepaintBoundary?;
     if (boundary == null) return;

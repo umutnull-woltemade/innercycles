@@ -34,6 +34,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
   void _onSearchChanged(String value) {
     _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 400), () {
+      if (!mounted) return;
       setState(() => _searchQuery = value.trim());
       _loadDreams();
     });
