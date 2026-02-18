@@ -443,7 +443,8 @@ class SelectedDateDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (date == null) {
+    final d = date;
+    if (d == null) {
       return const SizedBox();
     }
 
@@ -474,7 +475,7 @@ class SelectedDateDisplay extends StatelessWidget {
             ),
             const SizedBox(width: AppConstants.spacingMd),
             Text(
-              '${_getMonthName(date!.month, language)} ${date!.day}, ${date!.year}',
+              '${_getMonthName(d.month, language)} ${d.day}, ${d.year}',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.w500,

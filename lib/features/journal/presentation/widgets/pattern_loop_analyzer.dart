@@ -284,7 +284,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                                 color: areaColor,
                               ),
                             ),
-                            if (loop.secondaryArea != null) ...[
+                            if (loop.secondaryArea case final secondary?) ...[
                               Text(
                                 ' + ',
                                 style: TextStyle(
@@ -296,12 +296,12 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                               ),
                               Text(
                                 widget.isEn
-                                    ? loop.secondaryArea!.displayNameEn
-                                    : loop.secondaryArea!.displayNameTr,
+                                    ? secondary.displayNameEn
+                                    : secondary.displayNameTr,
                                 style: TextStyle(
                                   fontSize: 11,
                                   fontWeight: FontWeight.w500,
-                                  color: kAreaColors[loop.secondaryArea] ??
+                                  color: kAreaColors[secondary] ??
                                       AppColors.auroraStart,
                                 ),
                               ),

@@ -120,7 +120,8 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
       return;
     }
 
-    if (_service == null || !_isAvailable) {
+    final service = _service;
+    if (service == null || !_isAvailable) {
       _showError(_getUnavailableMessage());
       return;
     }
@@ -128,9 +129,9 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
     HapticFeedback.mediumImpact();
 
     if (_isListening) {
-      await _service!.stopListening();
+      await service.stopListening();
     } else {
-      final started = await _service!.startListening(
+      final started = await service.startListening(
         localeId: widget.localeId,
       );
       if (!started && mounted) {

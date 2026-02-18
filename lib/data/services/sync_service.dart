@@ -69,7 +69,8 @@ class SyncService {
       );
     }
 
-    if (kIsWeb || _syncBox == null) {
+    final box = _syncBox;
+    if (kIsWeb || box == null) {
       return SyncResult(synced: 0, failed: 0, message: 'Sync not available');
     }
 
@@ -82,24 +83,24 @@ class SyncService {
     int failed = 0;
 
     try {
-      final keys = _syncBox!.keys.toList();
+      final keys = box.keys.toList();
 
       for (final key in keys) {
-        final json = _syncBox!.get(key) as String?;
+        final json = box.get(key) as String?;
         if (json == null) continue;
 
         try {
           final item = SyncQueueItem.fromJson(jsonDecode(json));
 
           if (item.status == 'synced') {
-            await _syncBox!.delete(key);
+            await box.delete(key);
             continue;
           }
 
           final success = await _executeOperation(item);
 
           if (success) {
-            await _syncBox!.delete(key);
+            await box.delete(key);
             synced++;
           } else {
             // Update retry count
@@ -107,7 +108,7 @@ class SyncService {
               retryCount: item.retryCount + 1,
               lastError: 'Sync failed',
             );
-            await _syncBox!.put(key, jsonEncode(updated.toJson()));
+            await box.put(key, jsonEncode(updated.toJson()));
             failed++;
           }
         } catch (e) {
