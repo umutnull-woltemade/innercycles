@@ -7,6 +7,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/dream_journal_service.dart';
@@ -107,8 +108,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     });
 
     // Dream entries
-    if (dreamAsync.hasValue) {
-      final dreamService = dreamAsync.value!;
+    final dreamService = dreamAsync.valueOrNull;
+    if (dreamService != null) {
       final dreams = await dreamService.searchByKeyword(_query);
       for (final dream in dreams) {
         results.add(_SearchResult(
@@ -600,7 +601,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
     switch (result.type) {
       case _ResultType.journal:
-        context.push('/journal/entry/${result.id}');
+        context.push(Routes.journalEntryDetail.replaceFirst(':id', result.id));
       case _ResultType.dream:
         _showDreamSheet(result.raw as DreamEntry, isDark, isEn);
       case _ResultType.gratitude:
