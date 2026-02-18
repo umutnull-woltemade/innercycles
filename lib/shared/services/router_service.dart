@@ -10,7 +10,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/constants/routes.dart';
 import '../../features/disclaimer/presentation/disclaimer_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
-import '../../features/home/presentation/responsive_home_screen.dart';
 import '../../features/premium/presentation/premium_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/profile/presentation/profile_screen.dart';
@@ -68,7 +67,7 @@ import '../../features/habits/presentation/habit_suggestions_screen.dart';
 import '../../features/habits/presentation/daily_habits_screen.dart';
 import '../../features/year_review/presentation/year_review_screen.dart';
 import '../../features/calendar/presentation/calendar_heatmap_screen.dart';
-import '../../features/search/presentation/search_screen.dart';
+import '../../features/search/presentation/global_search_screen.dart';
 import '../../features/mood/presentation/mood_trends_screen.dart';
 import '../../features/gratitude/presentation/gratitude_archive_screen.dart';
 import '../../features/sleep/presentation/sleep_trends_screen.dart';
@@ -80,6 +79,12 @@ import '../../features/streak/presentation/streak_stats_screen.dart';
 import '../../features/dreams/presentation/dream_archive_screen.dart';
 import '../../features/settings/presentation/notification_schedule_screen.dart';
 import '../../features/programs/presentation/program_completion_screen.dart';
+import '../../features/today/presentation/today_feed_screen.dart';
+import '../../features/tools/presentation/tool_catalog_screen.dart';
+import '../../features/challenges/presentation/challenge_hub_screen.dart';
+import '../../features/library/presentation/library_hub_screen.dart';
+import '../../features/profile/presentation/profile_hub_screen.dart';
+import '../../shared/widgets/main_shell_screen.dart';
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/app_lock_service.dart';
 import '../../data/services/storage_service.dart';
@@ -152,7 +157,63 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: Routes.home,
-        builder: (context, state) => const ResponsiveHomeScreen(),
+        redirect: (_, _) => Routes.today,
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // STATEFUL SHELL ROUTE - 5-Tab Bottom Navigation
+      // ════════════════════════════════════════════════════════════════
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return MainShellScreen(navigationShell: navigationShell);
+        },
+        branches: [
+          // Tab 0: Today
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.today,
+                builder: (context, state) => const TodayFeedScreen(),
+              ),
+            ],
+          ),
+          // Tab 1: Tools
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.tools,
+                builder: (context, state) => const ToolCatalogScreen(),
+              ),
+            ],
+          ),
+          // Tab 2: Challenges
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.challengeHub,
+                builder: (context, state) => const ChallengeHubScreen(),
+              ),
+            ],
+          ),
+          // Tab 3: Library
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.library,
+                builder: (context, state) => const LibraryHubScreen(),
+              ),
+            ],
+          ),
+          // Tab 4: Profile
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.profileHub,
+                builder: (context, state) => const ProfileHubScreen(),
+              ),
+            ],
+          ),
+        ],
       ),
 
       // ════════════════════════════════════════════════════════════════
@@ -408,7 +469,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: Routes.search,
-        builder: (context, state) => const SearchScreen(),
+        builder: (context, state) => const GlobalSearchScreen(),
       ),
 
       // ════════════════════════════════════════════════════════════════
@@ -608,7 +669,7 @@ class _SplashScreenState extends State<_SplashScreen> {
       // Proceed to home if lock check fails
     }
 
-    if (mounted) context.go(Routes.home);
+    if (mounted) context.go(Routes.today);
   }
 
   @override
@@ -690,7 +751,7 @@ class _NotFoundScreen extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             TextButton.icon(
-              onPressed: () => context.go(Routes.home),
+              onPressed: () => context.go(Routes.today),
               icon: const Icon(Icons.home, color: Colors.white70),
               label: const Text(
                 'Go Home',

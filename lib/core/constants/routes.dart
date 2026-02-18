@@ -154,6 +154,15 @@ class Routes {
   static const String appLock = '/app-lock';
 
   // ════════════════════════════════════════════════════════════════
+  // TAB ROUTES (BottomNavigationBar shell)
+  // ════════════════════════════════════════════════════════════════
+  static const String today = '/today';
+  static const String tools = '/tools';
+  static const String challengeHub = '/challenge-hub';
+  static const String library = '/library';
+  static const String profileHub = '/profile-hub';
+
+  // ════════════════════════════════════════════════════════════════
   // PROFILE & SETTINGS
   // ════════════════════════════════════════════════════════════════
   static const String profile = '/profile';
