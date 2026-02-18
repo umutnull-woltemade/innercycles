@@ -30,12 +30,17 @@ class QuizSuggestionCard extends ConsumerWidget {
         .inDays;
     final quiz = quizzes[dayOfYear % quizzes.length];
 
-    return GestureDetector(
-      onTap: () {
-        HapticFeedback.lightImpact();
-        context.push(Routes.quizGeneric.replaceFirst(':quizId', quiz.id));
-      },
-      child: Container(
+    return Semantics(
+      label: isEn
+          ? 'Suggested Quiz: ${quiz.title}'
+          : 'Önerilen Test: ${quiz.titleTr}',
+      button: true,
+      child: GestureDetector(
+        onTap: () {
+          HapticFeedback.lightImpact();
+          context.push(Routes.quizGeneric.replaceFirst(':quizId', quiz.id));
+        },
+        child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -182,6 +187,7 @@ class QuizSuggestionCard extends ConsumerWidget {
               ],
             ),
           ],
+        ),
         ),
       ),
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.06, duration: 400.ms);

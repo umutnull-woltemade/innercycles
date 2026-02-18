@@ -517,11 +517,15 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
           final letter = _alphabet[index];
           final isSelected = letter == _selectedLetter;
 
-          return GestureDetector(
+          return Semantics(
+            label: letter,
+            button: true,
+            selected: isSelected,
+            child: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: () => _onLetterSelected(letter),
             child: SizedBox(
-              height: 36,
+              height: 44,
               child: Center(
                 child: Container(
                   width: 28,
@@ -547,6 +551,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
                   ),
                 ),
               ),
+            ),
             ),
           );
         },
@@ -1209,39 +1214,42 @@ class _SymbolDetailSheet extends StatelessWidget {
               final relatedSymbol = DreamSymbolsDatabase.findSymbol(related);
               if (relatedSymbol == null) return const SizedBox.shrink();
 
-              return GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                  // Will be handled by parent to show new detail sheet
-                },
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 6,
-                  ),
-                  decoration: BoxDecoration(
-                    color: CosmicPalette.bgElevated,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      color: CosmicPalette.amethyst.withValues(alpha: 0.3),
+              return Semantics(
+                label: relatedSymbol.symbolTr,
+                button: true,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
                     ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        relatedSymbol.emoji,
-                        style: const TextStyle(fontSize: 14),
+                    decoration: BoxDecoration(
+                      color: CosmicPalette.bgElevated,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: CosmicPalette.amethyst.withValues(alpha: 0.3),
                       ),
-                      const SizedBox(width: 4),
-                      Text(
-                        relatedSymbol.symbolTr,
-                        style: const TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: 12,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          relatedSymbol.emoji,
+                          style: const TextStyle(fontSize: 14),
                         ),
-                      ),
-                    ],
+                        const SizedBox(width: 4),
+                        Text(
+                          relatedSymbol.symbolTr,
+                          style: const TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -1255,10 +1263,23 @@ class _SymbolDetailSheet extends StatelessWidget {
   Widget _buildDreamedButton(BuildContext context) {
     final hasDreamed = personalDictionary.hasDreamed(symbol.symbol);
 
-    return GestureDetector(
-      onTap: hasDreamed ? null : onDreamed,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 14),
+    final dreamedLabel = hasDreamed
+        ? L10nService.get(
+            'screens.dream_glossary.dreamed_button.in_journal',
+            language,
+          )
+        : L10nService.get(
+            'screens.dream_glossary.dreamed_button.i_dreamed_this',
+            language,
+          );
+
+    return Semantics(
+      label: dreamedLabel,
+      button: !hasDreamed,
+      child: GestureDetector(
+        onTap: hasDreamed ? null : onDreamed,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 14),
         decoration: BoxDecoration(
           gradient: hasDreamed
               ? null
@@ -1300,6 +1321,7 @@ class _SymbolDetailSheet extends StatelessWidget {
             ),
           ],
         ),
+      ),
       ),
     );
   }

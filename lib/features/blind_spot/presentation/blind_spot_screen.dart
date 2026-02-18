@@ -570,12 +570,15 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
     final isDark = widget.isDark;
     final isEn = widget.isEn;
 
-    return GestureDetector(
-      onTap: () {
-        HapticFeedback.selectionClick();
-        setState(() => _expanded = !_expanded);
-      },
-      child: AnimatedContainer(
+    return Semantics(
+      label: isEn ? spot.typeEn : spot.typeTr,
+      button: true,
+      child: GestureDetector(
+        onTap: () {
+          HapticFeedback.selectionClick();
+          setState(() => _expanded = !_expanded);
+        },
+        child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeInOut,
         padding: const EdgeInsets.all(16),
@@ -677,6 +680,7 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
           ],
         ),
       ),
+    ),
     );
   }
 

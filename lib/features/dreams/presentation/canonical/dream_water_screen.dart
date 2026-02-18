@@ -262,7 +262,11 @@ class DreamWaterScreen extends ConsumerWidget {
     bool isDark,
     AppLanguage language,
   ) {
-    return GestureDetector(
+    final label = L10nService.get('dreams.canonical.recurring_question', language);
+    return Semantics(
+      label: label,
+      button: true,
+      child: GestureDetector(
       onTap: () => context.push(Routes.dreamRecurring),
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -315,6 +319,6 @@ class DreamWaterScreen extends ConsumerWidget {
           ],
         ),
       ),
-    ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
+    )).animate().fadeIn(delay: 200.ms, duration: 400.ms);
   }
 }

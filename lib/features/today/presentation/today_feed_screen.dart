@@ -451,14 +451,21 @@ class _RecentEntryRow extends StatelessWidget {
     final areaLabel = _focusAreaLabel(entry.focusArea, isEn);
     final rating = entry.overallRating;
 
-    return GestureDetector(
-      onTap: () {
-        HapticFeedback.selectionClick();
-        onTap();
-      },
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 8),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+    final entryLabel = isEn
+        ? '$areaLabel entry on $dateStr'
+        : '$dateStr tarihli $areaLabel kaydı';
+
+    return Semantics(
+      label: entryLabel,
+      button: true,
+      child: GestureDetector(
+        onTap: () {
+          HapticFeedback.selectionClick();
+          onTap();
+        },
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         decoration: BoxDecoration(
           color: isDark
               ? AppColors.surfaceDark.withValues(alpha: 0.6)
@@ -527,6 +534,7 @@ class _RecentEntryRow extends StatelessWidget {
             ),
           ],
         ),
+      ),
       ),
     );
   }

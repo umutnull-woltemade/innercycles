@@ -29,7 +29,12 @@ class HabitSuggestionCard extends ConsumerWidget {
         final habit = service.getDailyHabit();
         final progress = service.explorationProgress;
 
-        return GestureDetector(
+        return Semantics(
+              label: isEn
+                  ? 'Daily Habit: ${habit.titleEn}'
+                  : 'Günlük Alışkanlık: ${habit.titleTr}',
+              button: true,
+              child: GestureDetector(
               onTap: () {
                 HapticFeedback.lightImpact();
                 context.push(Routes.habitSuggestions);
@@ -238,6 +243,7 @@ class HabitSuggestionCard extends ConsumerWidget {
                     ),
                   ],
                 ),
+              ),
               ),
             )
             .animate()

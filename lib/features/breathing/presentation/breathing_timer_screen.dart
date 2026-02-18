@@ -441,9 +441,13 @@ class _PresetSelector extends StatelessWidget {
         final isSelected = preset == current;
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
-          child: GestureDetector(
-            onTap: enabled ? () => onChanged(preset) : null,
-            child: AnimatedContainer(
+          child: Semantics(
+            label: isEn ? preset.nameEn() : preset.nameTr(),
+            button: true,
+            selected: isSelected,
+            child: GestureDetector(
+              onTap: enabled ? () => onChanged(preset) : null,
+              child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               decoration: BoxDecoration(
@@ -472,6 +476,7 @@ class _PresetSelector extends StatelessWidget {
                 ),
               ),
             ),
+          ),
           ),
         );
       }).toList(),

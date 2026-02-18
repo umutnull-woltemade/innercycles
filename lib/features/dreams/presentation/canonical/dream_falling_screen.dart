@@ -263,7 +263,11 @@ class DreamFallingScreen extends ConsumerWidget {
     bool isDark,
     AppLanguage language,
   ) {
-    return GestureDetector(
+    final label = L10nService.get('dreams.canonical.water_question', language);
+    return Semantics(
+      label: label,
+      button: true,
+      child: GestureDetector(
       onTap: () => context.push(Routes.dreamWater),
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -316,6 +320,6 @@ class DreamFallingScreen extends ConsumerWidget {
           ],
         ),
       ),
-    ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
+    )).animate().fadeIn(delay: 200.ms, duration: 400.ms);
   }
 }

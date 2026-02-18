@@ -264,7 +264,11 @@ class DreamRecurringScreen extends ConsumerWidget {
     bool isDark,
     AppLanguage language,
   ) {
-    return GestureDetector(
+    final label = L10nService.get('dreams.canonical.falling_question', language);
+    return Semantics(
+      label: label,
+      button: true,
+      child: GestureDetector(
       onTap: () => context.push(Routes.dreamFalling),
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -317,6 +321,6 @@ class DreamRecurringScreen extends ConsumerWidget {
           ],
         ),
       ),
-    ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
+    )).animate().fadeIn(delay: 200.ms, duration: 400.ms);
   }
 }

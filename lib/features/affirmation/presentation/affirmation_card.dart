@@ -151,27 +151,34 @@ class _AffirmationCardState extends ConsumerState<AffirmationCard> {
                                 button: true,
                                 toggled: _isFavorite,
                                 child: GestureDetector(
+                                  behavior: HitTestBehavior.opaque,
                                   onTap: () =>
                                       _toggleFavorite(service, affirmation.id),
-                                  child: AnimatedSwitcher(
-                                    duration: const Duration(milliseconds: 250),
-                                    transitionBuilder: (child, animation) {
-                                      return ScaleTransition(
-                                        scale: animation,
-                                        child: child,
-                                      );
-                                    },
-                                    child: Icon(
-                                      _isFavorite
-                                          ? Icons.favorite_rounded
-                                          : Icons.favorite_border_rounded,
-                                      key: ValueKey(_isFavorite),
-                                      color: _isFavorite
-                                          ? AppColors.sunriseEnd
-                                          : (isDark
-                                                ? AppColors.textMuted
-                                                : AppColors.lightTextMuted),
-                                      size: 22,
+                                  child: SizedBox(
+                                    width: 44,
+                                    height: 44,
+                                    child: Center(
+                                      child: AnimatedSwitcher(
+                                        duration: const Duration(milliseconds: 250),
+                                        transitionBuilder: (child, animation) {
+                                          return ScaleTransition(
+                                            scale: animation,
+                                            child: child,
+                                          );
+                                        },
+                                        child: Icon(
+                                          _isFavorite
+                                              ? Icons.favorite_rounded
+                                              : Icons.favorite_border_rounded,
+                                          key: ValueKey(_isFavorite),
+                                          color: _isFavorite
+                                              ? AppColors.sunriseEnd
+                                              : (isDark
+                                                    ? AppColors.textMuted
+                                                    : AppColors.lightTextMuted),
+                                          size: 22,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),

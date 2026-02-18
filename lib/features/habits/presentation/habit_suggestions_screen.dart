@@ -306,17 +306,20 @@ class _DailySpotlightCard extends StatelessWidget {
     final isTried = service.isTried(habit.id);
     final isAdopted = service.isAdopted(habit.id);
 
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: isDark
-                ? [
-                    AppColors.auroraStart.withValues(alpha: 0.2),
+    return Semantics(
+      label: isEn ? habit.titleEn : habit.titleTr,
+      button: true,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: isDark
+                  ? [
+                      AppColors.auroraStart.withValues(alpha: 0.2),
                     AppColors.auroraEnd.withValues(alpha: 0.1),
                     AppColors.surfaceDark.withValues(alpha: 0.9),
                   ]
@@ -483,30 +486,34 @@ class _DailySpotlightCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 if (!isTried)
-                  GestureDetector(
-                    onTap: () async {
-                      HapticFeedback.mediumImpact();
-                      await service.markAsTried(habit.id);
-                      onRefresh();
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.auroraStart.withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: AppColors.auroraStart.withValues(alpha: 0.4),
+                  Semantics(
+                    label: isEn ? 'Try this habit' : 'Bu alışkanlığı dene',
+                    button: true,
+                    child: GestureDetector(
+                      onTap: () async {
+                        HapticFeedback.mediumImpact();
+                        await service.markAsTried(habit.id);
+                        onRefresh();
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
                         ),
-                      ),
-                      child: Text(
-                        isEn ? 'Try it' : 'Dene',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.auroraStart,
+                        decoration: BoxDecoration(
+                          color: AppColors.auroraStart.withValues(alpha: 0.2),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: AppColors.auroraStart.withValues(alpha: 0.4),
+                          ),
+                        ),
+                        child: Text(
+                          isEn ? 'Try it' : 'Dene',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.auroraStart,
+                          ),
                         ),
                       ),
                     ),
@@ -514,6 +521,7 @@ class _DailySpotlightCard extends StatelessWidget {
               ],
             ),
           ],
+        ),
         ),
       ),
     ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.08, duration: 500.ms);
@@ -640,43 +648,48 @@ class _CategoryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? AppColors.auroraStart.withValues(alpha: isDark ? 0.2 : 0.15)
-              : (isDark
-                    ? AppColors.surfaceDark
-                    : AppColors.lightSurfaceVariant),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
+    return Semantics(
+      label: label,
+      button: true,
+      selected: isSelected,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
             color: isSelected
-                ? AppColors.auroraStart.withValues(alpha: 0.5)
+                ? AppColors.auroraStart.withValues(alpha: isDark ? 0.2 : 0.15)
                 : (isDark
-                      ? Colors.white.withValues(alpha: 0.08)
-                      : Colors.black.withValues(alpha: 0.08)),
-          ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(emoji, style: const TextStyle(fontSize: 14)),
-            const SizedBox(width: 4),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                color: isSelected
-                    ? AppColors.auroraStart
-                    : (isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary),
-              ),
+                      ? AppColors.surfaceDark
+                      : AppColors.lightSurfaceVariant),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: isSelected
+                  ? AppColors.auroraStart.withValues(alpha: 0.5)
+                  : (isDark
+                        ? Colors.white.withValues(alpha: 0.08)
+                        : Colors.black.withValues(alpha: 0.08)),
             ),
-          ],
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(emoji, style: const TextStyle(fontSize: 14)),
+              const SizedBox(width: 4),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                  color: isSelected
+                      ? AppColors.auroraStart
+                      : (isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -710,24 +723,27 @@ class _HabitCard extends StatelessWidget {
     final isAdopted = service.isAdopted(habit.id);
     final isBookmarked = service.isBookmarked(habit.id);
 
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.8)
-              : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: isAdopted
-                ? AppColors.success.withValues(alpha: 0.3)
-                : (isDark
-                      ? Colors.white.withValues(alpha: 0.06)
-                      : Colors.black.withValues(alpha: 0.05)),
+    return Semantics(
+      label: isEn ? habit.titleEn : habit.titleTr,
+      button: true,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.surfaceDark.withValues(alpha: 0.8)
+                : AppColors.lightCard,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: isAdopted
+                  ? AppColors.success.withValues(alpha: 0.3)
+                  : (isDark
+                        ? Colors.white.withValues(alpha: 0.06)
+                        : Colors.black.withValues(alpha: 0.05)),
+            ),
           ),
-        ),
-        child: Row(
+          child: Row(
           children: [
             // Category emoji
             Container(
@@ -845,6 +861,7 @@ class _HabitCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
       ),
     );
   }
@@ -1131,52 +1148,56 @@ class _ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: BoxDecoration(
-          color: isActive
-              ? color.withValues(alpha: 0.15)
-              : (isDark
-                    ? AppColors.surfaceDark
-                    : AppColors.lightSurfaceVariant),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
+    return Semantics(
+      label: label,
+      button: true,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          decoration: BoxDecoration(
             color: isActive
-                ? color.withValues(alpha: 0.4)
+                ? color.withValues(alpha: 0.15)
                 : (isDark
-                      ? Colors.white.withValues(alpha: 0.08)
-                      : Colors.black.withValues(alpha: 0.08)),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: 16,
+                      ? AppColors.surfaceDark
+                      : AppColors.lightSurfaceVariant),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
               color: isActive
-                  ? color
-                  : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                  ? color.withValues(alpha: 0.4)
+                  : (isDark
+                        ? Colors.white.withValues(alpha: 0.08)
+                        : Colors.black.withValues(alpha: 0.08)),
             ),
-            const SizedBox(width: 6),
-            Flexible(
-              child: Text(
-                label,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: isActive
-                      ? color
-                      : (isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary),
-                ),
-                overflow: TextOverflow.ellipsis,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 16,
+                color: isActive
+                    ? color
+                    : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
               ),
-            ),
-          ],
+              const SizedBox(width: 6),
+              Flexible(
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: isActive
+                        ? color
+                        : (isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary),
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

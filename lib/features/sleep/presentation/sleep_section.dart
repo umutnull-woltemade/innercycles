@@ -185,13 +185,17 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                     children: List.generate(5, (i) {
                       final quality = i + 1;
                       final isActive = quality == _selectedQuality;
-                      return GestureDetector(
-                        onTap: () {
-                          HapticFeedback.selectionClick();
-                          setState(() => _selectedQuality = quality);
-                          _save();
-                        },
-                        child: AnimatedContainer(
+                      return Semantics(
+                        label: '${isEn ? 'Sleep quality' : 'Uyku kalitesi'} $quality: ${_qualityLabel(quality, isEn)}',
+                        button: true,
+                        selected: isActive,
+                        child: GestureDetector(
+                          onTap: () {
+                            HapticFeedback.selectionClick();
+                            setState(() => _selectedQuality = quality);
+                            _save();
+                          },
+                          child: AnimatedContainer(
                           duration: const Duration(milliseconds: 200),
                           width: 52,
                           height: 52,
@@ -219,6 +223,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                             ),
                           ),
                         ),
+                      ),
                       );
                     }),
                   ),

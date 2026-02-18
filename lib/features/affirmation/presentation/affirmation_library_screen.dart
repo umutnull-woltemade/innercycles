@@ -435,13 +435,20 @@ class _AffirmationTile extends StatelessWidget {
                 ? (isEn ? 'Remove from favorites' : 'Favorilerden kaldır')
                 : (isEn ? 'Add to favorites' : 'Favorilere ekle'),
             child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: onToggleFavorite,
-              child: Icon(
-                isFavorite ? Icons.favorite : Icons.favorite_border,
-                size: 20,
-                color: isFavorite
-                    ? AppColors.starGold
-                    : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+              child: SizedBox(
+                width: 44,
+                height: 44,
+                child: Center(
+                  child: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_border,
+                    size: 20,
+                    color: isFavorite
+                        ? AppColors.starGold
+                        : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                  ),
+                ),
               ),
             ),
           ),

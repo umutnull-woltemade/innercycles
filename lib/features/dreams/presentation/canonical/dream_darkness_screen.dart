@@ -250,7 +250,10 @@ class DreamDarknessScreen extends ConsumerWidget {
     String emoji,
     String text,
     String route,
-  ) => GestureDetector(
+  ) => Semantics(
+    label: text,
+    button: true,
+    child: GestureDetector(
     onTap: () => context.push(route),
     child: Container(
       padding: const EdgeInsets.all(16),
@@ -300,5 +303,5 @@ class DreamDarknessScreen extends ConsumerWidget {
         ],
       ),
     ),
-  ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
+  )).animate().fadeIn(delay: 200.ms, duration: 400.ms);
 }

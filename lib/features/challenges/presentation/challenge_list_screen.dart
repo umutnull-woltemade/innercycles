@@ -443,36 +443,54 @@ class _ChallengeCard extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             if (hasProgress && onIncrement != null)
-              GestureDetector(
-                onTap: onIncrement,
-                child: Container(
-                  width: 36,
-                  height: 36,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.starGold.withValues(alpha: 0.15),
+              Semantics(
+                label: isEn ? 'Increment progress' : 'İlerlemeyi artır',
+                button: true,
+                child: GestureDetector(
+                  onTap: onIncrement,
+                  behavior: HitTestBehavior.opaque,
+                  child: SizedBox(
+                    width: 44,
+                    height: 44,
+                    child: Center(
+                      child: Container(
+                        width: 36,
+                        height: 36,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.starGold.withValues(alpha: 0.15),
+                        ),
+                        child: Icon(Icons.add, size: 18, color: AppColors.starGold),
+                      ),
+                    ),
                   ),
-                  child: Icon(Icons.add, size: 18, color: AppColors.starGold),
                 ),
               )
             else if (!isCompleted && !hasProgress && onStart != null)
-              GestureDetector(
-                onTap: onStart,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.auroraStart.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    isEn ? 'Start' : 'Başla',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.auroraStart,
+              Semantics(
+                label: isEn ? 'Start challenge' : 'Görevi başlat',
+                button: true,
+                child: GestureDetector(
+                  onTap: onStart,
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(minHeight: 44),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.auroraStart.withValues(alpha: 0.15),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        isEn ? 'Start' : 'Başla',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.auroraStart,
+                        ),
+                      ),
                     ),
                   ),
                 ),
