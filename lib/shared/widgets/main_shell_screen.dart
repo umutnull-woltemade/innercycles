@@ -3,7 +3,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 // Wraps all tabs with a BottomNavigationBar, preserves state across
 // tab switches via StatefulShellRoute.
-// Tabs: Today | Tools | Challenges | Library | Profile
+// Tabs: Home | Journal | Insights | Breathe | Profile
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
@@ -111,24 +111,24 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
           enableFeedback: false,
           items: [
             BottomNavigationBarItem(
-              icon: const Icon(Icons.today_outlined),
-              activeIcon: const Icon(Icons.today),
-              label: isEn ? 'Today' : 'Bug\u00fcn',
+              icon: const Icon(Icons.home_outlined),
+              activeIcon: const Icon(Icons.home),
+              label: isEn ? 'Home' : 'Ana Sayfa',
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.grid_view_outlined),
-              activeIcon: const Icon(Icons.grid_view_rounded),
-              label: isEn ? 'Tools' : 'Ara\u00e7lar',
+              icon: const Icon(Icons.book_outlined),
+              activeIcon: const Icon(Icons.book),
+              label: isEn ? 'Journal' : 'G\u00fcnl\u00fck',
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.flag_outlined),
-              activeIcon: const Icon(Icons.flag_rounded),
-              label: isEn ? 'Challenges' : 'G\u00f6revler',
+              icon: const Icon(Icons.insights_outlined),
+              activeIcon: const Icon(Icons.insights),
+              label: isEn ? 'Insights' : '\u0130\u00e7g\u00f6r\u00fc',
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.local_library_outlined),
-              activeIcon: const Icon(Icons.local_library),
-              label: isEn ? 'Library' : 'K\u00fct\u00fcphane',
+              icon: const Icon(Icons.self_improvement_outlined),
+              activeIcon: const Icon(Icons.self_improvement),
+              label: isEn ? 'Breathe' : 'Nefes',
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.person_outline),
