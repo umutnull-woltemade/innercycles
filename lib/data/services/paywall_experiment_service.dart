@@ -180,8 +180,10 @@ class PaywallExperimentService {
     final assignedAt = _prefs.getString(_assignedAtKey);
     int hoursToConvert = 0;
     if (assignedAt != null) {
-      hoursToConvert =
-          DateTime.now().difference(DateTime.parse(assignedAt)).inHours;
+      final parsed = DateTime.tryParse(assignedAt);
+      if (parsed != null) {
+        hoursToConvert = DateTime.now().difference(parsed).inHours;
+      }
     }
 
     _analytics?.logPaywallConversion(

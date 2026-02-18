@@ -553,10 +553,13 @@ class MilestoneService {
     for (final entry in _earned.entries) {
       final milestone = milestoneMap[entry.key];
       if (milestone != null) {
-        result.add(EarnedMilestone(
-          milestone: milestone,
-          earnedAt: DateTime.parse(entry.value),
-        ));
+        final parsed = DateTime.tryParse(entry.value);
+        if (parsed != null) {
+          result.add(EarnedMilestone(
+            milestone: milestone,
+            earnedAt: parsed,
+          ));
+        }
       }
     }
 
@@ -586,7 +589,7 @@ class MilestoneService {
   DateTime? earnedAt(String milestoneId) {
     final ts = _earned[milestoneId];
     if (ts == null) return null;
-    return DateTime.parse(ts);
+    return DateTime.tryParse(ts);
   }
 
   /// Returns a list of milestones the user is closest to earning, ordered by

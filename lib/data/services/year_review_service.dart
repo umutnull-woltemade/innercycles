@@ -309,8 +309,9 @@ class YearReviewService {
     int current = 1;
 
     for (int i = 1; i < sorted.length; i++) {
-      final prev = DateTime.parse(sorted[i - 1]);
-      final curr = DateTime.parse(sorted[i]);
+      final prev = DateTime.tryParse(sorted[i - 1]);
+      final curr = DateTime.tryParse(sorted[i]);
+      if (prev == null || curr == null) continue;
       if (curr.difference(prev).inDays == 1) {
         current++;
         best = max(best, current);

@@ -1153,17 +1153,17 @@ class DreamSymbolsDatabase {
 
   /// En yaygın sembolleri getir (UI'da göstermek için)
   static List<DreamSymbolData> get commonSymbols => [
-    findSymbol('water')!,
-    findSymbol('snake')!,
-    findSymbol('flying')!,
-    findSymbol('falling')!,
-    findSymbol('teeth-falling')!,
-    findSymbol('house')!,
-    findSymbol('chasing')!,
-    findSymbol('death')!,
-    findSymbol('naked')!,
-    findSymbol('lost')!,
-  ];
+    findSymbol('water'),
+    findSymbol('snake'),
+    findSymbol('flying'),
+    findSymbol('falling'),
+    findSymbol('teeth-falling'),
+    findSymbol('house'),
+    findSymbol('chasing'),
+    findSymbol('death'),
+    findSymbol('naked'),
+    findSymbol('lost'),
+  ].whereType<DreamSymbolData>().toList();
 
   /// Rüya metninden sembolleri tespit et
   static List<DreamSymbolData> detectSymbolsInText(String dreamText) {

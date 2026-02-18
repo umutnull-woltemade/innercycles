@@ -288,32 +288,38 @@ class _HabitCheckCard extends StatelessWidget {
           Row(
             children: [
               // Check circle
-              GestureDetector(
-                onTap: onToggle,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 250),
-                  width: 36,
-                  height: 36,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: isChecked
-                        ? AppColors.success
-                        : (isDark
-                            ? Colors.white.withValues(alpha: 0.06)
-                            : Colors.black.withValues(alpha: 0.06)),
-                    border: isChecked
-                        ? null
-                        : Border.all(
-                            color: isDark
-                                ? Colors.white.withValues(alpha: 0.15)
-                                : Colors.black.withValues(alpha: 0.12),
-                            width: 2,
-                          ),
+              Semantics(
+                label: isChecked
+                    ? (isEn ? 'Mark incomplete' : 'Tamamlanmadı olarak işaretle')
+                    : (isEn ? 'Mark complete' : 'Tamamlandı olarak işaretle'),
+                button: true,
+                child: GestureDetector(
+                  onTap: onToggle,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 250),
+                    width: 36,
+                    height: 36,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: isChecked
+                          ? AppColors.success
+                          : (isDark
+                              ? Colors.white.withValues(alpha: 0.06)
+                              : Colors.black.withValues(alpha: 0.06)),
+                      border: isChecked
+                          ? null
+                          : Border.all(
+                              color: isDark
+                                  ? Colors.white.withValues(alpha: 0.15)
+                                  : Colors.black.withValues(alpha: 0.12),
+                              width: 2,
+                            ),
+                    ),
+                    child: isChecked
+                        ? const Icon(Icons.check_rounded,
+                            color: Colors.white, size: 20)
+                        : null,
                   ),
-                  child: isChecked
-                      ? const Icon(Icons.check_rounded,
-                          color: Colors.white, size: 20)
-                      : null,
                 ),
               ),
               const SizedBox(width: 12),

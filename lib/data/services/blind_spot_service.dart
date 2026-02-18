@@ -931,7 +931,7 @@ class BlindSpotService {
   }
 
   String _nextDateKey(String dateKey) {
-    final date = DateTime.parse(dateKey);
+    final date = DateTime.tryParse(dateKey) ?? DateTime.now();
     final next = date.add(const Duration(days: 1));
     return '${next.year}-${next.month.toString().padLeft(2, '0')}-${next.day.toString().padLeft(2, '0')}';
   }

@@ -184,8 +184,9 @@ class JournalService {
     int current = 1;
 
     for (int i = 1; i < uniqueDates.length; i++) {
-      final prev = DateTime.parse(uniqueDates[i - 1]);
-      final curr = DateTime.parse(uniqueDates[i]);
+      final prev = DateTime.tryParse(uniqueDates[i - 1]);
+      final curr = DateTime.tryParse(uniqueDates[i]);
+      if (prev == null || curr == null) continue;
       final diff = curr.difference(prev).inDays;
 
       if (diff == 1) {

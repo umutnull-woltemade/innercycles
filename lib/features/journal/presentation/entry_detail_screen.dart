@@ -90,6 +90,7 @@ class EntryDetailScreen extends ConsumerWidget {
             actions: [
               IconButton(
                 onPressed: () => _confirmDelete(context, ref, entry.id, isEn),
+                tooltip: isEn ? 'Delete entry' : 'Kaydı sil',
                 icon: Icon(Icons.delete_outline, color: AppColors.error),
               ),
             ],
