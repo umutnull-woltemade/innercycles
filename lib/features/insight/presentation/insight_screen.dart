@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 import '../services/insight_routing_service.dart';
@@ -140,7 +141,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
     final language = ref.watch(languageProvider);
 
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF0D1117) : Colors.grey[50],
+      backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightBackground,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,

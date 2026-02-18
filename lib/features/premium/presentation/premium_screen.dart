@@ -843,15 +843,20 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 child: GestureDetector(
                   onTap: () =>
                       ref.read(urlLauncherServiceProvider).openPrivacyPolicy(),
-                  child: Text(
-                    isEn
-                        ? 'Privacy Policy'
-                        : L10nService.get('settings.privacy_policy', language),
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.starGold,
-                      fontSize: 11,
-                      decoration: TextDecoration.underline,
-                      decorationColor: AppColors.starGold,
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(minHeight: 44),
+                    child: Center(
+                      child: Text(
+                        isEn
+                            ? 'Privacy Policy'
+                            : L10nService.get('settings.privacy_policy', language),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppColors.starGold,
+                          fontSize: 11,
+                          decoration: TextDecoration.underline,
+                          decorationColor: AppColors.starGold,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -872,15 +877,20 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 child: GestureDetector(
                   onTap: () =>
                       ref.read(urlLauncherServiceProvider).openTermsOfService(),
-                  child: Text(
-                    isEn
-                        ? 'Terms of Service'
-                        : L10nService.get('settings.terms_of_service', language),
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.starGold,
-                      fontSize: 11,
-                      decoration: TextDecoration.underline,
-                      decorationColor: AppColors.starGold,
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(minHeight: 44),
+                    child: Center(
+                      child: Text(
+                        isEn
+                            ? 'Terms of Service'
+                            : L10nService.get('settings.terms_of_service', language),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppColors.starGold,
+                          fontSize: 11,
+                          decoration: TextDecoration.underline,
+                          decorationColor: AppColors.starGold,
+                        ),
+                      ),
                     ),
                   ),
                 ),

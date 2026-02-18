@@ -43,7 +43,17 @@ class WellnessDetailScreen extends ConsumerWidget {
                       loading: () => const Center(
                         child: CircularProgressIndicator(),
                       ),
-                      error: (_, _) => const SizedBox.shrink(),
+                      error: (_, _) => Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(32),
+                          child: Text(
+                            isEn ? 'Could not load wellness data' : 'Sağlık verileri yüklenemedi',
+                            style: TextStyle(
+                              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                            ),
+                          ),
+                        ),
+                      ),
                       data: (score) {
                         if (score == null) {
                           return _buildEmptyState(isDark, isEn);

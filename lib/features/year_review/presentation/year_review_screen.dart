@@ -97,7 +97,17 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                 SliverToBoxAdapter(
                   child: yearsAsync.when(
                     loading: () => const SizedBox(height: 48),
-                    error: (_, _) => const SizedBox.shrink(),
+                    error: (_, _) => Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(32),
+                        child: Text(
+                          isEn ? 'Could not load year data' : 'Yıl verileri yüklenemedi',
+                          style: TextStyle(
+                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                          ),
+                        ),
+                      ),
+                    ),
                     data: (years) {
                       if (years.isEmpty) {
                         return _EmptyState(isDark: isDark, isEn: isEn);

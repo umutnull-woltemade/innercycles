@@ -37,7 +37,14 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
       body: CosmicBackground(
         child: challengeAsync.when(
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (e, _) => Center(child: Text('Error: $e')),
+          error: (_, _) => Center(
+            child: Text(
+              isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+              style: TextStyle(
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
+            ),
+          ),
           data: (service) => _buildContent(service, isDark, isEn),
         ),
       ),
