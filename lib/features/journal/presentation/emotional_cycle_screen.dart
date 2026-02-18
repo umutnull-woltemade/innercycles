@@ -629,7 +629,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildShiftForecastSection(BuildContext context, bool isDark, bool isEn) {
-    final isPremium = ref.watch(premiumProvider).isPremium;
+    final isPremium = ref.watch(isPremiumUserProvider);
     final forecastAsync = ref.watch(shiftForecastProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -161,7 +161,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                       // Gratitude section (collapsible)
                       GratitudeSection(
                         date: _selectedDate,
-                        isPremium: ref.watch(premiumProvider).isPremium,
+                        isPremium: ref.watch(isPremiumUserProvider),
                       ),
                       const SizedBox(height: AppConstants.spacingXl),
 

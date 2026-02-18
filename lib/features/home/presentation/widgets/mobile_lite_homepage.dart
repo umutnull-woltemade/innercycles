@@ -1405,7 +1405,7 @@ class _UpgradeTriggerBanner extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isPremium = ref.watch(premiumProvider).isPremium;
+    final isPremium = ref.watch(isPremiumUserProvider);
     if (isPremium) return const SizedBox.shrink();
 
     final upgradeAsync = ref.watch(upgradeTriggerServiceProvider);
@@ -1581,7 +1581,7 @@ class _ShiftForecastSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isPremium = ref.watch(premiumProvider).isPremium;
+    final isPremium = ref.watch(isPremiumUserProvider);
     if (!isPremium) return const SizedBox.shrink();
 
     final forecastAsync = ref.watch(shiftForecastProvider);
