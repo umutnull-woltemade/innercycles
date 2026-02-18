@@ -72,7 +72,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       ),
     );
 
-    if (confirmed == true) {
+    if (confirmed == true && mounted) {
       await AdminAuthService.logout();
       ref.invalidate(adminAuthProvider);
       if (mounted) {

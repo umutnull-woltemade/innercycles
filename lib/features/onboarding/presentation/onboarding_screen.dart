@@ -272,7 +272,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     }
   }
 
-  void _completeOnboarding() async {
+  Future<void> _completeOnboarding() async {
     HapticFeedback.selectionClick();
 
     if (_userName != null && _userName!.isNotEmpty) {
