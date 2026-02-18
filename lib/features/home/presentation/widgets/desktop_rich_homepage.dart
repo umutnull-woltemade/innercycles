@@ -26,7 +26,9 @@ class DesktopRichHomepage extends ConsumerWidget {
         userProfile.name == null ||
         userProfile.name!.isEmpty) {
       return Scaffold(
-        backgroundColor: const Color(0xFF0D0D1A),
+        backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? const Color(0xFF0D0D1A)
+            : AppColors.lightBackground,
         body: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,

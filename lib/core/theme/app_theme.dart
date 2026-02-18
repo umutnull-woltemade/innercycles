@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'cosmic_palette.dart';
 import 'app_typography.dart';
-import 'spacing.dart';
+import '../constants/app_constants.dart';
 
 /// App theme configuration with dark and light modes
 class AppTheme {
@@ -37,7 +37,7 @@ class AppTheme {
       color: CosmicPalette.bgCosmic,
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Spacing.radiusMd),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -45,11 +45,11 @@ class AppTheme {
         backgroundColor: CosmicPalette.amethyst,
         foregroundColor: CosmicPalette.textPrimary,
         padding: const EdgeInsets.symmetric(
-          horizontal: Spacing.xl,
-          vertical: Spacing.lg,
+          horizontal: AppConstants.spacingXl,
+          vertical: AppConstants.spacingLg,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Spacing.radiusMd),
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         ),
       ),
     ),
@@ -58,11 +58,11 @@ class AppTheme {
         foregroundColor: CosmicPalette.starGold,
         side: const BorderSide(color: CosmicPalette.starGold),
         padding: const EdgeInsets.symmetric(
-          horizontal: Spacing.xl,
-          vertical: Spacing.lg,
+          horizontal: AppConstants.spacingXl,
+          vertical: AppConstants.spacingLg,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Spacing.radiusMd),
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         ),
       ),
     ),
@@ -70,17 +70,17 @@ class AppTheme {
       filled: true,
       fillColor: CosmicPalette.bgElevated,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(Spacing.radiusMd),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         borderSide: BorderSide.none,
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(Spacing.radiusMd),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         borderSide: BorderSide(
           color: CosmicPalette.textMuted.withValues(alpha: 0.3),
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(Spacing.radiusMd),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         borderSide: const BorderSide(color: CosmicPalette.amethyst),
       ),
     ),
@@ -90,7 +90,7 @@ class AppTheme {
     ),
     iconTheme: const IconThemeData(
       color: CosmicPalette.textSecondary,
-      size: Spacing.iconMd,
+      size: 24,
     ),
   );
 
@@ -125,7 +125,7 @@ class AppTheme {
       elevation: 2,
       shadowColor: CosmicPalette.amethyst.withValues(alpha: 0.1),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Spacing.radiusMd),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -133,11 +133,11 @@ class AppTheme {
         backgroundColor: CosmicPalette.amethyst,
         foregroundColor: Colors.white,
         padding: const EdgeInsets.symmetric(
-          horizontal: Spacing.xl,
-          vertical: Spacing.lg,
+          horizontal: AppConstants.spacingXl,
+          vertical: AppConstants.spacingLg,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Spacing.radiusMd),
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         ),
       ),
     ),
@@ -146,11 +146,11 @@ class AppTheme {
         foregroundColor: CosmicPalette.amethyst,
         side: const BorderSide(color: CosmicPalette.amethyst),
         padding: const EdgeInsets.symmetric(
-          horizontal: Spacing.xl,
-          vertical: Spacing.lg,
+          horizontal: AppConstants.spacingXl,
+          vertical: AppConstants.spacingLg,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Spacing.radiusMd),
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         ),
       ),
     ),
@@ -158,17 +158,17 @@ class AppTheme {
       filled: true,
       fillColor: CosmicPalette.bgLightElevated,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(Spacing.radiusMd),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         borderSide: BorderSide.none,
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(Spacing.radiusMd),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         borderSide: BorderSide(
           color: CosmicPalette.violetMist.withValues(alpha: 0.5),
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(Spacing.radiusMd),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         borderSide: const BorderSide(color: CosmicPalette.amethyst),
       ),
     ),
@@ -178,7 +178,7 @@ class AppTheme {
     ),
     iconTheme: const IconThemeData(
       color: CosmicPalette.textDarkSecondary,
-      size: Spacing.iconMd,
+      size: 24,
     ),
   );
 }

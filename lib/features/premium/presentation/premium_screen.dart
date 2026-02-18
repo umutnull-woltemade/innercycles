@@ -831,7 +831,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             style: Theme.of(context)
                 .textTheme
                 .bodySmall
-                ?.copyWith(color: AppColors.textMuted, fontSize: 10),
+                ?.copyWith(color: AppColors.textMuted, fontSize: 11),
           ),
           const SizedBox(height: 8),
           Row(
@@ -846,7 +846,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                       : L10nService.get('settings.privacy_policy', language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.starGold,
-                    fontSize: 10,
+                    fontSize: 11,
                     decoration: TextDecoration.underline,
                     decorationColor: AppColors.starGold,
                   ),
@@ -859,7 +859,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                   style: Theme.of(context)
                       .textTheme
                       .bodySmall
-                      ?.copyWith(color: AppColors.textMuted, fontSize: 10),
+                      ?.copyWith(color: AppColors.textMuted, fontSize: 11),
                 ),
               ),
               GestureDetector(
@@ -871,7 +871,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                       : L10nService.get('settings.terms_of_service', language),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.starGold,
-                    fontSize: 10,
+                    fontSize: 11,
                     decoration: TextDecoration.underline,
                     decorationColor: AppColors.starGold,
                   ),
@@ -893,7 +893,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF1A1A2E),
+        backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? const Color(0xFF1A1A2E)
+            : AppColors.lightSurface,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: Row(
@@ -911,7 +913,11 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         ),
         content: Text(
           L10nService.get('premium.success_message', language),
-          style: const TextStyle(color: Colors.white70),
+          style: TextStyle(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.white70
+                : AppColors.lightTextSecondary,
+          ),
         ),
         actions: [
           TextButton(
@@ -1131,7 +1137,7 @@ class _BestValueBadge extends ConsumerWidget {
         L10nService.get('premium.best_value', language),
         style: const TextStyle(
           color: Colors.black,
-          fontSize: 10,
+          fontSize: 11,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -1155,7 +1161,7 @@ class _LifetimeBadge extends ConsumerWidget {
         L10nService.get('premium.lifetime', language),
         style: const TextStyle(
           color: Colors.white,
-          fontSize: 10,
+          fontSize: 11,
           fontWeight: FontWeight.bold,
         ),
       ),

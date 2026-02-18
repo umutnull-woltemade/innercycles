@@ -12,7 +12,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/cosmic_palette.dart';
-import '../../../core/theme/spacing.dart';
+import '../../../core/constants/app_constants.dart';
 import '../../../data/models/dream_interpretation_models.dart';
 import '../../../data/content/dream_symbols_database.dart';
 import '../../../data/providers/app_providers.dart';
@@ -357,7 +357,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
               CosmicPalette.bgCosmic.withValues(alpha: 0.9),
             ],
           ),
-          borderRadius: BorderRadius.circular(Spacing.radiusLg),
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
           border: Border.all(
             color: CosmicPalette.amethyst.withValues(alpha: 0.3),
           ),
@@ -508,11 +508,11 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
             behavior: HitTestBehavior.opaque,
             onTap: () => _onLetterSelected(letter),
             child: SizedBox(
-              height: 28,
+              height: 36,
               child: Center(
                 child: Container(
                   width: 28,
-                  height: 24,
+                  height: 28,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: isSelected
@@ -582,7 +582,7 @@ class _SymbolCard extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(Spacing.radiusMd),
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           child: Container(
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
@@ -594,7 +594,7 @@ class _SymbolCard extends StatelessWidget {
                   CosmicPalette.bgCosmic.withValues(alpha: 0.8),
                 ],
               ),
-              borderRadius: BorderRadius.circular(Spacing.radiusMd),
+              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
               border: Border.all(
                 color: isDreamed
                     ? CosmicPalette.starGold.withValues(alpha: 0.4)
@@ -943,7 +943,7 @@ class _SymbolDetailSheet extends StatelessWidget {
             Colors.transparent,
           ],
         ),
-        borderRadius: BorderRadius.circular(Spacing.radiusMd),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: (color ?? CosmicPalette.amethyst).withValues(alpha: 0.2),
         ),
@@ -988,7 +988,7 @@ class _SymbolDetailSheet extends StatelessWidget {
             Colors.transparent,
           ],
         ),
-        borderRadius: BorderRadius.circular(Spacing.radiusMd),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: CosmicPalette.nebulaTeal.withValues(alpha: 0.2),
         ),
@@ -1061,7 +1061,7 @@ class _SymbolDetailSheet extends StatelessWidget {
             Colors.transparent,
           ],
         ),
-        borderRadius: BorderRadius.circular(Spacing.radiusMd),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(color: CosmicPalette.orchid.withValues(alpha: 0.2)),
       ),
       child: Column(
@@ -1160,7 +1160,7 @@ class _SymbolDetailSheet extends StatelessWidget {
             Colors.transparent,
           ],
         ),
-        borderRadius: BorderRadius.circular(Spacing.radiusMd),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: CosmicPalette.stardustBlue.withValues(alpha: 0.2),
         ),
@@ -1252,7 +1252,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                   ],
                 ),
           color: hasDreamed ? CosmicPalette.bgElevated : null,
-          borderRadius: BorderRadius.circular(Spacing.radiusMd),
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           border: hasDreamed
               ? Border.all(
                   color: CosmicPalette.starGold.withValues(alpha: 0.3),
@@ -1488,7 +1488,7 @@ class _PersonalDictionarySheet extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () => onSymbolTap(symbol),
-          borderRadius: BorderRadius.circular(Spacing.radiusMd),
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           child: Container(
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
@@ -1498,7 +1498,7 @@ class _PersonalDictionarySheet extends StatelessWidget {
                   CosmicPalette.bgCosmic.withValues(alpha: 0.8),
                 ],
               ),
-              borderRadius: BorderRadius.circular(Spacing.radiusMd),
+              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
               border: Border.all(
                 color: CosmicPalette.starGold.withValues(alpha: 0.3),
               ),

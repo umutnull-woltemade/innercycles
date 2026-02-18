@@ -51,7 +51,9 @@ class MobileLiteHomepage extends ConsumerWidget {
         userProfile.name!.isEmpty) {
       final language = ref.watch(languageProvider);
       return Scaffold(
-        backgroundColor: const Color(0xFF0D0D1A),
+        backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? const Color(0xFF0D0D1A)
+            : AppColors.lightBackground,
         body: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,

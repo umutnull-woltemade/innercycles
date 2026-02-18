@@ -1657,14 +1657,15 @@ ${_getPersonalAdvice(sign)}''';
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(context),
-              Expanded(child: _buildChatArea()),
-              _buildInputArea(),
+              _buildHeader(context, isDark),
+              Expanded(child: _buildChatArea(isDark)),
+              _buildInputArea(isDark),
             ],
           ),
         ),
@@ -1672,7 +1673,7 @@ ${_getPersonalAdvice(sign)}''';
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, bool isDark) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
@@ -1686,9 +1687,9 @@ ${_getPersonalAdvice(sign)}''';
         children: [
           IconButton(
             onPressed: () => context.pop(),
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_ios,
-              color: AppColors.textPrimary,
+              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             ),
           ),
           const SizedBox(width: 8),
@@ -1736,7 +1737,7 @@ ${_getPersonalAdvice(sign)}''';
                     ref.watch(languageProvider),
                   ),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.textPrimary,
+                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -1746,7 +1747,7 @@ ${_getPersonalAdvice(sign)}''';
                     ref.watch(languageProvider),
                   ),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textSecondary,
+                    color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
                   ),
                 ),
               ],
@@ -1766,7 +1767,7 @@ ${_getPersonalAdvice(sign)}''';
     ).glassReveal(context: context);
   }
 
-  Widget _buildChatArea() {
+  Widget _buildChatArea(bool isDark) {
     return ListView.builder(
       controller: _scrollController,
       padding: const EdgeInsets.all(16),
@@ -1777,21 +1778,21 @@ ${_getPersonalAdvice(sign)}''';
       itemBuilder: (context, index) {
         // Show suggested prompts after welcome message
         if (_messages.length == 1 && index == 1 && !_isTyping) {
-          return _buildSuggestedDreamPrompts();
+          return _buildSuggestedDreamPrompts(isDark);
         }
         if (index == _messages.length + (_messages.length == 1 ? 1 : 0) &&
             _isTyping) {
           return _buildTypingIndicator();
         }
         if (index < _messages.length) {
-          return _buildMessageBubble(_messages[index], index);
+          return _buildMessageBubble(_messages[index], index, isDark);
         }
         return const SizedBox.shrink();
       },
     );
   }
 
-  Widget _buildSuggestedDreamPrompts() {
+  Widget _buildSuggestedDreamPrompts(bool isDark) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Column(
@@ -1811,7 +1812,7 @@ ${_getPersonalAdvice(sign)}''';
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.textSecondary,
+                    color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
                   ),
                 ),
               ],
@@ -1853,9 +1854,9 @@ ${_getPersonalAdvice(sign)}''';
                               Expanded(
                                 child: Text(
                                   prompt['text'],
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 11,
-                                    color: AppColors.textPrimary,
+                                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                                     height: 1.3,
                                   ),
                                   maxLines: 3,
@@ -1880,7 +1881,9 @@ ${_getPersonalAdvice(sign)}''';
               ),
               style: TextStyle(
                 fontSize: 11,
-                color: AppColors.textSecondary.withValues(alpha: 0.7),
+                color: isDark
+                    ? AppColors.textSecondary.withValues(alpha: 0.7)
+                    : AppColors.lightTextSecondary.withValues(alpha: 0.7),
                 fontStyle: FontStyle.italic,
               ),
             ),
@@ -1890,7 +1893,7 @@ ${_getPersonalAdvice(sign)}''';
     ).glassReveal(context: context, delay: const Duration(milliseconds: 300));
   }
 
-  Widget _buildMessageBubble(ChatMessage message, int index) {
+  Widget _buildMessageBubble(ChatMessage message, int index, bool isDark) {
     final isUser = message.isUser;
     final language = ref.watch(languageProvider);
     final isEn = language == AppLanguage.en;
@@ -1992,7 +1995,7 @@ ${_getPersonalAdvice(sign)}''';
                           Text(
                             message.text,
                             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: AppColors.textPrimary,
+                              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                               height: 1.5,
                             ),
                           ),
@@ -2011,6 +2014,7 @@ ${_getPersonalAdvice(sign)}''';
                   child: _buildLockedPerspectivesCard(
                     message.lockedPerspectiveCount,
                     isEn,
+                    isDark,
                   ),
                 ),
               ],
@@ -2020,7 +2024,7 @@ ${_getPersonalAdvice(sign)}''';
         .glassListItem(context: context, index: index);
   }
 
-  Widget _buildLockedPerspectivesCard(int lockedCount, bool isEn) {
+  Widget _buildLockedPerspectivesCard(int lockedCount, bool isEn, bool isDark) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: Stack(
@@ -2040,7 +2044,9 @@ ${_getPersonalAdvice(sign)}''';
                         ? 'Psychological Perspective\n━━━━━━━━━━━━━━━━━\nYour subconscious is revealing...'
                         : 'Psikolojik Perspektif\n━━━━━━━━━━━━━━━━━\nBilinaltiniz ortaya koyuyor...',
                     style: TextStyle(
-                      color: AppColors.textPrimary.withValues(alpha: 0.5),
+                      color: isDark
+                          ? AppColors.textPrimary.withValues(alpha: 0.5)
+                          : AppColors.lightTextPrimary.withValues(alpha: 0.5),
                       fontSize: 13,
                       height: 1.5,
                     ),
@@ -2059,8 +2065,12 @@ ${_getPersonalAdvice(sign)}''';
                   end: Alignment.bottomCenter,
                   colors: [
                     Colors.transparent,
-                    const Color(0xFF1A1A2E).withValues(alpha: 0.85),
-                    const Color(0xFF1A1A2E).withValues(alpha: 0.95),
+                    isDark
+                        ? const Color(0xFF1A1A2E).withValues(alpha: 0.85)
+                        : AppColors.lightSurface.withValues(alpha: 0.85),
+                    isDark
+                        ? const Color(0xFF1A1A2E).withValues(alpha: 0.95)
+                        : AppColors.lightSurface.withValues(alpha: 0.95),
                   ],
                   stops: const [0.0, 0.3, 1.0],
                 ),
@@ -2086,8 +2096,8 @@ ${_getPersonalAdvice(sign)}''';
                           ? '$lockedCount more perspectives available'
                           : '$lockedCount perspektif daha mevcut',
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: isDark ? Colors.white : AppColors.lightTextPrimary,
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                       ),
@@ -2099,7 +2109,9 @@ ${_getPersonalAdvice(sign)}''';
                           : 'Ruyanizi her acidan gorun',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.6),
+                        color: isDark
+                            ? Colors.white.withValues(alpha: 0.6)
+                            : Colors.black.withValues(alpha: 0.6),
                         fontSize: 12,
                       ),
                     ),
@@ -2195,7 +2207,7 @@ ${_getPersonalAdvice(sign)}''';
     );
   }
 
-  Widget _buildInputArea() {
+  Widget _buildInputArea(bool isDark) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -2229,7 +2241,9 @@ ${_getPersonalAdvice(sign)}''';
                     },
                     child: TextField(
                       controller: _dreamController,
-                      style: const TextStyle(color: AppColors.textPrimary),
+                      style: TextStyle(
+                        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                      ),
                       maxLines: 5,
                       minLines: 1,
                       textInputAction: TextInputAction.send,
@@ -2239,7 +2253,9 @@ ${_getPersonalAdvice(sign)}''';
                           ref.read(languageProvider),
                         ),
                         hintStyle: TextStyle(
-                          color: AppColors.textSecondary.withValues(alpha: 0.6),
+                          color: isDark
+                              ? AppColors.textSecondary.withValues(alpha: 0.6)
+                              : AppColors.lightTextSecondary.withValues(alpha: 0.6),
                         ),
                         border: InputBorder.none,
                         contentPadding: const EdgeInsets.symmetric(
@@ -2343,6 +2359,7 @@ class _DreamSymbolsSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
     final symbols = [
       {
@@ -2449,7 +2466,9 @@ class _DreamSymbolsSheet extends ConsumerWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [AppColors.nebulaPurple, const Color(0xFF0D0D1A)],
+          colors: isDark
+              ? [AppColors.nebulaPurple, const Color(0xFF0D0D1A)]
+              : [AppColors.lightSurfaceVariant, AppColors.lightSurface],
         ),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
       ),
@@ -2461,7 +2480,9 @@ class _DreamSymbolsSheet extends ConsumerWidget {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: AppColors.textSecondary.withValues(alpha: 0.3),
+              color: isDark
+                  ? AppColors.textSecondary.withValues(alpha: 0.3)
+                  : AppColors.lightTextSecondary.withValues(alpha: 0.3),
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -2478,7 +2499,7 @@ class _DreamSymbolsSheet extends ConsumerWidget {
                     language,
                   ),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.textPrimary,
+                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -2505,7 +2526,7 @@ class _DreamSymbolsSheet extends ConsumerWidget {
                       child: Row(
                         children: [
                           Text(
-                            symbol['emoji']!,
+                            symbol['emoji'] ?? '',
                             style: const TextStyle(fontSize: 28),
                           ),
                           const SizedBox(width: 10),
@@ -2515,19 +2536,19 @@ class _DreamSymbolsSheet extends ConsumerWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  symbol['name']!,
-                                  style: const TextStyle(
-                                    color: AppColors.textPrimary,
+                                  symbol['name'] ?? '',
+                                  style: TextStyle(
+                                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 13,
                                   ),
                                 ),
                                 Text(
-                                  symbol['meaning']!,
+                                  symbol['meaning'] ?? '',
                                   style: TextStyle(
-                                    color: AppColors.textSecondary.withValues(
-                                      alpha: 0.8,
-                                    ),
+                                    color: isDark
+                                        ? AppColors.textSecondary.withValues(alpha: 0.8)
+                                        : AppColors.lightTextSecondary.withValues(alpha: 0.8),
                                     fontSize: 10,
                                   ),
                                   maxLines: 2,

@@ -21,7 +21,6 @@ import 'data/services/admin_analytics_service.dart';
 import 'data/services/web_error_service.dart';
 import 'data/services/l10n_service.dart';
 import 'data/services/sync_service.dart';
-import 'data/services/feature_flag_service.dart';
 import 'data/services/error_reporting_service.dart';
 import 'data/services/paywall_experiment_service.dart';
 import 'data/providers/app_providers.dart';
@@ -292,18 +291,6 @@ class _AppInitializerState extends State<AppInitializer> {
         if (kDebugMode) {
           debugPrint('⚠️ SyncService init failed: $e');
         }
-      }
-    }
-
-    // Initialize feature flags
-    try {
-      await FeatureFlagService.initialize();
-      if (kDebugMode) {
-        debugPrint('✓ FeatureFlagService initialized');
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        debugPrint('⚠️ FeatureFlagService init failed: $e');
       }
     }
 
