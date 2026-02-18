@@ -271,7 +271,7 @@
             "communication_themes": "🌙 Welche Kommunikations-Themen kommen jetzt auf?",
             "big_change": "🦋 Welche Transformations-Themen sprechen mich an?",
             "rich_become": "💰 Wie ist meine Beziehung zu Fülle?",
-            "future_love": "🔮 Welche Muster bemerke ich in Beziehungen?",
+            "future_love": "💕 Welche Muster bemerke ich in Beziehungen?",
             "attention_this_week": "🎭 Welche Themen verdienen diese Woche meine Aufmerksamkeit?",
             "deep_connection_find": "💑 Welche Eigenschaften schätze ich in tiefen Verbindungen?",
             "pioneer_man": "🚀 Kann ich mit einem Pionier-Mann auskommen?",
@@ -327,7 +327,7 @@
             "no_results": "Keine Ergebnisse gefunden",
             "try_different_term": "Versuchen Sie einen anderen Suchbegriff",
             "deep_interpretation": "Tiefe Deutung",
-            "ruler": "Herrscher: {ruler}",
+            "ruler": "Hauptthema: {ruler}",
             "related": "Verwandt:",
             "sources": "Quellen"
         },
@@ -1108,7 +1108,7 @@
                 },
                 "generic": {
                     "title": "{archetype} PERSONAL DREAM INTERPRETATION",
-                    "subconscious_label": "🔮 SUBCONSCIOUS MESSAGE",
+                    "subconscious_label": "💭 SUBCONSCIOUS MESSAGE",
                     "subconscious": "The dream you described shows that your subconscious is sending you important messages.",
                     "element_perspective_label": "💫 {element} ELEMENT PERSPECTIVE",
                     "element_perspective": "With your {element} element's energy, the core message of this dream seems to be related to {element_message}.",
@@ -1762,8 +1762,8 @@
                 "description": "Die heutige Energie."
             },
             "moon_phases_dreams": {
-                "title": "Mondphasen und Träume",
-                "description": "Wie beeinflusst der Mondzyklus Träume?"
+                "title": "Traumreflexionen",
+                "description": "Entdecke deine Träume durch reflektierendes Journaling."
             },
             "sign_dream_patterns": {
                 "title": "Archetyp- und Traummuster",
@@ -2732,7 +2732,7 @@
                 "diving_subconscious": "Diving into the depths of your subconscious...",
                 "decoding_symbols": "Decoding symbols...",
                 "connecting_archetypes": "Connecting with archetypes...",
-                "calculating_moon": "Calculating moon phase influence...",
+                "calculating_moon": "Zyklusphase wird analysiert...",
                 "consulting_wisdom": "Consulting ancient wisdom...",
                 "analyzing_shadow": "Analyzing shadow and light...",
                 "reading_cosmic": "Reading personal timing...",
@@ -3477,12 +3477,12 @@
             "category_symbols": "Symbole"
         },
         "moon_phases": {
-            "new_moon": "Dieser Traum, der in der Neumondphase kommt, trägt einen Samen neuer Absicht. Wünsche dir heute etwas.",
-            "crescent": "Träume während des zunehmenden Mondes zeigen Wachstumspotenzial. Gehe mutig voran.",
-            "first_quarter": "Dieser Traum im ersten Viertel weist auf einen Entscheidungspunkt hin. Du stehst zwischen zwei Wegen.",
-            "full_moon": "Träume im Vollmond sind der Höhepunkt des Bewusstseins. Akzeptiere, was du siehst.",
-            "last_quarter": "Dieser Traum im letzten Viertel zeigt, dass es Zeit ist loszulassen. Was musst du freisetzen?",
-            "dark_moon": "Träume in der Dunkelmond-Phase tragen die ältesten Botschaften. Höre tief zu."
+            "new_moon": "Dieser Traum trägt ein Gefühl von Neuanfang. Überlege, welche neuen Absichten du setzen möchtest.",
+            "crescent": "Dieser Traum deutet auf aufkeimendes Wachstumspotenzial hin. Welcher Lebensbereich ist bereit, sich zu entfalten?",
+            "first_quarter": "Dieser Traum könnte einen Entscheidungspunkt in deinem Leben widerspiegeln. Überlege, welche Richtung sich richtig anfühlt.",
+            "full_moon": "Dieser Traum spiegelt erhöhtes Bewusstsein wider. Welche Erkenntnis bist du bereit anzunehmen?",
+            "last_quarter": "Dieser Traum lädt zum Nachdenken über das Loslassen ein. Was bist du bereit freizusetzen?",
+            "dark_moon": "Dieser Traum trägt tiefe, introspektive Energie. Nimm dir Zeit, auf deine innere Weisheit zu hören."
         }
     },
     "errors": {

@@ -61,8 +61,18 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                   loading: () => const SliverToBoxAdapter(
                     child: Center(child: CircularProgressIndicator()),
                   ),
-                  error: (e, s) => const SliverToBoxAdapter(
-                    child: SizedBox.shrink(),
+                  error: (_, _) => SliverToBoxAdapter(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(32),
+                        child: Text(
+                          isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+                          style: TextStyle(
+                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   data: (service) {
                     final today = service.getTodayEntry();

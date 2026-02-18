@@ -76,19 +76,18 @@ class MobileLiteHomepage extends ConsumerWidget {
       backgroundColor: isDark ? AppColors.deepSpace : AppColors.lightBackground,
       body: SafeArea(
         child: RepaintBoundary(
-          child: SingleChildScrollView(
+          child: CustomScrollView(
             physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _AboveTheFold(
+            slivers: [
+              SliverToBoxAdapter(
+                child: _AboveTheFold(
                   userName: userProfile.name ?? '',
                   isDark: isDark,
                 ).glassReveal(context: context),
-                _BelowTheFold(isDark: isDark),
-                const SizedBox(height: 32),
-              ],
-            ),
+              ),
+              _BelowTheFold(isDark: isDark),
+              const SliverToBoxAdapter(child: SizedBox(height: 32)),
+            ],
           ),
         ),
       ),
@@ -441,111 +440,107 @@ class _BelowTheFold extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // ═══ What's New (dismissible) ═══
-          const WhatsNewCard(),
+    final isEn = language == AppLanguage.en;
 
-          // ═══ P0: Streak Recovery (shows only when streak broken) ═══
-          const StreakRecoveryBanner(),
+    final items = <Widget>[
+      // ═══ What's New (dismissible) ═══
+      const WhatsNewCard(),
 
-          // ═══ P0: Quick Mood Check-in ═══
-          const MoodCheckinCard(),
-          const SizedBox(height: 16),
+      // ═══ P0: Streak Recovery (shows only when streak broken) ═══
+      const StreakRecoveryBanner(),
 
-          // ═══ P0: Shift Forecast (premium, emotion intelligence) ═══
-          _ShiftForecastSection(isDark: isDark, isEn: language == AppLanguage.en),
-          const SizedBox(height: 16),
+      // ═══ P0: Quick Mood Check-in ═══
+      const MoodCheckinCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P0: Referral Progress (non-premium only) ═══
-          const ReferralProgressCard(),
-          const SizedBox(height: 16),
+      // ═══ P0: Shift Forecast (premium, emotion intelligence) ═══
+      _ShiftForecastSection(isDark: isDark, isEn: isEn),
+      const SizedBox(height: 16),
 
-          // ═══ P1: Daily Affirmation ═══
-          const AffirmationCard(),
-          const SizedBox(height: 16),
+      // ═══ P0: Referral Progress (non-premium only) ═══
+      const ReferralProgressCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P1: Daily Cosmic Intention ═══
-          const CosmicMessageCard(),
-          const SizedBox(height: 16),
+      // ═══ P1: Daily Affirmation ═══
+      const AffirmationCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P1: Daily Insight Module ═══
-          const ContextModuleCard(),
-          const SizedBox(height: 16),
+      // ═══ P1: Daily Cosmic Intention ═══
+      const CosmicMessageCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P1: Emotion of the Day ═══
-          const EmotionOfDayCard(),
-          const SizedBox(height: 16),
+      // ═══ P1: Daily Insight Module ═══
+      const ContextModuleCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P1: Daily Habit Suggestion ═══
-          const HabitSuggestionCard(),
-          const SizedBox(height: 16),
+      // ═══ P1: Emotion of the Day ═══
+      const EmotionOfDayCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P1: Monthly Theme ═══
-          const MonthlyThemeCard(),
-          const SizedBox(height: 16),
+      // ═══ P1: Daily Habit Suggestion ═══
+      const HabitSuggestionCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P1: Today's Prompt ═══
-          const TodayPromptCard(),
-          const SizedBox(height: 16),
+      // ═══ P1: Monthly Theme ═══
+      const MonthlyThemeCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P1: Suggested Quiz ═══
-          const QuizSuggestionCard(),
-          const SizedBox(height: 16),
+      // ═══ P1: Today's Prompt ═══
+      const TodayPromptCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P1: Weekly Digest ═══
-          const WeeklyDigestCard(),
-          const SizedBox(height: 16),
+      // ═══ P1: Suggested Quiz ═══
+      const QuizSuggestionCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P0: Streak Card ═══
-          const StreakCard(),
-          const SizedBox(height: 16),
+      // ═══ P1: Weekly Digest ═══
+      const WeeklyDigestCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P0: Ritual Check-off ═══
-          const RitualCheckoffCard(),
-          const SizedBox(height: 16),
+      // ═══ P0: Streak Card ═══
+      const StreakCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P0: Gratitude Summary ═══
-          const GratitudeSummaryCard(),
-          const SizedBox(height: 16),
+      // ═══ P0: Ritual Check-off ═══
+      const RitualCheckoffCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P1: Wellness Score ═══
-          const WellnessScoreCard(),
-          const SizedBox(height: 16),
+      // ═══ P0: Gratitude Summary ═══
+      const GratitudeSummaryCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P1: Sleep Summary ═══
-          const SleepSummaryCard(),
-          const SizedBox(height: 16),
+      // ═══ P1: Wellness Score ═══
+      const WellnessScoreCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P1: Moon Phase ═══
-          const MoonPhaseCard(),
-          const SizedBox(height: 16),
+      // ═══ P1: Sleep Summary ═══
+      const SleepSummaryCard(),
+      const SizedBox(height: 16),
 
-          // ═══ P2: Upgrade Trigger Banner (contextual) ═══
-          _UpgradeTriggerBanner(isDark: isDark),
-          const SizedBox(height: 24),
+      // ═══ P1: Moon Phase ═══
+      const MoonPhaseCard(),
+      const SizedBox(height: 16),
 
-          // ═══ JOURNAL & PATTERNS ═══
-          Text(
-            language == AppLanguage.en
-                ? 'Journal & Patterns'
-                : 'Günlük ve Kalıplar',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-            ),
-          ),
-          const SizedBox(height: 16),
+      // ═══ P2: Upgrade Trigger Banner (contextual) ═══
+      _UpgradeTriggerBanner(isDark: isDark),
+      const SizedBox(height: 24),
 
-          // ═══ Pattern Loop Analyzer (emotion intelligence) ═══
-          _PatternLoopSection(isDark: isDark, isEn: language == AppLanguage.en),
-          const SizedBox(height: 16),
+      // ═══ JOURNAL & PATTERNS ═══
+      Text(
+        isEn ? 'Journal & Patterns' : 'Günlük ve Kalıplar',
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: isDark
+              ? AppColors.textPrimary
+              : AppColors.lightTextPrimary,
+        ),
+      ),
+      const SizedBox(height: 16),
+
+      // ═══ Pattern Loop Analyzer (emotion intelligence) ═══
+      _PatternLoopSection(isDark: isDark, isEn: isEn),
+      const SizedBox(height: 16),
 
           _EntryPointTile(
             icon: Icons.edit_note_outlined,
@@ -1209,7 +1204,15 @@ class _BelowTheFold extends ConsumerWidget {
               ),
             ),
           ),
-        ],
+        ];
+
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (context, index) => items[index],
+          childCount: items.length,
+        ),
       ),
     );
   }

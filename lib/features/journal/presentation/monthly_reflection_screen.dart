@@ -65,7 +65,18 @@ class _MonthlyReflectionScreenState
         child: SafeArea(
           child: engineAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (_, _) => const SizedBox.shrink(),
+            error: (_, _) => Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Text(
+                  isEn ? 'Something went wrong' : 'Bir şeyler yanlış gitti',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  ),
+                ),
+              ),
+            ),
             data: (engine) {
               final summary =
                   engine.getMonthSummary(_selectedYear, _selectedMonth);

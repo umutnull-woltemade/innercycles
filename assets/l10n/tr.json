@@ -271,7 +271,7 @@
             "communication_themes": "🌙 Şu an hangi iletişim temaları öne çıkıyor?",
             "big_change": "🦋 Hangi dönüşüm temaları bende yankı buluyor?",
             "rich_become": "💰 Bolluk kavramıyla ilişkim nasıl?",
-            "future_love": "🔮 İlişkilerimde hangi kalıpları fark ediyorum?",
+            "future_love": "💕 İlişkilerimde hangi kalıpları fark ediyorum?",
             "attention_this_week": "🎭 Bu hafta hangi temalar dikkatimi hak ediyor?",
             "deep_connection_find": "💑 Derin bağlantıda hangi niteliklere değer veriyorum?",
             "pioneer_man": "🚀 Öncü erkeğiyle anlaşabilir miyim?",
@@ -327,7 +327,7 @@
             "no_results": "Sonuç bulunamadı",
             "try_different_term": "Farklı bir arama terimi deneyin",
             "deep_interpretation": "Derin Yorum",
-            "ruler": "Yönetici: {ruler}",
+            "ruler": "Ana Tema: {ruler}",
             "related": "İlgili:",
             "sources": "Kaynaklar"
         },
@@ -1108,7 +1108,7 @@
                 },
                 "generic": {
                     "title": "{archetype} KİŞİSEL RÜYA YORUMU",
-                    "subconscious_label": "🔮 BİLİNÇALTI MESAJI",
+                    "subconscious_label": "💭 BİLİNÇALTI MESAJI",
                     "subconscious": "Anlattığın rüya, bilinçaltının sana önemli mesajlar ilettiğini gösteriyor.",
                     "element_perspective_label": "💫 {element} ELEMENTİ PERSPEKTİFİ",
                     "element_perspective": "{element} elementinin enerjisiyle, bu rüyanın temel mesajı {element_message} ile ilgili görünüyor.",
@@ -1762,8 +1762,8 @@
                 "description": "Bugünün enerjisi."
             },
             "moon_phases_dreams": {
-                "title": "Ay Fazları ve Rüyalar",
-                "description": "Ayın döngüsü rüyaları nasıl etkiler?"
+                "title": "Rüya Yansımaları",
+                "description": "Rüyalarını yansıtıcı günlük tutarak keşfet."
             },
             "sign_dream_patterns": {
                 "title": "Arketip ve Rüya Kalıpları",
@@ -1797,7 +1797,7 @@
             },
             "moon_phase": {
                 "title": "Ay Fazı",
-                "description": "Ayın bugünkü etkisi."
+                "description": "Bugünkü döngü fazı."
             },
             "sky_today": {
                 "description": "Gökyüzü bugün."
@@ -2732,7 +2732,7 @@
                 "diving_subconscious": "Bilinçaltının derinliklerine iniliyor...",
                 "decoding_symbols": "Semboller çözümleniyor...",
                 "connecting_archetypes": "Arketiplerle bağlantı kuruluyor...",
-                "calculating_moon": "Ay fazı etkisi hesaplanıyor...",
+                "calculating_moon": "Döngü fazı kalıpları analiz ediliyor...",
                 "consulting_wisdom": "Kadim bilgelik danışılıyor...",
                 "analyzing_shadow": "Gölge ve ışık analiz ediliyor...",
                 "reading_cosmic": "Kişisel zamanlama okunuyor...",
@@ -3477,12 +3477,12 @@
             "category_symbols": "Semboller"
         },
         "moon_phases": {
-            "new_moon": "Yeniay fazında gelen bu rüya yeni bir niyet tohumu taşıyor. Bugün bir dilek tut.",
-            "crescent": "Hilal döneminde gelen rüyalar büyüme potansiyelini gösterir. Cesaretle ilerle.",
-            "first_quarter": "İlk dördün fazında gelen bu rüya bir karar noktasına işaret ediyor. İki yolun arasındasın.",
-            "full_moon": "Dolunay'da gelen rüyalar farkındalığın doruğudur. Gördüğünü kabul et.",
-            "last_quarter": "Son dördün fazında gelen bu rüya bırakma zamanının geldiğini gösteriyor. Neyi serbest bırakman gerekiyor?",
-            "dark_moon": "Karanlık ay döneminde gelen rüyalar en kadim mesajları taşır. Derinden dinle."
+            "new_moon": "Bu rüya taze başlangıçlar hissi taşıyor. Hangi yeni niyetleri belirlemek istediğini düşün.",
+            "crescent": "Bu rüya gelişen bir büyüme potansiyeline işaret ediyor. Hayatının hangi alanı genişlemeye hazır?",
+            "first_quarter": "Bu rüya hayatındaki bir karar noktasını yansıtıyor olabilir. Hangi yönün doğru hissettirdiğini düşün.",
+            "full_moon": "Bu rüya yoğunlaşmış bir farkındalığı yansıtıyor. Hangi içgörüyü kabul etmeye hazırsın?",
+            "last_quarter": "Bu rüya bırakma üzerine düşünmeye davet ediyor. Neyi serbest bırakmaya hazırsın?",
+            "dark_moon": "Bu rüya derin, içe dönük bir enerji taşıyor. İç bilgeliğini dinlemek için zaman ayır."
         }
     },
     "errors": {

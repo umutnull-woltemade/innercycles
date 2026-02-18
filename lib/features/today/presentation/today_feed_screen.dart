@@ -168,40 +168,31 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
             ),
 
             // ═══════════════════════════════════════════════════════
-            // FEED CARDS
+            // FEED CARDS (lazy via SliverList)
             // ═══════════════════════════════════════════════════════
-            SliverToBoxAdapter(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Streak
-                    const StreakRecoveryBanner(),
-                    const MoodCheckinCard(),
-                    const SizedBox(height: 12),
-                    const AffirmationCard(),
-                    const SizedBox(height: 12),
-                    const CosmicMessageCard(),
-                    const SizedBox(height: 12),
-                    const TodayPromptCard(),
-                    const SizedBox(height: 12),
-                    const QuizSuggestionCard(),
-                    const SizedBox(height: 12),
-                    const StreakCard(),
-                    const SizedBox(height: 12),
-                    const RitualCheckoffCard(),
-                    const SizedBox(height: 24),
-
-                    // ═══════════════════════════════════════════════════
-                    // SUGGESTED TOOLS
-                    // ═══════════════════════════════════════════════════
-                    _SuggestedToolsSection(isEn: isEn, isDark: isDark),
-
-                    const SizedBox(height: 32),
-                  ],
-                ),
+            SliverPadding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
+                  const StreakRecoveryBanner(),
+                  const MoodCheckinCard(),
+                  const SizedBox(height: 12),
+                  const AffirmationCard(),
+                  const SizedBox(height: 12),
+                  const CosmicMessageCard(),
+                  const SizedBox(height: 12),
+                  const TodayPromptCard(),
+                  const SizedBox(height: 12),
+                  const QuizSuggestionCard(),
+                  const SizedBox(height: 12),
+                  const StreakCard(),
+                  const SizedBox(height: 12),
+                  const RitualCheckoffCard(),
+                  const SizedBox(height: 24),
+                  _SuggestedToolsSection(isEn: isEn, isDark: isDark),
+                  const SizedBox(height: 32),
+                ]),
               ),
             ),
           ],

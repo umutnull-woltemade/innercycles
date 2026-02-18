@@ -327,7 +327,7 @@
             "no_results": "No results found",
             "try_different_term": "Try a different search term",
             "deep_interpretation": "Deep Interpretation",
-            "ruler": "Ruler: {ruler}",
+            "ruler": "Key Theme: {ruler}",
             "related": "Related:",
             "sources": "Sources"
         },
@@ -1108,7 +1108,7 @@
                 },
                 "generic": {
                     "title": "{archetype} DREAM INTERPRETATION",
-                    "subconscious_label": "🔮 SUBCONSCIOUS MESSAGE",
+                    "subconscious_label": "💭 SUBCONSCIOUS MESSAGE",
                     "subconscious": "The dream you described shows that your subconscious is sending you important messages.",
                     "element_perspective_label": "💫 {element} ELEMENT PERSPECTIVE",
                     "element_perspective": "With your {element} element's energy, the core message of this dream seems to be related to {element_message}.",
@@ -1142,7 +1142,7 @@
                     "pioneer": "Advice: Write down your first thoughts when you wake up in the morning. Your fire energy can quickly make you forget subconscious messages.",
                     "builder": "Advice: Write your dreams in a dream journal. Your earth energy works better with tangible records.",
                     "communicator": "Advice: Tell your dream to someone. Your air energy loves to find meaning through verbal expression.",
-                    "nurturer": "Advice: Pay attention to moon phases. Your dreams tend to be more vivid during full moon and new moon times.",
+                    "nurturer": "Advice: Track your dream patterns over time. Your water energy tends to produce vivid, emotionally rich dreams.",
                     "performer": "Advice: Express your dreams creatively - draw, write, share. Your fire energy loves expression.",
                     "analyst": "Advice: Keep a list of dream symbols. Your earth energy appreciates systematic analysis.",
                     "harmonizer": "Advice: Focus on relationships in your dreams. Your air energy draws lessons from social dynamics.",
@@ -1762,8 +1762,8 @@
                 "description": "Today's energy."
             },
             "moon_phases_dreams": {
-                "title": "Moon Phases and Dreams",
-                "description": "How does the moon cycle affect dreams?"
+                "title": "Dream Reflections",
+                "description": "Explore your dreams through reflective journaling."
             },
             "sign_dream_patterns": {
                 "title": "Archetype and Dream Patterns",
@@ -1797,7 +1797,7 @@
             },
             "moon_phase": {
                 "title": "Moon Phase",
-                "description": "Today's moon influence."
+                "description": "Today's cycle phase."
             },
             "sky_today": {
                 "description": "Today's patterns."
@@ -3477,12 +3477,12 @@
             "category_symbols": "Symbols"
         },
         "moon_phases": {
-            "new_moon": "This dream coming in the new moon phase carries a seed of new intention. Make a wish today.",
-            "crescent": "Dreams coming during the crescent moon show growth potential. Move forward with courage.",
-            "first_quarter": "This dream coming in the first quarter points to a decision point. You are between two paths.",
-            "full_moon": "Dreams coming in the full moon are the peak of awareness. Accept what you see.",
-            "last_quarter": "This dream coming in the last quarter phase shows it is time to let go. What do you need to release?",
-            "dark_moon": "Dreams coming in the dark moon carry the most ancient messages. Listen deeply."
+            "new_moon": "This dream carries a sense of fresh beginnings. Consider what new intentions you'd like to set.",
+            "crescent": "This dream suggests emerging growth potential. What area of your life is ready to expand?",
+            "first_quarter": "This dream may reflect a decision point in your life. Reflect on what direction feels right.",
+            "full_moon": "This dream reflects heightened awareness. What insight are you ready to accept?",
+            "last_quarter": "This dream invites reflection on letting go. What are you ready to release?",
+            "dark_moon": "This dream carries deep, introspective energy. Take time to listen to your inner wisdom."
         }
     },
     "errors": {

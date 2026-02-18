@@ -78,3 +78,12 @@ autonomous_submit.sh
 .last_build_cmd
 .crash_log.txt
 release_package/
+
+# Pipeline session artifacts
+EXECUTION_PLAN.md
+GATE_RESULT.md
+PENDING_TASKS.json
+RECOVERY_REPORT.md
+SECRETS_NEEDED.md
+SESSION_MAP.md
+release_notes_short.txt

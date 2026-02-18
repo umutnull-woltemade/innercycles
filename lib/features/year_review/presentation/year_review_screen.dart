@@ -56,7 +56,9 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
     super.initState();
     // Auto-select the most recent available year on first load
     Future.microtask(() async {
+      if (!mounted) return;
       final years = await ref.read(availableYearsProvider.future);
+      if (!mounted) return;
       if (years.isNotEmpty && ref.read(selectedYearProvider) == null) {
         ref.read(selectedYearProvider.notifier).state = years.first;
       }

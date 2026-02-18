@@ -271,7 +271,7 @@
       "communication_themes": "🌙 Quels thèmes de communication émergent maintenant?",
       "big_change": "🦋 Quels thèmes de transformation résonnent avec moi?",
       "rich_become": "💰 Quelle est ma relation avec l'abondance?",
-      "future_love": "🔮 Quels schémas est-ce que je remarque dans mes relations?",
+      "future_love": "💕 Quels schémas est-ce que je remarque dans mes relations?",
       "attention_this_week": "🎭 Quels thèmes méritent mon attention cette semaine?",
       "deep_connection_find": "💑 Quelles qualités est-ce que je valorise dans une connexion profonde?",
       "pioneer_man": "🚀 Puis-je m'entendre avec un homme Pionnier?",
@@ -327,7 +327,7 @@
       "no_results": "Aucun résultat trouvé",
       "try_different_term": "Essayez un autre terme de recherche",
       "deep_interpretation": "Interprétation Profonde",
-      "ruler": "Maître: {ruler}",
+      "ruler": "Thème clé: {ruler}",
       "related": "Lié:",
       "sources": "Sources"
     },
@@ -1108,7 +1108,7 @@
         },
         "generic": {
           "title": "{archetype} PERSONAL DREAM INTERPRETATION",
-          "subconscious_label": "🔮 SUBCONSCIOUS MESSAGE",
+          "subconscious_label": "💭 SUBCONSCIOUS MESSAGE",
           "subconscious": "The dream you described shows that your subconscious is sending you important messages.",
           "element_perspective_label": "💫 {element} ELEMENT PERSPECTIVE",
           "element_perspective": "With your {element} element's energy, the core message of this dream seems to be related to {element_message}.",
@@ -1761,8 +1761,8 @@
         "description": "L'énergie d'aujourd'hui."
       },
       "moon_phases_dreams": {
-        "title": "Phases lunaires et rêves",
-        "description": "Comment le cycle lunaire affecte-t-il les rêves ?"
+        "title": "Réflexions sur les rêves",
+        "description": "Explorez vos rêves à travers un journal réflexif."
       },
       "sign_dream_patterns": {
         "title": "Archétypes et motifs de rêves",
@@ -2728,7 +2728,7 @@
         "diving_subconscious": "Diving into the depths of your subconscious...",
         "decoding_symbols": "Decoding symbols...",
         "connecting_archetypes": "Connecting with archetypes...",
-        "calculating_moon": "Calculating moon phase influence...",
+        "calculating_moon": "Analyzing cycle phase patterns...",
         "consulting_wisdom": "Consulting ancient wisdom...",
         "analyzing_shadow": "Analyzing shadow and light...",
         "reading_cosmic": "Reading personal timing...",
@@ -3473,12 +3473,12 @@
       "category_symbols": "Symbols"
     },
     "moon_phases": {
-      "new_moon": "Ce rêve venant en nouvelle lune porte une graine de nouvelle intention. Faites un vœu aujourd'hui.",
-      "crescent": "Les rêves pendant le croissant de lune montrent un potentiel de croissance. Avancez avec courage.",
-      "first_quarter": "Ce rêve au premier quartier pointe vers un point de décision. Vous êtes entre deux chemins.",
-      "full_moon": "Les rêves en pleine lune sont le sommet de la conscience. Acceptez ce que vous voyez.",
-      "last_quarter": "Ce rêve au dernier quartier montre qu'il est temps de lâcher prise. Que devez-vous libérer?",
-      "dark_moon": "Les rêves en lune noire portent les messages les plus anciens. Écoutez profondément."
+      "new_moon": "Ce rêve porte un sentiment de nouveau départ. Réfléchissez aux nouvelles intentions que vous aimeriez poser.",
+      "crescent": "Ce rêve suggère un potentiel de croissance émergent. Quel domaine de votre vie est prêt à s'épanouir ?",
+      "first_quarter": "Ce rêve peut refléter un point de décision dans votre vie. Réfléchissez à la direction qui vous semble juste.",
+      "full_moon": "Ce rêve reflète une conscience accrue. Quelle prise de conscience êtes-vous prêt(e) à accepter ?",
+      "last_quarter": "Ce rêve invite à réfléchir au lâcher-prise. Qu'êtes-vous prêt(e) à libérer ?",
+      "dark_moon": "Ce rêve porte une énergie profonde et introspective. Prenez le temps d'écouter votre sagesse intérieure."
     }
   },
   "errors": {

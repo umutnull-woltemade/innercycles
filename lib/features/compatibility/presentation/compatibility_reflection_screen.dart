@@ -156,8 +156,9 @@ class _CompatibilityReflectionScreenState
 
   Future<void> _deleteProfile(String id) async {
     final service = await _getService();
-    if (service == null) return;
+    if (service == null || !mounted) return;
     await service.deleteProfile(id);
+    if (!mounted) return;
     await _loadProfiles();
     HapticFeedback.mediumImpact();
   }

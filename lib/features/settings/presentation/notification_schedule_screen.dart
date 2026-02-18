@@ -60,6 +60,7 @@ class _NotificationScheduleScreenState
     } else {
       await _notificationService.cancelDailyReflection();
     }
+    if (!mounted) return;
     await _loadSettings();
   }
 
@@ -74,6 +75,7 @@ class _NotificationScheduleScreenState
         hour: picked.hour,
         minute: picked.minute,
       );
+      if (!mounted) return;
       await _loadSettings();
     }
   }
@@ -84,6 +86,7 @@ class _NotificationScheduleScreenState
     } else {
       await _notificationService.cancelEveningReflection();
     }
+    if (!mounted) return;
     await _loadSettings();
   }
 
@@ -93,11 +96,13 @@ class _NotificationScheduleScreenState
     } else {
       await _notificationService.cancelMoonPhaseNotifications();
     }
+    if (!mounted) return;
     await _loadSettings();
   }
 
   Future<void> _toggleWellness(bool enabled) async {
     await _notificationService.setWellnessRemindersEnabled(enabled);
+    if (!mounted) return;
     await _loadSettings();
   }
 

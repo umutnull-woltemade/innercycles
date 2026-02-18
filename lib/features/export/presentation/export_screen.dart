@@ -268,6 +268,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
       }
     }
 
+    if (!mounted) return;
     final service = ref.read(exportServiceProvider).valueOrNull;
     if (service == null) return;
 
