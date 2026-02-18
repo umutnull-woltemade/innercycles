@@ -177,6 +177,17 @@ class _HomeHeader extends StatelessWidget {
     required this.isDark,
   });
 
+  String _getSubtitle(bool isEn) {
+    final hour = DateTime.now().hour;
+    if (hour < 12) {
+      return isEn ? 'Start your day with intention' : 'Güne niyetle başla';
+    } else if (hour < 18) {
+      return isEn ? 'Take a moment to reflect' : 'Bir an düşünmeye zaman ayır';
+    } else {
+      return isEn ? 'Wind down and reflect' : 'Günü yansıtarak bitir';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final hour = DateTime.now().hour;
@@ -211,9 +222,7 @@ class _HomeHeader extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  isEn
-                      ? 'How are you feeling today?'
-                      : 'Bugün nasıl hissediyorsun?',
+                  _getSubtitle(isEn),
                   style: TextStyle(
                     fontSize: 14,
                     color: isDark
@@ -290,7 +299,15 @@ class _TodaysInsightSection extends ConsumerWidget {
   Widget _buildCard(BuildContext context, {required IconData icon, required String text}) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-      child: Container(
+      child: Semantics(
+        label: text,
+        button: true,
+        child: GestureDetector(
+          onTap: () {
+            HapticFeedback.lightImpact();
+            context.push(Routes.insight);
+          },
+          child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -325,6 +342,8 @@ class _TodaysInsightSection extends ConsumerWidget {
               ),
             ),
           ],
+        ),
+      ),
         ),
       ),
     ).animate().fadeIn(delay: 250.ms, duration: 400.ms);
@@ -368,7 +387,10 @@ class _RecentEntriesSection extends ConsumerWidget {
                           : AppColors.lightTextPrimary,
                     ),
                   ),
-                  GestureDetector(
+                  Semantics(
+                    label: isEn ? 'See all entries' : 'Tüm kayıtları gör',
+                    button: true,
+                    child: GestureDetector(
                     onTap: () {
                       HapticFeedback.selectionClick();
                       context.push(Routes.journalArchive);
@@ -383,6 +405,7 @@ class _RecentEntriesSection extends ConsumerWidget {
                             : AppColors.lightStarGold,
                       ),
                     ),
+                  ),
                   ),
                 ],
               ),
