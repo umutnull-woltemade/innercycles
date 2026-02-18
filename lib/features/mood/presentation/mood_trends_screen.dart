@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -8,11 +9,12 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/mood_checkin_service.dart';
+import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
-import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class MoodTrendsScreen extends ConsumerWidget {
   const MoodTrendsScreen({super.key});
@@ -23,6 +25,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(moodCheckinServiceProvider);
+    final isPremium = ref.watch(isPremiumUserProvider);
 
     return Scaffold(
       body: CosmicBackground(
@@ -42,7 +45,8 @@ class MoodTrendsScreen extends ConsumerWidget {
               ),
             ),
           ),
-          data: (service) => _buildContent(context, service, isDark, isEn),
+          data: (service) =>
+              _buildContent(context, ref, service, isDark, isEn, isPremium),
         ),
       ),
     );
@@ -50,9 +54,11 @@ class MoodTrendsScreen extends ConsumerWidget {
 
   Widget _buildContent(
     BuildContext context,
+    WidgetRef ref,
     MoodCheckinService service,
     bool isDark,
     bool isEn,
+    bool isPremium,
   ) {
     final allEntries = service.getAllEntries();
     final weekMoods = service.getWeekMoods();
@@ -80,47 +86,41 @@ class MoodTrendsScreen extends ConsumerWidget {
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                // Stats row
-                _buildStatsRow(
-                  context,
-                  isDark,
-                  isEn,
-                  avg7,
-                  avg30,
-                  allEntries.length,
-                ),
+                // Stats row (free: 7-day avg, premium: 30-day avg)
+                _buildStatsRow(context, isDark, isEn, avg7, avg30,
+                    allEntries.length, isPremium),
                 const SizedBox(height: AppConstants.spacingLg),
 
-                // Week view
+                // Week view (FREE)
                 _buildWeekCard(context, isDark, isEn, weekMoods),
                 const SizedBox(height: AppConstants.spacingLg),
 
-                // Distribution chart
-                _buildDistributionCard(
+                // Distribution chart (PREMIUM — blurred for free)
+                _buildPremiumSection(
                   context,
+                  ref,
                   isDark,
                   isEn,
-                  distribution,
-                  maxCount,
+                  isPremium,
+                  child: _buildDistributionCard(
+                    context, isDark, isEn, distribution, maxCount),
                 ),
                 const SizedBox(height: AppConstants.spacingLg),
 
-                // Recent entries
+                // Recent entries (PREMIUM — blurred for free)
                 if (allEntries.isNotEmpty)
-                  _buildRecentCard(
+                  _buildPremiumSection(
                     context,
+                    ref,
                     isDark,
                     isEn,
-                    allEntries.take(20).toList(),
+                    isPremium,
+                    child: _buildRecentCard(
+                      context, isDark, isEn,
+                      allEntries.take(20).toList()),
                   ),
                 ContentDisclaimer(
                   language: isEn ? AppLanguage.en : AppLanguage.tr,
-                ),
-                const SizedBox(height: 16),
-                ToolEcosystemFooter(
-                  currentToolId: 'moodTrends',
-                  isEn: isEn,
-                  isDark: isDark,
                 ),
                 const SizedBox(height: 40),
               ]),
@@ -131,6 +131,84 @@ class MoodTrendsScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms);
   }
 
+  Widget _buildPremiumSection(
+    BuildContext context,
+    WidgetRef ref,
+    bool isDark,
+    bool isEn,
+    bool isPremium, {
+    required Widget child,
+  }) {
+    if (isPremium) return child;
+
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          child: ImageFiltered(
+            imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+            child: child,
+          ),
+        ),
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+              color: isDark
+                  ? Colors.black.withValues(alpha: 0.3)
+                  : Colors.white.withValues(alpha: 0.3),
+            ),
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.lock_outline,
+                    size: 28,
+                    color: AppColors.starGold,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    isEn ? 'Unlock 30-Day Analytics' : '30 Gün Analitiği Aç',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  ElevatedButton(
+                    onPressed: () => showContextualPaywall(
+                      context, ref,
+                      paywallContext: PaywallContext.patterns,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.starGold,
+                      foregroundColor: AppColors.deepSpace,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                            AppConstants.radiusMd),
+                      ),
+                    ),
+                    child: Text(
+                      isEn ? 'Upgrade to Premium' : 'Premium\'a Yükselt',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildStatsRow(
     BuildContext context,
     bool isDark,
@@ -138,6 +216,7 @@ class MoodTrendsScreen extends ConsumerWidget {
     double avg7,
     double avg30,
     int total,
+    bool isPremium,
   ) {
     return Row(
       children: [
@@ -152,8 +231,11 @@ class MoodTrendsScreen extends ConsumerWidget {
         Expanded(
           child: _StatTile(
             label: isEn ? '30-Day Avg' : '30 Gün Ort.',
-            value: avg30 > 0 ? avg30.toStringAsFixed(1) : '-',
+            value: isPremium
+                ? (avg30 > 0 ? avg30.toStringAsFixed(1) : '-')
+                : 'PRO',
             isDark: isDark,
+            isPro: !isPremium,
           ),
         ),
         const SizedBox(width: AppConstants.spacingMd),
@@ -178,7 +260,6 @@ class MoodTrendsScreen extends ConsumerWidget {
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
 
-    // Map week moods to current weekday positions
     final now = DateTime.now();
     final weekStart = now.subtract(Duration(days: 6));
 
@@ -433,11 +514,13 @@ class _StatTile extends StatelessWidget {
   final String label;
   final String value;
   final bool isDark;
+  final bool isPro;
 
   const _StatTile({
     required this.label,
     required this.value,
     required this.isDark,
+    this.isPro = false,
   });
 
   @override
@@ -454,7 +537,7 @@ class _StatTile extends StatelessWidget {
           Text(
             value,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: AppColors.starGold,
+              color: isPro ? AppColors.starGold.withValues(alpha: 0.5) : AppColors.starGold,
               fontWeight: FontWeight.bold,
             ),
           ),
