@@ -346,7 +346,7 @@ class PatternsScreen extends ConsumerWidget {
                   ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
               ],
               ToolEcosystemFooter(
-                currentToolId: 'journalPatterns',
+                currentToolId: 'patterns',
                 isEn: isEn,
                 isDark: isDark,
               ),
@@ -404,7 +404,7 @@ class PatternsScreen extends ConsumerWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                      colors: [AppColors.starGold, Color(0xFFFFA500)],
+                      colors: [AppColors.starGold, AppColors.chartOrange],
                     ),
                     borderRadius: BorderRadius.circular(AppConstants.radiusMd),
                     boxShadow: [
@@ -476,7 +476,7 @@ class PatternsScreen extends ConsumerWidget {
       case HealthStatus.yellow:
         return AppColors.warning;
       case HealthStatus.red:
-        return const Color(0xFFE53935);
+        return AppColors.error;
     }
   }
 
@@ -891,13 +891,7 @@ class _CycleArcsPainter extends CustomPainter {
   final Map<FocusArea, double> averages;
   final bool isDark;
 
-  static const _colors = [
-    Color(0xFFFFD700), // Energy - gold
-    Color(0xFF4FC3F7), // Focus - blue
-    Color(0xFFFF6B9D), // Emotions - pink
-    Color(0xFF81C784), // Decisions - green
-    Color(0xFFCE93D8), // Social - purple
-  ];
+  static const _colors = AppColors.focusAreaPalette;
 
   _CycleArcsPainter(this.averages, this.isDark);
 

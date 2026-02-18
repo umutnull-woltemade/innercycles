@@ -788,5 +788,50 @@ class ToolManifestRegistry {
       timeToValueSeconds: 10,
       relatedToolIds: ['journal'],
     ),
+
+    // ── 42. Insight Chat ──
+    ToolManifest(
+      id: 'insight',
+      nameEn: 'Reflection Chat',
+      nameTr: 'Yans\u0131ma Sohbeti',
+      valuePropositionEn: 'Talk through your thoughts with a reflective AI companion.',
+      valuePropositionTr: 'D\u00fc\u015f\u00fcncelerini yans\u0131t\u0131c\u0131 bir AI ile konu\u015f.',
+      route: Routes.insight,
+      icon: '\u{1F4AC}',
+      category: ToolCategory.analysis,
+      intentTags: [IntentTag.reflect, IntentTag.analyze],
+      timeToValueSeconds: 30,
+      relatedToolIds: ['insightsDiscovery', 'journal', 'dreamInterpretation'],
+    ),
+
+    // ── 43. Daily Habits ──
+    ToolManifest(
+      id: 'dailyHabits',
+      nameEn: 'Daily Habits',
+      nameTr: 'G\u00fcnl\u00fck Al\u0131\u015fkanl\u0131klar',
+      valuePropositionEn: 'Track your daily micro-habits and build consistency.',
+      valuePropositionTr: 'G\u00fcnl\u00fck mikro al\u0131\u015fkanl\u0131klar\u0131n\u0131 takip et.',
+      route: Routes.dailyHabits,
+      icon: '\u2705',
+      category: ToolCategory.support,
+      intentTags: [IntentTag.track, IntentTag.grow],
+      timeToValueSeconds: 10,
+      relatedToolIds: ['habitSuggestions', 'rituals', 'challenges'],
+    ),
+
+    // ── 44. Monthly Reflection ──
+    ToolManifest(
+      id: 'monthlyReflection',
+      nameEn: 'Monthly Reflection',
+      nameTr: 'Ayl\u0131k Yans\u0131ma',
+      valuePropositionEn: 'Review your month with theme-based insights and patterns.',
+      valuePropositionTr: 'Ay\u0131n\u0131 tema bazl\u0131 i\u00e7g\u00f6r\u00fc ve kal\u0131plarla de\u011ferlendir.',
+      route: Routes.journalMonthly,
+      icon: '\u{1F4C6}',
+      category: ToolCategory.analysis,
+      intentTags: [IntentTag.reflect, IntentTag.analyze],
+      timeToValueSeconds: 15,
+      relatedToolIds: ['patterns', 'yearReview', 'journal'],
+    ),
   ];
 }
