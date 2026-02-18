@@ -890,34 +890,40 @@ class _GrowthScoreCard extends StatelessWidget {
           SizedBox(
             width: 160,
             height: 160,
-            child: CustomPaint(
-              painter: _GrowthCirclePainter(
-                progress: score / 100.0,
-                isDark: isDark,
-              ),
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      '$score',
-                      style: TextStyle(
-                        fontSize: 42,
-                        fontWeight: FontWeight.w800,
-                        color: _scoreColor(score),
+            child: Semantics(
+              label: isEn
+                  ? 'Growth score: $score out of 100'
+                  : 'Gelişim skoru: 100 üzerinden $score',
+              image: true,
+              child: CustomPaint(
+                painter: _GrowthCirclePainter(
+                  progress: score / 100.0,
+                  isDark: isDark,
+                ),
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        '$score',
+                        style: TextStyle(
+                          fontSize: 42,
+                          fontWeight: FontWeight.w800,
+                          color: _scoreColor(score),
+                        ),
                       ),
-                    ),
-                    Text(
-                      label,
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
+                      Text(
+                        label,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

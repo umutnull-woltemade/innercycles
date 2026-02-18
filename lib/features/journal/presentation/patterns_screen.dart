@@ -543,9 +543,13 @@ class PatternsScreen extends ConsumerWidget {
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
       ),
-      child: CustomPaint(
-        size: const Size(double.infinity, 170),
-        painter: _CycleArcsPainter(averages, isDark),
+      child: Semantics(
+        label: 'Focus area cycle averages chart',
+        image: true,
+        child: CustomPaint(
+          size: const Size(double.infinity, 170),
+          painter: _CycleArcsPainter(averages, isDark),
+        ),
       ),
     );
   }

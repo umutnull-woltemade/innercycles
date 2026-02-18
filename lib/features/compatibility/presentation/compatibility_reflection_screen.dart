@@ -1192,12 +1192,18 @@ class _CompatibilityReflectionScreenState
           const SizedBox(height: 16),
           SizedBox(
             height: 250,
-            child: CustomPaint(
-              size: const Size(250, 250),
-              painter: _RadarChartPainter(
-                dimensions: result.dimensions,
-                isDark: isDark,
-                isEn: isEn,
+            child: Semantics(
+              label: isEn
+                  ? 'Compatibility radar chart'
+                  : 'Uyumluluk radar grafiği',
+              image: true,
+              child: CustomPaint(
+                size: const Size(250, 250),
+                painter: _RadarChartPainter(
+                  dimensions: result.dimensions,
+                  isDark: isDark,
+                  isEn: isEn,
+                ),
               ),
             ),
           ),

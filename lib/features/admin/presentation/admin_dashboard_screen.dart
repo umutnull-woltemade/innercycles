@@ -867,9 +867,13 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       );
     }
 
-    return CustomPaint(
-      size: Size.infinite,
-      painter: _SimpleChartPainter(data: data, isDark: isDark),
+    return Semantics(
+      label: 'Analytics line chart',
+      image: true,
+      child: CustomPaint(
+        size: Size.infinite,
+        painter: _SimpleChartPainter(data: data, isDark: isDark),
+      ),
     );
   }
 

@@ -71,15 +71,19 @@ class _CycleWaveChartState extends State<CycleWaveChart> {
           if (mounted) _clearSelection();
         });
       },
-      child: CustomPaint(
-        size: const Size(double.infinity, 240),
-        painter: _CycleWavePainterImpl(
-          data: widget.areaData,
-          visibleAreas: widget.visibleAreas,
-          isDark: widget.isDark,
-          displayDays: widget.displayDays,
-          progress: widget.animationProgress,
-          selectedPoint: _selectedPoint,
+      child: Semantics(
+        label: 'Emotional cycle wave chart',
+        image: true,
+        child: CustomPaint(
+          size: const Size(double.infinity, 240),
+          painter: _CycleWavePainterImpl(
+            data: widget.areaData,
+            visibleAreas: widget.visibleAreas,
+            isDark: widget.isDark,
+            displayDays: widget.displayDays,
+            progress: widget.animationProgress,
+            selectedPoint: _selectedPoint,
+          ),
         ),
       ),
     );

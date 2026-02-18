@@ -87,15 +87,21 @@ class _PhaseRingState extends State<PhaseRing>
             alignment: Alignment.center,
             children: [
               // Background ring
-              CustomPaint(
-                size: Size(widget.size, widget.size),
-                painter: _PhaseRingPainter(
-                  progress: _progressAnimation.value * phaseProgress,
-                  color: phaseColor,
-                  glowIntensity: _glowAnimation.value,
-                  isDark: widget.isDark,
-                  segments: 5, // 5 phases
-                  activeSegment: widget.phase.index,
+              Semantics(
+                label: widget.isEn
+                    ? 'Emotional phase ring'
+                    : 'Duygusal faz halkası',
+                image: true,
+                child: CustomPaint(
+                  size: Size(widget.size, widget.size),
+                  painter: _PhaseRingPainter(
+                    progress: _progressAnimation.value * phaseProgress,
+                    color: phaseColor,
+                    glowIntensity: _glowAnimation.value,
+                    isDark: widget.isDark,
+                    segments: 5, // 5 phases
+                    activeSegment: widget.phase.index,
+                  ),
                 ),
               ),
 
