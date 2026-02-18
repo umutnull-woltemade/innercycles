@@ -1387,7 +1387,7 @@ class _ProfileCard extends StatelessWidget {
 
     return Semantics(
       button: true,
-      label: 'View ${profile.name} profile',
+      label: isEn ? 'View ${profile.name} profile' : '${profile.name} profilini görüntüle',
       child: GestureDetector(
         onTap: onTap,
         child: Container(
@@ -1487,7 +1487,7 @@ class _ProfileCard extends StatelessWidget {
             // Delete button
             Semantics(
               button: true,
-              label: 'Delete profile',
+              label: isEn ? 'Delete profile' : 'Profili sil',
               child: GestureDetector(
                 onTap: onDelete,
                 child: Icon(

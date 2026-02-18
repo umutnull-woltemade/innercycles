@@ -107,7 +107,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         Row(
           children: [
             IconButton(
-              tooltip: 'Close',
+              tooltip: language == AppLanguage.en ? 'Close' : 'Kapat',
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.close, color: AppColors.textPrimary),
             ),
