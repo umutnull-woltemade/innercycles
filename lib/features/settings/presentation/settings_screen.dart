@@ -116,7 +116,12 @@ class SettingsScreen extends ConsumerWidget {
                           children: AppLanguage.values.map((lang) {
                             final isSelected = lang == language;
                             final isAvailable = lang.hasStrictIsolation;
-                            return GestureDetector(
+                            return Semantics(
+                              label: lang.displayName,
+                              button: true,
+                              selected: isSelected,
+                              enabled: isAvailable,
+                              child: GestureDetector(
                               onTap: () {
                                 if (isAvailable) {
                                   HapticFeedback.selectionClick();
@@ -194,6 +199,7 @@ class SettingsScreen extends ConsumerWidget {
                                   ),
                                 ),
                               ),
+                            ),
                             );
                           }).toList(),
                         ),
@@ -806,26 +812,29 @@ class _GroupedTile extends StatelessWidget {
         ? AppColors.error
         : (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary);
 
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: onTap,
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: 44),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Row(
-            children: [
-              Icon(icon, color: iconColor, size: 22),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 17,
-                    color: textColor,
+    return Semantics(
+      label: title,
+      button: true,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onTap,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 44),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            child: Row(
+              children: [
+                Icon(icon, color: iconColor, size: 22),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: textColor,
+                    ),
                   ),
                 ),
-              ),
               if (trailing != null) ...[
                 const SizedBox(width: 8),
                 trailing!,
@@ -837,8 +846,9 @@ class _GroupedTile extends StatelessWidget {
                 color: isDark
                     ? AppColors.textMuted.withValues(alpha: 0.5)
                     : AppColors.lightTextMuted.withValues(alpha: 0.5),
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -864,25 +874,29 @@ class _ThemeOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? AppColors.auroraStart.withValues(alpha: 0.15)
-              : (isDark
-                    ? AppColors.surfaceLight.withValues(alpha: 0.2)
-                    : AppColors.lightSurfaceVariant),
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
+    return Semantics(
+      label: label,
+      button: true,
+      selected: isSelected,
+      child: GestureDetector(
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
             color: isSelected
-                ? AppColors.auroraStart.withValues(alpha: 0.6)
-                : Colors.transparent,
-            width: 1.5,
+                ? AppColors.auroraStart.withValues(alpha: 0.15)
+                : (isDark
+                      ? AppColors.surfaceLight.withValues(alpha: 0.2)
+                      : AppColors.lightSurfaceVariant),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: isSelected
+                  ? AppColors.auroraStart.withValues(alpha: 0.6)
+                  : Colors.transparent,
+              width: 1.5,
+            ),
           ),
-        ),
         child: Column(
           children: [
             Icon(
@@ -905,7 +919,8 @@ class _ThemeOption extends StatelessWidget {
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
               ),
             ),
-          ],
+            ],
+          ),
         ),
       ),
     );
