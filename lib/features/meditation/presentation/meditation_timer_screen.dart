@@ -114,7 +114,7 @@ class _MeditationTimerScreenState
         content: Text(
           isEn
               ? 'Session complete. Well done!'
-              : 'Oturum tamamlandı. Aferin!',
+              : 'Oturum tamamlandı. Tebrikler!',
         ),
         backgroundColor: AppColors.success,
         duration: const Duration(seconds: 3),

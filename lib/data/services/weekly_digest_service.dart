@@ -171,7 +171,7 @@ class WeeklyDigestService {
       weekStart: weekStartDate,
       weekEnd: weekEndDate,
       entryCount: entryCount,
-      avgMood: double.parse(avgMood.toStringAsFixed(1)),
+      avgMood: double.tryParse(avgMood.toStringAsFixed(1)) ?? avgMood,
       topFocusAreaEn: _areaNameEn(topArea),
       topFocusAreaTr: _areaNameTr(topArea),
       moodTrendEn: moodTrend.$1,

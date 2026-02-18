@@ -278,7 +278,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                         Text(
                           '${d.day.day}',
                           style: TextStyle(
-                            fontSize: 9,
+                            fontSize: 10,
                             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                           ),
                         ),

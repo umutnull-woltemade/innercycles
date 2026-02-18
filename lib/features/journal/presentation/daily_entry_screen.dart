@@ -748,7 +748,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
             content: Text(
               suggestion != null
                   ? '${isEn ? 'Saved!' : 'Kaydedildi!'} ${suggestion.$1}'
-                  : (isEn ? 'Entry saved!' : 'Kayıt kaydedildi!'),
+                  : (isEn ? 'Entry saved!' : 'Kaydedildi!'),
             ),
             behavior: SnackBarBehavior.floating,
             action: suggestion != null

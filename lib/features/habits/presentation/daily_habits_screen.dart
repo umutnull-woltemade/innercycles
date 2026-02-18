@@ -425,7 +425,7 @@ class _HabitCheckCard extends StatelessWidget {
                         Text(
                           day,
                           style: TextStyle(
-                            fontSize: 8,
+                            fontSize: 10,
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,

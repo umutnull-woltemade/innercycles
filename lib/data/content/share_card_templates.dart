@@ -161,12 +161,12 @@ class ShareCardTemplates {
     id: 'dream_explorer',
     category: ShareCardCategory.achievement,
     titleEn: 'Dream Explorer',
-    titleTr: 'Rüya Kâşifi',
+    titleTr: 'Rüya Kaşifi',
     gradientColors: [Color(0xFF0F2027), Color(0xFF203A43), Color(0xFF0F2027)],
     layoutType: ShareCardLayout.badgeHero,
     icon: Icons.explore_rounded,
     badgeEn: 'EXPLORER',
-    badgeTr: 'KÂŞİF',
+    badgeTr: 'KAŞİF',
   );
 
   static const patternDiscoverer = ShareCardTemplate(

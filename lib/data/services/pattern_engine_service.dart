@@ -287,7 +287,10 @@ class PatternEngineService {
       counts[day] = (counts[day] ?? 0) + 1;
     }
 
-    return sums.map((day, sum) => MapEntry(day, sum / counts[day]!));
+    return sums.map((day, sum) {
+      final c = counts[day] ?? 1;
+      return MapEntry(day, c > 0 ? sum / c : 0.0);
+    });
   }
 
   /// Monthly summary
@@ -536,7 +539,8 @@ class PatternEngineService {
       if (totalItems == 0) continue;
 
       final completionRate = completedItems / totalItems;
-      final journalAvg = journalSumByDate[dateKey]! / journalCountByDate[dateKey]!;
+      final jCount = journalCountByDate[dateKey] ?? 1;
+      final journalAvg = jCount > 0 ? (journalSumByDate[dateKey] ?? 0) / jCount : 3.0;
       // Normalize journal avg to 0-1 scale (ratings are 1-5)
       final normalizedJournal = (journalAvg - 1) / 4;
       pairs.add([completionRate, normalizedJournal]);

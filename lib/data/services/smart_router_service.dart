@@ -97,25 +97,30 @@ class SmartRouterService {
   static Future<SmartRouterService> init() async {
     final prefs = await SharedPreferences.getInstance();
 
-    final recentJson = prefs.getString(_recentToolsKey);
-    final recentTools = recentJson != null
-        ? List<String>.from(jsonDecode(recentJson) as List)
-        : <String>[];
-
-    final favJson = prefs.getString(_favoriteToolsKey);
-    final favoriteTools = favJson != null
-        ? Set<String>.from(jsonDecode(favJson) as List)
-        : <String>{};
-
-    final countsJson = prefs.getString(_toolVisitCountsKey);
-    final toolVisitCounts = countsJson != null
-        ? Map<String, int>.from(jsonDecode(countsJson) as Map)
-        : <String, int>{};
-
-    final goalsJson = prefs.getString(_userGoalsKey);
-    final userGoals = goalsJson != null
-        ? Set<String>.from(jsonDecode(goalsJson) as List)
-        : <String>{};
+    var recentTools = <String>[];
+    var favoriteTools = <String>{};
+    var toolVisitCounts = <String, int>{};
+    var userGoals = <String>{};
+    try {
+      final recentJson = prefs.getString(_recentToolsKey);
+      if (recentJson != null) {
+        recentTools = List<String>.from(jsonDecode(recentJson) as List);
+      }
+      final favJson = prefs.getString(_favoriteToolsKey);
+      if (favJson != null) {
+        favoriteTools = Set<String>.from(jsonDecode(favJson) as List);
+      }
+      final countsJson = prefs.getString(_toolVisitCountsKey);
+      if (countsJson != null) {
+        toolVisitCounts = Map<String, int>.from(jsonDecode(countsJson) as Map);
+      }
+      final goalsJson = prefs.getString(_userGoalsKey);
+      if (goalsJson != null) {
+        userGoals = Set<String>.from(jsonDecode(goalsJson) as List);
+      }
+    } catch (_) {
+      // Reset to defaults on corrupted data
+    }
 
     final timeBudget = prefs.getInt(_timeBudgetKey) ?? 15;
 

@@ -38,7 +38,7 @@ class DreamWaterScreen extends ConsumerWidget {
                   onPressed: () => context.pop(),
                   tooltip: L10nService.get('common.back', language),
                   icon: Icon(
-                    Icons.arrow_back_ios,
+                    Icons.chevron_left,
                     color: isDark ? Colors.white70 : AppColors.textDark,
                   ),
                 ),

@@ -284,7 +284,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
             onPressed: () => context.pop(),
             tooltip: language == AppLanguage.en ? 'Back' : 'Geri',
             icon: const Icon(
-              Icons.arrow_back_ios,
+              Icons.chevron_left,
               color: AppColors.textPrimary,
             ),
           ),
@@ -474,6 +474,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
 
     return ListView.builder(
       controller: _scrollController,
+      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       padding: const EdgeInsets.fromLTRB(16, 8, 8, 16),
       itemCount: _filteredSymbols.length,
       itemBuilder: (context, index) {
@@ -863,6 +864,7 @@ class _SymbolDetailSheet extends StatelessWidget {
           // Content
           Expanded(
             child: ListView(
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               padding: const EdgeInsets.symmetric(horizontal: 20),
               children: [
                 // Universal meanings
@@ -1427,6 +1429,7 @@ class _PersonalDictionarySheet extends StatelessWidget {
             child: dreamedSymbols.isEmpty
                 ? _buildEmptyState(context)
                 : ListView.builder(
+                    physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     itemCount: dreamedSymbols.length,
                     itemBuilder: (context, index) {

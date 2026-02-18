@@ -188,7 +188,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      isEn ? 'Your Cycles Are Forming' : 'Döngülerin Oluşturuluyor',
+                      isEn ? 'Your Cycles Are Forming' : 'Döngülerin Oluşuyor',
                       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                             fontWeight: FontWeight.w700),

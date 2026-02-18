@@ -223,6 +223,7 @@ class _YearSelector extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         itemCount: years.length,
         separatorBuilder: (_, _) => const SizedBox(width: 10),
         itemBuilder: (context, index) {
@@ -589,7 +590,7 @@ class _MoodJourneyCard extends StatelessWidget {
                           Text(
                             value.toStringAsFixed(1),
                             style: TextStyle(
-                              fontSize: 9,
+                              fontSize: 10,
                               fontWeight: FontWeight.w600,
                               color: isDark
                                   ? AppColors.textMuted

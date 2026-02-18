@@ -216,7 +216,7 @@ class _StatsRow extends StatelessWidget {
         const SizedBox(width: 10),
         _StatCard(
           value: digest.avgMood.toStringAsFixed(1),
-          label: isEn ? 'Avg Mood' : 'Ort. Ruh',
+          label: isEn ? 'Avg Mood' : 'Ort. Ruh Hali',
           icon: Icons.mood,
           color: _moodColor(digest.avgMood),
           isDark: isDark,

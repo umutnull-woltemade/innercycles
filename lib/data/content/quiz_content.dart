@@ -271,7 +271,7 @@ class QuizContent {
       'lucid_explorer': QuizDimensionMeta(
         key: 'lucid_explorer',
         nameEn: 'Lucid Explorer',
-        nameTr: 'Bilinçli Kâşif',
+        nameTr: 'Bilinçli Kaşif',
         emoji: '\u{1F680}',
         color: Color(0xFF3498DB),
         descriptionEn: 'You may tend to have awareness within your dreams — sometimes knowing you\'re dreaming or even directing the action. Your dream world may feel like a playground for your conscious mind.',

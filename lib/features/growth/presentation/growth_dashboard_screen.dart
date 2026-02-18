@@ -726,7 +726,7 @@ class _GrowthDashboardScreenState
       ),
       _Milestone(
         icon: Icons.auto_graph,
-        title: isEn ? 'Pattern Seeker' : 'Kalıp Arayıcı',
+        title: isEn ? 'Pattern Seeker' : 'Kalıp Arayıcısı',
         unlocked: entries.length >= 7,
         progressHint: entries.length < 7
             ? isEn

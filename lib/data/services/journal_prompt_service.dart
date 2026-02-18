@@ -103,19 +103,25 @@ class JournalPromptService {
   // ══════════════════════════════════════════════════════════════════════════
 
   void _loadState() {
-    final completedJson = _prefs.getString(_completedKey);
-    if (completedJson != null) {
-      _completedIds = Set<String>.from(jsonDecode(completedJson) as List);
-    }
+    try {
+      final completedJson = _prefs.getString(_completedKey);
+      if (completedJson != null) {
+        _completedIds = Set<String>.from(jsonDecode(completedJson) as List);
+      }
 
-    final skippedJson = _prefs.getString(_skippedKey);
-    if (skippedJson != null) {
-      _skippedIds = Set<String>.from(jsonDecode(skippedJson) as List);
-    }
+      final skippedJson = _prefs.getString(_skippedKey);
+      if (skippedJson != null) {
+        _skippedIds = Set<String>.from(jsonDecode(skippedJson) as List);
+      }
 
-    final recentJson = _prefs.getString(_recentKey);
-    if (recentJson != null) {
-      _recentIds = List<String>.from(jsonDecode(recentJson) as List);
+      final recentJson = _prefs.getString(_recentKey);
+      if (recentJson != null) {
+        _recentIds = List<String>.from(jsonDecode(recentJson) as List);
+      }
+    } catch (_) {
+      _completedIds = {};
+      _skippedIds = {};
+      _recentIds = [];
     }
   }
 

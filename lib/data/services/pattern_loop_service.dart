@@ -344,8 +344,8 @@ class PatternLoopService {
 
     return PatternLoop(
       id: 'drop_recovery_${area.name}',
-      firstDetected: firstDrop ?? areaEntries.first.date,
-      lastSeen: lastRecovery ?? areaEntries.last.date,
+      firstDetected: firstDrop ?? (areaEntries.isNotEmpty ? areaEntries.first.date : DateTime.now()),
+      lastSeen: lastRecovery ?? (areaEntries.isNotEmpty ? areaEntries.last.date : DateTime.now()),
       occurrenceCount: dropCount,
       primaryArea: area,
       reinforcementType: ReinforcementType.negative,
@@ -437,8 +437,8 @@ class PatternLoopService {
 
           loops.add(PatternLoop(
             id: 'cross_low_${areas[i].name}_${areas[j].name}',
-            firstDetected: sorted.first.date,
-            lastSeen: sorted.last.date,
+            firstDetected: sorted.isNotEmpty ? sorted.first.date : DateTime.now(),
+            lastSeen: sorted.isNotEmpty ? sorted.last.date : DateTime.now(),
             occurrenceCount: coOccurrenceLow,
             primaryArea: areas[i],
             secondaryArea: areas[j],
@@ -492,8 +492,8 @@ class PatternLoopService {
 
           loops.add(PatternLoop(
             id: 'cross_high_${areas[i].name}_${areas[j].name}',
-            firstDetected: sorted.first.date,
-            lastSeen: sorted.last.date,
+            firstDetected: sorted.isNotEmpty ? sorted.first.date : DateTime.now(),
+            lastSeen: sorted.isNotEmpty ? sorted.last.date : DateTime.now(),
             occurrenceCount: coOccurrenceHigh,
             primaryArea: areas[i],
             secondaryArea: areas[j],
@@ -589,8 +589,8 @@ class PatternLoopService {
 
     return PatternLoop(
       id: 'weekday_loop',
-      firstDetected: sorted.first.date,
-      lastSeen: sorted.last.date,
+      firstDetected: sorted.isNotEmpty ? sorted.first.date : DateTime.now(),
+      lastSeen: sorted.isNotEmpty ? sorted.last.date : DateTime.now(),
       occurrenceCount: counts[lowestDay] ?? 0,
       primaryArea: FocusArea.energy,
       reinforcementType: ReinforcementType.neutral,
@@ -645,10 +645,14 @@ class PatternLoopService {
     final json = _prefs.getString(_storageKey);
     if (json == null) return;
 
-    final list = jsonDecode(json) as List;
-    _cachedLoops = list
-        .map((e) => PatternLoop.fromJson(e as Map<String, dynamic>))
-        .toList();
+    try {
+      final list = jsonDecode(json) as List;
+      _cachedLoops = list
+          .map((e) => PatternLoop.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } catch (_) {
+      _cachedLoops = [];
+    }
   }
 
   void _saveToStorage() {

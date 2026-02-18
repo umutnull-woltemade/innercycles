@@ -349,7 +349,7 @@ class _ChallengeCard extends StatelessWidget {
                           child: Text(
                             'PRO',
                             style: TextStyle(
-                              fontSize: 9,
+                              fontSize: 10,
                               fontWeight: FontWeight.w700,
                               color: AppColors.starGold,
                             ),

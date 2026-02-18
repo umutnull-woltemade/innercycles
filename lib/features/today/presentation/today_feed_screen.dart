@@ -16,6 +16,8 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/growth_challenge_service.dart';
+import '../../../data/services/smart_router_service.dart';
+import '../../../data/models/tool_manifest.dart';
 import '../../streak/presentation/streak_card.dart';
 import '../../streak/presentation/streak_recovery_banner.dart';
 import '../../mood/presentation/mood_checkin_card.dart';
@@ -639,10 +641,10 @@ class _ActiveChallengeCard extends StatelessWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// SUGGESTED TOOLS SECTION
+// SUGGESTED TOOLS SECTION - SmartRouter-powered dynamic suggestions
 // ════════════════════════════════════════════════════════════════════════════
 
-class _SuggestedToolsSection extends StatelessWidget {
+class _SuggestedToolsSection extends ConsumerWidget {
   final bool isEn;
   final bool isDark;
 
@@ -651,41 +653,160 @@ class _SuggestedToolsSection extends StatelessWidget {
     required this.isDark,
   });
 
+  static const _categoryColors = <ToolCategory, Color>{
+    ToolCategory.journal: AppColors.auroraStart,
+    ToolCategory.analysis: AppColors.amethyst,
+    ToolCategory.discovery: AppColors.brandPink,
+    ToolCategory.support: AppColors.success,
+    ToolCategory.reference: AppColors.starGold,
+    ToolCategory.data: AppColors.auroraEnd,
+  };
+
   @override
-  Widget build(BuildContext context) {
-    final suggestions = [
-      _ToolSuggestion(
-        icon: Icons.insights_outlined,
-        title: isEn ? 'Recurrence Detection' : 'Tekrar Tespiti',
-        subtitle: isEn
-            ? 'See patterns in your recent entries'
-            : 'Son kayıtlarındaki kalıpları gör',
-        route: Routes.journalPatterns,
-        color: AppColors.auroraStart,
-      ),
-      _ToolSuggestion(
-        icon: Icons.waves_outlined,
-        title: isEn ? 'Emotional Cycles' : 'Duygusal Döngüler',
-        subtitle: isEn
-            ? 'Visualize your cycle rhythms'
-            : 'Döngü ritimlerini görselleştir',
-        route: Routes.emotionalCycles,
-        color: AppColors.amethyst,
-      ),
-      _ToolSuggestion(
-        icon: Icons.fingerprint_outlined,
-        title: isEn ? 'Your Archetype' : 'Arketipiniz',
-        subtitle: isEn ? 'Emotional profile' : 'Duygusal profil',
-        route: Routes.archetype,
-        color: AppColors.brandPink,
-      ),
-      _ToolSuggestion(
-        icon: Icons.quiz_outlined,
-        title: isEn ? 'Quiz Hub' : 'Test Merkezi',
-        subtitle: isEn ? 'Pattern detection quizzes' : 'Örüntü tespit testleri',
-        route: Routes.quizHub,
-        color: AppColors.success,
-      ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final routerAsync = ref.watch(smartRouterServiceProvider);
+    final journalAsync = ref.watch(journalServiceProvider);
+    final streakAsync = ref.watch(journalStreakProvider);
+    final challengeAsync = ref.watch(growthChallengeServiceProvider);
+
+    return routerAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (e, _) => _buildFallback(context),
+      data: (router) {
+        final totalEntries = journalAsync.valueOrNull?.entryCount ?? 0;
+        final streak = streakAsync.valueOrNull ?? 0;
+
+        String? activeChallenge;
+        final challengeService = challengeAsync.valueOrNull;
+        if (challengeService != null) {
+          for (final c in GrowthChallengeService.allChallenges) {
+            final p = challengeService.getProgress(c.id);
+            if (p != null && !p.isCompleted) {
+              activeChallenge = c.id;
+              break;
+            }
+          }
+        }
+
+        final ctx = SmartRouterContext(
+          currentScreen: '/today',
+          userGoals: router.getUserGoals(),
+          isNewUser: totalEntries < 3,
+          totalEntries: totalEntries,
+          currentStreak: streak,
+          activeChallenge: activeChallenge,
+          timeBudgetMinutes: router.getTimeBudget(),
+        );
+
+        final actions = router.getNextActions(ctx);
+        if (actions.isEmpty) return _buildFallback(context);
+
+        return _buildSection(context, actions);
+      },
+    );
+  }
+
+  Widget _buildSection(BuildContext context, List<ToolSuggestion> actions) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          isEn ? 'Suggested For You' : 'Senin İçin Öneriler',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+          ),
+        ),
+        const SizedBox(height: 12),
+        ...actions.asMap().entries.map((entry) {
+          final action = entry.value;
+          final manifest = ToolManifestRegistry.findById(action.toolId);
+          final color = manifest != null
+              ? (_categoryColors[manifest.category] ?? AppColors.auroraStart)
+              : AppColors.auroraStart;
+
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: GestureDetector(
+              onTap: () {
+                HapticFeedback.selectionClick();
+                context.push(action.route);
+              },
+              child: Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: isDark
+                      ? color.withValues(alpha: 0.08)
+                      : color.withValues(alpha: 0.05),
+                  borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                  border: Border.all(color: color.withValues(alpha: 0.2)),
+                ),
+                child: Row(
+                  children: [
+                    Text(
+                      manifest?.icon ?? '🔧',
+                      style: const TextStyle(fontSize: 24),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            manifest != null
+                                ? (isEn ? manifest.nameEn : manifest.nameTr)
+                                : action.toolId,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            isEn ? action.reasonEn : action.reasonTr,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                              height: 1.3,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 14,
+                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ).animate().fadeIn(
+                delay: Duration(milliseconds: 300 + entry.key * 80),
+                duration: 400.ms,
+              );
+        }),
+      ],
+    ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
+  }
+
+  Widget _buildFallback(BuildContext context) {
+    final fallback = [
+      _FallbackTool('journalPatterns', Routes.journalPatterns),
+      _FallbackTool('emotionalCycles', Routes.emotionalCycles),
+      _FallbackTool('archetype', Routes.archetype),
     ];
 
     return Column(
@@ -696,9 +817,7 @@ class _SuggestedToolsSection extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: isDark
-                ? AppColors.textPrimary
-                : AppColors.lightTextPrimary,
+            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),
         const SizedBox(height: 12),
@@ -706,36 +825,36 @@ class _SuggestedToolsSection extends StatelessWidget {
           height: 110,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: suggestions.length,
+            itemCount: fallback.length,
             itemBuilder: (context, index) {
-              final tool = suggestions[index];
+              final item = fallback[index];
+              final manifest = ToolManifestRegistry.findById(item.id);
+              if (manifest == null) return const SizedBox.shrink();
+              final color = _categoryColors[manifest.category] ?? AppColors.auroraStart;
               return Padding(
-                padding: EdgeInsets.only(right: index < suggestions.length - 1 ? 12 : 0),
+                padding: EdgeInsets.only(right: index < fallback.length - 1 ? 12 : 0),
                 child: GestureDetector(
                   onTap: () {
                     HapticFeedback.selectionClick();
-                    context.push(tool.route);
+                    context.push(item.route);
                   },
                   child: Container(
                     width: 150,
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
                       color: isDark
-                          ? tool.color.withValues(alpha: 0.08)
-                          : tool.color.withValues(alpha: 0.05),
-                      borderRadius:
-                          BorderRadius.circular(AppConstants.radiusMd),
-                      border: Border.all(
-                        color: tool.color.withValues(alpha: 0.2),
-                      ),
+                          ? color.withValues(alpha: 0.08)
+                          : color.withValues(alpha: 0.05),
+                      borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                      border: Border.all(color: color.withValues(alpha: 0.2)),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(tool.icon, color: tool.color, size: 24),
+                        Text(manifest.icon, style: const TextStyle(fontSize: 24)),
                         const Spacer(),
                         Text(
-                          tool.title,
+                          isEn ? manifest.nameEn : manifest.nameTr,
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
@@ -748,7 +867,7 @@ class _SuggestedToolsSection extends StatelessWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          tool.subtitle,
+                          isEn ? manifest.valuePropositionEn : manifest.valuePropositionTr,
                           style: TextStyle(
                             fontSize: 11,
                             color: isDark
@@ -771,18 +890,8 @@ class _SuggestedToolsSection extends StatelessWidget {
   }
 }
 
-class _ToolSuggestion {
-  final IconData icon;
-  final String title;
-  final String subtitle;
+class _FallbackTool {
+  final String id;
   final String route;
-  final Color color;
-
-  const _ToolSuggestion({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    required this.route,
-    required this.color,
-  });
+  const _FallbackTool(this.id, this.route);
 }

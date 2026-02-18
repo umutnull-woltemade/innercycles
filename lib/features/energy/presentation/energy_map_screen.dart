@@ -311,7 +311,7 @@ class _HeatmapGrid extends StatelessWidget {
               Text(
                 isEn ? 'Low' : 'Düşük',
                 style: TextStyle(
-                  fontSize: 9,
+                  fontSize: 10,
                   color: isDark
                       ? AppColors.textMuted
                       : AppColors.lightTextMuted,
@@ -331,7 +331,7 @@ class _HeatmapGrid extends StatelessWidget {
               Text(
                 isEn ? 'High' : 'Yüksek',
                 style: TextStyle(
-                  fontSize: 9,
+                  fontSize: 10,
                   color: isDark
                       ? AppColors.textMuted
                       : AppColors.lightTextMuted,

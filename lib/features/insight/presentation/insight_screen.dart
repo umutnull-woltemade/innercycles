@@ -169,6 +169,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
             Expanded(
               child: ListView.builder(
                 controller: _scrollController,
+                physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 8,

@@ -106,7 +106,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       }
 
       // Allow admin routes without onboarding
-      if (path.startsWith('/admin')) {
+      if (path.startsWith(Routes.admin)) {
         return null;
       }
 

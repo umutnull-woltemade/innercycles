@@ -667,6 +667,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   const SizedBox(height: 12),
                   Expanded(
                     child: ListView.builder(
+                      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
                       itemCount: filteredCities.length,
                       itemBuilder: (context, index) {
                         final city = filteredCities[index];

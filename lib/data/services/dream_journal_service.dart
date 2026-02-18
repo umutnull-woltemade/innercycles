@@ -914,8 +914,12 @@ class DreamJournalService {
   Future<List<RecurringPattern>> getStoredPatterns() async {
     final patternsJson = _prefs.getString(_patternsKey);
     if (patternsJson == null) return [];
-    final List<dynamic> decoded = jsonDecode(patternsJson);
-    return decoded.map((p) => RecurringPattern.fromJson(p)).toList();
+    try {
+      final List<dynamic> decoded = jsonDecode(patternsJson);
+      return decoded.map((p) => RecurringPattern.fromJson(p)).toList();
+    } catch (_) {
+      return [];
+    }
   }
 
   Future<void> _savePatterns(List<RecurringPattern> patterns) async {
@@ -1719,10 +1723,14 @@ class DreamJournalService {
     final dictJson = _prefs.getString(_dictionaryKey);
     if (dictJson == null) return {};
 
-    final Map<String, dynamic> decoded = jsonDecode(dictJson);
-    return decoded.map(
-      (key, value) => MapEntry(key, PersonalSymbolEntry.fromJson(value)),
-    );
+    try {
+      final Map<String, dynamic> decoded = jsonDecode(dictJson);
+      return decoded.map(
+        (key, value) => MapEntry(key, PersonalSymbolEntry.fromJson(value)),
+      );
+    } catch (_) {
+      return {};
+    }
   }
 
   /// Update personal meaning for a symbol

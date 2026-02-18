@@ -356,6 +356,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
       height: 42,
       child: ListView(
         scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         children: [
           _buildChip(null, isEn ? 'All' : 'Tümü'),
           ...PromptCategory.values.map(

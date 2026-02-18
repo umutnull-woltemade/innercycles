@@ -1688,7 +1688,7 @@ ${_getPersonalAdvice(sign)}''';
           IconButton(
             onPressed: () => context.pop(),
             icon: Icon(
-              Icons.arrow_back_ios,
+              Icons.chevron_left,
               color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             ),
           ),
@@ -1770,6 +1770,7 @@ ${_getPersonalAdvice(sign)}''';
   Widget _buildChatArea(bool isDark) {
     return ListView.builder(
       controller: _scrollController,
+      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       padding: const EdgeInsets.all(16),
       itemCount:
           _messages.length +
@@ -1822,6 +1823,7 @@ ${_getPersonalAdvice(sign)}''';
             height: 110,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               itemCount: _getSuggestedDreamPrompts(
                 ref.read(languageProvider),
               ).length,

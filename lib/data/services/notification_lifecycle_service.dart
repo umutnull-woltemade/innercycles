@@ -80,6 +80,9 @@ class NotificationLifecycleService {
 
   NotificationLifecycleService._(this._prefs, this._notificationService);
 
+  /// Whether the user's language is English (false = Turkish).
+  bool get _isEn => (_prefs.getInt('app_language') ?? 0) == 0;
+
   /// Initialize the notification lifecycle service.
   static Future<NotificationLifecycleService> init() async {
     final prefs = await SharedPreferences.getInstance();
@@ -421,87 +424,100 @@ class NotificationLifecycleService {
     LifecycleNotificationType type,
     JournalService journalService,
   ) {
+    final isEn = _isEn;
     switch (type) {
       case LifecycleNotificationType.streakReminder:
         final streak = journalService.getCurrentStreak();
         return _NotificationContent(
-          title: 'Your Streak is Waiting',
-          body:
-              'Your $streak-day streak is waiting! A quick entry keeps it going.',
+          title: isEn ? 'Your Streak is Waiting' : 'Serin Seni Bekliyor',
+          body: isEn
+              ? 'Your $streak-day streak is waiting! A quick entry keeps it going.'
+              : '$streak günlük serin devam ediyor! Kısa bir kayıt yeterli.',
         );
 
       case LifecycleNotificationType.insightTeaser:
-        return const _NotificationContent(
-          title: 'Something Interesting',
-          body:
-              'We noticed something interesting in your patterns this week...',
+        return _NotificationContent(
+          title: isEn ? 'Something Interesting' : 'İlginç Bir Şey',
+          body: isEn
+              ? 'Something interesting emerged in your patterns this week...'
+              : 'Bu hafta kalıplarında ilginç bir şey ortaya çıktı...',
         );
 
       case LifecycleNotificationType.moodCheckIn:
-        return const _NotificationContent(
-          title: 'Quick Check-In',
-          body:
-              'How are you feeling right now? A quick check-in takes 30 seconds.',
+        return _NotificationContent(
+          title: isEn ? 'Quick Check-In' : 'Hızlı Kontrol',
+          body: isEn
+              ? 'How are you feeling right now? A quick check-in takes 30 seconds.'
+              : 'Şu an nasıl hissediyorsun? Hızlı bir kontrol 30 saniye sürer.',
         );
 
       case LifecycleNotificationType.milestonesCelebration:
         final total = journalService.entryCount;
         return _NotificationContent(
-          title: 'Milestone Reached!',
-          body:
-              'You\'ve journaled $total days! Your patterns are getting really interesting.',
+          title: isEn ? 'Milestone Reached!' : 'Kilometre Taşı!',
+          body: isEn
+              ? 'You\'ve journaled $total days! Your patterns are getting really interesting.'
+              : '$total gün günlük tuttun! Kalıpların gerçekten ilginçleşiyor.',
         );
 
       case LifecycleNotificationType.seasonalTrigger:
         final moonData = MoonPhaseService.today();
         if (moonData.phase == MoonPhase.newMoon) {
-          return const _NotificationContent(
-            title: 'New Moon Tonight',
-            body:
-                'The new moon is tonight — a perfect time for reflection.',
+          return _NotificationContent(
+            title: isEn ? 'New Moon Tonight' : 'Bu Gece Yeni Ay',
+            body: isEn
+                ? 'The new moon is tonight — a perfect time for reflection.'
+                : 'Bu gece yeni ay — yansıtma için harika bir zaman.',
           );
         }
         if (moonData.phase == MoonPhase.fullMoon) {
-          return const _NotificationContent(
-            title: 'Full Moon Tonight',
-            body:
-                'The full moon is tonight — a wonderful moment for gratitude.',
+          return _NotificationContent(
+            title: isEn ? 'Full Moon Tonight' : 'Bu Gece Dolunay',
+            body: isEn
+                ? 'The full moon is tonight — a wonderful moment for gratitude.'
+                : 'Bu gece dolunay — şükran için güzel bir an.',
           );
         }
         return null;
 
       case LifecycleNotificationType.reEngagement3Day:
-        return const _NotificationContent(
-          title: 'Your Journal Awaits',
-          body:
-              'We miss your reflections. Your journal is waiting for you.',
+        return _NotificationContent(
+          title: isEn ? 'Your Journal Awaits' : 'Günlüğün Burada',
+          body: isEn
+              ? 'Your journal is here whenever you are ready.'
+              : 'Hazır olduğunda günlüğün burada seni bekliyor.',
         );
 
       case LifecycleNotificationType.reEngagement7Day:
-        return const _NotificationContent(
-          title: 'One Sentence Counts',
-          body:
-              'It\'s been a little while — even one sentence counts.',
+        return _NotificationContent(
+          title: isEn ? 'One Sentence Counts' : 'Bir Cümle Yeter',
+          body: isEn
+              ? 'It\'s been a little while — even one sentence counts.'
+              : 'Biraz zaman geçti — tek bir cümle bile yeterli.',
         );
 
       case LifecycleNotificationType.reEngagement14Day:
-        return const _NotificationContent(
-          title: 'Still Here For You',
-          body:
-              'Your patterns are still here, ready when you are.',
+        return _NotificationContent(
+          title: isEn ? 'Still Here For You' : 'Hâlâ Buradayız',
+          body: isEn
+              ? 'Your patterns are still here, ready when you are.'
+              : 'Kalıpların hâlâ burada, hazır olduğunda seni bekliyor.',
         );
 
       case LifecycleNotificationType.reEngagement30Day:
-        return const _NotificationContent(
-          title: 'Welcome Back?',
-          body:
-              'Sometimes the best entries come after a break. Welcome back?',
+        return _NotificationContent(
+          title: isEn ? 'Welcome Back?' : 'Tekrar Hoş Geldin?',
+          body: isEn
+              ? 'Sometimes the best entries come after a break. Welcome back?'
+              : 'Bazen en güzel kayıtlar aradan sonra gelir. Tekrar hoş geldin?',
         );
 
       case LifecycleNotificationType.weeklyDigest:
-        return const _NotificationContent(
-          title: 'Weekly Reflection',
-          body: 'Your weekly reflection is ready to review.',
+        return _NotificationContent(
+          title: isEn ? 'Weekly Reflection' : 'Haftalık Yansıtma',
+          body: isEn
+              ? 'Your weekly reflection is ready to review.'
+              : 'Haftalık yansıtman incelemeye hazır.',
         );
     }
   }

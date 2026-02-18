@@ -758,10 +758,14 @@ class CompatibilityService {
     final json = _prefs.getString(_profilesKey);
     if (json == null) return [];
 
-    final List<dynamic> decoded = jsonDecode(json);
-    return decoded
-        .map((d) => CompatibilityProfile.fromJson(d as Map<String, dynamic>))
-        .toList();
+    try {
+      final List<dynamic> decoded = jsonDecode(json);
+      return decoded
+          .map((d) => CompatibilityProfile.fromJson(d as Map<String, dynamic>))
+          .toList();
+    } catch (_) {
+      return [];
+    }
   }
 
   /// Delete a profile by ID

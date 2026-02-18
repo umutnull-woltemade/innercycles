@@ -908,7 +908,7 @@ class _YearHeatmap extends StatelessWidget {
                                 child: Text(
                                   '${monthCounts[i]}',
                                   style: TextStyle(
-                                    fontSize: 9,
+                                    fontSize: 10,
                                     fontWeight: FontWeight.w600,
                                     color: alpha > 0.5
                                         ? Colors.white
@@ -924,7 +924,7 @@ class _YearHeatmap extends StatelessWidget {
                       Text(
                         monthLabels[i],
                         style: TextStyle(
-                          fontSize: 9,
+                          fontSize: 10,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,

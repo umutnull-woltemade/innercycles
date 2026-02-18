@@ -50,8 +50,12 @@ class DreamMemoryService {
     final dreamsJson = _prefs.getString(_dreamsKey);
     if (dreamsJson == null) return [];
 
-    final List<dynamic> decoded = jsonDecode(dreamsJson);
-    return decoded.map((d) => Dream.fromJson(d)).toList();
+    try {
+      final List<dynamic> decoded = jsonDecode(dreamsJson);
+      return decoded.map((d) => Dream.fromJson(d)).toList();
+    } catch (_) {
+      return [];
+    }
   }
 
   /// Get recent dreams (last N days)
@@ -105,7 +109,16 @@ class DreamMemoryService {
         updatedAt: DateTime.now(),
       );
     }
-    return DreamMemory.fromJson(jsonDecode(memoryJson));
+    try {
+      return DreamMemory.fromJson(jsonDecode(memoryJson));
+    } catch (_) {
+      return DreamMemory(
+        userId: 'local_user',
+        emotionalProfile: EmotionalProfile(),
+        milestones: DreamMilestones(),
+        updatedAt: DateTime.now(),
+      );
+    }
   }
 
   /// Update memory with new dream data

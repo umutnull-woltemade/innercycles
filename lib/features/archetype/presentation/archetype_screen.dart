@@ -574,7 +574,7 @@ class _EvolutionTimeline extends StatelessWidget {
                       Text(
                         '${(snapshot.confidence * 100).toStringAsFixed(0)}%',
                         style: TextStyle(
-                          fontSize: 9,
+                          fontSize: 10,
                           color: AppColors.auroraStart.withValues(alpha: 0.8),
                         ),
                       ),

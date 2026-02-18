@@ -564,6 +564,7 @@ class _InsightsDiscoveryScreenState
           ),
           child: ListView(
             controller: scrollController,
+            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
             padding: const EdgeInsets.all(24),
             children: [
               // Handle bar

@@ -267,8 +267,12 @@ class AffirmationService {
   Map<String, int> _getEngagementMap() {
     final raw = _prefs.getString(_engagementKey);
     if (raw == null) return {};
-    final decoded = jsonDecode(raw) as Map<String, dynamic>;
-    return decoded.map((k, v) => MapEntry(k, v as int? ?? 0));
+    try {
+      final decoded = jsonDecode(raw) as Map<String, dynamic>;
+      return decoded.map((k, v) => MapEntry(k, v as int? ?? 0));
+    } catch (_) {
+      return {};
+    }
   }
 
   // ═══════════════════════════════════════════════════════════════
