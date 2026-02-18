@@ -961,5 +961,6 @@ class _CycleArcsPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+  bool shouldRepaint(covariant _CycleArcsPainter oldDelegate) =>
+      oldDelegate.averages != averages || oldDelegate.isDark != isDark;
 }

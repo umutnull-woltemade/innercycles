@@ -105,11 +105,12 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
   Widget build(BuildContext context) {
     final definition = _definition;
     if (definition == null) {
+      final lang = ref.watch(languageProvider);
       return Scaffold(
         body: CosmicBackground(
           child: Center(
             child: Text(
-              'Quiz not found',
+              lang == AppLanguage.en ? 'Quiz not found' : 'Test bulunamadı',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: AppColors.textSecondary,
                   ),

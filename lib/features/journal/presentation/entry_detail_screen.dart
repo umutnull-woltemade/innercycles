@@ -258,6 +258,7 @@ class EntryDetailScreen extends ConsumerWidget {
           file,
           width: double.infinity,
           fit: BoxFit.cover,
+          cacheWidth: 800,
         ),
       ),
     );

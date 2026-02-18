@@ -594,6 +594,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 height: 180,
                 width: double.infinity,
                 fit: BoxFit.cover,
+                cacheWidth: 800,
+                cacheHeight: 360,
               ),
             ),
             const SizedBox(height: AppConstants.spacingSm),

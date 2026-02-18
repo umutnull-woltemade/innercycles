@@ -1549,5 +1549,6 @@ class _SimpleChartPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+  bool shouldRepaint(covariant _SimpleChartPainter oldDelegate) =>
+      oldDelegate.data != data || oldDelegate.isDark != isDark;
 }

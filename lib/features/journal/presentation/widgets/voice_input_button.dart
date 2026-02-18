@@ -196,11 +196,13 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
   }
 
   Widget _buildLockedButton(bool isDark) {
+    final language = ref.read(languageProvider);
+    final isEn = language == AppLanguage.en;
     final mutedColor = isDark ? AppColors.textMuted : AppColors.lightTextMuted;
     return GestureDetector(
       onTap: _toggleListening,
       child: Semantics(
-        label: 'Voice input (premium)',
+        label: isEn ? 'Voice input (premium)' : 'Sesli giriş (premium)',
         button: true,
         child: SizedBox(
           width: widget.size,
@@ -266,10 +268,14 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
             ? AppColors.surfaceLight.withValues(alpha: 0.5)
             : AppColors.lightSurfaceVariant);
 
+    final language = ref.read(languageProvider);
+    final isEn = language == AppLanguage.en;
     Widget button = GestureDetector(
       onTap: _isAvailable ? _toggleListening : null,
       child: Semantics(
-        label: _isListening ? 'Stop voice input' : 'Start voice input',
+        label: _isListening
+            ? (isEn ? 'Stop voice input' : 'Sesli girişi durdur')
+            : (isEn ? 'Start voice input' : 'Sesli girişi başlat'),
         button: true,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
