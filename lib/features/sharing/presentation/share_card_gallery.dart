@@ -236,6 +236,7 @@ class _ShareCardGalleryScreenState
 
           return Semantics(
             button: true,
+            selected: isSelected,
             label: 'Category: ${category.label(isEn)}',
             child: GestureDetector(
               onTap: () {

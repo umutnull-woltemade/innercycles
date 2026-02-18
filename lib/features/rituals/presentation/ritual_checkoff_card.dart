@@ -45,74 +45,80 @@ class _EmptyRitualCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
+    return Semantics(
+      label: isEn ? 'Start a Daily Ritual' : 'Günlük Ritüel Başlat',
+      button: true,
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
+              ? AppColors.surfaceDark.withValues(alpha: 0.85)
+              : AppColors.lightCard,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: isDark
+                ? Colors.white.withValues(alpha: 0.15)
+                : Colors.black.withValues(alpha: 0.05),
+          ),
         ),
-      ),
-      child: InkWell(
-        onTap: () {
-          HapticFeedback.lightImpact();
-          context.push(Routes.ritualCreate);
-        },
-        borderRadius: BorderRadius.circular(20),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: AppColors.auroraStart.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(12),
+        child: InkWell(
+          onTap: () {
+            HapticFeedback.lightImpact();
+            context.push(Routes.ritualCreate);
+          },
+          borderRadius: BorderRadius.circular(20),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: AppColors.auroraStart.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(
+                  Icons.playlist_add_check_rounded,
+                  color: AppColors.auroraStart,
+                  size: 22,
+                ),
               ),
-              child: Icon(
-                Icons.playlist_add_check_rounded,
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      isEn
+                          ? 'Start a Daily Ritual'
+                          : 'Günlük Ritüel Başlat',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    Text(
+                      isEn
+                          ? 'Track habits that matter to you'
+                          : 'Senin için önemli alışkanlıkları takip et',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.add_circle_outline,
                 color: AppColors.auroraStart,
-                size: 22,
+                size: 24,
               ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    isEn ? 'Start a Daily Ritual' : 'Günlük Ritüel Başlat',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                    ),
-                  ),
-                  Text(
-                    isEn
-                        ? 'Track habits that matter to you'
-                        : 'Senin için önemli alışkanlıkları takip et',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Icon(
-              Icons.add_circle_outline,
-              color: AppColors.auroraStart,
-              size: 24,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.1, duration: 400.ms);
@@ -330,53 +336,73 @@ class _RitualItemTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 4),
-      child: InkWell(
-        onTap: onToggle,
-        borderRadius: BorderRadius.circular(8),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
-          child: Row(
-            children: [
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                width: 22,
-                height: 22,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: isCompleted ? AppColors.success : Colors.transparent,
-                  border: Border.all(
-                    color: isCompleted
-                        ? AppColors.success
-                        : (isDark
-                              ? AppColors.textMuted.withValues(alpha: 0.4)
-                              : AppColors.lightTextMuted.withValues(
-                                  alpha: 0.4,
-                                )),
-                    width: 2,
+      child: Semantics(
+        label: '${item.name}, ${isCompleted ? 'completed' : 'not completed'}',
+        button: true,
+        toggled: isCompleted,
+        child: InkWell(
+          onTap: onToggle,
+          borderRadius: BorderRadius.circular(8),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 44,
+                  height: 44,
+                  child: Center(
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      width: 22,
+                      height: 22,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: isCompleted
+                            ? AppColors.success
+                            : Colors.transparent,
+                        border: Border.all(
+                          color: isCompleted
+                              ? AppColors.success
+                              : (isDark
+                                    ? AppColors.textMuted.withValues(
+                                        alpha: 0.4,
+                                      )
+                                    : AppColors.lightTextMuted.withValues(
+                                        alpha: 0.4,
+                                      )),
+                          width: 2,
+                        ),
+                      ),
+                      child: isCompleted
+                          ? const Icon(
+                              Icons.check,
+                              size: 14,
+                              color: Colors.white,
+                            )
+                          : null,
+                    ),
                   ),
                 ),
-                child: isCompleted
-                    ? const Icon(Icons.check, size: 14, color: Colors.white)
-                    : null,
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  item.name,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: isCompleted
-                        ? (isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted)
-                        : (isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary),
-                    decoration: isCompleted ? TextDecoration.lineThrough : null,
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    item.name,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: isCompleted
+                          ? (isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted)
+                          : (isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary),
+                      decoration:
+                          isCompleted ? TextDecoration.lineThrough : null,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
