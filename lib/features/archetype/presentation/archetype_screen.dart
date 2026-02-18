@@ -55,9 +55,7 @@ class ArchetypeScreen extends ConsumerWidget {
                     error: (e, s) => SliverToBoxAdapter(
                       child: Center(
                         child: Text(
-                          isEn
-                              ? 'Could not load data'
-                              : 'Veri yüklenemedi',
+                          isEn ? 'Could not load data' : 'Veri yüklenemedi',
                           style: TextStyle(
                             color: isDark
                                 ? AppColors.textMuted
@@ -90,29 +88,25 @@ class ArchetypeScreen extends ConsumerWidget {
 
                           if (!archetypeService.hasEnoughData(entries)) {
                             return SliverToBoxAdapter(
-                              child: _EmptyState(
-                                isDark: isDark,
-                                isEn: isEn,
-                              ),
+                              child: _EmptyState(isDark: isDark, isEn: isEn),
                             );
                           }
 
                           // Try saving monthly snapshot
                           archetypeService.saveMonthlySnapshot(entries);
 
-                          final result =
-                              archetypeService.getCurrentArchetype(entries);
+                          final result = archetypeService.getCurrentArchetype(
+                            entries,
+                          );
                           if (result == null) {
                             return SliverToBoxAdapter(
-                              child: _EmptyState(
-                                isDark: isDark,
-                                isEn: isEn,
-                              ),
+                              child: _EmptyState(isDark: isDark, isEn: isEn),
                             );
                           }
 
-                          final history =
-                              archetypeService.getRecentSnapshots(count: 6);
+                          final history = archetypeService.getRecentSnapshots(
+                            count: 6,
+                          );
 
                           return SliverList(
                             delegate: SliverChildListDelegate([
@@ -209,10 +203,7 @@ class _DominantArchetypeCard extends StatelessWidget {
                   AppColors.cosmicPurple.withValues(alpha: 0.9),
                   AppColors.nebulaPurple.withValues(alpha: 0.9),
                 ]
-              : [
-                  AppColors.lightCard,
-                  AppColors.lightSurfaceVariant,
-                ],
+              : [AppColors.lightCard, AppColors.lightSurfaceVariant],
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
@@ -223,7 +214,9 @@ class _DominantArchetypeCard extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.auroraStart.withValues(alpha: isDark ? 0.15 : 0.08),
+            color: AppColors.auroraStart.withValues(
+              alpha: isDark ? 0.15 : 0.08,
+            ),
             blurRadius: 24,
             offset: const Offset(0, 8),
           ),
@@ -232,10 +225,7 @@ class _DominantArchetypeCard extends StatelessWidget {
       child: Column(
         children: [
           // Emoji
-          Text(
-            archetype.emoji,
-            style: const TextStyle(fontSize: 64),
-          ),
+          Text(archetype.emoji, style: const TextStyle(fontSize: 64)),
           const SizedBox(height: 12),
           // Name
           Text(
@@ -255,9 +245,7 @@ class _DominantArchetypeCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
-              isEn
-                  ? '$confidencePct% alignment'
-                  : '%$confidencePct uyum',
+              isEn ? '$confidencePct% alignment' : '%$confidencePct uyum',
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
@@ -323,11 +311,7 @@ class _StrengthsShadowSection extends StatelessWidget {
           // Strengths
           Row(
             children: [
-              Icon(
-                Icons.auto_awesome,
-                size: 18,
-                color: AppColors.starGold,
-              ),
+              Icon(Icons.auto_awesome, size: 18, color: AppColors.starGold),
               const SizedBox(width: 8),
               Text(
                 isEn ? 'Strengths' : 'Güçlü Yönler',
@@ -356,7 +340,9 @@ class _StrengthsShadowSection extends StatelessWidget {
               Icon(
                 Icons.nights_stay_outlined,
                 size: 18,
-                color: AppColors.cosmicPurple.withValues(alpha: isDark ? 1.0 : 0.7),
+                color: AppColors.cosmicPurple.withValues(
+                  alpha: isDark ? 1.0 : 0.7,
+                ),
               ),
               const SizedBox(width: 8),
               Text(
@@ -401,9 +387,7 @@ class _StrengthChip extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.success.withValues(alpha: isDark ? 0.15 : 0.1),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.success.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.success.withValues(alpha: 0.3)),
       ),
       child: Text(
         label,
@@ -556,8 +540,9 @@ class _EvolutionTimeline extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: snapshots.map((snapshot) {
-                final archetype =
-                    ArchetypeService.getArchetypeById(snapshot.archetypeId);
+                final archetype = ArchetypeService.getArchetypeById(
+                  snapshot.archetypeId,
+                );
                 final monthLabel = _monthLabel(snapshot.month, isEn);
                 return Expanded(
                   child: Column(
@@ -615,12 +600,32 @@ class _EvolutionTimeline extends StatelessWidget {
 
   String _monthLabel(int month, bool isEn) {
     const en = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
     ];
     const tr = [
-      'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
-      'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'
+      'Oca',
+      'Şub',
+      'Mar',
+      'Nis',
+      'May',
+      'Haz',
+      'Tem',
+      'Ağu',
+      'Eyl',
+      'Eki',
+      'Kas',
+      'Ara',
     ];
     return isEn ? en[month - 1] : tr[month - 1];
   }
@@ -733,10 +738,7 @@ class _BreakdownRow extends StatelessWidget {
         // Emoji
         SizedBox(
           width: 28,
-          child: Text(
-            archetype.emoji,
-            style: const TextStyle(fontSize: 16),
-          ),
+          child: Text(archetype.emoji, style: const TextStyle(fontSize: 16)),
         ),
         const SizedBox(width: 4),
         // Name
@@ -750,8 +752,8 @@ class _BreakdownRow extends StatelessWidget {
               color: isDark
                   ? (isTop ? AppColors.textPrimary : AppColors.textSecondary)
                   : (isTop
-                      ? AppColors.lightTextPrimary
-                      : AppColors.lightTextSecondary),
+                        ? AppColors.lightTextPrimary
+                        : AppColors.lightTextSecondary),
             ),
             overflow: TextOverflow.ellipsis,
           ),
@@ -798,9 +800,7 @@ class _BreakdownRow extends StatelessWidget {
               fontWeight: FontWeight.w600,
               color: isTop
                   ? AppColors.starGold
-                  : (isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted),
+                  : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
             ),
           ),
         ),
@@ -847,12 +847,12 @@ class _DisclaimerCard extends StatelessWidget {
             child: Text(
               isEn
                   ? 'Your archetype is based on your journal patterns and '
-                    'is meant as a self-reflection tool, not a personality '
-                    'test. It may shift as your entries evolve over time.'
+                        'is meant as a self-reflection tool, not a personality '
+                        'test. It may shift as your entries evolve over time.'
                   : 'Arketipin günlük kalıplarına dayanıyor ve bir '
-                    'kişilik testi değil, öz-yansıtma aracı olarak '
-                    'tasarlanmıştır. Kayıtların zaman içinde '
-                    'değiştikçe değişebilir.',
+                        'kişilik testi değil, öz-yansıtma aracı olarak '
+                        'tasarlanmıştır. Kayıtların zaman içinde '
+                        'değiştikçe değişebilir.',
               style: TextStyle(
                 fontSize: 12,
                 height: 1.5,
@@ -905,9 +905,9 @@ class _EmptyState extends StatelessWidget {
           Text(
             isEn
                 ? 'Log at least 3 journal entries to discover your '
-                  'dominant archetype'
+                      'dominant archetype'
                 : 'Baskın arketipini keşfetmek için en az 3 '
-                  'günlük kaydı oluştur',
+                      'günlük kaydı oluştur',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
@@ -946,18 +946,15 @@ class _ShareArchetypeButton extends StatelessWidget {
           final name = isEn ? archetype.nameEn : archetype.nameTr;
           final text = isEn
               ? 'My emotional archetype is "$name" — discovered through self-reflection with InnerCycles.\n\n'
-                'What\'s yours? Try it free:\nhttps://apps.apple.com/app/innercycles/id6758612716'
+                    'What\'s yours? Try it free:\nhttps://apps.apple.com/app/innercycles/id6758612716'
               : 'Duygusal arketipim "$name" — InnerCycles ile kendimi keşfederek buldum.\n\n'
-                'Seninki ne? Ücretsiz dene:\nhttps://apps.apple.com/app/innercycles/id6758612716';
+                    'Seninki ne? Ücretsiz dene:\nhttps://apps.apple.com/app/innercycles/id6758612716';
           SharePlus.instance.share(ShareParams(text: text));
         },
         icon: const Icon(Icons.share_rounded, size: 18),
         label: Text(
           isEn ? 'Share Your Archetype' : 'Arketipini Paylaş',
-          style: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
         ),
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.amethyst.withValues(alpha: 0.15),
@@ -965,9 +962,7 @@ class _ShareArchetypeButton extends StatelessWidget {
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
-            side: BorderSide(
-              color: AppColors.amethyst.withValues(alpha: 0.3),
-            ),
+            side: BorderSide(color: AppColors.amethyst.withValues(alpha: 0.3)),
           ),
         ),
       ),

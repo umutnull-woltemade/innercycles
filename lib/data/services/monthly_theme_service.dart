@@ -72,9 +72,10 @@ class MonthlyThemeService {
 
   int completedPromptsForMonth(int month) {
     final completed = _getCompletedPrompts();
-    return List.generate(4, (i) => '${month}_$i')
-        .where((key) => completed.contains(key))
-        .length;
+    return List.generate(
+      4,
+      (i) => '${month}_$i',
+    ).where((key) => completed.contains(key)).length;
   }
 
   double monthProgress(int month) {

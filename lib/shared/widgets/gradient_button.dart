@@ -27,60 +27,63 @@ class GradientButton extends StatelessWidget {
       button: true,
       enabled: onPressed != null && !isLoading,
       child: SizedBox(
-      width: width,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: isLoading ? null : onPressed,
-          borderRadius: BorderRadius.circular(12),
-          child: Ink(
-            decoration: BoxDecoration(
-              gradient: onPressed == null
-                  ? null
-                  : (gradient ?? AppColors.primaryGradient),
-              color: onPressed == null ? AppColors.surfaceLight : null,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: onPressed != null
-                  ? [
-                      BoxShadow(
-                        color: AppColors.auroraStart.withValues(alpha: 0.3),
-                        blurRadius: 12,
-                        offset: const Offset(0, 4),
+        width: width,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: isLoading ? null : onPressed,
+            borderRadius: BorderRadius.circular(12),
+            child: Ink(
+              decoration: BoxDecoration(
+                gradient: onPressed == null
+                    ? null
+                    : (gradient ?? AppColors.primaryGradient),
+                color: onPressed == null ? AppColors.surfaceLight : null,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: onPressed != null
+                    ? [
+                        BoxShadow(
+                          color: AppColors.auroraStart.withValues(alpha: 0.3),
+                          blurRadius: 12,
+                          offset: const Offset(0, 4),
+                        ),
+                      ]
+                    : null,
+              ),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 16,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (isLoading)
+                      const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CupertinoActivityIndicator(),
+                      )
+                    else ...[
+                      if (icon != null) ...[
+                        Icon(icon, color: Colors.white, size: 20),
+                        const SizedBox(width: 8),
+                      ],
+                      Text(
+                        label,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.labelLarge?.copyWith(color: Colors.white),
                       ),
-                    ]
-                  : null,
-            ),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (isLoading)
-                    const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CupertinoActivityIndicator(),
-                    )
-                  else ...[
-                    if (icon != null) ...[
-                      Icon(icon, color: Colors.white, size: 20),
-                      const SizedBox(width: 8),
                     ],
-                    Text(
-                      label,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.labelLarge?.copyWith(color: Colors.white),
-                    ),
                   ],
-                ],
+                ),
               ),
             ),
           ),
         ),
       ),
-    ),
     );
   }
 }
@@ -108,35 +111,35 @@ class OutlineButton extends StatelessWidget {
       button: true,
       enabled: onPressed != null,
       child: Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: color, width: 1.5),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (icon != null) ...[
-                Icon(icon, color: color, size: 20),
-                const SizedBox(width: 8),
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: color, width: 1.5),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (icon != null) ...[
+                  Icon(icon, color: color, size: 20),
+                  const SizedBox(width: 8),
+                ],
+                Text(
+                  label,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelLarge?.copyWith(color: color),
+                ),
               ],
-              Text(
-                label,
-                style: Theme.of(
-                  context,
-                ).textTheme.labelLarge?.copyWith(color: color),
-              ),
-            ],
+            ),
           ),
         ),
       ),
-    ),
     );
   }
 }

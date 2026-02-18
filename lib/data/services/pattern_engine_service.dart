@@ -128,12 +128,12 @@ class PatternEngineService {
     WellnessScoreService? wellnessScoreService,
     MoodCheckinService? moodCheckinService,
     StreakService? streakService,
-  })  : _sleepService = sleepService,
-        _gratitudeService = gratitudeService,
-        _ritualService = ritualService,
-        _wellnessScoreService = wellnessScoreService,
-        _moodCheckinService = moodCheckinService,
-        _streakService = streakService;
+  }) : _sleepService = sleepService,
+       _gratitudeService = gratitudeService,
+       _ritualService = ritualService,
+       _wellnessScoreService = wellnessScoreService,
+       _moodCheckinService = moodCheckinService,
+       _streakService = streakService;
 
   /// Minimum entries needed to unlock pattern analysis
   static const int minimumEntries = 7;
@@ -151,8 +151,7 @@ class PatternEngineService {
   bool hasEnoughData() => _journalService.entryCount >= minimumEntries;
 
   /// How many more entries needed
-  int entriesNeeded() =>
-      max(0, minimumEntries - _journalService.entryCount);
+  int entriesNeeded() => max(0, minimumEntries - _journalService.entryCount);
 
   /// Weekly averages by focus area
   Map<FocusArea, double> getWeeklyAverages() {
@@ -164,10 +163,7 @@ class PatternEngineService {
     for (final area in FocusArea.values) {
       final areaEntries = entries.where((e) => e.focusArea == area).toList();
       if (areaEntries.isNotEmpty) {
-        final sum = areaEntries.fold<int>(
-          0,
-          (s, e) => s + e.overallRating,
-        );
+        final sum = areaEntries.fold<int>(0, (s, e) => s + e.overallRating);
         result[area] = sum / areaEntries.length;
       }
     }
@@ -185,10 +181,7 @@ class PatternEngineService {
     for (final area in FocusArea.values) {
       final areaEntries = entries.where((e) => e.focusArea == area).toList();
       if (areaEntries.isNotEmpty) {
-        final sum = areaEntries.fold<int>(
-          0,
-          (s, e) => s + e.overallRating,
-        );
+        final sum = areaEntries.fold<int>(0, (s, e) => s + e.overallRating);
         result[area] = sum / areaEntries.length;
       }
     }
@@ -217,17 +210,17 @@ class PatternEngineService {
         } else {
           direction = TrendDirection.stable;
         }
-        trends.add(TrendInsight(
-          area: area,
-          direction: direction,
-          changePercent: change,
-        ));
+        trends.add(
+          TrendInsight(area: area, direction: direction, changePercent: change),
+        );
       } else if (current != null) {
-        trends.add(TrendInsight(
-          area: area,
-          direction: TrendDirection.stable,
-          changePercent: 0,
-        ));
+        trends.add(
+          TrendInsight(
+            area: area,
+            direction: TrendDirection.stable,
+            changePercent: 0,
+          ),
+        );
       }
     }
 
@@ -254,19 +247,20 @@ class PatternEngineService {
       for (int j = i + 1; j < areas.length; j++) {
         final pairs = <List<int>>[];
         for (final dayData in byDate.values) {
-          if (dayData.containsKey(areas[i]) &&
-              dayData.containsKey(areas[j])) {
+          if (dayData.containsKey(areas[i]) && dayData.containsKey(areas[j])) {
             pairs.add([dayData[areas[i]]!, dayData[areas[j]]!]);
           }
         }
         if (pairs.length >= 3) {
           final corr = _pearsonCorrelation(pairs);
           if (corr.abs() > 0.5) {
-            insights.add(CorrelationInsight(
-              area1: areas[i],
-              area2: areas[j],
-              correlation: corr,
-            ));
+            insights.add(
+              CorrelationInsight(
+                area1: areas[i],
+                area2: areas[j],
+                correlation: corr,
+              ),
+            );
           }
         }
       }
@@ -419,8 +413,10 @@ class PatternEngineService {
       pairs: pairs,
       dimensionA: 'Sleep Quality',
       dimensionB: 'Mood',
-      insightTemplateEn: 'Your entries suggest that sleep quality and mood are {direction} (r={r})',
-      insightTemplateTr: 'Kayıtların uyku kalitesi ile ruh halinin {direction} olduğunu gösteriyor (r={r})',
+      insightTemplateEn:
+          'Your entries suggest that sleep quality and mood are {direction} (r={r})',
+      insightTemplateTr:
+          'Kayıtların uyku kalitesi ile ruh halinin {direction} olduğunu gösteriyor (r={r})',
     );
   }
 
@@ -454,8 +450,10 @@ class PatternEngineService {
       pairs: pairs,
       dimensionA: 'Sleep Quality',
       dimensionB: 'Energy',
-      insightTemplateEn: 'Your entries suggest that sleep quality and next-day energy are {direction} (r={r})',
-      insightTemplateTr: 'Kayıtların uyku kalitesi ile ertesi gün enerjinin {direction} olduğunu gösteriyor (r={r})',
+      insightTemplateEn:
+          'Your entries suggest that sleep quality and next-day energy are {direction} (r={r})',
+      insightTemplateTr:
+          'Kayıtların uyku kalitesi ile ertesi gün enerjinin {direction} olduğunu gösteriyor (r={r})',
     );
   }
 
@@ -474,7 +472,8 @@ class PatternEngineService {
     final gratitudeByWeek = <String, int>{};
     for (final g in gratitudeEntries) {
       final weekKey = _weekKeyFromDateKey(g.dateKey);
-      gratitudeByWeek[weekKey] = (gratitudeByWeek[weekKey] ?? 0) + g.items.length;
+      gratitudeByWeek[weekKey] =
+          (gratitudeByWeek[weekKey] ?? 0) + g.items.length;
     }
 
     // Group mood average by week number
@@ -500,8 +499,10 @@ class PatternEngineService {
       pairs: pairs,
       dimensionA: 'Gratitude',
       dimensionB: 'Weekly Mood',
-      insightTemplateEn: 'Your entries suggest that gratitude practice and weekly mood are {direction} (r={r})',
-      insightTemplateTr: 'Kayıtların minnettarlık pratiği ile haftalık ruh halinin {direction} olduğunu gösteriyor (r={r})',
+      insightTemplateEn:
+          'Your entries suggest that gratitude practice and weekly mood are {direction} (r={r})',
+      insightTemplateTr:
+          'Kayıtların minnettarlık pratiği ile haftalık ruh halinin {direction} olduğunu gösteriyor (r={r})',
     );
   }
 
@@ -517,7 +518,8 @@ class PatternEngineService {
     final journalSumByDate = <String, int>{};
     final journalCountByDate = <String, int>{};
     for (final j in journalEntries) {
-      journalSumByDate[j.dateKey] = (journalSumByDate[j.dateKey] ?? 0) + j.overallRating;
+      journalSumByDate[j.dateKey] =
+          (journalSumByDate[j.dateKey] ?? 0) + j.overallRating;
       journalCountByDate[j.dateKey] = (journalCountByDate[j.dateKey] ?? 0) + 1;
     }
 
@@ -540,7 +542,9 @@ class PatternEngineService {
 
       final completionRate = completedItems / totalItems;
       final jCount = journalCountByDate[dateKey] ?? 1;
-      final journalAvg = jCount > 0 ? (journalSumByDate[dateKey] ?? 0) / jCount : 3.0;
+      final journalAvg = jCount > 0
+          ? (journalSumByDate[dateKey] ?? 0) / jCount
+          : 3.0;
       // Normalize journal avg to 0-1 scale (ratings are 1-5)
       final normalizedJournal = (journalAvg - 1) / 4;
       pairs.add([completionRate, normalizedJournal]);
@@ -550,8 +554,10 @@ class PatternEngineService {
       pairs: pairs,
       dimensionA: 'Ritual Completion',
       dimensionB: 'Journal Scores',
-      insightTemplateEn: 'Your entries suggest that ritual completion and journal ratings are {direction} (r={r})',
-      insightTemplateTr: 'Kayıtların ritüel tamamlama ile günlük puanlarının {direction} olduğunu gösteriyor (r={r})',
+      insightTemplateEn:
+          'Your entries suggest that ritual completion and journal ratings are {direction} (r={r})',
+      insightTemplateTr:
+          'Kayıtların ritüel tamamlama ile günlük puanlarının {direction} olduğunu gösteriyor (r={r})',
     );
   }
 
@@ -584,7 +590,8 @@ class PatternEngineService {
     final pairs = <List<double>>[];
     for (final weekKey in wellnessByWeek.keys) {
       if (journalCountByWeek.containsKey(weekKey)) {
-        final avgWellness = wellnessByWeek[weekKey]!.reduce((a, b) => a + b) /
+        final avgWellness =
+            wellnessByWeek[weekKey]!.reduce((a, b) => a + b) /
             wellnessByWeek[weekKey]!.length;
         final journalFreq = journalCountByWeek[weekKey]!.toDouble();
         pairs.add([avgWellness, journalFreq]);
@@ -595,8 +602,10 @@ class PatternEngineService {
       pairs: pairs,
       dimensionA: 'Wellness Score',
       dimensionB: 'Journal Frequency',
-      insightTemplateEn: 'Your entries suggest that wellness score and journaling frequency are {direction} (r={r})',
-      insightTemplateTr: 'Kayıtların sağlık puanı ile günlük yazma sıklığının {direction} olduğunu gösteriyor (r={r})',
+      insightTemplateEn:
+          'Your entries suggest that wellness score and journaling frequency are {direction} (r={r})',
+      insightTemplateTr:
+          'Kayıtların sağlık puanı ile günlük yazma sıklığının {direction} olduğunu gösteriyor (r={r})',
     );
   }
 
@@ -635,7 +644,8 @@ class PatternEngineService {
       final weekKey = _weekKeyFromDateKey(dateStr);
       // Count backward streak from this date
       int s = 0;
-      DateTime checkDate = DateTime.tryParse('${dateStr}T00:00:00') ?? DateTime.now();
+      DateTime checkDate =
+          DateTime.tryParse('${dateStr}T00:00:00') ?? DateTime.now();
       for (int i = 0; i < 90; i++) {
         final key = _dateToKey(checkDate);
         if (journalDates.contains(key)) {
@@ -654,7 +664,8 @@ class PatternEngineService {
     final pairs = <List<double>>[];
     for (final weekKey in moodByWeek.keys) {
       if (streakByWeek.containsKey(weekKey)) {
-        final avgMood = moodByWeek[weekKey]!.reduce((a, b) => a + b) /
+        final avgMood =
+            moodByWeek[weekKey]!.reduce((a, b) => a + b) /
             moodByWeek[weekKey]!.length;
         final streakLen = streakByWeek[weekKey]!.toDouble();
         pairs.add([streakLen, avgMood]);
@@ -665,8 +676,10 @@ class PatternEngineService {
       pairs: pairs,
       dimensionA: 'Streak Length',
       dimensionB: 'Mood',
-      insightTemplateEn: 'Your entries suggest that journaling consistency and mood are {direction} (r={r})',
-      insightTemplateTr: 'Kayıtların günlük tutarlılığı ile ruh halinin {direction} olduğunu gösteriyor (r={r})',
+      insightTemplateEn:
+          'Your entries suggest that journaling consistency and mood are {direction} (r={r})',
+      insightTemplateTr:
+          'Kayıtların günlük tutarlılığı ile ruh halinin {direction} olduğunu gösteriyor (r={r})',
     );
   }
 
@@ -682,7 +695,8 @@ class PatternEngineService {
     // Build stress rating lookup (from emotions focus area, stress sub-rating)
     final stressByDate = <String, int>{};
     for (final j in journalEntries) {
-      if (j.focusArea == FocusArea.emotions && j.subRatings.containsKey('stress')) {
+      if (j.focusArea == FocusArea.emotions &&
+          j.subRatings.containsKey('stress')) {
         stressByDate[j.dateKey] = j.subRatings['stress']!;
       }
     }
@@ -701,8 +715,10 @@ class PatternEngineService {
       pairs: pairs,
       dimensionA: 'Sleep Quality',
       dimensionB: 'Stress Level',
-      insightTemplateEn: 'Your entries suggest that sleep quality and stress levels are {direction} (r={r})',
-      insightTemplateTr: 'Kayıtların uyku kalitesi ile stres seviyesinin {direction} olduğunu gösteriyor (r={r})',
+      insightTemplateEn:
+          'Your entries suggest that sleep quality and stress levels are {direction} (r={r})',
+      insightTemplateTr:
+          'Kayıtların uyku kalitesi ile stres seviyesinin {direction} olduğunu gösteriyor (r={r})',
     );
   }
 
@@ -721,7 +737,8 @@ class PatternEngineService {
     if (pairs.length < _minCrossCorrelationSamples) return null;
 
     final r = _pearsonCorrelationDouble(pairs);
-    final isSignificant = pairs.length >= _minCrossCorrelationSamples &&
+    final isSignificant =
+        pairs.length >= _minCrossCorrelationSamples &&
         r.abs() >= _minSignificantCoefficient;
 
     if (!isSignificant) return null;
@@ -763,8 +780,12 @@ class PatternEngineService {
     }
 
     final numerator = n * sumXY - sumX * sumY;
-    final denominator =
-        sqrt(((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY)).clamp(0, double.infinity));
+    final denominator = sqrt(
+      ((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY)).clamp(
+        0,
+        double.infinity,
+      ),
+    );
 
     if (denominator == 0 || denominator.isNaN) return 0;
     return numerator / denominator;
@@ -786,8 +807,12 @@ class PatternEngineService {
     }
 
     final numerator = n * sumXY - sumX * sumY;
-    final denominator =
-        sqrt(((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY)).clamp(0, double.infinity));
+    final denominator = sqrt(
+      ((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY)).clamp(
+        0,
+        double.infinity,
+      ),
+    );
 
     if (denominator == 0 || denominator.isNaN) return 0;
     return (numerator / denominator).clamp(-1.0, 1.0);

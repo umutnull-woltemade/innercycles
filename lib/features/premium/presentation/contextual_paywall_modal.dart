@@ -75,8 +75,9 @@ class _ContextualPaywallSheetState
       'context': widget.paywallContext.name,
     });
     // Log experiment-aware paywall view
-    final experiment =
-        ref.read(paywallExperimentProvider).whenOrNull(data: (e) => e);
+    final experiment = ref
+        .read(paywallExperimentProvider)
+        .whenOrNull(data: (e) => e);
     experiment?.logPaywallView();
   }
 
@@ -100,8 +101,7 @@ class _ContextualPaywallSheetState
                 AppColors.deepSpace.withValues(alpha: 0.98),
               ],
             ),
-            borderRadius:
-                const BorderRadius.vertical(top: Radius.circular(24)),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
             border: Border(
               top: BorderSide(
                 color: AppColors.starGold.withValues(alpha: 0.3),
@@ -144,10 +144,7 @@ class _ContextualPaywallSheetState
                       size: 40,
                       color: config.accentColor,
                     ),
-                  ).animate().scale(
-                        duration: 600.ms,
-                        curve: Curves.elasticOut,
-                      ),
+                  ).animate().scale(duration: 600.ms, curve: Curves.elasticOut),
                   const SizedBox(height: 20),
 
                   // Headline
@@ -204,16 +201,17 @@ class _ContextualPaywallSheetState
                   const SizedBox(height: 16),
 
                   // Social proof
-                  _buildSocialProof(isEn)
-                      .animate()
-                      .fadeIn(duration: 400.ms, delay: 270.ms),
+                  _buildSocialProof(
+                    isEn,
+                  ).animate().fadeIn(duration: 400.ms, delay: 270.ms),
 
                   const SizedBox(height: 16),
 
                   // Dynamic value recap
-                  _buildValueRecap(isEn, config.accentColor)
-                      .animate()
-                      .fadeIn(duration: 400.ms, delay: 290.ms),
+                  _buildValueRecap(
+                    isEn,
+                    config.accentColor,
+                  ).animate().fadeIn(duration: 400.ms, delay: 290.ms),
 
                   const SizedBox(height: 24),
 
@@ -228,8 +226,9 @@ class _ContextualPaywallSheetState
                             config.accentColor.withValues(alpha: 0.8),
                           ],
                         ),
-                        borderRadius:
-                            BorderRadius.circular(AppConstants.radiusMd),
+                        borderRadius: BorderRadius.circular(
+                          AppConstants.radiusMd,
+                        ),
                         boxShadow: [
                           BoxShadow(
                             color: config.accentColor.withValues(alpha: 0.4),
@@ -242,8 +241,9 @@ class _ContextualPaywallSheetState
                         color: Colors.transparent,
                         child: InkWell(
                           onTap: _isLoading ? null : _handlePrimaryCta,
-                          borderRadius:
-                              BorderRadius.circular(AppConstants.radiusMd),
+                          borderRadius: BorderRadius.circular(
+                            AppConstants.radiusMd,
+                          ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 16),
                             child: Center(
@@ -266,9 +266,9 @@ class _ContextualPaywallSheetState
                   const SizedBox(height: 12),
 
                   // Price anchor (variant-aware)
-                  _buildPriceAnchor(isEn)
-                      .animate()
-                      .fadeIn(duration: 400.ms, delay: 350.ms),
+                  _buildPriceAnchor(
+                    isEn,
+                  ).animate().fadeIn(duration: 400.ms, delay: 350.ms),
                   const SizedBox(height: 16),
 
                   // Risk reversal
@@ -311,8 +311,9 @@ class _ContextualPaywallSheetState
   }
 
   Widget _buildPriceAnchor(bool isEn) {
-    final experiment =
-        ref.watch(paywallExperimentProvider).whenOrNull(data: (e) => e);
+    final experiment = ref
+        .watch(paywallExperimentProvider)
+        .whenOrNull(data: (e) => e);
     final monthlyLabel = experiment?.monthlyPriceLabel ?? '\$7.99/mo';
     final yearlyLabel = experiment?.yearlyMonthlyEquivalent ?? '\$2.50/mo';
 
@@ -350,11 +351,11 @@ class _ContextualPaywallSheetState
       'context': widget.paywallContext.name,
     });
 
-    final result =
-        await ref.read(paywallServiceProvider).presentPaywall();
+    final result = await ref.read(paywallServiceProvider).presentPaywall();
 
-    final experiment =
-        ref.read(paywallExperimentProvider).whenOrNull(data: (e) => e);
+    final experiment = ref
+        .read(paywallExperimentProvider)
+        .whenOrNull(data: (e) => e);
 
     if (mounted) {
       setState(() => _isLoading = false);
@@ -393,10 +394,12 @@ class _ContextualPaywallSheetState
   }
 
   Widget _buildValueRecap(bool isEn, Color accentColor) {
-    final entryCount = widget.entryCount ??
+    final entryCount =
+        widget.entryCount ??
         ref.watch(journalServiceProvider).valueOrNull?.entryCount ??
         0;
-    final streakDays = widget.streakDays ??
+    final streakDays =
+        widget.streakDays ??
         ref.watch(streakStatsProvider).valueOrNull?.currentStreak ??
         0;
     final dreamCount = ref.watch(dreamCountProvider).valueOrNull ?? 0;
@@ -408,22 +411,28 @@ class _ContextualPaywallSheetState
 
     final items = <_ValueItem>[];
     if (entryCount > 0) {
-      items.add(_ValueItem(
-        Icons.edit_note_outlined,
-        isEn ? '$entryCount entries' : '$entryCount kayıt',
-      ));
+      items.add(
+        _ValueItem(
+          Icons.edit_note_outlined,
+          isEn ? '$entryCount entries' : '$entryCount kayıt',
+        ),
+      );
     }
     if (streakDays > 0) {
-      items.add(_ValueItem(
-        Icons.local_fire_department_outlined,
-        isEn ? '$streakDays-day streak' : '$streakDays gün seri',
-      ));
+      items.add(
+        _ValueItem(
+          Icons.local_fire_department_outlined,
+          isEn ? '$streakDays-day streak' : '$streakDays gün seri',
+        ),
+      );
     }
     if (dreamCount > 0) {
-      items.add(_ValueItem(
-        Icons.nights_stay_outlined,
-        isEn ? '$dreamCount dreams' : '$dreamCount rüya',
-      ));
+      items.add(
+        _ValueItem(
+          Icons.nights_stay_outlined,
+          isEn ? '$dreamCount dreams' : '$dreamCount rüya',
+        ),
+      );
     }
 
     return Container(
@@ -431,9 +440,7 @@ class _ContextualPaywallSheetState
       decoration: BoxDecoration(
         color: accentColor.withValues(alpha: 0.06),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: accentColor.withValues(alpha: 0.12),
-        ),
+        border: Border.all(color: accentColor.withValues(alpha: 0.12)),
       ),
       child: Column(
         children: [
@@ -450,21 +457,23 @@ class _ContextualPaywallSheetState
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: items
-                .map((item) => Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(item.icon, size: 14, color: accentColor),
-                        const SizedBox(width: 4),
-                        Text(
-                          item.label,
-                          style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.8),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
+                .map(
+                  (item) => Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(item.icon, size: 14, color: accentColor),
+                      const SizedBox(width: 4),
+                      Text(
+                        item.label,
+                        style: TextStyle(
+                          color: Colors.white.withValues(alpha: 0.8),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
                         ),
-                      ],
-                    ))
+                      ),
+                    ],
+                  ),
+                )
                 .toList(),
           ),
         ],
@@ -486,8 +495,8 @@ class _ContextualPaywallSheetState
               : 'Hikayeni yazıyordun. Sadece verilerinin ortaya çıkarabileceği kalıpları gör.',
           detail: widget.entryCount != null
               ? (isEn
-                  ? '${widget.entryCount} entries analyzed'
-                  : '${widget.entryCount} kayıt analiz edildi')
+                    ? '${widget.entryCount} entries analyzed'
+                    : '${widget.entryCount} kayıt analiz edildi')
               : null,
           cta: isEn ? 'See My Patterns' : 'Kalıplarımı Gör',
         );
@@ -502,9 +511,7 @@ class _ContextualPaywallSheetState
           subtitle: isEn
               ? '4 more interpretation perspectives available. See your dream through every lens.'
               : '4 yorum perspektifi daha mevcut. Rüyanı her açıdan gör.',
-          cta: isEn
-              ? 'Unlock All Perspectives'
-              : 'Tüm Perspektifleri Aç',
+          cta: isEn ? 'Unlock All Perspectives' : 'Tüm Perspektifleri Aç',
         );
 
       case PaywallContext.streakFreeze:
@@ -519,8 +526,8 @@ class _ContextualPaywallSheetState
               : 'Serini dondur ve yarın kaldığın yerden devam et.',
           detail: widget.streakDays != null
               ? (isEn
-                  ? '${widget.streakDays}-day streak at risk'
-                  : '${widget.streakDays} günlük seri risk altında')
+                    ? '${widget.streakDays}-day streak at risk'
+                    : '${widget.streakDays} günlük seri risk altında')
               : null,
           cta: isEn ? 'Protect My Streak' : 'Serimi Koru',
         );
@@ -542,9 +549,7 @@ class _ContextualPaywallSheetState
         return _PaywallConfig(
           icon: Icons.download_rounded,
           accentColor: AppColors.exportGreen,
-          headline: isEn
-              ? 'Your data belongs to you'
-              : 'Verilerin sana ait',
+          headline: isEn ? 'Your data belongs to you' : 'Verilerin sana ait',
           subtitle: isEn
               ? 'Export your complete journal history in any format. All ${widget.entryCount ?? ''} entries, yours to keep.'
               : 'Tüm günlük geçmişini istediğin formatta dışa aktar. ${widget.entryCount ?? ''} kayıt, senin.',
@@ -581,9 +586,7 @@ class _ContextualPaywallSheetState
         return _PaywallConfig(
           icon: Icons.emoji_events_rounded,
           accentColor: AppColors.celestialGold,
-          headline: isEn
-              ? 'Push your limits'
-              : 'Sınırlarını zorla',
+          headline: isEn ? 'Push your limits' : 'Sınırlarını zorla',
           subtitle: isEn
               ? 'Premium growth challenges that transform your daily practice.'
               : 'Günlük pratiğini dönüştüren premium büyüme meydan okumaları.',

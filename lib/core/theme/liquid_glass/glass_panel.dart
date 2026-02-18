@@ -49,7 +49,8 @@ class GlassPanel extends StatelessWidget {
         ? Colors.white.withValues(alpha: borderOpacity)
         : Colors.black.withValues(alpha: borderOpacity * 0.5);
 
-    final effectiveGlow = glowColor ?? (isDark ? GlassTokens.glowCosmic : Colors.transparent);
+    final effectiveGlow =
+        glowColor ?? (isDark ? GlassTokens.glowCosmic : Colors.transparent);
 
     return Container(
       width: width,

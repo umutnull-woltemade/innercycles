@@ -278,7 +278,6 @@ class L10nService {
         'L10nService: Missing key "$key" for ${language.name} ($reason)',
       );
     }
-
   }
 
   /// Get all missing keys (for debugging/testing)

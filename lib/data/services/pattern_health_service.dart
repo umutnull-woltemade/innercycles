@@ -89,10 +89,14 @@ class PatternHealthService {
     final thirtyDaysAgo = now.subtract(const Duration(days: 30));
     final sixtyDaysAgo = now.subtract(const Duration(days: 60));
 
-    final currentEntries =
-        _journalService.getEntriesByDateRange(thirtyDaysAgo, now);
-    final previousEntries =
-        _journalService.getEntriesByDateRange(sixtyDaysAgo, thirtyDaysAgo);
+    final currentEntries = _journalService.getEntriesByDateRange(
+      thirtyDaysAgo,
+      now,
+    );
+    final previousEntries = _journalService.getEntriesByDateRange(
+      sixtyDaysAgo,
+      thirtyDaysAgo,
+    );
 
     final dimensionMap = <FocusArea, DimensionHealth>{};
     final alerts = <HealthAlert>[];
@@ -102,14 +106,15 @@ class PatternHealthService {
       final currentAvg = _averageForArea(currentEntries, area);
       final previousAvg = _averageForArea(previousEntries, area);
       final diff = currentAvg - previousAvg;
-      final changePercent =
-          previousAvg > 0 ? ((diff) / previousAvg) * 100 : 0.0;
+      final changePercent = previousAvg > 0
+          ? ((diff) / previousAvg) * 100
+          : 0.0;
 
       final trendDirection = diff > 0.1
           ? TrendDirection.up
           : diff < -0.1
-              ? TrendDirection.down
-              : TrendDirection.stable;
+          ? TrendDirection.down
+          : TrendDirection.stable;
 
       final status = _classifyStatus(currentAvg, previousAvg);
 
@@ -139,14 +144,17 @@ class PatternHealthService {
 
     // Cap alerts to 3 and improvements to 2
     final cappedAlerts = alerts.length > 3 ? alerts.sublist(0, 3) : alerts;
-    final cappedImprovements =
-        improvements.length > 2 ? improvements.sublist(0, 2) : improvements;
+    final cappedImprovements = improvements.length > 2
+        ? improvements.sublist(0, 2)
+        : improvements;
 
     // Determine overall health
-    final greenCount =
-        dimensionMap.values.where((d) => d.status == HealthStatus.green).length;
-    final redCount =
-        dimensionMap.values.where((d) => d.status == HealthStatus.red).length;
+    final greenCount = dimensionMap.values
+        .where((d) => d.status == HealthStatus.green)
+        .length;
+    final redCount = dimensionMap.values
+        .where((d) => d.status == HealthStatus.red)
+        .length;
 
     HealthStatus overallHealth;
     if (redCount >= 2) {

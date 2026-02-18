@@ -31,92 +31,91 @@ class WellnessScoreCard extends ConsumerWidget {
               : 'Sağlık puanı: ${score.score}. Detaylar için dokun',
           button: true,
           child: GestureDetector(
-          onTap: () => context.push(Routes.wellnessDetail),
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: isDark
-                    ? [
-                        AppColors.surfaceDark.withValues(alpha: 0.9),
-                        AppColors.nebulaPurple.withValues(alpha: 0.7),
-                      ]
-                    : [
-                        AppColors.lightCard,
-                        AppColors.lightSurfaceVariant,
-                      ],
-              ),
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: _scoreColor(score.score).withValues(alpha: 0.3),
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Header with score
-                Row(
-                  children: [
-                    // Animated score ring
-                    _AnimatedScoreRing(
-                      score: score.score,
-                      color: _scoreColor(score.score),
-                      isDark: isDark,
-                    ),
-                    const SizedBox(width: 14),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            isEn ? 'Wellness Score' : 'Sağlık Skoru',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
-                            ),
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            _scoreLabel(score.score, isEn),
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: _scoreColor(score.score),
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Icon(
-                      Icons.chevron_right_rounded,
-                      size: 20,
-                      color: isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
-                    ),
-                  ],
+            onTap: () => context.push(Routes.wellnessDetail),
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: isDark
+                      ? [
+                          AppColors.surfaceDark.withValues(alpha: 0.9),
+                          AppColors.nebulaPurple.withValues(alpha: 0.7),
+                        ]
+                      : [AppColors.lightCard, AppColors.lightSurfaceVariant],
                 ),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: _scoreColor(score.score).withValues(alpha: 0.3),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Header with score
+                  Row(
+                    children: [
+                      // Animated score ring
+                      _AnimatedScoreRing(
+                        score: score.score,
+                        color: _scoreColor(score.score),
+                        isDark: isDark,
+                      ),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              isEn ? 'Wellness Score' : 'Sağlık Skoru',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: isDark
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary,
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              _scoreLabel(score.score, isEn),
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: _scoreColor(score.score),
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Icon(
+                        Icons.chevron_right_rounded,
+                        size: 20,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ],
+                  ),
 
-                const SizedBox(height: 14),
+                  const SizedBox(height: 14),
 
-                // Mini breakdown bars
-                ...score.breakdown.map((b) => Padding(
+                  // Mini breakdown bars
+                  ...score.breakdown.map(
+                    (b) => Padding(
                       padding: const EdgeInsets.only(bottom: 6),
                       child: _BreakdownBar(
                         label: _categoryLabel(b.category, isEn),
                         score: b.score,
                         isDark: isDark,
                       ),
-                    )),
-              ],
-            ),
-          ).animate().fadeIn(duration: 300.ms),
-        ),
+                    ),
+                  ),
+                ],
+              ),
+            ).animate().fadeIn(duration: 300.ms),
+          ),
         );
       },
     );
@@ -135,7 +134,9 @@ class WellnessScoreCard extends ConsumerWidget {
     if (score >= 60) return isEn ? 'Good balance' : 'İyi denge';
     if (score >= 40) return isEn ? 'Room to grow' : 'Gelişim alanı';
     if (score >= 20) return isEn ? 'Getting started' : 'Başlangıç';
-    return isEn ? 'Start logging to build your score' : 'Skorunu oluşturmak için kayıt başlat';
+    return isEn
+        ? 'Start logging to build your score'
+        : 'Skorunu oluşturmak için kayıt başlat';
   }
 
   static String _categoryLabel(String category, bool isEn) {
@@ -235,8 +236,9 @@ class _BreakdownBar extends StatelessWidget {
                 label,
                 style: TextStyle(
                   fontSize: 11,
-                  color:
-                      isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
                 ),
               ),
             ),

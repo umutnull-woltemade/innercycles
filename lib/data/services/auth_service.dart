@@ -126,7 +126,8 @@ class AuthService {
       return await _signInWithAppleNative();
     } on SignInWithAppleAuthorizationException catch (e) {
       // User cancellation or Apple error
-      if (kDebugMode) debugPrint('🍎 Apple Authorization Error: ${e.code} - ${e.message}');
+      if (kDebugMode)
+        debugPrint('🍎 Apple Authorization Error: ${e.code} - ${e.message}');
       if (e.code == AuthorizationErrorCode.canceled) {
         if (kDebugMode) debugPrint('🍎 User canceled sign in');
         return null; // User canceled, don't show error
@@ -237,7 +238,8 @@ class AuthService {
           errorStr.contains('TypeErrorImpl') ||
           errorStr.contains('JSObject') ||
           errorStr.contains('minified')) {
-        if (kDebugMode) debugPrint('🍎 JS interop error - OAuth redirect continuing');
+        if (kDebugMode)
+          debugPrint('🍎 JS interop error - OAuth redirect continuing');
         return null;
       }
       rethrow;
@@ -266,22 +268,26 @@ class AuthService {
     if (kDebugMode) debugPrint('🍎 Requesting Apple credential...');
     final AuthorizationCredentialAppleID appleCredential;
     try {
-      appleCredential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-        nonce: hashedNonce,
-      ).timeout(
-        const Duration(seconds: 60), // Generous timeout for iPad/slow networks
-        onTimeout: () {
-          if (kDebugMode) debugPrint('🍎 Apple Sign-In timed out after 60 seconds');
-          throw const AppleAuthException(
-            AppleAuthErrorType.timeout,
-            'Sign in request timed out. Please try again.',
+      appleCredential =
+          await SignInWithApple.getAppleIDCredential(
+            scopes: [
+              AppleIDAuthorizationScopes.email,
+              AppleIDAuthorizationScopes.fullName,
+            ],
+            nonce: hashedNonce,
+          ).timeout(
+            const Duration(
+              seconds: 60,
+            ), // Generous timeout for iPad/slow networks
+            onTimeout: () {
+              if (kDebugMode)
+                debugPrint('🍎 Apple Sign-In timed out after 60 seconds');
+              throw const AppleAuthException(
+                AppleAuthErrorType.timeout,
+                'Sign in request timed out. Please try again.',
+              );
+            },
           );
-        },
-      );
     } on TimeoutException {
       if (kDebugMode) debugPrint('🍎 Apple Sign-In timeout exception');
       throw const AppleAuthException(
@@ -320,20 +326,22 @@ class AuthService {
     if (kDebugMode) debugPrint('🍎 Authenticating with Supabase...');
     final AuthResponse response;
     try {
-      response = await _supabase.auth.signInWithIdToken(
-        provider: OAuthProvider.apple,
-        idToken: idToken,
-        nonce: rawNonce,
-      ).timeout(
-        const Duration(seconds: 30),
-        onTimeout: () {
-          if (kDebugMode) debugPrint('🍎 Supabase auth timed out');
-          throw const AppleAuthException(
-            AppleAuthErrorType.timeout,
-            'Server authentication timed out. Please try again.',
+      response = await _supabase.auth
+          .signInWithIdToken(
+            provider: OAuthProvider.apple,
+            idToken: idToken,
+            nonce: rawNonce,
+          )
+          .timeout(
+            const Duration(seconds: 30),
+            onTimeout: () {
+              if (kDebugMode) debugPrint('🍎 Supabase auth timed out');
+              throw const AppleAuthException(
+                AppleAuthErrorType.timeout,
+                'Server authentication timed out. Please try again.',
+              );
+            },
           );
-        },
-      );
     } on TimeoutException {
       throw const AppleAuthException(
         AppleAuthErrorType.timeout,
@@ -384,5 +392,4 @@ class AuthService {
     final digest = sha256.convert(bytes);
     return digest.toString();
   }
-
 }

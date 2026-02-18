@@ -101,7 +101,9 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                   Icon(
                     Icons.bedtime_outlined,
                     size: 20,
-                    color: isDark ? AppColors.auroraEnd : AppColors.lightAuroraEnd,
+                    color: isDark
+                        ? AppColors.auroraEnd
+                        : AppColors.lightAuroraEnd,
                   ),
                   const SizedBox(width: 10),
                   Expanded(
@@ -123,8 +125,9 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                         vertical: 2,
                       ),
                       decoration: BoxDecoration(
-                        color: _qualityColor(_selectedQuality)
-                            .withValues(alpha: 0.2),
+                        color: _qualityColor(
+                          _selectedQuality,
+                        ).withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
@@ -142,7 +145,9 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                         ? Icons.keyboard_arrow_up
                         : Icons.keyboard_arrow_down,
                     size: 20,
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                   ),
                 ],
               ),
@@ -195,15 +200,16 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                             color: isActive
                                 ? _qualityColor(quality)
                                 : (isDark
-                                    ? AppColors.surfaceLight
-                                        .withValues(alpha: 0.3)
-                                    : AppColors.lightSurfaceVariant),
+                                      ? AppColors.surfaceLight.withValues(
+                                          alpha: 0.3,
+                                        )
+                                      : AppColors.lightSurfaceVariant),
                             border: Border.all(
                               color: isActive
                                   ? _qualityColor(quality)
                                   : (isDark
-                                      ? Colors.white.withValues(alpha: 0.15)
-                                      : Colors.black.withValues(alpha: 0.08)),
+                                        ? Colors.white.withValues(alpha: 0.15)
+                                        : Colors.black.withValues(alpha: 0.08)),
                             ),
                           ),
                           child: Center(
@@ -380,14 +386,14 @@ class SleepSummaryCard extends ConsumerWidget {
                       summary.trendDirection == 'improving'
                           ? Icons.trending_up
                           : summary.trendDirection == 'declining'
-                              ? Icons.trending_down
-                              : Icons.trending_flat,
+                          ? Icons.trending_down
+                          : Icons.trending_flat,
                       size: 18,
                       color: summary.trendDirection == 'improving'
                           ? AppColors.success
                           : summary.trendDirection == 'declining'
-                              ? AppColors.warning
-                              : AppColors.textMuted,
+                          ? AppColors.warning
+                          : AppColors.textMuted,
                     ),
                 ],
               ),

@@ -31,85 +31,88 @@ class SeasonalReflectionScreen extends ConsumerWidget {
         child: SafeArea(
           child: CupertinoScrollbar(
             child: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            slivers: [
-              GlassSliverAppBar(
-                title: isEn ? 'Seasonal Reflections' : 'Mevsimsel Yansımalar',
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
               ),
-              SliverPadding(
-                padding: const EdgeInsets.all(16),
-                sliver: serviceAsync.when(
-                  loading: () => const SliverToBoxAdapter(
-                    child: Center(child: CosmicLoadingIndicator()),
-                  ),
-                  error: (_, _) => SliverToBoxAdapter(
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(32),
-                        child: Text(
-                          CommonStrings.somethingWentWrong(language),
-                          style: TextStyle(
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              slivers: [
+                GlassSliverAppBar(
+                  title: isEn ? 'Seasonal Reflections' : 'Mevsimsel Yansımalar',
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.all(16),
+                  sliver: serviceAsync.when(
+                    loading: () => const SliverToBoxAdapter(
+                      child: Center(child: CosmicLoadingIndicator()),
+                    ),
+                    error: (_, _) => SliverToBoxAdapter(
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(32),
+                          child: Text(
+                            CommonStrings.somethingWentWrong(language),
+                            style: TextStyle(
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  data: (service) {
-                    final module = service.getCurrentModule();
-                    final progress = service.getCurrentProgress();
-                    final completion = service.getCompletionPercent();
+                    data: (service) {
+                      final module = service.getCurrentModule();
+                      final progress = service.getCurrentProgress();
+                      final completion = service.getCompletionPercent();
 
-                    return SliverList(
-                      delegate: SliverChildListDelegate([
-                        // Season header
-                        _SeasonHeader(
-                          module: module,
-                          completion: completion,
-                          isDark: isDark,
-                          isEn: isEn,
-                        ),
-                        const SizedBox(height: 20),
-
-                        // Prompts list
-                        ...module.prompts.map((prompt) {
-                          final isCompleted =
-                              progress.completedPrompts.contains(prompt.index);
-                          return _PromptCard(
-                            prompt: prompt,
-                            isCompleted: isCompleted,
+                      return SliverList(
+                        delegate: SliverChildListDelegate([
+                          // Season header
+                          _SeasonHeader(
+                            module: module,
+                            completion: completion,
                             isDark: isDark,
                             isEn: isEn,
-                            onComplete: () async {
-                              await service.completePrompt(prompt.index);
-                              if (!context.mounted) return;
-                              ref.invalidate(
-                                  seasonalReflectionServiceProvider);
-                              HapticFeedback.mediumImpact();
-                            },
-                          );
-                        }),
+                          ),
+                          const SizedBox(height: 20),
 
-                        const SizedBox(height: 24),
+                          // Prompts list
+                          ...module.prompts.map((prompt) {
+                            final isCompleted = progress.completedPrompts
+                                .contains(prompt.index);
+                            return _PromptCard(
+                              prompt: prompt,
+                              isCompleted: isCompleted,
+                              isDark: isDark,
+                              isEn: isEn,
+                              onComplete: () async {
+                                await service.completePrompt(prompt.index);
+                                if (!context.mounted) return;
+                                ref.invalidate(
+                                  seasonalReflectionServiceProvider,
+                                );
+                                HapticFeedback.mediumImpact();
+                              },
+                            );
+                          }),
 
-                        // All seasons overview
-                        _AllSeasonsRow(isDark: isDark, isEn: isEn),
-                        const SizedBox(height: 24),
-                        ToolEcosystemFooter(
-                          currentToolId: 'seasonalReflection',
-                          isEn: isEn,
-                          isDark: isDark,
-                        ),
-                        const SizedBox(height: 40),
-                      ]),
-                    );
-                  },
+                          const SizedBox(height: 24),
+
+                          // All seasons overview
+                          _AllSeasonsRow(isDark: isDark, isEn: isEn),
+                          const SizedBox(height: 24),
+                          ToolEcosystemFooter(
+                            currentToolId: 'seasonalReflection',
+                            isEn: isEn,
+                            isDark: isDark,
+                          ),
+                          const SizedBox(height: 40),
+                        ]),
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
           ),
         ),
       ),
@@ -187,9 +190,7 @@ class _SeasonHeader extends StatelessWidget {
               backgroundColor: isDark
                   ? Colors.white.withValues(alpha: 0.08)
                   : Colors.black.withValues(alpha: 0.06),
-              valueColor: AlwaysStoppedAnimation(
-                _seasonColor(module.season),
-              ),
+              valueColor: AlwaysStoppedAnimation(_seasonColor(module.season)),
             ),
           ),
           const SizedBox(height: 8),
@@ -250,8 +251,8 @@ class _PromptCard extends StatelessWidget {
             color: isCompleted
                 ? AppColors.success.withValues(alpha: 0.3)
                 : (isDark
-                    ? Colors.white.withValues(alpha: 0.1)
-                    : Colors.black.withValues(alpha: 0.05)),
+                      ? Colors.white.withValues(alpha: 0.1)
+                      : Colors.black.withValues(alpha: 0.05)),
           ),
         ),
         child: Column(
@@ -267,8 +268,8 @@ class _PromptCard extends StatelessWidget {
                     color: isCompleted
                         ? AppColors.success
                         : (isDark
-                            ? Colors.white.withValues(alpha: 0.06)
-                            : Colors.black.withValues(alpha: 0.04)),
+                              ? Colors.white.withValues(alpha: 0.06)
+                              : Colors.black.withValues(alpha: 0.04)),
                   ),
                   child: Center(
                     child: isCompleted
@@ -384,28 +385,34 @@ class _AllSeasonsRow extends StatelessWidget {
                       color: isCurrent
                           ? AppColors.starGold.withValues(alpha: 0.15)
                           : (isDark
-                              ? Colors.white.withValues(alpha: 0.05)
-                              : Colors.black.withValues(alpha: 0.03)),
+                                ? Colors.white.withValues(alpha: 0.05)
+                                : Colors.black.withValues(alpha: 0.03)),
                       border: isCurrent
                           ? Border.all(
-                              color: AppColors.starGold.withValues(alpha: 0.4))
+                              color: AppColors.starGold.withValues(alpha: 0.4),
+                            )
                           : null,
                     ),
                     child: Center(
-                      child: Text(m.emoji, style: const TextStyle(fontSize: 22)),
+                      child: Text(
+                        m.emoji,
+                        style: const TextStyle(fontSize: 22),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    isEn ? m.nameEn.split(' ').first : m.nameTr.split(' ').first,
+                    isEn
+                        ? m.nameEn.split(' ').first
+                        : m.nameTr.split(' ').first,
                     style: TextStyle(
                       fontSize: 11,
                       fontWeight: isCurrent ? FontWeight.w600 : FontWeight.w400,
                       color: isCurrent
                           ? AppColors.starGold
                           : (isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted),
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted),
                     ),
                   ),
                 ],

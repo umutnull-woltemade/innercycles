@@ -70,9 +70,7 @@ class ShareCardRenderer extends StatelessWidget {
 
             // Stars overlay
             Positioned.fill(
-              child: CustomPaint(
-                painter: _CardStarsPainter(accent: accent),
-              ),
+              child: CustomPaint(painter: _CardStarsPainter(accent: accent)),
             ),
 
             // Accent glow - top
@@ -121,10 +119,7 @@ class ShareCardRenderer extends StatelessWidget {
             Positioned(
               top: 20,
               right: 20,
-              child: _BadgePill(
-                text: template.badge(true),
-                color: accent,
-              ),
+              child: _BadgePill(text: template.badge(true), color: accent),
             ),
 
             // Main content by layout type
@@ -159,23 +154,11 @@ class ShareCardRenderer extends StatelessWidget {
   Widget _buildLayout(Color accent) {
     switch (template.layoutType) {
       case ShareCardLayout.centered:
-        return _CenteredLayout(
-          template: template,
-          data: data,
-          accent: accent,
-        );
+        return _CenteredLayout(template: template, data: data, accent: accent);
       case ShareCardLayout.badgeHero:
-        return _BadgeHeroLayout(
-          template: template,
-          data: data,
-          accent: accent,
-        );
+        return _BadgeHeroLayout(template: template, data: data, accent: accent);
       case ShareCardLayout.miniChart:
-        return _MiniChartLayout(
-          template: template,
-          data: data,
-          accent: accent,
-        );
+        return _MiniChartLayout(template: template, data: data, accent: accent);
       case ShareCardLayout.quoteBlock:
         return _QuoteBlockLayout(
           template: template,
@@ -183,11 +166,7 @@ class ShareCardRenderer extends StatelessWidget {
           accent: accent,
         );
       case ShareCardLayout.statRow:
-        return _StatRowLayout(
-          template: template,
-          data: data,
-          accent: accent,
-        );
+        return _StatRowLayout(template: template, data: data, accent: accent);
     }
   }
 
@@ -222,8 +201,8 @@ class _GradientBackground extends StatelessWidget {
           colors: colors.length >= 2
               ? colors
               : colors.isNotEmpty
-                  ? [colors.first, colors.first.withValues(alpha: 0.8)]
-                  : [AppColors.cosmicPurple, AppColors.nebulaPurple],
+              ? [colors.first, colors.first.withValues(alpha: 0.8)]
+              : [AppColors.cosmicPurple, AppColors.nebulaPurple],
         ),
       ),
     );
@@ -326,7 +305,8 @@ class _BadgeHeroLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isEmoji = data.statValue != null &&
+    final isEmoji =
+        data.statValue != null &&
         data.statValue!.length <= 2 &&
         !RegExp(r'^[0-9+\-]+$').hasMatch(data.statValue!);
 
@@ -337,10 +317,7 @@ class _BadgeHeroLayout extends StatelessWidget {
 
         // Large stat or icon
         if (isEmoji)
-          Text(
-            data.statValue!,
-            style: const TextStyle(fontSize: 64),
-          )
+          Text(data.statValue!, style: const TextStyle(fontSize: 64))
         else if (data.statValue != null)
           _HeroStat(value: data.statValue!, accent: accent)
         else
@@ -630,11 +607,7 @@ class _IconCircle extends StatelessWidget {
   final Color accent;
   final double size;
 
-  const _IconCircle({
-    required this.icon,
-    required this.accent,
-    this.size = 64,
-  });
+  const _IconCircle({required this.icon, required this.accent, this.size = 64});
 
   @override
   Widget build(BuildContext context) {
@@ -649,10 +622,7 @@ class _IconCircle extends StatelessWidget {
             accent.withValues(alpha: 0.05),
           ],
         ),
-        border: Border.all(
-          color: accent.withValues(alpha: 0.3),
-          width: 1.5,
-        ),
+        border: Border.all(color: accent.withValues(alpha: 0.3), width: 1.5),
       ),
       child: Icon(icon, size: size * 0.45, color: accent),
     );
@@ -865,10 +835,12 @@ class _MiniBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final maxVal =
-        values.isEmpty ? 5.0 : values.reduce((a, b) => a > b ? a : b);
-    final normalised =
-        values.map((v) => maxVal > 0 ? v / maxVal : 0.0).toList();
+    final maxVal = values.isEmpty
+        ? 5.0
+        : values.reduce((a, b) => a > b ? a : b);
+    final normalised = values
+        .map((v) => maxVal > 0 ? v / maxVal : 0.0)
+        .toList();
 
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0.0, end: 1.0),

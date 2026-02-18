@@ -15,16 +15,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 // ════════════════════════════════════════════════════════════════════════════
 
 enum UpgradeTrigger {
-  insightsReady,     // After 7th journal entry — "Your first pattern is emerging"
-  dreamPatterns,     // After 3rd dream entry — "Your dream symbols form a pattern"
-  streakMilestone,   // After 7-day streak — "You're building something — go deeper"
-  monthlyReport,     // End of first month — "Your monthly report is ready"
-  unlimitedSharing,  // After first share — "Create unlimited insight cards"
-  attachmentDeep,    // After attachment quiz — "Get your full attachment breakdown"
-  comparePatterns,   // After adding 2nd profile — "Compare your patterns"
-  patternShift,      // When pattern shifts detected — "Something changed — see what"
-  seasonalReset,     // Seasonal transition — "Your seasonal reset toolkit is ready"
-  removeAds,         // After 3 ad exposures in session — "Remove ads and focus"
+  insightsReady, // After 7th journal entry — "Your first pattern is emerging"
+  dreamPatterns, // After 3rd dream entry — "Your dream symbols form a pattern"
+  streakMilestone, // After 7-day streak — "You're building something — go deeper"
+  monthlyReport, // End of first month — "Your monthly report is ready"
+  unlimitedSharing, // After first share — "Create unlimited insight cards"
+  attachmentDeep, // After attachment quiz — "Get your full attachment breakdown"
+  comparePatterns, // After adding 2nd profile — "Compare your patterns"
+  patternShift, // When pattern shifts detected — "Something changed — see what"
+  seasonalReset, // Seasonal transition — "Your seasonal reset toolkit is ready"
+  removeAds, // After 3 ad exposures in session — "Remove ads and focus"
 }
 
 // ════════════════════════════════════════════════════════════════════════════

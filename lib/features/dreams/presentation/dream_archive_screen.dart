@@ -36,8 +36,12 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('dreamArchive'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('dreamArchive', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('dreamArchive'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData((s) => s.trackToolOpen('dreamArchive', source: 'direct'));
     });
   }
 
@@ -108,12 +112,32 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     final month = int.tryParse(parts[1]) ?? 1;
 
     final monthsEn = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December',
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
     final monthsTr = [
-      'Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran',
-      'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik',
+      'Ocak',
+      'Subat',
+      'Mart',
+      'Nisan',
+      'Mayis',
+      'Haziran',
+      'Temmuz',
+      'Agustos',
+      'Eylul',
+      'Ekim',
+      'Kasim',
+      'Aralik',
     ];
 
     final monthName = isEn ? monthsEn[month - 1] : monthsTr[month - 1];
@@ -140,194 +164,197 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           behavior: HitTestBehavior.opaque,
           child: serviceAsync.when(
-          loading: () => const CosmicLoadingIndicator(),
-          error: (_, _) => Center(
-            child: Text(
-              isEn ? 'Failed to load dreams' : 'Rüyalar yüklenemedi',
-              style: TextStyle(
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            loading: () => const CosmicLoadingIndicator(),
+            error: (_, _) => Center(
+              child: Text(
+                isEn ? 'Failed to load dreams' : 'Rüyalar yüklenemedi',
+                style: TextStyle(
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
+                ),
               ),
             ),
-          ),
-          data: (service) {
-            // Initial load
-            if (_dreams == null && _isLoading) {
-              _loadDreamsInitial(service);
-            }
+            data: (service) {
+              // Initial load
+              if (_dreams == null && _isLoading) {
+                _loadDreamsInitial(service);
+              }
 
-            final dreams = _dreams ?? [];
-            final grouped = _groupByMonth(dreams);
+              final dreams = _dreams ?? [];
+              final grouped = _groupByMonth(dreams);
 
-            // Compute stats
-            final totalDreams = dreams.length;
-            final recurringCount =
-                dreams.where((d) => d.isRecurring).length;
-            final lucidCount = dreams.where((d) => d.isLucid).length;
+              // Compute stats
+              final totalDreams = dreams.length;
+              final recurringCount = dreams.where((d) => d.isRecurring).length;
+              final lucidCount = dreams.where((d) => d.isLucid).length;
 
-            return CustomScrollView(
-              physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics(),
-              ),
-              slivers: [
-                GlassSliverAppBar(
-                  title: isEn ? 'Dream Archive' : 'Rüya Arşivi',
-                ),
-
-                // Stats row
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                      AppConstants.spacingLg,
-                      AppConstants.spacingMd,
-                      AppConstants.spacingLg,
-                      AppConstants.spacingSm,
+              return CustomScrollView(
+                    physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics(),
                     ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: _StatTile(
-                            label: isEn ? 'Total' : 'Toplam',
-                            value: '$totalDreams',
-                            isDark: isDark,
-                          ),
-                        ),
-                        const SizedBox(width: AppConstants.spacingSm),
-                        Expanded(
-                          child: _StatTile(
-                            label: isEn ? 'Recurring' : 'Tekrarlayan',
-                            value: '$recurringCount',
-                            isDark: isDark,
-                          ),
-                        ),
-                        const SizedBox(width: AppConstants.spacingSm),
-                        Expanded(
-                          child: _StatTile(
-                            label: isEn ? 'Lucid' : 'Lüsid',
-                            value: '$lucidCount',
-                            isDark: isDark,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                // Search field
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppConstants.spacingLg,
-                      vertical: AppConstants.spacingSm,
-                    ),
-                    child: _buildSearchBar(isDark, isEn),
-                  ),
-                ),
-
-                // Loading indicator
-                if (_isLoading)
-                  const SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.all(AppConstants.spacingXl),
-                      child: Center(
-                        child: CupertinoActivityIndicator(),
+                    slivers: [
+                      GlassSliverAppBar(
+                        title: isEn ? 'Dream Archive' : 'Rüya Arşivi',
                       ),
-                    ),
-                  )
 
-                // Empty state
-                else if (dreams.isEmpty)
-                  SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: ToolEmptyState(
-                      icon: CupertinoIcons.moon_zzz,
-                      titleEn: 'No dreams recorded yet',
-                      titleTr: 'Henüz rüya kaydedilmedi',
-                      descriptionEn: 'Your dream journal entries will appear here. Start recording to discover patterns.',
-                      descriptionTr: 'Rüya günlüğü kayıtların burada görünecek. Kalıpları keşfetmek için kayda başla.',
-                      onStartTemplate: () => context.push(Routes.dreamInterpretation),
-                      isEn: isEn,
-                      isDark: isDark,
-                    ),
-                  )
-
-                // Grouped dream list
-                else
-                  ...grouped.map((entry) {
-                    final monthKey = entry.key;
-                    final monthDreams = entry.value;
-
-                    return SliverMainAxisGroup(
-                      slivers: [
-                        // Month header
-                        SliverToBoxAdapter(
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                              AppConstants.spacingLg,
-                              AppConstants.spacingLg,
-                              AppConstants.spacingLg,
-                              AppConstants.spacingSm,
-                            ),
-                            child: Text(
-                              _formatMonthHeader(monthKey, isEn),
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w700,
-                                color: AppColors.starGold,
-                                letterSpacing: 0.3,
+                      // Stats row
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(
+                            AppConstants.spacingLg,
+                            AppConstants.spacingMd,
+                            AppConstants.spacingLg,
+                            AppConstants.spacingSm,
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: _StatTile(
+                                  label: isEn ? 'Total' : 'Toplam',
+                                  value: '$totalDreams',
+                                  isDark: isDark,
+                                ),
                               ),
-                            ),
+                              const SizedBox(width: AppConstants.spacingSm),
+                              Expanded(
+                                child: _StatTile(
+                                  label: isEn ? 'Recurring' : 'Tekrarlayan',
+                                  value: '$recurringCount',
+                                  isDark: isDark,
+                                ),
+                              ),
+                              const SizedBox(width: AppConstants.spacingSm),
+                              Expanded(
+                                child: _StatTile(
+                                  label: isEn ? 'Lucid' : 'Lüsid',
+                                  value: '$lucidCount',
+                                  isDark: isDark,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        // Dream cards for this month
-                        SliverPadding(
+                      ),
+
+                      // Search field
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppConstants.spacingLg,
+                            vertical: AppConstants.spacingSm,
+                          ),
+                          child: _buildSearchBar(isDark, isEn),
+                        ),
+                      ),
+
+                      // Loading indicator
+                      if (_isLoading)
+                        const SliverToBoxAdapter(
+                          child: Padding(
+                            padding: EdgeInsets.all(AppConstants.spacingXl),
+                            child: Center(child: CupertinoActivityIndicator()),
+                          ),
+                        )
+                      // Empty state
+                      else if (dreams.isEmpty)
+                        SliverFillRemaining(
+                          hasScrollBody: false,
+                          child: ToolEmptyState(
+                            icon: CupertinoIcons.moon_zzz,
+                            titleEn: 'No dreams recorded yet',
+                            titleTr: 'Henüz rüya kaydedilmedi',
+                            descriptionEn:
+                                'Your dream journal entries will appear here. Start recording to discover patterns.',
+                            descriptionTr:
+                                'Rüya günlüğü kayıtların burada görünecek. Kalıpları keşfetmek için kayda başla.',
+                            onStartTemplate: () =>
+                                context.push(Routes.dreamInterpretation),
+                            isEn: isEn,
+                            isDark: isDark,
+                          ),
+                        )
+                      // Grouped dream list
+                      else
+                        ...grouped.map((entry) {
+                          final monthKey = entry.key;
+                          final monthDreams = entry.value;
+
+                          return SliverMainAxisGroup(
+                            slivers: [
+                              // Month header
+                              SliverToBoxAdapter(
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                    AppConstants.spacingLg,
+                                    AppConstants.spacingLg,
+                                    AppConstants.spacingLg,
+                                    AppConstants.spacingSm,
+                                  ),
+                                  child: Text(
+                                    _formatMonthHeader(monthKey, isEn),
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w700,
+                                      color: AppColors.starGold,
+                                      letterSpacing: 0.3,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              // Dream cards for this month
+                              SliverPadding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: AppConstants.spacingLg,
+                                ),
+                                sliver: SliverList(
+                                  delegate: SliverChildBuilderDelegate((
+                                    context,
+                                    index,
+                                  ) {
+                                    return Padding(
+                                      padding: const EdgeInsets.only(
+                                        bottom: AppConstants.spacingSm,
+                                      ),
+                                      child: _DreamCard(
+                                        dream: monthDreams[index],
+                                        isDark: isDark,
+                                        isEn: isEn,
+                                        formatDate: _formatDate,
+                                      ),
+                                    );
+                                  }, childCount: monthDreams.length),
+                                ),
+                              ),
+                            ],
+                          );
+                        }),
+
+                      // Footer
+                      SliverToBoxAdapter(
+                        child: Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: AppConstants.spacingLg,
                           ),
-                          sliver: SliverList(
-                            delegate: SliverChildBuilderDelegate(
-                              (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(
-                                    bottom: AppConstants.spacingSm,
-                                  ),
-                                  child: _DreamCard(
-                                    dream: monthDreams[index],
-                                    isDark: isDark,
-                                    isEn: isEn,
-                                    formatDate: _formatDate,
-                                  ),
-                                );
-                              },
-                              childCount: monthDreams.length,
-                            ),
+                          child: ToolEcosystemFooter(
+                            currentToolId: 'dreamArchive',
+                            isEn: isEn,
+                            isDark: isDark,
                           ),
                         ),
-                      ],
-                    );
-                  }),
+                      ),
 
-                // Footer
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppConstants.spacingLg,
-                    ),
-                    child: ToolEcosystemFooter(
-                      currentToolId: 'dreamArchive',
-                      isEn: isEn,
-                      isDark: isDark,
-                    ),
-                  ),
-                ),
-
-                // Bottom padding
-                const SliverToBoxAdapter(
-                  child: SizedBox(height: AppConstants.spacingHuge),
-                ),
-              ],
-            ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.02, duration: 400.ms);
-          },
-        ),
+                      // Bottom padding
+                      const SliverToBoxAdapter(
+                        child: SizedBox(height: AppConstants.spacingHuge),
+                      ),
+                    ],
+                  )
+                  .animate()
+                  .fadeIn(duration: 400.ms)
+                  .slideY(begin: 0.02, duration: 400.ms);
+            },
+          ),
         ),
       ),
     );
@@ -380,8 +407,9 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                   tooltip: isEn ? 'Clear search' : 'Aramayı temizle',
                   icon: Icon(
                     CupertinoIcons.clear_circled_solid,
-                    color:
-                        isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                     size: 18,
                   ),
                   onPressed: () {
@@ -543,8 +571,9 @@ class _DreamCard extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     color: AppColors.starGold.withValues(alpha: 0.12),
-                    borderRadius:
-                        BorderRadius.circular(AppConstants.radiusFull),
+                    borderRadius: BorderRadius.circular(
+                      AppConstants.radiusFull,
+                    ),
                     border: Border.all(
                       color: AppColors.starGold.withValues(alpha: 0.25),
                       width: 0.5,

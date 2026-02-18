@@ -35,15 +35,10 @@ class MoonPhaseCard extends ConsumerWidget {
                   AppColors.surfaceDark.withValues(alpha: 0.9),
                   AppColors.cosmicPurple.withValues(alpha: 0.8),
                 ]
-              : [
-                  AppColors.lightCard,
-                  AppColors.lightSurfaceVariant,
-                ],
+              : [AppColors.lightCard, AppColors.lightSurfaceVariant],
         ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.moonSilver.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: AppColors.moonSilver.withValues(alpha: 0.2)),
       ),
       child: Row(
         children: [
@@ -139,17 +134,12 @@ class MoonPhaseBadge extends StatelessWidget {
             ? Colors.white.withValues(alpha: 0.06)
             : Colors.black.withValues(alpha: 0.04),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.moonSilver.withValues(alpha: 0.15),
-        ),
+        border: Border.all(color: AppColors.moonSilver.withValues(alpha: 0.15)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            moonData.phase.emoji,
-            style: const TextStyle(fontSize: 16),
-          ),
+          Text(moonData.phase.emoji, style: const TextStyle(fontSize: 16)),
           const SizedBox(width: 6),
           Text(
             isEn

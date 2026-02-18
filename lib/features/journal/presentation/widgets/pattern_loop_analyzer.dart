@@ -38,9 +38,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
         Text(
           isEn ? 'Pattern Loops' : 'Kalıp Döngüleri',
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            color: isDark
-                ? AppColors.textPrimary
-                : AppColors.lightTextPrimary,
+            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -51,9 +49,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
               : 'Kayıtlarında tespit edilen davranışsal kalıplar',
           style: TextStyle(
             fontSize: 13,
-            color: isDark
-                ? AppColors.textMuted
-                : AppColors.lightTextMuted,
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
         ),
         const SizedBox(height: AppConstants.spacingMd),
@@ -61,16 +57,16 @@ class PatternLoopAnalyzer extends StatelessWidget {
         // Loop cards
         ...analysis.detectedLoops.asMap().entries.map((entry) {
           return Padding(
-            padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
-            child: _PatternLoopCard(
-              loop: entry.value,
-              isDark: isDark,
-              isEn: isEn,
-            ),
-          ).animate().fadeIn(
-            delay: (entry.key * 80).ms,
-            duration: 400.ms,
-          ).slideY(begin: 0.03, end: 0, duration: 400.ms);
+                padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
+                child: _PatternLoopCard(
+                  loop: entry.value,
+                  isDark: isDark,
+                  isEn: isEn,
+                ),
+              )
+              .animate()
+              .fadeIn(delay: (entry.key * 80).ms, duration: 400.ms)
+              .slideY(begin: 0.03, end: 0, duration: 400.ms);
         }),
 
         // Reinforcement breakdown
@@ -98,9 +94,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
         children: [
           Icon(
             Icons.loop,
-            color: isDark
-                ? AppColors.textMuted
-                : AppColors.lightTextMuted,
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             size: 24,
           ),
           const SizedBox(width: 12),
@@ -111,9 +105,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
                   : 'Davranışsal kalıplarını keşfetmek için kayıt yapmaya devam et',
               style: TextStyle(
                 fontSize: 14,
-                color: isDark
-                    ? AppColors.textMuted
-                    : AppColors.lightTextMuted,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
             ),
           ),
@@ -221,9 +213,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
             ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: color.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
         boxShadow: [
           BoxShadow(
             color: color.withValues(alpha: widget.isDark ? 0.08 : 0.04),
@@ -301,7 +291,8 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                                 style: TextStyle(
                                   fontSize: 11,
                                   fontWeight: FontWeight.w500,
-                                  color: kAreaColors[secondary] ??
+                                  color:
+                                      kAreaColors[secondary] ??
                                       AppColors.auroraStart,
                                 ),
                               ),
@@ -354,11 +345,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
     );
   }
 
-  Widget _buildLoopChain(
-    BuildContext context,
-    PatternLoop loop,
-    Color color,
-  ) {
+  Widget _buildLoopChain(BuildContext context, PatternLoop loop, Color color) {
     final stages = [
       loop.trigger,
       loop.emotionalShift,
@@ -458,19 +445,13 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                           width: 28,
                           height: 28,
                           decoration: BoxDecoration(
-                            color: color.withValues(
-                              alpha: 0.08 + (idx * 0.04),
-                            ),
+                            color: color.withValues(alpha: 0.08 + (idx * 0.04)),
                             shape: BoxShape.circle,
                             border: Border.all(
                               color: color.withValues(alpha: 0.3),
                             ),
                           ),
-                          child: Icon(
-                            stageIcons[idx],
-                            size: 14,
-                            color: color,
-                          ),
+                          child: Icon(stageIcons[idx], size: 14, color: color),
                         ),
                         if (!isLast)
                           Container(
@@ -513,7 +494,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                               widget.isEn
                                   ? stage.descriptionEn!
                                   : (stage.descriptionTr ??
-                                      stage.descriptionEn!),
+                                        stage.descriptionEn!),
                               style: TextStyle(
                                 fontSize: 12,
                                 color: widget.isDark
@@ -543,11 +524,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(
-                    Icons.lightbulb_outline,
-                    size: 14,
-                    color: color,
-                  ),
+                  Icon(Icons.lightbulb_outline, size: 14, color: color),
                   const SizedBox(width: 6),
                   Expanded(
                     child: Text(

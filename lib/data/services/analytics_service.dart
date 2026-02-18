@@ -92,7 +92,10 @@ class AnalyticsService {
     logEvent('app_error', {
       'error_type': errorType,
       'message': message,
-      if (stackTrace != null) 'stack_trace': stackTrace.length > 100 ? stackTrace.substring(0, 100) : stackTrace,
+      if (stackTrace != null)
+        'stack_trace': stackTrace.length > 100
+            ? stackTrace.substring(0, 100)
+            : stackTrace,
     });
   }
 
@@ -240,9 +243,7 @@ class AnalyticsService {
 
   /// App lifecycle
   void logAppOpened() {
-    logEvent('app_opened', {
-      'timestamp': DateTime.now().toIso8601String(),
-    });
+    logEvent('app_opened', {'timestamp': DateTime.now().toIso8601String()});
   }
 
   void logAppBackgrounded() {

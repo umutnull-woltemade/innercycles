@@ -35,7 +35,9 @@ class SleepTrendsScreen extends ConsumerWidget {
                 CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                 ),
               ),
             ),
@@ -61,9 +63,7 @@ class SleepTrendsScreen extends ConsumerWidget {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(
-            title: isEn ? 'Sleep Trends' : 'Uyku Trendleri',
-          ),
+          GlassSliverAppBar(title: isEn ? 'Sleep Trends' : 'Uyku Trendleri'),
           SliverFillRemaining(
             child: Center(
               child: Text(
@@ -72,7 +72,9 @@ class SleepTrendsScreen extends ConsumerWidget {
                     : 'Henüz uyku verisi yok.\nİlk uyku kaydını oluştur!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
                 ),
               ),
             ),
@@ -87,10 +89,7 @@ class SleepTrendsScreen extends ConsumerWidget {
     for (int i = 13; i >= 0; i--) {
       final day = now.subtract(Duration(days: i));
       final entry = service.getEntry(day);
-      last14.add(_DayQuality(
-        day: day,
-        quality: entry?.quality,
-      ));
+      last14.add(_DayQuality(day: day, quality: entry?.quality));
     }
 
     // Quality distribution
@@ -105,20 +104,29 @@ class SleepTrendsScreen extends ConsumerWidget {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(
-            title: isEn ? 'Sleep Trends' : 'Uyku Trendleri',
-          ),
+          GlassSliverAppBar(title: isEn ? 'Sleep Trends' : 'Uyku Trendleri'),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 // Stats row
-                _buildStatsRow(context, isDark, isEn, summary, allEntries.length),
+                _buildStatsRow(
+                  context,
+                  isDark,
+                  isEn,
+                  summary,
+                  allEntries.length,
+                ),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Trend indicator
                 if (summary.trendDirection != null)
-                  _buildTrendCard(context, isDark, isEn, summary.trendDirection!),
+                  _buildTrendCard(
+                    context,
+                    isDark,
+                    isEn,
+                    summary.trendDirection!,
+                  ),
                 if (summary.trendDirection != null)
                   const SizedBox(height: AppConstants.spacingLg),
 
@@ -131,8 +139,15 @@ class SleepTrendsScreen extends ConsumerWidget {
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Recent entries with notes
-                _buildRecentCard(context, isDark, isEn,
-                    allEntries.where((e) => e.note != null && e.note!.isNotEmpty).take(10).toList()),
+                _buildRecentCard(
+                  context,
+                  isDark,
+                  isEn,
+                  allEntries
+                      .where((e) => e.note != null && e.note!.isNotEmpty)
+                      .take(10)
+                      .toList(),
+                ),
                 ContentDisclaimer(
                   language: isEn ? AppLanguage.en : AppLanguage.tr,
                 ),
@@ -205,11 +220,15 @@ class SleepTrendsScreen extends ConsumerWidget {
       case 'improving':
         icon = Icons.trending_up;
         color = AppColors.auroraStart;
-        text = isEn ? 'Your sleep quality is improving' : 'Uyku kaliten iyileşiyor';
+        text = isEn
+            ? 'Your sleep quality is improving'
+            : 'Uyku kaliten iyileşiyor';
       case 'declining':
         icon = Icons.trending_down;
         color = AppColors.chartOrange;
-        text = isEn ? 'Your sleep quality has dipped recently' : 'Uyku kaliten son zamanlarda düştü';
+        text = isEn
+            ? 'Your sleep quality has dipped recently'
+            : 'Uyku kaliten son zamanlarda düştü';
       default:
         icon = Icons.trending_flat;
         color = AppColors.starGold;
@@ -229,7 +248,9 @@ class SleepTrendsScreen extends ConsumerWidget {
               text,
               style: TextStyle(
                 fontSize: 14,
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -255,7 +276,9 @@ class SleepTrendsScreen extends ConsumerWidget {
           Text(
             isEn ? 'Last 14 Nights' : 'Son 14 Gece',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -265,7 +288,9 @@ class SleepTrendsScreen extends ConsumerWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: days.map((d) {
-                final barHeight = d.quality != null ? (d.quality! / 5.0) * 90 : 0.0;
+                final barHeight = d.quality != null
+                    ? (d.quality! / 5.0) * 90
+                    : 0.0;
                 return Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 2),
@@ -288,7 +313,9 @@ class SleepTrendsScreen extends ConsumerWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(2),
                               color: isDark
-                                  ? AppColors.surfaceLight.withValues(alpha: 0.2)
+                                  ? AppColors.surfaceLight.withValues(
+                                      alpha: 0.2,
+                                    )
                                   : AppColors.lightSurfaceVariant,
                             ),
                           ),
@@ -297,7 +324,9 @@ class SleepTrendsScreen extends ConsumerWidget {
                           '${d.day.day}',
                           style: TextStyle(
                             fontSize: 10,
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
                           ),
                         ),
                       ],
@@ -337,7 +366,9 @@ class SleepTrendsScreen extends ConsumerWidget {
           Text(
             isEn ? 'Quality Distribution' : 'Kalite Dağılımı',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -367,7 +398,9 @@ class SleepTrendsScreen extends ConsumerWidget {
                       item.$2,
                       style: TextStyle(
                         fontSize: 12,
-                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
                       ),
                     ),
                   ),
@@ -380,7 +413,9 @@ class SleepTrendsScreen extends ConsumerWidget {
                         backgroundColor: isDark
                             ? AppColors.surfaceLight.withValues(alpha: 0.15)
                             : AppColors.lightSurfaceVariant,
-                        valueColor: AlwaysStoppedAnimation(_qualityColor(item.$1)),
+                        valueColor: AlwaysStoppedAnimation(
+                          _qualityColor(item.$1),
+                        ),
                         minHeight: 8,
                       ),
                     ),
@@ -394,7 +429,9 @@ class SleepTrendsScreen extends ConsumerWidget {
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.bold,
-                        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
                       ),
                     ),
                   ),
@@ -425,14 +462,18 @@ class SleepTrendsScreen extends ConsumerWidget {
           Text(
             isEn ? 'Notes' : 'Notlar',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
           ...entries.map((entry) {
             final parts = entry.dateKey.split('-');
-            final dateStr = parts.length >= 3 ? '${parts[2]}.${parts[1]}.${parts[0]}' : entry.dateKey;
+            final dateStr = parts.length >= 3
+                ? '${parts[2]}.${parts[1]}.${parts[0]}'
+                : entry.dateKey;
             return Padding(
               padding: const EdgeInsets.only(bottom: 12),
               child: Row(
@@ -443,7 +484,9 @@ class SleepTrendsScreen extends ConsumerWidget {
                     height: 28,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: _qualityColor(entry.quality).withValues(alpha: 0.2),
+                      color: _qualityColor(
+                        entry.quality,
+                      ).withValues(alpha: 0.2),
                     ),
                     child: Center(
                       child: Text(
@@ -465,7 +508,9 @@ class SleepTrendsScreen extends ConsumerWidget {
                           dateStr,
                           style: TextStyle(
                             fontSize: 11,
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
                           ),
                         ),
                         const SizedBox(height: 2),
@@ -473,7 +518,9 @@ class SleepTrendsScreen extends ConsumerWidget {
                           entry.note!,
                           style: TextStyle(
                             fontSize: 13,
-                            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                            color: isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary,
                             height: 1.3,
                           ),
                         ),

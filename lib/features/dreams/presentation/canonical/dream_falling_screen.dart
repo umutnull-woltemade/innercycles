@@ -24,187 +24,187 @@ class DreamFallingScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: isDark
-                ? [AppColors.deepSpace, const Color(0xFF1A0A2E)]
-                : [const Color(0xFFFAF8FF), const Color(0xFFF0E8FF)],
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: isDark
+                  ? [AppColors.deepSpace, const Color(0xFF1A0A2E)]
+                  : [const Color(0xFFFAF8FF), const Color(0xFFF0E8FF)],
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Back button
-                IconButton(
-                  onPressed: () => context.pop(),
-                  tooltip: L10nService.get('common.back', language),
-                  icon: Icon(
-                    Icons.chevron_left,
-                    color: isDark ? Colors.white70 : AppColors.textDark,
+          child: SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Back button
+                  IconButton(
+                    onPressed: () => context.pop(),
+                    tooltip: L10nService.get('common.back', language),
+                    icon: Icon(
+                      Icons.chevron_left,
+                      color: isDark ? Colors.white70 : AppColors.textDark,
+                    ),
                   ),
-                ),
 
-                const SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
-                // H1 - Soru formatı
-                Text(
-                  L10nService.get(
-                    'dreams.canonical.falling_question',
-                    language,
-                  ),
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w600,
-                    color: isDark ? Colors.white : AppColors.textDark,
-                    height: 1.2,
-                  ),
-                ).animate().fadeIn(duration: 400.ms),
-
-                const SizedBox(height: 8),
-
-                // Branded tag
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.cosmicPurple.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    L10nService.get('dreams.canonical.brand_tag', language),
+                  // H1 - Soru formatı
+                  Text(
+                    L10nService.get(
+                      'dreams.canonical.falling_question',
+                      language,
+                    ),
                     style: TextStyle(
-                      fontSize: 12,
-                      color: AppColors.cosmicPurple,
-                      fontWeight: FontWeight.w500,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w600,
+                      color: isDark ? Colors.white : AppColors.textDark,
+                      height: 1.2,
+                    ),
+                  ).animate().fadeIn(duration: 400.ms),
+
+                  const SizedBox(height: 8),
+
+                  // Branded tag
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.cosmicPurple.withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      L10nService.get('dreams.canonical.brand_tag', language),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColors.cosmicPurple,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
-                ),
 
-                const SizedBox(height: 32),
+                  const SizedBox(height: 32),
 
-                // Short answer section
-                _buildQuotableSection(
-                  isDark: isDark,
-                  title: L10nService.get(
-                    'dreams.canonical.sections.short_answer',
-                    language,
+                  // Short answer section
+                  _buildQuotableSection(
+                    isDark: isDark,
+                    title: L10nService.get(
+                      'dreams.canonical.sections.short_answer',
+                      language,
+                    ),
+                    bullets: [
+                      L10nService.get(
+                        'dreams.canonical.falling.short_answer_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.falling.short_answer_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.falling.short_answer_3',
+                        language,
+                      ),
+                    ],
                   ),
-                  bullets: [
-                    L10nService.get(
-                      'dreams.canonical.falling.short_answer_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.falling.short_answer_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.falling.short_answer_3',
-                      language,
-                    ),
-                  ],
-                ),
 
-                const SizedBox(height: 28),
+                  const SizedBox(height: 28),
 
-                // Meaning section
-                _buildQuotableSection(
-                  isDark: isDark,
-                  title: L10nService.get(
-                    'dreams.canonical.sections.what_it_means',
-                    language,
+                  // Meaning section
+                  _buildQuotableSection(
+                    isDark: isDark,
+                    title: L10nService.get(
+                      'dreams.canonical.sections.what_it_means',
+                      language,
+                    ),
+                    bullets: [
+                      L10nService.get(
+                        'dreams.canonical.falling.meaning_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.falling.meaning_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.falling.meaning_3',
+                        language,
+                      ),
+                    ],
                   ),
-                  bullets: [
-                    L10nService.get(
-                      'dreams.canonical.falling.meaning_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.falling.meaning_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.falling.meaning_3',
-                      language,
-                    ),
-                  ],
-                ),
 
-                const SizedBox(height: 28),
+                  const SizedBox(height: 28),
 
-                // Emotion section
-                _buildQuotableSection(
-                  isDark: isDark,
-                  title: L10nService.get(
-                    'dreams.canonical.falling.emotion_title',
-                    language,
+                  // Emotion section
+                  _buildQuotableSection(
+                    isDark: isDark,
+                    title: L10nService.get(
+                      'dreams.canonical.falling.emotion_title',
+                      language,
+                    ),
+                    bullets: [
+                      L10nService.get(
+                        'dreams.canonical.falling.emotion_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.falling.emotion_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.falling.emotion_3',
+                        language,
+                      ),
+                    ],
                   ),
-                  bullets: [
-                    L10nService.get(
-                      'dreams.canonical.falling.emotion_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.falling.emotion_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.falling.emotion_3',
-                      language,
-                    ),
-                  ],
-                ),
 
-                const SizedBox(height: 28),
+                  const SizedBox(height: 28),
 
-                // Recurring section
-                _buildQuotableSection(
-                  isDark: isDark,
-                  title: L10nService.get(
-                    'dreams.canonical.sections.if_recurring',
-                    language,
+                  // Recurring section
+                  _buildQuotableSection(
+                    isDark: isDark,
+                    title: L10nService.get(
+                      'dreams.canonical.sections.if_recurring',
+                      language,
+                    ),
+                    bullets: [
+                      L10nService.get(
+                        'dreams.canonical.falling.recurring_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.falling.recurring_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.falling.recurring_3',
+                        language,
+                      ),
+                    ],
                   ),
-                  bullets: [
-                    L10nService.get(
-                      'dreams.canonical.falling.recurring_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.falling.recurring_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.falling.recurring_3',
-                      language,
-                    ),
-                  ],
-                ),
 
-                const SizedBox(height: 32),
+                  const SizedBox(height: 32),
 
-                // Öneri kutusu - tek iç link
-                _buildSuggestionBox(context, isDark, language),
+                  // Öneri kutusu - tek iç link
+                  _buildSuggestionBox(context, isDark, language),
 
-                const SizedBox(height: 40),
+                  const SizedBox(height: 40),
 
-                // Footer with disclaimer
-                PageFooterWithDisclaimer(
-                  brandText: L10nService.get('dreams.brand_footer', language),
-                  disclaimerText: DisclaimerTexts.dreams(language),
-                  language: language,
-                ),
-              ],
+                  // Footer with disclaimer
+                  PageFooterWithDisclaimer(
+                    brandText: L10nService.get('dreams.brand_footer', language),
+                    disclaimerText: DisclaimerTexts.dreams(language),
+                    language: language,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
       ),
     );
   }

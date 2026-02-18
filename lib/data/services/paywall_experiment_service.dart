@@ -8,9 +8,21 @@ import 'analytics_service.dart';
 
 /// Pricing variant for the monthly plan A/B test.
 enum PricingVariant {
-  a(price: AppConstants.priceVariantA, label: '\$7.99/mo', productId: AppConstants.monthlyProductId799),
-  b(price: AppConstants.priceVariantB, label: '\$9.99/mo', productId: AppConstants.monthlyProductId999),
-  c(price: AppConstants.priceVariantC, label: '\$11.99/mo', productId: AppConstants.monthlyProductId1199);
+  a(
+    price: AppConstants.priceVariantA,
+    label: '\$7.99/mo',
+    productId: AppConstants.monthlyProductId799,
+  ),
+  b(
+    price: AppConstants.priceVariantB,
+    label: '\$9.99/mo',
+    productId: AppConstants.monthlyProductId999,
+  ),
+  c(
+    price: AppConstants.priceVariantC,
+    label: '\$11.99/mo',
+    productId: AppConstants.monthlyProductId1199,
+  );
 
   final double price;
   final String label;
@@ -221,8 +233,9 @@ class PaywallExperimentService {
 }
 
 /// Provider
-final paywallExperimentProvider =
-    FutureProvider<PaywallExperimentService>((ref) async {
+final paywallExperimentProvider = FutureProvider<PaywallExperimentService>((
+  ref,
+) async {
   final analytics = ref.watch(analyticsServiceProvider);
   return PaywallExperimentService.init(analytics: analytics);
 });

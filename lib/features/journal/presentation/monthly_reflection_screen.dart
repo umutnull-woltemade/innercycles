@@ -42,8 +42,14 @@ class _MonthlyReflectionScreenState
     _selectedYear = now.year;
     _selectedMonth = now.month;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('monthlyReflection'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('monthlyReflection', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('monthlyReflection'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData(
+            (s) => s.trackToolOpen('monthlyReflection', source: 'direct'),
+          );
     });
   }
 
@@ -58,13 +64,16 @@ class _MonthlyReflectionScreenState
 
     // Determine if deep content (theme + breakdown) should be visible
     final firstTasteService = firstTasteAsync.whenOrNull(data: (s) => s);
-    final allowFree = firstTasteService?.shouldAllowFree(
-            FirstTasteFeature.monthlyReport) ??
+    final allowFree =
+        firstTasteService?.shouldAllowFree(FirstTasteFeature.monthlyReport) ??
         false;
     final showDeepContent = isPremium || allowFree;
 
     // Record first taste on first view of deep content
-    if (showDeepContent && !isPremium && !_firstTasteRecorded && firstTasteService != null) {
+    if (showDeepContent &&
+        !isPremium &&
+        !_firstTasteRecorded &&
+        firstTasteService != null) {
       _firstTasteRecorded = true;
       firstTasteService.recordUse(FirstTasteFeature.monthlyReport);
     }
@@ -81,14 +90,18 @@ class _MonthlyReflectionScreenState
                   CommonStrings.somethingWentWrong(language),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                   ),
                 ),
               ),
             ),
             data: (engine) {
-              final summary =
-                  engine.getMonthSummary(_selectedYear, _selectedMonth);
+              final summary = engine.getMonthSummary(
+                _selectedYear,
+                _selectedMonth,
+              );
 
               return CupertinoScrollbar(
                 child: CustomScrollView(
@@ -108,9 +121,12 @@ class _MonthlyReflectionScreenState
                           const SizedBox(height: AppConstants.spacingXl),
 
                           // Summary card — always visible
-                          _buildSummaryCard(context, summary, isDark, isEn)
-                              .animate()
-                              .fadeIn(duration: 400.ms),
+                          _buildSummaryCard(
+                            context,
+                            summary,
+                            isDark,
+                            isEn,
+                          ).animate().fadeIn(duration: 400.ms),
                           const SizedBox(height: AppConstants.spacingLg),
 
                           // Monthly theme — gated
@@ -120,9 +136,7 @@ class _MonthlyReflectionScreenState
                               _selectedMonth,
                               isDark,
                               isEn,
-                            )
-                                .animate()
-                                .fadeIn(delay: 50.ms, duration: 400.ms)
+                            ).animate().fadeIn(delay: 50.ms, duration: 400.ms)
                           else
                             _buildPremiumBlurOverlay(
                               child: _buildMonthlyThemeCard(
@@ -144,9 +158,10 @@ class _MonthlyReflectionScreenState
                                 summary,
                                 isDark,
                                 isEn,
+                              ).animate().fadeIn(
+                                delay: 100.ms,
+                                duration: 400.ms,
                               )
-                                  .animate()
-                                  .fadeIn(delay: 100.ms, duration: 400.ms)
                             else
                               _buildPremiumBlurOverlay(
                                 child: _buildAreaBreakdown(
@@ -157,7 +172,10 @@ class _MonthlyReflectionScreenState
                                 ),
                                 isDark: isDark,
                                 isEn: isEn,
-                              ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
+                              ).animate().fadeIn(
+                                delay: 100.ms,
+                                duration: 400.ms,
+                              ),
                           ToolEcosystemFooter(
                             currentToolId: 'monthlyReflection',
                             isEn: isEn,
@@ -199,7 +217,9 @@ class _MonthlyReflectionScreenState
                   end: Alignment.bottomCenter,
                   colors: [
                     Colors.transparent,
-                    (isDark ? Colors.black : Colors.white).withValues(alpha: 0.7),
+                    (isDark ? Colors.black : Colors.white).withValues(
+                      alpha: 0.7,
+                    ),
                   ],
                 ),
               ),
@@ -238,8 +258,9 @@ class _MonthlyReflectionScreenState
                           vertical: 10,
                         ),
                         shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(AppConstants.radiusMd),
+                          borderRadius: BorderRadius.circular(
+                            AppConstants.radiusMd,
+                          ),
                         ),
                       ),
                       child: Text(
@@ -260,12 +281,32 @@ class _MonthlyReflectionScreenState
   Widget _buildMonthSelector(BuildContext context, bool isDark, bool isEn) {
     final months = isEn
         ? [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December',
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
           ]
         : [
-            'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-            'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık',
+            'Ocak',
+            'Şubat',
+            'Mart',
+            'Nisan',
+            'Mayıs',
+            'Haziran',
+            'Temmuz',
+            'Ağustos',
+            'Eylül',
+            'Ekim',
+            'Kasım',
+            'Aralık',
           ];
 
     return Container(
@@ -278,9 +319,7 @@ class _MonthlyReflectionScreenState
             ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
       ),
       child: Row(
         children: [
@@ -316,8 +355,7 @@ class _MonthlyReflectionScreenState
             onPressed: () {
               final now = DateTime.now();
               if (_selectedYear < now.year ||
-                  (_selectedYear == now.year &&
-                      _selectedMonth < now.month)) {
+                  (_selectedYear == now.year && _selectedMonth < now.month)) {
                 setState(() {
                   _selectedMonth++;
                   if (_selectedMonth > 12) {
@@ -386,7 +424,9 @@ class _MonthlyReflectionScreenState
                 Icon(
                   Icons.calendar_today_outlined,
                   size: 48,
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
                 ),
                 const SizedBox(height: 12),
                 Text(
@@ -500,9 +540,7 @@ class _MonthlyReflectionScreenState
             ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.auroraStart.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -585,11 +623,7 @@ class _MonthlyReflectionScreenState
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(
-                  Icons.spa_outlined,
-                  size: 16,
-                  color: AppColors.starGold,
-                ),
+                Icon(Icons.spa_outlined, size: 16, color: AppColors.starGold),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -645,8 +679,7 @@ class _MonthlyReflectionScreenState
           ),
           const SizedBox(height: AppConstants.spacingMd),
           ...summary.averagesByArea.entries.map((e) {
-            final label =
-                isEn ? e.key.displayNameEn : e.key.displayNameTr;
+            final label = isEn ? e.key.displayNameEn : e.key.displayNameTr;
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
               child: Row(
@@ -671,8 +704,7 @@ class _MonthlyReflectionScreenState
                         backgroundColor: isDark
                             ? AppColors.surfaceLight.withValues(alpha: 0.3)
                             : AppColors.lightSurfaceVariant,
-                        valueColor:
-                            AlwaysStoppedAnimation(AppColors.starGold),
+                        valueColor: AlwaysStoppedAnimation(AppColors.starGold),
                         minHeight: 8,
                       ),
                     ),

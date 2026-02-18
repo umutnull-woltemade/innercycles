@@ -37,8 +37,9 @@ class ReferralService {
     if (!trialGranted) return false;
     final expiryMs = _prefs.getInt(_keyTrialExpiry);
     if (expiryMs == null) return false;
-    return DateTime.fromMillisecondsSinceEpoch(expiryMs)
-        .isAfter(DateTime.now());
+    return DateTime.fromMillisecondsSinceEpoch(
+      expiryMs,
+    ).isAfter(DateTime.now());
   }
 
   /// Trial expiry date (null if no trial)
@@ -63,9 +64,7 @@ class ReferralService {
   }
 
   /// Share the app and track progress. Returns true if trial was unlocked.
-  Future<bool> shareApp({
-    required AppLanguage language,
-  }) async {
+  Future<bool> shareApp({required AppLanguage language}) async {
     final isEn = language == AppLanguage.en;
 
     final shareText = isEn
@@ -82,7 +81,8 @@ class ReferralService {
 
       if (kDebugMode) {
         debugPrint(
-            'ReferralService: Share counted. Total: $shareCount/$sharesToUnlock');
+          'ReferralService: Share counted. Total: $shareCount/$sharesToUnlock',
+        );
       }
 
       // Check if trial should be unlocked
@@ -112,7 +112,8 @@ class ReferralService {
 
     if (kDebugMode) {
       debugPrint(
-          'ReferralService: Trial granted! Expires: ${expiry.toIso8601String()}');
+        'ReferralService: Trial granted! Expires: ${expiry.toIso8601String()}',
+      );
     }
   }
 
@@ -123,12 +124,8 @@ class ReferralService {
     if (isTrialActive) {
       final daysLeft = trialExpiry!.difference(DateTime.now()).inDays + 1;
       return ReferralStatus(
-        headline: isEn
-            ? 'Premium Trial Active!'
-            : 'Premium Deneme Aktif!',
-        subtitle: isEn
-            ? '$daysLeft days remaining'
-            : '$daysLeft gün kaldı',
+        headline: isEn ? 'Premium Trial Active!' : 'Premium Deneme Aktif!',
+        subtitle: isEn ? '$daysLeft days remaining' : '$daysLeft gün kaldı',
         progress: 1.0,
         isUnlocked: true,
       );

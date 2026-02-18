@@ -135,10 +135,7 @@ class ShiftForecastService {
   /// Generate the shift forecast
   ShiftForecast generateForecast() {
     if (!hasEnoughData()) {
-      return const ShiftForecast(
-        activeSignals: [],
-        dataPointsUsed: 0,
-      );
+      return const ShiftForecast(activeSignals: [], dataPointsUsed: 0);
     }
 
     final cycleService = EmotionalCycleService(_journalService);
@@ -213,15 +210,15 @@ class ShiftForecastService {
     final newVelocity = last4[3].value - last4[2].value;
 
     // Velocity reversal: direction changed significantly
-    if (oldVelocity * newVelocity < 0 && (oldVelocity - newVelocity).abs() > 0.5) {
+    if (oldVelocity * newVelocity < 0 &&
+        (oldVelocity - newVelocity).abs() > 0.5) {
       final direction = newVelocity > 0 ? 'upward' : 'downward';
       final directionTr = newVelocity > 0 ? 'yukarı' : 'aşağı';
 
       return MicroSignal(
         id: 'velocity_${area.name}',
         area: area,
-        signalEn:
-            'Your ${area.displayNameEn} shows a recent $direction shift',
+        signalEn: 'Your ${area.displayNameEn} shows a recent $direction shift',
         signalTr:
             '${area.displayNameTr} alanın yakın zamanda $directionTr yönde bir kayma gösteriyor',
         magnitude: (oldVelocity - newVelocity).abs().clamp(0.0, 1.0),
@@ -253,8 +250,7 @@ class ShiftForecastService {
       return MicroSignal(
         id: 'variance_${area.name}',
         area: area,
-        signalEn:
-            'Your ${area.displayNameEn} has been more variable recently',
+        signalEn: 'Your ${area.displayNameEn} has been more variable recently',
         signalTr:
             '${area.displayNameTr} alanın son zamanlarda daha değişken olmuş',
         magnitude: (recentVar / 2).clamp(0.0, 1.0),
@@ -282,10 +278,8 @@ class ShiftForecastService {
       return MicroSignal(
         id: 'threshold_low_${area.name}',
         area: area,
-        signalEn:
-            'Your ${area.displayNameEn} has entered a lower range',
-        signalTr:
-            '${area.displayNameTr} alanın daha düşük bir aralığa girmiş',
+        signalEn: 'Your ${area.displayNameEn} has entered a lower range',
+        signalTr: '${area.displayNameTr} alanın daha düşük bir aralığa girmiş',
         magnitude: (2.5 - curr).clamp(0.0, 1.0),
         detectedAt: now,
       );
@@ -296,10 +290,8 @@ class ShiftForecastService {
       return MicroSignal(
         id: 'threshold_high_${area.name}',
         area: area,
-        signalEn:
-            'Your ${area.displayNameEn} has entered an elevated range',
-        signalTr:
-            '${area.displayNameTr} alanın yüksek bir aralığa girmiş',
+        signalEn: 'Your ${area.displayNameEn} has entered an elevated range',
+        signalTr: '${area.displayNameTr} alanın yüksek bir aralığa girmiş',
         magnitude: (curr - 3.5).clamp(0.0, 1.0),
         detectedAt: now,
       );
@@ -368,42 +360,57 @@ class ShiftForecastService {
     // Get relevant signals for this shift
     final relevantSignals = signals.where((s) => s.magnitude > 0.3).toList();
 
-    windows.add(ShiftWindow(
-      currentPhase: currentPhase,
-      suggestedNextPhase: nextPhase,
-      estimatedDaysUntilShift: estimatedDays,
-      confidence: confidence,
-      supportingSignals: relevantSignals,
-      descriptionEn: _buildShiftDescriptionEn(
-        currentPhase, nextPhase, estimatedDays, confidence,
+    windows.add(
+      ShiftWindow(
+        currentPhase: currentPhase,
+        suggestedNextPhase: nextPhase,
+        estimatedDaysUntilShift: estimatedDays,
+        confidence: confidence,
+        supportingSignals: relevantSignals,
+        descriptionEn: _buildShiftDescriptionEn(
+          currentPhase,
+          nextPhase,
+          estimatedDays,
+          confidence,
+        ),
+        descriptionTr: _buildShiftDescriptionTr(
+          currentPhase,
+          nextPhase,
+          estimatedDays,
+          confidence,
+        ),
+        actionEn: _buildActionEn(currentPhase, nextPhase),
+        actionTr: _buildActionTr(currentPhase, nextPhase),
       ),
-      descriptionTr: _buildShiftDescriptionTr(
-        currentPhase, nextPhase, estimatedDays, confidence,
-      ),
-      actionEn: _buildActionEn(currentPhase, nextPhase),
-      actionTr: _buildActionTr(currentPhase, nextPhase),
-    ));
+    );
 
     // If signals suggest a different path, add an alternative
     if (signals.isNotEmpty) {
       final altPhase = _signalSuggestedPhase(currentPhase, signals);
       if (altPhase != nextPhase) {
-        windows.add(ShiftWindow(
-          currentPhase: currentPhase,
-          suggestedNextPhase: altPhase,
-          estimatedDaysUntilShift: estimatedDays + 2,
-          confidence: ForecastConfidence.low,
-          supportingSignals:
-              signals.where((s) => s.magnitude > 0.5).toList(),
-          descriptionEn: _buildShiftDescriptionEn(
-            currentPhase, altPhase, estimatedDays + 2, ForecastConfidence.low,
+        windows.add(
+          ShiftWindow(
+            currentPhase: currentPhase,
+            suggestedNextPhase: altPhase,
+            estimatedDaysUntilShift: estimatedDays + 2,
+            confidence: ForecastConfidence.low,
+            supportingSignals: signals.where((s) => s.magnitude > 0.5).toList(),
+            descriptionEn: _buildShiftDescriptionEn(
+              currentPhase,
+              altPhase,
+              estimatedDays + 2,
+              ForecastConfidence.low,
+            ),
+            descriptionTr: _buildShiftDescriptionTr(
+              currentPhase,
+              altPhase,
+              estimatedDays + 2,
+              ForecastConfidence.low,
+            ),
+            actionEn: _buildActionEn(currentPhase, altPhase),
+            actionTr: _buildActionTr(currentPhase, altPhase),
           ),
-          descriptionTr: _buildShiftDescriptionTr(
-            currentPhase, altPhase, estimatedDays + 2, ForecastConfidence.low,
-          ),
-          actionEn: _buildActionEn(currentPhase, altPhase),
-          actionTr: _buildActionTr(currentPhase, altPhase),
-        ));
+        );
       }
     }
 
@@ -432,18 +439,21 @@ class ShiftForecastService {
     List<MicroSignal> signals,
   ) {
     // If there are strong downward signals, suggest contraction
-    final downSignals = signals.where((s) =>
-        s.signalEn.contains('lower') || s.signalEn.contains('downward'));
+    final downSignals = signals.where(
+      (s) => s.signalEn.contains('lower') || s.signalEn.contains('downward'),
+    );
     if (downSignals.length >= 2) return EmotionalPhase.contraction;
 
     // If strong upward signals, suggest expansion
-    final upSignals = signals.where((s) =>
-        s.signalEn.contains('elevated') || s.signalEn.contains('upward'));
+    final upSignals = signals.where(
+      (s) => s.signalEn.contains('elevated') || s.signalEn.contains('upward'),
+    );
     if (upSignals.length >= 2) return EmotionalPhase.expansion;
 
     // If high variance, suggest reflection
-    final varianceSignals = signals.where((s) =>
-        s.signalEn.contains('variable'));
+    final varianceSignals = signals.where(
+      (s) => s.signalEn.contains('variable'),
+    );
     if (varianceSignals.isNotEmpty) return EmotionalPhase.reflection;
 
     return _naturalNextPhase(current);
@@ -465,15 +475,19 @@ class ShiftForecastService {
     int score = 0;
 
     // More entries = more confidence
-    if (analysis.totalEntries >= 30) score += 2;
-    else if (analysis.totalEntries >= 14) score += 1;
+    if (analysis.totalEntries >= 30)
+      score += 2;
+    else if (analysis.totalEntries >= 14)
+      score += 1;
 
     // Detected cycles increase confidence
     final cyclesDetected = analysis.areaSummaries.values
         .where((s) => s.cycleLengthDays != null)
         .length;
-    if (cyclesDetected >= 3) score += 2;
-    else if (cyclesDetected >= 1) score += 1;
+    if (cyclesDetected >= 3)
+      score += 2;
+    else if (cyclesDetected >= 1)
+      score += 1;
 
     // Strong signals increase confidence
     final strongSignals = signals.where((s) => s.magnitude > 0.6).length;
@@ -560,8 +574,7 @@ class ShiftForecastService {
   double _variance(List<double> values) {
     if (values.length < 2) return 0;
     final mean = values.reduce((a, b) => a + b) / values.length;
-    return values.fold<double>(
-            0, (s, v) => s + (v - mean) * (v - mean)) /
+    return values.fold<double>(0, (s, v) => s + (v - mean) * (v - mean)) /
         values.length;
   }
 }

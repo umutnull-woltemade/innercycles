@@ -84,7 +84,8 @@ const List<_QuizQuestion> _onboardingQuestions = [
     ],
   ),
   _QuizQuestion(
-    questionEn: 'When facing a difficult situation, your first instinct is to...',
+    questionEn:
+        'When facing a difficult situation, your first instinct is to...',
     questionTr: 'Zor bir durumla karşılaştığında ilk içgüdün...',
     options: [
       _QuizOption(
@@ -297,10 +298,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       // Save selected focus area preference
       if (_selectedFocusArea != null) {
         final prefs = await SharedPreferences.getInstance();
-        await prefs.setString(
-          'preferred_focus_area',
-          _selectedFocusArea!.name,
-        );
+        await prefs.setString('preferred_focus_area', _selectedFocusArea!.name);
       }
 
       await Future.delayed(const Duration(milliseconds: 100));
@@ -357,8 +355,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   children: [
                     _IdentityPage(
                       userName: _userName,
-                      onNameChanged: (name) =>
-                          setState(() => _userName = name),
+                      onNameChanged: (name) => setState(() => _userName = name),
                       onContinue: _nextPage,
                       language: language,
                     ),
@@ -420,8 +417,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   color: isActive
                       ? AppColors.starGold
                       : isPast
-                          ? AppColors.starGold.withValues(alpha: 0.47)
-                          : AppColors.surfaceLight.withValues(alpha: 0.31),
+                      ? AppColors.starGold.withValues(alpha: 0.47)
+                      : AppColors.surfaceLight.withValues(alpha: 0.31),
                   borderRadius: BorderRadius.circular(4),
                 ),
               );
@@ -683,10 +680,7 @@ class _IdentityPageState extends State<_IdentityPage>
 
           // Tagline
           Text(
-            L10nService.get(
-              'onboarding.start_cosmic_journey',
-              widget.language,
-            ),
+            L10nService.get('onboarding.start_cosmic_journey', widget.language),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: AppColors.textSecondary,
               fontSize: 15,
@@ -733,40 +727,41 @@ class _IdentityPageState extends State<_IdentityPage>
 
   Widget _buildAnimatedLogo() {
     return AnimatedBuilder(
-          animation: _glowController,
-          builder: (context, child) {
-            return Container(
-              width: 130,
-              height: 130,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.auroraStart
-                        .withValues(alpha: (100 * _glowController.value + 50) / 255),
-                    blurRadius: 40 + (20 * _glowController.value),
-                    spreadRadius: 10 + (10 * _glowController.value),
-                  ),
-                  BoxShadow(
-                    color: AppColors.amethyst
-                        .withValues(alpha: (80 * _glowController.value + 30) / 255),
-                    blurRadius: 60 + (30 * _glowController.value),
-                    spreadRadius: 5,
-                  ),
-                ],
+      animation: _glowController,
+      builder: (context, child) {
+        return Container(
+          width: 130,
+          height: 130,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.auroraStart.withValues(
+                  alpha: (100 * _glowController.value + 50) / 255,
+                ),
+                blurRadius: 40 + (20 * _glowController.value),
+                spreadRadius: 10 + (10 * _glowController.value),
               ),
-              child: child,
-            );
-          },
-          child: Image.asset(
-            'assets/brand/app-logo/png/app-logo-256.png',
-            width: 130,
-            height: 130,
-            fit: BoxFit.contain,
-            semanticLabel: 'InnerCycles logo',
+              BoxShadow(
+                color: AppColors.amethyst.withValues(
+                  alpha: (80 * _glowController.value + 30) / 255,
+                ),
+                blurRadius: 60 + (30 * _glowController.value),
+                spreadRadius: 5,
+              ),
+            ],
           ),
-        )
-        .glassReveal(context: context);
+          child: child,
+        );
+      },
+      child: Image.asset(
+        'assets/brand/app-logo/png/app-logo-256.png',
+        width: 130,
+        height: 130,
+        fit: BoxFit.contain,
+        semanticLabel: 'InnerCycles logo',
+      ),
+    ).glassReveal(context: context);
   }
 
   Widget _buildAppleSignInButton() {
@@ -928,75 +923,75 @@ class _FirstCyclePage extends StatelessWidget {
                       onFocusAreaSelected(area);
                     },
                     child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 250),
-                    curve: Curves.easeOutCubic,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: isSelected
-                            ? color
-                            : Colors.white.withValues(alpha: 0.12),
-                        width: isSelected ? 2 : 1,
+                      duration: const Duration(milliseconds: 250),
+                      curve: Curves.easeOutCubic,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: isSelected
+                              ? color
+                              : Colors.white.withValues(alpha: 0.12),
+                          width: isSelected ? 2 : 1,
+                        ),
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            color.withValues(alpha: isSelected ? 0.2 : 0.08),
+                            color.withValues(alpha: isSelected ? 0.12 : 0.03),
+                          ],
+                        ),
+                        boxShadow: isSelected
+                            ? [
+                                BoxShadow(
+                                  color: color.withValues(alpha: 0.16),
+                                  blurRadius: 20,
+                                  spreadRadius: 2,
+                                ),
+                              ]
+                            : null,
                       ),
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          color.withValues(alpha: isSelected ? 0.2 : 0.08),
-                          color.withValues(alpha: isSelected ? 0.12 : 0.03),
-                        ],
-                      ),
-                      boxShadow: isSelected
-                          ? [
-                              BoxShadow(
-                                color: color.withValues(alpha: 0.16),
-                                blurRadius: 20,
-                                spreadRadius: 2,
-                              ),
-                            ]
-                          : null,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            _focusIcons[area],
-                            size: 36,
-                            color: isSelected
-                                ? color
-                                : color.withValues(alpha: 0.71),
-                          ),
-                          const SizedBox(height: 12),
-                          Text(
-                            isEn
-                                ? area.displayNameEn
-                                : area.displayNameTr,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              _focusIcons[area],
+                              size: 36,
                               color: isSelected
-                                  ? Colors.white
-                                  : Colors.white.withValues(alpha: 0.78),
+                                  ? color
+                                  : color.withValues(alpha: 0.71),
                             ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            isEn
-                                ? (_focusDescEn[area] ?? '')
-                                : (_focusDescTr[area] ?? ''),
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: AppColors.textMuted.withValues(alpha: 0.71),
+                            const SizedBox(height: 12),
+                            Text(
+                              isEn ? area.displayNameEn : area.displayNameTr,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: isSelected
+                                    ? Colors.white
+                                    : Colors.white.withValues(alpha: 0.78),
+                              ),
                             ),
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
+                            const SizedBox(height: 4),
+                            Text(
+                              isEn
+                                  ? (_focusDescEn[area] ?? '')
+                                  : (_focusDescTr[area] ?? ''),
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: AppColors.textMuted.withValues(
+                                  alpha: 0.71,
+                                ),
+                              ),
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
                     ),
                   ),
                 ).glassListItem(context: context, index: index);
@@ -1011,11 +1006,7 @@ class _FirstCyclePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             child: Row(
               children: [
-                Icon(
-                  Icons.info_outline,
-                  size: 16,
-                  color: AppColors.textMuted,
-                ),
+                Icon(Icons.info_outline, size: 16, color: AppColors.textMuted),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -1212,8 +1203,9 @@ class _ArchetypeRevealPage extends StatelessWidget {
               backgroundColor: isDark
                   ? Colors.white.withValues(alpha: 0.1)
                   : Colors.black.withValues(alpha: 0.1),
-              valueColor:
-                  const AlwaysStoppedAnimation<Color>(AppColors.starGold),
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                AppColors.starGold,
+              ),
               minHeight: 4,
             ),
           ),
@@ -1269,7 +1261,7 @@ class _ArchetypeRevealPage extends StatelessWidget {
                             : AppColors.lightTextPrimary,
                       ),
                     ),
-                ),
+                  ),
                 ),
               ),
             ).glassListItem(context: context, index: index);
@@ -1385,29 +1377,34 @@ class _ArchetypeRevealPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
-                ...archetype.getStrengths(isEnglish: isEn).map(
-                  (s) => Padding(
-                    padding: const EdgeInsets.only(bottom: 4),
-                    child: Row(
-                      children: [
-                        Icon(Icons.star_rounded,
-                            size: 16, color: AppColors.starGold),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            s,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
+                ...archetype
+                    .getStrengths(isEnglish: isEn)
+                    .map(
+                      (s) => Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.star_rounded,
+                              size: 16,
+                              color: AppColors.starGold,
                             ),
-                          ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                s,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: isDark
+                                      ? AppColors.textPrimary
+                                      : AppColors.lightTextPrimary,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
               ],
             ),
           ).glassEntrance(
@@ -1678,15 +1675,11 @@ class _PermissionStartPage extends StatelessWidget {
                 ),
                 _FeatureRow(
                   icon: Icons.auto_graph,
-                  text: isEn
-                      ? 'Pattern recognition'
-                      : 'Kalıp tanıma',
+                  text: isEn ? 'Pattern recognition' : 'Kalıp tanıma',
                 ),
                 _FeatureRow(
                   icon: Icons.library_books,
-                  text: isEn
-                      ? 'Symbol glossary'
-                      : 'Sembol sözlüğü',
+                  text: isEn ? 'Symbol glossary' : 'Sembol sözlüğü',
                 ),
               ],
             ),
@@ -1701,11 +1694,7 @@ class _PermissionStartPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             child: Row(
               children: [
-                Icon(
-                  Icons.info_outline,
-                  size: 14,
-                  color: AppColors.textMuted,
-                ),
+                Icon(Icons.info_outline, size: 14, color: AppColors.textMuted),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -1808,7 +1797,9 @@ class _NameInput extends StatelessWidget {
           borderSide: BorderSide(
             color: hasValue
                 ? colorScheme.primary
-                : (isDark ? AppColors.surfaceLight : AppColors.lightSurfaceVariant),
+                : (isDark
+                      ? AppColors.surfaceLight
+                      : AppColors.lightSurfaceVariant),
           ),
         ),
         focusedBorder: OutlineInputBorder(
@@ -1881,126 +1872,126 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
         child: GestureDetector(
           onTap: widget.onComplete,
           child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                AppColors.deepSpace,
-                AppColors.cosmicPurple,
-                AppColors.nebulaPurple,
-                AppColors.amethystBlue,
-              ],
+            width: double.infinity,
+            height: double.infinity,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  AppColors.deepSpace,
+                  AppColors.cosmicPurple,
+                  AppColors.nebulaPurple,
+                  AppColors.amethystBlue,
+                ],
+              ),
             ),
-          ),
-          child: Stack(
-            children: [
-              // Stars background
-              ...List.generate(50, (index) {
-                final random = index * 7.3;
-                return Positioned(
-                  left: (random * 13) % MediaQuery.of(context).size.width,
-                  top: (random * 17) % MediaQuery.of(context).size.height,
-                  child: AnimatedBuilder(
-                    animation: _starController,
-                    builder: (context, child) {
-                      final twinkle =
-                          ((_starController.value * 2 + random / 50) % 1.0);
-                      return Opacity(
-                        opacity: 0.3 + twinkle * 0.7,
-                        child: Icon(
-                          Icons.star,
-                          size: 4 + (index % 4) * 2.0,
-                          color: index % 3 == 0
-                              ? AppColors.starGold
-                              : index % 3 == 1
-                              ? const Color(0xFFE6E6FA)
-                              : Colors.white,
-                        ),
-                      );
-                    },
-                  ),
-                );
-              }),
-
-              // Main content
-              Center(
-                child: FadeTransition(
-                  opacity: _textController,
-                  child: SlideTransition(
-                    position:
-                        Tween<Offset>(
-                          begin: const Offset(0, 0.2),
-                          end: Offset.zero,
-                        ).animate(
-                          CurvedAnimation(
-                            parent: _textController,
-                            curve: Curves.easeOutCubic,
+            child: Stack(
+              children: [
+                // Stars background
+                ...List.generate(50, (index) {
+                  final random = index * 7.3;
+                  return Positioned(
+                    left: (random * 13) % MediaQuery.of(context).size.width,
+                    top: (random * 17) % MediaQuery.of(context).size.height,
+                    child: AnimatedBuilder(
+                      animation: _starController,
+                      builder: (context, child) {
+                        final twinkle =
+                            ((_starController.value * 2 + random / 50) % 1.0);
+                        return Opacity(
+                          opacity: 0.3 + twinkle * 0.7,
+                          child: Icon(
+                            Icons.star,
+                            size: 4 + (index % 4) * 2.0,
+                            color: index % 3 == 0
+                                ? AppColors.starGold
+                                : index % 3 == 1
+                                ? const Color(0xFFE6E6FA)
+                                : Colors.white,
                           ),
-                        ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Text('🌙', style: TextStyle(fontSize: 64)),
-                        const SizedBox(height: 32),
+                        );
+                      },
+                    ),
+                  );
+                }),
 
-                        ShaderMask(
-                          shaderCallback: (bounds) => const LinearGradient(
-                            colors: [
-                              AppColors.starGold,
-                              AppColors.chartPink,
-                              AppColors.amethyst,
-                            ],
-                          ).createShader(bounds),
-                          child: Text(
-                            widget.greeting,
-                            style: const TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white,
-                              letterSpacing: 1.5,
+                // Main content
+                Center(
+                  child: FadeTransition(
+                    opacity: _textController,
+                    child: SlideTransition(
+                      position:
+                          Tween<Offset>(
+                            begin: const Offset(0, 0.2),
+                            end: Offset.zero,
+                          ).animate(
+                            CurvedAnimation(
+                              parent: _textController,
+                              curve: Curves.easeOutCubic,
                             ),
-                            textAlign: TextAlign.center,
                           ),
-                        ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Text('🌙', style: TextStyle(fontSize: 64)),
+                          const SizedBox(height: 32),
 
-                        if (widget.name != null &&
-                            widget.name!.isNotEmpty) ...[
-                          const SizedBox(height: 16),
+                          ShaderMask(
+                            shaderCallback: (bounds) => const LinearGradient(
+                              colors: [
+                                AppColors.starGold,
+                                AppColors.chartPink,
+                                AppColors.amethyst,
+                              ],
+                            ).createShader(bounds),
+                            child: Text(
+                              widget.greeting,
+                              style: const TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white,
+                                letterSpacing: 1.5,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+
+                          if (widget.name != null &&
+                              widget.name!.isNotEmpty) ...[
+                            const SizedBox(height: 16),
+                            Text(
+                              widget.name!,
+                              style: const TextStyle(
+                                fontSize: 36,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.starGold,
+                                letterSpacing: 2,
+                              ),
+                            ),
+                          ],
+
+                          const SizedBox(height: 48),
+
                           Text(
-                            widget.name!,
-                            style: const TextStyle(
-                              fontSize: 36,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.starGold,
-                              letterSpacing: 2,
+                            L10nService.get(
+                              'onboarding.tap_to_continue',
+                              widget.language,
+                            ),
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.white.withValues(alpha: 0.5),
+                              letterSpacing: 1,
                             ),
                           ),
                         ],
-
-                        const SizedBox(height: 48),
-
-                        Text(
-                          L10nService.get(
-                            'onboarding.tap_to_continue',
-                            widget.language,
-                          ),
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white.withValues(alpha: 0.5),
-                            letterSpacing: 1,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
         ),
       ),
     );

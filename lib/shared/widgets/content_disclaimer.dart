@@ -107,11 +107,8 @@ class DisclaimerTexts {
   static String wellness(AppLanguage language) =>
       L10nService.get('widgets.content_disclaimer.general', language);
 
-
-  static String compatibility(AppLanguage language) => L10nService.get(
-    'widgets.content_disclaimer.compatibility',
-    language,
-  );
+  static String compatibility(AppLanguage language) =>
+      L10nService.get('widgets.content_disclaimer.compatibility', language);
 
   /// Apple-safe disclaimer for Insight assistant
   /// Emphasizes reflection, not prediction

@@ -142,15 +142,10 @@ class _RitualCheckoffContent extends ConsumerWidget {
                   AppColors.auroraStart.withValues(alpha: 0.1),
                   AppColors.surfaceDark.withValues(alpha: 0.9),
                 ]
-              : [
-                  AppColors.auroraStart.withValues(alpha: 0.05),
-                  Colors.white,
-                ],
+              : [AppColors.auroraStart.withValues(alpha: 0.05), Colors.white],
         ),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.auroraStart.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -215,11 +210,9 @@ class _RitualCheckoffContent extends ConsumerWidget {
           const SizedBox(height: 16),
 
           // Stack items
-          ...stacks.map((stack) => _StackSection(
-                stack: stack,
-                isDark: isDark,
-                isEn: isEn,
-              )),
+          ...stacks.map(
+            (stack) => _StackSection(stack: stack, isDark: isDark, isEn: isEn),
+          ),
 
           // Manage button
           const SizedBox(height: 8),
@@ -230,7 +223,9 @@ class _RitualCheckoffContent extends ConsumerWidget {
                 isEn ? 'Manage Rituals' : 'Ritüelleri Yönet',
                 style: TextStyle(
                   fontSize: 13,
-                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
                 ),
               ),
             ),
@@ -268,10 +263,7 @@ class _StackSection extends ConsumerWidget {
               // Stack name with time icon
               Row(
                 children: [
-                  Text(
-                    stack.time.icon,
-                    style: const TextStyle(fontSize: 14),
-                  ),
+                  Text(stack.time.icon, style: const TextStyle(fontSize: 14)),
                   const SizedBox(width: 6),
                   Text(
                     stack.name,
@@ -348,24 +340,20 @@ class _RitualItemTile extends StatelessWidget {
                 height: 22,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: isCompleted
-                      ? AppColors.success
-                      : Colors.transparent,
+                  color: isCompleted ? AppColors.success : Colors.transparent,
                   border: Border.all(
                     color: isCompleted
                         ? AppColors.success
                         : (isDark
-                            ? AppColors.textMuted.withValues(alpha: 0.4)
-                            : AppColors.lightTextMuted.withValues(alpha: 0.4)),
+                              ? AppColors.textMuted.withValues(alpha: 0.4)
+                              : AppColors.lightTextMuted.withValues(
+                                  alpha: 0.4,
+                                )),
                     width: 2,
                   ),
                 ),
                 child: isCompleted
-                    ? const Icon(
-                        Icons.check,
-                        size: 14,
-                        color: Colors.white,
-                      )
+                    ? const Icon(Icons.check, size: 14, color: Colors.white)
                     : null,
               ),
               const SizedBox(width: 10),
@@ -376,14 +364,12 @@ class _RitualItemTile extends StatelessWidget {
                     fontSize: 14,
                     color: isCompleted
                         ? (isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted)
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted)
                         : (isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary),
-                    decoration: isCompleted
-                        ? TextDecoration.lineThrough
-                        : null,
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary),
+                    decoration: isCompleted ? TextDecoration.lineThrough : null,
                   ),
                 ),
               ),

@@ -82,9 +82,7 @@ class UserProfileNotifier extends Notifier<UserProfile?> {
 
   void updateBirthDate(DateTime date) {
     if (state != null) {
-      final updated = state!.copyWith(
-        birthDate: date,
-      );
+      final updated = state!.copyWith(birthDate: date);
       state = updated;
       _syncToStorage(updated);
     }
@@ -342,8 +340,9 @@ final ritualStacksProvider = FutureProvider<List<RitualStack>>((ref) async {
   return service.getStacks();
 });
 
-final todayRitualSummaryProvider =
-    FutureProvider<DailyRitualSummary>((ref) async {
+final todayRitualSummaryProvider = FutureProvider<DailyRitualSummary>((
+  ref,
+) async {
   final service = await ref.watch(ritualServiceProvider.future);
   return service.getTodaySummary();
 });
@@ -360,8 +359,9 @@ final reviewServiceProvider = FutureProvider<ReviewService>((ref) async {
 // CONTENT ENGINE PROVIDER
 // =============================================================================
 
-final contentEngineServiceProvider =
-    FutureProvider<ContentEngineService>((ref) async {
+final contentEngineServiceProvider = FutureProvider<ContentEngineService>((
+  ref,
+) async {
   return await ContentEngineService.init();
 });
 
@@ -369,8 +369,9 @@ final contentEngineServiceProvider =
 // ATTACHMENT STYLE PROVIDER
 // =============================================================================
 
-final attachmentStyleServiceProvider =
-    FutureProvider<AttachmentStyleService>((ref) async {
+final attachmentStyleServiceProvider = FutureProvider<AttachmentStyleService>((
+  ref,
+) async {
   return await AttachmentStyleService.init();
 });
 
@@ -386,8 +387,9 @@ final dailyHookServiceProvider = FutureProvider<DailyHookService>((ref) async {
 // UPGRADE TRIGGER PROVIDER
 // =============================================================================
 
-final upgradeTriggerServiceProvider =
-    FutureProvider<UpgradeTriggerService>((ref) async {
+final upgradeTriggerServiceProvider = FutureProvider<UpgradeTriggerService>((
+  ref,
+) async {
   return await UpgradeTriggerService.init();
 });
 
@@ -413,8 +415,9 @@ final sleepSummaryProvider = FutureProvider<SleepSummary>((ref) async {
 // WELLNESS SCORE PROVIDER
 // =============================================================================
 
-final wellnessScoreServiceProvider =
-    FutureProvider<WellnessScoreService>((ref) async {
+final wellnessScoreServiceProvider = FutureProvider<WellnessScoreService>((
+  ref,
+) async {
   final journalService = await ref.watch(journalServiceProvider.future);
   final gratitudeService = await ref.watch(gratitudeServiceProvider.future);
   final ritualService = await ref.watch(ritualServiceProvider.future);
@@ -443,8 +446,7 @@ final wellnessTrendProvider = FutureProvider<WellnessTrend>((ref) async {
 // ENERGY MAP PROVIDER
 // =============================================================================
 
-final energyMapServiceProvider =
-    FutureProvider<EnergyMapService>((ref) async {
+final energyMapServiceProvider = FutureProvider<EnergyMapService>((ref) async {
   final journalService = await ref.watch(journalServiceProvider.future);
   return EnergyMapService(journalService);
 });
@@ -459,8 +461,9 @@ final energyMapProvider = FutureProvider<EnergyMapData?>((ref) async {
 // GUIDED PROGRAM PROVIDER
 // =============================================================================
 
-final guidedProgramServiceProvider =
-    FutureProvider<GuidedProgramService>((ref) async {
+final guidedProgramServiceProvider = FutureProvider<GuidedProgramService>((
+  ref,
+) async {
   return await GuidedProgramService.init();
 });
 
@@ -470,8 +473,8 @@ final guidedProgramServiceProvider =
 
 final seasonalReflectionServiceProvider =
     FutureProvider<SeasonalReflectionService>((ref) async {
-  return SeasonalReflectionService.init();
-});
+      return SeasonalReflectionService.init();
+    });
 
 // =============================================================================
 // EXPORT SERVICE PROVIDER
@@ -481,8 +484,9 @@ final seasonalReflectionServiceProvider =
 // GROWTH CHALLENGE PROVIDER
 // =============================================================================
 
-final growthChallengeServiceProvider =
-    FutureProvider<GrowthChallengeService>((ref) async {
+final growthChallengeServiceProvider = FutureProvider<GrowthChallengeService>((
+  ref,
+) async {
   return await GrowthChallengeService.init();
 });
 
@@ -490,8 +494,9 @@ final growthChallengeServiceProvider =
 // WEEKLY DIGEST PROVIDER
 // =============================================================================
 
-final weeklyDigestServiceProvider =
-    FutureProvider<WeeklyDigestService>((ref) async {
+final weeklyDigestServiceProvider = FutureProvider<WeeklyDigestService>((
+  ref,
+) async {
   return await WeeklyDigestService.init();
 });
 
@@ -499,8 +504,9 @@ final weeklyDigestServiceProvider =
 // MOOD CHECK-IN PROVIDER
 // =============================================================================
 
-final moodCheckinServiceProvider =
-    FutureProvider<MoodCheckinService>((ref) async {
+final moodCheckinServiceProvider = FutureProvider<MoodCheckinService>((
+  ref,
+) async {
   return await MoodCheckinService.init();
 });
 
@@ -508,8 +514,7 @@ final moodCheckinServiceProvider =
 // APP LOCK PROVIDER
 // =============================================================================
 
-final appLockServiceProvider =
-    FutureProvider<AppLockService>((ref) async {
+final appLockServiceProvider = FutureProvider<AppLockService>((ref) async {
   return await AppLockService.init();
 });
 
@@ -517,8 +522,7 @@ final appLockServiceProvider =
 // ARCHETYPE PROVIDER
 // =============================================================================
 
-final archetypeServiceProvider =
-    FutureProvider<ArchetypeService>((ref) async {
+final archetypeServiceProvider = FutureProvider<ArchetypeService>((ref) async {
   return await ArchetypeService.init();
 });
 
@@ -526,8 +530,9 @@ final archetypeServiceProvider =
 // COMPATIBILITY PROVIDER
 // =============================================================================
 
-final compatibilityServiceProvider =
-    FutureProvider<CompatibilityService>((ref) async {
+final compatibilityServiceProvider = FutureProvider<CompatibilityService>((
+  ref,
+) async {
   return await CompatibilityService.init();
 });
 
@@ -535,8 +540,7 @@ final compatibilityServiceProvider =
 // BLIND SPOT PROVIDER
 // =============================================================================
 
-final blindSpotServiceProvider =
-    FutureProvider<BlindSpotService>((ref) async {
+final blindSpotServiceProvider = FutureProvider<BlindSpotService>((ref) async {
   return await BlindSpotService.init();
 });
 
@@ -553,8 +557,9 @@ final exportServiceProvider = FutureProvider<ExportService>((ref) async {
 // AFFIRMATION SERVICE PROVIDER
 // =============================================================================
 
-final affirmationServiceProvider =
-    FutureProvider<AffirmationService>((ref) async {
+final affirmationServiceProvider = FutureProvider<AffirmationService>((
+  ref,
+) async {
   return await AffirmationService.init();
 });
 
@@ -562,8 +567,7 @@ final affirmationServiceProvider =
 // MILESTONE SERVICE PROVIDER
 // =============================================================================
 
-final milestoneServiceProvider =
-    FutureProvider<MilestoneService>((ref) async {
+final milestoneServiceProvider = FutureProvider<MilestoneService>((ref) async {
   return await MilestoneService.init();
 });
 
@@ -571,8 +575,9 @@ final milestoneServiceProvider =
 // JOURNAL PROMPT SERVICE PROVIDER
 // =============================================================================
 
-final journalPromptServiceProvider =
-    FutureProvider<JournalPromptService>((ref) async {
+final journalPromptServiceProvider = FutureProvider<JournalPromptService>((
+  ref,
+) async {
   return await JournalPromptService.init();
 });
 
@@ -580,14 +585,16 @@ final journalPromptServiceProvider =
 // PATTERN HEALTH SERVICE PROVIDER
 // =============================================================================
 
-final patternHealthServiceProvider =
-    FutureProvider<PatternHealthService>((ref) async {
+final patternHealthServiceProvider = FutureProvider<PatternHealthService>((
+  ref,
+) async {
   final journalService = await ref.watch(journalServiceProvider.future);
   return await PatternHealthService.init(journalService);
 });
 
-final patternHealthReportProvider =
-    FutureProvider<PatternHealthReport>((ref) async {
+final patternHealthReportProvider = FutureProvider<PatternHealthReport>((
+  ref,
+) async {
   final service = await ref.watch(patternHealthServiceProvider.future);
   return await service.analyzeHealth();
 });
@@ -596,8 +603,9 @@ final patternHealthReportProvider =
 // VOICE JOURNAL SERVICE PROVIDER
 // =============================================================================
 
-final voiceJournalServiceProvider =
-    FutureProvider<VoiceJournalService>((ref) async {
+final voiceJournalServiceProvider = FutureProvider<VoiceJournalService>((
+  ref,
+) async {
   return await VoiceJournalService.init();
 });
 
@@ -607,23 +615,24 @@ final voiceJournalServiceProvider =
 
 final notificationLifecycleServiceProvider =
     FutureProvider<NotificationLifecycleService>((ref) async {
-  return await NotificationLifecycleService.init();
-});
+      return await NotificationLifecycleService.init();
+    });
 
 // =============================================================================
 // PATTERN ENGINE SERVICE PROVIDER (with cross-correlation support)
 // =============================================================================
 
-final patternEngineServiceProvider =
-    FutureProvider<PatternEngineService>((ref) async {
+final patternEngineServiceProvider = FutureProvider<PatternEngineService>((
+  ref,
+) async {
   final journalService = await ref.watch(journalServiceProvider.future);
   final sleepService = await ref.watch(sleepServiceProvider.future);
   final gratitudeService = await ref.watch(gratitudeServiceProvider.future);
   final ritualService = await ref.watch(ritualServiceProvider.future);
-  final wellnessScoreService =
-      await ref.watch(wellnessScoreServiceProvider.future);
-  final moodCheckinService =
-      await ref.watch(moodCheckinServiceProvider.future);
+  final wellnessScoreService = await ref.watch(
+    wellnessScoreServiceProvider.future,
+  );
+  final moodCheckinService = await ref.watch(moodCheckinServiceProvider.future);
   final streakService = await ref.watch(streakServiceProvider.future);
   return PatternEngineService(
     journalService,
@@ -640,8 +649,9 @@ final patternEngineServiceProvider =
 // CROSS-CORRELATIONS PROVIDER
 // =============================================================================
 
-final crossCorrelationsProvider =
-    FutureProvider<List<CrossCorrelation>>((ref) async {
+final crossCorrelationsProvider = FutureProvider<List<CrossCorrelation>>((
+  ref,
+) async {
   final engine = await ref.watch(patternEngineServiceProvider.future);
   return engine.getCrossCorrelations();
 });
@@ -650,8 +660,9 @@ final crossCorrelationsProvider =
 // QUIZ ENGINE SERVICE PROVIDER
 // =============================================================================
 
-final quizEngineServiceProvider =
-    FutureProvider<QuizEngineService>((ref) async {
+final quizEngineServiceProvider = FutureProvider<QuizEngineService>((
+  ref,
+) async {
   return await QuizEngineService.init();
 });
 
@@ -659,8 +670,9 @@ final quizEngineServiceProvider =
 // YEAR REVIEW SERVICE PROVIDER
 // =============================================================================
 
-final yearReviewServiceProvider =
-    FutureProvider<YearReviewService>((ref) async {
+final yearReviewServiceProvider = FutureProvider<YearReviewService>((
+  ref,
+) async {
   final journalService = await ref.watch(journalServiceProvider.future);
   return await YearReviewService.init(journalService);
 });
@@ -677,8 +689,9 @@ final referralServiceProvider = FutureProvider<ReferralService>((ref) async {
 // CONTEXT MODULE SERVICE PROVIDER
 // =============================================================================
 
-final contextModuleServiceProvider =
-    FutureProvider<ContextModuleService>((ref) async {
+final contextModuleServiceProvider = FutureProvider<ContextModuleService>((
+  ref,
+) async {
   return await ContextModuleService.init();
 });
 
@@ -686,8 +699,9 @@ final contextModuleServiceProvider =
 // HABIT SUGGESTION SERVICE PROVIDER
 // =============================================================================
 
-final habitSuggestionServiceProvider =
-    FutureProvider<HabitSuggestionService>((ref) async {
+final habitSuggestionServiceProvider = FutureProvider<HabitSuggestionService>((
+  ref,
+) async {
   return await HabitSuggestionService.init();
 });
 
@@ -695,8 +709,9 @@ final habitSuggestionServiceProvider =
 // MONTHLY THEME SERVICE PROVIDER
 // =============================================================================
 
-final monthlyThemeServiceProvider =
-    FutureProvider<MonthlyThemeService>((ref) async {
+final monthlyThemeServiceProvider = FutureProvider<MonthlyThemeService>((
+  ref,
+) async {
   return await MonthlyThemeService.init();
 });
 
@@ -704,14 +719,16 @@ final monthlyThemeServiceProvider =
 // PATTERN LOOP SERVICE PROVIDER (Emotion Intelligence)
 // =============================================================================
 
-final patternLoopServiceProvider =
-    FutureProvider<PatternLoopService>((ref) async {
+final patternLoopServiceProvider = FutureProvider<PatternLoopService>((
+  ref,
+) async {
   final journalService = await ref.watch(journalServiceProvider.future);
   return await PatternLoopService.init(journalService);
 });
 
-final patternLoopAnalysisProvider =
-    FutureProvider<PatternLoopAnalysis>((ref) async {
+final patternLoopAnalysisProvider = FutureProvider<PatternLoopAnalysis>((
+  ref,
+) async {
   final service = await ref.watch(patternLoopServiceProvider.future);
   return service.analyze();
 });
@@ -720,8 +737,9 @@ final patternLoopAnalysisProvider =
 // SHIFT FORECAST SERVICE PROVIDER (Emotion Intelligence — Premium)
 // =============================================================================
 
-final shiftForecastServiceProvider =
-    FutureProvider<ShiftForecastService>((ref) async {
+final shiftForecastServiceProvider = FutureProvider<ShiftForecastService>((
+  ref,
+) async {
   final journalService = await ref.watch(journalServiceProvider.future);
   return ShiftForecastService(journalService);
 });
@@ -735,14 +753,16 @@ final shiftForecastProvider = FutureProvider<ShiftForecast>((ref) async {
 // EMOTIONAL CYCLE ANALYSIS PROVIDER (Emotion Intelligence)
 // =============================================================================
 
-final emotionalCycleServiceProvider =
-    FutureProvider<EmotionalCycleService>((ref) async {
+final emotionalCycleServiceProvider = FutureProvider<EmotionalCycleService>((
+  ref,
+) async {
   final journalService = await ref.watch(journalServiceProvider.future);
   return EmotionalCycleService(journalService);
 });
 
-final emotionalCycleAnalysisProvider =
-    FutureProvider<EmotionalCycleAnalysis>((ref) async {
+final emotionalCycleAnalysisProvider = FutureProvider<EmotionalCycleAnalysis>((
+  ref,
+) async {
   final cycleService = await ref.watch(emotionalCycleServiceProvider.future);
   if (!cycleService.hasEnoughData()) {
     return EmotionalCycleAnalysis(

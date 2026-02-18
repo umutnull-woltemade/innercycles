@@ -353,9 +353,28 @@ class _CosmicPainter extends CustomPainter {
 
     // Decorative symbols
     const decorativeSymbols = [
-      '✧', '⚹', '△', '☆', '◇', '⬡', '⊛', '✦',
-      '○', '◆', '✶', '❋', '✺', '✹', '❈', '✿',
-      '⊕', '⊗', '◎', '✵', '❂', '◈',
+      '✧',
+      '⚹',
+      '△',
+      '☆',
+      '◇',
+      '⬡',
+      '⊛',
+      '✦',
+      '○',
+      '◆',
+      '✶',
+      '❋',
+      '✺',
+      '✹',
+      '❈',
+      '✿',
+      '⊕',
+      '⊗',
+      '◎',
+      '✵',
+      '❂',
+      '◈',
     ];
     // Nature symbols
     const natureSymbols = ['✧', '◇', '△', '○', '⊛', '✦', '✶', '❋'];
@@ -374,7 +393,11 @@ class _CosmicPainter extends CustomPainter {
       const Color(0xFFF0E68C), // Gold
     ];
 
-    final allSymbols = [...decorativeSymbols, ...natureSymbols, ...geometricSymbols];
+    final allSymbols = [
+      ...decorativeSymbols,
+      ...natureSymbols,
+      ...geometricSymbols,
+    ];
 
     // 25-30 sembol ekle - dağınık ve soluk
     for (int i = 0; i < 28; i++) {

@@ -21,22 +21,24 @@ class GratitudeEntry {
   });
 
   GratitudeEntry copyWith({List<String>? items}) => GratitudeEntry(
-        dateKey: dateKey,
-        items: items ?? this.items,
-        createdAt: createdAt,
-      );
+    dateKey: dateKey,
+    items: items ?? this.items,
+    createdAt: createdAt,
+  );
 
   Map<String, dynamic> toJson() => {
-        'dateKey': dateKey,
-        'items': items,
-        'createdAt': createdAt.toIso8601String(),
-      };
+    'dateKey': dateKey,
+    'items': items,
+    'createdAt': createdAt.toIso8601String(),
+  };
 
   factory GratitudeEntry.fromJson(Map<String, dynamic> json) => GratitudeEntry(
-        dateKey: json['dateKey'] as String? ?? '',
-        items: (json['items'] as List<dynamic>? ?? []).whereType<String>().toList(),
-        createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
-      );
+    dateKey: json['dateKey'] as String? ?? '',
+    items: (json['items'] as List<dynamic>? ?? []).whereType<String>().toList(),
+    createdAt:
+        DateTime.tryParse(json['createdAt']?.toString() ?? '') ??
+        DateTime.now(),
+  );
 }
 
 /// Weekly gratitude summary for home screen card
@@ -126,9 +128,10 @@ class GratitudeService {
 
     for (final item in allItems) {
       // Extract meaningful words (3+ chars, lowercase)
-      final words = item.toLowerCase().split(RegExp(r'\s+')).where(
-            (w) => w.length >= 3 && !_stopWords.contains(w),
-          );
+      final words = item
+          .toLowerCase()
+          .split(RegExp(r'\s+'))
+          .where((w) => w.length >= 3 && !_stopWords.contains(w));
       for (final word in words) {
         wordFreq[word] = (wordFreq[word] ?? 0) + 1;
       }
@@ -152,9 +155,10 @@ class GratitudeService {
     final wordFreq = <String, int>{};
 
     for (final item in allItems) {
-      final words = item.toLowerCase().split(RegExp(r'\s+')).where(
-            (w) => w.length >= 3 && !_stopWords.contains(w),
-          );
+      final words = item
+          .toLowerCase()
+          .split(RegExp(r'\s+'))
+          .where((w) => w.length >= 3 && !_stopWords.contains(w));
       for (final word in words) {
         wordFreq[word] = (wordFreq[word] ?? 0) + 1;
       }
@@ -203,11 +207,55 @@ class GratitudeService {
       '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
 
   static const _stopWords = {
-    'the', 'and', 'for', 'that', 'this', 'with', 'was', 'are', 'had',
-    'has', 'have', 'been', 'from', 'but', 'not', 'they', 'all', 'can',
-    'her', 'his', 'she', 'him', 'how', 'its', 'may', 'our', 'out',
-    'who', 'get', 'got', 'did', 'just', 'than', 'then', 'what', 'when',
-    'bir', 've', 'ile', 'için', 'olan', 'ama', 'ben', 'sen',
-    'benim', 'senin', 'onun', 'çok', 'daha', 'gibi',
+    'the',
+    'and',
+    'for',
+    'that',
+    'this',
+    'with',
+    'was',
+    'are',
+    'had',
+    'has',
+    'have',
+    'been',
+    'from',
+    'but',
+    'not',
+    'they',
+    'all',
+    'can',
+    'her',
+    'his',
+    'she',
+    'him',
+    'how',
+    'its',
+    'may',
+    'our',
+    'out',
+    'who',
+    'get',
+    'got',
+    'did',
+    'just',
+    'than',
+    'then',
+    'what',
+    'when',
+    'bir',
+    've',
+    'ile',
+    'için',
+    'olan',
+    'ama',
+    'ben',
+    'sen',
+    'benim',
+    'senin',
+    'onun',
+    'çok',
+    'daha',
+    'gibi',
   };
 }

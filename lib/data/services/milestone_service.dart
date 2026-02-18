@@ -85,15 +85,12 @@ class EarnedMilestone {
   final Milestone milestone;
   final DateTime earnedAt;
 
-  const EarnedMilestone({
-    required this.milestone,
-    required this.earnedAt,
-  });
+  const EarnedMilestone({required this.milestone, required this.earnedAt});
 
   Map<String, dynamic> toJson() => {
-        'milestoneId': milestone.id,
-        'earnedAt': earnedAt.toIso8601String(),
-      };
+    'milestoneId': milestone.id,
+    'earnedAt': earnedAt.toIso8601String(),
+  };
 }
 
 /// Parameters that the caller passes so the service can evaluate which
@@ -519,7 +516,9 @@ class MilestoneService {
 
     // Meta-milestones that depend on how many we have earned so far
     if (!_earned.containsKey('growth_half') && _earned.length >= 15) {
-      final m = _allMilestones.where((ms) => ms.id == 'growth_half').firstOrNull;
+      final m = _allMilestones
+          .where((ms) => ms.id == 'growth_half')
+          .firstOrNull;
       if (m != null) {
         _earned[m.id] = now;
         newlyEarned.add(m);
@@ -527,8 +526,9 @@ class MilestoneService {
     }
     if (!_earned.containsKey('growth_all_milestones') && _earned.length >= 26) {
       // 25 *other* milestones + this one itself would be 26
-      final m =
-          _allMilestones.where((ms) => ms.id == 'growth_all_milestones').firstOrNull;
+      final m = _allMilestones
+          .where((ms) => ms.id == 'growth_all_milestones')
+          .firstOrNull;
       if (m != null) {
         _earned[m.id] = now;
         newlyEarned.add(m);
@@ -555,10 +555,7 @@ class MilestoneService {
       if (milestone != null) {
         final parsed = DateTime.tryParse(entry.value);
         if (parsed != null) {
-          result.add(EarnedMilestone(
-            milestone: milestone,
-            earnedAt: parsed,
-          ));
+          result.add(EarnedMilestone(milestone: milestone, earnedAt: parsed));
         }
       }
     }
@@ -619,11 +616,7 @@ class MilestoneService {
   // PRIVATE EVALUATION
   // ══════════════════════════════════════════════════════════════════════════
 
-  bool _evaluate(
-    Milestone m,
-    MilestoneCheckParams p,
-    int effectiveStreak,
-  ) {
+  bool _evaluate(Milestone m, MilestoneCheckParams p, int effectiveStreak) {
     switch (m.id) {
       // Streak
       case 'streak_3':

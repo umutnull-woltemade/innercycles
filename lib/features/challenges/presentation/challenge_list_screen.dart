@@ -34,69 +34,74 @@ class ChallengeListScreen extends ConsumerWidget {
         child: SafeArea(
           child: CupertinoScrollbar(
             child: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            slivers: [
-              GlassSliverAppBar(
-                title: isEn ? 'Growth Challenges' : 'Büyüme Görevleri',
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
               ),
-              SliverPadding(
-                padding: const EdgeInsets.all(16),
-                sliver: serviceAsync.when(
-                  loading: () => const SliverToBoxAdapter(
-                    child: Center(child: CosmicLoadingIndicator()),
-                  ),
-                  error: (_, _) => SliverToBoxAdapter(
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(32),
-                        child: Text(
-                          CommonStrings.somethingWentWrong(language),
-                          style: TextStyle(
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              slivers: [
+                GlassSliverAppBar(
+                  title: isEn ? 'Growth Challenges' : 'Büyüme Görevleri',
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.all(16),
+                  sliver: serviceAsync.when(
+                    loading: () => const SliverToBoxAdapter(
+                      child: Center(child: CosmicLoadingIndicator()),
+                    ),
+                    error: (_, _) => SliverToBoxAdapter(
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(32),
+                          child: Text(
+                            CommonStrings.somethingWentWrong(language),
+                            style: TextStyle(
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  data: (service) {
-                    final challenges = GrowthChallengeService.allChallenges;
+                    data: (service) {
+                      final challenges = GrowthChallengeService.allChallenges;
 
-                    // Split into active, available, completed
-                    final active = challenges.where((c) {
-                      final p = service.getProgress(c.id);
-                      return p != null && !p.isCompleted;
-                    }).toList();
-                    final completed = challenges
-                        .where((c) => service.isCompleted(c.id))
-                        .toList();
-                    final available = challenges
-                        .where((c) =>
-                            service.getProgress(c.id) == null &&
-                            !service.isCompleted(c.id))
-                        .toList();
+                      // Split into active, available, completed
+                      final active = challenges.where((c) {
+                        final p = service.getProgress(c.id);
+                        return p != null && !p.isCompleted;
+                      }).toList();
+                      final completed = challenges
+                          .where((c) => service.isCompleted(c.id))
+                          .toList();
+                      final available = challenges
+                          .where(
+                            (c) =>
+                                service.getProgress(c.id) == null &&
+                                !service.isCompleted(c.id),
+                          )
+                          .toList();
 
-                    return SliverList(
-                      delegate: SliverChildListDelegate([
-                        // Stats bar
-                        _StatsBar(
-                          active: active.length,
-                          completed: completed.length,
-                          total: challenges.length,
-                          isDark: isDark,
-                          isEn: isEn,
-                        ),
-                        const SizedBox(height: 20),
-
-                        // Active challenges
-                        if (active.isNotEmpty) ...[
-                          _SectionTitle(
-                            title: isEn ? 'In Progress' : 'Devam Eden',
+                      return SliverList(
+                        delegate: SliverChildListDelegate([
+                          // Stats bar
+                          _StatsBar(
+                            active: active.length,
+                            completed: completed.length,
+                            total: challenges.length,
                             isDark: isDark,
+                            isEn: isEn,
                           ),
-                          const SizedBox(height: 10),
-                          ...active.map((c) => _ChallengeCard(
+                          const SizedBox(height: 20),
+
+                          // Active challenges
+                          if (active.isNotEmpty) ...[
+                            _SectionTitle(
+                              title: isEn ? 'In Progress' : 'Devam Eden',
+                              isDark: isDark,
+                            ),
+                            const SizedBox(height: 10),
+                            ...active.map(
+                              (c) => _ChallengeCard(
                                 challenge: c,
                                 progress: service.getProgress(c.id),
                                 isCompleted: false,
@@ -107,20 +112,23 @@ class ChallengeListScreen extends ConsumerWidget {
                                   await service.incrementProgress(c.id);
                                   if (!context.mounted) return;
                                   ref.invalidate(
-                                      growthChallengeServiceProvider);
+                                    growthChallengeServiceProvider,
+                                  );
                                   HapticFeedback.mediumImpact();
                                 },
-                              )),
-                          const SizedBox(height: 20),
-                        ],
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                          ],
 
-                        // Available challenges
-                        _SectionTitle(
-                          title: isEn ? 'Available' : 'Mevcut',
-                          isDark: isDark,
-                        ),
-                        const SizedBox(height: 10),
-                        ...available.map((c) => _ChallengeCard(
+                          // Available challenges
+                          _SectionTitle(
+                            title: isEn ? 'Available' : 'Mevcut',
+                            isDark: isDark,
+                          ),
+                          const SizedBox(height: 10),
+                          ...available.map(
+                            (c) => _ChallengeCard(
                               challenge: c,
                               progress: null,
                               isCompleted: false,
@@ -129,7 +137,11 @@ class ChallengeListScreen extends ConsumerWidget {
                               isEn: isEn,
                               onStart: () async {
                                 if (c.isPremium && !isPremium) {
-                                  showContextualPaywall(context, ref, paywallContext: PaywallContext.challenges);
+                                  showContextualPaywall(
+                                    context,
+                                    ref,
+                                    paywallContext: PaywallContext.challenges,
+                                  );
                                   return;
                                 }
                                 await service.startChallenge(c.id);
@@ -137,39 +149,42 @@ class ChallengeListScreen extends ConsumerWidget {
                                 ref.invalidate(growthChallengeServiceProvider);
                                 HapticFeedback.mediumImpact();
                               },
-                            )),
-
-                        // Completed challenges
-                        if (completed.isNotEmpty) ...[
-                          const SizedBox(height: 20),
-                          _SectionTitle(
-                            title: isEn ? 'Completed' : 'Tamamlanan',
-                            isDark: isDark,
+                            ),
                           ),
-                          const SizedBox(height: 10),
-                          ...completed.map((c) => _ChallengeCard(
+
+                          // Completed challenges
+                          if (completed.isNotEmpty) ...[
+                            const SizedBox(height: 20),
+                            _SectionTitle(
+                              title: isEn ? 'Completed' : 'Tamamlanan',
+                              isDark: isDark,
+                            ),
+                            const SizedBox(height: 10),
+                            ...completed.map(
+                              (c) => _ChallengeCard(
                                 challenge: c,
                                 progress: null,
                                 isCompleted: true,
                                 isPremium: isPremium,
                                 isDark: isDark,
                                 isEn: isEn,
-                              )),
-                        ],
+                              ),
+                            ),
+                          ],
 
-                        ToolEcosystemFooter(
-                          currentToolId: 'challengeList',
-                          isEn: isEn,
-                          isDark: isDark,
-                        ),
-                        const SizedBox(height: 40),
-                      ]),
-                    );
-                  },
+                          ToolEcosystemFooter(
+                            currentToolId: 'challengeList',
+                            isEn: isEn,
+                            isDark: isDark,
+                          ),
+                          const SizedBox(height: 40),
+                        ]),
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
           ),
         ),
       ),
@@ -324,10 +339,10 @@ class _ChallengeCard extends StatelessWidget {
             color: isCompleted
                 ? AppColors.success.withValues(alpha: 0.3)
                 : hasProgress
-                    ? AppColors.starGold.withValues(alpha: 0.2)
-                    : (isDark
-                        ? Colors.white.withValues(alpha: 0.08)
-                        : Colors.black.withValues(alpha: 0.04)),
+                ? AppColors.starGold.withValues(alpha: 0.2)
+                : (isDark
+                      ? Colors.white.withValues(alpha: 0.08)
+                      : Colors.black.withValues(alpha: 0.04)),
           ),
         ),
         child: Row(
@@ -356,12 +371,17 @@ class _ChallengeCard extends StatelessWidget {
                         ),
                       ),
                       if (isCompleted)
-                        Icon(Icons.check_circle,
-                            size: 18, color: AppColors.success),
+                        Icon(
+                          Icons.check_circle,
+                          size: 18,
+                          color: AppColors.success,
+                        ),
                       if (isLocked)
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 6, vertical: 2),
+                            horizontal: 6,
+                            vertical: 2,
+                          ),
                           decoration: BoxDecoration(
                             color: AppColors.starGold.withValues(alpha: 0.15),
                             borderRadius: BorderRadius.circular(6),
@@ -379,9 +399,7 @@ class _ChallengeCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    isEn
-                        ? challenge.descriptionEn
-                        : challenge.descriptionTr,
+                    isEn ? challenge.descriptionEn : challenge.descriptionTr,
                     style: TextStyle(
                       fontSize: 12,
                       color: isDark
@@ -402,8 +420,9 @@ class _ChallengeCard extends StatelessWidget {
                               backgroundColor: isDark
                                   ? Colors.white.withValues(alpha: 0.08)
                                   : Colors.black.withValues(alpha: 0.06),
-                              valueColor:
-                                  AlwaysStoppedAnimation(AppColors.starGold),
+                              valueColor: AlwaysStoppedAnimation(
+                                AppColors.starGold,
+                              ),
                             ),
                           ),
                         ),
@@ -433,21 +452,17 @@ class _ChallengeCard extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: AppColors.starGold.withValues(alpha: 0.15),
                   ),
-                  child: Icon(
-                    Icons.add,
-                    size: 18,
-                    color: AppColors.starGold,
-                  ),
+                  child: Icon(Icons.add, size: 18, color: AppColors.starGold),
                 ),
               )
-            else if (!isCompleted &&
-                !hasProgress &&
-                onStart != null)
+            else if (!isCompleted && !hasProgress && onStart != null)
               GestureDetector(
                 onTap: onStart,
                 child: Container(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 6),
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.auroraStart.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(12),

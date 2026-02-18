@@ -40,7 +40,9 @@ class QuizHubScreen extends ConsumerWidget {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: isEn ? 'Self-Reflection Quizzes' : 'Öz Yansıtma Testleri',
+                title: isEn
+                    ? 'Self-Reflection Quizzes'
+                    : 'Öz Yansıtma Testleri',
               ),
               SliverPadding(
                 padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -48,14 +50,15 @@ class QuizHubScreen extends ConsumerWidget {
                   delegate: SliverChildListDelegate([
                     // Header description
                     Text(
-                      isEn
-                          ? 'Explore different aspects of yourself through thoughtful self-reflection. These are personal awareness tools, not clinical assessments.'
-                          : 'Düşünceli öz yansıtma yoluyla kendinizin farklı yönlerini keşfedin. Bunlar kişisel farkındalık araçlarıdır, klinik değerlendirmeler değildir.',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppColors.textSecondary,
-                            height: 1.6,
-                          ),
-                    )
+                          isEn
+                              ? 'Explore different aspects of yourself through thoughtful self-reflection. These are personal awareness tools, not clinical assessments.'
+                              : 'Düşünceli öz yansıtma yoluyla kendinizin farklı yönlerini keşfedin. Bunlar kişisel farkındalık araçlarıdır, klinik değerlendirmeler değildir.',
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
+                                color: AppColors.textSecondary,
+                                height: 1.6,
+                              ),
+                        )
                         .animate()
                         .fadeIn(duration: 500.ms)
                         .slideY(begin: -0.05, end: 0, duration: 500.ms),
@@ -67,7 +70,8 @@ class QuizHubScreen extends ConsumerWidget {
                       final quiz = entry.value;
 
                       // Check completion status
-                      final isCompleted = quizServiceAsync.whenOrNull(
+                      final isCompleted =
+                          quizServiceAsync.whenOrNull(
                             data: (service) => service.hasCompleted(quiz.id),
                           ) ??
                           false;
@@ -81,24 +85,29 @@ class QuizHubScreen extends ConsumerWidget {
                         if (lastResult != null) {
                           final dim = quiz.dimensions[lastResult.resultType];
                           if (dim != null) {
-                            lastResultName =
-                                isEn ? dim.nameEn : dim.nameTr;
+                            lastResultName = isEn ? dim.nameEn : dim.nameTr;
                           }
                         }
                       }
 
                       return Padding(
-                        padding: const EdgeInsets.only(
-                            bottom: AppConstants.spacingLg),
-                        child: _QuizCard(
-                          quiz: quiz,
-                          isCompleted: isCompleted,
-                          lastResultName: lastResultName,
-                          isDark: isDark,
-                          isEn: isEn,
-                          onTap: () => context.push(Routes.quizGeneric.replaceFirst(':quizId', quiz.id)),
-                        ),
-                      )
+                            padding: const EdgeInsets.only(
+                              bottom: AppConstants.spacingLg,
+                            ),
+                            child: _QuizCard(
+                              quiz: quiz,
+                              isCompleted: isCompleted,
+                              lastResultName: lastResultName,
+                              isDark: isDark,
+                              isEn: isEn,
+                              onTap: () => context.push(
+                                Routes.quizGeneric.replaceFirst(
+                                  ':quizId',
+                                  quiz.id,
+                                ),
+                              ),
+                            ),
+                          )
                           .animate()
                           .fadeIn(
                             duration: 500.ms,
@@ -152,141 +161,137 @@ class _QuizCard extends StatelessWidget {
       label: isEn ? quiz.title : quiz.titleTr,
       hint: isCompleted ? (isEn ? 'Completed' : 'Tamamlandı') : null,
       child: GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(AppConstants.spacingLg),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppConstants.radiusXl),
-          border: Border.all(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(AppConstants.spacingLg),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppConstants.radiusXl),
+            border: Border.all(
+              color: isCompleted
+                  ? AppColors.auroraStart.withValues(alpha: 0.4)
+                  : isDark
+                  ? AppColors.surfaceLight.withValues(alpha: 0.4)
+                  : AppColors.lightSurfaceVariant,
+              width: isCompleted ? 1.5 : 1,
+            ),
+            gradient: isCompleted
+                ? LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppColors.auroraStart.withValues(alpha: 0.08),
+                      AppColors.auroraEnd.withValues(alpha: 0.04),
+                    ],
+                  )
+                : null,
             color: isCompleted
-                ? AppColors.auroraStart.withValues(alpha: 0.4)
+                ? null
                 : isDark
-                    ? AppColors.surfaceLight.withValues(alpha: 0.4)
-                    : AppColors.lightSurfaceVariant,
-            width: isCompleted ? 1.5 : 1,
+                ? AppColors.surfaceDark.withValues(alpha: 0.6)
+                : AppColors.lightCard.withValues(alpha: 0.9),
           ),
-          gradient: isCompleted
-              ? LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    AppColors.auroraStart.withValues(alpha: 0.08),
-                    AppColors.auroraEnd.withValues(alpha: 0.04),
-                  ],
-                )
-              : null,
-          color: isCompleted
-              ? null
-              : isDark
-                  ? AppColors.surfaceDark.withValues(alpha: 0.6)
-                  : AppColors.lightCard.withValues(alpha: 0.9),
-        ),
-        child: Row(
-          children: [
-            // Emoji
-            Container(
-              width: 56,
-              height: 56,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-                color: isDark
-                    ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                    : AppColors.lightSurfaceVariant.withValues(alpha: 0.8),
-              ),
-              child: Center(
-                child: Text(
-                  quiz.emoji,
-                  style: const TextStyle(fontSize: 28),
+          child: Row(
+            children: [
+              // Emoji
+              Container(
+                width: 56,
+                height: 56,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+                  color: isDark
+                      ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                      : AppColors.lightSurfaceVariant.withValues(alpha: 0.8),
+                ),
+                child: Center(
+                  child: Text(quiz.emoji, style: const TextStyle(fontSize: 28)),
                 ),
               ),
-            ),
-            const SizedBox(width: AppConstants.spacingLg),
+              const SizedBox(width: AppConstants.spacingLg),
 
-            // Text content
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          isEn ? quiz.title : quiz.titleTr,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleSmall
-                              ?.copyWith(
-                                color: isDark
-                                    ? AppColors.textPrimary
-                                    : AppColors.lightTextPrimary,
-                                fontWeight: FontWeight.w600,
-                              ),
-                        ),
-                      ),
-                      if (isCompleted)
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 3,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(AppConstants.radiusFull),
-                            color: AppColors.auroraStart.withValues(alpha: 0.2),
-                          ),
+              // Text content
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
                           child: Text(
-                            isEn ? 'Done' : 'Tamam',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelSmall
+                            isEn ? quiz.title : quiz.titleTr,
+                            style: Theme.of(context).textTheme.titleSmall
                                 ?.copyWith(
-                                  color: AppColors.auroraStart,
+                                  color: isDark
+                                      ? AppColors.textPrimary
+                                      : AppColors.lightTextPrimary,
                                   fontWeight: FontWeight.w600,
                                 ),
                           ),
                         ),
-                    ],
-                  ),
-                  const SizedBox(height: AppConstants.spacingXs),
-                  Text(
-                    isEn ? quiz.description : quiz.descriptionTr,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary,
-                          height: 1.4,
-                        ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  if (isCompleted && lastResultName != null) ...[
+                        if (isCompleted)
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 3,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                AppConstants.radiusFull,
+                              ),
+                              color: AppColors.auroraStart.withValues(
+                                alpha: 0.2,
+                              ),
+                            ),
+                            child: Text(
+                              isEn ? 'Done' : 'Tamam',
+                              style: Theme.of(context).textTheme.labelSmall
+                                  ?.copyWith(
+                                    color: AppColors.auroraStart,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                          ),
+                      ],
+                    ),
                     const SizedBox(height: AppConstants.spacingXs),
                     Text(
-                      isEn
-                          ? 'Your result: $lastResultName'
-                          : 'Sonucunuz: $lastResultName',
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: AppColors.starGold,
-                            fontWeight: FontWeight.w500,
-                          ),
+                      isEn ? quiz.description : quiz.descriptionTr,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                        height: 1.4,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
+                    if (isCompleted && lastResultName != null) ...[
+                      const SizedBox(height: AppConstants.spacingXs),
+                      Text(
+                        isEn
+                            ? 'Your result: $lastResultName'
+                            : 'Sonucunuz: $lastResultName',
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: AppColors.starGold,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ],
-                ],
+                ),
               ),
-            ),
 
-            // Arrow
-            Icon(
-              Icons.chevron_right_rounded,
-              color: isDark
-                  ? AppColors.textSecondary.withValues(alpha: 0.5)
-                  : AppColors.lightTextMuted,
-              size: 24,
-            ),
-          ],
+              // Arrow
+              Icon(
+                Icons.chevron_right_rounded,
+                color: isDark
+                    ? AppColors.textSecondary.withValues(alpha: 0.5)
+                    : AppColors.lightTextMuted,
+                size: 24,
+              ),
+            ],
+          ),
         ),
       ),
-    ),
     );
   }
 }

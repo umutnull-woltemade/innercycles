@@ -167,7 +167,6 @@ class SyncService {
       return false;
     }
   }
-
 }
 
 /// Sync queue item model
@@ -214,7 +213,9 @@ class SyncQueueItem {
     payload: json['payload'] is Map
         ? Map<String, dynamic>.from(json['payload'] as Map)
         : <String, dynamic>{},
-    createdAt: DateTime.tryParse(json['created_at']?.toString() ?? '') ?? DateTime.now(),
+    createdAt:
+        DateTime.tryParse(json['created_at']?.toString() ?? '') ??
+        DateTime.now(),
     status: json['status'] ?? 'pending',
     retryCount: json['retry_count'] ?? 0,
     lastError: json['last_error'],

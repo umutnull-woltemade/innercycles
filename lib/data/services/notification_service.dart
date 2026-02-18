@@ -165,7 +165,8 @@ class NotificationService {
     String? personalizedMessage,
   }) async {
     _isEn = await _readIsEn();
-    final message = personalizedMessage ??
+    final message =
+        personalizedMessage ??
         (_isEn
             ? 'Take a moment to reflect on your day.'
             : 'Bugününü düşünmek için bir an dur.');
@@ -306,7 +307,8 @@ class NotificationService {
     await _notifications.show(
       id: newMoonId,
       title: _isEn ? '🌑 New Moon' : '🌑 Yeni Ay',
-      body: message ??
+      body:
+          message ??
           (_isEn
               ? 'A time for new beginnings and setting intentions.'
               : 'Yeni başlangıçlar ve niyet belirleme zamanı.'),
@@ -336,7 +338,8 @@ class NotificationService {
     await _notifications.show(
       id: fullMoonId,
       title: _isEn ? '🌕 Full Moon' : '🌕 Dolunay',
-      body: message ??
+      body:
+          message ??
           (_isEn
               ? 'A time for reflection and gratitude.'
               : 'Yansıma ve şükran zamanı.'),

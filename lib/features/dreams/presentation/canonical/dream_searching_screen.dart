@@ -21,168 +21,171 @@ class DreamSearchingScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: isDark
-                ? [AppColors.deepSpace, AppColors.deepSpace]
-                : [const Color(0xFFFFFCF5), const Color(0xFFFFF8E8)],
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: isDark
+                  ? [AppColors.deepSpace, AppColors.deepSpace]
+                  : [const Color(0xFFFFFCF5), const Color(0xFFFFF8E8)],
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                IconButton(
-                  onPressed: () => context.pop(),
-                  tooltip: L10nService.get('common.back', language),
-                  icon: Icon(
-                    Icons.chevron_left,
-                    color: isDark ? Colors.white70 : AppColors.textDark,
+          child: SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IconButton(
+                    onPressed: () => context.pop(),
+                    tooltip: L10nService.get('common.back', language),
+                    icon: Icon(
+                      Icons.chevron_left,
+                      color: isDark ? Colors.white70 : AppColors.textDark,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  L10nService.get(
-                    'dreams.canonical.searching_question',
-                    language,
-                  ),
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w600,
-                    color: isDark ? Colors.white : AppColors.textDark,
-                    height: 1.2,
-                  ),
-                ).animate().fadeIn(duration: 400.ms),
-                const SizedBox(height: 8),
-                _buildTag(
-                  L10nService.get('dreams.canonical.brand_tag', language),
-                  color,
-                ),
-                const SizedBox(height: 32),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.sections.short_answer',
-                    language,
-                  ),
-                  color,
-                  [
+                  const SizedBox(height: 24),
+                  Text(
                     L10nService.get(
-                      'dreams.canonical.searching.short_answer_1',
+                      'dreams.canonical.searching_question',
                       language,
                     ),
-                    L10nService.get(
-                      'dreams.canonical.searching.short_answer_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.searching.short_answer_3',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 28),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.searching.what_title',
-                    language,
-                  ),
-                  color,
-                  [
-                    L10nService.get(
-                      'dreams.canonical.searching.what_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.searching.what_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.searching.what_3',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.searching.what_4',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 28),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.sections.what_it_means',
-                    language,
-                  ),
-                  color,
-                  [
-                    L10nService.get(
-                      'dreams.canonical.searching.meaning_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.searching.meaning_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.searching.meaning_3',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 28),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.searching.not_found_title',
-                    language,
-                  ),
-                  color,
-                  [
-                    L10nService.get(
-                      'dreams.canonical.searching.not_found_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.searching.not_found_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.searching.not_found_3',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 32),
-                _buildSuggestion(
-                  context,
-                  isDark,
-                  language,
-                  '🌫️',
-                  L10nService.get('dreams.canonical.lost_question', language),
-                  Routes.dreamLost,
-                ),
-                const SizedBox(height: 40),
-                Center(
-                  child: Text(
-                    L10nService.get('dreams.canonical.brand_footer', language),
                     style: TextStyle(
-                      fontSize: 12,
-                      color: isDark ? Colors.white38 : AppColors.textLight,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w600,
+                      color: isDark ? Colors.white : AppColors.textDark,
+                      height: 1.2,
+                    ),
+                  ).animate().fadeIn(duration: 400.ms),
+                  const SizedBox(height: 8),
+                  _buildTag(
+                    L10nService.get('dreams.canonical.brand_tag', language),
+                    color,
+                  ),
+                  const SizedBox(height: 32),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.sections.short_answer',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.searching.short_answer_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.searching.short_answer_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.searching.short_answer_3',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 28),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.searching.what_title',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.searching.what_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.searching.what_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.searching.what_3',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.searching.what_4',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 28),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.sections.what_it_means',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.searching.meaning_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.searching.meaning_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.searching.meaning_3',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 28),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.searching.not_found_title',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.searching.not_found_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.searching.not_found_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.searching.not_found_3',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 32),
+                  _buildSuggestion(
+                    context,
+                    isDark,
+                    language,
+                    '🌫️',
+                    L10nService.get('dreams.canonical.lost_question', language),
+                    Routes.dreamLost,
+                  ),
+                  const SizedBox(height: 40),
+                  Center(
+                    child: Text(
+                      L10nService.get(
+                        'dreams.canonical.brand_footer',
+                        language,
+                      ),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark ? Colors.white38 : AppColors.textLight,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 20),
-              ],
+                  const SizedBox(height: 20),
+                ],
+              ),
             ),
           ),
         ),
-      ),
       ),
     );
   }

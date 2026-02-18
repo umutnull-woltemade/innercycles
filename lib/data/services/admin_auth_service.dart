@@ -256,8 +256,12 @@ class AdminSession {
 
   factory AdminSession.fromJson(Map<String, dynamic> json) => AdminSession(
     token: json['token'] as String? ?? '',
-    expiresAt: DateTime.fromMillisecondsSinceEpoch(json['expiresAt'] as int? ?? 0),
-    createdAt: DateTime.fromMillisecondsSinceEpoch(json['createdAt'] as int? ?? 0),
+    expiresAt: DateTime.fromMillisecondsSinceEpoch(
+      json['expiresAt'] as int? ?? 0,
+    ),
+    createdAt: DateTime.fromMillisecondsSinceEpoch(
+      json['createdAt'] as int? ?? 0,
+    ),
   );
 
   bool get isValid => DateTime.now().isBefore(expiresAt);

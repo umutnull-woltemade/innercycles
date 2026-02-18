@@ -70,10 +70,7 @@ class QuizSuggestionCard extends ConsumerWidget {
                     color: AppColors.auroraStart.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Text(
-                    quiz.emoji,
-                    style: const TextStyle(fontSize: 14),
-                  ),
+                  child: Text(quiz.emoji, style: const TextStyle(fontSize: 14)),
                 ),
                 const SizedBox(width: 8),
                 Expanded(
@@ -145,30 +142,34 @@ class QuizSuggestionCard extends ConsumerWidget {
             Row(
               children: [
                 // Dimension pills (first 3)
-                ...quiz.dimensions.values.take(3).map((dim) => Padding(
-                      padding: const EdgeInsets.only(right: 6),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 6,
-                          vertical: 2,
-                        ),
-                        decoration: BoxDecoration(
-                          color: isDark
-                              ? AppColors.surfaceLight.withValues(alpha: 0.2)
-                              : AppColors.lightSurfaceVariant,
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        child: Text(
-                          '${dim.emoji} ${isEn ? dim.nameEn : dim.nameTr}',
-                          style: TextStyle(
-                            fontSize: 10,
+                ...quiz.dimensions.values
+                    .take(3)
+                    .map(
+                      (dim) => Padding(
+                        padding: const EdgeInsets.only(right: 6),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 6,
+                            vertical: 2,
+                          ),
+                          decoration: BoxDecoration(
                             color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
+                                ? AppColors.surfaceLight.withValues(alpha: 0.2)
+                                : AppColors.lightSurfaceVariant,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text(
+                            '${dim.emoji} ${isEn ? dim.nameEn : dim.nameTr}',
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
                           ),
                         ),
                       ),
-                    )),
+                    ),
                 const Spacer(),
                 Text(
                   isEn ? 'Take quiz →' : 'Teste başla →',

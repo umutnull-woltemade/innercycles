@@ -75,24 +75,33 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         behavior: HitTestBehavior.opaque,
         child: CosmicBackground(
           child: SafeArea(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(AppConstants.spacingLg),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildHeader(context, language),
-                  const SizedBox(height: AppConstants.spacingXl),
-                  if (profile != null) ...[
-                    _buildProfileHeader(context, profile, isDark),
-                    const SizedBox(height: AppConstants.spacingXl),
-                  ],
-                  _buildEditSection(context, language, isDark),
-                  const SizedBox(height: AppConstants.spacingXl),
-                  if (profile != null)
-                    _buildCosmicInfo(context, profile, language, isDark),
-                ],
-              ),
-            ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms),
+            child:
+                SingleChildScrollView(
+                      padding: const EdgeInsets.all(AppConstants.spacingLg),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildHeader(context, language),
+                          const SizedBox(height: AppConstants.spacingXl),
+                          if (profile != null) ...[
+                            _buildProfileHeader(context, profile, isDark),
+                            const SizedBox(height: AppConstants.spacingXl),
+                          ],
+                          _buildEditSection(context, language, isDark),
+                          const SizedBox(height: AppConstants.spacingXl),
+                          if (profile != null)
+                            _buildCosmicInfo(
+                              context,
+                              profile,
+                              language,
+                              isDark,
+                            ),
+                        ],
+                      ),
+                    )
+                    .animate()
+                    .fadeIn(duration: 400.ms)
+                    .slideY(begin: 0.05, duration: 400.ms),
           ),
         ),
       ),
@@ -197,7 +206,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             if (profile.age > 0) ...[
               const SizedBox(height: 4),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.starGold.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12),
@@ -375,43 +387,43 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           button: true,
           label: '$label: $value',
           child: GestureDetector(
-          onTap: onTap,
-          child: Container(
-            padding: const EdgeInsets.all(AppConstants.spacingMd),
-            decoration: BoxDecoration(
-              color: isDark
-                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                  : AppColors.lightSurfaceVariant,
-              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  icon,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
-                const SizedBox(width: AppConstants.spacingMd),
-                Expanded(
-                  child: Text(
-                    value,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
+            onTap: onTap,
+            child: Container(
+              padding: const EdgeInsets.all(AppConstants.spacingMd),
+              decoration: BoxDecoration(
+                color: isDark
+                    ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                    : AppColors.lightSurfaceVariant,
+                borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    icon,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                  const SizedBox(width: AppConstants.spacingMd),
+                  Expanded(
+                    child: Text(
+                      value,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
                     ),
                   ),
-                ),
-                Icon(
-                  Icons.chevron_right,
-                  color: isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted,
-                ),
-              ],
+                  Icon(
+                    Icons.chevron_right,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                  ),
+                ],
+              ),
             ),
-          ),
           ),
         ),
       ],
@@ -467,9 +479,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             child: OutlinedButton.icon(
               onPressed: () => context.push(Routes.insight),
               icon: const Icon(Icons.auto_awesome),
-              label: Text(
-                isEn ? 'View Insights' : 'İçgörüleri Gör',
-              ),
+              label: Text(isEn ? 'View Insights' : 'İçgörüleri Gör'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.auroraStart,
                 side: BorderSide(color: AppColors.auroraStart),
@@ -679,7 +689,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   const SizedBox(height: 12),
                   Expanded(
                     child: ListView.builder(
-                      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                      physics: const BouncingScrollPhysics(
+                        parent: AlwaysScrollableScrollPhysics(),
+                      ),
                       itemCount: filteredCities.length,
                       itemBuilder: (context, index) {
                         final city = filteredCities[index];
@@ -818,4 +830,3 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     );
   }
 }
-

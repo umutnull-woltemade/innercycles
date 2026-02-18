@@ -26,8 +26,7 @@ class MeditationTimerScreen extends ConsumerStatefulWidget {
       _MeditationTimerScreenState();
 }
 
-class _MeditationTimerScreenState
-    extends ConsumerState<MeditationTimerScreen>
+class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
     with SingleTickerProviderStateMixin {
   int _selectedMinutes = 5;
   bool _isRunning = false;
@@ -42,8 +41,12 @@ class _MeditationTimerScreenState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('meditation'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('meditation', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('meditation'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData((s) => s.trackToolOpen('meditation', source: 'direct'));
     });
     _pulseController = AnimationController(
       vsync: this,
@@ -66,7 +69,10 @@ class _MeditationTimerScreenState
     HapticFeedback.mediumImpact();
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (!mounted) { timer.cancel(); return; }
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
       if (_remainingSeconds <= 1) {
         _complete();
       } else {
@@ -86,7 +92,10 @@ class _MeditationTimerScreenState
     _isRunning = true;
     _pulseController.repeat(reverse: true);
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (!mounted) { timer.cancel(); return; }
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
       if (_remainingSeconds <= 1) {
         _complete();
       } else {
@@ -157,9 +166,7 @@ class _MeditationTimerScreenState
               parent: AlwaysScrollableScrollPhysics(),
             ),
             slivers: [
-              GlassSliverAppBar(
-                title: isEn ? 'Meditation' : 'Meditasyon',
-              ),
+              GlassSliverAppBar(title: isEn ? 'Meditation' : 'Meditasyon'),
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Padding(
@@ -184,24 +191,25 @@ class _MeditationTimerScreenState
                           children: _presets.map((m) {
                             final isSelected = m == _selectedMinutes;
                             return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 6),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6,
+                              ),
                               child: GestureDetector(
                                 onTap: () =>
                                     setState(() => _selectedMinutes = m),
                                 child: AnimatedContainer(
-                                  duration:
-                                      const Duration(milliseconds: 200),
+                                  duration: const Duration(milliseconds: 200),
                                   width: 64,
                                   height: 64,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: isSelected
-                                        ? AppColors.cosmicPurple
-                                            .withValues(alpha: 0.3)
+                                        ? AppColors.cosmicPurple.withValues(
+                                            alpha: 0.3,
+                                          )
                                         : (isDark
-                                            ? AppColors.surfaceDark
-                                            : AppColors.lightSurfaceVariant),
+                                              ? AppColors.surfaceDark
+                                              : AppColors.lightSurfaceVariant),
                                     border: Border.all(
                                       color: isSelected
                                           ? AppColors.cosmicPurple
@@ -220,9 +228,9 @@ class _MeditationTimerScreenState
                                         color: isSelected
                                             ? AppColors.cosmicPurple
                                             : (isDark
-                                                ? AppColors.textSecondary
-                                                : AppColors
-                                                    .lightTextSecondary),
+                                                  ? AppColors.textSecondary
+                                                  : AppColors
+                                                        .lightTextSecondary),
                                       ),
                                     ),
                                   ),
@@ -258,10 +266,10 @@ class _MeditationTimerScreenState
                                       value: 1.0,
                                       strokeWidth: 6,
                                       color: isDark
-                                          ? Colors.white
-                                              .withValues(alpha: 0.06)
-                                          : Colors.black
-                                              .withValues(alpha: 0.04),
+                                          ? Colors.white.withValues(alpha: 0.06)
+                                          : Colors.black.withValues(
+                                              alpha: 0.04,
+                                            ),
                                     ),
                                   ),
                                   // Progress ring
@@ -288,19 +296,18 @@ class _MeditationTimerScreenState
                                             fontWeight: FontWeight.w300,
                                             color: isDark
                                                 ? Colors.white
-                                                : AppColors
-                                                    .lightTextPrimary,
+                                                : AppColors.lightTextPrimary,
                                             letterSpacing: 2,
                                           ),
                                         ),
                                         Text(
                                           _isRunning
                                               ? (isEn
-                                                  ? 'Be present'
-                                                  : 'Anda kal')
+                                                    ? 'Be present'
+                                                    : 'Anda kal')
                                               : (isEn
-                                                  ? 'Paused'
-                                                  : 'Duraklatıldı'),
+                                                    ? 'Paused'
+                                                    : 'Duraklatıldı'),
                                           style: TextStyle(
                                             fontSize: 13,
                                             color: AppColors.cosmicPurple
@@ -322,8 +329,7 @@ class _MeditationTimerScreenState
                                             fontWeight: FontWeight.w600,
                                             color: isDark
                                                 ? AppColors.textSecondary
-                                                : AppColors
-                                                    .lightTextSecondary,
+                                                : AppColors.lightTextSecondary,
                                           ),
                                         ),
                                       ],
@@ -371,9 +377,7 @@ class _MeditationTimerScreenState
                               elevation: 0,
                             ),
                             child: Text(
-                              isEn
-                                  ? 'Begin Meditation'
-                                  : 'Meditasyona Başla',
+                              isEn ? 'Begin Meditation' : 'Meditasyona Başla',
                               style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
@@ -392,14 +396,11 @@ class _MeditationTimerScreenState
                                   style: OutlinedButton.styleFrom(
                                     side: BorderSide(
                                       color: isDark
-                                          ? Colors.white
-                                              .withValues(alpha: 0.2)
-                                          : Colors.black
-                                              .withValues(alpha: 0.1),
+                                          ? Colors.white.withValues(alpha: 0.2)
+                                          : Colors.black.withValues(alpha: 0.1),
                                     ),
                                     shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(16),
+                                      borderRadius: BorderRadius.circular(16),
                                     ),
                                   ),
                                   child: Text(
@@ -419,16 +420,14 @@ class _MeditationTimerScreenState
                               child: SizedBox(
                                 height: 56,
                                 child: ElevatedButton(
-                                  onPressed:
-                                      _isRunning ? _pause : _resume,
+                                  onPressed: _isRunning ? _pause : _resume,
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: _isRunning
                                         ? AppColors.warning
                                         : AppColors.cosmicPurple,
                                     foregroundColor: Colors.white,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(16),
+                                      borderRadius: BorderRadius.circular(16),
                                     ),
                                     elevation: 0,
                                   ),
@@ -448,7 +447,11 @@ class _MeditationTimerScreenState
                         ),
 
                       const SizedBox(height: 24),
-                      ToolEcosystemFooter(currentToolId: 'meditation', isEn: isEn, isDark: isDark),
+                      ToolEcosystemFooter(
+                        currentToolId: 'meditation',
+                        isEn: isEn,
+                        isDark: isDark,
+                      ),
                       const SizedBox(height: 24),
                     ],
                   ),

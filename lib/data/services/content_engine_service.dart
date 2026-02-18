@@ -39,26 +39,28 @@ class DailyContent {
   });
 
   Map<String, dynamic> toJson() => {
-        'archetype': archetype,
-        'emotionalState': emotionalState,
-        'trendContext': trendContext,
-        'growthDirection': growthDirection,
-        'reflectiveQuestion': reflectiveQuestion,
-        'hash': hash,
-        'generatedAt': generatedAt.toIso8601String(),
-        'confidenceScore': confidenceScore,
-      };
+    'archetype': archetype,
+    'emotionalState': emotionalState,
+    'trendContext': trendContext,
+    'growthDirection': growthDirection,
+    'reflectiveQuestion': reflectiveQuestion,
+    'hash': hash,
+    'generatedAt': generatedAt.toIso8601String(),
+    'confidenceScore': confidenceScore,
+  };
 
   factory DailyContent.fromJson(Map<String, dynamic> json) => DailyContent(
-        archetype: json['archetype'],
-        emotionalState: json['emotionalState'],
-        trendContext: json['trendContext'],
-        growthDirection: json['growthDirection'],
-        reflectiveQuestion: json['reflectiveQuestion'],
-        hash: json['hash'],
-        generatedAt: DateTime.tryParse(json['generatedAt']?.toString() ?? '') ?? DateTime.now(),
-        confidenceScore: json['confidenceScore'],
-      );
+    archetype: json['archetype'],
+    emotionalState: json['emotionalState'],
+    trendContext: json['trendContext'],
+    growthDirection: json['growthDirection'],
+    reflectiveQuestion: json['reflectiveQuestion'],
+    hash: json['hash'],
+    generatedAt:
+        DateTime.tryParse(json['generatedAt']?.toString() ?? '') ??
+        DateTime.now(),
+    confidenceScore: json['confidenceScore'],
+  );
 }
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -287,8 +289,9 @@ class ContentEngineService {
   /// Select archetype with no repeat within 7 days
   String _selectArchetype(DateTime now) {
     final recentArchetypes = _getRecentArchetypes(7);
-    final available =
-        archetypes.where((a) => !recentArchetypes.contains(a)).toList();
+    final available = archetypes
+        .where((a) => !recentArchetypes.contains(a))
+        .toList();
 
     if (available.isEmpty) {
       // All archetypes used within 7 days (only 12 exist), pick least recent
@@ -436,7 +439,9 @@ class ContentEngineService {
     // Prune entries older than 90 days
     final cutoff = DateTime.now().subtract(const Duration(days: 90));
     history.removeWhere((entry) {
-      final generatedAt = DateTime.tryParse(entry['generatedAt']?.toString() ?? '');
+      final generatedAt = DateTime.tryParse(
+        entry['generatedAt']?.toString() ?? '',
+      );
       return generatedAt?.isBefore(cutoff) ?? true;
     });
 
@@ -462,10 +467,7 @@ class ContentEngineService {
   /// Store archetype usage with date
   void _storeArchetypeHistory(String archetype, DateTime date) {
     final history = _getRawArchetypeHistory();
-    history.add({
-      'archetype': archetype,
-      'date': date.toIso8601String(),
-    });
+    history.add({'archetype': archetype, 'date': date.toIso8601String()});
 
     // Prune entries older than 30 days
     final cutoff = DateTime.now().subtract(const Duration(days: 30));
@@ -560,10 +562,7 @@ class ContentEngineService {
   /// Store question usage with date
   void _storeQuestionHistory(String question, DateTime date) {
     final history = _getRawQuestionHistory();
-    history.add({
-      'question': question,
-      'date': date.toIso8601String(),
-    });
+    history.add({'question': question, 'date': date.toIso8601String()});
 
     // Prune entries older than 30 days
     final cutoff = DateTime.now().subtract(const Duration(days: 30));

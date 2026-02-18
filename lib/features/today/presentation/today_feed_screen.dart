@@ -49,163 +49,167 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: CustomScrollView(
-          physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
-          slivers: [
-            // ═══════════════════════════════════════════════════════
-            // HEADER - Greeting + Quick Actions
-            // ═══════════════════════════════════════════════════════
-            SliverToBoxAdapter(
-              child: _TodayHeader(
-                userName: userName,
-                isEn: isEn,
-                isDark: isDark,
-                language: language,
-              ).animate().fadeIn(duration: 400.ms),
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
             ),
-
-            // ═══════════════════════════════════════════════════════
-            // QUICK ACCESS CHIPS
-            // ═══════════════════════════════════════════════════════
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      _QuickChip(
-                        icon: Icons.edit_note_outlined,
-                        label: isEn ? 'Journal' : 'Günlük',
-                        onTap: () => context.push(Routes.journal),
-                        isDark: isDark,
-                      ),
-                      const SizedBox(width: 8),
-                      _QuickChip(
-                        icon: Icons.nights_stay_outlined,
-                        label: isEn ? 'Dream' : 'Rüya',
-                        onTap: () => context.push(Routes.dreamInterpretation),
-                        isDark: isDark,
-                      ),
-                      const SizedBox(width: 8),
-                      _QuickChip(
-                        icon: Icons.favorite_border,
-                        label: isEn ? 'Gratitude' : 'Şükran',
-                        onTap: () => context.push(Routes.gratitudeJournal),
-                        isDark: isDark,
-                      ),
-                      const SizedBox(width: 8),
-                      _QuickChip(
-                        icon: Icons.air_outlined,
-                        label: isEn ? 'Breathe' : 'Nefes',
-                        onTap: () => context.push(Routes.breathing),
-                        isDark: isDark,
-                      ),
-                      const SizedBox(width: 8),
-                      _QuickChip(
-                        icon: Icons.search_rounded,
-                        label: isEn ? 'Search' : 'Ara',
-                        onTap: () => context.push(Routes.search),
-                        isDark: isDark,
-                      ),
-                    ],
-                  ),
-                ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
+            slivers: [
+              // ═══════════════════════════════════════════════════════
+              // HEADER - Greeting + Quick Actions
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _TodayHeader(
+                  userName: userName,
+                  isEn: isEn,
+                  isDark: isDark,
+                  language: language,
+                ).animate().fadeIn(duration: 400.ms),
               ),
-            ),
 
-            // ═══════════════════════════════════════════════════════
-            // PRIMARY CTA
-            // ═══════════════════════════════════════════════════════
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () => context.push(Routes.journal),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          isDark ? AppColors.starGold : AppColors.lightStarGold,
-                      foregroundColor: AppColors.deepSpace,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(AppConstants.radiusLg),
-                      ),
-                      elevation: 0,
-                    ),
+              // ═══════════════════════════════════════════════════════
+              // QUICK ACCESS CHIPS
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Flexible(
-                          child: Text(
-                            isEn
-                                ? 'Map Today\'s Cycle Position'
-                                : 'Bugünün Döngü Pozisyonunu Haritalandır',
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                        _QuickChip(
+                          icon: Icons.edit_note_outlined,
+                          label: isEn ? 'Journal' : 'Günlük',
+                          onTap: () => context.push(Routes.journal),
+                          isDark: isDark,
                         ),
                         const SizedBox(width: 8),
-                        const Icon(Icons.arrow_forward_rounded, size: 18),
+                        _QuickChip(
+                          icon: Icons.nights_stay_outlined,
+                          label: isEn ? 'Dream' : 'Rüya',
+                          onTap: () => context.push(Routes.dreamInterpretation),
+                          isDark: isDark,
+                        ),
+                        const SizedBox(width: 8),
+                        _QuickChip(
+                          icon: Icons.favorite_border,
+                          label: isEn ? 'Gratitude' : 'Şükran',
+                          onTap: () => context.push(Routes.gratitudeJournal),
+                          isDark: isDark,
+                        ),
+                        const SizedBox(width: 8),
+                        _QuickChip(
+                          icon: Icons.air_outlined,
+                          label: isEn ? 'Breathe' : 'Nefes',
+                          onTap: () => context.push(Routes.breathing),
+                          isDark: isDark,
+                        ),
+                        const SizedBox(width: 8),
+                        _QuickChip(
+                          icon: Icons.search_rounded,
+                          label: isEn ? 'Search' : 'Ara',
+                          onTap: () => context.push(Routes.search),
+                          isDark: isDark,
+                        ),
                       ],
                     ),
-                  ),
-                ).animate().fadeIn(delay: 150.ms, duration: 400.ms),
+                  ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
+                ),
               ),
-            ),
 
-            const SliverToBoxAdapter(child: SizedBox(height: 24)),
-
-            // ═══════════════════════════════════════════════════════
-            // ACTIVE CHALLENGE CARD
-            // ═══════════════════════════════════════════════════════
-            SliverToBoxAdapter(
-              child: _ActiveChallengeSection(isEn: isEn, isDark: isDark),
-            ),
-
-            // ═══════════════════════════════════════════════════════
-            // FEED CARDS (lazy via SliverList)
-            // ═══════════════════════════════════════════════════════
-            SliverPadding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate([
-                  const StreakRecoveryBanner(),
-                  const MoodCheckinCard(),
-                  const SizedBox(height: 12),
-                  const AffirmationCard(),
-                  const SizedBox(height: 12),
-                  const CosmicMessageCard(),
-                  const SizedBox(height: 12),
-                  const TodayPromptCard(),
-                  const SizedBox(height: 12),
-                  const QuizSuggestionCard(),
-                  const SizedBox(height: 12),
-                  const StreakCard(),
-                  const SizedBox(height: 12),
-                  const RitualCheckoffCard(),
-                  const SizedBox(height: 24),
-                  _SuggestedToolsSection(isEn: isEn, isDark: isDark),
-                  const SizedBox(height: 24),
-                  ToolEcosystemFooter(
-                    currentToolId: 'todayFeed',
-                    isEn: isEn,
-                    isDark: isDark,
-                  ),
-                  const SizedBox(height: 32),
-                ]),
+              // ═══════════════════════════════════════════════════════
+              // PRIMARY CTA
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () => context.push(Routes.journal),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: isDark
+                            ? AppColors.starGold
+                            : AppColors.lightStarGold,
+                        foregroundColor: AppColors.deepSpace,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            AppConstants.radiusLg,
+                          ),
+                        ),
+                        elevation: 0,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              isEn
+                                  ? 'Map Today\'s Cycle Position'
+                                  : 'Bugünün Döngü Pozisyonunu Haritalandır',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          const Icon(Icons.arrow_forward_rounded, size: 18),
+                        ],
+                      ),
+                    ),
+                  ).animate().fadeIn(delay: 150.ms, duration: 400.ms),
+                ),
               ),
-            ),
-          ],
+
+              const SliverToBoxAdapter(child: SizedBox(height: 24)),
+
+              // ═══════════════════════════════════════════════════════
+              // ACTIVE CHALLENGE CARD
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _ActiveChallengeSection(isEn: isEn, isDark: isDark),
+              ),
+
+              // ═══════════════════════════════════════════════════════
+              // FEED CARDS (lazy via SliverList)
+              // ═══════════════════════════════════════════════════════
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 8,
+                ),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate([
+                    const StreakRecoveryBanner(),
+                    const MoodCheckinCard(),
+                    const SizedBox(height: 12),
+                    const AffirmationCard(),
+                    const SizedBox(height: 12),
+                    const CosmicMessageCard(),
+                    const SizedBox(height: 12),
+                    const TodayPromptCard(),
+                    const SizedBox(height: 12),
+                    const QuizSuggestionCard(),
+                    const SizedBox(height: 12),
+                    const StreakCard(),
+                    const SizedBox(height: 12),
+                    const RitualCheckoffCard(),
+                    const SizedBox(height: 24),
+                    _SuggestedToolsSection(isEn: isEn, isDark: isDark),
+                    const SizedBox(height: 24),
+                    ToolEcosystemFooter(
+                      currentToolId: 'todayFeed',
+                      isEn: isEn,
+                      isDark: isDark,
+                    ),
+                    const SizedBox(height: 32),
+                  ]),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
       ),
     );
   }
@@ -424,10 +428,7 @@ class _ActiveChallengeSection extends ConsumerWidget {
   final bool isEn;
   final bool isDark;
 
-  const _ActiveChallengeSection({
-    required this.isEn,
-    required this.isDark,
-  });
+  const _ActiveChallengeSection({required this.isEn, required this.isDark});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -440,10 +441,9 @@ class _ActiveChallengeSection extends ConsumerWidget {
         for (final challenge in GrowthChallengeService.allChallenges) {
           final progress = service.getProgress(challenge.id);
           if (progress != null && !progress.isCompleted) {
-            activeList.add(_ActiveChallengeData(
-              challenge: challenge,
-              progress: progress,
-            ));
+            activeList.add(
+              _ActiveChallengeData(challenge: challenge, progress: progress),
+            );
           }
         }
 
@@ -465,14 +465,18 @@ class _ActiveChallengeSection extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              ...activeList.take(2).map((data) => Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
-                    child: _ActiveChallengeCard(
-                      data: data,
-                      isEn: isEn,
-                      isDark: isDark,
+              ...activeList
+                  .take(2)
+                  .map(
+                    (data) => Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: _ActiveChallengeCard(
+                        data: data,
+                        isEn: isEn,
+                        isDark: isDark,
+                      ),
                     ),
-                  )),
+                  ),
               const SizedBox(height: 8),
             ],
           ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
@@ -487,10 +491,7 @@ class _ActiveChallengeData {
   final GrowthChallenge challenge;
   final ChallengeProgress progress;
 
-  const _ActiveChallengeData({
-    required this.challenge,
-    required this.progress,
-  });
+  const _ActiveChallengeData({required this.challenge, required this.progress});
 }
 
 class _ActiveChallengeCard extends StatelessWidget {
@@ -516,9 +517,7 @@ class _ActiveChallengeCard extends StatelessWidget {
             ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -573,8 +572,9 @@ class _ActiveChallengeCard extends StatelessWidget {
               backgroundColor: isDark
                   ? Colors.white.withValues(alpha: 0.08)
                   : Colors.black.withValues(alpha: 0.06),
-              valueColor:
-                  const AlwaysStoppedAnimation<Color>(AppColors.starGold),
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                AppColors.starGold,
+              ),
               minHeight: 6,
             ),
           ),
@@ -593,8 +593,7 @@ class _ActiveChallengeCard extends StatelessWidget {
                 foregroundColor: AppColors.starGold,
                 side: const BorderSide(color: AppColors.starGold, width: 1),
                 shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(AppConstants.radiusMd),
+                  borderRadius: BorderRadius.circular(AppConstants.radiusMd),
                 ),
                 padding: const EdgeInsets.symmetric(vertical: 10),
               ),
@@ -649,10 +648,7 @@ class _SuggestedToolsSection extends ConsumerWidget {
   final bool isEn;
   final bool isDark;
 
-  const _SuggestedToolsSection({
-    required this.isEn,
-    required this.isDark,
-  });
+  const _SuggestedToolsSection({required this.isEn, required this.isDark});
 
   static const _categoryColors = <ToolCategory, Color>{
     ToolCategory.journal: AppColors.auroraStart,
@@ -788,16 +784,18 @@ class _SuggestedToolsSection extends ConsumerWidget {
                     Icon(
                       Icons.arrow_forward_ios,
                       size: 14,
-                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
                     ),
                   ],
                 ),
               ),
             ),
           ).animate().fadeIn(
-                delay: Duration(milliseconds: 300 + entry.key * 80),
-                duration: 400.ms,
-              );
+            delay: Duration(milliseconds: 300 + entry.key * 80),
+            duration: 400.ms,
+          );
         }),
       ],
     ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
@@ -831,9 +829,12 @@ class _SuggestedToolsSection extends ConsumerWidget {
               final item = fallback[index];
               final manifest = ToolManifestRegistry.findById(item.id);
               if (manifest == null) return const SizedBox.shrink();
-              final color = _categoryColors[manifest.category] ?? AppColors.auroraStart;
+              final color =
+                  _categoryColors[manifest.category] ?? AppColors.auroraStart;
               return Padding(
-                padding: EdgeInsets.only(right: index < fallback.length - 1 ? 12 : 0),
+                padding: EdgeInsets.only(
+                  right: index < fallback.length - 1 ? 12 : 0,
+                ),
                 child: GestureDetector(
                   onTap: () {
                     HapticFeedback.selectionClick();
@@ -846,13 +847,18 @@ class _SuggestedToolsSection extends ConsumerWidget {
                       color: isDark
                           ? color.withValues(alpha: 0.08)
                           : color.withValues(alpha: 0.05),
-                      borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                      borderRadius: BorderRadius.circular(
+                        AppConstants.radiusMd,
+                      ),
                       border: Border.all(color: color.withValues(alpha: 0.2)),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(manifest.icon, style: const TextStyle(fontSize: 24)),
+                        Text(
+                          manifest.icon,
+                          style: const TextStyle(fontSize: 24),
+                        ),
                         const Spacer(),
                         Text(
                           isEn ? manifest.nameEn : manifest.nameTr,
@@ -868,7 +874,9 @@ class _SuggestedToolsSection extends ConsumerWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          isEn ? manifest.valuePropositionEn : manifest.valuePropositionTr,
+                          isEn
+                              ? manifest.valuePropositionEn
+                              : manifest.valuePropositionTr,
                           style: TextStyle(
                             fontSize: 11,
                             color: isDark

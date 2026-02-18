@@ -259,104 +259,104 @@ class _NavigationCardWidget extends StatelessWidget {
       label: card.getLocalizedTitle(language),
       hint: card.getLocalizedDescription(language),
       child: GestureDetector(
-      onTap: () => context.push(card.route),
-      child: Container(
-        width: 180,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          gradient: isDark
-              ? LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: isHighlighted
-                      ? [
-                          AppColors.auroraStart.withValues(alpha: 0.15),
-                          AppColors.auroraEnd.withValues(alpha: 0.1),
-                        ]
-                      : [
-                          AppColors.surfaceLight.withValues(alpha: 0.5),
-                          AppColors.surfaceDark.withValues(alpha: 0.3),
-                        ],
-                )
-              : LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: isHighlighted
-                      ? [
-                          AppColors.lightAuroraStart.withValues(alpha: 0.1),
-                          AppColors.lightAuroraEnd.withValues(alpha: 0.05),
-                        ]
-                      : [AppColors.lightCard, AppColors.lightSurfaceVariant],
-                ),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: isDark
-                ? (isHighlighted
-                      ? AppColors.auroraStart.withValues(alpha: 0.3)
-                      : AppColors.textMuted.withValues(alpha: 0.1))
-                : (isHighlighted
-                      ? AppColors.lightAuroraStart.withValues(alpha: 0.3)
-                      : AppColors.lightTextMuted.withValues(alpha: 0.15)),
-            width: 1,
-          ),
-          boxShadow: [
-            BoxShadow(
+        onTap: () => context.push(card.route),
+        child: Container(
+          width: 180,
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            gradient: isDark
+                ? LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: isHighlighted
+                        ? [
+                            AppColors.auroraStart.withValues(alpha: 0.15),
+                            AppColors.auroraEnd.withValues(alpha: 0.1),
+                          ]
+                        : [
+                            AppColors.surfaceLight.withValues(alpha: 0.5),
+                            AppColors.surfaceDark.withValues(alpha: 0.3),
+                          ],
+                  )
+                : LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: isHighlighted
+                        ? [
+                            AppColors.lightAuroraStart.withValues(alpha: 0.1),
+                            AppColors.lightAuroraEnd.withValues(alpha: 0.05),
+                          ]
+                        : [AppColors.lightCard, AppColors.lightSurfaceVariant],
+                  ),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
               color: isDark
-                  ? Colors.black.withValues(alpha: 0.2)
-                  : Colors.black.withValues(alpha: 0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+                  ? (isHighlighted
+                        ? AppColors.auroraStart.withValues(alpha: 0.3)
+                        : AppColors.textMuted.withValues(alpha: 0.1))
+                  : (isHighlighted
+                        ? AppColors.lightAuroraStart.withValues(alpha: 0.3)
+                        : AppColors.lightTextMuted.withValues(alpha: 0.15)),
+              width: 1,
             ),
-            if (isHighlighted)
+            boxShadow: [
               BoxShadow(
-                color: AppColors.auroraStart.withValues(alpha: 0.15),
-                blurRadius: 20,
-                spreadRadius: -5,
-              ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Emoji
-            if (card.emoji != null)
-              Text(card.emoji!, style: const TextStyle(fontSize: 28)),
-            const SizedBox(height: 8),
-            // Title
-            Text(
-              card.getLocalizedTitle(language),
-              style: GoogleFonts.raleway(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
                 color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
-                height: 1.2,
+                    ? Colors.black.withValues(alpha: 0.2)
+                    : Colors.black.withValues(alpha: 0.05),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
               ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const SizedBox(height: 4),
-            // Description
-            Expanded(
-              child: Text(
-                card.getLocalizedDescription(language),
+              if (isHighlighted)
+                BoxShadow(
+                  color: AppColors.auroraStart.withValues(alpha: 0.15),
+                  blurRadius: 20,
+                  spreadRadius: -5,
+                ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Emoji
+              if (card.emoji != null)
+                Text(card.emoji!, style: const TextStyle(fontSize: 28)),
+              const SizedBox(height: 8),
+              // Title
+              Text(
+                card.getLocalizedTitle(language),
                 style: GoogleFonts.raleway(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
                   color: isDark
-                      ? AppColors.textSecondary.withValues(alpha: 0.8)
-                      : AppColors.lightTextSecondary,
-                  height: 1.3,
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                  height: 1.2,
                 ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-            ),
-          ],
+              const SizedBox(height: 4),
+              // Description
+              Expanded(
+                child: Text(
+                  card.getLocalizedDescription(language),
+                  style: GoogleFonts.raleway(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: isDark
+                        ? AppColors.textSecondary.withValues(alpha: 0.8)
+                        : AppColors.lightTextSecondary,
+                    height: 1.3,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-    ),
     );
   }
 }

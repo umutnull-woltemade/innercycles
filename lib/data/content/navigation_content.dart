@@ -89,7 +89,8 @@ class HomepageNavigation {
         route: Routes.insight,
         emoji: '🗺️',
         titleKey: 'navigation.cards.personal_profile_question.title',
-        descriptionKey: 'navigation.cards.personal_profile_question.description',
+        descriptionKey:
+            'navigation.cards.personal_profile_question.description',
       ),
       NavigationCard(
         title: 'İlişki Dinamiklerim',
@@ -382,7 +383,8 @@ class ArchetypeNavigation {
         ),
         NavigationCard(
           title: 'Günlük Yansıma',
-          description: '${archetypeData['name']} enerjisiyle uyumlu bir içgörü.',
+          description:
+              '${archetypeData['name']} enerjisiyle uyumlu bir içgörü.',
           route: Routes.journal,
           emoji: '📝',
           titleKey: 'navigation.cards.daily_reflection.title',
@@ -412,7 +414,8 @@ class ArchetypeNavigation {
           route: Routes.insight,
           emoji: '💕',
           titleKey: 'navigation.cards.personality_compatibility.title',
-          descriptionKey: 'navigation.cards.personality_compatibility.description',
+          descriptionKey:
+              'navigation.cards.personality_compatibility.description',
         ),
       ],
     );
@@ -955,8 +958,7 @@ class LifeCyclesNavigation {
         route: Routes.insight,
         emoji: '✨',
         titleKey: 'navigation.cards.personal_cycle_guidance.title',
-        descriptionKey:
-            'navigation.cards.personal_cycle_guidance.description',
+        descriptionKey: 'navigation.cards.personal_cycle_guidance.description',
       ),
     ],
     keepExploring: [
@@ -1037,7 +1039,8 @@ class DreamInterpretationNavigation {
         route: Routes.insight,
         emoji: '⭐',
         titleKey: 'navigation.cards.personality_dream_patterns.title',
-        descriptionKey: 'navigation.cards.personality_dream_patterns.description',
+        descriptionKey:
+            'navigation.cards.personality_dream_patterns.description',
       ),
       NavigationCard(
         title: 'Bilinçaltı Keşfi',

@@ -111,9 +111,9 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
           child: Center(
             child: Text(
               lang == AppLanguage.en ? 'Quiz not found' : 'Test bulunamadı',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(color: AppColors.textSecondary),
             ),
           ),
         ),
@@ -140,22 +140,27 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildQuizView(
-      BuildContext context, QuizDefinition definition, bool isDark, bool isEn) {
+    BuildContext context,
+    QuizDefinition definition,
+    bool isDark,
+    bool isEn,
+  ) {
     return Column(
       children: [
         _buildQuizAppBar(context, definition, isDark, isEn),
         _buildProgressBar(isDark),
         const SizedBox(height: AppConstants.spacingMd),
         Padding(
-          padding:
-              const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingLg,
+          ),
           child: Text(
             isEn
                 ? 'Question ${_currentPage + 1} of $_totalPages'
                 : 'Soru ${_currentPage + 1} / $_totalPages',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
           ),
         ),
         const SizedBox(height: AppConstants.spacingSm),
@@ -168,7 +173,13 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
             },
             itemCount: _totalPages,
             itemBuilder: (context, index) {
-              return _buildQuestionPage(context, definition, index, isDark, isEn);
+              return _buildQuestionPage(
+                context,
+                definition,
+                index,
+                isDark,
+                isEn,
+              );
             },
           ),
         ),
@@ -177,7 +188,11 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
   }
 
   Widget _buildQuizAppBar(
-      BuildContext context, QuizDefinition definition, bool isDark, bool isEn) {
+    BuildContext context,
+    QuizDefinition definition,
+    bool isDark,
+    bool isEn,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppConstants.spacingSm,
@@ -200,8 +215,9 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
             icon: Icon(
               Icons.chevron_left,
               size: 28,
-              color:
-                  isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
           Expanded(
@@ -209,9 +225,9 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
               isEn ? definition.title : definition.titleTr,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.starGold,
-                    fontWeight: FontWeight.w600,
-                  ),
+                color: AppColors.starGold,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           const SizedBox(width: 48),
@@ -221,23 +237,25 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
   }
 
   Widget _buildProgressBar(bool isDark) {
-    final progress =
-        _totalPages > 0 ? (_currentPage + 1) / _totalPages : 0.0;
+    final progress = _totalPages > 0 ? (_currentPage + 1) / _totalPages : 0.0;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(AppConstants.radiusFull),
-        child: LinearProgressIndicator(
-          value: progress,
-          minHeight: 6,
-          backgroundColor: isDark
-              ? AppColors.surfaceLight.withValues(alpha: 0.3)
-              : AppColors.lightSurfaceVariant,
-          valueColor:
-              const AlwaysStoppedAnimation<Color>(AppColors.auroraStart),
-        ),
-      ),
-    )
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingLg,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+            child: LinearProgressIndicator(
+              value: progress,
+              minHeight: 6,
+              backgroundColor: isDark
+                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                  : AppColors.lightSurfaceVariant,
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                AppColors.auroraStart,
+              ),
+            ),
+          ),
+        )
         .animate(key: ValueKey(_currentPage))
         .fadeIn(duration: 300.ms)
         .scaleX(begin: 0.95, end: 1.0, duration: 300.ms);
@@ -247,8 +265,13 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
   // QUESTION PAGE
   // ══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildQuestionPage(BuildContext context, QuizDefinition definition,
-      int index, bool isDark, bool isEn) {
+  Widget _buildQuestionPage(
+    BuildContext context,
+    QuizDefinition definition,
+    int index,
+    bool isDark,
+    bool isEn,
+  ) {
     final question = definition.questions[index];
     final questionText = isEn ? question.text : question.textTr;
     final selectedAnswer = _answers.length > index ? _answers[index] : -1;
@@ -263,15 +286,15 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
           sliver: SliverList(
             delegate: SliverChildListDelegate([
               Text(
-                questionText,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    questionText,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: isDark
                           ? AppColors.textPrimary
                           : AppColors.lightTextPrimary,
                       fontWeight: FontWeight.w500,
                       height: 1.5,
                     ),
-              )
+                  )
                   .animate()
                   .fadeIn(duration: 500.ms, delay: 100.ms)
                   .slideY(begin: -0.1, end: 0, duration: 500.ms),
@@ -282,28 +305,27 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
                 final isSelected = selectedAnswer == optionIndex;
 
                 return Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: AppConstants.spacingMd),
-                  child: _buildOptionCard(
-                    context,
-                    optionText: optionText,
-                    isSelected: isSelected,
-                    isDark: isDark,
-                    onTap: () => _selectAnswer(optionIndex),
-                  ),
-                )
+                      padding: const EdgeInsets.only(
+                        bottom: AppConstants.spacingMd,
+                      ),
+                      child: _buildOptionCard(
+                        context,
+                        optionText: optionText,
+                        isSelected: isSelected,
+                        isDark: isDark,
+                        onTap: () => _selectAnswer(optionIndex),
+                      ),
+                    )
                     .animate()
                     .fadeIn(
                       duration: 400.ms,
-                      delay: Duration(
-                          milliseconds: 200 + (optionIndex * 100)),
+                      delay: Duration(milliseconds: 200 + (optionIndex * 100)),
                     )
                     .slideX(
                       begin: 0.05,
                       end: 0,
                       duration: 400.ms,
-                      delay: Duration(
-                          milliseconds: 200 + (optionIndex * 100)),
+                      delay: Duration(milliseconds: 200 + (optionIndex * 100)),
                     );
               }),
             ]),
@@ -332,8 +354,8 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
             color: isSelected
                 ? AppColors.auroraStart
                 : isDark
-                    ? AppColors.surfaceLight.withValues(alpha: 0.4)
-                    : AppColors.lightSurfaceVariant,
+                ? AppColors.surfaceLight.withValues(alpha: 0.4)
+                : AppColors.lightSurfaceVariant,
             width: isSelected ? 2 : 1,
           ),
           gradient: isSelected
@@ -349,8 +371,8 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
           color: isSelected
               ? null
               : isDark
-                  ? AppColors.surfaceDark.withValues(alpha: 0.6)
-                  : AppColors.lightCard.withValues(alpha: 0.9),
+              ? AppColors.surfaceDark.withValues(alpha: 0.6)
+              : AppColors.lightCard.withValues(alpha: 0.9),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -360,7 +382,9 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
               width: 22,
               height: 22,
               margin: const EdgeInsets.only(
-                  top: 2, right: AppConstants.spacingMd),
+                top: 2,
+                right: AppConstants.spacingMd,
+              ),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
@@ -369,8 +393,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
                       : AppColors.textSecondary.withValues(alpha: 0.5),
                   width: 2,
                 ),
-                color:
-                    isSelected ? AppColors.auroraStart : Colors.transparent,
+                color: isSelected ? AppColors.auroraStart : Colors.transparent,
               ),
               child: isSelected
                   ? const Icon(Icons.check, size: 14, color: Colors.white)
@@ -380,11 +403,11 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
               child: Text(
                 optionText,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                      height: 1.5,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                  height: 1.5,
+                ),
               ),
             ),
           ],
@@ -397,8 +420,12 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
   // RESULT VIEW
   // ══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildResultView(BuildContext context, QuizDefinition definition,
-      bool isDark, bool isEn) {
+  Widget _buildResultView(
+    BuildContext context,
+    QuizDefinition definition,
+    bool isDark,
+    bool isEn,
+  ) {
     final result = _result!;
     final winningDim = definition.dimensions[result.resultType];
     if (winningDim == null) return const SizedBox.shrink();
@@ -409,9 +436,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(
-            title: isEn ? 'Your Result' : 'Sonucunuz',
-          ),
+          GlassSliverAppBar(title: isEn ? 'Your Result' : 'Sonucunuz'),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
@@ -422,12 +447,23 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
 
                 // Primary result card
                 _buildPrimaryResultCard(
-                    context, definition, result, winningDim, isDark, isEn),
+                  context,
+                  definition,
+                  result,
+                  winningDim,
+                  isDark,
+                  isEn,
+                ),
                 const SizedBox(height: AppConstants.spacingXl),
 
                 // Percentage breakdown
                 _buildPercentageBreakdown(
-                    context, definition, result, isDark, isEn),
+                  context,
+                  definition,
+                  result,
+                  isDark,
+                  isEn,
+                ),
                 const SizedBox(height: AppConstants.spacingXl),
 
                 // Strengths
@@ -494,13 +530,13 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
             child: Text(
               isEn
                   ? 'This is a self-reflection tool for personal awareness, '
-                      'not a clinical assessment.'
+                        'not a clinical assessment.'
                   : 'Bu, klinik bir değerlendirme değil, kişisel farkındalık '
-                      'için bir öz yansıtma aracıdır.',
+                        'için bir öz yansıtma aracıdır.',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textSecondary.withValues(alpha: 0.7),
-                    fontStyle: FontStyle.italic,
-                  ),
+                color: AppColors.textSecondary.withValues(alpha: 0.7),
+                fontStyle: FontStyle.italic,
+              ),
             ),
           ),
         ],
@@ -516,85 +552,87 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final percentage =
-        (result.percentageFor(result.resultType) * 100).toStringAsFixed(0);
+    final percentage = (result.percentageFor(result.resultType) * 100)
+        .toStringAsFixed(0);
 
     return Container(
-      padding: const EdgeInsets.all(AppConstants.spacingXl),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppConstants.radiusXl),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            dim.color.withValues(alpha: 0.25),
-            dim.color.withValues(alpha: 0.10),
-          ],
-        ),
-        border: Border.all(
-          color: dim.color.withValues(alpha: 0.4),
-          width: 1.5,
-        ),
-      ),
-      child: Column(
-        children: [
-          Text(dim.emoji, style: const TextStyle(fontSize: 48)),
-          const SizedBox(height: AppConstants.spacingMd),
-          Text(
-            isEn ? dim.nameEn : dim.nameTr,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+          padding: const EdgeInsets.all(AppConstants.spacingXl),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppConstants.radiusXl),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                dim.color.withValues(alpha: 0.25),
+                dim.color.withValues(alpha: 0.10),
+              ],
+            ),
+            border: Border.all(
+              color: dim.color.withValues(alpha: 0.4),
+              width: 1.5,
+            ),
+          ),
+          child: Column(
+            children: [
+              Text(dim.emoji, style: const TextStyle(fontSize: 48)),
+              const SizedBox(height: AppConstants.spacingMd),
+              Text(
+                isEn ? dim.nameEn : dim.nameTr,
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   color: dim.color,
                   fontWeight: FontWeight.bold,
                 ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: AppConstants.spacingXs),
-          Text(
-            '$percentage%',
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: AppConstants.spacingXs),
+              Text(
+                '$percentage%',
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   color: dim.color.withValues(alpha: 0.8),
                   fontWeight: FontWeight.w300,
                 ),
-          ),
-          const SizedBox(height: AppConstants.spacingLg),
-          Text(
-            isEn ? dim.descriptionEn : dim.descriptionTr,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              ),
+              const SizedBox(height: AppConstants.spacingLg),
+              Text(
+                isEn ? dim.descriptionEn : dim.descriptionTr,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary.withValues(alpha: 0.9)
                       : AppColors.lightTextPrimary,
                   height: 1.6,
                 ),
-            textAlign: TextAlign.center,
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
-        ],
-      ),
-    )
+        )
         .animate()
         .fadeIn(duration: 700.ms, delay: 200.ms)
         .scaleXY(begin: 0.95, end: 1.0, duration: 700.ms, delay: 200.ms);
   }
 
-  Widget _buildPercentageBreakdown(BuildContext context,
-      QuizDefinition definition, QuizResult result, bool isDark, bool isEn) {
+  Widget _buildPercentageBreakdown(
+    BuildContext context,
+    QuizDefinition definition,
+    QuizResult result,
+    bool isDark,
+    bool isEn,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           isEn ? 'Full Breakdown' : 'Detaylı Dağılım',
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
-                fontWeight: FontWeight.w600,
-              ),
+            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         const SizedBox(height: AppConstants.spacingLg),
         ...definition.dimensions.entries.map((entry) {
           final dim = entry.value;
           final percentage = result.percentageFor(entry.key);
-          final percentText =
-              '${(percentage * 100).toStringAsFixed(0)}%';
+          final percentText = '${(percentage * 100).toStringAsFixed(0)}%';
           return Padding(
             padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
             child: _buildPercentageRow(
@@ -629,18 +667,18 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
               child: Text(
                 isEn ? dim.nameEn : dim.nameTr,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                ),
               ),
             ),
             Text(
               percentText,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: dim.color,
-                    fontWeight: FontWeight.w600,
-                  ),
+                color: dim.color,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ],
         ),
@@ -678,44 +716,44 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
             Text(
               title,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
-                    fontWeight: FontWeight.w600,
-                  ),
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ],
         ),
         const SizedBox(height: AppConstants.spacingMd),
         ...items.asMap().entries.map((entry) {
           return Padding(
-            padding: const EdgeInsets.only(bottom: AppConstants.spacingSm),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 6,
-                  height: 6,
-                  margin: const EdgeInsets.only(top: 7, right: 12),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: color.withValues(alpha: 0.6),
-                  ),
-                ),
-                Expanded(
-                  child: Text(
-                    entry.value,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                padding: const EdgeInsets.only(bottom: AppConstants.spacingSm),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 6,
+                      height: 6,
+                      margin: const EdgeInsets.only(top: 7, right: 12),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: color.withValues(alpha: 0.6),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        entry.value,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: isDark
                               ? AppColors.textSecondary
                               : AppColors.lightTextSecondary,
                           height: 1.5,
                         ),
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          )
+              )
               .animate()
               .fadeIn(
                 duration: 400.ms,

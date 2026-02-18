@@ -39,68 +39,72 @@ class ProgramListScreen extends ConsumerWidget {
         child: SafeArea(
           child: CupertinoScrollbar(
             child: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            slivers: [
-              GlassSliverAppBar(
-                title: isEn ? 'Guided Programs' : 'Rehberli Programlar',
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
               ),
-              SliverPadding(
-                padding: const EdgeInsets.all(16),
-                sliver: serviceAsync.when(
-                  loading: () => const SliverToBoxAdapter(
-                    child: Center(child: CosmicLoadingIndicator()),
-                  ),
-                  error: (_, _) => SliverToBoxAdapter(
-                    child: Center(
-                      child: Text(
-                        isEn ? 'Could not load programs' : 'Programlar yüklenemedi',
-                        style: TextStyle(
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
+              slivers: [
+                GlassSliverAppBar(
+                  title: isEn ? 'Guided Programs' : 'Rehberli Programlar',
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.all(16),
+                  sliver: serviceAsync.when(
+                    loading: () => const SliverToBoxAdapter(
+                      child: Center(child: CosmicLoadingIndicator()),
+                    ),
+                    error: (_, _) => SliverToBoxAdapter(
+                      child: Center(
+                        child: Text(
+                          isEn
+                              ? 'Could not load programs'
+                              : 'Programlar yüklenemedi',
+                          style: TextStyle(
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  data: (service) {
-                    final programs = GuidedProgramService.allPrograms;
-                    return SliverList(
-                      delegate: SliverChildListDelegate([
-                        // Intro text
-                        Text(
-                          isEn
-                              ? 'Structured reflection journeys to deepen self-awareness'
-                              : 'Öz farkındalığı derinleştirmek için yapılandırılmış yansıma yolculukları',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: isDark
-                                ? AppColors.textSecondary
-                                : AppColors.lightTextSecondary,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-
-                        // Active programs section
-                        if (service.activeProgramCount > 0) ...[
+                    data: (service) {
+                      final programs = GuidedProgramService.allPrograms;
+                      return SliverList(
+                        delegate: SliverChildListDelegate([
+                          // Intro text
                           Text(
-                            isEn ? 'In Progress' : 'Devam Eden',
+                            isEn
+                                ? 'Structured reflection journeys to deepen self-awareness'
+                                : 'Öz farkındalığı derinleştirmek için yapılandırılmış yansıma yolculukları',
                             style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
+                              fontSize: 14,
                               color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
+                                  ? AppColors.textSecondary
+                                  : AppColors.lightTextSecondary,
                             ),
                           ),
-                          const SizedBox(height: 12),
-                          ...programs
-                              .where((p) {
-                                final progress = service.getProgress(p.id);
-                                return progress != null && !progress.isCompleted;
-                              })
-                              .map((p) => _ProgramCard(
+                          const SizedBox(height: 20),
+
+                          // Active programs section
+                          if (service.activeProgramCount > 0) ...[
+                            Text(
+                              isEn ? 'In Progress' : 'Devam Eden',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: isDark
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            ...programs
+                                .where((p) {
+                                  final progress = service.getProgress(p.id);
+                                  return progress != null &&
+                                      !progress.isCompleted;
+                                })
+                                .map(
+                                  (p) => _ProgramCard(
                                     program: p,
                                     progress: service.getProgress(p.id),
                                     isCompleted: false,
@@ -110,30 +114,34 @@ class ProgramListScreen extends ConsumerWidget {
                                     onTap: () => context.push(
                                       '${Routes.programs}/${p.id}',
                                     ),
-                                  )),
-                          const SizedBox(height: 24),
-                        ],
+                                  ),
+                                ),
+                            const SizedBox(height: 24),
+                          ],
 
-                        // All programs
-                        Text(
-                          isEn ? 'All Programs' : 'Tüm Programlar',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
+                          // All programs
+                          Text(
+                            isEn ? 'All Programs' : 'Tüm Programlar',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 12),
-                        ...programs.map((p) {
-                          final firstTaste = ref.watch(firstTasteServiceProvider)
-                              .whenOrNull(data: (s) => s);
-                          final allowFirstTaste = firstTaste?.shouldAllowFree(
-                                  FirstTasteFeature.guidedProgram) ??
-                              false;
+                          const SizedBox(height: 12),
+                          ...programs.map((p) {
+                            final firstTaste = ref
+                                .watch(firstTasteServiceProvider)
+                                .whenOrNull(data: (s) => s);
+                            final allowFirstTaste =
+                                firstTaste?.shouldAllowFree(
+                                  FirstTasteFeature.guidedProgram,
+                                ) ??
+                                false;
 
-                          return _ProgramCard(
+                            return _ProgramCard(
                               program: p,
                               progress: service.getProgress(p.id),
                               isCompleted: service.isProgramCompleted(p.id),
@@ -146,43 +154,51 @@ class ProgramListScreen extends ConsumerWidget {
                                   if (allowFirstTaste) {
                                     // Allow first premium program free
                                     firstTaste?.recordUse(
-                                        FirstTasteFeature.guidedProgram);
+                                      FirstTasteFeature.guidedProgram,
+                                    );
                                     if (service.getProgress(p.id) != null) {
                                       context.push(
-                                          '${Routes.programs}/${p.id}');
+                                        '${Routes.programs}/${p.id}',
+                                      );
                                     } else {
                                       _startProgram(
-                                          context, ref, service, p, isEn);
+                                        context,
+                                        ref,
+                                        service,
+                                        p,
+                                        isEn,
+                                      );
                                     }
                                     return;
                                   }
-                                  showContextualPaywall(context, ref,
-                                      paywallContext:
-                                          PaywallContext.programs);
+                                  showContextualPaywall(
+                                    context,
+                                    ref,
+                                    paywallContext: PaywallContext.programs,
+                                  );
                                   return;
                                 }
                                 if (service.getProgress(p.id) != null) {
                                   context.push('${Routes.programs}/${p.id}');
                                 } else {
-                                  _startProgram(
-                                      context, ref, service, p, isEn);
+                                  _startProgram(context, ref, service, p, isEn);
                                 }
                               },
                             );
-                        }),
-                        ToolEcosystemFooter(
-                          currentToolId: 'programList',
-                          isEn: isEn,
-                          isDark: isDark,
-                        ),
-                        const SizedBox(height: 40),
-                      ]),
-                    );
-                  },
+                          }),
+                          ToolEcosystemFooter(
+                            currentToolId: 'programList',
+                            isEn: isEn,
+                            isDark: isDark,
+                          ),
+                          const SizedBox(height: 40),
+                        ]),
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
           ),
         ),
       ),
@@ -253,10 +269,10 @@ class _ProgramCard extends StatelessWidget {
               color: isCompleted
                   ? AppColors.success.withValues(alpha: 0.3)
                   : hasProgress
-                      ? AppColors.starGold.withValues(alpha: 0.3)
-                      : (isDark
-                          ? Colors.white.withValues(alpha: 0.15)
-                          : Colors.black.withValues(alpha: 0.05)),
+                  ? AppColors.starGold.withValues(alpha: 0.3)
+                  : (isDark
+                        ? Colors.white.withValues(alpha: 0.15)
+                        : Colors.black.withValues(alpha: 0.05)),
             ),
           ),
           child: Row(
@@ -268,8 +284,8 @@ class _ProgramCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: isLocked
                       ? (isDark
-                          ? Colors.white.withValues(alpha: 0.05)
-                          : Colors.black.withValues(alpha: 0.03))
+                            ? Colors.white.withValues(alpha: 0.05)
+                            : Colors.black.withValues(alpha: 0.03))
                       : AppColors.starGold.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -295,11 +311,11 @@ class _ProgramCard extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                               color: isLocked
                                   ? (isDark
-                                      ? AppColors.textMuted
-                                      : AppColors.lightTextMuted)
+                                        ? AppColors.textMuted
+                                        : AppColors.lightTextMuted)
                                   : (isDark
-                                      ? AppColors.textPrimary
-                                      : AppColors.lightTextPrimary),
+                                        ? AppColors.textPrimary
+                                        : AppColors.lightTextPrimary),
                             ),
                           ),
                         ),

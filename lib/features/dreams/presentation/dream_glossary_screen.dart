@@ -249,31 +249,31 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
           behavior: HitTestBehavior.opaque,
           child: SafeArea(
             child: Column(
-            children: [
-              // Header
-              _buildHeader(context, language),
+              children: [
+                // Header
+                _buildHeader(context, language),
 
-              // Search bar
-              _buildSearchBar(language),
+                // Search bar
+                _buildSearchBar(language),
 
-              // Category tabs
-              _buildCategoryTabs(categories),
+                // Category tabs
+                _buildCategoryTabs(categories),
 
-              // Content with alphabet sidebar
-              Expanded(
-                child: Row(
-                  children: [
-                    // Main content
-                    Expanded(child: _buildSymbolGrid(language)),
+                // Content with alphabet sidebar
+                Expanded(
+                  child: Row(
+                    children: [
+                      // Main content
+                      Expanded(child: _buildSymbolGrid(language)),
 
-                    // Alphabet sidebar
-                    _buildAlphabetSidebar(),
-                  ],
+                      // Alphabet sidebar
+                      _buildAlphabetSidebar(),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
         ),
       ),
     );
@@ -297,10 +297,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
           IconButton(
             onPressed: () => context.pop(),
             tooltip: language == AppLanguage.en ? 'Back' : 'Geri',
-            icon: const Icon(
-              Icons.chevron_left,
-              color: AppColors.textPrimary,
-            ),
+            icon: const Icon(Icons.chevron_left, color: AppColors.textPrimary),
           ),
           const SizedBox(width: 8),
           Container(
@@ -389,13 +386,12 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
             hintStyle: TextStyle(
               color: AppColors.textSecondary.withValues(alpha: 0.6),
             ),
-            prefixIcon: const Icon(
-              Icons.search,
-              color: CosmicPalette.starGold,
-            ),
+            prefixIcon: const Icon(Icons.search, color: CosmicPalette.starGold),
             suffixIcon: _searchQuery.isNotEmpty
                 ? IconButton(
-                    tooltip: language == AppLanguage.en ? 'Clear search' : 'Aramayı temizle',
+                    tooltip: language == AppLanguage.en
+                        ? 'Clear search'
+                        : 'Aramayı temizle',
                     icon: const Icon(
                       Icons.clear,
                       color: AppColors.textSecondary,
@@ -488,7 +484,9 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
 
     return ListView.builder(
       controller: _scrollController,
-      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       padding: const EdgeInsets.fromLTRB(16, 8, 8, 16),
       itemCount: _filteredSymbols.length,
       itemBuilder: (context, index) {
@@ -539,8 +537,9 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
                     letter,
                     style: TextStyle(
                       fontSize: 11,
-                      fontWeight:
-                          isSelected ? FontWeight.bold : FontWeight.normal,
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.normal,
                       color: isSelected
                           ? CosmicPalette.starGold
                           : AppColors.textSecondary,
@@ -878,7 +877,9 @@ class _SymbolDetailSheet extends StatelessWidget {
           // Content
           Expanded(
             child: ListView(
-              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               padding: const EdgeInsets.symmetric(horizontal: 20),
               children: [
                 // Universal meanings
@@ -1270,9 +1271,7 @@ class _SymbolDetailSheet extends StatelessWidget {
           color: hasDreamed ? CosmicPalette.bgElevated : null,
           borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           border: hasDreamed
-              ? Border.all(
-                  color: CosmicPalette.starGold.withValues(alpha: 0.3),
-                )
+              ? Border.all(color: CosmicPalette.starGold.withValues(alpha: 0.3))
               : null,
         ),
         child: Row(
@@ -1334,9 +1333,13 @@ class _SymbolDetailSheet extends StatelessWidget {
           language,
         )
         .replaceAll('{symbol}', symbol.symbolTr.toLowerCase())
-        .replaceAll('{meaning}', (symbol.universalMeanings.isNotEmpty
-            ? symbol.universalMeanings.first
-            : symbol.symbol).toLowerCase());
+        .replaceAll(
+          '{meaning}',
+          (symbol.universalMeanings.isNotEmpty
+                  ? symbol.universalMeanings.first
+                  : symbol.symbol)
+              .toLowerCase(),
+        );
   }
 
   String _getJungianInterpretation() {
@@ -1443,7 +1446,9 @@ class _PersonalDictionarySheet extends StatelessWidget {
             child: dreamedSymbols.isEmpty
                 ? _buildEmptyState(context)
                 : ListView.builder(
-                    physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                    physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics(),
+                    ),
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     itemCount: dreamedSymbols.length,
                     itemBuilder: (context, index) {
@@ -1647,8 +1652,12 @@ class PersonalSymbolEntry {
       PersonalSymbolEntry(
         symbolId: json['symbolId'],
         count: json['count'],
-        firstDreamed: DateTime.tryParse(json['firstDreamed']?.toString() ?? '') ?? DateTime.now(),
-        lastDreamed: DateTime.tryParse(json['lastDreamed']?.toString() ?? '') ?? DateTime.now(),
+        firstDreamed:
+            DateTime.tryParse(json['firstDreamed']?.toString() ?? '') ??
+            DateTime.now(),
+        lastDreamed:
+            DateTime.tryParse(json['lastDreamed']?.toString() ?? '') ??
+            DateTime.now(),
         personalMeaning: json['personalMeaning'],
       );
 

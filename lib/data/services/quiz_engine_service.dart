@@ -41,7 +41,10 @@ class QuizEngineService {
   ///
   /// [definition] — the quiz being taken
   /// [answerIndices] — index of the chosen option per question (0-based)
-  QuizResult calculateResult(QuizDefinition definition, List<int> answerIndices) {
+  QuizResult calculateResult(
+    QuizDefinition definition,
+    List<int> answerIndices,
+  ) {
     assert(answerIndices.length == definition.questions.length);
 
     // Accumulate raw scores per dimension
@@ -51,7 +54,10 @@ class QuizEngineService {
     }
 
     for (int i = 0; i < answerIndices.length; i++) {
-      final chosenIndex = answerIndices[i].clamp(0, definition.questions[i].options.length - 1);
+      final chosenIndex = answerIndices[i].clamp(
+        0,
+        definition.questions[i].options.length - 1,
+      );
       final option = definition.questions[i].options[chosenIndex];
       for (final entry in option.scores.entries) {
         scores[entry.key] = (scores[entry.key] ?? 0) + entry.value;
@@ -68,7 +74,9 @@ class QuizEngineService {
         final totalPoints = scores.values.fold<int>(0, (a, b) => a + b);
         int highest = 0;
         for (final entry in scores.entries) {
-          percentages[entry.key] = totalPoints > 0 ? entry.value / totalPoints : 0.0;
+          percentages[entry.key] = totalPoints > 0
+              ? entry.value / totalPoints
+              : 0.0;
           if (entry.value > highest) {
             highest = entry.value;
             resultType = entry.key;
@@ -78,9 +86,12 @@ class QuizEngineService {
 
       case QuizScoringType.spectrum:
         // For spectrum scoring, normalize each dimension against the max possible
-        final maxPossible = definition.questions.length; // max 1 point per question per dim
+        final maxPossible =
+            definition.questions.length; // max 1 point per question per dim
         for (final entry in scores.entries) {
-          percentages[entry.key] = maxPossible > 0 ? entry.value / maxPossible : 0.0;
+          percentages[entry.key] = maxPossible > 0
+              ? entry.value / maxPossible
+              : 0.0;
         }
         int highest = 0;
         for (final entry in scores.entries) {
@@ -195,7 +206,10 @@ class QuizEngineService {
 
   /// Clear all quiz data
   Future<void> clearAll() async {
-    final keysToRemove = _prefs.getKeys().where((k) => k.startsWith(_storagePrefix)).toList();
+    final keysToRemove = _prefs
+        .getKeys()
+        .where((k) => k.startsWith(_storagePrefix))
+        .toList();
     for (final key in keysToRemove) {
       await _prefs.remove(key);
     }

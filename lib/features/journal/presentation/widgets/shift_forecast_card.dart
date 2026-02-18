@@ -43,9 +43,7 @@ class ShiftForecastCard extends StatelessWidget {
             ? AppColors.surfaceDark.withValues(alpha: 0.9)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusXl),
-        border: Border.all(
-          color: phaseColor.withValues(alpha: 0.25),
-        ),
+        border: Border.all(color: phaseColor.withValues(alpha: 0.25)),
         boxShadow: [
           BoxShadow(
             color: phaseColor.withValues(alpha: isDark ? 0.12 : 0.06),
@@ -67,11 +65,7 @@ class ShiftForecastCard extends StatelessWidget {
                   color: phaseColor.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(
-                  Icons.timeline,
-                  color: phaseColor,
-                  size: 20,
-                ),
+                child: Icon(Icons.timeline, color: phaseColor, size: 20),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -106,11 +100,8 @@ class ShiftForecastCard extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   color: phaseColor.withValues(alpha: 0.1),
-                  borderRadius:
-                      BorderRadius.circular(AppConstants.radiusFull),
-                  border: Border.all(
-                    color: phaseColor.withValues(alpha: 0.3),
-                  ),
+                  borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+                  border: Border.all(color: phaseColor.withValues(alpha: 0.3)),
                 ),
                 child: Text(
                   '~${window.estimatedDaysUntilShift}${isEn ? 'd' : 'g'}',
@@ -157,18 +148,12 @@ class ShiftForecastCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: phaseColor.withValues(alpha: 0.06),
               borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-              border: Border.all(
-                color: phaseColor.withValues(alpha: 0.12),
-              ),
+              border: Border.all(color: phaseColor.withValues(alpha: 0.12)),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(
-                  Icons.lightbulb_outline,
-                  size: 16,
-                  color: phaseColor,
-                ),
+                Icon(Icons.lightbulb_outline, size: 16, color: phaseColor),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -194,9 +179,7 @@ class ShiftForecastCard extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
-                color: isDark
-                    ? AppColors.textMuted
-                    : AppColors.lightTextMuted,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
             ),
             const SizedBox(height: AppConstants.spacingSm),
@@ -259,9 +242,7 @@ class ShiftForecastCard extends StatelessWidget {
           child: Icon(
             Icons.arrow_forward,
             size: 18,
-            color: isDark
-                ? AppColors.textMuted
-                : AppColors.lightTextMuted,
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
         ),
         // Next phase badge
@@ -319,9 +300,7 @@ class ShiftForecastCard extends StatelessWidget {
         children: [
           Icon(
             Icons.timeline,
-            color: isDark
-                ? AppColors.textMuted
-                : AppColors.lightTextMuted,
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             size: 24,
           ),
           const SizedBox(width: 12),
@@ -332,9 +311,7 @@ class ShiftForecastCard extends StatelessWidget {
                   : 'Kayma görünümü için henüz yeterli veri yok',
               style: TextStyle(
                 fontSize: 14,
-                color: isDark
-                    ? AppColors.textMuted
-                    : AppColors.lightTextMuted,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
             ),
           ),

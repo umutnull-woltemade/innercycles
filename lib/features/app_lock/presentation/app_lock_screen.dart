@@ -98,17 +98,15 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
               const Spacer(flex: 2),
 
               // Lock icon
-              Icon(
-                Icons.lock_outline,
-                size: 48,
-                color: AppColors.starGold,
-              ),
+              Icon(Icons.lock_outline, size: 48, color: AppColors.starGold),
               const SizedBox(height: 16),
 
               Text(
                 isEn ? 'Enter PIN' : 'PIN Girin',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
                   fontWeight: FontWeight.w300,
                 ),
               ),
@@ -117,10 +115,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
               if (_showError)
                 Text(
                   isEn ? 'Incorrect PIN' : 'Yanlış PIN',
-                  style: TextStyle(
-                    color: AppColors.error,
-                    fontSize: 14,
-                  ),
+                  style: TextStyle(color: AppColors.error, fontSize: 14),
                 ),
 
               const SizedBox(height: 32),
@@ -138,9 +133,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
                       height: 16,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: filled
-                            ? AppColors.starGold
-                            : Colors.transparent,
+                        color: filled ? AppColors.starGold : Colors.transparent,
                         border: Border.all(
                           color: _showError
                               ? AppColors.error
@@ -221,7 +214,9 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.w300,
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
               ),
             ),
           ),
@@ -242,7 +237,9 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
           child: Center(
             child: Icon(
               Icons.backspace_outlined,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               size: 24,
             ),
           ),

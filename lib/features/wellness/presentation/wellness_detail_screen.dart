@@ -36,90 +36,93 @@ class WellnessDetailScreen extends ConsumerWidget {
                 GlassSliverAppBar(
                   title: isEn ? 'Wellness Score' : 'Sağlık Skoru',
                 ),
-              SliverPadding(
-                padding: const EdgeInsets.all(AppConstants.spacingLg),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    // Score hero
-                    scoreAsync.when(
-                      loading: () => const Center(
-                        child: CosmicLoadingIndicator(),
-                      ),
-                      error: (_, _) => Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(32),
-                          child: Text(
-                            isEn ? 'Could not load wellness data' : 'Sağlık verileri yüklenemedi',
-                            style: TextStyle(
-                              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                SliverPadding(
+                  padding: const EdgeInsets.all(AppConstants.spacingLg),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate([
+                      // Score hero
+                      scoreAsync.when(
+                        loading: () =>
+                            const Center(child: CosmicLoadingIndicator()),
+                        error: (_, _) => Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(32),
+                            child: Text(
+                              isEn
+                                  ? 'Could not load wellness data'
+                                  : 'Sağlık verileri yüklenemedi',
+                              style: TextStyle(
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
+                              ),
                             ),
                           ),
                         ),
+                        data: (score) {
+                          if (score == null) {
+                            return _buildEmptyState(isDark, isEn);
+                          }
+                          return _ScoreHero(
+                            score: score,
+                            isDark: isDark,
+                            isEn: isEn,
+                          );
+                        },
                       ),
-                      data: (score) {
-                        if (score == null) {
-                          return _buildEmptyState(isDark, isEn);
-                        }
-                        return _ScoreHero(
-                          score: score,
-                          isDark: isDark,
-                          isEn: isEn,
-                        );
-                      },
-                    ),
 
-                    const SizedBox(height: 24),
+                      const SizedBox(height: 24),
 
-                    // Breakdown detail
-                    scoreAsync.when(
-                      loading: () => const SizedBox.shrink(),
-                      error: (_, _) => const SizedBox.shrink(),
-                      data: (score) {
-                        if (score == null) return const SizedBox.shrink();
-                        return _BreakdownDetail(
-                          breakdown: score.breakdown,
-                          isDark: isDark,
-                          isEn: isEn,
-                        );
-                      },
-                    ),
+                      // Breakdown detail
+                      scoreAsync.when(
+                        loading: () => const SizedBox.shrink(),
+                        error: (_, _) => const SizedBox.shrink(),
+                        data: (score) {
+                          if (score == null) return const SizedBox.shrink();
+                          return _BreakdownDetail(
+                            breakdown: score.breakdown,
+                            isDark: isDark,
+                            isEn: isEn,
+                          );
+                        },
+                      ),
 
-                    const SizedBox(height: 24),
+                      const SizedBox(height: 24),
 
-                    // Weekly trend
-                    trendAsync.when(
-                      loading: () => const SizedBox.shrink(),
-                      error: (_, _) => const SizedBox.shrink(),
-                      data: (trend) {
-                        if (trend.dailyScores.isEmpty) {
-                          return const SizedBox.shrink();
-                        }
-                        return _WeeklyTrendChart(
-                          trend: trend,
-                          isDark: isDark,
-                          isEn: isEn,
-                          isPremium: isPremium,
-                        );
-                      },
-                    ),
+                      // Weekly trend
+                      trendAsync.when(
+                        loading: () => const SizedBox.shrink(),
+                        error: (_, _) => const SizedBox.shrink(),
+                        data: (trend) {
+                          if (trend.dailyScores.isEmpty) {
+                            return const SizedBox.shrink();
+                          }
+                          return _WeeklyTrendChart(
+                            trend: trend,
+                            isDark: isDark,
+                            isEn: isEn,
+                            isPremium: isPremium,
+                          );
+                        },
+                      ),
 
-                    const SizedBox(height: 24),
+                      const SizedBox(height: 24),
 
-                    // Tips
-                    _buildTips(isDark, isEn),
+                      // Tips
+                      _buildTips(isDark, isEn),
 
-                    const SizedBox(height: 24),
-                    ToolEcosystemFooter(
-                      currentToolId: 'wellnessDetail',
-                      isEn: isEn,
-                      isDark: isDark,
-                    ),
-                    const SizedBox(height: 40),
-                  ]),
+                      const SizedBox(height: 24),
+                      ToolEcosystemFooter(
+                        currentToolId: 'wellnessDetail',
+                        isEn: isEn,
+                        isDark: isDark,
+                      ),
+                      const SizedBox(height: 40),
+                    ]),
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
           ),
         ),
       ),
@@ -189,7 +192,9 @@ class WellnessDetailScreen extends ConsumerWidget {
           const SizedBox(height: 10),
           _TipRow(
             icon: Icons.edit_note,
-            text: isEn ? 'Journal rating = 40% of score' : 'Günlük puanı = skorun %40\'ı',
+            text: isEn
+                ? 'Journal rating = 40% of score'
+                : 'Günlük puanı = skorun %40\'ı',
             isDark: isDark,
           ),
           _TipRow(
@@ -266,11 +271,11 @@ class _ScoreHero extends StatelessWidget {
               ),
             ),
           ).animate().scale(
-                begin: const Offset(0.8, 0.8),
-                end: const Offset(1, 1),
-                duration: 400.ms,
-                curve: Curves.easeOutBack,
-              ),
+            begin: const Offset(0.8, 0.8),
+            end: const Offset(1, 1),
+            duration: 400.ms,
+            curve: Curves.easeOutBack,
+          ),
           const SizedBox(height: 12),
           Text(
             _scoreLabel(score.score, isEn),
@@ -408,17 +413,12 @@ class _BreakdownDetail extends StatelessWidget {
                       backgroundColor: isDark
                           ? Colors.white.withValues(alpha: 0.08)
                           : Colors.black.withValues(alpha: 0.06),
-                      valueColor: AlwaysStoppedAnimation(
-                        _barColor(b.score),
-                      ),
+                      valueColor: AlwaysStoppedAnimation(_barColor(b.score)),
                     ),
                   ),
                 ],
               ),
-            ).animate().fadeIn(
-                  delay: (entry.key * 80).ms,
-                  duration: 300.ms,
-                );
+            ).animate().fadeIn(delay: (entry.key * 80).ms, duration: 300.ms);
           }),
         ],
       ),
@@ -516,14 +516,14 @@ class _WeeklyTrendChart extends StatelessWidget {
                 trend.direction == 'up'
                     ? Icons.trending_up
                     : trend.direction == 'down'
-                        ? Icons.trending_down
-                        : Icons.trending_flat,
+                    ? Icons.trending_down
+                    : Icons.trending_flat,
                 size: 20,
                 color: trend.direction == 'up'
                     ? AppColors.success
                     : trend.direction == 'down'
-                        ? AppColors.warning
-                        : AppColors.textMuted,
+                    ? AppColors.warning
+                    : AppColors.textMuted,
               ),
               const SizedBox(width: 4),
               Text(
@@ -533,10 +533,10 @@ class _WeeklyTrendChart extends StatelessWidget {
                   color: trend.direction == 'up'
                       ? AppColors.success
                       : trend.direction == 'down'
-                          ? AppColors.warning
-                          : (isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted),
+                      ? AppColors.warning
+                      : (isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted),
                 ),
               ),
             ],
@@ -549,42 +549,49 @@ class _WeeklyTrendChart extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: trend.dailyScores.reversed.take(7).toList().reversed.map((score) {
-                final height = (score.score / 100 * 80).clamp(4.0, 80.0);
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      '${score.score}',
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Container(
-                      width: 28,
-                      height: height,
-                      decoration: BoxDecoration(
-                        color: _barColor(score.score),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      score.dateKey.length > 8 ? score.dateKey.substring(8) : score.dateKey,
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-                  ],
-                );
-              }).toList(),
+              children: trend.dailyScores.reversed
+                  .take(7)
+                  .toList()
+                  .reversed
+                  .map((score) {
+                    final height = (score.score / 100 * 80).clamp(4.0, 80.0);
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          '${score.score}',
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Container(
+                          width: 28,
+                          height: height,
+                          decoration: BoxDecoration(
+                            color: _barColor(score.score),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          score.dateKey.length > 8
+                              ? score.dateKey.substring(8)
+                              : score.dateKey,
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ),
+                      ],
+                    );
+                  })
+                  .toList(),
             ),
           ),
         ],
@@ -616,11 +623,7 @@ class _TipRow extends StatelessWidget {
   final String text;
   final bool isDark;
 
-  const _TipRow({
-    required this.icon,
-    required this.text,
-    required this.isDark,
-  });
+  const _TipRow({required this.icon, required this.text, required this.isDark});
 
   @override
   Widget build(BuildContext context) {

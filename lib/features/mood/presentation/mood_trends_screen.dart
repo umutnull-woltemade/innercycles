@@ -35,7 +35,9 @@ class MoodTrendsScreen extends ConsumerWidget {
                 CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                 ),
               ),
             ),
@@ -73,15 +75,20 @@ class MoodTrendsScreen extends ConsumerWidget {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(
-            title: isEn ? 'Mood Trends' : 'Ruh Hali Trendleri',
-          ),
+          GlassSliverAppBar(title: isEn ? 'Mood Trends' : 'Ruh Hali Trendleri'),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 // Stats row
-                _buildStatsRow(context, isDark, isEn, avg7, avg30, allEntries.length),
+                _buildStatsRow(
+                  context,
+                  isDark,
+                  isEn,
+                  avg7,
+                  avg30,
+                  allEntries.length,
+                ),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Week view
@@ -89,12 +96,23 @@ class MoodTrendsScreen extends ConsumerWidget {
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Distribution chart
-                _buildDistributionCard(context, isDark, isEn, distribution, maxCount),
+                _buildDistributionCard(
+                  context,
+                  isDark,
+                  isEn,
+                  distribution,
+                  maxCount,
+                ),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Recent entries
                 if (allEntries.isNotEmpty)
-                  _buildRecentCard(context, isDark, isEn, allEntries.take(20).toList()),
+                  _buildRecentCard(
+                    context,
+                    isDark,
+                    isEn,
+                    allEntries.take(20).toList(),
+                  ),
                 ContentDisclaimer(
                   language: isEn ? AppLanguage.en : AppLanguage.tr,
                 ),
@@ -174,7 +192,9 @@ class MoodTrendsScreen extends ConsumerWidget {
           Text(
             isEn ? 'This Week' : 'Bu Hafta',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -191,7 +211,9 @@ class MoodTrendsScreen extends ConsumerWidget {
                     dayLabels[dayIndex],
                     style: TextStyle(
                       fontSize: 11,
-                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -203,8 +225,8 @@ class MoodTrendsScreen extends ConsumerWidget {
                       color: mood != null
                           ? _moodColor(mood.mood).withValues(alpha: 0.2)
                           : (isDark
-                              ? AppColors.surfaceLight.withValues(alpha: 0.1)
-                              : AppColors.lightSurfaceVariant),
+                                ? AppColors.surfaceLight.withValues(alpha: 0.1)
+                                : AppColors.lightSurfaceVariant),
                     ),
                     child: Center(
                       child: Text(
@@ -247,7 +269,9 @@ class MoodTrendsScreen extends ConsumerWidget {
           Text(
             isEn ? 'Last 30 Days' : 'Son 30 Gün',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -267,7 +291,9 @@ class MoodTrendsScreen extends ConsumerWidget {
                       item.$3,
                       style: TextStyle(
                         fontSize: 12,
-                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
                       ),
                     ),
                   ),
@@ -294,7 +320,9 @@ class MoodTrendsScreen extends ConsumerWidget {
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
                       ),
                     ),
                   ),
@@ -323,13 +351,16 @@ class MoodTrendsScreen extends ConsumerWidget {
           Text(
             isEn ? 'Recent Check-ins' : 'Son Kayıtlar',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
           ...entries.map((entry) {
-            final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
+            final dateStr =
+                '${entry.date.day}.${entry.date.month}.${entry.date.year}';
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Row(
@@ -341,7 +372,9 @@ class MoodTrendsScreen extends ConsumerWidget {
                       dateStr,
                       style: TextStyle(
                         fontSize: 14,
-                        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
                       ),
                     ),
                   ),
@@ -369,8 +402,8 @@ class MoodTrendsScreen extends ConsumerWidget {
               color: filled
                   ? _moodColor(mood)
                   : (isDark
-                      ? AppColors.surfaceLight.withValues(alpha: 0.2)
-                      : AppColors.lightSurfaceVariant),
+                        ? AppColors.surfaceLight.withValues(alpha: 0.2)
+                        : AppColors.lightSurfaceVariant),
             ),
           ),
         );

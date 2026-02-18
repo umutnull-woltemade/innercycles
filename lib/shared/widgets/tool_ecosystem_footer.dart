@@ -68,7 +68,9 @@ class ToolEcosystemFooter extends ConsumerWidget {
           style: GoogleFonts.inter(
             fontSize: 15,
             fontWeight: FontWeight.w600,
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+            color: isDark
+                ? AppColors.textSecondary
+                : AppColors.lightTextSecondary,
           ),
         ),
         const SizedBox(height: AppConstants.spacingMd),
@@ -79,58 +81,74 @@ class ToolEcosystemFooter extends ConsumerWidget {
             itemCount: relatedTools.length,
             itemBuilder: (context, index) {
               final tool = relatedTools[index];
-              final color = _categoryColors[tool.category] ?? AppColors.auroraStart;
+              final color =
+                  _categoryColors[tool.category] ?? AppColors.auroraStart;
               return Padding(
-                padding: EdgeInsets.only(
-                  right: index < relatedTools.length - 1 ? 10 : 0,
-                ),
-                child: Semantics(
-                  button: true,
-                  label: isEn ? tool.nameEn : tool.nameTr,
-                  child: GestureDetector(
-                    onTap: () {
-                      HapticFeedback.selectionClick();
-                      ref.read(ecosystemAnalyticsServiceProvider).whenData(
-                        (s) => s.trackNextToolTap(currentToolId, tool.id, 'footer'),
-                      );
-                      ref.read(smartRouterServiceProvider).whenData(
-                        (s) => s.recordToolVisit(tool.id),
-                      );
-                      context.push(tool.route);
-                    },
-                    child: Container(
-                    width: 120,
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: isDark
-                          ? color.withValues(alpha: 0.08)
-                          : color.withValues(alpha: 0.05),
-                      borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-                      border: Border.all(color: color.withValues(alpha: 0.2)),
+                    padding: EdgeInsets.only(
+                      right: index < relatedTools.length - 1 ? 10 : 0,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(tool.icon, style: const TextStyle(fontSize: 20)),
-                        const Spacer(),
-                        Text(
-                          isEn ? tool.nameEn : tool.nameTr,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
+                    child: Semantics(
+                      button: true,
+                      label: isEn ? tool.nameEn : tool.nameTr,
+                      child: GestureDetector(
+                        onTap: () {
+                          HapticFeedback.selectionClick();
+                          ref
+                              .read(ecosystemAnalyticsServiceProvider)
+                              .whenData(
+                                (s) => s.trackNextToolTap(
+                                  currentToolId,
+                                  tool.id,
+                                  'footer',
+                                ),
+                              );
+                          ref
+                              .read(smartRouterServiceProvider)
+                              .whenData((s) => s.recordToolVisit(tool.id));
+                          context.push(tool.route);
+                        },
+                        child: Container(
+                          width: 120,
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
                             color: isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
+                                ? color.withValues(alpha: 0.08)
+                                : color.withValues(alpha: 0.05),
+                            borderRadius: BorderRadius.circular(
+                              AppConstants.radiusMd,
+                            ),
+                            border: Border.all(
+                              color: color.withValues(alpha: 0.2),
+                            ),
                           ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                tool.icon,
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                              const Spacer(),
+                              Text(
+                                isEn ? tool.nameEn : tool.nameTr,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: isDark
+                                      ? AppColors.textPrimary
+                                      : AppColors.lightTextPrimary,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                ),
-              ).animate(delay: Duration(milliseconds: 50 * index)).fadeIn(duration: 300.ms);
+                  )
+                  .animate(delay: Duration(milliseconds: 50 * index))
+                  .fadeIn(duration: 300.ms);
             },
           ),
         ),

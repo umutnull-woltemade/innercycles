@@ -85,15 +85,11 @@ enum BreathingPreset {
           BreathPhase.hold(4),
         ];
       case BreathingPreset.calming55:
-        return [
-          BreathPhase.inhale(5),
-          BreathPhase.exhale(5),
-        ];
+        return [BreathPhase.inhale(5), BreathPhase.exhale(5)];
     }
   }
 
-  int get totalCycleSeconds =>
-      phases.fold(0, (sum, p) => sum + p.seconds);
+  int get totalCycleSeconds => phases.fold(0, (sum, p) => sum + p.seconds);
 }
 
 enum PhaseType { inhale, hold, exhale }
@@ -138,8 +134,7 @@ class BreathingTimerScreen extends ConsumerStatefulWidget {
       _BreathingTimerScreenState();
 }
 
-class _BreathingTimerScreenState
-    extends ConsumerState<BreathingTimerScreen>
+class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
     with SingleTickerProviderStateMixin {
   BreathingPreset _preset = BreathingPreset.relaxation478;
   bool _isRunning = false;
@@ -154,8 +149,12 @@ class _BreathingTimerScreenState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('breathing'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('breathing', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('breathing'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData((s) => s.trackToolOpen('breathing', source: 'direct'));
     });
     _breathController = AnimationController(
       vsync: this,
@@ -209,7 +208,10 @@ class _BreathingTimerScreenState
 
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (!mounted) { timer.cancel(); return; }
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
       if (_phaseCountdown <= 1) {
         timer.cancel();
         _nextPhase();
@@ -241,175 +243,181 @@ class _BreathingTimerScreenState
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
 
-    final currentPhase = _isRunning
-        ? _preset.phases[_currentPhaseIndex]
-        : null;
+    final currentPhase = _isRunning ? _preset.phases[_currentPhaseIndex] : null;
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: CupertinoScrollbar(
             child: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            slivers: [
-              GlassSliverAppBar(
-                title: isEn ? 'Breathing' : 'Nefes Egzersizi',
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
               ),
-              SliverFillRemaining(
-                hasScrollBody: false,
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    children: [
-                      // Preset selector
-                      _PresetSelector(
-                        current: _preset,
-                        isEn: isEn,
-                        isDark: isDark,
-                        enabled: !_isRunning,
-                        onChanged: (p) => setState(() => _preset = p),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        isEn ? _preset.descEn() : _preset.descTr(),
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
+              slivers: [
+                GlassSliverAppBar(
+                  title: isEn ? 'Breathing' : 'Nefes Egzersizi',
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      children: [
+                        // Preset selector
+                        _PresetSelector(
+                          current: _preset,
+                          isEn: isEn,
+                          isDark: isDark,
+                          enabled: !_isRunning,
+                          onChanged: (p) => setState(() => _preset = p),
                         ),
-                      ),
-
-                      const Spacer(),
-
-                      // Breath circle
-                      AnimatedBuilder(
-                        animation: _breathController,
-                        builder: (context, child) {
-                          final scale =
-                              0.5 + (_breathController.value * 0.5);
-                          return Container(
-                            width: 200 * scale,
-                            height: 200 * scale,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: RadialGradient(
-                                colors: [
-                                  AppColors.auroraStart
-                                      .withValues(alpha: 0.4),
-                                  AppColors.auroraStart
-                                      .withValues(alpha: 0.1),
-                                ],
-                              ),
-                              border: Border.all(
-                                color: AppColors.auroraStart
-                                    .withValues(alpha: 0.4),
-                                width: 2,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.auroraStart
-                                      .withValues(alpha: 0.2),
-                                  blurRadius: 30 * scale,
-                                  spreadRadius: 5 * scale,
-                                ),
-                              ],
-                            ),
-                            child: Center(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  if (_isRunning && currentPhase != null) ...[
-                                    Text(
-                                      isEn
-                                          ? currentPhase.labelEn()
-                                          : currentPhase.labelTr(),
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600,
-                                        color: isDark
-                                            ? Colors.white
-                                            : AppColors.lightTextPrimary,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      '$_phaseCountdown',
-                                      style: TextStyle(
-                                        fontSize: 36,
-                                        fontWeight: FontWeight.w700,
-                                        color: AppColors.auroraStart,
-                                      ),
-                                    ),
-                                  ] else
-                                    Icon(
-                                      Icons.air,
-                                      size: 48,
-                                      color: AppColors.auroraStart
-                                          .withValues(alpha: 0.6),
-                                    ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-
-                      const SizedBox(height: 24),
-
-                      // Cycle counter
-                      if (_completedCycles > 0)
+                        const SizedBox(height: 12),
                         Text(
-                          isEn
-                              ? '$_completedCycles ${_completedCycles == 1 ? 'cycle' : 'cycles'} completed'
-                              : '$_completedCycles döngü tamamlandı',
+                          isEn ? _preset.descEn() : _preset.descTr(),
                           style: TextStyle(
-                            fontSize: 14,
-                            color: AppColors.success,
-                            fontWeight: FontWeight.w500,
+                            fontSize: 13,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
                           ),
                         ),
 
-                      const Spacer(),
+                        const Spacer(),
 
-                      // Start/Stop button
-                      SizedBox(
-                        width: double.infinity,
-                        height: 56,
-                        child: ElevatedButton(
-                          onPressed: _isRunning ? _stop : _start,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: _isRunning
-                                ? AppColors.error.withValues(alpha: 0.8)
-                                : AppColors.auroraStart,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
+                        // Breath circle
+                        AnimatedBuilder(
+                          animation: _breathController,
+                          builder: (context, child) {
+                            final scale = 0.5 + (_breathController.value * 0.5);
+                            return Container(
+                              width: 200 * scale,
+                              height: 200 * scale,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                gradient: RadialGradient(
+                                  colors: [
+                                    AppColors.auroraStart.withValues(
+                                      alpha: 0.4,
+                                    ),
+                                    AppColors.auroraStart.withValues(
+                                      alpha: 0.1,
+                                    ),
+                                  ],
+                                ),
+                                border: Border.all(
+                                  color: AppColors.auroraStart.withValues(
+                                    alpha: 0.4,
+                                  ),
+                                  width: 2,
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.auroraStart.withValues(
+                                      alpha: 0.2,
+                                    ),
+                                    blurRadius: 30 * scale,
+                                    spreadRadius: 5 * scale,
+                                  ),
+                                ],
+                              ),
+                              child: Center(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    if (_isRunning && currentPhase != null) ...[
+                                      Text(
+                                        isEn
+                                            ? currentPhase.labelEn()
+                                            : currentPhase.labelTr(),
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                          color: isDark
+                                              ? Colors.white
+                                              : AppColors.lightTextPrimary,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        '$_phaseCountdown',
+                                        style: TextStyle(
+                                          fontSize: 36,
+                                          fontWeight: FontWeight.w700,
+                                          color: AppColors.auroraStart,
+                                        ),
+                                      ),
+                                    ] else
+                                      Icon(
+                                        Icons.air,
+                                        size: 48,
+                                        color: AppColors.auroraStart.withValues(
+                                          alpha: 0.6,
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+
+                        const SizedBox(height: 24),
+
+                        // Cycle counter
+                        if (_completedCycles > 0)
+                          Text(
+                            isEn
+                                ? '$_completedCycles ${_completedCycles == 1 ? 'cycle' : 'cycles'} completed'
+                                : '$_completedCycles döngü tamamlandı',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: AppColors.success,
+                              fontWeight: FontWeight.w500,
                             ),
-                            elevation: 0,
                           ),
-                          child: Text(
-                            _isRunning
-                                ? (isEn ? 'Stop' : 'Durdur')
-                                : (isEn ? 'Start Breathing' : 'Nefese Başla'),
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
+
+                        const Spacer(),
+
+                        // Start/Stop button
+                        SizedBox(
+                          width: double.infinity,
+                          height: 56,
+                          child: ElevatedButton(
+                            onPressed: _isRunning ? _stop : _start,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: _isRunning
+                                  ? AppColors.error.withValues(alpha: 0.8)
+                                  : AppColors.auroraStart,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              elevation: 0,
+                            ),
+                            child: Text(
+                              _isRunning
+                                  ? (isEn ? 'Stop' : 'Durdur')
+                                  : (isEn ? 'Start Breathing' : 'Nefese Başla'),
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 24),
-                      ToolEcosystemFooter(currentToolId: 'breathing', isEn: isEn, isDark: isDark),
-                      const SizedBox(height: 24),
-                    ],
+                        const SizedBox(height: 24),
+                        ToolEcosystemFooter(
+                          currentToolId: 'breathing',
+                          isEn: isEn,
+                          isDark: isDark,
+                        ),
+                        const SizedBox(height: 24),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.02, duration: 400.ms),
+              ],
+            ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.02, duration: 400.ms),
           ),
         ),
       ),
@@ -444,16 +452,13 @@ class _PresetSelector extends StatelessWidget {
             onTap: enabled ? () => onChanged(preset) : null,
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 14,
-                vertical: 8,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               decoration: BoxDecoration(
                 color: isSelected
                     ? AppColors.auroraStart.withValues(alpha: 0.2)
                     : (isDark
-                        ? AppColors.surfaceDark
-                        : AppColors.lightSurfaceVariant),
+                          ? AppColors.surfaceDark
+                          : AppColors.lightSurfaceVariant),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
                   color: isSelected
@@ -465,13 +470,12 @@ class _PresetSelector extends StatelessWidget {
                 isEn ? preset.nameEn() : preset.nameTr(),
                 style: TextStyle(
                   fontSize: 12,
-                  fontWeight:
-                      isSelected ? FontWeight.w700 : FontWeight.w500,
+                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                   color: isSelected
                       ? AppColors.auroraStart
                       : (isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary),
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary),
                 ),
               ),
             ),

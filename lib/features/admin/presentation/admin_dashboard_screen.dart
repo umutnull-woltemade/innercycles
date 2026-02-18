@@ -1287,7 +1287,9 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
                     ),
                   ),
                   trailing: IconButton(
-                    tooltip: ref.read(languageProvider) == AppLanguage.en ? 'View details' : 'Detayları gör',
+                    tooltip: ref.read(languageProvider) == AppLanguage.en
+                        ? 'View details'
+                        : 'Detayları gör',
                     icon: Icon(
                       Icons.expand_more,
                       color: isDark
@@ -1377,8 +1379,8 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
             children: [
               TextButton.icon(
                 onPressed: () {
-                    HapticFeedback.mediumImpact();
-                    _showSnackbar(L10nService.get('admin.note_saved', lang));
+                  HapticFeedback.mediumImpact();
+                  _showSnackbar(L10nService.get('admin.note_saved', lang));
                 },
                 icon: const Icon(Icons.save, size: 18),
                 label: Text(L10nService.get('admin.save_note', lang)),

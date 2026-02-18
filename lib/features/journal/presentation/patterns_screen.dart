@@ -45,7 +45,9 @@ class PatternsScreen extends ConsumerWidget {
                   CommonStrings.somethingWentWrong(language),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
                   ),
                 ),
               ),
@@ -86,169 +88,206 @@ class PatternsScreen extends ConsumerWidget {
         slivers: [
           _buildAppBar(context, isDark, isEn),
           SliverFillRemaining(
-          hasScrollBody: false,
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(32),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // Blurred preview teaser
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      // Fake chart preview (blurred)
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: ImageFiltered(
-                          imageFilter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-                          child: Container(
-                            width: double.infinity,
-                            height: 120,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  AppColors.starGold.withValues(alpha: 0.1),
-                                  AppColors.amethyst.withValues(alpha: 0.08),
-                                  AppColors.auroraStart.withValues(alpha: 0.1),
+            hasScrollBody: false,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children:
+                      [
+                            // Blurred preview teaser
+                            Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                // Fake chart preview (blurred)
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: ImageFiltered(
+                                    imageFilter: ImageFilter.blur(
+                                      sigmaX: 8,
+                                      sigmaY: 8,
+                                    ),
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 120,
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            AppColors.starGold.withValues(
+                                              alpha: 0.1,
+                                            ),
+                                            AppColors.amethyst.withValues(
+                                              alpha: 0.08,
+                                            ),
+                                            AppColors.auroraStart.withValues(
+                                              alpha: 0.1,
+                                            ),
+                                          ],
+                                        ),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: List.generate(7, (i) {
+                                          final h =
+                                              30.0 +
+                                              (i * 8.0) +
+                                              (i.isEven ? 15 : 0);
+                                          return Container(
+                                            width: 24,
+                                            height: h,
+                                            margin: const EdgeInsets.only(
+                                              bottom: 16,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: AppColors.starGold
+                                                  .withValues(alpha: 0.4),
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
+                                            ),
+                                          );
+                                        }),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                // Lock overlay
+                                Container(
+                                  padding: const EdgeInsets.all(16),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: isDark
+                                        ? AppColors.surfaceDark.withValues(
+                                            alpha: 0.8,
+                                          )
+                                        : Colors.white.withValues(alpha: 0.8),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: AppColors.starGold.withValues(
+                                          alpha: 0.3,
+                                        ),
+                                        blurRadius: 20,
+                                      ),
+                                    ],
+                                  ),
+                                  child: Icon(
+                                    Icons.lock_outline,
+                                    size: 32,
+                                    color: AppColors.starGold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 28),
+                            Text(
+                              isEn
+                                  ? 'Patterns Unlock After 7 Entries'
+                                  : '7 Kayıttan Sonra Kalıplar Açılır',
+                              style: Theme.of(context).textTheme.titleLarge
+                                  ?.copyWith(
+                                    color: isDark
+                                        ? AppColors.textPrimary
+                                        : AppColors.lightTextPrimary,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              isEn
+                                  ? 'You have $current entries. $needed more to go!'
+                                  : '$current kaydınız var. $needed tane daha!',
+                              style: Theme.of(context).textTheme.bodyLarge
+                                  ?.copyWith(
+                                    color: isDark
+                                        ? AppColors.textSecondary
+                                        : AppColors.lightTextSecondary,
+                                  ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 32),
+                            // Animated progress ring
+                            SizedBox(
+                              width: 80,
+                              height: 80,
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 80,
+                                    height: 80,
+                                    child: CircularProgressIndicator(
+                                      value: progress,
+                                      strokeWidth: 6,
+                                      backgroundColor: isDark
+                                          ? AppColors.surfaceLight.withValues(
+                                              alpha: 0.2,
+                                            )
+                                          : AppColors.lightSurfaceVariant,
+                                      valueColor: AlwaysStoppedAnimation(
+                                        AppColors.starGold,
+                                      ),
+                                      strokeCap: StrokeCap.round,
+                                    ),
+                                  ),
+                                  Text(
+                                    '$current/7',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700,
+                                      color: AppColors.starGold,
+                                    ),
+                                  ),
                                 ],
                               ),
-                              borderRadius: BorderRadius.circular(20),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: List.generate(7, (i) {
-                                final h = 30.0 + (i * 8.0) + (i.isEven ? 15 : 0);
-                                return Container(
-                                  width: 24,
-                                  height: h,
-                                  margin: const EdgeInsets.only(bottom: 16),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.starGold.withValues(alpha: 0.4),
-                                    borderRadius: BorderRadius.circular(6),
+                            const SizedBox(height: 24),
+                            // CTA to journal
+                            SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton.icon(
+                                onPressed: () => context.push(Routes.journal),
+                                icon: const Icon(
+                                  Icons.edit_note_outlined,
+                                  size: 20,
+                                ),
+                                label: Text(
+                                  isEn ? 'Write Entry' : 'Kayıt Yaz',
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                );
-                              }),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.starGold,
+                                  foregroundColor: AppColors.deepSpace,
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 14,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  elevation: 0,
+                                ),
+                              ),
                             ),
+                          ]
+                          .animate(interval: 80.ms)
+                          .fadeIn(duration: 400.ms)
+                          .slideY(
+                            begin: 0.08,
+                            duration: 400.ms,
+                            curve: Curves.easeOut,
                           ),
-                        ),
-                      ),
-                      // Lock overlay
-                      Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: isDark
-                              ? AppColors.surfaceDark.withValues(alpha: 0.8)
-                              : Colors.white.withValues(alpha: 0.8),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.starGold.withValues(alpha: 0.3),
-                              blurRadius: 20,
-                            ),
-                          ],
-                        ),
-                        child: Icon(
-                          Icons.lock_outline,
-                          size: 32,
-                          color: AppColors.starGold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 28),
-                  Text(
-                    isEn
-                        ? 'Patterns Unlock After 7 Entries'
-                        : '7 Kayıttan Sonra Kalıplar Açılır',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w700,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    isEn
-                        ? 'You have $current entries. $needed more to go!'
-                        : '$current kaydınız var. $needed tane daha!',
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 32),
-                  // Animated progress ring
-                  SizedBox(
-                    width: 80,
-                    height: 80,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        SizedBox(
-                          width: 80,
-                          height: 80,
-                          child: CircularProgressIndicator(
-                            value: progress,
-                            strokeWidth: 6,
-                            backgroundColor: isDark
-                                ? AppColors.surfaceLight.withValues(alpha: 0.2)
-                                : AppColors.lightSurfaceVariant,
-                            valueColor: AlwaysStoppedAnimation(AppColors.starGold),
-                            strokeCap: StrokeCap.round,
-                          ),
-                        ),
-                        Text(
-                          '$current/7',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.starGold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  // CTA to journal
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton.icon(
-                      onPressed: () => context.push(Routes.journal),
-                      icon: const Icon(Icons.edit_note_outlined, size: 20),
-                      label: Text(
-                        isEn ? 'Write Entry' : 'Kayıt Yaz',
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.starGold,
-                        foregroundColor: AppColors.deepSpace,
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        elevation: 0,
-                      ),
-                    ),
-                  ),
-                ].animate(interval: 80.ms).fadeIn(duration: 400.ms).slideY(
-                      begin: 0.08,
-                      duration: 400.ms,
-                      curve: Curves.easeOut,
-                    ),
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
       ),
     );
   }
@@ -274,9 +313,8 @@ class PatternsScreen extends ConsumerWidget {
     );
 
     // Extract cross-correlations (empty list if loading/error)
-    final crossCorrelations = crossCorrelationsAsync.whenOrNull(
-      data: (list) => list,
-    ) ?? [];
+    final crossCorrelations =
+        crossCorrelationsAsync.whenOrNull(data: (list) => list) ?? [];
 
     return CupertinoScrollbar(
       child: CustomScrollView(
@@ -284,83 +322,109 @@ class PatternsScreen extends ConsumerWidget {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-        _buildAppBar(context, isDark, isEn),
-        SliverPadding(
-          padding: const EdgeInsets.all(AppConstants.spacingLg),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate([
-              // Cycle arcs visualization — always free
-              _buildCycleArcs(context, thisWeek, isDark)
-                  .animate()
-                  .fadeIn(duration: 400.ms),
-              const SizedBox(height: AppConstants.spacingXl),
-
-              // Weekly comparison — always free (summary level)
-              if (thisWeek.isNotEmpty)
-                _buildWeeklyComparison(
+          _buildAppBar(context, isDark, isEn),
+          SliverPadding(
+            padding: const EdgeInsets.all(AppConstants.spacingLg),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                // Cycle arcs visualization — always free
+                _buildCycleArcs(
                   context,
                   thisWeek,
-                  lastWeek,
                   isDark,
-                  isEn,
-                  healthMap: isPremium ? healthMap : null,
-                ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
-              if (thisWeek.isNotEmpty)
-                const SizedBox(height: AppConstants.spacingLg),
+                ).animate().fadeIn(duration: 400.ms),
+                const SizedBox(height: AppConstants.spacingXl),
 
-              // Deep analysis — blurred for free users
-              if (!isPremium && (trends.isNotEmpty || correlations.isNotEmpty || crossCorrelations.isNotEmpty))
-                _buildPremiumBlurOverlay(context, ref, isEn, isDark,
-                  child: Column(
-                    children: [
-                      if (trends.isNotEmpty)
-                        _buildTrends(context, trends, isDark, isEn),
-                      if (trends.isNotEmpty)
-                        const SizedBox(height: AppConstants.spacingLg),
-                      if (correlations.isNotEmpty)
-                        _buildCorrelations(context, correlations, isDark, isEn),
-                      if (correlations.isNotEmpty)
-                        const SizedBox(height: AppConstants.spacingLg),
-                      if (crossCorrelations.isNotEmpty)
-                        _buildCrossCorrelations(
-                          context, crossCorrelations, isDark, isEn,
-                        ),
-                    ],
-                  ),
-                ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+                // Weekly comparison — always free (summary level)
+                if (thisWeek.isNotEmpty)
+                  _buildWeeklyComparison(
+                    context,
+                    thisWeek,
+                    lastWeek,
+                    isDark,
+                    isEn,
+                    healthMap: isPremium ? healthMap : null,
+                  ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
+                if (thisWeek.isNotEmpty)
+                  const SizedBox(height: AppConstants.spacingLg),
 
-              // Premium users see everything unblurred
-              if (isPremium) ...[
-                if (trends.isNotEmpty)
-                  _buildTrends(context, trends, isDark, isEn)
-                      .animate()
-                      .fadeIn(delay: 200.ms, duration: 400.ms),
-                if (trends.isNotEmpty)
-                  const SizedBox(height: AppConstants.spacingLg),
-                if (correlations.isNotEmpty)
-                  _buildCorrelations(context, correlations, isDark, isEn)
-                      .animate()
-                      .fadeIn(delay: 300.ms, duration: 400.ms),
-                if (correlations.isNotEmpty)
-                  const SizedBox(height: AppConstants.spacingLg),
-                if (crossCorrelations.isNotEmpty)
-                  _buildCrossCorrelations(
-                    context, crossCorrelations, isDark, isEn,
-                  ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
-              ],
-              ContentDisclaimer(
-                language: isEn ? AppLanguage.en : AppLanguage.tr,
-              ),
-              ToolEcosystemFooter(
-                currentToolId: 'patterns',
-                isEn: isEn,
-                isDark: isDark,
-              ),
-              const SizedBox(height: 40),
-            ]),
+                // Deep analysis — blurred for free users
+                if (!isPremium &&
+                    (trends.isNotEmpty ||
+                        correlations.isNotEmpty ||
+                        crossCorrelations.isNotEmpty))
+                  _buildPremiumBlurOverlay(
+                    context,
+                    ref,
+                    isEn,
+                    isDark,
+                    child: Column(
+                      children: [
+                        if (trends.isNotEmpty)
+                          _buildTrends(context, trends, isDark, isEn),
+                        if (trends.isNotEmpty)
+                          const SizedBox(height: AppConstants.spacingLg),
+                        if (correlations.isNotEmpty)
+                          _buildCorrelations(
+                            context,
+                            correlations,
+                            isDark,
+                            isEn,
+                          ),
+                        if (correlations.isNotEmpty)
+                          const SizedBox(height: AppConstants.spacingLg),
+                        if (crossCorrelations.isNotEmpty)
+                          _buildCrossCorrelations(
+                            context,
+                            crossCorrelations,
+                            isDark,
+                            isEn,
+                          ),
+                      ],
+                    ),
+                  ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+
+                // Premium users see everything unblurred
+                if (isPremium) ...[
+                  if (trends.isNotEmpty)
+                    _buildTrends(
+                      context,
+                      trends,
+                      isDark,
+                      isEn,
+                    ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+                  if (trends.isNotEmpty)
+                    const SizedBox(height: AppConstants.spacingLg),
+                  if (correlations.isNotEmpty)
+                    _buildCorrelations(
+                      context,
+                      correlations,
+                      isDark,
+                      isEn,
+                    ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
+                  if (correlations.isNotEmpty)
+                    const SizedBox(height: AppConstants.spacingLg),
+                  if (crossCorrelations.isNotEmpty)
+                    _buildCrossCorrelations(
+                      context,
+                      crossCorrelations,
+                      isDark,
+                      isEn,
+                    ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+                ],
+                ContentDisclaimer(
+                  language: isEn ? AppLanguage.en : AppLanguage.tr,
+                ),
+                ToolEcosystemFooter(
+                  currentToolId: 'patterns',
+                  isEn: isEn,
+                  isDark: isDark,
+                ),
+                const SizedBox(height: 40),
+              ]),
+            ),
           ),
-        ),
-      ],
+        ],
       ),
     );
   }
@@ -385,74 +449,83 @@ class PatternsScreen extends ConsumerWidget {
           );
         },
         child: Stack(
-        children: [
-          // Blurred content
-          ClipRRect(
-            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-            child: ImageFiltered(
-              imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-              child: IgnorePointer(child: child),
-            ),
-          ),
-          // Overlay CTA
-          Positioned.fill(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.transparent,
-                    (isDark ? Colors.black : Colors.white).withValues(alpha: 0.7),
-                  ],
-                ),
+          children: [
+            // Blurred content
+            ClipRRect(
+              borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+              child: ImageFiltered(
+                imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                child: IgnorePointer(child: child),
               ),
-              child: Center(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [AppColors.starGold, AppColors.chartOrange],
+            ),
+            // Overlay CTA
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.transparent,
+                      (isDark ? Colors.black : Colors.white).withValues(
+                        alpha: 0.7,
+                      ),
+                    ],
+                  ),
+                ),
+                child: Center(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 14,
                     ),
-                    borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.starGold.withValues(alpha: 0.4),
-                        blurRadius: 16,
-                        offset: const Offset(0, 4),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [AppColors.starGold, AppColors.chartOrange],
                       ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.auto_awesome, color: Colors.black, size: 18),
-                      const SizedBox(width: 8),
-                      Text(
-                        isEn ? 'See Full Analysis' : 'Tam Analizi Gör',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
+                      borderRadius: BorderRadius.circular(
+                        AppConstants.radiusMd,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.starGold.withValues(alpha: 0.4),
+                          blurRadius: 16,
+                          offset: const Offset(0, 4),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(
+                          Icons.auto_awesome,
+                          color: Colors.black,
+                          size: 18,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          isEn ? 'See Full Analysis' : 'Tam Analizi Gör',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
         ),
       ),
     );
   }
 
   GlassSliverAppBar _buildAppBar(BuildContext context, bool isDark, bool isEn) {
-    return GlassSliverAppBar(
-      title: isEn ? 'Your Patterns' : 'Kalıpların',
-    );
+    return GlassSliverAppBar(title: isEn ? 'Your Patterns' : 'Kalıpların');
   }
 
   Widget _buildCycleArcs(
@@ -468,9 +541,7 @@ class PatternsScreen extends ConsumerWidget {
             ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
       ),
       child: CustomPaint(
         size: const Size(double.infinity, 170),
@@ -568,8 +639,7 @@ class PatternsScreen extends ConsumerWidget {
                         backgroundColor: isDark
                             ? AppColors.surfaceLight.withValues(alpha: 0.3)
                             : AppColors.lightSurfaceVariant,
-                        valueColor:
-                            AlwaysStoppedAnimation(AppColors.starGold),
+                        valueColor: AlwaysStoppedAnimation(AppColors.starGold),
                         minHeight: 8,
                       ),
                     ),
@@ -588,9 +658,7 @@ class PatternsScreen extends ConsumerWidget {
                   const SizedBox(width: 4),
                   if (diff.abs() > 0.1)
                     Icon(
-                      diff > 0
-                          ? Icons.arrow_upward
-                          : Icons.arrow_downward,
+                      diff > 0 ? Icons.arrow_upward : Icons.arrow_downward,
                       size: 14,
                       color: diff > 0 ? AppColors.success : AppColors.error,
                     ),
@@ -639,13 +707,13 @@ class PatternsScreen extends ConsumerWidget {
             final icon = t.direction == TrendDirection.up
                 ? Icons.trending_up
                 : t.direction == TrendDirection.down
-                    ? Icons.trending_down
-                    : Icons.trending_flat;
+                ? Icons.trending_down
+                : Icons.trending_flat;
             final color = t.direction == TrendDirection.up
                 ? AppColors.success
                 : t.direction == TrendDirection.down
-                    ? AppColors.error
-                    : AppColors.starGold;
+                ? AppColors.error
+                : AppColors.starGold;
 
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
@@ -713,11 +781,7 @@ class PatternsScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(vertical: 6),
               child: Row(
                 children: [
-                  Icon(
-                    Icons.link,
-                    color: AppColors.auroraStart,
-                    size: 20,
-                  ),
+                  Icon(Icons.link, color: AppColors.auroraStart, size: 20),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
@@ -763,11 +827,7 @@ class PatternsScreen extends ConsumerWidget {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.insights,
-                color: AppColors.auroraStart,
-                size: 20,
-              ),
+              Icon(Icons.insights, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
               Text(
                 isEn ? 'Cross-Dimension Insights' : 'Boyutlar Arası İçgörüler',
@@ -785,8 +845,8 @@ class PatternsScreen extends ConsumerWidget {
             final strengthColor = cc.coefficient.abs() >= 0.7
                 ? AppColors.success
                 : cc.coefficient.abs() >= 0.5
-                    ? AppColors.starGold
-                    : AppColors.auroraStart;
+                ? AppColors.starGold
+                : AppColors.auroraStart;
 
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
@@ -806,9 +866,7 @@ class PatternsScreen extends ConsumerWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        isEn
-                            ? cc.shortDisplayEn()
-                            : cc.shortDisplayTr(),
+                        isEn ? cc.shortDisplayEn() : cc.shortDisplayTr(),
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
@@ -847,8 +905,12 @@ class PatternsScreen extends ConsumerWidget {
                             style: TextStyle(
                               fontSize: 11,
                               color: isDark
-                                  ? AppColors.textSecondary.withValues(alpha: 0.7)
-                                  : AppColors.lightTextSecondary.withValues(alpha: 0.7),
+                                  ? AppColors.textSecondary.withValues(
+                                      alpha: 0.7,
+                                    )
+                                  : AppColors.lightTextSecondary.withValues(
+                                      alpha: 0.7,
+                                    ),
                             ),
                           ),
                         ),
@@ -858,10 +920,11 @@ class PatternsScreen extends ConsumerWidget {
                             child: LinearProgressIndicator(
                               value: cc.coefficient.abs(),
                               backgroundColor: isDark
-                                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                                  ? AppColors.surfaceLight.withValues(
+                                      alpha: 0.3,
+                                    )
                                   : AppColors.lightSurfaceVariant,
-                              valueColor:
-                                  AlwaysStoppedAnimation(strengthColor),
+                              valueColor: AlwaysStoppedAnimation(strengthColor),
                               minHeight: 6,
                             ),
                           ),
@@ -961,10 +1024,7 @@ class _CycleArcsPainter extends CustomPainter {
         textDirection: TextDirection.ltr,
       )..layout();
 
-      labelPainter.paint(
-        canvas,
-        Offset(center.dx + radius + 4, center.dy - 8),
-      );
+      labelPainter.paint(canvas, Offset(center.dx + radius + 4, center.dy - 8));
     }
   }
 

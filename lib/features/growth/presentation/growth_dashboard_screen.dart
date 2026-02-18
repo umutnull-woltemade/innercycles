@@ -44,16 +44,21 @@ class GrowthDashboardScreen extends ConsumerStatefulWidget {
       _GrowthDashboardScreenState();
 }
 
-class _GrowthDashboardScreenState
-    extends ConsumerState<GrowthDashboardScreen> {
+class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
   bool _scoreAnimated = false;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('growthDashboard'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('growthDashboard', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('growthDashboard'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData(
+            (s) => s.trackToolOpen('growthDashboard', source: 'direct'),
+          );
     });
   }
 
@@ -79,7 +84,9 @@ class _GrowthDashboardScreenState
                   CommonStrings.somethingWentWrong(language),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                   ),
                 ),
               ),
@@ -120,7 +127,9 @@ class _GrowthDashboardScreenState
     final monthEntries = journalService.getEntriesForMonth(now.year, now.month);
 
     // Calculate data for growth score
-    final focusAreasCoveredThisMonth = _focusAreasCoveredThisMonth(monthEntries);
+    final focusAreasCoveredThisMonth = _focusAreasCoveredThisMonth(
+      monthEntries,
+    );
     final consistencyDays = _consistencyDaysLast30(journalService);
     final completedChallenges = challengeService?.completedChallengeCount ?? 0;
     final gratitudeCount = gratitudeService?.entryCount ?? 0;
@@ -136,113 +145,109 @@ class _GrowthDashboardScreenState
     );
 
     return CupertinoScrollbar(
-          child: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            slivers: [
-              GlassSliverAppBar(
-                title: isEn ? 'Your Growth' : 'Büyümen',
-              ),
-            SliverPadding(
-              padding: const EdgeInsets.all(AppConstants.spacingLg),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate([
-                  // ═══════════════════════════════════════════════════════
-                  // GROWTH SCORE HERO CARD
-                  // ═══════════════════════════════════════════════════════
-                  _buildGrowthScoreCard(
-                    context,
-                    growthScore,
-                    isDark,
-                    isEn,
-                  ).animate().fadeIn(duration: 400.ms).slideY(
-                        begin: 0.1,
-                        duration: 400.ms,
-                        curve: Curves.easeOut,
-                      ),
-                  const SizedBox(height: AppConstants.spacingXl),
-
-                  // ═══════════════════════════════════════════════════════
-                  // STREAK SECTION
-                  // ═══════════════════════════════════════════════════════
-                  _buildStreakSection(
-                    context,
-                    journalService,
-                    currentStreak,
-                    longestStreak,
-                    isDark,
-                    isEn,
-                  ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
-                  const SizedBox(height: AppConstants.spacingXl),
-
-                  // ═══════════════════════════════════════════════════════
-                  // MILESTONES GRID
-                  // ═══════════════════════════════════════════════════════
-                  _buildMilestonesSection(
-                    context,
-                    entries,
-                    currentStreak,
-                    longestStreak,
-                    dreamCount,
-                    focusAreasCoveredThisMonth,
-                    completedChallenges,
-                    gratitudeCount,
-                    isDark,
-                    isEn,
-                  ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
-                  const SizedBox(height: AppConstants.spacingXl),
-
-                  // ═══════════════════════════════════════════════════════
-                  // EXPLORE GROWTH TOOLS
-                  // ═══════════════════════════════════════════════════════
-                  _buildExploreSection(
-                    context,
-                    isDark,
-                    isEn,
-                  ).animate().fadeIn(delay: 250.ms, duration: 400.ms),
-                  const SizedBox(height: AppConstants.spacingXl),
-
-                  // ═══════════════════════════════════════════════════════
-                  // MONTHLY SUMMARY CARD
-                  // ═══════════════════════════════════════════════════════
-                  _buildMonthlySummary(
-                    context,
-                    monthEntries,
-                    dreamCount,
-                    completedChallenges,
-                    gratitudeCount,
-                    isDark,
-                    isEn,
-                  ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
-                  const SizedBox(height: AppConstants.spacingXl),
-
-                  // ═══════════════════════════════════════════════════════
-                  // SHARE GROWTH BUTTON
-                  // ═══════════════════════════════════════════════════════
-                  _buildShareButton(
-                    context,
-                    growthScore,
-                    currentStreak,
-                    entries.length,
-                    isDark,
-                    isEn,
-                  ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
-                  ContentDisclaimer(
-                    language: isEn ? AppLanguage.en : AppLanguage.tr,
-                  ),
-                  ToolEcosystemFooter(
-                    currentToolId: 'growthDashboard',
-                    isEn: isEn,
-                    isDark: isDark,
-                  ),
-                  const SizedBox(height: 40),
-                ]),
-              ),
-            ),
-          ],
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
         ),
-        );
+        slivers: [
+          GlassSliverAppBar(title: isEn ? 'Your Growth' : 'Büyümen'),
+          SliverPadding(
+            padding: const EdgeInsets.all(AppConstants.spacingLg),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                // ═══════════════════════════════════════════════════════
+                // GROWTH SCORE HERO CARD
+                // ═══════════════════════════════════════════════════════
+                _buildGrowthScoreCard(context, growthScore, isDark, isEn)
+                    .animate()
+                    .fadeIn(duration: 400.ms)
+                    .slideY(
+                      begin: 0.1,
+                      duration: 400.ms,
+                      curve: Curves.easeOut,
+                    ),
+                const SizedBox(height: AppConstants.spacingXl),
+
+                // ═══════════════════════════════════════════════════════
+                // STREAK SECTION
+                // ═══════════════════════════════════════════════════════
+                _buildStreakSection(
+                  context,
+                  journalService,
+                  currentStreak,
+                  longestStreak,
+                  isDark,
+                  isEn,
+                ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
+                const SizedBox(height: AppConstants.spacingXl),
+
+                // ═══════════════════════════════════════════════════════
+                // MILESTONES GRID
+                // ═══════════════════════════════════════════════════════
+                _buildMilestonesSection(
+                  context,
+                  entries,
+                  currentStreak,
+                  longestStreak,
+                  dreamCount,
+                  focusAreasCoveredThisMonth,
+                  completedChallenges,
+                  gratitudeCount,
+                  isDark,
+                  isEn,
+                ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+                const SizedBox(height: AppConstants.spacingXl),
+
+                // ═══════════════════════════════════════════════════════
+                // EXPLORE GROWTH TOOLS
+                // ═══════════════════════════════════════════════════════
+                _buildExploreSection(
+                  context,
+                  isDark,
+                  isEn,
+                ).animate().fadeIn(delay: 250.ms, duration: 400.ms),
+                const SizedBox(height: AppConstants.spacingXl),
+
+                // ═══════════════════════════════════════════════════════
+                // MONTHLY SUMMARY CARD
+                // ═══════════════════════════════════════════════════════
+                _buildMonthlySummary(
+                  context,
+                  monthEntries,
+                  dreamCount,
+                  completedChallenges,
+                  gratitudeCount,
+                  isDark,
+                  isEn,
+                ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
+                const SizedBox(height: AppConstants.spacingXl),
+
+                // ═══════════════════════════════════════════════════════
+                // SHARE GROWTH BUTTON
+                // ═══════════════════════════════════════════════════════
+                _buildShareButton(
+                  context,
+                  growthScore,
+                  currentStreak,
+                  entries.length,
+                  isDark,
+                  isEn,
+                ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+                ContentDisclaimer(
+                  language: isEn ? AppLanguage.en : AppLanguage.tr,
+                ),
+                ToolEcosystemFooter(
+                  currentToolId: 'growthDashboard',
+                  isEn: isEn,
+                  isDark: isDark,
+                ),
+                const SizedBox(height: 40),
+              ]),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -258,20 +263,18 @@ class _GrowthDashboardScreenState
     int completedChallenges = 0,
     int gratitudeCount = 0,
   }) {
-    final streakScore =
-        (currentStreak.clamp(0, 30) / 30 * 25).round(); // 25% weight
-    final entryScore =
-        (totalEntries.clamp(0, 100) / 100 * 15).round(); // 15% weight
-    final coverageScore =
-        (focusAreasCovered / 5 * 15).round(); // 15% weight
-    final consistencyScore =
-        (consistencyDays / 30 * 15).round(); // 15% weight
-    final dreamScore =
-        (dreamCount.clamp(0, 20) / 20 * 10).round(); // 10% weight
-    final challengeScore =
-        (completedChallenges.clamp(0, 10) / 10 * 10).round(); // 10% weight
-    final gratitudeScore =
-        (gratitudeCount.clamp(0, 30) / 30 * 10).round(); // 10% weight
+    final streakScore = (currentStreak.clamp(0, 30) / 30 * 25)
+        .round(); // 25% weight
+    final entryScore = (totalEntries.clamp(0, 100) / 100 * 15)
+        .round(); // 15% weight
+    final coverageScore = (focusAreasCovered / 5 * 15).round(); // 15% weight
+    final consistencyScore = (consistencyDays / 30 * 15).round(); // 15% weight
+    final dreamScore = (dreamCount.clamp(0, 20) / 20 * 10)
+        .round(); // 10% weight
+    final challengeScore = (completedChallenges.clamp(0, 10) / 10 * 10)
+        .round(); // 10% weight
+    final gratitudeScore = (gratitudeCount.clamp(0, 30) / 30 * 10)
+        .round(); // 10% weight
     return (streakScore +
             entryScore +
             coverageScore +
@@ -453,10 +456,7 @@ class _GrowthDashboardScreenState
             crossAxisAlignment: CrossAxisAlignment.baseline,
             textBaseline: TextBaseline.alphabetic,
             children: [
-              Text(
-                '\u{1F525}',
-                style: const TextStyle(fontSize: 32),
-              ),
+              Text('\u{1F525}', style: const TextStyle(fontSize: 32)),
               const SizedBox(width: 8),
               Text(
                 '$currentStreak',
@@ -483,14 +483,10 @@ class _GrowthDashboardScreenState
           const SizedBox(height: 8),
           // Longest streak
           Text(
-            isEn
-                ? 'Best: $longestStreak days'
-                : 'En iyi: $longestStreak gün',
+            isEn ? 'Best: $longestStreak days' : 'En iyi: $longestStreak gün',
             style: TextStyle(
               fontSize: 14,
-              color: isDark
-                  ? AppColors.textMuted
-                  : AppColors.lightTextMuted,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
           ),
           const SizedBox(height: AppConstants.spacingLg),
@@ -526,8 +522,7 @@ class _GrowthDashboardScreenState
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 2),
             child: Tooltip(
-              message:
-                  '${date.day}/${date.month}',
+              message: '${date.day}/${date.month}',
               child: Container(
                 width: 14,
                 height: 14,
@@ -536,8 +531,8 @@ class _GrowthDashboardScreenState
                   color: hasEntry
                       ? AppColors.starGold
                       : isDark
-                          ? AppColors.surfaceDark
-                          : AppColors.lightSurfaceVariant,
+                      ? AppColors.surfaceDark
+                      : AppColors.lightSurfaceVariant,
                   border: hasEntry
                       ? null
                       : Border.all(
@@ -588,11 +583,9 @@ class _GrowthDashboardScreenState
         Text(
           isEn ? 'Milestones' : 'Kilometre Taşları',
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
-                fontWeight: FontWeight.w600,
-              ),
+            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         const SizedBox(height: AppConstants.spacingMd),
         GridView.builder(
@@ -607,13 +600,7 @@ class _GrowthDashboardScreenState
           itemCount: milestones.length,
           itemBuilder: (context, index) {
             final milestone = milestones[index];
-            return _buildMilestoneCard(
-              context,
-              milestone,
-              isDark,
-              isEn,
-              index,
-            );
+            return _buildMilestoneCard(context, milestone, isDark, isEn, index);
           },
         ),
       ],
@@ -630,98 +617,101 @@ class _GrowthDashboardScreenState
     final unlocked = milestone.unlocked;
 
     return Container(
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: unlocked ? 0.8 : 0.4)
-            : unlocked
+          padding: const EdgeInsets.all(AppConstants.spacingLg),
+          decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.surfaceDark.withValues(alpha: unlocked ? 0.8 : 0.4)
+                : unlocked
                 ? AppColors.lightCard
                 : AppColors.lightSurfaceVariant.withValues(alpha: 0.6),
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: unlocked
-              ? AppColors.starGold.withValues(alpha: 0.4)
-              : isDark
+            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+            border: Border.all(
+              color: unlocked
+                  ? AppColors.starGold.withValues(alpha: 0.4)
+                  : isDark
                   ? Colors.white.withValues(alpha: 0.05)
                   : Colors.black.withValues(alpha: 0.03),
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // Icon with status
-          Stack(
-            alignment: Alignment.bottomRight,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                milestone.icon,
-                size: 32,
-                color: unlocked
-                    ? AppColors.starGold
-                    : isDark
+              // Icon with status
+              Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                  Icon(
+                    milestone.icon,
+                    size: 32,
+                    color: unlocked
+                        ? AppColors.starGold
+                        : isDark
                         ? AppColors.textMuted.withValues(alpha: 0.4)
                         : AppColors.lightTextMuted.withValues(alpha: 0.5),
+                  ),
+                  if (unlocked)
+                    Container(
+                      padding: const EdgeInsets.all(2),
+                      decoration: const BoxDecoration(
+                        color: AppColors.success,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.check,
+                        size: 10,
+                        color: Colors.white,
+                      ),
+                    )
+                  else
+                    Icon(
+                      Icons.lock,
+                      size: 14,
+                      color: isDark
+                          ? AppColors.textMuted.withValues(alpha: 0.5)
+                          : AppColors.lightTextMuted,
+                    ),
+                ],
               ),
-              if (unlocked)
-                Container(
-                  padding: const EdgeInsets.all(2),
-                  decoration: const BoxDecoration(
-                    color: AppColors.success,
-                    shape: BoxShape.circle,
+              const SizedBox(height: 8),
+              // Title
+              Text(
+                milestone.title,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: unlocked
+                      ? (isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary)
+                      : (isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted),
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 4),
+              // Progress hint
+              if (!unlocked)
+                Text(
+                  milestone.progressHint,
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: isDark
+                        ? AppColors.textMuted.withValues(alpha: 0.6)
+                        : AppColors.lightTextMuted,
                   ),
-                  child: const Icon(
-                    Icons.check,
-                    size: 10,
-                    color: Colors.white,
-                  ),
-                )
-              else
-                Icon(
-                  Icons.lock,
-                  size: 14,
-                  color: isDark
-                      ? AppColors.textMuted.withValues(alpha: 0.5)
-                      : AppColors.lightTextMuted,
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
             ],
           ),
-          const SizedBox(height: 8),
-          // Title
-          Text(
-            milestone.title,
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
-              color: unlocked
-                  ? (isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary)
-                  : (isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted),
-            ),
-            textAlign: TextAlign.center,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: 4),
-          // Progress hint
-          if (!unlocked)
-            Text(
-              milestone.progressHint,
-              style: TextStyle(
-                fontSize: 11,
-                color: isDark
-                    ? AppColors.textMuted.withValues(alpha: 0.6)
-                    : AppColors.lightTextMuted,
-              ),
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-        ],
-      ),
-    ).animate(delay: (50 * index).ms).fadeIn(duration: 300.ms).scale(
+        )
+        .animate(delay: (50 * index).ms)
+        .fadeIn(duration: 300.ms)
+        .scale(
           begin: const Offset(0.9, 0.9),
           end: const Offset(1, 1),
           duration: 300.ms,
@@ -754,8 +744,8 @@ class _GrowthDashboardScreenState
         unlocked: maxStreak >= 7,
         progressHint: maxStreak < 7
             ? isEn
-                ? '${7 - maxStreak} more to unlock'
-                : '${7 - maxStreak} gün daha'
+                  ? '${7 - maxStreak} more to unlock'
+                  : '${7 - maxStreak} gün daha'
             : '',
       ),
       _Milestone(
@@ -764,8 +754,8 @@ class _GrowthDashboardScreenState
         unlocked: entries.length >= 7,
         progressHint: entries.length < 7
             ? isEn
-                ? '${7 - entries.length} more entries'
-                : '${7 - entries.length} kayıt daha'
+                  ? '${7 - entries.length} more entries'
+                  : '${7 - entries.length} kayıt daha'
             : '',
       ),
       _Milestone(
@@ -774,8 +764,8 @@ class _GrowthDashboardScreenState
         unlocked: dreamCount >= 3,
         progressHint: dreamCount < 3
             ? isEn
-                ? '${3 - dreamCount} more dreams'
-                : '${3 - dreamCount} rüya daha'
+                  ? '${3 - dreamCount} more dreams'
+                  : '${3 - dreamCount} rüya daha'
             : '',
       ),
       _Milestone(
@@ -784,8 +774,8 @@ class _GrowthDashboardScreenState
         unlocked: completedChallenges >= 3,
         progressHint: completedChallenges < 3
             ? isEn
-                ? '${3 - completedChallenges} challenges left'
-                : '${3 - completedChallenges} görev kaldı'
+                  ? '${3 - completedChallenges} challenges left'
+                  : '${3 - completedChallenges} görev kaldı'
             : '',
       ),
       _Milestone(
@@ -794,8 +784,8 @@ class _GrowthDashboardScreenState
         unlocked: gratitudeCount >= 7,
         progressHint: gratitudeCount < 7
             ? isEn
-                ? '${7 - gratitudeCount} gratitude entries'
-                : '${7 - gratitudeCount} şükran kaydı'
+                  ? '${7 - gratitudeCount} gratitude entries'
+                  : '${7 - gratitudeCount} şükran kaydı'
             : '',
       ),
       _Milestone(
@@ -804,8 +794,8 @@ class _GrowthDashboardScreenState
         unlocked: maxStreak >= 30,
         progressHint: maxStreak < 30
             ? isEn
-                ? '${30 - maxStreak} more to unlock'
-                : '${30 - maxStreak} gün daha'
+                  ? '${30 - maxStreak} more to unlock'
+                  : '${30 - maxStreak} gün daha'
             : '',
       ),
       _Milestone(
@@ -814,16 +804,15 @@ class _GrowthDashboardScreenState
         unlocked: focusAreasCoveredThisMonth >= 5,
         progressHint: focusAreasCoveredThisMonth < 5
             ? isEn
-                ? '${5 - focusAreasCoveredThisMonth} more areas'
-                : '${5 - focusAreasCoveredThisMonth} alan daha'
+                  ? '${5 - focusAreasCoveredThisMonth} more areas'
+                  : '${5 - focusAreasCoveredThisMonth} alan daha'
             : '',
       ),
       _Milestone(
         icon: Icons.share,
         title: isEn ? 'Story Teller' : 'Hikaye Anlatıcısı',
         unlocked: false,
-        progressHint:
-            isEn ? 'Share your progress' : 'İlerlemeni paylaş',
+        progressHint: isEn ? 'Share your progress' : 'İlerlemeni paylaş',
       ),
     ];
   }
@@ -832,11 +821,7 @@ class _GrowthDashboardScreenState
   // EXPLORE GROWTH TOOLS
   // ══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildExploreSection(
-    BuildContext context,
-    bool isDark,
-    bool isEn,
-  ) {
+  Widget _buildExploreSection(BuildContext context, bool isDark, bool isEn) {
     final tools = [
       _GrowthTool(
         icon: Icons.fingerprint_outlined,
@@ -855,7 +840,9 @@ class _GrowthDashboardScreenState
       _GrowthTool(
         icon: Icons.people_outline_rounded,
         title: isEn ? 'Relationship Reflection' : 'İlişki Yansıması',
-        subtitle: isEn ? 'Explore recurring dynamics' : 'Tekrarlayan dinamikleri keşfet',
+        subtitle: isEn
+            ? 'Explore recurring dynamics'
+            : 'Tekrarlayan dinamikleri keşfet',
         route: Routes.compatibilityReflection,
         color: AppColors.softCoral,
       ),
@@ -888,11 +875,9 @@ class _GrowthDashboardScreenState
         Text(
           isEn ? 'Explore Growth Tools' : 'Büyüme Araçlarını Keşfet',
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
-                fontWeight: FontWeight.w600,
-              ),
+            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         const SizedBox(height: AppConstants.spacingMd),
         GridView.builder(
@@ -908,69 +893,67 @@ class _GrowthDashboardScreenState
           itemBuilder: (context, index) {
             final tool = tools[index];
             return GestureDetector(
-              onTap: () {
-                HapticFeedback.lightImpact();
-                context.push(tool.route);
-              },
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: isDark
-                      ? tool.color.withValues(alpha: 0.08)
-                      : tool.color.withValues(alpha: 0.05),
-                  borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-                  border: Border.all(
-                    color: tool.color.withValues(alpha: 0.2),
+                  onTap: () {
+                    HapticFeedback.lightImpact();
+                    context.push(tool.route);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: isDark
+                          ? tool.color.withValues(alpha: 0.08)
+                          : tool.color.withValues(alpha: 0.05),
+                      borderRadius: BorderRadius.circular(
+                        AppConstants.radiusMd,
+                      ),
+                      border: Border.all(
+                        color: tool.color.withValues(alpha: 0.2),
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: tool.color.withValues(alpha: 0.15),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Icon(tool.icon, color: tool.color, size: 22),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          tool.title,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary,
+                          ),
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          tool.subtitle,
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: tool.color.withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Icon(
-                        tool.icon,
-                        color: tool.color,
-                        size: 22,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      tool.title,
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      tool.subtitle,
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-              ),
-            ).animate(delay: Duration(milliseconds: 50 * index)).fadeIn(
-                  duration: 300.ms,
-                );
+                )
+                .animate(delay: Duration(milliseconds: 50 * index))
+                .fadeIn(duration: 300.ms);
           },
         ),
       ],
@@ -1005,8 +988,9 @@ class _GrowthDashboardScreenState
     // Average overall rating
     double avgRating = 0;
     if (monthEntries.isNotEmpty) {
-      final sum =
-          monthEntries.map((e) => e.overallRating).reduce((a, b) => a + b);
+      final sum = monthEntries
+          .map((e) => e.overallRating)
+          .reduce((a, b) => a + b);
       avgRating = sum / monthEntries.length;
     }
 
@@ -1029,9 +1013,9 @@ class _GrowthDashboardScreenState
           Text(
             isEn ? 'This Month' : 'Bu Ay',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: AppColors.starGold,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: AppColors.starGold,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           _buildSummaryRow(
@@ -1046,9 +1030,7 @@ class _GrowthDashboardScreenState
             icon: Icons.category,
             label: isEn ? 'Most tracked area' : 'En çok takip edilen alan',
             value: mostTracked != null
-                ? (isEn
-                    ? mostTracked.displayNameEn
-                    : mostTracked.displayNameTr)
+                ? (isEn ? mostTracked.displayNameEn : mostTracked.displayNameTr)
                 : (isEn ? 'None yet' : 'Henüz yok'),
             color: AppColors.starGold,
             isDark: isDark,
@@ -1119,9 +1101,7 @@ class _GrowthDashboardScreenState
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: isDark
-                ? AppColors.textPrimary
-                : AppColors.lightTextPrimary,
+            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),
       ],
@@ -1148,10 +1128,7 @@ class _GrowthDashboardScreenState
         icon: const Icon(Icons.share, size: 20),
         label: Text(
           isEn ? 'Share Your Progress' : 'İlerlemeni Paylaş',
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.starGold,
@@ -1168,13 +1145,13 @@ class _GrowthDashboardScreenState
   void _shareProgress(int score, int streak, int totalEntries, bool isEn) {
     final text = isEn
         ? 'My InnerCycles Growth Score: $score/100\n'
-            'Current streak: $streak days\n'
-            'Total entries: $totalEntries\n\n'
-            'Track your personal growth with InnerCycles!'
+              'Current streak: $streak days\n'
+              'Total entries: $totalEntries\n\n'
+              'Track your personal growth with InnerCycles!'
         : 'InnerCycles Büyüme Puanım: $score/100\n'
-            'Mevcut seri: $streak gün\n'
-            'Toplam kayıt: $totalEntries\n\n'
-            'InnerCycles ile kişisel büyümeni takip et!';
+              'Mevcut seri: $streak gün\n'
+              'Toplam kayıt: $totalEntries\n\n'
+              'InnerCycles ile kişisel büyümeni takip et!';
 
     SharePlus.instance.share(ShareParams(text: text));
   }

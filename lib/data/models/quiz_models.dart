@@ -159,25 +159,29 @@ class QuizResult {
 
   /// Serialize to JSON for SharedPreferences storage
   Map<String, dynamic> toJson() => {
-        'quizId': quizId,
-        'scores': scores,
-        'percentages': percentages,
-        'resultType': resultType,
-        'completedAt': completedAt.toIso8601String(),
-      };
+    'quizId': quizId,
+    'scores': scores,
+    'percentages': percentages,
+    'resultType': resultType,
+    'completedAt': completedAt.toIso8601String(),
+  };
 
   /// Deserialize from JSON
   factory QuizResult.fromJson(Map<String, dynamic> json) {
     return QuizResult(
       quizId: json['quizId'] as String? ?? '',
       scores: (json['scores'] as Map? ?? {}).map(
-        (k, v) => MapEntry(k.toString(), v is int ? v : (v is num ? v.toInt() : 0)),
+        (k, v) =>
+            MapEntry(k.toString(), v is int ? v : (v is num ? v.toInt() : 0)),
       ),
       percentages: (json['percentages'] as Map? ?? {}).map(
-        (key, value) => MapEntry(key as String? ?? '', (value as num? ?? 0).toDouble()),
+        (key, value) =>
+            MapEntry(key as String? ?? '', (value as num? ?? 0).toDouble()),
       ),
       resultType: json['resultType'] as String? ?? '',
-      completedAt: DateTime.tryParse(json['completedAt']?.toString() ?? '') ?? DateTime.now(),
+      completedAt:
+          DateTime.tryParse(json['completedAt']?.toString() ?? '') ??
+          DateTime.now(),
     );
   }
 

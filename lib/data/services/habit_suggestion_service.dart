@@ -124,8 +124,9 @@ class HabitSuggestionService {
     final triedIds = _getTriedIds();
 
     // Prefer untried habits
-    final untried =
-        allHabitSuggestions.where((h) => !triedIds.contains(h.id)).toList();
+    final untried = allHabitSuggestions
+        .where((h) => !triedIds.contains(h.id))
+        .toList();
     final pool = untried.isNotEmpty ? untried : allHabitSuggestions;
 
     final index = dayHash % pool.length;
@@ -196,9 +197,7 @@ class HabitSuggestionService {
 
   List<HabitSuggestion> getAdoptedHabits() {
     final adoptedIds = _getAdoptedIds();
-    return allHabitSuggestions
-        .where((h) => adoptedIds.contains(h.id))
-        .toList();
+    return allHabitSuggestions.where((h) => adoptedIds.contains(h.id)).toList();
   }
 
   Set<String> _getTriedIds() {

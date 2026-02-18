@@ -102,9 +102,7 @@ class _CheckinView extends StatelessWidget {
                 ],
         ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.auroraStart.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.2)),
       ),
       child: Column(
         children: [
@@ -113,7 +111,9 @@ class _CheckinView extends StatelessWidget {
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
           const SizedBox(height: 14),
@@ -138,7 +138,10 @@ class _CheckinView extends StatelessWidget {
                               : Colors.black.withValues(alpha: 0.04),
                         ),
                         child: Center(
-                          child: Text(emoji, style: const TextStyle(fontSize: 24)),
+                          child: Text(
+                            emoji,
+                            style: const TextStyle(fontSize: 24),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -146,8 +149,9 @@ class _CheckinView extends StatelessWidget {
                         isEn ? labelEn : labelTr,
                         style: TextStyle(
                           fontSize: 10,
-                          color:
-                              isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
                         ),
                       ),
                     ],
@@ -243,8 +247,9 @@ class _LoggedView extends StatelessWidget {
                     dayLabels[dayIndex],
                     style: TextStyle(
                       fontSize: 10,
-                      color:
-                          isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -256,8 +261,8 @@ class _LoggedView extends StatelessWidget {
                       color: entry != null
                           ? _moodColor(entry.mood).withValues(alpha: 0.2)
                           : (isDark
-                              ? Colors.white.withValues(alpha: 0.04)
-                              : Colors.black.withValues(alpha: 0.03)),
+                                ? Colors.white.withValues(alpha: 0.04)
+                                : Colors.black.withValues(alpha: 0.03)),
                     ),
                     child: Center(
                       child: Text(
@@ -267,8 +272,8 @@ class _LoggedView extends StatelessWidget {
                           color: entry != null
                               ? null
                               : (isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted),
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted),
                         ),
                       ),
                     ),
@@ -373,22 +378,21 @@ class _ThankYouView extends StatelessWidget {
                 ],
         ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.success.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: AppColors.success.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
           Row(
             children: [
-              Text(todayMood.emoji, style: const TextStyle(fontSize: 32))
-                  .animate()
-                  .scale(
-                    begin: const Offset(0.5, 0.5),
-                    end: const Offset(1, 1),
-                    duration: 300.ms,
-                    curve: Curves.elasticOut,
-                  ),
+              Text(
+                todayMood.emoji,
+                style: const TextStyle(fontSize: 32),
+              ).animate().scale(
+                begin: const Offset(0.5, 0.5),
+                end: const Offset(1, 1),
+                duration: 300.ms,
+                curve: Curves.elasticOut,
+              ),
               const SizedBox(width: 14),
               Expanded(
                 child: Text(

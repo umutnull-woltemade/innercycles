@@ -47,525 +47,541 @@ class SettingsScreen extends ConsumerWidget {
                   title: L10n.get('settings.title', language),
                   largeTitleMode: true,
                 ),
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    // ═══ APPEARANCE SECTION ═══
-                    _SectionHeader(
-                      title: L10n.get('theme', language).toUpperCase(),
-                      isDark: isDark,
-                    ),
-                    _GroupedContainer(
-                      isDark: isDark,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: _ThemeOption(
-                              label: L10n.get(
-                                'settings.light_mode',
-                                language,
-                              ),
-                              icon: Icons.light_mode,
-                              isSelected: themeMode == ThemeMode.light,
-                              isDark: isDark,
-                              onTap: () {
-                                HapticFeedback.selectionClick();
-                                ref.read(themeModeProvider.notifier).state =
-                                    ThemeMode.light;
-                                StorageService.saveThemeMode(ThemeMode.light);
-                              },
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: _ThemeOption(
-                              label: L10n.get(
-                                'settings.dark_mode',
-                                language,
-                              ),
-                              icon: Icons.dark_mode,
-                              isSelected: themeMode == ThemeMode.dark,
-                              isDark: isDark,
-                              onTap: () {
-                                HapticFeedback.selectionClick();
-                                ref.read(themeModeProvider.notifier).state =
-                                    ThemeMode.dark;
-                                StorageService.saveThemeMode(ThemeMode.dark);
-                              },
-                            ),
-                          ),
-                        ],
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate([
+                      // ═══ APPEARANCE SECTION ═══
+                      _SectionHeader(
+                        title: L10n.get('theme', language).toUpperCase(),
+                        isDark: isDark,
                       ),
-                    ),
-                    const SizedBox(height: 35),
-
-                    // ═══ LANGUAGE SECTION ═══
-                    _SectionHeader(
-                      title: L10n.get('language', language).toUpperCase(),
-                      isDark: isDark,
-                    ),
-                    _GroupedContainer(
-                      isDark: isDark,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          children: AppLanguage.values.map((lang) {
-                            final isSelected = lang == language;
-                            final isAvailable = lang.hasStrictIsolation;
-                            return Semantics(
-                              label: lang.displayName,
-                              button: true,
-                              selected: isSelected,
-                              enabled: isAvailable,
-                              child: GestureDetector(
-                              onTap: () {
-                                if (isAvailable) {
+                      _GroupedContainer(
+                        isDark: isDark,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: _ThemeOption(
+                                label: L10n.get(
+                                  'settings.light_mode',
+                                  language,
+                                ),
+                                icon: Icons.light_mode,
+                                isSelected: themeMode == ThemeMode.light,
+                                isDark: isDark,
+                                onTap: () {
                                   HapticFeedback.selectionClick();
-                                  ref.read(languageProvider.notifier).state =
-                                      lang;
-                                  StorageService.saveLanguage(lang);
-                                } else {
+                                  ref.read(themeModeProvider.notifier).state =
+                                      ThemeMode.light;
+                                  StorageService.saveThemeMode(ThemeMode.light);
+                                },
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: _ThemeOption(
+                                label: L10n.get('settings.dark_mode', language),
+                                icon: Icons.dark_mode,
+                                isSelected: themeMode == ThemeMode.dark,
+                                isDark: isDark,
+                                onTap: () {
+                                  HapticFeedback.selectionClick();
+                                  ref.read(themeModeProvider.notifier).state =
+                                      ThemeMode.dark;
+                                  StorageService.saveThemeMode(ThemeMode.dark);
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 35),
+
+                      // ═══ LANGUAGE SECTION ═══
+                      _SectionHeader(
+                        title: L10n.get('language', language).toUpperCase(),
+                        isDark: isDark,
+                      ),
+                      _GroupedContainer(
+                        isDark: isDark,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: AppLanguage.values.map((lang) {
+                              final isSelected = lang == language;
+                              final isAvailable = lang.hasStrictIsolation;
+                              return Semantics(
+                                label: lang.displayName,
+                                button: true,
+                                selected: isSelected,
+                                enabled: isAvailable,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    if (isAvailable) {
+                                      HapticFeedback.selectionClick();
+                                      ref
+                                              .read(languageProvider.notifier)
+                                              .state =
+                                          lang;
+                                      StorageService.saveLanguage(lang);
+                                    } else {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            L10nService.get(
+                                              'settings.coming_soon_language',
+                                              language,
+                                            ),
+                                          ),
+                                          duration: const Duration(seconds: 2),
+                                          behavior: SnackBarBehavior.floating,
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  child: Opacity(
+                                    opacity: isAvailable ? 1.0 : 0.5,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 8,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: isSelected
+                                            ? AppColors.auroraStart.withValues(
+                                                alpha: 0.2,
+                                              )
+                                            : Colors.transparent,
+                                        borderRadius: BorderRadius.circular(8),
+                                        border: Border.all(
+                                          color: isSelected
+                                              ? AppColors.auroraStart
+                                              : Colors.transparent,
+                                          width: 1.5,
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            lang.flag,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 6),
+                                          Text(
+                                            lang.displayName,
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: isSelected
+                                                  ? AppColors.auroraStart
+                                                  : (isDark
+                                                        ? AppColors.textPrimary
+                                                        : AppColors
+                                                              .lightTextPrimary),
+                                              fontWeight: isSelected
+                                                  ? FontWeight.w600
+                                                  : FontWeight.normal,
+                                            ),
+                                          ),
+                                          if (isSelected) ...[
+                                            const SizedBox(width: 4),
+                                            Icon(
+                                              Icons.check_circle,
+                                              size: 14,
+                                              color: AppColors.auroraStart,
+                                            ),
+                                          ],
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 35),
+
+                      // ═══ ACCOUNT SECTION ═══
+                      _SectionHeader(
+                        title: L10nService.get(
+                          'settings.account',
+                          language,
+                        ).toUpperCase(),
+                        isDark: isDark,
+                      ),
+                      _GroupedContainer(
+                        isDark: isDark,
+                        noPadding: true,
+                        child: Column(
+                          children: [
+                            _GroupedTile(
+                              icon: Icons.account_circle_outlined,
+                              title: L10nService.get(
+                                'settings.edit_profile',
+                                language,
+                              ),
+                              isDark: isDark,
+                              onTap: () => context.push(Routes.profile),
+                            ),
+                            _GroupedSeparator(isDark: isDark),
+                            _GroupedTile(
+                              icon: Icons.workspace_premium_outlined,
+                              title: L10nService.get(
+                                'settings.premium',
+                                language,
+                              ),
+                              isDark: isDark,
+                              onTap: () => isPremium
+                                  ? context.push(Routes.premium)
+                                  : showContextualPaywall(
+                                      context,
+                                      ref,
+                                      paywallContext: PaywallContext.general,
+                                    ),
+                              trailing: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  gradient: isPremium
+                                      ? LinearGradient(
+                                          colors: [
+                                            AppColors.success,
+                                            AppColors.success.withValues(
+                                              alpha: 0.8,
+                                            ),
+                                          ],
+                                        )
+                                      : AppColors.goldGradient,
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Text(
+                                  isPremium ? '✓ PRO' : 'PRO',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                    color: isPremium
+                                        ? Colors.white
+                                        : AppColors.deepSpace,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            if (isPremium) ...[
+                              _GroupedSeparator(isDark: isDark),
+                              _GroupedTile(
+                                icon: Icons.credit_card_outlined,
+                                title: L10nService.get(
+                                  'settings.manage_subscription',
+                                  language,
+                                ),
+                                isDark: isDark,
+                                onTap: () async {
+                                  await ref
+                                      .read(paywallServiceProvider)
+                                      .presentCustomerCenter();
+                                },
+                              ),
+                            ],
+                            _GroupedSeparator(isDark: isDark),
+                            _GroupedTile(
+                              icon: Icons.restore,
+                              title: language == AppLanguage.en
+                                  ? 'Restore Purchases'
+                                  : 'Satın Alımları Geri Yükle',
+                              isDark: isDark,
+                              onTap: () async {
+                                await ref
+                                    .read(premiumProvider.notifier)
+                                    .restorePurchases();
+                                if (context.mounted) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        L10nService.get(
-                                          'settings.coming_soon_language',
-                                          language,
-                                        ),
+                                        language == AppLanguage.en
+                                            ? 'Purchases restored'
+                                            : 'Satın alımlar geri yüklendi',
                                       ),
-                                      duration: const Duration(seconds: 2),
-                                      behavior: SnackBarBehavior.floating,
                                     ),
                                   );
                                 }
                               },
-                              child: Opacity(
-                                opacity: isAvailable ? 1.0 : 0.5,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 8,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: isSelected
-                                        ? AppColors.auroraStart.withValues(
-                                            alpha: 0.2,
-                                          )
-                                        : Colors.transparent,
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: isSelected
-                                          ? AppColors.auroraStart
-                                          : Colors.transparent,
-                                      width: 1.5,
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        lang.flag,
-                                        style: const TextStyle(fontSize: 16),
-                                      ),
-                                      const SizedBox(width: 6),
-                                      Text(
-                                        lang.displayName,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: isSelected
-                                              ? AppColors.auroraStart
-                                              : (isDark
-                                                    ? AppColors.textPrimary
-                                                    : AppColors
-                                                        .lightTextPrimary),
-                                          fontWeight: isSelected
-                                              ? FontWeight.w600
-                                              : FontWeight.normal,
-                                        ),
-                                      ),
-                                      if (isSelected) ...[
-                                        const SizedBox(width: 4),
-                                        Icon(
-                                          Icons.check_circle,
-                                          size: 14,
-                                          color: AppColors.auroraStart,
-                                        ),
-                                      ],
-                                    ],
-                                  ),
-                                ),
-                              ),
                             ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 35),
-
-                    // ═══ ACCOUNT SECTION ═══
-                    _SectionHeader(
-                      title: L10nService.get(
-                        'settings.account',
-                        language,
-                      ).toUpperCase(),
-                      isDark: isDark,
-                    ),
-                    _GroupedContainer(
-                      isDark: isDark,
-                      noPadding: true,
-                      child: Column(
-                        children: [
-                          _GroupedTile(
-                            icon: Icons.account_circle_outlined,
-                            title: L10nService.get(
-                              'settings.edit_profile',
-                              language,
-                            ),
-                            isDark: isDark,
-                            onTap: () => context.push(Routes.profile),
-                          ),
-                          _GroupedSeparator(isDark: isDark),
-                          _GroupedTile(
-                            icon: Icons.workspace_premium_outlined,
-                            title: L10nService.get(
-                              'settings.premium',
-                              language,
-                            ),
-                            isDark: isDark,
-                            onTap: () => isPremium
-                                ? context.push(Routes.premium)
-                                : showContextualPaywall(context, ref, paywallContext: PaywallContext.general),
-                            trailing: Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                                vertical: 4,
-                              ),
-                              decoration: BoxDecoration(
-                                gradient: isPremium
-                                    ? LinearGradient(
-                                        colors: [
-                                          AppColors.success,
-                                          AppColors.success.withValues(
-                                            alpha: 0.8,
-                                          ),
-                                        ],
-                                      )
-                                    : AppColors.goldGradient,
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              child: Text(
-                                isPremium ? '✓ PRO' : 'PRO',
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.bold,
-                                  color: isPremium
-                                      ? Colors.white
-                                      : AppColors.deepSpace,
-                                ),
-                              ),
-                            ),
-                          ),
-                          if (isPremium) ...[
                             _GroupedSeparator(isDark: isDark),
                             _GroupedTile(
-                              icon: Icons.credit_card_outlined,
+                              icon: Icons.delete_outline,
                               title: L10nService.get(
-                                'settings.manage_subscription',
+                                'settings.clear_data',
+                                language,
+                              ),
+                              isDark: isDark,
+                              isDestructive: true,
+                              onTap: () =>
+                                  _showClearDataDialog(context, ref, language),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 35),
+
+                      // ═══ SHARE & EARN SECTION ═══
+                      if (!isPremium) ...[
+                        _SectionHeader(
+                          title:
+                              (language == AppLanguage.en
+                                      ? 'Share & Earn'
+                                      : 'Paylaş ve Kazan')
+                                  .toUpperCase(),
+                          isDark: isDark,
+                        ),
+                        _ReferralCard(isDark: isDark, language: language),
+                        const SizedBox(height: 35),
+                      ],
+
+                      // ═══ FEATURES SECTION ═══
+                      _SectionHeader(
+                        title:
+                            (language == AppLanguage.en
+                                    ? 'Features'
+                                    : 'Özellikler')
+                                .toUpperCase(),
+                        isDark: isDark,
+                      ),
+                      _GroupedContainer(
+                        isDark: isDark,
+                        noPadding: true,
+                        child: Column(
+                          children: [
+                            _GroupedTile(
+                              icon: Icons.air_outlined,
+                              title: language == AppLanguage.en
+                                  ? 'Breathing Exercises'
+                                  : 'Nefes Egzersizleri',
+                              isDark: isDark,
+                              onTap: () => context.push(Routes.breathing),
+                            ),
+                            _GroupedSeparator(isDark: isDark),
+                            _GroupedTile(
+                              icon: Icons.self_improvement_outlined,
+                              title: language == AppLanguage.en
+                                  ? 'Meditation Timer'
+                                  : 'Meditasyon Zamanlayıcı',
+                              isDark: isDark,
+                              onTap: () => context.push(Routes.meditation),
+                            ),
+                            _GroupedSeparator(isDark: isDark),
+                            _GroupedTile(
+                              icon: Icons.emoji_events_outlined,
+                              title: language == AppLanguage.en
+                                  ? 'Growth Challenges'
+                                  : 'Büyüme Görevleri',
+                              isDark: isDark,
+                              onTap: () => context.push(Routes.challenges),
+                            ),
+                            _GroupedSeparator(isDark: isDark),
+                            _GroupedTile(
+                              icon: Icons.eco_outlined,
+                              title: language == AppLanguage.en
+                                  ? 'Seasonal Reflections'
+                                  : 'Mevsimsel Yansımalar',
+                              isDark: isDark,
+                              onTap: () => context.push(Routes.seasonal),
+                            ),
+                            _GroupedSeparator(isDark: isDark),
+                            _GroupedTile(
+                              icon: Icons.dark_mode_outlined,
+                              title: language == AppLanguage.en
+                                  ? 'Moon Calendar'
+                                  : 'Ay Takvimi',
+                              isDark: isDark,
+                              onTap: () => context.push(Routes.moonCalendar),
+                            ),
+                            _GroupedSeparator(isDark: isDark),
+                            _GroupedTile(
+                              icon: Icons.file_download_outlined,
+                              title: language == AppLanguage.en
+                                  ? 'Export Data'
+                                  : 'Verileri Dışa Aktar',
+                              isDark: isDark,
+                              onTap: () => context.push(Routes.exportData),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 35),
+
+                      // ═══ NOTIFICATIONS SECTION ═══
+                      _SectionHeader(
+                        title: L10nService.get(
+                          'settings.notifications_title',
+                          language,
+                        ).toUpperCase(),
+                        isDark: isDark,
+                      ),
+                      const NotificationSettingsSection(),
+                      const SizedBox(height: 35),
+
+                      // ═══ PRIVACY & SECURITY SECTION ═══
+                      _SectionHeader(
+                        title:
+                            (language == AppLanguage.en
+                                    ? 'Privacy & Security'
+                                    : 'Gizlilik ve Güvenlik')
+                                .toUpperCase(),
+                        isDark: isDark,
+                      ),
+                      _AppLockSection(isDark: isDark, language: language),
+                      const SizedBox(height: 35),
+
+                      // ═══ ABOUT SECTION ═══
+                      _SectionHeader(
+                        title: L10nService.get(
+                          'settings.about',
+                          language,
+                        ).toUpperCase(),
+                        isDark: isDark,
+                      ),
+                      _GroupedContainer(
+                        isDark: isDark,
+                        noPadding: true,
+                        child: Column(
+                          children: [
+                            _GroupedTile(
+                              icon: Icons.star_outline,
+                              title: L10nService.get(
+                                'settings.rate_app',
                                 language,
                               ),
                               isDark: isDark,
                               onTap: () async {
-                                await ref
-                                    .read(paywallServiceProvider)
-                                    .presentCustomerCenter();
+                                await urlLauncher.requestAppReview();
+                              },
+                            ),
+                            _GroupedSeparator(isDark: isDark),
+                            _GroupedTile(
+                              icon: Icons.gavel_outlined,
+                              title: L10nService.get(
+                                'settings.disclaimer',
+                                language,
+                              ),
+                              isDark: isDark,
+                              onTap: () => _showDisclaimerDialog(
+                                context,
+                                language,
+                                isDark,
+                              ),
+                            ),
+                            _GroupedSeparator(isDark: isDark),
+                            _GroupedTile(
+                              icon: Icons.privacy_tip_outlined,
+                              title: L10nService.get(
+                                'settings.privacy_policy',
+                                language,
+                              ),
+                              isDark: isDark,
+                              onTap: () async {
+                                await urlLauncher.openPrivacyPolicy();
+                              },
+                            ),
+                            _GroupedSeparator(isDark: isDark),
+                            _GroupedTile(
+                              icon: Icons.description_outlined,
+                              title: L10nService.get(
+                                'settings.terms_of_service',
+                                language,
+                              ),
+                              isDark: isDark,
+                              onTap: () async {
+                                await urlLauncher.openTermsOfService();
+                              },
+                            ),
+                            _GroupedSeparator(isDark: isDark),
+                            _GroupedTile(
+                              icon: Icons.mail_outline,
+                              title: L10nService.get(
+                                'settings.contact_support',
+                                language,
+                              ),
+                              isDark: isDark,
+                              onTap: () async {
+                                await urlLauncher.openSupportEmail(
+                                  subject: L10n.get(
+                                    'settings.support',
+                                    language,
+                                  ),
+                                  body: '\n\n---\nApp Version: 1.0.0',
+                                );
                               },
                             ),
                           ],
-                          _GroupedSeparator(isDark: isDark),
-                          _GroupedTile(
-                            icon: Icons.restore,
-                            title: language == AppLanguage.en
-                                ? 'Restore Purchases'
-                                : 'Satın Alımları Geri Yükle',
-                            isDark: isDark,
-                            onTap: () async {
-                              await ref
-                                  .read(premiumProvider.notifier)
-                                  .restorePurchases();
-                              if (context.mounted) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      language == AppLanguage.en
-                                          ? 'Purchases restored'
-                                          : 'Satın alımlar geri yüklendi',
-                                    ),
-                                  ),
-                                );
-                              }
-                            },
-                          ),
-                          _GroupedSeparator(isDark: isDark),
-                          _GroupedTile(
-                            icon: Icons.delete_outline,
-                            title: L10nService.get(
-                              'settings.clear_data',
-                              language,
-                            ),
-                            isDark: isDark,
-                            isDestructive: true,
-                            onTap: () =>
-                                _showClearDataDialog(context, ref, language),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 35),
-
-                    // ═══ SHARE & EARN SECTION ═══
-                    if (!isPremium) ...[
-                      _SectionHeader(
-                        title: (language == AppLanguage.en
-                                ? 'Share & Earn'
-                                : 'Paylaş ve Kazan')
-                            .toUpperCase(),
-                        isDark: isDark,
+                      const SizedBox(height: 12),
+                      Center(
+                        child: Text(
+                          L10nService.get('settings.version', language),
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ),
                       ),
-                      _ReferralCard(isDark: isDark, language: language),
                       const SizedBox(height: 35),
-                    ],
 
-                    // ═══ FEATURES SECTION ═══
-                    _SectionHeader(
-                      title: (language == AppLanguage.en
-                              ? 'Features'
-                              : 'Özellikler')
-                          .toUpperCase(),
-                      isDark: isDark,
-                    ),
-                    _GroupedContainer(
-                      isDark: isDark,
-                      noPadding: true,
-                      child: Column(
-                        children: [
-                          _GroupedTile(
-                            icon: Icons.air_outlined,
-                            title: language == AppLanguage.en
-                                ? 'Breathing Exercises'
-                                : 'Nefes Egzersizleri',
-                            isDark: isDark,
-                            onTap: () => context.push(Routes.breathing),
-                          ),
-                          _GroupedSeparator(isDark: isDark),
-                          _GroupedTile(
-                            icon: Icons.self_improvement_outlined,
-                            title: language == AppLanguage.en
-                                ? 'Meditation Timer'
-                                : 'Meditasyon Zamanlayıcı',
-                            isDark: isDark,
-                            onTap: () => context.push(Routes.meditation),
-                          ),
-                          _GroupedSeparator(isDark: isDark),
-                          _GroupedTile(
-                            icon: Icons.emoji_events_outlined,
-                            title: language == AppLanguage.en
-                                ? 'Growth Challenges'
-                                : 'Büyüme Görevleri',
-                            isDark: isDark,
-                            onTap: () => context.push(Routes.challenges),
-                          ),
-                          _GroupedSeparator(isDark: isDark),
-                          _GroupedTile(
-                            icon: Icons.eco_outlined,
-                            title: language == AppLanguage.en
-                                ? 'Seasonal Reflections'
-                                : 'Mevsimsel Yansımalar',
-                            isDark: isDark,
-                            onTap: () => context.push(Routes.seasonal),
-                          ),
-                          _GroupedSeparator(isDark: isDark),
-                          _GroupedTile(
-                            icon: Icons.dark_mode_outlined,
-                            title: language == AppLanguage.en
-                                ? 'Moon Calendar'
-                                : 'Ay Takvimi',
-                            isDark: isDark,
-                            onTap: () => context.push(Routes.moonCalendar),
-                          ),
-                          _GroupedSeparator(isDark: isDark),
-                          _GroupedTile(
-                            icon: Icons.file_download_outlined,
-                            title: language == AppLanguage.en
-                                ? 'Export Data'
-                                : 'Verileri Dışa Aktar',
-                            isDark: isDark,
-                            onTap: () => context.push(Routes.exportData),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 35),
-
-                    // ═══ NOTIFICATIONS SECTION ═══
-                    _SectionHeader(
-                      title: L10nService.get(
-                        'settings.notifications_title',
-                        language,
-                      ).toUpperCase(),
-                      isDark: isDark,
-                    ),
-                    const NotificationSettingsSection(),
-                    const SizedBox(height: 35),
-
-                    // ═══ PRIVACY & SECURITY SECTION ═══
-                    _SectionHeader(
-                      title: (language == AppLanguage.en
-                              ? 'Privacy & Security'
-                              : 'Gizlilik ve Güvenlik')
-                          .toUpperCase(),
-                      isDark: isDark,
-                    ),
-                    _AppLockSection(isDark: isDark, language: language),
-                    const SizedBox(height: 35),
-
-                    // ═══ ABOUT SECTION ═══
-                    _SectionHeader(
-                      title: L10nService.get(
-                        'settings.about',
-                        language,
-                      ).toUpperCase(),
-                      isDark: isDark,
-                    ),
-                    _GroupedContainer(
-                      isDark: isDark,
-                      noPadding: true,
-                      child: Column(
-                        children: [
-                          _GroupedTile(
-                            icon: Icons.star_outline,
-                            title: L10nService.get(
-                              'settings.rate_app',
-                              language,
-                            ),
-                            isDark: isDark,
-                            onTap: () async {
-                              await urlLauncher.requestAppReview();
-                            },
-                          ),
-                          _GroupedSeparator(isDark: isDark),
-                          _GroupedTile(
-                            icon: Icons.gavel_outlined,
-                            title: L10nService.get(
-                              'settings.disclaimer',
-                              language,
-                            ),
-                            isDark: isDark,
-                            onTap: () =>
-                                _showDisclaimerDialog(context, language, isDark),
-                          ),
-                          _GroupedSeparator(isDark: isDark),
-                          _GroupedTile(
-                            icon: Icons.privacy_tip_outlined,
-                            title: L10nService.get(
-                              'settings.privacy_policy',
-                              language,
-                            ),
-                            isDark: isDark,
-                            onTap: () async {
-                              await urlLauncher.openPrivacyPolicy();
-                            },
-                          ),
-                          _GroupedSeparator(isDark: isDark),
-                          _GroupedTile(
-                            icon: Icons.description_outlined,
-                            title: L10nService.get(
-                              'settings.terms_of_service',
-                              language,
-                            ),
-                            isDark: isDark,
-                            onTap: () async {
-                              await urlLauncher.openTermsOfService();
-                            },
-                          ),
-                          _GroupedSeparator(isDark: isDark),
-                          _GroupedTile(
-                            icon: Icons.mail_outline,
-                            title: L10nService.get(
-                              'settings.contact_support',
-                              language,
-                            ),
-                            isDark: isDark,
-                            onTap: () async {
-                              await urlLauncher.openSupportEmail(
-                                subject: L10n.get('settings.support', language),
-                                body: '\n\n---\nApp Version: 1.0.0',
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Center(
-                      child: Text(
-                        L10nService.get('settings.version', language),
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 35),
-
-                    // ═══ ADMIN SECTION ═══
-                    _GroupedContainer(
-                      isDark: isDark,
-                      noPadding: true,
-                      child: _GroupedTile(
-                        icon: Icons.admin_panel_settings,
-                        title: L10nService.get('settings.admin', language),
+                      // ═══ ADMIN SECTION ═══
+                      _GroupedContainer(
                         isDark: isDark,
-                        onTap: () => context.push(Routes.adminLogin),
-                        trailing: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                AppColors.starGold,
-                                AppColors.celestialGold,
-                              ],
+                        noPadding: true,
+                        child: _GroupedTile(
+                          icon: Icons.admin_panel_settings,
+                          title: L10nService.get('settings.admin', language),
+                          isDark: isDark,
+                          onTap: () => context.push(Routes.adminLogin),
+                          trailing: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
                             ),
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: Text(
-                            L10nService.get('settings.pin', language),
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.deepSpace,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  AppColors.starGold,
+                                  AppColors.celestialGold,
+                                ],
+                              ),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Text(
+                              L10nService.get('settings.pin', language),
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.deepSpace,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 40),
-                  ]),
+                      const SizedBox(height: 40),
+                    ]),
+                  ),
                 ),
-              ),
-            ],
-          ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.02, duration: 400.ms),
+              ],
+            ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.02, duration: 400.ms),
           ),
         ),
       ),
@@ -582,10 +598,10 @@ class SettingsScreen extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
-        ),
+        backgroundColor: isDark
+            ? AppColors.surfaceDark
+            : AppColors.lightSurface,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         title: Text(
           L10nService.get('settings.clear_data_confirm', language),
           style: TextStyle(
@@ -614,7 +630,11 @@ class SettingsScreen extends ConsumerWidget {
             onPressed: () async {
               Navigator.pop(context);
               // Cancel scheduled notifications
-              try { await NotificationService().cancelAll(); } catch (e) { debugPrint('Cancel notifications failed: $e'); }
+              try {
+                await NotificationService().cancelAll();
+              } catch (e) {
+                debugPrint('Cancel notifications failed: $e');
+              }
               await StorageService.clearAllData();
               if (!context.mounted) return;
               ref.read(userProfileProvider.notifier).clearProfile();
@@ -641,10 +661,10 @@ class SettingsScreen extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
-        ),
+        backgroundColor: isDark
+            ? AppColors.surfaceDark
+            : AppColors.lightSurface,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         title: Row(
           children: [
             Icon(Icons.info_outline, color: AppColors.starGold),
@@ -836,23 +856,20 @@ class _GroupedTile extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title,
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: textColor,
-                    ),
+                    style: TextStyle(fontSize: 17, color: textColor),
                   ),
                 ),
-              if (trailing != null) ...[
-                const SizedBox(width: 8),
-                trailing!,
-                const SizedBox(width: 4),
-              ],
-              Icon(
-                Icons.chevron_right,
-                size: 20,
-                color: isDark
-                    ? AppColors.textMuted.withValues(alpha: 0.5)
-                    : AppColors.lightTextMuted.withValues(alpha: 0.5),
+                if (trailing != null) ...[
+                  const SizedBox(width: 8),
+                  trailing!,
+                  const SizedBox(width: 4),
+                ],
+                Icon(
+                  Icons.chevron_right,
+                  size: 20,
+                  color: isDark
+                      ? AppColors.textMuted.withValues(alpha: 0.5)
+                      : AppColors.lightTextMuted.withValues(alpha: 0.5),
                 ),
               ],
             ),
@@ -904,28 +921,30 @@ class _ThemeOption extends StatelessWidget {
               width: 1.5,
             ),
           ),
-        child: Column(
-          children: [
-            Icon(
-              icon,
-              color: isSelected
-                  ? AppColors.starGold
-                  : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
-              size: 28,
-            ),
-            const SizedBox(height: 6),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 13,
+          child: Column(
+            children: [
+              Icon(
+                icon,
                 color: isSelected
-                    ? (isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary)
+                    ? AppColors.starGold
                     : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                size: 28,
               ),
-            ),
+              const SizedBox(height: 6),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: isSelected
+                      ? (isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary)
+                      : (isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted),
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                ),
+              ),
             ],
           ),
         ),
@@ -1007,9 +1026,7 @@ class _ReferralCard extends ConsumerWidget {
                       ? Colors.white.withValues(alpha: 0.1)
                       : Colors.black.withValues(alpha: 0.08),
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    status.isUnlocked
-                        ? AppColors.success
-                        : AppColors.starGold,
+                    status.isUnlocked ? AppColors.success : AppColors.starGold,
                   ),
                 ),
               ),
@@ -1038,8 +1055,9 @@ class _ReferralCard extends ConsumerWidget {
                       ref.invalidate(referralServiceProvider);
                     },
                     style: TextButton.styleFrom(
-                      backgroundColor:
-                          AppColors.starGold.withValues(alpha: 0.15),
+                      backgroundColor: AppColors.starGold.withValues(
+                        alpha: 0.15,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -1091,7 +1109,10 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
                 child: Row(
                   children: [
                     Icon(
@@ -1152,7 +1173,10 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                   behavior: HitTestBehavior.opaque,
                   onTap: () => _showPinSetup(service),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
                     child: Row(
                       children: [
                         Icon(
@@ -1201,12 +1225,16 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: widget.isDark ? AppColors.surfaceDark : AppColors.lightSurface,
+        backgroundColor: widget.isDark
+            ? AppColors.surfaceDark
+            : AppColors.lightSurface,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         title: Text(
           isEn ? 'Set 4-Digit PIN' : '4 Haneli PIN Belirle',
           style: TextStyle(
-            color: widget.isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+            color: widget.isDark
+                ? AppColors.textPrimary
+                : AppColors.lightTextPrimary,
           ),
         ),
         content: Column(
@@ -1218,12 +1246,16 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
               maxLength: 4,
               obscureText: true,
               style: TextStyle(
-                color: widget.isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: widget.isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
               ),
               decoration: InputDecoration(
                 labelText: isEn ? 'PIN' : 'PIN',
                 labelStyle: TextStyle(
-                  color: widget.isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  color: widget.isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
                 ),
               ),
             ),
@@ -1233,12 +1265,16 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
               maxLength: 4,
               obscureText: true,
               style: TextStyle(
-                color: widget.isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: widget.isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
               ),
               decoration: InputDecoration(
                 labelText: isEn ? 'Confirm PIN' : 'PIN Onayla',
                 labelStyle: TextStyle(
-                  color: widget.isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  color: widget.isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
                 ),
               ),
             ),
@@ -1250,7 +1286,9 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
             child: Text(
               isEn ? 'Cancel' : 'İptal',
               style: TextStyle(
-                color: widget.isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                color: widget.isDark
+                    ? AppColors.textMuted
+                    : AppColors.lightTextMuted,
               ),
             ),
           ),
@@ -1262,7 +1300,9 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
               if (pin.length != 4) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text(isEn ? 'PIN must be 4 digits' : 'PIN 4 haneli olmalı'),
+                    content: Text(
+                      isEn ? 'PIN must be 4 digits' : 'PIN 4 haneli olmalı',
+                    ),
                     behavior: SnackBarBehavior.floating,
                   ),
                 );
@@ -1272,7 +1312,9 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
               if (pin != confirm) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text(isEn ? 'PINs do not match' : 'PIN\'ler eşleşmiyor'),
+                    content: Text(
+                      isEn ? 'PINs do not match' : 'PIN\'ler eşleşmiyor',
+                    ),
                     behavior: SnackBarBehavior.floating,
                   ),
                 );

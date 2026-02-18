@@ -50,7 +50,9 @@ class SleepDetailScreen extends ConsumerWidget {
                         child: Text(
                           CommonStrings.somethingWentWrong(language),
                           style: TextStyle(
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
                           ),
                         ),
                       ),
@@ -78,11 +80,7 @@ class SleepDetailScreen extends ConsumerWidget {
                         const SizedBox(height: 20),
 
                         // Weekly chart
-                        _WeeklyChart(
-                          days: last7,
-                          isDark: isDark,
-                          isEn: isEn,
-                        ),
+                        _WeeklyChart(days: last7, isDark: isDark, isEn: isEn),
                         const SizedBox(height: 24),
 
                         // Trend card
@@ -112,12 +110,15 @@ class SleepDetailScreen extends ConsumerWidget {
                             ),
                           ),
                           const SizedBox(height: 12),
-                          ...entries.take(14).map((entry) =>
-                              _NightCard(
-                                entry: entry,
-                                isDark: isDark,
-                                isEn: isEn,
-                              )),
+                          ...entries
+                              .take(14)
+                              .map(
+                                (entry) => _NightCard(
+                                  entry: entry,
+                                  isDark: isDark,
+                                  isEn: isEn,
+                                ),
+                              ),
                         ],
 
                         const SizedBox(height: 40),
@@ -138,10 +139,7 @@ class SleepDetailScreen extends ConsumerWidget {
     return List.generate(7, (i) {
       final date = now.subtract(Duration(days: 6 - i));
       final entry = service.getEntry(date);
-      return _DayData(
-        date: date,
-        quality: entry?.quality,
-      );
+      return _DayData(date: date, quality: entry?.quality);
     });
   }
 }
@@ -315,8 +313,8 @@ class _WeeklyChart extends StatelessWidget {
                           color: q > 0
                               ? _barColor(q)
                               : (isDark
-                                  ? Colors.white.withValues(alpha: 0.06)
-                                  : Colors.black.withValues(alpha: 0.04)),
+                                    ? Colors.white.withValues(alpha: 0.06)
+                                    : Colors.black.withValues(alpha: 0.04)),
                           borderRadius: const BorderRadius.vertical(
                             top: Radius.circular(4),
                           ),
@@ -367,24 +365,24 @@ class _TrendCard extends StatelessWidget {
     final icon = trend == 'improving'
         ? Icons.trending_up
         : trend == 'declining'
-            ? Icons.trending_down
-            : Icons.trending_flat;
+        ? Icons.trending_down
+        : Icons.trending_flat;
     final color = trend == 'improving'
         ? AppColors.success
         : trend == 'declining'
-            ? AppColors.warning
-            : AppColors.auroraStart;
+        ? AppColors.warning
+        : AppColors.auroraStart;
     final label = isEn
         ? (trend == 'improving'
-            ? 'Your sleep quality is improving'
-            : trend == 'declining'
-                ? 'Your sleep quality may be declining'
-                : 'Your sleep quality is stable')
+              ? 'Your sleep quality is improving'
+              : trend == 'declining'
+              ? 'Your sleep quality may be declining'
+              : 'Your sleep quality is stable')
         : (trend == 'improving'
-            ? 'Uyku kaliteniz iyileşiyor'
-            : trend == 'declining'
-                ? 'Uyku kaliteniz düşüyor olabilir'
-                : 'Uyku kaliteniz stabil');
+              ? 'Uyku kaliteniz iyileşiyor'
+              : trend == 'declining'
+              ? 'Uyku kaliteniz düşüyor olabilir'
+              : 'Uyku kaliteniz stabil');
 
     return Container(
       padding: const EdgeInsets.all(14),
@@ -450,8 +448,11 @@ class _SleepTips extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.lightbulb_outline,
-                  size: 18, color: AppColors.starGold),
+              Icon(
+                Icons.lightbulb_outline,
+                size: 18,
+                color: AppColors.starGold,
+              ),
               const SizedBox(width: 8),
               Text(
                 isEn ? 'Sleep Tips' : 'Uyku İpuçları',
@@ -466,33 +467,35 @@ class _SleepTips extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          ...tips.map((tip) => Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '  •  ',
-                  style: TextStyle(
-                    color: AppColors.auroraStart,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Expanded(
-                  child: Text(
-                    tip,
+          ...tips.map(
+            (tip) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '  •  ',
                     style: TextStyle(
-                      fontSize: 13,
-                      color: isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary,
-                      height: 1.4,
+                      color: AppColors.auroraStart,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: Text(
+                      tip,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                        height: 1.4,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          )),
+          ),
         ],
       ),
     ).animate().fadeIn(delay: 300.ms, duration: 300.ms);
@@ -558,11 +561,9 @@ class _NightCard extends StatelessWidget {
               ),
             ),
             Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 10, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
-                color: _qualityColor(entry.quality)
-                    .withValues(alpha: 0.15),
+                color: _qualityColor(entry.quality).withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
@@ -610,9 +611,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            isEn
-                ? 'No sleep data yet'
-                : 'Henüz uyku verisi yok',
+            isEn ? 'No sleep data yet' : 'Henüz uyku verisi yok',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -629,9 +628,7 @@ class _EmptyState extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
-              color: isDark
-                  ? AppColors.textMuted
-                  : AppColors.lightTextMuted,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
           ),
         ],

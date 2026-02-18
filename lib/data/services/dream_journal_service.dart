@@ -117,11 +117,16 @@ class DreamEntry {
 
   factory DreamEntry.fromJson(Map<String, dynamic> json) => DreamEntry(
     id: json['id'] as String? ?? '',
-    dreamDate: DateTime.tryParse(json['dreamDate']?.toString() ?? '') ?? DateTime.now(),
-    recordedAt: DateTime.tryParse(json['recordedAt']?.toString() ?? '') ?? DateTime.now(),
+    dreamDate:
+        DateTime.tryParse(json['dreamDate']?.toString() ?? '') ??
+        DateTime.now(),
+    recordedAt:
+        DateTime.tryParse(json['recordedAt']?.toString() ?? '') ??
+        DateTime.now(),
     title: json['title'] as String? ?? '',
     content: json['content'] as String? ?? '',
-    detectedSymbols: (json['detectedSymbols'] as List?)?.whereType<String>().toList() ?? [],
+    detectedSymbols:
+        (json['detectedSymbols'] as List?)?.whereType<String>().toList() ?? [],
     userTags: (json['userTags'] as List?)?.whereType<String>().toList() ?? [],
     dominantEmotion: EmotionalTone.values.firstWhere(
       (e) => e.name == json['dominantEmotion'],
@@ -140,7 +145,9 @@ class DreamEntry {
         ? (json['relevantContext'] as List).whereType<String>().toList()
         : null,
     interpretation: json['interpretation'] is Map
-        ? FullDreamInterpretation.fromJson(json['interpretation'] as Map<String, dynamic>)
+        ? FullDreamInterpretation.fromJson(
+            json['interpretation'] as Map<String, dynamic>,
+          )
         : null,
     voiceRecordingPath: json['voiceRecordingPath'] as String?,
     imageUrls: json['imageUrls'] is List
@@ -274,18 +281,22 @@ class RecurringPattern {
     'significance': significance,
   };
 
-  factory RecurringPattern.fromJson(Map<String, dynamic> json) =>
-      RecurringPattern(
-        id: json['id'] as String? ?? '',
-        patternType: json['patternType'] as String? ?? '',
-        patternValue: json['patternValue'] as String? ?? '',
-        occurrenceCount: json['occurrenceCount'] as int? ?? 0,
-        firstSeen: DateTime.tryParse(json['firstSeen']?.toString() ?? '') ?? DateTime.now(),
-        lastSeen: DateTime.tryParse(json['lastSeen']?.toString() ?? '') ?? DateTime.now(),
-        dreamIds: (json['dreamIds'] as List?)?.whereType<String>().toList() ?? [],
-        evolutionNote: json['evolutionNote'] as String?,
-        significance: (json['significance'] as num?)?.toDouble() ?? 0.5,
-      );
+  factory RecurringPattern.fromJson(
+    Map<String, dynamic> json,
+  ) => RecurringPattern(
+    id: json['id'] as String? ?? '',
+    patternType: json['patternType'] as String? ?? '',
+    patternValue: json['patternValue'] as String? ?? '',
+    occurrenceCount: json['occurrenceCount'] as int? ?? 0,
+    firstSeen:
+        DateTime.tryParse(json['firstSeen']?.toString() ?? '') ??
+        DateTime.now(),
+    lastSeen:
+        DateTime.tryParse(json['lastSeen']?.toString() ?? '') ?? DateTime.now(),
+    dreamIds: (json['dreamIds'] as List?)?.whereType<String>().toList() ?? [],
+    evolutionNote: json['evolutionNote'] as String?,
+    significance: (json['significance'] as num?)?.toDouble() ?? 0.5,
+  );
 }
 
 /// Dream series - connected dreams over time
@@ -335,11 +346,17 @@ class DreamSeries {
     title: json['title'] as String? ?? '',
     description: json['description'] as String?,
     dreamIds: (json['dreamIds'] as List?)?.whereType<String>().toList() ?? [],
-    startDate: DateTime.tryParse(json['startDate']?.toString() ?? '') ?? DateTime.now(),
-    endDate: json['endDate'] != null ? DateTime.tryParse(json['endDate'].toString()) : null,
+    startDate:
+        DateTime.tryParse(json['startDate']?.toString() ?? '') ??
+        DateTime.now(),
+    endDate: json['endDate'] != null
+        ? DateTime.tryParse(json['endDate'].toString())
+        : null,
     isActive: json['isActive'] as bool? ?? true,
-    commonSymbols: (json['commonSymbols'] as List?)?.whereType<String>().toList() ?? [],
-    commonThemes: (json['commonThemes'] as List?)?.whereType<String>().toList() ?? [],
+    commonSymbols:
+        (json['commonSymbols'] as List?)?.whereType<String>().toList() ?? [],
+    commonThemes:
+        (json['commonThemes'] as List?)?.whereType<String>().toList() ?? [],
     storyArc: json['storyArc'] as String?,
     resolution: json['resolution'] as String?,
   );
@@ -517,19 +534,28 @@ class PersonalSymbolEntry {
     'isKeySymbol': isKeySymbol,
   };
 
-  factory PersonalSymbolEntry.fromJson(Map<String, dynamic> json) =>
-      PersonalSymbolEntry(
-        symbol: json['symbol'] as String? ?? '',
-        personalMeaning: json['personalMeaning'] as String? ?? '',
-        associatedEmotions: (json['associatedEmotions'] as List?)?.whereType<String>().toList() ?? [],
-        associatedDreamIds: (json['associatedDreamIds'] as List?)?.whereType<String>().toList() ?? [],
-        firstAppeared: DateTime.tryParse(json['firstAppeared']?.toString() ?? '') ?? DateTime.now(),
-        lastAppeared: DateTime.tryParse(json['lastAppeared']?.toString() ?? '') ?? DateTime.now(),
-        occurrenceCount: json['occurrenceCount'] ?? 1,
-        evolutionNote: json['evolutionNote'],
-        isShadowSymbol: json['isShadowSymbol'] ?? false,
-        isKeySymbol: json['isKeySymbol'] ?? false,
-      );
+  factory PersonalSymbolEntry.fromJson(
+    Map<String, dynamic> json,
+  ) => PersonalSymbolEntry(
+    symbol: json['symbol'] as String? ?? '',
+    personalMeaning: json['personalMeaning'] as String? ?? '',
+    associatedEmotions:
+        (json['associatedEmotions'] as List?)?.whereType<String>().toList() ??
+        [],
+    associatedDreamIds:
+        (json['associatedDreamIds'] as List?)?.whereType<String>().toList() ??
+        [],
+    firstAppeared:
+        DateTime.tryParse(json['firstAppeared']?.toString() ?? '') ??
+        DateTime.now(),
+    lastAppeared:
+        DateTime.tryParse(json['lastAppeared']?.toString() ?? '') ??
+        DateTime.now(),
+    occurrenceCount: json['occurrenceCount'] ?? 1,
+    evolutionNote: json['evolutionNote'],
+    isShadowSymbol: json['isShadowSymbol'] ?? false,
+    isKeySymbol: json['isKeySymbol'] ?? false,
+  );
 }
 
 /// Export data for PDF/Timeline

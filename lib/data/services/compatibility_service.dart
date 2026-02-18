@@ -110,11 +110,11 @@ class CompatibilityDimension {
   });
 
   Map<String, dynamic> toJson() => {
-        'name': name,
-        'score': score,
-        'insightEn': insightEn,
-        'insightTr': insightTr,
-      };
+    'name': name,
+    'score': score,
+    'insightEn': insightEn,
+    'insightTr': insightTr,
+  };
 
   factory CompatibilityDimension.fromJson(Map<String, dynamic> json) =>
       CompatibilityDimension(
@@ -140,16 +140,20 @@ class CompatibilityResult {
   });
 
   Map<String, dynamic> toJson() => {
-        'dimensions': dimensions.map((d) => d.toJson()).toList(),
-        'overallScore': overallScore,
-        'summaryEn': summaryEn,
-        'summaryTr': summaryTr,
-      };
+    'dimensions': dimensions.map((d) => d.toJson()).toList(),
+    'overallScore': overallScore,
+    'summaryEn': summaryEn,
+    'summaryTr': summaryTr,
+  };
 
   factory CompatibilityResult.fromJson(Map<String, dynamic> json) =>
       CompatibilityResult(
         dimensions: (json['dimensions'] as List? ?? [])
-            .map((d) => CompatibilityDimension.fromJson(d as Map<String, dynamic>? ?? {}))
+            .map(
+              (d) => CompatibilityDimension.fromJson(
+                d as Map<String, dynamic>? ?? {},
+              ),
+            )
             .toList(),
         overallScore: (json['overallScore'] as num? ?? 0).toDouble(),
         summaryEn: json['summaryEn'] as String? ?? '',
@@ -186,24 +190,23 @@ class CompatibilityProfile {
     List<int>? answers,
     CompatibilityResult? result,
     DateTime? createdAt,
-  }) =>
-      CompatibilityProfile(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        relationshipType: relationshipType ?? this.relationshipType,
-        answers: answers ?? this.answers,
-        result: result ?? this.result,
-        createdAt: createdAt ?? this.createdAt,
-      );
+  }) => CompatibilityProfile(
+    id: id ?? this.id,
+    name: name ?? this.name,
+    relationshipType: relationshipType ?? this.relationshipType,
+    answers: answers ?? this.answers,
+    result: result ?? this.result,
+    createdAt: createdAt ?? this.createdAt,
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'relationshipType': relationshipType.name,
-        'answers': answers,
-        'result': result?.toJson(),
-        'createdAt': createdAt.toIso8601String(),
-      };
+    'id': id,
+    'name': name,
+    'relationshipType': relationshipType.name,
+    'answers': answers,
+    'result': result?.toJson(),
+    'createdAt': createdAt.toIso8601String(),
+  };
 
   factory CompatibilityProfile.fromJson(Map<String, dynamic> json) =>
       CompatibilityProfile(
@@ -217,7 +220,9 @@ class CompatibilityProfile {
         result: json['result'] != null
             ? CompatibilityResult.fromJson(json['result'])
             : null,
-        createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
+        createdAt:
+            DateTime.tryParse(json['createdAt']?.toString() ?? '') ??
+            DateTime.now(),
       );
 }
 
@@ -257,8 +262,7 @@ class CompatibilityService {
       options: [
         ReflectionOption(
           textEn: 'I feel safe and heard — they listen without judgment',
-          textTr:
-              'Güvende ve duyulmuş hissediyorum — yargılamadan dinliyorlar',
+          textTr: 'Güvende ve duyulmuş hissediyorum — yargılamadan dinliyorlar',
           score: 5,
         ),
         ReflectionOption(
@@ -274,15 +278,13 @@ class CompatibilityService {
         ),
         ReflectionOption(
           textEn: 'I often avoid it — conversations tend to escalate',
-          textTr:
-              'Genellikle kaçınırım — konuşmalar genellikle tırmanır',
+          textTr: 'Genellikle kaçınırım — konuşmalar genellikle tırmanır',
           score: 2,
         ),
         ReflectionOption(
           textEn:
               'I rarely bring things up — it does not feel worth the effort',
-          textTr:
-              'Nadiren gündeme getiririm — çabaya değmez gibi geliyor',
+          textTr: 'Nadiren gündeme getiririm — çabaya değmez gibi geliyor',
           score: 1,
         ),
       ],
@@ -296,34 +298,30 @@ class CompatibilityService {
       dimension: 'Communication',
       options: [
         ReflectionOption(
-          textEn:
-              'Very well — they adapt and we find common ground easily',
+          textEn: 'Very well — they adapt and we find common ground easily',
           textTr:
               'Çok iyi — uyum sağlıyorlar ve ortak noktayı kolayca buluyoruz',
           score: 5,
         ),
         ReflectionOption(
           textEn: 'Fairly well — we have learned each other over time',
-          textTr:
-              'Oldukça iyi — zamanla birbirimizi öğrendik',
+          textTr: 'Oldukça iyi — zamanla birbirimizi öğrendik',
           score: 4,
         ),
         ReflectionOption(
-          textEn: 'Sometimes — there are misunderstandings but we work through them',
-          textTr:
-              'Bazen — yanlış anlamalar oluyor ama üstesinden geliyoruz',
+          textEn:
+              'Sometimes — there are misunderstandings but we work through them',
+          textTr: 'Bazen — yanlış anlamalar oluyor ama üstesinden geliyoruz',
           score: 3,
         ),
         ReflectionOption(
           textEn: 'Not really — we often talk past each other',
-          textTr:
-              'Pek değil — genellikle birbirimizi anlayamıyoruz',
+          textTr: 'Pek değil — genellikle birbirimizi anlayamıyoruz',
           score: 2,
         ),
         ReflectionOption(
           textEn: 'Poorly — our styles clash and it creates friction',
-          textTr:
-              'Kötü — tarzlarımız çatışıyor ve sürtüşmeler yaratıyoruz',
+          textTr: 'Kötü — tarzlarımız çatışıyor ve sürtüşmeler yaratıyoruz',
           score: 1,
         ),
       ],
@@ -339,10 +337,8 @@ class CompatibilityService {
       dimension: 'Emotional',
       options: [
         ReflectionOption(
-          textEn:
-              'They show up — emotionally present and supportive',
-          textTr:
-              'Yanında olurlar — duygusal olarak mevcut ve destekçi',
+          textEn: 'They show up — emotionally present and supportive',
+          textTr: 'Yanında olurlar — duygusal olarak mevcut ve destekçi',
           score: 5,
         ),
         ReflectionOption(
@@ -352,22 +348,19 @@ class CompatibilityService {
           score: 4,
         ),
         ReflectionOption(
-          textEn: 'It depends on the situation — sometimes present, sometimes not',
-          textTr:
-              'Duruma bağlı — bazen mevcut, bazen değil',
+          textEn:
+              'It depends on the situation — sometimes present, sometimes not',
+          textTr: 'Duruma bağlı — bazen mevcut, bazen değil',
           score: 3,
         ),
         ReflectionOption(
-          textEn:
-              'They tend to withdraw or minimize my feelings',
-          textTr:
-              'Geri çekilme veya duygularımı küçümseme eğilimindeler',
+          textEn: 'They tend to withdraw or minimize my feelings',
+          textTr: 'Geri çekilme veya duygularımı küçümseme eğilimindeler',
           score: 2,
         ),
         ReflectionOption(
           textEn: 'I usually do not turn to them during hard times',
-          textTr:
-              'Zor zamanlarda genellikle onlara yönelmiyorum',
+          textTr: 'Zor zamanlarda genellikle onlara yönelmiyorum',
           score: 1,
         ),
       ],
@@ -382,14 +375,12 @@ class CompatibilityService {
       options: [
         ReflectionOption(
           textEn: 'Very balanced — we both give and receive equally',
-          textTr:
-              'Çok dengeli — ikimiz de eşit olarak veriyoruz ve alıyoruz',
+          textTr: 'Çok dengeli — ikimiz de eşit olarak veriyoruz ve alıyoruz',
           score: 5,
         ),
         ReflectionOption(
           textEn: 'Mostly balanced — small imbalances are normal',
-          textTr:
-              'Çoğunlukla dengeli — küçük dengesizlikler normal',
+          textTr: 'Çoğunlukla dengeli — küçük dengesizlikler normal',
           score: 4,
         ),
         ReflectionOption(
@@ -400,15 +391,12 @@ class CompatibilityService {
         ),
         ReflectionOption(
           textEn: 'Quite unbalanced — I feel drained at times',
-          textTr:
-              'Oldukça dengesiz — bazen tükendiğimi hissediyorum',
+          textTr: 'Oldukça dengesiz — bazen tükendiğimi hissediyorum',
           score: 2,
         ),
         ReflectionOption(
-          textEn:
-              'One-sided — the effort mostly comes from one direction',
-          textTr:
-              'Tek taraflı — çaba çoğunlukla bir yönden geliyor',
+          textEn: 'One-sided — the effort mostly comes from one direction',
+          textTr: 'Tek taraflı — çaba çoğunlukla bir yönden geliyor',
           score: 1,
         ),
       ],
@@ -424,37 +412,29 @@ class CompatibilityService {
       dimension: 'Values',
       options: [
         ReflectionOption(
-          textEn:
-              'Strongly aligned — we share the same priorities in life',
-          textTr:
-              'Güçlü bir uyum — hayatta aynı öncelikleri paylaşıyoruz',
+          textEn: 'Strongly aligned — we share the same priorities in life',
+          textTr: 'Güçlü bir uyum — hayatta aynı öncelikleri paylaşıyoruz',
           score: 5,
         ),
         ReflectionOption(
-          textEn:
-              'Mostly aligned — differences are enriching, not divisive',
+          textEn: 'Mostly aligned — differences are enriching, not divisive',
           textTr:
               'Çoğunlukla uyumlu — farklılıklar bölücü değil zenginleştiricidir',
           score: 4,
         ),
         ReflectionOption(
-          textEn:
-              'Some overlap — but there are areas where we diverge clearly',
-          textTr:
-              'Biraz örtüşme var — ama açıkça ayrıştığımız alanlar var',
+          textEn: 'Some overlap — but there are areas where we diverge clearly',
+          textTr: 'Biraz örtüşme var — ama açıkça ayrıştığımız alanlar var',
           score: 3,
         ),
         ReflectionOption(
           textEn: 'Limited alignment — we see the world quite differently',
-          textTr:
-              'Sınırlı uyum — dünyayı oldukça farklı görüyoruz',
+          textTr: 'Sınırlı uyum — dünyayı oldukça farklı görüyoruz',
           score: 2,
         ),
         ReflectionOption(
-          textEn:
-              'Fundamentally different — our values often clash',
-          textTr:
-              'Temelden farklı — değerlerimiz sıklıkla çatışıyor',
+          textEn: 'Fundamentally different — our values often clash',
+          textTr: 'Temelden farklı — değerlerimiz sıklıkla çatışıyor',
           score: 1,
         ),
       ],
@@ -482,24 +462,18 @@ class CompatibilityService {
           score: 4,
         ),
         ReflectionOption(
-          textEn:
-              'Partially — we sometimes struggle to find shared interests',
-          textTr:
-              'Kısmen — bazen ortak ilgi alanları bulmakta zorlanıyoruz',
+          textEn: 'Partially — we sometimes struggle to find shared interests',
+          textTr: 'Kısmen — bazen ortak ilgi alanları bulmakta zorlanıyoruz',
           score: 3,
         ),
         ReflectionOption(
-          textEn:
-              'Rarely — our priorities feel like they pull us apart',
-          textTr:
-              'Nadiren — önceliklerimiz bizi ayırıyormuş gibi hissediyorum',
+          textEn: 'Rarely — our priorities feel like they pull us apart',
+          textTr: 'Nadiren — önceliklerimiz bizi ayırıyormuş gibi hissediyorum',
           score: 2,
         ),
         ReflectionOption(
-          textEn:
-              'Not at all — we live in very separate worlds',
-          textTr:
-              'Hiç değil — çok ayrı dünyalarda yaşıyoruz',
+          textEn: 'Not at all — we live in very separate worlds',
+          textTr: 'Hiç değil — çok ayrı dünyalarda yaşıyoruz',
           score: 1,
         ),
       ],
@@ -508,15 +482,12 @@ class CompatibilityService {
     // ─── GROWTH (Q7, Q8) ────────────────────────────────────────
     ReflectionQuestion(
       index: 6,
-      questionEn:
-          'Does this relationship encourage your personal growth?',
-      questionTr:
-          'Bu ilişki kişisel gelişiminizi teşvik ediyor mu?',
+      questionEn: 'Does this relationship encourage your personal growth?',
+      questionTr: 'Bu ilişki kişisel gelişiminizi teşvik ediyor mu?',
       dimension: 'Growth',
       options: [
         ReflectionOption(
-          textEn:
-              'Absolutely — I feel inspired and challenged in healthy ways',
+          textEn: 'Absolutely — I feel inspired and challenged in healthy ways',
           textTr:
               'Kesinlikle — sağlıklı yollarla ilham ve meydan okunmuş hissediyorum',
           score: 5,
@@ -529,8 +500,7 @@ class CompatibilityService {
         ),
         ReflectionOption(
           textEn: 'Sometimes — growth happens but it is not a focus of ours',
-          textTr:
-              'Bazen — gelişim oluyor ama odağımız bu değil',
+          textTr: 'Bazen — gelişim oluyor ama odağımız bu değil',
           score: 3,
         ),
         ReflectionOption(
@@ -541,8 +511,7 @@ class CompatibilityService {
         ),
         ReflectionOption(
           textEn: 'No — this relationship limits who I can become',
-          textTr:
-              'Hayır — bu ilişki olabileceğim kişiyi sınırlıyor',
+          textTr: 'Hayır — bu ilişki olabileceğim kişiyi sınırlıyor',
           score: 1,
         ),
       ],
@@ -556,36 +525,27 @@ class CompatibilityService {
       dimension: 'Growth',
       options: [
         ReflectionOption(
-          textEn:
-              'We adapt together — change brings us closer',
-          textTr:
-              'Birlikte uyum sağlıyoruz — değişim bizi yakınlaştırıyor',
+          textEn: 'We adapt together — change brings us closer',
+          textTr: 'Birlikte uyum sağlıyoruz — değişim bizi yakınlaştırıyor',
           score: 5,
         ),
         ReflectionOption(
-          textEn:
-              'We manage — it takes effort but we get through it',
-          textTr:
-              'İdare ediyoruz — çaba gerektiriyor ama üstesinden geliyoruz',
+          textEn: 'We manage — it takes effort but we get through it',
+          textTr: 'İdare ediyoruz — çaba gerektiriyor ama üstesinden geliyoruz',
           score: 4,
         ),
         ReflectionOption(
-          textEn:
-              'Mixed — sometimes we grow together, sometimes we drift',
-          textTr:
-              'Karışık — bazen birlikte büyüyoruz, bazen uzaklaşıyoruz',
+          textEn: 'Mixed — sometimes we grow together, sometimes we drift',
+          textTr: 'Karışık — bazen birlikte büyüyoruz, bazen uzaklaşıyoruz',
           score: 3,
         ),
         ReflectionOption(
-          textEn:
-              'Difficult — change tends to create conflict between us',
-          textTr:
-              'Zor — değişim aramızda çatışma yaratma eğiliminde',
+          textEn: 'Difficult — change tends to create conflict between us',
+          textTr: 'Zor — değişim aramızda çatışma yaratma eğiliminde',
           score: 2,
         ),
         ReflectionOption(
-          textEn:
-              'Poorly — we resist change and avoid hard conversations',
+          textEn: 'Poorly — we resist change and avoid hard conversations',
           textTr:
               'Kötü — değişime direnç gösteriyoruz ve zor konuşmalardan kaçınıyoruz',
           score: 1,
@@ -603,34 +563,28 @@ class CompatibilityService {
       dimension: 'Trust',
       options: [
         ReflectionOption(
-          textEn:
-              'Completely — I can be my fullest self without masks',
-          textTr:
-              'Tamamen — maskeler olmadan en öz halimle olabiliyorum',
+          textEn: 'Completely — I can be my fullest self without masks',
+          textTr: 'Tamamen — maskeler olmadan en öz halimle olabiliyorum',
           score: 5,
         ),
         ReflectionOption(
           textEn: 'Mostly — I share deeply but keep some walls',
-          textTr:
-              'Çoğunlukla — derinden paylaşıyorum ama bazı duvarlarım var',
+          textTr: 'Çoğunlukla — derinden paylaşıyorum ama bazı duvarlarım var',
           score: 4,
         ),
         ReflectionOption(
           textEn: 'Somewhat — I am selective about what I reveal',
-          textTr:
-              'Biraz — neyi açığa vuracağım konusunda seçiciyim',
+          textTr: 'Biraz — neyi açığa vuracağım konusunda seçiciyim',
           score: 3,
         ),
         ReflectionOption(
           textEn: 'Not much — past experiences have made me cautious',
-          textTr:
-              'Çok değil — geçmiş deneyimler beni temkinli kıldı',
+          textTr: 'Çok değil — geçmiş deneyimler beni temkinli kıldı',
           score: 2,
         ),
         ReflectionOption(
           textEn: 'Very little — I guard myself carefully around them',
-          textTr:
-              'Çok az — yanlarında kendimi dikkatle koruyorum',
+          textTr: 'Çok az — yanlarında kendimi dikkatle koruyorum',
           score: 1,
         ),
       ],
@@ -644,8 +598,7 @@ class CompatibilityService {
       dimension: 'Trust',
       options: [
         ReflectionOption(
-          textEn:
-              'Always — even in disagreement, I know they care about us',
+          textEn: 'Always — even in disagreement, I know they care about us',
           textTr:
               'Her zaman — anlaşamadığımızda bile, bize değer verdiklerini biliyorum',
           score: 5,
@@ -658,8 +611,7 @@ class CompatibilityService {
         ),
         ReflectionOption(
           textEn: 'Sometimes — it depends on the nature of the conflict',
-          textTr:
-              'Bazen — çatışmanın niteliklerine bağlı',
+          textTr: 'Bazen — çatışmanın niteliklerine bağlı',
           score: 3,
         ),
         ReflectionOption(
@@ -669,10 +621,8 @@ class CompatibilityService {
           score: 2,
         ),
         ReflectionOption(
-          textEn:
-              'No — I question their motives during disagreements',
-          textTr:
-              'Hayır — anlaşmazlıklar sırasında niyetlerini sorguluyorum',
+          textEn: 'No — I question their motives during disagreements',
+          textTr: 'Hayır — anlaşmazlıklar sırasında niyetlerini sorguluyorum',
           score: 1,
         ),
       ],
@@ -838,7 +788,8 @@ class CompatibilityService {
     ];
 
     // Weighted average: Trust 25%, Communication 20%, Emotional 20%, Values 20%, Growth 15%
-    final overall = (trustScore * 0.25) +
+    final overall =
+        (trustScore * 0.25) +
         (commScore * 0.20) +
         (emotionalScore * 0.20) +
         (valuesScore * 0.20) +
@@ -871,10 +822,12 @@ class CompatibilityService {
     final q1Options = _questions[questionIdx1].options;
     final q2Options = _questions[questionIdx2].options;
 
-    final q1Score =
-        answerIdx1 < q1Options.length ? q1Options[answerIdx1].score : 3;
-    final q2Score =
-        answerIdx2 < q2Options.length ? q2Options[answerIdx2].score : 3;
+    final q1Score = answerIdx1 < q1Options.length
+        ? q1Options[answerIdx1].score
+        : 3;
+    final q2Score = answerIdx2 < q2Options.length
+        ? q2Options[answerIdx2].score
+        : 3;
 
     // Each question score 1-5, total 2-10, map to 0-100
     final raw = (q1Score + q2Score); // 2..10

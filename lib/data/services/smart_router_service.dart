@@ -88,11 +88,11 @@ class SmartRouterService {
     required Map<String, int> toolVisitCounts,
     required Set<String> userGoals,
     required int timeBudgetMinutes,
-  })  : _recentTools = recentTools,
-        _favoriteTools = favoriteTools,
-        _toolVisitCounts = toolVisitCounts,
-        _userGoals = userGoals,
-        _timeBudgetMinutes = timeBudgetMinutes;
+  }) : _recentTools = recentTools,
+       _favoriteTools = favoriteTools,
+       _toolVisitCounts = toolVisitCounts,
+       _userGoals = userGoals,
+       _timeBudgetMinutes = timeBudgetMinutes;
 
   static Future<SmartRouterService> init() async {
     final prefs = await SharedPreferences.getInstance();
@@ -158,43 +158,121 @@ class SmartRouterService {
     // R1 (100): New user < 1 entry
     if (ctx.totalEntries < 1) {
       suggestions.addAll([
-        const ToolSuggestion(toolId: 'journal', route: '/journal', reasonEn: 'Start with a guided template to capture your first entry.', reasonTr: 'Ilk girisini kaydetmek icin rehberli bir sablonla basla.', priority: 100, source: 'R1'),
-        const ToolSuggestion(toolId: 'programs', route: '/programs', reasonEn: 'Explore a quick demo to see what you can discover here.', reasonTr: 'Burada neler kesfedebilecegin icin hizli bir demo incele.', priority: 100, source: 'R1'),
+        const ToolSuggestion(
+          toolId: 'journal',
+          route: '/journal',
+          reasonEn: 'Start with a guided template to capture your first entry.',
+          reasonTr: 'Ilk girisini kaydetmek icin rehberli bir sablonla basla.',
+          priority: 100,
+          source: 'R1',
+        ),
+        const ToolSuggestion(
+          toolId: 'programs',
+          route: '/programs',
+          reasonEn: 'Explore a quick demo to see what you can discover here.',
+          reasonTr: 'Burada neler kesfedebilecegin icin hizli bir demo incele.',
+          priority: 100,
+          source: 'R1',
+        ),
       ]);
     }
 
     // R2 (95): Active challenge
     if (ctx.activeChallenge != null) {
-      suggestions.add(ToolSuggestion(toolId: 'challenges', route: '/challenges', reasonEn: 'You have an active challenge. Continue today\'s action.', reasonTr: 'Aktif bir meydan okuman var. Bugunku aksiyonu tamamla.', priority: 95, source: 'R2'));
+      suggestions.add(
+        ToolSuggestion(
+          toolId: 'challenges',
+          route: '/challenges',
+          reasonEn: 'You have an active challenge. Continue today\'s action.',
+          reasonTr: 'Aktif bir meydan okuman var. Bugunku aksiyonu tamamla.',
+          priority: 95,
+          source: 'R2',
+        ),
+      );
     }
 
     // R3 (90): Last output was "entry"
     if (ctx.lastOutputType == 'entry') {
       suggestions.addAll([
-        const ToolSuggestion(toolId: 'patterns', route: '/journal/patterns', reasonEn: 'You just wrote an entry. Review your patterns.', reasonTr: 'Az once bir giris yazdin. Kaliplarini incele.', priority: 90, source: 'R3'),
-        const ToolSuggestion(toolId: 'emotionalCycles', route: '/emotional-cycles', reasonEn: 'Your new entry may reveal trends in your cycles.', reasonTr: 'Yeni girisin dongulerindeki egilimler hakkinda ipucu verebilir.', priority: 88, source: 'R3'),
+        const ToolSuggestion(
+          toolId: 'patterns',
+          route: '/journal/patterns',
+          reasonEn: 'You just wrote an entry. Review your patterns.',
+          reasonTr: 'Az once bir giris yazdin. Kaliplarini incele.',
+          priority: 90,
+          source: 'R3',
+        ),
+        const ToolSuggestion(
+          toolId: 'emotionalCycles',
+          route: '/emotional-cycles',
+          reasonEn: 'Your new entry may reveal trends in your cycles.',
+          reasonTr:
+              'Yeni girisin dongulerindeki egilimler hakkinda ipucu verebilir.',
+          priority: 88,
+          source: 'R3',
+        ),
       ]);
     }
 
     // R4 (85): Last output was "report"
     if (ctx.lastOutputType == 'report') {
       suggestions.addAll([
-        const ToolSuggestion(toolId: 'journal', route: '/journal', reasonEn: 'Your report is ready. Add a new entry to feed your patterns.', reasonTr: 'Raporun hazir. Kaliplarini beslemek icin yeni bir giris ekle.', priority: 85, source: 'R4'),
-        const ToolSuggestion(toolId: 'shareInsight', route: '/share-insight', reasonEn: 'Share your latest insight as a card.', reasonTr: 'Son icgorunu bir kart olarak paylas.', priority: 83, source: 'R4'),
+        const ToolSuggestion(
+          toolId: 'journal',
+          route: '/journal',
+          reasonEn:
+              'Your report is ready. Add a new entry to feed your patterns.',
+          reasonTr:
+              'Raporun hazir. Kaliplarini beslemek icin yeni bir giris ekle.',
+          priority: 85,
+          source: 'R4',
+        ),
+        const ToolSuggestion(
+          toolId: 'shareInsight',
+          route: '/share-insight',
+          reasonEn: 'Share your latest insight as a card.',
+          reasonTr: 'Son icgorunu bir kart olarak paylas.',
+          priority: 83,
+          source: 'R4',
+        ),
       ]);
     }
 
     // R5 (80): Last output was "score"
     if (ctx.lastOutputType == 'score') {
       suggestions.addAll([
-        const ToolSuggestion(toolId: 'moodTrends', route: '/mood/trends', reasonEn: 'Check your trends to see how your score fits.', reasonTr: 'Egilimlerini kontrol ederek skorunun nasil uyuyor gor.', priority: 80, source: 'R5'),
-        const ToolSuggestion(toolId: 'challenges', route: '/challenges', reasonEn: 'Turn your score into action with a challenge.', reasonTr: 'Skorunu bir meydan okumayla aksiyona donustur.', priority: 78, source: 'R5'),
+        const ToolSuggestion(
+          toolId: 'moodTrends',
+          route: '/mood/trends',
+          reasonEn: 'Check your trends to see how your score fits.',
+          reasonTr: 'Egilimlerini kontrol ederek skorunun nasil uyuyor gor.',
+          priority: 80,
+          source: 'R5',
+        ),
+        const ToolSuggestion(
+          toolId: 'challenges',
+          route: '/challenges',
+          reasonEn: 'Turn your score into action with a challenge.',
+          reasonTr: 'Skorunu bir meydan okumayla aksiyona donustur.',
+          priority: 78,
+          source: 'R5',
+        ),
       ]);
     }
 
     // R6 (75): Idle > 120s
     if (ctx.idleSeconds > 120) {
-      suggestions.add(const ToolSuggestion(toolId: 'programs', route: '/programs', reasonEn: 'Feeling stuck? A guided program can help.', reasonTr: 'Takildim mi hissediyorsun? Rehberli bir program yardimci olabilir.', priority: 75, source: 'R6'));
+      suggestions.add(
+        const ToolSuggestion(
+          toolId: 'programs',
+          route: '/programs',
+          reasonEn: 'Feeling stuck? A guided program can help.',
+          reasonTr:
+              'Takildim mi hissediyorsun? Rehberli bir program yardimci olabilir.',
+          priority: 75,
+          source: 'R6',
+        ),
+      );
     }
 
     // R7 (70): Tool visited 3+ times without output
@@ -205,31 +283,92 @@ class SmartRouterService {
 
     // R8 (65): Streak == 0 && entries > 5
     if (ctx.currentStreak == 0 && ctx.totalEntries > 5) {
-      suggestions.add(const ToolSuggestion(toolId: 'challenges', route: '/challenges', reasonEn: 'Your streak paused. A recovery challenge may help.', reasonTr: 'Serin durdu. Bir toparlanma gorevi yardimci olabilir.', priority: 65, source: 'R8'));
+      suggestions.add(
+        const ToolSuggestion(
+          toolId: 'challenges',
+          route: '/challenges',
+          reasonEn: 'Your streak paused. A recovery challenge may help.',
+          reasonTr: 'Serin durdu. Bir toparlanma gorevi yardimci olabilir.',
+          priority: 65,
+          source: 'R8',
+        ),
+      );
     }
 
     // R9 (60): Time budget <= 5 min
     if (ctx.timeBudgetMinutes <= 5) {
       suggestions.addAll([
-        const ToolSuggestion(toolId: 'gratitude', route: '/gratitude', reasonEn: 'Short on time? A quick gratitude note takes under a minute.', reasonTr: 'Zamanin mi az? Hizli bir sukran notu bir dakikadan kisa surer.', priority: 60, source: 'R9'),
-        const ToolSuggestion(toolId: 'breathing', route: '/breathing', reasonEn: 'A 2-minute breathing exercise fits any schedule.', reasonTr: 'Iki dakikalik bir nefes egzersizi her programa sigar.', priority: 59, source: 'R9'),
-        const ToolSuggestion(toolId: 'affirmations', route: '/affirmations', reasonEn: 'Read today\'s affirmation in just a few seconds.', reasonTr: 'Bugunku olumlamayi sadece birkac saniyede oku.', priority: 58, source: 'R9'),
+        const ToolSuggestion(
+          toolId: 'gratitude',
+          route: '/gratitude',
+          reasonEn:
+              'Short on time? A quick gratitude note takes under a minute.',
+          reasonTr:
+              'Zamanin mi az? Hizli bir sukran notu bir dakikadan kisa surer.',
+          priority: 60,
+          source: 'R9',
+        ),
+        const ToolSuggestion(
+          toolId: 'breathing',
+          route: '/breathing',
+          reasonEn: 'A 2-minute breathing exercise fits any schedule.',
+          reasonTr: 'Iki dakikalik bir nefes egzersizi her programa sigar.',
+          priority: 59,
+          source: 'R9',
+        ),
+        const ToolSuggestion(
+          toolId: 'affirmations',
+          route: '/affirmations',
+          reasonEn: 'Read today\'s affirmation in just a few seconds.',
+          reasonTr: 'Bugunku olumlamayi sadece birkac saniyede oku.',
+          priority: 58,
+          source: 'R9',
+        ),
       ]);
     }
 
     // R10 (50): Goal "discover"
     if (ctx.userGoals.contains('discover')) {
-      suggestions.add(const ToolSuggestion(toolId: 'insightsDiscovery', route: '/insights-discovery', reasonEn: 'Based on your goal to discover, explore new insights.', reasonTr: 'Kesfetme hedefine gore yeni icgoruleri incele.', priority: 50, source: 'R10'));
+      suggestions.add(
+        const ToolSuggestion(
+          toolId: 'insightsDiscovery',
+          route: '/insights-discovery',
+          reasonEn: 'Based on your goal to discover, explore new insights.',
+          reasonTr: 'Kesfetme hedefine gore yeni icgoruleri incele.',
+          priority: 50,
+          source: 'R10',
+        ),
+      );
     }
 
     // R11 (50): Goal "habit"
     if (ctx.userGoals.contains('habit')) {
-      suggestions.add(const ToolSuggestion(toolId: 'rituals', route: '/rituals', reasonEn: 'Building habits? Your ritual stack helps you stay consistent.', reasonTr: 'Aliskanlik olusturuyorsun? Rituel yiginin tutarli kalmana yardimci olur.', priority: 50, source: 'R11'));
+      suggestions.add(
+        const ToolSuggestion(
+          toolId: 'rituals',
+          route: '/rituals',
+          reasonEn:
+              'Building habits? Your ritual stack helps you stay consistent.',
+          reasonTr:
+              'Aliskanlik olusturuyorsun? Rituel yiginin tutarli kalmana yardimci olur.',
+          priority: 50,
+          source: 'R11',
+        ),
+      );
     }
 
     // R12 (50): Goal "heal"
     if (ctx.userGoals.contains('heal')) {
-      suggestions.add(const ToolSuggestion(toolId: 'journal', route: '/journal', reasonEn: 'Journaling can support your healing process.', reasonTr: 'Gunluk tutmak iyilesme surecini destekleyebilir.', priority: 50, source: 'R12'));
+      suggestions.add(
+        const ToolSuggestion(
+          toolId: 'journal',
+          route: '/journal',
+          reasonEn: 'Journaling can support your healing process.',
+          reasonTr: 'Gunluk tutmak iyilesme surecini destekleyebilir.',
+          priority: 50,
+          source: 'R12',
+        ),
+      );
     }
 
     // Deduplicate + sort + cap at 3
@@ -246,18 +385,21 @@ class SmartRouterService {
     final manifest = ToolManifestRegistry.findById(currentToolId);
     if (manifest == null) return [];
 
-    return manifest.relatedToolIds.map((relatedId) {
-      final related = ToolManifestRegistry.findById(relatedId);
-      if (related == null) return null;
-      return ToolSuggestion(
-        toolId: related.id,
-        route: related.route,
-        reasonEn: 'Related to ${manifest.labelEn}.',
-        reasonTr: '${manifest.labelTr} ile iliskili.',
-        priority: 40,
-        source: 'related',
-      );
-    }).whereType<ToolSuggestion>().toList();
+    return manifest.relatedToolIds
+        .map((relatedId) {
+          final related = ToolManifestRegistry.findById(relatedId);
+          if (related == null) return null;
+          return ToolSuggestion(
+            toolId: related.id,
+            route: related.route,
+            reasonEn: 'Related to ${manifest.labelEn}.',
+            reasonTr: '${manifest.labelTr} ile iliskili.',
+            priority: 40,
+            source: 'related',
+          );
+        })
+        .whereType<ToolSuggestion>()
+        .toList();
   }
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -328,20 +470,48 @@ class SmartRouterService {
 
   ToolSuggestion? _findAlternative(String currentRoute) {
     const alternatives = <String, List<String>>{
-      '/journal': ['/gratitude', 'gratitude', 'Try gratitude journaling for a different angle.', 'Farkli bir bakis acisi icin sukran gunlugunu dene.'],
-      '/gratitude': ['/journal', 'journal', 'Switch to your main journal for deeper reflection.', 'Daha derin yansima icin ana gunlugune gec.'],
-      '/breathing': ['/meditation', 'meditation', 'Try a guided meditation for a change of pace.', 'Tempo degisikligi icin rehberli bir meditasyon dene.'],
-      '/meditation': ['/breathing', 'breathing', 'A focused breathing exercise might feel better right now.', 'Odakli bir nefes egzersizi simdi daha iyi hissettirebilir.'],
+      '/journal': [
+        '/gratitude',
+        'gratitude',
+        'Try gratitude journaling for a different angle.',
+        'Farkli bir bakis acisi icin sukran gunlugunu dene.',
+      ],
+      '/gratitude': [
+        '/journal',
+        'journal',
+        'Switch to your main journal for deeper reflection.',
+        'Daha derin yansima icin ana gunlugune gec.',
+      ],
+      '/breathing': [
+        '/meditation',
+        'meditation',
+        'Try a guided meditation for a change of pace.',
+        'Tempo degisikligi icin rehberli bir meditasyon dene.',
+      ],
+      '/meditation': [
+        '/breathing',
+        'breathing',
+        'A focused breathing exercise might feel better right now.',
+        'Odakli bir nefes egzersizi simdi daha iyi hissettirebilir.',
+      ],
     };
     final alt = alternatives[currentRoute];
     if (alt == null) return null;
-    return ToolSuggestion(toolId: alt[1], route: alt[0], reasonEn: alt[2], reasonTr: alt[3], priority: 70, source: 'R7');
+    return ToolSuggestion(
+      toolId: alt[1],
+      route: alt[0],
+      reasonEn: alt[2],
+      reasonTr: alt[3],
+      priority: 70,
+      source: 'R7',
+    );
   }
 
   List<ToolSuggestion> _deduplicateByToolId(List<ToolSuggestion> suggestions) {
     final best = <String, ToolSuggestion>{};
     for (final s in suggestions) {
-      if (!best.containsKey(s.toolId) || s.priority > best[s.toolId]!.priority) {
+      if (!best.containsKey(s.toolId) ||
+          s.priority > best[s.toolId]!.priority) {
         best[s.toolId] = s;
       }
     }
@@ -353,7 +523,10 @@ class SmartRouterService {
   }
 
   Future<void> _persistFavoriteTools() async {
-    await _prefs.setString(_favoriteToolsKey, jsonEncode(_favoriteTools.toList()));
+    await _prefs.setString(
+      _favoriteToolsKey,
+      jsonEncode(_favoriteTools.toList()),
+    );
   }
 
   Future<void> _persistToolVisitCounts() async {
@@ -378,6 +551,8 @@ class SmartRouterService {
 // RIVERPOD PROVIDER
 // ════════════════════════════════════════════════════════════════════════════
 
-final smartRouterServiceProvider = FutureProvider<SmartRouterService>((ref) async {
+final smartRouterServiceProvider = FutureProvider<SmartRouterService>((
+  ref,
+) async {
   return await SmartRouterService.init();
 });

@@ -31,8 +31,9 @@ class CycleSummaryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = kAreaColors[summary.area] ?? AppColors.auroraStart;
     final hasData = summary.rawPoints.isNotEmpty;
-    final areaName =
-        isEn ? summary.area.displayNameEn : summary.area.displayNameTr;
+    final areaName = isEn
+        ? summary.area.displayNameEn
+        : summary.area.displayNameTr;
 
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -41,9 +42,7 @@ class CycleSummaryCard extends StatelessWidget {
             ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: color.withValues(alpha: 0.25),
-        ),
+        border: Border.all(color: color.withValues(alpha: 0.25)),
         boxShadow: [
           BoxShadow(
             color: color.withValues(alpha: isDark ? 0.08 : 0.04),
@@ -116,8 +115,7 @@ class CycleSummaryCard extends StatelessWidget {
                   _buildStatChip(
                     context,
                     icon: Icons.waves,
-                    label:
-                        '~${summary.cycleLengthDays}${isEn ? 'd' : 'g'}',
+                    label: '~${summary.cycleLengthDays}${isEn ? 'd' : 'g'}',
                     color: color,
                   ),
 
@@ -184,7 +182,9 @@ class CycleSummaryCard extends StatelessWidget {
                   Icon(
                     Icons.edit_note_rounded,
                     size: 16,
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                   ),
                   const SizedBox(width: 6),
                   Text(
@@ -218,9 +218,7 @@ class CycleSummaryCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(AppConstants.radiusFull),
-        border: Border.all(
-          color: color.withValues(alpha: 0.25),
-        ),
+        border: Border.all(color: color.withValues(alpha: 0.25)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -254,9 +252,7 @@ class CycleSummaryCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: phaseColor.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(AppConstants.radiusFull),
-        border: Border.all(
-          color: phaseColor.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: phaseColor.withValues(alpha: 0.3)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

@@ -22,11 +22,8 @@ class StreakCard extends ConsumerWidget {
     return streakAsync.when(
       loading: () => const SizedBox.shrink(),
       error: (_, _) => const SizedBox.shrink(),
-      data: (stats) => _StreakCardContent(
-        stats: stats,
-        isDark: isDark,
-        isEn: isEn,
-      ),
+      data: (stats) =>
+          _StreakCardContent(stats: stats, isDark: isDark, isEn: isEn),
     );
   }
 }
@@ -52,144 +49,145 @@ class _StreakCardContent extends StatelessWidget {
       child: GestureDetector(
         onTap: () => context.push(Routes.streakStats),
         child: Container(
-        padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: isDark
-              ? [
-                  AppColors.starGold.withValues(alpha: 0.15),
-                  AppColors.surfaceDark.withValues(alpha: 0.9),
-                ]
-              : [
-                  AppColors.lightStarGold.withValues(alpha: 0.1),
-                  Colors.white,
-                ],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.3),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Header
-          Row(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: isDark
+                  ? [
+                      AppColors.starGold.withValues(alpha: 0.15),
+                      AppColors.surfaceDark.withValues(alpha: 0.9),
+                    ]
+                  : [
+                      AppColors.lightStarGold.withValues(alpha: 0.1),
+                      Colors.white,
+                    ],
+            ),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: AppColors.starGold.withValues(alpha: 0.3),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: AppColors.starGold.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Icon(
-                  Icons.local_fire_department_rounded,
-                  color: AppColors.starGold,
-                  size: 22,
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      isEn ? 'Reflection Streak' : 'Yansıma Serisi',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
+              // Header
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: AppColors.starGold.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    if (stats.currentStreak > 0)
-                      Text(
-                        isEn
-                            ? '${stats.currentStreak} day${stats.currentStreak == 1 ? '' : 's'} in a row'
-                            : '${stats.currentStreak} gün üst üste',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
+                    child: Icon(
+                      Icons.local_fire_department_rounded,
+                      color: AppColors.starGold,
+                      size: 22,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          isEn ? 'Reflection Streak' : 'Yansıma Serisi',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary,
+                          ),
                         ),
-                      ),
-                  ],
-                ),
-              ),
-              // Streak number
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: stats.currentStreak > 0
-                      ? AppColors.starGold.withValues(alpha: 0.2)
-                      : (isDark
-                          ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                          : AppColors.lightSurfaceVariant),
-                  borderRadius: BorderRadius.circular(20),
-                  border: stats.currentStreak > 0
-                      ? Border.all(
-                          color: AppColors.starGold.withValues(alpha: 0.5))
-                      : null,
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (stats.currentStreak > 0)
-                      Icon(
-                        Icons.local_fire_department,
-                        color: AppColors.starGold,
-                        size: 18,
-                      ),
-                    if (stats.currentStreak > 0) const SizedBox(width: 4),
-                    Text(
-                      '${stats.currentStreak}',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: stats.currentStreak > 0
-                            ? AppColors.starGold
-                            : (isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted),
-                      ),
+                        if (stats.currentStreak > 0)
+                          Text(
+                            isEn
+                                ? '${stats.currentStreak} day${stats.currentStreak == 1 ? '' : 's'} in a row'
+                                : '${stats.currentStreak} gün üst üste',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
+                          ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  // Streak number
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: stats.currentStreak > 0
+                          ? AppColors.starGold.withValues(alpha: 0.2)
+                          : (isDark
+                                ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                                : AppColors.lightSurfaceVariant),
+                      borderRadius: BorderRadius.circular(20),
+                      border: stats.currentStreak > 0
+                          ? Border.all(
+                              color: AppColors.starGold.withValues(alpha: 0.5),
+                            )
+                          : null,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (stats.currentStreak > 0)
+                          Icon(
+                            Icons.local_fire_department,
+                            color: AppColors.starGold,
+                            size: 18,
+                          ),
+                        if (stats.currentStreak > 0) const SizedBox(width: 4),
+                        Text(
+                          '${stats.currentStreak}',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: stats.currentStreak > 0
+                                ? AppColors.starGold
+                                : (isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
+
+              const SizedBox(height: 16),
+
+              // Weekly mini-calendar
+              _WeekCalendar(isDark: isDark, isEn: isEn),
+
+              // 14-day chain visualization
+              if (stats.currentStreak > 0) ...[
+                const SizedBox(height: 14),
+                _StreakChain(isDark: isDark, isEn: isEn),
+              ],
+
+              // Progress to next milestone
+              if (stats.nextMilestone != null) ...[
+                const SizedBox(height: 12),
+                _MilestoneProgress(
+                  current: stats.currentStreak,
+                  target: stats.nextMilestone!,
+                  isDark: isDark,
+                  isEn: isEn,
+                ),
+              ],
             ],
           ),
-
-          const SizedBox(height: 16),
-
-          // Weekly mini-calendar
-          _WeekCalendar(isDark: isDark, isEn: isEn),
-
-          // 14-day chain visualization
-          if (stats.currentStreak > 0) ...[
-            const SizedBox(height: 14),
-            _StreakChain(isDark: isDark, isEn: isEn),
-          ],
-
-          // Progress to next milestone
-          if (stats.nextMilestone != null) ...[
-            const SizedBox(height: 12),
-            _MilestoneProgress(
-              current: stats.currentStreak,
-              target: stats.nextMilestone!,
-              isDark: isDark,
-              isEn: isEn,
-            ),
-          ],
-        ],
-      ),
-      ),
+        ),
       ),
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.1, duration: 400.ms);
   }
@@ -221,7 +219,8 @@ class _WeekCalendar extends ConsumerWidget {
           children: weekData.entries.map((entry) {
             final day = entry.key;
             final hasEntry = entry.value;
-            final isToday = day.year == now.year &&
+            final isToday =
+                day.year == now.year &&
                 day.month == now.month &&
                 day.day == now.day;
             final isFuture = day.isAfter(now);
@@ -236,8 +235,8 @@ class _WeekCalendar extends ConsumerWidget {
                     color: isToday
                         ? AppColors.starGold
                         : (isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted),
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted),
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -249,10 +248,12 @@ class _WeekCalendar extends ConsumerWidget {
                     color: hasEntry
                         ? AppColors.starGold.withValues(alpha: 0.2)
                         : (isToday
-                            ? (isDark
-                                ? AppColors.surfaceLight.withValues(alpha: 0.5)
-                                : AppColors.lightSurfaceVariant)
-                            : Colors.transparent),
+                              ? (isDark
+                                    ? AppColors.surfaceLight.withValues(
+                                        alpha: 0.5,
+                                      )
+                                    : AppColors.lightSurfaceVariant)
+                              : Colors.transparent),
                     border: isToday && !hasEntry
                         ? Border.all(
                             color: AppColors.starGold.withValues(alpha: 0.5),
@@ -268,18 +269,18 @@ class _WeekCalendar extends ConsumerWidget {
                             color: AppColors.starGold,
                           )
                         : isFuture
-                            ? const SizedBox.shrink()
-                            : Text(
-                                '${day.day}',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: isDark
-                                      ? AppColors.textMuted
-                                          .withValues(alpha: 0.5)
-                                      : AppColors.lightTextMuted
-                                          .withValues(alpha: 0.5),
-                                ),
-                              ),
+                        ? const SizedBox.shrink()
+                        : Text(
+                            '${day.day}',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: isDark
+                                  ? AppColors.textMuted.withValues(alpha: 0.5)
+                                  : AppColors.lightTextMuted.withValues(
+                                      alpha: 0.5,
+                                    ),
+                            ),
+                          ),
                   ),
                 ),
               ],
@@ -371,11 +372,9 @@ class _StreakChain extends ConsumerWidget {
         for (int i = 13; i >= 0; i--) {
           final day = DateTime(now.year, now.month, now.day - i);
           final entries = journal.getEntriesByDateRange(day, day);
-          days.add(_ChainDay(
-            date: day,
-            hasEntry: entries.isNotEmpty,
-            isToday: i == 0,
-          ));
+          days.add(
+            _ChainDay(date: day, hasEntry: entries.isNotEmpty, isToday: i == 0),
+          );
         }
 
         return Column(
@@ -386,9 +385,7 @@ class _StreakChain extends ConsumerWidget {
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
-                color: isDark
-                    ? AppColors.textMuted
-                    : AppColors.lightTextMuted,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
             ),
             const SizedBox(height: 8),
@@ -399,7 +396,8 @@ class _StreakChain extends ConsumerWidget {
                   final day = days[i];
                   final isConnectedLeft =
                       i > 0 && days[i - 1].hasEntry && day.hasEntry;
-                  final isConnectedRight = i < days.length - 1 &&
+                  final isConnectedRight =
+                      i < days.length - 1 &&
                       days[i + 1].hasEntry &&
                       day.hasEntry;
 
@@ -414,10 +412,11 @@ class _StreakChain extends ConsumerWidget {
                               color: isConnectedLeft
                                   ? AppColors.starGold.withValues(alpha: 0.6)
                                   : (isDark
-                                      ? AppColors.surfaceLight
-                                          .withValues(alpha: 0.15)
-                                      : AppColors.lightSurfaceVariant
-                                          .withValues(alpha: 0.5)),
+                                        ? AppColors.surfaceLight.withValues(
+                                            alpha: 0.15,
+                                          )
+                                        : AppColors.lightSurfaceVariant
+                                              .withValues(alpha: 0.5)),
                             ),
                           ),
                         // Chain link dot
@@ -429,9 +428,10 @@ class _StreakChain extends ConsumerWidget {
                             color: day.hasEntry
                                 ? AppColors.starGold
                                 : (isDark
-                                    ? AppColors.surfaceLight
-                                        .withValues(alpha: 0.3)
-                                    : AppColors.lightSurfaceVariant),
+                                      ? AppColors.surfaceLight.withValues(
+                                          alpha: 0.3,
+                                        )
+                                      : AppColors.lightSurfaceVariant),
                             border: day.isToday
                                 ? Border.all(
                                     color: AppColors.starGold,
@@ -441,8 +441,9 @@ class _StreakChain extends ConsumerWidget {
                             boxShadow: day.hasEntry
                                 ? [
                                     BoxShadow(
-                                      color: AppColors.starGold
-                                          .withValues(alpha: 0.3),
+                                      color: AppColors.starGold.withValues(
+                                        alpha: 0.3,
+                                      ),
                                       blurRadius: 4,
                                     ),
                                   ]
@@ -457,10 +458,11 @@ class _StreakChain extends ConsumerWidget {
                               color: isConnectedRight
                                   ? AppColors.starGold.withValues(alpha: 0.6)
                                   : (isDark
-                                      ? AppColors.surfaceLight
-                                          .withValues(alpha: 0.15)
-                                      : AppColors.lightSurfaceVariant
-                                          .withValues(alpha: 0.5)),
+                                        ? AppColors.surfaceLight.withValues(
+                                            alpha: 0.15,
+                                          )
+                                        : AppColors.lightSurfaceVariant
+                                              .withValues(alpha: 0.5)),
                             ),
                           ),
                       ],
@@ -509,10 +511,7 @@ class StreakMilestoneCelebration {
       transitionDuration: const Duration(milliseconds: 400),
       transitionBuilder: (ctx, anim, secondAnim, child) {
         return ScaleTransition(
-          scale: CurvedAnimation(
-            parent: anim,
-            curve: Curves.elasticOut,
-          ),
+          scale: CurvedAnimation(parent: anim, curve: Curves.elasticOut),
           child: FadeTransition(opacity: anim, child: child),
         );
       },
@@ -543,22 +542,22 @@ class StreakMilestoneCelebration {
                 children: [
                   // Animated celebration icon
                   Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: RadialGradient(
-                        colors: [
-                          AppColors.starGold.withValues(alpha: 0.3),
-                          AppColors.starGold.withValues(alpha: 0.05),
-                        ],
-                      ),
-                    ),
-                    child: Icon(
-                      Icons.celebration_rounded,
-                      size: 48,
-                      color: AppColors.starGold,
-                    ),
-                  )
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: RadialGradient(
+                            colors: [
+                              AppColors.starGold.withValues(alpha: 0.3),
+                              AppColors.starGold.withValues(alpha: 0.05),
+                            ],
+                          ),
+                        ),
+                        child: Icon(
+                          Icons.celebration_rounded,
+                          size: 48,
+                          color: AppColors.starGold,
+                        ),
+                      )
                       .animate()
                       .scale(
                         begin: const Offset(0.5, 0.5),
@@ -574,14 +573,14 @@ class StreakMilestoneCelebration {
 
                   // Milestone number
                   Text(
-                    '$milestone ${isEn ? 'Days' : 'Gün'}',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w800,
-                      color: AppColors.starGold,
-                      letterSpacing: 1,
-                    ),
-                  )
+                        '$milestone ${isEn ? 'Days' : 'Gün'}',
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.w800,
+                          color: AppColors.starGold,
+                          letterSpacing: 1,
+                        ),
+                      )
                       .animate()
                       .fadeIn(delay: 200.ms, duration: 400.ms)
                       .slideY(begin: 0.3, duration: 400.ms),

@@ -57,86 +57,99 @@ class _EmotionalVocabularyScreenState
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           behavior: HitTestBehavior.opaque,
           child: CupertinoScrollbar(
-          child: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            slivers: [
-              GlassSliverAppBar(
-                title: isEn ? 'Emotional Vocabulary' : 'Duygusal Sözlük',
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.all(AppConstants.spacingLg),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    // Family filter chips
-                    _buildFamilyChips(isDark, isEn),
-                    const SizedBox(height: AppConstants.spacingMd),
-
-                    // Search bar
-                    _buildSearchBar(isDark, isEn),
-                    const SizedBox(height: AppConstants.spacingLg),
-
-                    // Emotion count
-                    Text(
-                      isEn
-                          ? '${emotions.length} emotions'
-                          : '${emotions.length} duygu',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
+            child:
+                CustomScrollView(
+                      physics: const BouncingScrollPhysics(
+                        parent: AlwaysScrollableScrollPhysics(),
                       ),
-                    ),
-                    const SizedBox(height: AppConstants.spacingMd),
-
-                    // Emotion cards
-                    ...emotions.map((emotion) => Padding(
-                          padding: const EdgeInsets.only(
-                              bottom: AppConstants.spacingSm),
-                          child: _EmotionCard(
-                            emotion: emotion,
-                            isDark: isDark,
-                            isEn: isEn,
-                          ),
-                        )),
-
-                    if (emotions.isEmpty)
-                      Padding(
-                        padding: const EdgeInsets.all(AppConstants.spacingXl),
-                        child: Center(
-                          child: Column(
-                            children: [
-                              Icon(
-                                CupertinoIcons.search,
-                                size: 40,
-                                color: isDark
-                                    ? AppColors.textMuted
-                                    : AppColors.lightTextMuted,
-                              ),
+                      slivers: [
+                        GlassSliverAppBar(
+                          title: isEn
+                              ? 'Emotional Vocabulary'
+                              : 'Duygusal Sözlük',
+                        ),
+                        SliverPadding(
+                          padding: const EdgeInsets.all(AppConstants.spacingLg),
+                          sliver: SliverList(
+                            delegate: SliverChildListDelegate([
+                              // Family filter chips
+                              _buildFamilyChips(isDark, isEn),
                               const SizedBox(height: AppConstants.spacingMd),
+
+                              // Search bar
+                              _buildSearchBar(isDark, isEn),
+                              const SizedBox(height: AppConstants.spacingLg),
+
+                              // Emotion count
                               Text(
                                 isEn
-                                    ? 'No emotions found'
-                                    : 'Duygu bulunamadı',
+                                    ? '${emotions.length} emotions'
+                                    : '${emotions.length} duygu',
                                 style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 12,
                                   color: isDark
                                       ? AppColors.textMuted
                                       : AppColors.lightTextMuted,
                                 ),
                               ),
-                            ],
+                              const SizedBox(height: AppConstants.spacingMd),
+
+                              // Emotion cards
+                              ...emotions.map(
+                                (emotion) => Padding(
+                                  padding: const EdgeInsets.only(
+                                    bottom: AppConstants.spacingSm,
+                                  ),
+                                  child: _EmotionCard(
+                                    emotion: emotion,
+                                    isDark: isDark,
+                                    isEn: isEn,
+                                  ),
+                                ),
+                              ),
+
+                              if (emotions.isEmpty)
+                                Padding(
+                                  padding: const EdgeInsets.all(
+                                    AppConstants.spacingXl,
+                                  ),
+                                  child: Center(
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          CupertinoIcons.search,
+                                          size: 40,
+                                          color: isDark
+                                              ? AppColors.textMuted
+                                              : AppColors.lightTextMuted,
+                                        ),
+                                        const SizedBox(
+                                          height: AppConstants.spacingMd,
+                                        ),
+                                        Text(
+                                          isEn
+                                              ? 'No emotions found'
+                                              : 'Duygu bulunamadı',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            color: isDark
+                                                ? AppColors.textMuted
+                                                : AppColors.lightTextMuted,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                            ]),
                           ),
                         ),
-                      ),
-                  ]),
-                ),
-              ),
-            ],
-          ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.02, duration: 400.ms),
-        ),
+                      ],
+                    )
+                    .animate()
+                    .fadeIn(duration: 400.ms)
+                    .slideY(begin: 0.02, duration: 400.ms),
+          ),
         ),
       ),
     );
@@ -155,16 +168,18 @@ class _EmotionalVocabularyScreenState
             onTap: () => setState(() => _selectedFamily = null),
           ),
           const SizedBox(width: 8),
-          ...EmotionFamily.values.map((family) => Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: _FamilyChip(
-                  label: isEn ? family.displayNameEn : family.displayNameTr,
-                  emoji: family.emoji,
-                  isSelected: _selectedFamily == family,
-                  isDark: isDark,
-                  onTap: () => setState(() => _selectedFamily = family),
-                ),
-              )),
+          ...EmotionFamily.values.map(
+            (family) => Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: _FamilyChip(
+                label: isEn ? family.displayNameEn : family.displayNameTr,
+                emoji: family.emoji,
+                isSelected: _selectedFamily == family,
+                isDark: isDark,
+                onTap: () => setState(() => _selectedFamily = family),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -247,44 +262,44 @@ class _FamilyChip extends StatelessWidget {
       label: '$emoji $label',
       selected: isSelected,
       child: GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? AppColors.auroraStart.withValues(alpha: 0.2)
-              : (isDark
-                  ? AppColors.surfaceLight.withValues(alpha: 0.1)
-                  : AppColors.lightSurfaceVariant),
-          borderRadius: BorderRadius.circular(AppConstants.radiusFull),
-          border: Border.all(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          decoration: BoxDecoration(
             color: isSelected
-                ? AppColors.auroraStart
+                ? AppColors.auroraStart.withValues(alpha: 0.2)
                 : (isDark
-                    ? Colors.white.withValues(alpha: 0.1)
-                    : Colors.black.withValues(alpha: 0.05)),
+                      ? AppColors.surfaceLight.withValues(alpha: 0.1)
+                      : AppColors.lightSurfaceVariant),
+            borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+            border: Border.all(
+              color: isSelected
+                  ? AppColors.auroraStart
+                  : (isDark
+                        ? Colors.white.withValues(alpha: 0.1)
+                        : Colors.black.withValues(alpha: 0.05)),
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(emoji, style: const TextStyle(fontSize: 14)),
+              const SizedBox(width: 6),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                  color: isSelected
+                      ? AppColors.auroraStart
+                      : (isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary),
+                ),
+              ),
+            ],
           ),
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(emoji, style: const TextStyle(fontSize: 14)),
-            const SizedBox(width: 6),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                color: isSelected
-                    ? AppColors.auroraStart
-                    : (isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary),
-              ),
-            ),
-          ],
-        ),
-      ),
       ),
     );
   }
@@ -318,149 +333,146 @@ class _EmotionCardState extends State<_EmotionCard> {
       button: true,
       label: isEn ? e.nameEn : e.nameTr,
       child: GestureDetector(
-      onTap: () => setState(() => _isExpanded = !_isExpanded),
-      child: GlassPanel(
-        elevation: GlassElevation.g2,
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        padding: const EdgeInsets.all(AppConstants.spacingLg),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(e.emoji, style: const TextStyle(fontSize: 24)),
-                const SizedBox(width: AppConstants.spacingMd),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        isEn ? e.nameEn : e.nameTr,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
+        onTap: () => setState(() => _isExpanded = !_isExpanded),
+        child: GlassPanel(
+          elevation: GlassElevation.g2,
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+          padding: const EdgeInsets.all(AppConstants.spacingLg),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(e.emoji, style: const TextStyle(fontSize: 24)),
+                  const SizedBox(width: AppConstants.spacingMd),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          isEn ? e.nameEn : e.nameTr,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary,
+                          ),
                         ),
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 2),
-                            decoration: BoxDecoration(
-                              color: _getIntensityColor(e.intensity)
-                                  .withValues(alpha: 0.15),
-                              borderRadius: BorderRadius.circular(
-                                  AppConstants.radiusFull),
-                            ),
-                            child: Text(
-                              isEn
-                                  ? e.intensity.displayNameEn
-                                  : e.intensity.displayNameTr,
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w600,
-                                color: _getIntensityColor(e.intensity),
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: _getIntensityColor(
+                                  e.intensity,
+                                ).withValues(alpha: 0.15),
+                                borderRadius: BorderRadius.circular(
+                                  AppConstants.radiusFull,
+                                ),
+                              ),
+                              child: Text(
+                                isEn
+                                    ? e.intensity.displayNameEn
+                                    : e.intensity.displayNameTr,
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600,
+                                  color: _getIntensityColor(e.intensity),
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 6),
-                          Text(
-                            isEn
-                                ? e.family.displayNameEn
-                                : e.family.displayNameTr,
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
+                            const SizedBox(width: 6),
+                            Text(
+                              isEn
+                                  ? e.family.displayNameEn
+                                  : e.family.displayNameTr,
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    _isExpanded ? Icons.expand_less : Icons.expand_more,
+                    size: 20,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                  ),
+                ],
+              ),
+              if (_isExpanded) ...[
+                const SizedBox(height: AppConstants.spacingMd),
+                Text(
+                  isEn ? e.descriptionEn : e.descriptionTr,
+                  style: TextStyle(
+                    fontSize: 14,
+                    height: 1.5,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+                const SizedBox(height: AppConstants.spacingMd),
+                Container(
+                  padding: const EdgeInsets.all(AppConstants.spacingMd),
+                  decoration: BoxDecoration(
+                    color: isDark
+                        ? AppColors.surfaceLight.withValues(alpha: 0.08)
+                        : AppColors.lightSurfaceVariant,
+                    borderRadius: BorderRadius.circular(AppConstants.radiusSm),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.accessibility_new,
+                        size: 16,
+                        color: AppColors.auroraStart,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              isEn ? 'Body Sensation' : 'Bedensel Duyum',
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.auroraStart,
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              isEn ? e.bodySensationEn : e.bodySensationTr,
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: isDark
+                                    ? AppColors.textSecondary
+                                    : AppColors.lightTextSecondary,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
-                Icon(
-                  _isExpanded
-                      ? Icons.expand_less
-                      : Icons.expand_more,
-                  size: 20,
-                  color: isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted,
-                ),
               ],
-            ),
-            if (_isExpanded) ...[
-              const SizedBox(height: AppConstants.spacingMd),
-              Text(
-                isEn ? e.descriptionEn : e.descriptionTr,
-                style: TextStyle(
-                  fontSize: 14,
-                  height: 1.5,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
-              ),
-              const SizedBox(height: AppConstants.spacingMd),
-              Container(
-                padding: const EdgeInsets.all(AppConstants.spacingMd),
-                decoration: BoxDecoration(
-                  color: isDark
-                      ? AppColors.surfaceLight.withValues(alpha: 0.08)
-                      : AppColors.lightSurfaceVariant,
-                  borderRadius:
-                      BorderRadius.circular(AppConstants.radiusSm),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Icon(
-                      Icons.accessibility_new,
-                      size: 16,
-                      color: AppColors.auroraStart,
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            isEn
-                                ? 'Body Sensation'
-                                : 'Bedensel Duyum',
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.auroraStart,
-                            ),
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            isEn
-                                ? e.bodySensationEn
-                                : e.bodySensationTr,
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: isDark
-                                  ? AppColors.textSecondary
-                                  : AppColors.lightTextSecondary,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
-          ],
+          ),
         ),
-      ),
       ),
     );
   }

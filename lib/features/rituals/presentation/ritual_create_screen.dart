@@ -58,8 +58,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
     final isPremium = ref.watch(isPremiumUserProvider);
-    final maxItems =
-        isPremium ? 5 : 3;
+    final maxItems = isPremium ? 5 : 3;
 
     return Scaffold(
       body: CosmicBackground(
@@ -68,158 +67,21 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
           behavior: HitTestBehavior.opaque,
           child: SafeArea(
             child: CupertinoScrollbar(
-            child: CustomScrollView(
-              physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics(),
-              ),
-              slivers: [
-                GlassSliverAppBar(
-                  title: isEn ? 'Create Ritual' : 'Ritüel Oluştur',
+              child: CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
                 ),
-              SliverPadding(
-                padding: const EdgeInsets.all(AppConstants.spacingLg),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    // Time selector
-                    Text(
-                      isEn ? 'When' : 'Zaman',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Wrap(
-                      spacing: 8,
-                      children: RitualTime.values.map((time) {
-                        final isSelected = time == _selectedTime;
-                        return ConstrainedBox(
-                          constraints: const BoxConstraints(minHeight: 44),
-                          child: GestureDetector(
-                            onTap: () {
-                              HapticFeedback.lightImpact();
-                              setState(() {
-                                _selectedTime = time;
-                                _updateDefaultName();
-                              });
-                            },
-                            child: AnimatedContainer(
-                              duration: const Duration(milliseconds: 200),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 10,
-                              ),
-                              decoration: BoxDecoration(
-                                color: isSelected
-                                    ? AppColors.auroraStart
-                                        .withValues(alpha: 0.2)
-                                    : (isDark
-                                        ? AppColors.surfaceDark
-                                            .withValues(alpha: 0.5)
-                                        : AppColors.lightSurfaceVariant),
-                                borderRadius: BorderRadius.circular(24),
-                                border: Border.all(
-                                  color: isSelected
-                                      ? AppColors.auroraStart
-                                      : Colors.transparent,
-                                  width: 2,
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(time.icon,
-                                      style: const TextStyle(fontSize: 18)),
-                                  const SizedBox(width: 6),
-                                  Text(
-                                    isEn
-                                        ? time.displayNameEn
-                                        : time.displayNameTr,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: isSelected
-                                          ? FontWeight.w600
-                                          : FontWeight.normal,
-                                      color: isSelected
-                                          ? AppColors.auroraStart
-                                          : (isDark
-                                              ? AppColors.textPrimary
-                                              : AppColors.lightTextPrimary),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    ).animate().fadeIn(duration: 300.ms),
-
-                    const SizedBox(height: 24),
-
-                    // Name field
-                    Text(
-                      isEn ? 'Name' : 'İsim',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: isDark
-                            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-                            : AppColors.lightCard,
-                        borderRadius:
-                            BorderRadius.circular(AppConstants.radiusLg),
-                        border: Border.all(
-                          color: isDark
-                              ? Colors.white.withValues(alpha: 0.15)
-                              : Colors.black.withValues(alpha: 0.05),
-                        ),
-                      ),
-                      child: TextField(
-                        controller: _nameController,
-                        maxLength: 30,
-                        style: TextStyle(
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
-                        ),
-                        decoration: InputDecoration(
-                          hintText:
-                              isEn ? 'e.g. Morning Routine' : 'ör. Sabah Rutini',
-                          hintStyle: TextStyle(
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
-                          contentPadding: const EdgeInsets.all(16),
-                          border: InputBorder.none,
-                          counterText: '',
-                        ),
-                      ),
-                    ).animate().fadeIn(delay: 100.ms, duration: 300.ms),
-
-                    const SizedBox(height: 24),
-
-                    // Items
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                slivers: [
+                  GlassSliverAppBar(
+                    title: isEn ? 'Create Ritual' : 'Ritüel Oluştur',
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.all(AppConstants.spacingLg),
+                    sliver: SliverList(
+                      delegate: SliverChildListDelegate([
+                        // Time selector
                         Text(
-                          isEn
-                              ? 'Ritual Items (${_itemControllers.length}/$maxItems)'
-                              : 'Ritüel Maddeleri (${_itemControllers.length}/$maxItems)',
+                          isEn ? 'When' : 'Zaman',
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -229,143 +91,302 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                             letterSpacing: 0.5,
                           ),
                         ),
-                        if (_itemControllers.length < maxItems)
-                          IconButton(
-                            tooltip: isEn ? 'Add step' : 'Adım ekle',
-                            onPressed: () {
-                              setState(() {
-                                _itemControllers.add(TextEditingController());
-                              });
-                            },
-                            icon: Icon(
-                              Icons.add_circle_outline,
-                              color: AppColors.auroraStart,
-                            ),
+                        const SizedBox(height: 12),
+                        Wrap(
+                          spacing: 8,
+                          children: RitualTime.values.map((time) {
+                            final isSelected = time == _selectedTime;
+                            return ConstrainedBox(
+                              constraints: const BoxConstraints(minHeight: 44),
+                              child: GestureDetector(
+                                onTap: () {
+                                  HapticFeedback.lightImpact();
+                                  setState(() {
+                                    _selectedTime = time;
+                                    _updateDefaultName();
+                                  });
+                                },
+                                child: AnimatedContainer(
+                                  duration: const Duration(milliseconds: 200),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 10,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: isSelected
+                                        ? AppColors.auroraStart.withValues(
+                                            alpha: 0.2,
+                                          )
+                                        : (isDark
+                                              ? AppColors.surfaceDark
+                                                    .withValues(alpha: 0.5)
+                                              : AppColors.lightSurfaceVariant),
+                                    borderRadius: BorderRadius.circular(24),
+                                    border: Border.all(
+                                      color: isSelected
+                                          ? AppColors.auroraStart
+                                          : Colors.transparent,
+                                      width: 2,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        time.icon,
+                                        style: const TextStyle(fontSize: 18),
+                                      ),
+                                      const SizedBox(width: 6),
+                                      Text(
+                                        isEn
+                                            ? time.displayNameEn
+                                            : time.displayNameTr,
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: isSelected
+                                              ? FontWeight.w600
+                                              : FontWeight.normal,
+                                          color: isSelected
+                                              ? AppColors.auroraStart
+                                              : (isDark
+                                                    ? AppColors.textPrimary
+                                                    : AppColors
+                                                          .lightTextPrimary),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ).animate().fadeIn(duration: 300.ms),
+
+                        const SizedBox(height: 24),
+
+                        // Name field
+                        Text(
+                          isEn ? 'Name' : 'İsim',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: isDark
+                                ? AppColors.textSecondary
+                                : AppColors.lightTextSecondary,
+                            letterSpacing: 0.5,
                           ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-
-                    // Habit suggestions
-                    _buildHabitSuggestions(isDark, isEn),
-                    const SizedBox(height: 12),
-
-                    ...List.generate(_itemControllers.length, (i) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: Container(
+                        ),
+                        const SizedBox(height: 8),
+                        Container(
                           decoration: BoxDecoration(
                             color: isDark
                                 ? AppColors.surfaceDark.withValues(alpha: 0.85)
                                 : AppColors.lightCard,
-                            borderRadius:
-                                BorderRadius.circular(AppConstants.radiusMd),
+                            borderRadius: BorderRadius.circular(
+                              AppConstants.radiusLg,
+                            ),
                             border: Border.all(
                               color: isDark
                                   ? Colors.white.withValues(alpha: 0.15)
                                   : Colors.black.withValues(alpha: 0.05),
                             ),
                           ),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 14),
-                                child: Text(
-                                  '${i + 1}.',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.auroraStart,
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: TextField(
-                                  controller: _itemControllers[i],
-                                  maxLength: 50,
-                                  style: TextStyle(
-                                    color: isDark
-                                        ? AppColors.textPrimary
-                                        : AppColors.lightTextPrimary,
-                                  ),
-                                  decoration: InputDecoration(
-                                    hintText: _getPlaceholder(i, isEn),
-                                    hintStyle: TextStyle(
-                                      color: isDark
-                                          ? AppColors.textMuted
-                                          : AppColors.lightTextMuted,
-                                    ),
-                                    contentPadding: const EdgeInsets.all(14),
-                                    border: InputBorder.none,
-                                    counterText: '',
-                                  ),
-                                ),
-                              ),
-                              if (_itemControllers.length > 1)
-                                IconButton(
-                                  tooltip: isEn ? 'Remove step' : 'Adımı kaldır',
-                                  onPressed: () {
-                                    setState(() {
-                                      _itemControllers[i].dispose();
-                                      _itemControllers.removeAt(i);
-                                    });
-                                  },
-                                  icon: Icon(
-                                    Icons.remove_circle_outline,
-                                    color: AppColors.error.withValues(alpha: 0.6),
-                                    size: 20,
-                                  ),
-                                ),
-                            ],
-                          ),
-                        ).animate().fadeIn(
-                              delay: (200 + i * 50).ms,
-                              duration: 300.ms,
+                          child: TextField(
+                            controller: _nameController,
+                            maxLength: 30,
+                            style: TextStyle(
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
                             ),
-                      );
-                    }),
-
-                    const SizedBox(height: 32),
-
-                    // Save button
-                    SizedBox(
-                      width: double.infinity,
-                      height: 56,
-                      child: ElevatedButton(
-                        onPressed: _isSaving ? null : _save,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.auroraStart,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(AppConstants.radiusLg),
+                            decoration: InputDecoration(
+                              hintText: isEn
+                                  ? 'e.g. Morning Routine'
+                                  : 'ör. Sabah Rutini',
+                              hintStyle: TextStyle(
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
+                              ),
+                              contentPadding: const EdgeInsets.all(16),
+                              border: InputBorder.none,
+                              counterText: '',
+                            ),
                           ),
-                          elevation: 0,
-                        ),
-                        child: _isSaving
-                            ? const SizedBox(
-                                width: 24,
-                                height: 24,
-                                child: CupertinoActivityIndicator(),
-                              )
-                            : Text(
-                                isEn ? 'Create Ritual' : 'Ritüel Oluştur',
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
+                        ).animate().fadeIn(delay: 100.ms, duration: 300.ms),
+
+                        const SizedBox(height: 24),
+
+                        // Items
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              isEn
+                                  ? 'Ritual Items (${_itemControllers.length}/$maxItems)'
+                                  : 'Ritüel Maddeleri (${_itemControllers.length}/$maxItems)',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: isDark
+                                    ? AppColors.textSecondary
+                                    : AppColors.lightTextSecondary,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                            if (_itemControllers.length < maxItems)
+                              IconButton(
+                                tooltip: isEn ? 'Add step' : 'Adım ekle',
+                                onPressed: () {
+                                  setState(() {
+                                    _itemControllers.add(
+                                      TextEditingController(),
+                                    );
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.add_circle_outline,
+                                  color: AppColors.auroraStart,
                                 ),
                               ),
-                      ),
-                    ).animate().fadeIn(delay: 500.ms, duration: 300.ms),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
 
-                    const SizedBox(height: 40),
-                  ]),
-                ),
+                        // Habit suggestions
+                        _buildHabitSuggestions(isDark, isEn),
+                        const SizedBox(height: 12),
+
+                        ...List.generate(_itemControllers.length, (i) {
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child:
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: isDark
+                                        ? AppColors.surfaceDark.withValues(
+                                            alpha: 0.85,
+                                          )
+                                        : AppColors.lightCard,
+                                    borderRadius: BorderRadius.circular(
+                                      AppConstants.radiusMd,
+                                    ),
+                                    border: Border.all(
+                                      color: isDark
+                                          ? Colors.white.withValues(alpha: 0.15)
+                                          : Colors.black.withValues(
+                                              alpha: 0.05,
+                                            ),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          left: 14,
+                                        ),
+                                        child: Text(
+                                          '${i + 1}.',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                            color: AppColors.auroraStart,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: TextField(
+                                          controller: _itemControllers[i],
+                                          maxLength: 50,
+                                          style: TextStyle(
+                                            color: isDark
+                                                ? AppColors.textPrimary
+                                                : AppColors.lightTextPrimary,
+                                          ),
+                                          decoration: InputDecoration(
+                                            hintText: _getPlaceholder(i, isEn),
+                                            hintStyle: TextStyle(
+                                              color: isDark
+                                                  ? AppColors.textMuted
+                                                  : AppColors.lightTextMuted,
+                                            ),
+                                            contentPadding:
+                                                const EdgeInsets.all(14),
+                                            border: InputBorder.none,
+                                            counterText: '',
+                                          ),
+                                        ),
+                                      ),
+                                      if (_itemControllers.length > 1)
+                                        IconButton(
+                                          tooltip: isEn
+                                              ? 'Remove step'
+                                              : 'Adımı kaldır',
+                                          onPressed: () {
+                                            setState(() {
+                                              _itemControllers[i].dispose();
+                                              _itemControllers.removeAt(i);
+                                            });
+                                          },
+                                          icon: Icon(
+                                            Icons.remove_circle_outline,
+                                            color: AppColors.error.withValues(
+                                              alpha: 0.6,
+                                            ),
+                                            size: 20,
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ).animate().fadeIn(
+                                  delay: (200 + i * 50).ms,
+                                  duration: 300.ms,
+                                ),
+                          );
+                        }),
+
+                        const SizedBox(height: 32),
+
+                        // Save button
+                        SizedBox(
+                          width: double.infinity,
+                          height: 56,
+                          child: ElevatedButton(
+                            onPressed: _isSaving ? null : _save,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.auroraStart,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                  AppConstants.radiusLg,
+                                ),
+                              ),
+                              elevation: 0,
+                            ),
+                            child: _isSaving
+                                ? const SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: CupertinoActivityIndicator(),
+                                  )
+                                : Text(
+                                    isEn ? 'Create Ritual' : 'Ritüel Oluştur',
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                          ),
+                        ).animate().fadeIn(delay: 500.ms, duration: 300.ms),
+
+                        const SizedBox(height: 40),
+                      ]),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-          ),
-        ),
         ),
       ),
     );
@@ -504,8 +525,8 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
         name: _nameController.text.trim().isNotEmpty
             ? _nameController.text.trim()
             : (ref.read(languageProvider) == AppLanguage.en
-                ? _selectedTime.displayNameEn
-                : _selectedTime.displayNameTr),
+                  ? _selectedTime.displayNameEn
+                  : _selectedTime.displayNameTr),
         itemNames: itemNames,
         isPremium: isPremium,
       );
@@ -520,10 +541,13 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(
-            ref.read(languageProvider) == AppLanguage.en
-                ? 'Save failed' : 'Kayıt başarısız',
-          )),
+          SnackBar(
+            content: Text(
+              ref.read(languageProvider) == AppLanguage.en
+                  ? 'Save failed'
+                  : 'Kayıt başarısız',
+            ),
+          ),
         );
       }
     } finally {

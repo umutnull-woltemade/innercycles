@@ -6,7 +6,8 @@ library;
 
 class ReflectionPrompt {
   final String id;
-  final String focusArea; // mood, energy, social, creativity, productivity, health, spirituality
+  final String
+  focusArea; // mood, energy, social, creativity, productivity, health, spirituality
   final String promptEn;
   final String promptTr;
   final String followUpEn;
@@ -35,8 +36,7 @@ const List<ReflectionPrompt> allReflectionPrompts = [
         'Bu hafta en sık taşıdığınız duygu nedir ve onu bedeninizde nerede hissediyorsunuz?',
     followUpEn:
         'If that emotion could speak, what would it be asking you to pay attention to?',
-    followUpTr:
-        'Bu duygu konusabilseydi, neye dikkat etmenizi isterdi?',
+    followUpTr: 'Bu duygu konusabilseydi, neye dikkat etmenizi isterdi?',
   ),
   ReflectionPrompt(
     id: 'mo_002',
@@ -177,8 +177,7 @@ const List<ReflectionPrompt> allReflectionPrompts = [
         'How does your mood shift between morning and evening? What tends to influence the change?',
     promptTr:
         'Ruh haliniz sabah ile akşam arasında nasıl değişiyor? Değişimi genellikle ne etkiliyor?',
-    followUpEn:
-        'Is there a time of day when you feel most like yourself?',
+    followUpEn: 'Is there a time of day when you feel most like yourself?',
     followUpTr:
         'Kendinize en çok benzediğinizi hissettiğiniz bir gün zamanı var mı?',
   ),
@@ -522,8 +521,7 @@ const List<ReflectionPrompt> allReflectionPrompts = [
         'En son ne zaman bir şey hakkındaki düşüncenizi gerçekten değiştiren bir konuşma yaptınız?',
     followUpEn:
         'What made that conversation different from your usual interactions?',
-    followUpTr:
-        'O konuşmayı olağan etkileşimlerinizden farklı kılan neydi?',
+    followUpTr: 'O konuşmayı olağan etkileşimlerinizden farklı kılan neydi?',
   ),
   ReflectionPrompt(
     id: 'so_006',
@@ -570,8 +568,7 @@ const List<ReflectionPrompt> allReflectionPrompts = [
         'Uzun süre yalnız vakit geçirmek konusunda nasıl hissediyorsunuz? Yalnızlık sizi tazeler mi yoksa tedirgin mi eder?',
     followUpEn:
         'What is the quality of your relationship with yourself when no one else is around?',
-    followUpTr:
-        'Etrafta kimse yokken kendinizle ilişkinizin kalitesi nasıl?',
+    followUpTr: 'Etrafta kimse yokken kendinizle ilişkinizin kalitesi nasıl?',
   ),
   ReflectionPrompt(
     id: 'so_010',
@@ -676,10 +673,8 @@ const List<ReflectionPrompt> allReflectionPrompts = [
         'Is there an unspoken tension in any of your current relationships? What might happen if you addressed it gently?',
     promptTr:
         'Mevcut ilişkilerinizden herhangi birinde söylenmedik bir gerilim var mı? Onu nazikçe ele alsaydınız ne olabilirdi?',
-    followUpEn:
-        'What is the kindest way you could start that conversation?',
-    followUpTr:
-        'Bu konuşmayı başlatabileceğiniz en nazik yol nedir?',
+    followUpEn: 'What is the kindest way you could start that conversation?',
+    followUpTr: 'Bu konuşmayı başlatabileceğiniz en nazik yol nedir?',
   ),
 
   // ═══════════════════════════════════════════════════════════════
@@ -742,8 +737,7 @@ const List<ReflectionPrompt> allReflectionPrompts = [
         'Üzerinde oturduğunuz ama henüz harekete geçmediğiniz bir fikir nedir? Sizi ne engelliyor?',
     followUpEn:
         'What is the smallest possible first step you could take toward that idea today?',
-    followUpTr:
-        'Bu fikre doğru bugün atabileceğiniz en küçük ilk adım nedir?',
+    followUpTr: 'Bu fikre doğru bugün atabileceğiniz en küçük ilk adım nedir?',
   ),
   ReflectionPrompt(
     id: 'cr_006',
@@ -872,10 +866,8 @@ const List<ReflectionPrompt> allReflectionPrompts = [
         'What everyday activity could you turn into a more creative experience — cooking, walking, writing, arranging your space?',
     promptTr:
         'Hangi gündelik aktiviteyi daha yaratıcı bir deneyime dönüştürebilirsiniz — yemek pişirmek, yürümek, yazmak, mekanınızı düzenlemek?',
-    followUpEn:
-        'Choose one and try it with fresh eyes tomorrow.',
-    followUpTr:
-        'Birini seçin ve yarın taze gözlerle deneyin.',
+    followUpEn: 'Choose one and try it with fresh eyes tomorrow.',
+    followUpTr: 'Birini seçin ve yarın taze gözlerle deneyin.',
   ),
   ReflectionPrompt(
     id: 'cr_017',
@@ -884,10 +876,8 @@ const List<ReflectionPrompt> allReflectionPrompts = [
         'What is the most creative solution you have ever come up with for a real-life challenge?',
     promptTr:
         'Gerçek bir yaşam zorluğu için geldiğiniz en yaratıcı çözüm neydi?',
-    followUpEn:
-        'What mindset were you in when that solution came to you?',
-    followUpTr:
-        'Bu çözüm aklınıza geldiğinde hangi zihin durumundaydınız?',
+    followUpEn: 'What mindset were you in when that solution came to you?',
+    followUpTr: 'Bu çözüm aklınıza geldiğinde hangi zihin durumundaydınız?',
   ),
   ReflectionPrompt(
     id: 'cr_018',
@@ -1134,8 +1124,7 @@ const List<ReflectionPrompt> allReflectionPrompts = [
         'Bedeniniz şu anda nasıl hissediyor? Tepeden tırnağa tara ve ne bulduğunuzu fark edin.',
     followUpEn:
         'What is one thing your body might be asking for that you have been ignoring?',
-    followUpTr:
-        'Bedeninizin görmezden geldiğiniz ne istiyor olabilir?',
+    followUpTr: 'Bedeninizin görmezden geldiğiniz ne istiyor olabilir?',
   ),
   ReflectionPrompt(
     id: 'he_002',
@@ -1246,8 +1235,7 @@ const List<ReflectionPrompt> allReflectionPrompts = [
         'Hayatınıza anlam veya amaç hissi veren nedir? Bu kaynak zamanla değişti mi?',
     followUpEn:
         'How do you nurture that sense of meaning in your daily routine?',
-    followUpTr:
-        'Bu anlam hissini günlük rutininizde nasıl besliyorsunuz?',
+    followUpTr: 'Bu anlam hissini günlük rutininizde nasıl besliyorsunuz?',
   ),
   ReflectionPrompt(
     id: 'sp_002',

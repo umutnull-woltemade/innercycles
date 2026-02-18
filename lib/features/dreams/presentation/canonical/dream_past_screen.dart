@@ -22,148 +22,151 @@ class DreamPastScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: isDark
-                ? [AppColors.deepSpace, const Color(0xFF1A0A20)]
-                : [const Color(0xFFFAF5FC), const Color(0xFFF5E8F8)],
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: isDark
+                  ? [AppColors.deepSpace, const Color(0xFF1A0A20)]
+                  : [const Color(0xFFFAF5FC), const Color(0xFFF5E8F8)],
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                IconButton(
-                  onPressed: () => context.pop(),
-                  tooltip: L10nService.get('common.back', language),
-                  icon: Icon(
-                    Icons.chevron_left,
-                    color: isDark ? Colors.white70 : AppColors.textDark,
+          child: SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IconButton(
+                    onPressed: () => context.pop(),
+                    tooltip: L10nService.get('common.back', language),
+                    icon: Icon(
+                      Icons.chevron_left,
+                      color: isDark ? Colors.white70 : AppColors.textDark,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  L10nService.get('dreams.canonical.past_question', language),
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w600,
-                    color: isDark ? Colors.white : AppColors.textDark,
-                    height: 1.2,
+                  const SizedBox(height: 24),
+                  Text(
+                    L10nService.get('dreams.canonical.past_question', language),
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w600,
+                      color: isDark ? Colors.white : AppColors.textDark,
+                      height: 1.2,
+                    ),
+                  ).animate().fadeIn(duration: 400.ms),
+                  const SizedBox(height: 8),
+                  _buildTag(
+                    L10nService.get('dreams.canonical.brand_tag', language),
+                    color,
                   ),
-                ).animate().fadeIn(duration: 400.ms),
-                const SizedBox(height: 8),
-                _buildTag(
-                  L10nService.get('dreams.canonical.brand_tag', language),
-                  color,
-                ),
-                const SizedBox(height: 32),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.sections.short_answer',
+                  const SizedBox(height: 32),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.sections.short_answer',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.past.short_answer_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.past.short_answer_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.past.short_answer_3',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 28),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.past.who_title',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get('dreams.canonical.past.who_1', language),
+                      L10nService.get('dreams.canonical.past.who_2', language),
+                      L10nService.get('dreams.canonical.past.who_3', language),
+                      L10nService.get('dreams.canonical.past.who_4', language),
+                    ],
+                  ),
+                  const SizedBox(height: 28),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.sections.what_it_means',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.past.meaning_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.past.meaning_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.past.meaning_3',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 28),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.sections.if_recurring',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.past.recurring_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.past.recurring_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.past.recurring_3',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 32),
+                  _buildSuggestion(
+                    context,
+                    isDark,
                     language,
+                    '🔍',
+                    L10nService.get(
+                      'dreams.canonical.searching_question',
+                      language,
+                    ),
+                    Routes.dreamSearching,
                   ),
-                  color,
-                  [
-                    L10nService.get(
-                      'dreams.canonical.past.short_answer_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.past.short_answer_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.past.short_answer_3',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 28),
-                _buildSection(
-                  isDark,
-                  L10nService.get('dreams.canonical.past.who_title', language),
-                  color,
-                  [
-                    L10nService.get('dreams.canonical.past.who_1', language),
-                    L10nService.get('dreams.canonical.past.who_2', language),
-                    L10nService.get('dreams.canonical.past.who_3', language),
-                    L10nService.get('dreams.canonical.past.who_4', language),
-                  ],
-                ),
-                const SizedBox(height: 28),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.sections.what_it_means',
-                    language,
+                  const SizedBox(height: 40),
+                  PageFooterWithDisclaimer(
+                    brandText: L10nService.get('dreams.brand_footer', language),
+                    disclaimerText: DisclaimerTexts.dreams(language),
+                    language: language,
                   ),
-                  color,
-                  [
-                    L10nService.get(
-                      'dreams.canonical.past.meaning_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.past.meaning_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.past.meaning_3',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 28),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.sections.if_recurring',
-                    language,
-                  ),
-                  color,
-                  [
-                    L10nService.get(
-                      'dreams.canonical.past.recurring_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.past.recurring_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.past.recurring_3',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 32),
-                _buildSuggestion(
-                  context,
-                  isDark,
-                  language,
-                  '🔍',
-                  L10nService.get(
-                    'dreams.canonical.searching_question',
-                    language,
-                  ),
-                  Routes.dreamSearching,
-                ),
-                const SizedBox(height: 40),
-                PageFooterWithDisclaimer(
-                  brandText: L10nService.get('dreams.brand_footer', language),
-                  disclaimerText: DisclaimerTexts.dreams(language),
-                  language: language,
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
-      ),
       ),
     );
   }

@@ -155,10 +155,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.archetypeQuiz,
         builder: (context, state) => const ArchetypeQuizScreen(),
       ),
-      GoRoute(
-        path: Routes.home,
-        redirect: (_, _) => Routes.today,
-      ),
+      GoRoute(path: Routes.home, redirect: (_, _) => Routes.today),
 
       // ════════════════════════════════════════════════════════════════
       // STATEFUL SHELL ROUTE - 5-Tab Bottom Navigation
@@ -224,10 +221,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const InsightScreen(),
         routes: [
           // Catch-all for legacy archetype sub-routes like /insight/ateş-ruhu
-          GoRoute(
-            path: ':archetype',
-            redirect: (_, _) => Routes.insight,
-          ),
+          GoRoute(path: ':archetype', redirect: (_, _) => Routes.insight),
         ],
       ),
       GoRoute(
@@ -566,14 +560,20 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       GoRoute(path: '/legacy-home', redirect: (_, _) => Routes.insight),
       GoRoute(path: '/energy-profile', redirect: (_, _) => Routes.insight),
-      GoRoute(path: '/number-patterns', redirect: (_, _) => Routes.insightsDiscovery),
+      GoRoute(
+        path: '/number-patterns',
+        redirect: (_, _) => Routes.insightsDiscovery,
+      ),
       GoRoute(path: '/legacy-analysis', redirect: (_, _) => Routes.insight),
       GoRoute(path: '/moon-rituals', redirect: (_, _) => Routes.rituals),
       GoRoute(path: '/legacy-insight', redirect: (_, _) => Routes.insight),
       GoRoute(path: '/timing', redirect: (_, _) => Routes.journalPatterns),
       GoRoute(path: '/celebrities', redirect: (_, _) => Routes.insight),
       GoRoute(path: '/daily-rituals', redirect: (_, _) => Routes.rituals),
-      GoRoute(path: '/kesif/ruhsal-donusum', redirect: (_, _) => Routes.insight),
+      GoRoute(
+        path: '/kesif/ruhsal-donusum',
+        redirect: (_, _) => Routes.insight,
+      ),
 
       // ════════════════════════════════════════════════════════════════
       // APP LOCK
@@ -622,10 +622,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       // LEGACY REDIRECTS (all old routes -> insight)
       // ════════════════════════════════════════════════════════════════
       ...Routes.legacyRouteRedirects.entries.map(
-        (entry) => GoRoute(
-          path: entry.key,
-          redirect: (context, state) => entry.value,
-        ),
+        (entry) =>
+            GoRoute(path: entry.key, redirect: (context, state) => entry.value),
       ),
     ],
   );
@@ -675,11 +673,7 @@ class _SplashScreenState extends State<_SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.self_improvement,
-              size: 80,
-              color: Colors.white,
-            )
+            const Icon(Icons.self_improvement, size: 80, color: Colors.white)
                 .animate()
                 .fadeIn(duration: 600.ms)
                 .scale(begin: const Offset(0.8, 0.8), end: const Offset(1, 1)),
@@ -687,18 +681,18 @@ class _SplashScreenState extends State<_SplashScreen> {
             Text(
               'InnerCycles',
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w300,
-                    letterSpacing: 4,
-                  ),
+                color: Colors.white,
+                fontWeight: FontWeight.w300,
+                letterSpacing: 4,
+              ),
             ).animate().fadeIn(delay: 300.ms, duration: 600.ms),
             const SizedBox(height: 8),
             Text(
               'Your Wellness Journal / Ki\u015fisel G\u00fcnl\u00fc\u011f\u00fcn',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Colors.white54,
-                    letterSpacing: 1,
-                  ),
+                color: Colors.white54,
+                letterSpacing: 1,
+              ),
             ).animate().fadeIn(delay: 500.ms, duration: 600.ms),
           ],
         ),
@@ -724,26 +718,22 @@ class _NotFoundScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.explore_off,
-              size: 64,
-              color: Colors.white38,
-            ),
+            const Icon(Icons.explore_off, size: 64, color: Colors.white38),
             const SizedBox(height: 24),
             Text(
               'Page Not Found / Sayfa Bulunamad\u0131',
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    color: Colors.white,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.headlineSmall?.copyWith(color: Colors.white),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             Text(
               path,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Colors.white38,
-                    fontFamily: 'monospace',
-                  ),
+                color: Colors.white38,
+                fontFamily: 'monospace',
+              ),
             ),
             const SizedBox(height: 32),
             TextButton.icon(

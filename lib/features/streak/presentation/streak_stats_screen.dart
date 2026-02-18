@@ -38,7 +38,9 @@ class StreakStatsScreen extends ConsumerWidget {
                 CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                 ),
               ),
             ),
@@ -46,7 +48,16 @@ class StreakStatsScreen extends ConsumerWidget {
           data: (service) {
             final stats = service.getStats(isPremium: isPremium);
             final weekCal = service.getWeekCalendar();
-            return _buildContent(context, ref, service, stats, weekCal, isDark, isEn, isPremium);
+            return _buildContent(
+              context,
+              ref,
+              service,
+              stats,
+              weekCal,
+              isDark,
+              isEn,
+              isPremium,
+            );
           },
         ),
       ),
@@ -89,7 +100,15 @@ class StreakStatsScreen extends ConsumerWidget {
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Freeze status
-                _buildFreezeCard(context, ref, service, stats, isDark, isEn, isPremium),
+                _buildFreezeCard(
+                  context,
+                  ref,
+                  service,
+                  stats,
+                  isDark,
+                  isEn,
+                  isPremium,
+                ),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Milestones
@@ -136,7 +155,9 @@ class StreakStatsScreen extends ConsumerWidget {
           Text(
             isEn ? 'day streak' : 'günlük seri',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               fontWeight: FontWeight.w300,
             ),
           ),
@@ -228,19 +249,24 @@ class StreakStatsScreen extends ConsumerWidget {
           Text(
             isEn ? 'This Week' : 'Bu Hafta',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: weekCalendar.entries.toList().asMap().entries.map((mapEntry) {
+            children: weekCalendar.entries.toList().asMap().entries.map((
+              mapEntry,
+            ) {
               final i = mapEntry.key;
               final entry = mapEntry.value;
               final day = entry.key;
               final logged = entry.value;
-              final isToday = day.year == today.year &&
+              final isToday =
+                  day.year == today.year &&
                   day.month == today.month &&
                   day.day == today.day;
 
@@ -252,7 +278,9 @@ class StreakStatsScreen extends ConsumerWidget {
                       fontSize: 11,
                       color: isToday
                           ? AppColors.starGold
-                          : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                          : (isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted),
                       fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
                     ),
                   ),
@@ -265,20 +293,26 @@ class StreakStatsScreen extends ConsumerWidget {
                       color: logged
                           ? AppColors.auroraStart.withValues(alpha: 0.2)
                           : (isDark
-                              ? AppColors.surfaceLight.withValues(alpha: 0.1)
-                              : AppColors.lightSurfaceVariant),
+                                ? AppColors.surfaceLight.withValues(alpha: 0.1)
+                                : AppColors.lightSurfaceVariant),
                       border: isToday
                           ? Border.all(color: AppColors.starGold, width: 2)
                           : null,
                     ),
                     child: Center(
                       child: logged
-                          ? Icon(Icons.check, size: 16, color: AppColors.auroraStart)
+                          ? Icon(
+                              Icons.check,
+                              size: 16,
+                              color: AppColors.auroraStart,
+                            )
                           : Text(
                               '${day.day}',
                               style: TextStyle(
                                 fontSize: 12,
-                                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
                               ),
                             ),
                     ),
@@ -315,7 +349,9 @@ class StreakStatsScreen extends ConsumerWidget {
               Text(
                 isEn ? 'Streak Freeze' : 'Seri Dondurma',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -331,7 +367,9 @@ class StreakStatsScreen extends ConsumerWidget {
                       : 'Bu hafta ${stats.freezesAvailable} dondurma hakkı',
                   style: TextStyle(
                     fontSize: 14,
-                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
                   ),
                 ),
               ),
@@ -384,7 +422,9 @@ class StreakStatsScreen extends ConsumerWidget {
           Text(
             isEn ? 'Milestones' : 'Kilometre Taşları',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -406,14 +446,18 @@ class StreakStatsScreen extends ConsumerWidget {
                       color: reached
                           ? AppColors.starGold.withValues(alpha: 0.2)
                           : (isDark
-                              ? AppColors.surfaceLight.withValues(alpha: 0.1)
-                              : AppColors.lightSurfaceVariant),
+                                ? AppColors.surfaceLight.withValues(alpha: 0.1)
+                                : AppColors.lightSurfaceVariant),
                       border: Border.all(
                         color: reached
                             ? AppColors.starGold
                             : (isDark
-                                ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                                : AppColors.lightTextMuted.withValues(alpha: 0.3)),
+                                  ? AppColors.surfaceLight.withValues(
+                                      alpha: 0.3,
+                                    )
+                                  : AppColors.lightTextMuted.withValues(
+                                      alpha: 0.3,
+                                    )),
                         width: reached ? 2 : 1,
                       ),
                     ),
@@ -428,7 +472,9 @@ class StreakStatsScreen extends ConsumerWidget {
                               '$milestone',
                               style: TextStyle(
                                 fontSize: 12,
-                                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
                               ),
                             ),
                     ),
@@ -440,7 +486,9 @@ class StreakStatsScreen extends ConsumerWidget {
                       fontSize: 10,
                       color: reached
                           ? AppColors.starGold
-                          : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                          : (isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted),
                       fontWeight: reached ? FontWeight.bold : FontWeight.normal,
                     ),
                   ),
@@ -453,11 +501,7 @@ class StreakStatsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildQuickAction(
-    BuildContext context,
-    bool isDark,
-    bool isEn,
-  ) {
+  Widget _buildQuickAction(BuildContext context, bool isDark, bool isEn) {
     return SizedBox(
       width: double.infinity,
       child: OutlinedButton.icon(
@@ -508,7 +552,9 @@ class _StatTile extends StatelessWidget {
           Text(
             value,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
               fontWeight: FontWeight.bold,
             ),
           ),

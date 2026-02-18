@@ -38,7 +38,9 @@ class PromptLibraryScreen extends ConsumerWidget {
             child: Text(
               CommonStrings.somethingWentWrong(language),
               style: TextStyle(
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
               ),
             ),
           ),
@@ -110,14 +112,13 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                 children: [
                   // Completion progress bar
                   _buildProgressBar(
-                    completionPercent,
-                    completedCount,
-                    totalCount,
-                  ).animate().fadeIn(duration: 400.ms).slideY(
-                        begin: -0.1,
-                        end: 0,
-                        duration: 400.ms,
-                      ),
+                        completionPercent,
+                        completedCount,
+                        totalCount,
+                      )
+                      .animate()
+                      .fadeIn(duration: 400.ms)
+                      .slideY(begin: -0.1, end: 0, duration: 400.ms),
                   const SizedBox(height: 16),
 
                   // Today's prompt card
@@ -139,24 +140,21 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
             sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  final prompt = _filteredPrompts[index];
-                  return _buildPromptCard(prompt, index)
-                      .animate()
-                      .fadeIn(
-                        duration: 300.ms,
-                        delay: Duration(milliseconds: 50 * (index % 10)),
-                      )
-                      .slideX(
-                        begin: 0.03,
-                        end: 0,
-                        duration: 300.ms,
-                        delay: Duration(milliseconds: 50 * (index % 10)),
-                      );
-                },
-                childCount: _filteredPrompts.length,
-              ),
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final prompt = _filteredPrompts[index];
+                return _buildPromptCard(prompt, index)
+                    .animate()
+                    .fadeIn(
+                      duration: 300.ms,
+                      delay: Duration(milliseconds: 50 * (index % 10)),
+                    )
+                    .slideX(
+                      begin: 0.03,
+                      end: 0,
+                      duration: 300.ms,
+                      delay: Duration(milliseconds: 50 * (index % 10)),
+                    );
+              }, childCount: _filteredPrompts.length),
             ),
           ),
 
@@ -181,11 +179,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   // PROGRESS BAR
   // ══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildProgressBar(
-    double percent,
-    int completed,
-    int total,
-  ) {
+  Widget _buildProgressBar(double percent, int completed, int total) {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -301,11 +295,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
               _buildDepthIndicator(prompt.depth),
               if (isCompleted) ...[
                 const SizedBox(width: 8),
-                Icon(
-                  Icons.check_circle,
-                  size: 20,
-                  color: AppColors.success,
-                ),
+                Icon(Icons.check_circle, size: 20, color: AppColors.success),
               ],
             ],
           ),
@@ -326,9 +316,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
             _categoryLabel(prompt.category),
             style: TextStyle(
               fontSize: 12,
-              color: isDark
-                  ? AppColors.textMuted
-                  : AppColors.lightTextMuted,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
           ),
           const SizedBox(height: 14),
@@ -372,7 +360,9 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
       height: 42,
       child: ListView(
         scrollDirection: Axis.horizontal,
-        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
         children: [
           _buildChip(null, isEn ? 'All' : 'Tümü'),
           ...PromptCategory.values.map(
@@ -397,7 +387,9 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
             color: isSelected
                 ? Colors.white
-                : (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
+                : (isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary),
           ),
         ),
         onSelected: (_) {
@@ -414,12 +406,10 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
           color: isSelected
               ? AppColors.auroraStart.withValues(alpha: 0.6)
               : (isDark
-                  ? Colors.white.withValues(alpha: 0.12)
-                  : AppColors.textMuted.withValues(alpha: 0.2)),
+                    ? Colors.white.withValues(alpha: 0.12)
+                    : AppColors.textMuted.withValues(alpha: 0.2)),
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         showCheckmark: false,
         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       ),
@@ -446,8 +436,8 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
           color: isCompleted
               ? AppColors.success.withValues(alpha: 0.3)
               : (isDark
-                  ? Colors.white.withValues(alpha: 0.1)
-                  : AppColors.textMuted.withValues(alpha: 0.2)),
+                    ? Colors.white.withValues(alpha: 0.1)
+                    : AppColors.textMuted.withValues(alpha: 0.2)),
         ),
       ),
       child: InkWell(
@@ -491,11 +481,11 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                       fontWeight: FontWeight.w400,
                       color: isCompleted
                           ? (isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted)
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted)
                           : (isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary),
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary),
                     ),
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,

@@ -49,31 +49,34 @@ class WellnessScore {
   });
 
   Map<String, dynamic> toJson() => {
-        'dateKey': dateKey,
-        'score': score,
-        'breakdown': breakdown
-            .map((b) => {
-                  'category': b.category,
-                  'score': b.score,
-                  'weight': b.weight,
-                })
-            .toList(),
-        'calculatedAt': calculatedAt.toIso8601String(),
-      };
+    'dateKey': dateKey,
+    'score': score,
+    'breakdown': breakdown
+        .map(
+          (b) => {'category': b.category, 'score': b.score, 'weight': b.weight},
+        )
+        .toList(),
+    'calculatedAt': calculatedAt.toIso8601String(),
+  };
 
   factory WellnessScore.fromJson(Map<String, dynamic> json) => WellnessScore(
-        dateKey: json['dateKey'] as String? ?? '',
-        score: json['score'] as int? ?? 0,
-        breakdown: (json['breakdown'] as List<dynamic>?)
-                ?.map((b) => WellnessBreakdown(
-                      category: b['category'] as String? ?? '',
-                      score: (b['score'] as num? ?? 0).toDouble(),
-                      weight: (b['weight'] as num? ?? 0).toDouble(),
-                    ))
-                .toList() ??
-            [],
-        calculatedAt: DateTime.tryParse(json['calculatedAt']?.toString() ?? '') ?? DateTime.now(),
-      );
+    dateKey: json['dateKey'] as String? ?? '',
+    score: json['score'] as int? ?? 0,
+    breakdown:
+        (json['breakdown'] as List<dynamic>?)
+            ?.map(
+              (b) => WellnessBreakdown(
+                category: b['category'] as String? ?? '',
+                score: (b['score'] as num? ?? 0).toDouble(),
+                weight: (b['weight'] as num? ?? 0).toDouble(),
+              ),
+            )
+            .toList() ??
+        [],
+    calculatedAt:
+        DateTime.tryParse(json['calculatedAt']?.toString() ?? '') ??
+        DateTime.now(),
+  );
 }
 
 /// Weekly wellness trend for home screen card
@@ -110,12 +113,12 @@ class WellnessScoreService {
     required RitualService ritualService,
     required StreakService streakService,
     required SleepService sleepService,
-  })  : _prefs = prefs,
-        _journalService = journalService,
-        _gratitudeService = gratitudeService,
-        _ritualService = ritualService,
-        _streakService = streakService,
-        _sleepService = sleepService {
+  }) : _prefs = prefs,
+       _journalService = journalService,
+       _gratitudeService = gratitudeService,
+       _ritualService = ritualService,
+       _streakService = streakService,
+       _sleepService = sleepService {
     _loadScores();
   }
 
@@ -157,7 +160,8 @@ class WellnessScoreService {
       if (recent.isNotEmpty) {
         final daysDiff = now.difference(recent.first.date).inDays;
         if (daysDiff <= 3) {
-          journalScore = (recent.first.overallRating / 5.0) * 100 * (1 - daysDiff * 0.15);
+          journalScore =
+              (recent.first.overallRating / 5.0) * 100 * (1 - daysDiff * 0.15);
         }
       }
     }
@@ -207,7 +211,11 @@ class WellnessScoreService {
 
     final breakdown = [
       WellnessBreakdown(category: 'journal', score: journalScore, weight: 0.40),
-      WellnessBreakdown(category: 'gratitude', score: gratitudeScore, weight: 0.15),
+      WellnessBreakdown(
+        category: 'gratitude',
+        score: gratitudeScore,
+        weight: 0.15,
+      ),
       WellnessBreakdown(category: 'rituals', score: ritualScore, weight: 0.15),
       WellnessBreakdown(category: 'streak', score: streakScore, weight: 0.15),
       WellnessBreakdown(category: 'sleep', score: sleepScore, weight: 0.15),
@@ -264,12 +272,12 @@ class WellnessScoreService {
     final currentAvg = thisWeekScores.isEmpty
         ? 0
         : thisWeekScores.map((s) => s.score).reduce((a, b) => a + b) ~/
-            thisWeekScores.length;
+              thisWeekScores.length;
 
     final prevAvg = prevWeekScores.isEmpty
         ? 0
         : prevWeekScores.map((s) => s.score).reduce((a, b) => a + b) ~/
-            prevWeekScores.length;
+              prevWeekScores.length;
 
     String direction;
     if (prevAvg == 0) {
@@ -314,9 +322,7 @@ class WellnessScoreService {
     if (jsonString != null) {
       try {
         final Map<String, dynamic> jsonMap = json.decode(jsonString);
-        _scores = jsonMap.map(
-          (k, v) => MapEntry(k, WellnessScore.fromJson(v)),
-        );
+        _scores = jsonMap.map((k, v) => MapEntry(k, WellnessScore.fromJson(v)));
       } catch (_) {
         _scores = {};
       }

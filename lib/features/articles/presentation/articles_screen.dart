@@ -43,7 +43,9 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
                 CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                 ),
               ),
             ),
@@ -87,7 +89,12 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
               delegate: SliverChildListDelegate([
                 // Reading progress
                 _buildProgressCard(
-                    readCount, totalCount, progress, isDark, isEn),
+                  readCount,
+                  totalCount,
+                  progress,
+                  isDark,
+                  isEn,
+                ),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Category chips
@@ -95,34 +102,36 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Module cards
-                ...modules.map((module) => Padding(
-                      padding:
-                          const EdgeInsets.only(bottom: AppConstants.spacingMd),
-                      child: _ModuleCard(
-                        module: module,
-                        isRead: service.isRead(module.id),
-                        isBookmarked: service.isBookmarked(module.id),
-                        isExpanded: _expandedModuleId == module.id,
-                        isDark: isDark,
-                        isEn: isEn,
-                        onTap: () {
-                          setState(() {
-                            _expandedModuleId =
-                                _expandedModuleId == module.id
-                                    ? null
-                                    : module.id;
-                          });
-                          if (!service.isRead(module.id)) {
-                            service.markAsRead(module.id);
-                          }
-                        },
-                        onToggleBookmark: () async {
-                          await service.toggleBookmark(module.id);
-                          if (!mounted) return;
-                          setState(() {});
-                        },
-                      ),
-                    )),
+                ...modules.map(
+                  (module) => Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: AppConstants.spacingMd,
+                    ),
+                    child: _ModuleCard(
+                      module: module,
+                      isRead: service.isRead(module.id),
+                      isBookmarked: service.isBookmarked(module.id),
+                      isExpanded: _expandedModuleId == module.id,
+                      isDark: isDark,
+                      isEn: isEn,
+                      onTap: () {
+                        setState(() {
+                          _expandedModuleId = _expandedModuleId == module.id
+                              ? null
+                              : module.id;
+                        });
+                        if (!service.isRead(module.id)) {
+                          service.markAsRead(module.id);
+                        }
+                      },
+                      onToggleBookmark: () async {
+                        await service.toggleBookmark(module.id);
+                        if (!mounted) return;
+                        setState(() {});
+                      },
+                    ),
+                  ),
+                ),
                 ToolEcosystemFooter(
                   currentToolId: 'articles',
                   isEn: isEn,
@@ -203,15 +212,17 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
             onTap: () => setState(() => _selectedCategory = null),
           ),
           const SizedBox(width: 8),
-          ...ContextModuleCategory.values.map((cat) => Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: _CategoryChip(
-                  label: isEn ? cat.displayNameEn : cat.displayNameTr,
-                  isSelected: _selectedCategory == cat,
-                  isDark: isDark,
-                  onTap: () => setState(() => _selectedCategory = cat),
-                ),
-              )),
+          ...ContextModuleCategory.values.map(
+            (cat) => Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: _CategoryChip(
+                label: isEn ? cat.displayNameEn : cat.displayNameTr,
+                isSelected: _selectedCategory == cat,
+                isDark: isDark,
+                onTap: () => setState(() => _selectedCategory = cat),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -241,15 +252,15 @@ class _CategoryChip extends StatelessWidget {
           color: isSelected
               ? AppColors.auroraStart.withValues(alpha: 0.2)
               : (isDark
-                  ? AppColors.surfaceLight.withValues(alpha: 0.1)
-                  : AppColors.lightSurfaceVariant),
+                    ? AppColors.surfaceLight.withValues(alpha: 0.1)
+                    : AppColors.lightSurfaceVariant),
           borderRadius: BorderRadius.circular(AppConstants.radiusFull),
           border: Border.all(
             color: isSelected
                 ? AppColors.auroraStart
                 : (isDark
-                    ? Colors.white.withValues(alpha: 0.1)
-                    : Colors.black.withValues(alpha: 0.05)),
+                      ? Colors.white.withValues(alpha: 0.1)
+                      : Colors.black.withValues(alpha: 0.05)),
           ),
         ),
         child: Text(
@@ -260,8 +271,8 @@ class _CategoryChip extends StatelessWidget {
             color: isSelected
                 ? AppColors.auroraStart
                 : (isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary),
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary),
           ),
         ),
       ),
@@ -337,11 +348,16 @@ class _ModuleCard extends StatelessWidget {
                         children: [
                           Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 2),
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
                             decoration: BoxDecoration(
-                              color: AppColors.auroraStart.withValues(alpha: 0.1),
-                              borderRadius:
-                                  BorderRadius.circular(AppConstants.radiusFull),
+                              color: AppColors.auroraStart.withValues(
+                                alpha: 0.1,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                AppConstants.radiusFull,
+                              ),
                             ),
                             child: Text(
                               isEn
@@ -357,11 +373,14 @@ class _ModuleCard extends StatelessWidget {
                           const SizedBox(width: 6),
                           Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 2),
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
                             decoration: BoxDecoration(
                               color: AppColors.starGold.withValues(alpha: 0.1),
-                              borderRadius:
-                                  BorderRadius.circular(AppConstants.radiusFull),
+                              borderRadius: BorderRadius.circular(
+                                AppConstants.radiusFull,
+                              ),
                             ),
                             child: Text(
                               isEn
@@ -382,15 +401,13 @@ class _ModuleCard extends StatelessWidget {
                 GestureDetector(
                   onTap: onToggleBookmark,
                   child: Icon(
-                    isBookmarked
-                        ? Icons.bookmark
-                        : Icons.bookmark_border,
+                    isBookmarked ? Icons.bookmark : Icons.bookmark_border,
                     size: 20,
                     color: isBookmarked
                         ? AppColors.starGold
                         : (isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted),
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted),
                   ),
                 ),
               ],
@@ -431,8 +448,7 @@ class _ModuleCard extends StatelessWidget {
                 padding: const EdgeInsets.all(AppConstants.spacingMd),
                 decoration: BoxDecoration(
                   color: AppColors.starGold.withValues(alpha: 0.08),
-                  borderRadius:
-                      BorderRadius.circular(AppConstants.radiusSm),
+                  borderRadius: BorderRadius.circular(AppConstants.radiusSm),
                   border: Border.all(
                     color: AppColors.starGold.withValues(alpha: 0.2),
                   ),
@@ -450,9 +466,7 @@ class _ModuleCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      isEn
-                          ? module.whyItMattersEn
-                          : module.whyItMattersTr,
+                      isEn ? module.whyItMattersEn : module.whyItMattersTr,
                       style: TextStyle(
                         fontSize: 13,
                         height: 1.5,
@@ -474,8 +488,7 @@ class _ModuleCard extends StatelessWidget {
                     color: isDark
                         ? AppColors.surfaceLight.withValues(alpha: 0.08)
                         : AppColors.lightSurfaceVariant,
-                    borderRadius:
-                        BorderRadius.circular(AppConstants.radiusSm),
+                    borderRadius: BorderRadius.circular(AppConstants.radiusSm),
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -491,7 +504,7 @@ class _ModuleCard extends StatelessWidget {
                           isEn
                               ? module.screenshotLineEn!
                               : (module.screenshotLineTr ??
-                                  module.screenshotLineEn!),
+                                    module.screenshotLineEn!),
                           style: TextStyle(
                             fontSize: 13,
                             fontStyle: FontStyle.italic,

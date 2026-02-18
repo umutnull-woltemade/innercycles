@@ -43,16 +43,15 @@ class MilestoneScreen extends ConsumerWidget {
                 CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                 ),
               ),
             ),
           ),
-          data: (service) => _MilestoneBody(
-            service: service,
-            isEn: isEn,
-            isDark: isDark,
-          ),
+          data: (service) =>
+              _MilestoneBody(service: service, isEn: isEn, isDark: isDark),
         ),
       ),
     );
@@ -90,18 +89,14 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     final allMilestones = service.getAllMilestones();
     final filtered = _selectedCategory == null
         ? allMilestones
-        : allMilestones
-            .where((m) => m.category == _selectedCategory)
-            .toList();
+        : allMilestones.where((m) => m.category == _selectedCategory).toList();
 
     return CustomScrollView(
       physics: const BouncingScrollPhysics(
         parent: AlwaysScrollableScrollPhysics(),
       ),
       slivers: [
-        GlassSliverAppBar(
-          title: isEn ? 'Milestones' : 'Rozetler',
-        ),
+        GlassSliverAppBar(title: isEn ? 'Milestones' : 'Rozetler'),
 
         // ── Progress Card ─────────────────────────────────────────────
         SliverToBoxAdapter(
@@ -118,9 +113,10 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
-            child: _buildFilterChips()
-                .animate()
-                .fadeIn(delay: 100.ms, duration: 300.ms),
+            child: _buildFilterChips().animate().fadeIn(
+              delay: 100.ms,
+              duration: 300.ms,
+            ),
           ),
         ),
 
@@ -134,14 +130,11 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
             ),
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                final milestone = filtered[index];
-                final earned = service.isEarned(milestone.id);
-                return _buildBadgeTile(milestone, earned, index);
-              },
-              childCount: filtered.length,
-            ),
+            delegate: SliverChildBuilderDelegate((context, index) {
+              final milestone = filtered[index];
+              final earned = service.isEarned(milestone.id);
+              return _buildBadgeTile(milestone, earned, index);
+            }, childCount: filtered.length),
           ),
         ),
 
@@ -223,8 +216,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                         strokeWidth: 6,
                         strokeCap: StrokeCap.round,
                         backgroundColor: Colors.transparent,
-                        valueColor:
-                            const AlwaysStoppedAnimation(Colors.white),
+                        valueColor: const AlwaysStoppedAnimation(Colors.white),
                       ),
                     ),
                     Text(
@@ -284,14 +276,10 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   String _getProgressMessage(int earned, int total) {
     final remaining = total - earned;
     if (earned == 0) {
-      return isEn
-          ? 'Start your journey!'
-          : 'Yolculuğuna başla!';
+      return isEn ? 'Start your journey!' : 'Yolculuğuna başla!';
     }
     if (earned >= total) {
-      return isEn
-          ? 'You earned them all!'
-          : 'Hepsini kazandin!';
+      return isEn ? 'You earned them all!' : 'Hepsini kazandin!';
     }
     return isEn
         ? '$remaining more to discover'
@@ -326,8 +314,8 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                   color: selected
                       ? (isDark ? AppColors.deepSpace : Colors.white)
                       : (isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary),
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary),
                 ),
               ),
               selected: selected,
@@ -345,8 +333,8 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                   color: selected
                       ? AppColors.starGold
                       : isDark
-                          ? Colors.white.withValues(alpha: 0.1)
-                          : Colors.black.withValues(alpha: 0.06),
+                      ? Colors.white.withValues(alpha: 0.1)
+                      : Colors.black.withValues(alpha: 0.06),
                 ),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -365,104 +353,101 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     final name = isEn ? milestone.nameEn : milestone.nameTr;
 
     return GestureDetector(
-      onTap: earned ? () => _showBadgeDetail(milestone) : null,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: earned
-              ? (isDark
-                  ? AppColors.surfaceDark.withValues(alpha: 0.85)
-                  : AppColors.lightCard)
-              : (isDark
-                  ? AppColors.surfaceDark.withValues(alpha: 0.35)
-                  : AppColors.lightSurfaceVariant.withValues(alpha: 0.5)),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: earned
-                ? AppColors.starGold.withValues(alpha: 0.5)
-                : isDark
+          onTap: earned ? () => _showBadgeDetail(milestone) : null,
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: earned
+                  ? (isDark
+                        ? AppColors.surfaceDark.withValues(alpha: 0.85)
+                        : AppColors.lightCard)
+                  : (isDark
+                        ? AppColors.surfaceDark.withValues(alpha: 0.35)
+                        : AppColors.lightSurfaceVariant.withValues(alpha: 0.5)),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: earned
+                    ? AppColors.starGold.withValues(alpha: 0.5)
+                    : isDark
                     ? Colors.white.withValues(alpha: 0.06)
                     : Colors.black.withValues(alpha: 0.04),
-            width: earned ? 1.5 : 1,
-          ),
-          boxShadow: earned
-              ? [
-                  BoxShadow(
-                    color: AppColors.starGold.withValues(alpha: 0.08),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
+                width: earned ? 1.5 : 1,
+              ),
+              boxShadow: earned
+                  ? [
+                      BoxShadow(
+                        color: AppColors.starGold.withValues(alpha: 0.08),
+                        blurRadius: 12,
+                        offset: const Offset(0, 4),
+                      ),
+                    ]
+                  : null,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Emoji or lock
+                if (earned)
+                  Text(milestone.emoji, style: const TextStyle(fontSize: 32))
+                else
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Text(
+                        milestone.emoji,
+                        style: TextStyle(
+                          fontSize: 32,
+                          color: Colors.white.withValues(alpha: 0.15),
+                        ),
+                      ),
+                      Icon(
+                        Icons.lock_outline_rounded,
+                        size: 20,
+                        color: isDark
+                            ? AppColors.textMuted.withValues(alpha: 0.5)
+                            : AppColors.lightTextMuted.withValues(alpha: 0.6),
+                      ),
+                    ],
                   ),
-                ]
-              : null,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Emoji or lock
-            if (earned)
-              Text(
-                milestone.emoji,
-                style: const TextStyle(fontSize: 32),
-              )
-            else
-              Stack(
-                alignment: Alignment.center,
-                children: [
+                const SizedBox(height: 8),
+                // Name
+                Text(
+                  name,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: earned
+                        ? (isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary)
+                        : (isDark
+                              ? AppColors.textMuted.withValues(alpha: 0.5)
+                              : AppColors.lightTextMuted),
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                // Hint text for locked
+                if (!earned) ...[
+                  const SizedBox(height: 4),
                   Text(
-                    milestone.emoji,
+                    _getCategoryHint(milestone.category),
                     style: TextStyle(
-                      fontSize: 32,
-                      color: Colors.white.withValues(alpha: 0.15),
+                      fontSize: 10,
+                      color: isDark
+                          ? AppColors.textMuted.withValues(alpha: 0.4)
+                          : AppColors.lightTextMuted.withValues(alpha: 0.6),
                     ),
-                  ),
-                  Icon(
-                    Icons.lock_outline_rounded,
-                    size: 20,
-                    color: isDark
-                        ? AppColors.textMuted.withValues(alpha: 0.5)
-                        : AppColors.lightTextMuted.withValues(alpha: 0.6),
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
-              ),
-            const SizedBox(height: 8),
-            // Name
-            Text(
-              name,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: earned
-                    ? (isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary)
-                    : (isDark
-                        ? AppColors.textMuted.withValues(alpha: 0.5)
-                        : AppColors.lightTextMuted),
-              ),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+              ],
             ),
-            // Hint text for locked
-            if (!earned) ...[
-              const SizedBox(height: 4),
-              Text(
-                _getCategoryHint(milestone.category),
-                style: TextStyle(
-                  fontSize: 10,
-                  color: isDark
-                      ? AppColors.textMuted.withValues(alpha: 0.4)
-                      : AppColors.lightTextMuted.withValues(alpha: 0.6),
-                ),
-                textAlign: TextAlign.center,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
-          ],
-        ),
-      ),
-    )
+          ),
+        )
         .animate(delay: (40 * index).ms)
         .fadeIn(duration: 300.ms)
         .scale(
@@ -497,8 +482,9 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   void _showBadgeDetail(Milestone milestone) {
     final earnedDate = service.earnedAt(milestone.id);
     final name = isEn ? milestone.nameEn : milestone.nameTr;
-    final description =
-        isEn ? milestone.descriptionEn : milestone.descriptionTr;
+    final description = isEn
+        ? milestone.descriptionEn
+        : milestone.descriptionTr;
     final categoryName = isEn
         ? milestone.category.displayNameEn
         : milestone.category.displayNameTr;
@@ -561,8 +547,10 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                 const SizedBox(height: 4),
                 // Category chip
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.starGold.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(12),
@@ -622,8 +610,9 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                   child: TextButton(
                     onPressed: () => Navigator.of(ctx).pop(),
                     style: TextButton.styleFrom(
-                      backgroundColor:
-                          AppColors.starGold.withValues(alpha: 0.1),
+                      backgroundColor: AppColors.starGold.withValues(
+                        alpha: 0.1,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -649,12 +638,32 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   String _formatDate(DateTime date, bool isEn) {
     final months = isEn
         ? [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
           ]
         : [
-            'Oca', 'Sub', 'Mar', 'Nis', 'May', 'Haz',
-            'Tem', 'Agu', 'Eyl', 'Eki', 'Kas', 'Ara',
+            'Oca',
+            'Sub',
+            'Mar',
+            'Nis',
+            'May',
+            'Haz',
+            'Tem',
+            'Agu',
+            'Eyl',
+            'Eki',
+            'Kas',
+            'Ara',
           ];
     return '${date.day} ${months[date.month - 1]} ${date.year}';
   }

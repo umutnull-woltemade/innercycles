@@ -32,8 +32,12 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('dailyHabits'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('dailyHabits', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('dailyHabits'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData((s) => s.trackToolOpen('dailyHabits', source: 'direct'));
     });
   }
 
@@ -127,9 +131,9 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                       },
                     ),
                   ).animate().fadeIn(
-                        duration: 300.ms,
-                        delay: Duration(milliseconds: (60 * index).clamp(0, 400)),
-                      );
+                    duration: 300.ms,
+                    delay: Duration(milliseconds: (60 * index).clamp(0, 400)),
+                  );
                 }),
 
                 const SizedBox(height: 16),
@@ -221,8 +225,8 @@ class _ProgressHeader extends StatelessWidget {
               color: allDone
                   ? AppColors.success
                   : (isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary),
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary),
             ),
           ),
           const SizedBox(height: 12),
@@ -291,15 +295,15 @@ class _HabitCheckCard extends StatelessWidget {
         color: isChecked
             ? AppColors.success.withValues(alpha: isDark ? 0.12 : 0.06)
             : (isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.8)
-                : AppColors.lightCard),
+                  ? AppColors.surfaceDark.withValues(alpha: 0.8)
+                  : AppColors.lightCard),
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
           color: isChecked
               ? AppColors.success.withValues(alpha: 0.3)
               : (isDark
-                  ? Colors.white.withValues(alpha: 0.06)
-                  : Colors.black.withValues(alpha: 0.05)),
+                    ? Colors.white.withValues(alpha: 0.06)
+                    : Colors.black.withValues(alpha: 0.05)),
         ),
       ),
       child: Column(
@@ -309,7 +313,9 @@ class _HabitCheckCard extends StatelessWidget {
               // Check circle
               Semantics(
                 label: isChecked
-                    ? (isEn ? 'Mark incomplete' : 'Tamamlanmadı olarak işaretle')
+                    ? (isEn
+                          ? 'Mark incomplete'
+                          : 'Tamamlanmadı olarak işaretle')
                     : (isEn ? 'Mark complete' : 'Tamamlandı olarak işaretle'),
                 button: true,
                 child: GestureDetector(
@@ -323,8 +329,8 @@ class _HabitCheckCard extends StatelessWidget {
                       color: isChecked
                           ? AppColors.success
                           : (isDark
-                              ? Colors.white.withValues(alpha: 0.06)
-                              : Colors.black.withValues(alpha: 0.06)),
+                                ? Colors.white.withValues(alpha: 0.06)
+                                : Colors.black.withValues(alpha: 0.06)),
                       border: isChecked
                           ? null
                           : Border.all(
@@ -335,8 +341,11 @@ class _HabitCheckCard extends StatelessWidget {
                             ),
                     ),
                     child: isChecked
-                        ? const Icon(Icons.check_rounded,
-                            color: Colors.white, size: 20)
+                        ? const Icon(
+                            Icons.check_rounded,
+                            color: Colors.white,
+                            size: 20,
+                          )
                         : null,
                   ),
                 ),
@@ -356,8 +365,9 @@ class _HabitCheckCard extends StatelessWidget {
                         color: isDark
                             ? AppColors.textPrimary
                             : AppColors.lightTextPrimary,
-                        decoration:
-                            isChecked ? TextDecoration.lineThrough : null,
+                        decoration: isChecked
+                            ? TextDecoration.lineThrough
+                            : null,
                         decorationColor: AppColors.success,
                       ),
                     ),
@@ -414,47 +424,48 @@ class _HabitCheckCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              ...['M', 'T', 'W', 'T', 'F', 'S', 'S'].asMap().entries.map(
-                (e) {
-                  final i = e.key;
-                  final day = e.value;
-                  final done = weekData[i];
+              ...['M', 'T', 'W', 'T', 'F', 'S', 'S'].asMap().entries.map((e) {
+                final i = e.key;
+                final day = e.value;
+                final done = weekData[i];
 
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 6),
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 18,
-                          height: 18,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: done
-                                ? AppColors.success.withValues(alpha: 0.8)
-                                : (isDark
+                return Padding(
+                  padding: const EdgeInsets.only(left: 6),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 18,
+                        height: 18,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: done
+                              ? AppColors.success.withValues(alpha: 0.8)
+                              : (isDark
                                     ? Colors.white.withValues(alpha: 0.06)
                                     : Colors.black.withValues(alpha: 0.06)),
-                          ),
-                          child: done
-                              ? const Icon(Icons.check,
-                                  size: 10, color: Colors.white)
-                              : null,
                         ),
-                        const SizedBox(height: 2),
-                        Text(
-                          day,
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
+                        child: done
+                            ? const Icon(
+                                Icons.check,
+                                size: 10,
+                                color: Colors.white,
+                              )
+                            : null,
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        day,
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
                         ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+                      ),
+                    ],
+                  ),
+                );
+              }),
             ],
           ),
         ],
@@ -488,9 +499,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            isEn
-                ? 'No habits adopted yet'
-                : 'Henüz benimsenen alışkanlık yok',
+            isEn ? 'No habits adopted yet' : 'Henüz benimsenen alışkanlık yok',
             style: TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.w600,
@@ -522,17 +531,11 @@ class _EmptyState extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 12,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             ),
             child: Text(
               isEn ? 'Browse Habits' : 'Alışkanlıkları Gözat',
-              style: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-              ),
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
             ),
           ),
         ],

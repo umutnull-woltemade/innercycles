@@ -146,21 +146,19 @@ class MoonPhaseService {
   static const double _synodicMonth = 29.53058868;
 
   /// Known new moon reference: January 6, 2000, 18:14 UTC
-  static final DateTime _referenceNewMoon =
-      DateTime.utc(2000, 1, 6, 18, 14, 0);
+  static final DateTime _referenceNewMoon = DateTime.utc(2000, 1, 6, 18, 14, 0);
 
   /// Calculate moon phase for a given date
   static MoonPhaseData calculate(DateTime date) {
     final utcDate = date.toUtc();
     final daysSinceReference =
         utcDate.difference(_referenceNewMoon).inMilliseconds /
-            (1000 * 60 * 60 * 24);
+        (1000 * 60 * 60 * 24);
     final moonAge = daysSinceReference % _synodicMonth;
     final normalizedAge = moonAge < 0 ? moonAge + _synodicMonth : moonAge;
 
     // Calculate illumination (simplified cosine approximation)
-    final illumination =
-        (1 - cos(2 * pi * normalizedAge / _synodicMonth)) / 2;
+    final illumination = (1 - cos(2 * pi * normalizedAge / _synodicMonth)) / 2;
 
     // Determine phase from age
     final phase = _phaseFromAge(normalizedAge);

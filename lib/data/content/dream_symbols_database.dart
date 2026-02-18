@@ -1680,21 +1680,45 @@ class ShareableQuoteTemplates {
     final fallback = quotes.first;
     switch (tone) {
       case EmotionalTone.korku:
-        return quotes.firstWhere((q) => q.category == 'Cesaret', orElse: () => fallback);
+        return quotes.firstWhere(
+          (q) => q.category == 'Cesaret',
+          orElse: () => fallback,
+        );
       case EmotionalTone.huzur:
-        return quotes.firstWhere((q) => q.category == 'Kabul', orElse: () => fallback);
+        return quotes.firstWhere(
+          (q) => q.category == 'Kabul',
+          orElse: () => fallback,
+        );
       case EmotionalTone.merak:
-        return quotes.firstWhere((q) => q.category == 'Keşif', orElse: () => fallback);
+        return quotes.firstWhere(
+          (q) => q.category == 'Keşif',
+          orElse: () => fallback,
+        );
       case EmotionalTone.sucluluk:
-        return quotes.firstWhere((q) => q.category == 'Kabullenme', orElse: () => fallback);
+        return quotes.firstWhere(
+          (q) => q.category == 'Kabullenme',
+          orElse: () => fallback,
+        );
       case EmotionalTone.ozlem:
-        return quotes.firstWhere((q) => q.category == 'Umut', orElse: () => fallback);
+        return quotes.firstWhere(
+          (q) => q.category == 'Umut',
+          orElse: () => fallback,
+        );
       case EmotionalTone.heyecan:
-        return quotes.firstWhere((q) => q.category == 'Yeni Başlangıç', orElse: () => fallback);
+        return quotes.firstWhere(
+          (q) => q.category == 'Yeni Başlangıç',
+          orElse: () => fallback,
+        );
       case EmotionalTone.donukluk:
-        return quotes.firstWhere((q) => q.category == 'Farkındalık', orElse: () => fallback);
+        return quotes.firstWhere(
+          (q) => q.category == 'Farkındalık',
+          orElse: () => fallback,
+        );
       case EmotionalTone.ofke:
-        return quotes.firstWhere((q) => q.category == 'Dönüşüm', orElse: () => fallback);
+        return quotes.firstWhere(
+          (q) => q.category == 'Dönüşüm',
+          orElse: () => fallback,
+        );
     }
   }
 }

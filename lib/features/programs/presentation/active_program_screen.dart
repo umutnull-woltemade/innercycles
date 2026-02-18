@@ -50,104 +50,104 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
           behavior: HitTestBehavior.opaque,
           child: SafeArea(
             child: serviceAsync.when(
-            loading: () => const CosmicLoadingIndicator(),
-            error: (_, _) => Center(
-              child: Text(
-                CommonStrings.errorLoadingProgram(language),
-                style: TextStyle(color: AppColors.textMuted),
-              ),
-            ),
-            data: (service) {
-              final program = GuidedProgramService.allPrograms.firstWhere(
-                (p) => p.id == widget.programId,
-                orElse: () => GuidedProgramService.allPrograms.first,
-              );
-              final progress = service.getProgress(widget.programId);
-              final todayPrompt = service.getTodayPrompt(widget.programId);
-
-              return CupertinoScrollbar(
-                child: CustomScrollView(
-                physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics(),
+              loading: () => const CosmicLoadingIndicator(),
+              error: (_, _) => Center(
+                child: Text(
+                  CommonStrings.errorLoadingProgram(language),
+                  style: TextStyle(color: AppColors.textMuted),
                 ),
-                slivers: [
-                  GlassSliverAppBar(
-                    title: isEn ? program.titleEn : program.titleTr,
-                  ),
-                  SliverPadding(
-                    padding: const EdgeInsets.all(16),
-                    sliver: SliverList(
-                      delegate: SliverChildListDelegate([
-                        // Program header
-                        _ProgramHeader(
-                          program: program,
-                          progress: progress,
-                          isDark: isDark,
-                          isEn: isEn,
-                        ),
-                        const SizedBox(height: 20),
-
-                        // Day progress circles
-                        _DayProgressRow(
-                          program: program,
-                          progress: progress,
-                          isDark: isDark,
-                        ),
-                        const SizedBox(height: 24),
-
-                        // Today's prompt
-                        if (todayPrompt != null && progress != null && !progress.isCompleted) ...[
-                          _TodayPromptCard(
-                            day: todayPrompt,
-                            isDark: isDark,
-                            isEn: isEn,
-                          ),
-                          const SizedBox(height: 16),
-
-                          // Reflection input
-                          _ReflectionInput(
-                            controller: _reflectionController,
-                            isDark: isDark,
-                            isEn: isEn,
-                          ),
-                          const SizedBox(height: 16),
-
-                          // Complete day button
-                          _CompleteButton(
-                            isDark: isDark,
-                            isEn: isEn,
-                            isAlreadyDone: progress.completedDays
-                                .contains(todayPrompt.dayNumber),
-                            onComplete: () => _completeDay(
-                              service,
-                              todayPrompt.dayNumber,
-                            ),
-                          ),
-                        ] else if (progress?.isCompleted ?? false) ...[
-                          _CompletedBanner(isDark: isDark, isEn: isEn),
-                        ] else ...[
-                          _NotStartedBanner(isDark: isDark, isEn: isEn),
-                        ],
-
-                        const SizedBox(height: 40),
-                      ]),
-                    ),
-                  ),
-                ],
               ),
-              );
-            },
+              data: (service) {
+                final program = GuidedProgramService.allPrograms.firstWhere(
+                  (p) => p.id == widget.programId,
+                  orElse: () => GuidedProgramService.allPrograms.first,
+                );
+                final progress = service.getProgress(widget.programId);
+                final todayPrompt = service.getTodayPrompt(widget.programId);
+
+                return CupertinoScrollbar(
+                  child: CustomScrollView(
+                    physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics(),
+                    ),
+                    slivers: [
+                      GlassSliverAppBar(
+                        title: isEn ? program.titleEn : program.titleTr,
+                      ),
+                      SliverPadding(
+                        padding: const EdgeInsets.all(16),
+                        sliver: SliverList(
+                          delegate: SliverChildListDelegate([
+                            // Program header
+                            _ProgramHeader(
+                              program: program,
+                              progress: progress,
+                              isDark: isDark,
+                              isEn: isEn,
+                            ),
+                            const SizedBox(height: 20),
+
+                            // Day progress circles
+                            _DayProgressRow(
+                              program: program,
+                              progress: progress,
+                              isDark: isDark,
+                            ),
+                            const SizedBox(height: 24),
+
+                            // Today's prompt
+                            if (todayPrompt != null &&
+                                progress != null &&
+                                !progress.isCompleted) ...[
+                              _TodayPromptCard(
+                                day: todayPrompt,
+                                isDark: isDark,
+                                isEn: isEn,
+                              ),
+                              const SizedBox(height: 16),
+
+                              // Reflection input
+                              _ReflectionInput(
+                                controller: _reflectionController,
+                                isDark: isDark,
+                                isEn: isEn,
+                              ),
+                              const SizedBox(height: 16),
+
+                              // Complete day button
+                              _CompleteButton(
+                                isDark: isDark,
+                                isEn: isEn,
+                                isAlreadyDone: progress.completedDays.contains(
+                                  todayPrompt.dayNumber,
+                                ),
+                                onComplete: () => _completeDay(
+                                  service,
+                                  todayPrompt.dayNumber,
+                                ),
+                              ),
+                            ] else if (progress?.isCompleted ?? false) ...[
+                              _CompletedBanner(isDark: isDark, isEn: isEn),
+                            ] else ...[
+                              _NotStartedBanner(isDark: isDark, isEn: isEn),
+                            ],
+
+                            const SizedBox(height: 40),
+                          ]),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
-        ),
         ),
       ),
     );
   }
 
-  Future<void> _completeDay(
-    GuidedProgramService service,
-    int dayNumber,
-  ) async {
+  Future<void> _completeDay(GuidedProgramService service, int dayNumber) async {
     final reflection = _reflectionController.text;
     await service.completeDay(
       widget.programId,
@@ -203,19 +203,13 @@ class _ProgramHeader extends StatelessWidget {
                   AppColors.surfaceDark.withValues(alpha: 0.9),
                   AppColors.nebulaPurple.withValues(alpha: 0.6),
                 ]
-              : [
-                  AppColors.lightCard,
-                  AppColors.lightSurfaceVariant,
-                ],
+              : [AppColors.lightCard, AppColors.lightSurfaceVariant],
         ),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         children: [
-          Text(
-            program.emoji,
-            style: const TextStyle(fontSize: 48),
-          ),
+          Text(program.emoji, style: const TextStyle(fontSize: 48)),
           const SizedBox(height: 12),
           Text(
             isEn ? program.descriptionEn : program.descriptionTr,
@@ -307,8 +301,7 @@ class _DayProgressRow extends StatelessWidget {
       child: Row(
         children: List.generate(program.durationDays, (i) {
           final dayNum = i + 1;
-          final isComplete =
-              progress?.completedDays.contains(dayNum) ?? false;
+          final isComplete = progress?.completedDays.contains(dayNum) ?? false;
           final isCurrent = progress != null && progress!.currentDay == dayNum;
 
           return Padding(
@@ -321,10 +314,10 @@ class _DayProgressRow extends StatelessWidget {
                 color: isComplete
                     ? AppColors.success
                     : isCurrent
-                        ? AppColors.starGold.withValues(alpha: 0.2)
-                        : (isDark
-                            ? Colors.white.withValues(alpha: 0.06)
-                            : Colors.black.withValues(alpha: 0.04)),
+                    ? AppColors.starGold.withValues(alpha: 0.2)
+                    : (isDark
+                          ? Colors.white.withValues(alpha: 0.06)
+                          : Colors.black.withValues(alpha: 0.04)),
                 border: isCurrent
                     ? Border.all(color: AppColors.starGold, width: 2)
                     : null,
@@ -336,13 +329,14 @@ class _DayProgressRow extends StatelessWidget {
                         '$dayNum',
                         style: TextStyle(
                           fontSize: 12,
-                          fontWeight:
-                              isCurrent ? FontWeight.w700 : FontWeight.w500,
+                          fontWeight: isCurrent
+                              ? FontWeight.w700
+                              : FontWeight.w500,
                           color: isCurrent
                               ? AppColors.starGold
                               : (isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted),
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted),
                         ),
                       ),
               ),
@@ -383,9 +377,7 @@ class _TodayPromptCard extends StatelessWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -521,8 +513,9 @@ class _CompleteButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: isAlreadyDone ? null : onComplete,
         style: ElevatedButton.styleFrom(
-          backgroundColor:
-              isAlreadyDone ? AppColors.success : AppColors.starGold,
+          backgroundColor: isAlreadyDone
+              ? AppColors.success
+              : AppColors.starGold,
           foregroundColor: isAlreadyDone ? Colors.white : AppColors.deepSpace,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14),
@@ -533,10 +526,7 @@ class _CompleteButton extends StatelessWidget {
           isAlreadyDone
               ? (isEn ? 'Completed' : 'Tamamlandı')
               : (isEn ? 'Complete Today' : 'Bugünü Tamamla'),
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
       ),
     ).animate().fadeIn(delay: 300.ms, duration: 300.ms);
@@ -556,48 +546,49 @@ class _CompletedBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: AppColors.success.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.success.withValues(alpha: 0.3),
-        ),
-      ),
-      child: Column(
-        children: [
-          const Icon(
-            Icons.emoji_events_rounded,
-            size: 48,
-            color: AppColors.starGold,
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: AppColors.success.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: AppColors.success.withValues(alpha: 0.3)),
           ),
-          const SizedBox(height: 12),
-          Text(
-            isEn ? 'Program Completed!' : 'Program Tamamlandı!',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-            ),
+          child: Column(
+            children: [
+              const Icon(
+                Icons.emoji_events_rounded,
+                size: 48,
+                color: AppColors.starGold,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                isEn ? 'Program Completed!' : 'Program Tamamlandı!',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                isEn
+                    ? 'You have finished this guided journey. Well done!'
+                    : 'Bu rehberli yolculuğu tamamladın. Tebrikler!',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 4),
-          Text(
-            isEn
-                ? 'You have finished this guided journey. Well done!'
-                : 'Bu rehberli yolculuğu tamamladın. Tebrikler!',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
-            ),
-          ),
-        ],
-      ),
-    ).animate().fadeIn(duration: 400.ms).scale(
+        )
+        .animate()
+        .fadeIn(duration: 400.ms)
+        .scale(
           begin: const Offset(0.95, 0.95),
           end: const Offset(1.0, 1.0),
           duration: 400.ms,

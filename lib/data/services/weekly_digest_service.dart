@@ -44,39 +44,43 @@ class WeeklyDigest {
   });
 
   Map<String, dynamic> toJson() => {
-        'weekStart': weekStart.toIso8601String(),
-        'weekEnd': weekEnd.toIso8601String(),
-        'entryCount': entryCount,
-        'avgMood': avgMood,
-        'topFocusAreaEn': topFocusAreaEn,
-        'topFocusAreaTr': topFocusAreaTr,
-        'moodTrendEn': moodTrendEn,
-        'moodTrendTr': moodTrendTr,
-        'highlightEn': highlightEn,
-        'highlightTr': highlightTr,
-        'growthNudgeEn': growthNudgeEn,
-        'growthNudgeTr': growthNudgeTr,
-        'streakDays': streakDays,
-        'areaAverages': areaAverages,
-      };
+    'weekStart': weekStart.toIso8601String(),
+    'weekEnd': weekEnd.toIso8601String(),
+    'entryCount': entryCount,
+    'avgMood': avgMood,
+    'topFocusAreaEn': topFocusAreaEn,
+    'topFocusAreaTr': topFocusAreaTr,
+    'moodTrendEn': moodTrendEn,
+    'moodTrendTr': moodTrendTr,
+    'highlightEn': highlightEn,
+    'highlightTr': highlightTr,
+    'growthNudgeEn': growthNudgeEn,
+    'growthNudgeTr': growthNudgeTr,
+    'streakDays': streakDays,
+    'areaAverages': areaAverages,
+  };
 
   factory WeeklyDigest.fromJson(Map<String, dynamic> json) => WeeklyDigest(
-        weekStart: DateTime.tryParse(json['weekStart']?.toString() ?? '') ?? DateTime.now(),
-        weekEnd: DateTime.tryParse(json['weekEnd']?.toString() ?? '') ?? DateTime.now(),
-        entryCount: json['entryCount'] as int? ?? 0,
-        avgMood: (json['avgMood'] as num? ?? 0).toDouble(),
-        topFocusAreaEn: json['topFocusAreaEn'] as String? ?? '',
-        topFocusAreaTr: json['topFocusAreaTr'] as String? ?? '',
-        moodTrendEn: json['moodTrendEn'] as String? ?? '',
-        moodTrendTr: json['moodTrendTr'] as String? ?? '',
-        highlightEn: json['highlightEn'] as String? ?? '',
-        highlightTr: json['highlightTr'] as String? ?? '',
-        growthNudgeEn: json['growthNudgeEn'] as String? ?? '',
-        growthNudgeTr: json['growthNudgeTr'] as String? ?? '',
-        streakDays: json['streakDays'] as int? ?? 0,
-        areaAverages: (json['areaAverages'] as Map<String, dynamic>? ?? {})
-            .map((k, v) => MapEntry(k, (v as num? ?? 0).toDouble())),
-      );
+    weekStart:
+        DateTime.tryParse(json['weekStart']?.toString() ?? '') ??
+        DateTime.now(),
+    weekEnd:
+        DateTime.tryParse(json['weekEnd']?.toString() ?? '') ?? DateTime.now(),
+    entryCount: json['entryCount'] as int? ?? 0,
+    avgMood: (json['avgMood'] as num? ?? 0).toDouble(),
+    topFocusAreaEn: json['topFocusAreaEn'] as String? ?? '',
+    topFocusAreaTr: json['topFocusAreaTr'] as String? ?? '',
+    moodTrendEn: json['moodTrendEn'] as String? ?? '',
+    moodTrendTr: json['moodTrendTr'] as String? ?? '',
+    highlightEn: json['highlightEn'] as String? ?? '',
+    highlightTr: json['highlightTr'] as String? ?? '',
+    growthNudgeEn: json['growthNudgeEn'] as String? ?? '',
+    growthNudgeTr: json['growthNudgeTr'] as String? ?? '',
+    streakDays: json['streakDays'] as int? ?? 0,
+    areaAverages: (json['areaAverages'] as Map<String, dynamic>? ?? {}).map(
+      (k, v) => MapEntry(k, (v as num? ?? 0).toDouble()),
+    ),
+  );
 }
 
 class WeeklyDigestService {
@@ -97,8 +101,11 @@ class WeeklyDigestService {
   WeeklyDigest generateDigest(List<JournalEntry> allEntries) {
     final now = DateTime.now();
     final weekStart = now.subtract(Duration(days: now.weekday - 1));
-    final weekStartDate =
-        DateTime(weekStart.year, weekStart.month, weekStart.day);
+    final weekStartDate = DateTime(
+      weekStart.year,
+      weekStart.month,
+      weekStart.day,
+    );
     final weekEndDate = weekStartDate.add(const Duration(days: 6));
 
     // Filter entries for this week
@@ -112,7 +119,8 @@ class WeeklyDigestService {
     // Average mood
     double avgMood = 0;
     if (weekEntries.isNotEmpty) {
-      avgMood = weekEntries
+      avgMood =
+          weekEntries
               .map((e) => e.overallRating)
               .reduce((a, b) => a + b)
               .toDouble() /
@@ -122,13 +130,13 @@ class WeeklyDigestService {
     // Top focus area
     final areaCounts = <FocusArea, int>{};
     for (final entry in weekEntries) {
-      areaCounts[entry.focusArea] =
-          (areaCounts[entry.focusArea] ?? 0) + 1;
+      areaCounts[entry.focusArea] = (areaCounts[entry.focusArea] ?? 0) + 1;
     }
     final topArea = areaCounts.isNotEmpty
-        ? (areaCounts.entries.toList()..sort((a, b) => b.value.compareTo(a.value)))
-            .first
-            .key
+        ? (areaCounts.entries.toList()
+                ..sort((a, b) => b.value.compareTo(a.value)))
+              .first
+              .key
         : FocusArea.energy;
 
     // Area averages
@@ -151,10 +159,12 @@ class WeeklyDigestService {
     int streakDays = 0;
     var checkDate = DateTime(now.year, now.month, now.day);
     for (int i = 0; i < 30; i++) {
-      final hasEntry = sortedAll.any((e) =>
-          e.date.year == checkDate.year &&
-          e.date.month == checkDate.month &&
-          e.date.day == checkDate.day);
+      final hasEntry = sortedAll.any(
+        (e) =>
+            e.date.year == checkDate.year &&
+            e.date.month == checkDate.month &&
+            e.date.day == checkDate.day,
+      );
       if (hasEntry) {
         streakDays++;
         checkDate = checkDate.subtract(const Duration(days: 1));
@@ -213,56 +223,68 @@ class WeeklyDigestService {
 
     final firstAvg =
         firstHalf.map((e) => e.overallRating).reduce((a, b) => a + b) /
-            firstHalf.length;
+        firstHalf.length;
     final secondAvg =
         secondHalf.map((e) => e.overallRating).reduce((a, b) => a + b) /
-            secondHalf.length;
+        secondHalf.length;
 
     final diff = secondAvg - firstAvg;
     if (diff > 1.0) {
-      return ('Your mood has been rising this week', 'Ruh halin bu hafta yükseliyor');
+      return (
+        'Your mood has been rising this week',
+        'Ruh halin bu hafta yükseliyor',
+      );
     } else if (diff < -1.0) {
       return (
         'Your mood dipped this week — be gentle with yourself',
-        'Ruh halin bu hafta biraz düştü — kendine nazik ol'
+        'Ruh halin bu hafta biraz düştü — kendine nazik ol',
       );
     } else {
-      return ('Your mood has been steady this week', 'Ruh halin bu hafta sabit kalmış');
+      return (
+        'Your mood has been steady this week',
+        'Ruh halin bu hafta sabit kalmış',
+      );
     }
   }
 
   (String, String) _generateHighlight(
-      int entryCount, double avgMood, FocusArea topArea) {
+    int entryCount,
+    double avgMood,
+    FocusArea topArea,
+  ) {
     if (entryCount == 0) {
       return (
         'Start journaling to see your weekly highlights',
-        'Haftalık özetini görmek için günlük tutmaya başla'
+        'Haftalık özetini görmek için günlük tutmaya başla',
       );
     }
     if (entryCount >= 5) {
       return (
         'Amazing consistency! You logged $entryCount entries this week',
-        'Harika tutarlılık! Bu hafta $entryCount kayıt girdin'
+        'Harika tutarlılık! Bu hafta $entryCount kayıt girdin',
       );
     }
     if (avgMood >= 7) {
       return (
         'A strong week! Your average mood was ${avgMood.toStringAsFixed(1)}/10',
-        'Güçlü bir hafta! Ortalama ruh halin ${avgMood.toStringAsFixed(1)}/10'
+        'Güçlü bir hafta! Ortalama ruh halin ${avgMood.toStringAsFixed(1)}/10',
       );
     }
     return (
       'You focused most on ${_areaNameEn(topArea)} this week',
-      'Bu hafta en çok ${_areaNameTr(topArea)} alanına odaklandın'
+      'Bu hafta en çok ${_areaNameTr(topArea)} alanına odaklandın',
     );
   }
 
   (String, String) _generateGrowthNudge(
-      int entryCount, double avgMood, Map<FocusArea, int> areaCounts) {
+    int entryCount,
+    double avgMood,
+    Map<FocusArea, int> areaCounts,
+  ) {
     if (entryCount == 0) {
       return (
         'Try logging just one entry today — small steps matter',
-        'Bugün sadece bir kayıt girmeyi dene — küçük adımlar önemli'
+        'Bugün sadece bir kayıt girmeyi dene — küçük adımlar önemli',
       );
     }
 
@@ -281,20 +303,20 @@ class WeeklyDigestService {
     if (leastTracked != null && minCount == 0) {
       return (
         'You haven\'t explored ${_areaNameEn(leastTracked)} this week — give it a try',
-        'Bu hafta ${_areaNameTr(leastTracked)} alanını keşfetmedin — bir dene'
+        'Bu hafta ${_areaNameTr(leastTracked)} alanını keşfetmedin — bir dene',
       );
     }
 
     if (avgMood < 5) {
       return (
         'Consider trying a breathing exercise to reset your energy',
-        'Enerjini yenilemek için bir nefes egzersizi denemeyi düşün'
+        'Enerjini yenilemek için bir nefes egzersizi denemeyi düşün',
       );
     }
 
     return (
       'Keep the momentum going — consistency builds insight',
-      'İvmeyi sürdür — tutarlılık içgörü oluşturur'
+      'İvmeyi sürdür — tutarlılık içgörü oluşturur',
     );
   }
 

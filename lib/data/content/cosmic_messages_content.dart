@@ -20,21 +20,24 @@ class CosmicMessagesContent {
   /// Get a random universal reflection theme
   static String getUniversalMessage({DateTime? date}) {
     final d = date ?? DateTime.now();
-    final dayOfYear =
-        d.difference(DateTime(d.year, 1, 1)).inDays;
+    final dayOfYear = d.difference(DateTime(d.year, 1, 1)).inDays;
     return _universalMessages[dayOfYear % _universalMessages.length];
   }
 
   /// Get morning reflection prompt based on date
   static String getMorningAffirmation(DateTime date) {
-    return _allMorningAffirmations[
-        _dateIndex(date, _allMorningAffirmations.length)];
+    return _allMorningAffirmations[_dateIndex(
+      date,
+      _allMorningAffirmations.length,
+    )];
   }
 
   /// Get evening reflection prompt based on date
   static String getEveningReflection(DateTime date) {
-    return _allEveningReflections[
-        _dateIndex(date, _allEveningReflections.length)];
+    return _allEveningReflections[_dateIndex(
+      date,
+      _allEveningReflections.length,
+    )];
   }
 
   /// Get reflection theme based on moon phase (cultural symbolism)
@@ -50,8 +53,10 @@ class CosmicMessagesContent {
 
   /// Get extended reflection wisdom for deeper readings
   static String getExtendedCosmicWisdom(DateTime date) {
-    return _allExtendedCosmicWisdoms[
-        _dateIndex(date, _allExtendedCosmicWisdoms.length)];
+    return _allExtendedCosmicWisdoms[_dateIndex(
+      date,
+      _allExtendedCosmicWisdoms.length,
+    )];
   }
 
   /// Get archetype-specific daily intention (e.g., 'pioneer', 'builder')
@@ -79,7 +84,10 @@ class CosmicMessagesContent {
     }
 
     // Fallback to universal extended wisdoms
-    return _universalExtendedWisdoms[_dateIndex(d, _universalExtendedWisdoms.length)];
+    return _universalExtendedWisdoms[_dateIndex(
+      d,
+      _universalExtendedWisdoms.length,
+    )];
   }
 
   // ---------------------------------------------------------------------------
@@ -725,5 +733,4 @@ class CosmicMessagesContent {
     'Zaman ve perspektif üzerine düşünebilirsin. Geçmiş, şimdi ve gelecek... Bunlar arasındaki ilişkiyi keşfetmek faydalı olabilir.',
     'Değişim ve dönüşüm temaları üzerine bir refleksiyon. Eskiyi bırakmak ve yeniye açılmak senin için ne anlama geliyor?',
   ];
-
 }

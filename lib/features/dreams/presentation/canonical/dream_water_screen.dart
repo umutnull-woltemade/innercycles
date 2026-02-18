@@ -21,173 +21,188 @@ class DreamWaterScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: isDark
-                ? [AppColors.deepSpace, const Color(0xFF0A1A2E)]
-                : [const Color(0xFFF8FAFF), const Color(0xFFE8F0FF)],
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: isDark
+                  ? [AppColors.deepSpace, const Color(0xFF0A1A2E)]
+                  : [const Color(0xFFF8FAFF), const Color(0xFFE8F0FF)],
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                IconButton(
-                  onPressed: () => context.pop(),
-                  tooltip: L10nService.get('common.back', language),
-                  icon: Icon(
-                    Icons.chevron_left,
-                    color: isDark ? Colors.white70 : AppColors.textDark,
+          child: SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IconButton(
+                    onPressed: () => context.pop(),
+                    tooltip: L10nService.get('common.back', language),
+                    icon: Icon(
+                      Icons.chevron_left,
+                      color: isDark ? Colors.white70 : AppColors.textDark,
+                    ),
                   ),
-                ),
 
-                const SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
-                // H1 - Soru formatı
-                Text(
-                  L10nService.get('dreams.canonical.water_question', language),
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w600,
-                    color: isDark ? Colors.white : AppColors.textDark,
-                    height: 1.2,
-                  ),
-                ).animate().fadeIn(duration: 400.ms),
-
-                const SizedBox(height: 8),
-
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.purpleAccent.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    L10nService.get('dreams.canonical.brand_tag', language),
+                  // H1 - Soru formatı
+                  Text(
+                    L10nService.get(
+                      'dreams.canonical.water_question',
+                      language,
+                    ),
                     style: TextStyle(
-                      fontSize: 12,
-                      color: AppColors.purpleAccent,
-                      fontWeight: FontWeight.w500,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w600,
+                      color: isDark ? Colors.white : AppColors.textDark,
+                      height: 1.2,
+                    ),
+                  ).animate().fadeIn(duration: 400.ms),
+
+                  const SizedBox(height: 8),
+
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.purpleAccent.withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      L10nService.get('dreams.canonical.brand_tag', language),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColors.purpleAccent,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
-                ),
 
-                const SizedBox(height: 32),
+                  const SizedBox(height: 32),
 
-                // Short answer section
-                _buildQuotableSection(
-                  isDark: isDark,
-                  title: L10nService.get(
-                    'dreams.canonical.sections.short_answer',
-                    language,
+                  // Short answer section
+                  _buildQuotableSection(
+                    isDark: isDark,
+                    title: L10nService.get(
+                      'dreams.canonical.sections.short_answer',
+                      language,
+                    ),
+                    color: AppColors.purpleAccent,
+                    bullets: [
+                      L10nService.get(
+                        'dreams.canonical.water.short_answer_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.water.short_answer_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.water.short_answer_3',
+                        language,
+                      ),
+                    ],
                   ),
-                  color: AppColors.purpleAccent,
-                  bullets: [
-                    L10nService.get(
-                      'dreams.canonical.water.short_answer_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.water.short_answer_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.water.short_answer_3',
-                      language,
-                    ),
-                  ],
-                ),
 
-                const SizedBox(height: 28),
+                  const SizedBox(height: 28),
 
-                _buildQuotableSection(
-                  isDark: isDark,
-                  title: L10nService.get(
-                    'dreams.canonical.water.state_title',
-                    language,
+                  _buildQuotableSection(
+                    isDark: isDark,
+                    title: L10nService.get(
+                      'dreams.canonical.water.state_title',
+                      language,
+                    ),
+                    color: AppColors.purpleAccent,
+                    bullets: [
+                      L10nService.get(
+                        'dreams.canonical.water.state_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.water.state_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.water.state_3',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.water.state_4',
+                        language,
+                      ),
+                    ],
                   ),
-                  color: AppColors.purpleAccent,
-                  bullets: [
-                    L10nService.get('dreams.canonical.water.state_1', language),
-                    L10nService.get('dreams.canonical.water.state_2', language),
-                    L10nService.get('dreams.canonical.water.state_3', language),
-                    L10nService.get('dreams.canonical.water.state_4', language),
-                  ],
-                ),
 
-                const SizedBox(height: 28),
+                  const SizedBox(height: 28),
 
-                _buildQuotableSection(
-                  isDark: isDark,
-                  title: L10nService.get(
-                    'dreams.canonical.water.emotion_title',
-                    language,
+                  _buildQuotableSection(
+                    isDark: isDark,
+                    title: L10nService.get(
+                      'dreams.canonical.water.emotion_title',
+                      language,
+                    ),
+                    color: AppColors.purpleAccent,
+                    bullets: [
+                      L10nService.get(
+                        'dreams.canonical.water.emotion_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.water.emotion_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.water.emotion_3',
+                        language,
+                      ),
+                    ],
                   ),
-                  color: AppColors.purpleAccent,
-                  bullets: [
-                    L10nService.get(
-                      'dreams.canonical.water.emotion_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.water.emotion_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.water.emotion_3',
-                      language,
-                    ),
-                  ],
-                ),
 
-                const SizedBox(height: 28),
+                  const SizedBox(height: 28),
 
-                _buildQuotableSection(
-                  isDark: isDark,
-                  title: L10nService.get(
-                    'dreams.canonical.sections.if_recurring',
-                    language,
+                  _buildQuotableSection(
+                    isDark: isDark,
+                    title: L10nService.get(
+                      'dreams.canonical.sections.if_recurring',
+                      language,
+                    ),
+                    color: AppColors.purpleAccent,
+                    bullets: [
+                      L10nService.get(
+                        'dreams.canonical.water.recurring_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.water.recurring_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.water.recurring_3',
+                        language,
+                      ),
+                    ],
                   ),
-                  color: AppColors.purpleAccent,
-                  bullets: [
-                    L10nService.get(
-                      'dreams.canonical.water.recurring_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.water.recurring_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.water.recurring_3',
-                      language,
-                    ),
-                  ],
-                ),
 
-                const SizedBox(height: 32),
+                  const SizedBox(height: 32),
 
-                _buildSuggestionBox(context, isDark, language),
+                  _buildSuggestionBox(context, isDark, language),
 
-                const SizedBox(height: 40),
+                  const SizedBox(height: 40),
 
-                PageFooterWithDisclaimer(
-                  brandText: L10nService.get('dreams.brand_footer', language),
-                  disclaimerText: DisclaimerTexts.dreams(language),
-                  language: language,
-                ),
-              ],
+                  PageFooterWithDisclaimer(
+                    brandText: L10nService.get('dreams.brand_footer', language),
+                    disclaimerText: DisclaimerTexts.dreams(language),
+                    language: language,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
       ),
     );
   }

@@ -52,7 +52,9 @@ class UserProfile {
     return UserProfile(
       id: json['id'] as String?,
       name: json['name'] as String?,
-      birthDate: DateTime.tryParse(json['birthDate']?.toString() ?? '') ?? DateTime(2000, 1, 1),
+      birthDate:
+          DateTime.tryParse(json['birthDate']?.toString() ?? '') ??
+          DateTime(2000, 1, 1),
       birthTime: json['birthTime'] as String?,
       birthPlace: json['birthPlace'] as String?,
       birthLatitude: json['birthLatitude'] as double?,

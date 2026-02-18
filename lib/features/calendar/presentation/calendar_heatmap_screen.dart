@@ -37,8 +37,14 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('calendarHeatmap'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('calendarHeatmap', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('calendarHeatmap'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData(
+            (s) => s.trackToolOpen('calendarHeatmap', source: 'direct'),
+          );
     });
   }
 
@@ -76,7 +82,10 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
     bool isEn,
   ) {
     final allEntries = service.getAllEntries();
-    final monthEntries = service.getEntriesForMonth(_selectedYear, _selectedMonth);
+    final monthEntries = service.getEntriesForMonth(
+      _selectedYear,
+      _selectedMonth,
+    );
 
     // Build entry map: dateKey -> entry
     final entryMap = <String, JournalEntry>{};
@@ -94,9 +103,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
         parent: AlwaysScrollableScrollPhysics(),
       ),
       slivers: [
-        GlassSliverAppBar(
-          title: isEn ? 'Activity Map' : 'Aktivite Haritası',
-        ),
+        GlassSliverAppBar(title: isEn ? 'Activity Map' : 'Aktivite Haritası'),
         SliverPadding(
           padding: const EdgeInsets.all(16),
           sliver: SliverList(
@@ -131,7 +138,8 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                 onNext: () {
                   final now = DateTime.now();
                   if (_selectedYear > now.year ||
-                      (_selectedYear == now.year && _selectedMonth >= now.month)) {
+                      (_selectedYear == now.year &&
+                          _selectedMonth >= now.month)) {
                     return;
                   }
                   HapticFeedback.selectionClick();
@@ -158,8 +166,9 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                 onDayTap: (dateKey) {
                   HapticFeedback.lightImpact();
                   setState(() {
-                    _selectedDateKey =
-                        _selectedDateKey == dateKey ? null : dateKey;
+                    _selectedDateKey = _selectedDateKey == dateKey
+                        ? null
+                        : dateKey;
                   });
                 },
               ),
@@ -176,7 +185,9 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                   entry: entryMap[_selectedDateKey],
                   isDark: isDark,
                   isEn: isEn,
-                  onViewEntry: (id) => context.push(Routes.journalEntryDetail.replaceFirst(':id', id)),
+                  onViewEntry: (id) => context.push(
+                    Routes.journalEntryDetail.replaceFirst(':id', id),
+                  ),
                   onCreateEntry: () => context.push(Routes.journal),
                 ),
                 const SizedBox(height: 20),
@@ -190,7 +201,11 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                 isEn: isEn,
               ),
 
-              ToolEcosystemFooter(currentToolId: 'calendarHeatmap', isEn: isEn, isDark: isDark),
+              ToolEcosystemFooter(
+                currentToolId: 'calendarHeatmap',
+                isEn: isEn,
+                isDark: isDark,
+              ),
               const SizedBox(height: 40),
             ]),
           ),
@@ -268,15 +283,15 @@ class _StatPill extends StatelessWidget {
           color: accent
               ? AppColors.starGold.withValues(alpha: isDark ? 0.15 : 0.1)
               : (isDark
-                  ? AppColors.surfaceDark.withValues(alpha: 0.8)
-                  : AppColors.lightCard),
+                    ? AppColors.surfaceDark.withValues(alpha: 0.8)
+                    : AppColors.lightCard),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: accent
                 ? AppColors.starGold.withValues(alpha: 0.3)
                 : (isDark
-                    ? Colors.white.withValues(alpha: 0.06)
-                    : Colors.black.withValues(alpha: 0.05)),
+                      ? Colors.white.withValues(alpha: 0.06)
+                      : Colors.black.withValues(alpha: 0.05)),
           ),
         ),
         child: Column(
@@ -289,8 +304,8 @@ class _StatPill extends StatelessWidget {
                 color: accent
                     ? AppColors.starGold
                     : (isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary),
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary),
               ),
             ),
             const SizedBox(height: 2),
@@ -333,12 +348,32 @@ class _MonthNavigator extends StatelessWidget {
   Widget build(BuildContext context) {
     final monthNames = isEn
         ? [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December',
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
           ]
         : [
-            'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-            'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık',
+            'Ocak',
+            'Şubat',
+            'Mart',
+            'Nisan',
+            'Mayıs',
+            'Haziran',
+            'Temmuz',
+            'Ağustos',
+            'Eylül',
+            'Ekim',
+            'Kasım',
+            'Aralık',
           ];
 
     final now = DateTime.now();
@@ -351,7 +386,9 @@ class _MonthNavigator extends StatelessWidget {
           tooltip: isEn ? 'Previous month' : 'Önceki ay',
           icon: Icon(
             Icons.chevron_left_rounded,
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+            color: isDark
+                ? AppColors.textSecondary
+                : AppColors.lightTextSecondary,
           ),
           onPressed: onPrevious,
         ),
@@ -369,8 +406,10 @@ class _MonthNavigator extends StatelessWidget {
             Icons.chevron_right_rounded,
             color: isCurrentMonth
                 ? (isDark ? AppColors.textMuted : AppColors.lightTextMuted)
-                    .withValues(alpha: 0.3)
-                : (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
+                      .withValues(alpha: 0.3)
+                : (isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary),
           ),
           onPressed: isCurrentMonth ? null : onNext,
         ),
@@ -406,7 +445,8 @@ class _CalendarGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final firstDay = DateTime(year, month, 1);
     final daysInMonth = DateTime(year, month + 1, 0).day;
-    final startWeekday = (firstDay.weekday % 7); // 0=Mon in ISO, adjust to Sun start
+    final startWeekday =
+        (firstDay.weekday % 7); // 0=Mon in ISO, adjust to Sun start
     final today = DateTime.now();
 
     return Container(
@@ -460,7 +500,8 @@ class _CalendarGrid extends StatelessWidget {
                   final dateKey =
                       '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
                   final entry = entryMap[dateKey];
-                  final isToday = date.year == today.year &&
+                  final isToday =
+                      date.year == today.year &&
                       date.month == today.month &&
                       date.day == today.day;
                   final isFuture = date.isAfter(today);
@@ -468,53 +509,62 @@ class _CalendarGrid extends StatelessWidget {
 
                   return Expanded(
                     child: Semantics(
-                      label: '${date.day}/${date.month}${entry != null ? (isEn ? ', has entry' : ', kayıt var') : ''}',
+                      label:
+                          '${date.day}/${date.month}${entry != null ? (isEn ? ', has entry' : ', kayıt var') : ''}',
                       button: !isFuture,
                       child: GestureDetector(
-                      onTap: isFuture ? null : () => onDayTap(dateKey),
-                      child: Container(
-                        height: 40,
-                        margin: const EdgeInsets.all(1),
-                        decoration: BoxDecoration(
-                          color: _getCellColor(entry, isToday, isFuture, isDark),
-                          borderRadius: BorderRadius.circular(8),
-                          border: isSelected
-                              ? Border.all(
-                                  color: AppColors.starGold,
-                                  width: 2,
-                                )
-                              : isToday
-                                  ? Border.all(
-                                      color: AppColors.auroraStart
-                                          .withValues(alpha: 0.5),
-                                      width: 1.5,
-                                    )
-                                  : null,
-                        ),
-                        child: Center(
-                          child: Text(
-                            '$dayIndex',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: entry != null
-                                  ? FontWeight.w600
-                                  : FontWeight.w400,
-                              color: isFuture
-                                  ? (isDark
-                                      ? AppColors.textMuted
-                                          .withValues(alpha: 0.3)
-                                      : AppColors.lightTextMuted
-                                          .withValues(alpha: 0.3))
-                                  : entry != null
-                                      ? Colors.white
-                                      : (isDark
+                        onTap: isFuture ? null : () => onDayTap(dateKey),
+                        child: Container(
+                          height: 40,
+                          margin: const EdgeInsets.all(1),
+                          decoration: BoxDecoration(
+                            color: _getCellColor(
+                              entry,
+                              isToday,
+                              isFuture,
+                              isDark,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                            border: isSelected
+                                ? Border.all(
+                                    color: AppColors.starGold,
+                                    width: 2,
+                                  )
+                                : isToday
+                                ? Border.all(
+                                    color: AppColors.auroraStart.withValues(
+                                      alpha: 0.5,
+                                    ),
+                                    width: 1.5,
+                                  )
+                                : null,
+                          ),
+                          child: Center(
+                            child: Text(
+                              '$dayIndex',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: entry != null
+                                    ? FontWeight.w600
+                                    : FontWeight.w400,
+                                color: isFuture
+                                    ? (isDark
+                                          ? AppColors.textMuted.withValues(
+                                              alpha: 0.3,
+                                            )
+                                          : AppColors.lightTextMuted.withValues(
+                                              alpha: 0.3,
+                                            ))
+                                    : entry != null
+                                    ? Colors.white
+                                    : (isDark
                                           ? AppColors.textMuted
                                           : AppColors.lightTextMuted),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
                     ),
                   );
                 }),
@@ -675,26 +725,26 @@ class _DayDetail extends StatelessWidget {
               label: isEn ? 'Log this day' : 'Bu günü kaydet',
               button: true,
               child: GestureDetector(
-              onTap: onCreateEntry,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.auroraStart.withValues(alpha: 0.15),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(
-                  isEn ? 'Log this day' : 'Bu günü kaydet',
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.auroraStart,
+                onTap: onCreateEntry,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.auroraStart.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    isEn ? 'Log this day' : 'Bu günü kaydet',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.auroraStart,
+                    ),
                   ),
                 ),
               ),
-            ),
             ),
           ],
         ),
@@ -712,114 +762,116 @@ class _DayDetail extends StatelessWidget {
           : 'Kaydı gör: ${e.focusArea.displayNameTr}, puan ${e.overallRating}',
       button: true,
       child: GestureDetector(
-      onTap: () => onViewEntry(e.id),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.8)
-              : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: AppColors.auroraStart.withValues(alpha: 0.2),
+        onTap: () => onViewEntry(e.id),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.surfaceDark.withValues(alpha: 0.8)
+                : AppColors.lightCard,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: AppColors.auroraStart.withValues(alpha: 0.2),
+            ),
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.starGold.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    dateKey,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.starGold,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.starGold.withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      dateKey,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 8),
+                  const SizedBox(width: 8),
+                  Text(
+                    isEn
+                        ? e.focusArea.displayNameEn
+                        : e.focusArea.displayNameTr,
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                  const Spacer(),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: _ratingColor(
+                        e.overallRating,
+                      ).withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      ratingLabels[(e.overallRating - 1).clamp(
+                        0,
+                        ratingLabels.length - 1,
+                      )],
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                        color: _ratingColor(e.overallRating),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              if (e.note case final note? when note.isNotEmpty) ...[
+                const SizedBox(height: 10),
                 Text(
-                  isEn
-                      ? e.focusArea.displayNameEn
-                      : e.focusArea.displayNameTr,
+                  note.length > 120 ? '${note.substring(0, 120)}...' : note,
                   style: TextStyle(
                     fontSize: 13,
-                    fontWeight: FontWeight.w500,
+                    height: 1.5,
                     color: isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,
                   ),
                 ),
-                const Spacer(),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: _ratingColor(e.overallRating)
-                        .withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    ratingLabels[(e.overallRating - 1).clamp(0, ratingLabels.length - 1)],
+              ],
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    isEn ? 'View entry' : 'Kaydı görüntüle',
                     style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w600,
-                      color: _ratingColor(e.overallRating),
+                      fontSize: 12,
+                      color: AppColors.auroraStart,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                ),
-              ],
-            ),
-            if (e.note case final note? when note.isNotEmpty) ...[
-              const SizedBox(height: 10),
-              Text(
-                note.length > 120
-                    ? '${note.substring(0, 120)}...'
-                    : note,
-                style: TextStyle(
-                  fontSize: 13,
-                  height: 1.5,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
+                  const SizedBox(width: 4),
+                  Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 12,
+                    color: AppColors.auroraStart,
+                  ),
+                ],
               ),
             ],
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  isEn ? 'View entry' : 'Kaydı görüntüle',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: AppColors.auroraStart,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(width: 4),
-                Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 12,
-                  color: AppColors.auroraStart,
-                ),
-              ],
-            ),
-          ],
+          ),
         ),
-      ),
       ),
     ).animate().fadeIn(duration: 200.ms);
   }
@@ -927,15 +979,13 @@ class _YearHeatmap extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: isFutureMonth
                               ? (isDark
-                                  ? Colors.white.withValues(alpha: 0.02)
-                                  : Colors.black.withValues(alpha: 0.02))
+                                    ? Colors.white.withValues(alpha: 0.02)
+                                    : Colors.black.withValues(alpha: 0.02))
                               : monthCounts[i] > 0
-                                  ? AppColors.auroraStart
-                                      .withValues(alpha: alpha)
-                                  : (isDark
-                                      ? Colors.white.withValues(alpha: 0.04)
-                                      : Colors.black
-                                          .withValues(alpha: 0.04)),
+                              ? AppColors.auroraStart.withValues(alpha: alpha)
+                              : (isDark
+                                    ? Colors.white.withValues(alpha: 0.04)
+                                    : Colors.black.withValues(alpha: 0.04)),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: monthCounts[i] > 0
@@ -948,8 +998,8 @@ class _YearHeatmap extends StatelessWidget {
                                     color: alpha > 0.5
                                         ? Colors.white
                                         : (isDark
-                                            ? AppColors.textMuted
-                                            : AppColors.lightTextMuted),
+                                              ? AppColors.textMuted
+                                              : AppColors.lightTextMuted),
                                   ),
                                 ),
                               )

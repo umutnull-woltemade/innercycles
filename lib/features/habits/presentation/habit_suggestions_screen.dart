@@ -35,8 +35,14 @@ class _HabitSuggestionsScreenState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('habitSuggestions'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('habitSuggestions', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('habitSuggestions'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData(
+            (s) => s.trackToolOpen('habitSuggestions', source: 'direct'),
+          );
     });
   }
 
@@ -106,7 +112,9 @@ class _HabitSuggestionsScreenState
                     : Icons.bookmark_border_rounded,
                 color: _showBookmarksOnly
                     ? AppColors.starGold
-                    : (isDark ? AppColors.textSecondary : AppColors.lightTextSecondary),
+                    : (isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary),
               ),
               onPressed: () {
                 HapticFeedback.lightImpact();
@@ -129,7 +137,8 @@ class _HabitSuggestionsScreenState
               service: service,
               isDark: isDark,
               isEn: isEn,
-              onTap: () => _showHabitDetail(context, dailyHabit, service, isDark, isEn),
+              onTap: () =>
+                  _showHabitDetail(context, dailyHabit, service, isDark, isEn),
               onRefresh: () => setState(() {}),
             ),
           ),
@@ -154,7 +163,8 @@ class _HabitSuggestionsScreenState
                   _CategoryChip(
                     label: isEn ? 'All' : 'Tümü',
                     emoji: '✨',
-                    isSelected: _selectedCategory == null && !_showBookmarksOnly,
+                    isSelected:
+                        _selectedCategory == null && !_showBookmarksOnly,
                     isDark: isDark,
                     onTap: () {
                       HapticFeedback.lightImpact();
@@ -197,9 +207,13 @@ class _HabitSuggestionsScreenState
               padding: const EdgeInsets.all(40),
               child: Center(
                 child: Text(
-                  isEn ? 'No bookmarked habits yet' : 'Henüz kayıtlı alışkanlık yok',
+                  isEn
+                      ? 'No bookmarked habits yet'
+                      : 'Henüz kayıtlı alışkanlık yok',
                   style: TextStyle(
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                   ),
                 ),
               ),
@@ -209,27 +223,24 @@ class _HabitSuggestionsScreenState
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
             sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  final habit = habits[index];
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: _HabitCard(
-                      habit: habit,
-                      service: service,
-                      isDark: isDark,
-                      isEn: isEn,
-                      onTap: () =>
-                          _showHabitDetail(context, habit, service, isDark, isEn),
-                      onRefresh: () => setState(() {}),
-                    ),
-                  ).animate().fadeIn(
-                        duration: 300.ms,
-                        delay: Duration(milliseconds: (50 * index).clamp(0, 400)),
-                      );
-                },
-                childCount: habits.length,
-              ),
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final habit = habits[index];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: _HabitCard(
+                    habit: habit,
+                    service: service,
+                    isDark: isDark,
+                    isEn: isEn,
+                    onTap: () =>
+                        _showHabitDetail(context, habit, service, isDark, isEn),
+                    onRefresh: () => setState(() {}),
+                  ),
+                ).animate().fadeIn(
+                  duration: 300.ms,
+                  delay: Duration(milliseconds: (50 * index).clamp(0, 400)),
+                );
+              }, childCount: habits.length),
             ),
           ),
         SliverToBoxAdapter(
@@ -370,8 +381,11 @@ class _DailySpotlightCard extends StatelessWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: (isAdopted ? AppColors.success : AppColors.auroraStart)
-                          .withValues(alpha: 0.15),
+                      color:
+                          (isAdopted
+                                  ? AppColors.success
+                                  : AppColors.auroraStart)
+                              .withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -381,7 +395,9 @@ class _DailySpotlightCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
-                        color: isAdopted ? AppColors.success : AppColors.auroraStart,
+                        color: isAdopted
+                            ? AppColors.success
+                            : AppColors.auroraStart,
                       ),
                     ),
                   ),
@@ -408,15 +424,19 @@ class _DailySpotlightCard extends StatelessWidget {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.auroraStart.withValues(alpha: isDark ? 0.15 : 0.1),
+                    color: AppColors.auroraStart.withValues(
+                      alpha: isDark ? 0.15 : 0.1,
+                    ),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
                     isEn
                         ? HabitSuggestionService.categoryDisplayNameEn(
-                            habit.category)
+                            habit.category,
+                          )
                         : HabitSuggestionService.categoryDisplayNameTr(
-                            habit.category),
+                            habit.category,
+                          ),
                     style: TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.w500,
@@ -571,8 +591,7 @@ class _ProgressBar extends StatelessWidget {
               backgroundColor: isDark
                   ? Colors.white.withValues(alpha: 0.06)
                   : Colors.black.withValues(alpha: 0.06),
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(AppColors.auroraStart),
+              valueColor: AlwaysStoppedAnimation<Color>(AppColors.auroraStart),
             ),
           ),
           if (adopted > 0) ...[
@@ -589,10 +608,7 @@ class _ProgressBar extends StatelessWidget {
                   isEn
                       ? '$adopted adopted into your routine'
                       : '$adopted rutininize eklendi',
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: AppColors.success,
-                  ),
+                  style: TextStyle(fontSize: 11, color: AppColors.success),
                 ),
               ],
             ),
@@ -632,15 +648,15 @@ class _CategoryChip extends StatelessWidget {
           color: isSelected
               ? AppColors.auroraStart.withValues(alpha: isDark ? 0.2 : 0.15)
               : (isDark
-                  ? AppColors.surfaceDark
-                  : AppColors.lightSurfaceVariant),
+                    ? AppColors.surfaceDark
+                    : AppColors.lightSurfaceVariant),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isSelected
                 ? AppColors.auroraStart.withValues(alpha: 0.5)
                 : (isDark
-                    ? Colors.white.withValues(alpha: 0.08)
-                    : Colors.black.withValues(alpha: 0.08)),
+                      ? Colors.white.withValues(alpha: 0.08)
+                      : Colors.black.withValues(alpha: 0.08)),
           ),
         ),
         child: Row(
@@ -656,8 +672,8 @@ class _CategoryChip extends StatelessWidget {
                 color: isSelected
                     ? AppColors.auroraStart
                     : (isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary),
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary),
               ),
             ),
           ],
@@ -707,8 +723,8 @@ class _HabitCard extends StatelessWidget {
             color: isAdopted
                 ? AppColors.success.withValues(alpha: 0.3)
                 : (isDark
-                    ? Colors.white.withValues(alpha: 0.06)
-                    : Colors.black.withValues(alpha: 0.05)),
+                      ? Colors.white.withValues(alpha: 0.06)
+                      : Colors.black.withValues(alpha: 0.05)),
           ),
         ),
         child: Row(
@@ -718,8 +734,9 @@ class _HabitCard extends StatelessWidget {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: _categoryCardColor(habit.category)
-                    .withValues(alpha: isDark ? 0.12 : 0.08),
+                color: _categoryCardColor(
+                  habit.category,
+                ).withValues(alpha: isDark ? 0.12 : 0.08),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Center(
@@ -942,9 +959,11 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                           Text(
                             isEn
                                 ? HabitSuggestionService.categoryDisplayNameEn(
-                                    habit.category)
+                                    habit.category,
+                                  )
                                 : HabitSuggestionService.categoryDisplayNameTr(
-                                    habit.category),
+                                    habit.category,
+                                  ),
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
@@ -975,13 +994,14 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                         color: _isBookmarked
                             ? AppColors.starGold
                             : (isDark
-                                ? AppColors.textSecondary
-                                : AppColors.lightTextSecondary),
+                                  ? AppColors.textSecondary
+                                  : AppColors.lightTextSecondary),
                       ),
                       onPressed: () async {
                         HapticFeedback.lightImpact();
-                        final result =
-                            await widget.service.toggleBookmark(habit.id);
+                        final result = await widget.service.toggleBookmark(
+                          habit.id,
+                        );
                         if (!mounted) return;
                         setState(() => _isBookmarked = result);
                         widget.onChanged();
@@ -1027,7 +1047,9 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                       child: _ActionButton(
                         label: _isTried
                             ? (isEn ? 'Tried' : 'Denendi')
-                            : (isEn ? 'Mark as Tried' : 'Denendi Olarak İşaretle'),
+                            : (isEn
+                                  ? 'Mark as Tried'
+                                  : 'Denendi Olarak İşaretle'),
                         icon: _isTried
                             ? Icons.check_rounded
                             : Icons.touch_app_rounded,
@@ -1050,7 +1072,9 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                       child: _ActionButton(
                         label: _isAdopted
                             ? (isEn ? 'Adopted' : 'Benimsendi')
-                            : (isEn ? 'Adopt this Habit' : 'Bu Alışkanlığı Benimse'),
+                            : (isEn
+                                  ? 'Adopt this Habit'
+                                  : 'Bu Alışkanlığı Benimse'),
                         icon: _isAdopted
                             ? Icons.check_circle_rounded
                             : Icons.favorite_border_rounded,
@@ -1115,21 +1139,27 @@ class _ActionButton extends StatelessWidget {
           color: isActive
               ? color.withValues(alpha: 0.15)
               : (isDark
-                  ? AppColors.surfaceDark
-                  : AppColors.lightSurfaceVariant),
+                    ? AppColors.surfaceDark
+                    : AppColors.lightSurfaceVariant),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isActive
                 ? color.withValues(alpha: 0.4)
                 : (isDark
-                    ? Colors.white.withValues(alpha: 0.08)
-                    : Colors.black.withValues(alpha: 0.08)),
+                      ? Colors.white.withValues(alpha: 0.08)
+                      : Colors.black.withValues(alpha: 0.08)),
           ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 16, color: isActive ? color : (isDark ? AppColors.textMuted : AppColors.lightTextMuted)),
+            Icon(
+              icon,
+              size: 16,
+              color: isActive
+                  ? color
+                  : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+            ),
             const SizedBox(width: 6),
             Flexible(
               child: Text(
@@ -1140,8 +1170,8 @@ class _ActionButton extends StatelessWidget {
                   color: isActive
                       ? color
                       : (isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary),
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary),
                 ),
                 overflow: TextOverflow.ellipsis,
               ),

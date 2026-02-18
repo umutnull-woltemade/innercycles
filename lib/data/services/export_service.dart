@@ -60,26 +60,27 @@ class ExportService {
 
   ExportResult _exportText(List<JournalEntry> entries, bool isEn) {
     final buffer = StringBuffer();
-    buffer.writeln(isEn
-        ? 'InnerCycles Journal Export'
-        : 'InnerCycles Günlük Dışa Aktarma');
+    buffer.writeln(
+      isEn ? 'InnerCycles Journal Export' : 'InnerCycles Günlük Dışa Aktarma',
+    );
     buffer.writeln('=' * 40);
     buffer.writeln(
-        '${isEn ? 'Exported' : 'Dışa aktarıldı'}: ${DateTime.now().toString().substring(0, 10)}');
+      '${isEn ? 'Exported' : 'Dışa aktarıldı'}: ${DateTime.now().toString().substring(0, 10)}',
+    );
     buffer.writeln('${isEn ? 'Entries' : 'Kayıt'}: ${entries.length}');
     buffer.writeln('=' * 40);
     buffer.writeln();
 
     for (final entry in entries) {
+      buffer.writeln('${isEn ? 'Date' : 'Tarih'}: ${entry.dateKey}');
       buffer.writeln(
-          '${isEn ? 'Date' : 'Tarih'}: ${entry.dateKey}');
+        '${isEn ? 'Focus' : 'Odak'}: ${isEn ? entry.focusArea.displayNameEn : entry.focusArea.displayNameTr}',
+      );
       buffer.writeln(
-          '${isEn ? 'Focus' : 'Odak'}: ${isEn ? entry.focusArea.displayNameEn : entry.focusArea.displayNameTr}');
-      buffer.writeln(
-          '${isEn ? 'Rating' : 'Puanlama'}: ${entry.overallRating}/5');
+        '${isEn ? 'Rating' : 'Puanlama'}: ${entry.overallRating}/5',
+      );
       if (entry.note != null && entry.note!.isNotEmpty) {
-        buffer.writeln(
-            '${isEn ? 'Note' : 'Not'}: ${entry.note}');
+        buffer.writeln('${isEn ? 'Note' : 'Not'}: ${entry.note}');
       }
       buffer.writeln('-' * 30);
     }
@@ -99,7 +100,8 @@ class ExportService {
     for (final entry in entries) {
       final note = entry.note?.replaceAll('"', '""') ?? '';
       buffer.writeln(
-          '${entry.dateKey},${entry.focusArea.name},${entry.overallRating},"$note"');
+        '${entry.dateKey},${entry.focusArea.name},${entry.overallRating},"$note"',
+      );
     }
 
     final dateStr = DateTime.now().toString().substring(0, 10);
@@ -112,14 +114,16 @@ class ExportService {
 
   ExportResult _exportJson(List<JournalEntry> entries) {
     final data = entries
-        .map((e) => {
-              'date': e.dateKey,
-              'focusArea': e.focusArea.name,
-              'overallRating': e.overallRating,
-              'subRatings': e.subRatings,
-              'note': e.note,
-              'createdAt': e.createdAt.toIso8601String(),
-            })
+        .map(
+          (e) => {
+            'date': e.dateKey,
+            'focusArea': e.focusArea.name,
+            'overallRating': e.overallRating,
+            'subRatings': e.subRatings,
+            'note': e.note,
+            'createdAt': e.createdAt.toIso8601String(),
+          },
+        )
         .toList();
 
     final dateStr = DateTime.now().toString().substring(0, 10);

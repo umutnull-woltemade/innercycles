@@ -268,12 +268,10 @@ class AttachmentQuizResult {
 
   /// Serialise to JSON for SharedPreferences storage
   Map<String, dynamic> toJson() => {
-        'attachmentStyle': attachmentStyle.name,
-        'scores': scores.map(
-          (key, value) => MapEntry(key.name, value),
-        ),
-        'dateTaken': dateTaken.toIso8601String(),
-      };
+    'attachmentStyle': attachmentStyle.name,
+    'scores': scores.map((key, value) => MapEntry(key.name, value)),
+    'dateTaken': dateTaken.toIso8601String(),
+  };
 
   /// Deserialise from JSON
   factory AttachmentQuizResult.fromJson(Map<String, dynamic> json) {
@@ -293,7 +291,9 @@ class AttachmentQuizResult {
         orElse: () => AttachmentStyle.secure,
       ),
       scores: scoresMap,
-      dateTaken: DateTime.tryParse(json['dateTaken']?.toString() ?? '') ?? DateTime.now(),
+      dateTaken:
+          DateTime.tryParse(json['dateTaken']?.toString() ?? '') ??
+          DateTime.now(),
     );
   }
 

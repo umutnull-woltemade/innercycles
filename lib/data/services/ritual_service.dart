@@ -52,23 +52,15 @@ class RitualItem {
   final String name;
   final int order;
 
-  const RitualItem({
-    required this.id,
-    required this.name,
-    required this.order,
-  });
+  const RitualItem({required this.id, required this.name, required this.order});
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'order': order,
-      };
+  Map<String, dynamic> toJson() => {'id': id, 'name': name, 'order': order};
 
   factory RitualItem.fromJson(Map<String, dynamic> json) => RitualItem(
-        id: json['id'] as String? ?? '',
-        name: json['name'] as String? ?? '',
-        order: json['order'] as int? ?? 0,
-      );
+    id: json['id'] as String? ?? '',
+    name: json['name'] as String? ?? '',
+    order: json['order'] as int? ?? 0,
+  );
 }
 
 /// A ritual stack (e.g., Morning routine with 3-5 items)
@@ -88,33 +80,35 @@ class RitualStack {
   });
 
   RitualStack copyWith({String? name, List<RitualItem>? items}) => RitualStack(
-        id: id,
-        time: time,
-        name: name ?? this.name,
-        items: items ?? this.items,
-        createdAt: createdAt,
-      );
+    id: id,
+    time: time,
+    name: name ?? this.name,
+    items: items ?? this.items,
+    createdAt: createdAt,
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'time': time.name,
-        'name': name,
-        'items': items.map((i) => i.toJson()).toList(),
-        'createdAt': createdAt.toIso8601String(),
-      };
+    'id': id,
+    'time': time.name,
+    'name': name,
+    'items': items.map((i) => i.toJson()).toList(),
+    'createdAt': createdAt.toIso8601String(),
+  };
 
   factory RitualStack.fromJson(Map<String, dynamic> json) => RitualStack(
-        id: json['id'] as String? ?? '',
-        time: RitualTime.values.firstWhere(
-          (t) => t.name == json['time'],
-          orElse: () => RitualTime.morning,
-        ),
-        name: json['name'] as String? ?? '',
-        items: (json['items'] as List<dynamic>? ?? [])
-            .map((i) => RitualItem.fromJson(i as Map<String, dynamic>? ?? {}))
-            .toList(),
-        createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
-      );
+    id: json['id'] as String? ?? '',
+    time: RitualTime.values.firstWhere(
+      (t) => t.name == json['time'],
+      orElse: () => RitualTime.morning,
+    ),
+    name: json['name'] as String? ?? '',
+    items: (json['items'] as List<dynamic>? ?? [])
+        .map((i) => RitualItem.fromJson(i as Map<String, dynamic>? ?? {}))
+        .toList(),
+    createdAt:
+        DateTime.tryParse(json['createdAt']?.toString() ?? '') ??
+        DateTime.now(),
+  );
 }
 
 /// Daily ritual completion record
@@ -139,19 +133,22 @@ class RitualCompletion {
   }
 
   Map<String, dynamic> toJson() => {
-        'dateKey': dateKey,
-        'stackId': stackId,
-        'completedItemIds': completedItemIds.toList(),
-        'updatedAt': updatedAt.toIso8601String(),
-      };
+    'dateKey': dateKey,
+    'stackId': stackId,
+    'completedItemIds': completedItemIds.toList(),
+    'updatedAt': updatedAt.toIso8601String(),
+  };
 
   factory RitualCompletion.fromJson(Map<String, dynamic> json) =>
       RitualCompletion(
         dateKey: json['dateKey'] as String? ?? '',
         stackId: json['stackId'] as String? ?? '',
-        completedItemIds:
-            (json['completedItemIds'] as List<dynamic>? ?? []).whereType<String>().toSet(),
-        updatedAt: DateTime.tryParse(json['updatedAt']?.toString() ?? '') ?? DateTime.now(),
+        completedItemIds: (json['completedItemIds'] as List<dynamic>? ?? [])
+            .whereType<String>()
+            .toSet(),
+        updatedAt:
+            DateTime.tryParse(json['updatedAt']?.toString() ?? '') ??
+            DateTime.now(),
       );
 }
 
@@ -225,11 +222,13 @@ class RitualService {
       items: clampedItems
           .asMap()
           .entries
-          .map((e) => RitualItem(
-                id: '${time.name}_item_${e.key}',
-                name: e.value,
-                order: e.key,
-              ))
+          .map(
+            (e) => RitualItem(
+              id: '${time.name}_item_${e.key}',
+              name: e.value,
+              order: e.key,
+            ),
+          )
           .toList(),
       createdAt: DateTime.now(),
     );
@@ -323,8 +322,9 @@ class RitualService {
       totalItems += stackTotal;
       completedItems += stackDone;
 
-      completionByTime[stack.time] =
-          stackTotal == 0 ? 0 : stackDone / stackTotal;
+      completionByTime[stack.time] = stackTotal == 0
+          ? 0
+          : stackDone / stackTotal;
     }
 
     return DailyRitualSummary(

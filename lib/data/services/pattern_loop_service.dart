@@ -63,20 +63,20 @@ class LoopStage {
   });
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'labelEn': labelEn,
-        'labelTr': labelTr,
-        'descriptionEn': descriptionEn,
-        'descriptionTr': descriptionTr,
-      };
+    'id': id,
+    'labelEn': labelEn,
+    'labelTr': labelTr,
+    'descriptionEn': descriptionEn,
+    'descriptionTr': descriptionTr,
+  };
 
   factory LoopStage.fromJson(Map<String, dynamic> json) => LoopStage(
-        id: json['id'] as String? ?? '',
-        labelEn: json['labelEn'] as String? ?? '',
-        labelTr: json['labelTr'] as String? ?? '',
-        descriptionEn: json['descriptionEn'] as String?,
-        descriptionTr: json['descriptionTr'] as String?,
-      );
+    id: json['id'] as String? ?? '',
+    labelEn: json['labelEn'] as String? ?? '',
+    labelTr: json['labelTr'] as String? ?? '',
+    descriptionEn: json['descriptionEn'] as String?,
+    descriptionTr: json['descriptionTr'] as String?,
+  );
 }
 
 /// A detected behavioral reinforcement loop
@@ -126,58 +126,64 @@ class PatternLoop {
   });
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'firstDetected': firstDetected.toIso8601String(),
-        'lastSeen': lastSeen.toIso8601String(),
-        'occurrenceCount': occurrenceCount,
-        'primaryArea': primaryArea.name,
-        'secondaryArea': secondaryArea?.name,
-        'reinforcementType': reinforcementType.name,
-        'strength': strength,
-        'trigger': trigger.toJson(),
-        'emotionalShift': emotionalShift.toJson(),
-        'behavior': behavior.toJson(),
-        'outcome': outcome.toJson(),
-        'reinforcement': reinforcement.toJson(),
-        'insightEn': insightEn,
-        'insightTr': insightTr,
-        'actionEn': actionEn,
-        'actionTr': actionTr,
-      };
+    'id': id,
+    'firstDetected': firstDetected.toIso8601String(),
+    'lastSeen': lastSeen.toIso8601String(),
+    'occurrenceCount': occurrenceCount,
+    'primaryArea': primaryArea.name,
+    'secondaryArea': secondaryArea?.name,
+    'reinforcementType': reinforcementType.name,
+    'strength': strength,
+    'trigger': trigger.toJson(),
+    'emotionalShift': emotionalShift.toJson(),
+    'behavior': behavior.toJson(),
+    'outcome': outcome.toJson(),
+    'reinforcement': reinforcement.toJson(),
+    'insightEn': insightEn,
+    'insightTr': insightTr,
+    'actionEn': actionEn,
+    'actionTr': actionTr,
+  };
 
   factory PatternLoop.fromJson(Map<String, dynamic> json) => PatternLoop(
-        id: json['id'] as String? ?? '',
-        firstDetected: DateTime.tryParse(json['firstDetected']?.toString() ?? '') ?? DateTime.now(),
-        lastSeen: DateTime.tryParse(json['lastSeen']?.toString() ?? '') ?? DateTime.now(),
-        occurrenceCount: json['occurrenceCount'] as int? ?? 0,
-        primaryArea: FocusArea.values.firstWhere(
-          (e) => e.name == json['primaryArea'],
-          orElse: () => FocusArea.energy,
-        ),
-        secondaryArea: json['secondaryArea'] != null
-            ? FocusArea.values.firstWhere(
-                (e) => e.name == json['secondaryArea'],
-                orElse: () => FocusArea.energy,
-              )
-            : null,
-        reinforcementType: ReinforcementType.values.firstWhere(
-          (e) => e.name == json['reinforcementType'],
-          orElse: () => ReinforcementType.neutral,
-        ),
-        strength: (json['strength'] as num? ?? 0).toDouble(),
-        trigger: LoopStage.fromJson(json['trigger'] as Map<String, dynamic>? ?? {}),
-        emotionalShift:
-            LoopStage.fromJson(json['emotionalShift'] as Map<String, dynamic>? ?? {}),
-        behavior:
-            LoopStage.fromJson(json['behavior'] as Map<String, dynamic>? ?? {}),
-        outcome: LoopStage.fromJson(json['outcome'] as Map<String, dynamic>? ?? {}),
-        reinforcement:
-            LoopStage.fromJson(json['reinforcement'] as Map<String, dynamic>? ?? {}),
-        insightEn: json['insightEn'] as String? ?? '',
-        insightTr: json['insightTr'] as String? ?? '',
-        actionEn: json['actionEn'] as String?,
-        actionTr: json['actionTr'] as String?,
-      );
+    id: json['id'] as String? ?? '',
+    firstDetected:
+        DateTime.tryParse(json['firstDetected']?.toString() ?? '') ??
+        DateTime.now(),
+    lastSeen:
+        DateTime.tryParse(json['lastSeen']?.toString() ?? '') ?? DateTime.now(),
+    occurrenceCount: json['occurrenceCount'] as int? ?? 0,
+    primaryArea: FocusArea.values.firstWhere(
+      (e) => e.name == json['primaryArea'],
+      orElse: () => FocusArea.energy,
+    ),
+    secondaryArea: json['secondaryArea'] != null
+        ? FocusArea.values.firstWhere(
+            (e) => e.name == json['secondaryArea'],
+            orElse: () => FocusArea.energy,
+          )
+        : null,
+    reinforcementType: ReinforcementType.values.firstWhere(
+      (e) => e.name == json['reinforcementType'],
+      orElse: () => ReinforcementType.neutral,
+    ),
+    strength: (json['strength'] as num? ?? 0).toDouble(),
+    trigger: LoopStage.fromJson(json['trigger'] as Map<String, dynamic>? ?? {}),
+    emotionalShift: LoopStage.fromJson(
+      json['emotionalShift'] as Map<String, dynamic>? ?? {},
+    ),
+    behavior: LoopStage.fromJson(
+      json['behavior'] as Map<String, dynamic>? ?? {},
+    ),
+    outcome: LoopStage.fromJson(json['outcome'] as Map<String, dynamic>? ?? {}),
+    reinforcement: LoopStage.fromJson(
+      json['reinforcement'] as Map<String, dynamic>? ?? {},
+    ),
+    insightEn: json['insightEn'] as String? ?? '',
+    insightTr: json['insightTr'] as String? ?? '',
+    actionEn: json['actionEn'] as String?,
+    actionTr: json['actionTr'] as String?,
+  );
 }
 
 /// Result of pattern loop analysis
@@ -209,9 +215,7 @@ class PatternLoopService {
     _loadFromStorage();
   }
 
-  static Future<PatternLoopService> init(
-    JournalService journalService,
-  ) async {
+  static Future<PatternLoopService> init(JournalService journalService) async {
     final prefs = await SharedPreferences.getInstance();
     return PatternLoopService._(prefs, journalService);
   }
@@ -233,9 +237,7 @@ class PatternLoopService {
   /// Get the strongest detected loop
   PatternLoop? getStrongestLoop() {
     if (_cachedLoops.isEmpty) return null;
-    return _cachedLoops.reduce(
-      (a, b) => a.strength > b.strength ? a : b,
-    );
+    return _cachedLoops.reduce((a, b) => a.strength > b.strength ? a : b);
   }
 
   /// Run full pattern loop analysis
@@ -277,13 +279,11 @@ class PatternLoopService {
     final loops = <PatternLoop>[];
 
     // Sort chronologically
-    final sorted = List.of(entries)
-      ..sort((a, b) => a.date.compareTo(b.date));
+    final sorted = List.of(entries)..sort((a, b) => a.date.compareTo(b.date));
 
     // Strategy 1: Detect rating-drop-recovery loops per area
     for (final area in FocusArea.values) {
-      final areaEntries =
-          sorted.where((e) => e.focusArea == area).toList();
+      final areaEntries = sorted.where((e) => e.focusArea == area).toList();
       final dropRecoveryLoop = _detectDropRecoveryLoop(area, areaEntries);
       if (dropRecoveryLoop != null) loops.add(dropRecoveryLoop);
     }
@@ -336,7 +336,8 @@ class PatternLoopService {
     if (dropCount < 2 || recoveryCount < 1) return null;
 
     final strength =
-        (math.min(dropCount, 5) / 5 * 0.6 + math.min(recoveryCount, 3) / 3 * 0.4)
+        (math.min(dropCount, 5) / 5 * 0.6 +
+                math.min(recoveryCount, 3) / 3 * 0.4)
             .clamp(0.0, 1.0);
 
     final areaEn = area.displayNameEn;
@@ -344,8 +345,12 @@ class PatternLoopService {
 
     return PatternLoop(
       id: 'drop_recovery_${area.name}',
-      firstDetected: firstDrop ?? (areaEntries.isNotEmpty ? areaEntries.first.date : DateTime.now()),
-      lastSeen: lastRecovery ?? (areaEntries.isNotEmpty ? areaEntries.last.date : DateTime.now()),
+      firstDetected:
+          firstDrop ??
+          (areaEntries.isNotEmpty ? areaEntries.first.date : DateTime.now()),
+      lastSeen:
+          lastRecovery ??
+          (areaEntries.isNotEmpty ? areaEntries.last.date : DateTime.now()),
       occurrenceCount: dropCount,
       primaryArea: area,
       reinforcementType: ReinforcementType.negative,
@@ -354,8 +359,10 @@ class PatternLoopService {
         id: 'trigger',
         labelEn: '$areaEn Pressure',
         labelTr: '$areaTr Baskısı',
-        descriptionEn: 'Sustained pressure in your $areaEn area tends to precede drops',
-        descriptionTr: '$areaTr alanındaki sürekli baskı düşüşlerin öncesinde olma eğiliminde',
+        descriptionEn:
+            'Sustained pressure in your $areaEn area tends to precede drops',
+        descriptionTr:
+            '$areaTr alanındaki sürekli baskı düşüşlerin öncesinde olma eğiliminde',
       ),
       emotionalShift: LoopStage(
         id: 'shift',
@@ -382,7 +389,8 @@ class PatternLoopService {
         id: 'reinforcement',
         labelEn: 'Cycle Repeats',
         labelTr: 'Döngü Tekrarı',
-        descriptionEn: 'This pattern has appeared $dropCount times in your data',
+        descriptionEn:
+            'This pattern has appeared $dropCount times in your data',
         descriptionTr: 'Bu kalıp verilerinde $dropCount kez görünmüş',
       ),
       insightEn:
@@ -435,51 +443,55 @@ class PatternLoopService {
           final areaATr = areas[i].displayNameTr;
           final areaBTr = areas[j].displayNameTr;
 
-          loops.add(PatternLoop(
-            id: 'cross_low_${areas[i].name}_${areas[j].name}',
-            firstDetected: sorted.isNotEmpty ? sorted.first.date : DateTime.now(),
-            lastSeen: sorted.isNotEmpty ? sorted.last.date : DateTime.now(),
-            occurrenceCount: coOccurrenceLow,
-            primaryArea: areas[i],
-            secondaryArea: areas[j],
-            reinforcementType: ReinforcementType.negative,
-            strength: (lowRatio * 1.5).clamp(0.0, 1.0),
-            trigger: LoopStage(
-              id: 'trigger',
-              labelEn: 'Low $areaAEn',
-              labelTr: 'Düşük $areaATr',
+          loops.add(
+            PatternLoop(
+              id: 'cross_low_${areas[i].name}_${areas[j].name}',
+              firstDetected: sorted.isNotEmpty
+                  ? sorted.first.date
+                  : DateTime.now(),
+              lastSeen: sorted.isNotEmpty ? sorted.last.date : DateTime.now(),
+              occurrenceCount: coOccurrenceLow,
+              primaryArea: areas[i],
+              secondaryArea: areas[j],
+              reinforcementType: ReinforcementType.negative,
+              strength: (lowRatio * 1.5).clamp(0.0, 1.0),
+              trigger: LoopStage(
+                id: 'trigger',
+                labelEn: 'Low $areaAEn',
+                labelTr: 'Düşük $areaATr',
+              ),
+              emotionalShift: LoopStage(
+                id: 'shift',
+                labelEn: '$areaBEn Follows',
+                labelTr: '$areaBTr Takip Ediyor',
+              ),
+              behavior: LoopStage(
+                id: 'behavior',
+                labelEn: 'Both Low',
+                labelTr: 'İkisi de Düşük',
+              ),
+              outcome: LoopStage(
+                id: 'outcome',
+                labelEn: 'Compounding Effect',
+                labelTr: 'Birleşik Etki',
+              ),
+              reinforcement: LoopStage(
+                id: 'reinforcement',
+                labelEn: 'Pattern Reinforced',
+                labelTr: 'Kalıp Pekiştirilmiş',
+              ),
+              insightEn:
+                  'When $areaAEn is low, $areaBEn tends to be low too. '
+                  'This co-occurrence appeared $coOccurrenceLow times.',
+              insightTr:
+                  '$areaATr düşük olduğunda, $areaBTr de düşük olma eğiliminde. '
+                  'Bu birlikte oluşum $coOccurrenceLow kez görünmüş.',
+              actionEn:
+                  'Addressing $areaAEn early may help prevent $areaBEn from dropping',
+              actionTr:
+                  '$areaATr alanına erken müdahale $areaBTr düşüşünü önlemeye yardımcı olabilir',
             ),
-            emotionalShift: LoopStage(
-              id: 'shift',
-              labelEn: '$areaBEn Follows',
-              labelTr: '$areaBTr Takip Ediyor',
-            ),
-            behavior: LoopStage(
-              id: 'behavior',
-              labelEn: 'Both Low',
-              labelTr: 'İkisi de Düşük',
-            ),
-            outcome: LoopStage(
-              id: 'outcome',
-              labelEn: 'Compounding Effect',
-              labelTr: 'Birleşik Etki',
-            ),
-            reinforcement: LoopStage(
-              id: 'reinforcement',
-              labelEn: 'Pattern Reinforced',
-              labelTr: 'Kalıp Pekiştirilmiş',
-            ),
-            insightEn:
-                'When $areaAEn is low, $areaBEn tends to be low too. '
-                'This co-occurrence appeared $coOccurrenceLow times.',
-            insightTr:
-                '$areaATr düşük olduğunda, $areaBTr de düşük olma eğiliminde. '
-                'Bu birlikte oluşum $coOccurrenceLow kez görünmüş.',
-            actionEn:
-                'Addressing $areaAEn early may help prevent $areaBEn from dropping',
-            actionTr:
-                '$areaATr alanına erken müdahale $areaBTr düşüşünü önlemeye yardımcı olabilir',
-          ));
+          );
         }
 
         // Significant co-occurrence of high values (positive loop)
@@ -490,51 +502,55 @@ class PatternLoopService {
           final areaATr = areas[i].displayNameTr;
           final areaBTr = areas[j].displayNameTr;
 
-          loops.add(PatternLoop(
-            id: 'cross_high_${areas[i].name}_${areas[j].name}',
-            firstDetected: sorted.isNotEmpty ? sorted.first.date : DateTime.now(),
-            lastSeen: sorted.isNotEmpty ? sorted.last.date : DateTime.now(),
-            occurrenceCount: coOccurrenceHigh,
-            primaryArea: areas[i],
-            secondaryArea: areas[j],
-            reinforcementType: ReinforcementType.positive,
-            strength: (highRatio * 1.5).clamp(0.0, 1.0),
-            trigger: LoopStage(
-              id: 'trigger',
-              labelEn: 'High $areaAEn',
-              labelTr: 'Yüksek $areaATr',
+          loops.add(
+            PatternLoop(
+              id: 'cross_high_${areas[i].name}_${areas[j].name}',
+              firstDetected: sorted.isNotEmpty
+                  ? sorted.first.date
+                  : DateTime.now(),
+              lastSeen: sorted.isNotEmpty ? sorted.last.date : DateTime.now(),
+              occurrenceCount: coOccurrenceHigh,
+              primaryArea: areas[i],
+              secondaryArea: areas[j],
+              reinforcementType: ReinforcementType.positive,
+              strength: (highRatio * 1.5).clamp(0.0, 1.0),
+              trigger: LoopStage(
+                id: 'trigger',
+                labelEn: 'High $areaAEn',
+                labelTr: 'Yüksek $areaATr',
+              ),
+              emotionalShift: LoopStage(
+                id: 'shift',
+                labelEn: '$areaBEn Lifts',
+                labelTr: '$areaBTr Yükseliyor',
+              ),
+              behavior: LoopStage(
+                id: 'behavior',
+                labelEn: 'Both Elevated',
+                labelTr: 'İkisi de Yüksek',
+              ),
+              outcome: LoopStage(
+                id: 'outcome',
+                labelEn: 'Positive Momentum',
+                labelTr: 'Pozitif İvme',
+              ),
+              reinforcement: LoopStage(
+                id: 'reinforcement',
+                labelEn: 'Virtuous Cycle',
+                labelTr: 'Erdemli Döngü',
+              ),
+              insightEn:
+                  'When $areaAEn is high, $areaBEn tends to be high too. '
+                  'This positive pattern appeared $coOccurrenceHigh times.',
+              insightTr:
+                  '$areaATr yüksek olduğunda, $areaBTr de yüksek olma eğiliminde. '
+                  'Bu pozitif kalıp $coOccurrenceHigh kez görünmüş.',
+              actionEn:
+                  'Investing in $areaAEn may create positive momentum for $areaBEn',
+              actionTr:
+                  '$areaATr alanına yatırım yapmak $areaBTr için pozitif ivme yaratabilir',
             ),
-            emotionalShift: LoopStage(
-              id: 'shift',
-              labelEn: '$areaBEn Lifts',
-              labelTr: '$areaBTr Yükseliyor',
-            ),
-            behavior: LoopStage(
-              id: 'behavior',
-              labelEn: 'Both Elevated',
-              labelTr: 'İkisi de Yüksek',
-            ),
-            outcome: LoopStage(
-              id: 'outcome',
-              labelEn: 'Positive Momentum',
-              labelTr: 'Pozitif İvme',
-            ),
-            reinforcement: LoopStage(
-              id: 'reinforcement',
-              labelEn: 'Virtuous Cycle',
-              labelTr: 'Erdemli Döngü',
-            ),
-            insightEn:
-                'When $areaAEn is high, $areaBEn tends to be high too. '
-                'This positive pattern appeared $coOccurrenceHigh times.',
-            insightTr:
-                '$areaATr yüksek olduğunda, $areaBTr de yüksek olma eğiliminde. '
-                'Bu pozitif kalıp $coOccurrenceHigh kez görünmüş.',
-            actionEn:
-                'Investing in $areaAEn may create positive momentum for $areaBEn',
-            actionTr:
-                '$areaATr alanına yatırım yapmak $areaBTr için pozitif ivme yaratabilir',
-          ));
+          );
         }
       }
     }
@@ -579,12 +595,24 @@ class PatternLoopService {
     if (highestAvg - lowestAvg < 1.0) return null;
 
     final dayNamesEn = [
-      '', 'Monday', 'Tuesday', 'Wednesday',
-      'Thursday', 'Friday', 'Saturday', 'Sunday',
+      '',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
     ];
     final dayNamesTr = [
-      '', 'Pazartesi', 'Salı', 'Çarşamba',
-      'Perşembe', 'Cuma', 'Cumartesi', 'Pazar',
+      '',
+      'Pazartesi',
+      'Salı',
+      'Çarşamba',
+      'Perşembe',
+      'Cuma',
+      'Cumartesi',
+      'Pazar',
     ];
 
     return PatternLoop(
@@ -615,7 +643,8 @@ class PatternLoopService {
         labelEn: 'Weekday Recovery',
         labelTr: 'Hafta İçi Toparlanma',
         descriptionEn: 'Ratings tend to recover by ${dayNamesEn[highestDay]}',
-        descriptionTr: 'Puanlar ${dayNamesTr[highestDay]} gününe kadar toparlanma eğiliminde',
+        descriptionTr:
+            'Puanlar ${dayNamesTr[highestDay]} gününe kadar toparlanma eğiliminde',
       ),
       reinforcement: LoopStage(
         id: 'reinforcement',

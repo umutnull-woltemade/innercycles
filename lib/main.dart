@@ -113,7 +113,9 @@ class _AppInitializerState extends State<AppInitializer> {
           ),
           // Deep link for Apple Sign In callback (iOS native)
           // Uses bundle ID as scheme: com.venusone.innercycles://
-        ).timeout(const Duration(seconds: 15)); // Extended for iPad/slow networks
+        ).timeout(
+          const Duration(seconds: 15),
+        ); // Extended for iPad/slow networks
         if (kDebugMode) {
           debugPrint('✓ Supabase initialized');
         }
@@ -226,7 +228,9 @@ class _AppInitializerState extends State<AppInitializer> {
           if (dailyTime != null) {
             final hookService = await DailyHookService.init();
             final isEnglish = savedLanguage == AppLanguage.en;
-            final hookMessage = hookService.getMorningHook(isEnglish: isEnglish);
+            final hookMessage = hookService.getMorningHook(
+              isEnglish: isEnglish,
+            );
             await notifService.scheduleDailyReflection(
               hour: dailyTime.hour,
               minute: dailyTime.minute,
@@ -302,9 +306,10 @@ class _AppInitializerState extends State<AppInitializer> {
       experiment.incrementSession();
       if (kDebugMode) {
         debugPrint(
-            '✓ PaywallExperiment: pricing=${experiment.pricingVariant.name}, '
-            'timing=${experiment.timingVariant.name}, '
-            'session=${experiment.sessionCount}');
+          '✓ PaywallExperiment: pricing=${experiment.pricingVariant.name}, '
+          'timing=${experiment.timingVariant.name}, '
+          'session=${experiment.sessionCount}',
+        );
       }
     } catch (e) {
       if (kDebugMode) {

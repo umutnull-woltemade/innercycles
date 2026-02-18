@@ -21,16 +21,18 @@ class AnalyticsEvent {
   }) : timestamp = timestamp ?? DateTime.now();
 
   Map<String, dynamic> toJson() => {
-        'name': name,
-        'properties': properties,
-        'timestamp': timestamp.toIso8601String(),
-      };
+    'name': name,
+    'properties': properties,
+    'timestamp': timestamp.toIso8601String(),
+  };
 
   factory AnalyticsEvent.fromJson(Map<String, dynamic> json) => AnalyticsEvent(
-        name: json['name'] as String? ?? '',
-        properties: Map<String, dynamic>.from(json['properties'] as Map? ?? {}),
-        timestamp: DateTime.tryParse(json['timestamp']?.toString() ?? '') ?? DateTime.now(),
-      );
+    name: json['name'] as String? ?? '',
+    properties: Map<String, dynamic>.from(json['properties'] as Map? ?? {}),
+    timestamp:
+        DateTime.tryParse(json['timestamp']?.toString() ?? '') ??
+        DateTime.now(),
+  );
 }
 
 class EcosystemAnalyticsService {
@@ -64,7 +66,10 @@ class EcosystemAnalyticsService {
   }
 
   void trackToolClose(String toolId, int durationSeconds) {
-    _track('tool_close', {'tool_id': toolId, 'duration_seconds': durationSeconds});
+    _track('tool_close', {
+      'tool_id': toolId,
+      'duration_seconds': durationSeconds,
+    });
   }
 
   void trackToolEmpty(String toolId) {
@@ -79,8 +84,16 @@ class EcosystemAnalyticsService {
     _track('challenge_start', {'challenge_id': challengeId});
   }
 
-  void trackChallengeProgress(String challengeId, int currentDay, int totalDays) {
-    _track('challenge_progress', {'challenge_id': challengeId, 'current_day': currentDay, 'total_days': totalDays});
+  void trackChallengeProgress(
+    String challengeId,
+    int currentDay,
+    int totalDays,
+  ) {
+    _track('challenge_progress', {
+      'challenge_id': challengeId,
+      'current_day': currentDay,
+      'total_days': totalDays,
+    });
   }
 
   void trackChallengeComplete(String challengeId) {
@@ -88,7 +101,10 @@ class EcosystemAnalyticsService {
   }
 
   void trackChallengeAbandon(String challengeId, int dayReached) {
-    _track('challenge_abandon', {'challenge_id': challengeId, 'day_reached': dayReached});
+    _track('challenge_abandon', {
+      'challenge_id': challengeId,
+      'day_reached': dayReached,
+    });
   }
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -106,7 +122,11 @@ class EcosystemAnalyticsService {
   }
 
   void trackNextToolTap(String fromToolId, String toToolId, String source) {
-    _track('next_tool_tap', {'from_tool': fromToolId, 'to_tool': toToolId, 'source': source});
+    _track('next_tool_tap', {
+      'from_tool': fromToolId,
+      'to_tool': toToolId,
+      'source': source,
+    });
   }
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -142,7 +162,10 @@ class EcosystemAnalyticsService {
   }
 
   void trackSessionEnd(int durationSeconds, int toolsUsed) {
-    _track('session_end', {'duration_seconds': durationSeconds, 'tools_used': toolsUsed});
+    _track('session_end', {
+      'duration_seconds': durationSeconds,
+      'tools_used': toolsUsed,
+    });
   }
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -177,7 +200,9 @@ class EcosystemAnalyticsService {
     if (jsonString != null) {
       try {
         final list = jsonDecode(jsonString) as List;
-        _events = list.map((e) => AnalyticsEvent.fromJson(e as Map<String, dynamic>)).toList();
+        _events = list
+            .map((e) => AnalyticsEvent.fromJson(e as Map<String, dynamic>))
+            .toList();
       } catch (_) {
         _events = [];
       }
@@ -199,6 +224,7 @@ class EcosystemAnalyticsService {
 // RIVERPOD PROVIDER
 // ════════════════════════════════════════════════════════════════════════════
 
-final ecosystemAnalyticsServiceProvider = FutureProvider<EcosystemAnalyticsService>((ref) async {
-  return await EcosystemAnalyticsService.init();
-});
+final ecosystemAnalyticsServiceProvider =
+    FutureProvider<EcosystemAnalyticsService>((ref) async {
+      return await EcosystemAnalyticsService.init();
+    });

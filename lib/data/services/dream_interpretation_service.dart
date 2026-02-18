@@ -1154,7 +1154,10 @@ class ArchetypeDreamInsights {
   static String getDreamAdvice(String archetypeSign) {
     final profile = getProfile(archetypeSign);
     return profile?.dreamAdvice ??
-        L10nService.get('dream_interpretation.archetype_fallback', AppLanguage.tr);
+        L10nService.get(
+          'dream_interpretation.archetype_fallback',
+          AppLanguage.tr,
+        );
   }
 
   /// Arketipe ozel lucid egilimi
@@ -1393,7 +1396,8 @@ class DreamThemeCategoryService {
       (t) => t.category == 'Duygusal Dünya',
       orElse: () => PsikolojikRuyaTemalari.temaKategorileri.first,
     );
-    return emotionalTheme.themeDetails[themeKey] ?? 'Genel duygusal temalar aktif olabilir.';
+    return emotionalTheme.themeDetails[themeKey] ??
+        'Genel duygusal temalar aktif olabilir.';
   }
 
   /// Geçmiş odaklı rüya notları

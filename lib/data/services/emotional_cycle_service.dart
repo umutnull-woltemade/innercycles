@@ -403,16 +403,14 @@ class EmotionalCycleService {
     DateTime end,
   ) {
     final entries = _journalService.getEntriesByDateRange(start, end);
-    final areaEntries = entries
-        .where((e) => e.focusArea == area)
-        .toList()
+    final areaEntries = entries.where((e) => e.focusArea == area).toList()
       ..sort((a, b) => a.date.compareTo(b.date));
 
     return areaEntries
-        .map((e) => CycleDataPoint(
-              date: e.date,
-              value: e.overallRating.toDouble(),
-            ))
+        .map(
+          (e) =>
+              CycleDataPoint(date: e.date, value: e.overallRating.toDouble()),
+        )
         .toList();
   }
 
@@ -424,9 +422,7 @@ class EmotionalCycleService {
     FocusArea area,
     List<JournalEntry> allEntries,
   ) {
-    final areaEntries = allEntries
-        .where((e) => e.focusArea == area)
-        .toList()
+    final areaEntries = allEntries.where((e) => e.focusArea == area).toList()
       ..sort((a, b) => a.date.compareTo(b.date));
 
     if (areaEntries.isEmpty) {
@@ -442,10 +438,10 @@ class EmotionalCycleService {
     }
 
     final rawPoints = areaEntries
-        .map((e) => CycleDataPoint(
-              date: e.date,
-              value: e.overallRating.toDouble(),
-            ))
+        .map(
+          (e) =>
+              CycleDataPoint(date: e.date, value: e.overallRating.toDouble()),
+        )
         .toList();
 
     // Compute rolling averages
@@ -465,14 +461,12 @@ class EmotionalCycleService {
     // Current average (last 7 days)
     final now = DateTime.now();
     final recentEntries = areaEntries
-        .where(
-            (e) => e.date.isAfter(now.subtract(const Duration(days: 7))))
+        .where((e) => e.date.isAfter(now.subtract(const Duration(days: 7))))
         .toList();
     final currentAvg = recentEntries.isEmpty
         ? rawPoints.last.value
-        : recentEntries.fold<double>(
-                0, (s, e) => s + e.overallRating) /
-            recentEntries.length;
+        : recentEntries.fold<double>(0, (s, e) => s + e.overallRating) /
+              recentEntries.length;
 
     // Detect emotional phase (5-phase model)
     final emotionalPhase = _detectEmotionalPhase(rawPoints, trend);
@@ -651,13 +645,15 @@ class EmotionalCycleService {
       }
     }
     if (strongest != null && highestAvg > 0) {
-      insights.add(CycleInsight(
-        messageEn:
-            'Your ${strongest.displayNameEn} tends to be your strongest dimension recently',
-        messageTr:
-            '${strongest.displayNameTr} son zamanlarda en güçlü boyutun olma eğiliminde',
-        relatedArea: strongest,
-      ));
+      insights.add(
+        CycleInsight(
+          messageEn:
+              'Your ${strongest.displayNameEn} tends to be your strongest dimension recently',
+          messageTr:
+              '${strongest.displayNameTr} son zamanlarda en güçlü boyutun olma eğiliminde',
+          relatedArea: strongest,
+        ),
+      );
     }
 
     // 2. Correlation between areas
@@ -672,31 +668,34 @@ class EmotionalCycleService {
       for (int j = i + 1; j < areas.length; j++) {
         final pairs = <List<double>>[];
         for (final dayData in areaRatingsByDate.values) {
-          if (dayData.containsKey(areas[i]) &&
-              dayData.containsKey(areas[j])) {
+          if (dayData.containsKey(areas[i]) && dayData.containsKey(areas[j])) {
             pairs.add([dayData[areas[i]]!, dayData[areas[j]]!]);
           }
         }
         if (pairs.length >= 3) {
           final corr = _pearsonCorrelation(pairs);
           if (corr > 0.5) {
-            insights.add(CycleInsight(
-              messageEn:
-                  '${areas[i].displayNameEn} and ${areas[j].displayNameEn} tend to move together in your data',
-              messageTr:
-                  '${areas[i].displayNameTr} ve ${areas[j].displayNameTr} verilerinde birlikte hareket etme eğiliminde',
-              relatedArea: areas[i],
-              secondaryArea: areas[j],
-            ));
+            insights.add(
+              CycleInsight(
+                messageEn:
+                    '${areas[i].displayNameEn} and ${areas[j].displayNameEn} tend to move together in your data',
+                messageTr:
+                    '${areas[i].displayNameTr} ve ${areas[j].displayNameTr} verilerinde birlikte hareket etme eğiliminde',
+                relatedArea: areas[i],
+                secondaryArea: areas[j],
+              ),
+            );
           } else if (corr < -0.5) {
-            insights.add(CycleInsight(
-              messageEn:
-                  'When your ${areas[i].displayNameEn} is high, your ${areas[j].displayNameEn} tends to be lower',
-              messageTr:
-                  '${areas[i].displayNameTr} yüksek olduğunda, ${areas[j].displayNameTr} düşük olma eğiliminde',
-              relatedArea: areas[i],
-              secondaryArea: areas[j],
-            ));
+            insights.add(
+              CycleInsight(
+                messageEn:
+                    'When your ${areas[i].displayNameEn} is high, your ${areas[j].displayNameEn} tends to be lower',
+                messageTr:
+                    '${areas[i].displayNameTr} yüksek olduğunda, ${areas[j].displayNameTr} düşük olma eğiliminde',
+                relatedArea: areas[i],
+                secondaryArea: areas[j],
+              ),
+            );
           }
         }
       }
@@ -706,31 +705,46 @@ class EmotionalCycleService {
     final bestDay = _findBestWeekday(allEntries);
     if (bestDay != null) {
       final dayNamesEn = [
-        '', 'Mondays', 'Tuesdays', 'Wednesdays',
-        'Thursdays', 'Fridays', 'Saturdays', 'Sundays',
+        '',
+        'Mondays',
+        'Tuesdays',
+        'Wednesdays',
+        'Thursdays',
+        'Fridays',
+        'Saturdays',
+        'Sundays',
       ];
       final dayNamesTr = [
-        '', 'Pazartesi', 'Salı', 'Çarşamba',
-        'Perşembe', 'Cuma', 'Cumartesi', 'Pazar',
+        '',
+        'Pazartesi',
+        'Salı',
+        'Çarşamba',
+        'Perşembe',
+        'Cuma',
+        'Cumartesi',
+        'Pazar',
       ];
-      insights.add(CycleInsight(
-        messageEn:
-            'Your ratings tend to be higher on ${dayNamesEn[bestDay]}',
-        messageTr:
-            'Puanlarının ${dayNamesTr[bestDay]} günleri daha yüksek olma eğiliminde',
-      ));
+      insights.add(
+        CycleInsight(
+          messageEn: 'Your ratings tend to be higher on ${dayNamesEn[bestDay]}',
+          messageTr:
+              'Puanlarının ${dayNamesTr[bestDay]} günleri daha yüksek olma eğiliminde',
+        ),
+      );
     }
 
     // 4. Cycle length insights for areas with detected cycles
     for (final summary in summaries.values) {
       if (summary.cycleLengthDays != null) {
-        insights.add(CycleInsight(
-          messageEn:
-              'Your ${summary.area.displayNameEn} patterns suggest a ~${summary.cycleLengthDays}-day cycle',
-          messageTr:
-              '${summary.area.displayNameTr} kalıpların ~${summary.cycleLengthDays} günlük bir döngü öneriyor',
-          relatedArea: summary.area,
-        ));
+        insights.add(
+          CycleInsight(
+            messageEn:
+                'Your ${summary.area.displayNameEn} patterns suggest a ~${summary.cycleLengthDays}-day cycle',
+            messageTr:
+                '${summary.area.displayNameTr} kalıpların ~${summary.cycleLengthDays} günlük bir döngü öneriyor',
+            relatedArea: summary.area,
+          ),
+        );
       }
     }
 
@@ -738,22 +752,26 @@ class EmotionalCycleService {
     for (final summary in summaries.values) {
       if (summary.trend == CycleTrend.improving &&
           summary.rawPoints.length >= 4) {
-        insights.add(CycleInsight(
-          messageEn:
-              'Your ${summary.area.displayNameEn} appears to be gradually improving',
-          messageTr:
-              '${summary.area.displayNameTr} alanın kademeli olarak iyileşiyor gibi görünüyor',
-          relatedArea: summary.area,
-        ));
+        insights.add(
+          CycleInsight(
+            messageEn:
+                'Your ${summary.area.displayNameEn} appears to be gradually improving',
+            messageTr:
+                '${summary.area.displayNameTr} alanın kademeli olarak iyileşiyor gibi görünüyor',
+            relatedArea: summary.area,
+          ),
+        );
       } else if (summary.trend == CycleTrend.declining &&
           summary.rawPoints.length >= 4) {
-        insights.add(CycleInsight(
-          messageEn:
-              'Your ${summary.area.displayNameEn} may need some attention recently',
-          messageTr:
-              '${summary.area.displayNameTr} alanın son zamanlarda biraz ilgi gerektirebilir',
-          relatedArea: summary.area,
-        ));
+        insights.add(
+          CycleInsight(
+            messageEn:
+                'Your ${summary.area.displayNameEn} may need some attention recently',
+            messageTr:
+                '${summary.area.displayNameTr} alanın son zamanlarda biraz ilgi gerektirebilir',
+            relatedArea: summary.area,
+          ),
+        );
       }
     }
 
@@ -785,8 +803,11 @@ class EmotionalCycleService {
 
     // Calculate variability (standard deviation of recent values)
     final meanRecent = recentAvg;
-    final variance = recent5.fold<double>(
-            0, (s, p) => s + (p.value - meanRecent) * (p.value - meanRecent)) /
+    final variance =
+        recent5.fold<double>(
+          0,
+          (s, p) => s + (p.value - meanRecent) * (p.value - meanRecent),
+        ) /
         recent5.length;
     final stdDev = math.sqrt(variance);
 
@@ -806,8 +827,11 @@ class EmotionalCycleService {
     if (latestValue <= 2.0) return EmotionalPhase.contraction;
 
     // Reflection: Low variability at moderate levels, slight downward or flat
-    if (recentAvg >= 2.5 && recentAvg <= 3.5 && stdDev < 0.6 &&
-        velocity >= -0.2 && velocity <= 0.1) {
+    if (recentAvg >= 2.5 &&
+        recentAvg <= 3.5 &&
+        stdDev < 0.6 &&
+        velocity >= -0.2 &&
+        velocity <= 0.1) {
       return EmotionalPhase.reflection;
     }
 
@@ -856,7 +880,10 @@ class EmotionalCycleService {
     if (last > first + 0.3 && last >= mid) return EmotionalArc.rising;
 
     // Peak: high middle, lower ends
-    if (mid >= first && mid >= last && maxVal >= 3.5 && (maxVal - minVal) > 0.5) {
+    if (mid >= first &&
+        mid >= last &&
+        maxVal >= 3.5 &&
+        (maxVal - minVal) > 0.5) {
       return EmotionalArc.peak;
     }
 
@@ -897,8 +924,7 @@ class EmotionalCycleService {
     final votes = <EmotionalArc, int>{};
     for (final summary in summaries.values) {
       if (summary.currentArc != null) {
-        votes[summary.currentArc!] =
-            (votes[summary.currentArc!] ?? 0) + 1;
+        votes[summary.currentArc!] = (votes[summary.currentArc!] ?? 0) + 1;
       }
     }
     if (votes.isEmpty) return null;
@@ -913,9 +939,7 @@ class EmotionalCycleService {
   // ══════════════════════════════════════════════════════════════════════════
 
   /// Detect phase transitions by comparing phase at different time windows
-  List<PhaseTransition> _detectPhaseTransitions(
-    List<JournalEntry> allEntries,
-  ) {
+  List<PhaseTransition> _detectPhaseTransitions(List<JournalEntry> allEntries) {
     if (allEntries.length < 10) return [];
 
     final sorted = List.of(allEntries)
@@ -964,10 +988,12 @@ class EmotionalCycleService {
     final points = <CycleDataPoint>[];
     for (final entry in byDate.entries) {
       final avg = entry.value.reduce((a, b) => a + b) / entry.value.length;
-      points.add(CycleDataPoint(
-        date: DateTime.tryParse('${entry.key}T00:00:00') ?? DateTime.now(),
-        value: avg,
-      ));
+      points.add(
+        CycleDataPoint(
+          date: DateTime.tryParse('${entry.key}T00:00:00') ?? DateTime.now(),
+          value: avg,
+        ),
+      );
     }
     points.sort((a, b) => a.date.compareTo(b.date));
     return points;
@@ -1016,8 +1042,12 @@ class EmotionalCycleService {
     }
 
     final numerator = n * sumXY - sumX * sumY;
-    final denominator =
-        math.sqrt(((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY)).clamp(0, double.infinity));
+    final denominator = math.sqrt(
+      ((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY)).clamp(
+        0,
+        double.infinity,
+      ),
+    );
 
     if (denominator == 0 || denominator.isNaN) return 0;
     return numerator / denominator;

@@ -413,8 +413,9 @@ class AttachmentStyleService {
     if (jsonString != null) {
       try {
         final List<dynamic> jsonList = json.decode(jsonString);
-        _results =
-            jsonList.map((j) => AttachmentQuizResult.fromJson(j)).toList();
+        _results = jsonList
+            .map((j) => AttachmentQuizResult.fromJson(j))
+            .toList();
       } catch (_) {
         _results = [];
       }

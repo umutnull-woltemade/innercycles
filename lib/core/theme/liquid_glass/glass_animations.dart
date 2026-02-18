@@ -23,9 +23,7 @@ extension GlassAnimations on Widget {
     if (context != null && MediaQuery.of(context).disableAnimations) {
       return this;
     }
-    return animate(
-      delay: delay ?? Duration.zero,
-    )
+    return animate(delay: delay ?? Duration.zero)
         .fadeIn(
           duration: duration ?? GlassTokens.normalDuration,
           curve: GlassTokens.defaultCurve,
@@ -88,9 +86,7 @@ extension GlassAnimations on Widget {
     if (context != null && MediaQuery.of(context).disableAnimations) {
       return this;
     }
-    return animate(
-      delay: delay ?? Duration.zero,
-    )
+    return animate(delay: delay ?? Duration.zero)
         .fadeIn(
           duration: duration ?? GlassTokens.slowDuration,
           curve: GlassTokens.defaultCurve,
@@ -113,9 +109,7 @@ extension GlassAnimations on Widget {
     if (context != null && MediaQuery.of(context).disableAnimations) {
       return this;
     }
-    return animate(
-      onPlay: (controller) => controller.repeat(),
-    ).shimmer(
+    return animate(onPlay: (controller) => controller.repeat()).shimmer(
       duration: duration ?? const Duration(milliseconds: 2000),
       color: color ?? GlassTokens.starGold.withValues(alpha: 0.3),
     );

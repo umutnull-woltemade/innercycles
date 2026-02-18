@@ -141,9 +141,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         Text(
           L10nService.get('premium.paywall.subtitle', language),
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: AppColors.textSecondary,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
         ).animate().fadeIn(duration: 500.ms, delay: 100.ms),
       ],
     );
@@ -167,10 +167,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         children: [
           Text(
             L10nService.get('premium.cosmic_powers', language),
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium
-                ?.copyWith(color: AppColors.starGold),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(color: AppColors.starGold),
           ),
           const SizedBox(height: AppConstants.spacingMd),
           ...features.map((feature) => _FeatureItem(feature: feature)),
@@ -188,31 +187,64 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
     final rows = [
       _ComparisonRow(
-        feature: L10nService.get('premium.comparison.feature_journal', language),
-        free: L10nService.get('premium.comparison.feature_journal_free', language),
-        pro: L10nService.get('premium.comparison.feature_journal_pro', language),
+        feature: L10nService.get(
+          'premium.comparison.feature_journal',
+          language,
+        ),
+        free: L10nService.get(
+          'premium.comparison.feature_journal_free',
+          language,
+        ),
+        pro: L10nService.get(
+          'premium.comparison.feature_journal_pro',
+          language,
+        ),
       ),
       _ComparisonRow(
         feature: L10nService.get('premium.comparison.feature_dreams', language),
-        free: L10nService.get('premium.comparison.feature_dreams_free', language),
+        free: L10nService.get(
+          'premium.comparison.feature_dreams_free',
+          language,
+        ),
         pro: L10nService.get('premium.comparison.feature_dreams_pro', language),
         isHighlight: true,
       ),
       _ComparisonRow(
-        feature: L10nService.get('premium.comparison.feature_patterns', language),
-        free: L10nService.get('premium.comparison.feature_patterns_free', language),
-        pro: L10nService.get('premium.comparison.feature_patterns_pro', language),
+        feature: L10nService.get(
+          'premium.comparison.feature_patterns',
+          language,
+        ),
+        free: L10nService.get(
+          'premium.comparison.feature_patterns_free',
+          language,
+        ),
+        pro: L10nService.get(
+          'premium.comparison.feature_patterns_pro',
+          language,
+        ),
         isHighlight: true,
       ),
       _ComparisonRow(
-        feature: L10nService.get('premium.comparison.feature_reports', language),
-        free: L10nService.get('premium.comparison.feature_reports_free', language),
-        pro: L10nService.get('premium.comparison.feature_reports_pro', language),
+        feature: L10nService.get(
+          'premium.comparison.feature_reports',
+          language,
+        ),
+        free: L10nService.get(
+          'premium.comparison.feature_reports_free',
+          language,
+        ),
+        pro: L10nService.get(
+          'premium.comparison.feature_reports_pro',
+          language,
+        ),
         isHighlight: true,
       ),
       _ComparisonRow(
         feature: L10nService.get('premium.comparison.feature_export', language),
-        free: L10nService.get('premium.comparison.feature_export_free', language),
+        free: L10nService.get(
+          'premium.comparison.feature_export_free',
+          language,
+        ),
         pro: L10nService.get('premium.comparison.feature_export_pro', language),
       ),
       _ComparisonRow(
@@ -221,9 +253,18 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         pro: L10nService.get('premium.comparison.feature_ads_pro', language),
       ),
       _ComparisonRow(
-        feature: L10nService.get('premium.comparison.feature_programs', language),
-        free: L10nService.get('premium.comparison.feature_programs_free', language),
-        pro: L10nService.get('premium.comparison.feature_programs_pro', language),
+        feature: L10nService.get(
+          'premium.comparison.feature_programs',
+          language,
+        ),
+        free: L10nService.get(
+          'premium.comparison.feature_programs_free',
+          language,
+        ),
+        pro: L10nService.get(
+          'premium.comparison.feature_programs_pro',
+          language,
+        ),
       ),
     ];
 
@@ -280,48 +321,51 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           const SizedBox(height: 8),
 
           // Table rows
-          ...rows.map((row) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: Text(
-                    row.feature,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.textSecondary,
+          ...rows.map(
+            (row) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Text(
+                      row.feature,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    row.free,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.textMuted,
-                      fontSize: 11,
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      row.free,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.textMuted,
+                        fontSize: 11,
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    row.pro,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: row.isHighlight
-                          ? AppColors.starGold
-                          : AppColors.textPrimary,
-                      fontWeight:
-                          row.isHighlight ? FontWeight.w600 : FontWeight.normal,
-                      fontSize: 11,
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      row.pro,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: row.isHighlight
+                            ? AppColors.starGold
+                            : AppColors.textPrimary,
+                        fontWeight: row.isHighlight
+                            ? FontWeight.w600
+                            : FontWeight.normal,
+                        fontSize: 11,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          )),
+          ),
         ],
       ),
     ).animate().fadeIn(duration: 500.ms, delay: 200.ms);
@@ -448,10 +492,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     return Text(
       L10nService.get('premium.risk_reversal', language),
       textAlign: TextAlign.center,
-      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-        color: AppColors.textMuted,
-        fontSize: 12,
-      ),
+      style: Theme.of(
+        context,
+      ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted, fontSize: 12),
     );
   }
 
@@ -549,11 +592,13 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
   Widget _buildPriceAnchor(BuildContext context) {
     final language = ref.watch(languageProvider);
-    final experiment =
-        ref.watch(paywallExperimentProvider).whenOrNull(data: (e) => e);
+    final experiment = ref
+        .watch(paywallExperimentProvider)
+        .whenOrNull(data: (e) => e);
 
     // Use experiment variant price if available, else fall back to l10n
-    final monthlyLabel = experiment?.monthlyPriceLabel ??
+    final monthlyLabel =
+        experiment?.monthlyPriceLabel ??
         L10nService.get('premium.price_monthly_crossed', language);
     final yearlyLabel = experiment != null
         ? '${experiment.yearlyMonthlyEquivalent} — ${L10nService.get('premium.price_anchor', language).split('—').last.trim()}'
@@ -612,8 +657,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                   children: [
                     IconButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      icon:
-                          const Icon(Icons.close, color: AppColors.textPrimary),
+                      icon: const Icon(
+                        Icons.close,
+                        color: AppColors.textPrimary,
+                      ),
                     ),
                     const Spacer(),
                   ],
@@ -635,40 +682,38 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
   Widget _buildPremiumActiveBadge(PremiumState premiumState) {
     return Container(
-          padding: const EdgeInsets.all(32),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                AppColors.starGold.withValues(alpha: 0.4),
-                AppColors.auroraStart.withValues(alpha: 0.4),
-              ],
+      padding: const EdgeInsets.all(32),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            AppColors.starGold.withValues(alpha: 0.4),
+            AppColors.auroraStart.withValues(alpha: 0.4),
+          ],
+        ),
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.starGold.withValues(alpha: 0.5),
+            blurRadius: 40,
+            spreadRadius: 10,
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          const Icon(Icons.star_rounded, size: 72, color: AppColors.starGold),
+          const SizedBox(height: 8),
+          Text(
+            premiumState.tier.displayName,
+            style: const TextStyle(
+              color: AppColors.starGold,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.starGold.withValues(alpha: 0.5),
-                blurRadius: 40,
-                spreadRadius: 10,
-              ),
-            ],
           ),
-          child: Column(
-            children: [
-              const Icon(Icons.star_rounded,
-                  size: 72, color: AppColors.starGold),
-              const SizedBox(height: 8),
-              Text(
-                premiumState.tier.displayName,
-                style: const TextStyle(
-                  color: AppColors.starGold,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        )
-        .glassReveal(context: context);
+        ],
+      ),
+    ).glassReveal(context: context);
   }
 
   Widget _buildPremiumStatus(BuildContext context, PremiumState premiumState) {
@@ -691,18 +736,16 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           if (premiumState.isLifetime)
             Text(
               L10nService.get('premium.lifetime_access', language),
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: AppColors.textSecondary),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
             )
           else if (premiumState.expiryDate != null)
             Text(
               '${L10nService.get('common.next', language)}: ${_formatDate(premiumState.expiryDate!)}',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: AppColors.textSecondary),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
             ),
         ],
       ),
@@ -719,7 +762,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             : () async {
                 setState(() => _isManagingSubscription = true);
                 try {
-                  await ref.read(paywallServiceProvider).presentCustomerCenter();
+                  await ref
+                      .read(paywallServiceProvider)
+                      .presentCustomerCenter();
                 } finally {
                   if (mounted) setState(() => _isManagingSubscription = false);
                 }
@@ -757,16 +802,14 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           Expanded(
             child: Text(
               'RevenueCat Paywall',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall
-                  ?.copyWith(color: AppColors.streakOrange),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppColors.streakOrange),
             ),
           ),
           Switch(
             value: _useRevenueCatPaywall,
-            onChanged: (value) =>
-                setState(() => _useRevenueCatPaywall = value),
+            onChanged: (value) => setState(() => _useRevenueCatPaywall = value),
             activeThumbColor: AppColors.streakOrange,
           ),
         ],
@@ -784,20 +827,26 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       onPressed: premiumState.isLoading
           ? null
           : () async {
-              final restored =
-                  await ref.read(premiumProvider.notifier).restorePurchases();
+              final restored = await ref
+                  .read(premiumProvider.notifier)
+                  .restorePurchases();
               if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
                       restored
                           ? L10nService.get(
-                              'premium.purchases_restored', language)
+                              'premium.purchases_restored',
+                              language,
+                            )
                           : L10nService.get(
-                              'premium.no_purchases_found', language),
+                              'premium.no_purchases_found',
+                              language,
+                            ),
                     ),
-                    backgroundColor:
-                        restored ? AppColors.success : AppColors.error,
+                    backgroundColor: restored
+                        ? AppColors.success
+                        : AppColors.error,
                   ),
                 );
               }
@@ -822,10 +871,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           Text(
             L10nService.get('premium.terms_text', language),
             textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .bodySmall
-                ?.copyWith(color: AppColors.textMuted, fontSize: 11),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: AppColors.textMuted,
+              fontSize: 11,
+            ),
           ),
           const SizedBox(height: 8),
           Row(
@@ -843,7 +892,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                       child: Text(
                         isEn
                             ? 'Privacy Policy'
-                            : L10nService.get('settings.privacy_policy', language),
+                            : L10nService.get(
+                                'settings.privacy_policy',
+                                language,
+                              ),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.starGold,
                           fontSize: 11,
@@ -859,10 +911,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
                   '|',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall
-                      ?.copyWith(color: AppColors.textMuted, fontSize: 11),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.textMuted,
+                    fontSize: 11,
+                  ),
                 ),
               ),
               Semantics(
@@ -877,7 +929,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                       child: Text(
                         isEn
                             ? 'Terms of Service'
-                            : L10nService.get('settings.terms_of_service', language),
+                            : L10nService.get(
+                                'settings.terms_of_service',
+                                language,
+                              ),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.starGold,
                           fontSize: 11,
@@ -908,12 +963,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         backgroundColor: Theme.of(context).brightness == Brightness.dark
             ? AppColors.cosmicPurple
             : AppColors.lightSurface,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: Row(
           children: [
-            const Icon(Icons.star_rounded,
-                size: 28, color: AppColors.starGold),
+            const Icon(Icons.star_rounded, size: 28, color: AppColors.starGold),
             const SizedBox(width: 8),
             Flexible(
               child: Text(
@@ -991,10 +1044,9 @@ class _FeatureItem extends StatelessWidget {
           Expanded(
             child: Text(
               feature,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: AppColors.textPrimary),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: AppColors.textPrimary),
             ),
           ),
         ],
@@ -1029,8 +1081,9 @@ class _PlanCard extends StatelessWidget {
           elevation: isSelected ? GlassElevation.g3 : GlassElevation.g2,
           borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           padding: EdgeInsets.zero,
-          glowColor:
-              isSelected ? AppColors.starGold.withValues(alpha: 0.2) : null,
+          glowColor: isSelected
+              ? AppColors.starGold.withValues(alpha: 0.2)
+              : null,
           child: Material(
             color: Colors.transparent,
             child: InkWell(
@@ -1056,8 +1109,11 @@ class _PlanCard extends StatelessWidget {
                             : Colors.transparent,
                       ),
                       child: isSelected
-                          ? const Icon(Icons.check,
-                              size: 16, color: Colors.black)
+                          ? const Icon(
+                              Icons.check,
+                              size: 16,
+                              color: Colors.black,
+                            )
                           : null,
                     ),
                     const SizedBox(width: 16),
@@ -1067,9 +1123,7 @@ class _PlanCard extends StatelessWidget {
                         children: [
                           Text(
                             tier.displayName,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleSmall
+                            style: Theme.of(context).textTheme.titleSmall
                                 ?.copyWith(
                                   color: isSelected
                                       ? AppColors.starGold
@@ -1080,9 +1134,7 @@ class _PlanCard extends StatelessWidget {
                           if (tier.savings.isNotEmpty)
                             Text(
                               tier.savings,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
+                              style: Theme.of(context).textTheme.bodySmall
                                   ?.copyWith(
                                     color: isLifetime
                                         ? AppColors.auroraEnd
@@ -1097,24 +1149,23 @@ class _PlanCard extends StatelessWidget {
                       children: [
                         Text(
                           priceOverride ?? tier.price,
-                          style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    color: isSelected
-                                        ? AppColors.starGold
-                                        : AppColors.textPrimary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(
+                                color: isSelected
+                                    ? AppColors.starGold
+                                    : AppColors.textPrimary,
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
                         // Show monthly equivalent for yearly
                         if (tier == PremiumTier.yearly)
                           Text(
                             tier.monthlyEquivalent,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
+                            style: Theme.of(context).textTheme.bodySmall
                                 ?.copyWith(
-                                  color: AppColors.starGold
-                                      .withValues(alpha: 0.7),
+                                  color: AppColors.starGold.withValues(
+                                    alpha: 0.7,
+                                  ),
                                   fontSize: 11,
                                 ),
                           ),

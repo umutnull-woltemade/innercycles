@@ -30,9 +30,7 @@ class DesktopRichHomepage extends ConsumerWidget {
         backgroundColor: Theme.of(context).brightness == Brightness.dark
             ? AppColors.deepSpace
             : AppColors.lightBackground,
-        body: const Center(
-          child: CosmicLoadingIndicator(),
-        ),
+        body: const Center(child: CosmicLoadingIndicator()),
       );
     }
 
@@ -57,20 +55,19 @@ class DesktopRichHomepage extends ConsumerWidget {
 
                   const SizedBox(height: 24),
 
-                  _HeroSection(language: language)
-                      .glassReveal(context: context),
-
-                  const SizedBox(height: 40),
-
-                  _FeatureCategoriesSection(language: language)
-                      .glassListItem(context: context, index: 2),
-
-                  const SizedBox(height: 40),
-
-                  PageBottomNavigation(
-                    currentRoute: '/',
+                  _HeroSection(
                     language: language,
-                  ),
+                  ).glassReveal(context: context),
+
+                  const SizedBox(height: 40),
+
+                  _FeatureCategoriesSection(
+                    language: language,
+                  ).glassListItem(context: context, index: 2),
+
+                  const SizedBox(height: 40),
+
+                  PageBottomNavigation(currentRoute: '/', language: language),
 
                   const SizedBox(height: 24),
                 ],
@@ -91,10 +88,7 @@ class _DesktopHeader extends StatelessWidget {
   final String userName;
   final AppLanguage language;
 
-  const _DesktopHeader({
-    required this.userName,
-    required this.language,
-  });
+  const _DesktopHeader({required this.userName, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -318,10 +312,7 @@ class _HeroSection extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.starGold,
               foregroundColor: AppColors.deepSpace,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 32,
-                vertical: 16,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -427,9 +418,7 @@ class _FeatureCategoriesSection extends StatelessWidget {
           childAspectRatio: 1.5,
           children: [
             _FeatureCard(
-              title: language == AppLanguage.en
-                  ? 'Cycle Entry'
-                  : 'Döngü Kaydı',
+              title: language == AppLanguage.en ? 'Cycle Entry' : 'Döngü Kaydı',
               subtitle: language == AppLanguage.en
                   ? 'Map your cycle position & emotional state'
                   : 'Döngü pozisyonunu ve duygusal durumunu haritalandır',
@@ -482,9 +471,7 @@ class _FeatureCategoriesSection extends StatelessWidget {
               route: Routes.journalMonthly,
             ),
             _FeatureCard(
-              title: language == AppLanguage.en
-                  ? 'Reference'
-                  : 'Referans',
+              title: language == AppLanguage.en ? 'Reference' : 'Referans',
               subtitle: language == AppLanguage.en
                   ? 'Glossary & Articles'
                   : 'Sözlük ve Makaleler',
@@ -537,11 +524,7 @@ class _FeatureCard extends StatelessWidget {
                   color: color.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(
-                  icon,
-                  color: color,
-                  size: 24,
-                ),
+                child: Icon(icon, color: color, size: 24),
               ),
               const SizedBox(height: 16),
               Text(

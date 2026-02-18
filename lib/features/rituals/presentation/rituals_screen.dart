@@ -34,60 +34,60 @@ class RitualsScreen extends ConsumerWidget {
                 parent: AlwaysScrollableScrollPhysics(),
               ),
               slivers: [
-                GlassSliverAppBar(
-                  title: isEn ? 'My Rituals' : 'Ritüellerim',
-                ),
-              SliverPadding(
-                padding: const EdgeInsets.all(AppConstants.spacingLg),
-                sliver: stacksAsync.when(
-                  loading: () => const SliverToBoxAdapter(
-                    child: Center(child: CosmicLoadingIndicator()),
-                  ),
-                  error: (_, _) => SliverToBoxAdapter(
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(32),
-                        child: Text(
-                          CommonStrings.somethingWentWrong(language),
-                          style: TextStyle(
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                GlassSliverAppBar(title: isEn ? 'My Rituals' : 'Ritüellerim'),
+                SliverPadding(
+                  padding: const EdgeInsets.all(AppConstants.spacingLg),
+                  sliver: stacksAsync.when(
+                    loading: () => const SliverToBoxAdapter(
+                      child: Center(child: CosmicLoadingIndicator()),
+                    ),
+                    error: (_, _) => SliverToBoxAdapter(
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(32),
+                          child: Text(
+                            CommonStrings.somethingWentWrong(language),
+                            style: TextStyle(
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  data: (stacks) {
-                    if (stacks.isEmpty) {
-                      return SliverToBoxAdapter(
-                        child: _EmptyState(isDark: isDark, isEn: isEn),
-                      );
-                    }
-                    return SliverList(
-                      delegate: SliverChildListDelegate([
-                        ...stacks.asMap().entries.map((entry) {
-                          return _StackCard(
-                            stack: entry.value,
-                            isDark: isDark,
+                    data: (stacks) {
+                      if (stacks.isEmpty) {
+                        return SliverToBoxAdapter(
+                          child: _EmptyState(isDark: isDark, isEn: isEn),
+                        );
+                      }
+                      return SliverList(
+                        delegate: SliverChildListDelegate([
+                          ...stacks.asMap().entries.map((entry) {
+                            return _StackCard(
+                              stack: entry.value,
+                              isDark: isDark,
+                              isEn: isEn,
+                              index: entry.key,
+                            );
+                          }),
+                          const SizedBox(height: 24),
+                          _AddButton(isDark: isDark, isEn: isEn),
+                          const SizedBox(height: 24),
+                          ToolEcosystemFooter(
+                            currentToolId: 'rituals',
                             isEn: isEn,
-                            index: entry.key,
-                          );
-                        }),
-                        const SizedBox(height: 24),
-                        _AddButton(isDark: isDark, isEn: isEn),
-                        const SizedBox(height: 24),
-                        ToolEcosystemFooter(
-                          currentToolId: 'rituals',
-                          isEn: isEn,
-                          isDark: isDark,
-                        ),
-                        const SizedBox(height: 40),
-                      ]),
-                    );
-                  },
+                            isDark: isDark,
+                          ),
+                          const SizedBox(height: 40),
+                        ]),
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
           ),
         ),
       ),
@@ -225,30 +225,32 @@ class _StackCard extends ConsumerWidget {
               ],
             ),
             const SizedBox(height: 12),
-            ...stack.items.map((item) => Padding(
-                  padding: const EdgeInsets.only(bottom: 4),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        size: 6,
+            ...stack.items.map(
+              (item) => Padding(
+                padding: const EdgeInsets.only(bottom: 4),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.circle,
+                      size: 6,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      item.name,
+                      style: TextStyle(
+                        fontSize: 14,
                         color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
                       ),
-                      const SizedBox(width: 8),
-                      Text(
-                        item.name,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary,
-                        ),
-                      ),
-                    ],
-                  ),
-                )),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ).animate().fadeIn(delay: (index * 100).ms, duration: 300.ms),

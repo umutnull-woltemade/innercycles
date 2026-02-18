@@ -39,8 +39,14 @@ class _InsightsDiscoveryScreenState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('insightsDiscovery'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('insightsDiscovery', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('insightsDiscovery'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData(
+            (s) => s.trackToolOpen('insightsDiscovery', source: 'direct'),
+          );
     });
   }
 
@@ -66,8 +72,7 @@ class _InsightsDiscoveryScreenState
                 ),
               ),
             ),
-            data: (service) =>
-                _buildContent(context, service, isDark, isEn),
+            data: (service) => _buildContent(context, service, isDark, isEn),
           ),
         ),
       ),
@@ -156,30 +161,30 @@ class _InsightsDiscoveryScreenState
           )
         else
           SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                final module = modules[index];
-                return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-                  child: _buildModuleCard(module, service, isDark, isEn),
-                )
-                    .animate()
-                    .fadeIn(
-                      duration: 400.ms,
-                      delay: (index * 60).ms,
-                    )
-                    .slideY(begin: 0.05, duration: 400.ms);
-              },
-              childCount: modules.length,
-            ),
+            delegate: SliverChildBuilderDelegate((context, index) {
+              final module = modules[index];
+              return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 6,
+                    ),
+                    child: _buildModuleCard(module, service, isDark, isEn),
+                  )
+                  .animate()
+                  .fadeIn(duration: 400.ms, delay: (index * 60).ms)
+                  .slideY(begin: 0.05, duration: 400.ms);
+            }, childCount: modules.length),
           ),
 
         // Related tools
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: ToolEcosystemFooter(currentToolId: 'insightsDiscovery', isEn: isEn, isDark: isDark),
+            child: ToolEcosystemFooter(
+              currentToolId: 'insightsDiscovery',
+              isEn: isEn,
+              isDark: isDark,
+            ),
           ),
         ),
         // Bottom padding
@@ -212,8 +217,7 @@ class _InsightsDiscoveryScreenState
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
-                color:
-                    isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
             ),
             Text(
@@ -254,108 +258,110 @@ class _InsightsDiscoveryScreenState
   ) {
     return Semantics(
       button: true,
-      label: isEn ? 'Today\'s Insight: ${module.titleEn}' : 'Bugünün İçgörüsü: ${module.titleTr}',
+      label: isEn
+          ? 'Today\'s Insight: ${module.titleEn}'
+          : 'Bugünün İçgörüsü: ${module.titleTr}',
       child: GestureDetector(
-      onTap: () => _openModuleDetail(module, service),
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: isDark
-                ? [
-                    AppColors.auroraStart.withValues(alpha: 0.2),
-                    AppColors.auroraEnd.withValues(alpha: 0.15),
-                    AppColors.surfaceDark.withValues(alpha: 0.9),
-                  ]
-                : [
-                    AppColors.lightAuroraStart.withValues(alpha: 0.08),
-                    AppColors.lightAuroraEnd.withValues(alpha: 0.06),
-                    AppColors.lightCard,
-                  ],
+        onTap: () => _openModuleDetail(module, service),
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: isDark
+                  ? [
+                      AppColors.auroraStart.withValues(alpha: 0.2),
+                      AppColors.auroraEnd.withValues(alpha: 0.15),
+                      AppColors.surfaceDark.withValues(alpha: 0.9),
+                    ]
+                  : [
+                      AppColors.lightAuroraStart.withValues(alpha: 0.08),
+                      AppColors.lightAuroraEnd.withValues(alpha: 0.06),
+                      AppColors.lightCard,
+                    ],
+            ),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: AppColors.auroraStart.withValues(alpha: 0.25),
+            ),
           ),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: AppColors.auroraStart.withValues(alpha: 0.25),
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: AppColors.starGold.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Icon(
-                    Icons.auto_awesome_rounded,
-                    color: AppColors.starGold,
-                    size: 18,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    isEn ? 'Today\'s Insight' : 'Bugünün İçgörüsü',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: AppColors.starGold.withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Icon(
+                      Icons.auto_awesome_rounded,
+                      color: AppColors.starGold,
+                      size: 18,
                     ),
                   ),
-                ),
-                _buildDepthBadge(module.depth, isDark, isEn),
-              ],
-            ),
-            const SizedBox(height: 14),
-            Text(
-              isEn ? module.titleEn : module.titleTr,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              isEn ? module.summaryEn : module.summaryTr,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.5,
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _buildCategoryPill(module.category, isDark, isEn),
-                Text(
-                  isEn ? 'Tap to read' : 'Okumak için dokun',
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: isDark
-                        ? AppColors.textMuted.withValues(alpha: 0.6)
-                        : AppColors.lightTextMuted.withValues(alpha: 0.6),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      isEn ? 'Today\'s Insight' : 'Bugünün İçgörüsü',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
                   ),
+                  _buildDepthBadge(module.depth, isDark, isEn),
+                ],
+              ),
+              const SizedBox(height: 14),
+              Text(
+                isEn ? module.titleEn : module.titleTr,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
                 ),
-              ],
-            ),
-          ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                isEn ? module.summaryEn : module.summaryTr,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 14,
+                  height: 1.5,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _buildCategoryPill(module.category, isDark, isEn),
+                  Text(
+                    isEn ? 'Tap to read' : 'Okumak için dokun',
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: isDark
+                          ? AppColors.textMuted.withValues(alpha: 0.6)
+                          : AppColors.lightTextMuted.withValues(alpha: 0.6),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
       ),
     ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.08, duration: 500.ms);
   }
@@ -376,15 +382,17 @@ class _InsightsDiscoveryScreenState
             onTap: () => setState(() => _selectedCategory = null),
           ),
           const SizedBox(width: 8),
-          ...ContextModuleCategory.values.map((cat) => Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: _buildChip(
-                  label: isEn ? cat.displayNameEn : cat.displayNameTr,
-                  isSelected: _selectedCategory == cat,
-                  isDark: isDark,
-                  onTap: () => setState(() => _selectedCategory = cat),
-                ),
-              )),
+          ...ContextModuleCategory.values.map(
+            (cat) => Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: _buildChip(
+                label: isEn ? cat.displayNameEn : cat.displayNameTr,
+                isSelected: _selectedCategory == cat,
+                isDark: isDark,
+                onTap: () => setState(() => _selectedCategory = cat),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -401,39 +409,39 @@ class _InsightsDiscoveryScreenState
       label: label,
       selected: isSelected,
       child: GestureDetector(
-      onTap: () {
-        HapticFeedback.lightImpact();
-        onTap();
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? AppColors.auroraStart.withValues(alpha: 0.2)
-              : (isDark
-                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                  : AppColors.lightSurfaceVariant),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
+        onTap: () {
+          HapticFeedback.lightImpact();
+          onTap();
+        },
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          decoration: BoxDecoration(
             color: isSelected
-                ? AppColors.auroraStart.withValues(alpha: 0.5)
-                : Colors.transparent,
-          ),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-            color: isSelected
-                ? AppColors.auroraStart
+                ? AppColors.auroraStart.withValues(alpha: 0.2)
                 : (isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary),
+                      ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                      : AppColors.lightSurfaceVariant),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: isSelected
+                  ? AppColors.auroraStart.withValues(alpha: 0.5)
+                  : Colors.transparent,
+            ),
+          ),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+              color: isSelected
+                  ? AppColors.auroraStart
+                  : (isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary),
+            ),
           ),
         ),
-      ),
       ),
     );
   }
@@ -455,103 +463,103 @@ class _InsightsDiscoveryScreenState
       button: true,
       label: isEn ? module.titleEn : module.titleTr,
       child: GestureDetector(
-      onTap: () => _openModuleDetail(module, service),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.7)
-              : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: isRead
-                ? AppColors.auroraStart.withValues(alpha: 0.15)
-                : (isDark
-                    ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                    : AppColors.lightSurfaceVariant),
+        onTap: () => _openModuleDetail(module, service),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.surfaceDark.withValues(alpha: 0.7)
+                : AppColors.lightCard,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: isRead
+                  ? AppColors.auroraStart.withValues(alpha: 0.15)
+                  : (isDark
+                        ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                        : AppColors.lightSurfaceVariant),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  // Read indicator
+                  Container(
+                    width: 8,
+                    height: 8,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: isRead
+                          ? AppColors.auroraStart.withValues(alpha: 0.4)
+                          : AppColors.starGold,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      isEn ? module.titleEn : module.titleTr,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                  ),
+                  // Bookmark button
+                  Semantics(
+                    button: true,
+                    label: isBookmarked
+                        ? (isEn ? 'Remove bookmark' : 'Yer işaretini kaldır')
+                        : (isEn ? 'Add bookmark' : 'Yer işareti ekle'),
+                    child: GestureDetector(
+                      onTap: () async {
+                        HapticFeedback.lightImpact();
+                        await service.toggleBookmark(module.id);
+                        if (!mounted) return;
+                        setState(() {});
+                      },
+                      child: Icon(
+                        isBookmarked
+                            ? Icons.bookmark_rounded
+                            : Icons.bookmark_border_rounded,
+                        size: 20,
+                        color: isBookmarked
+                            ? AppColors.starGold
+                            : (isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                isEn ? module.summaryEn : module.summaryTr,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 13,
+                  height: 1.4,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  _buildCategoryPill(module.category, isDark, isEn),
+                  const SizedBox(width: 8),
+                  _buildDepthBadge(module.depth, isDark, isEn),
+                ],
+              ),
+            ],
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                // Read indicator
-                Container(
-                  width: 8,
-                  height: 8,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: isRead
-                        ? AppColors.auroraStart.withValues(alpha: 0.4)
-                        : AppColors.starGold,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    isEn ? module.titleEn : module.titleTr,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                    ),
-                  ),
-                ),
-                // Bookmark button
-                Semantics(
-                  button: true,
-                  label: isBookmarked
-                      ? (isEn ? 'Remove bookmark' : 'Yer işaretini kaldır')
-                      : (isEn ? 'Add bookmark' : 'Yer işareti ekle'),
-                  child: GestureDetector(
-                    onTap: () async {
-                      HapticFeedback.lightImpact();
-                      await service.toggleBookmark(module.id);
-                      if (!mounted) return;
-                      setState(() {});
-                    },
-                    child: Icon(
-                      isBookmarked
-                          ? Icons.bookmark_rounded
-                          : Icons.bookmark_border_rounded,
-                      size: 20,
-                      color: isBookmarked
-                          ? AppColors.starGold
-                          : (isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Text(
-              isEn ? module.summaryEn : module.summaryTr,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 13,
-                height: 1.4,
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                _buildCategoryPill(module.category, isDark, isEn),
-                const SizedBox(width: 8),
-                _buildDepthBadge(module.depth, isDark, isEn),
-              ],
-            ),
-          ],
-        ),
-      ),
       ),
     );
   }
@@ -560,10 +568,7 @@ class _InsightsDiscoveryScreenState
   // MODULE DETAIL BOTTOM SHEET
   // ═══════════════════════════════════════════════════════════════
 
-  void _openModuleDetail(
-    ContextModule module,
-    ContextModuleService service,
-  ) {
+  void _openModuleDetail(ContextModule module, ContextModuleService service) {
     HapticFeedback.mediumImpact();
     service.markAsRead(module.id);
 
@@ -582,13 +587,13 @@ class _InsightsDiscoveryScreenState
         builder: (_, scrollController) => Container(
           decoration: BoxDecoration(
             color: isDark ? AppColors.surfaceDark : AppColors.lightBackground,
-            borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(24),
-            ),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
           ),
           child: ListView(
             controller: scrollController,
-            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
             padding: const EdgeInsets.all(24),
             children: [
               // Handle bar
@@ -690,9 +695,7 @@ class _InsightsDiscoveryScreenState
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      isEn
-                          ? module.whyItMattersEn
-                          : module.whyItMattersTr,
+                      isEn ? module.whyItMattersEn : module.whyItMattersTr,
                       style: TextStyle(
                         fontSize: 14,
                         height: 1.5,
@@ -736,7 +739,7 @@ class _InsightsDiscoveryScreenState
                         isEn
                             ? module.screenshotLineEn!
                             : (module.screenshotLineTr ??
-                                module.screenshotLineEn!),
+                                  module.screenshotLineEn!),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
@@ -767,54 +770,55 @@ class _InsightsDiscoveryScreenState
                   ),
                 ),
                 const SizedBox(height: 10),
-                ...service.getRelatedModules(module).map(
+                ...service
+                    .getRelatedModules(module)
+                    .map(
                       (related) => Padding(
                         padding: const EdgeInsets.only(bottom: 8),
                         child: Semantics(
                           button: true,
                           label: isEn ? related.titleEn : related.titleTr,
                           child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(ctx).pop();
-                            Future.delayed(
-                              const Duration(milliseconds: 300),
-                              () => _openModuleDetail(related, service),
-                            );
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: isDark
-                                  ? AppColors.surfaceLight
-                                      .withValues(alpha: 0.3)
-                                  : AppColors.lightSurfaceVariant,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.arrow_forward_rounded,
-                                  size: 16,
-                                  color: AppColors.auroraStart,
-                                ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: Text(
-                                    isEn
-                                        ? related.titleEn
-                                        : related.titleTr,
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w500,
-                                      color: isDark
-                                          ? AppColors.textPrimary
-                                          : AppColors.lightTextPrimary,
+                            onTap: () {
+                              Navigator.of(ctx).pop();
+                              Future.delayed(
+                                const Duration(milliseconds: 300),
+                                () => _openModuleDetail(related, service),
+                              );
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: isDark
+                                    ? AppColors.surfaceLight.withValues(
+                                        alpha: 0.3,
+                                      )
+                                    : AppColors.lightSurfaceVariant,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.arrow_forward_rounded,
+                                    size: 16,
+                                    color: AppColors.auroraStart,
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Text(
+                                      isEn ? related.titleEn : related.titleTr,
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w500,
+                                        color: isDark
+                                            ? AppColors.textPrimary
+                                            : AppColors.lightTextPrimary,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
                           ),
                         ),
                       ),
@@ -860,18 +864,12 @@ class _InsightsDiscoveryScreenState
       decoration: BoxDecoration(
         color: color.withValues(alpha: isDark ? 0.15 : 0.1),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: color.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            _categoryIcon(category),
-            size: 12,
-            color: color,
-          ),
+          Icon(_categoryIcon(category), size: 12, color: color),
           const SizedBox(width: 4),
           Text(
             isEn ? category.displayNameEn : category.displayNameTr,
@@ -886,11 +884,7 @@ class _InsightsDiscoveryScreenState
     );
   }
 
-  Widget _buildDepthBadge(
-    ContextModuleDepth depth,
-    bool isDark,
-    bool isEn,
-  ) {
+  Widget _buildDepthBadge(ContextModuleDepth depth, bool isDark, bool isEn) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(

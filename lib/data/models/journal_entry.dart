@@ -179,7 +179,9 @@ class JournalEntry {
   factory JournalEntry.fromJson(Map<String, dynamic> json) => JournalEntry(
     id: json['id'] as String? ?? '',
     date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
-    createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
+    createdAt:
+        DateTime.tryParse(json['createdAt']?.toString() ?? '') ??
+        DateTime.now(),
     focusArea: FocusArea.values.firstWhere(
       (e) => e.name == json['focusArea'],
       orElse: () => FocusArea.energy,
@@ -188,7 +190,10 @@ class JournalEntry {
     subRatings: json['subRatings'] is Map
         ? Map<String, int>.fromEntries(
             (json['subRatings'] as Map).entries.map(
-              (e) => MapEntry(e.key.toString(), e.value is num ? (e.value as num).toInt() : 0),
+              (e) => MapEntry(
+                e.key.toString(),
+                e.value is num ? (e.value as num).toInt() : 0,
+              ),
             ),
           )
         : {},

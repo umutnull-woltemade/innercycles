@@ -364,7 +364,9 @@ class PremiumNotifier extends Notifier<PremiumState> {
     unawaited(_adService.setPremiumStatus(isPremium));
 
     // Save to local storage as backup
-    unawaited(_savePremiumStatusLocally(isPremium, tier, expiryDate, isLifetime));
+    unawaited(
+      _savePremiumStatusLocally(isPremium, tier, expiryDate, isLifetime),
+    );
 
     if (kDebugMode) {
       debugPrint(
@@ -534,10 +536,14 @@ class PremiumNotifier extends Notifier<PremiumState> {
       String errorMessage;
       switch (e) {
         case PurchasesErrorCode.purchaseCancelledError:
-          errorMessage = isEn ? 'Purchase cancelled' : 'Satın alma iptal edildi';
+          errorMessage = isEn
+              ? 'Purchase cancelled'
+              : 'Satın alma iptal edildi';
           break;
         case PurchasesErrorCode.purchaseNotAllowedError:
-          errorMessage = isEn ? 'Purchase not allowed' : 'Satın almaya izin verilmiyor';
+          errorMessage = isEn
+              ? 'Purchase not allowed'
+              : 'Satın almaya izin verilmiyor';
           break;
         case PurchasesErrorCode.purchaseInvalidError:
           errorMessage = isEn ? 'Invalid purchase' : 'Geçersiz satın alma';
@@ -546,10 +552,14 @@ class PremiumNotifier extends Notifier<PremiumState> {
           errorMessage = isEn ? 'Product not available' : 'Ürün mevcut değil';
           break;
         case PurchasesErrorCode.networkError:
-          errorMessage = isEn ? 'Network error. Please try again.' : 'Ağ hatası. Lütfen tekrar deneyin.';
+          errorMessage = isEn
+              ? 'Network error. Please try again.'
+              : 'Ağ hatası. Lütfen tekrar deneyin.';
           break;
         default:
-          errorMessage = isEn ? 'Purchase failed: $e' : 'Satın alma başarısız: $e';
+          errorMessage = isEn
+              ? 'Purchase failed: $e'
+              : 'Satın alma başarısız: $e';
       }
 
       state = state.copyWith(isLoading: false, errorMessage: errorMessage);
@@ -569,7 +579,9 @@ class PremiumNotifier extends Notifier<PremiumState> {
       final isEnFallback = StorageService.loadLanguage() == AppLanguage.en;
       state = state.copyWith(
         isLoading: false,
-        errorMessage: isEnFallback ? 'Purchase failed. Please try again.' : 'Satın alma başarısız. Lütfen tekrar deneyin.',
+        errorMessage: isEnFallback
+            ? 'Purchase failed. Please try again.'
+            : 'Satın alma başarısız. Lütfen tekrar deneyin.',
       );
 
       _analytics.logPurchase(
@@ -602,7 +614,11 @@ class PremiumNotifier extends Notifier<PremiumState> {
 
       if (!state.isPremium) {
         final isEn = StorageService.loadLanguage() == AppLanguage.en;
-        state = state.copyWith(errorMessage: isEn ? 'No purchases found to restore' : 'Geri yüklenecek satın alma bulunamadı');
+        state = state.copyWith(
+          errorMessage: isEn
+              ? 'No purchases found to restore'
+              : 'Geri yüklenecek satın alma bulunamadı',
+        );
       }
 
       return state.isPremium;
@@ -613,7 +629,9 @@ class PremiumNotifier extends Notifier<PremiumState> {
       final isEn = StorageService.loadLanguage() == AppLanguage.en;
       state = state.copyWith(
         isLoading: false,
-        errorMessage: isEn ? 'Restore failed. Please try again.' : 'Geri yükleme başarısız. Lütfen tekrar deneyin.',
+        errorMessage: isEn
+            ? 'Restore failed. Please try again.'
+            : 'Geri yükleme başarısız. Lütfen tekrar deneyin.',
       );
       return false;
     }

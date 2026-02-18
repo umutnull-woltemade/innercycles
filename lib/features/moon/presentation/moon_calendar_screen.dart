@@ -22,8 +22,7 @@ class MoonCalendarScreen extends ConsumerStatefulWidget {
   const MoonCalendarScreen({super.key});
 
   @override
-  ConsumerState<MoonCalendarScreen> createState() =>
-      _MoonCalendarScreenState();
+  ConsumerState<MoonCalendarScreen> createState() => _MoonCalendarScreenState();
 }
 
 class _MoonCalendarScreenState extends ConsumerState<MoonCalendarScreen> {
@@ -36,8 +35,12 @@ class _MoonCalendarScreenState extends ConsumerState<MoonCalendarScreen> {
     final now = DateTime.now();
     _currentMonth = DateTime(now.year, now.month, 1);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('moonCalendar'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('moonCalendar', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('moonCalendar'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData((s) => s.trackToolOpen('moonCalendar', source: 'direct'));
     });
   }
 
@@ -56,79 +59,76 @@ class _MoonCalendarScreenState extends ConsumerState<MoonCalendarScreen> {
         child: SafeArea(
           child: CupertinoScrollbar(
             child: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            slivers: [
-              GlassSliverAppBar(
-                title: isEn ? 'Moon Calendar' : 'Ay Takvimi',
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
               ),
-              SliverPadding(
-                padding: const EdgeInsets.all(16),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    // Month navigator
-                    _MonthNavigator(
-                      month: _currentMonth,
-                      isEn: isEn,
-                      isDark: isDark,
-                      onPrevious: () => setState(() {
-                        _currentMonth = DateTime(
-                          _currentMonth.year,
-                          _currentMonth.month - 1,
-                          1,
-                        );
-                        _selectedDay = null;
-                      }),
-                      onNext: () => setState(() {
-                        _currentMonth = DateTime(
-                          _currentMonth.year,
-                          _currentMonth.month + 1,
-                          1,
-                        );
-                        _selectedDay = null;
-                      }),
-                    ),
-                    const SizedBox(height: 16),
-
-                    // Day headers
-                    _DayHeaders(isEn: isEn, isDark: isDark),
-                    const SizedBox(height: 8),
-
-                    // Calendar grid
-                    _CalendarGrid(
-                      phases: phases,
-                      month: _currentMonth,
-                      selectedDay: _selectedDay,
-                      isDark: isDark,
-                      onDayTap: (data) =>
-                          setState(() => _selectedDay = data),
-                    ),
-                    const SizedBox(height: 20),
-
-                    // Selected day detail
-                    if (_selectedDay != null)
-                      _DayDetail(
-                        data: _selectedDay!,
-                        isDark: isDark,
+              slivers: [
+                GlassSliverAppBar(title: isEn ? 'Moon Calendar' : 'Ay Takvimi'),
+                SliverPadding(
+                  padding: const EdgeInsets.all(16),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate([
+                      // Month navigator
+                      _MonthNavigator(
+                        month: _currentMonth,
                         isEn: isEn,
+                        isDark: isDark,
+                        onPrevious: () => setState(() {
+                          _currentMonth = DateTime(
+                            _currentMonth.year,
+                            _currentMonth.month - 1,
+                            1,
+                          );
+                          _selectedDay = null;
+                        }),
+                        onNext: () => setState(() {
+                          _currentMonth = DateTime(
+                            _currentMonth.year,
+                            _currentMonth.month + 1,
+                            1,
+                          );
+                          _selectedDay = null;
+                        }),
                       ),
+                      const SizedBox(height: 16),
 
-                    // Today's phase highlight
-                    if (_selectedDay == null)
-                      _TodayPhase(isDark: isDark, isEn: isEn),
+                      // Day headers
+                      _DayHeaders(isEn: isEn, isDark: isDark),
+                      const SizedBox(height: 8),
 
-                    ToolEcosystemFooter(
-                      currentToolId: 'moonCalendar',
-                      isEn: isEn,
-                      isDark: isDark,
-                    ),
-                    const SizedBox(height: 40),
-                  ]),
+                      // Calendar grid
+                      _CalendarGrid(
+                        phases: phases,
+                        month: _currentMonth,
+                        selectedDay: _selectedDay,
+                        isDark: isDark,
+                        onDayTap: (data) => setState(() => _selectedDay = data),
+                      ),
+                      const SizedBox(height: 20),
+
+                      // Selected day detail
+                      if (_selectedDay != null)
+                        _DayDetail(
+                          data: _selectedDay!,
+                          isDark: isDark,
+                          isEn: isEn,
+                        ),
+
+                      // Today's phase highlight
+                      if (_selectedDay == null)
+                        _TodayPhase(isDark: isDark, isEn: isEn),
+
+                      ToolEcosystemFooter(
+                        currentToolId: 'moonCalendar',
+                        isEn: isEn,
+                        isDark: isDark,
+                      ),
+                      const SizedBox(height: 40),
+                    ]),
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
           ),
         ),
       ),
@@ -157,12 +157,32 @@ class _MonthNavigator extends StatelessWidget {
   Widget build(BuildContext context) {
     final monthNames = isEn
         ? [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December'
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
           ]
         : [
-            'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-            'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
+            'Ocak',
+            'Şubat',
+            'Mart',
+            'Nisan',
+            'Mayıs',
+            'Haziran',
+            'Temmuz',
+            'Ağustos',
+            'Eylül',
+            'Ekim',
+            'Kasım',
+            'Aralık',
           ];
 
     return Row(
@@ -173,7 +193,9 @@ class _MonthNavigator extends StatelessWidget {
           onPressed: onPrevious,
           icon: Icon(
             Icons.chevron_left,
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+            color: isDark
+                ? AppColors.textSecondary
+                : AppColors.lightTextSecondary,
           ),
         ),
         Text(
@@ -189,7 +211,9 @@ class _MonthNavigator extends StatelessWidget {
           onPressed: onNext,
           icon: Icon(
             Icons.chevron_right,
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+            color: isDark
+                ? AppColors.textSecondary
+                : AppColors.lightTextSecondary,
           ),
         ),
       ],
@@ -211,20 +235,22 @@ class _DayHeaders extends StatelessWidget {
 
     return Row(
       children: days
-          .map((d) => Expanded(
-                child: Center(
-                  child: Text(
-                    d,
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w600,
-                      color: isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
-                    ),
+          .map(
+            (d) => Expanded(
+              child: Center(
+                child: Text(
+                  d,
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                   ),
                 ),
-              ))
+              ),
+            ),
+          )
           .toList(),
     );
   }
@@ -248,8 +274,7 @@ class _CalendarGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firstWeekday = month.weekday; // 1=Mon
-    final daysInMonth =
-        DateTime(month.year, month.month + 1, 0).day;
+    final daysInMonth = DateTime(month.year, month.month + 1, 0).day;
     final totalCells = ((firstWeekday - 1 + daysInMonth) / 7).ceil() * 7;
     final today = DateTime.now();
 
@@ -269,13 +294,13 @@ class _CalendarGrid extends StatelessWidget {
         }
 
         final dayNum = dayOffset + 1;
-        final phaseData = dayOffset < phases.length
-            ? phases[dayOffset]
-            : null;
-        final isToday = today.year == month.year &&
+        final phaseData = dayOffset < phases.length ? phases[dayOffset] : null;
+        final isToday =
+            today.year == month.year &&
             today.month == month.month &&
             today.day == dayNum;
-        final isSelected = selectedDay?.date.day == dayNum &&
+        final isSelected =
+            selectedDay?.date.day == dayNum &&
             selectedDay?.date.month == month.month;
 
         return GestureDetector(
@@ -285,16 +310,16 @@ class _CalendarGrid extends StatelessWidget {
               color: isSelected
                   ? AppColors.moonSilver.withValues(alpha: 0.15)
                   : isToday
-                      ? AppColors.starGold.withValues(alpha: 0.1)
-                      : null,
+                  ? AppColors.starGold.withValues(alpha: 0.1)
+                  : null,
               borderRadius: BorderRadius.circular(8),
               border: isToday
-                  ? Border.all(
-                      color: AppColors.starGold.withValues(alpha: 0.4))
+                  ? Border.all(color: AppColors.starGold.withValues(alpha: 0.4))
                   : isSelected
-                      ? Border.all(
-                          color: AppColors.moonSilver.withValues(alpha: 0.4))
-                      : null,
+                  ? Border.all(
+                      color: AppColors.moonSilver.withValues(alpha: 0.4),
+                    )
+                  : null,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -307,8 +332,8 @@ class _CalendarGrid extends StatelessWidget {
                     color: isToday
                         ? AppColors.starGold
                         : (isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary),
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary),
                   ),
                 ),
                 if (phaseData != null)
@@ -349,15 +374,10 @@ class _DayDetail extends StatelessWidget {
                   AppColors.surfaceDark.withValues(alpha: 0.9),
                   AppColors.cosmicPurple.withValues(alpha: 0.8),
                 ]
-              : [
-                  AppColors.lightCard,
-                  AppColors.lightSurfaceVariant,
-                ],
+              : [AppColors.lightCard, AppColors.lightSurfaceVariant],
         ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.moonSilver.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: AppColors.moonSilver.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

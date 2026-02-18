@@ -210,7 +210,8 @@ class PsikolojikRuyaTemalari {
       description:
           'Rüyalar, duygusal durumumuzu yansıtma eğilimindedir. Uyku döngüleri ve uyku kalitesi rüya yoğunluğunu etkileyebilir.',
       themeDetails: {
-        'Cesaret & Eylem': 'Aksiyon rüyaları, mücadele, rekabet, cesaret temaları',
+        'Cesaret & Eylem':
+            'Aksiyon rüyaları, mücadele, rekabet, cesaret temaları',
         'Güvenlik & Konfor': 'Doğa, yemek, konfor, maddi güvenlik rüyaları',
         'İletişim & Bağlantı': 'İletişim, yolculuk, çokluk rüyaları',
         'Aile & Yuva': 'Ev, aile, anne, su, duygusal yoğun rüyalar',
@@ -221,7 +222,8 @@ class PsikolojikRuyaTemalari {
         'Keşif & Anlam': 'Seyahat, felsefe, eğitim, yabancı kültür temaları',
         'Hedef & Yapı': 'Kariyer, otorite, yapı, baba figürü temaları',
         'Yenilik & Vizyon': 'Grup, teknoloji, gelecek, sıra dışı temalar',
-        'Sezgi & Hayal Gücü': 'Sezgisel, derin, su, kaybolma, sezgisel mesajlar',
+        'Sezgi & Hayal Gücü':
+            'Sezgisel, derin, su, kaybolma, sezgisel mesajlar',
       },
       notes:
           'Uyku kalitesi yüksek olduğunda rüyalar daha canlı hatırlanabilir. Derin uyku dönemlerinde rüya hatırlama azalabilir.',
@@ -330,9 +332,7 @@ class PsikolojikRuyaTemalari {
       emoji: '🦂',
       description:
           'Dönüşüm ve yeniden doğuş temaları, hayatımızdaki derin değişim süreçlerini yansıtabilir.',
-      themeDetails: {
-        'Genel': 'Dönüşüm, yılan, yeraltı, hazine rüyaları',
-      },
+      themeDetails: {'Genel': 'Dönüşüm, yılan, yeraltı, hazine rüyaları'},
       notes:
           'Yoğun değişim dönemlerinde kâbuslar artabilir, ancak bunlar derin bir şifa süreci taşıyabilir.',
     ),

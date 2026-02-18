@@ -51,8 +51,9 @@ class ContextModuleService {
     final readIds = _getReadHistory();
 
     // Prefer unread modules
-    final unread =
-        allContextModules.where((m) => !readIds.contains(m.id)).toList();
+    final unread = allContextModules
+        .where((m) => !readIds.contains(m.id))
+        .toList();
     final pool = unread.isNotEmpty ? unread : allContextModules;
 
     final index = dayHash % pool.length;
@@ -105,8 +106,9 @@ class ContextModuleService {
   /// Get a random unread module. Returns any random module if all are read.
   ContextModule getRandomUnread() {
     final readIds = _getReadHistory();
-    final unread =
-        allContextModules.where((m) => !readIds.contains(m.id)).toList();
+    final unread = allContextModules
+        .where((m) => !readIds.contains(m.id))
+        .toList();
     final pool = unread.isNotEmpty ? unread : allContextModules;
     return pool[Random().nextInt(pool.length)];
   }
@@ -169,9 +171,7 @@ class ContextModuleService {
   /// Get all bookmarked modules
   List<ContextModule> getBookmarked() {
     final bookmarkIds = _getBookmarkIds();
-    return allContextModules
-        .where((m) => bookmarkIds.contains(m.id))
-        .toList();
+    return allContextModules.where((m) => bookmarkIds.contains(m.id)).toList();
   }
 
   Set<String> _getBookmarkIds() {

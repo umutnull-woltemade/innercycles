@@ -92,21 +92,21 @@ class Affirmation {
   });
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'textEn': textEn,
-        'textTr': textTr,
-        'category': category.name,
-      };
+    'id': id,
+    'textEn': textEn,
+    'textTr': textTr,
+    'category': category.name,
+  };
 
   factory Affirmation.fromJson(Map<String, dynamic> json) => Affirmation(
-        id: json['id'],
-        textEn: json['textEn'],
-        textTr: json['textTr'],
-        category: AffirmationCategory.values.firstWhere(
-          (c) => c.name == json['category'],
-          orElse: () => AffirmationCategory.selfWorth,
-        ),
-      );
+    id: json['id'],
+    textEn: json['textEn'],
+    textTr: json['textTr'],
+    category: AffirmationCategory.values.firstWhere(
+      (c) => c.name == json['category'],
+      orElse: () => AffirmationCategory.selfWorth,
+    ),
+  );
 }
 
 // ════════════════════════════════════════════════════════════════
@@ -147,8 +147,10 @@ class AffirmationService {
     // Check engagement weights for category-aware selection
     final engagement = _getEngagementMap();
     if (engagement.isNotEmpty) {
-      final totalEngagement =
-          engagement.values.fold<int>(0, (sum, v) => sum + v);
+      final totalEngagement = engagement.values.fold<int>(
+        0,
+        (sum, v) => sum + v,
+      );
       if (totalEngagement > 3) {
         // Enough data to bias
         return _weightedSelection(dayHash, engagement, totalEngagement);
@@ -180,8 +182,9 @@ class AffirmationService {
 
     final selectedCategory =
         weightedCategories[rng.nextInt(weightedCategories.length)];
-    final categoryAffirmations =
-        _allAffirmations.where((a) => a.category == selectedCategory).toList();
+    final categoryAffirmations = _allAffirmations
+        .where((a) => a.category == selectedCategory)
+        .toList();
     if (categoryAffirmations.isEmpty) {
       if (_allAffirmations.isEmpty) return _defaultAffirmation;
       return _allAffirmations.first;
@@ -198,8 +201,9 @@ class AffirmationService {
   Affirmation getAffirmationForCategory(AffirmationCategory category) {
     final now = DateTime.now();
     final dayHash = now.year * 10000 + now.month * 100 + now.day;
-    final categoryAffirmations =
-        _allAffirmations.where((a) => a.category == category).toList();
+    final categoryAffirmations = _allAffirmations
+        .where((a) => a.category == category)
+        .toList();
     if (categoryAffirmations.isEmpty) {
       if (_allAffirmations.isEmpty) return _defaultAffirmation;
       return _allAffirmations.first;
@@ -244,9 +248,7 @@ class AffirmationService {
   /// Get all favorited affirmations
   List<Affirmation> getFavorites() {
     final favoriteIds = _getFavoriteIds();
-    return _allAffirmations
-        .where((a) => favoriteIds.contains(a.id))
-        .toList();
+    return _allAffirmations.where((a) => favoriteIds.contains(a.id)).toList();
   }
 
   Set<String> _getFavoriteIds() {

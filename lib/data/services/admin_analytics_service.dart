@@ -113,12 +113,14 @@ class AdminAnalyticsService {
     final results = <EventLog>[];
     for (final e in _getEvents()) {
       try {
-        results.add(EventLog(
-          name: e['name'] as String? ?? '',
-          count: e['count'] as int? ?? 0,
-          lastFired: DateTime.parse(e['lastFired'] as String),
-          firstFired: DateTime.parse(e['firstFired'] as String),
-        ));
+        results.add(
+          EventLog(
+            name: e['name'] as String? ?? '',
+            count: e['count'] as int? ?? 0,
+            lastFired: DateTime.parse(e['lastFired'] as String),
+            firstFired: DateTime.parse(e['firstFired'] as String),
+          ),
+        );
       } catch (_) {
         // Skip corrupted event entries
       }

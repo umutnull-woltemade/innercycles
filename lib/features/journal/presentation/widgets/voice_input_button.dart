@@ -115,8 +115,11 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
     if (!isPremium) {
       HapticFeedback.lightImpact();
       if (mounted) {
-        await showContextualPaywall(context, ref,
-            paywallContext: PaywallContext.general);
+        await showContextualPaywall(
+          context,
+          ref,
+          paywallContext: PaywallContext.general,
+        );
       }
       return;
     }
@@ -132,9 +135,7 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
     if (_isListening) {
       await service.stopListening();
     } else {
-      final started = await service.startListening(
-        localeId: widget.localeId,
-      );
+      final started = await service.startListening(localeId: widget.localeId);
       if (!started && mounted) {
         _showError(_getPermissionMessage());
       }
@@ -236,11 +237,7 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
                       width: 1.5,
                     ),
                   ),
-                  child: const Icon(
-                    Icons.lock,
-                    size: 9,
-                    color: Colors.white,
-                  ),
+                  child: const Icon(Icons.lock, size: 9, color: Colors.white),
                 ),
               ),
             ],
@@ -258,8 +255,8 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
     final bgColor = _isListening
         ? AppColors.error.withValues(alpha: 0.15)
         : (isDark
-            ? AppColors.surfaceLight.withValues(alpha: 0.5)
-            : AppColors.lightSurfaceVariant);
+              ? AppColors.surfaceLight.withValues(alpha: 0.5)
+              : AppColors.lightSurfaceVariant);
 
     final language = ref.read(languageProvider);
     final isEn = language == AppLanguage.en;

@@ -86,8 +86,8 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
           color: _isExpanded
               ? AppColors.success.withValues(alpha: 0.3)
               : (isDark
-                  ? Colors.white.withValues(alpha: 0.15)
-                  : Colors.black.withValues(alpha: 0.05)),
+                    ? Colors.white.withValues(alpha: 0.15)
+                    : Colors.black.withValues(alpha: 0.05)),
         ),
       ),
       child: Column(
@@ -222,9 +222,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                         border: InputBorder.none,
                         counterText: '',
                         isDense: true,
-                        contentPadding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                        ),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 8),
                       ),
                       onChanged: (_) => _autoSave(service),
                     ),
@@ -245,10 +243,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
               icon: Icon(Icons.add, size: 18, color: AppColors.success),
               label: Text(
                 isEn ? 'Add another' : 'Bir tane daha ekle',
-                style: TextStyle(
-                  fontSize: 13,
-                  color: AppColors.success,
-                ),
+                style: TextStyle(fontSize: 13, color: AppColors.success),
               ),
             ),
 
@@ -262,21 +257,14 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
               ),
               child: Row(
                 children: [
-                  Icon(
-                    Icons.auto_awesome,
-                    size: 16,
-                    color: AppColors.starGold,
-                  ),
+                  Icon(Icons.auto_awesome, size: 16, color: AppColors.starGold),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       isEn
                           ? 'Premium: Add up to 3 gratitude items + theme analysis'
                           : 'Premium: 3 şükran maddesi + tema analizi',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: AppColors.starGold,
-                      ),
+                      style: TextStyle(fontSize: 12, color: AppColors.starGold),
                     ),
                   ),
                 ],
@@ -346,9 +334,7 @@ class _GratitudeSummaryContent extends StatelessWidget {
             ? AppColors.success.withValues(alpha: 0.08)
             : AppColors.success.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.success.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: AppColors.success.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -358,9 +344,7 @@ class _GratitudeSummaryContent extends StatelessWidget {
               Icon(Icons.favorite_rounded, size: 18, color: AppColors.success),
               const SizedBox(width: 8),
               Text(
-                isEn
-                    ? 'This Week\'s Gratitude'
-                    : 'Bu Haftanın Şükranı',
+                isEn ? 'This Week\'s Gratitude' : 'Bu Haftanın Şükranı',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -398,10 +382,7 @@ class _GratitudeSummaryContent extends StatelessWidget {
                   ),
                   child: Text(
                     theme,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: AppColors.success,
-                    ),
+                    style: TextStyle(fontSize: 12, color: AppColors.success),
                   ),
                 );
               }).toList(),

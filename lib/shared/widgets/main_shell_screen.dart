@@ -19,10 +19,7 @@ import '../../data/services/premium_service.dart';
 class MainShellScreen extends ConsumerStatefulWidget {
   final StatefulNavigationShell navigationShell;
 
-  const MainShellScreen({
-    super.key,
-    required this.navigationShell,
-  });
+  const MainShellScreen({super.key, required this.navigationShell});
 
   @override
   ConsumerState<MainShellScreen> createState() => _MainShellScreenState();
@@ -59,9 +56,9 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
   void _onTabTapped(int index) {
     final from = widget.navigationShell.currentIndex;
     if (from != index) {
-      ref.read(ecosystemAnalyticsServiceProvider).whenData(
-        (s) => s.trackTabSwitch(from, index),
-      );
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData((s) => s.trackTabSwitch(from, index));
     }
     widget.navigationShell.goBranch(
       index,
@@ -103,10 +100,12 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
           type: BottomNavigationBarType.fixed,
           elevation: 0,
           backgroundColor: Colors.transparent,
-          selectedItemColor:
-              isDark ? AppColors.starGold : AppColors.lightStarGold,
-          unselectedItemColor:
-              isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          selectedItemColor: isDark
+              ? AppColors.starGold
+              : AppColors.lightStarGold,
+          unselectedItemColor: isDark
+              ? AppColors.textMuted
+              : AppColors.lightTextMuted,
           selectedFontSize: 11,
           unselectedFontSize: 11,
           enableFeedback: false,

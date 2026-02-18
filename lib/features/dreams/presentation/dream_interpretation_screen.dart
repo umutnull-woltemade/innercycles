@@ -39,7 +39,6 @@ class _DreamInterpretationScreenState
   bool _isTyping = false;
   late AnimationController _pulseController;
 
-
   // Suggested dream prompts - i18n method
   List<Map<String, dynamic>> _getSuggestedDreamPrompts(AppLanguage language) {
     return [
@@ -468,8 +467,14 @@ class _DreamInterpretationScreenState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('dreamInterpretation'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('dreamInterpretation', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('dreamInterpretation'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData(
+            (s) => s.trackToolOpen('dreamInterpretation', source: 'direct'),
+          );
     });
     _pulseController = AnimationController(
       vsync: this,
@@ -560,9 +565,13 @@ class _DreamInterpretationScreenState
     final perspectiveCount = result.perspectiveCount;
 
     // Check first-taste: first full interpretation is free
-    final firstTaste = ref.read(firstTasteServiceProvider).whenOrNull(data: (s) => s);
-    final allowFirstTaste = firstTaste?.shouldAllowFree(
-            FirstTasteFeature.fullDreamInterpretation) ??
+    final firstTaste = ref
+        .read(firstTasteServiceProvider)
+        .whenOrNull(data: (s) => s);
+    final allowFirstTaste =
+        firstTaste?.shouldAllowFree(
+          FirstTasteFeature.fullDreamInterpretation,
+        ) ??
         false;
 
     // For free users with multiple perspectives, show only the first perspective
@@ -594,8 +603,16 @@ class _DreamInterpretationScreenState
     });
 
     // Track output for SmartRouter intelligence
-    ref.read(smartRouterServiceProvider).whenData((s) => s.recordOutput('dreamInterpretation', 'interpretation'));
-    ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOutput('dreamInterpretation', 'interpretation'));
+    ref
+        .read(smartRouterServiceProvider)
+        .whenData(
+          (s) => s.recordOutput('dreamInterpretation', 'interpretation'),
+        );
+    ref
+        .read(ecosystemAnalyticsServiceProvider)
+        .whenData(
+          (s) => s.trackToolOutput('dreamInterpretation', 'interpretation'),
+        );
 
     _scrollToBottom();
   }
@@ -1546,7 +1563,10 @@ $cosmicLabel
 $cosmicMessage''';
   }
 
-  String _getGenericInterpretation(archetype.PersonalityArchetype sign, String dreamText) {
+  String _getGenericInterpretation(
+    archetype.PersonalityArchetype sign,
+    String dreamText,
+  ) {
     final language = ref.read(languageProvider);
     final signName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
@@ -1692,7 +1712,10 @@ ${_getPersonalAdvice(sign)}''';
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [AppColors.amethyst.withValues(alpha: 0.3), Colors.transparent],
+          colors: [
+            AppColors.amethyst.withValues(alpha: 0.3),
+            Colors.transparent,
+          ],
         ),
       ),
       child: Row(
@@ -1701,7 +1724,9 @@ ${_getPersonalAdvice(sign)}''';
             onPressed: () => context.pop(),
             icon: Icon(
               Icons.chevron_left,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
           const SizedBox(width: 8),
@@ -1749,7 +1774,9 @@ ${_getPersonalAdvice(sign)}''';
                     ref.watch(languageProvider),
                   ),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -1759,7 +1786,9 @@ ${_getPersonalAdvice(sign)}''';
                     ref.watch(languageProvider),
                   ),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
                   ),
                 ),
               ],
@@ -1782,7 +1811,9 @@ ${_getPersonalAdvice(sign)}''';
   Widget _buildChatArea(bool isDark) {
     return ListView.builder(
       controller: _scrollController,
-      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       padding: const EdgeInsets.all(16),
       itemCount:
           _messages.length +
@@ -1825,24 +1856,31 @@ ${_getPersonalAdvice(sign)}''';
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
-                    color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
                   ),
                 ),
               ],
             ),
           ),
-          Builder(builder: (context) {
-            final prompts = _getSuggestedDreamPrompts(ref.read(languageProvider));
-            return SizedBox(
-              height: 110,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                itemCount: prompts.length,
-                itemBuilder: (context, index) {
-                  if (index >= prompts.length) return const SizedBox.shrink();
-                  final prompt = prompts[index];
-                return Padding(
+          Builder(
+            builder: (context) {
+              final prompts = _getSuggestedDreamPrompts(
+                ref.read(languageProvider),
+              );
+              return SizedBox(
+                height: 110,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
+                  ),
+                  itemCount: prompts.length,
+                  itemBuilder: (context, index) {
+                    if (index >= prompts.length) return const SizedBox.shrink();
+                    final prompt = prompts[index];
+                    return Padding(
                       padding: const EdgeInsets.only(right: 10),
                       child: InkWell(
                         onTap: () {
@@ -1869,7 +1907,9 @@ ${_getPersonalAdvice(sign)}''';
                                   prompt['text'],
                                   style: TextStyle(
                                     fontSize: 11,
-                                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                                    color: isDark
+                                        ? AppColors.textPrimary
+                                        : AppColors.lightTextPrimary,
                                     height: 1.3,
                                   ),
                                   maxLines: 3,
@@ -1880,12 +1920,12 @@ ${_getPersonalAdvice(sign)}''';
                           ),
                         ),
                       ),
-                    )
-                    .glassListItem(context: context, index: index);
-                },
-              ),
-            );
-          }),
+                    ).glassListItem(context: context, index: index);
+                  },
+                ),
+              );
+            },
+          ),
           const SizedBox(height: 8),
           Center(
             child: Text(
@@ -1913,129 +1953,130 @@ ${_getPersonalAdvice(sign)}''';
     final isEn = language == AppLanguage.en;
 
     return Padding(
-          padding: const EdgeInsets.only(bottom: 12),
-          child: Column(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: isUser
+                ? MainAxisAlignment.end
+                : MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: isUser
-                    ? MainAxisAlignment.end
-                    : MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (!isUser) ...[
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            AppColors.amethyst.withValues(alpha: 0.5),
-                            AppColors.nebulaPurple.withValues(alpha: 0.3),
-                          ],
-                        ),
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Text(
-                        '\u{1F319}',
-                        style: TextStyle(fontSize: 18),
-                      ),
+              if (!isUser) ...[
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        AppColors.amethyst.withValues(alpha: 0.5),
+                        AppColors.nebulaPurple.withValues(alpha: 0.3),
+                      ],
                     ),
-                    const SizedBox(width: 8),
-                  ],
-                  Flexible(
-                    child: GlassPanel(
-                      elevation: isUser ? GlassElevation.g2 : GlassElevation.g2,
-                      borderRadius: BorderRadius.only(
-                        topLeft: const Radius.circular(18),
-                        topRight: const Radius.circular(18),
-                        bottomLeft: Radius.circular(isUser ? 18 : 4),
-                        bottomRight: Radius.circular(isUser ? 4 : 18),
-                      ),
-                      padding: const EdgeInsets.all(14),
-                      glowColor: isUser
-                          ? AppColors.cosmicPurple.withValues(alpha: 0.2)
-                          : AppColors.amethyst.withValues(alpha: 0.2),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (message.isInterpretation) ...[
-                            Row(
-                              children: [
-                                const Text(
-                                  '\u{2728}',
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                                const SizedBox(width: 6),
-                                Text(
-                                  L10nService.get(
-                                    'widgets.dreams.interpretation_label',
-                                    language,
-                                  ),
-                                  style: Theme.of(context).textTheme.labelSmall
-                                      ?.copyWith(
-                                        color: AppColors.starGold,
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: 1,
-                                      ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                          ],
-                          if (message.isQuestion) ...[
-                            Row(
-                              children: [
-                                const Text(
-                                  '\u{2753}',
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  L10nService.get(
-                                    'widgets.dreams.question_label',
-                                    language,
-                                  ),
-                                  style: Theme.of(context).textTheme.labelSmall
-                                      ?.copyWith(
-                                        color: AppColors.amethyst,
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: 1,
-                                      ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 4),
-                          ],
-                          Text(
-                            message.text,
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                              height: 1.5,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    shape: BoxShape.circle,
                   ),
-                  if (isUser) const SizedBox(width: 8),
-                ],
-              ),
-              // Premium lock card for locked perspectives
-              if (message.lockedPerspectiveCount > 0) ...[
-                const SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.only(left: 42),
-                  child: _buildLockedPerspectivesCard(
-                    message.lockedPerspectiveCount,
-                    isEn,
-                    isDark,
+                  child: const Text(
+                    '\u{1F319}',
+                    style: TextStyle(fontSize: 18),
                   ),
                 ),
+                const SizedBox(width: 8),
               ],
+              Flexible(
+                child: GlassPanel(
+                  elevation: isUser ? GlassElevation.g2 : GlassElevation.g2,
+                  borderRadius: BorderRadius.only(
+                    topLeft: const Radius.circular(18),
+                    topRight: const Radius.circular(18),
+                    bottomLeft: Radius.circular(isUser ? 18 : 4),
+                    bottomRight: Radius.circular(isUser ? 4 : 18),
+                  ),
+                  padding: const EdgeInsets.all(14),
+                  glowColor: isUser
+                      ? AppColors.cosmicPurple.withValues(alpha: 0.2)
+                      : AppColors.amethyst.withValues(alpha: 0.2),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (message.isInterpretation) ...[
+                        Row(
+                          children: [
+                            const Text(
+                              '\u{2728}',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                            const SizedBox(width: 6),
+                            Text(
+                              L10nService.get(
+                                'widgets.dreams.interpretation_label',
+                                language,
+                              ),
+                              style: Theme.of(context).textTheme.labelSmall
+                                  ?.copyWith(
+                                    color: AppColors.starGold,
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: 1,
+                                  ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                      ],
+                      if (message.isQuestion) ...[
+                        Row(
+                          children: [
+                            const Text(
+                              '\u{2753}',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              L10nService.get(
+                                'widgets.dreams.question_label',
+                                language,
+                              ),
+                              style: Theme.of(context).textTheme.labelSmall
+                                  ?.copyWith(
+                                    color: AppColors.amethyst,
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: 1,
+                                  ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 4),
+                      ],
+                      Text(
+                        message.text,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                          height: 1.5,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              if (isUser) const SizedBox(width: 8),
             ],
           ),
-        )
-        .glassListItem(context: context, index: index);
+          // Premium lock card for locked perspectives
+          if (message.lockedPerspectiveCount > 0) ...[
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.only(left: 42),
+              child: _buildLockedPerspectivesCard(
+                message.lockedPerspectiveCount,
+                isEn,
+                isDark,
+              ),
+            ),
+          ],
+        ],
+      ),
+    ).glassListItem(context: context, index: index);
   }
 
   Widget _buildLockedPerspectivesCard(int lockedCount, bool isEn, bool isDark) {
@@ -2111,7 +2152,9 @@ ${_getPersonalAdvice(sign)}''';
                           : '$lockedCount perspektif daha mevcut',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: isDark ? Colors.white : AppColors.lightTextPrimary,
+                        color: isDark
+                            ? Colors.white
+                            : AppColors.lightTextPrimary,
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                       ),
@@ -2143,12 +2186,17 @@ ${_getPersonalAdvice(sign)}''';
                         ),
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
-                            colors: [AppColors.mediumSlateBlue, AppColors.amethyst],
+                            colors: [
+                              AppColors.mediumSlateBlue,
+                              AppColors.amethyst,
+                            ],
                           ),
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(
-                              color: AppColors.mediumSlateBlue.withValues(alpha: 0.4),
+                              color: AppColors.mediumSlateBlue.withValues(
+                                alpha: 0.4,
+                              ),
                               blurRadius: 12,
                               offset: const Offset(0, 4),
                             ),
@@ -2256,7 +2304,9 @@ ${_getPersonalAdvice(sign)}''';
                     child: TextField(
                       controller: _dreamController,
                       style: TextStyle(
-                        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
                       ),
                       maxLines: 5,
                       minLines: 1,
@@ -2269,7 +2319,9 @@ ${_getPersonalAdvice(sign)}''';
                         hintStyle: TextStyle(
                           color: isDark
                               ? AppColors.textSecondary.withValues(alpha: 0.6)
-                              : AppColors.lightTextSecondary.withValues(alpha: 0.6),
+                              : AppColors.lightTextSecondary.withValues(
+                                  alpha: 0.6,
+                                ),
                         ),
                         border: InputBorder.none,
                         contentPadding: const EdgeInsets.symmetric(
@@ -2513,7 +2565,9 @@ class _DreamSymbolsSheet extends ConsumerWidget {
                     language,
                   ),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -2534,47 +2588,52 @@ class _DreamSymbolsSheet extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final symbol = symbols[index];
                 return GlassPanel(
-                      elevation: GlassElevation.g2,
-                      borderRadius: BorderRadius.circular(14),
-                      padding: const EdgeInsets.all(12),
-                      child: Row(
-                        children: [
-                          Text(
-                            symbol['emoji'] ?? '',
-                            style: const TextStyle(fontSize: 28),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  symbol['name'] ?? '',
-                                  style: TextStyle(
-                                    color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13,
-                                  ),
-                                ),
-                                Text(
-                                  symbol['meaning'] ?? '',
-                                  style: TextStyle(
-                                    color: isDark
-                                        ? AppColors.textSecondary.withValues(alpha: 0.8)
-                                        : AppColors.lightTextSecondary.withValues(alpha: 0.8),
-                                    fontSize: 10,
-                                  ),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                  elevation: GlassElevation.g2,
+                  borderRadius: BorderRadius.circular(14),
+                  padding: const EdgeInsets.all(12),
+                  child: Row(
+                    children: [
+                      Text(
+                        symbol['emoji'] ?? '',
+                        style: const TextStyle(fontSize: 28),
                       ),
-                    )
-                    .glassListItem(context: context, index: index);
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              symbol['name'] ?? '',
+                              style: TextStyle(
+                                color: isDark
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                              ),
+                            ),
+                            Text(
+                              symbol['meaning'] ?? '',
+                              style: TextStyle(
+                                color: isDark
+                                    ? AppColors.textSecondary.withValues(
+                                        alpha: 0.8,
+                                      )
+                                    : AppColors.lightTextSecondary.withValues(
+                                        alpha: 0.8,
+                                      ),
+                                fontSize: 10,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ).glassListItem(context: context, index: index);
               },
             ),
           ),

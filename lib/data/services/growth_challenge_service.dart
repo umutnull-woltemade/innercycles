@@ -49,22 +49,23 @@ class ChallengeProgress {
     this.isCompleted = false,
   });
 
-  double get percent => targetCount > 0
-      ? (currentCount / targetCount).clamp(0, 1)
-      : 0;
+  double get percent =>
+      targetCount > 0 ? (currentCount / targetCount).clamp(0, 1) : 0;
 
   Map<String, dynamic> toJson() => {
-        'challengeId': challengeId,
-        'startedAt': startedAt.toIso8601String(),
-        'currentCount': currentCount,
-        'targetCount': targetCount,
-        'isCompleted': isCompleted,
-      };
+    'challengeId': challengeId,
+    'startedAt': startedAt.toIso8601String(),
+    'currentCount': currentCount,
+    'targetCount': targetCount,
+    'isCompleted': isCompleted,
+  };
 
   factory ChallengeProgress.fromJson(Map<String, dynamic> json) =>
       ChallengeProgress(
         challengeId: json['challengeId'] as String? ?? '',
-        startedAt: DateTime.tryParse(json['startedAt']?.toString() ?? '') ?? DateTime.now(),
+        startedAt:
+            DateTime.tryParse(json['startedAt']?.toString() ?? '') ??
+            DateTime.now(),
         currentCount: json['currentCount'] as int? ?? 0,
         targetCount: json['targetCount'] as int? ?? 1,
         isCompleted: json['isCompleted'] as bool? ?? false,
@@ -94,18 +95,130 @@ class GrowthChallengeService {
   // ══════════════════════════════════════════════════════════════════════════
 
   static const List<GrowthChallenge> allChallenges = [
-    GrowthChallenge(id: 'journal_7day', titleEn: '7-Day Streak', titleTr: '7 Günlük Seri', descriptionEn: 'Journal every day for 7 days straight', descriptionTr: '7 gün üst üste günlük yaz', emoji: '🔥', duration: ChallengeDuration.weekly, targetCount: 7),
-    GrowthChallenge(id: 'all_areas', titleEn: 'Explorer', titleTr: 'Kaşif', descriptionEn: 'Log entries in all 5 focus areas', descriptionTr: '5 odak alanının hepsinde kayıt oluştur', emoji: '🧭', duration: ChallengeDuration.weekly, targetCount: 5),
-    GrowthChallenge(id: 'gratitude_5', titleEn: 'Gratitude Week', titleTr: 'Şükran Haftası', descriptionEn: 'Write gratitude entries for 5 days', descriptionTr: '5 gün şükran girişi yaz', emoji: '🙏', duration: ChallengeDuration.weekly, targetCount: 5),
-    GrowthChallenge(id: 'morning_ritual', titleEn: 'Morning Person', titleTr: 'Sabah İnsanı', descriptionEn: 'Complete your morning ritual 7 days in a row', descriptionTr: '7 gün üst üste sabah ritüelini tamamla', emoji: '🌅', duration: ChallengeDuration.weekly, targetCount: 7),
-    GrowthChallenge(id: 'sleep_week', titleEn: 'Sleep Tracker', titleTr: 'Uyku Takipçisi', descriptionEn: 'Log your sleep quality for 7 nights', descriptionTr: '7 gece uyku kaliteni kaydet', emoji: '😴', duration: ChallengeDuration.weekly, targetCount: 7),
-    GrowthChallenge(id: 'notes_master', titleEn: 'Deep Diver', titleTr: 'Derin Dalışçı', descriptionEn: 'Write detailed notes on 5 entries', descriptionTr: '5 girişte detaylı not yaz', emoji: '📝', duration: ChallengeDuration.weekly, targetCount: 5),
-    GrowthChallenge(id: 'monthly_30', titleEn: '30-Day Warrior', titleTr: '30 Gün Savaşçısı', descriptionEn: 'Journal for 30 days in a month', descriptionTr: 'Bir ayda 30 gün günlük yaz', emoji: '⚔️', duration: ChallengeDuration.monthly, targetCount: 30, isPremium: true),
-    GrowthChallenge(id: 'pattern_seeker', titleEn: 'Pattern Seeker', titleTr: 'Kalıp Arayıcısı', descriptionEn: 'Check your patterns screen 7 times', descriptionTr: 'Kalıplar ekranını 7 kez kontrol et', emoji: '🔍', duration: ChallengeDuration.weekly, targetCount: 7),
-    GrowthChallenge(id: 'dream_week', titleEn: 'Dream Keeper', titleTr: 'Rüya Koruyucusu', descriptionEn: 'Record dreams for 5 nights', descriptionTr: '5 gece rüya kaydet', emoji: '🌙', duration: ChallengeDuration.weekly, targetCount: 5, isPremium: true),
-    GrowthChallenge(id: 'wellness_high', titleEn: 'Peak Wellness', titleTr: 'Doruk Sağlık', descriptionEn: 'Achieve a wellness score of 80+ for 3 days', descriptionTr: '3 gün 80+ sağlık skoru elde et', emoji: '💎', duration: ChallengeDuration.weekly, targetCount: 3, isPremium: true),
-    GrowthChallenge(id: 'breathing_5', titleEn: 'Breath Master', titleTr: 'Nefes Ustası', descriptionEn: 'Complete 5 breathing sessions', descriptionTr: '5 nefes egzersizi tamamla', emoji: '🌬️', duration: ChallengeDuration.weekly, targetCount: 5),
-    GrowthChallenge(id: 'share_3', titleEn: 'Social Butterfly', titleTr: 'Sosyal Kelebek', descriptionEn: 'Share 3 insight cards', descriptionTr: '3 içgörü kartı paylaş', emoji: '🦋', duration: ChallengeDuration.monthly, targetCount: 3, isPremium: true),
+    GrowthChallenge(
+      id: 'journal_7day',
+      titleEn: '7-Day Streak',
+      titleTr: '7 Günlük Seri',
+      descriptionEn: 'Journal every day for 7 days straight',
+      descriptionTr: '7 gün üst üste günlük yaz',
+      emoji: '🔥',
+      duration: ChallengeDuration.weekly,
+      targetCount: 7,
+    ),
+    GrowthChallenge(
+      id: 'all_areas',
+      titleEn: 'Explorer',
+      titleTr: 'Kaşif',
+      descriptionEn: 'Log entries in all 5 focus areas',
+      descriptionTr: '5 odak alanının hepsinde kayıt oluştur',
+      emoji: '🧭',
+      duration: ChallengeDuration.weekly,
+      targetCount: 5,
+    ),
+    GrowthChallenge(
+      id: 'gratitude_5',
+      titleEn: 'Gratitude Week',
+      titleTr: 'Şükran Haftası',
+      descriptionEn: 'Write gratitude entries for 5 days',
+      descriptionTr: '5 gün şükran girişi yaz',
+      emoji: '🙏',
+      duration: ChallengeDuration.weekly,
+      targetCount: 5,
+    ),
+    GrowthChallenge(
+      id: 'morning_ritual',
+      titleEn: 'Morning Person',
+      titleTr: 'Sabah İnsanı',
+      descriptionEn: 'Complete your morning ritual 7 days in a row',
+      descriptionTr: '7 gün üst üste sabah ritüelini tamamla',
+      emoji: '🌅',
+      duration: ChallengeDuration.weekly,
+      targetCount: 7,
+    ),
+    GrowthChallenge(
+      id: 'sleep_week',
+      titleEn: 'Sleep Tracker',
+      titleTr: 'Uyku Takipçisi',
+      descriptionEn: 'Log your sleep quality for 7 nights',
+      descriptionTr: '7 gece uyku kaliteni kaydet',
+      emoji: '😴',
+      duration: ChallengeDuration.weekly,
+      targetCount: 7,
+    ),
+    GrowthChallenge(
+      id: 'notes_master',
+      titleEn: 'Deep Diver',
+      titleTr: 'Derin Dalışçı',
+      descriptionEn: 'Write detailed notes on 5 entries',
+      descriptionTr: '5 girişte detaylı not yaz',
+      emoji: '📝',
+      duration: ChallengeDuration.weekly,
+      targetCount: 5,
+    ),
+    GrowthChallenge(
+      id: 'monthly_30',
+      titleEn: '30-Day Warrior',
+      titleTr: '30 Gün Savaşçısı',
+      descriptionEn: 'Journal for 30 days in a month',
+      descriptionTr: 'Bir ayda 30 gün günlük yaz',
+      emoji: '⚔️',
+      duration: ChallengeDuration.monthly,
+      targetCount: 30,
+      isPremium: true,
+    ),
+    GrowthChallenge(
+      id: 'pattern_seeker',
+      titleEn: 'Pattern Seeker',
+      titleTr: 'Kalıp Arayıcısı',
+      descriptionEn: 'Check your patterns screen 7 times',
+      descriptionTr: 'Kalıplar ekranını 7 kez kontrol et',
+      emoji: '🔍',
+      duration: ChallengeDuration.weekly,
+      targetCount: 7,
+    ),
+    GrowthChallenge(
+      id: 'dream_week',
+      titleEn: 'Dream Keeper',
+      titleTr: 'Rüya Koruyucusu',
+      descriptionEn: 'Record dreams for 5 nights',
+      descriptionTr: '5 gece rüya kaydet',
+      emoji: '🌙',
+      duration: ChallengeDuration.weekly,
+      targetCount: 5,
+      isPremium: true,
+    ),
+    GrowthChallenge(
+      id: 'wellness_high',
+      titleEn: 'Peak Wellness',
+      titleTr: 'Doruk Sağlık',
+      descriptionEn: 'Achieve a wellness score of 80+ for 3 days',
+      descriptionTr: '3 gün 80+ sağlık skoru elde et',
+      emoji: '💎',
+      duration: ChallengeDuration.weekly,
+      targetCount: 3,
+      isPremium: true,
+    ),
+    GrowthChallenge(
+      id: 'breathing_5',
+      titleEn: 'Breath Master',
+      titleTr: 'Nefes Ustası',
+      descriptionEn: 'Complete 5 breathing sessions',
+      descriptionTr: '5 nefes egzersizi tamamla',
+      emoji: '🌬️',
+      duration: ChallengeDuration.weekly,
+      targetCount: 5,
+    ),
+    GrowthChallenge(
+      id: 'share_3',
+      titleEn: 'Social Butterfly',
+      titleTr: 'Sosyal Kelebek',
+      descriptionEn: 'Share 3 insight cards',
+      descriptionTr: '3 içgörü kartı paylaş',
+      emoji: '🦋',
+      duration: ChallengeDuration.monthly,
+      targetCount: 3,
+      isPremium: true,
+    ),
   ];
 
   List<GrowthChallenge> getAvailable({bool isPremium = false}) {
@@ -118,7 +231,9 @@ class GrowthChallengeService {
   // ══════════════════════════════════════════════════════════════════════════
 
   Future<ChallengeProgress> startChallenge(String challengeId) async {
-    final challenge = allChallenges.where((c) => c.id == challengeId).firstOrNull;
+    final challenge = allChallenges
+        .where((c) => c.id == challengeId)
+        .firstOrNull;
     if (challenge == null) {
       return ChallengeProgress(
         challengeId: challengeId,
@@ -200,7 +315,6 @@ class GrowthChallengeService {
   }
 
   Future<void> _persistCompleted() async {
-    await _prefs.setString(
-        _completedKey, json.encode(_completedIds.toList()));
+    await _prefs.setString(_completedKey, json.encode(_completedIds.toList()));
   }
 }

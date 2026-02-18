@@ -145,8 +145,10 @@ const List<ContextModule> allContextModules = [
         'Research shows that people who can specifically name their emotions make better decisions and experience less prolonged distress.',
     whyItMattersTr:
         'Araştırmalar, duygularını spesifik olarak adlandırabilen kişilerin daha iyi kararlar aldığını ve daha az uzun süreli sıkıntı yaşadığını göstermektedir.',
-    screenshotLineEn: 'Emotions are messengers. The message matters more than the volume.',
-    screenshotLineTr: 'Duygular habercilerdir. Mesaj, ses seviyesinden daha önemlidir.',
+    screenshotLineEn:
+        'Emotions are messengers. The message matters more than the volume.',
+    screenshotLineTr:
+        'Duygular habercilerdir. Mesaj, ses seviyesinden daha önemlidir.',
     relatedFocusAreas: ['mood'],
     relatedModuleIds: ['el_002', 'sa_001'],
   ),
@@ -168,8 +170,10 @@ const List<ContextModule> allContextModules = [
         'When you track your mood over time, you start to see which environmental factors shape your baseline — and which ones you can actually change.',
     whyItMattersTr:
         'Ruh halinizi zaman içinde takip ettiğinizde, hangi çevresel faktörlerin temelinizi şekillendirdiğini ve hangilerini gerçekten değiştirebileceğinizi görmeye başlarsınız.',
-    screenshotLineEn: 'Emotions flash. Moods linger. Knowing which is which changes the response.',
-    screenshotLineTr: 'Duygular parlar. Ruh halleri kalır. Hangisinin hangisi olduğunu bilmek yanıtı değiştirir.',
+    screenshotLineEn:
+        'Emotions flash. Moods linger. Knowing which is which changes the response.',
+    screenshotLineTr:
+        'Duygular parlar. Ruh halleri kalır. Hangisinin hangisi olduğunu bilmek yanıtı değiştirir.',
     relatedFocusAreas: ['mood', 'energy'],
     relatedModuleIds: ['el_001', 'el_003'],
   ),
@@ -191,8 +195,10 @@ const List<ContextModule> allContextModules = [
         'Your journal entries become more useful over time when you practice granularity — patterns emerge that "good" and "bad" alone could never reveal.',
     whyItMattersTr:
         'Ayrıntı düzeyini pratik ettikçe günlük kayıtlarınız zamanla daha kullanışlı hale gelir — sadece "iyi" ve "kötü" ile asla ortaya çıkamayacak örüntüler belirir.',
-    screenshotLineEn: 'The word you choose to name a feeling can change how your brain processes it.',
-    screenshotLineTr: 'Bir duyguyu adlandırmak için seçtiğiniz kelime, beyninizin onu nasıl işlediğini değiştirebilir.',
+    screenshotLineEn:
+        'The word you choose to name a feeling can change how your brain processes it.',
+    screenshotLineTr:
+        'Bir duyguyu adlandırmak için seçtiğiniz kelime, beyninizin onu nasıl işlediğini değiştirebilir.',
     relatedFocusAreas: ['mood'],
     relatedModuleIds: ['el_001', 'el_002'],
   ),
@@ -214,8 +220,10 @@ const List<ContextModule> allContextModules = [
         'Connecting body sensations to emotions creates an early warning system that helps you respond before stress accumulates.',
     whyItMattersTr:
         'Beden duyumlarını duygulara bağlamak, stres birikmeden yanıt vermenize yardımcı olan bir erken uyarı sistemi oluşturur.',
-    screenshotLineEn: 'Your body notices stress before your mind does. Learn to listen.',
-    screenshotLineTr: 'Bedeniniz stresi zihninizden önce fark eder. Dinlemeyi öğrenin.',
+    screenshotLineEn:
+        'Your body notices stress before your mind does. Learn to listen.',
+    screenshotLineTr:
+        'Bedeniniz stresi zihninizden önce fark eder. Dinlemeyi öğrenin.',
     relatedFocusAreas: ['mood', 'health', 'energy'],
     relatedModuleIds: ['el_003', 'sa_002'],
   ),
@@ -237,8 +245,10 @@ const List<ContextModule> allContextModules = [
         'Acknowledging mixed emotions reduces internal conflict and helps you make decisions that honor all parts of your experience.',
     whyItMattersTr:
         'Karışık duyguları kabul etmek iç çatışmayı azaltır ve deneyiminizin tüm yönlerini onurlandıran kararlar vermenize yardımcı olur.',
-    screenshotLineEn: 'You do not have to pick one feeling. You can hold two truths at once.',
-    screenshotLineTr: 'Tek bir duygu seçmek zorunda değilsiniz. Aynı anda iki gerçeği tutabilirsiniz.',
+    screenshotLineEn:
+        'You do not have to pick one feeling. You can hold two truths at once.',
+    screenshotLineTr:
+        'Tek bir duygu seçmek zorunda değilsiniz. Aynı anda iki gerçeği tutabilirsiniz.',
     relatedFocusAreas: ['mood', 'social'],
     relatedModuleIds: ['el_003', 'el_006'],
   ),
@@ -260,8 +270,10 @@ const List<ContextModule> allContextModules = [
         'When you see a low-mood entry that lacks a clear trigger, check the previous day. Context from yesterday often explains today.',
     whyItMattersTr:
         'Net bir tetikleyicisi olmayan düşük ruh hali kaydı gördüğünüzde, önceki günü kontrol edin. Dünden gelen bağlam genellikle bugünü açıklar.',
-    screenshotLineEn: 'Sometimes today\'s mood is just yesterday\'s unfinished processing.',
-    screenshotLineTr: 'Bazen bugünün ruh hali sadece dünün tamamlanmamış işlemesidir.',
+    screenshotLineEn:
+        'Sometimes today\'s mood is just yesterday\'s unfinished processing.',
+    screenshotLineTr:
+        'Bazen bugünün ruh hali sadece dünün tamamlanmamış işlemesidir.',
     relatedFocusAreas: ['mood', 'energy'],
     relatedModuleIds: ['el_004', 'pr_001'],
   ),
@@ -288,7 +300,8 @@ const List<ContextModule> allContextModules = [
     whyItMattersTr:
         'Günlük tutmak dürüst olduğunda en iyi şekilde çalışır. Zorluklar hakkında yazma izni, daha sonra büyüme kayıtlarını mümkün kılan şeydir.',
     screenshotLineEn: 'Honest journaling beats forced positivity every time.',
-    screenshotLineTr: 'Dürüst günlük tutmak, zoraki pozitifliği her zaman yener.',
+    screenshotLineTr:
+        'Dürüst günlük tutmak, zoraki pozitifliği her zaman yener.',
     relatedFocusAreas: ['mood', 'productivity'],
     relatedModuleIds: ['mr_002', 'el_005'],
   ),
@@ -333,8 +346,10 @@ const List<ContextModule> allContextModules = [
         'Rewriting your stress narrative in your journal is not just venting — it is actively changing your physiological stress response.',
     whyItMattersTr:
         'Stres anlatınızı günlüğünüzde yeniden yazmak sadece dert dökmek değil — fizyolojik stres yanıtınızı aktif olarak değiştirmektir.',
-    screenshotLineEn: 'Stress is not the enemy. Your story about stress might be.',
-    screenshotLineTr: 'Stres düşman değil. Stres hakkındaki hikayeniz olabilir.',
+    screenshotLineEn:
+        'Stress is not the enemy. Your story about stress might be.',
+    screenshotLineTr:
+        'Stres düşman değil. Stres hakkındaki hikayeniz olabilir.',
     relatedFocusAreas: ['mood', 'energy', 'health'],
     relatedModuleIds: ['mr_004', 'el_001'],
   ),
@@ -356,8 +371,10 @@ const List<ContextModule> allContextModules = [
         'Noticing your energy patterns helps you place important decisions — and journaling — at times when your mind is freshest.',
     whyItMattersTr:
         'Enerji örüntülerinizi fark etmek, önemli kararları ve günlük yazmayı zihninizin en taze olduğu zamanlara yerleştirmenize yardımcı olur.',
-    screenshotLineEn: 'You do not lack willpower at 9 PM. You have spent it all by then.',
-    screenshotLineTr: 'Akşam 9\'da irade gücünüz eksik değil. O zamana kadar hepsini harcamışsınızdır.',
+    screenshotLineEn:
+        'You do not lack willpower at 9 PM. You have spent it all by then.',
+    screenshotLineTr:
+        'Akşam 9\'da irade gücünüz eksik değil. O zamana kadar hepsini harcamışsınızdır.',
     relatedFocusAreas: ['energy', 'productivity'],
     relatedModuleIds: ['mr_003', 'pr_003'],
   ),
@@ -379,8 +396,10 @@ const List<ContextModule> allContextModules = [
         'Looking back at journal entries from months ago often reveals growth you cannot see day-to-day.',
     whyItMattersTr:
         'Aylar önceki günlük kayıtlarına bakmak, günlük olarak göremediğiniz büyümeyi sıklıkla ortaya çıkarır.',
-    screenshotLineEn: 'You are not the same person you were six months ago. Your journal proves it.',
-    screenshotLineTr: 'Altı ay önceki aynı kişi değilsiniz. Günlüğünüz bunu kanıtlıyor.',
+    screenshotLineEn:
+        'You are not the same person you were six months ago. Your journal proves it.',
+    screenshotLineTr:
+        'Altı ay önceki aynı kişi değilsiniz. Günlüğünüz bunu kanıtlıyor.',
     relatedFocusAreas: ['mood', 'creativity'],
     relatedModuleIds: ['mr_002', 'sa_005'],
   ),
@@ -403,7 +422,8 @@ const List<ContextModule> allContextModules = [
     whyItMattersTr:
         'Odak örüntülerinizi takip etmek, en tatmin edici günlerinizin genellikle genişlik değil derinlik içerdiğini ortaya çıkarır.',
     screenshotLineEn: 'Depth beats breadth. Your best days prove it.',
-    screenshotLineTr: 'Derinlik genişliği yener. En iyi günleriniz bunu kanıtlar.',
+    screenshotLineTr:
+        'Derinlik genişliği yener. En iyi günleriniz bunu kanıtlar.',
     relatedFocusAreas: ['productivity', 'energy'],
     relatedModuleIds: ['mr_004', 'pr_004'],
   ),
@@ -429,8 +449,10 @@ const List<ContextModule> allContextModules = [
         'Knowing your weekly rhythm lets you plan ahead instead of being surprised by recurring dips.',
     whyItMattersTr:
         'Haftalık ritminizi bilmek, tekrar eden düşüşlerden şaşırmak yerine önceden planlamanıza olanak tanır.',
-    screenshotLineEn: 'Your week has a rhythm. Once you see it, you can work with it.',
-    screenshotLineTr: 'Haftanızın bir ritmi var. Onu gördüğünüzde, onunla çalışabilirsiniz.',
+    screenshotLineEn:
+        'Your week has a rhythm. Once you see it, you can work with it.',
+    screenshotLineTr:
+        'Haftanızın bir ritmi var. Onu gördüğünüzde, onunla çalışabilirsiniz.',
     relatedFocusAreas: ['mood', 'energy', 'productivity'],
     relatedModuleIds: ['pr_002', 'cw_001'],
   ),
@@ -452,8 +474,10 @@ const List<ContextModule> allContextModules = [
         'When you see the sleep-mood correlation in your own data, protecting your sleep becomes a clear priority rather than a vague "should."',
     whyItMattersTr:
         'Kendi verilerinizde uyku-ruh hali korelasyonunu gördüğünüzde, uykunuzu korumak belirsiz bir "yapmalıyım" yerine net bir öncelik haline gelir.',
-    screenshotLineEn: 'Bad sleep does not just make you tired. It makes emotions harder to manage.',
-    screenshotLineTr: 'Kötü uyku sadece sizi yormaz. Duyguları yönetmeyi zorlaştırır.',
+    screenshotLineEn:
+        'Bad sleep does not just make you tired. It makes emotions harder to manage.',
+    screenshotLineTr:
+        'Kötü uyku sadece sizi yormaz. Duyguları yönetmeyi zorlaştırır.',
     relatedFocusAreas: ['health', 'mood', 'energy'],
     relatedModuleIds: ['pr_001', 'pr_003'],
   ),
@@ -475,8 +499,10 @@ const List<ContextModule> allContextModules = [
         'Aligning your most demanding tasks with your peak energy windows can increase productivity without increasing effort.',
     whyItMattersTr:
         'En zorlu görevlerinizi zirve enerji pencerelerinizle hizalamak, çabayı artırmadan üretkenliği artırabilir.',
-    screenshotLineEn: 'Work with your energy, not against it. Your body already knows the schedule.',
-    screenshotLineTr: 'Enerjinizle çalışın, ona karşı değil. Bedeniniz programı zaten biliyor.',
+    screenshotLineEn:
+        'Work with your energy, not against it. Your body already knows the schedule.',
+    screenshotLineTr:
+        'Enerjinizle çalışın, ona karşı değil. Bedeniniz programı zaten biliyor.',
     relatedFocusAreas: ['energy', 'productivity'],
     relatedModuleIds: ['pr_001', 'mr_004'],
   ),
@@ -498,8 +524,10 @@ const List<ContextModule> allContextModules = [
         'Understanding your social battery helps you say yes to interactions that energize and set boundaries around ones that drain.',
     whyItMattersTr:
         'Sosyal bataryanızı anlamak, enerji veren etkileşimlere evet demenize ve tüketen etkileşimler etrafında sınırlar koymanıza yardımcı olur.',
-    screenshotLineEn: 'Not all social time is equal. Track which interactions refuel you.',
-    screenshotLineTr: 'Tüm sosyal zaman eşit değildir. Hangi etkileşimlerin sizi yeniden doldurduğunu takip edin.',
+    screenshotLineEn:
+        'Not all social time is equal. Track which interactions refuel you.',
+    screenshotLineTr:
+        'Tüm sosyal zaman eşit değildir. Hangi etkileşimlerin sizi yeniden doldurduğunu takip edin.',
     relatedFocusAreas: ['social', 'energy'],
     relatedModuleIds: ['pr_003', 'sa_003'],
   ),
@@ -521,8 +549,10 @@ const List<ContextModule> allContextModules = [
         'Long-term tracking transforms seasonal shifts from surprises into familiar phases you can prepare for.',
     whyItMattersTr:
         'Uzun vadeli takip, mevsimsel değişimleri sürprizlerden hazırlanabileceğiniz öngörülebilir fazlara dönüştürür.',
-    screenshotLineEn: 'Your year has seasons too. Track long enough to see them.',
-    screenshotLineTr: 'Yılınızın da mevsimleri var. Onları görecek kadar uzun takip edin.',
+    screenshotLineEn:
+        'Your year has seasons too. Track long enough to see them.',
+    screenshotLineTr:
+        'Yılınızın da mevsimleri var. Onları görecek kadar uzun takip edin.',
     relatedFocusAreas: ['mood', 'energy', 'health'],
     relatedModuleIds: ['pr_001', 'cw_002'],
   ),
@@ -544,8 +574,10 @@ const List<ContextModule> allContextModules = [
         'Regular journaling about trigger-response sequences measurably increases the pause between stimulus and reaction.',
     whyItMattersTr:
         'Tetikleyici-yanıt dizileri hakkında düzenli günlük tutmak, uyaran ile tepki arasındaki duraklamayı ölçülebilir şekilde artırır.',
-    screenshotLineEn: 'The pause between trigger and response is where growth lives.',
-    screenshotLineTr: 'Tetikleyici ile yanıt arasındaki duraklama, büyümenin yaşadığı yerdir.',
+    screenshotLineEn:
+        'The pause between trigger and response is where growth lives.',
+    screenshotLineTr:
+        'Tetikleyici ile yanıt arasındaki duraklama, büyümenin yaşadığı yerdir.',
     relatedFocusAreas: ['mood', 'social'],
     relatedModuleIds: ['el_001', 'sa_004'],
   ),
@@ -595,7 +627,8 @@ const List<ContextModule> allContextModules = [
     whyItMattersTr:
         'Sadece ne yaptığınız hakkında değil, sizin için neyin önemli olduğu hakkında günlük tutmak pusulanızı zamanla kalibre tutar.',
     screenshotLineEn: 'Goals have finish lines. Values have horizons.',
-    screenshotLineTr: 'Hedeflerin bitiş çizgileri var. Değerlerin ufukları var.',
+    screenshotLineTr:
+        'Hedeflerin bitiş çizgileri var. Değerlerin ufukları var.',
     relatedFocusAreas: ['productivity', 'spirituality'],
     relatedModuleIds: ['sa_001', 'sa_003'],
   ),
@@ -617,8 +650,10 @@ const List<ContextModule> allContextModules = [
         'Self-compassion in journaling is not softness. Research shows it produces more accountability than self-criticism.',
     whyItMattersTr:
         'Günlükte öz-şefkat yumuşaklık değildir. Araştırmalar, öz-eleştiriden daha fazla hesap verebilirlik ürettiğini göstermektedir.',
-    screenshotLineEn: 'Talk to yourself like someone you are responsible for helping.',
-    screenshotLineTr: 'Kendinizle, yardım etmekten sorumlu olduğunuz biri gibi konuşun.',
+    screenshotLineEn:
+        'Talk to yourself like someone you are responsible for helping.',
+    screenshotLineTr:
+        'Kendinizle, yardım etmekten sorumlu olduğunuz biri gibi konuşun.',
     relatedFocusAreas: ['mood', 'social'],
     relatedModuleIds: ['sa_001', 'el_005'],
   ),
@@ -640,8 +675,10 @@ const List<ContextModule> allContextModules = [
         'Spotting distortions in your own writing trains your brain to catch them in real-time. This is the core mechanism of CBT.',
     whyItMattersTr:
         'Kendi yazınızdaki çarpıtmaları fark etmek beyninizi onları gerçek zamanlı yakalaması için eğitir. Bu, BDT\'nin temel mekanizmasıdır.',
-    screenshotLineEn: 'Your brain has thinking shortcuts that sometimes lie. Learn to spot them.',
-    screenshotLineTr: 'Beyninizin bazen yalan söyleyen düşünce kısayolları var. Onları fark etmeyi öğrenin.',
+    screenshotLineEn:
+        'Your brain has thinking shortcuts that sometimes lie. Learn to spot them.',
+    screenshotLineTr:
+        'Beyninizin bazen yalan söyleyen düşünce kısayolları var. Onları fark etmeyi öğrenin.',
     relatedFocusAreas: ['mood', 'productivity'],
     relatedModuleIds: ['sa_003', 'pr_006'],
   ),
@@ -663,7 +700,8 @@ const List<ContextModule> allContextModules = [
         'Your journal is not a passive record. It is where you actively shape the story of your life.',
     whyItMattersTr:
         'Günlüğünüz pasif bir kayıt değildir. Hayat hikayenizi aktif olarak şekillendirdiğiniz yerdir.',
-    screenshotLineEn: 'You are not just recording your life. You are writing it.',
+    screenshotLineEn:
+        'You are not just recording your life. You are writing it.',
     screenshotLineTr: 'Hayatınızı sadece kaydetmiyorsunuz. Onu yazıyorsunuz.',
     relatedFocusAreas: ['mood', 'creativity', 'spirituality'],
     relatedModuleIds: ['sa_001', 'mr_005'],
@@ -686,8 +724,10 @@ const List<ContextModule> allContextModules = [
         'Regular reflection on projections is one of the fastest paths to genuine self-knowledge.',
     whyItMattersTr:
         'Yansıtmalar üzerine düzenli düşünme, gerçek öz bilgiye giden en hızlı yollardan biridir.',
-    screenshotLineEn: 'What bothers you about others is often a message about yourself.',
-    screenshotLineTr: 'Başkalarında sizi rahatsız eden şey, genellikle kendinizle ilgili bir mesajdır.',
+    screenshotLineEn:
+        'What bothers you about others is often a message about yourself.',
+    screenshotLineTr:
+        'Başkalarında sizi rahatsız eden şey, genellikle kendinizle ilgili bir mesajdır.',
     relatedFocusAreas: ['social', 'mood'],
     relatedModuleIds: ['sa_004', 'el_001'],
   ),
@@ -736,7 +776,8 @@ const List<ContextModule> allContextModules = [
         'Tracking your rest-to-productivity ratio often reveals that your most creative days follow deliberate rest, not grind.',
     whyItMattersTr:
         'Dinlenme-üretkenlik oranınızı takip etmek, en yaratıcı günlerinizin didinmeyi değil bilinçli dinlenmeyi takip ettiğini sıklıkla ortaya çıkarır.',
-    screenshotLineEn: 'Rest is not the opposite of productivity. It is the other half.',
+    screenshotLineEn:
+        'Rest is not the opposite of productivity. It is the other half.',
     screenshotLineTr: 'Dinlenme üretkenliğin tersi değildir. Diğer yarısıdır.',
     relatedFocusAreas: ['energy', 'productivity', 'health'],
     relatedModuleIds: ['cw_001', 'cw_003'],
@@ -759,8 +800,10 @@ const List<ContextModule> allContextModules = [
         'Naming your current phase of the cycle removes the anxiety of not knowing where you are in the process.',
     whyItMattersTr:
         'Mevcut döngü fazınızı adlandırmak, süreçte nerede olduğunuzu bilmemenin kaygısını ortadan kaldırır.',
-    screenshotLineEn: 'Struggle is not failure. It is the growth phase in disguise.',
-    screenshotLineTr: 'Mücadele başarısızlık değildir. Kılık değiştirmiş büyüme fazıdır.',
+    screenshotLineEn:
+        'Struggle is not failure. It is the growth phase in disguise.',
+    screenshotLineTr:
+        'Mücadele başarısızlık değildir. Kılık değiştirmiş büyüme fazıdır.',
     relatedFocusAreas: ['mood', 'energy', 'productivity'],
     relatedModuleIds: ['cw_001', 'cw_004'],
   ),
@@ -782,8 +825,10 @@ const List<ContextModule> allContextModules = [
         'Tracking your productivity in 90-minute blocks often reveals that forced long sessions produce less than rhythmic work-rest cycles.',
     whyItMattersTr:
         'Üretkenliğinizi 90 dakikalık bloklarda takip etmek, zorla uzun seansların ritmik çalışma-dinlenme döngülerinden daha az ürettiğini sıklıkla ortaya çıkarır.',
-    screenshotLineEn: 'Your brain works in 90-minute waves. Ride them, do not fight them.',
-    screenshotLineTr: 'Beyniniz 90 dakikalık dalgalar halinde çalışır. Onlara binin, onlarla savaşmayın.',
+    screenshotLineEn:
+        'Your brain works in 90-minute waves. Ride them, do not fight them.',
+    screenshotLineTr:
+        'Beyniniz 90 dakikalık dalgalar halinde çalışır. Onlara binin, onlarla savaşmayın.',
     relatedFocusAreas: ['energy', 'productivity'],
     relatedModuleIds: ['pr_003', 'cw_002'],
   ),
@@ -828,8 +873,10 @@ const List<ContextModule> allContextModules = [
         'When your journal shows a "quiet" phase after intensity, trust the process. Your mind is building something.',
     whyItMattersTr:
         'Günlüğünüz yoğunluktan sonra "sessiz" bir faz gösterdiğinde, sürece güvenin. Zihniniz bir şeyler inşa ediyor.',
-    screenshotLineEn: 'Feeling flat after intensity is not failure. It is integration.',
-    screenshotLineTr: 'Yoğunluktan sonra düz hissetmek başarısızlık değil, entegrasyondur.',
+    screenshotLineEn:
+        'Feeling flat after intensity is not failure. It is integration.',
+    screenshotLineTr:
+        'Yoğunluktan sonra düz hissetmek başarısızlık değil, entegrasyondur.',
     relatedFocusAreas: ['mood', 'energy', 'creativity'],
     relatedModuleIds: ['cw_003', 'cw_005'],
   ),
@@ -855,8 +902,10 @@ const List<ContextModule> allContextModules = [
         'Your daily journal practice is not just self-reflection — it is one of the most evidence-backed wellness practices available.',
     whyItMattersTr:
         'Günlük günlük tutma pratiğiniz sadece öz yansıtma değil — mevcut en kanıt destekli sağlıklı yaşam pratiklerinden biridir.',
-    screenshotLineEn: 'Writing about emotions is not venting. It is the brain processing what happened.',
-    screenshotLineTr: 'Duygular hakkında yazmak dert dökmek değil. Beyinin olanları işlemesidir.',
+    screenshotLineEn:
+        'Writing about emotions is not venting. It is the brain processing what happened.',
+    screenshotLineTr:
+        'Duygular hakkında yazmak dert dökmek değil. Beyinin olanları işlemesidir.',
     relatedFocusAreas: ['mood', 'health'],
     relatedModuleIds: ['js_002', 'js_003'],
   ),
@@ -878,7 +927,8 @@ const List<ContextModule> allContextModules = [
         'Permission to write briefly removes the perfectionism that stops many people from journaling consistently.',
     whyItMattersTr:
         'Kısa yazma izni, birçok insanın tutarlı bir şekilde günlük tutmasını engelleyen mükemmeliyetçiliği ortadan kaldırır.',
-    screenshotLineEn: '5 minutes of honest writing beats 60 minutes of avoidance.',
+    screenshotLineEn:
+        '5 minutes of honest writing beats 60 minutes of avoidance.',
     screenshotLineTr: '5 dakika dürüst yazma, 60 dakika kaçınmayı yener.',
     relatedFocusAreas: ['mood', 'productivity'],
     relatedModuleIds: ['js_001', 'js_004'],
@@ -901,8 +951,10 @@ const List<ContextModule> allContextModules = [
         'Every time you name an emotion in your journal, your brain is literally calming itself down. Writing is not a metaphor for processing — it IS processing.',
     whyItMattersTr:
         'Günlüğünüzde bir duyguyu her adlandırdığınızda, beyniniz kelimenin tam anlamıyla kendini sakinleştirmektedir. Yazma, işlemenin metaforu değildir — işlemenin kendisidir.',
-    screenshotLineEn: 'Naming an emotion literally calms the brain. This is neuroscience, not poetry.',
-    screenshotLineTr: 'Bir duyguyu adlandırmak kelimenin tam anlamıyla beyni sakinleştirir. Bu nörobilim, şiir değil.',
+    screenshotLineEn:
+        'Naming an emotion literally calms the brain. This is neuroscience, not poetry.',
+    screenshotLineTr:
+        'Bir duyguyu adlandırmak kelimenin tam anlamıyla beyni sakinleştirir. Bu nörobilim, şiir değil.',
     relatedFocusAreas: ['mood'],
     relatedModuleIds: ['el_003', 'js_001'],
   ),
@@ -924,8 +976,10 @@ const List<ContextModule> allContextModules = [
         'Quality gratitude practice means fewer but deeper entries. Once a week, done well, outperforms daily, done mindlessly.',
     whyItMattersTr:
         'Kaliteli şükran pratiği daha az ama daha derin kayıtlar anlamına gelir. Haftada bir, iyi yapılmış, her gün dikkatsizce yapılmışı geçer.',
-    screenshotLineEn: 'Gratitude works when it is specific. "I am grateful for my life" is too vague to feel.',
-    screenshotLineTr: 'Şükran spesifik olduğunda işe yarar. "Hayatım için minnettarım" hissetmek için çok belirsiz.',
+    screenshotLineEn:
+        'Gratitude works when it is specific. "I am grateful for my life" is too vague to feel.',
+    screenshotLineTr:
+        'Şükran spesifik olduğunda işe yarar. "Hayatım için minnettarım" hissetmek için çok belirsiz.',
     relatedFocusAreas: ['mood', 'social', 'spirituality'],
     relatedModuleIds: ['js_002', 'js_005'],
   ),
@@ -947,8 +1001,10 @@ const List<ContextModule> allContextModules = [
         'Rereading old entries and adding new understanding creates the narrative coherence that research links to healing.',
     whyItMattersTr:
         'Eski kayıtları yeniden okumak ve yeni anlayış eklemek, araştırmanın iyileşmeyle ilişkilendirdiği anlatısal tutarlılığı oluşturur.',
-    screenshotLineEn: 'You do not need a happy ending. You need a coherent story.',
-    screenshotLineTr: 'Mutlu bir sona ihtiyacınız yok. Tutarlı bir hikayeye ihtiyacınız var.',
+    screenshotLineEn:
+        'You do not need a happy ending. You need a coherent story.',
+    screenshotLineTr:
+        'Mutlu bir sona ihtiyacınız yok. Tutarlı bir hikayeye ihtiyacınız var.',
     relatedFocusAreas: ['mood', 'health'],
     relatedModuleIds: ['sa_005', 'js_003'],
   ),
@@ -970,8 +1026,10 @@ const List<ContextModule> allContextModules = [
         'The archive feature is not just storage. Reviewing past entries at intervals is where the deepest self-knowledge develops.',
     whyItMattersTr:
         'Arşiv özelliği sadece depolama değildir. Geçmiş kayıtları aralıklarla incelemek, en derin öz bilginin geliştiği yerdir.',
-    screenshotLineEn: 'Rereading your journal at intervals reveals what daily writing cannot.',
-    screenshotLineTr: 'Günlüğünüzü aralıklarla yeniden okumak, günlük yazmanın ortaya çıkaramadığını gösterir.',
+    screenshotLineEn:
+        'Rereading your journal at intervals reveals what daily writing cannot.',
+    screenshotLineTr:
+        'Günlüğünüzü aralıklarla yeniden okumak, günlük yazmanın ortaya çıkaramadığını gösterir.',
     relatedFocusAreas: ['mood', 'creativity'],
     relatedModuleIds: ['js_005', 'pr_001'],
   ),

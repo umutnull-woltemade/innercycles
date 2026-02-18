@@ -101,7 +101,8 @@ const List<_QuizQuestion> _questions = [
     ],
   ),
   _QuizQuestion(
-    questionEn: 'When facing a difficult situation, your first instinct is to...',
+    questionEn:
+        'When facing a difficult situation, your first instinct is to...',
     questionTr: 'Zor bir durumla karşılaştığında ilk içgüdün...',
     options: [
       _QuizOption(
@@ -306,8 +307,9 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
               backgroundColor: isDark
                   ? Colors.white.withValues(alpha: 0.1)
                   : Colors.black.withValues(alpha: 0.1),
-              valueColor:
-                  const AlwaysStoppedAnimation<Color>(AppColors.starGold),
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                AppColors.starGold,
+              ),
               minHeight: 4,
             ),
           ),
@@ -371,9 +373,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
 
   Widget _buildResult(bool isDark, bool isEn) {
     if (_result == null) {
-      return const Center(
-        child: CosmicLoadingIndicator(),
-      );
+      return const Center(child: CosmicLoadingIndicator());
     }
 
     final archetype = _result!;
@@ -401,7 +401,10 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
               color: AppColors.starGold,
               letterSpacing: 1.5,
             ),
-          ).glassEntrance(context: context, delay: const Duration(milliseconds: 300)),
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 300),
+          ),
 
           const SizedBox(height: 8),
 
@@ -415,7 +418,10 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,
             ),
-          ).glassEntrance(context: context, delay: const Duration(milliseconds: 400)),
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 400),
+          ),
 
           const SizedBox(height: 16),
 
@@ -428,7 +434,10 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               height: 1.5,
             ),
-          ).glassEntrance(context: context, delay: const Duration(milliseconds: 500)),
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 500),
+          ),
 
           const SizedBox(height: 28),
 
@@ -451,30 +460,40 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                ...archetype.getStrengths(isEnglish: isEn).map((s) => Padding(
-                      padding: const EdgeInsets.only(bottom: 4),
-                      child: Row(
-                        children: [
-                          Icon(Icons.star_rounded,
-                              size: 16, color: AppColors.starGold),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              s,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: isDark
-                                    ? AppColors.textPrimary
-                                    : AppColors.lightTextPrimary,
+                ...archetype
+                    .getStrengths(isEnglish: isEn)
+                    .map(
+                      (s) => Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.star_rounded,
+                              size: 16,
+                              color: AppColors.starGold,
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                s,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: isDark
+                                      ? AppColors.textPrimary
+                                      : AppColors.lightTextPrimary,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    )),
+                    ),
               ],
             ),
-          ).glassEntrance(context: context, delay: const Duration(milliseconds: 600)),
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 600),
+          ),
 
           const SizedBox(height: 16),
 
@@ -509,7 +528,10 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                 ),
               ],
             ),
-          ).glassEntrance(context: context, delay: const Duration(milliseconds: 700)),
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 700),
+          ),
 
           const SizedBox(height: 32),
 
@@ -535,7 +557,10 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                 ),
               ),
             ),
-          ).glassEntrance(context: context, delay: const Duration(milliseconds: 800)),
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 800),
+          ),
 
           const SizedBox(height: 12),
 

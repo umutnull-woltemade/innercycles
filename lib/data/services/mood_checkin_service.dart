@@ -20,16 +20,16 @@ class MoodEntry {
   });
 
   Map<String, dynamic> toJson() => {
-        'date': date.toIso8601String(),
-        'mood': mood,
-        'emoji': emoji,
-      };
+    'date': date.toIso8601String(),
+    'mood': mood,
+    'emoji': emoji,
+  };
 
   factory MoodEntry.fromJson(Map<String, dynamic> json) => MoodEntry(
-        date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
-        mood: json['mood'] as int? ?? 3,
-        emoji: json['emoji'] as String? ?? '',
-      );
+    date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
+    mood: json['mood'] as int? ?? 3,
+    emoji: json['emoji'] as String? ?? '',
+  );
 }
 
 class MoodCheckinService {
@@ -61,10 +61,12 @@ class MoodCheckinService {
     final today = DateTime(now.year, now.month, now.day);
 
     // Remove existing entry for today
-    _entries.removeWhere((e) =>
-        e.date.year == today.year &&
-        e.date.month == today.month &&
-        e.date.day == today.day);
+    _entries.removeWhere(
+      (e) =>
+          e.date.year == today.year &&
+          e.date.month == today.month &&
+          e.date.day == today.day,
+    );
 
     _entries.insert(0, MoodEntry(date: today, mood: mood, emoji: emoji));
 
@@ -76,19 +78,25 @@ class MoodCheckinService {
   /// Check if mood was logged today
   bool hasLoggedToday() {
     final now = DateTime.now();
-    return _entries.any((e) =>
-        e.date.year == now.year &&
-        e.date.month == now.month &&
-        e.date.day == now.day);
+    return _entries.any(
+      (e) =>
+          e.date.year == now.year &&
+          e.date.month == now.month &&
+          e.date.day == now.day,
+    );
   }
 
   /// Get today's mood
   MoodEntry? getTodayMood() {
     final now = DateTime.now();
-    return _entries.where((e) =>
-        e.date.year == now.year &&
-        e.date.month == now.month &&
-        e.date.day == now.day).firstOrNull;
+    return _entries
+        .where(
+          (e) =>
+              e.date.year == now.year &&
+              e.date.month == now.month &&
+              e.date.day == now.day,
+        )
+        .firstOrNull;
   }
 
   /// Get last 7 days of moods
@@ -98,11 +106,13 @@ class MoodCheckinService {
     for (int i = 6; i >= 0; i--) {
       final day = now.subtract(Duration(days: i));
       final entry = _entries
-            .where((e) =>
+          .where(
+            (e) =>
                 e.date.year == day.year &&
                 e.date.month == day.month &&
-                e.date.day == day.day)
-            .firstOrNull;
+                e.date.day == day.day,
+          )
+          .firstOrNull;
       result.add(entry);
     }
     return result;

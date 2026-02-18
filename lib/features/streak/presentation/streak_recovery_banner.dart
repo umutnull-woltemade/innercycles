@@ -171,7 +171,9 @@ class StreakRecoveryBanner extends ConsumerWidget {
                           isEn ? 'Learn more' : 'Daha fazla',
                           style: TextStyle(
                             fontSize: 11,
-                            color: AppColors.streakOrange.withValues(alpha: 0.7),
+                            color: AppColors.streakOrange.withValues(
+                              alpha: 0.7,
+                            ),
                             fontWeight: FontWeight.w600,
                           ),
                         ),

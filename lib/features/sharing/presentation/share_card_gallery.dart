@@ -49,8 +49,11 @@ class _ShareCardGalleryScreenState
   // DATA HELPERS
   // =========================================================================
 
-  ShareCardData _buildDataForTemplate(ShareCardTemplate template, bool isEn,
-      int streak) {
+  ShareCardData _buildDataForTemplate(
+    ShareCardTemplate template,
+    bool isEn,
+    int streak,
+  ) {
     return ShareCardTemplates.buildData(
       template: template,
       isEn: isEn,
@@ -66,21 +69,32 @@ class _ShareCardGalleryScreenState
     // GUARDRAIL: Double-check entitlement with RevenueCat before sharing
     final isPremium = ref.read(premiumProvider).isPremium;
     if (isPremium) {
-      final verified =
-          await ref.read(premiumProvider.notifier).verifyEntitlementForFeature();
+      final verified = await ref
+          .read(premiumProvider.notifier)
+          .verifyEntitlementForFeature();
       if (!verified && mounted) {
-        await showContextualPaywall(context, ref,
-            paywallContext: PaywallContext.general);
+        await showContextualPaywall(
+          context,
+          ref,
+          paywallContext: PaywallContext.general,
+        );
         return;
       }
     }
     if (!isPremium) {
-      final firstTaste = ref.read(firstTasteServiceProvider).whenOrNull(data: (s) => s);
-      final allowFree = firstTaste?.shouldAllowFree(FirstTasteFeature.shareCards) ?? false;
+      final firstTaste = ref
+          .read(firstTasteServiceProvider)
+          .whenOrNull(data: (s) => s);
+      final allowFree =
+          firstTaste?.shouldAllowFree(FirstTasteFeature.shareCards) ?? false;
       if (!allowFree) {
         // Free uses exhausted — show paywall
         if (!mounted) return;
-        await showContextualPaywall(context, ref, paywallContext: PaywallContext.general);
+        await showContextualPaywall(
+          context,
+          ref,
+          paywallContext: PaywallContext.general,
+        );
         return;
       }
       // Record the use
@@ -89,8 +103,9 @@ class _ShareCardGalleryScreenState
 
     if (!mounted) return;
 
-    final boundary = _repaintKey.currentContext?.findRenderObject()
-        as RenderRepaintBoundary?;
+    final boundary =
+        _repaintKey.currentContext?.findRenderObject()
+            as RenderRepaintBoundary?;
     if (boundary == null) return;
 
     setState(() => _isSharing = true);
@@ -114,14 +129,13 @@ class _ShareCardGalleryScreenState
     } else if (result.error == ShareError.dismissed) {
       // user cancelled
     } else {
-      _showSnackBar(
-        CommonStrings.couldNotShareTryAgain(language),
-      );
+      _showSnackBar(CommonStrings.couldNotShareTryAgain(language));
     }
   }
 
   Future<void> _onCopy(bool isEn, ShareCardData cardData) async {
-    final text = '${cardData.headline}\n${cardData.subtitle}'
+    final text =
+        '${cardData.headline}\n${cardData.subtitle}'
         '${cardData.detail != null ? '\n${cardData.detail}' : ''}'
         '\n\n- InnerCycles';
     await Clipboard.setData(ClipboardData(text: text));
@@ -202,9 +216,7 @@ class _ShareCardGalleryScreenState
         const SizedBox(height: 16),
 
         // Card grid
-        Expanded(
-          child: _buildCardGrid(isDark, isEn, streak),
-        ),
+        Expanded(child: _buildCardGrid(isDark, isEn, streak)),
       ],
     );
   }
@@ -231,52 +243,56 @@ class _ShareCardGalleryScreenState
                 setState(() => _selectedCategory = category);
               },
               child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(22),
-                color: isSelected
-                    ? accent.withValues(alpha: 0.2)
-                    : (isDark
-                        ? AppColors.surfaceDark
-                        : AppColors.lightSurfaceVariant),
-                border: Border.all(
-                  color: isSelected
-                      ? accent.withValues(alpha: 0.6)
-                      : (isDark
-                          ? Colors.white.withValues(alpha: 0.08)
-                          : Colors.black.withValues(alpha: 0.06)),
-                  width: isSelected ? 1.5 : 1,
+                duration: const Duration(milliseconds: 200),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 10,
                 ),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    category.icon,
-                    size: 16,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(22),
+                  color: isSelected
+                      ? accent.withValues(alpha: 0.2)
+                      : (isDark
+                            ? AppColors.surfaceDark
+                            : AppColors.lightSurfaceVariant),
+                  border: Border.all(
                     color: isSelected
-                        ? accent
+                        ? accent.withValues(alpha: 0.6)
                         : (isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary),
+                              ? Colors.white.withValues(alpha: 0.08)
+                              : Colors.black.withValues(alpha: 0.06)),
+                    width: isSelected ? 1.5 : 1,
                   ),
-                  const SizedBox(width: 6),
-                  Text(
-                    category.label(isEn),
-                    style: GoogleFonts.plusJakartaSans(
-                      fontSize: 13,
-                      fontWeight:
-                          isSelected ? FontWeight.w700 : FontWeight.w500,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      category.icon,
+                      size: 16,
                       color: isSelected
                           ? accent
                           : (isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary),
+                                ? AppColors.textSecondary
+                                : AppColors.lightTextSecondary),
                     ),
-                  ),
-                ],
-              ),
+                    const SizedBox(width: 6),
+                    Text(
+                      category.label(isEn),
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 13,
+                        fontWeight: isSelected
+                            ? FontWeight.w700
+                            : FontWeight.w500,
+                        color: isSelected
+                            ? accent
+                            : (isDark
+                                  ? AppColors.textSecondary
+                                  : AppColors.lightTextSecondary),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
@@ -310,25 +326,23 @@ class _ShareCardGalleryScreenState
               HapticFeedback.lightImpact();
               setState(() => _previewTemplate = template);
             },
-            child: _ThumbnailCard(
-              template: template,
-              data: data,
-              accent: accent,
-              isDark: isDark,
-              isEn: isEn,
-            )
-                .animate()
-                .fadeIn(
-                  duration: 400.ms,
-                  delay: (index * 80).ms,
-                )
-                .scale(
-                  begin: const Offset(0.92, 0.92),
-                  end: const Offset(1.0, 1.0),
-                  duration: 400.ms,
-                  delay: (index * 80).ms,
-                  curve: Curves.easeOutCubic,
-                ),
+            child:
+                _ThumbnailCard(
+                      template: template,
+                      data: data,
+                      accent: accent,
+                      isDark: isDark,
+                      isEn: isEn,
+                    )
+                    .animate()
+                    .fadeIn(duration: 400.ms, delay: (index * 80).ms)
+                    .scale(
+                      begin: const Offset(0.92, 0.92),
+                      end: const Offset(1.0, 1.0),
+                      duration: 400.ms,
+                      delay: (index * 80).ms,
+                      curve: Curves.easeOutCubic,
+                    ),
           ),
         );
       },
@@ -340,7 +354,11 @@ class _ShareCardGalleryScreenState
   // =========================================================================
 
   Widget _buildPreview(
-      bool isDark, bool isEn, AppLanguage language, int streak) {
+    bool isDark,
+    bool isEn,
+    AppLanguage language,
+    int streak,
+  ) {
     final template = _previewTemplate!;
     final data = _buildDataForTemplate(template, isEn, streak);
 
@@ -355,13 +373,17 @@ class _ShareCardGalleryScreenState
               icon: Icon(
                 Icons.arrow_back_ios_rounded,
                 size: 16,
-                color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
               ),
               label: Text(
                 isEn ? 'Back to gallery' : 'Galeriye dön',
                 style: GoogleFonts.plusJakartaSans(
                   fontSize: 13,
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                 ),
               ),
             ),
@@ -372,20 +394,21 @@ class _ShareCardGalleryScreenState
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: ShareCardRenderer(
-                  template: template,
-                  data: data,
-                  repaintKey: _repaintKey,
-                  isDark: isDark,
-                )
-                    .animate()
-                    .fadeIn(duration: 400.ms)
-                    .scale(
-                      begin: const Offset(0.95, 0.95),
-                      end: const Offset(1.0, 1.0),
-                      duration: 400.ms,
-                      curve: Curves.easeOutCubic,
-                    ),
+                child:
+                    ShareCardRenderer(
+                          template: template,
+                          data: data,
+                          repaintKey: _repaintKey,
+                          isDark: isDark,
+                        )
+                        .animate()
+                        .fadeIn(duration: 400.ms)
+                        .scale(
+                          begin: const Offset(0.95, 0.95),
+                          end: const Offset(1.0, 1.0),
+                          duration: 400.ms,
+                          curve: Curves.easeOutCubic,
+                        ),
               ),
             ),
           ),
@@ -492,10 +515,8 @@ class _ThumbnailCard extends StatelessWidget {
               : template.gradientColors.map((c) {
                   final hsl = HSLColor.fromColor(c);
                   return hsl
-                      .withLightness(
-                          (hsl.lightness + 0.5).clamp(0.0, 0.92))
-                      .withSaturation(
-                          (hsl.saturation * 0.4).clamp(0.0, 1.0))
+                      .withLightness((hsl.lightness + 0.5).clamp(0.0, 0.92))
+                      .withSaturation((hsl.saturation * 0.4).clamp(0.0, 1.0))
                       .toColor();
                 }).toList(),
         ),
@@ -601,75 +622,77 @@ class _ActionButton extends StatelessWidget {
       button: true,
       label: label,
       child: GestureDetector(
-        onTap: isLoading ? null : () {
-          HapticFeedback.mediumImpact();
-          onTap();
-        },
+        onTap: isLoading
+            ? null
+            : () {
+                HapticFeedback.mediumImpact();
+                onTap();
+              },
         child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(vertical: 14),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14),
-          gradient: isPrimary
-              ? LinearGradient(
-                  colors: [accentColor, accentColor.withValues(alpha: 0.8)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                )
-              : null,
-          color: isPrimary
-              ? null
-              : (isDark
-                  ? AppColors.surfaceDark
-                  : AppColors.lightSurfaceVariant),
-          border: isPrimary
-              ? null
-              : Border.all(
-                  color: isDark
-                      ? Colors.white.withValues(alpha: 0.15)
-                      : Colors.black.withValues(alpha: 0.08),
-                ),
-          boxShadow: isPrimary
-              ? [
-                  BoxShadow(
-                    color: accentColor.withValues(alpha: 0.3),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(14),
+            gradient: isPrimary
+                ? LinearGradient(
+                    colors: [accentColor, accentColor.withValues(alpha: 0.8)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  )
+                : null,
+            color: isPrimary
+                ? null
+                : (isDark
+                      ? AppColors.surfaceDark
+                      : AppColors.lightSurfaceVariant),
+            border: isPrimary
+                ? null
+                : Border.all(
+                    color: isDark
+                        ? Colors.white.withValues(alpha: 0.15)
+                        : Colors.black.withValues(alpha: 0.08),
                   ),
-                ]
-              : null,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (isLoading)
-              const CosmicLoadingIndicator(size: 18)
-            else
-              Icon(
-                icon,
-                size: 18,
-                color: isPrimary
-                    ? Colors.white
-                    : (isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary),
+            boxShadow: isPrimary
+                ? [
+                    BoxShadow(
+                      color: accentColor.withValues(alpha: 0.3),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ]
+                : null,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (isLoading)
+                const CosmicLoadingIndicator(size: 18)
+              else
+                Icon(
+                  icon,
+                  size: 18,
+                  color: isPrimary
+                      ? Colors.white
+                      : (isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary),
+                ),
+              const SizedBox(width: 6),
+              Text(
+                label,
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 14,
+                  fontWeight: isPrimary ? FontWeight.w700 : FontWeight.w500,
+                  color: isPrimary
+                      ? Colors.white
+                      : (isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary),
+                ),
               ),
-            const SizedBox(width: 6),
-            Text(
-              label,
-              style: GoogleFonts.plusJakartaSans(
-                fontSize: 14,
-                fontWeight: isPrimary ? FontWeight.w700 : FontWeight.w500,
-                color: isPrimary
-                    ? Colors.white
-                    : (isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
       ),
     );
   }

@@ -30,179 +30,192 @@ class TodayPromptCard extends ConsumerWidget {
         final progress = service.getCompletionPercent();
 
         return Semantics(
-          button: true,
-          label: isEn ? 'Today\'s Prompt' : 'Günün Sorusu',
-          child: GestureDetector(
-          onTap: () {
-            HapticFeedback.lightImpact();
-            context.push(Routes.promptLibrary);
-          },
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: isDark
-                    ? [
-                        AppColors.auroraEnd.withValues(alpha: 0.12),
-                        AppColors.surfaceDark.withValues(alpha: 0.9),
-                      ]
-                    : [
-                        AppColors.auroraEnd.withValues(alpha: 0.06),
-                        AppColors.lightCard,
-                      ],
-              ),
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: AppColors.auroraEnd.withValues(alpha: 0.2),
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Header
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        color: AppColors.auroraEnd.withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Icon(
-                        Icons.edit_note_rounded,
-                        color: AppColors.auroraEnd,
-                        size: 16,
-                      ),
+              button: true,
+              label: isEn ? 'Today\'s Prompt' : 'Günün Sorusu',
+              child: GestureDetector(
+                onTap: () {
+                  HapticFeedback.lightImpact();
+                  context.push(Routes.promptLibrary);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: isDark
+                          ? [
+                              AppColors.auroraEnd.withValues(alpha: 0.12),
+                              AppColors.surfaceDark.withValues(alpha: 0.9),
+                            ]
+                          : [
+                              AppColors.auroraEnd.withValues(alpha: 0.06),
+                              AppColors.lightCard,
+                            ],
                     ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        isEn ? 'Today\'s Prompt' : 'Bugünün Sorusu',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
-                        ),
-                      ),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: AppColors.auroraEnd.withValues(alpha: 0.2),
                     ),
-                    if (isCompleted)
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 3,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.success.withValues(alpha: 0.15),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.check_circle_rounded,
-                              size: 12,
-                              color: AppColors.success,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Header
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                              color: AppColors.auroraEnd.withValues(
+                                alpha: 0.15,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
                             ),
-                            const SizedBox(width: 3),
-                            Text(
-                              isEn ? 'Done' : 'Tamam',
+                            child: Icon(
+                              Icons.edit_note_rounded,
+                              color: AppColors.auroraEnd,
+                              size: 16,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              isEn ? 'Today\'s Prompt' : 'Bugünün Sorusu',
                               style: TextStyle(
-                                fontSize: 10,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.success,
+                                color: isDark
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary,
                               ),
                             ),
-                          ],
-                        ),
-                      )
-                    else
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 3,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.auroraEnd.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Text(
-                          '${(progress * 100).round()}%',
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.auroraEnd,
                           ),
+                          if (isCompleted)
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 3,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.success.withValues(
+                                  alpha: 0.15,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.check_circle_rounded,
+                                    size: 12,
+                                    color: AppColors.success,
+                                  ),
+                                  const SizedBox(width: 3),
+                                  Text(
+                                    isEn ? 'Done' : 'Tamam',
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.success,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          else
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 3,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.auroraEnd.withValues(
+                                  alpha: 0.1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                '${(progress * 100).round()}%',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.auroraEnd,
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 12),
+
+                      // Prompt text
+                      Text(
+                        isEn ? prompt.promptEn : prompt.promptTr,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 14,
+                          height: 1.5,
+                          fontStyle: FontStyle.italic,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
                         ),
                       ),
-                  ],
-                ),
 
-                const SizedBox(height: 12),
+                      const SizedBox(height: 10),
 
-                // Prompt text
-                Text(
-                  isEn ? prompt.promptEn : prompt.promptTr,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 14,
-                    height: 1.5,
-                    fontStyle: FontStyle.italic,
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
+                      // Bottom row
+                      Row(
+                        children: [
+                          // Category pill
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 3,
+                            ),
+                            decoration: BoxDecoration(
+                              color: isDark
+                                  ? AppColors.surfaceLight.withValues(
+                                      alpha: 0.3,
+                                    )
+                                  : AppColors.lightSurfaceVariant,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              _categoryLabel(prompt.category.name, isEn),
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w500,
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Text(
+                            isEn ? 'Tap to reflect' : 'Düşünmek için dokun',
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: isDark
+                                  ? AppColors.textMuted.withValues(alpha: 0.6)
+                                  : AppColors.lightTextMuted.withValues(
+                                      alpha: 0.6,
+                                    ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-
-                const SizedBox(height: 10),
-
-                // Bottom row
-                Row(
-                  children: [
-                    // Category pill
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 3,
-                      ),
-                      decoration: BoxDecoration(
-                        color: isDark
-                            ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                            : AppColors.lightSurfaceVariant,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Text(
-                        _categoryLabel(prompt.category.name, isEn),
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w500,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      isEn ? 'Tap to reflect' : 'Düşünmek için dokun',
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: isDark
-                            ? AppColors.textMuted.withValues(alpha: 0.6)
-                            : AppColors.lightTextMuted.withValues(alpha: 0.6),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-        ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.06, duration: 400.ms);
+              ),
+            )
+            .animate()
+            .fadeIn(duration: 400.ms)
+            .slideY(begin: 0.06, duration: 400.ms);
       },
     );
   }

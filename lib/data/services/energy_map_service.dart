@@ -84,12 +84,14 @@ class EnergyMapService {
         final key = '${day}_${area.index}';
         final count = counts[key] ?? 0;
         final avg = count > 0 ? (sums[key]! / count) : 0.0;
-        cells.add(HeatmapCell(
-          weekday: day,
-          area: area,
-          averageRating: avg,
-          entryCount: count,
-        ));
+        cells.add(
+          HeatmapCell(
+            weekday: day,
+            area: area,
+            averageRating: avg,
+            entryCount: count,
+          ),
+        );
       }
     }
 
@@ -97,36 +99,40 @@ class EnergyMapService {
     final now = DateTime.now();
     final snapshots = <DailyEnergySnapshot>[];
     for (int i = 27; i >= 0; i--) {
-      final date = DateTime(now.year, now.month, now.day)
-          .subtract(Duration(days: i));
+      final date = DateTime(
+        now.year,
+        now.month,
+        now.day,
+      ).subtract(Duration(days: i));
       final dateKey =
           '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
       final dayEntries = entries.where((e) => e.dateKey == dateKey).toList();
 
       if (dayEntries.isNotEmpty) {
-        final avg = dayEntries.fold<int>(0, (s, e) => s + e.overallRating) /
+        final avg =
+            dayEntries.fold<int>(0, (s, e) => s + e.overallRating) /
             dayEntries.length;
         // Find dominant area
         final areaCounts = <FocusArea, int>{};
         for (final e in dayEntries) {
           areaCounts[e.focusArea] = (areaCounts[e.focusArea] ?? 0) + 1;
         }
-        final dominant = areaCounts.entries.reduce(
-          (a, b) => a.value >= b.value ? a : b,
-        ).key;
+        final dominant = areaCounts.entries
+            .reduce((a, b) => a.value >= b.value ? a : b)
+            .key;
 
-        snapshots.add(DailyEnergySnapshot(
-          date: date,
-          averageRating: avg,
-          dominantArea: dominant,
-          entryCount: dayEntries.length,
-        ));
+        snapshots.add(
+          DailyEnergySnapshot(
+            date: date,
+            averageRating: avg,
+            dominantArea: dominant,
+            entryCount: dayEntries.length,
+          ),
+        );
       } else {
-        snapshots.add(DailyEnergySnapshot(
-          date: date,
-          averageRating: 0,
-          entryCount: 0,
-        ));
+        snapshots.add(
+          DailyEnergySnapshot(date: date, averageRating: 0, entryCount: 0),
+        );
       }
     }
 
@@ -167,13 +173,14 @@ class EnergyMapService {
       if (areaEntries.isNotEmpty) {
         areaAvgs[area] =
             areaEntries.fold<int>(0, (s, e) => s + e.overallRating) /
-                areaEntries.length;
+            areaEntries.length;
       }
     }
     FocusArea? strongestArea;
     if (areaAvgs.isNotEmpty) {
-      strongestArea =
-          areaAvgs.entries.reduce((a, b) => a.value > b.value ? a : b).key;
+      strongestArea = areaAvgs.entries
+          .reduce((a, b) => a.value > b.value ? a : b)
+          .key;
     }
 
     return EnergyMapData(

@@ -53,7 +53,8 @@ class _NotificationScheduleScreenState
 
   Future<void> _toggleDailyReflection(bool enabled) async {
     if (enabled) {
-      final time = _settings?.dailyReflectionTime ?? const TimeOfDay(hour: 9, minute: 0);
+      final time =
+          _settings?.dailyReflectionTime ?? const TimeOfDay(hour: 9, minute: 0);
       await _notificationService.scheduleDailyReflection(
         hour: time.hour,
         minute: time.minute,
@@ -66,11 +67,9 @@ class _NotificationScheduleScreenState
   }
 
   Future<void> _pickDailyTime() async {
-    final current = _settings?.dailyReflectionTime ?? const TimeOfDay(hour: 9, minute: 0);
-    final picked = await showTimePicker(
-      context: context,
-      initialTime: current,
-    );
+    final current =
+        _settings?.dailyReflectionTime ?? const TimeOfDay(hour: 9, minute: 0);
+    final picked = await showTimePicker(context: context, initialTime: current);
     if (picked != null && mounted) {
       await _notificationService.scheduleDailyReflection(
         hour: picked.hour,
@@ -143,11 +142,14 @@ class _NotificationScheduleScreenState
                             iconColor: AppColors.starGold,
                             titleEn: 'Daily Reflection',
                             titleTr: 'Günlük Yansıma',
-                            subtitleEn: 'A morning reminder to journal your cycle position',
-                            subtitleTr: 'Döngü pozisyonunu kaydetmen için sabah hatırlatıcısı',
+                            subtitleEn:
+                                'A morning reminder to journal your cycle position',
+                            subtitleTr:
+                                'Döngü pozisyonunu kaydetmen için sabah hatırlatıcısı',
                             enabled: _settings?.dailyReflectionEnabled ?? false,
                             onToggle: _toggleDailyReflection,
-                            timeWidget: _settings?.dailyReflectionEnabled == true
+                            timeWidget:
+                                _settings?.dailyReflectionEnabled == true
                                 ? _buildTimePicker(isDark, isEn)
                                 : null,
                           ),
@@ -162,9 +164,12 @@ class _NotificationScheduleScreenState
                             iconColor: AppColors.auroraStart,
                             titleEn: 'Evening Reflection',
                             titleTr: 'Akşam Yansıması',
-                            subtitleEn: 'End-of-day prompt to capture your emotional state',
-                            subtitleTr: 'Duygusal durumunu kaydetmen için gün sonu hatırlatıcısı',
-                            enabled: _settings?.eveningReflectionEnabled ?? false,
+                            subtitleEn:
+                                'End-of-day prompt to capture your emotional state',
+                            subtitleTr:
+                                'Duygusal durumunu kaydetmen için gün sonu hatırlatıcısı',
+                            enabled:
+                                _settings?.eveningReflectionEnabled ?? false,
                             onToggle: _toggleEveningReflection,
                           ),
                           const SizedBox(height: AppConstants.spacingMd),
@@ -178,8 +183,10 @@ class _NotificationScheduleScreenState
                             iconColor: AppColors.amethyst,
                             titleEn: 'Moon Phase Awareness',
                             titleTr: 'Ay Evresi Farkındalığı',
-                            subtitleEn: 'Get notified during new and full moon phases',
-                            subtitleTr: 'Yeni ay ve dolunay evrelerinde bildirim al',
+                            subtitleEn:
+                                'Get notified during new and full moon phases',
+                            subtitleTr:
+                                'Yeni ay ve dolunay evrelerinde bildirim al',
                             enabled: _settings?.moonPhaseEnabled ?? false,
                             onToggle: _toggleMoonPhase,
                           ),
@@ -194,9 +201,12 @@ class _NotificationScheduleScreenState
                             iconColor: AppColors.auroraEnd,
                             titleEn: 'Wellness Reminders',
                             titleTr: 'Sağlık Hatırlatıcıları',
-                            subtitleEn: 'Gentle nudges for breathing, hydration & movement',
-                            subtitleTr: 'Nefes, su ve hareket için nazik hatırlatmalar',
-                            enabled: _settings?.wellnessRemindersEnabled ?? false,
+                            subtitleEn:
+                                'Gentle nudges for breathing, hydration & movement',
+                            subtitleTr:
+                                'Nefes, su ve hareket için nazik hatırlatmalar',
+                            enabled:
+                                _settings?.wellnessRemindersEnabled ?? false,
                             onToggle: _toggleWellness,
                           ),
                           const SizedBox(height: AppConstants.spacingXl),
@@ -242,9 +252,7 @@ class _NotificationScheduleScreenState
             ),
             const SizedBox(height: AppConstants.spacingMd),
             Text(
-              isEn
-                  ? 'Notifications are disabled'
-                  : 'Bildirimler devre dışı',
+              isEn ? 'Notifications are disabled' : 'Bildirimler devre dışı',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -261,9 +269,7 @@ class _NotificationScheduleScreenState
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 13,
-                color: isDark
-                    ? AppColors.textMuted
-                    : AppColors.lightTextMuted,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
             ),
             const SizedBox(height: AppConstants.spacingMd),
@@ -366,7 +372,8 @@ class _NotificationScheduleScreenState
   }
 
   Widget _buildTimePicker(bool isDark, bool isEn) {
-    final time = _settings?.dailyReflectionTime ?? const TimeOfDay(hour: 9, minute: 0);
+    final time =
+        _settings?.dailyReflectionTime ?? const TimeOfDay(hour: 9, minute: 0);
     final formatted = time.format(context);
 
     return GestureDetector(
@@ -405,11 +412,7 @@ class _NotificationScheduleScreenState
                   ),
                 ),
                 const SizedBox(width: 4),
-                Icon(
-                  Icons.access_time,
-                  size: 16,
-                  color: AppColors.starGold,
-                ),
+                Icon(Icons.access_time, size: 16, color: AppColors.starGold),
               ],
             ),
           ],

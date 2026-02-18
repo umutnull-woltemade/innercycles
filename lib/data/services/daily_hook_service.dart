@@ -88,36 +88,216 @@ class DailyHookService {
   // ══════════════════════════════════════════════════════════════════════════
 
   static const List<DailyHook> _hooks = [
-    DailyHook(id: 1, titleEn: 'Your energy outlook for today', titleTr: 'Bugünkü enerji görünümün', category: HookCategory.morning, timeSlot: HookTimeSlot.morning),
-    DailyHook(id: 2, titleEn: 'One thing to notice about yourself today', titleTr: 'Bugün kendinde fark edeceğin bir şey', category: HookCategory.reflection, timeSlot: HookTimeSlot.morning),
-    DailyHook(id: 3, titleEn: 'Your mindfulness check-in', titleTr: 'Farkındalık kontrolün', category: HookCategory.mindfulness, timeSlot: HookTimeSlot.morning),
-    DailyHook(id: 4, titleEn: "Today's focus area spotlight", titleTr: 'Bugünkü odak alanın', category: HookCategory.focus, timeSlot: HookTimeSlot.morning),
-    DailyHook(id: 5, titleEn: 'Your emotional weather check', titleTr: 'Duygusal hava durumun', category: HookCategory.mood, timeSlot: HookTimeSlot.morning),
-    DailyHook(id: 6, titleEn: 'Dream insight of the day', titleTr: 'Günün rüya içgörüsü', category: HookCategory.dream, timeSlot: HookTimeSlot.morning),
-    DailyHook(id: 7, titleEn: 'Your daily growth challenge', titleTr: 'Günlük büyüme meydan okuman', category: HookCategory.growth, timeSlot: HookTimeSlot.morning),
-    DailyHook(id: 8, titleEn: 'Pattern alert: something shifted', titleTr: 'Örüntü uyarısı: bir şey değişti', category: HookCategory.pattern, timeSlot: HookTimeSlot.anytime),
-    DailyHook(id: 9, titleEn: 'Your evening reflection prompt', titleTr: 'Akşam yansıma sorun', category: HookCategory.reflection, timeSlot: HookTimeSlot.evening),
-    DailyHook(id: 10, titleEn: "This week's theme emerging", titleTr: 'Bu haftanın teması beliriyor', category: HookCategory.pattern, timeSlot: HookTimeSlot.midweek),
-    DailyHook(id: 11, titleEn: 'Your streak milestone', titleTr: 'Seri kilometre taşın', category: HookCategory.achievement, timeSlot: HookTimeSlot.anytime),
-    DailyHook(id: 12, titleEn: 'Someone with your pattern noticed...', titleTr: 'Senin örüntünde biri fark etti...', category: HookCategory.social, timeSlot: HookTimeSlot.afternoon),
-    DailyHook(id: 13, titleEn: 'Your forgotten dream clue', titleTr: 'Unuttuğun rüya ipucu', category: HookCategory.dream, timeSlot: HookTimeSlot.morning),
-    DailyHook(id: 14, titleEn: "Today's journaling spark", titleTr: 'Bugünkü günlük kıvılcımı', category: HookCategory.reflection, timeSlot: HookTimeSlot.morning),
-    DailyHook(id: 15, titleEn: 'Your inner cycle check-in', titleTr: 'İç döngü kontrolün', category: HookCategory.mood, timeSlot: HookTimeSlot.afternoon),
-    DailyHook(id: 16, titleEn: 'Midday mindfulness check-in', titleTr: 'Öğle farkındalık kontrolü', category: HookCategory.mindfulness, timeSlot: HookTimeSlot.morning),
-    DailyHook(id: 17, titleEn: 'Evening intention setting', titleTr: 'Akşam niyet belirleme', category: HookCategory.mindfulness, timeSlot: HookTimeSlot.evening),
-    DailyHook(id: 18, titleEn: 'Evening release ritual', titleTr: 'Akşam bırakma ritüeli', category: HookCategory.mindfulness, timeSlot: HookTimeSlot.evening),
-    DailyHook(id: 19, titleEn: 'Your decision clarity score today', titleTr: 'Bugünkü karar netliği puanın', category: HookCategory.focus, timeSlot: HookTimeSlot.morning),
-    DailyHook(id: 20, titleEn: 'Energy vs. mood mismatch alert', titleTr: 'Enerji-ruh hali uyumsuzluk uyarısı', category: HookCategory.pattern, timeSlot: HookTimeSlot.afternoon),
-    DailyHook(id: 21, titleEn: 'Your social battery check', titleTr: 'Sosyal batarya kontrolün', category: HookCategory.social, timeSlot: HookTimeSlot.afternoon),
-    DailyHook(id: 22, titleEn: 'Gratitude micro-moment', titleTr: 'Şükran mikro-anı', category: HookCategory.reflection, timeSlot: HookTimeSlot.evening),
-    DailyHook(id: 23, titleEn: "Today's archetype energy", titleTr: 'Bugünkü arketip enerjin', category: HookCategory.archetype, timeSlot: HookTimeSlot.morning),
-    DailyHook(id: 24, titleEn: 'Your sleep-dream connection', titleTr: 'Uyku-rüya bağlantın', category: HookCategory.dream, timeSlot: HookTimeSlot.morning),
-    DailyHook(id: 25, titleEn: 'Midweek emotional reset', titleTr: 'Hafta ortası duygusal sıfırlama', category: HookCategory.mood, timeSlot: HookTimeSlot.midweek),
-    DailyHook(id: 26, titleEn: 'Friday self-check: how was your week?', titleTr: 'Cuma kontrolü: haftan nasıldı?', category: HookCategory.reflection, timeSlot: HookTimeSlot.friday),
-    DailyHook(id: 27, titleEn: 'Sunday intention seed', titleTr: 'Pazar niyet tohumu', category: HookCategory.reflection, timeSlot: HookTimeSlot.sunday),
-    DailyHook(id: 28, titleEn: 'Your emotional courage moment', titleTr: 'Duygusal cesaret anın', category: HookCategory.growth, timeSlot: HookTimeSlot.anytime),
-    DailyHook(id: 29, titleEn: 'Pattern breakthrough moment', titleTr: 'Örüntü kırılma anı', category: HookCategory.achievement, timeSlot: HookTimeSlot.anytime),
-    DailyHook(id: 30, titleEn: 'Your monthly emotional summary preview', titleTr: 'Aylık duygusal özet önizlemen', category: HookCategory.pattern, timeSlot: HookTimeSlot.monthEnd),
+    DailyHook(
+      id: 1,
+      titleEn: 'Your energy outlook for today',
+      titleTr: 'Bugünkü enerji görünümün',
+      category: HookCategory.morning,
+      timeSlot: HookTimeSlot.morning,
+    ),
+    DailyHook(
+      id: 2,
+      titleEn: 'One thing to notice about yourself today',
+      titleTr: 'Bugün kendinde fark edeceğin bir şey',
+      category: HookCategory.reflection,
+      timeSlot: HookTimeSlot.morning,
+    ),
+    DailyHook(
+      id: 3,
+      titleEn: 'Your mindfulness check-in',
+      titleTr: 'Farkındalık kontrolün',
+      category: HookCategory.mindfulness,
+      timeSlot: HookTimeSlot.morning,
+    ),
+    DailyHook(
+      id: 4,
+      titleEn: "Today's focus area spotlight",
+      titleTr: 'Bugünkü odak alanın',
+      category: HookCategory.focus,
+      timeSlot: HookTimeSlot.morning,
+    ),
+    DailyHook(
+      id: 5,
+      titleEn: 'Your emotional weather check',
+      titleTr: 'Duygusal hava durumun',
+      category: HookCategory.mood,
+      timeSlot: HookTimeSlot.morning,
+    ),
+    DailyHook(
+      id: 6,
+      titleEn: 'Dream insight of the day',
+      titleTr: 'Günün rüya içgörüsü',
+      category: HookCategory.dream,
+      timeSlot: HookTimeSlot.morning,
+    ),
+    DailyHook(
+      id: 7,
+      titleEn: 'Your daily growth challenge',
+      titleTr: 'Günlük büyüme meydan okuman',
+      category: HookCategory.growth,
+      timeSlot: HookTimeSlot.morning,
+    ),
+    DailyHook(
+      id: 8,
+      titleEn: 'Pattern alert: something shifted',
+      titleTr: 'Örüntü uyarısı: bir şey değişti',
+      category: HookCategory.pattern,
+      timeSlot: HookTimeSlot.anytime,
+    ),
+    DailyHook(
+      id: 9,
+      titleEn: 'Your evening reflection prompt',
+      titleTr: 'Akşam yansıma sorun',
+      category: HookCategory.reflection,
+      timeSlot: HookTimeSlot.evening,
+    ),
+    DailyHook(
+      id: 10,
+      titleEn: "This week's theme emerging",
+      titleTr: 'Bu haftanın teması beliriyor',
+      category: HookCategory.pattern,
+      timeSlot: HookTimeSlot.midweek,
+    ),
+    DailyHook(
+      id: 11,
+      titleEn: 'Your streak milestone',
+      titleTr: 'Seri kilometre taşın',
+      category: HookCategory.achievement,
+      timeSlot: HookTimeSlot.anytime,
+    ),
+    DailyHook(
+      id: 12,
+      titleEn: 'Someone with your pattern noticed...',
+      titleTr: 'Senin örüntünde biri fark etti...',
+      category: HookCategory.social,
+      timeSlot: HookTimeSlot.afternoon,
+    ),
+    DailyHook(
+      id: 13,
+      titleEn: 'Your forgotten dream clue',
+      titleTr: 'Unuttuğun rüya ipucu',
+      category: HookCategory.dream,
+      timeSlot: HookTimeSlot.morning,
+    ),
+    DailyHook(
+      id: 14,
+      titleEn: "Today's journaling spark",
+      titleTr: 'Bugünkü günlük kıvılcımı',
+      category: HookCategory.reflection,
+      timeSlot: HookTimeSlot.morning,
+    ),
+    DailyHook(
+      id: 15,
+      titleEn: 'Your inner cycle check-in',
+      titleTr: 'İç döngü kontrolün',
+      category: HookCategory.mood,
+      timeSlot: HookTimeSlot.afternoon,
+    ),
+    DailyHook(
+      id: 16,
+      titleEn: 'Midday mindfulness check-in',
+      titleTr: 'Öğle farkındalık kontrolü',
+      category: HookCategory.mindfulness,
+      timeSlot: HookTimeSlot.morning,
+    ),
+    DailyHook(
+      id: 17,
+      titleEn: 'Evening intention setting',
+      titleTr: 'Akşam niyet belirleme',
+      category: HookCategory.mindfulness,
+      timeSlot: HookTimeSlot.evening,
+    ),
+    DailyHook(
+      id: 18,
+      titleEn: 'Evening release ritual',
+      titleTr: 'Akşam bırakma ritüeli',
+      category: HookCategory.mindfulness,
+      timeSlot: HookTimeSlot.evening,
+    ),
+    DailyHook(
+      id: 19,
+      titleEn: 'Your decision clarity score today',
+      titleTr: 'Bugünkü karar netliği puanın',
+      category: HookCategory.focus,
+      timeSlot: HookTimeSlot.morning,
+    ),
+    DailyHook(
+      id: 20,
+      titleEn: 'Energy vs. mood mismatch alert',
+      titleTr: 'Enerji-ruh hali uyumsuzluk uyarısı',
+      category: HookCategory.pattern,
+      timeSlot: HookTimeSlot.afternoon,
+    ),
+    DailyHook(
+      id: 21,
+      titleEn: 'Your social battery check',
+      titleTr: 'Sosyal batarya kontrolün',
+      category: HookCategory.social,
+      timeSlot: HookTimeSlot.afternoon,
+    ),
+    DailyHook(
+      id: 22,
+      titleEn: 'Gratitude micro-moment',
+      titleTr: 'Şükran mikro-anı',
+      category: HookCategory.reflection,
+      timeSlot: HookTimeSlot.evening,
+    ),
+    DailyHook(
+      id: 23,
+      titleEn: "Today's archetype energy",
+      titleTr: 'Bugünkü arketip enerjin',
+      category: HookCategory.archetype,
+      timeSlot: HookTimeSlot.morning,
+    ),
+    DailyHook(
+      id: 24,
+      titleEn: 'Your sleep-dream connection',
+      titleTr: 'Uyku-rüya bağlantın',
+      category: HookCategory.dream,
+      timeSlot: HookTimeSlot.morning,
+    ),
+    DailyHook(
+      id: 25,
+      titleEn: 'Midweek emotional reset',
+      titleTr: 'Hafta ortası duygusal sıfırlama',
+      category: HookCategory.mood,
+      timeSlot: HookTimeSlot.midweek,
+    ),
+    DailyHook(
+      id: 26,
+      titleEn: 'Friday self-check: how was your week?',
+      titleTr: 'Cuma kontrolü: haftan nasıldı?',
+      category: HookCategory.reflection,
+      timeSlot: HookTimeSlot.friday,
+    ),
+    DailyHook(
+      id: 27,
+      titleEn: 'Sunday intention seed',
+      titleTr: 'Pazar niyet tohumu',
+      category: HookCategory.reflection,
+      timeSlot: HookTimeSlot.sunday,
+    ),
+    DailyHook(
+      id: 28,
+      titleEn: 'Your emotional courage moment',
+      titleTr: 'Duygusal cesaret anın',
+      category: HookCategory.growth,
+      timeSlot: HookTimeSlot.anytime,
+    ),
+    DailyHook(
+      id: 29,
+      titleEn: 'Pattern breakthrough moment',
+      titleTr: 'Örüntü kırılma anı',
+      category: HookCategory.achievement,
+      timeSlot: HookTimeSlot.anytime,
+    ),
+    DailyHook(
+      id: 30,
+      titleEn: 'Your monthly emotional summary preview',
+      titleTr: 'Aylık duygusal özet önizlemen',
+      category: HookCategory.pattern,
+      timeSlot: HookTimeSlot.monthEnd,
+    ),
   ];
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -132,7 +312,9 @@ class DailyHookService {
     final recentlyShown = _getRecentlyShownIds();
 
     // Filter out hooks shown within the last 7 days
-    var available = candidates.where((h) => !recentlyShown.contains(h.id)).toList();
+    var available = candidates
+        .where((h) => !recentlyShown.contains(h.id))
+        .toList();
 
     // If all candidates were recently shown, fall back to full candidates list
     if (available.isEmpty) {
@@ -161,13 +343,18 @@ class DailyHookService {
   /// Get a morning-appropriate hook text
   String getMorningHook({bool isEnglish = true}) {
     final now = DateTime.now();
-    final morningHooks = _hooks.where((h) =>
-      h.timeSlot == HookTimeSlot.morning ||
-      h.timeSlot == HookTimeSlot.anytime,
-    ).toList();
+    final morningHooks = _hooks
+        .where(
+          (h) =>
+              h.timeSlot == HookTimeSlot.morning ||
+              h.timeSlot == HookTimeSlot.anytime,
+        )
+        .toList();
 
     final recentlyShown = _getRecentlyShownIds();
-    var available = morningHooks.where((h) => !recentlyShown.contains(h.id)).toList();
+    var available = morningHooks
+        .where((h) => !recentlyShown.contains(h.id))
+        .toList();
 
     if (available.isEmpty) {
       available = morningHooks;
@@ -176,7 +363,9 @@ class DailyHookService {
     // Check day-of-week overrides
     final daySpecific = _getDaySpecificHooks(now.weekday);
     if (daySpecific.isNotEmpty) {
-      final dayAvailable = daySpecific.where((h) => !recentlyShown.contains(h.id)).toList();
+      final dayAvailable = daySpecific
+          .where((h) => !recentlyShown.contains(h.id))
+          .toList();
       if (dayAvailable.isNotEmpty) {
         available = dayAvailable;
       }
@@ -188,13 +377,18 @@ class DailyHookService {
 
   /// Get an evening-appropriate hook text
   String getEveningHook({bool isEnglish = true}) {
-    final eveningHooks = _hooks.where((h) =>
-      h.timeSlot == HookTimeSlot.evening ||
-      h.timeSlot == HookTimeSlot.anytime,
-    ).toList();
+    final eveningHooks = _hooks
+        .where(
+          (h) =>
+              h.timeSlot == HookTimeSlot.evening ||
+              h.timeSlot == HookTimeSlot.anytime,
+        )
+        .toList();
 
     final recentlyShown = _getRecentlyShownIds();
-    var available = eveningHooks.where((h) => !recentlyShown.contains(h.id)).toList();
+    var available = eveningHooks
+        .where((h) => !recentlyShown.contains(h.id))
+        .toList();
 
     if (available.isEmpty) {
       available = eveningHooks;
@@ -225,10 +419,7 @@ class DailyHookService {
     await _prefs.setStringList(_shownHooksTimestampKey, timestamps);
 
     // Update last hook date
-    await _prefs.setString(
-      _lastHookDateKey,
-      DateTime.now().toIso8601String(),
-    );
+    await _prefs.setString(_lastHookDateKey, DateTime.now().toIso8601String());
 
     // Track category engagement
     final hook = _hooks.firstWhere(
@@ -298,7 +489,9 @@ class DailyHookService {
 
     // If no context-specific hooks matched, fall back to anytime hooks
     if (candidates.isEmpty) {
-      candidates.addAll(_hooks.where((h) => h.timeSlot == HookTimeSlot.anytime));
+      candidates.addAll(
+        _hooks.where((h) => h.timeSlot == HookTimeSlot.anytime),
+      );
     }
 
     return candidates;
@@ -309,26 +502,28 @@ class DailyHookService {
     switch (weekday) {
       case DateTime.monday:
         // Monday: prefer morning/growth hooks for a fresh start
-        return _hooks.where((h) =>
-          h.category == HookCategory.growth ||
-          h.category == HookCategory.focus,
-        ).toList();
+        return _hooks
+            .where(
+              (h) =>
+                  h.category == HookCategory.growth ||
+                  h.category == HookCategory.focus,
+            )
+            .toList();
       case DateTime.wednesday:
         // Midweek: prefer midweek time slot
-        return _hooks.where((h) =>
-          h.timeSlot == HookTimeSlot.midweek,
-        ).toList();
+        return _hooks.where((h) => h.timeSlot == HookTimeSlot.midweek).toList();
       case DateTime.friday:
         // Friday: prefer friday time slot
-        return _hooks.where((h) =>
-          h.timeSlot == HookTimeSlot.friday,
-        ).toList();
+        return _hooks.where((h) => h.timeSlot == HookTimeSlot.friday).toList();
       case DateTime.sunday:
         // Sunday: prefer sunday time slot and reflection
-        return _hooks.where((h) =>
-          h.timeSlot == HookTimeSlot.sunday ||
-          h.category == HookCategory.reflection,
-        ).toList();
+        return _hooks
+            .where(
+              (h) =>
+                  h.timeSlot == HookTimeSlot.sunday ||
+                  h.category == HookCategory.reflection,
+            )
+            .toList();
       default:
         return [];
     }

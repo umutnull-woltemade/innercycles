@@ -275,8 +275,12 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
                 ),
                 suffixIcon: IconButton(
                   tooltip: _obscurePin
-                      ? (language == AppLanguage.en ? 'Show PIN' : 'PIN\'i göster')
-                      : (language == AppLanguage.en ? 'Hide PIN' : 'PIN\'i gizle'),
+                      ? (language == AppLanguage.en
+                            ? 'Show PIN'
+                            : 'PIN\'i göster')
+                      : (language == AppLanguage.en
+                            ? 'Hide PIN'
+                            : 'PIN\'i gizle'),
                   icon: Icon(
                     _obscurePin ? Icons.visibility_off : Icons.visibility,
                     color: isDark

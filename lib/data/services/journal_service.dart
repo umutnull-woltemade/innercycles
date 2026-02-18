@@ -163,8 +163,7 @@ class JournalService {
     }
 
     int streak = 0;
-    DateTime checkDate =
-        uniqueDates.contains(todayKey) ? today : yesterday;
+    DateTime checkDate = uniqueDates.contains(todayKey) ? today : yesterday;
 
     for (int i = 0; i < 365; i++) {
       final key =
@@ -216,8 +215,7 @@ class JournalService {
     if (jsonString != null) {
       try {
         final List<dynamic> jsonList = json.decode(jsonString);
-        _entries =
-            jsonList.map((j) => JournalEntry.fromJson(j)).toList();
+        _entries = jsonList.map((j) => JournalEntry.fromJson(j)).toList();
       } catch (_) {
         _entries = [];
       }

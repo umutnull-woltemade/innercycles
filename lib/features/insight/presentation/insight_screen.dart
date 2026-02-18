@@ -43,8 +43,12 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('insight'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('insight', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('insight'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData((s) => s.trackToolOpen('insight', source: 'direct'));
     });
     _pulseController = AnimationController(
       vsync: this,
@@ -151,7 +155,9 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
     final language = ref.watch(languageProvider);
 
     return Scaffold(
-      backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightBackground,
+      backgroundColor: isDark
+          ? AppColors.surfaceDark
+          : AppColors.lightBackground,
       // NOTE: Keeping plain AppBar here intentionally. This is a chat screen
       // with a fixed input area pinned at the bottom (Column with Expanded
       // ListView + fixed _buildInputArea). Converting to GlassSliverAppBar
@@ -180,40 +186,43 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
       ),
       body: CosmicBackground(
         child: SafeArea(
-        child: Column(
-          children: [
-            // Chat messages
-            Expanded(
-              child: ListView.builder(
-                controller: _scrollController,
-                physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
+          child: Column(
+            children: [
+              // Chat messages
+              Expanded(
+                child: ListView.builder(
+                  controller: _scrollController,
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  itemCount: _messages.length + (_isTyping ? 1 : 0),
+                  itemBuilder: (context, index) {
+                    if (_isTyping && index == _messages.length) {
+                      return _buildTypingIndicator(isDark, language);
+                    }
+                    if (index >= _messages.length)
+                      return const SizedBox.shrink();
+                    return _buildMessageBubble(_messages[index], isDark);
+                  },
                 ),
-                itemCount: _messages.length + (_isTyping ? 1 : 0),
-                itemBuilder: (context, index) {
-                  if (_isTyping && index == _messages.length) {
-                    return _buildTypingIndicator(isDark, language);
-                  }
-                  if (index >= _messages.length) return const SizedBox.shrink();
-                  return _buildMessageBubble(_messages[index], isDark);
-                },
               ),
-            ),
 
-            // Disclaimer
-            ContentDisclaimer(
-              compact: true,
-              customText: DisclaimerTexts.insight(language),
-              language: language,
-            ),
+              // Disclaimer
+              ContentDisclaimer(
+                compact: true,
+                customText: DisclaimerTexts.insight(language),
+                language: language,
+              ),
 
-            // Input area
-            _buildInputArea(isDark, language),
-          ],
+              // Input area
+              _buildInputArea(isDark, language),
+            ],
+          ),
         ),
-      ),
       ),
     );
   }
@@ -366,7 +375,9 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: isDark ? AppColors.chatInputField : AppColors.lightSurfaceVariant,
+                color: isDark
+                    ? AppColors.chatInputField
+                    : AppColors.lightSurfaceVariant,
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(
                   color: isDark
@@ -387,7 +398,9 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
                 decoration: InputDecoration(
                   hintText: L10nService.get('insight.input_hint', language),
                   hintStyle: TextStyle(
-                    color: isDark ? AppColors.textMuted.withValues(alpha: 0.38) : AppColors.textMuted,
+                    color: isDark
+                        ? AppColors.textMuted.withValues(alpha: 0.38)
+                        : AppColors.textMuted,
                     fontSize: 15,
                   ),
                   border: InputBorder.none,

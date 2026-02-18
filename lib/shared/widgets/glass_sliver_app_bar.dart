@@ -34,7 +34,9 @@ class GlassSliverAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final effectiveTitleColor = titleColor ?? AppColors.starGold;
-    final backColor = isDark ? AppColors.textPrimary : AppColors.lightTextPrimary;
+    final backColor = isDark
+        ? AppColors.textPrimary
+        : AppColors.lightTextPrimary;
 
     if (largeTitleMode) {
       return SliverAppBar(
@@ -74,7 +76,8 @@ class GlassSliverAppBar extends StatelessWidget {
                   style: TextStyle(
                     color: effectiveTitleColor,
                     fontWeight: FontWeight.w700,
-                    fontSize: 17, // Collapsed size — FlexibleSpaceBar auto-scales
+                    fontSize:
+                        17, // Collapsed size — FlexibleSpaceBar auto-scales
                   ),
                 ),
                 collapseMode: CollapseMode.pin,
@@ -133,11 +136,7 @@ class GlassSliverAppBar extends StatelessWidget {
       child: IconButton(
         tooltip: isEn ? 'Back' : 'Geri',
         onPressed: () => Navigator.of(context).pop(),
-        icon: Icon(
-          Icons.chevron_left,
-          color: color,
-          size: 28,
-        ),
+        icon: Icon(Icons.chevron_left, color: color, size: 28),
       ),
     );
   }

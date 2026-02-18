@@ -4,7 +4,8 @@ library;
 
 class HabitSuggestion {
   final String id;
-  final String category; // morning, evening, mindfulness, social, creative, physical, reflective
+  final String
+  category; // morning, evening, mindfulness, social, creative, physical, reflective
   final String titleEn;
   final String titleTr;
   final String descriptionEn;

@@ -134,7 +134,9 @@ class _NotificationSettingsSectionState
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceLight.withValues(alpha: 0.08) : Colors.white,
+        color: isDark
+            ? AppColors.surfaceLight.withValues(alpha: 0.08)
+            : Colors.white,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         border: Border.all(
           color: isDark
@@ -177,8 +179,8 @@ class _NotificationSettingsSectionState
               title: isEnglish ? 'Daily Insight' : 'Günlük İçgörü',
               subtitle: _dailyInsightEnabled
                   ? (isEnglish
-                      ? 'Reminder at ${_dailyHour.toString().padLeft(2, '0')}:${_dailyMinute.toString().padLeft(2, '0')}'
-                      : 'Hatırlatma: ${_dailyHour.toString().padLeft(2, '0')}:${_dailyMinute.toString().padLeft(2, '0')}')
+                        ? 'Reminder at ${_dailyHour.toString().padLeft(2, '0')}:${_dailyMinute.toString().padLeft(2, '0')}'
+                        : 'Hatırlatma: ${_dailyHour.toString().padLeft(2, '0')}:${_dailyMinute.toString().padLeft(2, '0')}')
                   : (isEnglish ? 'Off' : 'Kapalı'),
               value: _dailyInsightEnabled,
               onChanged: _toggleDailyInsight,
@@ -191,7 +193,9 @@ class _NotificationSettingsSectionState
               context,
               isDark,
               icon: Icons.nightlight_round_outlined,
-              title: isEnglish ? 'Moon Cycle Awareness' : 'Ay Döngüsü Farkındalığı',
+              title: isEnglish
+                  ? 'Moon Cycle Awareness'
+                  : 'Ay Döngüsü Farkındalığı',
               subtitle: isEnglish
                   ? 'New & full moon mindfulness reminders'
                   : 'Yeni ve dolunay farkındalık hatırlatmaları',

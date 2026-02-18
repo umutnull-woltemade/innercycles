@@ -33,61 +33,64 @@ class EnergyMapScreen extends ConsumerWidget {
         child: SafeArea(
           child: CupertinoScrollbar(
             child: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            slivers: [
-              GlassSliverAppBar(
-                title: isEn ? 'Energy Map' : 'Enerji Haritası',
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
               ),
-              SliverPadding(
-                padding: const EdgeInsets.all(16),
-                sliver: energyAsync.when(
-                  loading: () => const SliverToBoxAdapter(
-                    child: Center(child: CosmicLoadingIndicator()),
-                  ),
-                  error: (e, s) => SliverToBoxAdapter(
-                    child: Center(
-                      child: Text(
-                        isEn ? 'Could not load data' : 'Veri yüklenemedi',
-                        style: TextStyle(
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
+              slivers: [
+                GlassSliverAppBar(
+                  title: isEn ? 'Energy Map' : 'Enerji Haritası',
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.all(16),
+                  sliver: energyAsync.when(
+                    loading: () => const SliverToBoxAdapter(
+                      child: Center(child: CosmicLoadingIndicator()),
+                    ),
+                    error: (e, s) => SliverToBoxAdapter(
+                      child: Center(
+                        child: Text(
+                          isEn ? 'Could not load data' : 'Veri yüklenemedi',
+                          style: TextStyle(
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  data: (data) {
-                    if (data == null) {
-                      return SliverToBoxAdapter(
-                        child: _EmptyState(isDark: isDark, isEn: isEn),
+                    data: (data) {
+                      if (data == null) {
+                        return SliverToBoxAdapter(
+                          child: _EmptyState(isDark: isDark, isEn: isEn),
+                        );
+                      }
+                      return SliverList(
+                        delegate: SliverChildListDelegate([
+                          _SummaryHeader(
+                            data: data,
+                            isDark: isDark,
+                            isEn: isEn,
+                          ),
+                          const SizedBox(height: 20),
+                          _HeatmapGrid(data: data, isDark: isDark, isEn: isEn),
+                          const SizedBox(height: 24),
+                          _DailyChart(data: data, isDark: isDark, isEn: isEn),
+                          const SizedBox(height: 24),
+                          _InsightTips(data: data, isDark: isDark, isEn: isEn),
+                          const SizedBox(height: 24),
+                          ToolEcosystemFooter(
+                            currentToolId: 'energyMap',
+                            isEn: isEn,
+                            isDark: isDark,
+                          ),
+                          const SizedBox(height: 40),
+                        ]),
                       );
-                    }
-                    return SliverList(
-                      delegate: SliverChildListDelegate([
-                        _SummaryHeader(
-                            data: data, isDark: isDark, isEn: isEn),
-                        const SizedBox(height: 20),
-                        _HeatmapGrid(data: data, isDark: isDark, isEn: isEn),
-                        const SizedBox(height: 24),
-                        _DailyChart(data: data, isDark: isDark, isEn: isEn),
-                        const SizedBox(height: 24),
-                        _InsightTips(data: data, isDark: isDark, isEn: isEn),
-                        const SizedBox(height: 24),
-                        ToolEcosystemFooter(
-                          currentToolId: 'energyMap',
-                          isEn: isEn,
-                          isDark: isDark,
-                        ),
-                        const SizedBox(height: 40),
-                      ]),
-                    );
-                  },
+                    },
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
           ),
         ),
       ),
@@ -147,8 +150,8 @@ class _SummaryHeader extends StatelessWidget {
             label: isEn ? 'Strongest' : 'En Güçlü',
             value: data.strongestArea != null
                 ? (isEn
-                    ? data.strongestArea!.displayNameEn
-                    : data.strongestArea!.displayNameTr)
+                      ? data.strongestArea!.displayNameEn
+                      : data.strongestArea!.displayNameTr)
                 : '-',
             color: AppColors.starGold,
             isDark: isDark,
@@ -258,59 +261,69 @@ class _HeatmapGrid extends StatelessWidget {
           Row(
             children: [
               const SizedBox(width: 60),
-              ...List.generate(7, (i) => Expanded(
-                child: Center(
-                  child: Text(
-                    dayLabels[i],
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w500,
-                      color: isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
+              ...List.generate(
+                7,
+                (i) => Expanded(
+                  child: Center(
+                    child: Text(
+                      dayLabels[i],
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w500,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
                     ),
                   ),
                 ),
-              )),
+              ),
             ],
           ),
           const SizedBox(height: 8),
           // Area rows
-          ...FocusArea.values.map((area) => Padding(
-            padding: const EdgeInsets.only(bottom: 4),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 60,
-                  child: Text(
-                    isEn ? area.displayNameEn : area.displayNameTr,
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                ...List.generate(7, (dayIdx) {
-                  final cell = data.cells.firstWhere(
-                    (c) => c.weekday == dayIdx + 1 && c.area == area,
-                    orElse: () => HeatmapCell(weekday: dayIdx + 1, area: area, averageRating: 0.0, entryCount: 0),
-                  );
-                  return Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2),
-                      child: _HeatCell(
-                        intensity: cell.intensity,
-                        isDark: isDark,
+          ...FocusArea.values.map(
+            (area) => Padding(
+              padding: const EdgeInsets.only(bottom: 4),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 60,
+                    child: Text(
+                      isEn ? area.displayNameEn : area.displayNameTr,
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
                       ),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  );
-                }),
-              ],
+                  ),
+                  ...List.generate(7, (dayIdx) {
+                    final cell = data.cells.firstWhere(
+                      (c) => c.weekday == dayIdx + 1 && c.area == area,
+                      orElse: () => HeatmapCell(
+                        weekday: dayIdx + 1,
+                        area: area,
+                        averageRating: 0.0,
+                        entryCount: 0,
+                      ),
+                    );
+                    return Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 2),
+                        child: _HeatCell(
+                          intensity: cell.intensity,
+                          isDark: isDark,
+                        ),
+                      ),
+                    );
+                  }),
+                ],
+              ),
             ),
-          )),
+          ),
           const SizedBox(height: 12),
           // Legend
           Row(
@@ -326,15 +339,18 @@ class _HeatmapGrid extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 4),
-              ...List.generate(5, (i) => Container(
-                width: 12,
-                height: 12,
-                margin: const EdgeInsets.symmetric(horizontal: 1),
-                decoration: BoxDecoration(
-                  color: _heatColor(i / 4, isDark),
-                  borderRadius: BorderRadius.circular(2),
+              ...List.generate(
+                5,
+                (i) => Container(
+                  width: 12,
+                  height: 12,
+                  margin: const EdgeInsets.symmetric(horizontal: 1),
+                  decoration: BoxDecoration(
+                    color: _heatColor(i / 4, isDark),
+                    borderRadius: BorderRadius.circular(2),
+                  ),
                 ),
-              )),
+              ),
               const SizedBox(width: 4),
               Text(
                 isEn ? 'High' : 'Yüksek',
@@ -447,8 +463,8 @@ class _DailyChart extends StatelessWidget {
                         color: s.entryCount > 0
                             ? _barColor(s.averageRating)
                             : (isDark
-                                ? Colors.white.withValues(alpha: 0.05)
-                                : Colors.black.withValues(alpha: 0.03)),
+                                  ? Colors.white.withValues(alpha: 0.05)
+                                  : Colors.black.withValues(alpha: 0.03)),
                         borderRadius: const BorderRadius.vertical(
                           top: Radius.circular(2),
                         ),
@@ -516,22 +532,28 @@ class _InsightTips extends StatelessWidget {
     final tips = <String>[];
 
     if (data.strongestArea != null) {
-      tips.add(isEn
-          ? 'Your strongest area tends to be ${data.strongestArea!.displayNameEn}'
-          : 'En güçlü alanın ${data.strongestArea!.displayNameTr} olma eğiliminde');
+      tips.add(
+        isEn
+            ? 'Your strongest area tends to be ${data.strongestArea!.displayNameEn}'
+            : 'En güçlü alanın ${data.strongestArea!.displayNameTr} olma eğiliminde',
+      );
     }
 
     final bestDayLabel = isEn
         ? _dayFullEn(data.bestDay)
         : _dayFullTr(data.bestDay);
-    tips.add(isEn
-        ? 'You tend to rate higher on ${bestDayLabel}s'
-        : '$bestDayLabel günleri daha yüksek puanlama eğilimindesin');
+    tips.add(
+      isEn
+          ? 'You tend to rate higher on ${bestDayLabel}s'
+          : '$bestDayLabel günleri daha yüksek puanlama eğilimindesin',
+    );
 
     if (data.overallAverage > 0) {
-      tips.add(isEn
-          ? 'Your overall average is ${data.overallAverage.toStringAsFixed(1)} out of 5'
-          : 'Genel ortalamanız 5 üzerinden ${data.overallAverage.toStringAsFixed(1)}');
+      tips.add(
+        isEn
+            ? 'Your overall average is ${data.overallAverage.toStringAsFixed(1)} out of 5'
+            : 'Genel ortalamanız 5 üzerinden ${data.overallAverage.toStringAsFixed(1)}',
+      );
     }
 
     return Container(
@@ -571,33 +593,35 @@ class _InsightTips extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          ...tips.map((tip) => Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '  •  ',
-                  style: TextStyle(
-                    color: AppColors.auroraStart,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Expanded(
-                  child: Text(
-                    tip,
+          ...tips.map(
+            (tip) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '  •  ',
                     style: TextStyle(
-                      fontSize: 13,
-                      color: isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary,
-                      height: 1.4,
+                      color: AppColors.auroraStart,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: Text(
+                      tip,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                        height: 1.4,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          )),
+          ),
         ],
       ),
     ).animate().fadeIn(delay: 300.ms, duration: 300.ms);
@@ -605,16 +629,26 @@ class _InsightTips extends StatelessWidget {
 
   String _dayFullEn(int weekday) {
     const days = [
-      'Monday', 'Tuesday', 'Wednesday', 'Thursday',
-      'Friday', 'Saturday', 'Sunday'
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
     ];
     return days[weekday - 1];
   }
 
   String _dayFullTr(int weekday) {
     const days = [
-      'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe',
-      'Cuma', 'Cumartesi', 'Pazar'
+      'Pazartesi',
+      'Salı',
+      'Çarşamba',
+      'Perşembe',
+      'Cuma',
+      'Cumartesi',
+      'Pazar',
     ];
     return days[weekday - 1];
   }
@@ -646,9 +680,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            isEn
-                ? 'Not enough data yet'
-                : 'Henüz yeterli veri yok',
+            isEn ? 'Not enough data yet' : 'Henüz yeterli veri yok',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -665,9 +697,7 @@ class _EmptyState extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
-              color: isDark
-                  ? AppColors.textMuted
-                  : AppColors.lightTextMuted,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
           ),
         ],

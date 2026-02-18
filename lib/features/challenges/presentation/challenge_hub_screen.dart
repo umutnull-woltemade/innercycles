@@ -37,8 +37,12 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('challenges'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('challenges', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('challenges'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData((s) => s.trackToolOpen('challenges', source: 'direct'));
     });
   }
 
@@ -73,7 +77,9 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
       final progress = service.getProgress(c.id);
       return progress != null && !progress.isCompleted;
     }).toList();
-    final completedChallenges = allChallenges.where((c) => service.isCompleted(c.id)).toList();
+    final completedChallenges = allChallenges
+        .where((c) => service.isCompleted(c.id))
+        .toList();
     final availableChallenges = allChallenges.where((c) {
       final progress = service.getProgress(c.id);
       return progress == null && !service.isCompleted(c.id);
@@ -81,46 +87,91 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
 
     return CupertinoScrollbar(
       child: CustomScrollView(
-        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
         slivers: [
-          GlassSliverAppBar(title: isEn ? 'Challenges' : 'G\u00f6revler', showBackButton: false),
+          GlassSliverAppBar(
+            title: isEn ? 'Challenges' : 'G\u00f6revler',
+            showBackButton: false,
+          ),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 // Stats Bar
-                _StatsBar(active: activeChallenges.length, completed: completedChallenges.length, total: allChallenges.length, isDark: isDark, isEn: isEn).animate().fadeIn(duration: 400.ms),
+                _StatsBar(
+                  active: activeChallenges.length,
+                  completed: completedChallenges.length,
+                  total: allChallenges.length,
+                  isDark: isDark,
+                  isEn: isEn,
+                ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: AppConstants.spacingXl),
 
                 // Active Challenges
                 if (activeChallenges.isNotEmpty) ...[
-                  _SectionTitle(title: isEn ? 'Active Challenges' : 'Aktif G\u00f6revler', isDark: isDark).animate().fadeIn(duration: 400.ms, delay: 100.ms),
+                  _SectionTitle(
+                    title: isEn ? 'Active Challenges' : 'Aktif G\u00f6revler',
+                    isDark: isDark,
+                  ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
                   const SizedBox(height: AppConstants.spacingMd),
                   ...activeChallenges.asMap().entries.map((entry) {
                     final challenge = entry.value;
                     final progress = service.getProgress(challenge.id)!;
                     return Padding(
-                      padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
-                      child: _ActiveChallengeCard(challenge: challenge, progress: progress, isDark: isDark, isEn: isEn),
-                    ).animate().fadeIn(delay: Duration(milliseconds: 150 + entry.key * 80), duration: 400.ms);
+                      padding: const EdgeInsets.only(
+                        bottom: AppConstants.spacingMd,
+                      ),
+                      child: _ActiveChallengeCard(
+                        challenge: challenge,
+                        progress: progress,
+                        isDark: isDark,
+                        isEn: isEn,
+                      ),
+                    ).animate().fadeIn(
+                      delay: Duration(milliseconds: 150 + entry.key * 80),
+                      duration: 400.ms,
+                    );
                   }),
                   const SizedBox(height: AppConstants.spacingLg),
                 ],
 
                 // Available Challenges
-                _SectionTitle(title: isEn ? 'Available Challenges' : 'Mevcut G\u00f6revler', isDark: isDark).animate().fadeIn(duration: 400.ms, delay: 200.ms),
+                _SectionTitle(
+                  title: isEn ? 'Available Challenges' : 'Mevcut G\u00f6revler',
+                  isDark: isDark,
+                ).animate().fadeIn(duration: 400.ms, delay: 200.ms),
                 const SizedBox(height: AppConstants.spacingMd),
-                ..._buildAvailableGrid(availableChallenges, service, isDark, isEn),
+                ..._buildAvailableGrid(
+                  availableChallenges,
+                  service,
+                  isDark,
+                  isEn,
+                ),
                 const SizedBox(height: AppConstants.spacingXl),
 
                 // Completed
                 if (completedChallenges.isNotEmpty) ...[
-                  _SectionTitle(title: isEn ? 'Completed (${completedChallenges.length})' : 'Tamamlanan (${completedChallenges.length})', isDark: isDark).animate().fadeIn(duration: 400.ms, delay: 300.ms),
+                  _SectionTitle(
+                    title: isEn
+                        ? 'Completed (${completedChallenges.length})'
+                        : 'Tamamlanan (${completedChallenges.length})',
+                    isDark: isDark,
+                  ).animate().fadeIn(duration: 400.ms, delay: 300.ms),
                   const SizedBox(height: AppConstants.spacingMd),
-                  ...completedChallenges.map((c) => Padding(
-                    padding: const EdgeInsets.only(bottom: AppConstants.spacingSm),
-                    child: _CompletedChallengeTile(challenge: c, isDark: isDark, isEn: isEn),
-                  )),
+                  ...completedChallenges.map(
+                    (c) => Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: AppConstants.spacingSm,
+                      ),
+                      child: _CompletedChallengeTile(
+                        challenge: c,
+                        isDark: isDark,
+                        isEn: isEn,
+                      ),
+                    ),
+                  ),
                 ],
 
                 ToolEcosystemFooter(
@@ -137,7 +188,12 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
     );
   }
 
-  List<Widget> _buildAvailableGrid(List<GrowthChallenge> challenges, GrowthChallengeService service, bool isDark, bool isEn) {
+  List<Widget> _buildAvailableGrid(
+    List<GrowthChallenge> challenges,
+    GrowthChallengeService service,
+    bool isDark,
+    bool isEn,
+  ) {
     final rows = <Widget>[];
     for (int i = 0; i < challenges.length; i += 2) {
       final left = challenges[i];
@@ -147,25 +203,53 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
           padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
           child: Row(
             children: [
-              Expanded(child: _AvailableChallengeCard(challenge: left, isDark: isDark, isEn: isEn, onStart: () => _startChallenge(service, left.id))),
+              Expanded(
+                child: _AvailableChallengeCard(
+                  challenge: left,
+                  isDark: isDark,
+                  isEn: isEn,
+                  onStart: () => _startChallenge(service, left.id),
+                ),
+              ),
               const SizedBox(width: AppConstants.spacingMd),
-              Expanded(child: right != null ? _AvailableChallengeCard(challenge: right, isDark: isDark, isEn: isEn, onStart: () => _startChallenge(service, right.id)) : const SizedBox.shrink()),
+              Expanded(
+                child: right != null
+                    ? _AvailableChallengeCard(
+                        challenge: right,
+                        isDark: isDark,
+                        isEn: isEn,
+                        onStart: () => _startChallenge(service, right.id),
+                      )
+                    : const SizedBox.shrink(),
+              ),
             ],
           ),
-        ).animate().fadeIn(delay: Duration(milliseconds: 250 + (i ~/ 2) * 60), duration: 400.ms),
+        ).animate().fadeIn(
+          delay: Duration(milliseconds: 250 + (i ~/ 2) * 60),
+          duration: 400.ms,
+        ),
       );
     }
     return rows;
   }
 
-  Future<void> _startChallenge(GrowthChallengeService service, String id) async {
+  Future<void> _startChallenge(
+    GrowthChallengeService service,
+    String id,
+  ) async {
     // Check if this is a premium challenge and user is not premium
-    final challenge = GrowthChallengeService.allChallenges.where((c) => c.id == id).firstOrNull;
+    final challenge = GrowthChallengeService.allChallenges
+        .where((c) => c.id == id)
+        .firstOrNull;
     if (challenge != null && challenge.isPremium) {
       final isPremium = ref.read(isPremiumUserProvider);
       if (!isPremium) {
         if (mounted) {
-          await showContextualPaywall(context, ref, paywallContext: PaywallContext.challenges);
+          await showContextualPaywall(
+            context,
+            ref,
+            paywallContext: PaywallContext.challenges,
+          );
         }
         return;
       }
@@ -183,7 +267,14 @@ class _SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(title, style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.w700, color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary));
+    return Text(
+      title,
+      style: GoogleFonts.inter(
+        fontSize: 17,
+        fontWeight: FontWeight.w700,
+        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+      ),
+    );
   }
 }
 
@@ -193,22 +284,45 @@ class _StatsBar extends StatelessWidget {
   final int total;
   final bool isDark;
   final bool isEn;
-  const _StatsBar({required this.active, required this.completed, required this.total, required this.isDark, required this.isEn});
+  const _StatsBar({
+    required this.active,
+    required this.completed,
+    required this.total,
+    required this.isDark,
+    required this.isEn,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark.withValues(alpha: 0.85) : AppColors.lightCard,
+        color: isDark
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
+            : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _StatItem(value: '$active', label: isEn ? 'Active' : 'Aktif', color: AppColors.auroraStart, isDark: isDark),
-          _StatItem(value: '$completed', label: isEn ? 'Done' : 'Bitti', color: AppColors.success, isDark: isDark),
-          _StatItem(value: '$total', label: isEn ? 'Total' : 'Toplam', color: AppColors.starGold, isDark: isDark),
+          _StatItem(
+            value: '$active',
+            label: isEn ? 'Active' : 'Aktif',
+            color: AppColors.auroraStart,
+            isDark: isDark,
+          ),
+          _StatItem(
+            value: '$completed',
+            label: isEn ? 'Done' : 'Bitti',
+            color: AppColors.success,
+            isDark: isDark,
+          ),
+          _StatItem(
+            value: '$total',
+            label: isEn ? 'Total' : 'Toplam',
+            color: AppColors.starGold,
+            isDark: isDark,
+          ),
         ],
       ),
     );
@@ -220,14 +334,32 @@ class _StatItem extends StatelessWidget {
   final String label;
   final Color color;
   final bool isDark;
-  const _StatItem({required this.value, required this.label, required this.color, required this.isDark});
+  const _StatItem({
+    required this.value,
+    required this.label,
+    required this.color,
+    required this.isDark,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(value, style: GoogleFonts.inter(fontSize: 22, fontWeight: FontWeight.w700, color: color)),
-        Text(label, style: TextStyle(fontSize: 11, color: isDark ? AppColors.textMuted : AppColors.lightTextMuted)),
+        Text(
+          value,
+          style: GoogleFonts.inter(
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
+            color: color,
+          ),
+        ),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 11,
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          ),
+        ),
       ],
     );
   }
@@ -238,7 +370,12 @@ class _ActiveChallengeCard extends StatelessWidget {
   final ChallengeProgress progress;
   final bool isDark;
   final bool isEn;
-  const _ActiveChallengeCard({required this.challenge, required this.progress, required this.isDark, required this.isEn});
+  const _ActiveChallengeCard({
+    required this.challenge,
+    required this.progress,
+    required this.isDark,
+    required this.isEn,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -260,8 +397,25 @@ class _ActiveChallengeCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(isEn ? challenge.titleEn : challenge.titleTr, style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w700, color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary)),
-                    Text('${progress.currentCount} / ${progress.targetCount}', style: TextStyle(fontSize: 12, color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary)),
+                    Text(
+                      isEn ? challenge.titleEn : challenge.titleTr,
+                      style: GoogleFonts.inter(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    Text(
+                      '${progress.currentCount} / ${progress.targetCount}',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -271,13 +425,27 @@ class _ActiveChallengeCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
             child: LinearProgressIndicator(
-              value: progress.percent, minHeight: 6,
-              backgroundColor: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.06),
-              valueColor: const AlwaysStoppedAnimation<Color>(AppColors.auroraStart),
+              value: progress.percent,
+              minHeight: 6,
+              backgroundColor: isDark
+                  ? Colors.white.withValues(alpha: 0.1)
+                  : Colors.black.withValues(alpha: 0.06),
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                AppColors.auroraStart,
+              ),
             ),
           ),
           const SizedBox(height: AppConstants.spacingSm),
-          Text(isEn ? challenge.descriptionEn : challenge.descriptionTr, style: TextStyle(fontSize: 13, color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary, height: 1.4)),
+          Text(
+            isEn ? challenge.descriptionEn : challenge.descriptionTr,
+            style: TextStyle(
+              fontSize: 13,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+              height: 1.4,
+            ),
+          ),
         ],
       ),
     );
@@ -289,16 +457,27 @@ class _AvailableChallengeCard extends StatelessWidget {
   final bool isDark;
   final bool isEn;
   final VoidCallback onStart;
-  const _AvailableChallengeCard({required this.challenge, required this.isDark, required this.isEn, required this.onStart});
+  const _AvailableChallengeCard({
+    required this.challenge,
+    required this.isDark,
+    required this.isEn,
+    required this.onStart,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingMd),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark.withValues(alpha: 0.6) : AppColors.lightCard,
+        color: isDark
+            ? AppColors.surfaceDark.withValues(alpha: 0.6)
+            : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(color: isDark ? AppColors.surfaceLight.withValues(alpha: 0.3) : AppColors.lightSurfaceVariant),
+        border: Border.all(
+          color: isDark
+              ? AppColors.surfaceLight.withValues(alpha: 0.3)
+              : AppColors.lightSurfaceVariant,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -309,16 +488,48 @@ class _AvailableChallengeCard extends StatelessWidget {
               const Spacer(),
               if (challenge.isPremium)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppConstants.radiusSm), gradient: AppColors.primaryGradient),
-                  child: Text('PRO', style: GoogleFonts.inter(fontSize: 9, fontWeight: FontWeight.w700, color: Colors.white)),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 2,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppConstants.radiusSm),
+                    gradient: AppColors.primaryGradient,
+                  ),
+                  child: Text(
+                    'PRO',
+                    style: GoogleFonts.inter(
+                      fontSize: 9,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
             ],
           ),
           const SizedBox(height: AppConstants.spacingSm),
-          Text(isEn ? challenge.titleEn : challenge.titleTr, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary), maxLines: 1, overflow: TextOverflow.ellipsis),
+          Text(
+            isEn ? challenge.titleEn : challenge.titleTr,
+            style: GoogleFonts.inter(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
           const SizedBox(height: 2),
-          Text(isEn ? '${challenge.targetCount} days' : '${challenge.targetCount} g\u00fcn', style: TextStyle(fontSize: 12, color: isDark ? AppColors.textMuted : AppColors.lightTextMuted)),
+          Text(
+            isEn
+                ? '${challenge.targetCount} days'
+                : '${challenge.targetCount} g\u00fcn',
+            style: TextStyle(
+              fontSize: 12,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
+          ),
           const SizedBox(height: AppConstants.spacingMd),
           SizedBox(
             width: double.infinity,
@@ -326,11 +537,21 @@ class _AvailableChallengeCard extends StatelessWidget {
               onPressed: onStart,
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.auroraStart,
-                side: BorderSide(color: AppColors.auroraStart.withValues(alpha: 0.4)),
+                side: BorderSide(
+                  color: AppColors.auroraStart.withValues(alpha: 0.4),
+                ),
                 padding: const EdgeInsets.symmetric(vertical: 8),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppConstants.radiusSm)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppConstants.radiusSm),
+                ),
               ),
-              child: Text(isEn ? 'Start' : 'Ba\u015fla', style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
+              child: Text(
+                isEn ? 'Start' : 'Ba\u015fla',
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
           ),
         ],
@@ -343,21 +564,41 @@ class _CompletedChallengeTile extends StatelessWidget {
   final GrowthChallenge challenge;
   final bool isDark;
   final bool isEn;
-  const _CompletedChallengeTile({required this.challenge, required this.isDark, required this.isEn});
+  const _CompletedChallengeTile({
+    required this.challenge,
+    required this.isDark,
+    required this.isEn,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg, vertical: AppConstants.spacingMd),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppConstants.spacingLg,
+        vertical: AppConstants.spacingMd,
+      ),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark.withValues(alpha: 0.5) : AppColors.lightCard,
+        color: isDark
+            ? AppColors.surfaceDark.withValues(alpha: 0.5)
+            : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
       ),
       child: Row(
         children: [
           Text(challenge.emoji, style: const TextStyle(fontSize: 22)),
           const SizedBox(width: AppConstants.spacingMd),
-          Expanded(child: Text(isEn ? challenge.titleEn : challenge.titleTr, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w500, color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary))),
+          Expanded(
+            child: Text(
+              isEn ? challenge.titleEn : challenge.titleTr,
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
+              ),
+            ),
+          ),
           const Icon(Icons.check_circle, size: 20, color: AppColors.success),
         ],
       ),

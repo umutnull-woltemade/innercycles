@@ -57,8 +57,12 @@ class _CompatibilityReflectionScreenState
     super.initState();
     _loadProfiles();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('compatibility'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('compatibility', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('compatibility'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData((s) => s.trackToolOpen('compatibility', source: 'direct'));
     });
   }
 
@@ -150,7 +154,9 @@ class _CompatibilityReflectionScreenState
 
     // Reload profile with result
     final profiles = await service.getProfiles();
-    final updated = profiles.where((p) => p.id == _activeProfile!.id).firstOrNull;
+    final updated = profiles
+        .where((p) => p.id == _activeProfile!.id)
+        .firstOrNull;
     if (!mounted || updated == null) return;
 
     setState(() {
@@ -210,16 +216,24 @@ class _CompatibilityReflectionScreenState
           behavior: HitTestBehavior.opaque,
           child: SafeArea(
             child: switch (_mode) {
-            _ScreenMode.profileList =>
-              _buildProfileList(context, isDark, isEn),
-            _ScreenMode.createProfile =>
-              _buildCreateProfile(context, isDark, isEn),
-            _ScreenMode.questionFlow =>
-              _buildQuestionFlow(context, isDark, isEn),
-            _ScreenMode.resultView =>
-              _buildResultView(context, isDark, isEn),
-          },
-        ),
+              _ScreenMode.profileList => _buildProfileList(
+                context,
+                isDark,
+                isEn,
+              ),
+              _ScreenMode.createProfile => _buildCreateProfile(
+                context,
+                isDark,
+                isEn,
+              ),
+              _ScreenMode.questionFlow => _buildQuestionFlow(
+                context,
+                isDark,
+                isEn,
+              ),
+              _ScreenMode.resultView => _buildResultView(context, isDark, isEn),
+            },
+          ),
         ),
       ),
     );
@@ -239,13 +253,9 @@ class _CompatibilityReflectionScreenState
           title: isEn ? 'Relationship Reflections' : 'İlişki Yansımaları',
         ),
         if (_loading)
-          const SliverFillRemaining(
-            child: CosmicLoadingIndicator(),
-          )
+          const SliverFillRemaining(child: CosmicLoadingIndicator())
         else if (_profiles.isEmpty)
-          SliverFillRemaining(
-            child: _buildEmptyState(context, isDark, isEn),
-          )
+          SliverFillRemaining(child: _buildEmptyState(context, isDark, isEn))
         else
           SliverPadding(
             padding: const EdgeInsets.all(16),
@@ -257,10 +267,10 @@ class _CompatibilityReflectionScreenState
                       ? 'Explore how you experience your relationships'
                       : 'İlişkilerinizi nasıl deneyimlediğinizi keşfedin',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
-                      ),
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 20),
 
@@ -268,19 +278,19 @@ class _CompatibilityReflectionScreenState
                 ..._profiles.asMap().entries.map((entry) {
                   final profile = entry.value;
                   return Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
-                    child: _ProfileCard(
-                      profile: profile,
-                      isDark: isDark,
-                      isEn: isEn,
-                      onTap: () {
-                        if (profile.result != null) {
-                          _viewResult(profile);
-                        }
-                      },
-                      onDelete: () => _deleteProfile(profile.id),
-                    ),
-                  )
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: _ProfileCard(
+                          profile: profile,
+                          isDark: isDark,
+                          isEn: isEn,
+                          onTap: () {
+                            if (profile.result != null) {
+                              _viewResult(profile);
+                            }
+                          },
+                          onDelete: () => _deleteProfile(profile.id),
+                        ),
+                      )
                       .animate()
                       .fadeIn(
                         duration: 400.ms,
@@ -319,13 +329,15 @@ class _CompatibilityReflectionScreenState
           ),
           const SizedBox(height: 24),
           Text(
-            isEn ? 'Reflect on Your Relationships' : 'İlişkileriniz Üzerine Düşünün',
+            isEn
+                ? 'Reflect on Your Relationships'
+                : 'İlişkileriniz Üzerine Düşünün',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+              fontWeight: FontWeight.w600,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 12),
@@ -334,11 +346,11 @@ class _CompatibilityReflectionScreenState
                 ? 'Create a reflection profile for someone in your life and explore how you experience the relationship through 10 guided questions.'
                 : 'Hayatınızdaki biri için bir yansıma profili oluşturun ve 10 rehberli soru aracılığıyla ilişkiyi nasıl deneyimlediğinizi keşfedin.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                  height: 1.6,
-                ),
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+              height: 1.6,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 32),
@@ -349,7 +361,10 @@ class _CompatibilityReflectionScreenState
   }
 
   Widget _buildNewReflectionButton(
-      BuildContext context, bool isDark, bool isEn) {
+    BuildContext context,
+    bool isDark,
+    bool isEn,
+  ) {
     return SizedBox(
       width: double.infinity,
       height: 52,
@@ -404,11 +419,11 @@ class _CompatibilityReflectionScreenState
                     ? 'Who would you like to reflect on?'
                     : 'Kimin üzerine düşünmek istersiniz?',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                  fontWeight: FontWeight.w600,
+                ),
               ).animate().fadeIn(duration: 400.ms),
               const SizedBox(height: 16),
 
@@ -423,7 +438,9 @@ class _CompatibilityReflectionScreenState
                   fontSize: 16,
                 ),
                 decoration: InputDecoration(
-                  hintText: isEn ? 'Their name or initials' : 'Adı veya baş harfleri',
+                  hintText: isEn
+                      ? 'Their name or initials'
+                      : 'Adı veya baş harfleri',
                   hintStyle: TextStyle(
                     color: isDark
                         ? AppColors.textMuted
@@ -457,11 +474,11 @@ class _CompatibilityReflectionScreenState
               Text(
                 isEn ? 'Relationship type' : 'İlişki türü',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                  fontWeight: FontWeight.w600,
+                ),
               ).animate().fadeIn(duration: 400.ms, delay: 150.ms),
               const SizedBox(height: 12),
 
@@ -472,9 +489,7 @@ class _CompatibilityReflectionScreenState
                 children: RelationshipType.values.map((type) {
                   final selected = _selectedType == type;
                   return ChoiceChip(
-                    label: Text(
-                      isEn ? type.displayNameEn : type.displayNameTr,
-                    ),
+                    label: Text(isEn ? type.displayNameEn : type.displayNameTr),
                     selected: selected,
                     onSelected: (val) {
                       if (val) setState(() => _selectedType = type);
@@ -488,8 +503,8 @@ class _CompatibilityReflectionScreenState
                       color: selected
                           ? AppColors.auroraStart
                           : isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary,
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
                       fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
                     ),
                     side: BorderSide(
@@ -528,11 +543,10 @@ class _CompatibilityReflectionScreenState
                             ? 'This is a personal reflection tool. It helps you explore how you experience this relationship — not a judgment of the other person.'
                             : 'Bu kişisel bir yansıtma aracıdır. Bu ilişkiyi nasıl deneyimlediğinizi keşfetmenize yardımcı olur — diğer kişinin bir yargılaması değil.',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppColors.textSecondary
-                                  .withValues(alpha: 0.7),
-                              fontStyle: FontStyle.italic,
-                              height: 1.5,
-                            ),
+                          color: AppColors.textSecondary.withValues(alpha: 0.7),
+                          fontStyle: FontStyle.italic,
+                          height: 1.5,
+                        ),
                       ),
                     ),
                   ],
@@ -600,9 +614,9 @@ class _CompatibilityReflectionScreenState
             isEn
                 ? 'Question ${_currentQuestion + 1} of 10'
                 : 'Soru ${_currentQuestion + 1} / 10',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
           ),
         ),
         const SizedBox(height: 8),
@@ -614,17 +628,16 @@ class _CompatibilityReflectionScreenState
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: _dimensionColor(questions[_currentQuestion].dimension)
-                  .withValues(alpha: 0.15),
+              color: _dimensionColor(
+                questions[_currentQuestion].dimension,
+              ).withValues(alpha: 0.15),
             ),
             child: Text(
-              _dimensionLabel(
-                  questions[_currentQuestion].dimension, isEn),
+              _dimensionLabel(questions[_currentQuestion].dimension, isEn),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: _dimensionColor(
-                        questions[_currentQuestion].dimension),
-                    fontWeight: FontWeight.w600,
-                  ),
+                color: _dimensionColor(questions[_currentQuestion].dimension),
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ),
@@ -674,7 +687,9 @@ class _CompatibilityReflectionScreenState
             icon: Icon(
               Icons.chevron_left,
               size: 28,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
           Expanded(
@@ -682,9 +697,9 @@ class _CompatibilityReflectionScreenState
               _activeProfile?.name ?? '',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppColors.starGold,
-                    fontWeight: FontWeight.w600,
-                  ),
+                color: AppColors.starGold,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           const SizedBox(width: 48),
@@ -696,20 +711,21 @@ class _CompatibilityReflectionScreenState
   Widget _buildProgressBar(bool isDark) {
     final progress = (_currentQuestion + 1) / 10;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(999),
-        child: LinearProgressIndicator(
-          value: progress,
-          minHeight: 6,
-          backgroundColor: isDark
-              ? AppColors.surfaceLight.withValues(alpha: 0.3)
-              : AppColors.lightSurfaceVariant,
-          valueColor:
-              const AlwaysStoppedAnimation<Color>(AppColors.auroraStart),
-        ),
-      ),
-    )
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(999),
+            child: LinearProgressIndicator(
+              value: progress,
+              minHeight: 6,
+              backgroundColor: isDark
+                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                  : AppColors.lightSurfaceVariant,
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                AppColors.auroraStart,
+              ),
+            ),
+          ),
+        )
         .animate(key: ValueKey(_currentQuestion))
         .fadeIn(duration: 300.ms)
         .scaleX(begin: 0.95, end: 1.0, duration: 300.ms);
@@ -723,8 +739,9 @@ class _CompatibilityReflectionScreenState
     bool isEn,
   ) {
     final questionText = isEn ? question.questionEn : question.questionTr;
-    final selectedAnswer =
-        _pendingAnswers.length > index ? _pendingAnswers[index] : -1;
+    final selectedAnswer = _pendingAnswers.length > index
+        ? _pendingAnswers[index]
+        : -1;
 
     return CustomScrollView(
       physics: const BouncingScrollPhysics(
@@ -737,15 +754,15 @@ class _CompatibilityReflectionScreenState
             delegate: SliverChildListDelegate([
               // Question text
               Text(
-                questionText,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    questionText,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: isDark
                           ? AppColors.textPrimary
                           : AppColors.lightTextPrimary,
                       fontWeight: FontWeight.w500,
                       height: 1.5,
                     ),
-              )
+                  )
                   .animate()
                   .fadeIn(duration: 500.ms, delay: 100.ms)
                   .slideY(begin: -0.1, end: 0, duration: 500.ms),
@@ -759,15 +776,15 @@ class _CompatibilityReflectionScreenState
                 final optionText = isEn ? option.textEn : option.textTr;
 
                 return Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: _buildOptionCard(
-                    context,
-                    text: optionText,
-                    isSelected: isSelected,
-                    isDark: isDark,
-                    onTap: () => _answerQuestion(optionIndex),
-                  ),
-                )
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: _buildOptionCard(
+                        context,
+                        text: optionText,
+                        isSelected: isSelected,
+                        isDark: isDark,
+                        onTap: () => _answerQuestion(optionIndex),
+                      ),
+                    )
                     .animate()
                     .fadeIn(
                       duration: 400.ms,
@@ -809,8 +826,8 @@ class _CompatibilityReflectionScreenState
               color: isSelected
                   ? AppColors.auroraStart
                   : isDark
-                      ? AppColors.surfaceLight.withValues(alpha: 0.4)
-                      : AppColors.lightSurfaceVariant,
+                  ? AppColors.surfaceLight.withValues(alpha: 0.4)
+                  : AppColors.lightSurfaceVariant,
               width: isSelected ? 2 : 1,
             ),
             gradient: isSelected
@@ -819,51 +836,53 @@ class _CompatibilityReflectionScreenState
                     end: Alignment.bottomRight,
                     colors: [
                       AppColors.auroraStart.withValues(alpha: 0.15),
-                    AppColors.auroraEnd.withValues(alpha: 0.10),
-                  ],
-                )
-              : null,
-          color: isSelected
-              ? null
-              : isDark
-                  ? AppColors.surfaceDark.withValues(alpha: 0.6)
-                  : AppColors.lightCard.withValues(alpha: 0.9),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Selection circle
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              width: 22,
-              height: 22,
-              margin: const EdgeInsets.only(top: 2, right: 12),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
+                      AppColors.auroraEnd.withValues(alpha: 0.10),
+                    ],
+                  )
+                : null,
+            color: isSelected
+                ? null
+                : isDark
+                ? AppColors.surfaceDark.withValues(alpha: 0.6)
+                : AppColors.lightCard.withValues(alpha: 0.9),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Selection circle
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                width: 22,
+                height: 22,
+                margin: const EdgeInsets.only(top: 2, right: 12),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: isSelected
+                        ? AppColors.auroraStart
+                        : AppColors.textSecondary.withValues(alpha: 0.5),
+                    width: 2,
+                  ),
                   color: isSelected
                       ? AppColors.auroraStart
-                      : AppColors.textSecondary.withValues(alpha: 0.5),
-                  width: 2,
+                      : Colors.transparent,
                 ),
-                color: isSelected ? AppColors.auroraStart : Colors.transparent,
+                child: isSelected
+                    ? const Icon(Icons.check, size: 14, color: Colors.white)
+                    : null,
               ),
-              child: isSelected
-                  ? const Icon(Icons.check, size: 14, color: Colors.white)
-                  : null,
-            ),
-            Expanded(
-              child: Text(
-                text,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                      height: 1.5,
-                    ),
+              Expanded(
+                child: Text(
+                  text,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                    height: 1.5,
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
           ),
         ),
       ),
@@ -887,9 +906,7 @@ class _CompatibilityReflectionScreenState
         parent: AlwaysScrollableScrollPhysics(),
       ),
       slivers: [
-        GlassSliverAppBar(
-          title: profile.name,
-        ),
+        GlassSliverAppBar(title: profile.name),
         SliverPadding(
           padding: const EdgeInsets.all(16),
           sliver: SliverList(
@@ -914,12 +931,12 @@ class _CompatibilityReflectionScreenState
                 child: Text(
                   isEn ? result.summaryEn : result.summaryTr,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                        height: 1.6,
-                        fontStyle: FontStyle.italic,
-                      ),
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                    height: 1.6,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ).animate().fadeIn(duration: 500.ms, delay: 300.ms),
               const SizedBox(height: 24),
@@ -928,20 +945,20 @@ class _CompatibilityReflectionScreenState
               Text(
                 isEn ? 'Dimension Insights' : 'Boyut İçgörüleri',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                  fontWeight: FontWeight.w600,
+                ),
               ).animate().fadeIn(duration: 400.ms, delay: 400.ms),
               const SizedBox(height: 12),
 
               ...result.dimensions.asMap().entries.map((entry) {
                 final dim = entry.value;
                 return Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: _buildDimensionCard(context, dim, isDark, isEn),
-                )
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: _buildDimensionCard(context, dim, isDark, isEn),
+                    )
                     .animate()
                     .fadeIn(
                       duration: 400.ms,
@@ -980,10 +997,9 @@ class _CompatibilityReflectionScreenState
                             ? 'This reflects how you experience this relationship today. Relationships evolve — revisit anytime.'
                             : 'Bu, bugün bu ilişkiyi nasıl deneyimlediğinizi yansıtır. İlişkiler gelişir — istediğiniz zaman tekrar ziyaret edin.',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppColors.textSecondary
-                                  .withValues(alpha: 0.7),
-                              fontStyle: FontStyle.italic,
-                            ),
+                          color: AppColors.textSecondary.withValues(alpha: 0.7),
+                          fontStyle: FontStyle.italic,
+                        ),
                       ),
                     ),
                   ],
@@ -1026,7 +1042,11 @@ class _CompatibilityReflectionScreenState
                   ),
                 ),
               ).animate().fadeIn(duration: 500.ms, delay: 900.ms),
-              ToolEcosystemFooter(currentToolId: 'compatibility', isEn: isEn, isDark: isDark),
+              ToolEcosystemFooter(
+                currentToolId: 'compatibility',
+                isEn: isEn,
+                isDark: isDark,
+              ),
               const SizedBox(height: 48),
             ]),
           ),
@@ -1045,90 +1065,91 @@ class _CompatibilityReflectionScreenState
     final scoreColor = _scoreColor(result.overallScore);
 
     return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            scoreColor.withValues(alpha: 0.20),
-            scoreColor.withValues(alpha: 0.08),
-          ],
-        ),
-        border: Border.all(
-          color: scoreColor.withValues(alpha: 0.35),
-          width: 1.5,
-        ),
-      ),
-      child: Column(
-        children: [
-          // Relationship type icon
-          Icon(
-            _typeIcon(profile.relationshipType),
-            size: 40,
-            color: scoreColor.withValues(alpha: 0.7),
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                scoreColor.withValues(alpha: 0.20),
+                scoreColor.withValues(alpha: 0.08),
+              ],
+            ),
+            border: Border.all(
+              color: scoreColor.withValues(alpha: 0.35),
+              width: 1.5,
+            ),
           ),
-          const SizedBox(height: 12),
+          child: Column(
+            children: [
+              // Relationship type icon
+              Icon(
+                _typeIcon(profile.relationshipType),
+                size: 40,
+                color: scoreColor.withValues(alpha: 0.7),
+              ),
+              const SizedBox(height: 12),
 
-          // Name + type
-          Text(
-            profile.name,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+              // Name + type
+              Text(
+                profile.name,
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary
                       : AppColors.lightTextPrimary,
                   fontWeight: FontWeight.bold,
                 ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            isEn
-                ? profile.relationshipType.displayNameEn
-                : profile.relationshipType.displayNameTr,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
-          ),
-          const SizedBox(height: 16),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                isEn
+                    ? profile.relationshipType.displayNameEn
+                    : profile.relationshipType.displayNameTr,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
+              ),
+              const SizedBox(height: 16),
 
-          // Score circle
-          SizedBox(
-            width: 100,
-            height: 100,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: CircularProgressIndicator(
-                    value: result.overallScore / 100,
-                    strokeWidth: 6,
-                    backgroundColor: scoreColor.withValues(alpha: 0.15),
-                    valueColor: AlwaysStoppedAnimation(scoreColor),
-                  ),
-                ),
-                Text(
-                  '${result.overallScore.round()}',
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        color: scoreColor,
-                        fontWeight: FontWeight.bold,
+              // Score circle
+              SizedBox(
+                width: 100,
+                height: 100,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    SizedBox(
+                      width: 100,
+                      height: 100,
+                      child: CircularProgressIndicator(
+                        value: result.overallScore / 100,
+                        strokeWidth: 6,
+                        backgroundColor: scoreColor.withValues(alpha: 0.15),
+                        valueColor: AlwaysStoppedAnimation(scoreColor),
                       ),
+                    ),
+                    Text(
+                      '${result.overallScore.round()}',
+                      style: Theme.of(context).textTheme.headlineMedium
+                          ?.copyWith(
+                            color: scoreColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                isEn ? 'Reflection Score' : 'Yansıma Puanı',
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
+              ),
+            ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            isEn ? 'Reflection Score' : 'Yansıma Puanı',
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
-          ),
-        ],
-      ),
-    )
+        )
         .animate()
         .fadeIn(duration: 700.ms, delay: 100.ms)
         .scaleXY(begin: 0.95, end: 1.0, duration: 700.ms, delay: 100.ms);
@@ -1155,11 +1176,11 @@ class _CompatibilityReflectionScreenState
           Text(
             isEn ? 'Dimension Overview' : 'Boyut Genel Görünümü',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           const SizedBox(height: 16),
           SizedBox(
@@ -1195,11 +1216,11 @@ class _CompatibilityReflectionScreenState
                   Text(
                     '${_dimensionLabel(dim.name, isEn)} ${dim.score.round()}',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary,
-                          fontSize: 11,
-                        ),
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                      fontSize: 11,
+                    ),
                   ),
                 ],
               );
@@ -1225,10 +1246,7 @@ class _CompatibilityReflectionScreenState
         color: isDark
             ? AppColors.surfaceDark.withValues(alpha: 0.6)
             : AppColors.lightCard.withValues(alpha: 0.9),
-        border: Border.all(
-          color: color.withValues(alpha: 0.3),
-          width: 1,
-        ),
+        border: Border.all(color: color.withValues(alpha: 0.3), width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1237,8 +1255,10 @@ class _CompatibilityReflectionScreenState
           Row(
             children: [
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: color.withValues(alpha: 0.15),
@@ -1246,18 +1266,18 @@ class _CompatibilityReflectionScreenState
                 child: Text(
                   _dimensionLabel(dim.name, isEn),
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: color,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    color: color,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               const Spacer(),
               Text(
                 '${dim.score.round()}/100',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: color,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: color,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -1279,11 +1299,11 @@ class _CompatibilityReflectionScreenState
           Text(
             isEn ? dim.insightEn : dim.insightTr,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                  height: 1.5,
-                ),
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+              height: 1.5,
+            ),
           ),
         ],
       ),
@@ -1354,12 +1374,7 @@ class _CompatibilityReflectionScreenState
 // SCREEN MODE ENUM
 // ════════════════════════════════════════════════════════════════════════════
 
-enum _ScreenMode {
-  profileList,
-  createProfile,
-  questionFlow,
-  resultView,
-}
+enum _ScreenMode { profileList, createProfile, questionFlow, resultView }
 
 // ════════════════════════════════════════════════════════════════════════════
 // PROFILE CARD WIDGET
@@ -1383,122 +1398,130 @@ class _ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasResult = profile.result != null;
-    final scoreColor = hasResult ? _scoreColor(profile.overallScore) : AppColors.textMuted;
+    final scoreColor = hasResult
+        ? _scoreColor(profile.overallScore)
+        : AppColors.textMuted;
 
     return Semantics(
       button: true,
-      label: isEn ? 'View ${profile.name} profile' : '${profile.name} profilini görüntüle',
+      label: isEn
+          ? 'View ${profile.name} profile'
+          : '${profile.name} profilini görüntüle',
       child: GestureDetector(
         onTap: onTap,
         child: Container(
           padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.6)
-              : AppColors.lightCard.withValues(alpha: 0.9),
-          border: Border.all(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
             color: isDark
-                ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                : AppColors.lightSurfaceVariant,
+                ? AppColors.surfaceDark.withValues(alpha: 0.6)
+                : AppColors.lightCard.withValues(alpha: 0.9),
+            border: Border.all(
+              color: isDark
+                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                  : AppColors.lightSurfaceVariant,
+            ),
           ),
-        ),
-        child: Row(
-          children: [
-            // Type icon
-            Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: scoreColor.withValues(alpha: 0.15),
-              ),
-              child: Icon(
-                _typeIcon(profile.relationshipType),
-                color: scoreColor,
-                size: 22,
-              ),
-            ),
-            const SizedBox(width: 14),
-
-            // Name + type + date
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    profile.name,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
-                          fontWeight: FontWeight.w600,
-                        ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    '${isEn ? profile.relationshipType.displayNameEn : profile.relationshipType.displayNameTr}'
-                    '  \u2022  '
-                    '${_formatDate(profile.createdAt)}',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.textSecondary,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-
-            // Score or incomplete badge
-            if (hasResult)
+          child: Row(
+            children: [
+              // Type icon
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                width: 44,
+                height: 44,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
+                  shape: BoxShape.circle,
                   color: scoreColor.withValues(alpha: 0.15),
                 ),
-                child: Text(
-                  '${profile.overallScore.round()}',
-                  style: TextStyle(
-                    color: scoreColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                child: Icon(
+                  _typeIcon(profile.relationshipType),
+                  color: scoreColor,
+                  size: 22,
+                ),
+              ),
+              const SizedBox(width: 14),
+
+              // Name + type + date
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      profile.name,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      '${isEn ? profile.relationshipType.displayNameEn : profile.relationshipType.displayNameTr}'
+                      '  \u2022  '
+                      '${_formatDate(profile.createdAt)}',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // Score or incomplete badge
+              if (hasResult)
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: scoreColor.withValues(alpha: 0.15),
+                  ),
+                  child: Text(
+                    '${profile.overallScore.round()}',
+                    style: TextStyle(
+                      color: scoreColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                )
+              else
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: AppColors.textMuted.withValues(alpha: 0.15),
+                  ),
+                  child: Text(
+                    isEn ? 'Incomplete' : 'Eksik',
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: AppColors.textMuted,
+                    ),
                   ),
                 ),
-              )
-            else
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: AppColors.textMuted.withValues(alpha: 0.15),
-                ),
-                child: Text(
-                  isEn ? 'Incomplete' : 'Eksik',
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: AppColors.textMuted,
-                      ),
+
+              const SizedBox(width: 8),
+
+              // Delete button
+              Semantics(
+                button: true,
+                label: isEn ? 'Delete profile' : 'Profili sil',
+                child: GestureDetector(
+                  onTap: onDelete,
+                  child: Icon(
+                    Icons.close_rounded,
+                    size: 18,
+                    color: AppColors.textMuted.withValues(alpha: 0.5),
+                  ),
                 ),
               ),
-
-            const SizedBox(width: 8),
-
-            // Delete button
-            Semantics(
-              button: true,
-              label: isEn ? 'Delete profile' : 'Profili sil',
-              child: GestureDetector(
-                onTap: onDelete,
-                child: Icon(
-                  Icons.close_rounded,
-                  size: 18,
-                  color: AppColors.textMuted.withValues(alpha: 0.5),
-                ),
-              ),
-            ),
-          ],
-        ),
+            ],
+          ),
         ),
       ),
     );
@@ -1674,7 +1697,9 @@ class _RadarChartPainter extends CustomPainter {
           style: TextStyle(
             fontSize: 10,
             fontWeight: FontWeight.w600,
-            color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.6),
+            color: (isDark ? Colors.white : Colors.black).withValues(
+              alpha: 0.6,
+            ),
           ),
         ),
         textDirection: TextDirection.ltr,

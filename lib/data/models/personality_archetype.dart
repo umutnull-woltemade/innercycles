@@ -8,7 +8,6 @@ import '../providers/app_providers.dart';
 /// Personality element archetypes used for dream interpretation and reflection
 enum Element { fire, earth, air, water }
 
-
 /// Personality archetype signs derived from birth date
 /// Used internally for personalized dream interpretation and journaling themes
 enum PersonalityArchetype {
@@ -231,7 +230,6 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
     }
   }
 
-
   Element get element {
     switch (this) {
       case PersonalityArchetype.pioneer:
@@ -253,7 +251,6 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
     }
   }
 
-
   Color get color {
     switch (element) {
       case Element.fire:
@@ -266,7 +263,6 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
         return AppColors.purpleAccent;
     }
   }
-
 
   List<String> get traits {
     switch (this) {
@@ -289,12 +285,7 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
           'Gelgit Duygusu',
         ];
       case PersonalityArchetype.performer:
-        return [
-          'Parlak Kalp',
-          'Yaratıcı Ateş',
-          'Doğal Karizma',
-          'Sahne Ruhu',
-        ];
+        return ['Parlak Kalp', 'Yaratıcı Ateş', 'Doğal Karizma', 'Sahne Ruhu'];
       case PersonalityArchetype.analyst:
         return [
           'Detay Gözü',
@@ -319,12 +310,7 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
       case PersonalityArchetype.explorer:
         return ['Okçu Vizyonu', 'Macera Ateşi', 'Hakikat Oku', 'Özgür Ruh'];
       case PersonalityArchetype.achiever:
-        return [
-          'Zirve Azmi',
-          'Kararlı Disiplin',
-          'Dağ Sabrı',
-          'Taş Duvar',
-        ];
+        return ['Zirve Azmi', 'Kararlı Disiplin', 'Dağ Sabrı', 'Taş Duvar'];
       case PersonalityArchetype.visionary:
         return [
           'Devrimci Ruh',
@@ -333,12 +319,7 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
           'Uzak Bakış',
         ];
       case PersonalityArchetype.dreamer:
-        return [
-          'Okyanus Kalbi',
-          'Canlı Rüya',
-          'Derin Sezgi',
-          'Sınırsız Hayal',
-        ];
+        return ['Okyanus Kalbi', 'Canlı Rüya', 'Derin Sezgi', 'Sınırsız Hayal'];
     }
   }
 
@@ -492,4 +473,3 @@ extension ElementExtension on Element {
     }
   }
 }
-

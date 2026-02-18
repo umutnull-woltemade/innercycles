@@ -53,8 +53,12 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     super.initState();
     _initSubRatings();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('journal'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('journal', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('journal'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData((s) => s.trackToolOpen('journal', source: 'direct'));
     });
   }
 
@@ -83,111 +87,127 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           behavior: HitTestBehavior.opaque,
           child: SafeArea(
-            child: CupertinoScrollbar(
-              child: CustomScrollView(
-              physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics(),
-              ),
-              slivers: [
-                GlassSliverAppBar(
-                  title: isEn ? 'Log Your Day' : 'Gününü Kaydet',
-                ),
-                SliverPadding(
-                  padding: const EdgeInsets.all(AppConstants.spacingLg),
-                  sliver: SliverList(
-                    delegate: SliverChildListDelegate([
-                      // Date selector
-                      _buildDateSelector(context, isDark, isEn),
-                      const SizedBox(height: AppConstants.spacingSm),
-
-                      // Moon phase badge
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: MoonPhaseBadge(
-                          date: _selectedDate,
-                          isEn: isEn,
-                          isDark: isDark,
+            child:
+                CupertinoScrollbar(
+                      child: CustomScrollView(
+                        physics: const BouncingScrollPhysics(
+                          parent: AlwaysScrollableScrollPhysics(),
                         ),
+                        slivers: [
+                          GlassSliverAppBar(
+                            title: isEn ? 'Log Your Day' : 'Gününü Kaydet',
+                          ),
+                          SliverPadding(
+                            padding: const EdgeInsets.all(
+                              AppConstants.spacingLg,
+                            ),
+                            sliver: SliverList(
+                              delegate: SliverChildListDelegate([
+                                // Date selector
+                                _buildDateSelector(context, isDark, isEn),
+                                const SizedBox(height: AppConstants.spacingSm),
+
+                                // Moon phase badge
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: MoonPhaseBadge(
+                                    date: _selectedDate,
+                                    isEn: isEn,
+                                    isDark: isDark,
+                                  ),
+                                ),
+                                const SizedBox(height: AppConstants.spacingXl),
+
+                                // Focus area selector
+                                _buildSectionLabel(
+                                  context,
+                                  isDark,
+                                  isEn ? 'Focus Area' : 'Odak Alanı',
+                                ),
+                                const SizedBox(height: AppConstants.spacingMd),
+                                _buildFocusAreaSelector(isDark, isEn),
+                                const SizedBox(height: AppConstants.spacingXl),
+
+                                // Overall rating
+                                _buildSectionLabel(
+                                  context,
+                                  isDark,
+                                  isEn
+                                      ? 'Overall Rating'
+                                      : 'Genel Değerlendirme',
+                                ),
+                                const SizedBox(height: AppConstants.spacingMd),
+                                _buildRatingSlider(
+                                  isDark,
+                                  isEn,
+                                  _overallRating,
+                                  (v) => setState(() => _overallRating = v),
+                                ),
+                                const SizedBox(height: AppConstants.spacingXl),
+
+                                // Sub-ratings
+                                _buildSectionLabel(
+                                  context,
+                                  isDark,
+                                  isEn ? 'Details' : 'Detaylar',
+                                ),
+                                const SizedBox(height: AppConstants.spacingMd),
+                                _buildSubRatings(isDark, isEn),
+                                const SizedBox(height: AppConstants.spacingXl),
+
+                                // Note
+                                _buildSectionLabel(
+                                  context,
+                                  isDark,
+                                  isEn
+                                      ? 'Notes (optional)'
+                                      : 'Notlar (opsiyonel)',
+                                ),
+                                const SizedBox(height: AppConstants.spacingMd),
+                                _buildNoteField(isDark, isEn),
+                                const SizedBox(height: AppConstants.spacingXl),
+
+                                // Photo attachment
+                                if (!kIsWeb) ...[
+                                  _buildSectionLabel(
+                                    context,
+                                    isDark,
+                                    isEn
+                                        ? 'Photo (optional)'
+                                        : 'Fotoğraf (opsiyonel)',
+                                  ),
+                                  const SizedBox(
+                                    height: AppConstants.spacingMd,
+                                  ),
+                                  _buildPhotoPicker(isDark, isEn),
+                                  const SizedBox(
+                                    height: AppConstants.spacingXl,
+                                  ),
+                                ],
+
+                                // Gratitude section (collapsible)
+                                GratitudeSection(
+                                  date: _selectedDate,
+                                  isPremium: ref.watch(isPremiumUserProvider),
+                                ),
+                                const SizedBox(height: AppConstants.spacingXl),
+
+                                // Sleep quality section (collapsible)
+                                SleepSection(date: _selectedDate),
+                                const SizedBox(height: AppConstants.spacingXl),
+
+                                // Save button
+                                _buildSaveButton(isDark, isEn),
+                                const SizedBox(height: 40),
+                              ]),
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: AppConstants.spacingXl),
-
-                      // Focus area selector
-                      _buildSectionLabel(
-                        context,
-                        isDark,
-                        isEn ? 'Focus Area' : 'Odak Alanı',
-                      ),
-                      const SizedBox(height: AppConstants.spacingMd),
-                      _buildFocusAreaSelector(isDark, isEn),
-                      const SizedBox(height: AppConstants.spacingXl),
-
-                      // Overall rating
-                      _buildSectionLabel(
-                        context,
-                        isDark,
-                        isEn ? 'Overall Rating' : 'Genel Değerlendirme',
-                      ),
-                      const SizedBox(height: AppConstants.spacingMd),
-                      _buildRatingSlider(
-                        isDark,
-                        isEn,
-                        _overallRating,
-                        (v) => setState(() => _overallRating = v),
-                      ),
-                      const SizedBox(height: AppConstants.spacingXl),
-
-                      // Sub-ratings
-                      _buildSectionLabel(
-                        context,
-                        isDark,
-                        isEn ? 'Details' : 'Detaylar',
-                      ),
-                      const SizedBox(height: AppConstants.spacingMd),
-                      _buildSubRatings(isDark, isEn),
-                      const SizedBox(height: AppConstants.spacingXl),
-
-                      // Note
-                      _buildSectionLabel(
-                        context,
-                        isDark,
-                        isEn ? 'Notes (optional)' : 'Notlar (opsiyonel)',
-                      ),
-                      const SizedBox(height: AppConstants.spacingMd),
-                      _buildNoteField(isDark, isEn),
-                      const SizedBox(height: AppConstants.spacingXl),
-
-                      // Photo attachment
-                      if (!kIsWeb) ...[
-                        _buildSectionLabel(
-                          context,
-                          isDark,
-                          isEn ? 'Photo (optional)' : 'Fotoğraf (opsiyonel)',
-                        ),
-                        const SizedBox(height: AppConstants.spacingMd),
-                        _buildPhotoPicker(isDark, isEn),
-                        const SizedBox(height: AppConstants.spacingXl),
-                      ],
-
-                      // Gratitude section (collapsible)
-                      GratitudeSection(
-                        date: _selectedDate,
-                        isPremium: ref.watch(isPremiumUserProvider),
-                      ),
-                      const SizedBox(height: AppConstants.spacingXl),
-
-                      // Sleep quality section (collapsible)
-                      SleepSection(date: _selectedDate),
-                      const SizedBox(height: AppConstants.spacingXl),
-
-                      // Save button
-                      _buildSaveButton(isDark, isEn),
-                      const SizedBox(height: 40),
-                    ]),
-                  ),
-                ),
-              ],
-              ),
-            ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms),
+                    )
+                    .animate()
+                    .fadeIn(duration: 400.ms)
+                    .slideY(begin: 0.05, duration: 400.ms),
           ),
         ),
       ),
@@ -200,7 +220,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         '${_selectedDate.day}.${_selectedDate.month}.${_selectedDate.year}';
 
     return Semantics(
-      label: isEn ? 'Select date: $dayName $dateStr' : 'Tarih seç: $dayName $dateStr',
+      label: isEn
+          ? 'Select date: $dayName $dateStr'
+          : 'Tarih seç: $dayName $dateStr',
       button: true,
       child: GestureDetector(
         onTap: () async {
@@ -214,52 +236,49 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           if (picked != null && mounted) setState(() => _selectedDate = picked);
         },
         child: GlassPanel(
-        elevation: GlassElevation.g2,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        padding: const EdgeInsets.all(AppConstants.spacingLg),
-        child: Row(
-          children: [
-            Icon(Icons.calendar_today, color: AppColors.starGold, size: 24),
-            const SizedBox(width: AppConstants.spacingMd),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  dayName,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
-                    fontWeight: FontWeight.w600,
+          elevation: GlassElevation.g2,
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          padding: const EdgeInsets.all(AppConstants.spacingLg),
+          child: Row(
+            children: [
+              Icon(Icons.calendar_today, color: AppColors.starGold, size: 24),
+              const SizedBox(width: AppConstants.spacingMd),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    dayName,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-                Text(
-                  dateStr,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color:
-                        isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  Text(
+                    dateStr,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            const Spacer(),
-            Icon(
-              Icons.edit_calendar,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              size: 20,
-            ),
-          ],
-        ),
+                ],
+              ),
+              const Spacer(),
+              Icon(
+                Icons.edit_calendar,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                size: 20,
+              ),
+            ],
+          ),
         ),
       ),
     ).glassReveal(context: context);
   }
 
-  Widget _buildSectionLabel(
-    BuildContext context,
-    bool isDark,
-    String label,
-  ) {
+  Widget _buildSectionLabel(BuildContext context, bool isDark, String label) {
     return Text(
       label,
       style: Theme.of(context).textTheme.titleSmall?.copyWith(
@@ -284,65 +303,64 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           label: label,
           selected: isSelected,
           child: GestureDetector(
-          onTap: () {
-            HapticFeedback.selectionClick();
-            setState(() {
-              _selectedArea = area;
-              _initSubRatings();
-            });
-          },
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 44),
-            child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppConstants.spacingMd,
-              vertical: AppConstants.spacingSm,
-            ),
-            decoration: BoxDecoration(
-              color: isSelected
-                  ? AppColors.starGold.withValues(alpha: 0.2)
-                  : (isDark
-                        ? AppColors.surfaceDark.withValues(alpha: 0.5)
-                        : AppColors.lightSurfaceVariant),
-              borderRadius: BorderRadius.circular(AppConstants.radiusFull),
-              border: Border.all(
-                color: isSelected
-                    ? AppColors.starGold
-                    : Colors.transparent,
-                width: 2,
-              ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  icon,
-                  size: 18,
-                  color: isSelected
-                      ? AppColors.starGold
-                      : (isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted),
+            onTap: () {
+              HapticFeedback.selectionClick();
+              setState(() {
+                _selectedArea = area;
+                _initSubRatings();
+              });
+            },
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 44),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppConstants.spacingMd,
+                  vertical: AppConstants.spacingSm,
                 ),
-                const SizedBox(width: 6),
-                Text(
-                  label,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight:
-                        isSelected ? FontWeight.w600 : FontWeight.normal,
-                    color: isSelected
-                        ? AppColors.starGold
-                        : (isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary),
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? AppColors.starGold.withValues(alpha: 0.2)
+                      : (isDark
+                            ? AppColors.surfaceDark.withValues(alpha: 0.5)
+                            : AppColors.lightSurfaceVariant),
+                  borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+                  border: Border.all(
+                    color: isSelected ? AppColors.starGold : Colors.transparent,
+                    width: 2,
                   ),
                 ),
-              ],
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      icon,
+                      size: 18,
+                      color: isSelected
+                          ? AppColors.starGold
+                          : (isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted),
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      label,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: isSelected
+                            ? FontWeight.w600
+                            : FontWeight.normal,
+                        color: isSelected
+                            ? AppColors.starGold
+                            : (isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-          ),
           ),
         );
       }).toList(),
@@ -375,44 +393,44 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 label: '${isEn ? 'Rating' : 'Puan'} $rating',
                 selected: isActive,
                 child: GestureDetector(
-                onTap: () {
-                  HapticFeedback.selectionClick();
-                  onChanged(rating);
-                },
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  width: 48,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: isActive
-                        ? AppColors.starGold
-                        : (isDark
-                              ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                              : AppColors.lightSurfaceVariant),
-                    border: Border.all(
+                  onTap: () {
+                    HapticFeedback.selectionClick();
+                    onChanged(rating);
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    width: 48,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
                       color: isActive
                           ? AppColors.starGold
                           : (isDark
-                                ? Colors.white.withValues(alpha: 0.15)
-                                : Colors.black.withValues(alpha: 0.1)),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '$rating',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                                ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                                : AppColors.lightSurfaceVariant),
+                      border: Border.all(
                         color: isActive
-                            ? AppColors.deepSpace
+                            ? AppColors.starGold
                             : (isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted),
+                                  ? Colors.white.withValues(alpha: 0.15)
+                                  : Colors.black.withValues(alpha: 0.1)),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        '$rating',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: isActive
+                              ? AppColors.deepSpace
+                              : (isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted),
+                        ),
                       ),
                     ),
                   ),
-                ),
                 ),
               );
             }),
@@ -532,8 +550,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
                   ),
-                  contentPadding:
-                      const EdgeInsets.all(AppConstants.spacingLg),
+                  contentPadding: const EdgeInsets.all(AppConstants.spacingLg),
                   border: InputBorder.none,
                   counterStyle: TextStyle(
                     color: isDark
@@ -568,18 +585,15 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                           setState(() {
                             // Combine base text with latest voice result
                             if (_textBeforeVoice.isNotEmpty) {
-                              _noteController.text =
-                                  '$_textBeforeVoice $text';
+                              _noteController.text = '$_textBeforeVoice $text';
                             } else {
                               _noteController.text = text;
                             }
 
                             // Move cursor to end
-                            _noteController.selection =
-                                TextSelection.fromPosition(
-                              TextPosition(
-                                offset: _noteController.text.length,
-                              ),
+                            _noteController
+                                .selection = TextSelection.fromPosition(
+                              TextPosition(offset: _noteController.text.length),
                             );
                           });
                         }
@@ -632,20 +646,34 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
               children: [
                 TextButton.icon(
                   onPressed: _pickImage,
-                  icon: Icon(Icons.swap_horiz, size: 18, color: AppColors.auroraStart),
+                  icon: Icon(
+                    Icons.swap_horiz,
+                    size: 18,
+                    color: AppColors.auroraStart,
+                  ),
                   label: Text(
                     isEn ? 'Change' : 'Değiştir',
-                    style: TextStyle(color: AppColors.auroraStart, fontSize: 13),
+                    style: TextStyle(
+                      color: AppColors.auroraStart,
+                      fontSize: 13,
+                    ),
                   ),
                 ),
                 TextButton.icon(
                   onPressed: () => setState(() => _selectedImagePath = null),
-                  icon: Icon(Icons.close, size: 18,
-                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                  icon: Icon(
+                    Icons.close,
+                    size: 18,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                  ),
                   label: Text(
                     isEn ? 'Remove' : 'Kaldır',
                     style: TextStyle(
-                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
                       fontSize: 13,
                     ),
                   ),
@@ -680,11 +708,13 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
               const SizedBox(width: AppConstants.spacingSm),
               Text(
                 isEn ? 'Add a photo' : 'Fotoğraf ekle',
-              style: TextStyle(
-                fontSize: 14,
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
+                ),
               ),
-            ),
             ],
           ),
         ),
@@ -709,7 +739,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           await journalDir.create(recursive: true);
         }
         final ext = p.extension(picked.path);
-        final savedPath = '${journalDir.path}/${DateTime.now().millisecondsSinceEpoch}$ext';
+        final savedPath =
+            '${journalDir.path}/${DateTime.now().millisecondsSinceEpoch}$ext';
         await File(picked.path).copy(savedPath);
         if (!mounted) return;
         setState(() => _selectedImagePath = savedPath);
@@ -771,8 +802,12 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       ref.invalidate(journalStreakProvider);
 
       // Track output for SmartRouter (feeds rule R3)
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordOutput('journal', 'entry'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOutput('journal', 'entry'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordOutput('journal', 'entry'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData((s) => s.trackToolOutput('journal', 'entry'));
 
       // Update notification lifecycle with new activity
       _updateNotificationLifecycle(service);
@@ -807,10 +842,13 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(
-            ref.read(languageProvider) == AppLanguage.en
-                ? 'Save failed' : 'Kayıt başarısız',
-          )),
+          SnackBar(
+            content: Text(
+              ref.read(languageProvider) == AppLanguage.en
+                  ? 'Save failed'
+                  : 'Kayıt başarısız',
+            ),
+          ),
         );
       }
     } finally {
@@ -820,8 +858,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
   Future<void> _updateNotificationLifecycle(dynamic journalService) async {
     try {
-      final nlcService =
-          await ref.read(notificationLifecycleServiceProvider.future);
+      final nlcService = await ref.read(
+        notificationLifecycleServiceProvider.future,
+      );
       await nlcService.recordActivity();
       await nlcService.evaluate(journalService);
     } catch (_) {
@@ -849,9 +888,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   (String, String)? _getPostSaveSuggestion(int entryCount, bool isEn) {
     if (entryCount == 7) {
       return (
-        isEn
-            ? 'See how your cycles flow'
-            : 'Döngülerini keşfet',
+        isEn ? 'See how your cycles flow' : 'Döngülerini keşfet',
         Routes.emotionalCycles,
       );
     }
@@ -865,9 +902,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     }
     if (entryCount > 5 && entryCount % 5 == 0) {
       return (
-        isEn
-            ? 'Your patterns are emerging'
-            : 'Örüntülerin belirginleşiyor',
+        isEn ? 'Your patterns are emerging' : 'Örüntülerin belirginleşiyor',
         Routes.journalPatterns,
       );
     }

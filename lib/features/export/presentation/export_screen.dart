@@ -130,7 +130,8 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                       isDark: isDark,
                       onTap: isPremium
                           ? () => setState(
-                              () => _selectedFormat = ExportFormat.csv)
+                              () => _selectedFormat = ExportFormat.csv,
+                            )
                           : () => showContextualPaywall(
                               context,
                               ref,
@@ -152,7 +153,8 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                       isDark: isDark,
                       onTap: isPremium
                           ? () => setState(
-                              () => _selectedFormat = ExportFormat.json)
+                              () => _selectedFormat = ExportFormat.json,
+                            )
                           : () => showContextualPaywall(
                               context,
                               ref,
@@ -184,8 +186,10 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                             : Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Icon(Icons.file_download_outlined,
-                                      size: 20),
+                                  const Icon(
+                                    Icons.file_download_outlined,
+                                    size: 20,
+                                  ),
                                   const SizedBox(width: 8),
                                   Text(
                                     isEn
@@ -211,15 +215,15 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                         onPressed: _isExporting
                             ? null
                             : () => _copyToClipboard(isPremium, isEn),
-                        icon: Icon(Icons.copy_outlined,
-                            size: 18,
-                            color: isDark
-                                ? AppColors.textSecondary
-                                : AppColors.lightTextSecondary),
+                        icon: Icon(
+                          Icons.copy_outlined,
+                          size: 18,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                        ),
                         label: Text(
-                          isEn
-                              ? 'Copy to Clipboard'
-                              : 'Panoya Kopyala',
+                          isEn ? 'Copy to Clipboard' : 'Panoya Kopyala',
                           style: TextStyle(
                             color: isDark
                                 ? AppColors.textSecondary
@@ -253,11 +257,15 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
   Future<void> _doExport(bool isPremium, bool isEn) async {
     // GUARDRAIL: Double-check entitlement with RevenueCat before export
     if (isPremium) {
-      final verified =
-          await ref.read(premiumProvider.notifier).verifyEntitlementForFeature();
+      final verified = await ref
+          .read(premiumProvider.notifier)
+          .verifyEntitlementForFeature();
       if (!verified && mounted) {
-        await showContextualPaywall(context, ref,
-            paywallContext: PaywallContext.general);
+        await showContextualPaywall(
+          context,
+          ref,
+          paywallContext: PaywallContext.general,
+        );
         return;
       }
     }
@@ -275,7 +283,9 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
         isEn: isEn,
       );
 
-      await SharePlus.instance.share(ShareParams(text: result.content, subject: result.fileName));
+      await SharePlus.instance.share(
+        ShareParams(text: result.content, subject: result.fileName),
+      );
       HapticFeedback.mediumImpact();
     } finally {
       if (mounted) setState(() => _isExporting = false);
@@ -285,11 +295,15 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
   Future<void> _copyToClipboard(bool isPremium, bool isEn) async {
     // GUARDRAIL: Double-check entitlement with RevenueCat before clipboard export
     if (isPremium) {
-      final verified =
-          await ref.read(premiumProvider.notifier).verifyEntitlementForFeature();
+      final verified = await ref
+          .read(premiumProvider.notifier)
+          .verifyEntitlementForFeature();
       if (!verified && mounted) {
-        await showContextualPaywall(context, ref,
-            paywallContext: PaywallContext.general);
+        await showContextualPaywall(
+          context,
+          ref,
+          paywallContext: PaywallContext.general,
+        );
         return;
       }
     }
@@ -338,27 +352,21 @@ class _InfoCard extends StatelessWidget {
             ? AppColors.surfaceDark.withValues(alpha: 0.85)
             : AppColors.lightCard,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: AppColors.auroraStart.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.2)),
       ),
       child: Row(
         children: [
-          Icon(
-            Icons.info_outline,
-            size: 20,
-            color: AppColors.auroraStart,
-          ),
+          Icon(Icons.info_outline, size: 20, color: AppColors.auroraStart),
           const SizedBox(width: 12),
           Expanded(
             child: Text(
               isPremium
                   ? (isEn
-                      ? 'Export your full journal history in any format'
-                      : 'Tüm günlük geçmişinizi herhangi bir formatta dışa aktarın')
+                        ? 'Export your full journal history in any format'
+                        : 'Tüm günlük geçmişinizi herhangi bir formatta dışa aktarın')
                   : (isEn
-                      ? 'Free: last 7 days as text. Upgrade for full history & all formats.'
-                      : 'Ücretsiz: son 7 gün metin olarak. Tam geçmiş ve tüm formatlar için yükseltin.'),
+                        ? 'Free: last 7 days as text. Upgrade for full history & all formats.'
+                        : 'Ücretsiz: son 7 gün metin olarak. Tam geçmiş ve tüm formatlar için yükseltin.'),
               style: TextStyle(
                 fontSize: 13,
                 color: isDark
@@ -467,91 +475,96 @@ class _LockedEntriesCta extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       button: true,
-      label: isEn ? 'Unlock $lockedEntries locked entries' : '$lockedEntries kilitli kaydı aç',
+      label: isEn
+          ? 'Unlock $lockedEntries locked entries'
+          : '$lockedEntries kilitli kaydı aç',
       child: GestureDetector(
-      onTap: onUnlock,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              AppColors.exportGreen.withValues(alpha: 0.08),
-              AppColors.exportGreen.withValues(alpha: 0.02),
+        onTap: onUnlock,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                AppColors.exportGreen.withValues(alpha: 0.08),
+                AppColors.exportGreen.withValues(alpha: 0.02),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: AppColors.exportGreen.withValues(alpha: 0.3),
+            ),
+          ),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: AppColors.exportGreen.withValues(alpha: 0.15),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.lock_outline,
+                  size: 20,
+                  color: AppColors.exportGreen,
+                ),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      isEn
+                          ? '$lockedEntries entries locked'
+                          : '$lockedEntries kayit kilitli',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      isEn
+                          ? 'Upgrade to export all $totalEntries entries'
+                          : 'Tum $totalEntries kaydi aktarmak icin yukselt',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [AppColors.exportGreen, AppColors.success],
+                  ),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Text(
+                  isEn ? 'Unlock' : 'Aç',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ],
           ),
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: AppColors.exportGreen.withValues(alpha: 0.3),
-          ),
         ),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: AppColors.exportGreen.withValues(alpha: 0.15),
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.lock_outline,
-                size: 20,
-                color: AppColors.exportGreen,
-              ),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    isEn
-                        ? '$lockedEntries entries locked'
-                        : '$lockedEntries kayit kilitli',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    isEn
-                        ? 'Upgrade to export all $totalEntries entries'
-                        : 'Tum $totalEntries kaydi aktarmak icin yukselt',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [AppColors.exportGreen, AppColors.success],
-                ),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Text(
-                isEn ? 'Unlock' : 'Aç',
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
       ),
     ).animate().fadeIn(duration: 400.ms, delay: 200.ms);
   }
@@ -585,89 +598,89 @@ class _FormatOption extends StatelessWidget {
       label: title,
       selected: isSelected,
       child: GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? AppColors.auroraStart.withValues(alpha: 0.1)
-              : (isDark
-                  ? AppColors.surfaceDark.withValues(alpha: 0.85)
-                  : AppColors.lightCard),
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
             color: isSelected
-                ? AppColors.auroraStart.withValues(alpha: 0.4)
+                ? AppColors.auroraStart.withValues(alpha: 0.1)
                 : (isDark
-                    ? Colors.white.withValues(alpha: 0.08)
-                    : Colors.black.withValues(alpha: 0.04)),
+                      ? AppColors.surfaceDark.withValues(alpha: 0.85)
+                      : AppColors.lightCard),
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: isSelected
+                  ? AppColors.auroraStart.withValues(alpha: 0.4)
+                  : (isDark
+                        ? Colors.white.withValues(alpha: 0.08)
+                        : Colors.black.withValues(alpha: 0.04)),
+            ),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                icon,
+                size: 24,
+                color: isSelected
+                    ? AppColors.auroraStart
+                    : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    Text(
+                      subtitle,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (isLocked)
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 3,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.starGold.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    'PRO',
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ),
+              if (isSelected && !isLocked)
+                Icon(
+                  Icons.check_circle,
+                  size: 22,
+                  color: AppColors.auroraStart,
+                ),
+            ],
           ),
         ),
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              size: 24,
-              color: isSelected
-                  ? AppColors.auroraStart
-                  : (isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                    ),
-                  ),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            if (isLocked)
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                decoration: BoxDecoration(
-                  color: AppColors.starGold.withValues(alpha: 0.15),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  'PRO',
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.starGold,
-                  ),
-                ),
-              ),
-            if (isSelected && !isLocked)
-              Icon(
-                Icons.check_circle,
-                size: 22,
-                color: AppColors.auroraStart,
-              ),
-          ],
-        ),
-      ),
       ),
     );
   }

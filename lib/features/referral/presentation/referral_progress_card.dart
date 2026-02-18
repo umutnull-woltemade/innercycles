@@ -36,166 +36,170 @@ class ReferralProgressCard extends ConsumerWidget {
 
         // Show active trial banner
         if (status.isUnlocked) {
-          return _ActiveTrialBanner(
-            status: status,
-            isDark: isDark,
-            isEn: isEn,
-          ).animate().fadeIn(duration: 400.ms).slideY(
-                begin: 0.06,
-                duration: 400.ms,
-              );
+          return _ActiveTrialBanner(status: status, isDark: isDark, isEn: isEn)
+              .animate()
+              .fadeIn(duration: 400.ms)
+              .slideY(begin: 0.06, duration: 400.ms);
         }
 
         // Show share progress card
         return Semantics(
-          button: true,
-          label: isEn ? 'Share & Unlock Premium' : 'Payla\u015f ve Premium A\u00e7',
-          child: GestureDetector(
-          onTap: () async {
-            HapticFeedback.lightImpact();
-            final unlocked = await service.shareApp(language: language);
-            if (unlocked && context.mounted) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    isEn
-                        ? 'Premium trial unlocked for 7 days!'
-                        : 'Premium deneme 7 gün için açıldı!',
-                  ),
-                  behavior: SnackBarBehavior.floating,
-                ),
-              );
-            }
-            ref.invalidate(referralServiceProvider);
-          },
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: isDark
-                    ? [
-                        AppColors.celestialGold.withValues(alpha: 0.12),
-                        AppColors.surfaceDark.withValues(alpha: 0.9),
-                      ]
-                    : [
-                        AppColors.celestialGold.withValues(alpha: 0.06),
-                        AppColors.lightCard,
-                      ],
-              ),
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: AppColors.celestialGold.withValues(alpha: 0.25),
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Header row
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        color: AppColors.celestialGold.withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Icon(
-                        Icons.card_giftcard_rounded,
-                        color: AppColors.celestialGold,
-                        size: 16,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        status.headline,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
+              button: true,
+              label: isEn
+                  ? 'Share & Unlock Premium'
+                  : 'Payla\u015f ve Premium A\u00e7',
+              child: GestureDetector(
+                onTap: () async {
+                  HapticFeedback.lightImpact();
+                  final unlocked = await service.shareApp(language: language);
+                  if (unlocked && context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          isEn
+                              ? 'Premium trial unlocked for 7 days!'
+                              : 'Premium deneme 7 gün için açıldı!',
                         ),
+                        behavior: SnackBarBehavior.floating,
                       ),
+                    );
+                  }
+                  ref.invalidate(referralServiceProvider);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: isDark
+                          ? [
+                              AppColors.celestialGold.withValues(alpha: 0.12),
+                              AppColors.surfaceDark.withValues(alpha: 0.9),
+                            ]
+                          : [
+                              AppColors.celestialGold.withValues(alpha: 0.06),
+                              AppColors.lightCard,
+                            ],
                     ),
-                    // Share count dots
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: List.generate(3, (i) {
-                        final filled = i < service.shareCount;
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 4),
-                          child: Container(
-                            width: 8,
-                            height: 8,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: AppColors.celestialGold.withValues(alpha: 0.25),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Header row
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(6),
                             decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: filled
-                                  ? AppColors.celestialGold
-                                  : (isDark
-                                      ? Colors.white.withValues(alpha: 0.1)
-                                      : Colors.black.withValues(alpha: 0.08)),
+                              color: AppColors.celestialGold.withValues(
+                                alpha: 0.15,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Icon(
+                              Icons.card_giftcard_rounded,
+                              color: AppColors.celestialGold,
+                              size: 16,
                             ),
                           ),
-                        );
-                      }),
-                    ),
-                  ],
-                ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              status.headline,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: isDark
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary,
+                              ),
+                            ),
+                          ),
+                          // Share count dots
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: List.generate(3, (i) {
+                              final filled = i < service.shareCount;
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 4),
+                                child: Container(
+                                  width: 8,
+                                  height: 8,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: filled
+                                        ? AppColors.celestialGold
+                                        : (isDark
+                                              ? Colors.white.withValues(
+                                                  alpha: 0.1,
+                                                )
+                                              : Colors.black.withValues(
+                                                  alpha: 0.08,
+                                                )),
+                                  ),
+                                ),
+                              );
+                            }),
+                          ),
+                        ],
+                      ),
 
-                const SizedBox(height: 10),
+                      const SizedBox(height: 10),
 
-                // Progress bar
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(3),
-                  child: LinearProgressIndicator(
-                    value: status.progress,
-                    minHeight: 4,
-                    backgroundColor: isDark
-                        ? Colors.white.withValues(alpha: 0.06)
-                        : Colors.black.withValues(alpha: 0.06),
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      AppColors.celestialGold,
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 8),
-
-                // Bottom row
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        status.subtitle,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary,
+                      // Progress bar
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(3),
+                        child: LinearProgressIndicator(
+                          value: status.progress,
+                          minHeight: 4,
+                          backgroundColor: isDark
+                              ? Colors.white.withValues(alpha: 0.06)
+                              : Colors.black.withValues(alpha: 0.06),
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            AppColors.celestialGold,
+                          ),
                         ),
                       ),
-                    ),
-                    Text(
-                      isEn ? 'Tap to share' : 'Paylaşmak için dokun',
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.celestialGold,
+
+                      const SizedBox(height: 8),
+
+                      // Bottom row
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              status.subtitle,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: isDark
+                                    ? AppColors.textSecondary
+                                    : AppColors.lightTextSecondary,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            isEn ? 'Tap to share' : 'Paylaşmak için dokun',
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.celestialGold,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ],
-            ),
-          ),
-        ),
-        ).animate().fadeIn(duration: 400.ms).slideY(
-              begin: 0.06,
-              duration: 400.ms,
-            );
+              ),
+            )
+            .animate()
+            .fadeIn(duration: 400.ms)
+            .slideY(begin: 0.06, duration: 400.ms);
       },
     );
   }
@@ -231,9 +235,7 @@ class _ActiveTrialBanner extends StatelessWidget {
                 ],
         ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.success.withValues(alpha: 0.25),
-        ),
+        border: Border.all(color: AppColors.success.withValues(alpha: 0.25)),
       ),
       child: Row(
         children: [
@@ -266,10 +268,7 @@ class _ActiveTrialBanner extends StatelessWidget {
                 ),
                 Text(
                   status.subtitle,
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: AppColors.success,
-                  ),
+                  style: TextStyle(fontSize: 11, color: AppColors.success),
                 ),
               ],
             ),

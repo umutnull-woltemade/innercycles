@@ -156,10 +156,7 @@ class _DigestHeader extends StatelessWidget {
                   AppColors.surfaceDark.withValues(alpha: 0.9),
                   AppColors.cosmicPurple.withValues(alpha: 0.4),
                 ]
-              : [
-                  AppColors.lightCard,
-                  AppColors.lightSurfaceVariant,
-                ],
+              : [AppColors.lightCard, AppColors.lightSurfaceVariant],
         ),
         borderRadius: BorderRadius.circular(16),
       ),
@@ -178,7 +175,9 @@ class _DigestHeader extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
           const SizedBox(height: 16),
@@ -188,8 +187,9 @@ class _DigestHeader extends StatelessWidget {
             style: TextStyle(
               fontSize: 15,
               height: 1.5,
-              color:
-                  isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
           ),
         ],
@@ -273,9 +273,7 @@ class _StatCard extends StatelessWidget {
               ? AppColors.surfaceDark.withValues(alpha: 0.85)
               : AppColors.lightCard,
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: color.withValues(alpha: 0.2),
-          ),
+          border: Border.all(color: color.withValues(alpha: 0.2)),
         ),
         child: Column(
           children: [
@@ -286,7 +284,9 @@ class _StatCard extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w800,
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
               ),
             ),
             const SizedBox(height: 2),
@@ -339,7 +339,11 @@ class _MoodTrendCard extends StatelessWidget {
               shape: BoxShape.circle,
               color: AppColors.auroraStart.withValues(alpha: 0.15),
             ),
-            child: const Icon(Icons.trending_up, size: 22, color: AppColors.auroraStart),
+            child: const Icon(
+              Icons.trending_up,
+              size: 22,
+              color: AppColors.auroraStart,
+            ),
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -412,7 +416,9 @@ class _AreaBreakdown extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
           const SizedBox(height: 12),
@@ -428,8 +434,9 @@ class _AreaBreakdown extends StatelessWidget {
                       label,
                       style: TextStyle(
                         fontSize: 12,
-                        color:
-                            isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
                       ),
                     ),
                   ),
@@ -510,9 +517,7 @@ class _GrowthNudgeCard extends StatelessWidget {
                 ],
         ),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
       ),
       child: Row(
         children: [
@@ -576,58 +581,63 @@ class _PastDigests extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        ...digests.map((d) => Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Container(
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: isDark
-                      ? AppColors.surfaceDark.withValues(alpha: 0.85)
-                      : AppColors.lightCard,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      '${dateFormat.format(d.weekStart)} – ${dateFormat.format(d.weekEnd)}',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                        color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
-                      ),
+        ...digests.map(
+          (d) => Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: isDark
+                    ? AppColors.surfaceDark.withValues(alpha: 0.85)
+                    : AppColors.lightCard,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    '${dateFormat.format(d.weekStart)} – ${dateFormat.format(d.weekEnd)}',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
                     ),
-                    const Spacer(),
-                    Text(
-                      '${d.entryCount} ${isEn ? 'entries' : 'kayıt'}',
+                  ),
+                  const Spacer(),
+                  Text(
+                    '${d.entryCount} ${isEn ? 'entries' : 'kayıt'}',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 3,
+                    ),
+                    decoration: BoxDecoration(
+                      color: _moodColor(d.avgMood).withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      '${d.avgMood}/10',
                       style: TextStyle(
                         fontSize: 12,
-                        color:
-                            isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        fontWeight: FontWeight.w600,
+                        color: _moodColor(d.avgMood),
                       ),
                     ),
-                    const SizedBox(width: 12),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 3),
-                      decoration: BoxDecoration(
-                        color: _moodColor(d.avgMood).withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Text(
-                        '${d.avgMood}/10',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: _moodColor(d.avgMood),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            )),
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -665,7 +675,9 @@ class _EmptyDigest extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
           const SizedBox(height: 8),
@@ -677,8 +689,9 @@ class _EmptyDigest extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               height: 1.5,
-              color:
-                  isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
           ),
         ],

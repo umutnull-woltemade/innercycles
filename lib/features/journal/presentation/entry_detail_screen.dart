@@ -41,7 +41,9 @@ class EntryDetailScreen extends ConsumerWidget {
                   CommonStrings.somethingWentWrong(language),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
                   ),
                 ),
               ),
@@ -75,13 +77,13 @@ class EntryDetailScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final areaLabel =
-        isEn ? entry.focusArea.displayNameEn : entry.focusArea.displayNameTr;
+    final areaLabel = isEn
+        ? entry.focusArea.displayNameEn
+        : entry.focusArea.displayNameTr;
     final names = isEn
         ? entry.focusArea.subRatingNamesEn
         : entry.focusArea.subRatingNamesTr;
-    final dateStr =
-        '${entry.date.day}.${entry.date.month}.${entry.date.year}';
+    final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
 
     return CupertinoScrollbar(
       child: CustomScrollView(
@@ -104,26 +106,43 @@ class EntryDetailScreen extends ConsumerWidget {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 // Focus area & rating header
-                _buildHeaderCard(context, areaLabel, entry, isDark)
-                    .glassReveal(context: context),
+                _buildHeaderCard(
+                  context,
+                  areaLabel,
+                  entry,
+                  isDark,
+                ).glassReveal(context: context),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Sub-ratings
                 if (entry.subRatings.isNotEmpty)
-                  _buildSubRatingsCard(context, names, entry, isDark)
-                      .glassListItem(context: context, index: 1),
+                  _buildSubRatingsCard(
+                    context,
+                    names,
+                    entry,
+                    isDark,
+                  ).glassListItem(context: context, index: 1),
                 if (entry.subRatings.isNotEmpty)
                   const SizedBox(height: AppConstants.spacingLg),
 
                 // Photo
-                if (!kIsWeb && entry.imagePath != null && entry.imagePath!.isNotEmpty)
-                  _buildPhotoCard(context, entry.imagePath!, isDark)
-                      .glassListItem(context: context, index: 2),
+                if (!kIsWeb &&
+                    entry.imagePath != null &&
+                    entry.imagePath!.isNotEmpty)
+                  _buildPhotoCard(
+                    context,
+                    entry.imagePath!,
+                    isDark,
+                  ).glassListItem(context: context, index: 2),
 
                 // Note
                 if (entry.note != null && entry.note!.isNotEmpty)
-                  _buildNoteCard(context, entry.note!, isDark, isEn)
-                      .glassListItem(context: context, index: 3),
+                  _buildNoteCard(
+                    context,
+                    entry.note!,
+                    isDark,
+                    isEn,
+                  ).glassListItem(context: context, index: 3),
               ]),
             ),
           ),
@@ -247,11 +266,7 @@ class EntryDetailScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildPhotoCard(
-    BuildContext context,
-    String imagePath,
-    bool isDark,
-  ) {
+  Widget _buildPhotoCard(BuildContext context, String imagePath, bool isDark) {
     final file = File(imagePath);
     try {
       if (!file.existsSync()) return const SizedBox.shrink();
@@ -324,9 +339,7 @@ class EntryDetailScreen extends ConsumerWidget {
       builder: (ctx) => AlertDialog(
         title: Text(isEn ? 'Delete Entry?' : 'Kaydı Sil?'),
         content: Text(
-          isEn
-              ? 'This action cannot be undone.'
-              : 'Bu işlem geri alınamaz.',
+          isEn ? 'This action cannot be undone.' : 'Bu işlem geri alınamaz.',
         ),
         actions: [
           TextButton(

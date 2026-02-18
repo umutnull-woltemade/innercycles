@@ -303,7 +303,9 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
           decoration: BoxDecoration(
             color: AppColors.auroraStart.withValues(alpha: 0.12),
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.3)),
+            border: Border.all(
+              color: AppColors.auroraStart.withValues(alpha: 0.3),
+            ),
           ),
           child: DropdownButton<T>(
             value: value,
@@ -463,7 +465,9 @@ class SelectedDateDisplay extends StatelessWidget {
             ],
           ),
           borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-          border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.3)),
+          border: Border.all(
+            color: AppColors.auroraStart.withValues(alpha: 0.3),
+          ),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

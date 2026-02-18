@@ -209,8 +209,10 @@ class L10n {
     'enter_info_subtitle': {
       AppLanguage.en: 'Enter your information to personalize your experience',
       AppLanguage.tr: 'Deneyimini kişiselleştirmek için bilgilerini gir',
-      AppLanguage.el: 'Εισάγετε τα στοιχεία σας για να εξατομικεύσετε την εμπειρία σας',
-      AppLanguage.bg: 'Въведете информацията си, за да персонализирате изживяването си',
+      AppLanguage.el:
+          'Εισάγετε τα στοιχεία σας για να εξατομικεύσετε την εμπειρία σας',
+      AppLanguage.bg:
+          'Въведете информацията си, за да персонализирате изживяването си',
       AppLanguage.ru: 'Введите свою информацию для персонализации опыта',
       AppLanguage.zh: '输入您的信息以个性化您的体验',
       AppLanguage.fr:
@@ -1235,7 +1237,10 @@ class L10n {
     'tab_weekly': {AppLanguage.en: 'Weekly', AppLanguage.tr: 'Haftalık'},
     'tab_monthly': {AppLanguage.en: 'Monthly', AppLanguage.tr: 'Aylık'},
     'tab_yearly': {AppLanguage.en: 'Yearly', AppLanguage.tr: 'Yıllık'},
-    'tab_personality': {AppLanguage.en: 'Personality', AppLanguage.tr: 'Kişilik'},
+    'tab_personality': {
+      AppLanguage.en: 'Personality',
+      AppLanguage.tr: 'Kişilik',
+    },
     'tab_meditation': {
       AppLanguage.en: 'Meditation',
       AppLanguage.tr: 'Meditasyon',
@@ -1250,7 +1255,10 @@ class L10n {
     'tab_analysis': {AppLanguage.en: 'Analysis', AppLanguage.tr: 'Analiz'},
     'tab_general': {AppLanguage.en: 'General', AppLanguage.tr: 'Genel'},
     'tab_aspects': {AppLanguage.en: 'Aspects', AppLanguage.tr: 'Aspektler'},
-    'tab_houses': {AppLanguage.en: 'Life Areas', AppLanguage.tr: 'Yaşam Alanları'},
+    'tab_houses': {
+      AppLanguage.en: 'Life Areas',
+      AppLanguage.tr: 'Yaşam Alanları',
+    },
     'tab_advice': {AppLanguage.en: 'Advice', AppLanguage.tr: 'Tavsiye'},
     'tab_directions': {AppLanguage.en: 'Directions', AppLanguage.tr: 'Yönler'},
     'tab_home': {AppLanguage.en: 'Home', AppLanguage.tr: 'Ev'},

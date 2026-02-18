@@ -30,11 +30,11 @@ class MonthlyBreakdown {
   });
 
   Map<String, dynamic> toJson() => {
-        'month': month,
-        'entryCount': entryCount,
-        'averageMood': averageMood,
-        'topFocusArea': topFocusArea?.name,
-      };
+    'month': month,
+    'entryCount': entryCount,
+    'averageMood': averageMood,
+    'topFocusArea': topFocusArea?.name,
+  };
 
   factory MonthlyBreakdown.fromJson(Map<String, dynamic> json) =>
       MonthlyBreakdown(
@@ -79,26 +79,25 @@ class YearReview {
   });
 
   Map<String, dynamic> toJson() => {
-        'year': year,
-        'totalEntries': totalEntries,
-        'averageMood': averageMood,
-        'topFocusArea': topFocusArea.name,
-        'moodJourney': moodJourney,
-        'topPatterns': topPatterns,
-        'streakBest': streakBest,
-        'totalJournalingDays': totalJournalingDays,
-        'growthScore': growthScore,
-        'monthlyBreakdown':
-            monthlyBreakdown.map((m) => m.toJson()).toList(),
-        'focusAreaCounts': focusAreaCounts.map(
-          (k, v) => MapEntry(k.name, v),
-        ),
-      };
+    'year': year,
+    'totalEntries': totalEntries,
+    'averageMood': averageMood,
+    'topFocusArea': topFocusArea.name,
+    'moodJourney': moodJourney,
+    'topPatterns': topPatterns,
+    'streakBest': streakBest,
+    'totalJournalingDays': totalJournalingDays,
+    'growthScore': growthScore,
+    'monthlyBreakdown': monthlyBreakdown.map((m) => m.toJson()).toList(),
+    'focusAreaCounts': focusAreaCounts.map((k, v) => MapEntry(k.name, v)),
+  };
 
   factory YearReview.fromJson(Map<String, dynamic> json) {
     final focusCounts = <FocusArea, int>{};
     if (json['focusAreaCounts'] != null) {
-      final raw = json['focusAreaCounts'] is Map ? json['focusAreaCounts'] as Map : {};
+      final raw = json['focusAreaCounts'] is Map
+          ? json['focusAreaCounts'] as Map
+          : {};
       for (final entry in raw.entries) {
         final area = FocusArea.values.firstWhere(
           (e) => e.name == entry.key.toString(),
@@ -119,13 +118,16 @@ class YearReview {
       moodJourney: (json['moodJourney'] as List? ?? [])
           .map((e) => (e as num? ?? 0).toDouble())
           .toList(),
-      topPatterns:
-          (json['topPatterns'] as List? ?? []).map((e) => e as String? ?? '').toList(),
+      topPatterns: (json['topPatterns'] as List? ?? [])
+          .map((e) => e as String? ?? '')
+          .toList(),
       streakBest: json['streakBest'] as int? ?? 0,
       totalJournalingDays: json['totalJournalingDays'] as int? ?? 0,
       growthScore: json['growthScore'] as int? ?? 0,
       monthlyBreakdown: (json['monthlyBreakdown'] as List? ?? [])
-          .map((m) => MonthlyBreakdown.fromJson(m as Map<String, dynamic>? ?? {}))
+          .map(
+            (m) => MonthlyBreakdown.fromJson(m as Map<String, dynamic>? ?? {}),
+          )
           .toList(),
       focusAreaCounts: focusCounts,
     );
@@ -146,8 +148,7 @@ class YearReviewService {
   YearReviewService._(this._prefs, this._journalService);
 
   /// Factory initialization following InnerCycles service pattern
-  static Future<YearReviewService> init(
-      JournalService journalService) async {
+  static Future<YearReviewService> init(JournalService journalService) async {
     final prefs = await SharedPreferences.getInstance();
     return YearReviewService._(prefs, journalService);
   }
@@ -182,15 +183,15 @@ class YearReviewService {
     final yearCounts = <int, int>{};
 
     for (final entry in allEntries) {
-      yearCounts[entry.date.year] =
-          (yearCounts[entry.date.year] ?? 0) + 1;
+      yearCounts[entry.date.year] = (yearCounts[entry.date.year] ?? 0) + 1;
     }
 
-    final available = yearCounts.entries
-        .where((e) => e.value >= _minimumEntries)
-        .map((e) => e.key)
-        .toList()
-      ..sort((a, b) => b.compareTo(a)); // Most recent first
+    final available =
+        yearCounts.entries
+            .where((e) => e.value >= _minimumEntries)
+            .map((e) => e.key)
+            .toList()
+          ..sort((a, b) => b.compareTo(a)); // Most recent first
 
     return available;
   }
@@ -216,7 +217,7 @@ class YearReviewService {
     final totalEntries = entries.length;
     final averageMood =
         entries.map((e) => e.overallRating).reduce((a, b) => a + b) /
-            totalEntries;
+        totalEntries;
 
     // --- Unique journaling days ---
     final uniqueDays = entries.map((e) => e.dateKey).toSet();
@@ -225,8 +226,7 @@ class YearReviewService {
     // --- Focus area breakdown ---
     final focusCounts = <FocusArea, int>{};
     for (final entry in entries) {
-      focusCounts[entry.focusArea] =
-          (focusCounts[entry.focusArea] ?? 0) + 1;
+      focusCounts[entry.focusArea] = (focusCounts[entry.focusArea] ?? 0) + 1;
     }
     final topFocusArea = focusCounts.entries
         .reduce((a, b) => a.value >= b.value ? a : b)
@@ -237,20 +237,17 @@ class YearReviewService {
     final monthlyBreakdown = <MonthlyBreakdown>[];
 
     for (int month = 1; month <= 12; month++) {
-      final monthEntries =
-          entries.where((e) => e.date.month == month).toList();
+      final monthEntries = entries.where((e) => e.date.month == month).toList();
       if (monthEntries.isEmpty) {
-        monthlyBreakdown.add(MonthlyBreakdown(
-          month: month,
-          entryCount: 0,
-          averageMood: 0.0,
-        ));
+        monthlyBreakdown.add(
+          MonthlyBreakdown(month: month, entryCount: 0, averageMood: 0.0),
+        );
         continue;
       }
 
       final monthAvg =
           monthEntries.map((e) => e.overallRating).reduce((a, b) => a + b) /
-              monthEntries.length;
+          monthEntries.length;
       moodJourney[month - 1] = monthAvg;
 
       // Top focus area for this month
@@ -263,12 +260,14 @@ class YearReviewService {
           .reduce((a, b) => a.value >= b.value ? a : b)
           .key;
 
-      monthlyBreakdown.add(MonthlyBreakdown(
-        month: month,
-        entryCount: monthEntries.length,
-        averageMood: monthAvg,
-        topFocusArea: monthTopFocus,
-      ));
+      monthlyBreakdown.add(
+        MonthlyBreakdown(
+          month: month,
+          entryCount: monthEntries.length,
+          averageMood: monthAvg,
+          topFocusArea: monthTopFocus,
+        ),
+      );
     }
 
     // --- Best streak within the year ---
@@ -342,11 +341,10 @@ class YearReviewService {
     final secondHalf = withData.sublist(half);
 
     final firstAvg =
-        firstHalf.map((m) => m.avg).reduce((a, b) => a + b) /
-            firstHalf.length;
+        firstHalf.map((m) => m.avg).reduce((a, b) => a + b) / firstHalf.length;
     final secondAvg =
         secondHalf.map((m) => m.avg).reduce((a, b) => a + b) /
-            secondHalf.length;
+        secondHalf.length;
 
     // Difference scaled: +1.0 full improvement maps to score ~85
     // -1.0 full decline maps to score ~15
@@ -366,13 +364,11 @@ class YearReviewService {
     final patterns = <String>[];
 
     // 1. Top focus area emphasis
-    final topArea =
-        focusCounts.entries.reduce((a, b) => a.value >= b.value ? a : b);
-    final pct =
-        ((topArea.value / entries.length) * 100).round();
-    patterns.add(
-      'focus_dominant:${topArea.key.name}:$pct',
+    final topArea = focusCounts.entries.reduce(
+      (a, b) => a.value >= b.value ? a : b,
     );
+    final pct = ((topArea.value / entries.length) * 100).round();
+    patterns.add('focus_dominant:${topArea.key.name}:$pct');
 
     // 2. Best month
     double bestMonthAvg = 0;
@@ -436,10 +432,7 @@ class YearReviewService {
 
   Future<void> _saveToCache(YearReview review) async {
     final jsonString = jsonEncode(review.toJson());
-    await _prefs.setString(
-      '$_cacheKeyPrefix${review.year}',
-      jsonString,
-    );
+    await _prefs.setString('$_cacheKeyPrefix${review.year}', jsonString);
   }
 }
 

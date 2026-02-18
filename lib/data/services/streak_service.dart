@@ -20,14 +20,14 @@ class StreakFreeze {
   const StreakFreeze({required this.date, this.wasAutomatic = false});
 
   Map<String, dynamic> toJson() => {
-        'date': date.toIso8601String(),
-        'wasAutomatic': wasAutomatic,
-      };
+    'date': date.toIso8601String(),
+    'wasAutomatic': wasAutomatic,
+  };
 
   factory StreakFreeze.fromJson(Map<String, dynamic> json) => StreakFreeze(
-        date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
-        wasAutomatic: json['wasAutomatic'] as bool? ?? false,
-      );
+    date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
+    wasAutomatic: json['wasAutomatic'] as bool? ?? false,
+  );
 
   String get dateKey =>
       '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
@@ -135,8 +135,11 @@ class StreakService {
   int _freezesUsedThisWeek() {
     final now = DateTime.now();
     final weekStart = now.subtract(Duration(days: now.weekday - 1));
-    final weekStartDay =
-        DateTime(weekStart.year, weekStart.month, weekStart.day);
+    final weekStartDay = DateTime(
+      weekStart.year,
+      weekStart.month,
+      weekStart.day,
+    );
     return _freezes.where((f) => !f.date.isBefore(weekStartDay)).length;
   }
 

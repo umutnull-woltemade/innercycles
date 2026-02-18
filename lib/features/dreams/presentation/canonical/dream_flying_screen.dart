@@ -22,159 +22,162 @@ class DreamFlyingScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: isDark
-                ? [AppColors.deepSpace, const Color(0xFF0A1A2E)]
-                : [const Color(0xFFF5FAFF), const Color(0xFFE8F4FF)],
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: isDark
+                  ? [AppColors.deepSpace, const Color(0xFF0A1A2E)]
+                  : [const Color(0xFFF5FAFF), const Color(0xFFE8F4FF)],
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                IconButton(
-                  onPressed: () => context.pop(),
-                  tooltip: L10nService.get('common.back', language),
-                  icon: Icon(
-                    Icons.chevron_left,
-                    color: isDark ? Colors.white70 : AppColors.textDark,
+          child: SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IconButton(
+                    onPressed: () => context.pop(),
+                    tooltip: L10nService.get('common.back', language),
+                    icon: Icon(
+                      Icons.chevron_left,
+                      color: isDark ? Colors.white70 : AppColors.textDark,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  L10nService.get('dreams.canonical.flying_question', language),
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w600,
-                    color: isDark ? Colors.white : AppColors.textDark,
-                    height: 1.2,
+                  const SizedBox(height: 24),
+                  Text(
+                    L10nService.get(
+                      'dreams.canonical.flying_question',
+                      language,
+                    ),
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w600,
+                      color: isDark ? Colors.white : AppColors.textDark,
+                      height: 1.2,
+                    ),
+                  ).animate().fadeIn(duration: 400.ms),
+                  const SizedBox(height: 8),
+                  _buildTag(
+                    L10nService.get('dreams.canonical.brand_tag', language),
+                    color,
                   ),
-                ).animate().fadeIn(duration: 400.ms),
-                const SizedBox(height: 8),
-                _buildTag(
-                  L10nService.get('dreams.canonical.brand_tag', language),
-                  color,
-                ),
-                const SizedBox(height: 32),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.sections.short_answer',
+                  const SizedBox(height: 32),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.sections.short_answer',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.flying.short_answer_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.flying.short_answer_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.flying.short_answer_3',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 28),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.flying.feeling_title',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.flying.feeling_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.flying.feeling_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.flying.feeling_3',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 28),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.sections.what_it_means',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.flying.meaning_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.flying.meaning_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.flying.meaning_3',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 28),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.flying.cant_fly_title',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.flying.cant_fly_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.flying.cant_fly_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.flying.cant_fly_3',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 32),
+                  _buildSuggestion(
+                    context,
+                    isDark,
                     language,
+                    '🏃',
+                    L10nService.get(
+                      'dreams.canonical.running_question',
+                      language,
+                    ),
+                    Routes.dreamRunning,
                   ),
-                  color,
-                  [
-                    L10nService.get(
-                      'dreams.canonical.flying.short_answer_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.flying.short_answer_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.flying.short_answer_3',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 28),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.flying.feeling_title',
-                    language,
+                  const SizedBox(height: 40),
+                  PageFooterWithDisclaimer(
+                    brandText: L10nService.get('dreams.brand_footer', language),
+                    disclaimerText: DisclaimerTexts.dreams(language),
+                    language: language,
                   ),
-                  color,
-                  [
-                    L10nService.get(
-                      'dreams.canonical.flying.feeling_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.flying.feeling_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.flying.feeling_3',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 28),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.sections.what_it_means',
-                    language,
-                  ),
-                  color,
-                  [
-                    L10nService.get(
-                      'dreams.canonical.flying.meaning_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.flying.meaning_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.flying.meaning_3',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 28),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.flying.cant_fly_title',
-                    language,
-                  ),
-                  color,
-                  [
-                    L10nService.get(
-                      'dreams.canonical.flying.cant_fly_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.flying.cant_fly_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.flying.cant_fly_3',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 32),
-                _buildSuggestion(
-                  context,
-                  isDark,
-                  language,
-                  '🏃',
-                  L10nService.get(
-                    'dreams.canonical.running_question',
-                    language,
-                  ),
-                  Routes.dreamRunning,
-                ),
-                const SizedBox(height: 40),
-                PageFooterWithDisclaimer(
-                  brandText: L10nService.get('dreams.brand_footer', language),
-                  disclaimerText: DisclaimerTexts.dreams(language),
-                  language: language,
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
-      ),
       ),
     );
   }

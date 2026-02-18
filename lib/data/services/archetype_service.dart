@@ -64,8 +64,7 @@ class Archetype {
       isEnglish ? descriptionEn : descriptionTr;
   List<String> getStrengths({bool isEnglish = true}) =>
       isEnglish ? strengthsEn : strengthsTr;
-  String getShadow({bool isEnglish = true}) =>
-      isEnglish ? shadowEn : shadowTr;
+  String getShadow({bool isEnglish = true}) => isEnglish ? shadowEn : shadowTr;
   String getGrowthTip({bool isEnglish = true}) =>
       isEnglish ? growthTipEn : growthTipTr;
   List<String> getGrowthAreas({bool isEnglish = true}) =>
@@ -74,11 +73,11 @@ class Archetype {
       isEnglish ? dailyIntentionStyleEn : dailyIntentionStyleTr;
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'nameEn': nameEn,
-        'nameTr': nameTr,
-        'emoji': emoji,
-      };
+    'id': id,
+    'nameEn': nameEn,
+    'nameTr': nameTr,
+    'emoji': emoji,
+  };
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -99,11 +98,11 @@ class ArchetypeSnapshot {
   });
 
   Map<String, dynamic> toJson() => {
-        'month': month,
-        'year': year,
-        'archetypeId': archetypeId,
-        'confidence': confidence,
-      };
+    'month': month,
+    'year': year,
+    'archetypeId': archetypeId,
+    'confidence': confidence,
+  };
 
   factory ArchetypeSnapshot.fromJson(Map<String, dynamic> json) =>
       ArchetypeSnapshot(
@@ -412,14 +411,9 @@ class ArchetypeService {
         'Transformation',
         'Intuition',
         'Resourcefulness',
-        'Awareness'
+        'Awareness',
       ],
-      strengthsTr: [
-        'Dönüşüm',
-        'Sezgi',
-        'Beceriklilik',
-        'Farkındalık'
-      ],
+      strengthsTr: ['Dönüşüm', 'Sezgi', 'Beceriklilik', 'Farkındalık'],
       shadowEn:
           'Manipulation or disconnection from reality may arise when '
           'the desire for control overrides authentic connection.',
@@ -993,8 +987,9 @@ class ArchetypeService {
     final history = getArchetypeHistory();
 
     // Replace if existing for the same month, otherwise add
-    final existingIdx =
-        history.indexWhere((s) => s.month == month && s.year == year);
+    final existingIdx = history.indexWhere(
+      (s) => s.month == month && s.year == year,
+    );
     if (existingIdx >= 0) {
       history[existingIdx] = snapshot;
     } else {
@@ -1039,12 +1034,14 @@ class ArchetypeService {
     final history = getArchetypeHistory();
     history.add(snapshot);
     final jsonList = history
-        .map((s) => {
-              'month': s.month,
-              'year': s.year,
-              'archetypeId': s.archetypeId,
-              'confidence': s.confidence,
-            })
+        .map(
+          (s) => {
+            'month': s.month,
+            'year': s.year,
+            'archetypeId': s.archetypeId,
+            'confidence': s.confidence,
+          },
+        )
         .toList();
     await _prefs.setString(_historyKey, json.encode(jsonList));
   }

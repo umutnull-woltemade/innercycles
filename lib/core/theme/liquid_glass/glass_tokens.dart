@@ -140,36 +140,54 @@ class GlassTokens {
   /// Returns blur sigma for a given G-level (1-5)
   static double blurForLevel(int level) {
     switch (level) {
-      case 1: return g1Blur;
-      case 2: return g2Blur;
-      case 3: return g3Blur;
-      case 4: return g4Blur;
-      case 5: return g5Blur;
-      default: return g2Blur;
+      case 1:
+        return g1Blur;
+      case 2:
+        return g2Blur;
+      case 3:
+        return g3Blur;
+      case 4:
+        return g4Blur;
+      case 5:
+        return g5Blur;
+      default:
+        return g2Blur;
     }
   }
 
   /// Returns surface opacity for a given G-level (1-5)
   static double opacityForLevel(int level) {
     switch (level) {
-      case 1: return g1Opacity;
-      case 2: return g2Opacity;
-      case 3: return g3Opacity;
-      case 4: return g4Opacity;
-      case 5: return g5Opacity;
-      default: return g2Opacity;
+      case 1:
+        return g1Opacity;
+      case 2:
+        return g2Opacity;
+      case 3:
+        return g3Opacity;
+      case 4:
+        return g4Opacity;
+      case 5:
+        return g5Opacity;
+      default:
+        return g2Opacity;
     }
   }
 
   /// Returns border opacity for a given G-level (1-5)
   static double borderOpacityForLevel(int level) {
     switch (level) {
-      case 1: return g1BorderOpacity;
-      case 2: return g2BorderOpacity;
-      case 3: return g3BorderOpacity;
-      case 4: return g4BorderOpacity;
-      case 5: return g5BorderOpacity;
-      default: return g2BorderOpacity;
+      case 1:
+        return g1BorderOpacity;
+      case 2:
+        return g2BorderOpacity;
+      case 3:
+        return g3BorderOpacity;
+      case 4:
+        return g4BorderOpacity;
+      case 5:
+        return g5BorderOpacity;
+      default:
+        return g2BorderOpacity;
     }
   }
 }

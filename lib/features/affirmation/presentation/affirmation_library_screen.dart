@@ -32,8 +32,12 @@ class _AffirmationLibraryScreenState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('affirmations'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('affirmations', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('affirmations'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData((s) => s.trackToolOpen('affirmations', source: 'direct'));
     });
   }
 
@@ -55,7 +59,9 @@ class _AffirmationLibraryScreenState
                 CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                 ),
               ),
             ),
@@ -90,9 +96,7 @@ class _AffirmationLibraryScreenState
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(
-            title: isEn ? 'Affirmations' : 'Olumlamalar',
-          ),
+          GlassSliverAppBar(title: isEn ? 'Affirmations' : 'Olumlamalar'),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
@@ -106,21 +110,24 @@ class _AffirmationLibraryScreenState
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Affirmation list
-                ...affirmations.map((a) => Padding(
-                      padding:
-                          const EdgeInsets.only(bottom: AppConstants.spacingSm),
-                      child: _AffirmationTile(
-                        affirmation: a,
-                        isFavorite: service.isFavorite(a.id),
-                        isDark: isDark,
-                        isEn: isEn,
-                        onToggleFavorite: () async {
-                          await service.toggleFavorite(a.id);
-                          if (!mounted) return;
-                          setState(() {});
-                        },
-                      ),
-                    )),
+                ...affirmations.map(
+                  (a) => Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: AppConstants.spacingSm,
+                    ),
+                    child: _AffirmationTile(
+                      affirmation: a,
+                      isFavorite: service.isFavorite(a.id),
+                      isDark: isDark,
+                      isEn: isEn,
+                      onToggleFavorite: () async {
+                        await service.toggleFavorite(a.id);
+                        if (!mounted) return;
+                        setState(() {});
+                      },
+                    ),
+                  ),
+                ),
 
                 if (affirmations.isEmpty)
                   Padding(
@@ -132,7 +139,9 @@ class _AffirmationLibraryScreenState
                           Icon(
                             Icons.favorite_border_rounded,
                             size: 48,
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
                           ),
                           const SizedBox(height: 12),
                           Text(
@@ -148,7 +157,11 @@ class _AffirmationLibraryScreenState
                       ),
                     ),
                   ),
-                ToolEcosystemFooter(currentToolId: 'affirmations', isEn: isEn, isDark: isDark),
+                ToolEcosystemFooter(
+                  currentToolId: 'affirmations',
+                  isEn: isEn,
+                  isDark: isDark,
+                ),
                 const SizedBox(height: 40),
               ]),
             ),
@@ -158,11 +171,7 @@ class _AffirmationLibraryScreenState
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms);
   }
 
-  Widget _buildTodayHero(
-    AffirmationService service,
-    bool isDark,
-    bool isEn,
-  ) {
+  Widget _buildTodayHero(AffirmationService service, bool isDark, bool isEn) {
     final today = service.getDailyAffirmation();
 
     return GlassPanel(
@@ -172,11 +181,7 @@ class _AffirmationLibraryScreenState
       padding: const EdgeInsets.all(AppConstants.spacingXl),
       child: Column(
         children: [
-          Icon(
-            Icons.auto_awesome,
-            size: 28,
-            color: AppColors.starGold,
-          ),
+          Icon(Icons.auto_awesome, size: 28, color: AppColors.starGold),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             isEn ? "Today's Affirmation" : 'Günün Olumlaması',
@@ -194,7 +199,9 @@ class _AffirmationLibraryScreenState
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
               height: 1.5,
             ),
           ),
@@ -221,11 +228,7 @@ class _AffirmationLibraryScreenState
     );
   }
 
-  Widget _buildFilterChips(
-    AffirmationService service,
-    bool isDark,
-    bool isEn,
-  ) {
+  Widget _buildFilterChips(AffirmationService service, bool isDark, bool isEn) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -256,19 +259,20 @@ class _AffirmationLibraryScreenState
           const SizedBox(width: 8),
 
           // Category chips
-          ...AffirmationCategory.values.map((cat) => Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: _FilterChip(
-                  label: isEn ? cat.displayNameEn : cat.displayNameTr,
-                  isSelected:
-                      _selectedCategory == cat && !_showFavoritesOnly,
-                  isDark: isDark,
-                  onTap: () => setState(() {
-                    _selectedCategory = cat;
-                    _showFavoritesOnly = false;
-                  }),
-                ),
-              )),
+          ...AffirmationCategory.values.map(
+            (cat) => Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: _FilterChip(
+                label: isEn ? cat.displayNameEn : cat.displayNameTr,
+                isSelected: _selectedCategory == cat && !_showFavoritesOnly,
+                isDark: isDark,
+                onTap: () => setState(() {
+                  _selectedCategory = cat;
+                  _showFavoritesOnly = false;
+                }),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -303,15 +307,15 @@ class _FilterChip extends StatelessWidget {
             color: isSelected
                 ? AppColors.starGold.withValues(alpha: 0.2)
                 : (isDark
-                    ? AppColors.surfaceLight.withValues(alpha: 0.1)
-                    : AppColors.lightSurfaceVariant),
+                      ? AppColors.surfaceLight.withValues(alpha: 0.1)
+                      : AppColors.lightSurfaceVariant),
             borderRadius: BorderRadius.circular(AppConstants.radiusFull),
             border: Border.all(
               color: isSelected
                   ? AppColors.starGold
                   : (isDark
-                      ? Colors.white.withValues(alpha: 0.1)
-                      : Colors.black.withValues(alpha: 0.05)),
+                        ? Colors.white.withValues(alpha: 0.1)
+                        : Colors.black.withValues(alpha: 0.05)),
             ),
           ),
           child: Row(
@@ -323,7 +327,9 @@ class _FilterChip extends StatelessWidget {
                   size: 14,
                   color: isSelected
                       ? AppColors.starGold
-                      : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                      : (isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted),
                 ),
                 const SizedBox(width: 4),
               ],
@@ -335,8 +341,8 @@ class _FilterChip extends StatelessWidget {
                   color: isSelected
                       ? AppColors.starGold
                       : (isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary),
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary),
                 ),
               ),
             ],
@@ -425,7 +431,9 @@ class _AffirmationTile extends StatelessWidget {
           ),
           Semantics(
             button: true,
-            label: isFavorite ? (isEn ? 'Remove from favorites' : 'Favorilerden kaldır') : (isEn ? 'Add to favorites' : 'Favorilere ekle'),
+            label: isFavorite
+                ? (isEn ? 'Remove from favorites' : 'Favorilerden kaldır')
+                : (isEn ? 'Add to favorites' : 'Favorilere ekle'),
             child: GestureDetector(
               onTap: onToggleFavorite,
               child: Icon(

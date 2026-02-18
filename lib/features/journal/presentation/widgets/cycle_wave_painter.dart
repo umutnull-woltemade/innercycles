@@ -111,12 +111,12 @@ class _CycleWaveChartState extends State<CycleWaveChart> {
       if (points == null) continue;
 
       for (final point in points) {
-        final dx = leftPadding +
+        final dx =
+            leftPadding +
             (point.date.difference(rangeStart).inMilliseconds / totalMs) *
                 chartWidth;
-        final dy = topPadding +
-            chartHeight -
-            ((point.value - 1) / 4) * chartHeight;
+        final dy =
+            topPadding + chartHeight - ((point.value - 1) / 4) * chartHeight;
 
         final dist = (Offset(dx, dy) - position).distance;
         if (dist < closestDist) {
@@ -211,21 +211,24 @@ class _CycleWavePainterImpl extends CustomPainter {
       if (points == null || points.isEmpty) continue;
 
       final color = kAreaColors[area] ?? Colors.white;
-      final gradientEnd = kAreaGradientEnd[area] ?? color.withValues(alpha: 0.1);
+      final gradientEnd =
+          kAreaGradientEnd[area] ?? color.withValues(alpha: 0.1);
 
       // Convert to canvas coordinates
       final canvasPoints = <Offset>[];
       for (final point in points) {
-        final dx = leftPadding +
+        final dx =
+            leftPadding +
             (point.date.difference(rangeStart).inMilliseconds / totalMs) *
                 chartWidth;
-        final dy = topPadding +
-            chartHeight -
-            ((point.value - 1) / 4) * chartHeight;
-        canvasPoints.add(Offset(
-          dx.clamp(leftPadding, leftPadding + chartWidth),
-          dy.clamp(topPadding, topPadding + chartHeight),
-        ));
+        final dy =
+            topPadding + chartHeight - ((point.value - 1) / 4) * chartHeight;
+        canvasPoints.add(
+          Offset(
+            dx.clamp(leftPadding, leftPadding + chartWidth),
+            dy.clamp(topPadding, topPadding + chartHeight),
+          ),
+        );
       }
 
       if (canvasPoints.isEmpty) continue;
@@ -322,8 +325,9 @@ class _CycleWavePainterImpl extends CustomPainter {
         text: TextSpan(
           text: '$rating',
           style: TextStyle(
-            color: (isDark ? Colors.white : Colors.black)
-                .withValues(alpha: 0.3),
+            color: (isDark ? Colors.white : Colors.black).withValues(
+              alpha: 0.3,
+            ),
             fontSize: 10,
             fontWeight: FontWeight.w500,
           ),
@@ -406,8 +410,7 @@ class _CycleWavePainterImpl extends CustomPainter {
     );
 
     // Tooltip text
-    final dateStr =
-        '${point.date.day}/${point.date.month}';
+    final dateStr = '${point.date.day}/${point.date.month}';
     final valueStr = point.value.toStringAsFixed(1);
     final text = '$dateStr: $valueStr';
 
@@ -464,10 +467,7 @@ class _CycleWavePainterImpl extends CustomPainter {
         ..strokeWidth = 1,
     );
 
-    textPainter.paint(
-      canvas,
-      Offset(tooltipX + 8, clampedY + 5),
-    );
+    textPainter.paint(canvas, Offset(tooltipX + 8, clampedY + 5));
   }
 
   /// Build a smooth Catmull-Rom spline path through points

@@ -147,7 +147,9 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
     return RefreshIndicator(
       onRefresh: _handleRefresh,
       color: AppColors.auroraStart,
-      backgroundColor: widget.isDark ? AppColors.surfaceDark : AppColors.lightCard,
+      backgroundColor: widget.isDark
+          ? AppColors.surfaceDark
+          : AppColors.lightCard,
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
           parent: AlwaysScrollableScrollPhysics(),
@@ -269,11 +271,11 @@ class _NotEnoughData extends StatelessWidget {
           Text(
             isEn
                 ? 'You have $entryCount entries so far. After $remaining more, '
-                    'your journal will have enough data to reveal patterns '
-                    'you might not notice on your own.'
+                      'your journal will have enough data to reveal patterns '
+                      'you might not notice on your own.'
                 : 'Şu ana kadar $entryCount kaydın var. $remaining kayıt daha '
-                    'sonra, günlüğün kendi başına fark edemeyebileceğin '
-                    'örüntüleri ortaya çıkarmak için yeterli veriye sahip olacak.',
+                      'sonra, günlüğün kendi başına fark edemeyebileceğin '
+                      'örüntüleri ortaya çıkarmak için yeterli veriye sahip olacak.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 15,
@@ -308,9 +310,7 @@ class _NotEnoughData extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  isEn
-                      ? '$entryCount / 14 entries'
-                      : '$entryCount / 14 kayıt',
+                  isEn ? '$entryCount / 14 entries' : '$entryCount / 14 kayıt',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -354,10 +354,7 @@ class _OverallInsightCard extends StatelessWidget {
                   AppColors.surfaceDark.withValues(alpha: 0.9),
                   AppColors.cosmicPurple.withValues(alpha: 0.7),
                 ]
-              : [
-                  AppColors.lightCard,
-                  AppColors.lightSurfaceVariant,
-                ],
+              : [AppColors.lightCard, AppColors.lightSurfaceVariant],
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
@@ -411,10 +408,7 @@ class _OverallInsightCard extends StatelessWidget {
                   ),
                 ),
               ),
-              _SpotCountBadge(
-                count: report.blindSpots.length,
-                isDark: isDark,
-              ),
+              _SpotCountBadge(count: report.blindSpots.length, isDark: isDark),
             ],
           ),
           const SizedBox(height: 16),
@@ -527,20 +521,16 @@ class _BlindSpotsList extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,
-            color: isDark
-                ? AppColors.textPrimary
-                : AppColors.lightTextPrimary,
+            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),
         const SizedBox(height: 12),
         ...List.generate(spots.length, (i) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 10),
-            child: _BlindSpotCard(
-              spot: spots[i],
-              isDark: isDark,
-              isEn: isEn,
-            ).animate().fadeIn(
+            child: _BlindSpotCard(spot: spots[i], isDark: isDark, isEn: isEn)
+                .animate()
+                .fadeIn(
                   delay: Duration(milliseconds: 100 + i * 80),
                   duration: 300.ms,
                 ),
@@ -600,8 +590,9 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
           boxShadow: _expanded
               ? [
                   BoxShadow(
-                    color:
-                        _severityColor(spot.severity).withValues(alpha: 0.08),
+                    color: _severityColor(
+                      spot.severity,
+                    ).withValues(alpha: 0.08),
                     blurRadius: 12,
                     offset: const Offset(0, 4),
                   ),
@@ -617,8 +608,9 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: _severityColor(spot.severity)
-                        .withValues(alpha: 0.12),
+                    color: _severityColor(
+                      spot.severity,
+                    ).withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Icon(
@@ -643,10 +635,7 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
                         ),
                       ),
                       const SizedBox(height: 2),
-                      _SeverityIndicator(
-                        severity: spot.severity,
-                        isEn: isEn,
-                      ),
+                      _SeverityIndicator(severity: spot.severity, isEn: isEn),
                     ],
                   ),
                 ),
@@ -724,10 +713,7 @@ class _SeverityIndicator extends StatelessWidget {
   final BlindSpotSeverity severity;
   final bool isEn;
 
-  const _SeverityIndicator({
-    required this.severity,
-    required this.isEn,
-  });
+  const _SeverityIndicator({required this.severity, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
@@ -813,8 +799,9 @@ class _GrowthSuggestionsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final suggestions =
-        isEn ? report.growthSuggestionsEn : report.growthSuggestionsTr;
+    final suggestions = isEn
+        ? report.growthSuggestionsEn
+        : report.growthSuggestionsTr;
 
     return Container(
       padding: const EdgeInsets.all(20),
@@ -934,18 +921,15 @@ class _ShareInsightsButton extends StatelessWidget {
           HapticFeedback.mediumImpact();
           final text = isEn
               ? 'I uncovered $spotCount emotional blind spots through self-reflection with InnerCycles.\n\n'
-                'Discover your hidden patterns:\nhttps://apps.apple.com/app/innercycles/id6758612716'
+                    'Discover your hidden patterns:\nhttps://apps.apple.com/app/innercycles/id6758612716'
               : 'InnerCycles ile öz yansıma yaparak $spotCount duygusal kör noktamı keşfettim.\n\n'
-                'Gizli kalıplarını keşfet:\nhttps://apps.apple.com/app/innercycles/id6758612716';
+                    'Gizli kalıplarını keşfet:\nhttps://apps.apple.com/app/innercycles/id6758612716';
           SharePlus.instance.share(ShareParams(text: text));
         },
         icon: const Icon(Icons.share_rounded, size: 18),
         label: Text(
           isEn ? 'Share Your Insights' : 'İçgörülerini Paylaş',
-          style: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
         ),
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.brandPink.withValues(alpha: 0.15),
@@ -953,9 +937,7 @@ class _ShareInsightsButton extends StatelessWidget {
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
-            side: BorderSide(
-              color: AppColors.brandPink.withValues(alpha: 0.3),
-            ),
+            side: BorderSide(color: AppColors.brandPink.withValues(alpha: 0.3)),
           ),
         ),
       ),

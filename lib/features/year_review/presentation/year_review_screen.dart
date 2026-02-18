@@ -62,8 +62,12 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('yearReview'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('yearReview', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('yearReview'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData((s) => s.trackToolOpen('yearReview', source: 'direct'));
     });
     // Auto-select the most recent available year on first load
     Future.microtask(() async {
@@ -88,138 +92,162 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
-          child: CupertinoScrollbar(
-            child: CustomScrollView(
-              physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics(),
-              ),
-              slivers: [
-                GlassSliverAppBar(
-                  title: isEn ? 'Year in Review' : 'Yıllık Değerlendirme',
-                ),
-                // Year selector
-                SliverToBoxAdapter(
-                  child: yearsAsync.when(
-                    loading: () => const SizedBox(height: 48),
-                    error: (_, _) => Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(32),
-                        child: Text(
-                          isEn ? 'Could not load year data' : 'Yıl verileri yüklenemedi',
-                          style: TextStyle(
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                          ),
+          child:
+              CupertinoScrollbar(
+                    child: CustomScrollView(
+                      physics: const BouncingScrollPhysics(
+                        parent: AlwaysScrollableScrollPhysics(),
+                      ),
+                      slivers: [
+                        GlassSliverAppBar(
+                          title: isEn
+                              ? 'Year in Review'
+                              : 'Yıllık Değerlendirme',
                         ),
-                      ),
-                    ),
-                    data: (years) {
-                      if (years.isEmpty) {
-                        return _EmptyState(isDark: isDark, isEn: isEn);
-                      }
-                      if (years.length > 1) {
-                        return _YearSelector(
-                          years: years,
-                          selectedYear: selectedYear,
-                          isDark: isDark,
-                          onYearSelected: (year) {
-                            ref.read(selectedYearProvider.notifier).state =
-                                year;
-                          },
-                        );
-                      }
-                      return const SizedBox(height: 8);
-                    },
-                  ),
-                ),
-                // Review content
-                SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  sliver: reviewAsync.when(
-                    loading: () => const SliverToBoxAdapter(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 80),
-                        child: Center(child: CosmicLoadingIndicator()),
-                      ),
-                    ),
-                    error: (_, _) => SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 80),
-                        child: Center(
-                          child: Text(
-                            isEn
-                                ? 'Could not load review'
-                                : 'Değerlendirme yüklenemedi',
-                            style: TextStyle(
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
+                        // Year selector
+                        SliverToBoxAdapter(
+                          child: yearsAsync.when(
+                            loading: () => const SizedBox(height: 48),
+                            error: (_, _) => Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(32),
+                                child: Text(
+                                  isEn
+                                      ? 'Could not load year data'
+                                      : 'Yıl verileri yüklenemedi',
+                                  style: TextStyle(
+                                    color: isDark
+                                        ? AppColors.textMuted
+                                        : AppColors.lightTextMuted,
+                                  ),
+                                ),
+                              ),
                             ),
+                            data: (years) {
+                              if (years.isEmpty) {
+                                return _EmptyState(isDark: isDark, isEn: isEn);
+                              }
+                              if (years.length > 1) {
+                                return _YearSelector(
+                                  years: years,
+                                  selectedYear: selectedYear,
+                                  isDark: isDark,
+                                  onYearSelected: (year) {
+                                    ref
+                                            .read(selectedYearProvider.notifier)
+                                            .state =
+                                        year;
+                                  },
+                                );
+                              }
+                              return const SizedBox(height: 8);
+                            },
                           ),
                         ),
-                      ),
-                    ),
-                    data: (review) {
-                      if (review == null) {
-                        if (selectedYear == null) {
-                          return SliverToBoxAdapter(
-                            child: _EmptyState(isDark: isDark, isEn: isEn),
-                          );
-                        }
-                        return SliverToBoxAdapter(
-                          child: _NotEnoughData(isDark: isDark, isEn: isEn),
-                        );
-                      }
-                      return SliverList(
-                        delegate: SliverChildListDelegate([
-                          const SizedBox(height: 8),
-                          _HeroCard(
-                            review: review,
-                            isDark: isDark,
-                            isEn: isEn,
-                          ).glassReveal(context: context),
-                          const SizedBox(height: 20),
-                          _MoodJourneyCard(
-                            review: review,
-                            isDark: isDark,
-                            isEn: isEn,
-                          ).glassListItem(context: context, index: 1),
-                          const SizedBox(height: 20),
-                          _FocusAreasCard(
-                            review: review,
-                            isDark: isDark,
-                            isEn: isEn,
-                          ).glassListItem(context: context, index: 2),
-                          const SizedBox(height: 20),
-                          _GrowthScoreCard(
-                            review: review,
-                            isDark: isDark,
-                            isEn: isEn,
-                          ).glassListItem(context: context, index: 3),
-                          const SizedBox(height: 20),
-                          _HighlightsCard(
-                            review: review,
-                            isDark: isDark,
-                            isEn: isEn,
-                          ).glassListItem(context: context, index: 4),
-                          const SizedBox(height: 20),
-                          _ShareableSummaryCard(
-                            review: review,
-                            isDark: isDark,
-                            isEn: isEn,
-                          ).glassListItem(context: context, index: 5),
-                          ContentDisclaimer(
-                            language: isEn ? AppLanguage.en : AppLanguage.tr,
+                        // Review content
+                        SliverPadding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          sliver: reviewAsync.when(
+                            loading: () => const SliverToBoxAdapter(
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 80),
+                                child: Center(child: CosmicLoadingIndicator()),
+                              ),
+                            ),
+                            error: (_, _) => SliverToBoxAdapter(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 80),
+                                child: Center(
+                                  child: Text(
+                                    isEn
+                                        ? 'Could not load review'
+                                        : 'Değerlendirme yüklenemedi',
+                                    style: TextStyle(
+                                      color: isDark
+                                          ? AppColors.textMuted
+                                          : AppColors.lightTextMuted,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            data: (review) {
+                              if (review == null) {
+                                if (selectedYear == null) {
+                                  return SliverToBoxAdapter(
+                                    child: _EmptyState(
+                                      isDark: isDark,
+                                      isEn: isEn,
+                                    ),
+                                  );
+                                }
+                                return SliverToBoxAdapter(
+                                  child: _NotEnoughData(
+                                    isDark: isDark,
+                                    isEn: isEn,
+                                  ),
+                                );
+                              }
+                              return SliverList(
+                                delegate: SliverChildListDelegate([
+                                  const SizedBox(height: 8),
+                                  _HeroCard(
+                                    review: review,
+                                    isDark: isDark,
+                                    isEn: isEn,
+                                  ).glassReveal(context: context),
+                                  const SizedBox(height: 20),
+                                  _MoodJourneyCard(
+                                    review: review,
+                                    isDark: isDark,
+                                    isEn: isEn,
+                                  ).glassListItem(context: context, index: 1),
+                                  const SizedBox(height: 20),
+                                  _FocusAreasCard(
+                                    review: review,
+                                    isDark: isDark,
+                                    isEn: isEn,
+                                  ).glassListItem(context: context, index: 2),
+                                  const SizedBox(height: 20),
+                                  _GrowthScoreCard(
+                                    review: review,
+                                    isDark: isDark,
+                                    isEn: isEn,
+                                  ).glassListItem(context: context, index: 3),
+                                  const SizedBox(height: 20),
+                                  _HighlightsCard(
+                                    review: review,
+                                    isDark: isDark,
+                                    isEn: isEn,
+                                  ).glassListItem(context: context, index: 4),
+                                  const SizedBox(height: 20),
+                                  _ShareableSummaryCard(
+                                    review: review,
+                                    isDark: isDark,
+                                    isEn: isEn,
+                                  ).glassListItem(context: context, index: 5),
+                                  ContentDisclaimer(
+                                    language: isEn
+                                        ? AppLanguage.en
+                                        : AppLanguage.tr,
+                                  ),
+                                  ToolEcosystemFooter(
+                                    currentToolId: 'yearReview',
+                                    isEn: isEn,
+                                    isDark: isDark,
+                                  ),
+                                  const SizedBox(height: 40),
+                                ]),
+                              );
+                            },
                           ),
-                          ToolEcosystemFooter(currentToolId: 'yearReview', isEn: isEn, isDark: isDark),
-                          const SizedBox(height: 40),
-                        ]),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms),
+                        ),
+                      ],
+                    ),
+                  )
+                  .animate()
+                  .fadeIn(duration: 400.ms)
+                  .slideY(begin: 0.05, duration: 400.ms),
         ),
       ),
     );
@@ -250,7 +278,9 @@ class _YearSelector extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
         itemCount: years.length,
         separatorBuilder: (_, _) => const SizedBox(width: 10),
         itemBuilder: (context, index) {
@@ -268,15 +298,15 @@ class _YearSelector extends StatelessWidget {
                 color: isSelected
                     ? AppColors.starGold
                     : isDark
-                        ? AppColors.surfaceDark.withValues(alpha: 0.8)
-                        : AppColors.lightCard,
+                    ? AppColors.surfaceDark.withValues(alpha: 0.8)
+                    : AppColors.lightCard,
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(
                   color: isSelected
                       ? AppColors.starGold
                       : isDark
-                          ? Colors.white.withValues(alpha: 0.15)
-                          : Colors.black.withValues(alpha: 0.08),
+                      ? Colors.white.withValues(alpha: 0.15)
+                      : Colors.black.withValues(alpha: 0.08),
                 ),
               ),
               child: Center(
@@ -288,8 +318,8 @@ class _YearSelector extends StatelessWidget {
                     color: isSelected
                         ? Colors.black
                         : isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
                   ),
                 ),
               ),
@@ -330,11 +360,11 @@ class _EmptyState extends StatelessWidget {
                 ? 'Your Year in Review is ready'
                 : 'Yıllık değerlendirmeniz hazır',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+              fontWeight: FontWeight.w600,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 12),
@@ -343,10 +373,8 @@ class _EmptyState extends StatelessWidget {
                 ? 'Keep journaling to unlock your annual summary. You need at least 7 entries in a year.'
                 : 'Yıllık özet için günlük tutmaya devam edin. Bir yılda en az 7 kayıt gerekli.',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted,
-                ),
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
             textAlign: TextAlign.center,
           ),
         ],
@@ -380,11 +408,11 @@ class _NotEnoughData extends StatelessWidget {
                 ? 'Not enough entries for this year'
                 : 'Bu yıl için yeterli kayıt yok',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+              fontWeight: FontWeight.w600,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
@@ -393,10 +421,8 @@ class _NotEnoughData extends StatelessWidget {
                 ? 'You need at least 7 journal entries to generate a review.'
                 : 'Değerlendirme oluşturmak için en az 7 kayıt gerekli.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted,
-                ),
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
             textAlign: TextAlign.center,
           ),
         ],
@@ -429,11 +455,7 @@ class _HeroCard extends StatelessWidget {
       glowColor: AppColors.starGold.withValues(alpha: 0.2),
       child: Column(
         children: [
-          Icon(
-            Icons.auto_awesome,
-            size: 40,
-            color: AppColors.starGold,
-          ),
+          Icon(Icons.auto_awesome, size: 40, color: AppColors.starGold),
           const SizedBox(height: 8),
           Text(
             'InnerCycles',
@@ -450,9 +472,9 @@ class _HeroCard extends StatelessWidget {
                 ? 'Your ${review.year} in Review'
                 : '${review.year} Yılı Değerlendirmesi',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  color: AppColors.starGold,
-                  fontWeight: FontWeight.w700,
-                ),
+              color: AppColors.starGold,
+              fontWeight: FontWeight.w700,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
@@ -562,12 +584,32 @@ class _MoodJourneyCard extends StatelessWidget {
   });
 
   static const _monthLabelsEn = [
-    'J', 'F', 'M', 'A', 'M', 'J',
-    'J', 'A', 'S', 'O', 'N', 'D',
+    'J',
+    'F',
+    'M',
+    'A',
+    'M',
+    'J',
+    'J',
+    'A',
+    'S',
+    'O',
+    'N',
+    'D',
   ];
   static const _monthLabelsTr = [
-    'O', 'S', 'M', 'N', 'M', 'H',
-    'T', 'A', 'E', 'E', 'K', 'A',
+    'O',
+    'S',
+    'M',
+    'N',
+    'M',
+    'H',
+    'T',
+    'A',
+    'E',
+    'E',
+    'K',
+    'A',
   ];
 
   @override
@@ -584,11 +626,11 @@ class _MoodJourneyCard extends StatelessWidget {
           Text(
             isEn ? 'Mood Journey' : 'Ruh Hali Yolculuğu',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           const SizedBox(height: 4),
           Text(
@@ -646,8 +688,8 @@ class _MoodJourneyCard extends StatelessWidget {
                             color: hasData
                                 ? null
                                 : isDark
-                                    ? Colors.white.withValues(alpha: 0.05)
-                                    : Colors.black.withValues(alpha: 0.03),
+                                ? Colors.white.withValues(alpha: 0.05)
+                                : Colors.black.withValues(alpha: 0.03),
                           ),
                         ),
                         const SizedBox(height: 6),
@@ -721,17 +763,15 @@ class _FocusAreasCard extends StatelessWidget {
           Text(
             isEn ? 'Focus Areas' : 'Odak Alanları',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           const SizedBox(height: 4),
           Text(
-            isEn
-                ? 'Time spent per area'
-                : 'Alan başına harcanan zaman',
+            isEn ? 'Time spent per area' : 'Alan başına harcanan zaman',
             style: TextStyle(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -743,8 +783,7 @@ class _FocusAreasCard extends StatelessWidget {
             final count = entry.value;
             final ratio = count / maxCount;
             final color = _areaColors[area] ?? AppColors.starGold;
-            final pct =
-                ((count / review.totalEntries) * 100).round();
+            final pct = ((count / review.totalEntries) * 100).round();
             final label = isEn ? area.displayNameEn : area.displayNameTr;
 
             return Padding(
@@ -819,8 +858,8 @@ class _GrowthScoreCard extends StatelessWidget {
     final label = score >= 70
         ? (isEn ? 'Strong Growth' : 'Güçlü Gelişim')
         : score >= 50
-            ? (isEn ? 'Steady Progress' : 'İstikrarlı İlerleme')
-            : (isEn ? 'Room to Grow' : 'Gelişim Alanı');
+        ? (isEn ? 'Steady Progress' : 'İstikrarlı İlerleme')
+        : (isEn ? 'Room to Grow' : 'Gelişim Alanı');
 
     return GlassPanel(
       elevation: GlassElevation.g2,
@@ -831,11 +870,11 @@ class _GrowthScoreCard extends StatelessWidget {
           Text(
             isEn ? 'Growth Score' : 'Gelişim Skoru',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           const SizedBox(height: 4),
           Text(
@@ -923,10 +962,10 @@ class _GrowthCirclePainter extends CustomPainter {
     final progressColor = progress >= 0.7
         ? AppColors.success
         : progress >= 0.5
-            ? AppColors.starGold
-            : progress >= 0.3
-                ? AppColors.warning
-                : AppColors.error;
+        ? AppColors.starGold
+        : progress >= 0.3
+        ? AppColors.warning
+        : AppColors.error;
 
     final progressPaint = Paint()
       ..color = progressColor
@@ -994,19 +1033,21 @@ class _HighlightsCard extends StatelessWidget {
           Text(
             isEn ? 'Highlights' : 'Öne Çıkanlar',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.w600,
-                ),
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           const SizedBox(height: 16),
           ...highlights.map(
             (h) => Padding(
               padding: const EdgeInsets.only(bottom: 12),
               child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 14,
+                ),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: isDark
@@ -1020,9 +1061,7 @@ class _HighlightsCard extends StatelessWidget {
                           ],
                   ),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: h.color.withValues(alpha: 0.25),
-                  ),
+                  border: Border.all(color: h.color.withValues(alpha: 0.25)),
                 ),
                 child: Row(
                   children: [
@@ -1053,12 +1092,34 @@ class _HighlightsCard extends StatelessWidget {
   List<_Highlight> _parseHighlights(List<String> patterns) {
     final results = <_Highlight>[];
     final monthNamesEn = [
-      '', 'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December',
+      '',
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
     final monthNamesTr = [
-      '', 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık',
+      '',
+      'Ocak',
+      'Şubat',
+      'Mart',
+      'Nisan',
+      'Mayıs',
+      'Haziran',
+      'Temmuz',
+      'Ağustos',
+      'Eylül',
+      'Ekim',
+      'Kasım',
+      'Aralık',
     ];
 
     for (final p in patterns) {
@@ -1074,78 +1135,92 @@ class _HighlightsCard extends StatelessWidget {
               (a) => a.name == areaName,
               orElse: () => FocusArea.energy,
             );
-            results.add(_Highlight(
-              icon: Icons.center_focus_strong,
-              text: isEn
-                  ? '${area.displayNameEn} was your top focus area ($pct% of entries)'
-                  : '${area.displayNameTr} en çok odaklandığınız alan oldu (kayıtların %$pct\'i)',
-              color: AppColors.starGold,
-            ));
+            results.add(
+              _Highlight(
+                icon: Icons.center_focus_strong,
+                text: isEn
+                    ? '${area.displayNameEn} was your top focus area ($pct% of entries)'
+                    : '${area.displayNameTr} en çok odaklandığınız alan oldu (kayıtların %$pct\'i)',
+                color: AppColors.starGold,
+              ),
+            );
           }
         case 'best_month':
           if (parts.length >= 3) {
             final month = (int.tryParse(parts[1]) ?? 1).clamp(1, 12);
             final avg = parts[2];
             final name = isEn ? monthNamesEn[month] : monthNamesTr[month];
-            results.add(_Highlight(
-              icon: Icons.emoji_events,
-              text: isEn
-                  ? '$name was your best month (avg $avg)'
-                  : '$name en iyi ayınız oldu (ort $avg)',
-              color: AppColors.celestialGold,
-            ));
+            results.add(
+              _Highlight(
+                icon: Icons.emoji_events,
+                text: isEn
+                    ? '$name was your best month (avg $avg)'
+                    : '$name en iyi ayınız oldu (ort $avg)',
+                color: AppColors.celestialGold,
+              ),
+            );
           }
         case 'streak_30plus':
         case 'streak_14plus':
         case 'streak_7plus':
           if (parts.length >= 2) {
             final days = parts[1];
-            results.add(_Highlight(
-              icon: Icons.local_fire_department,
-              text: isEn
-                  ? 'Your longest streak was $days days!'
-                  : 'En uzun seriniz $days gün oldu!',
-              color: AppColors.brandPink,
-            ));
+            results.add(
+              _Highlight(
+                icon: Icons.local_fire_department,
+                text: isEn
+                    ? 'Your longest streak was $days days!'
+                    : 'En uzun seriniz $days gün oldu!',
+                color: AppColors.brandPink,
+              ),
+            );
           }
         case 'high_average':
           if (parts.length >= 2) {
-            results.add(_Highlight(
-              icon: Icons.sentiment_very_satisfied,
-              text: isEn
-                  ? 'You maintained a high average mood of ${parts[1]}'
-                  : '${parts[1]} gibi yüksek bir ortalama ruh haliniz oldu',
-              color: AppColors.success,
-            ));
+            results.add(
+              _Highlight(
+                icon: Icons.sentiment_very_satisfied,
+                text: isEn
+                    ? 'You maintained a high average mood of ${parts[1]}'
+                    : '${parts[1]} gibi yüksek bir ortalama ruh haliniz oldu',
+                color: AppColors.success,
+              ),
+            );
           }
         case 'diverse_explorer':
           if (parts.length >= 2) {
-            results.add(_Highlight(
-              icon: Icons.explore,
-              text: isEn
-                  ? 'You explored ${parts[1]} different focus areas'
-                  : '${parts[1]} farklı odak alanını keşfettiniz',
-              color: AppColors.auroraStart,
-            ));
+            results.add(
+              _Highlight(
+                icon: Icons.explore,
+                text: isEn
+                    ? 'You explored ${parts[1]} different focus areas'
+                    : '${parts[1]} farklı odak alanını keşfettiniz',
+                color: AppColors.auroraStart,
+              ),
+            );
           }
         case 'daily_journaler':
-          results.add(_Highlight(
-            icon: Icons.star,
-            text: isEn
-                ? 'You journaled every single day!'
-                : 'Her gün günlük tuttunuz!',
-            color: AppColors.starGold,
-          ));
+          results.add(
+            _Highlight(
+              icon: Icons.star,
+              text: isEn
+                  ? 'You journaled every single day!'
+                  : 'Her gün günlük tuttunuz!',
+              color: AppColors.starGold,
+            ),
+          );
         case 'dedicated_journaler':
         case 'committed_journaler':
           if (parts.length >= 2) {
-            results.add(_Highlight(
-              icon: Icons.auto_stories,
-              text: isEn
-                  ? 'You logged an impressive ${parts[1]} entries'
-                  : 'Etkileyici bir şekilde ${parts[1]} kayıt oluşturdunuz',
-              color: AppColors.cosmicPurple.withValues(alpha: 1.0),
-            ));
+            results.add(
+              _Highlight(
+                icon: Icons.auto_stories,
+                text: isEn
+                    ? 'You logged an impressive ${parts[1]} entries'
+                    : 'Etkileyici bir şekilde ${parts[1]} kayıt oluşturdunuz',
+                color: AppColors.cosmicPurple.withValues(alpha: 1.0),
+              ),
+            );
           }
       }
     }
@@ -1197,27 +1272,29 @@ class _ShareableSummaryCard extends StatelessWidget {
           Text(
             isEn ? 'My ${review.year} Summary' : '${review.year} Özetim',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.w700,
-                ),
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+              fontWeight: FontWeight.w700,
+            ),
           ),
           const SizedBox(height: 16),
           Text(
             isEn
                 ? '${review.totalEntries} entries across ${review.totalJournalingDays} days\n'
-                  'Top focus: $topAreaName\n'
-                  'Growth score: ${review.growthScore}/100\n'
-                  'Best streak: ${review.streakBest} days'
+                      'Top focus: $topAreaName\n'
+                      'Growth score: ${review.growthScore}/100\n'
+                      'Best streak: ${review.streakBest} days'
                 : '${review.totalJournalingDays} günde ${review.totalEntries} kayıt\n'
-                  'En çok odak: $topAreaName\n'
-                  'Gelişim skoru: ${review.growthScore}/100\n'
-                  'En iyi seri: ${review.streakBest} gün',
+                      'En çok odak: $topAreaName\n'
+                      'Gelişim skoru: ${review.growthScore}/100\n'
+                      'En iyi seri: ${review.streakBest} gün',
             style: TextStyle(
               fontSize: 15,
               height: 1.7,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
             textAlign: TextAlign.center,
           ),
@@ -1239,24 +1316,25 @@ class _ShareableSummaryCard extends StatelessWidget {
                 HapticFeedback.mediumImpact();
                 final shareText = isEn
                     ? 'My ${review.year} in Review\n\n'
-                      '${review.totalEntries} entries across ${review.totalJournalingDays} days\n'
-                      'Top focus: $topAreaName\n'
-                      'Growth score: ${review.growthScore}/100\n'
-                      'Best streak: ${review.streakBest} days\n\n'
-                      'Reflected with InnerCycles'
+                          '${review.totalEntries} entries across ${review.totalJournalingDays} days\n'
+                          'Top focus: $topAreaName\n'
+                          'Growth score: ${review.growthScore}/100\n'
+                          'Best streak: ${review.streakBest} days\n\n'
+                          'Reflected with InnerCycles'
                     : '${review.year} Yılı Değerlendirmem\n\n'
-                      '${review.totalJournalingDays} günde ${review.totalEntries} kayıt\n'
-                      'En çok odak: $topAreaName\n'
-                      'Gelişim skoru: ${review.growthScore}/100\n'
-                      'En iyi seri: ${review.streakBest} gün\n\n'
-                      'InnerCycles ile yansıma yaptım';
+                          '${review.totalJournalingDays} günde ${review.totalEntries} kayıt\n'
+                          'En çok odak: $topAreaName\n'
+                          'Gelişim skoru: ${review.growthScore}/100\n'
+                          'En iyi seri: ${review.streakBest} gün\n\n'
+                          'InnerCycles ile yansıma yaptım';
                 SharePlus.instance.share(ShareParams(text: shareText));
               },
               icon: const Icon(Icons.share, size: 18),
               label: Text(isEn ? 'Share Summary' : 'Özeti Paylaş'),
               style: OutlinedButton.styleFrom(
-                foregroundColor:
-                    isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                foregroundColor: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
                 side: BorderSide(
                   color: isDark
                       ? Colors.white.withValues(alpha: 0.25)
@@ -1265,8 +1343,10 @@ class _ShareableSummaryCard extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 14,
+                ),
               ),
             ),
           ),

@@ -35,8 +35,12 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('journalArchive'));
-      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('journalArchive', source: 'direct'));
+      ref
+          .read(smartRouterServiceProvider)
+          .whenData((s) => s.recordToolVisit('journalArchive'));
+      ref
+          .read(ecosystemAnalyticsServiceProvider)
+          .whenData((s) => s.trackToolOpen('journalArchive', source: 'direct'));
     });
   }
 
@@ -61,137 +65,141 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
           behavior: HitTestBehavior.opaque,
           child: SafeArea(
             child: serviceAsync.when(
-            loading: () => const CosmicLoadingIndicator(),
-            error: (_, _) => Center(
-              child: Padding(
-                padding: const EdgeInsets.all(32),
-                child: Text(
-                  CommonStrings.somethingWentWrong(language),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              loading: () => const CosmicLoadingIndicator(),
+              error: (_, _) => Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(32),
+                  child: Text(
+                    CommonStrings.somethingWentWrong(language),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
                   ),
                 ),
               ),
-            ),
-            data: (service) {
-              var entries = service.getAllEntries();
+              data: (service) {
+                var entries = service.getAllEntries();
 
-              // Apply filters
-              if (_filterArea != null) {
-                entries = entries
-                    .where((e) => e.focusArea == _filterArea)
-                    .toList();
-              }
-              if (_searchQuery.isNotEmpty) {
-                entries = entries
-                    .where(
-                      (e) =>
-                          e.note?.toLowerCase().contains(
-                                _searchQuery.toLowerCase(),
-                              ) ??
-                          false,
-                    )
-                    .toList();
-              }
+                // Apply filters
+                if (_filterArea != null) {
+                  entries = entries
+                      .where((e) => e.focusArea == _filterArea)
+                      .toList();
+                }
+                if (_searchQuery.isNotEmpty) {
+                  entries = entries
+                      .where(
+                        (e) =>
+                            e.note?.toLowerCase().contains(
+                              _searchQuery.toLowerCase(),
+                            ) ??
+                            false,
+                      )
+                      .toList();
+                }
 
-              return CupertinoScrollbar(
-                child: CustomScrollView(
-                  physics: const BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics(),
-                  ),
-                  slivers: [
-                    GlassSliverAppBar(
-                      title: isEn ? 'Archive' : 'Arşiv',
+                return CupertinoScrollbar(
+                  child: CustomScrollView(
+                    physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics(),
                     ),
-                  // Search bar
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppConstants.spacingLg,
-                      ),
-                      child: _buildSearchBar(isDark, isEn),
-                    ),
-                  ),
-                  // Filter chips
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.all(AppConstants.spacingLg),
-                      child: _buildFilterChips(isDark, isEn),
-                    ),
-                  ),
-                  // Entry count
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppConstants.spacingLg,
-                      ),
-                      child: Text(
-                        isEn
-                            ? '${entries.length} entries'
-                            : '${entries.length} kayıt',
-                        style: TextStyle(
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
-                          fontSize: 13,
+                    slivers: [
+                      GlassSliverAppBar(title: isEn ? 'Archive' : 'Arşiv'),
+                      // Search bar
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppConstants.spacingLg,
+                          ),
+                          child: _buildSearchBar(isDark, isEn),
                         ),
                       ),
-                    ),
-                  ),
-                  // Entry list
-                  if (entries.isEmpty)
-                    SliverFillRemaining(
-                      hasScrollBody: false,
-                      child: ToolEmptyState(
-                        icon: Icons.book_outlined,
-                        titleEn: 'No entries yet',
-                        titleTr: 'Henüz kayıt yok',
-                        descriptionEn: 'Your journal entries will appear here as you build your personal cycle map.',
-                        descriptionTr: 'Kişisel döngü haritanı oluşturdukça günlük kayıtların burada görünecek.',
-                        onStartTemplate: () => context.push(Routes.journal),
-                        isEn: isEn,
-                        isDark: isDark,
+                      // Filter chips
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.all(AppConstants.spacingLg),
+                          child: _buildFilterChips(isDark, isEn),
+                        ),
                       ),
-                    )
-                  else
-                    SliverPadding(
-                      padding: const EdgeInsets.all(AppConstants.spacingLg),
-                      sliver: SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            return _buildEntryCard(
+                      // Entry count
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppConstants.spacingLg,
+                          ),
+                          child: Text(
+                            isEn
+                                ? '${entries.length} entries'
+                                : '${entries.length} kayıt',
+                            style: TextStyle(
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                      ),
+                      // Entry list
+                      if (entries.isEmpty)
+                        SliverFillRemaining(
+                          hasScrollBody: false,
+                          child: ToolEmptyState(
+                            icon: Icons.book_outlined,
+                            titleEn: 'No entries yet',
+                            titleTr: 'Henüz kayıt yok',
+                            descriptionEn:
+                                'Your journal entries will appear here as you build your personal cycle map.',
+                            descriptionTr:
+                                'Kişisel döngü haritanı oluşturdukça günlük kayıtların burada görünecek.',
+                            onStartTemplate: () => context.push(Routes.journal),
+                            isEn: isEn,
+                            isDark: isDark,
+                          ),
+                        )
+                      else
+                        SliverPadding(
+                          padding: const EdgeInsets.all(AppConstants.spacingLg),
+                          sliver: SliverList(
+                            delegate: SliverChildBuilderDelegate((
                               context,
-                              entries[index],
-                              isDark,
-                              isEn,
-                            )
-                                .animate()
-                                .fadeIn(
-                                  delay: Duration(
-                                    milliseconds: 50 * (index % 10),
-                                  ),
-                                  duration: 300.ms,
-                                );
-                          },
-                          childCount: entries.length,
+                              index,
+                            ) {
+                              return _buildEntryCard(
+                                context,
+                                entries[index],
+                                isDark,
+                                isEn,
+                              ).animate().fadeIn(
+                                delay: Duration(
+                                  milliseconds: 50 * (index % 10),
+                                ),
+                                duration: 300.ms,
+                              );
+                            }, childCount: entries.length),
+                          ),
+                        ),
+                      // Related tools footer
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: ToolEcosystemFooter(
+                            currentToolId: 'journalArchive',
+                            isEn: isEn,
+                            isDark: isDark,
+                          ),
                         ),
                       ),
-                    ),
-                  // Related tools footer
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: ToolEcosystemFooter(currentToolId: 'journalArchive', isEn: isEn, isDark: isDark),
-                    ),
+                      const SliverToBoxAdapter(child: SizedBox(height: 40)),
+                    ],
                   ),
-                  const SliverToBoxAdapter(child: SizedBox(height: 40)),
-                  ],
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
-        ),
         ),
       ),
     );
@@ -252,8 +260,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
             isDark,
           ),
           ...FocusArea.values.map((area) {
-            final label =
-                isEn ? area.displayNameEn : area.displayNameTr;
+            final label = isEn ? area.displayNameEn : area.displayNameTr;
             return _buildChip(
               label,
               _filterArea == area,
@@ -282,31 +289,31 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
           child: ConstrainedBox(
             constraints: const BoxConstraints(minHeight: 44),
             child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-            decoration: BoxDecoration(
-              color: isSelected
-                  ? AppColors.starGold.withValues(alpha: 0.2)
-                  : (isDark
-                        ? AppColors.surfaceDark.withValues(alpha: 0.5)
-                        : AppColors.lightSurfaceVariant),
-              borderRadius: BorderRadius.circular(AppConstants.radiusFull),
-              border: Border.all(
-                color: isSelected ? AppColors.starGold : Colors.transparent,
-              ),
-            ),
-            child: Text(
-              label,
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              decoration: BoxDecoration(
                 color: isSelected
-                    ? AppColors.starGold
+                    ? AppColors.starGold.withValues(alpha: 0.2)
                     : (isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary),
+                          ? AppColors.surfaceDark.withValues(alpha: 0.5)
+                          : AppColors.lightSurfaceVariant),
+                borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+                border: Border.all(
+                  color: isSelected ? AppColors.starGold : Colors.transparent,
+                ),
+              ),
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                  color: isSelected
+                      ? AppColors.starGold
+                      : (isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary),
+                ),
               ),
             ),
-          ),
           ),
         ),
       ),
@@ -319,10 +326,10 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     bool isDark,
     bool isEn,
   ) {
-    final areaLabel =
-        isEn ? entry.focusArea.displayNameEn : entry.focusArea.displayNameTr;
-    final dateStr =
-        '${entry.date.day}.${entry.date.month}.${entry.date.year}';
+    final areaLabel = isEn
+        ? entry.focusArea.displayNameEn
+        : entry.focusArea.displayNameTr;
+    final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
 
     return Padding(
       padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
@@ -330,93 +337,97 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
         button: true,
         label: '$areaLabel entry, $dateStr',
         child: GestureDetector(
-          onTap: () => context.push(Routes.journalEntryDetail.replaceFirst(':id', entry.id)),
+          onTap: () => context.push(
+            Routes.journalEntryDetail.replaceFirst(':id', entry.id),
+          ),
           child: Container(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.85)
-                : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-            border: Border.all(
+            decoration: BoxDecoration(
               color: isDark
-                  ? Colors.white.withValues(alpha: 0.15)
-                  : Colors.black.withValues(alpha: 0.05),
-            ),
-          ),
-          child: Row(
-            children: [
-              // Rating circle
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.starGold.withValues(alpha: 0.15),
-                  border: Border.all(
-                    color: AppColors.starGold.withValues(alpha: 0.5),
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    '${entry.overallRating}',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.starGold,
-                    ),
-                  ),
-                ),
+                  ? AppColors.surfaceDark.withValues(alpha: 0.85)
+                  : AppColors.lightCard,
+              borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+              border: Border.all(
+                color: isDark
+                    ? Colors.white.withValues(alpha: 0.15)
+                    : Colors.black.withValues(alpha: 0.05),
               ),
-              const SizedBox(width: AppConstants.spacingMd),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      areaLabel,
+            ),
+            child: Row(
+              children: [
+                // Rating circle
+                Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.starGold.withValues(alpha: 0.15),
+                    border: Border.all(
+                      color: AppColors.starGold.withValues(alpha: 0.5),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '${entry.overallRating}',
                       style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.starGold,
                       ),
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      dateStr,
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
+                  ),
+                ),
+                const SizedBox(width: AppConstants.spacingMd),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        areaLabel,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                        ),
                       ),
-                    ),
-                    if (entry.note != null && entry.note!.isNotEmpty) ...[
                       const SizedBox(height: 4),
                       Text(
-                        entry.note!,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                        dateStr,
                         style: TextStyle(
                           fontSize: 13,
                           color: isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary,
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
                         ),
                       ),
+                      if (entry.note != null && entry.note!.isNotEmpty) ...[
+                        const SizedBox(height: 4),
+                        Text(
+                          entry.note!,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: isDark
+                                ? AppColors.textSecondary
+                                : AppColors.lightTextSecondary,
+                          ),
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
-              ),
-              Icon(
-                Icons.chevron_right,
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
-            ],
+                Icon(
+                  Icons.chevron_right,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
+                ),
+              ],
+            ),
           ),
-        ),
         ),
       ),
     );

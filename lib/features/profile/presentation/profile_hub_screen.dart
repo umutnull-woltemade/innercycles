@@ -30,15 +30,22 @@ class ProfileHubScreen extends ConsumerWidget {
     final streakAsync = ref.watch(journalStreakProvider);
     final challengeAsync = ref.watch(growthChallengeServiceProvider);
 
-    final totalEntries = journalAsync.whenOrNull(data: (service) => service.entryCount) ?? 0;
+    final totalEntries =
+        journalAsync.whenOrNull(data: (service) => service.entryCount) ?? 0;
     final streakDays = streakAsync.whenOrNull(data: (v) => v) ?? 0;
-    final completedChallenges = challengeAsync.whenOrNull(data: (service) => service.completedChallengeCount) ?? 0;
+    final completedChallenges =
+        challengeAsync.whenOrNull(
+          data: (service) => service.completedChallengeCount,
+        ) ??
+        0;
 
     // Simple growth score
     final entryScore = (totalEntries / 50).clamp(0, 1) * 40;
     final streakScore = (streakDays / 30).clamp(0, 1) * 35;
     final challengeScore = (completedChallenges / 12).clamp(0, 1) * 25;
-    final growthScore = (entryScore + streakScore + challengeScore).round().clamp(0, 100);
+    final growthScore = (entryScore + streakScore + challengeScore)
+        .round()
+        .clamp(0, 100);
 
     final name = profile?.name ?? (isEn ? 'Explorer' : 'Ka\u015fif');
 
@@ -46,27 +53,55 @@ class ProfileHubScreen extends ConsumerWidget {
       body: CosmicBackground(
         child: CupertinoScrollbar(
           child: CustomScrollView(
-            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
             slivers: [
-              GlassSliverAppBar(title: isEn ? 'Profile' : 'Profil', showBackButton: false),
+              GlassSliverAppBar(
+                title: isEn ? 'Profile' : 'Profil',
+                showBackButton: false,
+              ),
               SliverPadding(
                 padding: const EdgeInsets.all(AppConstants.spacingLg),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     // Profile Header
-                    _ProfileHeader(name: name, isDark: isDark).animate().fadeIn(duration: 400.ms),
+                    _ProfileHeader(
+                      name: name,
+                      isDark: isDark,
+                    ).animate().fadeIn(duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Growth Score
-                    _GrowthScoreCard(score: growthScore, isDark: isDark, isEn: isEn, onTap: () => context.push(Routes.growthDashboard)).animate().fadeIn(duration: 500.ms, delay: 100.ms),
+                    _GrowthScoreCard(
+                      score: growthScore,
+                      isDark: isDark,
+                      isEn: isEn,
+                      onTap: () => context.push(Routes.growthDashboard),
+                    ).animate().fadeIn(duration: 500.ms, delay: 100.ms),
                     const SizedBox(height: AppConstants.spacingLg),
 
                     // Quick Stats
-                    _QuickStats(streak: streakDays, entries: totalEntries, challenges: completedChallenges, isDark: isDark, isEn: isEn).animate().fadeIn(duration: 400.ms, delay: 150.ms),
+                    _QuickStats(
+                      streak: streakDays,
+                      entries: totalEntries,
+                      challenges: completedChallenges,
+                      isDark: isDark,
+                      isEn: isEn,
+                    ).animate().fadeIn(duration: 400.ms, delay: 150.ms),
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Settings links
-                    Text(isEn ? 'Settings' : 'Ayarlar', style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.w700, color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary)).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+                    Text(
+                      isEn ? 'Settings' : 'Ayarlar',
+                      style: GoogleFonts.inter(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingSm),
                     ..._buildSettingsLinks(context, isDark, isEn),
 
@@ -81,13 +116,33 @@ class ProfileHubScreen extends ConsumerWidget {
     );
   }
 
-  List<Widget> _buildSettingsLinks(BuildContext context, bool isDark, bool isEn) {
+  List<Widget> _buildSettingsLinks(
+    BuildContext context,
+    bool isDark,
+    bool isEn,
+  ) {
     final links = [
-      _SettingsLink('\u{1F514}', isEn ? 'Notifications' : 'Bildirimler', Routes.notifications),
-      _SettingsLink('\u{1F512}', isEn ? 'App Lock' : 'Uygulama Kilidi', Routes.appLock),
+      _SettingsLink(
+        '\u{1F514}',
+        isEn ? 'Notifications' : 'Bildirimler',
+        Routes.notifications,
+      ),
+      _SettingsLink(
+        '\u{1F512}',
+        isEn ? 'App Lock' : 'Uygulama Kilidi',
+        Routes.appLock,
+      ),
       _SettingsLink('\u{2B50}', 'Premium', Routes.premium),
-      _SettingsLink('\u{2699}\u{FE0F}', isEn ? 'Settings' : 'Ayarlar', Routes.settings),
-      _SettingsLink('\u{1F4E4}', isEn ? 'Export' : 'D\u0131\u015fa Aktar', Routes.exportData),
+      _SettingsLink(
+        '\u{2699}\u{FE0F}',
+        isEn ? 'Settings' : 'Ayarlar',
+        Routes.settings,
+      ),
+      _SettingsLink(
+        '\u{1F4E4}',
+        isEn ? 'Export' : 'D\u0131\u015fa Aktar',
+        Routes.exportData,
+      ),
     ];
 
     return links.asMap().entries.map((entry) {
@@ -95,8 +150,15 @@ class ProfileHubScreen extends ConsumerWidget {
       final link = entry.value;
       return Padding(
         padding: const EdgeInsets.only(bottom: AppConstants.spacingXs),
-        child: _SettingsLinkTile(link: link, isDark: isDark, onTap: () => context.push(link.route)),
-      ).animate().fadeIn(delay: Duration(milliseconds: 250 + index * 40), duration: 300.ms);
+        child: _SettingsLinkTile(
+          link: link,
+          isDark: isDark,
+          onTap: () => context.push(link.route),
+        ),
+      ).animate().fadeIn(
+        delay: Duration(milliseconds: 250 + index * 40),
+        duration: 300.ms,
+      );
     }).toList();
   }
 }
@@ -111,23 +173,45 @@ class _ProfileHeader extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingXl),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark.withValues(alpha: 0.85) : AppColors.lightCard,
+        color: isDark
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
+            : AppColors.lightCard,
         borderRadius: BorderRadius.circular(AppConstants.radiusXl),
         border: Border.all(color: AppColors.starGold.withValues(alpha: 0.15)),
       ),
       child: Row(
         children: [
           Container(
-            width: 60, height: 60,
+            width: 60,
+            height: 60,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              gradient: LinearGradient(colors: [AppColors.starGold.withValues(alpha: 0.3), AppColors.starGold.withValues(alpha: 0.1)]),
-              border: Border.all(color: AppColors.starGold.withValues(alpha: 0.4), width: 2),
+              gradient: LinearGradient(
+                colors: [
+                  AppColors.starGold.withValues(alpha: 0.3),
+                  AppColors.starGold.withValues(alpha: 0.1),
+                ],
+              ),
+              border: Border.all(
+                color: AppColors.starGold.withValues(alpha: 0.4),
+                width: 2,
+              ),
             ),
-            child: const Center(child: Text('\u{2728}', style: TextStyle(fontSize: 28))),
+            child: const Center(
+              child: Text('\u{2728}', style: TextStyle(fontSize: 28)),
+            ),
           ),
           const SizedBox(width: AppConstants.spacingLg),
-          Text(name, style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w700, color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary)),
+          Text(
+            name,
+            style: GoogleFonts.inter(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
+          ),
         ],
       ),
     );
@@ -139,7 +223,12 @@ class _GrowthScoreCard extends StatelessWidget {
   final bool isDark;
   final bool isEn;
   final VoidCallback onTap;
-  const _GrowthScoreCard({required this.score, required this.isDark, required this.isEn, required this.onTap});
+  const _GrowthScoreCard({
+    required this.score,
+    required this.isDark,
+    required this.isEn,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -148,19 +237,48 @@ class _GrowthScoreCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(AppConstants.spacingXl),
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [AppColors.auroraStart.withValues(alpha: 0.12), AppColors.auroraEnd.withValues(alpha: 0.06)]),
+          gradient: LinearGradient(
+            colors: [
+              AppColors.auroraStart.withValues(alpha: 0.12),
+              AppColors.auroraEnd.withValues(alpha: 0.06),
+            ],
+          ),
           borderRadius: BorderRadius.circular(AppConstants.radiusXl),
-          border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.25)),
+          border: Border.all(
+            color: AppColors.auroraStart.withValues(alpha: 0.25),
+          ),
         ),
         child: Row(
           children: [
             SizedBox(
-              width: 72, height: 72,
+              width: 72,
+              height: 72,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  SizedBox(width: 72, height: 72, child: CircularProgressIndicator(value: score / 100, strokeWidth: 6, backgroundColor: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.06), valueColor: const AlwaysStoppedAnimation(AppColors.auroraStart), strokeCap: StrokeCap.round)),
-                  Text('$score', style: GoogleFonts.inter(fontSize: 22, fontWeight: FontWeight.w800, color: AppColors.auroraStart)),
+                  SizedBox(
+                    width: 72,
+                    height: 72,
+                    child: CircularProgressIndicator(
+                      value: score / 100,
+                      strokeWidth: 6,
+                      backgroundColor: isDark
+                          ? Colors.white.withValues(alpha: 0.08)
+                          : Colors.black.withValues(alpha: 0.06),
+                      valueColor: const AlwaysStoppedAnimation(
+                        AppColors.auroraStart,
+                      ),
+                      strokeCap: StrokeCap.round,
+                    ),
+                  ),
+                  Text(
+                    '$score',
+                    style: GoogleFonts.inter(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.auroraStart,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -169,13 +287,35 @@ class _GrowthScoreCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(isEn ? 'Growth Score' : 'Geli\u015fim Puan\u0131', style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.w700, color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary)),
+                  Text(
+                    isEn ? 'Growth Score' : 'Geli\u015fim Puan\u0131',
+                    style: GoogleFonts.inter(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w700,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                    ),
+                  ),
                   const SizedBox(height: AppConstants.spacingXs),
-                  Text(isEn ? 'Tap to see your growth dashboard' : 'Geli\u015fim panelini g\u00f6rmek i\u00e7in dokun', style: TextStyle(fontSize: 12, color: isDark ? AppColors.textMuted : AppColors.lightTextMuted)),
+                  Text(
+                    isEn
+                        ? 'Tap to see your growth dashboard'
+                        : 'Geli\u015fim panelini g\u00f6rmek i\u00e7in dokun',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                  ),
                 ],
               ),
             ),
-            Icon(Icons.chevron_right_rounded, color: AppColors.auroraStart.withValues(alpha: 0.5)),
+            Icon(
+              Icons.chevron_right_rounded,
+              color: AppColors.auroraStart.withValues(alpha: 0.5),
+            ),
           ],
         ),
       ),
@@ -189,19 +329,42 @@ class _QuickStats extends StatelessWidget {
   final int challenges;
   final bool isDark;
   final bool isEn;
-  const _QuickStats({required this.streak, required this.entries, required this.challenges, required this.isDark, required this.isEn});
+  const _QuickStats({
+    required this.streak,
+    required this.entries,
+    required this.challenges,
+    required this.isDark,
+    required this.isEn,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(color: isDark ? AppColors.surfaceDark.withValues(alpha: 0.85) : AppColors.lightCard, borderRadius: BorderRadius.circular(AppConstants.radiusLg)),
+      decoration: BoxDecoration(
+        color: isDark
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
+            : AppColors.lightCard,
+        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _StatItem(value: '$streak', label: isEn ? 'Streak' : 'Seri', color: AppColors.starGold),
-          _StatItem(value: '$entries', label: isEn ? 'Entries' : 'Kay\u0131tlar', color: AppColors.auroraStart),
-          _StatItem(value: '$challenges', label: isEn ? 'Challenges' : 'G\u00f6revler', color: AppColors.success),
+          _StatItem(
+            value: '$streak',
+            label: isEn ? 'Streak' : 'Seri',
+            color: AppColors.starGold,
+          ),
+          _StatItem(
+            value: '$entries',
+            label: isEn ? 'Entries' : 'Kay\u0131tlar',
+            color: AppColors.auroraStart,
+          ),
+          _StatItem(
+            value: '$challenges',
+            label: isEn ? 'Challenges' : 'G\u00f6revler',
+            color: AppColors.success,
+          ),
         ],
       ),
     );
@@ -212,14 +375,28 @@ class _StatItem extends StatelessWidget {
   final String value;
   final String label;
   final Color color;
-  const _StatItem({required this.value, required this.label, required this.color});
+  const _StatItem({
+    required this.value,
+    required this.label,
+    required this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(value, style: GoogleFonts.inter(fontSize: 22, fontWeight: FontWeight.w700, color: color)),
-        Text(label, style: const TextStyle(fontSize: 11, color: AppColors.textMuted)),
+        Text(
+          value,
+          style: GoogleFonts.inter(
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
+            color: color,
+          ),
+        ),
+        Text(
+          label,
+          style: const TextStyle(fontSize: 11, color: AppColors.textMuted),
+        ),
       ],
     );
   }
@@ -236,25 +413,55 @@ class _SettingsLinkTile extends StatelessWidget {
   final _SettingsLink link;
   final bool isDark;
   final VoidCallback onTap;
-  const _SettingsLinkTile({required this.link, required this.isDark, required this.onTap});
+  const _SettingsLinkTile({
+    required this.link,
+    required this.isDark,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingLg, vertical: AppConstants.spacingMd),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppConstants.spacingLg,
+          vertical: AppConstants.spacingMd,
+        ),
         decoration: BoxDecoration(
-          color: isDark ? AppColors.surfaceDark.withValues(alpha: 0.6) : AppColors.lightCard,
+          color: isDark
+              ? AppColors.surfaceDark.withValues(alpha: 0.6)
+              : AppColors.lightCard,
           borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-          border: Border.all(color: isDark ? Colors.white.withValues(alpha: 0.06) : Colors.black.withValues(alpha: 0.03)),
+          border: Border.all(
+            color: isDark
+                ? Colors.white.withValues(alpha: 0.06)
+                : Colors.black.withValues(alpha: 0.03),
+          ),
         ),
         child: Row(
           children: [
             Text(link.emoji, style: const TextStyle(fontSize: 22)),
             const SizedBox(width: AppConstants.spacingLg),
-            Expanded(child: Text(link.name, style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w500, color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary))),
-            Icon(Icons.chevron_right_rounded, color: isDark ? AppColors.textSecondary.withValues(alpha: 0.4) : AppColors.lightTextMuted, size: 22),
+            Expanded(
+              child: Text(
+                link.name,
+                style: GoogleFonts.inter(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                ),
+              ),
+            ),
+            Icon(
+              Icons.chevron_right_rounded,
+              color: isDark
+                  ? AppColors.textSecondary.withValues(alpha: 0.4)
+                  : AppColors.lightTextMuted,
+              size: 22,
+            ),
           ],
         ),
       ),

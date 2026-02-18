@@ -58,12 +58,36 @@ class _WhatsNewCardState extends ConsumerState<WhatsNewCard> {
     final isEn = language == AppLanguage.en;
 
     final features = [
-      (Icons.theater_comedy_outlined, isEn ? 'Archetype Tracker' : 'Arketip Takibi', Routes.archetype),
-      (Icons.visibility_outlined, isEn ? 'Blind Spot Reveal' : 'Kör Nokta Keşfi', Routes.blindSpot),
-      (Icons.air_outlined, isEn ? 'Breathing Exercises' : 'Nefes Egzersizleri', Routes.breathing),
-      (Icons.psychology_outlined, isEn ? 'Attachment Quiz' : 'Bağlanma Testi', Routes.attachmentQuiz),
-      (Icons.emoji_events_outlined, isEn ? 'Growth Challenges' : 'Büyüme Görevleri', Routes.challenges),
-      (Icons.summarize_outlined, isEn ? 'Weekly Digest' : 'Haftalık Özet', Routes.weeklyDigest),
+      (
+        Icons.theater_comedy_outlined,
+        isEn ? 'Archetype Tracker' : 'Arketip Takibi',
+        Routes.archetype,
+      ),
+      (
+        Icons.visibility_outlined,
+        isEn ? 'Blind Spot Reveal' : 'Kör Nokta Keşfi',
+        Routes.blindSpot,
+      ),
+      (
+        Icons.air_outlined,
+        isEn ? 'Breathing Exercises' : 'Nefes Egzersizleri',
+        Routes.breathing,
+      ),
+      (
+        Icons.psychology_outlined,
+        isEn ? 'Attachment Quiz' : 'Bağlanma Testi',
+        Routes.attachmentQuiz,
+      ),
+      (
+        Icons.emoji_events_outlined,
+        isEn ? 'Growth Challenges' : 'Büyüme Görevleri',
+        Routes.challenges,
+      ),
+      (
+        Icons.summarize_outlined,
+        isEn ? 'Weekly Digest' : 'Haftalık Özet',
+        Routes.weeklyDigest,
+      ),
     ];
 
     return Container(
@@ -115,7 +139,9 @@ class _WhatsNewCardState extends ConsumerState<WhatsNewCard> {
                   child: Icon(
                     Icons.close,
                     size: 18,
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                   ),
                 ),
               ),
@@ -133,36 +159,34 @@ class _WhatsNewCardState extends ConsumerState<WhatsNewCard> {
                 child: GestureDetector(
                   onTap: () => context.push(route),
                   child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: isDark
-                        ? Colors.white.withValues(alpha: 0.06)
-                        : Colors.black.withValues(alpha: 0.04),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        icon,
-                        size: 14,
-                        color: AppColors.auroraStart,
-                      ),
-                      const SizedBox(width: 6),
-                      Text(
-                        label,
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: isDark
+                          ? Colors.white.withValues(alpha: 0.06)
+                          : Colors.black.withValues(alpha: 0.04),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(icon, size: 14, color: AppColors.auroraStart),
+                        const SizedBox(width: 6),
+                        Text(
+                          label,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: isDark
+                                ? AppColors.textSecondary
+                                : AppColors.lightTextSecondary,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
                 ),
               );
             }).toList(),

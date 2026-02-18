@@ -61,16 +61,13 @@ class ProgramCompletionScreen extends ConsumerWidget {
                 const SizedBox(height: AppConstants.spacingSm),
 
                 // Large program emoji
-                Text(
-                  programEmoji,
-                  style: const TextStyle(fontSize: 64),
-                ),
+                Text(programEmoji, style: const TextStyle(fontSize: 64)),
                 const SizedBox(height: AppConstants.spacingXl),
 
                 // Congratulations heading in gold
                 ShaderMask(
-                  shaderCallback: (bounds) => AppColors.goldGradient
-                      .createShader(bounds),
+                  shaderCallback: (bounds) =>
+                      AppColors.goldGradient.createShader(bounds),
                   child: Text(
                     isEn ? 'Congratulations!' : 'Tebrikler!',
                     style: const TextStyle(
@@ -102,7 +99,6 @@ class ProgramCompletionScreen extends ConsumerWidget {
                 // ═══════════════════════════════════════════════════
                 // CERTIFICATE CARD (GlassPanel G3)
                 // ═══════════════════════════════════════════════════
-
                 GlassPanel(
                   elevation: GlassElevation.g3,
                   glowColor: AppColors.starGold.withValues(alpha: 0.15),
@@ -161,7 +157,8 @@ class ProgramCompletionScreen extends ConsumerWidget {
                       _CertificateRow(
                         icon: Icons.calendar_today_rounded,
                         label: isEn ? 'Duration' : 'Süre',
-                        value: '$durationDays ${isEn ? 'days of reflection' : 'günlük yansıma'}',
+                        value:
+                            '$durationDays ${isEn ? 'days of reflection' : 'günlük yansıma'}',
                         isDark: isDark,
                       ),
                       const SizedBox(height: AppConstants.spacingMd),
@@ -233,7 +230,9 @@ class ProgramCompletionScreen extends ConsumerWidget {
                       elevation: 0,
                     ),
                     child: Text(
-                      isEn ? 'Start Another Program' : 'Başka Bir Program Başlat',
+                      isEn
+                          ? 'Start Another Program'
+                          : 'Başka Bir Program Başlat',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -286,12 +285,32 @@ class ProgramCompletionScreen extends ConsumerWidget {
   String _formatDate(DateTime date, bool isEn) {
     final months = isEn
         ? [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December',
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
           ]
         : [
-            'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-            'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık',
+            'Ocak',
+            'Şubat',
+            'Mart',
+            'Nisan',
+            'Mayıs',
+            'Haziran',
+            'Temmuz',
+            'Ağustos',
+            'Eylül',
+            'Ekim',
+            'Kasım',
+            'Aralık',
           ];
     final month = months[date.month - 1];
     return isEn
@@ -321,11 +340,7 @@ class _CertificateRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
-          icon,
-          size: 18,
-          color: AppColors.auroraStart,
-        ),
+        Icon(icon, size: 18, color: AppColors.auroraStart),
         const SizedBox(width: AppConstants.spacingMd),
         Expanded(
           child: Column(

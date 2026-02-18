@@ -36,7 +36,9 @@ class GratitudeArchiveScreen extends ConsumerWidget {
                 CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                 ),
               ),
             ),
@@ -69,8 +71,10 @@ class GratitudeArchiveScreen extends ConsumerWidget {
               icon: Icons.favorite_border,
               titleEn: 'No gratitude entries yet',
               titleTr: 'Henüz şükran kaydı yok',
-              descriptionEn: 'Start your gratitude practice to see your appreciation patterns grow.',
-              descriptionTr: 'Şükran kalıplarının büyümesini görmek için şükran pratiğine başla.',
+              descriptionEn:
+                  'Start your gratitude practice to see your appreciation patterns grow.',
+              descriptionTr:
+                  'Şükran kalıplarının büyümesini görmek için şükran pratiğine başla.',
               onStartTemplate: () => context.push(Routes.gratitudeJournal),
               isEn: isEn,
               isDark: isDark,
@@ -104,7 +108,13 @@ class GratitudeArchiveScreen extends ConsumerWidget {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 // Stats row
-                _buildStatsRow(context, isDark, isEn, summary, allEntries.length),
+                _buildStatsRow(
+                  context,
+                  isDark,
+                  isEn,
+                  summary,
+                  allEntries.length,
+                ),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Top themes
@@ -117,7 +127,13 @@ class GratitudeArchiveScreen extends ConsumerWidget {
                 ...months.expand((monthKey) {
                   final entries = grouped[monthKey]!;
                   return [
-                    _buildMonthHeader(context, isDark, isEn, monthKey, entries.length),
+                    _buildMonthHeader(
+                      context,
+                      isDark,
+                      isEn,
+                      monthKey,
+                      entries.length,
+                    ),
                     ...entries.map((e) => _buildEntryCard(context, isDark, e)),
                     const SizedBox(height: AppConstants.spacingMd),
                   ];
@@ -186,7 +202,9 @@ class GratitudeArchiveScreen extends ConsumerWidget {
           Text(
             isEn ? 'Recurring Themes' : 'Tekrarlanan Temalar',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -197,12 +215,17 @@ class GratitudeArchiveScreen extends ConsumerWidget {
             children: topThemes.map((theme) {
               final opacity = 0.4 + (theme.value / maxFreq) * 0.6;
               return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.auroraStart.withValues(alpha: opacity * 0.2),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: AppColors.auroraStart.withValues(alpha: opacity * 0.5),
+                    color: AppColors.auroraStart.withValues(
+                      alpha: opacity * 0.5,
+                    ),
                   ),
                 ),
                 child: Text(
@@ -233,10 +256,36 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     final year = parts[0];
     final month = int.tryParse(parts[1]) ?? 1;
     final monthNames = isEn
-        ? ['', 'January', 'February', 'March', 'April', 'May', 'June',
-           'July', 'August', 'September', 'October', 'November', 'December']
-        : ['', 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-           'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+        ? [
+            '',
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+          ]
+        : [
+            '',
+            'Ocak',
+            'Şubat',
+            'Mart',
+            'Nisan',
+            'Mayıs',
+            'Haziran',
+            'Temmuz',
+            'Ağustos',
+            'Eylül',
+            'Ekim',
+            'Kasım',
+            'Aralık',
+          ];
 
     return Padding(
       padding: const EdgeInsets.only(
@@ -271,7 +320,9 @@ class GratitudeArchiveScreen extends ConsumerWidget {
     GratitudeEntry entry,
   ) {
     final parts = entry.dateKey.split('-');
-    final dayStr = parts.length >= 3 ? '${parts[2]}.${parts[1]}.${parts[0]}' : entry.dateKey;
+    final dayStr = parts.length >= 3
+        ? '${parts[2]}.${parts[1]}.${parts[0]}'
+        : entry.dateKey;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
@@ -290,31 +341,35 @@ class GratitudeArchiveScreen extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 6),
-            ...entry.items.map((item) => Padding(
-              padding: const EdgeInsets.only(bottom: 4),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '✦ ',
-                    style: TextStyle(
-                      color: AppColors.auroraStart,
-                      fontSize: 14,
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      item,
+            ...entry.items.map(
+              (item) => Padding(
+                padding: const EdgeInsets.only(bottom: 4),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '✦ ',
                       style: TextStyle(
+                        color: AppColors.auroraStart,
                         fontSize: 14,
-                        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-                        height: 1.4,
                       ),
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: Text(
+                        item,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                          height: 1.4,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            )),
+            ),
           ],
         ),
       ),

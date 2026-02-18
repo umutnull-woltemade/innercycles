@@ -144,9 +144,9 @@ class AppColors {
   static const Color chartPurple = Color(0xFFCE93D8);
 
   static const List<Color> focusAreaPalette = [
-    starGold,   // Energy
-    chartBlue,  // Focus
-    chartPink,  // Emotions
+    starGold, // Energy
+    chartBlue, // Focus
+    chartPink, // Emotions
     chartGreen, // Decisions
     chartPurple, // Social
   ];

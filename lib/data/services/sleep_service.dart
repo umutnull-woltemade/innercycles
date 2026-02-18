@@ -23,25 +23,27 @@ class SleepEntry {
   });
 
   SleepEntry copyWith({int? quality, String? note}) => SleepEntry(
-        dateKey: dateKey,
-        quality: quality ?? this.quality,
-        note: note ?? this.note,
-        createdAt: createdAt,
-      );
+    dateKey: dateKey,
+    quality: quality ?? this.quality,
+    note: note ?? this.note,
+    createdAt: createdAt,
+  );
 
   Map<String, dynamic> toJson() => {
-        'dateKey': dateKey,
-        'quality': quality,
-        'note': note,
-        'createdAt': createdAt.toIso8601String(),
-      };
+    'dateKey': dateKey,
+    'quality': quality,
+    'note': note,
+    'createdAt': createdAt.toIso8601String(),
+  };
 
   factory SleepEntry.fromJson(Map<String, dynamic> json) => SleepEntry(
-        dateKey: json['dateKey'] as String? ?? '',
-        quality: json['quality'] as int? ?? 3,
-        note: json['note'] as String?,
-        createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
-      );
+    dateKey: json['dateKey'] as String? ?? '',
+    quality: json['quality'] as int? ?? 3,
+    note: json['note'] as String?,
+    createdAt:
+        DateTime.tryParse(json['createdAt']?.toString() ?? '') ??
+        DateTime.now(),
+  );
 }
 
 /// Weekly sleep summary for home screen card
@@ -153,13 +155,16 @@ class SleepService {
     if (recentEntries.length >= 4) {
       recentEntries.sort((a, b) => a.dateKey.compareTo(b.dateKey));
       final mid = recentEntries.length ~/ 2;
-      final firstHalf =
-          recentEntries.sublist(0, mid).map((e) => e.quality).toList();
-      final secondHalf =
-          recentEntries.sublist(mid).map((e) => e.quality).toList();
+      final firstHalf = recentEntries
+          .sublist(0, mid)
+          .map((e) => e.quality)
+          .toList();
+      final secondHalf = recentEntries
+          .sublist(mid)
+          .map((e) => e.quality)
+          .toList();
       final firstAvg = firstHalf.reduce((a, b) => a + b) / firstHalf.length;
-      final secondAvg =
-          secondHalf.reduce((a, b) => a + b) / secondHalf.length;
+      final secondAvg = secondHalf.reduce((a, b) => a + b) / secondHalf.length;
       if (secondAvg - firstAvg > 0.3) {
         trend = 'improving';
       } else if (firstAvg - secondAvg > 0.3) {
@@ -206,8 +211,10 @@ class SleepService {
       }
     }
 
-    return correlations.map((quality, ratings) =>
-        MapEntry(quality, ratings.reduce((a, b) => a + b) / ratings.length));
+    return correlations.map(
+      (quality, ratings) =>
+          MapEntry(quality, ratings.reduce((a, b) => a + b) / ratings.length),
+    );
   }
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -219,9 +226,7 @@ class SleepService {
     if (jsonString != null) {
       try {
         final Map<String, dynamic> jsonMap = json.decode(jsonString);
-        _entries = jsonMap.map(
-          (k, v) => MapEntry(k, SleepEntry.fromJson(v)),
-        );
+        _entries = jsonMap.map((k, v) => MapEntry(k, SleepEntry.fromJson(v)));
       } catch (_) {
         _entries = {};
       }

@@ -355,7 +355,8 @@ class ShareCardTemplates {
 
       case 'attachment_style':
         return ShareCardData(
-          headline: attachmentResult ??
+          headline:
+              attachmentResult ??
               (isEn ? 'Secure-Leaning' : 'Güvenli Eğilimli'),
           subtitle: isEn
               ? 'Your entries suggest this attachment pattern'
@@ -367,8 +368,7 @@ class ShareCardTemplates {
 
       case 'dream_personality':
         return ShareCardData(
-          headline:
-              dreamType ?? (isEn ? 'The Voyager' : 'Gezgin'),
+          headline: dreamType ?? (isEn ? 'The Voyager' : 'Gezgin'),
           subtitle: isEn
               ? 'Your dream journal suggests this personality type'
               : 'Rüya güncen bu kişilik tipini gösteriyor',
@@ -379,8 +379,7 @@ class ShareCardTemplates {
 
       case 'energy_profile':
         return ShareCardData(
-          headline:
-              energyType ?? (isEn ? 'Steady Flow' : 'Düzenli Akış'),
+          headline: energyType ?? (isEn ? 'Steady Flow' : 'Düzenli Akış'),
           subtitle: isEn
               ? 'Your entries suggest this energy rhythm'
               : 'Kayıtların bu enerji ritmini gösteriyor',
@@ -391,8 +390,8 @@ class ShareCardTemplates {
 
       case 'emotional_archetype':
         return ShareCardData(
-          headline: emotionalStyle ??
-              (isEn ? 'Deep Processor' : 'Derin İşleyici'),
+          headline:
+              emotionalStyle ?? (isEn ? 'Deep Processor' : 'Derin İşleyici'),
           subtitle: isEn
               ? 'You tend to process feelings with depth and care'
               : 'Duyguları derinlik ve özenle işleme eğiliminde olabilirsin',
@@ -413,8 +412,7 @@ class ShareCardTemplates {
 
       case 'focus_area_radar':
         return ShareCardData(
-          headline:
-              isEn ? 'Focus Area Balance' : 'Odak Alanı Dengesi',
+          headline: isEn ? 'Focus Area Balance' : 'Odak Alanı Dengesi',
           subtitle: isEn
               ? 'How your attention spreads across areas'
               : 'Dikkatinin alanlara nasıl dağıldığını gösteriyor',
@@ -447,8 +445,7 @@ class ShareCardTemplates {
 
       case 'sleep_pattern':
         return ShareCardData(
-          headline:
-              isEn ? 'My Sleep Quality' : 'Uyku Kalitem',
+          headline: isEn ? 'My Sleep Quality' : 'Uyku Kalitem',
           subtitle: isEn
               ? 'How your rest has been this week'
               : 'Bu hafta uyku durumun nasıl geçti',
@@ -473,9 +470,7 @@ class ShareCardTemplates {
       case 'dream_explorer':
         final count = dreamCount > 0 ? dreamCount : 10;
         return ShareCardData(
-          headline: isEn
-              ? 'Explored $count Dreams'
-              : '$count Rüya Keşfedildi',
+          headline: isEn ? 'Explored $count Dreams' : '$count Rüya Keşfedildi',
           subtitle: isEn
               ? 'Your dream world keeps revealing insights'
               : 'Rüya dünyan içgörüler sunmaya devam ediyor',
@@ -486,9 +481,7 @@ class ShareCardTemplates {
       case 'pattern_discoverer':
         final count = patternCount > 0 ? patternCount : 5;
         return ShareCardData(
-          headline: isEn
-              ? 'Found $count Patterns'
-              : '$count Örüntü Bulundu',
+          headline: isEn ? 'Found $count Patterns' : '$count Örüntü Bulundu',
           subtitle: isEn
               ? 'Self-awareness grows with each discovery'
               : 'Her keşifle öz-farkındalık büyüyor',
@@ -526,7 +519,8 @@ class ShareCardTemplates {
       // ── Wisdom ────────────────────────────────────────────────────────
       case 'daily_reflection':
         return ShareCardData(
-          headline: reflectionText ??
+          headline:
+              reflectionText ??
               (isEn
                   ? 'Every moment of stillness is a step inward.'
                   : 'Her sessizlik anı, içeride atılan bir adımdır.'),
@@ -535,7 +529,8 @@ class ShareCardTemplates {
 
       case 'dream_insight':
         return ShareCardData(
-          headline: dreamInsightText ??
+          headline:
+              dreamInsightText ??
               (isEn
                   ? 'Your dreams may be pointing toward unresolved feelings.'
                   : 'Rüyaların çözülmemiş duygulara işaret ediyor olabilir.'),
@@ -544,7 +539,8 @@ class ShareCardTemplates {
 
       case 'pattern_wisdom':
         return ShareCardData(
-          headline: patternInsightText ??
+          headline:
+              patternInsightText ??
               (isEn
                   ? 'Your entries suggest you tend to find clarity after rest.'
                   : 'Kayıtların, dinlendikten sonra netleştiği gösteriyor.'),
@@ -556,7 +552,8 @@ class ShareCardTemplates {
       case 'seasonal_message':
         final season = seasonName ?? (isEn ? 'Winter' : 'Kış');
         return ShareCardData(
-          headline: seasonMessage ??
+          headline:
+              seasonMessage ??
               (isEn
                   ? 'A season for rest, reflection, and inner renewal.'
                   : 'Dinlenme, düşünme ve iç yenilenme mevsimi.'),
@@ -565,7 +562,8 @@ class ShareCardTemplates {
 
       case 'affirmation':
         return ShareCardData(
-          headline: affirmationText ??
+          headline:
+              affirmationText ??
               (isEn
                   ? 'I trust the process of my own growth.'
                   : 'Kendi gelişim sürecime güveniyorum.'),

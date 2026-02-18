@@ -22,163 +22,163 @@ class DreamDarknessScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: isDark
-                ? [AppColors.deepSpace, const Color(0xFF0D1520)]
-                : [const Color(0xFFF5F7F9), const Color(0xFFECF0F3)],
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: isDark
+                  ? [AppColors.deepSpace, const Color(0xFF0D1520)]
+                  : [const Color(0xFFF5F7F9), const Color(0xFFECF0F3)],
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                IconButton(
-                  onPressed: () => context.pop(),
-                  tooltip: L10nService.get('common.back', language),
-                  icon: Icon(
-                    Icons.chevron_left,
-                    color: isDark ? Colors.white70 : AppColors.textDark,
+          child: SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IconButton(
+                    onPressed: () => context.pop(),
+                    tooltip: L10nService.get('common.back', language),
+                    icon: Icon(
+                      Icons.chevron_left,
+                      color: isDark ? Colors.white70 : AppColors.textDark,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  L10nService.get(
-                    'dreams.canonical.darkness_question',
+                  const SizedBox(height: 24),
+                  Text(
+                    L10nService.get(
+                      'dreams.canonical.darkness_question',
+                      language,
+                    ),
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w600,
+                      color: isDark ? Colors.white : AppColors.textDark,
+                      height: 1.2,
+                    ),
+                  ).animate().fadeIn(duration: 400.ms),
+                  const SizedBox(height: 8),
+                  _buildTag(
+                    L10nService.get('dreams.canonical.brand_tag', language),
+                    color,
+                  ),
+                  const SizedBox(height: 32),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.sections.short_answer',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.darkness.short_answer_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.darkness.short_answer_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.darkness.short_answer_3',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 28),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.darkness.action_title',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.darkness.action_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.darkness.action_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.darkness.action_3',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.darkness.action_4',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 28),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.sections.what_it_means',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.darkness.meaning_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.darkness.meaning_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.darkness.meaning_3',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 28),
+                  _buildSection(
+                    isDark,
+                    L10nService.get(
+                      'dreams.canonical.sections.if_recurring',
+                      language,
+                    ),
+                    color,
+                    [
+                      L10nService.get(
+                        'dreams.canonical.darkness.recurring_1',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.darkness.recurring_2',
+                        language,
+                      ),
+                      L10nService.get(
+                        'dreams.canonical.darkness.recurring_3',
+                        language,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 32),
+                  _buildSuggestion(
+                    context,
+                    isDark,
                     language,
+                    '👤',
+                    L10nService.get('dreams.canonical.past_question', language),
+                    Routes.dreamPast,
                   ),
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w600,
-                    color: isDark ? Colors.white : AppColors.textDark,
-                    height: 1.2,
+                  const SizedBox(height: 40),
+                  PageFooterWithDisclaimer(
+                    brandText: L10nService.get('dreams.brand_footer', language),
+                    disclaimerText: DisclaimerTexts.dreams(language),
+                    language: language,
                   ),
-                ).animate().fadeIn(duration: 400.ms),
-                const SizedBox(height: 8),
-                _buildTag(
-                  L10nService.get('dreams.canonical.brand_tag', language),
-                  color,
-                ),
-                const SizedBox(height: 32),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.sections.short_answer',
-                    language,
-                  ),
-                  color,
-                  [
-                    L10nService.get(
-                      'dreams.canonical.darkness.short_answer_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.darkness.short_answer_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.darkness.short_answer_3',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 28),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.darkness.action_title',
-                    language,
-                  ),
-                  color,
-                  [
-                    L10nService.get(
-                      'dreams.canonical.darkness.action_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.darkness.action_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.darkness.action_3',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.darkness.action_4',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 28),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.sections.what_it_means',
-                    language,
-                  ),
-                  color,
-                  [
-                    L10nService.get(
-                      'dreams.canonical.darkness.meaning_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.darkness.meaning_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.darkness.meaning_3',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 28),
-                _buildSection(
-                  isDark,
-                  L10nService.get(
-                    'dreams.canonical.sections.if_recurring',
-                    language,
-                  ),
-                  color,
-                  [
-                    L10nService.get(
-                      'dreams.canonical.darkness.recurring_1',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.darkness.recurring_2',
-                      language,
-                    ),
-                    L10nService.get(
-                      'dreams.canonical.darkness.recurring_3',
-                      language,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 32),
-                _buildSuggestion(
-                  context,
-                  isDark,
-                  language,
-                  '👤',
-                  L10nService.get('dreams.canonical.past_question', language),
-                  Routes.dreamPast,
-                ),
-                const SizedBox(height: 40),
-                PageFooterWithDisclaimer(
-                  brandText: L10nService.get('dreams.brand_footer', language),
-                  disclaimerText: DisclaimerTexts.dreams(language),
-                  language: language,
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
-      ),
       ),
     );
   }

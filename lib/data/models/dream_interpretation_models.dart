@@ -155,7 +155,9 @@ class SymbolInterpretation {
         personalContext: json['personalContext'] as String? ?? '',
         shadowAspect: json['shadowAspect'] as String? ?? '',
         lightAspect: json['lightAspect'] as String? ?? '',
-        relatedSymbols: (json['relatedSymbols'] as List?)?.whereType<String>().toList() ?? [],
+        relatedSymbols:
+            (json['relatedSymbols'] as List?)?.whereType<String>().toList() ??
+            [],
       );
 }
 
@@ -465,50 +467,63 @@ class FullDreamInterpretation {
     'lucidPotential': lucidPotential,
   };
 
-  factory FullDreamInterpretation.fromJson(Map<String, dynamic> json) =>
-      FullDreamInterpretation(
-        dreamId: json['dreamId'] as String? ?? '',
-        oderId: json['userId'] as String? ?? '',
-        dreamText: json['dreamText'] as String? ?? '',
-        interpretedAt: DateTime.tryParse(json['interpretedAt']?.toString() ?? '') ?? DateTime.now(),
-        ancientIntro: json['ancientIntro'] as String? ?? '',
-        coreMessage: json['coreMessage'] as String? ?? '',
-        symbols: json['symbols'] is List
-            ? (json['symbols'] as List).whereType<Map<String, dynamic>>().map((s) => SymbolInterpretation.fromJson(s)).toList()
-            : [],
-        archetypeConnection: json['archetypeConnection'] as String? ?? '',
-        archetypeName: json['archetypeName'] as String? ?? '',
-        emotionalReading: json['emotionalReading'] is Map
-            ? EmotionalReading.fromJson(json['emotionalReading'] as Map<String, dynamic>)
-            : EmotionalReading.fromJson({}),
-        dreamTiming: json['dreamTiming'] is Map
-            ? DreamTiming.fromJson(json['dreamTiming'] as Map<String, dynamic>)
-            : DreamTiming.fromJson({}),
-        lightShadow: json['lightShadow'] is Map
-            ? LightShadowReading.fromJson(json['lightShadow'] as Map<String, dynamic>)
-            : LightShadowReading.fromJson({}),
-        guidance: json['guidance'] is Map
-            ? PracticalGuidance.fromJson(json['guidance'] as Map<String, dynamic>)
-            : PracticalGuidance.fromJson({}),
-        whisperQuote: json['whisperQuote'] as String? ?? '',
-        shareCard: json['shareCard'] is Map
-            ? ShareableCard.fromJson(json['shareCard'] as Map<String, dynamic>)
-            : ShareableCard.fromJson({}),
-        explorationLinks: json['explorationLinks'] is List
-            ? (json['explorationLinks'] as List).whereType<Map<String, dynamic>>().map((l) => DreamExplorationLink.fromJson(l)).toList()
-            : [],
-        userRole: json['userRole'] != null
-            ? DreamRole.values.where((e) => e.name == json['userRole']).firstOrNull
-            : null,
-        timeLayer: json['timeLayer'] != null
-            ? TimeLayer.values.where((e) => e.name == json['timeLayer']).firstOrNull
-            : null,
-        isRecurring: json['isRecurring'] ?? false,
-        recurringCount: json['recurringCount'],
-        recurringPattern: json['recurringPattern'],
-        nightmareType: json['nightmareType'],
-        lucidPotential: json['lucidPotential'],
-      );
+  factory FullDreamInterpretation.fromJson(
+    Map<String, dynamic> json,
+  ) => FullDreamInterpretation(
+    dreamId: json['dreamId'] as String? ?? '',
+    oderId: json['userId'] as String? ?? '',
+    dreamText: json['dreamText'] as String? ?? '',
+    interpretedAt:
+        DateTime.tryParse(json['interpretedAt']?.toString() ?? '') ??
+        DateTime.now(),
+    ancientIntro: json['ancientIntro'] as String? ?? '',
+    coreMessage: json['coreMessage'] as String? ?? '',
+    symbols: json['symbols'] is List
+        ? (json['symbols'] as List)
+              .whereType<Map<String, dynamic>>()
+              .map((s) => SymbolInterpretation.fromJson(s))
+              .toList()
+        : [],
+    archetypeConnection: json['archetypeConnection'] as String? ?? '',
+    archetypeName: json['archetypeName'] as String? ?? '',
+    emotionalReading: json['emotionalReading'] is Map
+        ? EmotionalReading.fromJson(
+            json['emotionalReading'] as Map<String, dynamic>,
+          )
+        : EmotionalReading.fromJson({}),
+    dreamTiming: json['dreamTiming'] is Map
+        ? DreamTiming.fromJson(json['dreamTiming'] as Map<String, dynamic>)
+        : DreamTiming.fromJson({}),
+    lightShadow: json['lightShadow'] is Map
+        ? LightShadowReading.fromJson(
+            json['lightShadow'] as Map<String, dynamic>,
+          )
+        : LightShadowReading.fromJson({}),
+    guidance: json['guidance'] is Map
+        ? PracticalGuidance.fromJson(json['guidance'] as Map<String, dynamic>)
+        : PracticalGuidance.fromJson({}),
+    whisperQuote: json['whisperQuote'] as String? ?? '',
+    shareCard: json['shareCard'] is Map
+        ? ShareableCard.fromJson(json['shareCard'] as Map<String, dynamic>)
+        : ShareableCard.fromJson({}),
+    explorationLinks: json['explorationLinks'] is List
+        ? (json['explorationLinks'] as List)
+              .whereType<Map<String, dynamic>>()
+              .map((l) => DreamExplorationLink.fromJson(l))
+              .toList()
+        : [],
+    userRole: json['userRole'] != null
+        ? DreamRole.values.where((e) => e.name == json['userRole']).firstOrNull
+        : null,
+    timeLayer: json['timeLayer'] != null
+        ? TimeLayer.values.where((e) => e.name == json['timeLayer']).firstOrNull
+        : null,
+    isRecurring: json['isRecurring'] ?? false,
+    recurringCount: json['recurringCount'],
+    recurringPattern: json['recurringPattern'],
+    nightmareType: json['nightmareType'],
+    lucidPotential: json['lucidPotential'],
+  );
 }
 
 // ════════════════════════════════════════════════════════════════

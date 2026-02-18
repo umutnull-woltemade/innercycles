@@ -220,10 +220,7 @@ class NotificationLifecycleService {
 
   /// Mark that a notification was sent today.
   Future<void> _markNotificationSent(LifecycleNotificationType type) async {
-    await _prefs.setString(
-      _keyLastNotifDate,
-      DateTime.now().toIso8601String(),
-    );
+    await _prefs.setString(_keyLastNotifDate, DateTime.now().toIso8601String());
     await _prefs.setString(_keyLastNotifType, type.name);
   }
 
@@ -292,7 +289,8 @@ class NotificationLifecycleService {
 
     // Priority 1: Milestone celebration
     for (final milestone in milestoneDays) {
-      if (totalEntries == milestone && !_celebratedMilestones.contains(milestone)) {
+      if (totalEntries == milestone &&
+          !_celebratedMilestones.contains(milestone)) {
         return LifecycleNotificationType.milestonesCelebration;
       }
     }
@@ -377,13 +375,13 @@ class NotificationLifecycleService {
       }
 
       if (kDebugMode) {
-        debugPrint(
-          'NotificationLifecycle: Scheduled ${type.name} at $hour:00',
-        );
+        debugPrint('NotificationLifecycle: Scheduled ${type.name} at $hour:00');
       }
     } catch (e) {
       if (kDebugMode) {
-        debugPrint('NotificationLifecycle: Failed to schedule ${type.name}: $e');
+        debugPrint(
+          'NotificationLifecycle: Failed to schedule ${type.name}: $e',
+        );
       }
     }
   }
@@ -536,7 +534,9 @@ class NotificationLifecycleService {
     await _notificationService.cancelDailyReflection();
 
     if (kDebugMode) {
-      debugPrint('NotificationLifecycle: Cancelled all lifecycle notifications');
+      debugPrint(
+        'NotificationLifecycle: Cancelled all lifecycle notifications',
+      );
     }
   }
 
@@ -580,8 +580,5 @@ class _NotificationContent {
   final String title;
   final String body;
 
-  const _NotificationContent({
-    required this.title,
-    required this.body,
-  });
+  const _NotificationContent({required this.title, required this.body});
 }

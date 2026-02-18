@@ -56,8 +56,7 @@ class _PhaseRingState extends State<PhaseRing>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         // Check Reduce Motion preference
-        final reduceMotion =
-            MediaQuery.of(context).disableAnimations;
+        final reduceMotion = MediaQuery.of(context).disableAnimations;
         if (reduceMotion) {
           _controller.value = 1.0;
         } else {
@@ -105,11 +104,7 @@ class _PhaseRingState extends State<PhaseRing>
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // Phase icon
-                  Icon(
-                    _phaseIcon(widget.phase),
-                    size: 28,
-                    color: phaseColor,
-                  ),
+                  Icon(_phaseIcon(widget.phase), size: 28, color: phaseColor),
                   const SizedBox(height: 6),
                   // Phase label
                   Text(
@@ -263,8 +258,7 @@ class _PhaseRingPainter extends CustomPainter {
             ..style = PaintingStyle.stroke
             ..strokeWidth = strokeWidth + 6
             ..strokeCap = StrokeCap.round
-            ..maskFilter =
-                MaskFilter.blur(BlurStyle.normal, 4 * glowIntensity),
+            ..maskFilter = MaskFilter.blur(BlurStyle.normal, 4 * glowIntensity),
         );
       }
 
