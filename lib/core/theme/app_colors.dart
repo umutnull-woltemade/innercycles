@@ -121,4 +121,33 @@ class AppColors {
     radius: 1.0,
     colors: [Color(0x30667EEA), Color(0x00667EEA)],
   );
+
+  // ========== CHAT / INSIGHT COLORS ==========
+  static const Color chatAccent = Color(0xFF4A90A4);
+  static const Color chatAccentDark = Color(0xFF357A8C);
+  static const Color chatBubbleUser = Color(0xFF2D5A7B);
+  static const Color chatSurface = Color(0xFF1C2128);
+  static const Color chatInputArea = Color(0xFF161B22);
+  static const Color chatInputField = Color(0xFF0D1117);
+
+  static const LinearGradient chatAccentGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [chatAccent, chatAccentDark],
+  );
+
+  // ========== CHART / DATA VISUALIZATION COLORS ==========
+  static const Color chartOrange = Color(0xFFFFA500);
+  static const Color chartBlue = Color(0xFF4FC3F7);
+  static const Color chartPink = Color(0xFFFF6B9D);
+  static const Color chartGreen = Color(0xFF81C784);
+  static const Color chartPurple = Color(0xFFCE93D8);
+
+  static const List<Color> focusAreaPalette = [
+    starGold,   // Energy
+    chartBlue,  // Focus
+    chartPink,  // Emotions
+    chartGreen, // Decisions
+    chartPurple, // Social
+  ];
 }
