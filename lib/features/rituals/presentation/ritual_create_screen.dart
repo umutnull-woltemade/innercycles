@@ -98,7 +98,11 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                             final isSelected = time == _selectedTime;
                             return ConstrainedBox(
                               constraints: const BoxConstraints(minHeight: 44),
-                              child: GestureDetector(
+                              child: Semantics(
+                                label: isEn ? time.displayNameEn : time.displayNameTr,
+                                button: true,
+                                selected: isSelected,
+                                child: GestureDetector(
                                 onTap: () {
                                   HapticFeedback.lightImpact();
                                   setState(() {
@@ -157,6 +161,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                                     ],
                                   ),
                                 ),
+                              ),
                               ),
                             );
                           }).toList(),
@@ -428,7 +433,10 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
           runSpacing: 6,
           children: suggestions.map((habit) {
             final title = isEn ? habit.titleEn : habit.titleTr;
-            return GestureDetector(
+            return Semantics(
+              label: title,
+              button: true,
+              child: GestureDetector(
               onTap: () {
                 // Find first empty controller or add new one
                 final emptyIndex = _itemControllers.indexWhere(
@@ -470,6 +478,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                         : AppColors.lightTextPrimary,
                   ),
                 ),
+              ),
               ),
             );
           }).toList(),

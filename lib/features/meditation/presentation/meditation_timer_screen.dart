@@ -193,7 +193,11 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 6,
                               ),
-                              child: GestureDetector(
+                              child: Semantics(
+                                label: '$m minutes',
+                                button: true,
+                                selected: isSelected,
+                                child: GestureDetector(
                                 onTap: () =>
                                     setState(() => _selectedMinutes = m),
                                 child: AnimatedContainer(
@@ -234,6 +238,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                     ),
                                   ),
                                 ),
+                              ),
                               ),
                             );
                           }).toList(),

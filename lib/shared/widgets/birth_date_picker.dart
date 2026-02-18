@@ -450,7 +450,10 @@ class SelectedDateDisplay extends StatelessWidget {
       return const SizedBox();
     }
 
-    return GestureDetector(
+    return Semantics(
+      label: 'Birth date: ${_getMonthName(d.month, language)} ${d.day}, ${d.year}',
+      button: true,
+      child: GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(
@@ -489,6 +492,7 @@ class SelectedDateDisplay extends StatelessWidget {
             const Icon(Icons.edit, color: AppColors.textMuted, size: 16),
           ],
         ),
+      ),
       ),
     );
   }
