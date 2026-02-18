@@ -25,6 +25,7 @@ import 'data/services/feature_flag_service.dart';
 import 'data/services/error_reporting_service.dart';
 import 'data/services/paywall_experiment_service.dart';
 import 'data/providers/app_providers.dart';
+import 'data/services/premium_service.dart';
 import 'data/models/user_profile.dart';
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -466,11 +467,37 @@ class _InitializedUserProfileNotifier extends UserProfileNotifier {
 // INNERCYCLES APP - Main app widget
 // ═══════════════════════════════════════════════════════════════════════════
 
-class InnerCyclesApp extends ConsumerWidget {
+class InnerCyclesApp extends ConsumerStatefulWidget {
   const InnerCyclesApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<InnerCyclesApp> createState() => _InnerCyclesAppState();
+}
+
+class _InnerCyclesAppState extends ConsumerState<InnerCyclesApp>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      // Re-verify premium entitlement when returning from background
+      ref.read(premiumProvider.notifier).onAppResumed();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final router = ref.watch(routerProvider);
     final themeMode = ref.watch(themeModeProvider);
     final language = ref.watch(languageProvider);

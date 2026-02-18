@@ -13,6 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/content/quiz_content.dart';
 import '../../../data/models/quiz_models.dart';
@@ -95,7 +96,7 @@ class QuizHubScreen extends ConsumerWidget {
                           lastResultName: lastResultName,
                           isDark: isDark,
                           isEn: isEn,
-                          onTap: () => context.push('/quiz/${quiz.id}'),
+                          onTap: () => context.push(Routes.quizGeneric.replaceFirst(':quizId', quiz.id)),
                         ),
                       )
                           .animate()

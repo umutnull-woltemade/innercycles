@@ -350,7 +350,8 @@ class DailyHookService {
       try {
         final shownAt = DateTime.parse(timestamps[i]);
         if (shownAt.isAfter(cutoff)) {
-          recentIds.add(int.parse(shownIds[i]));
+          final id = int.tryParse(shownIds[i]);
+          if (id != null) recentIds.add(id);
         }
       } catch (_) {
         // Skip malformed entries

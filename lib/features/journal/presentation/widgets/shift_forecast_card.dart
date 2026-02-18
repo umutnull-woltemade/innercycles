@@ -79,7 +79,7 @@ class ShiftForecastCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isEn ? 'Shift Forecast' : 'Kayma Tahmini',
+                      isEn ? 'Shift Outlook' : 'Kayma Görünümü',
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: isDark
                             ? AppColors.textPrimary
@@ -328,8 +328,8 @@ class ShiftForecastCard extends StatelessWidget {
           Expanded(
             child: Text(
               isEn
-                  ? 'Not enough data for shift forecasting yet'
-                  : 'Kayma tahmini için henüz yeterli veri yok',
+                  ? 'Not enough data for shift outlook yet'
+                  : 'Kayma görünümü için henüz yeterli veri yok',
               style: TextStyle(
                 fontSize: 14,
                 color: isDark

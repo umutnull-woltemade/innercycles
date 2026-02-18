@@ -152,7 +152,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                   entry: entryMap[_selectedDateKey],
                   isDark: isDark,
                   isEn: isEn,
-                  onViewEntry: (id) => context.push('/journal/entry/$id'),
+                  onViewEntry: (id) => context.push(Routes.journalEntryDetail.replaceFirst(':id', id)),
                   onCreateEntry: () => context.push(Routes.journal),
                 ),
                 const SizedBox(height: 20),
@@ -825,8 +825,8 @@ class _YearHeatmap extends StatelessWidget {
     final monthCounts = List.filled(12, 0);
     for (final entry in entryMap.entries) {
       final parts = entry.key.split('-');
-      if (parts.length == 3 && int.parse(parts[0]) == year) {
-        final m = int.parse(parts[1]);
+      if (parts.length == 3 && (int.tryParse(parts[0]) ?? 0) == year) {
+        final m = int.tryParse(parts[1]) ?? 0;
         if (m >= 1 && m <= 12) {
           monthCounts[m - 1]++;
         }

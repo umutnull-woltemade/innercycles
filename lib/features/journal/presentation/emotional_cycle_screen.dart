@@ -562,7 +562,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(children: [
-          Text(isEn ? 'Shift Forecast' : 'Kayma Tahmini',
+          Text(isEn ? 'Shift Outlook' : 'Kayma Görünümü',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                     fontWeight: FontWeight.w700)),
@@ -602,8 +602,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 const Icon(Icons.lock_outline, color: AppColors.starGold, size: 20),
                 const SizedBox(width: 12),
                 Expanded(child: Text(
-                    isEn ? 'Unlock Shift Forecasting to see when your emotional phases may shift'
-                        : 'Duygusal evrelerinin ne zaman kayabileceğini görmek için Kayma Tahminini aç',
+                    isEn ? 'Unlock Shift Outlook to see when your emotional phases may shift'
+                        : 'Duygusal evrelerinin ne zaman kayabileceğini görmek için Kayma Görünümünü aç',
                     style: TextStyle(fontSize: 13,
                         color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary))),
                 const Icon(Icons.chevron_right, color: AppColors.starGold, size: 20),
