@@ -16,6 +16,8 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/review_service.dart';
+import '../../../data/services/smart_router_service.dart';
+import '../../../data/services/ecosystem_analytics_service.dart';
 
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -49,6 +51,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   void initState() {
     super.initState();
     _initSubRatings();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('journal'));
+      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('journal', source: 'direct'));
+    });
   }
 
   void _initSubRatings() {

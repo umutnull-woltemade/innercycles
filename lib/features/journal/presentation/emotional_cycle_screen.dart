@@ -22,6 +22,8 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/services/emotional_cycle_service.dart';
 import '../../../data/services/premium_service.dart';
+import '../../../data/services/smart_router_service.dart';
+import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../data/services/pattern_loop_service.dart'; // ignore: unused_import
 import '../../../data/services/shift_forecast_service.dart'; // ignore: unused_import
 import '../../../shared/widgets/cosmic_background.dart';
@@ -65,6 +67,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     );
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) _waveAnimController.forward();
+      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('emotionalCycles'));
+      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('emotionalCycles', source: 'direct'));
     });
   }
 
@@ -536,7 +540,11 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           final label = isEn ? area.displayNameEn : area.displayNameTr;
           return Padding(
             padding: const EdgeInsets.only(right: AppConstants.spacingSm),
-            child: GestureDetector(
+            child: Semantics(
+              label: '$label ${isVisible ? (isEn ? "visible" : "görünür") : (isEn ? "hidden" : "gizli")}',
+              toggled: isVisible,
+              button: true,
+              child: GestureDetector(
               onTap: () => setState(() {
                 isVisible ? _visibleAreas.remove(area) : _visibleAreas.add(area);
               }),
@@ -576,6 +584,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                   ]),
                 ),
               ),
+            ),
             ),
           );
         }).toList(),
@@ -714,7 +723,10 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           BoxShadow(color: AppColors.auroraStart.withValues(alpha: 0.3), blurRadius: 12, offset: const Offset(0, 4)),
         ],
       ),
-      child: Material(
+      child: Semantics(
+        label: isEn ? 'Share My Inner Cycles' : 'İç Döngülerimi Paylaş',
+        button: true,
+        child: Material(
         color: Colors.transparent,
         child: InkWell(
           onTap: () => context.push(Routes.shareInsight),
@@ -729,6 +741,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
             ]),
           ),
         ),
+      ),
       ),
     );
   }

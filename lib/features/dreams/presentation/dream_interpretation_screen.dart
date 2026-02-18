@@ -11,6 +11,8 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/services/first_taste_service.dart';
 import '../../../data/services/premium_service.dart';
+import '../../../data/services/smart_router_service.dart';
+import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
@@ -465,6 +467,10 @@ class _DreamInterpretationScreenState
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('dreamInterpretation'));
+      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('dreamInterpretation', source: 'direct'));
+    });
     _pulseController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1500),

@@ -15,6 +15,8 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/content/context_modules_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/context_module_service.dart';
+import '../../../data/services/smart_router_service.dart';
+import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 class InsightsDiscoveryScreen extends ConsumerStatefulWidget {
@@ -29,6 +31,15 @@ class _InsightsDiscoveryScreenState
     extends ConsumerState<InsightsDiscoveryScreen> {
   ContextModuleCategory? _selectedCategory;
   bool _showBookmarksOnly = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('insightsDiscovery'));
+      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('insightsDiscovery', source: 'direct'));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

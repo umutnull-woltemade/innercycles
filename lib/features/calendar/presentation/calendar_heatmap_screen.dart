@@ -12,6 +12,8 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_service.dart';
+import '../../../data/services/smart_router_service.dart';
+import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
@@ -27,6 +29,15 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
   int _selectedYear = DateTime.now().year;
   int _selectedMonth = DateTime.now().month;
   String? _selectedDateKey;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(smartRouterServiceProvider).whenData((s) => s.recordToolVisit('calendarHeatmap'));
+      ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOpen('calendarHeatmap', source: 'direct'));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -647,7 +658,10 @@ class _DayDetail extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            GestureDetector(
+            Semantics(
+              label: isEn ? 'Log this day' : 'Bu günü kaydet',
+              button: true,
+              child: GestureDetector(
               onTap: onCreateEntry,
               child: Container(
                 padding: const EdgeInsets.symmetric(
@@ -667,6 +681,7 @@ class _DayDetail extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
             ),
           ],
         ),
