@@ -83,6 +83,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                             isEn: isEn,
                             onComplete: () async {
                               await service.completePrompt(prompt.index);
+                              if (!context.mounted) return;
                               ref.invalidate(
                                   seasonalReflectionServiceProvider);
                               HapticFeedback.mediumImpact();

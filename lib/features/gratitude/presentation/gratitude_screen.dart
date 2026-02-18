@@ -131,6 +131,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                               date: DateTime.now(),
                               items: items,
                             );
+                            if (!context.mounted) return;
                             ref.invalidate(gratitudeServiceProvider);
                             ref.read(smartRouterServiceProvider).whenData((s) => s.recordOutput('gratitude', 'entry'));
                             ref.read(ecosystemAnalyticsServiceProvider).whenData((s) => s.trackToolOutput('gratitude', 'entry'));

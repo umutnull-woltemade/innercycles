@@ -332,6 +332,7 @@ class StreakStatsScreen extends ConsumerWidget {
                 TextButton(
                   onPressed: () async {
                     await service.useFreeze(isPremium: isPremium);
+                    if (!context.mounted) return;
                     ref.invalidate(streakServiceProvider);
                     ref.invalidate(streakStatsProvider);
                   },

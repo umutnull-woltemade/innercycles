@@ -614,6 +614,7 @@ class SettingsScreen extends ConsumerWidget {
               // Cancel scheduled notifications
               try { await NotificationService().cancelAll(); } catch (e) { debugPrint('Cancel notifications failed: $e'); }
               await StorageService.clearAllData();
+              if (!context.mounted) return;
               ref.read(userProfileProvider.notifier).clearProfile();
               ref.read(onboardingCompleteProvider.notifier).state = false;
               if (context.mounted) {
@@ -1135,6 +1136,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                         } else {
                           await service.setEnabled(false);
                           await service.removePin();
+                          if (!mounted) return;
                           ref.invalidate(appLockServiceProvider);
                         }
                       },

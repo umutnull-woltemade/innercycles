@@ -104,6 +104,7 @@ class ChallengeListScreen extends ConsumerWidget {
                                 isEn: isEn,
                                 onIncrement: () async {
                                   await service.incrementProgress(c.id);
+                                  if (!context.mounted) return;
                                   ref.invalidate(
                                       growthChallengeServiceProvider);
                                   HapticFeedback.mediumImpact();
@@ -131,6 +132,7 @@ class ChallengeListScreen extends ConsumerWidget {
                                   return;
                                 }
                                 await service.startChallenge(c.id);
+                                if (!context.mounted) return;
                                 ref.invalidate(growthChallengeServiceProvider);
                                 HapticFeedback.mediumImpact();
                               },
