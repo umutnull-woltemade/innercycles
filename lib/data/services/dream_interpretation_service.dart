@@ -12,6 +12,7 @@ import '../content/dream_advanced_content.dart';
 import '../providers/app_providers.dart';
 import 'dream_memory_service.dart';
 import 'l10n_service.dart';
+import 'moon_phase_service.dart' as lunar;
 
 /// Ana rüya yorumlama servisi
 class DreamInterpretationService {
@@ -1436,29 +1437,28 @@ class QuickSymbolLookup {
 // AY FAZI HESAPLAMA
 // ═══════════════════════════════════════════════════════════════
 
-/// Ay fazı hesaplama yardımcısı
+/// Ay fazı hesaplama yardımcısı — delegates to MoonPhaseService
 class MoonPhaseCalculator {
   /// Verilen tarih için ay fazını hesapla
   static MoonPhase calculate(DateTime date) {
-    // Basit ay fazı hesabı (synodic month = 29.53 gün)
-    // Referans: 6 Ocak 2000 yeniay
-    final reference = DateTime(2000, 1, 6);
-    final daysSinceReference = date.difference(reference).inDays;
-    final synodicMonth = 29.53;
-    final dayInCycle = (daysSinceReference % synodicMonth);
-
-    if (dayInCycle < 1.85) {
-      return MoonPhase.yeniay;
-    } else if (dayInCycle < 7.38) {
-      return MoonPhase.hilal;
-    } else if (dayInCycle < 11.07) {
-      return MoonPhase.ilkDordun;
-    } else if (dayInCycle < 14.76) {
-      return MoonPhase.dolunay;
-    } else if (dayInCycle < 22.14) {
-      return MoonPhase.sonDordun;
-    } else {
-      return MoonPhase.karanlikAy;
+    final data = lunar.MoonPhaseService.calculate(date);
+    switch (data.phase) {
+      case lunar.MoonPhase.newMoon:
+        return MoonPhase.yeniay;
+      case lunar.MoonPhase.waxingCrescent:
+        return MoonPhase.hilal;
+      case lunar.MoonPhase.firstQuarter:
+        return MoonPhase.ilkDordun;
+      case lunar.MoonPhase.waxingGibbous:
+        return MoonPhase.dolunay;
+      case lunar.MoonPhase.fullMoon:
+        return MoonPhase.dolunay;
+      case lunar.MoonPhase.waningGibbous:
+        return MoonPhase.sonDordun;
+      case lunar.MoonPhase.lastQuarter:
+        return MoonPhase.sonDordun;
+      case lunar.MoonPhase.waningCrescent:
+        return MoonPhase.karanlikAy;
     }
   }
 
