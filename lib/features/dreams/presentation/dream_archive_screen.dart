@@ -370,6 +370,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
           ),
           suffixIcon: _searchQuery.isNotEmpty
               ? IconButton(
+                  tooltip: isEn ? 'Clear search' : 'Aramayı temizle',
                   icon: Icon(
                     CupertinoIcons.clear_circled_solid,
                     color:

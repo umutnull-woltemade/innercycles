@@ -82,7 +82,7 @@ class BlindSpot {
           (e) => e.name == json['category'],
           orElse: () => BlindSpotCategory.avoidedArea,
         ),
-        discoveredDate: DateTime.parse(json['discoveredDate'] as String),
+        discoveredDate: DateTime.tryParse(json['discoveredDate']?.toString() ?? '') ?? DateTime.now(),
       );
 }
 
@@ -114,7 +114,7 @@ class BlindSpotReport {
 
   factory BlindSpotReport.fromJson(Map<String, dynamic> json) =>
       BlindSpotReport(
-        generatedDate: DateTime.parse(json['generatedDate'] as String),
+        generatedDate: DateTime.tryParse(json['generatedDate']?.toString() ?? '') ?? DateTime.now(),
         blindSpots: (json['blindSpots'] as List)
             .map((b) => BlindSpot.fromJson(b as Map<String, dynamic>))
             .toList(),

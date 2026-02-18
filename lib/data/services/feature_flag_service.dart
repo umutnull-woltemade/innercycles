@@ -211,8 +211,8 @@ class FeatureFlag {
     targetVersions: json['target_versions'] != null
         ? List<String>.from(json['target_versions'])
         : null,
-    createdAt: DateTime.parse(json['created_at']),
-    updatedAt: DateTime.parse(json['updated_at']),
+    createdAt: DateTime.tryParse(json['created_at']?.toString() ?? '') ?? DateTime.now(),
+    updatedAt: DateTime.tryParse(json['updated_at']?.toString() ?? '') ?? DateTime.now(),
   );
 
   Map<String, dynamic> toJson() => {

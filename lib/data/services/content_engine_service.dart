@@ -56,7 +56,7 @@ class DailyContent {
         growthDirection: json['growthDirection'],
         reflectiveQuestion: json['reflectiveQuestion'],
         hash: json['hash'],
-        generatedAt: DateTime.parse(json['generatedAt']),
+        generatedAt: DateTime.tryParse(json['generatedAt']?.toString() ?? '') ?? DateTime.now(),
         confidenceScore: json['confidenceScore'],
       );
 }

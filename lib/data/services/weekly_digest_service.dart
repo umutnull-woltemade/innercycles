@@ -61,8 +61,8 @@ class WeeklyDigest {
       };
 
   factory WeeklyDigest.fromJson(Map<String, dynamic> json) => WeeklyDigest(
-        weekStart: DateTime.parse(json['weekStart']),
-        weekEnd: DateTime.parse(json['weekEnd']),
+        weekStart: DateTime.tryParse(json['weekStart']?.toString() ?? '') ?? DateTime.now(),
+        weekEnd: DateTime.tryParse(json['weekEnd']?.toString() ?? '') ?? DateTime.now(),
         entryCount: json['entryCount'] as int,
         avgMood: (json['avgMood'] as num).toDouble(),
         topFocusAreaEn: json['topFocusAreaEn'] as String,

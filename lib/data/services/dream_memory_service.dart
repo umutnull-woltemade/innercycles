@@ -305,7 +305,7 @@ class DreamMemoryService {
   /// Get last dream date
   Future<DateTime?> getLastDreamDate() async {
     final dateStr = _prefs.getString(_lastDreamDateKey);
-    return dateStr != null ? DateTime.parse(dateStr) : null;
+    return dateStr != null ? DateTime.tryParse(dateStr) : null;
   }
 
   /// Check if user has logged a dream today

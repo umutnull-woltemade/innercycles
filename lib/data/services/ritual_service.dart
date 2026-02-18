@@ -113,7 +113,7 @@ class RitualStack {
         items: (json['items'] as List<dynamic>)
             .map((i) => RitualItem.fromJson(i))
             .toList(),
-        createdAt: DateTime.parse(json['createdAt'] as String),
+        createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
       );
 }
 
@@ -151,7 +151,7 @@ class RitualCompletion {
         stackId: json['stackId'] as String,
         completedItemIds:
             (json['completedItemIds'] as List<dynamic>).cast<String>().toSet(),
-        updatedAt: DateTime.parse(json['updatedAt'] as String),
+        updatedAt: DateTime.tryParse(json['updatedAt']?.toString() ?? '') ?? DateTime.now(),
       );
 }
 

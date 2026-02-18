@@ -178,8 +178,8 @@ class JournalEntry {
 
   factory JournalEntry.fromJson(Map<String, dynamic> json) => JournalEntry(
     id: json['id'] as String,
-    date: DateTime.parse(json['date'] as String),
-    createdAt: DateTime.parse(json['createdAt'] as String),
+    date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
+    createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
     focusArea: FocusArea.values.firstWhere(
       (e) => e.name == json['focusArea'],
       orElse: () => FocusArea.energy,

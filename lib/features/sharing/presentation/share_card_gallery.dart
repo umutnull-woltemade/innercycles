@@ -210,7 +210,10 @@ class _ShareCardGalleryScreenState
           final accent = _categoryAccent(category);
 
           return GestureDetector(
-            onTap: () => setState(() => _selectedCategory = category),
+            onTap: () {
+              HapticFeedback.selectionClick();
+              setState(() => _selectedCategory = category);
+            },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -283,7 +286,10 @@ class _ShareCardGalleryScreenState
         final accent = ShareCardTemplates.accentColor(template);
 
         return GestureDetector(
-          onTap: () => setState(() => _previewTemplate = template),
+          onTap: () {
+            HapticFeedback.lightImpact();
+            setState(() => _previewTemplate = template);
+          },
           child: _ThumbnailCard(
             template: template,
             data: data,
@@ -571,7 +577,10 @@ class _ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: isLoading ? null : onTap,
+      onTap: isLoading ? null : () {
+        HapticFeedback.mediumImpact();
+        onTap();
+      },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(vertical: 14),

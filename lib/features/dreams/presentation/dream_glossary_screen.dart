@@ -282,6 +282,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
         children: [
           IconButton(
             onPressed: () => context.pop(),
+            tooltip: language == AppLanguage.en ? 'Back' : 'Geri',
             icon: const Icon(
               Icons.arrow_back_ios,
               color: AppColors.textPrimary,
@@ -380,6 +381,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
             ),
             suffixIcon: _searchQuery.isNotEmpty
                 ? IconButton(
+                    tooltip: language == AppLanguage.en ? 'Clear search' : 'Aramayı temizle',
                     icon: const Icon(
                       Icons.clear,
                       color: AppColors.textSecondary,
@@ -1628,8 +1630,8 @@ class PersonalSymbolEntry {
       PersonalSymbolEntry(
         symbolId: json['symbolId'],
         count: json['count'],
-        firstDreamed: DateTime.parse(json['firstDreamed']),
-        lastDreamed: DateTime.parse(json['lastDreamed']),
+        firstDreamed: DateTime.tryParse(json['firstDreamed']?.toString() ?? '') ?? DateTime.now(),
+        lastDreamed: DateTime.tryParse(json['lastDreamed']?.toString() ?? '') ?? DateTime.now(),
         personalMeaning: json['personalMeaning'],
       );
 

@@ -40,7 +40,7 @@ class SleepEntry {
         dateKey: json['dateKey'] as String,
         quality: json['quality'] as int? ?? 3,
         note: json['note'] as String?,
-        createdAt: DateTime.parse(json['createdAt'] as String),
+        createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
       );
 }
 

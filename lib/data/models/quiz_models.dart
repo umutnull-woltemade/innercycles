@@ -175,7 +175,7 @@ class QuizResult {
         (key, value) => MapEntry(key as String, (value as num).toDouble()),
       ),
       resultType: json['resultType'] as String,
-      completedAt: DateTime.parse(json['completedAt'] as String),
+      completedAt: DateTime.tryParse(json['completedAt']?.toString() ?? '') ?? DateTime.now(),
     );
   }
 

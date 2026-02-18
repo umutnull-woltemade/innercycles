@@ -25,7 +25,7 @@ class StreakFreeze {
       };
 
   factory StreakFreeze.fromJson(Map<String, dynamic> json) => StreakFreeze(
-        date: DateTime.parse(json['date'] as String),
+        date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
         wasAutomatic: json['wasAutomatic'] as bool? ?? false,
       );
 

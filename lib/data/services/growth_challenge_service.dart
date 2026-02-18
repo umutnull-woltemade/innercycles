@@ -64,7 +64,7 @@ class ChallengeProgress {
   factory ChallengeProgress.fromJson(Map<String, dynamic> json) =>
       ChallengeProgress(
         challengeId: json['challengeId'] as String,
-        startedAt: DateTime.parse(json['startedAt'] as String),
+        startedAt: DateTime.tryParse(json['startedAt']?.toString() ?? '') ?? DateTime.now(),
         currentCount: json['currentCount'] as int? ?? 0,
         targetCount: json['targetCount'] as int? ?? 1,
         isCompleted: json['isCompleted'] as bool? ?? false,

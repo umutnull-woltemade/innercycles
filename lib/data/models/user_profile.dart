@@ -52,16 +52,16 @@ class UserProfile {
     return UserProfile(
       id: json['id'] as String?,
       name: json['name'] as String?,
-      birthDate: DateTime.parse(json['birthDate'] as String),
+      birthDate: DateTime.tryParse(json['birthDate']?.toString() ?? '') ?? DateTime(2000, 1, 1),
       birthTime: json['birthTime'] as String?,
       birthPlace: json['birthPlace'] as String?,
       birthLatitude: json['birthLatitude'] as double?,
       birthLongitude: json['birthLongitude'] as double?,
       createdAt: json['createdAt'] != null
-          ? DateTime.parse(json['createdAt'] as String)
+          ? DateTime.tryParse(json['createdAt'].toString())
           : null,
       updatedAt: json['updatedAt'] != null
-          ? DateTime.parse(json['updatedAt'] as String)
+          ? DateTime.tryParse(json['updatedAt'].toString())
           : null,
       isPrimary: json['isPrimary'] as bool? ?? false,
       relationship: json['relationship'] as String?,

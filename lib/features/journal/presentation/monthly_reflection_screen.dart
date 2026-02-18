@@ -270,6 +270,7 @@ class _MonthlyReflectionScreenState
                 }
               });
             },
+            tooltip: isEn ? 'Previous month' : 'Önceki ay',
             icon: Icon(
               Icons.chevron_left,
               color: isDark
@@ -302,6 +303,7 @@ class _MonthlyReflectionScreenState
                 });
               }
             },
+            tooltip: isEn ? 'Next month' : 'Sonraki ay',
             icon: Icon(
               Icons.chevron_right,
               color: isDark

@@ -95,6 +95,9 @@ class _HabitSuggestionsScreenState
           actions: [
             // Bookmark filter toggle
             IconButton(
+              tooltip: _showBookmarksOnly
+                  ? (isEn ? 'Show all habits' : 'Tüm alışkanlıkları göster')
+                  : (isEn ? 'Show bookmarks' : 'Kaydedilenleri göster'),
               icon: Icon(
                 _showBookmarksOnly
                     ? Icons.bookmark_rounded
@@ -950,6 +953,9 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                     ),
                     // Bookmark button
                     IconButton(
+                      tooltip: _isBookmarked
+                          ? (isEn ? 'Remove bookmark' : 'Kaydı kaldır')
+                          : (isEn ? 'Bookmark' : 'Kaydet'),
                       icon: Icon(
                         _isBookmarked
                             ? Icons.bookmark_rounded

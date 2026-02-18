@@ -83,7 +83,7 @@ class ProgramProgress {
   factory ProgramProgress.fromJson(Map<String, dynamic> json) =>
       ProgramProgress(
         programId: json['programId'] as String,
-        startedAt: DateTime.parse(json['startedAt'] as String),
+        startedAt: DateTime.tryParse(json['startedAt']?.toString() ?? '') ?? DateTime.now(),
         completedDays:
             (json['completedDays'] as List<dynamic>).cast<int>().toSet(),
         reflections: json['reflections'] != null

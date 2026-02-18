@@ -147,8 +147,8 @@ class PatternLoop {
 
   factory PatternLoop.fromJson(Map<String, dynamic> json) => PatternLoop(
         id: json['id'] as String,
-        firstDetected: DateTime.parse(json['firstDetected'] as String),
-        lastSeen: DateTime.parse(json['lastSeen'] as String),
+        firstDetected: DateTime.tryParse(json['firstDetected']?.toString() ?? '') ?? DateTime.now(),
+        lastSeen: DateTime.tryParse(json['lastSeen']?.toString() ?? '') ?? DateTime.now(),
         occurrenceCount: json['occurrenceCount'] as int,
         primaryArea: FocusArea.values.firstWhere(
           (e) => e.name == json['primaryArea'],

@@ -117,8 +117,8 @@ class DreamEntry {
 
   factory DreamEntry.fromJson(Map<String, dynamic> json) => DreamEntry(
     id: json['id'],
-    dreamDate: DateTime.parse(json['dreamDate']),
-    recordedAt: DateTime.parse(json['recordedAt']),
+    dreamDate: DateTime.tryParse(json['dreamDate']?.toString() ?? '') ?? DateTime.now(),
+    recordedAt: DateTime.tryParse(json['recordedAt']?.toString() ?? '') ?? DateTime.now(),
     title: json['title'],
     content: json['content'],
     detectedSymbols: List<String>.from(json['detectedSymbols'] ?? []),
@@ -166,7 +166,7 @@ class DreamEntry {
         ? Duration(minutes: json['sleepDuration'])
         : null,
     wakeTime: json['wakeTime'] != null
-        ? DateTime.parse(json['wakeTime'])
+        ? DateTime.tryParse(json['wakeTime'].toString())
         : null,
     lifeSituation: json['lifeSituation'],
   );
@@ -280,8 +280,8 @@ class RecurringPattern {
         patternType: json['patternType'],
         patternValue: json['patternValue'],
         occurrenceCount: json['occurrenceCount'],
-        firstSeen: DateTime.parse(json['firstSeen']),
-        lastSeen: DateTime.parse(json['lastSeen']),
+        firstSeen: DateTime.tryParse(json['firstSeen']?.toString() ?? '') ?? DateTime.now(),
+        lastSeen: DateTime.tryParse(json['lastSeen']?.toString() ?? '') ?? DateTime.now(),
         dreamIds: List<String>.from(json['dreamIds']),
         evolutionNote: json['evolutionNote'],
         significance: json['significance'] ?? 0.5,
@@ -335,8 +335,8 @@ class DreamSeries {
     title: json['title'],
     description: json['description'],
     dreamIds: List<String>.from(json['dreamIds']),
-    startDate: DateTime.parse(json['startDate']),
-    endDate: json['endDate'] != null ? DateTime.parse(json['endDate']) : null,
+    startDate: DateTime.tryParse(json['startDate']?.toString() ?? '') ?? DateTime.now(),
+    endDate: json['endDate'] != null ? DateTime.tryParse(json['endDate'].toString()) : null,
     isActive: json['isActive'] ?? true,
     commonSymbols: List<String>.from(json['commonSymbols'] ?? []),
     commonThemes: List<String>.from(json['commonThemes'] ?? []),
@@ -523,8 +523,8 @@ class PersonalSymbolEntry {
         personalMeaning: json['personalMeaning'],
         associatedEmotions: List<String>.from(json['associatedEmotions'] ?? []),
         associatedDreamIds: List<String>.from(json['associatedDreamIds'] ?? []),
-        firstAppeared: DateTime.parse(json['firstAppeared']),
-        lastAppeared: DateTime.parse(json['lastAppeared']),
+        firstAppeared: DateTime.tryParse(json['firstAppeared']?.toString() ?? '') ?? DateTime.now(),
+        lastAppeared: DateTime.tryParse(json['lastAppeared']?.toString() ?? '') ?? DateTime.now(),
         occurrenceCount: json['occurrenceCount'] ?? 1,
         evolutionNote: json['evolutionNote'],
         isShadowSymbol: json['isShadowSymbol'] ?? false,
@@ -1602,8 +1602,8 @@ class DreamJournalService {
       totalDaysRecording: totalDays,
       dreamsPerWeek: (dreams.length / (totalDays / 7)).clamp(0, 7),
       dreamsPerMonth: (dreams.length / (totalDays / 30)).clamp(0, 30),
-      longestStreak: streaks['longest']!,
-      currentStreak: streaks['current']!,
+      longestStreak: streaks['longest'] ?? 0,
+      currentStreak: streaks['current'] ?? 0,
       symbolFrequency: getSymbolFrequency(dreams),
       emotionDistribution: getEmotionDistribution(dreams),
       lucidPercentage:

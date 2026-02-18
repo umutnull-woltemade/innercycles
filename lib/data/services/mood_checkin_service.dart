@@ -26,7 +26,7 @@ class MoodEntry {
       };
 
   factory MoodEntry.fromJson(Map<String, dynamic> json) => MoodEntry(
-        date: DateTime.parse(json['date']),
+        date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
         mood: json['mood'] as int,
         emoji: json['emoji'] as String,
       );

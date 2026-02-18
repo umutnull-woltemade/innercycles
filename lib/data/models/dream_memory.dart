@@ -45,8 +45,8 @@ class Dream {
   factory Dream.fromJson(Map<String, dynamic> json) => Dream(
     id: json['id'],
     content: json['content'],
-    dreamDate: DateTime.parse(json['dreamDate']),
-    createdAt: DateTime.parse(json['createdAt']),
+    dreamDate: DateTime.tryParse(json['dreamDate']?.toString() ?? '') ?? DateTime.now(),
+    createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
     symbols: List<String>.from(json['symbols'] ?? []),
     dominantEmotion: json['dominantEmotion'],
     themes: List<String>.from(json['themes'] ?? []),
@@ -132,7 +132,7 @@ class DreamInterpretation {
         shareText: json['shareText'],
         reflectionQuestion: json['reflectionQuestion'],
         modelVersion: json['modelVersion'],
-        createdAt: DateTime.parse(json['createdAt']),
+        createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
       );
 }
 
@@ -217,9 +217,9 @@ class DreamMemory {
       json['milestones'] ??
           {'dreamCount': 0, 'longestStreak': 0, 'currentStreak': 0},
     ),
-    updatedAt: DateTime.parse(
-      json['updatedAt'] ?? DateTime.now().toIso8601String(),
-    ),
+    updatedAt: DateTime.tryParse(
+      (json['updatedAt'] ?? DateTime.now().toIso8601String()).toString(),
+    ) ?? DateTime.now(),
   );
 
   /// Get recurring symbols (appeared 3+ times)
@@ -265,8 +265,8 @@ class SymbolOccurrence {
   factory SymbolOccurrence.fromJson(Map<String, dynamic> json) =>
       SymbolOccurrence(
         count: json['count'] ?? 1,
-        firstSeen: DateTime.parse(json['firstSeen']),
-        lastSeen: DateTime.parse(json['lastSeen']),
+        firstSeen: DateTime.tryParse(json['firstSeen']?.toString() ?? '') ?? DateTime.now(),
+        lastSeen: DateTime.tryParse(json['lastSeen']?.toString() ?? '') ?? DateTime.now(),
         contexts: List<String>.from(json['contexts'] ?? []),
         emotionalAssociations: List<String>.from(
           json['emotionalAssociations'] ?? [],
@@ -361,7 +361,7 @@ class ThemeOccurrence {
       ThemeOccurrence(
         count: json['count'] ?? 1,
         evolution: List<String>.from(json['evolution'] ?? []),
-        lastSeen: DateTime.parse(json['lastSeen']),
+        lastSeen: DateTime.tryParse(json['lastSeen']?.toString() ?? '') ?? DateTime.now(),
       );
 }
 
@@ -398,10 +398,10 @@ class DreamMilestones {
         longestStreak: json['longestStreak'] ?? 0,
         currentStreak: json['currentStreak'] ?? 0,
         firstDreamAt: json['firstDreamAt'] != null
-            ? DateTime.parse(json['firstDreamAt'])
+            ? DateTime.tryParse(json['firstDreamAt'].toString())
             : null,
         lastDreamAt: json['lastDreamAt'] != null
-            ? DateTime.parse(json['lastDreamAt'])
+            ? DateTime.tryParse(json['lastDreamAt'].toString())
             : null,
         achievements: List<String>.from(json['achievements'] ?? []),
       );

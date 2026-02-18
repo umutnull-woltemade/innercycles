@@ -92,8 +92,8 @@ class HomepageNavigation {
         descriptionKey: 'navigation.cards.personal_profile_question.description',
       ),
       NavigationCard(
-        title: 'İlişkilerimde Uyumlu muyuz?',
-        description: 'İki kişinin dinamiklerini keşfet.',
+        title: 'İlişki Dinamiklerim',
+        description: 'İlişki kalıplarını keşfet.',
         route: Routes.insight,
         emoji: '💑',
         titleKey: 'navigation.cards.partner_compatible.title',
@@ -311,7 +311,7 @@ class ArchetypeNavigation {
       pageType: 'archetype',
       alsoViewed: [
         NavigationCard(
-          title: '${archetypeData['compatibleSign1']} ile Benzerliğin',
+          title: '${archetypeData['compatibleArchetype1']} ile Benzerliğin',
           description: 'Bu iki profil nasıl etkileşiyor?',
           route: Routes.insight,
           emoji: archetypeData['compatibleEmoji1'],
@@ -421,7 +421,7 @@ class ArchetypeNavigation {
   static const Map<String, Map<String, dynamic>> _archetypeData = {
     'pioneer': {
       'name': 'Öncü',
-      'compatibleSign1': 'Sahne Yıldızı',
+      'compatibleArchetype1': 'Sahne Yıldızı',
       'compatibleRoute1': 'performer',
       'compatibleEmoji1': '🌟',
       'elementBuddy1': 'Sahne Yıldızı',
@@ -433,7 +433,7 @@ class ArchetypeNavigation {
     },
     'builder': {
       'name': 'Kurucu',
-      'compatibleSign1': 'Analist',
+      'compatibleArchetype1': 'Analist',
       'compatibleRoute1': 'analyst',
       'compatibleEmoji1': '🔍',
       'elementBuddy1': 'Analist',
@@ -445,7 +445,7 @@ class ArchetypeNavigation {
     },
     'communicator': {
       'name': 'İletişimci',
-      'compatibleSign1': 'Dengeleyici',
+      'compatibleArchetype1': 'Dengeleyici',
       'compatibleRoute1': 'harmonizer',
       'compatibleEmoji1': '⚖️',
       'elementBuddy1': 'Dengeleyici',
@@ -457,7 +457,7 @@ class ArchetypeNavigation {
     },
     'nurturer': {
       'name': 'Koruyucu',
-      'compatibleSign1': 'Dönüştürücü',
+      'compatibleArchetype1': 'Dönüştürücü',
       'compatibleRoute1': 'transformer',
       'compatibleEmoji1': '🦋',
       'elementBuddy1': 'Dönüştürücü',
@@ -469,7 +469,7 @@ class ArchetypeNavigation {
     },
     'performer': {
       'name': 'Sahne Yıldızı',
-      'compatibleSign1': 'Öncü',
+      'compatibleArchetype1': 'Öncü',
       'compatibleRoute1': 'pioneer',
       'compatibleEmoji1': '🚀',
       'elementBuddy1': 'Öncü',
@@ -481,7 +481,7 @@ class ArchetypeNavigation {
     },
     'analyst': {
       'name': 'Analist',
-      'compatibleSign1': 'Kurucu',
+      'compatibleArchetype1': 'Kurucu',
       'compatibleRoute1': 'builder',
       'compatibleEmoji1': '🏗',
       'elementBuddy1': 'Kurucu',
@@ -493,7 +493,7 @@ class ArchetypeNavigation {
     },
     'harmonizer': {
       'name': 'Dengeleyici',
-      'compatibleSign1': 'İletişimci',
+      'compatibleArchetype1': 'İletişimci',
       'compatibleRoute1': 'communicator',
       'compatibleEmoji1': '💬',
       'elementBuddy1': 'İletişimci',
@@ -505,7 +505,7 @@ class ArchetypeNavigation {
     },
     'transformer': {
       'name': 'Dönüştürücü',
-      'compatibleSign1': 'Koruyucu',
+      'compatibleArchetype1': 'Koruyucu',
       'compatibleRoute1': 'nurturer',
       'compatibleEmoji1': '🛡',
       'elementBuddy1': 'Koruyucu',
@@ -517,7 +517,7 @@ class ArchetypeNavigation {
     },
     'explorer': {
       'name': 'Kaşif',
-      'compatibleSign1': 'Öncü',
+      'compatibleArchetype1': 'Öncü',
       'compatibleRoute1': 'pioneer',
       'compatibleEmoji1': '🚀',
       'elementBuddy1': 'Öncü',
@@ -529,7 +529,7 @@ class ArchetypeNavigation {
     },
     'achiever': {
       'name': 'Başarıcı',
-      'compatibleSign1': 'Kurucu',
+      'compatibleArchetype1': 'Kurucu',
       'compatibleRoute1': 'builder',
       'compatibleEmoji1': '🏗',
       'elementBuddy1': 'Kurucu',
@@ -541,7 +541,7 @@ class ArchetypeNavigation {
     },
     'visionary': {
       'name': 'Vizyoner',
-      'compatibleSign1': 'İletişimci',
+      'compatibleArchetype1': 'İletişimci',
       'compatibleRoute1': 'communicator',
       'compatibleEmoji1': '💬',
       'elementBuddy1': 'İletişimci',
@@ -553,7 +553,7 @@ class ArchetypeNavigation {
     },
     'dreamer': {
       'name': 'Hayalci',
-      'compatibleSign1': 'Koruyucu',
+      'compatibleArchetype1': 'Koruyucu',
       'compatibleRoute1': 'nurturer',
       'compatibleEmoji1': '🛡',
       'elementBuddy1': 'Koruyucu',

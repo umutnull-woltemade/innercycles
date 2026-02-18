@@ -292,7 +292,7 @@ class AttachmentQuizResult {
         orElse: () => AttachmentStyle.secure,
       ),
       scores: scoresMap,
-      dateTaken: DateTime.parse(json['dateTaken'] as String),
+      dateTaken: DateTime.tryParse(json['dateTaken']?.toString() ?? '') ?? DateTime.now(),
     );
   }
 

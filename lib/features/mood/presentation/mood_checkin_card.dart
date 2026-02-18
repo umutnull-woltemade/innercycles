@@ -121,33 +121,37 @@ class _CheckinView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: MoodCheckinService.moodOptions.map((option) {
               final (mood, emoji, labelEn, labelTr) = option;
-              return GestureDetector(
-                onTap: () => onSelect(mood, emoji),
-                child: Column(
-                  children: [
-                    Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: isDark
-                            ? Colors.white.withValues(alpha: 0.06)
-                            : Colors.black.withValues(alpha: 0.04),
+              return Semantics(
+                label: isEn ? labelEn : labelTr,
+                button: true,
+                child: GestureDetector(
+                  onTap: () => onSelect(mood, emoji),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: isDark
+                              ? Colors.white.withValues(alpha: 0.06)
+                              : Colors.black.withValues(alpha: 0.04),
+                        ),
+                        child: Center(
+                          child: Text(emoji, style: const TextStyle(fontSize: 24)),
+                        ),
                       ),
-                      child: Center(
-                        child: Text(emoji, style: const TextStyle(fontSize: 24)),
+                      const SizedBox(height: 4),
+                      Text(
+                        isEn ? labelEn : labelTr,
+                        style: TextStyle(
+                          fontSize: 10,
+                          color:
+                              isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      isEn ? labelEn : labelTr,
-                      style: TextStyle(
-                        fontSize: 10,
-                        color:
-                            isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               );
             }).toList(),

@@ -217,7 +217,7 @@ class CompatibilityProfile {
         result: json['result'] != null
             ? CompatibilityResult.fromJson(json['result'])
             : null,
-        createdAt: DateTime.parse(json['createdAt'] as String),
+        createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
       );
 }
 

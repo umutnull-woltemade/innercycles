@@ -834,8 +834,8 @@ class _GrowthDashboardScreenState
       ),
       _GrowthTool(
         icon: Icons.people_outline_rounded,
-        title: isEn ? 'Compatibility' : 'Uyumluluk',
-        subtitle: isEn ? 'Relationship dynamics' : 'İlişki dinamikleri',
+        title: isEn ? 'Relationship Reflection' : 'İlişki Yansıması',
+        subtitle: isEn ? 'Explore recurring dynamics' : 'Tekrarlayan dinamikleri keşfet',
         route: Routes.compatibilityReflection,
         color: AppColors.softCoral,
       ),

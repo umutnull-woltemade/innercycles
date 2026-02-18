@@ -72,7 +72,7 @@ class WellnessScore {
                     ))
                 .toList() ??
             [],
-        calculatedAt: DateTime.parse(json['calculatedAt'] as String),
+        calculatedAt: DateTime.tryParse(json['calculatedAt']?.toString() ?? '') ?? DateTime.now(),
       );
 }
 

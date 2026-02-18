@@ -868,42 +868,54 @@ class _MiniBarChart extends StatelessWidget {
     final normalised =
         values.map((v) => maxVal > 0 ? v / maxVal : 0.0).toList();
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: List.generate(values.length, (i) {
-        final height = 20.0 + normalised[i] * 80;
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-              width: 28,
-              height: height,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    accent.withValues(alpha: 0.8),
-                    accent.withValues(alpha: 0.3),
-                  ],
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0.0, end: 1.0),
+      duration: const Duration(milliseconds: 900),
+      curve: Curves.easeOutCubic,
+      builder: (context, progress, _) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: List.generate(values.length, (i) {
+            // Stagger each bar with a slight delay factor
+            final barProgress = (progress - (i * 0.08)).clamp(0.0, 1.0);
+            final height = 20.0 + normalised[i] * 80 * barProgress;
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: 28,
+                  height: height,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        accent.withValues(alpha: 0.8),
+                        accent.withValues(alpha: 0.3),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 6),
-            if (labels != null && i < labels!.length)
-              Text(
-                labels![i],
-                style: GoogleFonts.plusJakartaSans(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.textMuted,
-                ),
-              ),
-          ],
+                const SizedBox(height: 6),
+                if (labels != null && i < labels!.length)
+                  Opacity(
+                    opacity: barProgress,
+                    child: Text(
+                      labels![i],
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.textMuted,
+                      ),
+                    ),
+                  ),
+              ],
+            );
+          }),
         );
-      }),
+      },
     );
   }
 }

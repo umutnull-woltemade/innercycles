@@ -154,21 +154,22 @@ class KadimGirisTemplates {
     EmotionalTone? duygu,
   }) {
     // Öncelik: duygu > ay fazı > kategori > genel
-    if (duygu != null && duygusalTona[duygu]!.isNotEmpty) {
-      final liste = duygusalTona[duygu]!;
-      return liste[DateTime.now().millisecond % liste.length];
+    final duyguListe = duygu != null ? duygusalTona[duygu] : null;
+    if (duyguListe != null && duyguListe.isNotEmpty) {
+      return duyguListe[DateTime.now().millisecond % duyguListe.length];
     }
 
     if (ayFazi != null) {
       final key = ayFazi.name;
-      if (ayFazina.containsKey(key) && ayFazina[key]!.isNotEmpty) {
-        final liste = ayFazina[key]!;
-        return liste[DateTime.now().millisecond % liste.length];
+      final fazListe = ayFazina[key];
+      if (fazListe != null && fazListe.isNotEmpty) {
+        return fazListe[DateTime.now().millisecond % fazListe.length];
       }
     }
 
-    if (kategori != null && kategoriye[kategori]!.isNotEmpty) {
-      final liste = kategoriye[kategori]!;
+    final kategoriyeListe = kategori != null ? kategoriye[kategori] : null;
+    if (kategoriyeListe != null && kategoriyeListe.isNotEmpty) {
+      final liste = kategoriyeListe;
       return liste[DateTime.now().millisecond % liste.length];
     }
 

@@ -646,7 +646,7 @@ JSON FORMATI:
       EmotionalTone.ofke:
           'Boundaries have been pushed - power wants to be reclaimed.',
     };
-    return fallbacks[tone]!;
+    return fallbacks[tone] ?? fallbacks.values.first;
   }
 
   String _getDeeperMeaning(
@@ -676,7 +676,7 @@ JSON FORMATI:
       EmotionalTone.ofke:
           'Anger is the voice of suppressed power. Where do you want your power back?',
     };
-    return fallbacks[tone]!;
+    return fallbacks[tone] ?? fallbacks.values.first;
   }
 
   String _getShadowQuestion(
@@ -700,7 +700,7 @@ JSON FORMATI:
       EmotionalTone.donukluk: 'If you were to feel, what would you feel?',
       EmotionalTone.ofke: 'What pain lies beneath the anger?',
     };
-    return fallbacks[tone]!;
+    return fallbacks[tone] ?? fallbacks.values.first;
   }
 
   String _getIntegrationPath(
@@ -730,7 +730,7 @@ JSON FORMATI:
       EmotionalTone.ofke:
           'Express anger healthily: sports, writing, creativity. But don\'t hurt anyone.',
     };
-    return fallbacks[tone]!;
+    return fallbacks[tone] ?? fallbacks.values.first;
   }
 
   // Işık/Gölge mesajları
@@ -912,7 +912,7 @@ JSON FORMATI:
       EmotionalTone.donukluk: 'Avoid normalizing numbness.',
       EmotionalTone.ofke: 'Avoid projecting anger onto others.',
     };
-    return fallbacks[emotion]!;
+    return fallbacks[emotion] ?? fallbacks.values.first;
   }
 
   String _generateWhisperQuote({AppLanguage language = AppLanguage.tr}) {

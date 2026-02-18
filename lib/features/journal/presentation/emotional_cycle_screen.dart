@@ -521,7 +521,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
       child: Row(
         children: FocusArea.values.map((area) {
           final isVisible = _visibleAreas.contains(area);
-          final color = kAreaColors[area]!;
+          final color = kAreaColors[area] ?? AppColors.auroraStart;
           final label = isEn ? area.displayNameEn : area.displayNameTr;
           return Padding(
             padding: const EdgeInsets.only(right: AppConstants.spacingSm),

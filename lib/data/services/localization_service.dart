@@ -752,16 +752,16 @@ class L10n {
       AppLanguage.ar: 'جلسات تأمل غير محدودة',
     },
     'personality_compatibility': {
-      AppLanguage.en: 'Personality compatibility analysis',
-      AppLanguage.tr: 'Kişilik uyum analizi',
-      AppLanguage.el: 'Ανάλυση συμβατότητας προσωπικότητας',
-      AppLanguage.bg: 'Анализ на съвместимост на личността',
-      AppLanguage.ru: 'Анализ совместимости личности',
-      AppLanguage.zh: '性格兼容性分析',
-      AppLanguage.fr: 'Analyse de compatibilité de personnalité',
-      AppLanguage.de: 'Persönlichkeits-Kompatibilitätsanalyse',
-      AppLanguage.es: 'Análisis de compatibilidad de personalidad',
-      AppLanguage.ar: 'تحليل توافق الشخصية',
+      AppLanguage.en: 'Relationship reflection tool',
+      AppLanguage.tr: 'İlişki yansıma aracı',
+      AppLanguage.el: 'Εργαλείο αντανάκλασης σχέσεων',
+      AppLanguage.bg: 'Инструмент за размисъл върху взаимоотношенията',
+      AppLanguage.ru: 'Инструмент рефлексии отношений',
+      AppLanguage.zh: '关系反思工具',
+      AppLanguage.fr: 'Outil de réflexion relationnelle',
+      AppLanguage.de: 'Beziehungsreflexions-Tool',
+      AppLanguage.es: 'Herramienta de reflexión relacional',
+      AppLanguage.ar: 'أداة تأمل العلاقات',
     },
     'inner_wisdom_tools': {
       AppLanguage.en: 'Inner wisdom insights',
@@ -1280,8 +1280,8 @@ class L10n {
       AppLanguage.tr: 'Aşk Düşüncesi — InnerCycles',
     },
     'brand_compatibility': {
-      AppLanguage.en: 'Personality Compatibility — InnerCycles',
-      AppLanguage.tr: 'Kişilik Uyumu — InnerCycles',
+      AppLanguage.en: 'Relationship Reflection — InnerCycles',
+      AppLanguage.tr: 'İlişki Yansıması — InnerCycles',
     },
 
     // ============ NAVIGATION ============
