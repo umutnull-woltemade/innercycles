@@ -32,7 +32,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import 'widgets/cycle_wave_painter.dart';
 import 'widgets/cycle_summary_card.dart';
 import 'widgets/phase_ring.dart';
-import 'widgets/shift_forecast_card.dart';
+import 'widgets/shift_outlook_card.dart';
 import 'widgets/pattern_loop_analyzer.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -492,8 +492,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
 
                 const SizedBox(height: AppConstants.spacingLg),
 
-                // SHIFT FORECAST (Premium)
-                _buildShiftForecastSection(
+                // SHIFT OUTLOOK (Premium)
+                _buildShiftOutlookSection(
                   context,
                   isDark,
                   isEn,
@@ -881,16 +881,16 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
   }
 
   // ══════════════════════════════════════════════════════════════════════════
-  // SHIFT FORECAST (Premium)
+  // SHIFT OUTLOOK (Premium)
   // ══════════════════════════════════════════════════════════════════════════
 
-  Widget _buildShiftForecastSection(
+  Widget _buildShiftOutlookSection(
     BuildContext context,
     bool isDark,
     bool isEn,
   ) {
     final isPremium = ref.watch(isPremiumUserProvider);
-    final forecastAsync = ref.watch(shiftForecastProvider);
+    final outlookAsync = ref.watch(shiftOutlookProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -927,14 +927,14 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         ),
         const SizedBox(height: AppConstants.spacingMd),
         if (isPremium)
-          forecastAsync.when(
+          outlookAsync.when(
             loading: () => const SizedBox(
               height: 80,
               child: Center(child: CupertinoActivityIndicator()),
             ),
             error: (_, _) => const SizedBox.shrink(),
-            data: (forecast) => ShiftForecastCard(
-              forecast: forecast,
+            data: (outlook) => ShiftOutlookCard(
+              outlook: outlook,
               isDark: isDark,
               isEn: isEn,
             ),

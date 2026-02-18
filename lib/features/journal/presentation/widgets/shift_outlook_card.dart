@@ -1,5 +1,5 @@
 // ════════════════════════════════════════════════════════════════════════════
-// SHIFT FORECAST CARD - Upcoming Shift Window Visualization
+// SHIFT OUTLOOK CARD - Upcoming Shift Window Visualization
 // ════════════════════════════════════════════════════════════════════════════
 // Native card showing upcoming shift window with supporting signals.
 // HIG-compliant: native card elevation, clear primary action focus,
@@ -9,18 +9,18 @@
 import 'package:flutter/material.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../../data/services/shift_forecast_service.dart';
+import '../../../../data/services/shift_outlook_service.dart';
 import '../../../../data/services/emotional_cycle_service.dart';
 
-class ShiftForecastCard extends StatelessWidget {
-  final ShiftForecast forecast;
+class ShiftOutlookCard extends StatelessWidget {
+  final ShiftOutlook outlook;
   final bool isDark;
   final bool isEn;
   final VoidCallback? onTapDetails;
 
-  const ShiftForecastCard({
+  const ShiftOutlookCard({
     super.key,
-    required this.forecast,
+    required this.outlook,
     required this.isDark,
     required this.isEn,
     this.onTapDetails,
@@ -28,11 +28,11 @@ class ShiftForecastCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!forecast.hasValidForecast) {
-      return _buildNoForecast(context);
+    if (!outlook.hasValidOutlook) {
+      return _buildNoOutlook(context);
     }
 
-    final window = forecast.primaryShiftWindow!;
+    final window = outlook.primaryShiftWindow!;
     final phaseColor = _phaseColor(window.suggestedNextPhase);
     final currentColor = _phaseColor(window.currentPhase);
 
@@ -172,7 +172,7 @@ class ShiftForecastCard extends StatelessWidget {
           ),
 
           // Micro signals
-          if (forecast.activeSignals.isNotEmpty) ...[
+          if (outlook.activeSignals.isNotEmpty) ...[
             const SizedBox(height: AppConstants.spacingMd),
             Text(
               isEn ? 'Supporting Signals' : 'Destekleyen Sinyaller',
@@ -183,7 +183,7 @@ class ShiftForecastCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppConstants.spacingSm),
-            ...forecast.activeSignals.take(3).map((signal) {
+            ...outlook.activeSignals.take(3).map((signal) {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 6),
                 child: Row(
@@ -282,7 +282,7 @@ class ShiftForecastCard extends StatelessWidget {
     );
   }
 
-  Widget _buildNoForecast(BuildContext context) {
+  Widget _buildNoOutlook(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -335,13 +335,13 @@ class ShiftForecastCard extends StatelessWidget {
     }
   }
 
-  Color _confidenceColor(ForecastConfidence confidence) {
+  Color _confidenceColor(OutlookConfidence confidence) {
     switch (confidence) {
-      case ForecastConfidence.high:
+      case OutlookConfidence.high:
         return AppColors.success;
-      case ForecastConfidence.moderate:
+      case OutlookConfidence.moderate:
         return AppColors.celestialGold;
-      case ForecastConfidence.low:
+      case OutlookConfidence.low:
         return AppColors.warning;
     }
   }

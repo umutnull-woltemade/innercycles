@@ -49,7 +49,7 @@ import '../services/habit_suggestion_service.dart';
 import '../services/monthly_theme_service.dart';
 import '../services/app_lock_service.dart';
 import '../services/pattern_loop_service.dart';
-import '../services/shift_forecast_service.dart';
+import '../services/shift_outlook_service.dart';
 import '../services/emotional_cycle_service.dart';
 import '../models/journal_entry.dart';
 import '../models/cross_correlation_result.dart';
@@ -712,19 +712,19 @@ final patternLoopAnalysisProvider = FutureProvider<PatternLoopAnalysis>((
 });
 
 // =============================================================================
-// SHIFT FORECAST SERVICE PROVIDER (Emotion Intelligence — Premium)
+// SHIFT OUTLOOK SERVICE PROVIDER (Emotion Intelligence — Premium)
 // =============================================================================
 
-final shiftForecastServiceProvider = FutureProvider<ShiftForecastService>((
+final shiftOutlookServiceProvider = FutureProvider<ShiftOutlookService>((
   ref,
 ) async {
   final journalService = await ref.watch(journalServiceProvider.future);
-  return ShiftForecastService(journalService);
+  return ShiftOutlookService(journalService);
 });
 
-final shiftForecastProvider = FutureProvider<ShiftForecast>((ref) async {
-  final service = await ref.watch(shiftForecastServiceProvider.future);
-  return service.generateForecast();
+final shiftOutlookProvider = FutureProvider<ShiftOutlook>((ref) async {
+  final service = await ref.watch(shiftOutlookServiceProvider.future);
+  return service.generateOutlook();
 });
 
 // =============================================================================

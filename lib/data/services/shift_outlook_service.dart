@@ -1,10 +1,10 @@
 // ════════════════════════════════════════════════════════════════════════════
-// SHIFT FORECAST ENGINE - Emotional Shift Window Detection
+// SHIFT OUTLOOK ENGINE - Emotional Shift Window Detection
 // ════════════════════════════════════════════════════════════════════════════
 // Analyzes emotional cycle data to detect micro-signals and generate
 // shift window suggestions. All output uses safe, non-predictive language.
 //
-// PREMIUM FEATURE: This service powers forecast intelligence.
+// PREMIUM FEATURE: This service powers outlook intelligence.
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:math' as math;
@@ -16,30 +16,30 @@ import 'emotional_cycle_service.dart';
 // DATA MODELS
 // ══════════════════════════════════════════════════════════════════════════
 
-/// Confidence level for a forecast
-enum ForecastConfidence {
+/// Confidence level for an outlook
+enum OutlookConfidence {
   low,
   moderate,
   high;
 
   String labelEn() {
     switch (this) {
-      case ForecastConfidence.low:
+      case OutlookConfidence.low:
         return 'Low';
-      case ForecastConfidence.moderate:
+      case OutlookConfidence.moderate:
         return 'Moderate';
-      case ForecastConfidence.high:
+      case OutlookConfidence.high:
         return 'High';
     }
   }
 
   String labelTr() {
     switch (this) {
-      case ForecastConfidence.low:
+      case OutlookConfidence.low:
         return 'Düşük';
-      case ForecastConfidence.moderate:
+      case OutlookConfidence.moderate:
         return 'Orta';
-      case ForecastConfidence.high:
+      case OutlookConfidence.high:
         return 'Yüksek';
     }
   }
@@ -69,7 +69,7 @@ class ShiftWindow {
   final EmotionalPhase currentPhase;
   final EmotionalPhase suggestedNextPhase;
   final int estimatedDaysUntilShift;
-  final ForecastConfidence confidence;
+  final OutlookConfidence confidence;
   final List<MicroSignal> supportingSignals;
 
   /// Safe-language description
@@ -93,8 +93,8 @@ class ShiftWindow {
   });
 }
 
-/// Full shift forecast result
-class ShiftForecast {
+/// Full shift outlook result
+class ShiftOutlook {
   final EmotionalPhase? currentPhase;
   final EmotionalArc? currentArc;
   final List<MicroSignal> activeSignals;
@@ -102,7 +102,7 @@ class ShiftForecast {
   final List<ShiftWindow> alternativeWindows;
   final int dataPointsUsed;
 
-  const ShiftForecast({
+  const ShiftOutlook({
     this.currentPhase,
     this.currentArc,
     required this.activeSignals,
@@ -111,7 +111,7 @@ class ShiftForecast {
     required this.dataPointsUsed,
   });
 
-  bool get hasValidForecast =>
+  bool get hasValidOutlook =>
       primaryShiftWindow != null && activeSignals.isNotEmpty;
 }
 
@@ -119,23 +119,23 @@ class ShiftForecast {
 // SHIFT FORECAST SERVICE
 // ══════════════════════════════════════════════════════════════════════════
 
-class ShiftForecastService {
+class ShiftOutlookService {
   final JournalService _journalService;
   static const int minimumEntries = 14;
 
-  ShiftForecastService(this._journalService);
+  ShiftOutlookService(this._journalService);
 
-  /// Whether enough data exists for forecasting
+  /// Whether enough data exists for outlook analysis
   bool hasEnoughData() => _journalService.entryCount >= minimumEntries;
 
   /// How many more entries needed
   int entriesNeeded() =>
       math.max(0, minimumEntries - _journalService.entryCount);
 
-  /// Generate the shift forecast
-  ShiftForecast generateForecast() {
+  /// Generate the shift outlook
+  ShiftOutlook generateOutlook() {
     if (!hasEnoughData()) {
-      return const ShiftForecast(activeSignals: [], dataPointsUsed: 0);
+      return const ShiftOutlook(activeSignals: [], dataPointsUsed: 0);
     }
 
     final cycleService = EmotionalCycleService(_journalService);
@@ -150,7 +150,7 @@ class ShiftForecastService {
     // Sort windows by confidence
     windows.sort((a, b) => b.confidence.index.compareTo(a.confidence.index));
 
-    return ShiftForecast(
+    return ShiftOutlook(
       currentPhase: analysis.overallPhase,
       currentArc: analysis.overallArc,
       activeSignals: signals,
@@ -393,19 +393,19 @@ class ShiftForecastService {
             currentPhase: currentPhase,
             suggestedNextPhase: altPhase,
             estimatedDaysUntilShift: estimatedDays + 2,
-            confidence: ForecastConfidence.low,
+            confidence: OutlookConfidence.low,
             supportingSignals: signals.where((s) => s.magnitude > 0.5).toList(),
             descriptionEn: _buildShiftDescriptionEn(
               currentPhase,
               altPhase,
               estimatedDays + 2,
-              ForecastConfidence.low,
+              OutlookConfidence.low,
             ),
             descriptionTr: _buildShiftDescriptionTr(
               currentPhase,
               altPhase,
               estimatedDays + 2,
-              ForecastConfidence.low,
+              OutlookConfidence.low,
             ),
             actionEn: _buildActionEn(currentPhase, altPhase),
             actionTr: _buildActionTr(currentPhase, altPhase),
@@ -468,7 +468,7 @@ class ShiftForecastService {
     return (lengths.reduce((a, b) => a + b) / lengths.length).round();
   }
 
-  ForecastConfidence _calculateConfidence(
+  OutlookConfidence _calculateConfidence(
     EmotionalCycleAnalysis analysis,
     List<MicroSignal> signals,
   ) {
@@ -496,9 +496,9 @@ class ShiftForecastService {
     // Phase transitions detected increase confidence
     if (analysis.recentTransitions.isNotEmpty) score += 1;
 
-    if (score >= 5) return ForecastConfidence.high;
-    if (score >= 3) return ForecastConfidence.moderate;
-    return ForecastConfidence.low;
+    if (score >= 5) return OutlookConfidence.high;
+    if (score >= 3) return OutlookConfidence.moderate;
+    return OutlookConfidence.low;
   }
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -509,12 +509,12 @@ class ShiftForecastService {
     EmotionalPhase current,
     EmotionalPhase next,
     int days,
-    ForecastConfidence confidence,
+    OutlookConfidence confidence,
   ) {
     final qualifier = switch (confidence) {
-      ForecastConfidence.high => 'Your patterns suggest',
-      ForecastConfidence.moderate => 'Based on your recent entries',
-      ForecastConfidence.low => 'Early signals hint that',
+      OutlookConfidence.high => 'Your patterns suggest',
+      OutlookConfidence.moderate => 'Based on your recent entries',
+      OutlookConfidence.low => 'Early signals hint that',
     };
 
     return '$qualifier a shift from ${current.labelEn()} toward '
@@ -525,12 +525,12 @@ class ShiftForecastService {
     EmotionalPhase current,
     EmotionalPhase next,
     int days,
-    ForecastConfidence confidence,
+    OutlookConfidence confidence,
   ) {
     final qualifier = switch (confidence) {
-      ForecastConfidence.high => 'Kalıpların',
-      ForecastConfidence.moderate => 'Son kayıtlarına göre',
-      ForecastConfidence.low => 'Erken sinyaller',
+      OutlookConfidence.high => 'Kalıpların',
+      OutlookConfidence.moderate => 'Son kayıtlarına göre',
+      OutlookConfidence.low => 'Erken sinyaller',
     };
 
     return '$qualifier ${current.labelTr()} evresinden ${next.labelTr()} '
