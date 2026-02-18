@@ -19,6 +19,7 @@ import 'data/services/daily_hook_service.dart';
 import 'data/services/journal_service.dart';
 import 'data/services/admin_auth_service.dart';
 import 'data/services/admin_analytics_service.dart';
+import 'data/services/analytics_service.dart';
 import 'data/services/web_error_service.dart';
 import 'data/services/l10n_service.dart';
 import 'data/services/sync_service.dart';
@@ -127,6 +128,15 @@ class _AppInitializerState extends State<AppInitializer> {
     } catch (e) {
       if (kDebugMode) {
         debugPrint('⚠️ Supabase initialization failed: $e');
+      }
+    }
+
+    // Initialize analytics (after Supabase so it can detect the connection)
+    try {
+      await AnalyticsService().initialize();
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('⚠️ AnalyticsService init failed: $e');
       }
     }
 

@@ -1,26 +1,56 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:uuid/uuid.dart';
 
-/// Analytics service for tracking events and user behavior
-/// Logs events locally in debug mode, can be extended for Supabase analytics
+/// Analytics service for tracking events and user behavior.
+/// Buffers events locally and flushes to Supabase in batches.
 class AnalyticsService {
   static final AnalyticsService _instance = AnalyticsService._internal();
   factory AnalyticsService() => _instance;
   AnalyticsService._internal();
 
+  static const _deviceIdKey = 'analytics_device_id';
+  static const _batchSize = 25;
+  static const _flushInterval = Duration(seconds: 60);
+
   bool _isInitialized = false;
+  String? _deviceId;
+  String? _sessionId;
+  final List<Map<String, dynamic>> _buffer = [];
+  Timer? _flushTimer;
+  bool _supabaseAvailable = false;
 
   /// Initialize analytics
   Future<void> initialize() async {
     if (_isInitialized) return;
 
     try {
-      // Analytics initialization
-      // Events are logged locally in debug mode
-      // In production, events can be sent to Supabase
+      final prefs = await SharedPreferences.getInstance();
+      _deviceId = prefs.getString(_deviceIdKey);
+      if (_deviceId == null) {
+        _deviceId = const Uuid().v4();
+        await prefs.setString(_deviceIdKey, _deviceId!);
+      }
+      _sessionId = const Uuid().v4();
+
+      // Check if Supabase is configured
+      try {
+        Supabase.instance.client;
+        _supabaseAvailable = true;
+      } catch (_) {
+        _supabaseAvailable = false;
+      }
+
+      _flushTimer = Timer.periodic(_flushInterval, (_) => flush());
+
       _isInitialized = true;
       if (kDebugMode) {
-        debugPrint('AnalyticsService: Initialized');
+        debugPrint(
+          'AnalyticsService: Initialized (device=$_deviceId, supabase=$_supabaseAvailable)',
+        );
       }
     } catch (e) {
       if (kDebugMode) {
@@ -35,8 +65,49 @@ class AnalyticsService {
       debugPrint('Analytics Event: $name ${parameters ?? {}}');
     }
 
-    // In production, events can be sent to Supabase analytics table
-    // For now, events are logged locally in debug mode
+    _buffer.add({
+      'device_id': _deviceId ?? 'unknown',
+      'user_id': _supabaseAvailable
+          ? Supabase.instance.client.auth.currentUser?.id
+          : null,
+      'event_name': name,
+      'properties': parameters ?? {},
+      'session_id': _sessionId,
+      'created_at': DateTime.now().toUtc().toIso8601String(),
+    });
+
+    if (_buffer.length >= _batchSize) {
+      flush();
+    }
+  }
+
+  /// Flush buffered events to Supabase
+  Future<void> flush() async {
+    if (_buffer.isEmpty || !_supabaseAvailable) return;
+
+    final batch = List<Map<String, dynamic>>.from(_buffer);
+    _buffer.clear();
+
+    try {
+      await Supabase.instance.client.from('analytics_events').insert(batch);
+      if (kDebugMode) {
+        debugPrint('AnalyticsService: Flushed ${batch.length} events');
+      }
+    } catch (e) {
+      // Re-add failed events to buffer for retry (cap at 500 to avoid OOM)
+      if (_buffer.length + batch.length <= 500) {
+        _buffer.insertAll(0, batch);
+      }
+      if (kDebugMode) {
+        debugPrint('AnalyticsService: Flush failed - $e');
+      }
+    }
+  }
+
+  /// Dispose resources (call on app shutdown)
+  void dispose() {
+    _flushTimer?.cancel();
+    flush(); // Final flush attempt
   }
 
   /// Log screen view
@@ -104,7 +175,6 @@ class AnalyticsService {
     if (kDebugMode) {
       debugPrint('Analytics User Property: $name = $value');
     }
-    // User properties can be stored in Supabase profiles table
   }
 
   /// Set user ID (for premium users)
@@ -112,7 +182,6 @@ class AnalyticsService {
     if (kDebugMode) {
       debugPrint('Analytics User ID: $userId');
     }
-    // User ID is managed by Supabase Auth
   }
 
   // ─────────────────────────────────────────────────────────────────────────
@@ -411,5 +480,7 @@ class AnalyticsService {
 
 /// Analytics service provider
 final analyticsServiceProvider = Provider<AnalyticsService>((ref) {
-  return AnalyticsService();
+  final service = AnalyticsService();
+  ref.onDispose(() => service.dispose());
+  return service;
 });
