@@ -34,7 +34,8 @@ class _AffirmationCardState extends ConsumerState<AffirmationCard> {
       error: (_, _) => const SizedBox.shrink(),
       data: (service) {
         _currentAffirmation ??= service.getDailyAffirmation();
-        final affirmation = _currentAffirmation!;
+        final affirmation = _currentAffirmation;
+        if (affirmation == null) return const SizedBox.shrink();
         _isFavorite = service.isFavorite(affirmation.id);
 
         return GestureDetector(
@@ -280,7 +281,8 @@ class _AffirmationCardState extends ConsumerState<AffirmationCard> {
     HapticFeedback.lightImpact();
 
     // Cycle through affirmations in the same category
-    final current = _currentAffirmation!;
+    final current = _currentAffirmation;
+    if (current == null) return;
     final categoryAffirmations = service.getAllByCategory(current.category);
     final currentIndex = categoryAffirmations.indexWhere((a) => a.id == current.id);
     final nextIndex = (currentIndex + 1) % categoryAffirmations.length;

@@ -487,7 +487,7 @@ class ContentEngineService {
           final entryDate = DateTime.tryParse(entry['date']?.toString() ?? '');
           return entryDate?.isAfter(cutoff) ?? false;
         })
-        .map<String>((entry) => entry['archetype'] as String)
+        .map<String>((entry) => entry['archetype'] as String? ?? '')
         .toList();
   }
 
@@ -538,7 +538,7 @@ class ContentEngineService {
           final entryDate = DateTime.tryParse(entry['date']?.toString() ?? '');
           return entryDate?.isAfter(cutoff) ?? false;
         })
-        .map<String>((entry) => entry['combo'] as String)
+        .map<String>((entry) => entry['combo'] as String? ?? '')
         .toList();
   }
 
@@ -585,7 +585,7 @@ class ContentEngineService {
           final entryDate = DateTime.tryParse(entry['date']?.toString() ?? '');
           return entryDate?.isAfter(cutoff) ?? false;
         })
-        .map<String>((entry) => entry['question'] as String)
+        .map<String>((entry) => entry['question'] as String? ?? '')
         .toList();
   }
 

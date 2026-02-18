@@ -69,11 +69,11 @@ class BlindSpot {
       };
 
   factory BlindSpot.fromJson(Map<String, dynamic> json) => BlindSpot(
-        id: json['id'] as String,
-        typeEn: json['typeEn'] as String,
-        typeTr: json['typeTr'] as String,
-        insightEn: json['insightEn'] as String,
-        insightTr: json['insightTr'] as String,
+        id: json['id'] as String? ?? '',
+        typeEn: json['typeEn'] as String? ?? '',
+        typeTr: json['typeTr'] as String? ?? '',
+        insightEn: json['insightEn'] as String? ?? '',
+        insightTr: json['insightTr'] as String? ?? '',
         severity: BlindSpotSeverity.values.firstWhere(
           (e) => e.name == json['severity'],
           orElse: () => BlindSpotSeverity.low,
@@ -115,15 +115,15 @@ class BlindSpotReport {
   factory BlindSpotReport.fromJson(Map<String, dynamic> json) =>
       BlindSpotReport(
         generatedDate: DateTime.tryParse(json['generatedDate']?.toString() ?? '') ?? DateTime.now(),
-        blindSpots: (json['blindSpots'] as List)
-            .map((b) => BlindSpot.fromJson(b as Map<String, dynamic>))
+        blindSpots: (json['blindSpots'] as List? ?? [])
+            .map((b) => BlindSpot.fromJson(b as Map<String, dynamic>? ?? {}))
             .toList(),
-        overallInsightEn: json['overallInsightEn'] as String,
-        overallInsightTr: json['overallInsightTr'] as String,
+        overallInsightEn: json['overallInsightEn'] as String? ?? '',
+        overallInsightTr: json['overallInsightTr'] as String? ?? '',
         growthSuggestionsEn:
-            List<String>.from(json['growthSuggestionsEn'] as List),
+            List<String>.from(json['growthSuggestionsEn'] as List? ?? []),
         growthSuggestionsTr:
-            List<String>.from(json['growthSuggestionsTr'] as List),
+            List<String>.from(json['growthSuggestionsTr'] as List? ?? []),
       );
 }
 

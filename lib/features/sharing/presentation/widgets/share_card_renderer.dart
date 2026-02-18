@@ -221,7 +221,9 @@ class _GradientBackground extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: colors.length >= 2
               ? colors
-              : [colors.first, colors.first.withValues(alpha: 0.8)],
+              : colors.isNotEmpty
+                  ? [colors.first, colors.first.withValues(alpha: 0.8)]
+                  : [const Color(0xFF1A1A2E), const Color(0xFF16213E)],
         ),
       ),
     );

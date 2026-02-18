@@ -169,25 +169,25 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
               hasScrollBody: false,
               child: Center(child: CircularProgressIndicator()),
             )
-          else
+          else if (_report case final report?)
             SliverPadding(
               padding: const EdgeInsets.all(16),
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
                   _OverallInsightCard(
-                    report: _report!,
+                    report: report,
                     isDark: widget.isDark,
                     isEn: widget.isEn,
                   ),
                   const SizedBox(height: 20),
                   _BlindSpotsList(
-                    spots: _report!.blindSpots,
+                    spots: report.blindSpots,
                     isDark: widget.isDark,
                     isEn: widget.isEn,
                   ),
                   const SizedBox(height: 20),
                   _GrowthSuggestionsCard(
-                    report: _report!,
+                    report: report,
                     isDark: widget.isDark,
                     isEn: widget.isEn,
                   ),
@@ -198,7 +198,7 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
                   ),
                   const SizedBox(height: 20),
                   _ShareInsightsButton(
-                    spotCount: _report!.blindSpots.length,
+                    spotCount: report.blindSpots.length,
                     isDark: widget.isDark,
                     isEn: widget.isEn,
                   ),

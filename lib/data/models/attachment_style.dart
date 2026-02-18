@@ -277,13 +277,13 @@ class AttachmentQuizResult {
   /// Deserialise from JSON
   factory AttachmentQuizResult.fromJson(Map<String, dynamic> json) {
     final scoresMap = <AttachmentStyle, double>{};
-    final rawScores = json['scores'] as Map<String, dynamic>;
+    final rawScores = json['scores'] as Map<String, dynamic>? ?? {};
     for (final entry in rawScores.entries) {
       final style = AttachmentStyle.values.firstWhere(
         (s) => s.name == entry.key,
         orElse: () => AttachmentStyle.secure,
       );
-      scoresMap[style] = (entry.value as num).toDouble();
+      scoresMap[style] = (entry.value as num? ?? 0).toDouble();
     }
 
     return AttachmentQuizResult(

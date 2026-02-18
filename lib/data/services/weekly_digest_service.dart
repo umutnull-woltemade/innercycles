@@ -63,19 +63,19 @@ class WeeklyDigest {
   factory WeeklyDigest.fromJson(Map<String, dynamic> json) => WeeklyDigest(
         weekStart: DateTime.tryParse(json['weekStart']?.toString() ?? '') ?? DateTime.now(),
         weekEnd: DateTime.tryParse(json['weekEnd']?.toString() ?? '') ?? DateTime.now(),
-        entryCount: json['entryCount'] as int,
-        avgMood: (json['avgMood'] as num).toDouble(),
-        topFocusAreaEn: json['topFocusAreaEn'] as String,
-        topFocusAreaTr: json['topFocusAreaTr'] as String,
-        moodTrendEn: json['moodTrendEn'] as String,
-        moodTrendTr: json['moodTrendTr'] as String,
-        highlightEn: json['highlightEn'] as String,
-        highlightTr: json['highlightTr'] as String,
-        growthNudgeEn: json['growthNudgeEn'] as String,
-        growthNudgeTr: json['growthNudgeTr'] as String,
-        streakDays: json['streakDays'] as int,
-        areaAverages: (json['areaAverages'] as Map<String, dynamic>)
-            .map((k, v) => MapEntry(k, (v as num).toDouble())),
+        entryCount: json['entryCount'] as int? ?? 0,
+        avgMood: (json['avgMood'] as num? ?? 0).toDouble(),
+        topFocusAreaEn: json['topFocusAreaEn'] as String? ?? '',
+        topFocusAreaTr: json['topFocusAreaTr'] as String? ?? '',
+        moodTrendEn: json['moodTrendEn'] as String? ?? '',
+        moodTrendTr: json['moodTrendTr'] as String? ?? '',
+        highlightEn: json['highlightEn'] as String? ?? '',
+        highlightTr: json['highlightTr'] as String? ?? '',
+        growthNudgeEn: json['growthNudgeEn'] as String? ?? '',
+        growthNudgeTr: json['growthNudgeTr'] as String? ?? '',
+        streakDays: json['streakDays'] as int? ?? 0,
+        areaAverages: (json['areaAverages'] as Map<String, dynamic>? ?? {})
+            .map((k, v) => MapEntry(k, (v as num? ?? 0).toDouble())),
       );
 }
 

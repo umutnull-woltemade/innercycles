@@ -71,9 +71,9 @@ class LoopStage {
       };
 
   factory LoopStage.fromJson(Map<String, dynamic> json) => LoopStage(
-        id: json['id'] as String,
-        labelEn: json['labelEn'] as String,
-        labelTr: json['labelTr'] as String,
+        id: json['id'] as String? ?? '',
+        labelEn: json['labelEn'] as String? ?? '',
+        labelTr: json['labelTr'] as String? ?? '',
         descriptionEn: json['descriptionEn'] as String?,
         descriptionTr: json['descriptionTr'] as String?,
       );
@@ -146,10 +146,10 @@ class PatternLoop {
       };
 
   factory PatternLoop.fromJson(Map<String, dynamic> json) => PatternLoop(
-        id: json['id'] as String,
+        id: json['id'] as String? ?? '',
         firstDetected: DateTime.tryParse(json['firstDetected']?.toString() ?? '') ?? DateTime.now(),
         lastSeen: DateTime.tryParse(json['lastSeen']?.toString() ?? '') ?? DateTime.now(),
-        occurrenceCount: json['occurrenceCount'] as int,
+        occurrenceCount: json['occurrenceCount'] as int? ?? 0,
         primaryArea: FocusArea.values.firstWhere(
           (e) => e.name == json['primaryArea'],
           orElse: () => FocusArea.energy,
@@ -164,17 +164,17 @@ class PatternLoop {
           (e) => e.name == json['reinforcementType'],
           orElse: () => ReinforcementType.neutral,
         ),
-        strength: (json['strength'] as num).toDouble(),
-        trigger: LoopStage.fromJson(json['trigger'] as Map<String, dynamic>),
+        strength: (json['strength'] as num? ?? 0).toDouble(),
+        trigger: LoopStage.fromJson(json['trigger'] as Map<String, dynamic>? ?? {}),
         emotionalShift:
-            LoopStage.fromJson(json['emotionalShift'] as Map<String, dynamic>),
+            LoopStage.fromJson(json['emotionalShift'] as Map<String, dynamic>? ?? {}),
         behavior:
-            LoopStage.fromJson(json['behavior'] as Map<String, dynamic>),
-        outcome: LoopStage.fromJson(json['outcome'] as Map<String, dynamic>),
+            LoopStage.fromJson(json['behavior'] as Map<String, dynamic>? ?? {}),
+        outcome: LoopStage.fromJson(json['outcome'] as Map<String, dynamic>? ?? {}),
         reinforcement:
-            LoopStage.fromJson(json['reinforcement'] as Map<String, dynamic>),
-        insightEn: json['insightEn'] as String,
-        insightTr: json['insightTr'] as String,
+            LoopStage.fromJson(json['reinforcement'] as Map<String, dynamic>? ?? {}),
+        insightEn: json['insightEn'] as String? ?? '',
+        insightTr: json['insightTr'] as String? ?? '',
         actionEn: json['actionEn'] as String?,
         actionTr: json['actionTr'] as String?,
       );

@@ -107,10 +107,10 @@ class ArchetypeSnapshot {
 
   factory ArchetypeSnapshot.fromJson(Map<String, dynamic> json) =>
       ArchetypeSnapshot(
-        month: json['month'] as int,
-        year: json['year'] as int,
-        archetypeId: json['archetypeId'] as String,
-        confidence: (json['confidence'] as num).toDouble(),
+        month: json['month'] as int? ?? 1,
+        year: json['year'] as int? ?? 2024,
+        archetypeId: json['archetypeId'] as String? ?? '',
+        confidence: (json['confidence'] as num? ?? 0).toDouble(),
       );
 }
 

@@ -236,7 +236,7 @@ class UpgradeTriggerService {
 
   /// Get the localized prompt content for a given trigger.
   UpgradePrompt getPromptForTrigger(UpgradeTrigger trigger) {
-    return _prompts[trigger]!;
+    return _prompts[trigger] ?? _prompts.values.first;
   }
 
   static final Map<UpgradeTrigger, UpgradePrompt> _prompts = {

@@ -45,7 +45,7 @@ class AdminAnalyticsService {
     if (existingIndex >= 0) {
       // Update existing
       events[existingIndex]['count'] =
-          (events[existingIndex]['count'] as int) + 1;
+          (events[existingIndex]['count'] as int? ?? 0) + 1;
       events[existingIndex]['lastFired'] = now.toIso8601String();
 
       // Update daily count
@@ -111,8 +111,8 @@ class AdminAnalyticsService {
     for (final e in _getEvents()) {
       try {
         results.add(EventLog(
-          name: e['name'] as String,
-          count: e['count'] as int,
+          name: e['name'] as String? ?? '',
+          count: e['count'] as int? ?? 0,
           lastFired: DateTime.parse(e['lastFired'] as String),
           firstFired: DateTime.parse(e['firstFired'] as String),
         ));

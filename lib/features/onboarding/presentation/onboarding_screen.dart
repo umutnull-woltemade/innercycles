@@ -333,7 +333,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     final language = ref.watch(languageProvider);
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0D0D1A),
+      backgroundColor: Theme.of(context).brightness == Brightness.dark
+          ? const Color(0xFF0D0D1A)
+          : AppColors.lightBackground,
       body: CosmicBackground(
         child: SafeArea(
           child: Column(
@@ -909,7 +911,7 @@ class _FirstCyclePage extends StatelessWidget {
                 final index = entry.key;
                 final area = entry.value;
                 final isSelected = selectedFocusArea == area;
-                final color = _focusColors[area]!;
+                final color = _focusColors[area] ?? const Color(0xFF667EEA);
 
                 return GestureDetector(
                   onTap: () {

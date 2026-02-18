@@ -60,9 +60,9 @@ class JournalPrompt {
       };
 
   factory JournalPrompt.fromJson(Map<String, dynamic> json) => JournalPrompt(
-        id: json['id'] as String,
-        promptEn: json['promptEn'] as String,
-        promptTr: json['promptTr'] as String,
+        id: json['id'] as String? ?? '',
+        promptEn: json['promptEn'] as String? ?? '',
+        promptTr: json['promptTr'] as String? ?? '',
         category: PromptCategory.values.firstWhere(
           (e) => e.name == json['category'],
           orElse: () => PromptCategory.selfDiscovery,

@@ -62,13 +62,13 @@ class WellnessScore {
       };
 
   factory WellnessScore.fromJson(Map<String, dynamic> json) => WellnessScore(
-        dateKey: json['dateKey'] as String,
+        dateKey: json['dateKey'] as String? ?? '',
         score: json['score'] as int? ?? 0,
         breakdown: (json['breakdown'] as List<dynamic>?)
                 ?.map((b) => WellnessBreakdown(
-                      category: b['category'] as String,
-                      score: (b['score'] as num).toDouble(),
-                      weight: (b['weight'] as num).toDouble(),
+                      category: b['category'] as String? ?? '',
+                      score: (b['score'] as num? ?? 0).toDouble(),
+                      weight: (b['weight'] as num? ?? 0).toDouble(),
                     ))
                 .toList() ??
             [],

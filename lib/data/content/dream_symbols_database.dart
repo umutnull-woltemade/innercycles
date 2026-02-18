@@ -1674,6 +1674,9 @@ class ShareableQuoteTemplates {
 
   /// Duygusal tona uygun alıntı seç
   static ShareableCard getQuoteForEmotion(EmotionalTone tone) {
+    if (quotes.isEmpty) {
+      return const ShareableCard(emoji: '', quote: '', category: '');
+    }
     final fallback = quotes.first;
     switch (tone) {
       case EmotionalTone.korku:

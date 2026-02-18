@@ -69,9 +69,9 @@ class SeasonalProgress {
           (s) => s.name == json['season'],
           orElse: () => Season.spring,
         ),
-        year: json['year'] as int,
+        year: json['year'] as int? ?? 2024,
         completedPrompts:
-            (json['completedPrompts'] as List<dynamic>).cast<int>().toSet(),
+            (json['completedPrompts'] as List<dynamic>? ?? []).cast<int>().toSet(),
       );
 }
 

@@ -118,10 +118,10 @@ class CompatibilityDimension {
 
   factory CompatibilityDimension.fromJson(Map<String, dynamic> json) =>
       CompatibilityDimension(
-        name: json['name'] as String,
-        score: (json['score'] as num).toDouble(),
-        insightEn: json['insightEn'] as String,
-        insightTr: json['insightTr'] as String,
+        name: json['name'] as String? ?? '',
+        score: (json['score'] as num? ?? 0).toDouble(),
+        insightEn: json['insightEn'] as String? ?? '',
+        insightTr: json['insightTr'] as String? ?? '',
       );
 }
 
@@ -148,12 +148,12 @@ class CompatibilityResult {
 
   factory CompatibilityResult.fromJson(Map<String, dynamic> json) =>
       CompatibilityResult(
-        dimensions: (json['dimensions'] as List)
-            .map((d) => CompatibilityDimension.fromJson(d))
+        dimensions: (json['dimensions'] as List? ?? [])
+            .map((d) => CompatibilityDimension.fromJson(d as Map<String, dynamic>? ?? {}))
             .toList(),
-        overallScore: (json['overallScore'] as num).toDouble(),
-        summaryEn: json['summaryEn'] as String,
-        summaryTr: json['summaryTr'] as String,
+        overallScore: (json['overallScore'] as num? ?? 0).toDouble(),
+        summaryEn: json['summaryEn'] as String? ?? '',
+        summaryTr: json['summaryTr'] as String? ?? '',
       );
 }
 
@@ -207,8 +207,8 @@ class CompatibilityProfile {
 
   factory CompatibilityProfile.fromJson(Map<String, dynamic> json) =>
       CompatibilityProfile(
-        id: json['id'] as String,
-        name: json['name'] as String,
+        id: json['id'] as String? ?? '',
+        name: json['name'] as String? ?? '',
         relationshipType: RelationshipType.values.firstWhere(
           (e) => e.name == json['relationshipType'],
           orElse: () => RelationshipType.friend,

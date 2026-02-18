@@ -169,12 +169,12 @@ class QuizResult {
   /// Deserialize from JSON
   factory QuizResult.fromJson(Map<String, dynamic> json) {
     return QuizResult(
-      quizId: json['quizId'] as String,
-      scores: Map<String, int>.from(json['scores'] as Map),
-      percentages: (json['percentages'] as Map).map(
-        (key, value) => MapEntry(key as String, (value as num).toDouble()),
+      quizId: json['quizId'] as String? ?? '',
+      scores: Map<String, int>.from(json['scores'] as Map? ?? {}),
+      percentages: (json['percentages'] as Map? ?? {}).map(
+        (key, value) => MapEntry(key as String? ?? '', (value as num? ?? 0).toDouble()),
       ),
-      resultType: json['resultType'] as String,
+      resultType: json['resultType'] as String? ?? '',
       completedAt: DateTime.tryParse(json['completedAt']?.toString() ?? '') ?? DateTime.now(),
     );
   }

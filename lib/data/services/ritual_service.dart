@@ -65,8 +65,8 @@ class RitualItem {
       };
 
   factory RitualItem.fromJson(Map<String, dynamic> json) => RitualItem(
-        id: json['id'] as String,
-        name: json['name'] as String,
+        id: json['id'] as String? ?? '',
+        name: json['name'] as String? ?? '',
         order: json['order'] as int? ?? 0,
       );
 }
@@ -104,14 +104,14 @@ class RitualStack {
       };
 
   factory RitualStack.fromJson(Map<String, dynamic> json) => RitualStack(
-        id: json['id'] as String,
+        id: json['id'] as String? ?? '',
         time: RitualTime.values.firstWhere(
           (t) => t.name == json['time'],
           orElse: () => RitualTime.morning,
         ),
-        name: json['name'] as String,
-        items: (json['items'] as List<dynamic>)
-            .map((i) => RitualItem.fromJson(i))
+        name: json['name'] as String? ?? '',
+        items: (json['items'] as List<dynamic>? ?? [])
+            .map((i) => RitualItem.fromJson(i as Map<String, dynamic>? ?? {}))
             .toList(),
         createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ?? DateTime.now(),
       );
@@ -147,10 +147,10 @@ class RitualCompletion {
 
   factory RitualCompletion.fromJson(Map<String, dynamic> json) =>
       RitualCompletion(
-        dateKey: json['dateKey'] as String,
-        stackId: json['stackId'] as String,
+        dateKey: json['dateKey'] as String? ?? '',
+        stackId: json['stackId'] as String? ?? '',
         completedItemIds:
-            (json['completedItemIds'] as List<dynamic>).cast<String>().toSet(),
+            (json['completedItemIds'] as List<dynamic>? ?? []).cast<String>().toSet(),
         updatedAt: DateTime.tryParse(json['updatedAt']?.toString() ?? '') ?? DateTime.now(),
       );
 }
