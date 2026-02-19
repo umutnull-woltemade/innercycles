@@ -118,7 +118,8 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
                   const SizedBox(height: AppConstants.spacingMd),
                   ...activeChallenges.asMap().entries.map((entry) {
                     final challenge = entry.value;
-                    final progress = service.getProgress(challenge.id)!;
+                    final progress = service.getProgress(challenge.id);
+                    if (progress == null) return const SizedBox.shrink();
                     return Padding(
                       padding: const EdgeInsets.only(
                         bottom: AppConstants.spacingMd,

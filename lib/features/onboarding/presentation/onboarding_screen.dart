@@ -767,7 +767,7 @@ class _IdentityPageState extends State<_IdentityPage>
   Widget _buildAppleSignInButton() {
     return Semantics(
       button: true,
-      label: 'Sign in with Apple',
+      label: widget.language.name == 'en' ? 'Sign in with Apple' : 'Apple ile giriş yap',
       child: GestureDetector(
         onTap: _isAppleLoading ? null : _handleAppleSignIn,
         child: Container(
@@ -1599,7 +1599,7 @@ class _PermissionStartPage extends StatelessWidget {
                   ),
                   Semantics(
                     button: true,
-                    label: 'Enable notifications',
+                    label: isEn ? 'Enable notifications' : 'Bildirimleri etkinleştir',
                     child: GestureDetector(
                       onTap: notificationsRequested
                           ? null
@@ -1874,7 +1874,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
       color: Colors.transparent,
       child: Semantics(
         button: true,
-        label: 'Tap to continue',
+        label: widget.language.name == 'en' ? 'Tap to continue' : 'Devam etmek için dokunun',
         child: GestureDetector(
           onTap: widget.onComplete,
           child: Container(
