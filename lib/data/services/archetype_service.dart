@@ -963,7 +963,9 @@ class ArchetypeService {
           return; // Already captured this month
         }
       } catch (e) {
-        if (kDebugMode) debugPrint('Snapshot date parse failed: $e');
+        if (kDebugMode) {
+          debugPrint('Snapshot date parse failed: $e');
+        }
       }
     }
 

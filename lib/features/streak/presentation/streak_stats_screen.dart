@@ -160,7 +160,12 @@ class StreakStatsScreen extends ConsumerWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: LinearProgressIndicator(
-                value: stats.currentStreak / stats.nextMilestone!,
+                value: stats.nextMilestone! > 0
+                    ? (stats.currentStreak / stats.nextMilestone!).clamp(
+                        0.0,
+                        1.0,
+                      )
+                    : 0.0,
                 backgroundColor: isDark
                     ? AppColors.surfaceLight.withValues(alpha: 0.15)
                     : AppColors.lightSurfaceVariant,
