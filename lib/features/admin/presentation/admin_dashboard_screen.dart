@@ -873,7 +873,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
     }
 
     return Semantics(
-      label: 'Analytics line chart',
+      label: lang == AppLanguage.en ? 'Analytics line chart' : 'Analitik çizgi grafiği',
       image: true,
       child: CustomPaint(
         size: Size.infinite,

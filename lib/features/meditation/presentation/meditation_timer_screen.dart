@@ -194,7 +194,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                 horizontal: 6,
                               ),
                               child: Semantics(
-                                label: '$m minutes',
+                                label: isEn ? '$m minutes' : '$m dakika',
                                 button: true,
                                 selected: isSelected,
                                 child: GestureDetector(

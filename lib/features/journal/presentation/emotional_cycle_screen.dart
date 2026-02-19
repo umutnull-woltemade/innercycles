@@ -626,6 +626,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                   areaData: chartData,
                   visibleAreas: _visibleAreas,
                   isDark: isDark,
+                  isEn: isEn,
                   displayDays: displayDays,
                   animationProgress: _waveAnimation.value,
                   onPointSelected: (info) =>

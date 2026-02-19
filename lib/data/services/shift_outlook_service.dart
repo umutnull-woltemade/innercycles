@@ -116,7 +116,7 @@ class ShiftOutlook {
 }
 
 // ══════════════════════════════════════════════════════════════════════════
-// SHIFT FORECAST SERVICE
+// SHIFT OUTLOOK SERVICE
 // ══════════════════════════════════════════════════════════════════════════
 
 class ShiftOutlookService {

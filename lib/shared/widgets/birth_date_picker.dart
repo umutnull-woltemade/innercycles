@@ -451,7 +451,9 @@ class SelectedDateDisplay extends StatelessWidget {
     }
 
     return Semantics(
-      label: 'Birth date: ${_getMonthName(d.month, language)} ${d.day}, ${d.year}',
+      label: language == AppLanguage.en
+          ? 'Birth date: ${_getMonthName(d.month, language)} ${d.day}, ${d.year}'
+          : 'Doğum tarihi: ${d.day} ${_getMonthName(d.month, language)} ${d.year}',
       button: true,
       child: GestureDetector(
       onTap: onTap,

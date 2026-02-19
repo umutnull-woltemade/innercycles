@@ -298,6 +298,7 @@ class _StackSection extends ConsumerWidget {
                   stackId: stack.id,
                   isCompleted: isCompleted,
                   isDark: isDark,
+                  isEn: isEn,
                   onToggle: () async {
                     HapticFeedback.lightImpact();
                     await service.toggleItem(
@@ -322,6 +323,7 @@ class _RitualItemTile extends StatelessWidget {
   final String stackId;
   final bool isCompleted;
   final bool isDark;
+  final bool isEn;
   final VoidCallback onToggle;
 
   const _RitualItemTile({
@@ -329,6 +331,7 @@ class _RitualItemTile extends StatelessWidget {
     required this.stackId,
     required this.isCompleted,
     required this.isDark,
+    required this.isEn,
     required this.onToggle,
   });
 
@@ -337,7 +340,7 @@ class _RitualItemTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 4),
       child: Semantics(
-        label: '${item.name}, ${isCompleted ? 'completed' : 'not completed'}',
+        label: '${item.name}, ${isCompleted ? (isEn ? 'completed' : 'tamamlandı') : (isEn ? 'not completed' : 'tamamlanmadı')}',
         button: true,
         toggled: isCompleted,
         child: InkWell(

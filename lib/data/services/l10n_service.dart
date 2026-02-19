@@ -376,20 +376,6 @@ class LocaleLoadException implements Exception {
       'LocaleLoadException: Failed to load ${language.name}.json: $error';
 }
 
-/// Extension for convenient access in widgets with Riverpod
-extension L10nWidgetRef on dynamic {
-  /// Translate a key using the current language from languageProvider
-  /// Usage: ref.tr('common.cancel')
-  String tr(String key) {
-    // This would be used with WidgetRef
-    // final language = watch(languageProvider);
-    // return L10nService.get(key, language);
-    throw UnimplementedError(
-      'Use L10nService.get(key, language) directly or implement tr() in your widget',
-    );
-  }
-}
-
 /// Global convenience function for translation
 /// Usage: tr('common.cancel', AppLanguage.en)
 String tr(String key, AppLanguage language) => L10nService.get(key, language);

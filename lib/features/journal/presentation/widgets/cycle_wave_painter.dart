@@ -38,6 +38,7 @@ class CycleWaveChart extends StatefulWidget {
   final Map<FocusArea, List<CycleDataPoint>> areaData;
   final Set<FocusArea> visibleAreas;
   final bool isDark;
+  final bool isEn;
   final int displayDays;
   final double animationProgress;
   final ValueChanged<CycleDataPointInfo?>? onPointSelected;
@@ -47,6 +48,7 @@ class CycleWaveChart extends StatefulWidget {
     required this.areaData,
     required this.visibleAreas,
     required this.isDark,
+    this.isEn = true,
     required this.displayDays,
     this.animationProgress = 1.0,
     this.onPointSelected,
@@ -72,7 +74,7 @@ class _CycleWaveChartState extends State<CycleWaveChart> {
         });
       },
       child: Semantics(
-        label: 'Emotional cycle wave chart',
+        label: widget.isEn ? 'Emotional cycle wave chart' : 'Duygusal döngü dalga grafiği',
         image: true,
         child: CustomPaint(
           size: const Size(double.infinity, 240),

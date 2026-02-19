@@ -95,3 +95,11 @@ release_notes_short.txt
 # Debug/preflight artifacts
 check_debug*.py
 preflight_reports/
+
+# Script-generated iOS artifacts (i18n automation, deployment)
+ios/DEPLOY_NOW.sh
+ios/Info.plist.READY
+ios/LocalizationKeys.swift
+ios/TestsLocalizationTests.swift
+ios/scripts*.swift
+ios/Resources*.strings
