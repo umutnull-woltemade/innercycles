@@ -133,6 +133,7 @@ class EntryDetailScreen extends ConsumerWidget {
                     context,
                     entry.imagePath!,
                     isDark,
+                    isEn,
                   ).glassListItem(context: context, index: 2),
 
                 // Note
@@ -266,7 +267,7 @@ class EntryDetailScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildPhotoCard(BuildContext context, String imagePath, bool isDark) {
+  Widget _buildPhotoCard(BuildContext context, String imagePath, bool isDark, bool isEn) {
     final file = File(imagePath);
     try {
       if (!file.existsSync()) return const SizedBox.shrink();
@@ -283,7 +284,7 @@ class EntryDetailScreen extends ConsumerWidget {
           width: double.infinity,
           fit: BoxFit.cover,
           cacheWidth: 800,
-          semanticLabel: 'Journal entry photo',
+          semanticLabel: isEn ? 'Journal entry photo' : 'Günlük kaydı fotoğrafı',
           errorBuilder: (_, _, _) => const SizedBox.shrink(),
         ),
       ),

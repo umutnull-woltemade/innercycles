@@ -331,6 +331,7 @@ class PatternsScreen extends ConsumerWidget {
                   context,
                   thisWeek,
                   isDark,
+                  isEn,
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: AppConstants.spacingXl),
 
@@ -526,6 +527,7 @@ class PatternsScreen extends ConsumerWidget {
     BuildContext context,
     Map<FocusArea, double> averages,
     bool isDark,
+    bool isEn,
   ) {
     return Container(
       height: 200,
@@ -538,7 +540,7 @@ class PatternsScreen extends ConsumerWidget {
         border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
       ),
       child: Semantics(
-        label: 'Focus area cycle averages chart',
+        label: isEn ? 'Focus area cycle averages chart' : 'Odak alanı döngü ortalamaları grafiği',
         image: true,
         child: CustomPaint(
           size: const Size(double.infinity, 170),

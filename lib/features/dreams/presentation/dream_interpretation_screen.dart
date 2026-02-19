@@ -1697,7 +1697,7 @@ ${_getPersonalAdvice(sign)}''';
             children: [
               _buildHeader(context, isDark),
               Expanded(child: _buildChatArea(isDark)),
-              _buildInputArea(isDark),
+              _buildInputArea(isDark, isEn: ref.watch(languageProvider) == AppLanguage.en),
             ],
           ),
         ),
@@ -2273,7 +2273,7 @@ ${_getPersonalAdvice(sign)}''';
     );
   }
 
-  Widget _buildInputArea(bool isDark) {
+  Widget _buildInputArea(bool isDark, {bool isEn = true}) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -2340,7 +2340,7 @@ ${_getPersonalAdvice(sign)}''';
               ),
               const SizedBox(width: 10),
               Semantics(
-                label: 'Send message',
+                label: isEn ? 'Send message' : 'Mesaj gönder',
                 button: true,
                 child: GestureDetector(
                     onTap: _sendMessage,
