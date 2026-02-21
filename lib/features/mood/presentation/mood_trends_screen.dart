@@ -3,7 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/constants/common_strings.dart';
@@ -198,6 +201,11 @@ class MoodTrendsScreen extends ConsumerWidget {
                       allEntries.take(20).toList(),
                     ),
                   ),
+                // Deeper Tools Discovery
+                const SizedBox(height: AppConstants.spacingMd),
+                _buildDeeperToolsSection(context, isDark, isEn),
+                const SizedBox(height: AppConstants.spacingLg),
+
                 ContentDisclaimer(
                   language: isEn ? AppLanguage.en : AppLanguage.tr,
                 ),
@@ -244,7 +252,9 @@ class MoodTrendsScreen extends ConsumerWidget {
                   Icon(Icons.lock_outline, size: 28, color: AppColors.starGold),
                   const SizedBox(height: 8),
                   Text(
-                    isEn ? 'Your data has more to show' : 'Verilerinin gösterecekleri var',
+                    isEn
+                        ? 'Your data has more to show'
+                        : 'Verilerinin gösterecekleri var',
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
@@ -603,6 +613,151 @@ class MoodTrendsScreen extends ConsumerWidget {
       default:
         return AppColors.starGold;
     }
+  }
+
+  Widget _buildDeeperToolsSection(
+    BuildContext context,
+    bool isDark,
+    bool isEn,
+  ) {
+    return GlassPanel(
+      elevation: GlassElevation.g1,
+      padding: const EdgeInsets.all(AppConstants.spacingLg),
+      borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            isEn ? 'Go Deeper' : 'Derine Dal',
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: AppConstants.spacingMd),
+          _buildToolTile(
+            context,
+            isDark,
+            isEn,
+            icon: Icons.favorite_rounded,
+            color: AppColors.amethyst,
+            titleEn: 'Cycle Sync',
+            titleTr: 'Döngü Senkronu',
+            subtitleEn: 'How your cycle shapes your emotions',
+            subtitleTr: 'Döngün duygularını nasıl şekillendiriyor',
+            route: Routes.cycleSync,
+          ),
+          const SizedBox(height: 8),
+          _buildToolTile(
+            context,
+            isDark,
+            isEn,
+            icon: Icons.psychology_rounded,
+            color: const Color(0xFF9C27B0),
+            titleEn: 'Shadow Work',
+            titleTr: 'Gölge Çalışması',
+            subtitleEn: 'Explore hidden emotional patterns',
+            subtitleTr: 'Gizli duygusal kalıpları keşfet',
+            route: Routes.shadowWork,
+          ),
+          const SizedBox(height: 8),
+          _buildToolTile(
+            context,
+            isDark,
+            isEn,
+            icon: Icons.waves_rounded,
+            color: AppColors.auroraStart,
+            titleEn: 'Emotional Cycles',
+            titleTr: 'Duygusal Döngüler',
+            subtitleEn: 'Recurring patterns over time',
+            subtitleTr: 'Zaman içinde tekrarlanan kalıplar',
+            route: Routes.emotionalCycles,
+          ),
+          const SizedBox(height: 8),
+          _buildToolTile(
+            context,
+            isDark,
+            isEn,
+            icon: Icons.calendar_month_rounded,
+            color: AppColors.starGold,
+            titleEn: 'Calendar Heatmap',
+            titleTr: 'Takvim Isı Haritası',
+            subtitleEn: 'Visualize your journaling activity',
+            subtitleTr: 'Günlük aktiviteni görselleştir',
+            route: Routes.calendarHeatmap,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildToolTile(
+    BuildContext context,
+    bool isDark,
+    bool isEn, {
+    required IconData icon,
+    required Color color,
+    required String titleEn,
+    required String titleTr,
+    required String subtitleEn,
+    required String subtitleTr,
+    required String route,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        HapticFeedback.selectionClick();
+        context.push(route);
+      },
+      child: Semantics(
+        label: isEn ? titleEn : titleTr,
+        button: true,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          decoration: BoxDecoration(
+            color: color.withValues(alpha: isDark ? 0.08 : 0.06),
+            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+          ),
+          child: Row(
+            children: [
+              Icon(icon, size: 22, color: color),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      isEn ? titleEn : titleTr,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      isEn ? subtitleEn : subtitleTr,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                        fontSize: 11,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.chevron_right_rounded,
+                size: 18,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 

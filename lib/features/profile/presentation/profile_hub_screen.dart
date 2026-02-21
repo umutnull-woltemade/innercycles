@@ -91,6 +91,21 @@ class ProfileHubScreen extends ConsumerWidget {
                     ).animate().fadeIn(duration: 400.ms, delay: 150.ms),
                     const SizedBox(height: AppConstants.spacingXl),
 
+                    // Tools section
+                    Text(
+                      isEn ? 'Tools' : 'Araçlar',
+                      style: GoogleFonts.inter(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+                    const SizedBox(height: AppConstants.spacingSm),
+                    ..._buildToolLinks(context, isDark, isEn),
+                    const SizedBox(height: AppConstants.spacingXl),
+
                     // Settings links
                     Text(
                       isEn ? 'Settings' : 'Ayarlar',
@@ -101,7 +116,7 @@ class ProfileHubScreen extends ConsumerWidget {
                             ? AppColors.textPrimary
                             : AppColors.lightTextPrimary,
                       ),
-                    ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+                    ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingSm),
                     ..._buildSettingsLinks(context, isDark, isEn),
 
@@ -114,6 +129,47 @@ class ProfileHubScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> _buildToolLinks(BuildContext context, bool isDark, bool isEn) {
+    final links = [
+      _SettingsLink(
+        '\u{1F50E}',
+        isEn ? 'Cycle Sync' : 'Döngü Senkronu',
+        Routes.cycleSync,
+      ),
+      _SettingsLink(
+        '\u{1FA9E}',
+        isEn ? 'Shadow Work Journal' : 'Gölge Çalışması Günlüğü',
+        Routes.shadowWork,
+      ),
+      _SettingsLink(
+        '\u{1F4C5}',
+        isEn ? 'Calendar Heatmap' : 'Takvim Isı Haritası',
+        Routes.calendarHeatmap,
+      ),
+      _SettingsLink(
+        '\u{1F30A}',
+        isEn ? 'Emotional Cycles' : 'Duygusal Döngüler',
+        Routes.emotionalCycles,
+      ),
+    ];
+
+    return links.asMap().entries.map((entry) {
+      final index = entry.key;
+      final link = entry.value;
+      return Padding(
+        padding: const EdgeInsets.only(bottom: AppConstants.spacingXs),
+        child: _SettingsLinkTile(
+          link: link,
+          isDark: isDark,
+          onTap: () => context.push(link.route),
+        ),
+      ).animate().fadeIn(
+        delay: Duration(milliseconds: 220 + index * 40),
+        duration: 300.ms,
+      );
+    }).toList();
   }
 
   List<Widget> _buildSettingsLinks(
