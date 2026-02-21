@@ -361,6 +361,7 @@ class EntryDetailScreen extends ConsumerWidget {
               try {
                 final service = await ref.read(journalServiceProvider.future);
                 await service.deleteEntry(id);
+                if (!context.mounted) return;
                 ref.invalidate(todayJournalEntryProvider);
                 ref.invalidate(journalStreakProvider);
               } catch (e) {

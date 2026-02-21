@@ -546,7 +546,7 @@ class PatternsScreen extends ConsumerWidget {
         image: true,
         child: CustomPaint(
           size: const Size(double.infinity, 170),
-          painter: _CycleArcsPainter(averages, isDark),
+          painter: _CycleArcsPainter(averages, isDark, isEn),
         ),
       ),
     );
@@ -965,10 +965,11 @@ class PatternsScreen extends ConsumerWidget {
 class _CycleArcsPainter extends CustomPainter {
   final Map<FocusArea, double> averages;
   final bool isDark;
+  final bool isEn;
 
   static const _colors = AppColors.focusAreaPalette;
 
-  _CycleArcsPainter(this.averages, this.isDark);
+  _CycleArcsPainter(this.averages, this.isDark, this.isEn);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -1016,7 +1017,7 @@ class _CycleArcsPainter extends CustomPainter {
       // Label
       final labelPainter = TextPainter(
         text: TextSpan(
-          text: area.displayNameEn,
+          text: isEn ? area.displayNameEn : area.displayNameTr,
           style: TextStyle(
             color: _colors[i],
             fontSize: 10,
