@@ -131,7 +131,8 @@ class CyclePeriodLog {
             orElse: () => FlowIntensity.medium,
           )
         : null,
-    symptoms: (json['symptoms'] as List<dynamic>?)
+    symptoms:
+        (json['symptoms'] as List<dynamic>?)
             ?.map((e) => e.toString())
             .toList() ??
         [],

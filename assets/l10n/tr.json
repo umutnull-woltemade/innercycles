@@ -53,7 +53,7 @@
         "grant_permission": "İzin Ver",
         "hello": "Merhaba",
         "read_more": "Devamını Oku",
-        "unlock": "Kilidi Aç",
+        "unlock": "Erişim",
         "view_all": "Tümünü Gör",
         "show_all": "Tümünü Göster",
         "continue_exploring": "Keşfetmeye Devam Et",
@@ -562,7 +562,7 @@
         "cosmic_powers": "Pro İçerikler",
         "cosmic_powers_active": "Pro Özellikler Aktif",
         "lifetime_access": "Ömür boyu erişiminiz var!",
-        "open_cosmic_door": "Tüm İçgörüleri Aç",
+        "open_cosmic_door": "Tüm İçgörülere Eriş",
         "cosmic_door_opened": "Pro Özellikler Aktif",
         "success_message": "Pro özellikleri aktif. Tam kalıp geçmişine erişebilirsin.",
         "view_plans": "İçgörülerimi Gör",
@@ -585,7 +585,7 @@
             "benefit_export": "Tam veri dışa aktarma (CSV, JSON)",
             "benefit_reports": "Aylık ve yıllık büyüme raporları",
             "benefit_programs": "Premium programlar, meydan okumalar ve araçlar",
-            "continue_pro": "Tüm İçgörüleri Aç — $2,50/ay",
+            "continue_pro": "Tam Kalıp Geçmişine Eriş",
             "not_now": "Şimdi değil",
             "legal_text": "Yıllık otomatik yenilenir. Ayarlardan istediğiniz zaman iptal edebilirsiniz.",
             "privacy_policy": "Gizlilik Politikası",
@@ -772,7 +772,7 @@
         },
         "locked_layer_preview": {
             "pro_badge": "PRO",
-            "unlock_default": "Kilidi Aç",
+            "unlock_default": "Erişim",
             "more_content": "+{count} daha fazla içerik"
         },
         "dream_prompt_card": {
@@ -1356,7 +1356,7 @@
         "edit_profile": "Profili Düzenle",
         "edit_profile_desc": "Doğum bilgilerini güncelle",
         "premium": "Premium",
-        "premium_desc": "Tüm premium özellikleri aç",
+        "premium_desc": "Tüm Pro özelliklere eriş",
         "premium_active": "Premium özellikler aktif",
         "manage_subscription": "Aboneliği Yönet",
         "manage_subscription_desc": "Aboneliğini görüntüle ve yönet",
@@ -1943,7 +1943,7 @@
         "day_suffix": "gün",
         "strengths": "Güçlü Yanlar",
         "cosmic_summary": "Günlük Özeti",
-        "spiritual_journey": "İçsel Yolculuk",
+        "spiritual_journey": "Kişisel Gelişim",
         "important_cycles": "Önemli Kişisel Döngüler",
         "special_months_of_year": "Yılın Özel Ayları",
         "caution_required": "Dikkat Gerektiren",
@@ -3316,7 +3316,7 @@
             "awareness": "Farkındalık",
             "shadow_work": "Gölge Çalışması",
             "recurring_pattern": "Tekrarlayan Kalıp",
-            "hero_journey": "Kahraman Yolculuğu",
+            "hero_journey": "Kahraman Arketipi",
             "seeking": "Arayış"
         },
         "shadow": {

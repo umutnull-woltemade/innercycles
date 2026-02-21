@@ -111,8 +111,9 @@ class CycleCorrelationService {
 
       final focusAverages = <FocusArea, double>{};
       for (final area in FocusArea.values) {
-        final areaEntries =
-            phaseData.where((e) => e.focusArea == area).toList();
+        final areaEntries = phaseData
+            .where((e) => e.focusArea == area)
+            .toList();
         if (areaEntries.isNotEmpty) {
           focusAverages[area] =
               areaEntries.map((e) => e.overallRating).reduce((a, b) => a + b) /
@@ -172,18 +173,21 @@ class CycleCorrelationService {
         }
       }
 
-      insights.add(CycleCorrelationInsight(
-        focusArea: area,
-        phaseAverages: phaseAvgs,
-        strongestPhase: strongest,
-        weakestPhase: weakest,
-        varianceAcrossPhases: variance,
-      ));
+      insights.add(
+        CycleCorrelationInsight(
+          focusArea: area,
+          phaseAverages: phaseAvgs,
+          strongestPhase: strongest,
+          weakestPhase: weakest,
+          varianceAcrossPhases: variance,
+        ),
+      );
     }
 
     // Sort by variance (most significant first)
     insights.sort(
-        (a, b) => b.varianceAcrossPhases.compareTo(a.varianceAcrossPhases));
+      (a, b) => b.varianceAcrossPhases.compareTo(a.varianceAcrossPhases),
+    );
     return insights;
   }
 
@@ -232,12 +236,14 @@ class CycleCorrelationService {
         final key = '${day}_${area.name}';
         final count = counts[key] ?? 0;
         if (count > 0) {
-          cells.add(CycleHeatmapCell(
-            cycleDay: day,
-            focusArea: area,
-            averageRating: sums[key]! / count,
-            sampleCount: count,
-          ));
+          cells.add(
+            CycleHeatmapCell(
+              cycleDay: day,
+              focusArea: area,
+              averageRating: sums[key]! / count,
+              sampleCount: count,
+            ),
+          );
         }
       }
     }
@@ -260,14 +266,13 @@ class CycleCorrelationService {
     if (currentSummary == null) return null;
 
     final insights = getCorrelationInsights();
-    final topInsight =
-        insights.where((i) => i.isSignificant).firstOrNull;
+    final topInsight = insights.where((i) => i.isSignificant).firstOrNull;
 
     if (topInsight == null) return null;
 
-    final areaName =
-        isEn ? topInsight.focusArea.displayNameEn
-            : topInsight.focusArea.displayNameTr;
+    final areaName = isEn
+        ? topInsight.focusArea.displayNameEn
+        : topInsight.focusArea.displayNameTr;
     final strongPhase = topInsight.strongestPhase;
     final weakPhase = topInsight.weakestPhase;
 

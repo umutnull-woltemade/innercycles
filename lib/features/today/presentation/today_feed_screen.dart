@@ -78,6 +78,13 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
               ),
 
+              // ═══════════════════════════════════════════════════════
+              // CYCLE SYNC CARD (if user has cycle data)
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _CycleSyncCard(isEn: isEn, isDark: isDark),
+              ),
+
               const SliverToBoxAdapter(child: SizedBox(height: 12)),
 
               // ═══════════════════════════════════════════════════════

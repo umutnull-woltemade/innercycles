@@ -45,15 +45,13 @@ class CyclePromptsContent {
       phase: CyclePhase.menstrual,
     ),
     CyclePrompt(
-      promptEn:
-          'What can you release or let go of during this rest phase?',
+      promptEn: 'What can you release or let go of during this rest phase?',
       promptTr:
           'Bu dinlenme evresinde nelerden vazgeçebilir veya bırakabilirsin?',
       phase: CyclePhase.menstrual,
     ),
     CyclePrompt(
-      promptEn:
-          'How do you feel about slowing down? What emotions come up?',
+      promptEn: 'How do you feel about slowing down? What emotions come up?',
       promptTr:
           'Yavaşlamak hakkında ne hissediyorsun? Hangi duygular ortaya çıkıyor?',
       phase: CyclePhase.menstrual,
@@ -82,15 +80,13 @@ class CyclePromptsContent {
     CyclePrompt(
       promptEn:
           'Your energy is rising — what do you want to channel it toward?',
-      promptTr:
-          'Enerjin yükseliyor — onu neye yönlendirmek istiyorsun?',
+      promptTr: 'Enerjin yükseliyor — onu neye yönlendirmek istiyorsun?',
       phase: CyclePhase.follicular,
     ),
     CyclePrompt(
       promptEn:
           'What creative impulse have you been putting off? Today might be the day.',
-      promptTr:
-          'Ertelediğin yaratıcı bir dürtü var mı? Bugün o gün olabilir.',
+      promptTr: 'Ertelediğin yaratıcı bir dürtü var mı? Bugün o gün olabilir.',
       phase: CyclePhase.follicular,
     ),
     CyclePrompt(
@@ -117,23 +113,19 @@ class CyclePromptsContent {
       phase: CyclePhase.ovulatory,
     ),
     CyclePrompt(
-      promptEn:
-          'Your social energy may be at its peak — how will you use it?',
-      promptTr:
-          'Sosyal enerjin zirvede olabilir — onu nasıl kullanacaksın?',
-      phase: CyclePhase.ovulatory,
-    ),
-    CyclePrompt(
-      promptEn: 'What conversation have you been avoiding? Now might feel easier.',
-      promptTr:
-          'Hangi konuşmadan kaçınıyordun? Şimdi daha kolay hissedebilir.',
+      promptEn: 'Your social energy may be at its peak — how will you use it?',
+      promptTr: 'Sosyal enerjin zirvede olabilir — onu nasıl kullanacaksın?',
       phase: CyclePhase.ovulatory,
     ),
     CyclePrompt(
       promptEn:
-          'How do you express yourself when you feel most confident?',
-      promptTr:
-          'En özgüvenli hissettiğinde kendini nasıl ifade edersin?',
+          'What conversation have you been avoiding? Now might feel easier.',
+      promptTr: 'Hangi konuşmadan kaçınıyordun? Şimdi daha kolay hissedebilir.',
+      phase: CyclePhase.ovulatory,
+    ),
+    CyclePrompt(
+      promptEn: 'How do you express yourself when you feel most confident?',
+      promptTr: 'En özgüvenli hissettiğinde kendini nasıl ifade edersin?',
       phase: CyclePhase.ovulatory,
     ),
     CyclePrompt(
@@ -146,17 +138,14 @@ class CyclePromptsContent {
     // LUTEAL PHASE - Reflection & Inward Turn
     // ═══════════════════════════════════════════════════════════════════
     CyclePrompt(
-      promptEn:
-          'What feelings are surfacing as your energy turns inward?',
-      promptTr:
-          'Enerjin içe dönerken hangi duygular yüzeye çıkıyor?',
+      promptEn: 'What feelings are surfacing as your energy turns inward?',
+      promptTr: 'Enerjin içe dönerken hangi duygular yüzeye çıkıyor?',
       phase: CyclePhase.luteal,
     ),
     CyclePrompt(
       promptEn:
           'Is there something bothering you that you have been pushing aside?',
-      promptTr:
-          'Bir kenara ittiğin ama seni rahatsız eden bir şey var mı?',
+      promptTr: 'Bir kenara ittiğin ama seni rahatsız eden bir şey var mı?',
       phase: CyclePhase.luteal,
     ),
     CyclePrompt(
@@ -169,15 +158,13 @@ class CyclePromptsContent {
     CyclePrompt(
       promptEn:
           'How can you be gentle with yourself during this reflective phase?',
-      promptTr:
-          'Bu yansıma evresinde kendine nasıl nazik olabilirsin?',
+      promptTr: 'Bu yansıma evresinde kendine nasıl nazik olabilirsin?',
       phase: CyclePhase.luteal,
     ),
     CyclePrompt(
       promptEn:
           'What truth becomes clearer when you slow down and listen inward?',
-      promptTr:
-          'Yavaşlayıp içine kulak verdiğinde hangi gerçek netleşiyor?',
+      promptTr: 'Yavaşlayıp içine kulak verdiğinde hangi gerçek netleşiyor?',
       phase: CyclePhase.luteal,
     ),
   ];

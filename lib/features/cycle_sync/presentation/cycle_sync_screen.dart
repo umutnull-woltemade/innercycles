@@ -144,9 +144,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             ),
             const SizedBox(height: AppConstants.spacingMd),
             Text(
-              isEn
-                  ? 'Start Tracking Your Cycle'
-                  : 'Döngünü Takip Etmeye Başla',
+              isEn ? 'Start Tracking Your Cycle' : 'Döngünü Takip Etmeye Başla',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: isDark
                     ? AppColors.textPrimary
@@ -323,9 +321,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
               context,
               Icons.schedule_rounded,
               isEn ? 'Next period' : 'Sonraki adet',
-              isEn
-                  ? 'in ~$daysUntil days'
-                  : '~$daysUntil gün sonra',
+              isEn ? 'in ~$daysUntil days' : '~$daysUntil gün sonra',
               isDark,
             ),
           ],
@@ -407,8 +403,11 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
         children: [
           Row(
             children: [
-              Icon(Icons.lightbulb_outline_rounded,
-                  size: 18, color: phaseColor),
+              Icon(
+                Icons.lightbulb_outline_rounded,
+                size: 18,
+                color: phaseColor,
+              ),
               const SizedBox(width: 8),
               Text(
                 isEn
@@ -450,36 +449,60 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
 
   static const Map<CyclePhase, List<(String, String)>> _phasePrompts = {
     CyclePhase.menstrual: [
-      ('What does your body need most right now?',
-          'Bedenin şu an en çok neye ihtiyaç duyuyor?'),
-      ('What can you release during this rest phase?',
-          'Bu dinlenme evresinde nelerden vazgeçebilirsin?'),
-      ('How do you feel about slowing down?',
-          'Yavaşlamak hakkında ne hissediyorsun?'),
+      (
+        'What does your body need most right now?',
+        'Bedenin şu an en çok neye ihtiyaç duyuyor?',
+      ),
+      (
+        'What can you release during this rest phase?',
+        'Bu dinlenme evresinde nelerden vazgeçebilirsin?',
+      ),
+      (
+        'How do you feel about slowing down?',
+        'Yavaşlamak hakkında ne hissediyorsun?',
+      ),
     ],
     CyclePhase.follicular: [
-      ('What new idea excites you right now?',
-          'Şu an seni heyecanlandıran yeni bir fikir ne?'),
-      ('Your energy is rising — what will you channel it toward?',
-          'Enerjin yükseliyor — onu neye yönlendireceksin?'),
-      ('What creative impulse have you been putting off?',
-          'Ertelediğin yaratıcı bir dürtü var mı?'),
+      (
+        'What new idea excites you right now?',
+        'Şu an seni heyecanlandıran yeni bir fikir ne?',
+      ),
+      (
+        'Your energy is rising — what will you channel it toward?',
+        'Enerjin yükseliyor — onu neye yönlendireceksin?',
+      ),
+      (
+        'What creative impulse have you been putting off?',
+        'Ertelediğin yaratıcı bir dürtü var mı?',
+      ),
     ],
     CyclePhase.ovulatory: [
-      ('Who do you want to connect with today?',
-          'Bugün kiminle bağlantı kurmak istiyorsun?'),
-      ('How will you use your peak social energy?',
-          'Zirve sosyal enerjini nasıl kullanacaksın?'),
-      ('What conversation have you been avoiding?',
-          'Hangi konuşmadan kaçınıyordun?'),
+      (
+        'Who do you want to connect with today?',
+        'Bugün kiminle bağlantı kurmak istiyorsun?',
+      ),
+      (
+        'How will you use your peak social energy?',
+        'Zirve sosyal enerjini nasıl kullanacaksın?',
+      ),
+      (
+        'What conversation have you been avoiding?',
+        'Hangi konuşmadan kaçınıyordun?',
+      ),
     ],
     CyclePhase.luteal: [
-      ('What feelings are surfacing as your energy turns inward?',
-          'Enerjin içe dönerken hangi duygular yüzeye çıkıyor?'),
-      ('What patterns repeat at this point in your cycle?',
-          'Döngünün bu noktasında hangi kalıplar tekrarlanıyor?'),
-      ('How can you be gentle with yourself during this phase?',
-          'Bu evrede kendine nasıl nazik olabilirsin?'),
+      (
+        'What feelings are surfacing as your energy turns inward?',
+        'Enerjin içe dönerken hangi duygular yüzeye çıkıyor?',
+      ),
+      (
+        'What patterns repeat at this point in your cycle?',
+        'Döngünün bu noktasında hangi kalıplar tekrarlanıyor?',
+      ),
+      (
+        'How can you be gentle with yourself during this phase?',
+        'Bu evrede kendine nasıl nazik olabilirsin?',
+      ),
     ],
   };
 
@@ -487,11 +510,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
   // CORRELATION INSIGHT
   // ═══════════════════════════════════════════════════════════════════════
 
-  Widget _buildCorrelationCard(
-    BuildContext context,
-    bool isDark,
-    bool isEn,
-  ) {
+  Widget _buildCorrelationCard(BuildContext context, bool isDark, bool isEn) {
     final correlationAsync = ref.watch(cycleCorrelationServiceProvider);
 
     return correlationAsync.when(
@@ -542,7 +561,11 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             children: [
               Row(
                 children: [
-                  Icon(Icons.auto_awesome, size: 18, color: AppColors.auroraStart),
+                  Icon(
+                    Icons.auto_awesome,
+                    size: 18,
+                    color: AppColors.auroraStart,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     isEn ? 'Cycle Insight' : 'Döngü İçgörüsü',
@@ -608,8 +631,11 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
               height: 32,
               child: Row(
                 children: CyclePhase.values.map((phase) {
-                  final fraction = _phaseFraction(phase, cycleLength,
-                      cycleService.getAveragePeriodLength() as int);
+                  final fraction = _phaseFraction(
+                    phase,
+                    cycleLength,
+                    cycleService.getAveragePeriodLength() as int,
+                  );
                   return Expanded(
                     flex: (fraction * 100).round().clamp(1, 100),
                     child: Container(
@@ -666,41 +692,43 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
           ],
           const SizedBox(height: 8),
           // Phase labels
-          ...CyclePhase.values.map((phase) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2),
-            child: Row(
-              children: [
-                Container(
-                  width: 10,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    color: _phaseColor(phase),
-                    shape: BoxShape.circle,
+          ...CyclePhase.values.map(
+            (phase) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 2),
+              child: Row(
+                children: [
+                  Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: _phaseColor(phase),
+                      shape: BoxShape.circle,
+                    ),
                   ),
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  isEn ? phase.displayNameEn : phase.displayNameTr,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
+                  const SizedBox(width: 8),
+                  Text(
+                    isEn ? phase.displayNameEn : phase.displayNameTr,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
                   ),
-                ),
-                const Spacer(),
-                Text(
-                  isEn ? phase.descriptionEn : phase.descriptionTr,
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: isDark
-                        ? AppColors.textMuted
-                        : AppColors.lightTextMuted,
+                  const Spacer(),
+                  Text(
+                    isEn ? phase.descriptionEn : phase.descriptionTr,
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          )),
+          ),
         ],
       ),
     );
@@ -794,8 +822,9 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   onPressed: () async {
                     HapticFeedback.mediumImpact();
                     Navigator.pop(ctx);
-                    final service =
-                        await ref.read(cycleSyncServiceProvider.future);
+                    final service = await ref.read(
+                      cycleSyncServiceProvider.future,
+                    );
                     await service.logPeriodStart(date: DateTime.now());
                     ref.invalidate(cycleSyncServiceProvider);
                   },
@@ -804,8 +833,9 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(AppConstants.radiusMd),
+                      borderRadius: BorderRadius.circular(
+                        AppConstants.radiusMd,
+                      ),
                     ),
                   ),
                   child: Text(

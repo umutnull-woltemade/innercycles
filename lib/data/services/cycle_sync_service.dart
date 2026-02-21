@@ -62,8 +62,7 @@ class CycleSyncService {
     );
 
     // Sort by date descending
-    _periodLogs.sort((a, b) =>
-        b.periodStartDate.compareTo(a.periodStartDate));
+    _periodLogs.sort((a, b) => b.periodStartDate.compareTo(a.periodStartDate));
 
     // Keep last 24 months of data
     if (_periodLogs.length > 24) {
@@ -201,8 +200,7 @@ class CycleSyncService {
     // Cycle length: gaps between consecutive period starts
     final gaps = <int>[];
     for (int i = 0; i < _periodLogs.length - 1; i++) {
-      final gap = _periodLogs[i]
-          .periodStartDate
+      final gap = _periodLogs[i].periodStartDate
           .difference(_periodLogs[i + 1].periodStartDate)
           .inDays;
       // Only count reasonable cycle lengths (21-45 days)
@@ -262,8 +260,9 @@ class CycleSyncService {
             .map((e) => CyclePeriodLog.fromJson(e as Map<String, dynamic>))
             .toList();
         // Ensure sorted
-        _periodLogs.sort((a, b) =>
-            b.periodStartDate.compareTo(a.periodStartDate));
+        _periodLogs.sort(
+          (a, b) => b.periodStartDate.compareTo(a.periodStartDate),
+        );
       } catch (_) {
         _periodLogs = [];
       }
