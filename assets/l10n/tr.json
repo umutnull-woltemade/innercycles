@@ -1851,7 +1851,7 @@
                 "description": "Enerji okuma."
             },
             "moon_calendar": {
-                "title": "Ay Takvimi",
+                "title": "Doğal Ritim Takvimi",
                 "description": "Yeniay ve dolunay tarihleri."
             },
             "energy_work_rituals": {
@@ -1933,8 +1933,8 @@
         "weekly_energy_chart": "Haftalık Enerji Grafiği",
         "monthly_mantra": "Aylık Mantra",
         "weekly_affirmation": "Haftalık Afirmasyon",
-        "monthly_energy_map": "Aylık Enerji Haritası",
-        "yearly_energy_map": "Aylık Enerji Haritası",
+        "monthly_energy_map": "Aylık Enerji Profili",
+        "yearly_energy_map": "Yıllık Enerji Profili",
         "yearly_affirmation": "Yıllık Afirmasyon",
         "monthly_exploration": "Bu ay hangi temalar üzerine düşünebilirsin?",
         "weekly_exploration": "Bu hafta hangi temalar üzerine düşünebilirsin?",
@@ -3463,7 +3463,7 @@
         "exploration": {
             "personal_profile_title": "Kişisel Profilini Keşfet",
             "personal_profile_desc": "Rüya sembollerinin iç kalıplarınla bağlantısını gör",
-            "moon_calendar_title": "Ay Takvimine Bak",
+            "moon_calendar_title": "Doğal Ritim Takvimine Bak",
             "moon_calendar_desc": "Rüyanın geldiği ay fazının anlamını öğren",
             "cycles_title": "Döngülerini İncele",
             "cycles_desc": "Şu anki döngüsel geçişlerin rüyana etkisi",

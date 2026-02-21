@@ -56,7 +56,7 @@ class ArchetypeScreen extends ConsumerWidget {
                     error: (e, s) => SliverToBoxAdapter(
                       child: Center(
                         child: Text(
-                          isEn ? 'Could not load data' : 'Veri yüklenemedi',
+                          isEn ? 'Could not load. Your local data is unaffected.' : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
                           style: TextStyle(
                             color: isDark
                                 ? AppColors.textMuted
@@ -74,8 +74,8 @@ class ArchetypeScreen extends ConsumerWidget {
                           child: Center(
                             child: Text(
                               isEn
-                                  ? 'Could not load journal'
-                                  : 'Günlük yüklenemedi',
+                                  ? 'Could not load. Your local data is unaffected.'
+                                  : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
                               style: TextStyle(
                                 color: isDark
                                     ? AppColors.textMuted
@@ -894,7 +894,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            isEn ? 'Not enough data yet' : 'Henüz yeterli veri yok',
+            isEn ? 'Nothing recorded yet' : 'Henüz kayıt yok',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -906,10 +906,10 @@ class _EmptyState extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             isEn
-                ? 'Log at least 3 journal entries to discover your '
+                ? 'Add at least 3 entries to surface your '
                       'dominant archetype'
-                : 'Baskın arketipini keşfetmek için en az 3 '
-                      'günlük kaydı oluştur',
+                : 'Baskın arketipini ortaya çıkarmak için en az 3 '
+                      'kayıt ekle',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,

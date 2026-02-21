@@ -166,6 +166,13 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               ),
 
               // ═══════════════════════════════════════════════════════
+              // DISCOVER MORE (quick links to features)
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _DiscoverMoreSection(isEn: isEn, isDark: isDark),
+              ),
+
+              // ═══════════════════════════════════════════════════════
               // STREAK CARD
               // ═══════════════════════════════════════════════════════
               SliverPadding(
@@ -325,8 +332,8 @@ class _TodaysInsightSection extends ConsumerWidget {
                 context,
                 icon: Icons.auto_awesome_outlined,
                 text: isEn
-                    ? 'Write $needed entries to unlock your first insight.'
-                    : 'İlk içgörünü açmak için $needed kayıt yaz.',
+                    ? '$needed more entries to activate pattern detection.'
+                    : 'Kalıp tespitini etkinleştirmek için $needed kayıt daha gerekli.',
               );
             }
             final latestId = history.last.archetypeId;
@@ -347,8 +354,8 @@ class _TodaysInsightSection extends ConsumerWidget {
               context,
               icon: Icons.auto_awesome_outlined,
               text: isEn
-                  ? 'Write $needed entries to unlock your first insight.'
-                  : 'İlk içgörünü açmak için $needed kayıt yaz.',
+                  ? '$needed more entries to activate your first insight.'
+                  : 'İlk içgörünü etkinleştirmek için $needed kayıt daha gerekli.',
             );
           },
         );
@@ -1031,4 +1038,116 @@ class _ShadowWorkCard extends ConsumerWidget {
       },
     );
   }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// DISCOVER MORE SECTION
+// ════════════════════════════════════════════════════════════════════════════
+
+class _DiscoverMoreSection extends StatelessWidget {
+  final bool isEn;
+  final bool isDark;
+  const _DiscoverMoreSection({required this.isEn, required this.isDark});
+
+  @override
+  Widget build(BuildContext context) {
+    final items = [
+      _DiscoverItem(
+        '\u{1F4DD}',
+        isEn ? 'Prompts' : '\u0130pu\u00e7lar\u0131',
+        Routes.promptLibrary,
+      ),
+      _DiscoverItem(
+        '\u{1F3C6}',
+        isEn ? 'Milestones' : 'Ba\u015far\u0131lar',
+        Routes.milestones,
+      ),
+      _DiscoverItem(
+        '\u{2705}',
+        isEn ? 'Habits' : 'Al\u0131\u015fkanl\u0131k',
+        Routes.dailyHabits,
+      ),
+      _DiscoverItem(
+        '\u{1F491}',
+        isEn ? 'Partner' : 'Partner',
+        Routes.partner,
+      ),
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            isEn ? 'Explore' : 'Ke\u015ffet',
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: isDark ? AppColors.textSecondary : AppColors.lightTextMuted,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: items.asMap().entries.map((entry) {
+              final index = entry.key;
+              final item = entry.value;
+              return Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    right: index < items.length - 1 ? 8 : 0,
+                  ),
+                  child: GestureDetector(
+                    onTap: () => context.push(item.route),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      decoration: BoxDecoration(
+                        color: isDark
+                            ? AppColors.surfaceDark.withValues(alpha: 0.6)
+                            : AppColors.lightCard,
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(
+                          color: isDark
+                              ? Colors.white.withValues(alpha: 0.06)
+                              : Colors.black.withValues(alpha: 0.04),
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          Text(item.emoji, style: const TextStyle(fontSize: 24)),
+                          const SizedBox(height: 4),
+                          Text(
+                            item.label,
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w500,
+                              color: isDark
+                                  ? AppColors.textSecondary
+                                  : AppColors.lightTextMuted,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ).animate().fadeIn(
+                  delay: Duration(milliseconds: 350 + index * 50),
+                  duration: 300.ms,
+                ),
+              );
+            }).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DiscoverItem {
+  final String emoji;
+  final String label;
+  final String route;
+  const _DiscoverItem(this.emoji, this.label, this.route);
 }

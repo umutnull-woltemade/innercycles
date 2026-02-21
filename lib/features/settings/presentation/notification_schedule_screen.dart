@@ -96,6 +96,36 @@ class _NotificationScheduleScreenState
     await _loadSettings();
   }
 
+  Future<void> _toggleJournalPrompt(bool enabled) async {
+    if (enabled) {
+      final time = _settings?.journalPromptTime ??
+          const TimeOfDay(hour: 10, minute: 0);
+      await _notificationService.scheduleJournalPromptNotification(
+        hour: time.hour,
+        minute: time.minute,
+      );
+    } else {
+      await _notificationService.cancelJournalPromptNotification();
+    }
+    if (!mounted) return;
+    await _loadSettings();
+  }
+
+  Future<void> _pickJournalPromptTime() async {
+    final current = _settings?.journalPromptTime ??
+        const TimeOfDay(hour: 10, minute: 0);
+    final picked =
+        await showTimePicker(context: context, initialTime: current);
+    if (picked != null && mounted) {
+      await _notificationService.scheduleJournalPromptNotification(
+        hour: picked.hour,
+        minute: picked.minute,
+      );
+      if (!mounted) return;
+      await _loadSettings();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
@@ -164,7 +194,29 @@ class _NotificationScheduleScreenState
                           ),
                           const SizedBox(height: AppConstants.spacingMd),
 
-                          // Moon phase
+                          // Journal prompt
+                          _buildNotificationCard(
+                            context: context,
+                            isDark: isDark,
+                            isEn: isEn,
+                            icon: Icons.auto_awesome_outlined,
+                            iconColor: AppColors.auroraEnd,
+                            titleEn: 'Daily Journal Prompt',
+                            titleTr: 'Gunluk Soru',
+                            subtitleEn:
+                                'A fresh journaling question to inspire your writing',
+                            subtitleTr:
+                                'Yazmaniza ilham verecek gunluk bir soru',
+                            enabled:
+                                _settings?.journalPromptEnabled ?? false,
+                            onToggle: _toggleJournalPrompt,
+                            timeWidget:
+                                _settings?.journalPromptEnabled == true
+                                ? _buildJournalPromptTimePicker(isDark, isEn)
+                                : null,
+                          ),
+                          const SizedBox(height: AppConstants.spacingMd),
+
                           // Wellness reminders
                           _buildNotificationCard(
                             context: context,
@@ -391,6 +443,66 @@ class _NotificationScheduleScreenState
                   ),
                   const SizedBox(width: 4),
                   Icon(Icons.access_time, size: 16, color: AppColors.starGold),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildJournalPromptTimePicker(bool isDark, bool isEn) {
+    final time =
+        _settings?.journalPromptTime ?? const TimeOfDay(hour: 10, minute: 0);
+    final formatted = time.format(context);
+
+    return Semantics(
+      label: isEn
+          ? 'Change prompt time: $formatted'
+          : 'Soru saatini degistir: $formatted',
+      button: true,
+      child: GestureDetector(
+        onTap: _pickJournalPromptTime,
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingMd,
+            vertical: AppConstants.spacingSm,
+          ),
+          decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.surfaceLight.withValues(alpha: 0.1)
+                : AppColors.lightSurfaceVariant,
+            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                isEn ? 'Prompt time' : 'Soru saati',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
+              ),
+              Row(
+                children: [
+                  Text(
+                    formatted,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.auroraEnd,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Icon(
+                    Icons.access_time,
+                    size: 16,
+                    color: AppColors.auroraEnd,
+                  ),
                 ],
               ),
             ],

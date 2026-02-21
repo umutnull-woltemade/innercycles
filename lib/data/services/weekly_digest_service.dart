@@ -1,14 +1,152 @@
-// ════════════════════════════════════════════════════════════════════════════
+// ============================================================================
 // WEEKLY DIGEST SERVICE - InnerCycles Weekly Summary
-// ════════════════════════════════════════════════════════════════════════════
-// Generates a weekly summary of journal activity, patterns, and insights.
-// Drives D7 retention by giving users a reason to return every week.
-// ════════════════════════════════════════════════════════════════════════════
+// ============================================================================
+// Generates a comprehensive weekly summary of journal activity, patterns,
+// mood trends, and insights. Drives D7 retention by giving users a reason
+// to return every week.
+//
+// Uses JournalService for entry queries and PatternEngineService for trend
+// analysis. Stores last digest date in SharedPreferences.
+// ============================================================================
 
 import 'dart:async';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/journal_entry.dart';
+import 'journal_service.dart';
+import 'pattern_engine_service.dart';
+
+// ============================================================================
+// MOOD TREND DIRECTION
+// ============================================================================
+
+enum MoodTrendDirection { up, down, stable }
+
+// ============================================================================
+// WEEKLY DIGEST DATA MODEL
+// ============================================================================
+
+class WeeklyDigestData {
+  final DateTime weekStart;
+  final DateTime weekEnd;
+  final int entriesThisWeek;
+  final int entriesLastWeek;
+  final double avgMoodRating;
+  final FocusArea? topFocusArea;
+  final double topFocusAreaPercentage;
+  final int streakDays;
+  final MoodTrendDirection moodTrend;
+  final double moodTrendChangePercent;
+  final DateTime? bestDay;
+  final int bestDayRating;
+  final String highlightInsightEn;
+  final String highlightInsightTr;
+  final Map<FocusArea, double> areaAverages;
+  final Map<FocusArea, int> areaCounts;
+
+  const WeeklyDigestData({
+    required this.weekStart,
+    required this.weekEnd,
+    required this.entriesThisWeek,
+    required this.entriesLastWeek,
+    required this.avgMoodRating,
+    required this.topFocusArea,
+    required this.topFocusAreaPercentage,
+    required this.streakDays,
+    required this.moodTrend,
+    required this.moodTrendChangePercent,
+    required this.bestDay,
+    required this.bestDayRating,
+    required this.highlightInsightEn,
+    required this.highlightInsightTr,
+    required this.areaAverages,
+    required this.areaCounts,
+  });
+
+  Map<String, dynamic> toJson() => {
+    'weekStart': weekStart.toIso8601String(),
+    'weekEnd': weekEnd.toIso8601String(),
+    'entriesThisWeek': entriesThisWeek,
+    'entriesLastWeek': entriesLastWeek,
+    'avgMoodRating': avgMoodRating,
+    'topFocusArea': topFocusArea?.name,
+    'topFocusAreaPercentage': topFocusAreaPercentage,
+    'streakDays': streakDays,
+    'moodTrend': moodTrend.name,
+    'moodTrendChangePercent': moodTrendChangePercent,
+    'bestDay': bestDay?.toIso8601String(),
+    'bestDayRating': bestDayRating,
+    'highlightInsightEn': highlightInsightEn,
+    'highlightInsightTr': highlightInsightTr,
+    'areaAverages': areaAverages.map((k, v) => MapEntry(k.name, v)),
+    'areaCounts': areaCounts.map((k, v) => MapEntry(k.name, v)),
+  };
+
+  factory WeeklyDigestData.fromJson(Map<String, dynamic> json) {
+    return WeeklyDigestData(
+      weekStart: DateTime.tryParse(json['weekStart']?.toString() ?? '') ??
+          DateTime.now(),
+      weekEnd:
+          DateTime.tryParse(json['weekEnd']?.toString() ?? '') ?? DateTime.now(),
+      entriesThisWeek: json['entriesThisWeek'] as int? ?? 0,
+      entriesLastWeek: json['entriesLastWeek'] as int? ?? 0,
+      avgMoodRating: (json['avgMoodRating'] as num? ?? 0).toDouble(),
+      topFocusArea: json['topFocusArea'] != null
+          ? FocusArea.values.firstWhere(
+              (e) => e.name == json['topFocusArea'],
+              orElse: () => FocusArea.energy,
+            )
+          : null,
+      topFocusAreaPercentage:
+          (json['topFocusAreaPercentage'] as num? ?? 0).toDouble(),
+      streakDays: json['streakDays'] as int? ?? 0,
+      moodTrend: MoodTrendDirection.values.firstWhere(
+        (e) => e.name == json['moodTrend'],
+        orElse: () => MoodTrendDirection.stable,
+      ),
+      moodTrendChangePercent:
+          (json['moodTrendChangePercent'] as num? ?? 0).toDouble(),
+      bestDay: json['bestDay'] != null
+          ? DateTime.tryParse(json['bestDay'].toString())
+          : null,
+      bestDayRating: json['bestDayRating'] as int? ?? 0,
+      highlightInsightEn: json['highlightInsightEn'] as String? ?? '',
+      highlightInsightTr: json['highlightInsightTr'] as String? ?? '',
+      areaAverages: _parseAreaDoubleMap(json['areaAverages']),
+      areaCounts: _parseAreaIntMap(json['areaCounts']),
+    );
+  }
+
+  static Map<FocusArea, double> _parseAreaDoubleMap(dynamic raw) {
+    if (raw is! Map) return {};
+    final result = <FocusArea, double>{};
+    for (final entry in raw.entries) {
+      final area = FocusArea.values.firstWhere(
+        (a) => a.name == entry.key.toString(),
+        orElse: () => FocusArea.energy,
+      );
+      result[area] = (entry.value as num? ?? 0).toDouble();
+    }
+    return result;
+  }
+
+  static Map<FocusArea, int> _parseAreaIntMap(dynamic raw) {
+    if (raw is! Map) return {};
+    final result = <FocusArea, int>{};
+    for (final entry in raw.entries) {
+      final area = FocusArea.values.firstWhere(
+        (a) => a.name == entry.key.toString(),
+        orElse: () => FocusArea.energy,
+      );
+      result[area] = (entry.value as num? ?? 0).toInt();
+    }
+    return result;
+  }
+}
+
+// ============================================================================
+// LEGACY MODEL (backward compat for cached digests)
+// ============================================================================
 
 class WeeklyDigest {
   final DateTime weekStart;
@@ -83,22 +221,189 @@ class WeeklyDigest {
   );
 }
 
+// ============================================================================
+// WEEKLY DIGEST SERVICE
+// ============================================================================
+
 class WeeklyDigestService {
   static const String _digestKey = 'inner_cycles_weekly_digests';
+  static const String _lastDigestDateKey = 'inner_cycles_last_digest_date';
+
   final SharedPreferences _prefs;
-  List<WeeklyDigest> _digests = [];
+  final JournalService _journalService;
+  List<WeeklyDigest> _legacyDigests = [];
 
-  WeeklyDigestService._(this._prefs) {
-    _loadDigests();
+  WeeklyDigestService._(this._prefs, this._journalService, PatternEngineService? _) {
+    _loadLegacyDigests();
   }
 
-  static Future<WeeklyDigestService> init() async {
+  /// Initialize the weekly digest service with journal + optional pattern engine
+  static Future<WeeklyDigestService> init({
+    JournalService? journalService,
+    PatternEngineService? patternEngine,
+  }) async {
     final prefs = await SharedPreferences.getInstance();
-    return WeeklyDigestService._(prefs);
+    final journal = journalService ?? await JournalService.init();
+    return WeeklyDigestService._(prefs, journal, patternEngine);
   }
 
-  /// Generate digest for the current/past week from journal entries
-  WeeklyDigest generateDigest(List<JournalEntry> allEntries) {
+  // ==========================================================================
+  // CORE DIGEST GENERATION
+  // ==========================================================================
+
+  /// Generate a comprehensive digest for a specific week
+  WeeklyDigestData generateDigest(DateTime weekOf) {
+    // Calculate Monday-based week boundaries
+    final daysSinceMonday = (weekOf.weekday - 1) % 7;
+    final weekStart = DateTime(
+      weekOf.year,
+      weekOf.month,
+      weekOf.day,
+    ).subtract(Duration(days: daysSinceMonday));
+    final weekEnd = weekStart.add(const Duration(days: 6));
+
+    // Previous week for comparison
+    final prevWeekStart = weekStart.subtract(const Duration(days: 7));
+    final prevWeekEnd = weekStart.subtract(const Duration(days: 1));
+
+    // Fetch entries
+    final weekEntries = _journalService.getEntriesByDateRange(weekStart, weekEnd);
+    final prevWeekEntries =
+        _journalService.getEntriesByDateRange(prevWeekStart, prevWeekEnd);
+
+    final entriesThisWeek = weekEntries.length;
+    final entriesLastWeek = prevWeekEntries.length;
+
+    // Average mood rating (1-5 scale)
+    double avgMoodRating = 0;
+    if (weekEntries.isNotEmpty) {
+      avgMoodRating = weekEntries
+              .map((e) => e.overallRating)
+              .reduce((a, b) => a + b)
+              .toDouble() /
+          weekEntries.length;
+    }
+
+    // Top focus area
+    final areaCounts = <FocusArea, int>{};
+    final areaRatingSums = <FocusArea, int>{};
+    final areaRatingCounts = <FocusArea, int>{};
+    for (final e in weekEntries) {
+      areaCounts[e.focusArea] = (areaCounts[e.focusArea] ?? 0) + 1;
+      areaRatingSums[e.focusArea] =
+          (areaRatingSums[e.focusArea] ?? 0) + e.overallRating;
+      areaRatingCounts[e.focusArea] =
+          (areaRatingCounts[e.focusArea] ?? 0) + 1;
+    }
+
+    FocusArea? topArea;
+    double topAreaPct = 0;
+    if (areaCounts.isNotEmpty) {
+      final sorted = areaCounts.entries.toList()
+        ..sort((a, b) => b.value.compareTo(a.value));
+      topArea = sorted.first.key;
+      topAreaPct = (sorted.first.value / entriesThisWeek) * 100;
+    }
+
+    // Area averages
+    final areaAverages = <FocusArea, double>{};
+    for (final area in FocusArea.values) {
+      final count = areaRatingCounts[area];
+      final sum = areaRatingSums[area];
+      if (count != null && count > 0 && sum != null) {
+        areaAverages[area] = sum / count;
+      }
+    }
+
+    // Streak
+    final streakDays = _journalService.getCurrentStreak();
+
+    // Mood trend: compare first half vs second half of week entries
+    final moodTrendResult = _analyzeMoodTrend(weekEntries, prevWeekEntries);
+
+    // Best day (highest single-day average)
+    DateTime? bestDay;
+    int bestDayRating = 0;
+    if (weekEntries.isNotEmpty) {
+      final byDate = <String, List<JournalEntry>>{};
+      for (final e in weekEntries) {
+        byDate.putIfAbsent(e.dateKey, () => []).add(e);
+      }
+      double bestAvg = 0;
+      for (final dateEntries in byDate.entries) {
+        final dayAvg = dateEntries.value
+                .map((e) => e.overallRating)
+                .reduce((a, b) => a + b) /
+            dateEntries.value.length;
+        if (dayAvg > bestAvg) {
+          bestAvg = dayAvg;
+          bestDay = dateEntries.value.first.date;
+          bestDayRating = dayAvg.round();
+        }
+      }
+    }
+
+    // Generate highlight insight using safe language
+    final highlight = _generateHighlightInsight(
+      entriesThisWeek: entriesThisWeek,
+      entriesLastWeek: entriesLastWeek,
+      avgMood: avgMoodRating,
+      topArea: topArea,
+      moodTrend: moodTrendResult.$1,
+      streakDays: streakDays,
+    );
+
+    // Persist last digest date
+    _saveLastDigestDate(DateTime.now());
+
+    return WeeklyDigestData(
+      weekStart: weekStart,
+      weekEnd: weekEnd,
+      entriesThisWeek: entriesThisWeek,
+      entriesLastWeek: entriesLastWeek,
+      avgMoodRating: double.parse(avgMoodRating.toStringAsFixed(1)),
+      topFocusArea: topArea,
+      topFocusAreaPercentage: double.parse(topAreaPct.toStringAsFixed(0)),
+      streakDays: streakDays,
+      moodTrend: moodTrendResult.$1,
+      moodTrendChangePercent: moodTrendResult.$2,
+      bestDay: bestDay,
+      bestDayRating: bestDayRating,
+      highlightInsightEn: highlight.$1,
+      highlightInsightTr: highlight.$2,
+      areaAverages: areaAverages,
+      areaCounts: areaCounts,
+    );
+  }
+
+  /// Check if there is data for a given week
+  bool hasDataForWeek(DateTime weekOf) {
+    final daysSinceMonday = (weekOf.weekday - 1) % 7;
+    final weekStart = DateTime(
+      weekOf.year,
+      weekOf.month,
+      weekOf.day,
+    ).subtract(Duration(days: daysSinceMonday));
+    final weekEnd = weekStart.add(const Duration(days: 6));
+    return _journalService.getEntriesByDateRange(weekStart, weekEnd).isNotEmpty;
+  }
+
+  /// Get the date the last digest was generated
+  DateTime? getLastDigestDate() {
+    final stored = _prefs.getString(_lastDigestDateKey);
+    if (stored == null) return null;
+    return DateTime.tryParse(stored);
+  }
+
+  /// Legacy: get the most recent cached digest
+  WeeklyDigest? getLastDigest() =>
+      _legacyDigests.isNotEmpty ? _legacyDigests.first : null;
+
+  /// Legacy: get all cached digests
+  List<WeeklyDigest> getAllDigests() => List.unmodifiable(_legacyDigests);
+
+  /// Legacy: generate digest from raw entry list (backward compat)
+  WeeklyDigest generateLegacyDigest(List<JournalEntry> allEntries) {
     final now = DateTime.now();
     final weekStart = now.subtract(Duration(days: now.weekday - 1));
     final weekStartDate = DateTime(
@@ -108,7 +413,6 @@ class WeeklyDigestService {
     );
     final weekEndDate = weekStartDate.add(const Duration(days: 6));
 
-    // Filter entries for this week
     final weekEntries = allEntries.where((e) {
       return !e.date.isBefore(weekStartDate) &&
           !e.date.isAfter(weekEndDate.add(const Duration(days: 1)));
@@ -116,18 +420,15 @@ class WeeklyDigestService {
 
     final entryCount = weekEntries.length;
 
-    // Average mood
     double avgMood = 0;
     if (weekEntries.isNotEmpty) {
-      avgMood =
-          weekEntries
+      avgMood = weekEntries
               .map((e) => e.overallRating)
               .reduce((a, b) => a + b)
               .toDouble() /
           weekEntries.length;
     }
 
-    // Top focus area
     final areaCounts = <FocusArea, int>{};
     for (final entry in weekEntries) {
       areaCounts[entry.focusArea] = (areaCounts[entry.focusArea] ?? 0) + 1;
@@ -139,7 +440,6 @@ class WeeklyDigestService {
               .key
         : FocusArea.energy;
 
-    // Area averages
     final areaRatings = <String, List<int>>{};
     for (final entry in weekEntries) {
       final key = entry.focusArea.name;
@@ -150,10 +450,8 @@ class WeeklyDigestService {
       (k, v) => MapEntry(k, v.reduce((a, b) => a + b) / v.length),
     );
 
-    // Mood trend
-    final moodTrend = _analyzeMoodTrend(weekEntries);
+    final moodTrend = _legacyAnalyzeMoodTrend(weekEntries);
 
-    // Streak calculation
     final sortedAll = allEntries.toList()
       ..sort((a, b) => b.date.compareTo(a.date));
     int streakDays = 0;
@@ -173,9 +471,8 @@ class WeeklyDigestService {
       }
     }
 
-    // Generate highlight and nudge
-    final highlight = _generateHighlight(entryCount, avgMood, topArea);
-    final nudge = _generateGrowthNudge(entryCount, avgMood, areaCounts);
+    final highlight = _legacyGenerateHighlight(entryCount, avgMood, topArea);
+    final nudge = _legacyGenerateGrowthNudge(entryCount, avgMood, areaCounts);
 
     final digest = WeeklyDigest(
       weekStart: weekStartDate,
@@ -194,27 +491,153 @@ class WeeklyDigestService {
       areaAverages: areaAverages,
     );
 
-    // Cache the digest
-    _digests.insert(0, digest);
-    if (_digests.length > 12) _digests = _digests.sublist(0, 12);
-    unawaited(_persistDigests());
+    _legacyDigests.insert(0, digest);
+    if (_legacyDigests.length > 12) {
+      _legacyDigests = _legacyDigests.sublist(0, 12);
+    }
+    unawaited(_persistLegacyDigests());
 
     return digest;
   }
 
-  /// Get the most recent cached digest
-  WeeklyDigest? getLastDigest() => _digests.isNotEmpty ? _digests.first : null;
+  // ==========================================================================
+  // MOOD TREND ANALYSIS
+  // ==========================================================================
 
-  /// Get all cached digests (up to 12 weeks)
-  List<WeeklyDigest> getAllDigests() => List.unmodifiable(_digests);
+  (MoodTrendDirection, double) _analyzeMoodTrend(
+    List<JournalEntry> thisWeek,
+    List<JournalEntry> lastWeek,
+  ) {
+    if (thisWeek.isEmpty) return (MoodTrendDirection.stable, 0);
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // ANALYSIS HELPERS
-  // ══════════════════════════════════════════════════════════════════════════
+    final thisAvg = thisWeek
+            .map((e) => e.overallRating)
+            .reduce((a, b) => a + b)
+            .toDouble() /
+        thisWeek.length;
 
-  (String, String) _analyzeMoodTrend(List<JournalEntry> entries) {
+    if (lastWeek.isEmpty) return (MoodTrendDirection.stable, 0);
+
+    final lastAvg = lastWeek
+            .map((e) => e.overallRating)
+            .reduce((a, b) => a + b)
+            .toDouble() /
+        lastWeek.length;
+
+    if (lastAvg == 0) return (MoodTrendDirection.stable, 0);
+
+    final changePercent = ((thisAvg - lastAvg) / lastAvg) * 100;
+
+    if (changePercent > 10) {
+      return (MoodTrendDirection.up, changePercent);
+    } else if (changePercent < -10) {
+      return (MoodTrendDirection.down, changePercent);
+    }
+    return (MoodTrendDirection.stable, changePercent);
+  }
+
+  // ==========================================================================
+  // HIGHLIGHT INSIGHT GENERATION (safe language)
+  // ==========================================================================
+
+  (String, String) _generateHighlightInsight({
+    required int entriesThisWeek,
+    required int entriesLastWeek,
+    required double avgMood,
+    required FocusArea? topArea,
+    required MoodTrendDirection moodTrend,
+    required int streakDays,
+  }) {
+    if (entriesThisWeek == 0) {
+      return (
+        'Start journaling to see your weekly highlights.',
+        'Haftalik ozetini gormek icin gunluk tutmaya basla.',
+      );
+    }
+
+    // Streak-based highlight
+    if (streakDays >= 7) {
+      return (
+        'Your journaling streak has been going strong at $streakDays days. '
+            'Consistency like this tends to deepen self-awareness.',
+        '$streakDays gunluk gunluk yazma serin devam ediyor. '
+            'Bu tur tutarlilik oz-farkindaligi derinlestirme egiliminde.',
+      );
+    }
+
+    // Mood improving
+    if (moodTrend == MoodTrendDirection.up && avgMood >= 3.5) {
+      return (
+        'Your entries suggest an upward shift in your week. '
+            'Past entries show that this momentum tends to carry forward.',
+        'Kayitlarin bu hafta yukselise gectigini gosteriyor. '
+            'Gecmis kayitlar bu ivmenin ileriye tasima egiliminde oldugunu gosteriyor.',
+      );
+    }
+
+    // More entries than last week
+    if (entriesThisWeek > entriesLastWeek && entriesLastWeek > 0) {
+      final diff = entriesThisWeek - entriesLastWeek;
+      return (
+        'You logged $diff more entries than last week. '
+            'More data tends to reveal clearer patterns over time.',
+        'Gecen haftaya gore $diff daha fazla kayit girdin. '
+            'Daha fazla veri zamanla daha net kalipler ortaya cikma egiliminde.',
+      );
+    }
+
+    // Top area insight
+    if (topArea != null) {
+      final nameEn = topArea.displayNameEn;
+      final nameTr = topArea.displayNameTr;
+      return (
+        'You focused most on $nameEn this week. '
+            'Tracking a consistent area may help you notice subtle shifts.',
+        'Bu hafta en cok $nameTr alanina odaklandin. '
+            'Tutarli bir alani takip etmek ince degisimleri fark etmene yardimci olabilir.',
+      );
+    }
+
+    return (
+      'Every entry you write builds a clearer picture of your patterns.',
+      'Yazdigin her kayit kaliplarinin daha net bir resmini olusturur.',
+    );
+  }
+
+  // ==========================================================================
+  // PERSISTENCE
+  // ==========================================================================
+
+  void _saveLastDigestDate(DateTime date) {
+    _prefs.setString(_lastDigestDateKey, date.toIso8601String());
+  }
+
+  void _loadLegacyDigests() {
+    final jsonString = _prefs.getString(_digestKey);
+    if (jsonString != null) {
+      try {
+        final list = json.decode(jsonString) as List<dynamic>;
+        _legacyDigests = list
+            .map((e) => WeeklyDigest.fromJson(e as Map<String, dynamic>))
+            .toList();
+      } catch (_) {
+        _legacyDigests = [];
+      }
+    }
+  }
+
+  Future<void> _persistLegacyDigests() async {
+    final jsonList = _legacyDigests.map((d) => d.toJson()).toList();
+    await _prefs.setString(_digestKey, json.encode(jsonList));
+  }
+
+  // ==========================================================================
+  // LEGACY HELPERS (backward compat)
+  // ==========================================================================
+
+  (String, String) _legacyAnalyzeMoodTrend(List<JournalEntry> entries) {
     if (entries.length < 2) {
-      return ('Not enough data yet', 'Henüz yeterli veri yok');
+      return ('Nothing recorded yet', 'Henuz kayit yok');
     }
 
     final sorted = entries.toList()..sort((a, b) => a.date.compareTo(b.date));
@@ -232,22 +655,22 @@ class WeeklyDigestService {
     if (diff > 1.0) {
       return (
         'Your mood has been rising this week',
-        'Ruh halin bu hafta yükseliyor',
+        'Ruh halin bu hafta yukseliyor',
       );
     } else if (diff < -1.0) {
       return (
         'Your mood dipped this week — be gentle with yourself',
-        'Ruh halin bu hafta biraz düştü — kendine nazik ol',
+        'Ruh halin bu hafta biraz dustu — kendine nazik ol',
       );
     } else {
       return (
         'Your mood has been steady this week',
-        'Ruh halin bu hafta sabit kalmış',
+        'Ruh halin bu hafta sabit kalmis',
       );
     }
   }
 
-  (String, String) _generateHighlight(
+  (String, String) _legacyGenerateHighlight(
     int entryCount,
     double avgMood,
     FocusArea topArea,
@@ -255,28 +678,22 @@ class WeeklyDigestService {
     if (entryCount == 0) {
       return (
         'Start journaling to see your weekly highlights',
-        'Haftalık özetini görmek için günlük tutmaya başla',
+        'Haftalik ozetini gormek icin gunluk tutmaya basla',
       );
     }
     if (entryCount >= 5) {
       return (
         'Amazing consistency! You logged $entryCount entries this week',
-        'Harika tutarlılık! Bu hafta $entryCount kayıt girdin',
-      );
-    }
-    if (avgMood >= 7) {
-      return (
-        'A strong week! Your average mood was ${avgMood.toStringAsFixed(1)}/10',
-        'Güçlü bir hafta! Ortalama ruh halin ${avgMood.toStringAsFixed(1)}/10',
+        'Harika tutarlilik! Bu hafta $entryCount kayit girdin',
       );
     }
     return (
       'You focused most on ${_areaNameEn(topArea)} this week',
-      'Bu hafta en çok ${_areaNameTr(topArea)} alanına odaklandın',
+      'Bu hafta en cok ${_areaNameTr(topArea)} alanina odaklandin',
     );
   }
 
-  (String, String) _generateGrowthNudge(
+  (String, String) _legacyGenerateGrowthNudge(
     int entryCount,
     double avgMood,
     Map<FocusArea, int> areaCounts,
@@ -284,11 +701,10 @@ class WeeklyDigestService {
     if (entryCount == 0) {
       return (
         'Try logging just one entry today — small steps matter',
-        'Bugün sadece bir kayıt girmeyi dene — küçük adımlar önemli',
+        'Bugun sadece bir kayit girmeyi dene — kucuk adimlar onemli',
       );
     }
 
-    // Find least-tracked area
     final allAreas = FocusArea.values;
     FocusArea? leastTracked;
     int minCount = 999;
@@ -303,20 +719,13 @@ class WeeklyDigestService {
     if (leastTracked != null && minCount == 0) {
       return (
         'You haven\'t explored ${_areaNameEn(leastTracked)} this week — give it a try',
-        'Bu hafta ${_areaNameTr(leastTracked)} alanını keşfetmedin — bir dene',
-      );
-    }
-
-    if (avgMood < 5) {
-      return (
-        'Consider trying a breathing exercise to reset your energy',
-        'Enerjini yenilemek için bir nefes egzersizi denemeyi düşün',
+        'Bu hafta ${_areaNameTr(leastTracked)} alanini kesfetmedin — bir dene',
       );
     }
 
     return (
       'Keep the momentum going — consistency builds insight',
-      'İvmeyi sürdür — tutarlılık içgörü oluşturur',
+      'Ivmeyi surdur — tutarlilik icgoru olusturur',
     );
   }
 
@@ -348,28 +757,5 @@ class WeeklyDigestService {
       case FocusArea.social:
         return 'Sosyal';
     }
-  }
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // PERSISTENCE
-  // ══════════════════════════════════════════════════════════════════════════
-
-  void _loadDigests() {
-    final jsonString = _prefs.getString(_digestKey);
-    if (jsonString != null) {
-      try {
-        final list = json.decode(jsonString) as List<dynamic>;
-        _digests = list
-            .map((e) => WeeklyDigest.fromJson(e as Map<String, dynamic>))
-            .toList();
-      } catch (_) {
-        _digests = [];
-      }
-    }
-  }
-
-  Future<void> _persistDigests() async {
-    final jsonList = _digests.map((d) => d.toJson()).toList();
-    await _prefs.setString(_digestKey, json.encode(jsonList));
   }
 }

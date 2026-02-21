@@ -64,7 +64,7 @@ class _MoonCalendarScreenState extends ConsumerState<MoonCalendarScreen> {
                 parent: AlwaysScrollableScrollPhysics(),
               ),
               slivers: [
-                GlassSliverAppBar(title: isEn ? 'Moon Calendar' : 'Ay Takvimi'),
+                GlassSliverAppBar(title: isEn ? 'Natural Rhythm Calendar' : 'Doğal Ritim Takvimi'),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
                   sliver: SliverList(

@@ -38,7 +38,7 @@ class BlindSpotScreen extends ConsumerWidget {
             loading: () => const CosmicLoadingIndicator(),
             error: (e, s) => Center(
               child: Text(
-                isEn ? 'Could not load data' : 'Veri yüklenemedi',
+                isEn ? 'Could not load. Your local data is unaffected.' : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
                 style: TextStyle(
                   color: isDark
                       ? AppColors.textMuted
@@ -50,7 +50,7 @@ class BlindSpotScreen extends ConsumerWidget {
               loading: () => const CosmicLoadingIndicator(),
               error: (e, s) => Center(
                 child: Text(
-                  isEn ? 'Could not load data' : 'Veri yüklenemedi',
+                  isEn ? 'Could not load. Your local data is unaffected.' : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
                   style: TextStyle(
                     color: isDark
                         ? AppColors.textMuted

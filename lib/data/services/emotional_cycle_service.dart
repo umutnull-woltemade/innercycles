@@ -163,7 +163,7 @@ enum EmotionalPhase {
       case EmotionalPhase.stabilization:
         return 'Son kazanımları pekiştirmeyi düşünebilirsin';
       case EmotionalPhase.contraction:
-        return 'Nazik öz bakım şu anda özellikle faydalı olabilir';
+        return 'Kendinize nazik davranmak şu anda özellikle faydalı olabilir';
       case EmotionalPhase.reflection:
         return 'Son deneyimler hakkında yazmak netlik katabilir';
       case EmotionalPhase.recovery:

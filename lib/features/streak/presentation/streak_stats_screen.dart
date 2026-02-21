@@ -80,7 +80,7 @@ class StreakStatsScreen extends ConsumerWidget {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Streak Stats' : 'Seri İstatistikleri',
+            title: isEn ? 'Streak Engine' : 'Seri Motoru',
           ),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),

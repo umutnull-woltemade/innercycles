@@ -727,7 +727,7 @@ class JournalPromptService {
     ),
 
     // ════════════════════════════════════════════════════════════════
-    // HEALING (10)
+    // RECOVERY (10)
     // ════════════════════════════════════════════════════════════════
     JournalPrompt(
       id: 'hl_01',
@@ -752,7 +752,7 @@ class JournalPromptService {
       promptEn:
           'What does looking after yourself look like right now? Is there something you have been neglecting?',
       promptTr:
-          'Şu anda öz bakım sizin için neye benziyor? İhmal ettiğiniz bir şey var mı?',
+          'Şu anda kendinize bakmak sizin için neye benziyor? İhmal ettiğiniz bir şey var mı?',
       category: PromptCategory.recovery,
       depth: PromptDepth.surface,
     ),

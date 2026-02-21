@@ -265,16 +265,16 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           : 'Olağanüstü bir öz-düşünme yılı. Kendini anlamaya olan bağlılığın dikkat çekiciydi.';
     } else if (data.totalEntries >= 100) {
       return isEn
-          ? 'You showed up consistently for yourself this year. Your journal entries reveal a meaningful journey of growth.'
-          : 'Bu yıl kendin için sürekli olarak orda oldun. Günlük kayıtların anlamlı bir gelişim yolculuğu ortaya koyuyor.';
+          ? 'You showed up consistently for yourself this year. Your entries reveal meaningful patterns of progress.'
+          : 'Bu yıl kendin için sürekli olarak orda oldun. Kayıtların anlamlı gelişim kalıpları ortaya koyuyor.';
     } else if (data.totalEntries >= 30) {
       return isEn
           ? 'Every entry you wrote was a step toward knowing yourself better. Your patterns tell a story worth celebrating.'
           : 'Yazdığın her kayıt kendini daha iyi tanımaya doğru bir adımdı. Kalıpların kutlanmaya değer bir hikaye anlatıyor.';
     } else {
       return isEn
-          ? 'You started a journey of self-awareness this year. Each entry matters, and your story is just beginning.'
-          : 'Bu yıl bir öz-farkındalık yolculuğuna başladınız. Her kayıt önemli ve hikayeniz daha yeni başlıyor.';
+          ? 'You began building self-awareness this year. Each entry matters, and your data is just getting started.'
+          : 'Bu yıl öz-farkındalık oluşturmaya başladınız. Her kayıt önemli ve verileriniz daha yeni şekillenmeye başlıyor.';
     }
   }
 

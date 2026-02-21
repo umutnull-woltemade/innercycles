@@ -559,7 +559,7 @@ class ShiftOutlookService {
       EmotionalPhase.stabilization =>
         'Son ilerlemeyi pekiştirmek ve rutinler oluşturmaktan fayda görebilirsin',
       EmotionalPhase.contraction =>
-        'Nazik öz bakım ve taahhütleri azaltmak bu geçişte yardımcı olabilir',
+        'Kendinize nazik davranmak ve taahhütleri azaltmak bu geçişte yardımcı olabilir',
       EmotionalPhase.reflection =>
         'Günlük yazma ve sakin aktiviteler yakında özellikle değerli hissedebilir',
       EmotionalPhase.recovery =>

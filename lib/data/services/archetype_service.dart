@@ -408,7 +408,7 @@ class ArchetypeService {
           'yoluyla vizyonu gerçekliğe çevirmeyle uyum içinde '
           'olabilirsin.',
       strengthsEn: [
-        'Transformation',
+        'Adaptability',
         'Intuition',
         'Resourcefulness',
         'Awareness',
@@ -465,16 +465,16 @@ class ArchetypeService {
           'People-pleasing or losing yourself in others may surface '
           'when the need for connection overshadows looking after yourself.',
       shadowTr:
-          'Bağlantı ihtiyacı öz bakımın önüne geçtiğinde başkalarını '
+          'Bağlantı ihtiyacı kendinize bakmanın önüne geçtiğinde başkalarını '
           'memnun etme veya başkaları içinde kaybolma ortaya '
           'çıkabilir.',
       growthTipEn:
-          'Love yourself first. Your patterns suggest that the '
+          'Take care of yourself first. Your patterns suggest that the '
           'deepest connections grow from a place of inner '
-          'wholeness.',
+          'stability.',
       growthTipTr:
-          'Önce kendini sev. Kalıpların en derin bağlantıların iç '
-          'bütünlük yerinden büyüdüğüne işaret ediyor.',
+          'Önce kendine dikkat et. Kalıpların en derin bağlantıların iç '
+          'dengeden büyüdüğüne işaret ediyor.',
       growthAreasEn: [
         'Setting healthy boundaries in close relationships',
         'Distinguishing your emotions from those of others',

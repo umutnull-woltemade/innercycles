@@ -38,6 +38,17 @@ import '../../features/admin/presentation/admin_login_screen.dart';
 import '../../features/admin/presentation/admin_dashboard_screen.dart';
 import '../../features/cycle_sync/presentation/cycle_sync_screen.dart';
 import '../../features/shadow_work/presentation/shadow_work_screen.dart';
+import '../../features/prompts/presentation/prompt_library_screen.dart';
+import '../../features/milestones/presentation/milestone_screen.dart';
+import '../../features/year_review/presentation/year_review_screen.dart';
+import '../../features/habits/presentation/daily_habits_screen.dart';
+import '../../features/partner/presentation/partner_sync_screen.dart';
+import '../../features/referral/presentation/referral_screen.dart';
+import '../../features/journal/presentation/annual_report_screen.dart';
+import '../../features/sharing/presentation/share_card_gallery.dart';
+import '../../features/habits/presentation/habit_suggestions_screen.dart';
+import '../../features/growth/presentation/growth_dashboard_screen.dart';
+import '../../features/digest/presentation/weekly_digest_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/storage_service.dart';
@@ -263,6 +274,54 @@ final routerProvider = Provider<GoRouter>((ref) {
           builder: (context, state) => const AdminDashboardScreen(),
         ),
       ],
+
+      // ════════════════════════════════════════════════════════════════
+      // DISCOVERY & GROWTH FEATURES
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.promptLibrary,
+        builder: (context, state) => const PromptLibraryScreen(),
+      ),
+      GoRoute(
+        path: Routes.milestones,
+        builder: (context, state) => const MilestoneScreen(),
+      ),
+      GoRoute(
+        path: Routes.yearReview,
+        builder: (context, state) => const YearReviewScreen(),
+      ),
+      GoRoute(
+        path: Routes.dailyHabits,
+        builder: (context, state) => const DailyHabitsScreen(),
+      ),
+      GoRoute(
+        path: Routes.partner,
+        builder: (context, state) => const PartnerSyncScreen(),
+      ),
+      GoRoute(
+        path: Routes.referral,
+        builder: (context, state) => const ReferralScreen(),
+      ),
+      GoRoute(
+        path: Routes.annualReport,
+        builder: (context, state) => const AnnualReportScreen(),
+      ),
+      GoRoute(
+        path: Routes.shareCardGallery,
+        builder: (context, state) => const ShareCardGalleryScreen(),
+      ),
+      GoRoute(
+        path: Routes.habitSuggestions,
+        builder: (context, state) => const HabitSuggestionsScreen(),
+      ),
+      GoRoute(
+        path: Routes.growthDashboard,
+        builder: (context, state) => const GrowthDashboardScreen(),
+      ),
+      GoRoute(
+        path: Routes.weeklyDigest,
+        builder: (context, state) => const WeeklyDigestScreen(),
+      ),
 
       // ════════════════════════════════════════════════════════════════
       // LEGACY DREAM REDIRECTS (Turkish backward compatibility)

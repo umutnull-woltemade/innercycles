@@ -33,8 +33,8 @@ class LibraryHubScreen extends ConsumerWidget {
     final categories = [
       _LibraryCategory(
         emoji: '\u{1F4D3}',
-        nameEn: 'Journal Archive',
-        nameTr: 'G\u00fcnl\u00fck Ar\u015fivi',
+        nameEn: 'Archive Vault',
+        nameTr: 'Arşiv Kasası',
         route: Routes.journalArchive,
       ),
       _LibraryCategory(

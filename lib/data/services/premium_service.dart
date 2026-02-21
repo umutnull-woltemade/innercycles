@@ -553,13 +553,13 @@ class PremiumNotifier extends Notifier<PremiumState> {
           break;
         case PurchasesErrorCode.networkError:
           errorMessage = isEn
-              ? 'Network error. Please try again.'
-              : 'Ağ hatası. Lütfen tekrar deneyin.';
+              ? 'Could not connect. Your local data is unaffected.'
+              : 'Bağlantı kurulamadı. Yerel verileriniz etkilenmedi.';
           break;
         default:
           errorMessage = isEn
-              ? 'Purchase failed: $e'
-              : 'Satın alma başarısız: $e';
+              ? 'Something went wrong. Your account was not charged.'
+              : 'Bir hata oluştu. Hesabınızdan ücret alınmadı.';
       }
 
       state = state.copyWith(isLoading: false, errorMessage: errorMessage);
@@ -580,8 +580,8 @@ class PremiumNotifier extends Notifier<PremiumState> {
       state = state.copyWith(
         isLoading: false,
         errorMessage: isEnFallback
-            ? 'Purchase failed. Please try again.'
-            : 'Satın alma başarısız. Lütfen tekrar deneyin.',
+            ? 'Something went wrong. Your account was not charged.'
+            : 'Bir hata oluştu. Hesabınızdan ücret alınmadı.',
       );
 
       _analytics.logPurchase(

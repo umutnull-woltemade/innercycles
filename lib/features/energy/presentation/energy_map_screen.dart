@@ -39,7 +39,7 @@ class EnergyMapScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Energy Map' : 'Enerji Haritası',
+                  title: isEn ? 'Energy Profile' : 'Enerji Profili',
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -50,7 +50,7 @@ class EnergyMapScreen extends ConsumerWidget {
                     error: (e, s) => SliverToBoxAdapter(
                       child: Center(
                         child: Text(
-                          isEn ? 'Could not load data' : 'Veri yüklenemedi',
+                          isEn ? 'Could not load. Your local data is unaffected.' : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
                           style: TextStyle(
                             color: isDark
                                 ? AppColors.textMuted
@@ -682,7 +682,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            isEn ? 'Not enough data yet' : 'Henüz yeterli veri yok',
+            isEn ? 'Nothing recorded yet' : 'Henüz kayıt yok',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -694,8 +694,8 @@ class _EmptyState extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             isEn
-                ? 'Log at least 5 journal entries to see your energy map'
-                : 'Enerji haritanı görmek için en az 5 günlük kaydı oluştur',
+                ? 'Add at least 5 entries to see your energy map'
+                : 'Enerji haritanı görmek için en az 5 kayıt ekle',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,

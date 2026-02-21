@@ -145,13 +145,48 @@ class ProfileHubScreen extends ConsumerWidget {
       ),
       _SettingsLink(
         '\u{1F4C5}',
-        isEn ? 'Calendar Heatmap' : 'Takvim Isı Haritası',
+        isEn ? 'Heatmap Timeline' : 'Isı Haritası Zaman Çizelgesi',
         Routes.calendarHeatmap,
       ),
       _SettingsLink(
         '\u{1F30A}',
-        isEn ? 'Emotional Cycles' : 'Duygusal Döngüler',
+        isEn ? 'Waveform View' : 'Dalga Formu Görünümü',
         Routes.emotionalCycles,
+      ),
+      _SettingsLink(
+        '\u{1F3C6}',
+        isEn ? 'Milestones' : 'Ba\u015far\u0131lar',
+        Routes.milestones,
+      ),
+      _SettingsLink(
+        '\u{2705}',
+        isEn ? 'Routine Tracker' : 'Rutin Takipçisi',
+        Routes.dailyHabits,
+      ),
+      _SettingsLink(
+        '\u{1F4DD}',
+        isEn ? 'Prompt Engine' : 'Yönlendirme Motoru',
+        Routes.promptLibrary,
+      ),
+      _SettingsLink(
+        '\u{1F4CA}',
+        isEn ? 'Year Synthesis' : 'Yıl Sentezi',
+        Routes.yearReview,
+      ),
+      _SettingsLink(
+        '\u{1F491}',
+        isEn ? 'Partner Sync' : 'Partner Senkronu',
+        Routes.partner,
+      ),
+      _SettingsLink(
+        '\u{1F4C8}',
+        isEn ? 'Growth Dashboard' : 'Geli\u015fim Panosu',
+        Routes.growthDashboard,
+      ),
+      _SettingsLink(
+        '\u{1F3B4}',
+        isEn ? 'Share Cards' : 'Payla\u015f\u0131m Kartlar\u0131',
+        Routes.shareCardGallery,
       ),
     ];
 

@@ -987,8 +987,8 @@ const List<ContextModule> allContextModules = [
     id: 'js_005',
     category: ContextModuleCategory.journalScience,
     depth: ContextModuleDepth.advanced,
-    titleEn: 'Narrative Coherence and Healing',
-    titleTr: 'Anlatısal Tutarlılık ve İyileşme',
+    titleEn: 'Narrative Coherence and Recovery',
+    titleTr: 'Anlatısal Tutarlılık ve Toparlanma',
     summaryEn:
         'The more coherently you can tell the story of a difficult experience, the more resolved it becomes psychologically.',
     summaryTr:
@@ -998,9 +998,9 @@ const List<ContextModule> allContextModules = [
     bodyTr:
         'Pennebaker\'ın binlerce günlük kaydının dilbilimsel analizi çarpıcı bir örüntü buldu: yazma seansları boyunca artan nedensel kelime kullanımı gösteren kişiler en büyük sağlık iyileşmelerini gösterdi. Mekanizma anlatısal tutarlılıktır — parçalanmış bir duygusal deneyimi nedenleri, bağlantıları ve anlamı olan bir hikayeye dönüştürmek.',
     whyItMattersEn:
-        'Rereading old entries and adding new understanding creates the narrative coherence that research links to healing.',
+        'Rereading old entries and adding new understanding creates the narrative coherence that research links to recovery.',
     whyItMattersTr:
-        'Eski kayıtları yeniden okumak ve yeni anlayış eklemek, araştırmanın iyileşmeyle ilişkilendirdiği anlatısal tutarlılığı oluşturur.',
+        'Eski kayıtları yeniden okumak ve yeni anlayış eklemek, araştırmanın toparlanmayla ilişkilendirdiği anlatısal tutarlılığı oluşturur.',
     screenshotLineEn:
         'You do not need a happy ending. You need a coherent story.',
     screenshotLineTr:

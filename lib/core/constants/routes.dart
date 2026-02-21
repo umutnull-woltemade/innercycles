@@ -141,6 +141,17 @@ class Routes {
   static const String yearReview = '/year-review';
 
   // ════════════════════════════════════════════════════════════════
+  // PARTNER SYNC & ANNUAL REPORT
+  // ════════════════════════════════════════════════════════════════
+  static const String partner = '/partner';
+  static const String annualReport = '/annual-report';
+
+  // ════════════════════════════════════════════════════════════════
+  // REFERRAL (Invite Friends & Earn Rewards)
+  // ════════════════════════════════════════════════════════════════
+  static const String referral = '/referral';
+
+  // ════════════════════════════════════════════════════════════════
   // AFFIRMATIONS, EMOTIONAL VOCABULARY
   // ════════════════════════════════════════════════════════════════
   static const String affirmations = '/affirmations';

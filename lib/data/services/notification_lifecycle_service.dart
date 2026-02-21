@@ -445,8 +445,8 @@ class NotificationLifecycleService {
         return _NotificationContent(
           title: isEn ? 'Quick Check-In' : 'Hızlı Kontrol',
           body: isEn
-              ? 'How are you feeling right now? A quick check-in takes 30 seconds.'
-              : 'Şu an nasıl hissediyorsun? Hızlı bir kontrol 30 saniye sürer.',
+              ? 'What\'s present for you right now? A quick check-in takes 30 seconds.'
+              : 'Şu an neler hissediyorsun? Hızlı bir kontrol 30 saniye sürer.',
         );
 
       case LifecycleNotificationType.milestonesCelebration:

@@ -380,8 +380,8 @@ class SeasonalReflectionService {
       ),
       SeasonalPrompt(
         index: 2,
-        titleEn: 'Year in Review',
-        titleTr: 'Yıl Değerlendirmesi',
+        titleEn: 'Year Synthesis',
+        titleTr: 'Yıl Sentezi',
         promptEn:
             'Looking back at this year, what are your 3 biggest learnings?',
         promptTr: 'Bu yıla baktığında, en büyük 3 öğrenimin nedir?',

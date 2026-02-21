@@ -599,8 +599,8 @@ class _ContextualPaywallSheetState
               ? 'Go deeper with guided growth'
               : 'Rehberli büyüme ile derinleş',
           subtitle: isEn
-              ? 'Structured multi-day programs designed to unlock new dimensions of self-awareness.'
-              : 'Öz farkındalığın yeni boyutlarını açmak için tasarlanmış çok günlü programlar.',
+              ? 'Structured multi-day sequences designed to surface new dimensions of self-awareness.'
+              : 'Öz farkındalığın yeni boyutlarını ortaya çıkarmak için tasarlanmış çok günlük diziler.',
           cta: isEn ? 'Start Program' : 'Programa Başla',
         );
 

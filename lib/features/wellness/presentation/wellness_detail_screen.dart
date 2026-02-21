@@ -50,8 +50,8 @@ class WellnessDetailScreen extends ConsumerWidget {
                             padding: const EdgeInsets.all(32),
                             child: Text(
                               isEn
-                                  ? 'Could not load wellness data'
-                                  : 'Sağlık verileri yüklenemedi',
+                                  ? 'Could not load. Your local data is unaffected.'
+                                  : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
                               style: TextStyle(
                                 color: isDark
                                     ? AppColors.textMuted

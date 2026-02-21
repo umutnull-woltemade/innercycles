@@ -1851,7 +1851,7 @@
                 "description": "Energy reading."
             },
             "moon_calendar": {
-                "title": "Moon Calendar",
+                "title": "Natural Rhythm Calendar",
                 "description": "New moon and full moon dates."
             },
             "energy_work_rituals": {
@@ -1933,8 +1933,8 @@
         "weekly_energy_chart": "Weekly Energy Chart",
         "monthly_mantra": "Monthly Mantra",
         "weekly_affirmation": "Weekly Affirmation",
-        "monthly_energy_map": "Monthly Energy Map",
-        "yearly_energy_map": "Yearly Energy Map",
+        "monthly_energy_map": "Monthly Energy Profile",
+        "yearly_energy_map": "Yearly Energy Profile",
         "yearly_affirmation": "Yearly Affirmation",
         "monthly_exploration": "What to explore this month?",
         "weekly_exploration": "What to explore this week?",
@@ -3463,7 +3463,7 @@
         "exploration": {
             "personal_profile_title": "Explore Your Personal Profile",
             "personal_profile_desc": "See how dream symbols connect with your inner patterns",
-            "moon_calendar_title": "Check Moon Calendar",
+            "moon_calendar_title": "Check Natural Rhythm Calendar",
             "moon_calendar_desc": "Learn the meaning of the moon phase when your dream came",
             "cycles_title": "Examine Your Cycles",
             "cycles_desc": "The effect of current life cycles on your dream",

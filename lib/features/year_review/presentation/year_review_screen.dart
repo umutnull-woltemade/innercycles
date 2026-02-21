@@ -101,8 +101,8 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                       slivers: [
                         GlassSliverAppBar(
                           title: isEn
-                              ? 'Year in Review'
-                              : 'Yıllık Değerlendirme',
+                              ? 'Year Synthesis'
+                              : 'Yıl Sentezi',
                         ),
                         // Year selector
                         SliverToBoxAdapter(
@@ -113,8 +113,8 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                                 padding: const EdgeInsets.all(32),
                                 child: Text(
                                   isEn
-                                      ? 'Could not load year data'
-                                      : 'Yıl verileri yüklenemedi',
+                                      ? 'Could not load. Your local data is unaffected.'
+                                      : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
                                   style: TextStyle(
                                     color: isDark
                                         ? AppColors.textMuted
@@ -160,8 +160,8 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                                 child: Center(
                                   child: Text(
                                     isEn
-                                        ? 'Could not load review'
-                                        : 'Değerlendirme yüklenemedi',
+                                        ? 'Could not load. Your local data is unaffected.'
+                                        : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
                                     style: TextStyle(
                                       color: isDark
                                           ? AppColors.textMuted
@@ -365,8 +365,8 @@ class _EmptyState extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             isEn
-                ? 'Your Year in Review is ready'
-                : 'Yıllık değerlendirmeniz hazır',
+                ? 'Your Year Synthesis is ready'
+                : 'Yıl senteziniz hazır',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               color: isDark
                   ? AppColors.textPrimary
@@ -378,8 +378,8 @@ class _EmptyState extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             isEn
-                ? 'Keep journaling to unlock your annual summary. You need at least 7 entries in a year.'
-                : 'Yıllık özet için günlük tutmaya devam edin. Bir yılda en az 7 kayıt gerekli.',
+                ? 'Keep recording to activate your annual summary. You need at least 7 entries in a year.'
+                : 'Yıllık sentezinizi etkinleştirmek için kayıt yapmaya devam edin. Bir yılda en az 7 kayıt gerekli.',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),

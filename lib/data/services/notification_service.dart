@@ -6,6 +6,7 @@ import 'package:timezone/data/latest.dart' as tz_data;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/constants/routes.dart';
 import '../../core/theme/app_colors.dart';
+import 'journal_prompt_service.dart';
 
 /// Global navigator key for notification navigation
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -44,6 +45,7 @@ class NotificationService {
   static const int newMoonId = 7;
   static const int fullMoonId = 8;
   static const int eveningReflectionId = 9;
+  static const int journalPromptId = 10;
 
   // Preference keys
   static const String _keyDailyEnabled = 'notification_daily_enabled';
@@ -51,6 +53,10 @@ class NotificationService {
   static const String _keyMoonPhaseEnabled = 'notification_moon_enabled';
   static const String _keyWellnessEnabled = 'notification_wellness_enabled';
   static const String _keyEveningEnabled = 'notification_evening_enabled';
+  static const String _keyJournalPromptEnabled =
+      'notification_journal_prompt_enabled';
+  static const String _keyJournalPromptTime =
+      'notification_journal_prompt_time';
 
   /// Initialize the notification service
   Future<void> initialize() async {
@@ -144,6 +150,9 @@ class NotificationService {
         route = Routes.insight;
         break;
       case 'evening_reflection':
+        route = Routes.journal;
+        break;
+      case 'journal_prompt':
         route = Routes.journal;
         break;
       default:
@@ -272,6 +281,76 @@ class NotificationService {
     await _notifications.cancel(id: eveningReflectionId);
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_keyEveningEnabled, false);
+  }
+
+  // ============== Journal Prompt Notifications ==============
+
+  /// Schedule a daily journal prompt notification at the given time.
+  /// Picks today's deterministic prompt from JournalPromptService and
+  /// uses the stored language preference for bilingual support.
+  Future<void> scheduleJournalPromptNotification({
+    required int hour,
+    required int minute,
+  }) async {
+    _isEn = await _readIsEn();
+
+    // Get today's deterministic prompt
+    final promptService = await JournalPromptService.init();
+    final prompt = promptService.getDailyPrompt();
+    final body = _isEn ? prompt.promptEn : prompt.promptTr;
+
+    await _notifications.zonedSchedule(
+      id: journalPromptId,
+      title: _isEn ? 'Today\'s Journal Prompt' : 'Bugünkü Günlük Sorusu',
+      body: body,
+      scheduledDate: _nextInstanceOfTime(hour, minute),
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'journal_prompt',
+          _isEn ? 'Journal Prompts' : 'Günlük Soruları',
+          channelDescription: _isEn
+              ? 'Daily journaling prompt to inspire your writing'
+              : 'Yazmanıza ilham verecek günlük soru',
+          importance: Importance.high,
+          priority: Priority.high,
+          icon: '@mipmap/ic_launcher',
+          color: AppColors.auroraEnd,
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.time,
+      payload: 'journal_prompt',
+    );
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyJournalPromptEnabled, true);
+    await prefs.setInt(_keyJournalPromptTime, hour * 60 + minute);
+  }
+
+  /// Cancel journal prompt notification
+  Future<void> cancelJournalPromptNotification() async {
+    await _notifications.cancel(id: journalPromptId);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyJournalPromptEnabled, false);
+  }
+
+  /// Check if journal prompt notification is enabled
+  Future<bool> isJournalPromptEnabled() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_keyJournalPromptEnabled) ?? false;
+  }
+
+  /// Get scheduled journal prompt time
+  Future<TimeOfDay?> getJournalPromptTime() async {
+    final prefs = await SharedPreferences.getInstance();
+    final minutes = prefs.getInt(_keyJournalPromptTime);
+    if (minutes == null) return null;
+    return TimeOfDay(hour: minutes ~/ 60, minute: minutes % 60);
   }
 
   // ============== Moon Cycle Awareness Notifications ==============
@@ -423,6 +502,7 @@ class NotificationService {
     await prefs.setBool(_keyMoonPhaseEnabled, false);
     await prefs.setBool(_keyWellnessEnabled, false);
     await prefs.setBool(_keyEveningEnabled, false);
+    await prefs.setBool(_keyJournalPromptEnabled, false);
   }
 
   /// Get notification settings
@@ -434,6 +514,9 @@ class NotificationService {
       moonPhaseEnabled: prefs.getBool(_keyMoonPhaseEnabled) ?? false,
       wellnessRemindersEnabled: prefs.getBool(_keyWellnessEnabled) ?? false,
       eveningReflectionEnabled: prefs.getBool(_keyEveningEnabled) ?? false,
+      journalPromptEnabled:
+          prefs.getBool(_keyJournalPromptEnabled) ?? false,
+      journalPromptTimeMinutes: prefs.getInt(_keyJournalPromptTime),
     );
   }
 }
@@ -445,6 +528,8 @@ class NotificationSettings {
   final bool moonPhaseEnabled;
   final bool wellnessRemindersEnabled;
   final bool eveningReflectionEnabled;
+  final bool journalPromptEnabled;
+  final int? journalPromptTimeMinutes;
 
   NotificationSettings({
     required this.dailyReflectionEnabled,
@@ -452,6 +537,8 @@ class NotificationSettings {
     required this.moonPhaseEnabled,
     required this.wellnessRemindersEnabled,
     required this.eveningReflectionEnabled,
+    required this.journalPromptEnabled,
+    this.journalPromptTimeMinutes,
   });
 
   TimeOfDay? get dailyReflectionTime {
@@ -459,6 +546,14 @@ class NotificationSettings {
     return TimeOfDay(
       hour: dailyReflectionTimeMinutes! ~/ 60,
       minute: dailyReflectionTimeMinutes! % 60,
+    );
+  }
+
+  TimeOfDay? get journalPromptTime {
+    if (journalPromptTimeMinutes == null) return null;
+    return TimeOfDay(
+      hour: journalPromptTimeMinutes! ~/ 60,
+      minute: journalPromptTimeMinutes! % 60,
     );
   }
 }

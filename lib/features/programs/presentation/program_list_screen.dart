@@ -56,8 +56,8 @@ class ProgramListScreen extends ConsumerWidget {
                       child: Center(
                         child: Text(
                           isEn
-                              ? 'Could not load programs'
-                              : 'Programlar yüklenemedi',
+                              ? 'Could not load. Your local data is unaffected.'
+                              : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
                           style: TextStyle(
                             color: isDark
                                 ? AppColors.textMuted

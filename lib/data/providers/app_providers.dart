@@ -53,6 +53,8 @@ import '../services/emotional_cycle_service.dart';
 import '../services/cycle_sync_service.dart';
 import '../services/cycle_correlation_service.dart';
 import '../services/shadow_work_service.dart';
+import '../services/partner_sync_service.dart';
+import '../services/dream_journal_correlation_service.dart';
 import '../models/journal_entry.dart';
 import '../models/cross_correlation_result.dart';
 
@@ -461,7 +463,21 @@ final growthChallengeServiceProvider = FutureProvider<GrowthChallengeService>((
 final weeklyDigestServiceProvider = FutureProvider<WeeklyDigestService>((
   ref,
 ) async {
-  return await WeeklyDigestService.init();
+  final journalService = await ref.watch(journalServiceProvider.future);
+  final patternEngine = await ref.watch(patternEngineServiceProvider.future);
+  return await WeeklyDigestService.init(
+    journalService: journalService,
+    patternEngine: patternEngine,
+  );
+});
+
+/// Pre-computed weekly digest data for the current week
+final weeklyDigestDataProvider = FutureProvider<WeeklyDigestData?>((
+  ref,
+) async {
+  final service = await ref.watch(weeklyDigestServiceProvider.future);
+  if (!service.hasDataForWeek(DateTime.now())) return null;
+  return service.generateDigest(DateTime.now());
 });
 
 // =============================================================================
@@ -763,4 +779,44 @@ final shadowWorkServiceProvider = FutureProvider<ShadowWorkService>((
   ref,
 ) async {
   return await ShadowWorkService.init();
+});
+
+// =============================================================================
+// PARTNER SYNC PROVIDERS (Partner Cycle Sharing — Local-First MVP)
+// =============================================================================
+
+final partnerSyncServiceProvider = FutureProvider<PartnerSyncService>((
+  ref,
+) async {
+  return await PartnerSyncService.init();
+});
+
+// =============================================================================
+// DREAM-JOURNAL CORRELATION PROVIDERS (Dream-Mood Cross-Analysis)
+// =============================================================================
+
+final dreamJournalCorrelationServiceProvider =
+    FutureProvider<DreamJournalCorrelationService>((ref) async {
+  final dreamService = await ref.watch(dreamJournalServiceProvider.future);
+  final journalService = await ref.watch(journalServiceProvider.future);
+  return await DreamJournalCorrelationService.init(
+    dreamService: dreamService,
+    journalService: journalService,
+  );
+});
+
+final dreamMoodCorrelationsProvider =
+    FutureProvider<List<DreamMoodCorrelation>>((ref) async {
+  final service = await ref.watch(
+    dreamJournalCorrelationServiceProvider.future,
+  );
+  return service.analyzeDreamMoodCorrelations();
+});
+
+final topDreamMoodCorrelationsProvider =
+    FutureProvider<List<DreamMoodCorrelation>>((ref) async {
+  final service = await ref.watch(
+    dreamJournalCorrelationServiceProvider.future,
+  );
+  return service.getTopCorrelations(5);
 });

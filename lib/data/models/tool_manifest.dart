@@ -178,14 +178,14 @@ class ToolManifestRegistry {
       ),
     ),
 
-    // ── 2. Gratitude ──
+    // ── 2. Anchor Log ──
     ToolManifest(
       id: 'gratitude',
-      nameEn: 'Gratitude',
-      nameTr: '\u015e\u00fckran',
+      nameEn: 'Anchor Log',
+      nameTr: 'Çapa Kaydı',
       valuePropositionEn: 'Capture moments of gratitude to shift perspective.',
       valuePropositionTr:
-          '\u015e\u00fckran anlar\u0131n\u0131 kaydet, bak\u0131\u015f a\u00e7\u0131n\u0131 de\u011fi\u015ftir.',
+          'Şükran anlarını kaydet, bakış açını değiştir.',
       route: Routes.gratitudeJournal,
       icon: '\u{1F64F}',
       category: ToolCategory.journal,
@@ -282,14 +282,14 @@ class ToolManifestRegistry {
       ),
     ),
 
-    // ── 5. Emotional Cycles ──
+    // ── 5. Waveform View ──
     ToolManifest(
       id: 'emotionalCycles',
-      nameEn: 'Emotional Cycles',
-      nameTr: 'Duygusal D\u00f6ng\u00fcler',
-      valuePropositionEn: 'Visualize how your emotions flow over time.',
+      nameEn: 'Waveform View',
+      nameTr: 'Dalga Formu Görünümü',
+      valuePropositionEn: 'Visualize how your emotional patterns flow over time.',
       valuePropositionTr:
-          'Duygular\u0131n\u0131n zaman i\u00e7inde nas\u0131l akt\u0131\u011f\u0131n\u0131 g\u00f6rselle\u015ftir.',
+          'Duygusal kalıplarının zaman içinde nasıl aktığını görselleştir.',
       route: Routes.emotionalCycles,
       icon: '\u{1F30A}',
       category: ToolCategory.analysis,
@@ -317,11 +317,11 @@ class ToolManifestRegistry {
       ),
     ),
 
-    // ── 6. Mood Trends ──
+    // ── 6. Signal Dashboard ──
     ToolManifest(
       id: 'moodTrends',
-      nameEn: 'Mood Trends',
-      nameTr: 'Ruh Hali Trendleri',
+      nameEn: 'Signal Dashboard',
+      nameTr: 'Sinyal Paneli',
       valuePropositionEn: 'Record observations and surface patterns over days and weeks.',
       valuePropositionTr:
           'G\u00fcnler ve haftalar boyunca g\u00f6zlem kaydet ve kal\u0131plar\u0131 ortaya \u00e7\u0131kar.',
@@ -333,12 +333,12 @@ class ToolManifestRegistry {
       relatedToolIds: ['emotionalCycles', 'patterns'],
     ),
 
-    // ── 7. Breathing ──
+    // ── 7. Guided Breathwork ──
     ToolManifest(
       id: 'breathing',
-      nameEn: 'Breathing',
-      nameTr: 'Nefes',
-      valuePropositionEn: 'Guided breathing exercises for calm and focus.',
+      nameEn: 'Guided Breathwork',
+      nameTr: 'Rehberli Nefes Çalışması',
+      valuePropositionEn: 'Guided breathing exercises for regulation and focus.',
       valuePropositionTr:
           'Sakinlik ve odak i\u00e7in rehberli nefes egzersizleri.',
       route: Routes.breathing,
@@ -375,12 +375,12 @@ class ToolManifestRegistry {
       relatedToolIds: ['breathing', 'rituals'],
     ),
 
-    // ── 9. Affirmations ──
+    // ── 9. Reframe Deck ──
     ToolManifest(
       id: 'affirmations',
-      nameEn: 'Affirmations',
-      nameTr: 'Olumlamalar',
-      valuePropositionEn: 'Daily affirmations to set your intention.',
+      nameEn: 'Reframe Deck',
+      nameTr: 'Yeniden Çerçeveleme',
+      valuePropositionEn: 'Daily reframes to set your intention.',
       valuePropositionTr:
           'Niyetini belirlemek i\u00e7in g\u00fcnl\u00fck olumlamalar.',
       route: Routes.affirmations,
@@ -391,12 +391,12 @@ class ToolManifestRegistry {
       relatedToolIds: ['gratitude', 'rituals'],
     ),
 
-    // ── 10. Rituals ──
+    // ── 10. Routine Tracker ──
     ToolManifest(
       id: 'rituals',
-      nameEn: 'Rituals',
-      nameTr: 'Rit\u00fceller',
-      valuePropositionEn: 'Build and track personal daily rituals.',
+      nameEn: 'Routine Tracker',
+      nameTr: 'Rutin Takipçisi',
+      valuePropositionEn: 'Build and log personal daily routines.',
       valuePropositionTr:
           'Ki\u015fisel g\u00fcnl\u00fck rit\u00fceller olu\u015ftur ve izle.',
       route: Routes.rituals,
@@ -439,12 +439,12 @@ class ToolManifestRegistry {
       relatedToolIds: ['sleep', 'wellness'],
     ),
 
-    // ── 13. Wellness Score ──
+    // ── 13. Consistency Index ──
     ToolManifest(
       id: 'wellness',
-      nameEn: 'Wellness',
-      nameTr: 'Sa\u011fl\u0131k',
-      valuePropositionEn: 'A holistic wellness score from your daily data.',
+      nameEn: 'Consistency Index',
+      nameTr: 'Tutarlılık Endeksi',
+      valuePropositionEn: 'A composite consistency score from your daily data.',
       valuePropositionTr:
           'G\u00fcnl\u00fck verilerinden b\u00fct\u00fcnsel bir sa\u011fl\u0131k skoru.',
       route: Routes.wellnessDetail,
@@ -456,11 +456,11 @@ class ToolManifestRegistry {
       relatedToolIds: ['sleep', 'moodTrends', 'energyMap'],
     ),
 
-    // ── 14. Energy Map ──
+    // ── 14. Energy Profile ──
     ToolManifest(
       id: 'energyMap',
-      nameEn: 'Energy Map',
-      nameTr: 'Enerji Haritas\u0131',
+      nameEn: 'Energy Profile',
+      nameTr: 'Enerji Profili',
       valuePropositionEn: 'Visualize your daily energy fluctuations.',
       valuePropositionTr:
           'G\u00fcnl\u00fck enerji dalgalanmalar\u0131n\u0131 g\u00f6rselle\u015ftir.',
@@ -504,12 +504,12 @@ class ToolManifestRegistry {
       relatedToolIds: ['quizHub', 'journal'],
     ),
 
-    // ── 17. Blind Spot ──
+    // ── 17. Blind Spot Detector ──
     ToolManifest(
       id: 'blindSpot',
-      nameEn: 'Blind Spots',
-      nameTr: 'K\u00f6r Noktalar',
-      valuePropositionEn: 'Uncover patterns you might not see on your own.',
+      nameEn: 'Blind Spot Detector',
+      nameTr: 'Kör Nokta Dedektörü',
+      valuePropositionEn: 'Surface patterns you might not see on your own.',
       valuePropositionTr:
           'Kendi ba\u015f\u0131na g\u00f6remeyece\u011fin \u00f6r\u00fcnt\u00fcleri ke\u015ffet.',
       route: Routes.blindSpot,
@@ -537,11 +537,11 @@ class ToolManifestRegistry {
       relatedToolIds: ['patterns', 'journal'],
     ),
 
-    // ── 19. Calendar Heatmap ──
+    // ── 19. Heatmap Timeline ──
     ToolManifest(
       id: 'calendarHeatmap',
-      nameEn: 'Calendar',
-      nameTr: 'Takvim',
+      nameEn: 'Heatmap Timeline',
+      nameTr: 'Isı Haritası Zaman Çizelgesi',
       valuePropositionEn: 'A heatmap view of your journaling activity.',
       valuePropositionTr:
           'G\u00fcnl\u00fck aktiviteni \u0131s\u0131 haritas\u0131 olarak g\u00f6r.',
@@ -568,12 +568,12 @@ class ToolManifestRegistry {
       relatedToolIds: ['challenges', 'milestones', 'streakStats'],
     ),
 
-    // ── 21. Challenges ──
+    // ── 21. Protocol Lab ──
     ToolManifest(
       id: 'challenges',
-      nameEn: 'Challenges',
-      nameTr: 'G\u00f6revler',
-      valuePropositionEn: 'Weekly and monthly growth challenges.',
+      nameEn: 'Protocol Lab',
+      nameTr: 'Protokol Laboratuvarı',
+      valuePropositionEn: 'Weekly and monthly structured protocols.',
       valuePropositionTr:
           'Haftal\u0131k ve ayl\u0131k geli\u015fim g\u00f6revleri.',
       route: Routes.challenges,
@@ -600,12 +600,12 @@ class ToolManifestRegistry {
       relatedToolIds: ['growthDashboard', 'challenges', 'shareCards'],
     ),
 
-    // ── 23. Streak Stats ──
+    // ── 23. Streak Engine ──
     ToolManifest(
       id: 'streakStats',
-      nameEn: 'Streak Stats',
-      nameTr: 'Seri \u0130statistikleri',
-      valuePropositionEn: 'See your current and longest journaling streaks.',
+      nameEn: 'Streak Engine',
+      nameTr: 'Seri Motoru',
+      valuePropositionEn: 'See your current and longest recording streaks.',
       valuePropositionTr:
           'Mevcut ve en uzun g\u00fcnl\u00fck serilerini g\u00f6r.',
       route: Routes.streakStats,
@@ -616,13 +616,13 @@ class ToolManifestRegistry {
       relatedToolIds: ['calendarHeatmap', 'growthDashboard'],
     ),
 
-    // ── 24. Programs ──
+    // ── 24. Challenge Sequences ──
     ToolManifest(
       id: 'programs',
-      nameEn: 'Programs',
-      nameTr: 'Programlar',
-      valuePropositionEn: 'Multi-day guided programs for deeper exploration.',
-      valuePropositionTr: '\u00c7ok g\u00fcnl\u00fck rehberli programlar.',
+      nameEn: 'Challenge Sequences',
+      nameTr: 'Görev Dizileri',
+      valuePropositionEn: 'Multi-day guided sequences for deeper exploration.',
+      valuePropositionTr: 'Çok günlük rehberli diziler.',
       route: Routes.programs,
       icon: '\u{1F4DA}',
       category: ToolCategory.discovery,
@@ -648,12 +648,12 @@ class ToolManifestRegistry {
       relatedToolIds: ['journal', 'rituals'],
     ),
 
-    // ── 26. Moon Calendar ──
+    // ── 26. Natural Rhythm Calendar ──
     ToolManifest(
       id: 'moonCalendar',
-      nameEn: 'Moon Calendar',
-      nameTr: 'Ay Takvimi',
-      valuePropositionEn: 'Track lunar phases alongside your journal.',
+      nameEn: 'Natural Rhythm Calendar',
+      nameTr: 'Doğal Ritim Takvimi',
+      valuePropositionEn: 'Track lunar phases alongside your entries.',
       valuePropositionTr:
           'Ay evrelerini g\u00fcnl\u00fc\u011f\u00fcnle birlikte izle.',
       route: Routes.moonCalendar,
@@ -680,13 +680,13 @@ class ToolManifestRegistry {
       relatedToolIds: ['rituals', 'challenges'],
     ),
 
-    // ── 28. Weekly Digest ──
+    // ── 28. Weekly Debrief ──
     ToolManifest(
       id: 'weeklyDigest',
-      nameEn: 'Weekly Digest',
-      nameTr: 'Haftal\u0131k \u00d6zet',
+      nameEn: 'Weekly Debrief',
+      nameTr: 'Haftalık Değerlendirme',
       valuePropositionEn: 'A concise summary of your past week.',
-      valuePropositionTr: 'Ge\u00e7en haftan\u0131n k\u0131sa \u00f6zeti.',
+      valuePropositionTr: 'Geçen haftanın kısa özeti.',
       route: Routes.weeklyDigest,
       icon: '\u{1F4CB}',
       category: ToolCategory.analysis,
@@ -718,13 +718,13 @@ class ToolManifestRegistry {
       relatedToolIds: ['patterns', 'growthDashboard'],
     ),
 
-    // ── 30. Year Review ──
+    // ── 30. Year Synthesis ──
     ToolManifest(
       id: 'yearReview',
-      nameEn: 'Year in Review',
-      nameTr: 'Y\u0131l De\u011ferlendirmesi',
-      valuePropositionEn: 'Look back at your entire year of growth.',
-      valuePropositionTr: 'T\u00fcm y\u0131l\u0131na geri bak.',
+      nameEn: 'Year Synthesis',
+      nameTr: 'Yıl Sentezi',
+      valuePropositionEn: 'Look back at your entire year of observations.',
+      valuePropositionTr: 'Tüm yılına geri bak.',
       route: Routes.yearReview,
       icon: '\u{1F389}',
       category: ToolCategory.analysis,
@@ -799,12 +799,12 @@ class ToolManifestRegistry {
       relatedToolIds: ['glossary'],
     ),
 
-    // ── 35. Prompt Library ──
+    // ── 35. Prompt Engine ──
     ToolManifest(
       id: 'promptLibrary',
-      nameEn: 'Prompts',
-      nameTr: 'Y\u00f6nlendirmeler',
-      valuePropositionEn: 'Curated journal prompts for deeper reflection.',
+      nameEn: 'Prompt Engine',
+      nameTr: 'Yönlendirme Motoru',
+      valuePropositionEn: 'Curated prompts for deeper reflection.',
       valuePropositionTr:
           'Daha derin yans\u0131ma i\u00e7in se\u00e7ilmi\u015f g\u00fcnl\u00fck y\u00f6nlendirmeleri.',
       route: Routes.promptLibrary,
@@ -864,14 +864,14 @@ class ToolManifestRegistry {
       relatedToolIds: ['journal'],
     ),
 
-    // ── 39. Journal Archive ──
+    // ── 39. Archive Vault ──
     ToolManifest(
       id: 'journalArchive',
-      nameEn: 'Journal Archive',
-      nameTr: 'G\u00fcnl\u00fck Ar\u015fivi',
-      valuePropositionEn: 'Browse all past journal entries in one place.',
+      nameEn: 'Archive Vault',
+      nameTr: 'Arşiv Kasası',
+      valuePropositionEn: 'Browse all past entries in one place.',
       valuePropositionTr:
-          'T\u00fcm ge\u00e7mi\u015f g\u00fcnl\u00fck kay\u0131tlar\u0131n\u0131 tek yerde g\u00f6r.',
+          'Tüm geçmiş kayıtlarını tek yerde gör.',
       route: Routes.journalArchive,
       icon: '\u{1F4DA}',
       category: ToolCategory.data,
@@ -896,13 +896,13 @@ class ToolManifestRegistry {
       relatedToolIds: ['dreamInterpretation', 'dreamGlossary'],
     ),
 
-    // ── 41. Export Data ──
+    // ── 41. Data Portability ──
     ToolManifest(
       id: 'exportData',
-      nameEn: 'Export',
-      nameTr: 'D\u0131\u015fa Aktar',
+      nameEn: 'Data Portability',
+      nameTr: 'Veri Taşınabilirliği',
       valuePropositionEn: 'Download all your data. Your data belongs to you.',
-      valuePropositionTr: 'T\u00fcm verilerini indir. Verilerin sana ait.',
+      valuePropositionTr: 'Tüm verilerini indir. Verilerin sana ait.',
       route: Routes.exportData,
       icon: '\u{1F4E5}',
       category: ToolCategory.data,
@@ -928,15 +928,15 @@ class ToolManifestRegistry {
       relatedToolIds: ['insightsDiscovery', 'journal', 'dreamInterpretation'],
     ),
 
-    // ── 43. Daily Habits ──
+    // ── 43. Routine Tracker ──
     ToolManifest(
       id: 'dailyHabits',
-      nameEn: 'Daily Habits',
-      nameTr: 'G\u00fcnl\u00fck Al\u0131\u015fkanl\u0131klar',
+      nameEn: 'Routine Tracker',
+      nameTr: 'Rutin Takipçisi',
       valuePropositionEn:
-          'Track your daily micro-habits and build consistency.',
+          'Log your daily micro-habits and build consistency.',
       valuePropositionTr:
-          'G\u00fcnl\u00fck mikro al\u0131\u015fkanl\u0131klar\u0131n\u0131 takip et.',
+          'Günlük mikro alışkanlıklarını kaydet ve tutarlılık oluştur.',
       route: Routes.dailyHabits,
       icon: '\u2705',
       category: ToolCategory.support,
@@ -945,11 +945,11 @@ class ToolManifestRegistry {
       relatedToolIds: ['habitSuggestions', 'rituals', 'challenges'],
     ),
 
-    // ── 44. Monthly Reflection ──
+    // ── 44. Monthly Pulse ──
     ToolManifest(
       id: 'monthlyReflection',
-      nameEn: 'Monthly Reflection',
-      nameTr: 'Ayl\u0131k Yans\u0131ma',
+      nameEn: 'Monthly Pulse',
+      nameTr: 'Aylık Nabız',
       valuePropositionEn:
           'Review your month with theme-based insights and patterns.',
       valuePropositionTr:

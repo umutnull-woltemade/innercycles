@@ -139,13 +139,19 @@ const List<_QuizQuestion> _onboardingQuestions = [
 ];
 
 // ════════════════════════════════════════════════════════════════════════════
-// ONBOARDING SCREEN — 5-Step Premium Flow
+// ONBOARDING SCREEN — 9-Step Premium Flow
 // ════════════════════════════════════════════════════════════════════════════
-// Step 0: Identity — Name + Apple Sign-In
-// Step 1: First Cycle — Focus area selection
-// Step 2: Birthday — Optional date picker
-// Step 3: Archetype Reveal — 3 quick questions + animated result
-// Step 4: Permission + Start — Notifications + CTA
+// Value Prop Phase (pages 0-3):
+//   Page 0: Welcome — InnerCycles branding + tagline
+//   Page 1: Emotional Cycles — Detect emotional patterns
+//   Page 2: Dream Tracking — Track dream symbols over time
+//   Page 3: Pattern Insights — See what your journal reveals
+// Setup Phase (pages 4-8):
+//   Page 4: Identity — Name + Apple Sign-In
+//   Page 5: First Cycle — Focus area selection
+//   Page 6: Birthday — Optional date picker
+//   Page 7: Archetype Reveal — 3 quick questions + animated result
+//   Page 8: Permission + Start — Notifications + CTA
 // ════════════════════════════════════════════════════════════════════════════
 
 class OnboardingScreen extends ConsumerStatefulWidget {

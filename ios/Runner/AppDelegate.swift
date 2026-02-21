@@ -38,6 +38,8 @@ import WidgetKit
       switch call.method {
       case "updateWidgetData":
         self?.handleUpdateWidgetData(call: call, result: result)
+      case "getWidgetData":
+        self?.handleGetWidgetData(call: call, result: result)
       case "reloadWidgets":
         self?.handleReloadWidgets(result: result)
       default:
@@ -67,6 +69,25 @@ import WidgetKit
     }
 
     result(true)
+  }
+
+  private func handleGetWidgetData(call: FlutterMethodCall, result: @escaping FlutterResult) {
+    guard let args = call.arguments as? [String: Any],
+          let keys = args["keys"] as? [String] else {
+      result(FlutterError(code: "INVALID_ARGS", message: "Expected 'keys' array", details: nil))
+      return
+    }
+
+    let sharedDefaults = UserDefaults(suiteName: "group.com.venusone.innercycles")
+    var data: [String: Any] = [:]
+
+    for key in keys {
+      if let value = sharedDefaults?.object(forKey: key) {
+        data[key] = value
+      }
+    }
+
+    result(data)
   }
 
   private func handleReloadWidgets(result: @escaping FlutterResult) {

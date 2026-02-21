@@ -1026,8 +1026,8 @@ class _ReferralCard extends ConsumerWidget {
                           SnackBar(
                             content: Text(
                               isEn
-                                  ? 'Premium trial unlocked for 7 days!'
-                                  : 'Premium deneme 7 gün için açıldı!',
+                                  ? 'Pro trial activated for 7 days!'
+                                  : 'Pro deneme 7 gün için etkinleştirildi!',
                             ),
                             behavior: SnackBarBehavior.floating,
                           ),

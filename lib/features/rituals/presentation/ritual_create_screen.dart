@@ -558,8 +558,8 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
           SnackBar(
             content: Text(
               ref.read(languageProvider) == AppLanguage.en
-                  ? 'Save failed'
-                  : 'Kayıt başarısız',
+                  ? 'Entry not saved. Try again — your text is preserved.'
+                  : 'Kayıt kaydedilemedi. Tekrar dene — metniniz korunuyor.',
             ),
           ),
         );

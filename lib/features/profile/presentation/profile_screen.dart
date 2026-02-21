@@ -478,7 +478,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
           ),
           const SizedBox(height: AppConstants.spacingLg),
-          // Navigate to Mood Trends (CORE Insights)
+          // Navigate to Signal Dashboard (CORE Insights)
           SizedBox(
             width: double.infinity,
             child: OutlinedButton.icon(

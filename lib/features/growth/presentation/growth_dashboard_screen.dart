@@ -741,7 +741,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         icon: Icons.edit_note,
         title: isEn ? 'First Entry' : 'İlk Kayıt',
         unlocked: entries.isNotEmpty,
-        progressHint: isEn ? '1 entry to unlock' : '1 kayıt gerekli',
+        progressHint: isEn ? '1 entry to activate' : '1 kayıt gerekli',
       ),
       _Milestone(
         icon: Icons.local_fire_department,
@@ -749,7 +749,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         unlocked: maxStreak >= 7,
         progressHint: maxStreak < 7
             ? isEn
-                  ? '${7 - maxStreak} more to unlock'
+                  ? '${7 - maxStreak} more to activate'
                   : '${7 - maxStreak} gün daha'
             : '',
       ),
@@ -799,7 +799,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         unlocked: maxStreak >= 30,
         progressHint: maxStreak < 30
             ? isEn
-                  ? '${30 - maxStreak} more to unlock'
+                  ? '${30 - maxStreak} more to activate'
                   : '${30 - maxStreak} gün daha'
             : '',
       ),
