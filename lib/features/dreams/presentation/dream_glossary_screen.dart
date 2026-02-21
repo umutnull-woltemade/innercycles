@@ -54,6 +54,10 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
   // All symbols for searching
   List<DreamSymbolData> _filteredSymbols = [];
 
+  // Cached categories (only rebuild when language changes)
+  AppLanguage? _cachedLanguage;
+  List<_CategoryItem> _cachedCategories = const [];
+
   // Alphabet letters (Turkish)
   static const List<String> _alphabet = [
     'A',
@@ -148,10 +152,8 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
   void _onTabChanged() {
     if (_tabController.indexIsChanging) return;
     HapticFeedback.lightImpact();
-    final language = ref.read(languageProvider);
-    final categories = _buildCategories(language);
     setState(() {
-      _selectedCategory = categories[_tabController.index].category;
+      _selectedCategory = _cachedCategories[_tabController.index].category;
       _filterSymbols();
     });
   }
@@ -240,7 +242,11 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
-    final categories = _buildCategories(language);
+    if (_cachedLanguage != language) {
+      _cachedLanguage = language;
+      _cachedCategories = _buildCategories(language);
+    }
+    final categories = _cachedCategories;
 
     return Scaffold(
       body: CosmicBackground(

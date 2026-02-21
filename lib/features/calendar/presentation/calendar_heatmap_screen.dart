@@ -35,6 +35,11 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
   int _selectedMonth = DateTime.now().month;
   String? _selectedDateKey;
 
+  // Cache entryMap so it's not rebuilt on every setState (month nav, day tap)
+  JournalService? _lastService;
+  Map<String, JournalEntry> _entryMap = const {};
+  int _totalEntryCount = 0;
+
   @override
   void initState() {
     super.initState();
@@ -86,20 +91,26 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
     bool isEn,
     bool isPremium,
   ) {
-    final allEntries = service.getAllEntries();
+    // Cache entryMap — only rebuild when service instance changes
+    if (!identical(service, _lastService)) {
+      _lastService = service;
+      final allEntries = service.getAllEntries();
+      _totalEntryCount = allEntries.length;
+      final map = <String, JournalEntry>{};
+      for (final entry in allEntries) {
+        map[entry.dateKey] = entry;
+      }
+      _entryMap = map;
+    }
+    final entryMap = _entryMap;
+
     final monthEntries = service.getEntriesForMonth(
       _selectedYear,
       _selectedMonth,
     );
 
-    // Build entry map: dateKey -> entry
-    final entryMap = <String, JournalEntry>{};
-    for (final entry in allEntries) {
-      entryMap[entry.dateKey] = entry;
-    }
-
     // Stats
-    final totalEntries = allEntries.length;
+    final totalEntries = _totalEntryCount;
     final monthCount = monthEntries.length;
     final streak = service.getCurrentStreak();
 
