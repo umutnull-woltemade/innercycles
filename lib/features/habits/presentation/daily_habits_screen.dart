@@ -394,7 +394,7 @@ class _HabitCheckCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      '${HabitSuggestionService.categoryEmoji(habit.category)} ${habit.durationMinutes} min',
+                      '${HabitSuggestionService.categoryEmoji(habit.category)} ${habit.durationMinutes} ${isEn ? 'min' : 'dk'}',
                       style: TextStyle(
                         fontSize: 12,
                         color: isDark
@@ -445,7 +445,12 @@ class _HabitCheckCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              ...['M', 'T', 'W', 'T', 'F', 'S', 'S'].asMap().entries.map((e) {
+              ...(isEn
+                    ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+                    : ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'])
+                .asMap()
+                .entries
+                .map((e) {
                 final i = e.key;
                 final day = e.value;
                 final done = weekData[i];

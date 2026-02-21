@@ -107,6 +107,7 @@ class AnalyticsService {
   /// Dispose resources (call on app shutdown)
   void dispose() {
     _flushTimer?.cancel();
+    _isInitialized = false;
     flush(); // Final flush attempt
   }
 

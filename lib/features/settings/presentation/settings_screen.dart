@@ -499,7 +499,9 @@ class SettingsScreen extends ConsumerWidget {
                                   subject: language == AppLanguage.en
                                       ? 'Support Request'
                                       : 'Destek Talebi',
-                                  body: '\n\n---\nApp Version: 1.0.0',
+                                  body: language == AppLanguage.en
+                                      ? '\n\n---\nApp Version: 1.0.0'
+                                      : '\n\n---\nUygulama Sürümü: 1.0.0',
                                 );
                               },
                             ),

@@ -58,16 +58,6 @@ class JournalService {
     return entry;
   }
 
-  /// Update an existing entry
-  Future<void> updateEntry(JournalEntry updated) async {
-    final index = _entries.indexWhere((e) => e.id == updated.id);
-    if (index >= 0) {
-      _entries[index] = updated;
-      _sortedCache = null;
-      await _persistEntries();
-    }
-  }
-
   /// Delete an entry by ID
   Future<void> deleteEntry(String id) async {
     _entries.removeWhere((e) => e.id == id);
@@ -100,12 +90,6 @@ class JournalService {
     return _entries
         .where((e) => !e.date.isBefore(startDay) && !e.date.isAfter(endDay))
         .toList()
-      ..sort((a, b) => b.date.compareTo(a.date));
-  }
-
-  /// Get entries filtered by focus area
-  List<JournalEntry> getEntriesByFocusArea(FocusArea area) {
-    return _entries.where((e) => e.focusArea == area).toList()
       ..sort((a, b) => b.date.compareTo(a.date));
   }
 

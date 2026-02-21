@@ -21,7 +21,6 @@ import '../services/gratitude_service.dart';
 import '../services/ritual_service.dart';
 import '../services/review_service.dart';
 import '../services/attachment_style_service.dart';
-import '../services/daily_hook_service.dart';
 import '../services/sleep_service.dart';
 import '../services/wellness_score_service.dart';
 import '../services/energy_map_service.dart';
@@ -76,14 +75,6 @@ class UserProfileNotifier extends Notifier<UserProfile?> {
 
   void clearProfile() {
     state = null;
-  }
-
-  void updateBirthDate(DateTime date) {
-    if (state != null) {
-      final updated = state!.copyWith(birthDate: date);
-      state = updated;
-      _syncToStorage(updated);
-    }
   }
 
   void _syncToStorage(UserProfile profile) {
@@ -361,14 +352,6 @@ final attachmentStyleServiceProvider = FutureProvider<AttachmentStyleService>((
   ref,
 ) async {
   return await AttachmentStyleService.init();
-});
-
-// =============================================================================
-// DAILY HOOK PROVIDER
-// =============================================================================
-
-final dailyHookServiceProvider = FutureProvider<DailyHookService>((ref) async {
-  return await DailyHookService.init();
 });
 
 // =============================================================================

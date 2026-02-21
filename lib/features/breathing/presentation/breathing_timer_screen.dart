@@ -284,7 +284,16 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                         const Spacer(),
 
                         // Breath circle
-                        AnimatedBuilder(
+                        Semantics(
+                          label: _isRunning && currentPhase != null
+                              ? (isEn
+                                  ? '${currentPhase.labelEn()}, $_phaseCountdown seconds'
+                                  : '${currentPhase.labelTr()}, $_phaseCountdown saniye')
+                              : (isEn
+                                  ? 'Breathing circle, tap Start to begin'
+                                  : 'Nefes çemberi, başlamak için Başla\'ya dokunun'),
+                          liveRegion: _isRunning,
+                          child: AnimatedBuilder(
                           animation: _breathController,
                           builder: (context, child) {
                             final scale = 0.5 + (_breathController.value * 0.5);
@@ -358,7 +367,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                               ),
                             );
                           },
-                        ),
+                        )),
 
                         const SizedBox(height: 24),
 

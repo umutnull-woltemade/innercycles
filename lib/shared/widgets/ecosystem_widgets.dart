@@ -920,7 +920,7 @@ class _QuickActionFABState extends State<QuickActionFAB>
     final actions = [
       _FABAction(
         Icons.edit_note,
-        widget.isEn ? 'Journal' : 'Gunluk',
+        widget.isEn ? 'Journal' : 'Günlük',
         AppColors.auroraStart,
         () {
           _toggle();
@@ -929,7 +929,7 @@ class _QuickActionFABState extends State<QuickActionFAB>
       ),
       _FABAction(
         Icons.nightlight_round,
-        widget.isEn ? 'Dream' : 'Ruya',
+        widget.isEn ? 'Dream' : 'Rüya',
         AppColors.amethyst,
         () {
           _toggle();
@@ -938,7 +938,7 @@ class _QuickActionFABState extends State<QuickActionFAB>
       ),
       _FABAction(
         Icons.favorite,
-        widget.isEn ? 'Gratitude' : 'Sukran',
+        widget.isEn ? 'Gratitude' : 'Şükran',
         AppColors.brandPink,
         () {
           _toggle();

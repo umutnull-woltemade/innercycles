@@ -374,21 +374,30 @@ class MoodTrendsScreen extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 6),
-                  Container(
-                    width: 36,
-                    height: 36,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: mood != null
-                          ? _moodColor(mood.mood).withValues(alpha: 0.2)
-                          : (isDark
-                                ? AppColors.surfaceLight.withValues(alpha: 0.1)
-                                : AppColors.lightSurfaceVariant),
-                    ),
-                    child: Center(
-                      child: Text(
-                        mood?.emoji ?? '·',
-                        style: const TextStyle(fontSize: 18),
+                  Semantics(
+                    label: mood != null
+                        ? (isEn
+                            ? '${dayLabels[dayIndex]}: mood ${mood.mood} of 5'
+                            : '${dayLabels[dayIndex]}: ruh hali ${mood.mood}/5')
+                        : (isEn
+                            ? '${dayLabels[dayIndex]}: no entry'
+                            : '${dayLabels[dayIndex]}: kayıt yok'),
+                    child: Container(
+                      width: 36,
+                      height: 36,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: mood != null
+                            ? _moodColor(mood.mood).withValues(alpha: 0.2)
+                            : (isDark
+                                  ? AppColors.surfaceLight.withValues(alpha: 0.1)
+                                  : AppColors.lightSurfaceVariant),
+                      ),
+                      child: Center(
+                        child: Text(
+                          mood?.emoji ?? '·',
+                          style: const TextStyle(fontSize: 18),
+                        ),
                       ),
                     ),
                   ),
@@ -436,7 +445,9 @@ class MoodTrendsScreen extends ConsumerWidget {
           ...labels.map((item) {
             final count = distribution[item.$1] ?? 0;
             final fraction = maxCount > 0 ? count / maxCount : 0.0;
-            return Padding(
+            return Semantics(
+              label: '${item.$3}: $count',
+              child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
               child: Row(
                 children: [
@@ -458,13 +469,16 @@ class MoodTrendsScreen extends ConsumerWidget {
                   Expanded(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(4),
-                      child: LinearProgressIndicator(
-                        value: fraction,
-                        backgroundColor: isDark
-                            ? AppColors.surfaceLight.withValues(alpha: 0.15)
-                            : AppColors.lightSurfaceVariant,
-                        valueColor: AlwaysStoppedAnimation(_moodColor(item.$1)),
-                        minHeight: 10,
+                      child: Semantics(
+                        value: '${(fraction * 100).round()}%',
+                        child: LinearProgressIndicator(
+                          value: fraction,
+                          backgroundColor: isDark
+                              ? AppColors.surfaceLight.withValues(alpha: 0.15)
+                              : AppColors.lightSurfaceVariant,
+                          valueColor: AlwaysStoppedAnimation(_moodColor(item.$1)),
+                          minHeight: 10,
+                        ),
                       ),
                     ),
                   ),
@@ -485,7 +499,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                   ),
                 ],
               ),
-            );
+            ));
           }),
         ],
       ),

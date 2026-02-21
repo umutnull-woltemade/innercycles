@@ -22,13 +22,6 @@ class SleepEntry {
     required this.createdAt,
   });
 
-  SleepEntry copyWith({int? quality, String? note}) => SleepEntry(
-    dateKey: dateKey,
-    quality: quality ?? this.quality,
-    note: note ?? this.note,
-    createdAt: createdAt,
-  );
-
   Map<String, dynamic> toJson() => {
     'dateKey': dateKey,
     'quality': quality,
@@ -108,12 +101,6 @@ class SleepService {
   /// Get today's sleep entry
   SleepEntry? getTodayEntry() => getEntry(DateTime.now());
 
-  /// Delete sleep entry for a date
-  Future<void> deleteEntry(DateTime date) async {
-    _entries.remove(_dateToKey(date));
-    await _persistEntries();
-  }
-
   /// Get all entries sorted by date descending
   List<SleepEntry> getAllEntries() {
     final list = _entries.values.toList();
@@ -180,40 +167,6 @@ class SleepService {
       bestNightQuality: best,
       worstNightQuality: worst,
       trendDirection: trend,
-    );
-  }
-
-  /// Get average sleep quality for a date range (for pattern engine)
-  double getAverageForRange(DateTime start, DateTime end) {
-    final startDay = DateTime(start.year, start.month, start.day);
-    final endDay = DateTime(end.year, end.month, end.day);
-    final entries = _entries.values.where((e) {
-      final date = DateTime.tryParse('${e.dateKey}T00:00:00') ?? DateTime.now();
-      return !date.isBefore(startDay) && !date.isAfter(endDay);
-    }).toList();
-
-    if (entries.isEmpty) return 0;
-    return entries.map((e) => e.quality).reduce((a, b) => a + b) /
-        entries.length;
-  }
-
-  /// Get sleep-to-rating correlation data (premium)
-  /// Returns map of sleep quality -> average journal rating for that sleep level
-  Map<int, double> getSleepToRatingCorrelation(
-    Map<String, double> journalRatingsByDate,
-  ) {
-    final correlations = <int, List<double>>{};
-
-    for (final entry in _entries.values) {
-      final journalRating = journalRatingsByDate[entry.dateKey];
-      if (journalRating != null) {
-        correlations.putIfAbsent(entry.quality, () => []).add(journalRating);
-      }
-    }
-
-    return correlations.map(
-      (quality, ratings) =>
-          MapEntry(quality, ratings.reduce((a, b) => a + b) / ratings.length),
     );
   }
 

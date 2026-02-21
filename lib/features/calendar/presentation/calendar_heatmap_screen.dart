@@ -491,7 +491,10 @@ class _CalendarGrid extends StatelessWidget {
         children: [
           // Day headers
           Row(
-            children: ['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d) {
+            children: (isEn
+                    ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+                    : ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'])
+                .map((d) {
               return Expanded(
                 child: Center(
                   child: Text(

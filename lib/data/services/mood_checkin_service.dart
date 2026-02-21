@@ -75,17 +75,6 @@ class MoodCheckinService {
     await _persist();
   }
 
-  /// Check if mood was logged today
-  bool hasLoggedToday() {
-    final now = DateTime.now();
-    return _entries.any(
-      (e) =>
-          e.date.year == now.year &&
-          e.date.month == now.month &&
-          e.date.day == now.day,
-    );
-  }
-
   /// Get today's mood
   MoodEntry? getTodayMood() {
     final now = DateTime.now();

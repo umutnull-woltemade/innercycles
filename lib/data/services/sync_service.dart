@@ -51,6 +51,12 @@ class SyncService {
     }
   }
 
+  /// Dispose resources (cancel connectivity listener)
+  static void dispose() {
+    _connectivitySub?.cancel();
+    _connectivitySub = null;
+  }
+
   /// Check if device is online
   static Future<bool> get _isOnline async {
     try {

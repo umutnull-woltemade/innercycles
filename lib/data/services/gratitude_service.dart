@@ -20,12 +20,6 @@ class GratitudeEntry {
     required this.createdAt,
   });
 
-  GratitudeEntry copyWith({List<String>? items}) => GratitudeEntry(
-    dateKey: dateKey,
-    items: items ?? this.items,
-    createdAt: createdAt,
-  );
-
   Map<String, dynamic> toJson() => {
     'dateKey': dateKey,
     'items': items,
@@ -96,12 +90,6 @@ class GratitudeService {
 
   /// Get today's gratitude entry
   GratitudeEntry? getTodayEntry() => getEntry(DateTime.now());
-
-  /// Delete gratitude entry for a date
-  Future<void> deleteEntry(DateTime date) async {
-    _entries.remove(_dateToKey(date));
-    await _persistEntries();
-  }
 
   /// Get all entries sorted by date descending
   List<GratitudeEntry> getAllEntries() {

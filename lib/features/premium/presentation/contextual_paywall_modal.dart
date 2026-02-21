@@ -319,15 +319,20 @@ class _ContextualPaywallSheetState
         .read(premiumProvider.notifier)
         .getProductPrice(PremiumTier.monthly);
     final monthlyLabel =
-        experiment?.monthlyPriceLabel ?? dynamicMonthly ?? '\$7.99/mo';
+        experiment?.monthlyPriceLabel ??
+        dynamicMonthly ??
+        (isEn ? '\$7.99/mo' : '\$7,99/ay');
     final yearlyLabel =
-        experiment?.yearlyMonthlyEquivalent ?? '\$2.50/mo';
+        experiment?.yearlyMonthlyEquivalent ??
+        (isEn ? '\$2.50/mo' : '\$2,50/ay');
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          isEn ? monthlyLabel : monthlyLabel.replaceAll('.', ','),
+          isEn
+              ? monthlyLabel
+              : monthlyLabel.replaceAll('.', ',').replaceAll('/mo', '/ay'),
           style: TextStyle(
             color: Colors.white.withValues(alpha: 0.4),
             fontSize: 13,
@@ -339,7 +344,7 @@ class _ContextualPaywallSheetState
         Text(
           isEn
               ? '$yearlyLabel billed yearly'
-              : '${yearlyLabel.replaceAll('.', ',')} yıllık',
+              : '${yearlyLabel.replaceAll('.', ',').replaceAll('/mo', '/ay')} yıllık',
           style: TextStyle(
             color: Colors.white.withValues(alpha: 0.7),
             fontSize: 13,

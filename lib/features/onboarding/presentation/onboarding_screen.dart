@@ -759,6 +759,11 @@ class _IdentityPageState extends State<_IdentityPage>
         height: 130,
         fit: BoxFit.contain,
         semanticLabel: 'InnerCycles logo',
+        errorBuilder: (context, error, stackTrace) => const Icon(
+          Icons.self_improvement,
+          size: 100,
+          color: AppColors.amethyst,
+        ),
       ),
     ).glassReveal(context: context);
   }
