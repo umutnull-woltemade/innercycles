@@ -1518,7 +1518,7 @@ class _PermissionStartPage extends StatelessWidget {
             ),
           ).glassReveal(context: context),
 
-          const SizedBox(height: 28),
+          const SizedBox(height: 20),
 
           Text(
             isEn ? 'You\'re All Set' : 'Her Şey Hazır',
@@ -1543,7 +1543,7 @@ class _PermissionStartPage extends StatelessWidget {
             textAlign: TextAlign.center,
           ).glassListItem(context: context, index: 2),
 
-          const SizedBox(height: 32),
+          const SizedBox(height: 24),
 
           // Notification toggle card
           if (!kIsWeb)

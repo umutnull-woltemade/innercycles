@@ -93,12 +93,13 @@ class MoodTrendsScreen extends ConsumerWidget {
                         isEn
                             ? 'No mood check-ins yet'
                             : 'Henüz ruh hali kaydı yok',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
+                              fontWeight: FontWeight.w600,
+                            ),
                       ),
                       const SizedBox(height: AppConstants.spacingSm),
                       Text(
@@ -377,11 +378,11 @@ class MoodTrendsScreen extends ConsumerWidget {
                   Semantics(
                     label: mood != null
                         ? (isEn
-                            ? '${dayLabels[dayIndex]}: mood ${mood.mood} of 5'
-                            : '${dayLabels[dayIndex]}: ruh hali ${mood.mood}/5')
+                              ? '${dayLabels[dayIndex]}: mood ${mood.mood} of 5'
+                              : '${dayLabels[dayIndex]}: ruh hali ${mood.mood}/5')
                         : (isEn
-                            ? '${dayLabels[dayIndex]}: no entry'
-                            : '${dayLabels[dayIndex]}: kayıt yok'),
+                              ? '${dayLabels[dayIndex]}: no entry'
+                              : '${dayLabels[dayIndex]}: kayıt yok'),
                     child: Container(
                       width: 36,
                       height: 36,
@@ -390,7 +391,9 @@ class MoodTrendsScreen extends ConsumerWidget {
                         color: mood != null
                             ? _moodColor(mood.mood).withValues(alpha: 0.2)
                             : (isDark
-                                  ? AppColors.surfaceLight.withValues(alpha: 0.1)
+                                  ? AppColors.surfaceLight.withValues(
+                                      alpha: 0.1,
+                                    )
                                   : AppColors.lightSurfaceVariant),
                       ),
                       child: Center(
@@ -448,58 +451,61 @@ class MoodTrendsScreen extends ConsumerWidget {
             return Semantics(
               label: '${item.$3}: $count',
               child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6),
-              child: Row(
-                children: [
-                  Text(item.$2, style: const TextStyle(fontSize: 20)),
-                  const SizedBox(width: 8),
-                  SizedBox(
-                    width: 60,
-                    child: Text(
-                      item.$3,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
-                      child: Semantics(
-                        value: '${(fraction * 100).round()}%',
-                        child: LinearProgressIndicator(
-                          value: fraction,
-                          backgroundColor: isDark
-                              ? AppColors.surfaceLight.withValues(alpha: 0.15)
-                              : AppColors.lightSurfaceVariant,
-                          valueColor: AlwaysStoppedAnimation(_moodColor(item.$1)),
-                          minHeight: 10,
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: Row(
+                  children: [
+                    Text(item.$2, style: const TextStyle(fontSize: 20)),
+                    const SizedBox(width: 8),
+                    SizedBox(
+                      width: 60,
+                      child: Text(
+                        item.$3,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  SizedBox(
-                    width: 24,
-                    child: Text(
-                      '$count',
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(4),
+                        child: Semantics(
+                          value: '${(fraction * 100).round()}%',
+                          child: LinearProgressIndicator(
+                            value: fraction,
+                            backgroundColor: isDark
+                                ? AppColors.surfaceLight.withValues(alpha: 0.15)
+                                : AppColors.lightSurfaceVariant,
+                            valueColor: AlwaysStoppedAnimation(
+                              _moodColor(item.$1),
+                            ),
+                            minHeight: 10,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 8),
+                    SizedBox(
+                      width: 24,
+                      child: Text(
+                        '$count',
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ));
+            );
           }),
         ],
       ),

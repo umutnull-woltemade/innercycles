@@ -446,52 +446,52 @@ class _HabitCheckCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               ...(isEn
-                    ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
-                    : ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'])
-                .asMap()
-                .entries
-                .map((e) {
-                final i = e.key;
-                final day = e.value;
-                final done = weekData[i];
+                      ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+                      : ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'])
+                  .asMap()
+                  .entries
+                  .map((e) {
+                    final i = e.key;
+                    final day = e.value;
+                    final done = weekData[i];
 
-                return Padding(
-                  padding: const EdgeInsets.only(left: 6),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 18,
-                        height: 18,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: done
-                              ? AppColors.success.withValues(alpha: 0.8)
-                              : (isDark
-                                    ? Colors.white.withValues(alpha: 0.06)
-                                    : Colors.black.withValues(alpha: 0.06)),
-                        ),
-                        child: done
-                            ? const Icon(
-                                Icons.check,
-                                size: 10,
-                                color: Colors.white,
-                              )
-                            : null,
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 6),
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 18,
+                            height: 18,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: done
+                                  ? AppColors.success.withValues(alpha: 0.8)
+                                  : (isDark
+                                        ? Colors.white.withValues(alpha: 0.06)
+                                        : Colors.black.withValues(alpha: 0.06)),
+                            ),
+                            child: done
+                                ? const Icon(
+                                    Icons.check,
+                                    size: 10,
+                                    color: Colors.white,
+                                  )
+                                : null,
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            day,
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 2),
-                      Text(
-                        day,
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              }),
+                    );
+                  }),
             ],
           ),
         ],

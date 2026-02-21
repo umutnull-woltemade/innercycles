@@ -314,11 +314,11 @@ class SettingsScreen extends ConsumerWidget {
                                       content: Text(
                                         restored
                                             ? (language == AppLanguage.en
-                                                ? 'Purchases restored'
-                                                : 'Satın alımlar geri yüklendi')
+                                                  ? 'Purchases restored'
+                                                  : 'Satın alımlar geri yüklendi')
                                             : (language == AppLanguage.en
-                                                ? 'No purchases found'
-                                                : 'Satın alım bulunamadı'),
+                                                  ? 'No purchases found'
+                                                  : 'Satın alım bulunamadı'),
                                       ),
                                     ),
                                   );

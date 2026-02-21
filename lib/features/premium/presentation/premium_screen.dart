@@ -395,10 +395,12 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           tier: PremiumTier.monthly,
           isSelected: _selectedTier == PremiumTier.monthly,
           onTap: () => setState(() => _selectedTier = PremiumTier.monthly),
-          priceOverride: ref
-              .watch(paywallExperimentProvider)
-              .whenOrNull(data: (e) => e.monthlyPriceLabel) ??
-              ref.read(premiumProvider.notifier)
+          priceOverride:
+              ref
+                  .watch(paywallExperimentProvider)
+                  .whenOrNull(data: (e) => e.monthlyPriceLabel) ??
+              ref
+                  .read(premiumProvider.notifier)
                   .getProductPrice(PremiumTier.monthly),
         ),
         const SizedBox(height: AppConstants.spacingMd),
@@ -475,8 +477,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                             const SizedBox(height: 2),
                           if (_selectedTier == PremiumTier.yearly)
                             Text(
-                              ref.read(premiumProvider.notifier)
-                                  .getProductPrice(_selectedTier) ??
+                              ref
+                                      .read(premiumProvider.notifier)
+                                      .getProductPrice(_selectedTier) ??
                                   _selectedTier.price,
                               style: TextStyle(
                                 color: Colors.black.withValues(alpha: 0.6),

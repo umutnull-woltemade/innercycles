@@ -491,25 +491,27 @@ class _CalendarGrid extends StatelessWidget {
         children: [
           // Day headers
           Row(
-            children: (isEn
-                    ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
-                    : ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'])
-                .map((d) {
-              return Expanded(
-                child: Center(
-                  child: Text(
-                    d,
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w600,
-                      color: isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
-                    ),
-                  ),
-                ),
-              );
-            }).toList(),
+            children:
+                (isEn
+                        ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+                        : ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'])
+                    .map((d) {
+                      return Expanded(
+                        child: Center(
+                          child: Text(
+                            d,
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w600,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
+                          ),
+                        ),
+                      );
+                    })
+                    .toList(),
           ),
           const SizedBox(height: 8),
 

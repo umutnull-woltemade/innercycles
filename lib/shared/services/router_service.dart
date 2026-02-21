@@ -83,10 +83,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       // SYSTEM ROUTES
       // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: '/',
-        redirect: (_, _) => Routes.today,
-      ),
+      GoRoute(path: '/', redirect: (_, _) => Routes.today),
       GoRoute(
         path: Routes.disclaimer,
         builder: (context, state) => const DisclaimerScreen(),

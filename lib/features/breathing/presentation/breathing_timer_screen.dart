@@ -287,87 +287,89 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                         Semantics(
                           label: _isRunning && currentPhase != null
                               ? (isEn
-                                  ? '${currentPhase.labelEn()}, $_phaseCountdown seconds'
-                                  : '${currentPhase.labelTr()}, $_phaseCountdown saniye')
+                                    ? '${currentPhase.labelEn()}, $_phaseCountdown seconds'
+                                    : '${currentPhase.labelTr()}, $_phaseCountdown saniye')
                               : (isEn
-                                  ? 'Breathing circle, tap Start to begin'
-                                  : 'Nefes çemberi, başlamak için Başla\'ya dokunun'),
+                                    ? 'Breathing circle, tap Start to begin'
+                                    : 'Nefes çemberi, başlamak için Başla\'ya dokunun'),
                           liveRegion: _isRunning,
                           child: AnimatedBuilder(
-                          animation: _breathController,
-                          builder: (context, child) {
-                            final scale = 0.5 + (_breathController.value * 0.5);
-                            return Container(
-                              width: 200 * scale,
-                              height: 200 * scale,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                gradient: RadialGradient(
-                                  colors: [
-                                    AppColors.auroraStart.withValues(
+                            animation: _breathController,
+                            builder: (context, child) {
+                              final scale =
+                                  0.5 + (_breathController.value * 0.5);
+                              return Container(
+                                width: 200 * scale,
+                                height: 200 * scale,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: RadialGradient(
+                                    colors: [
+                                      AppColors.auroraStart.withValues(
+                                        alpha: 0.4,
+                                      ),
+                                      AppColors.auroraStart.withValues(
+                                        alpha: 0.1,
+                                      ),
+                                    ],
+                                  ),
+                                  border: Border.all(
+                                    color: AppColors.auroraStart.withValues(
                                       alpha: 0.4,
                                     ),
-                                    AppColors.auroraStart.withValues(
-                                      alpha: 0.1,
+                                    width: 2,
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: AppColors.auroraStart.withValues(
+                                        alpha: 0.2,
+                                      ),
+                                      blurRadius: 30 * scale,
+                                      spreadRadius: 5 * scale,
                                     ),
                                   ],
                                 ),
-                                border: Border.all(
-                                  color: AppColors.auroraStart.withValues(
-                                    alpha: 0.4,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      if (_isRunning &&
+                                          currentPhase != null) ...[
+                                        Text(
+                                          isEn
+                                              ? currentPhase.labelEn()
+                                              : currentPhase.labelTr(),
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                            color: isDark
+                                                ? Colors.white
+                                                : AppColors.lightTextPrimary,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          '$_phaseCountdown',
+                                          style: TextStyle(
+                                            fontSize: 36,
+                                            fontWeight: FontWeight.w700,
+                                            color: AppColors.auroraStart,
+                                          ),
+                                        ),
+                                      ] else
+                                        Icon(
+                                          Icons.air,
+                                          size: 48,
+                                          color: AppColors.auroraStart
+                                              .withValues(alpha: 0.6),
+                                        ),
+                                    ],
                                   ),
-                                  width: 2,
                                 ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: AppColors.auroraStart.withValues(
-                                      alpha: 0.2,
-                                    ),
-                                    blurRadius: 30 * scale,
-                                    spreadRadius: 5 * scale,
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    if (_isRunning && currentPhase != null) ...[
-                                      Text(
-                                        isEn
-                                            ? currentPhase.labelEn()
-                                            : currentPhase.labelTr(),
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w600,
-                                          color: isDark
-                                              ? Colors.white
-                                              : AppColors.lightTextPrimary,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        '$_phaseCountdown',
-                                        style: TextStyle(
-                                          fontSize: 36,
-                                          fontWeight: FontWeight.w700,
-                                          color: AppColors.auroraStart,
-                                        ),
-                                      ),
-                                    ] else
-                                      Icon(
-                                        Icons.air,
-                                        size: 48,
-                                        color: AppColors.auroraStart.withValues(
-                                          alpha: 0.6,
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        )),
+                              );
+                            },
+                          ),
+                        ),
 
                         const SizedBox(height: 24),
 
@@ -444,8 +446,10 @@ class _PresetSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Wrap(
+      alignment: WrapAlignment.center,
+      spacing: 0,
+      runSpacing: 8,
       children: BreathingPreset.values.map((preset) {
         final isSelected = preset == current;
         return Padding(
