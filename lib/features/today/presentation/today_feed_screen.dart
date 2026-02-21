@@ -16,6 +16,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/content/reflection_prompts_content.dart';
+import '../../../data/services/archetype_service.dart';
 import '../../streak/presentation/streak_card.dart';
 import '../../streak/presentation/streak_recovery_banner.dart';
 import '../../mood/presentation/mood_checkin_card.dart';
@@ -76,7 +77,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
               ),
 
-              const SliverToBoxAdapter(child: SizedBox(height: 16)),
+              const SliverToBoxAdapter(child: SizedBox(height: 12)),
 
               // ═══════════════════════════════════════════════════════
               // PRIMARY CTA - Start Journaling
@@ -277,27 +278,65 @@ class _TodaysInsightSection extends ConsumerWidget {
 
     return engineAsync.maybeWhen(
       data: (engine) {
-        if (!engine.hasEnoughData()) {
-          final needed = engine.entriesNeeded();
-          return _buildCard(
-            context,
-            icon: Icons.auto_awesome_outlined,
-            text: isEn
-                ? 'Log $needed more entries to unlock your personal patterns'
-                : 'Kişisel örüntülerini keşfetmek için $needed kayıt daha ekle',
+        // ── FULL PATTERN (7+ entries) ──
+        if (engine.hasEnoughData()) {
+          final trends = engine.detectTrends();
+          if (trends.isEmpty) return const SizedBox.shrink();
+          final best = trends.reduce(
+            (a, b) => a.changePercent.abs() > b.changePercent.abs() ? a : b,
           );
+          final text = isEn ? best.getMessageEn() : best.getMessageTr();
+          return _buildCard(
+              context, icon: Icons.lightbulb_outline, text: text);
         }
 
-        final trends = engine.detectTrends();
-        if (trends.isEmpty) return const SizedBox.shrink();
+        // ── MICRO-PATTERN (3-6 entries) ──
+        if (engine.hasMicroPatternData()) {
+          final micro = engine.detectMicroPattern(isEn: isEn);
+          if (micro != null) {
+            return _buildCard(
+                context, icon: Icons.insights_outlined, text: micro);
+          }
+        }
 
-        // Pick the most notable trend (largest change)
-        final best = trends.reduce(
-          (a, b) => a.changePercent.abs() > b.changePercent.abs() ? a : b,
+        // ── D0 ARCHETYPE INSIGHT (0-2 entries) ──
+        final archetypeAsync = ref.watch(archetypeServiceProvider);
+        return archetypeAsync.maybeWhen(
+          data: (archetypeService) {
+            final history = archetypeService.getArchetypeHistory();
+            if (history.isEmpty) {
+              final needed = engine.microEntriesNeeded();
+              return _buildCard(
+                context,
+                icon: Icons.auto_awesome_outlined,
+                text: isEn
+                    ? 'Write $needed entries to unlock your first insight.'
+                    : 'İlk içgörünü açmak için $needed kayıt yaz.',
+              );
+            }
+            final latestId = history.last.archetypeId;
+            final archetype = ArchetypeService.archetypes.firstWhere(
+              (a) => a.id == latestId,
+              orElse: () => ArchetypeService.archetypes.first,
+            );
+            final tip = archetype.getGrowthTip(isEnglish: isEn);
+            return _buildCard(
+              context,
+              icon: Icons.psychology_outlined,
+              text: '${archetype.emoji} ${archetype.getName(isEnglish: isEn)}: $tip',
+            );
+          },
+          orElse: () {
+            final needed = engine.microEntriesNeeded();
+            return _buildCard(
+              context,
+              icon: Icons.auto_awesome_outlined,
+              text: isEn
+                  ? 'Write $needed entries to unlock your first insight.'
+                  : 'İlk içgörünü açmak için $needed kayıt yaz.',
+            );
+          },
         );
-        final text = isEn ? best.getMessageEn() : best.getMessageTr();
-
-        return _buildCard(context, icon: Icons.lightbulb_outline, text: text);
       },
       orElse: () => const SizedBox.shrink(),
     );

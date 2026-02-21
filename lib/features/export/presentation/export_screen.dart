@@ -85,8 +85,25 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                           ],
                         ],
                       ),
-                      loading: () => const SizedBox.shrink(),
-                      error: (e, s) => const SizedBox.shrink(),
+                      loading: () => const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 16),
+                        child: Center(child: CosmicLoadingIndicator(size: 24)),
+                      ),
+                      error: (e, s) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        child: Center(
+                          child: Text(
+                            isEn
+                                ? 'Could not load entries'
+                                : 'Kayıtlar yüklenemedi',
+                            style: TextStyle(
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 24),
 
@@ -518,7 +535,7 @@ class _LockedEntriesCta extends StatelessWidget {
                     Text(
                       isEn
                           ? '$lockedEntries entries locked'
-                          : '$lockedEntries kayit kilitli',
+                          : '$lockedEntries kayıt kilitli',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -531,7 +548,7 @@ class _LockedEntriesCta extends StatelessWidget {
                     Text(
                       isEn
                           ? 'Upgrade to export all $totalEntries entries'
-                          : 'Tum $totalEntries kaydi aktarmak icin yukselt',
+                          : 'Tüm $totalEntries kaydı aktarmak için yükselt',
                       style: TextStyle(
                         fontSize: 12,
                         color: isDark

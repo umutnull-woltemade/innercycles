@@ -1,10 +1,12 @@
 // ============================================================================
-// SHARE CARD RENDERER - Generic card renderer for all 20 templates
+// SHARE CARD RENDERER - Generic card renderer for all 21 templates
 // ============================================================================
 // Takes a ShareCardTemplate + ShareCardData and renders a premium
-// Instagram-worthy card at 1080x1080. Supports dark/light variants,
-// gradient backgrounds, mini charts, badge heroes, quote blocks, and
-// stat rows. Includes InnerCycles watermark on every card.
+// Instagram-worthy card. Standard cards render at 1080x1080 (1:1).
+// The Cycle Position card renders at 1080x1920 (9:16 Stories ratio).
+// Supports dark/light variants, gradient backgrounds, mini charts,
+// badge heroes, quote blocks, stat rows, and cycle position arcs.
+// Includes InnerCycles watermark on every card.
 // ============================================================================
 
 import 'dart:math' as math;
@@ -37,13 +39,24 @@ class ShareCardRenderer extends StatelessWidget {
     this.displaySize = 360,
   });
 
+  /// Whether this template uses the 9:16 Instagram Stories aspect ratio
+  bool get _isStoryRatio =>
+      template.layoutType == ShareCardLayout.cyclePosition;
+
+  /// Effective card width
+  double get _cardWidth => displaySize;
+
+  /// Effective card height (9:16 for stories, 1:1 otherwise)
+  double get _cardHeight =>
+      _isStoryRatio ? displaySize * (16 / 9) : displaySize;
+
   @override
   Widget build(BuildContext context) {
     final accent = ShareCardTemplates.accentColor(template);
 
     final card = Container(
-      width: displaySize,
-      height: displaySize,
+      width: _cardWidth,
+      height: _cardHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
@@ -76,10 +89,10 @@ class ShareCardRenderer extends StatelessWidget {
             // Accent glow - top
             Positioned(
               top: -40,
-              left: displaySize * 0.2,
+              left: _cardWidth * 0.2,
               child: Container(
-                width: displaySize * 0.6,
-                height: displaySize * 0.4,
+                width: _cardWidth * 0.6,
+                height: _cardWidth * 0.4,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
@@ -167,6 +180,13 @@ class ShareCardRenderer extends StatelessWidget {
         );
       case ShareCardLayout.statRow:
         return _StatRowLayout(template: template, data: data, accent: accent);
+      case ShareCardLayout.cyclePosition:
+        return _CyclePositionLayout(
+          template: template,
+          data: data,
+          accent: accent,
+          cardWidth: _cardWidth,
+        );
     }
   }
 
@@ -815,6 +835,250 @@ class _BottomWatermark extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+// ============================================================================
+// LAYOUT: CYCLE POSITION (Instagram Stories 9:16)
+// ============================================================================
+
+class _CyclePositionLayout extends StatelessWidget {
+  final ShareCardTemplate template;
+  final ShareCardData data;
+  final Color accent;
+  final double cardWidth;
+
+  const _CyclePositionLayout({
+    required this.template,
+    required this.data,
+    required this.accent,
+    required this.cardWidth,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // Extract cycle day / cycle length from chartValues
+    final cycleDay = data.chartValues != null && data.chartValues!.isNotEmpty
+        ? data.chartValues![0]
+        : 12.0;
+    final cycleLength = data.chartValues != null && data.chartValues!.length >= 2
+        ? data.chartValues![1]
+        : 28.0;
+    final progress = cycleLength > 0 ? (cycleDay / cycleLength).clamp(0.0, 1.0) : 0.0;
+
+    final arcSize = cardWidth * 0.55;
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Spacer(flex: 3),
+
+        // Phase label (small tag above the arc)
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: accent.withValues(alpha: 0.15),
+            border: Border.all(color: accent.withValues(alpha: 0.3)),
+          ),
+          child: Text(
+            data.detail ?? 'Day ${cycleDay.toInt()} of ${cycleLength.toInt()}',
+            style: GoogleFonts.plusJakartaSans(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: accent,
+              letterSpacing: 0.5,
+            ),
+          ),
+        ),
+        const SizedBox(height: 28),
+
+        // Circular progress arc with day count
+        TweenAnimationBuilder<double>(
+          tween: Tween(begin: 0.0, end: progress),
+          duration: const Duration(milliseconds: 1200),
+          curve: Curves.easeOutCubic,
+          builder: (context, animatedProgress, child) {
+            return SizedBox(
+              width: arcSize,
+              height: arcSize,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  // Arc painter
+                  Positioned.fill(
+                    child: CustomPaint(
+                      painter: _CycleArcPainter(
+                        progress: animatedProgress,
+                        accent: accent,
+                        trackOpacity: 0.12,
+                        strokeWidth: 10,
+                      ),
+                    ),
+                  ),
+
+                  // Center content: day number + label
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        '${cycleDay.toInt()}',
+                        style: GoogleFonts.plusJakartaSans(
+                          fontSize: arcSize * 0.22,
+                          fontWeight: FontWeight.w900,
+                          foreground: Paint()
+                            ..shader = LinearGradient(
+                              colors: [accent, accent.withValues(alpha: 0.6)],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                            ).createShader(
+                              Rect.fromLTWH(0, 0, arcSize * 0.3, arcSize * 0.25),
+                            ),
+                          height: 1.0,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'of ${cycleLength.toInt()}',
+                        style: GoogleFonts.plusJakartaSans(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.textMuted,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+
+        const SizedBox(height: 32),
+
+        // Phase name (headline)
+        Text(
+          data.headline,
+          textAlign: TextAlign.center,
+          style: GoogleFonts.plusJakartaSans(
+            fontSize: 30,
+            fontWeight: FontWeight.w800,
+            color: AppColors.textPrimary,
+            height: 1.2,
+            letterSpacing: -0.5,
+          ),
+        ),
+        const SizedBox(height: 12),
+
+        // Accent divider
+        _AccentDivider(color: accent),
+        const SizedBox(height: 14),
+
+        // Phase description (subtitle)
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Text(
+            data.subtitle,
+            textAlign: TextAlign.center,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            style: GoogleFonts.plusJakartaSans(
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              color: AppColors.textSecondary,
+              height: 1.6,
+            ),
+          ),
+        ),
+
+        const Spacer(flex: 4),
+      ],
+    );
+  }
+}
+
+// ============================================================================
+// CYCLE ARC PAINTER - Circular progress arc for cycle position
+// ============================================================================
+
+class _CycleArcPainter extends CustomPainter {
+  final double progress; // 0.0 - 1.0
+  final Color accent;
+  final double trackOpacity;
+  final double strokeWidth;
+
+  _CycleArcPainter({
+    required this.progress,
+    required this.accent,
+    this.trackOpacity = 0.12,
+    this.strokeWidth = 10,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = (math.min(size.width, size.height) / 2) - strokeWidth;
+
+    // Background track
+    final trackPaint = Paint()
+      ..color = accent.withValues(alpha: trackOpacity)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth
+      ..strokeCap = StrokeCap.round;
+
+    canvas.drawCircle(center, radius, trackPaint);
+
+    // Progress arc
+    final progressRect = Rect.fromCircle(center: center, radius: radius);
+    final sweepAngle = 2 * math.pi * progress;
+
+    // Gradient shader for the arc
+    final progressPaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth
+      ..strokeCap = StrokeCap.round
+      ..shader = SweepGradient(
+        startAngle: -math.pi / 2,
+        endAngle: -math.pi / 2 + sweepAngle,
+        colors: [
+          accent.withValues(alpha: 0.6),
+          accent,
+          accent.withValues(alpha: 0.9),
+        ],
+        stops: const [0.0, 0.5, 1.0],
+        transform: const GradientRotation(-math.pi / 2),
+      ).createShader(progressRect);
+
+    // Draw arc starting from top (-pi/2)
+    canvas.drawArc(
+      progressRect,
+      -math.pi / 2,
+      sweepAngle,
+      false,
+      progressPaint,
+    );
+
+    // Glow dot at the end of the arc
+    if (progress > 0.01) {
+      final endAngle = -math.pi / 2 + sweepAngle;
+      final dotX = center.dx + radius * math.cos(endAngle);
+      final dotY = center.dy + radius * math.sin(endAngle);
+
+      // Outer glow
+      final glowPaint = Paint()
+        ..color = accent.withValues(alpha: 0.3)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8);
+      canvas.drawCircle(Offset(dotX, dotY), strokeWidth * 1.2, glowPaint);
+
+      // Inner dot
+      final dotPaint = Paint()..color = accent;
+      canvas.drawCircle(Offset(dotX, dotY), strokeWidth * 0.6, dotPaint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _CycleArcPainter oldDelegate) {
+    return oldDelegate.progress != progress || oldDelegate.accent != accent;
   }
 }
 

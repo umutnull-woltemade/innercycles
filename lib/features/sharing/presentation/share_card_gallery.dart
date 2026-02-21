@@ -1,5 +1,5 @@
 // ============================================================================
-// SHARE CARD GALLERY - Browse and share all 20 card templates
+// SHARE CARD GALLERY - Browse and share all 21 card templates
 // ============================================================================
 // Gallery view of all available card templates organized by category.
 // Tap a thumbnail to preview the full card with real user data, then
@@ -18,6 +18,7 @@ import '../../../data/models/share_card_models.dart';
 import '../../../data/content/share_card_templates.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/emotional_cycle_service.dart';
 import '../../../data/services/first_taste_service.dart';
 import '../../../data/services/instagram_share_service.dart';
 import '../../../data/services/premium_service.dart';
@@ -52,12 +53,49 @@ class _ShareCardGalleryScreenState
   ShareCardData _buildDataForTemplate(
     ShareCardTemplate template,
     bool isEn,
-    int streak,
-  ) {
+    int streak, {
+    EmotionalCycleAnalysis? cycleAnalysis,
+  }) {
+    // Extract cycle position data when available
+    String? cyclePhaseName;
+    String? cyclePhaseDescription;
+    int cycleDay = 0;
+    int cycleLength = 0;
+
+    if (cycleAnalysis != null && template.id == 'cycle_position') {
+      final phase = cycleAnalysis.overallPhase;
+      if (phase != null) {
+        cyclePhaseName = isEn ? phase.labelEn() : phase.labelTr();
+        cyclePhaseDescription = isEn
+            ? phase.descriptionEn()
+            : phase.descriptionTr();
+      }
+
+      // Find the best cycle length from area summaries
+      int? bestCycleLength;
+      for (final summary in cycleAnalysis.areaSummaries.values) {
+        if (summary.cycleLengthDays != null) {
+          bestCycleLength = summary.cycleLengthDays;
+          break;
+        }
+      }
+      cycleLength = bestCycleLength ?? 28;
+
+      // Approximate the current day within the cycle
+      // Use total entries modulo cycle length as a simple heuristic
+      cycleDay = cycleAnalysis.totalEntries > 0
+          ? (cycleAnalysis.totalEntries % cycleLength) + 1
+          : 1;
+    }
+
     return ShareCardTemplates.buildData(
       template: template,
       isEn: isEn,
       streak: streak,
+      cyclePhaseName: cyclePhaseName,
+      cyclePhaseDescription: cyclePhaseDescription,
+      cycleDay: cycleDay,
+      cycleLength: cycleLength,
     );
   }
 
@@ -166,6 +204,9 @@ class _ShareCardGalleryScreenState
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final streakAsync = ref.watch(journalStreakProvider);
     final streak = streakAsync.whenOrNull(data: (s) => s) ?? 0;
+    final cycleAnalysis = ref
+        .watch(emotionalCycleAnalysisProvider)
+        .whenOrNull(data: (a) => a);
 
     return Scaffold(
       backgroundColor: isDark ? AppColors.deepSpace : AppColors.lightBackground,
@@ -198,8 +239,8 @@ class _ShareCardGalleryScreenState
       ),
       body: CosmicBackground(
         child: _previewTemplate != null
-            ? _buildPreview(isDark, isEn, language, streak)
-            : _buildGallery(isDark, isEn, streak),
+            ? _buildPreview(isDark, isEn, language, streak, cycleAnalysis)
+            : _buildGallery(isDark, isEn, streak, cycleAnalysis),
       ),
     );
   }
@@ -208,7 +249,12 @@ class _ShareCardGalleryScreenState
   // GALLERY VIEW
   // =========================================================================
 
-  Widget _buildGallery(bool isDark, bool isEn, int streak) {
+  Widget _buildGallery(
+    bool isDark,
+    bool isEn,
+    int streak,
+    EmotionalCycleAnalysis? cycleAnalysis,
+  ) {
     return Column(
       children: [
         // Category tabs
@@ -216,7 +262,7 @@ class _ShareCardGalleryScreenState
         const SizedBox(height: 16),
 
         // Card grid
-        Expanded(child: _buildCardGrid(isDark, isEn, streak)),
+        Expanded(child: _buildCardGrid(isDark, isEn, streak, cycleAnalysis)),
       ],
     );
   }
@@ -302,7 +348,12 @@ class _ShareCardGalleryScreenState
     );
   }
 
-  Widget _buildCardGrid(bool isDark, bool isEn, int streak) {
+  Widget _buildCardGrid(
+    bool isDark,
+    bool isEn,
+    int streak,
+    EmotionalCycleAnalysis? cycleAnalysis,
+  ) {
     final templates = ShareCardTemplates.byCategory(_selectedCategory);
 
     return GridView.builder(
@@ -316,7 +367,12 @@ class _ShareCardGalleryScreenState
       itemCount: templates.length,
       itemBuilder: (context, index) {
         final template = templates[index];
-        final data = _buildDataForTemplate(template, isEn, streak);
+        final data = _buildDataForTemplate(
+          template,
+          isEn,
+          streak,
+          cycleAnalysis: cycleAnalysis,
+        );
         final accent = ShareCardTemplates.accentColor(template);
 
         return Semantics(
@@ -359,9 +415,17 @@ class _ShareCardGalleryScreenState
     bool isEn,
     AppLanguage language,
     int streak,
+    EmotionalCycleAnalysis? cycleAnalysis,
   ) {
     final template = _previewTemplate!;
-    final data = _buildDataForTemplate(template, isEn, streak);
+    final data = _buildDataForTemplate(
+      template,
+      isEn,
+      streak,
+      cycleAnalysis: cycleAnalysis,
+    );
+    final isStory =
+        template.layoutType == ShareCardLayout.cyclePosition;
 
     return SafeArea(
       child: Column(
@@ -401,6 +465,7 @@ class _ShareCardGalleryScreenState
                           data: data,
                           repaintKey: _repaintKey,
                           isDark: isDark,
+                          displaySize: isStory ? 220 : 360,
                         )
                         .animate()
                         .fadeIn(duration: 400.ms)

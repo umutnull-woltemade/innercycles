@@ -135,7 +135,7 @@ class ToolEmptyState extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      isEn ? 'Start with Template' : 'Sablonla Basla',
+                      isEn ? 'Start with Template' : 'Şablonla Başla',
                       style: const TextStyle(fontWeight: FontWeight.w600),
                     ),
                   ),
@@ -145,7 +145,7 @@ class ToolEmptyState extends StatelessWidget {
                 TextButton(
                   onPressed: onSeeExample,
                   child: Text(
-                    isEn ? 'See Example' : 'Ornek Gor',
+                    isEn ? 'See Example' : 'Örnek Gör',
                     style: TextStyle(
                       color: isDark
                           ? AppColors.textSecondary

@@ -363,8 +363,8 @@ class SmartRouterService {
         const ToolSuggestion(
           toolId: 'journal',
           route: '/journal',
-          reasonEn: 'Journaling can support your healing process.',
-          reasonTr: 'Gunluk tutmak iyilesme surecini destekleyebilir.',
+          reasonEn: 'Journaling can support your recovery process.',
+          reasonTr: 'Günlük tutmak iyileşme sürecini destekleyebilir.',
           priority: 50,
           source: 'R12',
         ),

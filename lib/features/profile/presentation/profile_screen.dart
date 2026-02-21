@@ -186,6 +186,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 'assets/brand/app-logo/png/app-logo-96.png',
                 fit: BoxFit.contain,
                 semanticLabel: 'InnerCycles logo',
+                errorBuilder: (_, _, _) => Icon(
+                  Icons.auto_awesome,
+                  color: AppColors.starGold,
+                  size: 32,
+                ),
               ),
             ),
           ),
@@ -450,7 +455,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
               const SizedBox(width: AppConstants.spacingSm),
               Text(
-                isEn ? 'Your Journey' : 'Yolculuğun',
+                isEn ? 'Your Progress' : 'İlerlemen',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: isDark
                       ? AppColors.textPrimary

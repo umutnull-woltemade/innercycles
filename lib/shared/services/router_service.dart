@@ -1,7 +1,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 // ROUTER SERVICE - InnerCycles Navigation (Survival Release)
 // ════════════════════════════════════════════════════════════════════════════
-// 5-Tab: Home | Journal | Insights | Breathe | Profile
+// 5-Tab: Home | Journal | Signal Dashboard | Guided Breathwork | Profile
 // SECONDARY features soft-archived: code preserved, routes removed.
 // ════════════════════════════════════════════════════════════════════════════
 
@@ -186,7 +186,6 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.emotionalCycles,
         builder: (context, state) => const EmotionalCycleScreen(),
       ),
-
       // ════════════════════════════════════════════════════════════════
       // BREATHE (sub-screens, outside shell)
       // ════════════════════════════════════════════════════════════════
