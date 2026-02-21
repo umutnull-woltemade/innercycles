@@ -25,9 +25,8 @@ class QuizSuggestionCard extends ConsumerWidget {
     final quizzes = QuizContent.allQuizzes;
     if (quizzes.isEmpty) return const SizedBox.shrink();
 
-    final dayOfYear = DateTime.now()
-        .difference(DateTime(DateTime.now().year, 1, 1))
-        .inDays;
+    final now = DateTime.now();
+    final dayOfYear = now.difference(DateTime(now.year, 1, 1)).inDays;
     final quiz = quizzes[dayOfYear % quizzes.length];
 
     return Semantics(

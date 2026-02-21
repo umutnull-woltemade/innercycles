@@ -370,13 +370,23 @@ class _StreakChain extends ConsumerWidget {
     return journalAsync.maybeWhen(
       data: (journal) {
         final now = DateTime.now();
+        final startDay = DateTime(now.year, now.month, now.day - 13);
+        final endDay = DateTime(now.year, now.month, now.day);
+        final rangeEntries = journal.getEntriesByDateRange(startDay, endDay);
+        final entryDates = <String>{};
+        for (final e in rangeEntries) {
+          entryDates.add('${e.date.year}-${e.date.month}-${e.date.day}');
+        }
         final days = <_ChainDay>[];
-
         for (int i = 13; i >= 0; i--) {
           final day = DateTime(now.year, now.month, now.day - i);
-          final entries = journal.getEntriesByDateRange(day, day);
+          final key = '${day.year}-${day.month}-${day.day}';
           days.add(
-            _ChainDay(date: day, hasEntry: entries.isNotEmpty, isToday: i == 0),
+            _ChainDay(
+              date: day,
+              hasEntry: entryDates.contains(key),
+              isToday: i == 0,
+            ),
           );
         }
 

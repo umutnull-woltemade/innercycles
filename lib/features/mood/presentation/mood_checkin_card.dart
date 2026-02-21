@@ -181,6 +181,7 @@ class _LoggedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final nowTime = DateTime.now();
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -237,8 +238,7 @@ class _LoggedView extends StatelessWidget {
               final dayLabels = isEn
                   ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
                   : ['Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct', 'Pa'];
-              final now = DateTime.now();
-              final day = now.subtract(Duration(days: 6 - i));
+              final day = nowTime.subtract(Duration(days: 6 - i));
               final dayIndex = (day.weekday - 1) % 7;
 
               return Column(

@@ -186,8 +186,7 @@ class _HomeHeader extends StatelessWidget {
     required this.isDark,
   });
 
-  String _getSubtitle(bool isEn) {
-    final hour = DateTime.now().hour;
+  String _getSubtitle(int hour, bool isEn) {
     if (hour < 12) {
       return isEn ? 'Start your day with intention' : 'Güne niyetle başla';
     } else if (hour < 18) {
@@ -231,7 +230,7 @@ class _HomeHeader extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  _getSubtitle(isEn),
+                  _getSubtitle(hour, isEn),
                   style: TextStyle(
                     fontSize: 14,
                     color: isDark
