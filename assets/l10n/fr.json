@@ -783,7 +783,6 @@
       "save_dreams_discover_patterns": "Save your dreams, discover patterns",
       "view_dream_interpretation": "View Dream Interpretation",
       "tell_my_dream": "Tell My Dream",
-      "ai_powered_analysis": "AI-powered deep dream analysis",
       "save_dream": "Save Dream",
       "time_prompts": {
         "morning": "What Did You See Last Night?",
@@ -1953,7 +1952,6 @@
     "personality_analysis": "Personality Analysis",
     "inner_discoveries": "Inner Discoveries",
     "relationship_analysis": "Relationship Analysis",
-    "ai_assistants": "AI Assistants",
     "sharing_profile": "Sharing & Profile",
     "references_learning": "References & Learning",
     "dreams_subconscious": "Dreams & Subconscious"
@@ -2583,7 +2581,6 @@
       "daily_affirmations": "Affirmations quotidiennes",
       "inspiring_quotes": "Citations profondes",
       "symbol_art_suggestions": "Suggestions d'art symbolique",
-      "ai_generated": "Généré par IA",
       "inspiring_quotes_list": [
         "\"Les rêves sont des lettres écrites par notre moi profond la nuit.\"",
         "\"Chaque rêve est un miroir, chaque symbole une clé.\"",

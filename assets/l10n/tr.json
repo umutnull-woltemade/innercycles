@@ -783,7 +783,6 @@
             "save_dreams_discover_patterns": "Rüyalarını kaydet, örüntüleri keşfet",
             "view_dream_interpretation": "Rüya Yorumunu Gör",
             "tell_my_dream": "Rüyamı Anlat",
-            "ai_powered_analysis": "AI destekli derin rüya analizi",
             "save_dream": "Rüya Kaydet",
             "time_prompts": {
                 "morning": "Bu Gece Ne Gördün?",
@@ -1957,7 +1956,6 @@
         "personality_analysis": "Kişilik Analizleri",
         "inner_discoveries": "Derin Keşifler",
         "relationship_analysis": "İlişki Analizleri",
-        "ai_assistants": "AI Asistanlar",
         "sharing_profile": "Paylaşım & Profil",
         "references_learning": "Referanslar & Öğrenme",
         "dreams_subconscious": "Rüyalar & Bilinçaltı"
@@ -2587,7 +2585,6 @@
             "daily_affirmations": "Günlük Olumlamalar",
             "inspiring_quotes": "Derin Alıntılar",
             "symbol_art_suggestions": "Sembol Sanatı Önerileri",
-            "ai_generated": "AI Üretimi",
             "inspiring_quotes_list": [
                 "\"Ruyalar, benliğimizin gece yazılan mektuplarıdır.\"",
                 "\"Her rüya bir ayna, her sembol bir anahtar.\"",

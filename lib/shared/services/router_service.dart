@@ -55,8 +55,8 @@ final routerProvider = Provider<GoRouter>((ref) {
         return null;
       }
 
-      // Allow admin routes without onboarding
-      if (path.startsWith(Routes.admin)) {
+      // Allow admin routes without onboarding (debug only)
+      if (kDebugMode && path.startsWith(Routes.admin)) {
         return null;
       }
 
@@ -236,90 +236,28 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       // ════════════════════════════════════════════════════════════════
-      // ADMIN SYSTEM
+      // ADMIN SYSTEM (debug builds only)
       // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.adminLogin,
-        builder: (context, state) => const AdminLoginScreen(),
-      ),
-      GoRoute(
-        path: Routes.admin,
-        redirect: (context, state) {
-          if (!AdminAuthService.isAuthenticated) {
-            return Routes.adminLogin;
-          }
-          return null;
-        },
-        builder: (context, state) => const AdminDashboardScreen(),
-      ),
+      if (kDebugMode) ...[
+        GoRoute(
+          path: Routes.adminLogin,
+          builder: (context, state) => const AdminLoginScreen(),
+        ),
+        GoRoute(
+          path: Routes.admin,
+          redirect: (context, state) {
+            if (!AdminAuthService.isAuthenticated) {
+              return Routes.adminLogin;
+            }
+            return null;
+          },
+          builder: (context, state) => const AdminDashboardScreen(),
+        ),
+      ],
 
       // ════════════════════════════════════════════════════════════════
-      // SOFT-ARCHIVE REDIRECTS
-      // All removed routes redirect to Home gracefully
+      // LEGACY DREAM REDIRECTS (Turkish backward compatibility)
       // ════════════════════════════════════════════════════════════════
-      GoRoute(path: Routes.insight, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.insightsDiscovery, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.tools, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.challengeHub, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.library, redirect: (_, _) => Routes.today),
-      GoRoute(
-        path: Routes.dreamInterpretation,
-        redirect: (_, _) => Routes.today,
-      ),
-      GoRoute(path: Routes.dreamGlossary, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.dreamArchive, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.quizHub, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.attachmentQuiz, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.shareCardGallery, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.growthDashboard, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.rituals, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.ritualCreate, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.wellnessDetail, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.energyMap, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.programs, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.seasonal, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.moonCalendar, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.challenges, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.weeklyDigest, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.archetype, redirect: (_, _) => Routes.today),
-      GoRoute(
-        path: Routes.compatibilityReflection,
-        redirect: (_, _) => Routes.today,
-      ),
-      GoRoute(path: Routes.blindSpot, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.promptLibrary, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.milestones, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.yearReview, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.habitSuggestions, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.dailyHabits, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.gratitudeJournal, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.sleepDetail, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.gratitudeArchive, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.sleepTrends, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.affirmations, redirect: (_, _) => Routes.today),
-      GoRoute(
-        path: Routes.emotionalVocabulary,
-        redirect: (_, _) => Routes.today,
-      ),
-      GoRoute(path: Routes.articles, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.glossary, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.search, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.programCompletion, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.shareInsight, redirect: (_, _) => Routes.today),
-
-      // ════════════════════════════════════════════════════════════════
-      // LEGACY REDIRECTS (all → Home)
-      // ════════════════════════════════════════════════════════════════
-      GoRoute(path: '/legacy-home', redirect: (_, _) => Routes.today),
-      GoRoute(path: '/energy-profile', redirect: (_, _) => Routes.today),
-      GoRoute(path: '/number-patterns', redirect: (_, _) => Routes.today),
-      GoRoute(path: '/legacy-analysis', redirect: (_, _) => Routes.today),
-      GoRoute(path: '/moon-rituals', redirect: (_, _) => Routes.today),
-      GoRoute(path: '/legacy-insight', redirect: (_, _) => Routes.today),
-      GoRoute(path: '/timing', redirect: (_, _) => Routes.today),
-      GoRoute(path: '/celebrities', redirect: (_, _) => Routes.today),
-      GoRoute(path: '/daily-rituals', redirect: (_, _) => Routes.today),
-      GoRoute(path: '/kesif/ruhsal-donusum', redirect: (_, _) => Routes.today),
       ...Routes.legacyRouteRedirects.entries.map(
         (entry) => GoRoute(
           path: entry.key,
