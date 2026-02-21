@@ -469,36 +469,44 @@ class _ThemeCloud extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: themes.entries.map((e) {
+          Builder(
+            builder: (_) {
               final maxCount = themes.values.reduce((a, b) => a > b ? a : b);
-              final opacity = maxCount > 0
-                  ? 0.3 + (e.value / maxCount) * 0.7
-                  : 0.3;
-              return Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.starGold.withValues(alpha: opacity * 0.2),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: AppColors.starGold.withValues(alpha: opacity * 0.4),
-                  ),
-                ),
-                child: Text(
-                  e.key,
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.starGold,
-                  ),
-                ),
+              return Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: themes.entries.map((e) {
+                  final opacity = maxCount > 0
+                      ? 0.3 + (e.value / maxCount) * 0.7
+                      : 0.3;
+                  return Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.starGold.withValues(
+                        alpha: opacity * 0.2,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: AppColors.starGold.withValues(
+                          alpha: opacity * 0.4,
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      e.key,
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  );
+                }).toList(),
               );
-            }).toList(),
+            },
           ),
         ],
       ),
