@@ -42,7 +42,7 @@ class ContentDisclaimer extends StatelessWidget {
           style: TextStyle(
             fontSize: 10,
             color: isDark
-                ? Colors.white30
+                ? Colors.white54
                 : AppColors.textLight.withValues(alpha: 0.6),
             fontStyle: FontStyle.italic,
           ),
@@ -71,7 +71,7 @@ class ContentDisclaimer extends StatelessWidget {
             Icons.info_outline,
             size: 14,
             color: isDark
-                ? Colors.white30
+                ? Colors.white54
                 : AppColors.textLight.withValues(alpha: 0.5),
           ),
           const SizedBox(width: 8),

@@ -967,7 +967,7 @@
                     "builder": {
                         "basic_meaning": "Su, toprak arketipin için bereket ve bolluğun sembolü. Maddi ve duygusal akış hayatına giriyor.",
                         "element_perspective": "Su toprağı besler - bu rüya büyüme ve bereket habercisi. Doğal ritmine güven, zorlamadan akışa bırak.",
-                        "psychological": "Su: Duygusal güvenlik, konfor, beslenme\nKurucu olarak: İç huzurun maddi güvenlikle bağlantısı\nMesaj: Duygusal zenginlik maddi zenginliği çeker",
+                        "psychological": "Su: Duygusal güvenlik, konfor, beslenme\nKurucu olarak: İç dinginliğin maddi güvenlikle bağlantısı\nMesaj: Duygusal zenginlik maddi zenginliği çeker",
                         "practice": "• Bitkilerini sula, bahçeyle ilgilen\n• Banyo ritüeli yap\n• Finansal akışı görselleştir\n• Rahatlama ve konfor önceliğin olsun"
                     },
                     "nurturer": {
@@ -2569,13 +2569,13 @@
             "emoji_decorations": "Emoji Süslemeler",
             "select_emoji": "Emoji Seç",
             "ready_templates": "Hazır Şablonlar",
-            "template_tonight": "\"Bu gece ruyamda...\"",
+            "template_tonight": "\"Bu gece rüyamda...\"",
             "template_tonight_desc": "Klasik rüya paylaşımı formatı",
-            "template_symbol": "Sembol Anlami",
+            "template_symbol": "Sembol Anlamı",
             "template_symbol_desc": "Bir sembolün derin anlamını paylaş",
             "template_archetype": "Arketip Keşfi",
             "template_archetype_desc": "Hangi arketiple karşılaştın?",
-            "template_moon_phase": "Ay Fazi Bilgeligi",
+            "template_moon_phase": "Ay Fazı Bilgeliği",
             "template_moon_phase_desc": "Ayın mesajını paylaş",
             "template_weekly": "Haftalık Özet",
             "template_weekly_desc": "Bu haftaki rüyalarının özeti",
@@ -2586,7 +2586,7 @@
             "inspiring_quotes": "Derin Alıntılar",
             "symbol_art_suggestions": "Sembol Sanatı Önerileri",
             "inspiring_quotes_list": [
-                "\"Ruyalar, benliğimizin gece yazılan mektuplarıdır.\"",
+                "\"Rüyalar, benliğimizin gece yazılan mektuplarıdır.\"",
                 "\"Her rüya bir ayna, her sembol bir anahtar.\"",
                 "\"Gece, bilinçaltının en yüksek sesle konuştuğu andır.\"",
                 "\"Rüyalarını dinleyen, hikayesini yazar.\""
@@ -2643,80 +2643,80 @@
                 "Ortam kapalı mıydı (oda/ev) yoksa açık mıydı (doğa)?"
             ],
             "falling": [
-                "Dusus kontrol kaybetme mi yoksa birakma gibi mi hissettirdi?",
-                "Yere carptin mi yoksa ortada uyandın mi?",
-                "Dusus yuksek miydi yoksa kisa mi?"
+                "Düşüş kontrol kaybetme mi yoksa bırakma gibi mi hissettirdi?",
+                "Yere çarptın mı yoksa ortada uyandın mı?",
+                "Düşüş yüksek miydi yoksa kısa mı?"
             ],
             "being_chased": [
                 "Seni kovalayan kimdi veya neydi? (net mi, belirsiz mi)",
-                "Kacabildin mi yoksa saklanabildin mi?",
-                "Hakim duygu neydi? (korku, panik, ofke)"
+                "Kaçabildin mi yoksa saklanabildin mi?",
+                "Hâkim duygu neydi? (korku, panik, öfke)"
             ],
             "death": [
-                "Kim oluyordu ruyada? (sen mi, baskasi mi)",
-                "Olum siddetli miydi yoksa huzurlu mu?",
-                "Sonrasinda ne hissettin? (rahatlama, korku, bossluk)"
+                "Kim ölüyordu rüyada? (sen mi, başkası mı)",
+                "Ölüm şiddetli miydi yoksa huzurlu mu?",
+                "Sonrasında ne hissettin? (rahatlama, korku, boşluk)"
             ],
             "fire": [
-                "Ates kontrollu muydu yoksa yayiliyor muydu?",
-                "Isitici miydi yoksa yakici mi?",
-                "Gozlemci miydin yoksa mudahale mi ediyordun?"
+                "Ateş kontrollü müydü yoksa yayılıyor muydu?",
+                "Isıtıcı mıydı yoksa yakıcı mı?",
+                "Gözlemci miydin yoksa müdahale mi ediyordun?"
             ],
             "water": [
-                "Su nasil gorunuyordu? (temiz, bulanik, dalgali, durgun)",
-                "Suyun icinde miydin, disinda mi?",
+                "Su nasıl görünüyordu? (temiz, bulanık, dalgalı, durgun)",
+                "Suyun içinde miydin, dışında mı?",
                 "Su hareket halinde miydi yoksa durgun mu?"
             ],
             "flying": [
-                "Ucmak nasil hissettirdi? (korkutucu, ozgurlestirici)",
-                "Kontrol sende miydi yoksa ruzgara mi kapildin?",
-                "Ne kadar yuksekte ucuyordun?"
+                "Uçmak nasıl hissettirdi? (korkutucu, özgürleştirici)",
+                "Kontrol sende miydi yoksa rüzgara mı kapıldın?",
+                "Ne kadar yüksekte uçuyordun?"
             ],
             "teeth": [
-                "Disler nasil dokuluyordu? (kendilinden, darbe ile, parcalanarak)",
-                "Bunu goren veya fark eden baskasi var miydi?",
-                "Dokulme sirasinda ne hissettin?"
+                "Dişler nasıl dökülüyordu? (kendiliğinden, darbe ile, parçalanarak)",
+                "Bunu gören veya fark eden başkası var mıydı?",
+                "Dökülme sırasında ne hissettin?"
             ],
             "baby": [
-                "Bebek seninle ilgili miydi? (senin cocugun, baskasinin)",
-                "Bebegin durumu nasıldi? (mutlu, agliyor, hasta)",
-                "Bebegi tutuyor muydun yoksa izliyor muydun?"
+                "Bebek seninle ilgili miydi? (senin çocuğun, başkasının)",
+                "Bebeğin durumu nasıldı? (mutlu, ağlıyor, hasta)",
+                "Bebeği tutuyor muydun yoksa izliyor muydun?"
             ],
             "house": [
-                "Ev tanidik miydi yoksa bilinmeyen mi?",
-                "Evin durumu nasıldi? (duzgun, dagınık, hasarli)",
-                "Evin hangi bolumundeydin?"
+                "Ev tanıdık mıydı yoksa bilinmeyen mi?",
+                "Evin durumu nasıldı? (düzgün, dağınık, hasarlı)",
+                "Evin hangi bölümündeydin?"
             ],
             "car": [
-                "Surucu sen miydin yoksa yolcu musun?",
-                "Suruste kontrol var miydi yoksa kontrol kaybi mi?",
+                "Sürücü sen miydin yoksa yolcu musun?",
+                "Sürüşte kontrol var mıydı yoksa kontrol kaybı mı?",
                 "Nereye gidiyordunuz? (bilinen yer mi, bilinmeyen mi)"
             ],
             "exam": [
-                "Sinav neyle ilgiliydi? (okul, yasam testi)",
-                "Hazir miydin yoksa hazirliksiz mi?",
-                "Sonuc neydi? (gectin, kaldin, bilinmiyor)"
+                "Sınav neyle ilgiliydi? (okul, yaşam testi)",
+                "Hazır mıydın yoksa hazırlıksız mı?",
+                "Sonuç neydi? (geçtin, kaldın, bilinmiyor)"
             ],
             "nakedness": [
-                "Nerede ciplaktin? (halka acik, ozel mekan)",
-                "Ne hissettin? (utanc, rahatlık, korkku)",
-                "Baskasi fark etti mi etmedi mi?"
+                "Nerede çıplaktın? (halka açık, özel mekan)",
+                "Ne hissettin? (utanç, rahatlık, korku)",
+                "Başkası fark etti mi etmedi mi?"
             ],
             "getting_lost": [
-                "Nerede kaybolmustun? (bilinen yer, bilinmeyen yer)",
-                "Yol sorabildİn mi veya yardim bulabildin mi?",
-                "Hakim duygu neydi? (panik, merak)"
+                "Nerede kaybolmuştun? (bilinen yer, bilinmeyen yer)",
+                "Yol sorabildin mi veya yardım bulabildin mi?",
+                "Hâkim duygu neydi? (panik, merak)"
             ],
             "general": [
-                "Ruyada hakim duygu neydi?",
-                "Tanidigin biri veya bir yer var miydi?",
-                "Ruyada pozisyonun neydi? (gozlemci, katilimci)"
+                "Rüyada hâkim duygu neydi?",
+                "Tanıdığın biri veya bir yer var mıydı?",
+                "Rüyada pozisyonun neydi? (gözlemci, katılımcı)"
             ]
         },
         "dream_insight": {
             "title": "Rüya Rehberi",
-            "new_dream": "Yeni Ruya",
-            "describe_dream": "Ruyani Anlat",
+            "new_dream": "Yeni Rüya",
+            "describe_dream": "Rüyanı Anlat",
             "voice_input_soon": "Sesli giriş yakında aktif olacak",
             "voice_describe": "Sesli Anlat",
             "dream_hint": "Gördüğüm rüyada...\n\nNe gördün? Kimler vardı? Neler oldu? Ne hissettin?",

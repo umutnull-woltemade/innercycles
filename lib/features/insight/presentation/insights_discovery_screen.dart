@@ -64,7 +64,7 @@ class _InsightsDiscoveryScreenState
             loading: () => const CosmicLoadingIndicator(),
             error: (_, _) => Center(
               child: Text(
-                isEn ? 'Could not load insights' : 'İçgörüler yüklenemedi',
+                isEn ? 'Could not load. Your local data is unaffected.' : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
                 style: TextStyle(
                   color: isDark
                       ? AppColors.textSecondary
@@ -783,7 +783,10 @@ class _InsightsDiscoveryScreenState
                               Navigator.of(ctx).pop();
                               Future.delayed(
                                 const Duration(milliseconds: 300),
-                                () => _openModuleDetail(related, service),
+                                () {
+                                  if (!mounted) return;
+                                  _openModuleDetail(related, service);
+                                },
                               );
                             },
                             child: Container(

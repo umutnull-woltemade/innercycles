@@ -180,7 +180,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   // Double-tap guard
   bool _isCompleting = false;
 
-  static const int _totalPages = 5;
+  static const int _totalPages = 9; // 4 value prop + 5 original steps
+  static const int _valuePropCount = 4; // Welcome, Emotional Cycles, Dreams, Pattern Insights
 
   @override
   void dispose() {
@@ -309,7 +310,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   bool _canProceed() {
-    switch (_currentPage) {
+    // Value prop pages (0-3) always allow proceeding
+    if (_currentPage < _valuePropCount) return true;
+
+    switch (_currentPage - _valuePropCount) {
       case 0: // Identity
         return _userName != null && _userName!.isNotEmpty;
       case 1: // Focus area
@@ -328,7 +332,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   // Should we show the bottom nav section (indicators + button)?
   bool _showBottomNav() {
     // Hide bottom nav during archetype quiz questions (not result)
-    if (_currentPage == 3 && !_showArchetypeResult) return false;
+    if (_currentPage == _valuePropCount + 3 && !_showArchetypeResult) {
+      return false;
+    }
     return true;
   }
 
@@ -352,6 +358,52 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     setState(() => _currentPage = index);
                   },
                   children: [
+                    // Value Proposition Pages (0-3)
+                    _ValuePropPage(
+                      icon: Icons.auto_awesome,
+                      iconColor: AppColors.starGold,
+                      headlineEn: 'InnerCycles',
+                      headlineTr: 'InnerCycles',
+                      subtitleEn: 'Understand the patterns you repeat',
+                      subtitleTr:
+                          'Tekrarladığın kalıpları anla',
+                      language: language,
+                      isWelcome: true,
+                    ),
+                    _ValuePropPage(
+                      icon: Icons.waves_rounded,
+                      iconColor: AppColors.amethyst,
+                      headlineEn: 'Detect Your Emotional Cycles',
+                      headlineTr: 'Duygusal Döngülerini Keşfet',
+                      subtitleEn:
+                          'See recurring moods and rhythms\nin your daily entries',
+                      subtitleTr:
+                          'Günlük girişlerinde tekrarlayan\nruh hallerini ve ritimlerini gör',
+                      language: language,
+                    ),
+                    _ValuePropPage(
+                      icon: Icons.nights_stay_rounded,
+                      iconColor: AppColors.auroraStart,
+                      headlineEn: 'Track Dream Symbols',
+                      headlineTr: 'Rüya Sembollerini Takip Et',
+                      subtitleEn:
+                          'Record your dreams and discover\nrecurring symbols over time',
+                      subtitleTr:
+                          'Rüyalarını kaydet ve zaman içinde\ntekrarlayan sembolleri keşfet',
+                      language: language,
+                    ),
+                    _ValuePropPage(
+                      icon: Icons.auto_graph_rounded,
+                      iconColor: AppColors.chartPink,
+                      headlineEn: 'See What Your Journal Reveals',
+                      headlineTr: 'Günlüğünün Ortaya Çıkardıklarını Gör',
+                      subtitleEn:
+                          'Uncover hidden patterns and insights\nfrom your own reflections',
+                      subtitleTr:
+                          'Kendi yansımalarından gizli kalıpları\nve içgörüleri ortaya çıkar',
+                      language: language,
+                    ),
+                    // Original Onboarding Pages (4-8)
                     _IdentityPage(
                       userName: _userName,
                       onNameChanged: (name) => setState(() => _userName = name),
@@ -395,18 +447,47 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   Widget _buildBottomSection(AppLanguage language) {
+    final isEn = language == AppLanguage.en;
     final isLastPage = _currentPage == _totalPages - 1;
+    final isLastValueProp = _currentPage == _valuePropCount - 1;
+    final isInValueProps = _currentPage < _valuePropCount;
+
+    // Determine button label
+    String buttonLabel;
+    IconData buttonIcon;
+    if (isLastPage) {
+      buttonLabel = L10nService.get('common.start_journey', language);
+      buttonIcon = Icons.auto_awesome;
+    } else if (isLastValueProp) {
+      buttonLabel = isEn ? 'Get Started' : 'Başlayalım';
+      buttonIcon = Icons.arrow_forward;
+    } else {
+      buttonLabel = L10nService.get('common.continue', language);
+      buttonIcon = Icons.arrow_forward;
+    }
+
+    // Value prop pages use their own dot indicator set (4 dots),
+    // original steps use theirs (5 dots)
+    final int dotCount;
+    final int activeDot;
+    if (isInValueProps) {
+      dotCount = _valuePropCount;
+      activeDot = _currentPage;
+    } else {
+      dotCount = _totalPages - _valuePropCount;
+      activeDot = _currentPage - _valuePropCount;
+    }
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
       child: Column(
         children: [
-          // 5 page indicators
+          // Dot indicators — scoped to current phase
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(_totalPages, (index) {
-              final isActive = _currentPage == index;
-              final isPast = index < _currentPage;
+            children: List.generate(dotCount, (index) {
+              final isActive = activeDot == index;
+              final isPast = index < activeDot;
               return AnimatedContainer(
                 duration: const Duration(milliseconds: 250),
                 margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -426,10 +507,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           const SizedBox(height: 20),
           // CTA button
           GradientButton(
-            label: isLastPage
-                ? L10nService.get('common.start_journey', language)
-                : L10nService.get('common.continue', language),
-            icon: isLastPage ? Icons.auto_awesome : Icons.arrow_forward,
+            label: buttonLabel,
+            icon: buttonIcon,
             width: double.infinity,
             onPressed: _canProceed() ? _nextPage : null,
           ),
@@ -561,6 +640,8 @@ class _IdentityPageState extends State<_IdentityPage>
       if (!mounted) return;
       if (userInfo != null) {
         _showCosmicWelcome(userInfo.displayName);
+      } else {
+        setState(() => _isAppleLoading = false);
       }
     } catch (e) {
       if (!mounted) return;
@@ -568,6 +649,7 @@ class _IdentityPageState extends State<_IdentityPage>
       if (errorStr.contains('TypeError') ||
           errorStr.contains('JSObject') ||
           errorStr.contains('minified')) {
+        setState(() => _isAppleLoading = false);
         return;
       }
       ScaffoldMessenger.of(context).showSnackBar(
@@ -1726,6 +1808,113 @@ class _PermissionStartPage extends StatelessWidget {
           ).glassListItem(context: context, index: 5),
 
           const SizedBox(height: 8),
+        ],
+      ),
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// VALUE PROPOSITION PAGE — Pre-onboarding feature highlights
+// ════════════════════════════════════════════════════════════════════════════
+
+class _ValuePropPage extends StatelessWidget {
+  final IconData icon;
+  final Color iconColor;
+  final String headlineEn;
+  final String headlineTr;
+  final String subtitleEn;
+  final String subtitleTr;
+  final AppLanguage language;
+  final bool isWelcome;
+
+  const _ValuePropPage({
+    required this.icon,
+    required this.iconColor,
+    required this.headlineEn,
+    required this.headlineTr,
+    required this.subtitleEn,
+    required this.subtitleTr,
+    required this.language,
+    this.isWelcome = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isEn = language == AppLanguage.en;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 32),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Spacer(flex: 2),
+
+          // Icon with ambient glow
+          Container(
+            width: isWelcome ? 120 : 100,
+            height: isWelcome ? 120 : 100,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: RadialGradient(
+                colors: [
+                  iconColor.withValues(alpha: 0.18),
+                  iconColor.withValues(alpha: 0.04),
+                  Colors.transparent,
+                ],
+                stops: const [0.0, 0.6, 1.0],
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: iconColor.withValues(alpha: 0.2),
+                  blurRadius: 40,
+                  spreadRadius: 10,
+                ),
+              ],
+            ),
+            child: Icon(
+              icon,
+              size: isWelcome ? 56 : 48,
+              color: iconColor,
+            ),
+          ).glassReveal(context: context),
+
+          SizedBox(height: isWelcome ? 28 : 24),
+
+          // Headline
+          Text(
+            isEn ? headlineEn : headlineTr,
+            style: TextStyle(
+              fontSize: isWelcome ? 36 : 24,
+              fontWeight: isWelcome ? FontWeight.w200 : FontWeight.w600,
+              color: Colors.white,
+              letterSpacing: isWelcome ? 3 : 0.5,
+              height: 1.2,
+            ),
+            textAlign: TextAlign.center,
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 200),
+          ),
+
+          const SizedBox(height: 14),
+
+          // Subtitle
+          Text(
+            isEn ? subtitleEn : subtitleTr,
+            style: TextStyle(
+              fontSize: 15,
+              color: AppColors.textSecondary,
+              height: 1.5,
+              letterSpacing: isWelcome ? 0.8 : 0.3,
+            ),
+            textAlign: TextAlign.center,
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 400),
+          ),
+
+          const Spacer(flex: 3),
         ],
       ),
     );

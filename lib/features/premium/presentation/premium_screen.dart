@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
@@ -441,12 +442,16 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             ),
           ],
         ),
-        child: Material(
+        child: Semantics(
+          label: L10nService.get('premium.paywall.continue_pro', language),
+          button: true,
+          child: Material(
           color: Colors.transparent,
           child: InkWell(
             onTap: premiumState.isLoading
                 ? null
                 : () async {
+                    HapticFeedback.mediumImpact();
                     final success = await ref
                         .read(premiumProvider.notifier)
                         .purchasePremium(_selectedTier);
@@ -491,6 +496,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
               ),
             ),
           ),
+        ),
         ),
       ),
     ).glassListItem(context: context, index: 3);
@@ -551,44 +557,49 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 ),
               ],
             ),
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: premiumState.isLoading
-                    ? null
-                    : () async {
-                        final experiment = ref
-                            .read(paywallExperimentProvider)
-                            .whenOrNull(data: (e) => e);
-                        experiment?.logPaywallView();
+            child: Semantics(
+              label: L10nService.get('premium.paywall.continue_pro', language),
+              button: true,
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: premiumState.isLoading
+                      ? null
+                      : () async {
+                          HapticFeedback.mediumImpact();
+                          final experiment = ref
+                              .read(paywallExperimentProvider)
+                              .whenOrNull(data: (e) => e);
+                          experiment?.logPaywallView();
 
-                        final result = await ref
-                            .read(paywallServiceProvider)
-                            .presentPaywall();
-                        if (mounted && result == PaywallResult.purchased) {
-                          experiment?.logPaywallConversion();
-                          _showSuccessDialog();
-                        } else {
-                          experiment?.logPaywallDismissal();
-                        }
-                      },
-                borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Center(
-                    child: premiumState.isLoading
-                        ? const CosmicLoadingIndicator(size: 24)
-                        : Text(
-                            L10nService.get(
-                              'premium.paywall.continue_pro',
-                              language,
+                          final result = await ref
+                              .read(paywallServiceProvider)
+                              .presentPaywall();
+                          if (mounted && result == PaywallResult.purchased) {
+                            experiment?.logPaywallConversion();
+                            _showSuccessDialog();
+                          } else {
+                            experiment?.logPaywallDismissal();
+                          }
+                        },
+                  borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: Center(
+                      child: premiumState.isLoading
+                          ? const CosmicLoadingIndicator(size: 24)
+                          : Text(
+                              L10nService.get(
+                                'premium.paywall.continue_pro',
+                                language,
+                              ),
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                    ),
                   ),
                 ),
               ),
@@ -1097,7 +1108,11 @@ class _PlanCard extends StatelessWidget {
           glowColor: isSelected
               ? AppColors.starGold.withValues(alpha: 0.2)
               : null,
-          child: Material(
+          child: Semantics(
+            label: '${tier.displayName}${isSelected ? ' selected' : ''}',
+            button: true,
+            selected: isSelected,
+            child: Material(
             color: Colors.transparent,
             child: InkWell(
               onTap: onTap,
@@ -1188,6 +1203,7 @@ class _PlanCard extends StatelessWidget {
                 ),
               ),
             ),
+          ),
           ),
         ),
         if (isBestValue)

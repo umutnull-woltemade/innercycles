@@ -127,17 +127,17 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     ];
     final monthsTr = [
       'Ocak',
-      'Subat',
+      'Şubat',
       'Mart',
       'Nisan',
-      'Mayis',
+      'Mayıs',
       'Haziran',
       'Temmuz',
-      'Agustos',
-      'Eylul',
+      'Ağustos',
+      'Eylül',
       'Ekim',
-      'Kasim',
-      'Aralik',
+      'Kasım',
+      'Aralık',
     ];
 
     final monthName = isEn ? monthsEn[month - 1] : monthsTr[month - 1];
@@ -394,7 +394,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: isEn ? 'Search dreams...' : 'Ruyalarda ara...',
+          hintText: isEn ? 'Search dreams...' : 'Rüyalarda ara...',
           hintStyle: TextStyle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),

@@ -93,7 +93,12 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
       child: Column(
         children: [
           // Toggle header
-          Material(
+          Semantics(
+            label: isEn
+                ? (_isExpanded ? 'Collapse gratitude' : 'Expand gratitude')
+                : (_isExpanded ? 'Şükranı daralt' : 'Şükranı genişlet'),
+            button: true,
+            child: Material(
             color: Colors.transparent,
             child: InkWell(
               onTap: () {
@@ -160,6 +165,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                 ),
               ),
             ),
+          ),
           ),
 
           // Expanded content

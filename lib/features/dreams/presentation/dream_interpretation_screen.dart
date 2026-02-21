@@ -2166,7 +2166,7 @@ ${_getPersonalAdvice(sign)}''';
                     Text(
                       isEn
                           ? 'See your dream through every lens'
-                          : 'Ruyanizi her acidan gorun',
+                          : 'Rüyanızı her açıdan görün',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: isDark

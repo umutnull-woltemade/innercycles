@@ -279,11 +279,11 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
       return isEn ? 'Start tracking!' : 'Takibe başla!';
     }
     if (earned >= total) {
-      return isEn ? 'You earned them all!' : 'Hepsini kazandin!';
+      return isEn ? 'You earned them all!' : 'Hepsini kazandın!';
     }
     return isEn
         ? '$remaining more to discover'
-        : '$remaining tane daha kesfedilecek';
+        : '$remaining tane daha keşfedilecek';
   }
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -659,13 +659,13 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
           ]
         : [
             'Oca',
-            'Sub',
+            'Şub',
             'Mar',
             'Nis',
             'May',
             'Haz',
             'Tem',
-            'Agu',
+            'Ağu',
             'Eyl',
             'Eki',
             'Kas',

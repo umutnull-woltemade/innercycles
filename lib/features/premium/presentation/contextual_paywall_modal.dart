@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
@@ -240,10 +241,16 @@ class _ContextualPaywallSheetState
                           ),
                         ],
                       ),
-                      child: Material(
+                      child: Semantics(
+                        label: config.cta,
+                        button: true,
+                        child: Material(
                         color: Colors.transparent,
                         child: InkWell(
-                          onTap: _isLoading ? null : _handlePrimaryCta,
+                          onTap: _isLoading ? null : () {
+                            HapticFeedback.mediumImpact();
+                            _handlePrimaryCta();
+                          },
                           borderRadius: BorderRadius.circular(
                             AppConstants.radiusMd,
                           ),
@@ -265,6 +272,7 @@ class _ContextualPaywallSheetState
                         ),
                       ),
                     ),
+                    ),
                   ).animate().fadeIn(duration: 400.ms, delay: 300.ms),
                   const SizedBox(height: 12),
 
@@ -281,7 +289,7 @@ class _ContextualPaywallSheetState
                         : 'Dilediğin zaman iptal et. Kayıtların her zaman senin.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.4),
+                      color: Colors.white.withValues(alpha: 0.55),
                       fontSize: 12,
                     ),
                   ).animate().fadeIn(duration: 400.ms, delay: 400.ms),
@@ -395,8 +403,8 @@ class _ContextualPaywallSheetState
         const SizedBox(width: 6),
         Text(
           isEn
-              ? 'Surface patterns from your entries with InnerCycles Pro'
-              : 'InnerCycles Pro ile kayıtlarındaki kalıpları ortaya çıkar',
+              ? 'Surface patterns from your entries with Pro'
+              : 'Pro ile kayıtlarındaki kalıpları ortaya çıkar',
           style: TextStyle(
             color: Colors.white.withValues(alpha: 0.5),
             fontSize: 12,
@@ -502,8 +510,8 @@ class _ContextualPaywallSheetState
           icon: Icons.psychology_outlined,
           accentColor: AppColors.starGold,
           headline: isEn
-              ? 'Your journal is trying to tell you something'
-              : 'Günlüğün sana bir şey söylemeye çalışıyor',
+              ? 'Your data has more to show'
+              : 'Verilerinin gösterecekleri var',
           subtitle: isEn
               ? 'Your entries hold patterns you can\'t see in the moment. Pro reveals what your journal already knows.'
               : 'Kayıtların, o anda göremediğin kalıplar barındırıyor. Pro, günlüğünün zaten bildiğini ortaya çıkarır.',
@@ -642,8 +650,8 @@ class _ContextualPaywallSheetState
           icon: Icons.psychology_outlined,
           accentColor: AppColors.starGold,
           headline: isEn
-              ? 'Your journal is trying to tell you something'
-              : 'Günlüğün sana bir şey söylemeye çalışıyor',
+              ? 'Your data has more to show'
+              : 'Verilerinin gösterecekleri var',
           subtitle: isEn
               ? 'No AI, no cloud — just your words revealing patterns you couldn\'t see before.'
               : 'Yapay zeka yok, bulut yok — sadece senin sözlerin, daha önce göremediğin kalıpları ortaya çıkarıyor.',

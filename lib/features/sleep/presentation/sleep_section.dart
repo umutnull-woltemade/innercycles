@@ -91,7 +91,12 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Header - tap to expand
-          InkWell(
+          Semantics(
+            label: isEn
+                ? (_isExpanded ? 'Collapse sleep quality' : 'Expand sleep quality')
+                : (_isExpanded ? 'Uyku kalitesini daralt' : 'Uyku kalitesini genişlet'),
+            button: true,
+            child: InkWell(
             onTap: () => setState(() => _isExpanded = !_isExpanded),
             borderRadius: BorderRadius.circular(AppConstants.radiusLg),
             child: Padding(
@@ -152,6 +157,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                 ],
               ),
             ),
+          ),
           ),
 
           // Expandable content
