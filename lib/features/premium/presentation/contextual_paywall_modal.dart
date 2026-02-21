@@ -396,13 +396,13 @@ class _ContextualPaywallSheetState
   Widget _buildValueRecap(bool isEn, Color accentColor) {
     final entryCount =
         widget.entryCount ??
-        ref.watch(journalServiceProvider).valueOrNull?.entryCount ??
+        ref.read(journalServiceProvider).valueOrNull?.entryCount ??
         0;
     final streakDays =
         widget.streakDays ??
-        ref.watch(streakStatsProvider).valueOrNull?.currentStreak ??
+        ref.read(streakStatsProvider).valueOrNull?.currentStreak ??
         0;
-    final dreamCount = ref.watch(dreamCountProvider).valueOrNull ?? 0;
+    final dreamCount = ref.read(dreamCountProvider).valueOrNull ?? 0;
 
     // Only show if user has meaningful data
     if (entryCount == 0 && streakDays == 0 && dreamCount == 0) {

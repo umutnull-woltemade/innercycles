@@ -30,8 +30,7 @@ class SettingsScreen extends ConsumerWidget {
     final language = ref.watch(languageProvider);
     final themeMode = ref.watch(themeModeProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final premiumState = ref.watch(premiumProvider);
-    final isPremium = premiumState.isPremium;
+    final isPremium = ref.watch(isPremiumUserProvider);
     final urlLauncher = ref.read(urlLauncherServiceProvider);
 
     return Scaffold(
