@@ -99,7 +99,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Week view (FREE)
-                _buildWeekCard(context, isDark, isEn, weekMoods),
+                _buildWeekCard(context, isDark, isEn, weekMoods, now),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Distribution chart (PREMIUM — blurred for free)
@@ -268,12 +268,12 @@ class MoodTrendsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
     List<MoodEntry?> weekMoods,
+    DateTime now,
   ) {
     final dayLabels = isEn
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
 
-    final now = DateTime.now();
     final weekStart = now.subtract(Duration(days: 6));
 
     return GlassPanel(

@@ -80,7 +80,7 @@ class CosmicMessageCard extends ConsumerWidget {
                 ),
               ),
               Icon(
-                _timeOfDayIcon(),
+                _timeOfDayIcon(now),
                 size: 16,
                 color: AppColors.amethyst.withValues(alpha: 0.6),
               ),
@@ -147,8 +147,8 @@ class CosmicMessageCard extends ConsumerWidget {
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.06, duration: 400.ms);
   }
 
-  IconData _timeOfDayIcon() {
-    final hour = DateTime.now().hour;
+  IconData _timeOfDayIcon(DateTime now) {
+    final hour = now.hour;
     if (hour < 12) return Icons.wb_sunny_rounded;
     if (hour < 18) return Icons.light_mode_rounded;
     return Icons.nights_stay_rounded;
