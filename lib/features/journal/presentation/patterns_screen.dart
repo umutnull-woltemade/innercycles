@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +17,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/pattern_engine_service.dart';
 import '../../../data/services/pattern_health_service.dart';
 import '../../../data/services/premium_service.dart';
+import '../../../data/services/shadow_work_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
@@ -422,6 +424,12 @@ class PatternsScreen extends ConsumerWidget {
                       isEn,
                     ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
                 ],
+                // Shadow Work suggestion based on weak areas
+                _ShadowWorkSuggestion(
+                  engine: engine,
+                  isDark: isDark,
+                  isEn: isEn,
+                ),
                 ContentDisclaimer(
                   language: isEn ? AppLanguage.en : AppLanguage.tr,
                 ),
@@ -1044,4 +1052,111 @@ class _CycleArcsPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant _CycleArcsPainter oldDelegate) =>
       oldDelegate.averages != averages || oldDelegate.isDark != isDark;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SHADOW WORK SUGGESTION - Pattern-Based Archetype Recommendation
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _ShadowWorkSuggestion extends StatelessWidget {
+  final PatternEngineService engine;
+  final bool isDark;
+  final bool isEn;
+
+  const _ShadowWorkSuggestion({
+    required this.engine,
+    required this.isDark,
+    required this.isEn,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final trends = engine.detectTrends();
+    final weakAreas = trends
+        .where((t) => t.direction == TrendDirection.down)
+        .map((t) => t.area.displayNameEn)
+        .toList();
+
+    if (weakAreas.isEmpty) return const SizedBox.shrink();
+
+    final suggestions = ShadowWorkService.suggestArchetypesForWeakAreas(
+      weakAreas,
+    );
+    if (suggestions.isEmpty) return const SizedBox.shrink();
+
+    final top = suggestions.first;
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppConstants.spacingLg),
+      child: GestureDetector(
+        onTap: () {
+          HapticFeedback.selectionClick();
+          context.push(Routes.shadowWork);
+        },
+        child: Semantics(
+          label: isEn
+              ? 'Shadow work suggestion: ${top.displayNameEn}'
+              : 'Gölge çalışması önerisi: ${top.displayNameTr}',
+          button: true,
+          child: Container(
+            padding: const EdgeInsets.all(AppConstants.spacingLg),
+            decoration: BoxDecoration(
+              color: const Color(
+                0xFF9C27B0,
+              ).withValues(alpha: isDark ? 0.1 : 0.06),
+              borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+              border: Border.all(
+                color: const Color(0xFF9C27B0).withValues(alpha: 0.2),
+              ),
+            ),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.psychology_rounded,
+                  color: Color(0xFF9C27B0),
+                  size: 28,
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        isEn
+                            ? 'Your patterns suggest exploring: ${top.displayNameEn}'
+                            : 'Kalıpların keşfetmeni öneriyor: ${top.displayNameTr}',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        isEn ? top.descriptionEn : top.descriptionTr,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                          fontSize: 11,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  Icons.chevron_right_rounded,
+                  size: 20,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

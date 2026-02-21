@@ -18,10 +18,13 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/journal_entry.dart';
+import '../../../data/content/cycle_prompts_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/review_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
+import '../../../data/services/widget_data_service.dart';
+import '../../streak/presentation/milestone_celebration_modal.dart';
 
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -102,7 +105,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         'image': _selectedImagePath,
       };
       await prefs.setString(_draftKey, jsonEncode(draft));
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) debugPrint('DailyEntry: draft save failed: $e');
+    }
   }
 
   Future<void> _loadDraft() async {
@@ -130,7 +135,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         if (note.isNotEmpty) _noteController.text = note;
         _selectedImagePath = draft['image'] as String?;
       });
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) debugPrint('DailyEntry: draft load failed: $e');
+    }
   }
 
   Future<void> _clearDraft() async {
@@ -223,6 +230,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                                       : 'Notlar (opsiyonel)',
                                 ),
                                 const SizedBox(height: AppConstants.spacingMd),
+                                _CyclePhasePromptHint(
+                                  isEn: isEn,
+                                  isDark: isDark,
+                                ),
                                 _buildNoteField(isDark, isEn),
                                 const SizedBox(height: AppConstants.spacingXl),
 
@@ -888,6 +899,12 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       // Check for review prompt at engagement milestones
       _checkReviewTrigger(service);
 
+      // Push fresh data to iOS widgets
+      _updateWidgetData(service);
+
+      // Check for streak milestone celebration (D3, D7, D14, etc.)
+      await _checkStreakMilestone();
+
       if (mounted) {
         HapticFeedback.heavyImpact();
         final isEn = ref.read(languageProvider) == AppLanguage.en;
@@ -917,8 +934,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           SnackBar(
             content: Text(
               ref.read(languageProvider) == AppLanguage.en
-                  ? 'Save failed'
-                  : 'Kayıt başarısız',
+                  ? 'Entry not saved. Try again — your text is preserved.'
+                  : 'Giriş kaydedilemedi. Tekrar dene — yazın korunuyor.',
             ),
           ),
         );
@@ -952,6 +969,115 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       );
     } catch (_) {
       // Review prompt is non-critical, silently ignore errors
+    }
+  }
+
+  Future<void> _updateWidgetData(dynamic service) async {
+    try {
+      final widgetService = WidgetDataService();
+      if (!widgetService.isSupported) return;
+
+      final isEn = ref.read(languageProvider) == AppLanguage.en;
+      final streak = service.getCurrentStreak();
+      final moodEmoji = _ratingToMoodEmoji(_overallRating);
+      final moodLabel = _ratingToMoodLabel(_overallRating, isEn);
+
+      await widgetService.updateDailyReflection(
+        moodEmoji: moodEmoji,
+        moodLabel: moodLabel,
+        dailyPrompt: isEn
+            ? 'How did your day feel?'
+            : 'Günün nasıl hissettirdi?',
+        focusArea: isEn
+            ? _selectedArea.displayNameEn
+            : _selectedArea.displayNameTr,
+        streakDays: streak,
+        moodRating: _overallRating,
+      );
+
+      await widgetService.updateMoodInsight(
+        currentMood: moodLabel,
+        moodEmoji: moodEmoji,
+        energyLevel: (_overallRating * 20).clamp(0, 100),
+        advice: isEn
+            ? 'Keep journaling to reveal your patterns'
+            : 'Kalıplarını ortaya çıkarmak için yazmaya devam et',
+      );
+
+      await widgetService.updateLockScreen(
+        moodEmoji: moodEmoji,
+        accentEmoji: _focusAreaEmoji(_selectedArea),
+        shortMessage: isEn ? '$streak day streak' : '$streak gün seri',
+        energyLevel: _overallRating,
+      );
+    } catch (_) {
+      // Widget update is non-critical
+    }
+  }
+
+  Future<void> _checkStreakMilestone() async {
+    try {
+      final streakService = await ref.read(streakServiceProvider.future);
+      final milestone = streakService.checkForNewMilestone();
+
+      if (milestone != null && mounted) {
+        await streakService.celebrateMilestone(milestone);
+        final isEn = ref.read(languageProvider) == AppLanguage.en;
+        if (mounted) {
+          MilestoneCelebrationModal.show(context, milestone, isEn);
+        }
+      }
+    } catch (_) {
+      // Celebration is non-critical
+    }
+  }
+
+  static String _ratingToMoodEmoji(int rating) {
+    switch (rating) {
+      case 1:
+        return '\u{1F614}'; // pensive
+      case 2:
+        return '\u{1F615}'; // confused
+      case 3:
+        return '\u{1F610}'; // neutral
+      case 4:
+        return '\u{1F60A}'; // smiling
+      case 5:
+        return '\u{1F929}'; // star-struck
+      default:
+        return '\u{1F610}';
+    }
+  }
+
+  static String _ratingToMoodLabel(int rating, bool isEn) {
+    switch (rating) {
+      case 1:
+        return isEn ? 'Difficult' : 'Zor';
+      case 2:
+        return isEn ? 'Low' : 'Düşük';
+      case 3:
+        return isEn ? 'Neutral' : 'Nötr';
+      case 4:
+        return isEn ? 'Good' : 'İyi';
+      case 5:
+        return isEn ? 'Great' : 'Harika';
+      default:
+        return isEn ? 'Neutral' : 'Nötr';
+    }
+  }
+
+  static String _focusAreaEmoji(FocusArea area) {
+    switch (area) {
+      case FocusArea.energy:
+        return '\u{26A1}';
+      case FocusArea.focus:
+        return '\u{1F3AF}';
+      case FocusArea.emotions:
+        return '\u{1F49C}';
+      case FocusArea.decisions:
+        return '\u{1F9ED}';
+      case FocusArea.social:
+        return '\u{1F91D}';
     }
   }
 
@@ -1023,5 +1149,73 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
             'Pazar',
           ];
     return days[date.weekday - 1];
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CYCLE PHASE PROMPT HINT - Contextual suggestion above note field
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _CyclePhasePromptHint extends ConsumerWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _CyclePhasePromptHint({required this.isEn, required this.isDark});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cycleSyncAsync = ref.watch(cycleSyncServiceProvider);
+
+    return cycleSyncAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (service) {
+        if (!service.hasData) return const SizedBox.shrink();
+        final phase = service.getCurrentPhase();
+        if (phase == null) return const SizedBox.shrink();
+
+        final prompt = CyclePromptsContent.getPromptForDate(
+          phase,
+          DateTime.now(),
+        );
+
+        return Padding(
+          padding: const EdgeInsets.only(bottom: AppConstants.spacingSm),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            decoration: BoxDecoration(
+              color: AppColors.amethyst.withValues(alpha: isDark ? 0.08 : 0.05),
+              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+              border: Border.all(
+                color: AppColors.amethyst.withValues(alpha: 0.15),
+              ),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.water_drop_rounded,
+                  size: 16,
+                  color: AppColors.amethyst.withValues(alpha: 0.7),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    isEn ? prompt.promptEn : prompt.promptTr,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                      fontStyle: FontStyle.italic,
+                      height: 1.4,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }

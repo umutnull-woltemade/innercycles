@@ -163,4 +163,43 @@ class ShadowWorkService {
     final jsonList = _entries.map((e) => e.toJson()).toList();
     await _prefs.setString(_entriesKey, json.encode(jsonList));
   }
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // JOURNAL CROSS-REFERENCE (FocusArea → Shadow Archetype suggestions)
+  // ═══════════════════════════════════════════════════════════════════════
+
+  /// Suggest shadow archetypes based on the user's weakest focus areas.
+  /// Maps low-scoring journal dimensions to relevant shadow patterns.
+  static List<ShadowArchetype> suggestArchetypesForWeakAreas(
+    List<String> weakAreaNames,
+  ) {
+    final suggestions = <ShadowArchetype>{};
+    for (final area in weakAreaNames) {
+      switch (area.toLowerCase()) {
+        case 'energy':
+          suggestions.addAll([
+            ShadowArchetype.caretaker,
+            ShadowArchetype.perfectionist,
+          ]);
+        case 'focus':
+          suggestions.addAll([ShadowArchetype.avoider, ShadowArchetype.rebel]);
+        case 'emotions':
+          suggestions.addAll([
+            ShadowArchetype.innerCritic,
+            ShadowArchetype.victim,
+          ]);
+        case 'decisions':
+          suggestions.addAll([
+            ShadowArchetype.controller,
+            ShadowArchetype.peoplePleaser,
+          ]);
+        case 'social':
+          suggestions.addAll([
+            ShadowArchetype.peoplePleaser,
+            ShadowArchetype.avoider,
+          ]);
+      }
+    }
+    return suggestions.toList();
+  }
 }
