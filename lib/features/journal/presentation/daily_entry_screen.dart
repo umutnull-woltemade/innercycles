@@ -28,7 +28,6 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../data/services/premium_service.dart';
 import '../../gratitude/presentation/gratitude_section.dart';
 import '../../sleep/presentation/sleep_section.dart';
-import '../../moon/presentation/moon_phase_widget.dart';
 import 'widgets/voice_input_button.dart';
 
 class DailyEntryScreen extends ConsumerStatefulWidget {
@@ -173,16 +172,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                                 _buildDateSelector(context, isDark, isEn),
                                 const SizedBox(height: AppConstants.spacingSm),
 
-                                // Moon phase badge
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: MoonPhaseBadge(
-                                    date: _selectedDate,
-                                    isEn: isEn,
-                                    isDark: isDark,
-                                  ),
-                                ),
-                                const SizedBox(height: AppConstants.spacingXl),
+                                const SizedBox(height: AppConstants.spacingMd),
 
                                 // Focus area selector
                                 _buildSectionLabel(

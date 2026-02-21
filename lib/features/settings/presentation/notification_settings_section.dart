@@ -25,7 +25,6 @@ class _NotificationSettingsSectionState
   bool _dailyInsightEnabled = false;
   int _dailyHour = 8;
   int _dailyMinute = 0;
-  bool _moonPhaseEnabled = false;
   bool _wellnessRemindersEnabled = false;
 
   @override
@@ -47,7 +46,6 @@ class _NotificationSettingsSectionState
         _dailyHour = settings.dailyReflectionTimeMinutes! ~/ 60;
         _dailyMinute = settings.dailyReflectionTimeMinutes! % 60;
       }
-      _moonPhaseEnabled = settings.moonPhaseEnabled;
       _wellnessRemindersEnabled = settings.wellnessRemindersEnabled;
     });
   }
@@ -104,17 +102,6 @@ class _NotificationSettingsSectionState
         );
       }
     }
-  }
-
-  Future<void> _toggleMoonPhase(bool value) async {
-    setState(() => _moonPhaseEnabled = value);
-
-    if (value) {
-      await _notificationService.scheduleMoonPhaseNotifications();
-    } else {
-      await _notificationService.cancelMoonPhaseNotifications();
-    }
-    if (!mounted) return;
   }
 
   Future<void> _toggleWellnessReminders(bool value) async {
@@ -187,22 +174,6 @@ class _NotificationSettingsSectionState
               value: _dailyInsightEnabled,
               onChanged: _toggleDailyInsight,
               onTap: _dailyInsightEnabled ? _selectDailyTime : null,
-            ),
-
-            const Divider(height: 24),
-
-            _buildNotificationTile(
-              context,
-              isDark,
-              icon: Icons.nightlight_round_outlined,
-              title: isEnglish
-                  ? 'Moon Cycle Awareness'
-                  : 'Ay Döngüsü Farkındalığı',
-              subtitle: isEnglish
-                  ? 'New & full moon mindfulness reminders'
-                  : 'Yeni ve dolunay farkındalık hatırlatmaları',
-              value: _moonPhaseEnabled,
-              onChanged: _toggleMoonPhase,
             ),
 
             const Divider(height: 24),

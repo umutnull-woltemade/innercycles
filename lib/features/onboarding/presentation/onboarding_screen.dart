@@ -143,7 +143,7 @@ const List<_QuizQuestion> _onboardingQuestions = [
 // ════════════════════════════════════════════════════════════════════════════
 // Step 0: Identity — Name + Apple Sign-In
 // Step 1: First Cycle — Focus area selection
-// Step 2: Birth Moment — Optional date picker
+// Step 2: Birthday — Optional date picker
 // Step 3: Archetype Reveal — 3 quick questions + animated result
 // Step 4: Permission + Start — Notifications + CTA
 // ════════════════════════════════════════════════════════════════════════════
@@ -268,7 +268,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       final granted = await notifService.requestPermissions();
       if (granted) {
         await notifService.scheduleDailyReflection(hour: 9, minute: 0);
-        await notifService.scheduleMoonPhaseNotifications();
       }
     } catch (e) {
       if (kDebugMode) {
@@ -365,7 +364,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                           setState(() => _selectedFocusArea = area),
                       language: language,
                     ),
-                    _BirthMomentPage(
+                    _BirthdayPage(
                       selectedDate: _selectedDate,
                       onDateSelected: (date) =>
                           setState(() => _selectedDate = date),
@@ -1031,15 +1030,15 @@ class _FirstCyclePage extends StatelessWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// STEP 2: BIRTH MOMENT — Optional Date Picker
+// STEP 2: BIRTHDAY — Optional Date Picker
 // ════════════════════════════════════════════════════════════════════════════
 
-class _BirthMomentPage extends StatelessWidget {
+class _BirthdayPage extends StatelessWidget {
   final DateTime? selectedDate;
   final ValueChanged<DateTime> onDateSelected;
   final AppLanguage language;
 
-  const _BirthMomentPage({
+  const _BirthdayPage({
     required this.selectedDate,
     required this.onDateSelected,
     required this.language,
@@ -1058,7 +1057,7 @@ class _BirthMomentPage extends StatelessWidget {
 
           // Title
           Text(
-            isEn ? 'Your Birth Moment' : 'Doğum Anın',
+            isEn ? 'Your Birthday' : 'Doğum Günün',
             style: const TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w300,
@@ -1071,8 +1070,8 @@ class _BirthMomentPage extends StatelessWidget {
 
           Text(
             isEn
-                ? 'Optional — helps personalize your experience'
-                : 'İsteğe bağlı — deneyimini kişiselleştirir',
+                ? 'Optional — for milestone reminders'
+                : 'İsteğe bağlı — hatırlatıcılar için',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.textMuted,
               fontSize: 15,
@@ -1940,7 +1939,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Text('🌙', style: TextStyle(fontSize: 64)),
+                          const Text('📓', style: TextStyle(fontSize: 64)),
                           const SizedBox(height: 32),
 
                           ShaderMask(

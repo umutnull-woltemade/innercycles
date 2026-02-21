@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 import 'dart:ui' as ui;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
@@ -18,7 +17,6 @@ class CosmicBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // BOTH WEB AND MOBILE: Respect user theme choice
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     // Light mode - clean, soft gradient background
@@ -41,18 +39,16 @@ class CosmicBackground extends StatelessWidget {
       );
     }
 
-    // Dark mode - Use lightweight background on web, full on mobile
+    // Dark mode - abstract gradient background
     return Stack(
       children: [
-        // Main background - nebula and stars
         Positioned.fill(
           child: IgnorePointer(
             child: kIsWeb
-                ? const _SimplifiedWebBackground() // Lightweight for web performance
-                : const _BeautifulCosmicBackground(), // Full for mobile
+                ? const _SimplifiedWebBackground()
+                : const _AbstractDarkBackground(),
           ),
         ),
-        // Content
         child,
       ],
     );
@@ -60,7 +56,7 @@ class CosmicBackground extends StatelessWidget {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// SIMPLIFIED WEB BACKGROUND - Lightweight for web platform
+// SIMPLIFIED WEB BACKGROUND
 // ═══════════════════════════════════════════════════════════════════════════
 class _SimplifiedWebBackground extends StatelessWidget {
   const _SimplifiedWebBackground();
@@ -73,132 +69,29 @@ class _SimplifiedWebBackground extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.deepSpace, // Deep space black
-            AppColors.cosmicPurple, // Dark purple
-            AppColors.nebulaPurple, // Navy blue
-            Color(0xFF0F0F1A), // Deep black
+            AppColors.deepSpace,
+            AppColors.cosmicPurple,
+            AppColors.nebulaPurple,
+            Color(0xFF0F0F1A),
           ],
           stops: [0.0, 0.3, 0.7, 1.0],
         ),
-      ),
-      child: Stack(
-        children: [
-          // Simple stars overlay
-          Positioned.fill(
-            child: RepaintBoundary(
-              child: CustomPaint(
-                painter: _SimpleStarsPainter(),
-                willChange: false,
-              ),
-            ),
-          ),
-          // Subtle glow effects
-          Positioned(
-            top: 100,
-            left: 50,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: RadialGradient(
-                  colors: [
-                    const Color(0xFF9C27B0).withValues(alpha: 0.15),
-                    const Color(0xFF9C27B0).withValues(alpha: 0.0),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 100,
-            right: 80,
-            child: Container(
-              width: 250,
-              height: 250,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: RadialGradient(
-                  colors: [
-                    const Color(0xFF2196F3).withValues(alpha: 0.12),
-                    const Color(0xFF2196F3).withValues(alpha: 0.0),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
 }
 
-class _SimpleStarsPainter extends CustomPainter {
-  static final List<_SimpleStar> _stars = _generateSimpleStars();
-
-  static List<_SimpleStar> _generateSimpleStars() {
-    final random = math.Random(42);
-    final stars = <_SimpleStar>[];
-
-    // Only 100 stars for web performance
-    for (int i = 0; i < 100; i++) {
-      stars.add(
-        _SimpleStar(
-          x: random.nextDouble(),
-          y: random.nextDouble(),
-          size: 0.5 + random.nextDouble() * 1.5,
-          opacity: 0.3 + random.nextDouble() * 0.5,
-        ),
-      );
-    }
-    return stars;
-  }
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.white
-      ..style = PaintingStyle.fill;
-
-    for (final star in _stars) {
-      paint.color = Colors.white.withValues(alpha: star.opacity);
-      canvas.drawCircle(
-        Offset(star.x * size.width, star.y * size.height),
-        star.size,
-        paint,
-      );
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
-
-class _SimpleStar {
-  final double x;
-  final double y;
-  final double size;
-  final double opacity;
-
-  const _SimpleStar({
-    required this.x,
-    required this.y,
-    required this.size,
-    required this.opacity,
-  });
-}
-
 // ═══════════════════════════════════════════════════════════════════════════
-// GÜZEL KOZMİK ARKA PLAN - Nebula, yıldızlar, ışık efektleri
+// ABSTRACT DARK BACKGROUND - Soft gradient mesh, no stars/nebula
 // ═══════════════════════════════════════════════════════════════════════════
-class _BeautifulCosmicBackground extends StatelessWidget {
-  const _BeautifulCosmicBackground();
+class _AbstractDarkBackground extends StatelessWidget {
+  const _AbstractDarkBackground();
 
   @override
   Widget build(BuildContext context) {
     return RepaintBoundary(
       child: CustomPaint(
-        painter: const _CosmicPainter(),
+        painter: const _AbstractPainter(),
         willChange: false,
         isComplex: true,
       ),
@@ -206,443 +99,91 @@ class _BeautifulCosmicBackground extends StatelessWidget {
   }
 }
 
-class _CosmicPainter extends CustomPainter {
-  const _CosmicPainter();
-
-  // Sabit veriler - çoğu zaman aynı
-  static final List<_Star> _stars = _generateStars();
-  static final List<_Nebula> _nebulas = _generateNebulas();
-  static final List<_GlowOrb> _glowOrbs = _generateGlowOrbs();
-  static final List<_DecorativeSymbol> _symbols = _generateDecorativeSymbols();
-
-  static List<_Star> _generateStars() {
-    final random = math.Random(42);
-    final stars = <_Star>[];
-
-    // 200 yıldız - farklı boyut ve parlaklıkta
-    for (int i = 0; i < 200; i++) {
-      final size = random.nextDouble();
-      stars.add(
-        _Star(
-          x: random.nextDouble(),
-          y: random.nextDouble(),
-          size: size < 0.7
-              ? 0.5 + random.nextDouble() * 1.0
-              : 1.5 + random.nextDouble() * 2.5,
-          opacity: 0.3 + random.nextDouble() * 0.7,
-          hasGlow: size > 0.85, // Büyük yıldızlarda glow efekti
-          color: _getStarColor(random),
-        ),
-      );
-    }
-    return stars;
-  }
-
-  static Color _getStarColor(math.Random random) {
-    final colors = [
-      Colors.white,
-      Colors.white,
-      Colors.white,
-      const Color(0xFFFFE4B5), // Sıcak sarı
-      const Color(0xFFADD8E6), // Açık mavi
-      AppColors.softPink, // Pembe
-      AppColors.lavender, // Lavanta
-    ];
-    return colors[random.nextInt(colors.length)];
-  }
-
-  static List<_Nebula> _generateNebulas() {
-    return [
-      // Mor nebula - sol üst
-      _Nebula(
-        x: 0.15,
-        y: 0.2,
-        radiusX: 0.4,
-        radiusY: 0.3,
-        color: const Color(0xFF9C27B0),
-        opacity: 0.15,
-      ),
-      // Pembe nebula - sağ orta
-      _Nebula(
-        x: 0.85,
-        y: 0.4,
-        radiusX: 0.35,
-        radiusY: 0.45,
-        color: const Color(0xFFE91E63),
-        opacity: 0.12,
-      ),
-      // Mavi nebula - alt
-      _Nebula(
-        x: 0.5,
-        y: 0.85,
-        radiusX: 0.5,
-        radiusY: 0.3,
-        color: const Color(0xFF3F51B5),
-        opacity: 0.1,
-      ),
-      // Turkuaz nebula - orta
-      _Nebula(
-        x: 0.3,
-        y: 0.6,
-        radiusX: 0.25,
-        radiusY: 0.35,
-        color: const Color(0xFF00BCD4),
-        opacity: 0.08,
-      ),
-      // Altın nebula - sağ üst
-      _Nebula(
-        x: 0.8,
-        y: 0.15,
-        radiusX: 0.2,
-        radiusY: 0.2,
-        color: AppColors.starGold,
-        opacity: 0.06,
-      ),
-    ];
-  }
-
-  static List<_GlowOrb> _generateGlowOrbs() {
-    return [
-      // Büyük mor ışık
-      _GlowOrb(
-        x: 0.1,
-        y: 0.3,
-        size: 0.15,
-        color: const Color(0xFF9C27B0),
-        opacity: 0.3,
-      ),
-      // Pembe ışık
-      _GlowOrb(
-        x: 0.9,
-        y: 0.5,
-        size: 0.12,
-        color: const Color(0xFFE91E63),
-        opacity: 0.25,
-      ),
-      // Mavi ışık
-      _GlowOrb(
-        x: 0.5,
-        y: 0.9,
-        size: 0.18,
-        color: const Color(0xFF2196F3),
-        opacity: 0.2,
-      ),
-      // Turkuaz ışık
-      _GlowOrb(
-        x: 0.2,
-        y: 0.7,
-        size: 0.1,
-        color: const Color(0xFF00BCD4),
-        opacity: 0.2,
-      ),
-      // Altın ışık
-      _GlowOrb(
-        x: 0.75,
-        y: 0.2,
-        size: 0.08,
-        color: AppColors.starGold,
-        opacity: 0.15,
-      ),
-    ];
-  }
-
-  // Decorative background symbols
-  static List<_DecorativeSymbol> _generateDecorativeSymbols() {
-    final random = math.Random(99);
-    final symbols = <_DecorativeSymbol>[];
-
-    // Decorative symbols
-    const decorativeSymbols = [
-      '✧',
-      '⚹',
-      '△',
-      '☆',
-      '◇',
-      '⬡',
-      '⊛',
-      '✦',
-      '○',
-      '◆',
-      '✶',
-      '❋',
-      '✺',
-      '✹',
-      '❈',
-      '✿',
-      '⊕',
-      '⊗',
-      '◎',
-      '✵',
-      '❂',
-      '◈',
-    ];
-    // Nature symbols
-    const natureSymbols = ['✧', '◇', '△', '○', '⊛', '✦', '✶', '❋'];
-    // Geometric symbols
-    const geometricSymbols = ['◇', '△', '○', '⬡', '◆', '☆', '✶', '❋'];
-
-    // Pastel colors
-    final pastelColors = [
-      AppColors.lavender, // Lavender
-      AppColors.softPink, // Pink
-      const Color(0xFFADD8E6), // Light blue
-      const Color(0xFFFFE4B5), // Warm yellow
-      const Color(0xFFB0E0E6), // Turquoise
-      const Color(0xFFDDA0DD), // Purple
-      const Color(0xFF98FB98), // Green
-      const Color(0xFFF0E68C), // Gold
-    ];
-
-    final allSymbols = [
-      ...decorativeSymbols,
-      ...natureSymbols,
-      ...geometricSymbols,
-    ];
-
-    // 25-30 sembol ekle - dağınık ve soluk
-    for (int i = 0; i < 28; i++) {
-      symbols.add(
-        _DecorativeSymbol(
-          x: random.nextDouble(),
-          y: random.nextDouble(),
-          symbol: allSymbols[random.nextInt(allSymbols.length)],
-          size: 14 + random.nextDouble() * 20, // 14-34 arası boyut
-          opacity: 0.04 + random.nextDouble() * 0.08, // Soluk: 0.04-0.12
-          rotation: random.nextDouble() * math.pi * 2,
-          color: pastelColors[random.nextInt(pastelColors.length)],
-        ),
-      );
-    }
-    return symbols;
-  }
+class _AbstractPainter extends CustomPainter {
+  const _AbstractPainter();
 
   @override
   void paint(Canvas canvas, Size size) {
-    // 1. Derin uzay gradient arka planı
-    _drawSpaceGradient(canvas, size);
+    // 1. Deep gradient base
+    _drawBaseGradient(canvas, size);
 
-    // 2. Nebula bulutları
-    _drawNebulas(canvas, size);
-
-    // 3. Parlak ışık küreleri
-    _drawGlowOrbs(canvas, size);
-
-    // 4. Decorative symbols
-    _drawDecorativeSymbols(canvas, size);
-
-    // 5. Yıldızlar
-    _drawStars(canvas, size);
+    // 2. Soft organic color washes (subtle, not nebula-like)
+    _drawColorWashes(canvas, size);
   }
 
-  void _drawSpaceGradient(Canvas canvas, Size size) {
+  void _drawBaseGradient(Canvas canvas, Size size) {
     final rect = Rect.fromLTWH(0, 0, size.width, size.height);
     final gradient = ui.Gradient.linear(
-      Offset(size.width * 0.3, 0),
-      Offset(size.width * 0.7, size.height),
+      Offset(size.width * 0.2, 0),
+      Offset(size.width * 0.8, size.height),
       [
-        AppColors.deepSpace, // Derin uzay siyahı
-        AppColors.cosmicPurple, // Koyu mor
-        AppColors.nebulaPurple, // Lacivert
-        AppColors.cosmicPurple, // Koyu mor
-        const Color(0xFF0F0F1A), // Derin siyah
+        AppColors.deepSpace,
+        AppColors.cosmicPurple,
+        const Color(0xFF141428),
+        AppColors.nebulaPurple,
+        const Color(0xFF0F0F1A),
       ],
       [0.0, 0.25, 0.5, 0.75, 1.0],
     );
     canvas.drawRect(rect, Paint()..shader = gradient);
   }
 
-  void _drawNebulas(Canvas canvas, Size size) {
-    for (final nebula in _nebulas) {
-      final center = Offset(nebula.x * size.width, nebula.y * size.height);
-      final radiusX = nebula.radiusX * size.width;
-      final radiusY = nebula.radiusY * size.height;
+  void _drawColorWashes(Canvas canvas, Size size) {
+    // Subtle warm wash — top area
+    _drawWash(
+      canvas,
+      Offset(size.width * 0.3, size.height * 0.15),
+      size.width * 0.5,
+      const Color(0xFF6C3483),
+      0.06,
+    );
 
-      final gradient = ui.Gradient.radial(
-        center,
-        math.max(radiusX, radiusY),
-        [
-          nebula.color.withValues(alpha: nebula.opacity),
-          nebula.color.withValues(alpha: nebula.opacity * 0.5),
-          nebula.color.withValues(alpha: 0),
-        ],
-        [0.0, 0.5, 1.0],
-      );
+    // Cool wash — center-right
+    _drawWash(
+      canvas,
+      Offset(size.width * 0.75, size.height * 0.45),
+      size.width * 0.4,
+      const Color(0xFF2E4057),
+      0.05,
+    );
 
-      canvas.save();
-      canvas.translate(center.dx, center.dy);
-      canvas.scale(1.0, radiusY / radiusX);
-      canvas.translate(-center.dx, -center.dy);
-
-      canvas.drawCircle(
-        center,
-        radiusX,
-        Paint()
-          ..shader = gradient
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 50),
-      );
-      canvas.restore();
-    }
+    // Soft accent wash — bottom-left
+    _drawWash(
+      canvas,
+      Offset(size.width * 0.2, size.height * 0.75),
+      size.width * 0.45,
+      const Color(0xFF1A3A5C),
+      0.04,
+    );
   }
 
-  void _drawGlowOrbs(Canvas canvas, Size size) {
-    for (final orb in _glowOrbs) {
-      final center = Offset(orb.x * size.width, orb.y * size.height);
-      final radius = orb.size * size.width;
+  void _drawWash(Canvas canvas, Offset center, double radius, Color color, double opacity) {
+    final gradient = ui.Gradient.radial(
+      center,
+      radius,
+      [
+        color.withValues(alpha: opacity),
+        color.withValues(alpha: opacity * 0.4),
+        color.withValues(alpha: 0),
+      ],
+      [0.0, 0.5, 1.0],
+    );
 
-      final gradient = ui.Gradient.radial(
-        center,
-        radius,
-        [
-          orb.color.withValues(alpha: orb.opacity),
-          orb.color.withValues(alpha: orb.opacity * 0.3),
-          orb.color.withValues(alpha: 0),
-        ],
-        [0.0, 0.4, 1.0],
-      );
-
-      canvas.drawCircle(
-        center,
-        radius,
-        Paint()
-          ..shader = gradient
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 30),
-      );
-    }
-  }
-
-  void _drawStars(Canvas canvas, Size size) {
-    final paint = Paint()..style = PaintingStyle.fill;
-
-    for (final star in _stars) {
-      final center = Offset(star.x * size.width, star.y * size.height);
-
-      // Glow efekti olan yıldızlar için
-      if (star.hasGlow) {
-        canvas.drawCircle(
-          center,
-          star.size * 3,
-          Paint()
-            ..color = star.color.withValues(alpha: star.opacity * 0.3)
-            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8),
-        );
-      }
-
-      // Ana yıldız
-      paint.color = star.color.withValues(alpha: star.opacity);
-      canvas.drawCircle(center, star.size, paint);
-    }
-  }
-
-  void _drawDecorativeSymbols(Canvas canvas, Size size) {
-    for (final symbol in _symbols) {
-      final center = Offset(symbol.x * size.width, symbol.y * size.height);
-
-      canvas.save();
-      canvas.translate(center.dx, center.dy);
-      canvas.rotate(symbol.rotation);
-
-      final textPainter = TextPainter(
-        text: TextSpan(
-          text: symbol.symbol,
-          style: TextStyle(
-            fontSize: symbol.size,
-            color: symbol.color.withValues(alpha: symbol.opacity),
-          ),
-        ),
-        textDirection: TextDirection.ltr,
-      );
-      textPainter.layout();
-      textPainter.paint(
-        canvas,
-        Offset(-textPainter.width / 2, -textPainter.height / 2),
-      );
-
-      canvas.restore();
-    }
+    canvas.drawCircle(
+      center,
+      radius,
+      Paint()
+        ..shader = gradient
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 60),
+    );
   }
 
   @override
-  bool shouldRepaint(covariant _CosmicPainter oldDelegate) => false;
+  bool shouldRepaint(covariant _AbstractPainter oldDelegate) => false;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// VERİ MODELLERİ
-// ═══════════════════════════════════════════════════════════════════════════
-
-class _Star {
-  final double x;
-  final double y;
-  final double size;
-  final double opacity;
-  final bool hasGlow;
-  final Color color;
-
-  const _Star({
-    required this.x,
-    required this.y,
-    required this.size,
-    required this.opacity,
-    required this.hasGlow,
-    required this.color,
-  });
-}
-
-class _Nebula {
-  final double x;
-  final double y;
-  final double radiusX;
-  final double radiusY;
-  final Color color;
-  final double opacity;
-
-  const _Nebula({
-    required this.x,
-    required this.y,
-    required this.radiusX,
-    required this.radiusY,
-    required this.color,
-    required this.opacity,
-  });
-}
-
-class _GlowOrb {
-  final double x;
-  final double y;
-  final double size;
-  final Color color;
-  final double opacity;
-
-  const _GlowOrb({
-    required this.x,
-    required this.y,
-    required this.size,
-    required this.color,
-    required this.opacity,
-  });
-}
-
-class _DecorativeSymbol {
-  final double x;
-  final double y;
-  final String symbol;
-  final double size;
-  final double opacity;
-  final double rotation;
-  final Color color;
-
-  const _DecorativeSymbol({
-    required this.x,
-    required this.y,
-    required this.symbol,
-    required this.size,
-    required this.opacity,
-    required this.rotation,
-    this.color = AppColors.lavender, // Lavanta - varsayılan
-  });
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// LEGACY WIDGET'LAR - Uyumluluk için
+// LEGACY WIDGETS - Compatibility
 // ═══════════════════════════════════════════════════════════════════════════
 
 class StarField extends StatelessWidget {
@@ -650,7 +191,7 @@ class StarField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _BeautifulCosmicBackground();
+    return const _AbstractDarkBackground();
   }
 }
 
@@ -659,7 +200,7 @@ class StaticStarField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _BeautifulCosmicBackground();
+    return const _AbstractDarkBackground();
   }
 }
 

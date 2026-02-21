@@ -15,6 +15,7 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/journal_entry.dart';
+import '../../../data/content/reflection_prompts_content.dart';
 import '../../streak/presentation/streak_card.dart';
 import '../../streak/presentation/streak_recovery_banner.dart';
 import '../../mood/presentation/mood_checkin_card.dart';
@@ -132,6 +133,13 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
                 child: _TodaysInsightSection(isEn: isEn, isDark: isDark),
+              ),
+
+              // ═══════════════════════════════════════════════════════
+              // PERSONALIZED PROMPT (filtered by weakest focus area)
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _PersonalizedPromptSection(isEn: isEn, isDark: isDark),
               ),
 
               // ═══════════════════════════════════════════════════════
@@ -347,6 +355,136 @@ class _TodaysInsightSection extends ConsumerWidget {
         ),
       ),
     ).animate().fadeIn(delay: 250.ms, duration: 400.ms);
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// PERSONALIZED PROMPT — Filtered by weakest focus area from pattern engine
+// ════════════════════════════════════════════════════════════════════════════
+
+class _PersonalizedPromptSection extends ConsumerWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _PersonalizedPromptSection({required this.isEn, required this.isDark});
+
+  // Map journal FocusArea enum to prompt focusArea strings
+  static const _focusAreaToPromptArea = {
+    FocusArea.energy: 'energy',
+    FocusArea.focus: 'productivity',
+    FocusArea.emotions: 'mood',
+    FocusArea.decisions: 'creativity',
+    FocusArea.social: 'social',
+  };
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final engineAsync = ref.watch(patternEngineServiceProvider);
+
+    return engineAsync.maybeWhen(
+      data: (engine) {
+        if (!engine.hasEnoughData()) return const SizedBox.shrink();
+
+        // Find weakest focus area from overall averages
+        final averages = engine.getOverallAverages();
+        if (averages.isEmpty) return const SizedBox.shrink();
+
+        FocusArea weakestArea = averages.keys.first;
+        double lowestScore = averages.values.first;
+        for (final entry in averages.entries) {
+          if (entry.value < lowestScore) {
+            lowestScore = entry.value;
+            weakestArea = entry.key;
+          }
+        }
+
+        // Map to prompt category and pick a date-rotated prompt
+        final promptArea = _focusAreaToPromptArea[weakestArea] ?? 'mood';
+        final matching = allReflectionPrompts
+            .where((p) => p.focusArea == promptArea)
+            .toList();
+        if (matching.isEmpty) return const SizedBox.shrink();
+
+        final dayIndex = DateTime.now().day % matching.length;
+        final prompt = matching[dayIndex];
+
+        final areaName = weakestArea.name;
+        final areaLabel = isEn
+            ? areaName[0].toUpperCase() + areaName.substring(1)
+            : _turkishLabel(areaName);
+
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: isDark
+                  ? AppColors.amethyst.withValues(alpha: 0.08)
+                  : AppColors.amethyst.withValues(alpha: 0.06),
+              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+              border: Border.all(
+                color: isDark
+                    ? AppColors.amethyst.withValues(alpha: 0.2)
+                    : AppColors.amethyst.withValues(alpha: 0.15),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.tips_and_updates_outlined,
+                      size: 16,
+                      color: isDark ? AppColors.amethyst : AppColors.amethyst,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      isEn
+                          ? 'For your $areaLabel'
+                          : '$areaLabel için',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? AppColors.amethyst
+                            : AppColors.amethyst,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  isEn ? prompt.promptEn : prompt.promptTr,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                    height: 1.5,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
+      },
+      orElse: () => const SizedBox.shrink(),
+    );
+  }
+
+  String _turkishLabel(String area) {
+    switch (area) {
+      case 'energy': return 'Enerji';
+      case 'focus': return 'Odak';
+      case 'emotions': return 'Duygular';
+      case 'decisions': return 'Kararlar';
+      case 'social': return 'Sosyal';
+      default: return area;
+    }
   }
 }
 

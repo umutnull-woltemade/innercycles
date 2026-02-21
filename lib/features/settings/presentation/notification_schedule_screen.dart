@@ -90,15 +90,6 @@ class _NotificationScheduleScreenState
     await _loadSettings();
   }
 
-  Future<void> _toggleMoonPhase(bool enabled) async {
-    if (enabled) {
-      await _notificationService.scheduleMoonPhaseNotifications();
-    } else {
-      await _notificationService.cancelMoonPhaseNotifications();
-    }
-    if (!mounted) return;
-    await _loadSettings();
-  }
 
   Future<void> _toggleWellness(bool enabled) async {
     await _notificationService.setWellnessRemindersEnabled(enabled);
@@ -175,23 +166,6 @@ class _NotificationScheduleScreenState
                           const SizedBox(height: AppConstants.spacingMd),
 
                           // Moon phase
-                          _buildNotificationCard(
-                            context: context,
-                            isDark: isDark,
-                            isEn: isEn,
-                            icon: Icons.dark_mode_outlined,
-                            iconColor: AppColors.amethyst,
-                            titleEn: 'Moon Phase Awareness',
-                            titleTr: 'Ay Evresi Farkındalığı',
-                            subtitleEn:
-                                'Get notified during new and full moon phases',
-                            subtitleTr:
-                                'Yeni ay ve dolunay evrelerinde bildirim al',
-                            enabled: _settings?.moonPhaseEnabled ?? false,
-                            onToggle: _toggleMoonPhase,
-                          ),
-                          const SizedBox(height: AppConstants.spacingMd),
-
                           // Wellness reminders
                           _buildNotificationCard(
                             context: context,
