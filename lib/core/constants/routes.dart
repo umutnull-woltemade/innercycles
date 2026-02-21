@@ -2,7 +2,7 @@
 // ROUTES - InnerCycles Navigation Constants (App Store 4.3(b) Compliant)
 // ════════════════════════════════════════════════════════════════════════════
 // Focused on:
-// - Core navigation (splash, onboarding, today feed)
+// - Core navigation (onboarding, today feed)
 // - Journal (primary feature)
 // - Dream journal
 // - Insight & reflection
@@ -15,7 +15,6 @@ class Routes {
   // ════════════════════════════════════════════════════════════════
   // CORE NAVIGATION
   // ════════════════════════════════════════════════════════════════
-  static const String splash = '/';
   static const String disclaimer = '/disclaimer';
   static const String onboarding = '/onboarding';
 

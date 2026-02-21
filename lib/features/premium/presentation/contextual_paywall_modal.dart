@@ -11,6 +11,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/analytics_service.dart';
 import '../../../data/services/paywall_experiment_service.dart';
 import '../../../data/services/paywall_service.dart';
+import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 
 /// The type of contextual paywall to show — each has unique visuals and copy.
@@ -314,8 +315,13 @@ class _ContextualPaywallSheetState
     final experiment = ref
         .watch(paywallExperimentProvider)
         .whenOrNull(data: (e) => e);
-    final monthlyLabel = experiment?.monthlyPriceLabel ?? '\$7.99/mo';
-    final yearlyLabel = experiment?.yearlyMonthlyEquivalent ?? '\$2.50/mo';
+    final dynamicMonthly = ref
+        .read(premiumProvider.notifier)
+        .getProductPrice(PremiumTier.monthly);
+    final monthlyLabel =
+        experiment?.monthlyPriceLabel ?? dynamicMonthly ?? '\$7.99/mo';
+    final yearlyLabel =
+        experiment?.yearlyMonthlyEquivalent ?? '\$2.50/mo';
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

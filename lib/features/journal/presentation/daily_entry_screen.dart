@@ -909,7 +909,6 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 : null,
           ),
         );
-        context.pop();
       }
     } catch (e) {
       if (mounted) {

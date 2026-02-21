@@ -384,6 +384,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           isSelected: _selectedTier == PremiumTier.yearly,
           onTap: () => setState(() => _selectedTier = PremiumTier.yearly),
           isBestValue: true,
+          priceOverride: ref
+              .read(premiumProvider.notifier)
+              .getProductPrice(PremiumTier.yearly),
         ),
         const SizedBox(height: AppConstants.spacingMd),
 
@@ -394,7 +397,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           onTap: () => setState(() => _selectedTier = PremiumTier.monthly),
           priceOverride: ref
               .watch(paywallExperimentProvider)
-              .whenOrNull(data: (e) => e.monthlyPriceLabel),
+              .whenOrNull(data: (e) => e.monthlyPriceLabel) ??
+              ref.read(premiumProvider.notifier)
+                  .getProductPrice(PremiumTier.monthly),
         ),
         const SizedBox(height: AppConstants.spacingMd),
 
@@ -404,6 +409,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           isSelected: _selectedTier == PremiumTier.lifetime,
           onTap: () => setState(() => _selectedTier = PremiumTier.lifetime),
           isLifetime: true,
+          priceOverride: ref
+              .read(premiumProvider.notifier)
+              .getProductPrice(PremiumTier.lifetime),
         ),
       ],
     ).glassListItem(context: context, index: 2);
@@ -467,7 +475,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                             const SizedBox(height: 2),
                           if (_selectedTier == PremiumTier.yearly)
                             Text(
-                              _selectedTier.price,
+                              ref.read(premiumProvider.notifier)
+                                  .getProductPrice(_selectedTier) ??
+                                  _selectedTier.price,
                               style: TextStyle(
                                 color: Colors.black.withValues(alpha: 0.6),
                                 fontSize: 12,

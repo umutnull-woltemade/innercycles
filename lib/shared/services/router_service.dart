@@ -9,7 +9,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/constants/routes.dart';
 
 // ── CORE screen imports ──
@@ -39,7 +38,6 @@ import '../../features/admin/presentation/admin_login_screen.dart';
 import '../../features/admin/presentation/admin_dashboard_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
 import '../../data/services/admin_auth_service.dart';
-import '../../data/services/app_lock_service.dart';
 import '../../data/services/storage_service.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -49,9 +47,8 @@ final routerProvider = Provider<GoRouter>((ref) {
     redirect: (context, state) {
       final path = state.uri.path;
 
-      // Allow splash, disclaimer, onboarding, quiz, and lock without guard
-      if (path == Routes.splash ||
-          path == Routes.disclaimer ||
+      // Allow disclaimer, onboarding, quiz, and lock without guard
+      if (path == Routes.disclaimer ||
           path == Routes.onboarding ||
           path == Routes.archetypeQuiz ||
           path == Routes.appLock) {
@@ -87,8 +84,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       // SYSTEM ROUTES
       // ════════════════════════════════════════════════════════════════
       GoRoute(
-        path: Routes.splash,
-        builder: (context, state) => const _SplashScreen(),
+        path: '/',
+        redirect: (_, _) => Routes.today,
       ),
       GoRoute(
         path: Routes.disclaimer,
@@ -335,78 +332,6 @@ final routerProvider = Provider<GoRouter>((ref) {
     ],
   );
 });
-
-// ════════════════════════════════════════════════════════════════════════════
-// SPLASH SCREEN
-// ════════════════════════════════════════════════════════════════════════════
-
-class _SplashScreen extends StatefulWidget {
-  const _SplashScreen();
-
-  @override
-  State<_SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<_SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _navigateToHome();
-  }
-
-  Future<void> _navigateToHome() async {
-    await Future.delayed(const Duration(milliseconds: 1500));
-    if (!mounted) return;
-
-    // Check if app lock is enabled
-    try {
-      final lockService = await AppLockService.init();
-      if (lockService.isEnabled && lockService.hasPin) {
-        if (mounted) context.go(Routes.appLock);
-        return;
-      }
-    } catch (_) {
-      // Proceed to home if lock check fails
-    }
-
-    if (mounted) context.go(Routes.today);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.self_improvement, size: 80, color: Colors.white)
-                .animate()
-                .fadeIn(duration: 600.ms)
-                .scale(begin: const Offset(0.8, 0.8), end: const Offset(1, 1)),
-            const SizedBox(height: 24),
-            Text(
-              'InnerCycles',
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.w300,
-                letterSpacing: 4,
-              ),
-            ).animate().fadeIn(delay: 300.ms, duration: 600.ms),
-            const SizedBox(height: 8),
-            Text(
-              'Your Wellness Journal / Ki\u015fisel G\u00fcnl\u00fc\u011f\u00fcn',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Colors.white54,
-                letterSpacing: 1,
-              ),
-            ).animate().fadeIn(delay: 500.ms, duration: 600.ms),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 // ════════════════════════════════════════════════════════════════════════════
 // NOT FOUND SCREEN
