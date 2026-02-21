@@ -11,6 +11,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/journal_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -30,6 +31,10 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
   String _searchQuery = '';
   final _searchController = TextEditingController();
   Timer? _searchDebounce;
+
+  // Cache allEntries to avoid refetching on every setState (search/filter)
+  JournalService? _lastService;
+  List<JournalEntry> _cachedEntries = const [];
 
   @override
   void initState() {
@@ -81,7 +86,11 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                 ),
               ),
               data: (service) {
-                var entries = service.getAllEntries();
+                if (!identical(service, _lastService)) {
+                  _lastService = service;
+                  _cachedEntries = service.getAllEntries();
+                }
+                var entries = _cachedEntries;
 
                 // Apply filters
                 if (_filterArea != null) {
