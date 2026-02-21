@@ -7,6 +7,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -54,6 +55,7 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
   }
 
   void _onTabTapped(int index) {
+    HapticFeedback.selectionClick();
     final from = widget.navigationShell.currentIndex;
     if (from != index) {
       ref

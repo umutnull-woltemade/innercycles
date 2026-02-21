@@ -61,6 +61,69 @@ class MoodTrendsScreen extends ConsumerWidget {
     bool isPremium,
   ) {
     final allEntries = service.getAllEntries();
+
+    // Empty state for new users with zero check-ins
+    if (allEntries.isEmpty) {
+      return CupertinoScrollbar(
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
+          slivers: [
+            GlassSliverAppBar(
+              title: isEn ? 'Mood Trends' : 'Ruh Hali Trendleri',
+            ),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(AppConstants.spacingXl),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.show_chart_rounded,
+                        size: 56,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                      const SizedBox(height: AppConstants.spacingLg),
+                      Text(
+                        isEn
+                            ? 'No mood check-ins yet'
+                            : 'Henüz ruh hali kaydı yok',
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: AppConstants.spacingSm),
+                      Text(
+                        isEn
+                            ? 'Log your mood from the Home tab to start seeing trends here.'
+                            : 'Trendleri görmek için Ana Sayfa sekmesinden ruh halinizi kaydedin.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                          height: 1.5,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms);
+    }
+
     final weekMoods = service.getWeekMoods();
     final avg7 = service.getAverageMood(7);
     final avg30 = service.getAverageMood(30);

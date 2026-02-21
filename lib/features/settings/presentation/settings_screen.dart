@@ -305,16 +305,20 @@ class SettingsScreen extends ConsumerWidget {
                                   : 'Satın Alımları Geri Yükle',
                               isDark: isDark,
                               onTap: () async {
-                                await ref
+                                final restored = await ref
                                     .read(premiumProvider.notifier)
                                     .restorePurchases();
                                 if (context.mounted) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        language == AppLanguage.en
-                                            ? 'Purchases restored'
-                                            : 'Satın alımlar geri yüklendi',
+                                        restored
+                                            ? (language == AppLanguage.en
+                                                ? 'Purchases restored'
+                                                : 'Satın alımlar geri yüklendi')
+                                            : (language == AppLanguage.en
+                                                ? 'No purchases found'
+                                                : 'Satın alım bulunamadı'),
                                       ),
                                     ),
                                   );
