@@ -5,6 +5,7 @@
 // guided prompts with depth progression and breakthrough tracking.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,7 +18,9 @@ import '../../../data/models/shadow_work_entry.dart';
 import '../../../data/content/shadow_prompts_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class ShadowWorkScreen extends ConsumerStatefulWidget {
   const ShadowWorkScreen({super.key});
@@ -60,6 +63,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final shadowAsync = ref.watch(shadowWorkServiceProvider);
+    final isPremium = ref.watch(isPremiumUserProvider);
 
     return Scaffold(
       body: CosmicBackground(
@@ -126,24 +130,36 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                           const SizedBox(height: AppConstants.spacingLg),
                         ],
 
-                        // Archetype Stats
+                        // Archetype Stats (PREMIUM)
                         if (shadowService.hasData)
-                          _buildArchetypeStats(
+                          _buildPremiumGate(
                             context,
-                            shadowService,
                             isDark,
                             isEn,
+                            isPremium,
+                            child: _buildArchetypeStats(
+                              context,
+                              shadowService,
+                              isDark,
+                              isEn,
+                            ),
                           ).glassListItem(context: context, index: 4),
                         if (shadowService.hasData)
                           const SizedBox(height: AppConstants.spacingLg),
 
-                        // Recent Entries
+                        // Recent Entries (PREMIUM)
                         if (shadowService.hasData)
-                          _buildRecentEntries(
+                          _buildPremiumGate(
                             context,
-                            shadowService,
                             isDark,
                             isEn,
+                            isPremium,
+                            child: _buildRecentEntries(
+                              context,
+                              shadowService,
+                              isDark,
+                              isEn,
+                            ),
                           ).glassListItem(context: context, index: 5),
                         const SizedBox(height: AppConstants.spacingXl),
                       ]),
@@ -890,6 +906,85 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           }),
         ],
       ),
+    );
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // PREMIUM GATE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  Widget _buildPremiumGate(
+    BuildContext context,
+    bool isDark,
+    bool isEn,
+    bool isPremium, {
+    required Widget child,
+  }) {
+    if (isPremium) return child;
+
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          child: ImageFiltered(
+            imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+            child: child,
+          ),
+        ),
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+              color: isDark
+                  ? Colors.black.withValues(alpha: 0.3)
+                  : Colors.white.withValues(alpha: 0.3),
+            ),
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.lock_outline, size: 28, color: _shadowGold),
+                  const SizedBox(height: 8),
+                  Text(
+                    isEn ? 'Unlock your shadow map' : 'Gölge haritanı aç',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  ElevatedButton(
+                    onPressed: () => showContextualPaywall(
+                      context,
+                      ref,
+                      paywallContext: PaywallContext.shadowWork,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: _shadowGold,
+                      foregroundColor: AppColors.deepSpace,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          AppConstants.radiusMd,
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      isEn ? 'Upgrade to Pro' : "Pro'ya Yükselt",
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 

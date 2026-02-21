@@ -2,6 +2,7 @@
 // CYCLE SYNC SCREEN - Hormonal × Emotional Pattern Dashboard
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,8 +12,10 @@ import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/cycle_entry.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class CycleSyncScreen extends ConsumerStatefulWidget {
   const CycleSyncScreen({super.key});
@@ -28,6 +31,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     final isEn = language == AppLanguage.en;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final cycleSyncAsync = ref.watch(cycleSyncServiceProvider);
+    final isPremium = ref.watch(isPremiumUserProvider);
 
     return Scaffold(
       body: CosmicBackground(
@@ -75,22 +79,32 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                         ).glassListItem(context: context, index: 1),
                         const SizedBox(height: AppConstants.spacingLg),
 
-                        // Phase-Aware Prompt
+                        // Phase-Aware Prompt (PREMIUM)
                         if (cycleService.hasData)
-                          _buildPhasePromptCard(
+                          _buildPremiumGate(
                             context,
-                            cycleService,
                             isDark,
                             isEn,
+                            isPremium,
+                            paywallContext: PaywallContext.cycleSync,
+                            child: _buildPhasePromptCard(
+                              context,
+                              cycleService,
+                              isDark,
+                              isEn,
+                            ),
                           ).glassListItem(context: context, index: 2),
                         if (cycleService.hasData)
                           const SizedBox(height: AppConstants.spacingLg),
 
-                        // Correlation Insight (if enough data)
-                        _buildCorrelationCard(
+                        // Correlation Insight (PREMIUM)
+                        _buildPremiumGate(
                           context,
                           isDark,
                           isEn,
+                          isPremium,
+                          paywallContext: PaywallContext.cycleSync,
+                          child: _buildCorrelationCard(context, isDark, isEn),
                         ).glassListItem(context: context, index: 3),
                         const SizedBox(height: AppConstants.spacingLg),
 
@@ -544,8 +558,8 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                 Expanded(
                   child: Text(
                     isEn
-                        ? 'Log more entries to unlock cycle-emotion correlations.'
-                        : 'Döngü-duygu korelasyonlarını açmak için daha fazla kayıt ekle.',
+                        ? 'Add more entries to surface cycle-emotion correlations.'
+                        : 'Döngü-duygu korelasyonlarını ortaya çıkarmak için daha fazla kayıt ekle.',
                     style: TextStyle(
                       fontSize: 13,
                       color: isDark
@@ -875,6 +889,88 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // PREMIUM GATE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  Widget _buildPremiumGate(
+    BuildContext context,
+    bool isDark,
+    bool isEn,
+    bool isPremium, {
+    required Widget child,
+    required PaywallContext paywallContext,
+  }) {
+    if (isPremium) return child;
+
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          child: ImageFiltered(
+            imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+            child: child,
+          ),
+        ),
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+              color: isDark
+                  ? Colors.black.withValues(alpha: 0.3)
+                  : Colors.white.withValues(alpha: 0.3),
+            ),
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.lock_outline, size: 28, color: AppColors.starGold),
+                  const SizedBox(height: 8),
+                  Text(
+                    isEn
+                        ? 'Unlock deeper cycle insights'
+                        : 'Daha derin döngü içgörülerini aç',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  ElevatedButton(
+                    onPressed: () => showContextualPaywall(
+                      context,
+                      ref,
+                      paywallContext: paywallContext,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.starGold,
+                      foregroundColor: AppColors.deepSpace,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          AppConstants.radiusMd,
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      isEn ? 'Upgrade to Pro' : "Pro'ya Yükselt",
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
