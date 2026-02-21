@@ -38,8 +38,6 @@ class Routes {
   // ════════════════════════════════════════════════════════════════
   static const String dreamInterpretation = '/dream-interpretation';
   static const String dreamGlossary = '/dream-glossary';
-  static const String dreamShare = '/dream-share';
-
   // Dream Pages
   static const String dreamFalling = '/dreams/falling';
   static const String dreamWater = '/dreams/water';

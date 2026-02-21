@@ -290,7 +290,16 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                     ),
                                   ),
                                   // Center content
-                                  Column(
+                                  Semantics(
+                                    liveRegion: _isRunning,
+                                    label: hasStarted
+                                        ? (isEn
+                                            ? '${_formatTime(_remainingSeconds)} remaining'
+                                            : '${_formatTime(_remainingSeconds)} kaldı')
+                                        : (isEn
+                                            ? '$_selectedMinutes minutes selected'
+                                            : '$_selectedMinutes dakika seçildi'),
+                                    child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       if (hasStarted) ...[
@@ -339,7 +348,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                         ),
                                       ],
                                     ],
-                                  ),
+                                  )),
                                 ],
                               ),
                             ),

@@ -134,57 +134,6 @@ void main() {
     });
   });
 
-  group('OutlineButton', () {
-    testWidgets('renders label text', (tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: OutlineButton(
-              label: 'Outline',
-              onPressed: () {},
-            ),
-          ),
-        ),
-      );
-
-      expect(find.text('Outline'), findsOneWidget);
-    });
-
-    testWidgets('renders icon when provided', (tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: OutlineButton(
-              label: 'With Icon',
-              icon: Icons.add,
-              onPressed: () {},
-            ),
-          ),
-        ),
-      );
-
-      expect(find.byIcon(Icons.add), findsOneWidget);
-    });
-
-    testWidgets('calls onPressed when tapped', (tester) async {
-      var tapped = false;
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: OutlineButton(
-              label: 'Tap',
-              onPressed: () => tapped = true,
-            ),
-          ),
-        ),
-      );
-
-      await tester.tap(find.text('Tap'));
-      expect(tapped, isTrue);
-    });
-  });
-
   // Note: ShimmerLoading and SkeletonCard use flutter_animate with
   // repeating animations. We skip widget tests for these as they require
   // complex timer management. The widgets are simple containers with

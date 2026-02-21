@@ -559,6 +559,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                       min: 1,
                       max: 5,
                       divisions: 4,
+                      semanticFormatterCallback: (v) => '$label: ${v.round()}',
                       onChanged: (v) {
                         HapticFeedback.selectionClick();
                         setState(() => _subRatings[key] = v.round());
