@@ -589,10 +589,12 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.check_circle_outline,
-                        size: 16,
-                        color: AppColors.success,
+                      ExcludeSemantics(
+                        child: Icon(
+                          Icons.check_circle_outline,
+                          size: 16,
+                          color: AppColors.success,
+                        ),
                       ),
                       const SizedBox(width: 6),
                       Text(

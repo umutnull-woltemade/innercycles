@@ -195,7 +195,13 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
       borderRadius: BorderRadius.circular(AppConstants.radiusLg),
       child: Column(
         children: [
-          Icon(Icons.psychology_rounded, size: 48, color: _shadowPurple),
+          ExcludeSemantics(
+            child: Icon(
+              Icons.psychology_rounded,
+              size: 48,
+              color: _shadowPurple,
+            ),
+          ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             isEn ? 'Explore Your Inner Landscape' : 'İç Dünyani Keşfet',
@@ -404,7 +410,13 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
         children: [
           Row(
             children: [
-              Icon(Icons.auto_fix_high_rounded, size: 20, color: _shadowGold),
+              ExcludeSemantics(
+                child: Icon(
+                  Icons.auto_fix_high_rounded,
+                  size: 20,
+                  color: _shadowGold,
+                ),
+              ),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
@@ -568,38 +580,41 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             child: Semantics(
               label: isEn ? 'Breakthrough moment toggle' : 'İçgörü anı düğmesi',
               toggled: _breakthroughMoment,
-              child: Row(
-                children: [
-                  Icon(
-                    _breakthroughMoment
-                        ? Icons.lightbulb_rounded
-                        : Icons.lightbulb_outline_rounded,
-                    color: _breakthroughMoment
-                        ? _shadowGold
-                        : (isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary),
-                    size: 20,
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      isEn
-                          ? 'This was a breakthrough moment'
-                          : 'Bu bir içgörü anıydı',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: _breakthroughMoment
-                            ? _shadowGold
-                            : (isDark
-                                  ? AppColors.textSecondary
-                                  : AppColors.lightTextSecondary),
-                        fontWeight: _breakthroughMoment
-                            ? FontWeight.w600
-                            : FontWeight.normal,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(minHeight: 44),
+                child: Row(
+                  children: [
+                    Icon(
+                      _breakthroughMoment
+                          ? Icons.lightbulb_rounded
+                          : Icons.lightbulb_outline_rounded,
+                      color: _breakthroughMoment
+                          ? _shadowGold
+                          : (isDark
+                                ? AppColors.textSecondary
+                                : AppColors.lightTextSecondary),
+                      size: 20,
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        isEn
+                            ? 'This was a breakthrough moment'
+                            : 'Bu bir içgörü anıydı',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: _breakthroughMoment
+                              ? _shadowGold
+                              : (isDark
+                                    ? AppColors.textSecondary
+                                    : AppColors.lightTextSecondary),
+                          fontWeight: _breakthroughMoment
+                              ? FontWeight.w600
+                              : FontWeight.normal,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -686,7 +701,13 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
         children: [
           Row(
             children: [
-              Icon(Icons.insights_rounded, size: 20, color: _shadowPurple),
+              ExcludeSemantics(
+                child: Icon(
+                  Icons.insights_rounded,
+                  size: 20,
+                  color: _shadowPurple,
+                ),
+              ),
               const SizedBox(width: 8),
               Text(
                 isEn ? 'Your Shadow Map' : 'Gölge Haritan',
@@ -803,12 +824,14 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.history_rounded,
-                size: 20,
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
+              ExcludeSemantics(
+                child: Icon(
+                  Icons.history_rounded,
+                  size: 20,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
               ),
               const SizedBox(width: 8),
               Text(
@@ -866,10 +889,15 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                               ),
                             ),
                             if (entry.breakthroughMoment)
-                              Icon(
-                                Icons.lightbulb_rounded,
-                                size: 14,
-                                color: _shadowGold,
+                              Semantics(
+                                label: isEn
+                                    ? 'Breakthrough moment'
+                                    : 'İçgörü anı',
+                                child: Icon(
+                                  Icons.lightbulb_rounded,
+                                  size: 14,
+                                  color: _shadowGold,
+                                ),
                               ),
                             const SizedBox(width: 4),
                             Text(

@@ -83,9 +83,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
         parent: AlwaysScrollableScrollPhysics(),
       ),
       slivers: [
-        GlassSliverAppBar(
-          title: isEn ? 'Routine Tracker' : 'Rutin Takipçisi',
-        ),
+        GlassSliverAppBar(title: isEn ? 'Routine Tracker' : 'Rutin Takipçisi'),
         SliverPadding(
           padding: const EdgeInsets.all(16),
           sliver: SliverList(
@@ -518,10 +516,12 @@ class _EmptyState extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 40),
-          Icon(
-            Icons.playlist_add_check_rounded,
-            size: 64,
-            color: AppColors.starGold.withValues(alpha: 0.4),
+          ExcludeSemantics(
+            child: Icon(
+              Icons.playlist_add_check_rounded,
+              size: 64,
+              color: AppColors.starGold.withValues(alpha: 0.4),
+            ),
           ),
           const SizedBox(height: 20),
           Text(

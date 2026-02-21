@@ -506,12 +506,14 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
             else
               Padding(
                 padding: const EdgeInsets.only(top: 4),
-                child: Icon(
-                  Icons.chevron_right,
-                  size: 22,
-                  color: isDark
-                      ? Colors.white.withValues(alpha: 0.3)
-                      : AppColors.textMuted.withValues(alpha: 0.4),
+                child: ExcludeSemantics(
+                  child: Icon(
+                    Icons.chevron_right,
+                    size: 22,
+                    color: isDark
+                        ? Colors.white.withValues(alpha: 0.3)
+                        : AppColors.textMuted.withValues(alpha: 0.4),
+                  ),
                 ),
               ),
           ],

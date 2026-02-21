@@ -93,15 +93,19 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
     final name = _nameController.text.trim();
 
     if (code.length != 6) {
-      _showSnackBar(_isEnglish
-          ? 'Please enter a valid 6-character code'
-          : 'Lutfen gecerli 6 haneli bir kod girin');
+      _showSnackBar(
+        _isEnglish
+            ? 'Please enter a valid 6-character code'
+            : 'Lutfen gecerli 6 haneli bir kod girin',
+      );
       return;
     }
     if (name.isEmpty) {
-      _showSnackBar(_isEnglish
-          ? 'Please enter your partner\'s name'
-          : 'Lutfen partnerinizin adini girin');
+      _showSnackBar(
+        _isEnglish
+            ? 'Please enter your partner\'s name'
+            : 'Lutfen partnerinizin adini girin',
+      );
       return;
     }
 
@@ -120,9 +124,11 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
         _nameController.clear();
       });
     } else {
-      _showSnackBar(_isEnglish
-          ? 'Could not link partner. Check the code and try again.'
-          : 'Partner bağlanılamadı. Kodu kontrol edip tekrar deneyin.');
+      _showSnackBar(
+        _isEnglish
+            ? 'Could not link partner. Check the code and try again.'
+            : 'Partner bağlanılamadı. Kodu kontrol edip tekrar deneyin.',
+      );
     }
   }
 
@@ -191,9 +197,7 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
               if (_loading)
                 const SliverFillRemaining(
                   child: Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.starGold,
-                    ),
+                    child: CircularProgressIndicator(color: AppColors.starGold),
                   ),
                 )
               else if (_partner != null)
@@ -258,16 +262,21 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
   Widget _buildHeroSection(bool isEn, bool isDark) {
     return Column(
       children: [
-        Icon(
-          Icons.favorite_rounded,
-          size: 56,
-          color: AppColors.sunriseStart.withValues(alpha: 0.8),
-        ).animate().fadeIn(duration: 600.ms).scale(
-          begin: const Offset(0.6, 0.6),
-          end: const Offset(1.0, 1.0),
-          curve: Curves.elasticOut,
-          duration: 800.ms,
-        ),
+        ExcludeSemantics(
+              child: Icon(
+                Icons.favorite_rounded,
+                size: 56,
+                color: AppColors.sunriseStart.withValues(alpha: 0.8),
+              ),
+            )
+            .animate()
+            .fadeIn(duration: 600.ms)
+            .scale(
+              begin: const Offset(0.6, 0.6),
+              end: const Offset(1.0, 1.0),
+              curve: Curves.elasticOut,
+              duration: 800.ms,
+            ),
         const SizedBox(height: 12),
         Text(
           isEn
@@ -288,7 +297,9 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 15,
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+            color: isDark
+                ? AppColors.textSecondary
+                : AppColors.lightTextSecondary,
             height: 1.4,
           ),
         ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
@@ -305,7 +316,13 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
         children: [
           Row(
             children: [
-              Icon(Icons.qr_code_rounded, color: AppColors.starGold, size: 22),
+              ExcludeSemantics(
+                child: Icon(
+                  Icons.qr_code_rounded,
+                  color: AppColors.starGold,
+                  size: 22,
+                ),
+              ),
               const SizedBox(width: 10),
               Text(
                 isEn ? 'Your Invite Code' : 'Davet Kodunuz',
@@ -360,9 +377,11 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
                   onTap: () {
                     Clipboard.setData(ClipboardData(text: _myInviteCode));
                     HapticFeedback.lightImpact();
-                    _showSnackBar(isEn
-                        ? 'Code copied to clipboard'
-                        : 'Kod panoya kopyalandi');
+                    _showSnackBar(
+                      isEn
+                          ? 'Code copied to clipboard'
+                          : 'Kod panoya kopyalandi',
+                    );
                   },
                 ),
               ),
@@ -495,8 +514,13 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
         children: [
           Row(
             children: [
-              Icon(Icons.info_outline_rounded,
-                  color: AppColors.auroraStart, size: 20),
+              ExcludeSemantics(
+                child: Icon(
+                  Icons.info_outline_rounded,
+                  color: AppColors.auroraStart,
+                  size: 20,
+                ),
+              ),
               const SizedBox(width: 8),
               Text(
                 isEn ? 'How It Works' : 'Nasil Calisir',
@@ -578,8 +602,11 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
                   // ── Title ──
                   Row(
                     children: [
-                      Icon(Icons.link_rounded,
-                          color: AppColors.auroraStart, size: 22),
+                      Icon(
+                        Icons.link_rounded,
+                        color: AppColors.auroraStart,
+                        size: 22,
+                      ),
                       const SizedBox(width: 10),
                       Text(
                         isEn ? 'Link with Partner' : 'Partner ile Bağlan',
@@ -822,10 +849,12 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
             const SizedBox(height: 16),
 
             // ── Partner card ──
-            _buildPartnerCard(partner, isEn, isDark, daysTogether)
-                .animate()
-                .fadeIn(duration: 400.ms)
-                .slideY(begin: 0.05, end: 0),
+            _buildPartnerCard(
+              partner,
+              isEn,
+              isDark,
+              daysTogether,
+            ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, end: 0),
 
             const SizedBox(height: 16),
 
@@ -846,9 +875,10 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
             const SizedBox(height: 24),
 
             // ── Unlink button ──
-            _buildUnlinkButton(isEn, isDark)
-                .animate()
-                .fadeIn(delay: 300.ms, duration: 400.ms),
+            _buildUnlinkButton(
+              isEn,
+              isDark,
+            ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
 
             const SizedBox(height: 40),
           ],
@@ -858,7 +888,11 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
   }
 
   Widget _buildPartnerCard(
-      PartnerProfile partner, bool isEn, bool isDark, int daysTogether) {
+    PartnerProfile partner,
+    bool isEn,
+    bool isDark,
+    int daysTogether,
+  ) {
     return GlassPanel(
       elevation: GlassElevation.g3,
       padding: const EdgeInsets.all(24),
@@ -880,9 +914,7 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
             ),
             child: Center(
               child: Text(
-                partner.name.isNotEmpty
-                    ? partner.name[0].toUpperCase()
-                    : '?',
+                partner.name.isNotEmpty ? partner.name[0].toUpperCase() : '?',
                 style: const TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w700,
@@ -910,9 +942,11 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.link_rounded,
-                  size: 16,
-                  color: AppColors.success.withValues(alpha: 0.8)),
+              Icon(
+                Icons.link_rounded,
+                size: 16,
+                color: AppColors.success.withValues(alpha: 0.8),
+              ),
               const SizedBox(width: 6),
               Text(
                 isEn ? 'Linked' : 'Bağlandı',
@@ -955,8 +989,7 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
     );
   }
 
-  Widget _buildSharedMoodCard(
-      PartnerProfile partner, bool isEn, bool isDark) {
+  Widget _buildSharedMoodCard(PartnerProfile partner, bool isEn, bool isDark) {
     final hasMoodData =
         partner.lastSharedMood != null || partner.lastSharedPhase != null;
 
@@ -968,8 +1001,7 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
         children: [
           Row(
             children: [
-              Icon(Icons.sync_rounded,
-                  color: AppColors.auroraStart, size: 20),
+              Icon(Icons.sync_rounded, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
               Text(
                 isEn ? 'Shared Cycle Data' : 'Paylasilan Dongu Verisi',
@@ -1071,14 +1103,19 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
       padding: const EdgeInsets.all(16),
       child: Row(
         children: [
-          Icon(Icons.qr_code_rounded,
-              color: AppColors.starGold.withValues(alpha: 0.7), size: 20),
+          Icon(
+            Icons.qr_code_rounded,
+            color: AppColors.starGold.withValues(alpha: 0.7),
+            size: 20,
+          ),
           const SizedBox(width: 10),
           Text(
             isEn ? 'Your Code: ' : 'Kodunuz: ',
             style: TextStyle(
               fontSize: 14,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
           ),
           Text(
@@ -1092,15 +1129,17 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
           ),
           const Spacer(),
           IconButton(
-            icon: Icon(Icons.copy_rounded,
-                size: 18,
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+            icon: Icon(
+              Icons.copy_rounded,
+              size: 18,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
             onPressed: () {
               Clipboard.setData(ClipboardData(text: _myInviteCode));
               HapticFeedback.lightImpact();
-              _showSnackBar(isEn
-                  ? 'Code copied to clipboard'
-                  : 'Kod panoya kopyalandi');
+              _showSnackBar(
+                isEn ? 'Code copied to clipboard' : 'Kod panoya kopyalandi',
+              );
             },
             visualDensity: VisualDensity.compact,
           ),
@@ -1119,8 +1158,11 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.link_off_rounded, size: 18,
-              color: AppColors.error.withValues(alpha: 0.7)),
+          Icon(
+            Icons.link_off_rounded,
+            size: 18,
+            color: AppColors.error.withValues(alpha: 0.7),
+          ),
           const SizedBox(width: 8),
           Text(
             isEn ? 'Unlink Partner' : 'Partneri Çıkart',
@@ -1227,10 +1269,13 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, size: 16,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary),
+              Icon(
+                icon,
+                size: 16,
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
+              ),
               const SizedBox(width: 6),
               Text(
                 label,
@@ -1290,7 +1335,9 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
           '$label: ',
           style: TextStyle(
             fontSize: 14,
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+            color: isDark
+                ? AppColors.textSecondary
+                : AppColors.lightTextSecondary,
           ),
         ),
         Expanded(
@@ -1299,7 +1346,9 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
             ),
           ),
         ),
@@ -1314,12 +1363,32 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
   String _formatLinkedDate(DateTime date, bool isEn) {
     final months = isEn
         ? [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
           ]
         : [
-            'Oca', 'Sub', 'Mar', 'Nis', 'May', 'Haz',
-            'Tem', 'Agu', 'Eyl', 'Eki', 'Kas', 'Ara',
+            'Oca',
+            'Sub',
+            'Mar',
+            'Nis',
+            'May',
+            'Haz',
+            'Tem',
+            'Agu',
+            'Eyl',
+            'Eki',
+            'Kas',
+            'Ara',
           ];
     return '${months[date.month - 1]} ${date.day}';
   }
@@ -1329,17 +1398,11 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
     if (diff.inMinutes < 1) {
       return isEn ? 'Just now' : 'Az once';
     } else if (diff.inMinutes < 60) {
-      return isEn
-          ? '${diff.inMinutes}m ago'
-          : '${diff.inMinutes}dk once';
+      return isEn ? '${diff.inMinutes}m ago' : '${diff.inMinutes}dk once';
     } else if (diff.inHours < 24) {
-      return isEn
-          ? '${diff.inHours}h ago'
-          : '${diff.inHours}sa once';
+      return isEn ? '${diff.inHours}h ago' : '${diff.inHours}sa once';
     } else {
-      return isEn
-          ? '${diff.inDays}d ago'
-          : '${diff.inDays}g once';
+      return isEn ? '${diff.inDays}d ago' : '${diff.inDays}g once';
     }
   }
 }

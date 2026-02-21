@@ -151,10 +151,12 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
         borderRadius: BorderRadius.circular(AppConstants.radiusLg),
         child: Column(
           children: [
-            Icon(
-              Icons.favorite_border_rounded,
-              size: 48,
-              color: AppColors.amethyst,
+            ExcludeSemantics(
+              child: Icon(
+                Icons.favorite_border_rounded,
+                size: 48,
+                color: AppColors.amethyst,
+              ),
             ),
             const SizedBox(height: AppConstants.spacingMd),
             Text(
@@ -185,7 +187,9 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
       );
     }
 
-    final progress = cycleDay != null ? cycleDay / cycleLength : 0.0;
+    final progress = (cycleDay != null && cycleLength > 0)
+        ? cycleDay / cycleLength
+        : 0.0;
     final phaseColor = _phaseColor(phase);
 
     return Semantics(
@@ -425,10 +429,12 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.lightbulb_outline_rounded,
-                size: 18,
-                color: phaseColor,
+              ExcludeSemantics(
+                child: Icon(
+                  Icons.lightbulb_outline_rounded,
+                  size: 18,
+                  color: phaseColor,
+                ),
               ),
               const SizedBox(width: 8),
               Text(
@@ -464,7 +470,8 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     final now = DateTime.now();
     final dayOfYear = now.difference(DateTime(now.year, 1, 1)).inDays;
 
-    final prompts = _phasePrompts[phase]!;
+    final prompts = _phasePrompts[phase] ?? _phasePrompts.values.first;
+    if (prompts.isEmpty) return '';
     final index = dayOfYear % prompts.length;
     return isEn ? prompts[index].$1 : prompts[index].$2;
   }
@@ -583,10 +590,12 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             children: [
               Row(
                 children: [
-                  Icon(
-                    Icons.auto_awesome,
-                    size: 18,
-                    color: AppColors.auroraStart,
+                  ExcludeSemantics(
+                    child: Icon(
+                      Icons.auto_awesome,
+                      size: 18,
+                      color: AppColors.auroraStart,
+                    ),
                   ),
                   const SizedBox(width: 8),
                   Text(
@@ -669,8 +678,14 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 2),
                           child: Text(
                             isEn
-                                ? phase.displayNameEn.substring(0, 3)
-                                : phase.displayNameTr.substring(0, 3),
+                                ? phase.displayNameEn.substring(
+                                    0,
+                                    phase.displayNameEn.length.clamp(0, 3),
+                                  )
+                                : phase.displayNameTr.substring(
+                                    0,
+                                    phase.displayNameTr.length.clamp(0, 3),
+                                  ),
                             style: const TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.w600,
@@ -757,6 +772,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
   }
 
   double _phaseFraction(CyclePhase phase, int cycleLength, int periodLength) {
+    if (cycleLength <= 0) return 0.25;
     final follicularEnd = (cycleLength * 0.46).round();
     final ovulatoryEnd = (cycleLength * 0.57).round();
 
