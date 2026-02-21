@@ -130,7 +130,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     final focusAreasCoveredThisMonth = _focusAreasCoveredThisMonth(
       monthEntries,
     );
-    final consistencyDays = _consistencyDaysLast30(journalService);
+    final consistencyDays = _consistencyDaysLast30(journalService, now);
     final completedChallenges = challengeService?.completedChallengeCount ?? 0;
     final gratitudeCount = gratitudeService?.entryCount ?? 0;
 
@@ -173,7 +173,8 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                 // ═══════════════════════════════════════════════════════
                 _buildStreakSection(
                   context,
-                  journalService,
+                  entries,
+                  now,
                   currentStreak,
                   longestStreak,
                   isDark,
@@ -429,7 +430,8 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
 
   Widget _buildStreakSection(
     BuildContext context,
-    JournalService service,
+    List<JournalEntry> entries,
+    DateTime now,
     int currentStreak,
     int longestStreak,
     bool isDark,
@@ -491,14 +493,17 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           // Streak calendar heatmap — last 30 days
-          _buildStreakHeatmap(service, isDark),
+          _buildStreakHeatmap(entries, now, isDark),
         ],
       ),
     );
   }
 
-  Widget _buildStreakHeatmap(JournalService service, bool isDark) {
-    final now = DateTime.now();
+  Widget _buildStreakHeatmap(
+    List<JournalEntry> entries,
+    DateTime now,
+    bool isDark,
+  ) {
     final last30 = List.generate(30, (i) {
       final date = now.subtract(Duration(days: 29 - i));
       return DateTime(date.year, date.month, date.day);
@@ -506,7 +511,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
 
     // Build a set of logged date keys for fast lookup
     final loggedKeys = <String>{};
-    for (final entry in service.getAllEntries()) {
+    for (final entry in entries) {
       loggedKeys.add(entry.dateKey);
     }
 
@@ -1174,8 +1179,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
   }
 
   /// Count days with at least one entry in the last 30 days
-  int _consistencyDaysLast30(JournalService service) {
-    final now = DateTime.now();
+  int _consistencyDaysLast30(JournalService service, DateTime now) {
     final thirtyDaysAgo = now.subtract(const Duration(days: 30));
     final entries = service.getEntriesByDateRange(thirtyDaysAgo, now);
     final uniqueDays = <String>{};
