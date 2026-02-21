@@ -1,14 +1,14 @@
 {
   "app": {
     "name": "InnerCycles",
-    "tagline": "Votre Voyage Intérieur Commence",
+    "tagline": "Votre Exploration Intérieure Commence",
     "loading_text": "Votre espace de réflexion se prépare..."
   },
   "common": {
     "cancel": "Annuler",
     "ok": "OK",
     "continue": "Continuer",
-    "start_journey": "Commencer le Voyage",
+    "start_journey": "Commencer le Suivi",
     "explore": "Explorer",
     "results": "résultats",
     "coming_soon": "Bientôt disponible",
@@ -53,7 +53,7 @@
     "grant_permission": "Accorder l'autorisation",
     "hello": "Bonjour",
     "read_more": "Lire la suite",
-    "unlock": "Unlock",
+    "unlock": "Accéder",
     "view_all": "Tout voir",
     "show_all": "Show All",
     "continue_exploring": "Continue Exploring",
@@ -87,9 +87,9 @@
     "welcome_text": "Écoutez les réflexions que votre moi intérieur vous propose.\nAu moment de votre naissance, un profil personnel unique\ns'est formé pour vous, découvrez-le.",
     "cosmic_identity": "Votre Identité Personnelle",
     "enter_info_subtitle": "Entrez vos informations pour vous connecter à votre monde intérieur",
-    "info_box_text": "Remplissez toutes les informations pour débloquer toutes les couches de votre carte personnelle.",
+    "info_box_text": "Remplissez toutes les informations pour accéder à toutes les couches de votre carte personnelle.",
     "will_be_calculated": "Votre journal vous attend",
-    "start_cosmic_journey": "Commencez Votre Voyage Personnel",
+    "start_cosmic_journey": "Cartographiez Vos Cycles",
     "tap_to_continue": "Appuyez pour continuer",
     "connect_with_apple": "Continuer avec Apple",
     "connecting": "Connexion...",
@@ -275,7 +275,7 @@
       "gambling": "🎰 Comment est-ce que j'aborde le risque et l'incertitude?",
       "gratitude_star": "✨ Pour quelles opportunités suis-je reconnaissant(e)?",
       "communication_themes": "🌙 Quels thèmes de communication émergent maintenant?",
-      "big_change": "🦋 Quels thèmes de transformation résonnent avec moi?",
+      "big_change": "🦋 Quels thèmes de changement résonnent avec moi?",
       "rich_become": "💰 Quelle est ma relation avec l'abondance?",
       "future_love": "💕 Quels schémas est-ce que je remarque dans mes relations?",
       "attention_this_week": "🎭 Quels thèmes méritent mon attention cette semaine?",
@@ -435,9 +435,9 @@
       "compatible_numbers": "Compatible Numbers",
       "spiritual_lesson": "Personal Lesson",
       "shadow_side": "Shadow Side",
-      "shadow_side_footer": "These aspects can be transformed with awareness. Accepting the shadow is not empowering it - it is integrating it.",
+      "shadow_side_footer": "These aspects can be reframed with awareness. Accepting the shadow is not empowering it - it is integrating it.",
       "all_life_path_numbers": "All Life Path Numbers",
-      "master_numbers": "Master Numbers",
+      "master_numbers": "Nombres Clés",
       "lessons_from_past_lives": "Lessons carried from past experiences",
       "yours": "YOURS",
       "keywords": "Keywords",
@@ -498,7 +498,7 @@
       "autumn_equinox_desc": "Time for balancing and reflection",
       "winter_solstice_title": "Winter Solstice",
       "winter_solstice_desc": "Introspection and planning",
-      "advice_default": "Cette année vous invite à réfléchir sur votre parcours de croissance personnelle."
+      "advice_default": "Cette année vous invite à réfléchir sur votre trajectoire de croissance personnelle."
     },
     "mindfulness_micro_ritual": {
       "todays_micro_ritual": "Today's Micro Ritual",
@@ -559,11 +559,11 @@
     }
   },
   "premium": {
-    "cosmic_powers": "Ce que vous débloquez",
+    "cosmic_powers": "Ce à quoi vous accédez",
     "cosmic_powers_active": "Fonctionnalités Pro Actives",
     "lifetime_access": "Vous avez un accès à vie !",
-    "open_cosmic_door": "Débloquer tous les insights",
-    "cosmic_door_opened": "Tous les insights débloqués !",
+    "open_cosmic_door": "Accéder à tous les insights",
+    "cosmic_door_opened": "Tous les insights accessibles !",
     "success_message": "Analyse complète des tendances, toutes les perspectives de rêves et votre boîte à outils de croissance sont maintenant actifs.",
     "view_plans": "Voir mes insights",
     "manage_subscription": "Gérer l'Abonnement",
@@ -585,7 +585,7 @@
       "benefit_export": "Export complet des données (CSV, JSON)",
       "benefit_reports": "Rapports mensuels et annuels de croissance",
       "benefit_programs": "Programmes premium, défis et outils",
-      "continue_pro": "Débloquer tous les insights — $2,50/mois",
+      "continue_pro": "Accéder à tous les insights — $2,50/mois",
       "not_now": "Pas maintenant",
       "legal_text": "Renouvellement annuel automatique. Annulez à tout moment dans les Paramètres.",
       "privacy_policy": "Politique de Confidentialité",
@@ -772,7 +772,7 @@
     },
     "locked_layer_preview": {
       "pro_badge": "PRO",
-      "unlock_default": "Unlock",
+      "unlock_default": "Accéder",
       "more_content": "+{count} more items"
     },
     "dream_prompt_card": {
@@ -828,7 +828,7 @@
         "snake_approaching": "I saw a snake, it was approaching me but I wasn't afraid",
         "eagle_riding": "I was flying on an eagle's back and saw the city",
         "wolf_pack": "A pack of wolves was following me but they didn't harm me",
-        "butterfly_transform": "I passed through butterflies and felt transformed",
+        "butterfly_transform": "I passed through butterflies and felt renewed",
         "talking_cat": "A talking cat told me something important",
         "flying_free": "I was flying and felt very free",
         "falling_high": "I was falling from a height but woke up before hitting the ground",
@@ -925,11 +925,11 @@
       },
       "symbols": {
         "snake_name": "Snake",
-        "snake_meaning": "Transformation, renewal, hidden fears",
+        "snake_meaning": "Change, renewal, hidden fears",
         "water_name": "Water",
         "water_meaning": "Emotions, subconscious, purification",
         "fire_name": "Fire",
-        "fire_meaning": "Passion, anger, transformation",
+        "fire_meaning": "Passion, anger, change",
         "house_name": "House",
         "house_meaning": "Self, security, family",
         "flying_name": "Flying",
@@ -939,7 +939,7 @@
         "sun_name": "Sun",
         "sun_meaning": "Consciousness, success, masculine energy",
         "death_name": "Death",
-        "death_meaning": "Transformation, ending, new beginning",
+        "death_meaning": "Change, ending, new beginning",
         "dog_name": "Dog",
         "dog_meaning": "Loyalty, protection, friendship",
         "cat_name": "Cat",
@@ -967,7 +967,7 @@
           "builder": {
             "basic_meaning": "Water, for your earth archetype, symbolizes fertility and abundance. Material and emotional flow is entering your life.",
             "element_perspective": "Water nourishes earth - this dream may reflect growth and prosperity. Trust your natural rhythm, let go without forcing.",
-            "psychological": "Water: Emotional security, comfort, nourishment\nAs a Builder: The connection between inner peace and material security\nMessage: Emotional wealth attracts material wealth",
+            "psychological": "Water: Emotional security, comfort, nourishment\nAs a Builder: The connection between inner calm and material security\nMessage: Emotional wealth attracts material wealth",
             "practice": "• Water your plants, tend your garden\n• Take a bath ritual\n• Visualize financial flow\n• Make relaxation and comfort your priority"
           },
           "nurturer": {
@@ -977,10 +977,10 @@
             "practice": "• Drink a warm cup of tea mindfully\n• Look at family photos\n• Take a relaxing bath\n• Clean the house - renew the energy\n• Connect with mother figures"
           },
           "transformer": {
-            "basic_meaning": "Water is your element and this dream indicates deep transformation! Time for renewal has come.",
+            "basic_meaning": "Water is your element and this dream indicates deep change! Time for renewal has come.",
             "element_perspective": "Don't fear diving into the depths of water. There are treasures there. The cycle of death and rebirth is active.",
             "psychological": "Water: The deepest layers of the subconscious\nAs a Transformer: Time for shadow work\nMessage: Instead of fearing darkness, illuminate it",
-            "practice": "• Do deep meditations\n• Keep a shadow journal\n• Practice letting go ritual\n• Embrace deep inner transformation\n• Consider speaking with a trusted person or professional"
+            "practice": "• Do deep meditations\n• Keep a shadow journal\n• Practice letting go ritual\n• Embrace deep inner renewal\n• Consider speaking with a trusted person or professional"
           },
           "dreamer": {
             "basic_meaning": "Water is your element - your connection with inner realms is very strong! You can fully trust your intuition.",
@@ -1026,16 +1026,16 @@
         "death": {
           "title": "💀 DEATH DREAM - {archetype} INTERPRETATION",
           "not_scary_label": "🦋 BASIC MEANING - NOTHING TO FEAR!",
-          "not_scary": "Death in dreams symbolizes transformation and new beginnings. This is not an end, it is transformation!",
+          "not_scary": "Death in dreams symbolizes change and new beginnings. This is not an end, it is renewal!",
           "special_interpretation": "This dream means old patterns are dying and a new self is being born. Think about what you need to let go of in your life.",
           "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
-          "psychological": "• Your own death: Ego transformation, new self\n• Someone else's death: What that person represents is ending\n• Unknown person's death: General life change\n• Return from death: Renewal and gaining power",
-          "transformation_label": "🔄 TRANSFORMATION AREAS",
-          "transformation": "• Career change\n• Relationship transformation\n• Renewal of beliefs\n• Identity evolution\n• Lifestyle change",
+          "psychological": "• Your own death: Ego shift, new self\n• Someone else's death: What that person represents is ending\n• Unknown person's death: General life change\n• Return from death: Renewal and gaining power",
+          "transformation_label": "🔄 AREAS OF CHANGE",
+          "transformation": "• Career change\n• Relationship shift\n• Renewal of beliefs\n• Identity evolution\n• Lifestyle change",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Make a list of what needs to let go\n• Review old photos\n• Clean out your wardrobe\n• Identify habits that need to 'die'",
           "cosmic_message_label": "💫 PERSONAL MESSAGE",
-          "cosmic_message": "You're being reborn from your ashes like a phoenix. {archetype} strengths empower this transformation. A new you is being born!"
+          "cosmic_message": "You're being reborn from your ashes like a phoenix. {archetype} strengths empower this renewal. A new you is being born!"
         },
         "chase": {
           "title": "🏃 CHASE DREAM - {archetype} INTERPRETATION",
@@ -1057,7 +1057,7 @@
           "basic_meaning": "Animals represent our instinctual nature and suppressed energies. Each animal carries a totem message.",
           "special_interpretation": "This dream is a call to reconnect with your natural instincts. Research the totem energy of whichever animal you saw.",
           "common_symbols_label": "🐍 COMMON ANIMAL SYMBOLS",
-          "common_symbols": "• Snake: Transformation, renewal, inner growth\n• Dog: Loyalty, protection, friendship\n• Cat: Independence, mystery, intuition\n• Bird: Freedom, inner messages\n• Wolf: Community, leadership, teacher\n• Bear: Strength, protection, introspection\n• Horse: Freedom, power, passion",
+          "common_symbols": "• Snake: Change, renewal, inner growth\n• Dog: Loyalty, protection, friendship\n• Cat: Independence, mystery, intuition\n• Bird: Freedom, inner messages\n• Wolf: Community, leadership, teacher\n• Bear: Strength, protection, introspection\n• Horse: Freedom, power, passion",
           "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
           "psychological": "• Animal's behavior: Your suppressed behavior\n• Your relationship with animal: Your relationship with instincts\n• Animal's color: Emotional tone\n• If animal attacks: Suppressed energy eruption",
           "practice_label": "✨ PRACTICAL APPLICATION",
@@ -1099,7 +1099,7 @@
           "title": "💰 MONEY/WEALTH DREAM - {archetype} INTERPRETATION",
           "basic_meaning_label": "🏆 BASIC MEANING",
           "basic_meaning": "Money and wealth dreams represent self-worth and abundance consciousness. They carry a message of inner, not material, wealth.",
-          "special_interpretation": "This dream invites you to question your relationship with the material world. True wealth is inner peace and gratitude.",
+          "special_interpretation": "This dream invites you to question your relationship with the material world. True wealth is inner calm and gratitude.",
           "dream_types_label": "💎 MONEY DREAM TYPES",
           "dream_types": "• Finding money: Incoming opportunities, abundance\n• Losing money: Insecurity, fear of loss\n• Being rich: Awareness of potential\n• Counting money: Need for control\n• Giving money: Generosity or power loss",
           "symbols_label": "🪙 SYMBOLS",
@@ -1234,7 +1234,7 @@
     "general_a3_4": "I'm not very interested",
     "general_q4": "What do you seek most in life?",
     "general_a4_1": "Meaning and purpose",
-    "general_a4_2": "Inner peace",
+    "general_a4_2": "Inner calm",
     "general_a4_3": "Love and connection",
     "general_a4_4": "Success and recognition",
     "result_dream_high_title": "Dream Explorer",
@@ -1243,13 +1243,13 @@
     "result_dream_medium_desc": "Your connection with dreams is developing. With a little more awareness, you can hear your subconscious messages more clearly.",
     "result_dream_low_title": "Dream Sleeper",
     "result_dream_low_desc": "The dream world is ready for you. With small steps, you can strengthen your connection with your subconscious.",
-    "result_self_awareness_high_title": "Personal Master",
+    "result_self_awareness_high_title": "Personal Expert",
     "result_self_awareness_high_desc": "You have a strong connection with self-awareness! Deepen your personal journey with personal cycle reports and detailed profile analysis.",
     "result_self_awareness_medium_title": "Inner Traveler",
     "result_self_awareness_medium_desc": "Your connection with self-awareness is developing. By exploring your personal profile, you can better understand yourself.",
     "result_self_awareness_low_title": "Personal Explorer",
     "result_self_awareness_low_desc": "Your journey is ready! Start your personal journey with daily reflection themes.",
-    "result_number_high_title": "Number Master",
+    "result_number_high_title": "Number Expert",
     "result_number_high_desc": "You have a strong connection with numbers! Discover the patterns on your life path with your personal number analysis.",
     "result_number_medium_title": "Number Traveler",
     "result_number_medium_desc": "You feel the energy of numbers. You can guide your life with your life path number.",
@@ -1258,7 +1258,7 @@
     "result_general_high_title": "Inner Guide",
     "result_general_high_desc": "Your inner journey is deep and meaningful. You can elevate your awareness to the next level with our personal tools.",
     "result_general_medium_title": "Inner Traveler",
-    "result_general_medium_desc": "Vous êtes en voyage de découverte de soi — chaque réflexion vous rapproche de votre véritable nature.",
+    "result_general_medium_desc": "Vous êtes en processus d'auto-observation — chaque réflexion vous rapproche de votre véritable nature.",
     "result_general_low_title": "Inner Seeker",
     "result_general_low_desc": "New beginnings are exciting! With small steps, you can start your own personal journey.",
     "cta": {
@@ -1328,7 +1328,7 @@
       "decision_2": "Les décisions nous demandent souvent d'équilibrer plusieurs valeurs à la fois. Des valeurs conflictuelles pourraient-elles rendre cette décision difficile?\n\nQu'est-ce qui te semble le plus authentique?",
       "relationship_1": "Les relations peuvent être les aspects les plus significatifs mais aussi les plus difficiles de nos vies. Chaque relation nous enseigne quelque chose.\n\nQu'apprends-tu sur toi dans cette relation?",
       "relationship_2": "Les défis dans les relations révèlent souvent quelque chose sur nos besoins ou nos limites.\n\nQu'est-ce qui compte le plus pour toi dans cette relation?",
-      "self_discovery_1": "Le voyage de découverte de soi est un processus qui dure toute la vie. Poser des questions montre que tu es déjà sur ce chemin.\n\nQu'est-ce qui t'a amené à cette réflexion aujourd'hui?",
+      "self_discovery_1": "Le processus d'auto-observation est un processus qui dure toute la vie. Poser des questions montre que tu es déjà sur ce chemin.\n\nQu'est-ce qui t'a amené à cette réflexion aujourd'hui?",
       "self_discovery_2": "Découvrir qui nous sommes demande du courage. Chaque expérience nous apprend quelque chose sur nous-mêmes.\n\nAs-tu déjà eu l'impression de réprimer ton vrai moi?",
       "general_1": "Merci de partager ce qui te préoccupe. Parfois, juste mettre des pensées en mots peut nous aider à voir plus clairement.\n\nQu'est-ce qui compte le plus pour toi en ce moment?",
       "general_2": "On dirait que tu as beaucoup de choses en tête. Prendre le temps de réfléchir est une pratique précieuse.\n\nSi tu pouvais souhaiter une chose, ce serait quoi?"
@@ -1356,7 +1356,7 @@
     "edit_profile": "Modifier le profil",
     "edit_profile_desc": "Update your birth information",
     "premium": "Premium",
-    "premium_desc": "Unlock all premium features",
+    "premium_desc": "Access all premium features",
     "premium_active": "Premium features active",
     "manage_subscription": "Manage Subscription",
     "manage_subscription_desc": "View and manage your subscription",
@@ -1514,7 +1514,7 @@
       },
       "dream_interpretation": {
         "title": "Racontez votre rêve, explorons ensemble",
-        "description": "Qu'avez-vous vu cette nuit ? Embarquons pour un voyage symbolique."
+        "description": "Qu'avez-vous vu cette nuit ? Embarquons pour une exploration symbolique."
       },
       "cosmic_guidance": {
         "title": "Guidance personnelle",
@@ -1615,7 +1615,7 @@
         "description": "Guidance spécifique à votre thème."
       },
       "number_mystery": {
-        "description": "Le mystère des nombres — un voyage similaire."
+        "description": "Le mystère des nombres — une exploration similaire."
       },
       "daily_reflection": {
         "title": "Aperçu quotidien",
@@ -1676,7 +1676,7 @@
       },
       "number_meanings": {
         "title": "Significations des nombres",
-        "description": "1-9 et nombres maîtres"
+        "description": "1-9 et nombres clés"
       },
       "love_reflection": {
         "title": "Aperçu amoureux",
@@ -1786,7 +1786,7 @@
       },
       "tell_another_dream": {
         "title": "Racontez un autre rêve",
-        "description": "Commencez un nouveau voyage."
+        "description": "Commencez une nouvelle exploration."
       },
       "symbol_glossary": {
         "title": "Glossaire des symboles",
@@ -1939,7 +1939,7 @@
     "day_suffix": "jour",
     "strengths": "Points Forts",
     "cosmic_summary": "Résumé Personnel",
-    "spiritual_journey": "Voyage Intérieur",
+    "spiritual_journey": "Progrès Personnel",
     "important_cycles": "Influences Saisonnières Importantes",
     "special_months_of_year": "Mois Spéciaux de l'Année",
     "caution_required": "Prudence Requise",
@@ -1988,7 +1988,7 @@
     "archetype_profiles": "Profils du Archétype",
     "brand_text": "Compatibilité Archétype — InnerCycles",
     "cosmic_chemistry": "Chimie Personnelle",
-    "ancient_note": "La compatibilité entre deux archétypes n'est pas qu'un calcul d'élément et de modalité. Chaque relation porte le potentiel pour deux personnes de se compléter et de se transformer mutuellement. Les défis sont les plus grands enseignants."
+    "ancient_note": "La compatibilité entre deux archétypes n'est pas qu'un calcul d'élément et de modalité. Chaque relation porte le potentiel pour deux personnes de se compléter et de se recadrer mutuellement. Les défis sont les plus grands enseignants."
   },
   "auth": {
     "registration_success": "Inscription réussie! Veuillez vérifier votre adresse email.",
@@ -2059,7 +2059,7 @@
         "title": "Qu'est-ce que le nombre de chemin de vie ?",
         "answer1": "Le nombre de chemin de vie est le nombre fondamental calculé à partir de ta date de naissance.",
         "answer2": "Il montre quel chemin tu emprunteras dans cette vie.",
-        "answer3": "Il va de 1 à 9 (et les nombres maîtres 11, 22, 33).",
+        "answer3": "Il va de 1 à 9 (et les nombres clés 11, 22, 33).",
         "how_calculated": "Comment est-il calculé ?",
         "calc1": "Tous les chiffres de ta date de naissance sont additionnés.",
         "calc2": "On réduit jusqu'à obtenir un seul chiffre.",
@@ -2311,7 +2311,7 @@
     "nightmare_reduction": "Reduction des Cauchemars",
     "nightmare_frequency_change": "Changement de frequence des cauchemars",
     "shadow_integration": "INTEGRATION DE L'OMBRE",
-    "shadow_description": "Votre voyage d'exploration des differents aspects de votre subconscient",
+    "shadow_description": "Votre processus d'exploration des differents aspects de votre subconscient",
     "discovered_emotions": "Emotions Decouvertes",
     "awareness": "Conscience",
     "acceptance": "Acceptation",
@@ -2325,7 +2325,7 @@
     "achievement_first_step_desc": "Vous avez enregistre votre premier reve",
     "achievement_dream_explorer": "Explorateur de Reves",
     "achievement_dream_explorer_desc": "Vous avez enregistre 10 reves",
-    "achievement_dream_master": "Maitre des Reves",
+    "achievement_dream_master": "Expert des Reves",
     "achievement_dream_master_desc": "Vous avez enregistre 50 reves",
     "achievement_dream_keeper": "Gardien des Reves",
     "achievement_dream_keeper_desc": "Vous avez enregistre 100 reves",
@@ -2335,11 +2335,11 @@
     "achievement_month_streak_desc": "Vous avez atteint une serie de 30 jours",
     "achievement_symbol_seeker": "Chercheur de Symboles",
     "achievement_symbol_seeker_desc": "Vous avez decouvert 10 symboles differents",
-    "achievement_symbol_master": "Maitre des Symboles",
+    "achievement_symbol_master": "Expert des Symboles",
     "achievement_symbol_master_desc": "Vous avez decouvert 25 symboles differents",
     "achievement_awakening": "Eveil",
     "achievement_awakening_desc": "Vous avez vecu votre premier reve lucide",
-    "achievement_lucid_master": "Maitre du Reve Lucide",
+    "achievement_lucid_master": "Expert du Reve Lucide",
     "achievement_lucid_master_desc": "Vous avez vecu 10 reves lucides",
     "days": {
       "mon": "Lun",
@@ -2507,7 +2507,7 @@
         "dream_explorer_desc": "You recorded 10 dreams",
         "dream_traveler": "Dream Traveler",
         "dream_traveler_desc": "You recorded 25 dreams",
-        "dream_master": "Dream Master",
+        "dream_master": "Dream Expert",
         "dream_master_desc": "You recorded 50 dreams",
         "weekly_streak": "Weekly Streak",
         "weekly_streak_desc": "Record dreams for 7 consecutive days",
@@ -2515,11 +2515,11 @@
         "monthly_streak_desc": "Record dreams for 30 consecutive days",
         "symbol_hunter": "Symbol Hunter",
         "symbol_hunter_desc": "Discover 20 different symbols",
-        "symbol_master": "Symbol Master",
+        "symbol_master": "Symbol Expert",
         "symbol_master_desc": "Discover 50 different symbols",
         "awakening": "Awakening",
         "awakening_desc": "You experienced your first lucid dream",
-        "lucid_master": "Lucid Master",
+        "lucid_master": "Lucid Expert",
         "lucid_master_desc": "You experienced 10 lucid dreams"
       }
     },
@@ -2538,7 +2538,7 @@
         "Je fais confiance à la sagesse de mon subconscient et je comprends ses messages.",
         "Chaque rêve me rapproche de moi-même.",
         "J'accepte mes ombres et je laisse briller ma lumière.",
-        "Je suis ouvert aux conseils de réflexion et soutenu dans mon voyage."
+        "Je suis ouvert aux conseils de réflexion et soutenu dans mon parcours de réflexion."
       ],
       "default_art_suggestions": [
         "Composition lune et lumières",
@@ -2610,26 +2610,26 @@
       "weekly_dream_summary": "Résumé hebdomadaire des rêves"
     },
     "symbol_acknowledgments": {
-      "snake": "Le serpent est l'un des symboles les plus puissants et multicouches dans les rêves. Il peut représenter la transformation, la guérison, les peurs cachées ou la sagesse.",
+      "snake": "Le serpent est l'un des symboles les plus puissants et multicouches dans les rêves. Il peut représenter le changement, la récupération, les peurs cachées ou la sagesse.",
       "water": "L'eau est un symbole universel représentant l'état émotionnel et le subconscient dans les rêves.",
       "flying": "Voler est une expérience puissante dans les rêves qui peut pointer vers des thèmes de liberté, de perspective élevée ou de transcendance des limitations.",
       "falling": "Les rêves de chute peuvent refléter des peurs de perdre le contrôle, l'insécurité ou des sentiments ressentis avant une transition majeure.",
       "teeth": "Les rêves de dents peuvent être liés à la perte, au changement, aux préoccupations d'apparence ou aux problèmes de communication.",
-      "death": "Les rêves de mort ne sont souvent pas littéraux. Ils peuvent symboliser la transformation, la fin d'un chapitre de vie ou le lâcher-prise de l'ancien.",
+      "death": "Les rêves de mort ne sont souvent pas littéraux. Ils peuvent symboliser le changement, la fin d'un chapitre de vie ou le lâcher-prise de l'ancien.",
       "being_chased": "Les rêves de poursuite peuvent représenter des émotions, des responsabilités ou des peurs que tu évites dans ta vie éveillée.",
       "baby": "Les rêves de bébé peuvent symboliser de nouveaux débuts, des projets créatifs ou ta connexion avec ton enfant intérieur et ta vulnérabilité.",
       "house": "Une maison dans les rêves est vue comme un reflet de soi et du monde intérieur. L'état et les pièces de la maison sont significatifs.",
-      "car": "Les rêves de voiture pointent vers des thèmes de contrôle, de direction et de progression dans le voyage de la vie.",
+      "car": "Les rêves de voiture pointent vers des thèmes de contrôle, de direction et de progression dans le chemin de la vie.",
       "dog": "Un chien peut représenter la loyauté, l'amitié ou nos côtés instinctifs. Le comportement du chien dans le rêve est significatif.",
       "cat": "Un chat est associé à l'indépendance, l'intuition et le mystère. Il peut aussi symboliser l'énergie féminine ou des aspects cachés de soi.",
       "money": "Les rêves d'argent peuvent refléter des thèmes de valeur, d'estime de soi et d'accès aux ressources.",
       "exam": "Les rêves d'examen peuvent être liés à l'anxiété de performance, à la peur du jugement ou aux épreuves de la vie.",
       "nakedness": "Les rêves de nudité sont liés à la vulnérabilité, l'expression du soi authentique ou la peur de l'exposition.",
       "getting_lost": "Les rêves de se perdre peuvent refléter des sentiments de perte de direction dans la vie, une recherche d'identité ou des situations incertaines.",
-      "fire": "Le feu peut représenter la passion, la colère, la transformation ou la purification. Le fait que le feu soit destructeur ou chaleureux est important.",
+      "fire": "Le feu peut représenter la passion, la colère, le changement ou la purification. Le fait que le feu soit destructeur ou chaleureux est important.",
       "blood": "Le sang peut pointer vers des thèmes liés à l'énergie vitale, aux blessures émotionnelles ou aux liens familiaux.",
       "wedding": "Les rêves de mariage/mariée peuvent symboliser l'union, l'engagement ou la transition vers une nouvelle phase de vie.",
-      "illness": "Les rêves de maladie peuvent pointer vers des déséquilibres émotionnels ou intérieurs, des domaines qui ont besoin de guérison ou des besoins négligés.",
+      "illness": "Les rêves de maladie peuvent pointer vers des déséquilibres émotionnels ou intérieurs, des domaines qui ont besoin de récupération ou des besoins négligés.",
       "general": "Chaque symbole de rêve porte une signification personnelle. L'important est de découvrir ce que le symbole signifie pour toi dans ta vie."
     },
     "context_questions": {
@@ -2840,7 +2840,7 @@
     "affirmation": "Affirmation",
     "evening": "Soir",
     "morning_ritual": "Rituel du Matin",
-    "morning_subtitle": "Commencez la journee avec une energie positive",
+    "morning_subtitle": "Commencez la journee avec un élan stable",
     "best_time": "Meilleur Moment",
     "todays_intention": "Intention du Jour",
     "ritual_steps": "Etapes du Rituel",
@@ -2848,7 +2848,7 @@
     "suggested_crystal": "Cristal Suggere",
     "suggested_essential_oil": "Huile Essentielle Suggeree",
     "todays_meditation": "Meditation du Jour",
-    "find_inner_peace": "Trouvez la paix interieure",
+    "find_inner_peace": "Trouvez le calme intérieur",
     "recommended_duration": "Duree Recommandee",
     "meditation_guide": "Guide de Meditation",
     "breathing_exercise": "Exercice de Respiration",
@@ -2877,9 +2877,9 @@
     "sleep_preparation": "Preparation au Sommeil",
     "crystals": {
       "amethyst": "Amethyst",
-      "amethyst_benefit": "Inner peace and intuition",
+      "amethyst_benefit": "Inner calm and intuition",
       "citrine": "Citrine",
-      "citrine_benefit": "Abundance and positive energy",
+      "citrine_benefit": "Abundance and steady momentum",
       "rose_quartz": "Rose Quartz",
       "rose_quartz_benefit": "Love and self-love",
       "tigers_eye": "Tiger's Eye",
@@ -2914,7 +2914,7 @@
     "meditations": {
       "breath_meditation": "Breath Meditation",
       "breath_focus": "Focus on breath",
-      "breath_desc": "Breath meditation is the most effective way to calm the mind. Today, find inner peace by focusing only on your breath.",
+      "breath_desc": "Breath meditation is the most effective way to calm the mind. Today, find inner calm by focusing only on your breath.",
       "body_scan": "Body Scan",
       "body_awareness": "Body awareness",
       "body_scan_desc": "Connect with your body through body scan meditation and notice any tension.",
@@ -3299,12 +3299,12 @@
     },
     "recommendations": {
       "keep_journal": "Découvrez des motifs en tenant un journal des rêves chaque jour.",
-      "nightmare_work": "Travail avec les cauchemars: Transformez-les avec des techniques lucides.",
+      "nightmare_work": "Travail avec les cauchemars: Recadrez-les avec des techniques lucides.",
       "relaxation_ritual": "Créez un rituel de relaxation avant le sommeil.",
       "reality_check": "Essayez la technique de vérification de la réalité - vous avez un potentiel de rêve lucide.",
       "fear_theme": "Examinez le thème de la peur - vous pouvez faire un travail d'ombre.",
       "longing_journal": "Tenez un journal de réflexion sur le sentiment de nostalgie.",
-      "keep_going": "Votre voyage onirique se passe très bien. Continuez à enregistrer!"
+      "keep_going": "Votre journal onirique se passe très bien. Continuez à enregistrer!"
     },
     "themes": {
       "unknown": "Inconnu",
@@ -3312,7 +3312,7 @@
       "awareness": "Conscience",
       "shadow_work": "Travail de l'Ombre",
       "recurring_pattern": "Motif Récurrent",
-      "hero_journey": "Voyage du Héros",
+      "hero_journey": "Arc du Héros",
       "seeking": "Recherche"
     },
     "shadow": {
@@ -3322,13 +3322,13 @@
       "calm": "L'ombre est calme, l'intégration continue."
     },
     "archetype": {
-      "starting": "Le voyage archétypal commence.",
+      "starting": "L'exploration archétypale commence.",
       "hero": "Archétype du héros actif - avancez avec courage!",
-      "seeker": "Archétype du chercheur - vous êtes en voyage intérieur.",
+      "seeker": "Archétype du chercheur - vous êtes en exploration intérieure.",
       "rescuer": "Archétype du sauveur - vous soutenez les autres.",
       "observer": "Archétype de l'observateur - vous développez la conscience.",
       "fleeing": "Thème de fuite - qu'évitez-vous d'affronter?",
-      "evolving": "Votre voyage archétypal évolue."
+      "evolving": "Votre exploration archétypale évolue."
     },
     "story_arc": {
       "single": "Épisode unique",
@@ -3380,7 +3380,7 @@
       "merak": "Écrivez vos questions, apprenez à vivre avec les questions plutôt que chercher des réponses.",
       "sucluluk": "Examinez la culpabilité: est-elle réelle ou apprise? Écrivez-vous une lettre.",
       "ozlem": "Honorez le désir ardent mais restez présent. Accepter la perte ouvre des portes vers l'avenir.",
-      "heyecan": "Transformez l'excitation en action. Faites un pas aujourd'hui.",
+      "heyecan": "Canalisez l'excitation en action. Faites un pas aujourd'hui.",
       "donukluk": "Retournez à votre corps. Bougez, respirez, commencez lentement à ressentir.",
       "ofke": "Exprimez la colère sainement: sport, écriture, créativité. Mais ne blessez personne."
     },
@@ -3469,8 +3469,8 @@
       "card_insight_desc": "Approfondissez le message de votre rêve avec le reflection card",
       "neptune_title": "Eau & Émotions",
       "neptune_desc": "Les symboles d'eau sont connectés à la profondeur émotionnelle",
-      "pluto_title": "Transformation",
-      "pluto_desc": "Les symboles de transformation résonnent avec un changement personnel profond",
+      "pluto_title": "Changement Profond",
+      "pluto_desc": "Les symboles de renouvellement résonnent avec un changement personnel profond",
       "category_self_awareness": "Conscience de Soi",
       "category_moon": "Lune",
       "category_symbols": "Symbols"

@@ -231,8 +231,8 @@ class _MonthlyReflectionScreenState
                     const SizedBox(height: 8),
                     Text(
                       isEn
-                          ? 'Unlock your full monthly report'
-                          : 'Aylık raporunun tamamını aç',
+                          ? 'Access your full monthly report'
+                          : 'Aylık raporunun tamamına eriş',
                       style: TextStyle(
                         color: isDark ? Colors.white : Colors.black87,
                         fontSize: 14,

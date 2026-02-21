@@ -52,6 +52,7 @@ import '../services/shift_outlook_service.dart';
 import '../services/emotional_cycle_service.dart';
 import '../services/cycle_sync_service.dart';
 import '../services/cycle_correlation_service.dart';
+import '../services/shadow_work_service.dart';
 import '../models/journal_entry.dart';
 import '../models/cross_correlation_result.dart';
 
@@ -752,4 +753,14 @@ final cycleCorrelationServiceProvider =
   final cycleSyncService = await ref.watch(cycleSyncServiceProvider.future);
   final journalService = await ref.watch(journalServiceProvider.future);
   return CycleCorrelationService(cycleSyncService, journalService);
+});
+
+// =============================================================================
+// SHADOW WORK PROVIDERS (Guided Shadow Journal)
+// =============================================================================
+
+final shadowWorkServiceProvider = FutureProvider<ShadowWorkService>((
+  ref,
+) async {
+  return await ShadowWorkService.init();
 });

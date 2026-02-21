@@ -37,6 +37,7 @@ import '../../features/app_lock/presentation/app_lock_screen.dart';
 import '../../features/admin/presentation/admin_login_screen.dart';
 import '../../features/admin/presentation/admin_dashboard_screen.dart';
 import '../../features/cycle_sync/presentation/cycle_sync_screen.dart';
+import '../../features/shadow_work/presentation/shadow_work_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
 import '../../data/services/admin_auth_service.dart';
 import '../../data/services/storage_service.dart';
@@ -190,6 +191,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.cycleSync,
         builder: (context, state) => const CycleSyncScreen(),
+      ),
+      GoRoute(
+        path: Routes.shadowWork,
+        builder: (context, state) => const ShadowWorkScreen(),
       ),
       // ════════════════════════════════════════════════════════════════
       // BREATHE (sub-screens, outside shell)

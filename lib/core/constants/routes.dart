@@ -109,6 +109,11 @@ class Routes {
   static const String cycleSync = '/cycle-sync';
 
   // ════════════════════════════════════════════════════════════════
+  // SHADOW WORK (Guided Shadow Integration Journal)
+  // ════════════════════════════════════════════════════════════════
+  static const String shadowWork = '/shadow-work';
+
+  // ════════════════════════════════════════════════════════════════
   // CALENDAR & SEARCH
   // ════════════════════════════════════════════════════════════════
   static const String calendarHeatmap = '/calendar';

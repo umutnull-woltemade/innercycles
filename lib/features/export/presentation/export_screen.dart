@@ -493,8 +493,8 @@ class _LockedEntriesCta extends StatelessWidget {
     return Semantics(
       button: true,
       label: isEn
-          ? 'Unlock $lockedEntries locked entries'
-          : '$lockedEntries kilitli kaydı aç',
+          ? 'Access $lockedEntries locked entries'
+          : '$lockedEntries kilitli kayda eriş',
       child: GestureDetector(
         onTap: onUnlock,
         child: Container(
@@ -571,7 +571,7 @@ class _LockedEntriesCta extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Text(
-                  isEn ? 'Unlock' : 'Aç',
+                  isEn ? 'Access' : 'Eriş',
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,

@@ -2178,8 +2178,8 @@ ${_getPersonalAdvice(sign)}''';
                     const SizedBox(height: 12),
                     Semantics(
                       label: isEn
-                          ? 'Unlock all perspectives'
-                          : 'Tüm perspektifleri aç',
+                          ? 'Access all perspectives'
+                          : 'Tüm perspektiflere eriş',
                       button: true,
                       child: GestureDetector(
                         onTap: () => showContextualPaywall(
@@ -2212,8 +2212,8 @@ ${_getPersonalAdvice(sign)}''';
                           ),
                           child: Text(
                             isEn
-                                ? 'Unlock All Perspectives'
-                                : 'Tum Perspektifleri Ac',
+                                ? 'Access All Perspectives'
+                                : 'Tüm Perspektiflere Eriş',
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 13,

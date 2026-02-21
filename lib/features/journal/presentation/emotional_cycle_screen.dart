@@ -940,7 +940,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         else
           Semantics(
             button: true,
-            label: isEn ? 'Unlock Shift Outlook' : 'Değişim Görünümünü Aç',
+            label: isEn ? 'Access Shift Outlook' : 'Değişim Görünümüne Eriş',
             child: GestureDetector(
               onTap: () {
                 HapticFeedback.lightImpact();
@@ -975,8 +975,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     Expanded(
                       child: Text(
                         isEn
-                            ? 'Unlock Shift Outlook to see when your emotional phases may shift'
-                            : 'Duygusal evrelerinin ne zaman kayabileceğini görmek için Kayma Görünümünü aç',
+                            ? 'Access Shift Outlook to see when your emotional phases may shift'
+                            : 'Duygusal evrelerinin ne zaman kayabileceğini görmek için Kayma Görünümüne eriş',
                         style: TextStyle(
                           fontSize: 13,
                           color: isDark
@@ -1104,7 +1104,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           const Icon(Icons.lock_outline, color: AppColors.starGold, size: 36),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            isEn ? 'Unlock Full 30-Day View' : 'Tam 30 Günlük Görünümü Aç',
+            isEn ? 'Access Full 30-Day View' : 'Tam 30 Günlük Görünüme Eriş',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: AppColors.starGold,
               fontWeight: FontWeight.w600,

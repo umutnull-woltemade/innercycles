@@ -25,6 +25,7 @@ enum PaywallContext {
   programs,
   challenges,
   cycleSync,
+  shadowWork,
   general,
 }
 
@@ -524,7 +525,7 @@ class _ContextualPaywallSheetState
           subtitle: isEn
               ? '4 more interpretation perspectives available. See your dream through every lens.'
               : '4 yorum perspektifi daha mevcut. Rüyanı her açıdan gör.',
-          cta: isEn ? 'Unlock All Perspectives' : 'Tüm Perspektifleri Aç',
+          cta: isEn ? 'Access All Perspectives' : 'Tüm Perspektiflere Eriş',
         );
 
       case PaywallContext.streakFreeze:
@@ -617,8 +618,23 @@ class _ContextualPaywallSheetState
               ? 'See how your emotional patterns align with your hormonal cycle. Full history and phase-aware insights.'
               : 'Duygusal kalıplarının hormonal döngünle nasıl uyumlandığını gör. Tam geçmiş ve evreye duyarlı içgörüler.',
           cta: isEn
-              ? 'Unlock Cycle Insights'
-              : 'Döngü İçgörülerini Aç',
+              ? 'Access Cycle Insights'
+              : 'Döngü İçgörülerine Eriş',
+        );
+
+      case PaywallContext.shadowWork:
+        return _PaywallConfig(
+          icon: Icons.psychology_rounded,
+          accentColor: const Color(0xFF9C27B0),
+          headline: isEn
+              ? 'Explore your hidden patterns'
+              : 'Gizli kalıplarını keşfet',
+          subtitle: isEn
+              ? 'Guided shadow work helps you understand the unconscious patterns shaping your emotions and behaviors.'
+              : 'Rehberli gölge çalışması, duygularını ve davranışlarını şekillendiren bilinçdışı kalıpları anlamanı sağlar.',
+          cta: isEn
+              ? 'Access Shadow Work'
+              : 'Gölge Çalışmasına Eriş',
         );
 
       case PaywallContext.general:

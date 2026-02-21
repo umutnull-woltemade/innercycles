@@ -85,6 +85,13 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 child: _CycleSyncCard(isEn: isEn, isDark: isDark),
               ),
 
+              // ═══════════════════════════════════════════════════════
+              // SHADOW WORK CARD (if user has shadow entries)
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _ShadowWorkCard(isEn: isEn, isDark: isDark),
+              ),
+
               const SliverToBoxAdapter(child: SizedBox(height: 12)),
 
               // ═══════════════════════════════════════════════════════
@@ -906,5 +913,122 @@ class _CycleSyncCard extends ConsumerWidget {
       case CyclePhase.luteal:
         return AppColors.amethyst;
     }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SHADOW WORK CARD - Today Feed Integration
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _ShadowWorkCard extends ConsumerWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _ShadowWorkCard({required this.isEn, required this.isDark});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final shadowAsync = ref.watch(shadowWorkServiceProvider);
+
+    return shadowAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (service) {
+        final streak = service.getStreak();
+        final breakthroughs = service.getBreakthroughCount();
+        final total = service.totalEntries;
+
+        // Show card for all users — it's a discoverable entry point
+        final subtitle = total == 0
+            ? (isEn
+                ? 'Explore your hidden patterns'
+                : 'Gizli kalıplarını keşfet')
+            : (isEn
+                ? '$total entries · $breakthroughs insights${streak > 0 ? ' · $streak day streak' : ''}'
+                : '$total giriş · $breakthroughs içgörü${streak > 0 ? ' · $streak gün seri' : ''}');
+
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
+          child: GestureDetector(
+            onTap: () {
+              HapticFeedback.selectionClick();
+              context.push(Routes.shadowWork);
+            },
+            child: Semantics(
+              label: isEn ? 'Shadow Work Journal' : 'Gölge Çalışması Günlüğü',
+              button: true,
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF9C27B0)
+                      .withValues(alpha: isDark ? 0.12 : 0.08),
+                  borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                  border: Border.all(
+                    color:
+                        const Color(0xFF9C27B0).withValues(alpha: 0.3),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 36,
+                      height: 36,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF9C27B0)
+                            .withValues(alpha: 0.2),
+                        shape: BoxShape.circle,
+                      ),
+                      alignment: Alignment.center,
+                      child: const Icon(
+                        Icons.psychology_rounded,
+                        size: 20,
+                        color: Color(0xFF9C27B0),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            isEn
+                                ? 'Shadow Work Journal'
+                                : 'Gölge Çalışması Günlüğü',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
+                            ),
+                          ),
+                          Text(
+                            subtitle,
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Icon(
+                      Icons.chevron_right_rounded,
+                      size: 20,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ).animate().fadeIn(delay: 140.ms, duration: 400.ms);
+      },
+    );
   }
 }

@@ -127,7 +127,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
             // Streak freeze upsell for non-premium users
             if (!isPremium)
               Semantics(
-                label: isEn ? 'Unlock streak freeze' : 'Seri dondurmayı aç',
+                label: isEn ? 'Access streak freeze' : 'Seri dondurmaya eriş',
                 button: true,
                 child: GestureDetector(
                   onTap: () => showContextualPaywall(

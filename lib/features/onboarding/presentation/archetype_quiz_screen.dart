@@ -147,8 +147,8 @@ const List<_QuizQuestion> _questions = [
         scores: {'lover': 3, 'orphan': 1},
       ),
       _QuizOption(
-        textEn: 'Transforming and reinventing yourself',
-        textTr: 'Dönüşmek ve kendini yeniden keşfetmek',
+        textEn: 'Evolving and reinventing yourself',
+        textTr: 'Gelişmek ve kendini yeniden keşfetmek',
         scores: {'magician': 3, 'rebel': 1},
       ),
     ],

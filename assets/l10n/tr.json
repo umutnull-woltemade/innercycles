@@ -249,7 +249,7 @@
         "explore_category": "Keşfet",
         "more_tools_category": "Daha Fazla Araç",
         "no_results": "Sonuç bulunamadı",
-        "kozmoz_master": "InnerCycles Ustası",
+        "kozmoz_master": "InnerCycles Uzmanı",
         "kozmoz_subtitle": "arketipi için kişiselleştirilmiş rehberlik",
         "most_popular_questions": "En Popüler Sorular",
         "other_questions": "Başka sorular",
@@ -1249,7 +1249,7 @@
         "result_self_awareness_medium_desc": "Öz Farkındalık ile bağlantın gelişiyor. Kişisel profilini keşfederek kendini daha iyi tanıyabilirsin.",
         "result_self_awareness_low_title": "İç Kaşif",
         "result_self_awareness_low_desc": "İç dünyanı keşfedebilirsin! Basit arketip yorumlarıyla başlayarak kişisel yolculuğuna adım at.",
-        "result_number_high_title": "Sayı Ustası",
+        "result_number_high_title": "Sayı Uzmanı",
         "result_number_high_desc": "Sayılarla güçlü bir bağın var! Kişisel sayı analiz raporun ile yaşam yolundaki örüntüleri keşfet.",
         "result_number_medium_title": "Sayı Yolcusu",
         "result_number_medium_desc": "Sayıların enerjisini hissediyorsun. Yaşam yolu sayınla hayatına yön verebilirsin.",
@@ -1328,8 +1328,8 @@
             "decision_2": "Kararlar genellikle birden fazla değerimizi aynı anda dengelememizi gerektirir. Bu kararı zorlaştıran, çatışan değerler olabilir mi?\n\nBir yıl sonra geriye baktığında, hangi seçimi yapmış olmayı isterdin?\n\nBu kararı daha net görmeni engelleyen ne var?",
             "relationship_1": "İlişkiler hayatımızın en anlamlı ama aynı zamanda en zorlu yönlerinden biri olabilir. Her ilişki kendi dinamiğini taşır.\n\nBu ilişkide şu anda en çok neyi hissediyorsun? Ve bu ilişkiden ne beklediğini biliyor musun?\n\nİdeal senaryoda bu ilişki nasıl görünürdü?",
             "relationship_2": "İlişkilerdeki zorluklar genellikle ihtiyaçlarımız veya sınırlarımız hakkında bir şeyler ortaya çıkarır.\n\nBu durumda senin için en önemli olan ne? Ve bunu karşı tarafa ifade edebildin mi?\n\nBu ilişkide kendini nasıl hissediyorsun?",
-            "self_discovery_1": "Kendini tanıma yolculuğu ömür boyu süren bir süreçtir. Sorular sorman, zaten bu yolda olduğunu gösteriyor.\n\nHayatında en çok ne zaman kendin gibi hissediyorsun? Ve ne zaman kendin gibi hissetmekte zorlanıyorsun?\n\nSeni en iyi tanıyan biri seni nasıl tarif ederdi?",
-            "self_discovery_2": "Kim olduğumuzu keşfetmek cesaret isteyen bir yolculuktur. Her deneyimimiz bize kendimiz hakkında bir şeyler öğretir.\n\nDeğerlerinin - gerçekten önem verdiğin şeylerin - neler olduğunu hiç düşündün mü?\n\nŞu anda hayatında neyi değiştirmek isterdin?",
+            "self_discovery_1": "Kendini tanıma süreci ömür boyu devam eder. Sorular sorman, zaten bu yolda olduğunu gösteriyor.\n\nHayatında en çok ne zaman kendin gibi hissediyorsun? Ve ne zaman kendin gibi hissetmekte zorlanıyorsun?\n\nSeni en iyi tanıyan biri seni nasıl tarif ederdi?",
+            "self_discovery_2": "Kim olduğumuzu keşfetmek cesaret isteyen bir süreçtir. Her deneyimimiz bize kendimiz hakkında bir şeyler öğretir.\n\nDeğerlerinin - gerçekten önem verdiğin şeylerin - neler olduğunu hiç düşündün mü?\n\nŞu anda hayatında neyi değiştirmek isterdin?",
             "general_1": "Aklından geçenleri paylaştığın için teşekkürler. Bazen düşünceleri kelimelerle ifade etmek onları daha net görmemize yardımcı olur.\n\nEn çok ne ağırlık yapıyor? Ve bu ne zamandır aklında?\n\nNe sonuç umarsın?",
             "general_2": "Görünüşe göre aklında çok şey var. Düşünmeye zaman ayırmak değerli bir pratik.\n\nBu durumda bir şeyi değiştirebilsen, ne olurdu?\n\nŞu anda nasıl bir desteğe ihtiyacın var?"
         }
@@ -1616,7 +1616,7 @@
                 "description": "Haritana özel rehberlik."
             },
             "number_mystery": {
-                "description": "Sayıların gizemi — benzer bir yolculuk."
+                "description": "Sayıların gizemi — benzer bir keşif."
             },
             "daily_reflection": {
                 "title": "Günlük İçgörü",
@@ -2329,7 +2329,7 @@
         "achievement_first_step_desc": "İlk rüyanı kaydettin",
         "achievement_dream_explorer": "Rüya Kaşifi",
         "achievement_dream_explorer_desc": "10 rüya kaydettin",
-        "achievement_dream_master": "Rüya Ustası",
+        "achievement_dream_master": "Rüya Uzmanı",
         "achievement_dream_master_desc": "50 rüya kaydettin",
         "achievement_dream_keeper": "Rüya Bekçisi",
         "achievement_dream_keeper_desc": "100 rüya kaydettin",
@@ -2339,11 +2339,11 @@
         "achievement_month_streak_desc": "30 gün seri yaptın",
         "achievement_symbol_seeker": "Sembol Avcısı",
         "achievement_symbol_seeker_desc": "10 farklı sembol keşfettin",
-        "achievement_symbol_master": "Sembol Ustası",
+        "achievement_symbol_master": "Sembol Uzmanı",
         "achievement_symbol_master_desc": "25 farklı sembol keşfettin",
         "achievement_awakening": "Uyanış",
         "achievement_awakening_desc": "İlk bilinçli rüyanı yaşadın",
-        "achievement_lucid_master": "Bilinçli Rüya Ustası",
+        "achievement_lucid_master": "Bilinçli Rüya Uzmanı",
         "achievement_lucid_master_desc": "10 bilinçli rüya yaşadın",
         "days": {
             "mon": "Pzt",
@@ -2511,7 +2511,7 @@
                 "dream_explorer_desc": "10 rüya kaydettin",
                 "dream_traveler": "Rüya Gezgini",
                 "dream_traveler_desc": "25 rüya kaydettin",
-                "dream_master": "Rüya Ustası",
+                "dream_master": "Rüya Uzmanı",
                 "dream_master_desc": "50 rüya kaydettin",
                 "weekly_streak": "Haftalık Seri",
                 "weekly_streak_desc": "7 gün art arda rüya kaydet",
@@ -2519,11 +2519,11 @@
                 "monthly_streak_desc": "30 gün art arda rüya kaydet",
                 "symbol_hunter": "Sembol Avcısı",
                 "symbol_hunter_desc": "20 farklı sembol keşfet",
-                "symbol_master": "Sembol Ustası",
+                "symbol_master": "Sembol Uzmanı",
                 "symbol_master_desc": "50 farklı sembol keşfet",
                 "awakening": "Uyanış",
                 "awakening_desc": "İlk bilinçli rüyanı yaşadın",
-                "lucid_master": "Bilinçli Rüya Ustası",
+                "lucid_master": "Bilinçli Rüya Uzmanı",
                 "lucid_master_desc": "10 bilinçli rüya yaşadın"
             }
         },
@@ -3326,9 +3326,9 @@
             "calm": "Gölge sakin, entegrasyon sürüyor."
         },
         "archetype": {
-            "starting": "Arketip yolculuğu başlıyor.",
+            "starting": "Arketip keşfi başlıyor.",
             "hero": "Kahraman arketipi aktif - cesaretle ilerle!",
-            "seeker": "Arayıcı arketipi - içsel bir yolculuktasın.",
+            "seeker": "Arayıcı arketipi - içsel bir keşifteyesin.",
             "rescuer": "Kurtarıcı arketipi - başkalarını destekliyorsun.",
             "observer": "Gözlemci arketipi - farkındalık geliştiriyorsun.",
             "fleeing": "Kaçış teması - neyle yüzleşmekten kaçınıyorsun?",

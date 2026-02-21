@@ -1671,9 +1671,9 @@ class QuizContent {
       ),
       QuizQuestion(
         text:
-            'Which self-care pattern do you tend to fall into during stressful periods?',
+            'Which recovery pattern do you tend to fall into during stressful periods?',
         textTr:
-            'Stresli dönemlerde hangi öz bakım örüntüsüne düşme eğiliminde olursunuz?',
+            'Stresli dönemlerde hangi toparlanma örüntüsüne düşme eğiliminde olursunuz?',
         options: [
           QuizOption(
             text:
@@ -1691,9 +1691,9 @@ class QuizContent {
           ),
           QuizOption(
             text:
-                'Struggling to take any self-care action at all — feeling paralyzed.',
+                'Struggling to take any recovery action at all — feeling paralyzed.',
             textTr:
-                'Herhangi bir öz bakım eylemi yapmakta zorlanma — felç hissetme.',
+                'Herhangi bir toparlanma eylemi yapmakta zorlanma — felç hissetme.',
             scores: {'freeze': 3},
           ),
           QuizOption(
