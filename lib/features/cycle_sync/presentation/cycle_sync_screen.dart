@@ -174,95 +174,103 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     final progress = cycleDay != null ? cycleDay / cycleLength : 0.0;
     final phaseColor = _phaseColor(phase);
 
-    return GlassPanel(
-      elevation: GlassElevation.g3,
-      glowColor: phaseColor.withValues(alpha: 0.3),
-      padding: const EdgeInsets.all(AppConstants.spacingXl),
-      borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-      child: Column(
-        children: [
-          // Circular progress
-          SizedBox(
-            width: 120,
-            height: 120,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                SizedBox(
-                  width: 120,
-                  height: 120,
-                  child: CircularProgressIndicator(
-                    value: progress.clamp(0.0, 1.0),
-                    strokeWidth: 8,
-                    backgroundColor: isDark
-                        ? AppColors.surfaceLight.withValues(alpha: 0.2)
-                        : AppColors.lightSurfaceVariant,
-                    valueColor: AlwaysStoppedAnimation(phaseColor),
+    return Semantics(
+      label: isEn
+          ? 'Cycle day ${cycleDay ?? 0} of $cycleLength, ${phase != null ? phase.displayNameEn : "unknown"} phase'
+          : 'Döngü günü ${cycleDay ?? 0} / $cycleLength, ${phase != null ? phase.displayNameTr : "bilinmiyor"} evresi',
+      child: GlassPanel(
+        elevation: GlassElevation.g3,
+        glowColor: phaseColor.withValues(alpha: 0.3),
+        padding: const EdgeInsets.all(AppConstants.spacingXl),
+        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+        child: Column(
+          children: [
+            // Circular progress
+            SizedBox(
+              width: 120,
+              height: 120,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  SizedBox(
+                    width: 120,
+                    height: 120,
+                    child: CircularProgressIndicator(
+                      value: progress.clamp(0.0, 1.0),
+                      strokeWidth: 8,
+                      backgroundColor: isDark
+                          ? AppColors.surfaceLight.withValues(alpha: 0.2)
+                          : AppColors.lightSurfaceVariant,
+                      valueColor: AlwaysStoppedAnimation(phaseColor),
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        isEn ? 'Day' : 'Gün',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                        ),
+                      ),
+                      Text(
+                        '${cycleDay ?? '-'}',
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: phaseColor,
+                        ),
+                      ),
+                      Text(
+                        isEn ? 'of $cycleLength' : '/ $cycleLength',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: AppConstants.spacingMd),
+            if (phase != null)
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  color: phaseColor.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  isEn ? phase.displayNameEn : phase.displayNameTr,
+                  style: TextStyle(
+                    color: phaseColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
                   ),
                 ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      isEn ? 'Day' : 'Gün',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-                    Text(
-                      '${cycleDay ?? '-'}',
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: phaseColor,
-                      ),
-                    ),
-                    Text(
-                      isEn ? 'of $cycleLength' : '/ $cycleLength',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-                  ],
+              ),
+            const SizedBox(height: 4),
+            if (phase != null)
+              Text(
+                isEn ? phase.descriptionEn : phase.descriptionTr,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                 ),
-              ],
-            ),
-          ),
-          const SizedBox(height: AppConstants.spacingMd),
-          if (phase != null)
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-              decoration: BoxDecoration(
-                color: phaseColor.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(20),
+                textAlign: TextAlign.center,
               ),
-              child: Text(
-                isEn ? phase.displayNameEn : phase.displayNameTr,
-                style: TextStyle(
-                  color: phaseColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
-                ),
-              ),
-            ),
-          const SizedBox(height: 4),
-          if (phase != null)
-            Text(
-              isEn ? phase.descriptionEn : phase.descriptionTr,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
-              textAlign: TextAlign.center,
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -755,14 +763,18 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
   // ═══════════════════════════════════════════════════════════════════════
 
   Widget _buildLogPeriodFab(BuildContext context, bool isEn) {
-    return FloatingActionButton.extended(
-      onPressed: () => _showLogPeriodSheet(context, isEn),
-      backgroundColor: AppColors.amethyst,
-      foregroundColor: Colors.white,
-      icon: const Icon(Icons.water_drop_rounded),
-      label: Text(
-        isEn ? 'Log Period' : 'Adet Kaydet',
-        style: const TextStyle(fontWeight: FontWeight.w600),
+    return Semantics(
+      label: isEn ? 'Log period start' : 'Adet başlangıcını kaydet',
+      button: true,
+      child: FloatingActionButton.extended(
+        onPressed: () => _showLogPeriodSheet(context, isEn),
+        backgroundColor: AppColors.amethyst,
+        foregroundColor: Colors.white,
+        icon: const Icon(Icons.water_drop_rounded),
+        label: Text(
+          isEn ? 'Log Period' : 'Adet Kaydet',
+          style: const TextStyle(fontWeight: FontWeight.w600),
+        ),
       ),
     );
   }

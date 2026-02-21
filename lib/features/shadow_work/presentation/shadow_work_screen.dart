@@ -32,9 +32,24 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
   int _intensity = 5;
   bool _breakthroughMoment = false;
   bool _isWriting = false;
+  bool _hasText = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _responseController.addListener(_onTextChanged);
+  }
+
+  void _onTextChanged() {
+    final hasText = _responseController.text.trim().isNotEmpty;
+    if (hasText != _hasText) {
+      setState(() => _hasText = hasText);
+    }
+  }
 
   @override
   void dispose() {
+    _responseController.removeListener(_onTextChanged);
     _responseController.dispose();
     super.dispose();
   }
@@ -578,7 +593,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton.icon(
-              onPressed: _responseController.text.trim().isEmpty
+              onPressed: !_hasText
                   ? null
                   : () async {
                       HapticFeedback.mediumImpact();
