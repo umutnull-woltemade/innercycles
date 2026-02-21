@@ -8,15 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		0568E1CB7AB7643EAD784674 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554B27EFEDE59B99CDF6B6A0 /* Pods_RunnerTests.framework */; };
-		B2C3D4E5F6A7B8C9D0E1F2A3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* PrivacyInfo.xcprivacy */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
+		277EEE112C7AC5DA8AA01DDF /* CyclePositionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC57CF3026ADBBA4C8E284F /* CyclePositionWidget.swift */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
+		34AA80E29511B35262D9FA7E /* LockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE56249063CC8B2B7FF3F31 /* LockScreenWidget.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		5B4D93E2556E6E1229A4DD9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A57B1210499D82A0BE8ADC8 /* Foundation.framework */; };
+		745DF11F7D5361049B5422F0 /* DailyReflectionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4799C21E90218CCD6A5B4F0A /* DailyReflectionWidget.swift */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		7FEBDD492E66F5C7592B7D8E /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D5F12CE508D0B38AB87889 /* Pods_Runner.framework */; };
+		91B5D27D44593618B1F1B430 /* MoodInsightWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34B93F47B68E7B5A26302C4 /* MoodInsightWidget.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		9CC25233496815D862414832 /* VenusWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E933422282320A4661B34E4F /* VenusWidgetBundle.swift */; };
+		B2C3D4E5F6A7B8C9D0E1F2A3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* PrivacyInfo.xcprivacy */; };
+		E83B1439F15A98F6273A5A8C /* VenusWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E939B169E35A630787BE7A3F /* VenusWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,9 +34,27 @@
 			remoteGlobalIDString = 97C146ED1CF9000F007C117D;
 			remoteInfo = Runner;
 		};
+		E9C94C1037520465AC36BCCE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 75E962392B85A23687DD439E;
+			remoteInfo = VenusWidget;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		63D5DB9FA0E527AF39493C2A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E83B1439F15A98F6273A5A8C /* VenusWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9705A1C41CF9048500538489 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -48,9 +73,12 @@
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
+		3CC57CF3026ADBBA4C8E284F /* CyclePositionWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CyclePositionWidget.swift; sourceTree = "<group>"; };
 		4156CE9556FD6490A5F61439 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		463B1B9358D0BA4C42F940D1 /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4799C21E90218CCD6A5B4F0A /* DailyReflectionWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DailyReflectionWidget.swift; sourceTree = "<group>"; };
 		554B27EFEDE59B99CDF6B6A0 /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EE56249063CC8B2B7FF3F31 /* LockScreenWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LockScreenWidget.swift; sourceTree = "<group>"; };
 		5F85AB158B697478F666CDD0 /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
 		68BB42EC350205E62CF2B7EB /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -63,13 +91,27 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB6091A7D92ED1268DF008EA /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
-		F1D5F12CE508D0B38AB87889 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4C107806883F485C2A1A2DE /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		9A57B1210499D82A0BE8ADC8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		A1B2C3D4E5F6A7B8C9D0E1F2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		AB6091A7D92ED1268DF008EA /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
+		B07F606802700ED955B383D5 /* VenusWidget.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = VenusWidget.entitlements; sourceTree = "<group>"; };
+		E933422282320A4661B34E4F /* VenusWidgetBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VenusWidgetBundle.swift; sourceTree = "<group>"; };
+		E939B169E35A630787BE7A3F /* VenusWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VenusWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1D5F12CE508D0B38AB87889 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F34B93F47B68E7B5A26302C4 /* MoodInsightWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoodInsightWidget.swift; sourceTree = "<group>"; };
+		F4C107806883F485C2A1A2DE /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		F89D38486D509C484C21A2E5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		32CE37BC6267130148535E77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B4D93E2556E6E1229A4DD9A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97C146EB1CF9000F007C117D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -89,6 +131,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04748A281780E2708DC9317E /* VenusWidget */ = {
+			isa = PBXGroup;
+			children = (
+				E933422282320A4661B34E4F /* VenusWidgetBundle.swift */,
+				4799C21E90218CCD6A5B4F0A /* DailyReflectionWidget.swift */,
+				F34B93F47B68E7B5A26302C4 /* MoodInsightWidget.swift */,
+				5EE56249063CC8B2B7FF3F31 /* LockScreenWidget.swift */,
+				3CC57CF3026ADBBA4C8E284F /* CyclePositionWidget.swift */,
+				F89D38486D509C484C21A2E5 /* Info.plist */,
+				B07F606802700ED955B383D5 /* VenusWidget.entitlements */,
+			);
+			name = VenusWidget;
+			path = VenusWidget;
+			sourceTree = "<group>";
+		};
 		1EBD97F53073939D195237CF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +187,7 @@
 				331C8082294A63A400263BE5 /* RunnerTests */,
 				1EBD97F53073939D195237CF /* Pods */,
 				ED4B63C335DED95324C7C98F /* Frameworks */,
+				04748A281780E2708DC9317E /* VenusWidget */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,6 +196,7 @@
 			children = (
 				97C146EE1CF9000F007C117D /* Runner.app */,
 				331C8081294A63A400263BE5 /* RunnerTests.xctest */,
+				E939B169E35A630787BE7A3F /* VenusWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,8 +222,17 @@
 			children = (
 				F1D5F12CE508D0B38AB87889 /* Pods_Runner.framework */,
 				554B27EFEDE59B99CDF6B6A0 /* Pods_RunnerTests.framework */,
+				F2942F18B1E24A5F615E676B /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F2942F18B1E24A5F615E676B /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				9A57B1210499D82A0BE8ADC8 /* Foundation.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +257,23 @@
 			productReference = 331C8081294A63A400263BE5 /* RunnerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		75E962392B85A23687DD439E /* VenusWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5503A53099C482E6B349FB83 /* Build configuration list for PBXNativeTarget "VenusWidget" */;
+			buildPhases = (
+				52FCF19361C1251B9C952AE2 /* Sources */,
+				32CE37BC6267130148535E77 /* Frameworks */,
+				C04A31A33DCEAB5B6E6F47FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VenusWidget;
+			productName = VenusWidgetExtension;
+			productReference = E939B169E35A630787BE7A3F /* VenusWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		97C146ED1CF9000F007C117D /* Runner */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
@@ -202,10 +287,12 @@
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				0A27FFCEB3B5EA0C6E4DA503 /* [CP] Embed Pods Frameworks */,
 				C6593B519A0EC62A8FD48AE9 /* [CP] Copy Pods Resources */,
+				63D5DB9FA0E527AF39493C2A /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				78DDA5CC88D858433B5A6AA5 /* PBXTargetDependency */,
 			);
 			name = Runner;
 			productName = Runner;
@@ -248,6 +335,7 @@
 			targets = (
 				97C146ED1CF9000F007C117D /* Runner */,
 				331C8080294A63A400263BE5 /* RunnerTests */,
+				75E962392B85A23687DD439E /* VenusWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -269,6 +357,13 @@
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 				B2C3D4E5F6A7B8C9D0E1F2A3 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C04A31A33DCEAB5B6E6F47FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +490,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		52FCF19361C1251B9C952AE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CC25233496815D862414832 /* VenusWidgetBundle.swift in Sources */,
+				745DF11F7D5361049B5422F0 /* DailyReflectionWidget.swift in Sources */,
+				91B5D27D44593618B1F1B430 /* MoodInsightWidget.swift in Sources */,
+				34AA80E29511B35262D9FA7E /* LockScreenWidget.swift in Sources */,
+				277EEE112C7AC5DA8AA01DDF /* CyclePositionWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97C146EA1CF9000F007C117D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -411,6 +518,12 @@
 			isa = PBXTargetDependency;
 			target = 97C146ED1CF9000F007C117D /* Runner */;
 			targetProxy = 331C8085294A63A400263BE5 /* PBXContainerItemProxy */;
+		};
+		78DDA5CC88D858433B5A6AA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VenusWidget;
+			target = 75E962392B85A23687DD439E /* VenusWidget */;
+			targetProxy = E9C94C1037520465AC36BCCE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -434,6 +547,61 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0228F4F6B169F69FC498077F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = VenusWidget/VenusWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8RBH9ALBH6;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VenusWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.venusone.innercycles.VenusWidget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		179620D429224FCC175674BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = VenusWidget/VenusWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8RBH9ALBH6;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VenusWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.venusone.innercycles.VenusWidget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		249021D3217E4FDB00AE95B9 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -501,7 +669,7 @@
 				DEVELOPMENT_TEAM = 8RBH9ALBH6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "InnerCycles";
+				INFOPLIST_KEY_CFBundleDisplayName = InnerCycles;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -695,7 +863,7 @@
 				DEVELOPMENT_TEAM = 8RBH9ALBH6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "InnerCycles";
+				INFOPLIST_KEY_CFBundleDisplayName = InnerCycles;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -725,7 +893,7 @@
 				DEVELOPMENT_TEAM = 8RBH9ALBH6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "InnerCycles";
+				INFOPLIST_KEY_CFBundleDisplayName = InnerCycles;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -741,6 +909,33 @@
 			};
 			name = Release;
 		};
+		A4D676F577A997F2A614DAD0 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = VenusWidget/VenusWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8RBH9ALBH6;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VenusWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.venusone.innercycles.VenusWidget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Profile;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -750,6 +945,16 @@
 				331C8088294A63A400263BE5 /* Debug */,
 				331C8089294A63A400263BE5 /* Release */,
 				331C808A294A63A400263BE5 /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5503A53099C482E6B349FB83 /* Build configuration list for PBXNativeTarget "VenusWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				179620D429224FCC175674BB /* Release */,
+				0228F4F6B169F69FC498077F /* Debug */,
+				A4D676F577A997F2A614DAD0 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

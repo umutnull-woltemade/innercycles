@@ -53,7 +53,7 @@
         "grant_permission": "Grant Permission",
         "hello": "Hello",
         "read_more": "Read More",
-        "unlock": "Unlock",
+        "unlock": "Access",
         "view_all": "View All",
         "show_all": "Show All",
         "continue_exploring": "Continue Exploring",
@@ -562,7 +562,7 @@
         "cosmic_powers": "What Pro Includes",
         "cosmic_powers_active": "Pro Features Active",
         "lifetime_access": "You have lifetime access!",
-        "open_cosmic_door": "Unlock Full Insights",
+        "open_cosmic_door": "Access Full Insights",
         "cosmic_door_opened": "Pro Features Active",
         "success_message": "Pro features active. Your full pattern history is accessible.",
         "view_plans": "See My Insights",
@@ -585,7 +585,7 @@
             "benefit_export": "Complete data export (CSV, JSON)",
             "benefit_reports": "Monthly & yearly growth reports",
             "benefit_programs": "Premium programs, challenges & tools",
-            "continue_pro": "Unlock Full Insights — $2.50/mo",
+            "continue_pro": "Access Full Pattern History",
             "not_now": "Not now",
             "legal_text": "Auto-renews yearly. Cancel anytime in Settings.",
             "privacy_policy": "Privacy Policy",
@@ -772,7 +772,7 @@
         },
         "locked_layer_preview": {
             "pro_badge": "PRO",
-            "unlock_default": "Unlock",
+            "unlock_default": "Access",
             "more_content": "+{count} more items"
         },
         "dream_prompt_card": {
@@ -1356,7 +1356,7 @@
         "edit_profile": "Edit Profile",
         "edit_profile_desc": "Update your birth information",
         "premium": "Premium",
-        "premium_desc": "Unlock all premium features",
+        "premium_desc": "Access all Pro features",
         "premium_active": "Premium Features Active",
         "manage_subscription": "Manage Subscription",
         "manage_subscription_desc": "View and manage your subscription",
@@ -1943,7 +1943,7 @@
         "day_suffix": "day",
         "strengths": "Strengths",
         "cosmic_summary": "Wellness Summary",
-        "spiritual_journey": "Personal Journey",
+        "spiritual_journey": "Personal Progress",
         "important_cycles": "Important Life Cycles",
         "special_months_of_year": "Special Months of the Year",
         "caution_required": "Caution Required",
@@ -3316,7 +3316,7 @@
             "awareness": "Awareness",
             "shadow_work": "Shadow Work",
             "recurring_pattern": "Recurring Pattern",
-            "hero_journey": "Hero Journey",
+            "hero_journey": "Hero Arc",
             "seeking": "Seeking"
         },
         "shadow": {
