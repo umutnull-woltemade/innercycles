@@ -554,7 +554,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                 elevation: 0,
               ),
               child: Text(
-                isEn ? 'Start Your Journey' : 'Yolculuğuna Başla',
+                isEn ? 'Get Started' : 'Başla',
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

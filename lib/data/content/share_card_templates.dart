@@ -160,8 +160,8 @@ class ShareCardTemplates {
   static const dreamExplorer = ShareCardTemplate(
     id: 'dream_explorer',
     category: ShareCardCategory.achievement,
-    titleEn: 'Dream Explorer',
-    titleTr: 'Rüya Kaşifi',
+    titleEn: 'Dream Logger',
+    titleTr: 'Rüya Kaydedici',
     gradientColors: [Color(0xFF0F2027), Color(0xFF203A43), Color(0xFF0F2027)],
     layoutType: ShareCardLayout.badgeHero,
     icon: Icons.explore_rounded,
@@ -196,13 +196,29 @@ class ShareCardTemplates {
   static const growthJourney = ShareCardTemplate(
     id: 'growth_journey',
     category: ShareCardCategory.achievement,
-    titleEn: 'Growth Journey',
-    titleTr: 'Gelişim Yolculuğu',
+    titleEn: 'Growth Progress',
+    titleTr: 'Gelişim Süreci',
     gradientColors: [Color(0xFF0A1F0A), Color(0xFF1A3A1A), Color(0xFF0A1F0A)],
     layoutType: ShareCardLayout.statRow,
     icon: Icons.trending_up_rounded,
     badgeEn: 'GROWTH',
     badgeTr: 'GELİŞİM',
+  );
+
+  // =========================================================================
+  // CYCLE POSITION CARD (1) — Instagram Stories 9:16
+  // =========================================================================
+
+  static const cyclePosition = ShareCardTemplate(
+    id: 'cycle_position',
+    category: ShareCardCategory.pattern,
+    titleEn: 'Cycle Position',
+    titleTr: 'Döngü Konumu',
+    gradientColors: [Color(0xFF1A0A2E), Color(0xFF0D1B3E), Color(0xFF0A0520)],
+    layoutType: ShareCardLayout.cyclePosition,
+    icon: Icons.donut_large_rounded,
+    badgeEn: 'CYCLE',
+    badgeTr: 'DÖNGÜ',
   );
 
   // =========================================================================
@@ -286,6 +302,8 @@ class ShareCardTemplates {
     streakFlame,
     topEmotion,
     sleepPattern,
+    // Cycle Position (Stories)
+    cyclePosition,
     // Achievement
     journalMilestone,
     dreamExplorer,
@@ -339,6 +357,10 @@ class ShareCardTemplates {
     String? seasonName,
     String? seasonMessage,
     String? affirmationText,
+    String? cyclePhaseName,
+    String? cyclePhaseDescription,
+    int cycleDay = 0,
+    int cycleLength = 0,
   }) {
     switch (template.id) {
       // ── Identity ──────────────────────────────────────────────────────
@@ -570,6 +592,25 @@ class ShareCardTemplates {
           subtitle: isEn ? 'Daily Affirmation' : 'Günlük Olumlama',
         );
 
+      // ── Cycle Position ─────────────────────────────────────────────────
+      case 'cycle_position':
+        final day = cycleDay > 0 ? cycleDay : 12;
+        final length = cycleLength > 0 ? cycleLength : 28;
+        final phase = cyclePhaseName ??
+            (isEn ? 'Expansion' : 'Genişleme');
+        final desc = cyclePhaseDescription ??
+            (isEn
+                ? 'Your recent entries suggest a period of openness and growth'
+                : 'Son kayıtların açıklık ve büyüme dönemi öneriyor');
+        return ShareCardData(
+          headline: phase,
+          subtitle: desc,
+          detail: isEn ? 'Day $day of $length' : '$length günün $day. günü',
+          statValue: '$day',
+          statLabel: '$length',
+          chartValues: [day.toDouble(), length.toDouble()],
+        );
+
       default:
         return ShareCardData(
           headline: isEn ? 'InnerCycles' : 'InnerCycles',
@@ -624,6 +665,8 @@ class ShareCardTemplates {
         return AppColors.greenAccent;
       case 'affirmation':
         return AppColors.sunriseStart;
+      case 'cycle_position':
+        return AppColors.twilightEnd;
       default:
         return AppColors.auroraStart;
     }

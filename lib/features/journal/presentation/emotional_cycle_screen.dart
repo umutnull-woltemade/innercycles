@@ -235,8 +235,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     const SizedBox(height: 12),
                     Text(
                       isEn
-                          ? 'Log $needed more entries to discover your emotional patterns. You have $current so far.'
-                          : '$needed kayıt daha yap ve duygusal kalıplarını keşfet. Şu ana kadar $current kaydın var.',
+                          ? 'Pattern detection requires a minimum of 7 entries across 5 days. You have $current so far.'
+                          : 'Kalıp tespiti en az 7 kayıt ve 5 gün gerektirir. Şu ana kadar $current kaydın var.',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: isDark
                             ? AppColors.textSecondary

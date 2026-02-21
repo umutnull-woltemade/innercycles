@@ -20,6 +20,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../data/services/review_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class PatternsScreen extends ConsumerWidget {
@@ -298,6 +299,15 @@ class PatternsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
+    // Trigger review prompt at first pattern insight (post-frame)
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final reviewService = await ref.read(reviewServiceProvider.future);
+      await reviewService.checkAndPromptReview(
+        ReviewTrigger.patternDiscovered,
+        journalEntryCount: engine.entryCount,
+      );
+    });
+
     final thisWeek = engine.getWeeklyAverages();
     final lastWeek = engine.getLastWeekAverages();
     final trends = engine.detectTrends();

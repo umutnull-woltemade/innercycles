@@ -375,7 +375,7 @@ class AffirmationService {
     ),
     const Affirmation(
       id: 'gr_05',
-      textEn: 'My potential is limitless when I stay curious.',
+      textEn: 'My potential keeps expanding when I stay curious.',
       textTr: 'Meraklı kaldığımda potansiyelim sınırsız.',
       category: AffirmationCategory.growth,
     ),
@@ -393,8 +393,8 @@ class AffirmationService {
     ),
     const Affirmation(
       id: 'gr_08',
-      textEn: 'I trust the timing of my own journey.',
-      textTr: 'Kendi yolculuğumun zamanlamasına güveniyorum.',
+      textEn: 'I trust the timing of my own progress.',
+      textTr: 'Kendi sürecimin zamanlamasına güveniyorum.',
       category: AffirmationCategory.growth,
     ),
     const Affirmation(
@@ -439,7 +439,7 @@ class AffirmationService {
     ),
     const Affirmation(
       id: 're_05',
-      textEn: 'Healing is not linear, and that is okay.',
+      textEn: 'Recovery is not linear, and that is okay.',
       textTr: 'İyileşme düz bir çizgi değil ve bu normal.',
       category: AffirmationCategory.resilience,
     ),

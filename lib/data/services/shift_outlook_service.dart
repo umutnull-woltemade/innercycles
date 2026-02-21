@@ -544,7 +544,7 @@ class ShiftOutlookService {
       EmotionalPhase.stabilization =>
         'You may benefit from consolidating recent progress and establishing routines',
       EmotionalPhase.contraction =>
-        'Gentle self-care and reducing commitments may help during this transition',
+        'Gentle rest and reducing commitments may help during this transition',
       EmotionalPhase.reflection =>
         'Journaling and quiet activities may feel especially valuable soon',
       EmotionalPhase.recovery =>

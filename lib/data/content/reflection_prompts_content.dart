@@ -1325,7 +1325,7 @@ const List<ReflectionPrompt> allReflectionPrompts = [
     id: 'sp_009',
     focusArea: 'spirituality',
     promptEn:
-        'If you could ask the universe one question and receive an honest answer, what would you ask?',
+        'If you could ask one question and receive a completely honest answer, what would you ask?',
     promptTr:
         'Evrene bir soru sorup dürüstçe cevap alabilseydiniz, ne sorardınız?',
     followUpEn:

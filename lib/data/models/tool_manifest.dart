@@ -322,9 +322,9 @@ class ToolManifestRegistry {
       id: 'moodTrends',
       nameEn: 'Mood Trends',
       nameTr: 'Ruh Hali Trendleri',
-      valuePropositionEn: 'Track your mood direction over days and weeks.',
+      valuePropositionEn: 'Record observations and surface patterns over days and weeks.',
       valuePropositionTr:
-          'G\u00fcnler ve haftalar boyunca ruh hali y\u00f6n\u00fcn\u00fc izle.',
+          'G\u00fcnler ve haftalar boyunca g\u00f6zlem kaydet ve kal\u0131plar\u0131 ortaya \u00e7\u0131kar.',
       route: Routes.moodTrends,
       icon: '\u{1F4C8}',
       category: ToolCategory.analysis,

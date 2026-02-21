@@ -373,8 +373,8 @@ class SettingsScreen extends ConsumerWidget {
                             _GroupedTile(
                               icon: Icons.air_outlined,
                               title: language == AppLanguage.en
-                                  ? 'Breathing Exercises'
-                                  : 'Nefes Egzersizleri',
+                                  ? 'Guided Breathwork'
+                                  : 'Rehberli Nefes',
                               isDark: isDark,
                               onTap: () => context.push(Routes.breathing),
                             ),

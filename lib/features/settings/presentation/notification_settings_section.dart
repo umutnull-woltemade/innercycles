@@ -184,7 +184,7 @@ class _NotificationSettingsSectionState
               icon: Icons.spa_outlined,
               title: isEnglish ? 'Wellness Reminders' : 'Sağlık Hatırlatmaları',
               subtitle: isEnglish
-                  ? 'Self-care and reflection prompts'
+                  ? 'Wellness and reflection prompts'
                   : 'Öz bakım ve yansıma uyarıları',
               value: _wellnessRemindersEnabled,
               onChanged: _toggleWellnessReminders,

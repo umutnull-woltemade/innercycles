@@ -135,8 +135,11 @@ class PatternEngineService {
        _moodCheckinService = moodCheckinService,
        _streakService = streakService;
 
-  /// Minimum entries needed to unlock pattern analysis
+  /// Minimum entries needed to unlock full pattern analysis
   static const int minimumEntries = 7;
+
+  /// Minimum entries for micro-pattern detection (early insights)
+  static const int microPatternEntries = 3;
 
   /// Minimum sample size for cross-correlation significance
   static const int _minCrossCorrelationSamples = 7;
@@ -147,11 +150,87 @@ class PatternEngineService {
   /// Current entry count (for progress displays)
   int get entryCount => _journalService.entryCount;
 
-  /// Check if user has enough data
+  /// Check if user has enough data for full analysis
   bool hasEnoughData() => _journalService.entryCount >= minimumEntries;
 
-  /// How many more entries needed
+  /// Check if user has enough data for micro-pattern insights
+  bool hasMicroPatternData() =>
+      _journalService.entryCount >= microPatternEntries;
+
+  /// How many more entries needed for full analysis
   int entriesNeeded() => max(0, minimumEntries - _journalService.entryCount);
+
+  /// How many more entries needed for micro-patterns
+  int microEntriesNeeded() =>
+      max(0, microPatternEntries - _journalService.entryCount);
+
+  /// Detect micro-patterns from as few as 3 entries.
+  /// Returns a single human-readable insight string (EN/TR).
+  String? detectMicroPattern({required bool isEn}) {
+    if (!hasMicroPatternData()) return null;
+
+    final entries = _journalService.getAllEntries();
+    if (entries.length < microPatternEntries) return null;
+
+    // Find most-used focus area
+    final areaCounts = <FocusArea, int>{};
+    final areaRatings = <FocusArea, List<int>>{};
+    for (final e in entries) {
+      areaCounts[e.focusArea] = (areaCounts[e.focusArea] ?? 0) + 1;
+      areaRatings.putIfAbsent(e.focusArea, () => []).add(e.overallRating);
+    }
+
+    // Dominant focus area
+    final dominant = areaCounts.entries.reduce(
+      (a, b) => a.value >= b.value ? a : b,
+    );
+
+    final dominantName = _areaName(dominant.key, isEn);
+    final count = dominant.value;
+    final ratings = areaRatings[dominant.key]!;
+    final avg = ratings.fold<int>(0, (s, r) => s + r) / ratings.length;
+
+    // Check for rising/falling pattern in last entries
+    if (entries.length >= 3) {
+      final last3 = entries.sublist(entries.length - 3);
+      final r3 = last3.map((e) => e.overallRating).toList();
+      if (r3[0] < r3[1] && r3[1] < r3[2]) {
+        return isEn
+            ? 'Your recent entries show an upward trend — your ratings are climbing.'
+            : 'Son kayıtların yükseliş trendi gösteriyor — puanların artıyor.';
+      }
+      if (r3[0] > r3[1] && r3[1] > r3[2]) {
+        return isEn
+            ? 'Your last few entries show a dip. A good moment to reflect on what changed.'
+            : 'Son birkaç kaydın düşüş gösteriyor. Neyin değiştiğini düşünmek için iyi bir an.';
+      }
+    }
+
+    // Dominant area insight
+    if (count >= 2) {
+      final avgStr = avg.toStringAsFixed(1);
+      return isEn
+          ? '$dominantName appears in $count of your ${entries.length} entries (avg $avgStr/5). A pattern may be forming.'
+          : '$dominantName, ${entries.length} kaydınızın $count tanesinde görünüyor (ort $avgStr/5). Bir kalıp oluşuyor olabilir.';
+    }
+
+    return null;
+  }
+
+  static String _areaName(FocusArea area, bool isEn) {
+    switch (area) {
+      case FocusArea.energy:
+        return isEn ? 'Energy' : 'Enerji';
+      case FocusArea.focus:
+        return isEn ? 'Focus' : 'Odak';
+      case FocusArea.emotions:
+        return isEn ? 'Emotions' : 'Duygular';
+      case FocusArea.decisions:
+        return isEn ? 'Decisions' : 'Kararlar';
+      case FocusArea.social:
+        return isEn ? 'Social' : 'Sosyal';
+    }
+  }
 
   /// Weekly averages by focus area
   Map<FocusArea, double> getWeeklyAverages() {

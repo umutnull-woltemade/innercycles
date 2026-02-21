@@ -729,7 +729,7 @@ JSON FORMATI:
       EmotionalTone.ozlem:
           'Honor the longing but stay present. Accepting loss opens doors to the future.',
       EmotionalTone.heyecan:
-          'Transform excitement into action. Take a step today.',
+          'Channel excitement into action. Take a step today.',
       EmotionalTone.donukluk:
           'Return to your body. Move, breathe, slowly begin to feel.',
       EmotionalTone.ofke:

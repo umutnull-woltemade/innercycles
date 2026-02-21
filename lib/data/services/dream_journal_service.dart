@@ -1143,7 +1143,7 @@ class DreamJournalService {
       recommendations.add(
         getLocalized(
           'dream_journal.recommendations.nightmare_work',
-          'Working with nightmares: Transform them with lucid techniques.',
+          'Working with nightmares: Reframe them with lucid techniques.',
         ),
       );
       recommendations.add(
@@ -1186,7 +1186,7 @@ class DreamJournalService {
       recommendations.add(
         getLocalized(
           'dream_journal.recommendations.keep_going',
-          'Your dream journey is going great. Keep recording!',
+          'Your dream log is going great. Keep recording!',
         ),
       );
     }
@@ -1240,7 +1240,7 @@ class DreamJournalService {
       case 'recurring_pattern':
         return getThemeLocalized('recurring_pattern', 'Recurring Pattern');
       case 'hero_journey':
-        return getThemeLocalized('hero_journey', 'Hero Journey');
+        return getThemeLocalized('hero_journey', 'Courage Theme');
       case 'seeking':
         return getThemeLocalized('seeking', 'Seeking');
       default:
@@ -1307,7 +1307,7 @@ class DreamJournalService {
     }
 
     if (roleCounts.isEmpty) {
-      return getLocalized('starting', 'Archetype journey is beginning.');
+      return getLocalized('starting', 'Archetype pattern is forming.');
     }
 
     final sorted = roleCounts.entries.toList()
@@ -1318,12 +1318,12 @@ class DreamJournalService {
       case DreamRole.kahraman:
         return getLocalized(
           'hero',
-          'Hero archetype active - proceed with courage!',
+          'Courage archetype active - proceed with confidence!',
         );
       case DreamRole.arayan:
         return getLocalized(
           'seeker',
-          'Seeker archetype - you are on an inner journey.',
+          'Seeker archetype - you are in an exploratory phase.',
         );
       case DreamRole.kurtarici:
         return getLocalized(
@@ -1341,7 +1341,7 @@ class DreamJournalService {
           'Escape theme - what are you avoiding facing?',
         );
       default:
-        return getLocalized('evolving', 'Your archetype journey is evolving.');
+        return getLocalized('evolving', 'Your archetype pattern is evolving.');
     }
   }
 

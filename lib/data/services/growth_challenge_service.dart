@@ -157,8 +157,8 @@ class GrowthChallengeService {
     ),
     GrowthChallenge(
       id: 'monthly_30',
-      titleEn: '30-Day Warrior',
-      titleTr: '30 Gün Savaşçısı',
+      titleEn: '30-Day Streak',
+      titleTr: '30 Gün Serisi',
       descriptionEn: 'Journal for 30 days in a month',
       descriptionTr: 'Bir ayda 30 gün günlük yaz',
       emoji: '⚔️',
@@ -200,8 +200,8 @@ class GrowthChallengeService {
     ),
     GrowthChallenge(
       id: 'breathing_5',
-      titleEn: 'Breath Master',
-      titleTr: 'Nefes Ustası',
+      titleEn: 'Breath Pro',
+      titleTr: 'Nefes Uzmanı',
       descriptionEn: 'Complete 5 breathing sessions',
       descriptionTr: '5 nefes egzersizi tamamla',
       emoji: '🌬️',

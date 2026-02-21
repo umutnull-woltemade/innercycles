@@ -632,7 +632,7 @@ class _MoodJourneyCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            isEn ? 'Mood Journey' : 'Ruh Hali Yolculuğu',
+            isEn ? 'Mood Trajectory' : 'Ruh Hali Seyri',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: isDark
                   ? AppColors.textPrimary

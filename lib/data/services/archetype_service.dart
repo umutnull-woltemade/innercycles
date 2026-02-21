@@ -463,7 +463,7 @@ class ArchetypeService {
       strengthsTr: ['Empati', 'Tutku', 'Adanmışlık', 'Takdir'],
       shadowEn:
           'People-pleasing or losing yourself in others may surface '
-          'when the need for connection overshadows self-care.',
+          'when the need for connection overshadows looking after yourself.',
       shadowTr:
           'Bağlantı ihtiyacı öz bakımın önüne geçtiğinde başkalarını '
           'memnun etme veya başkaları içinde kaybolma ortaya '

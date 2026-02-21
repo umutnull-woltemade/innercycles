@@ -115,7 +115,7 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
     switch (this) {
       case PersonalityArchetype.pioneer:
         return [
-          'Warrior Spirit',
+          'Bold Spirit',
           'Fire Energy',
           'Pioneer Force',
           'Instant Action',
@@ -153,18 +153,18 @@ extension PersonalityArchetypeExtension on PersonalityArchetype {
           'Detail Eye',
           'Earth Practice',
           'Service Spirit',
-          'Perfect Quest',
+          'Perfect Pursuit',
         ];
       case PersonalityArchetype.harmonizer:
         return [
-          'Balance Master',
+          'Balance Keeper',
           'Justice Scales',
           'Natural Charm',
           'Weighing Heart',
         ];
       case PersonalityArchetype.transformer:
         return [
-          'Transform Power',
+          'Renewal Power',
           'Depth Knowledge',
           'Inner Courage',
           'Mystery Veil',

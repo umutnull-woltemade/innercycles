@@ -313,7 +313,7 @@ class _ScoreHero extends StatelessWidget {
     if (score >= 60) return isEn ? 'Good Balance' : 'İyi Denge';
     if (score >= 40) return isEn ? 'Room to Grow' : 'Gelişim Alanı';
     if (score >= 20) return isEn ? 'Getting Started' : 'Başlangıç';
-    return isEn ? 'Begin Your Journey' : 'Yolculuğuna Başla';
+    return isEn ? 'Get Started' : 'Başla';
   }
 }
 

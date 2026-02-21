@@ -573,8 +573,8 @@ class _CompletedBanner extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 isEn
-                    ? 'You have finished this guided journey. Well done!'
-                    : 'Bu rehberli yolculuğu tamamladın. Tebrikler!',
+                    ? 'You have finished this guided program. Well done!'
+                    : 'Bu rehberli programı tamamladın. Tebrikler!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14,

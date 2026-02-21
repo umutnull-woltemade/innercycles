@@ -119,7 +119,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
         parent: AlwaysScrollableScrollPhysics(),
       ),
       slivers: [
-        GlassSliverAppBar(title: isEn ? 'Activity Map' : 'Aktivite Haritası'),
+        GlassSliverAppBar(title: isEn ? 'Heatmap Timeline' : 'Isı Haritası Zaman Çizelgesi'),
         SliverPadding(
           padding: const EdgeInsets.all(16),
           sliver: SliverList(
@@ -1096,8 +1096,8 @@ class _PremiumYearOverlay extends ConsumerWidget {
           const SizedBox(height: 4),
           Text(
             isEn
-                ? 'See your full year at a glance with Premium'
-                : 'Premium ile tüm yılını bir bakışta gör',
+                ? 'See your full year at a glance with Pro'
+                : 'Pro ile tüm yılını bir bakışta gör',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 13,
@@ -1119,7 +1119,7 @@ class _PremiumYearOverlay extends ConsumerWidget {
               ),
             ),
             child: Text(
-              isEn ? 'Upgrade to Premium' : 'Premium\'a Yükselt',
+              isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
               style: const TextStyle(fontWeight: FontWeight.w600),
             ),
           ),

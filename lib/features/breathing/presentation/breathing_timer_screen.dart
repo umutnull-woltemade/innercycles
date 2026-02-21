@@ -254,7 +254,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: isEn ? 'Breathing' : 'Nefes Egzersizi',
+                  title: isEn ? 'Guided Breathwork' : 'Rehberli Nefes',
                 ),
                 SliverFillRemaining(
                   hasScrollBody: false,

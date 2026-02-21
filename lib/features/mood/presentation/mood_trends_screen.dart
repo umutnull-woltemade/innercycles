@@ -71,7 +71,7 @@ class MoodTrendsScreen extends ConsumerWidget {
           ),
           slivers: [
             GlassSliverAppBar(
-              title: isEn ? 'Mood Trends' : 'Ruh Hali Trendleri',
+              title: isEn ? 'Signal Dashboard' : 'Sinyal Paneli',
             ),
             SliverFillRemaining(
               hasScrollBody: false,
@@ -91,8 +91,8 @@ class MoodTrendsScreen extends ConsumerWidget {
                       const SizedBox(height: AppConstants.spacingLg),
                       Text(
                         isEn
-                            ? 'No mood check-ins yet'
-                            : 'Henüz ruh hali kaydı yok',
+                            ? 'No observations recorded'
+                            : 'Henüz gözlem kaydedilmedi',
                         style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(
                               color: isDark
@@ -104,8 +104,8 @@ class MoodTrendsScreen extends ConsumerWidget {
                       const SizedBox(height: AppConstants.spacingSm),
                       Text(
                         isEn
-                            ? 'Log your mood from the Home tab to start seeing trends here.'
-                            : 'Trendleri görmek için Ana Sayfa sekmesinden ruh halinizi kaydedin.',
+                            ? 'No observations recorded. Check in from the home screen to begin.'
+                            : 'Henüz gözlem kaydedilmedi. Başlamak için ana ekrandan giriş yapın.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 14,
@@ -145,7 +145,7 @@ class MoodTrendsScreen extends ConsumerWidget {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(title: isEn ? 'Mood Trends' : 'Ruh Hali Trendleri'),
+          GlassSliverAppBar(title: isEn ? 'Signal Dashboard' : 'Sinyal Paneli'),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
@@ -244,7 +244,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                   Icon(Icons.lock_outline, size: 28, color: AppColors.starGold),
                   const SizedBox(height: 8),
                   Text(
-                    isEn ? 'Unlock 30-Day Analytics' : '30 Gün Analitiği Aç',
+                    isEn ? 'Your data has more to show' : 'Verilerinin gösterecekleri var',
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
@@ -270,7 +270,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                       ),
                     ),
                     child: Text(
-                      isEn ? 'Upgrade to Premium' : 'Premium\'a Yükselt',
+                      isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,

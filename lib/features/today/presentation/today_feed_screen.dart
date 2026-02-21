@@ -15,6 +15,7 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/journal_entry.dart';
+import '../../../data/models/cycle_entry.dart';
 import '../../../data/content/reflection_prompts_content.dart';
 import '../../../data/services/archetype_service.dart';
 import '../../streak/presentation/streak_card.dart';
@@ -773,6 +774,130 @@ class _RecentEntryRow extends StatelessWidget {
         return isEn ? 'Decisions' : 'Kararlar';
       case FocusArea.social:
         return isEn ? 'Social' : 'Sosyal';
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CYCLE SYNC CARD - Today Feed Integration
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _CycleSyncCard extends ConsumerWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _CycleSyncCard({required this.isEn, required this.isDark});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cycleSyncAsync = ref.watch(cycleSyncServiceProvider);
+
+    return cycleSyncAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (service) {
+        if (!service.hasData) return const SizedBox.shrink();
+
+        final cycleDay = service.getCurrentCycleDay();
+        final phase = service.getCurrentPhase();
+        if (cycleDay == null || phase == null) return const SizedBox.shrink();
+
+        final phaseColor = _cycleSyncPhaseColor(phase);
+        final phaseName = isEn ? phase.displayNameEn : phase.displayNameTr;
+
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: GestureDetector(
+            onTap: () {
+              HapticFeedback.selectionClick();
+              context.push(Routes.cycleSync);
+            },
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                color: phaseColor.withValues(alpha: isDark ? 0.12 : 0.08),
+                borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                border: Border.all(
+                  color: phaseColor.withValues(alpha: 0.3),
+                ),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 36,
+                    height: 36,
+                    decoration: BoxDecoration(
+                      color: phaseColor.withValues(alpha: 0.2),
+                      shape: BoxShape.circle,
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '$cycleDay',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: phaseColor,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          isEn
+                              ? 'Cycle Day $cycleDay — $phaseName'
+                              : 'Döngü Günü $cycleDay — $phaseName',
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary,
+                          ),
+                        ),
+                        Text(
+                          isEn
+                              ? phase.descriptionEn
+                              : phase.descriptionTr,
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    Icons.chevron_right_rounded,
+                    size: 20,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ).animate().fadeIn(delay: 120.ms, duration: 400.ms);
+      },
+    );
+  }
+
+  static Color _cycleSyncPhaseColor(CyclePhase phase) {
+    switch (phase) {
+      case CyclePhase.menstrual:
+        return const Color(0xFFE57373);
+      case CyclePhase.follicular:
+        return const Color(0xFF81C784);
+      case CyclePhase.ovulatory:
+        return AppColors.starGold;
+      case CyclePhase.luteal:
+        return AppColors.amethyst;
     }
   }
 }

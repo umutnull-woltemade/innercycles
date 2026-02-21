@@ -104,6 +104,11 @@ class Routes {
   static const String growthDashboard = '/growth';
 
   // ════════════════════════════════════════════════════════════════
+  // CYCLE SYNC (Hormonal × Emotional Pattern Tracking)
+  // ════════════════════════════════════════════════════════════════
+  static const String cycleSync = '/cycle-sync';
+
+  // ════════════════════════════════════════════════════════════════
   // CALENDAR & SEARCH
   // ════════════════════════════════════════════════════════════════
   static const String calendarHeatmap = '/calendar';

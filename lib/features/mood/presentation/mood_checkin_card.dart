@@ -107,7 +107,7 @@ class _CheckinView extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            isEn ? 'How are you feeling?' : 'Bugün nasıl hissediyorsun?',
+            isEn ? 'What\'s present for you right now?' : 'Şu an sende ne var?',
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,

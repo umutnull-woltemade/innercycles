@@ -148,7 +148,7 @@ enum EmotionalPhase {
       case EmotionalPhase.stabilization:
         return 'Consider consolidating recent gains';
       case EmotionalPhase.contraction:
-        return 'Gentle self-care may be especially helpful now';
+        return 'Gentle rest and recovery may be especially helpful now';
       case EmotionalPhase.reflection:
         return 'Journaling about recent experiences may add clarity';
       case EmotionalPhase.recovery:

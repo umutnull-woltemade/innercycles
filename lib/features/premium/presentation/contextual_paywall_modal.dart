@@ -24,6 +24,7 @@ enum PaywallContext {
   adRemoval,
   programs,
   challenges,
+  cycleSync,
   general,
 }
 
@@ -393,8 +394,8 @@ class _ContextualPaywallSheetState
         const SizedBox(width: 6),
         Text(
           isEn
-              ? 'Start your reflection journey with InnerCycles Pro'
-              : 'InnerCycles Pro ile yansıma yolculuğuna başla',
+              ? 'Surface patterns from your entries with InnerCycles Pro'
+              : 'InnerCycles Pro ile kayıtlarındaki kalıpları ortaya çıkar',
           style: TextStyle(
             color: Colors.white.withValues(alpha: 0.5),
             fontSize: 12,
@@ -497,20 +498,20 @@ class _ContextualPaywallSheetState
     switch (widget.paywallContext) {
       case PaywallContext.patterns:
         return _PaywallConfig(
-          icon: Icons.auto_awesome,
+          icon: Icons.psychology_outlined,
           accentColor: AppColors.starGold,
           headline: isEn
-              ? 'Your journal has something to tell you'
-              : 'Günlüğün sana bir şey söylüyor',
+              ? 'Your journal is trying to tell you something'
+              : 'Günlüğün sana bir şey söylemeye çalışıyor',
           subtitle: isEn
-              ? "You've been writing your story. See the patterns only your data can reveal."
-              : 'Hikayeni yazıyordun. Sadece verilerinin ortaya çıkarabileceği kalıpları gör.',
+              ? 'Your entries hold patterns you can\'t see in the moment. Pro reveals what your journal already knows.'
+              : 'Kayıtların, o anda göremediğin kalıplar barındırıyor. Pro, günlüğünün zaten bildiğini ortaya çıkarır.',
           detail: widget.entryCount != null
               ? (isEn
                     ? '${widget.entryCount} entries analyzed'
                     : '${widget.entryCount} kayıt analiz edildi')
               : null,
-          cta: isEn ? 'See My Patterns' : 'Kalıplarımı Gör',
+          cta: isEn ? 'Discover My Patterns' : 'Kalıplarımı Keşfet',
         );
 
       case PaywallContext.dreams:
@@ -576,8 +577,8 @@ class _ContextualPaywallSheetState
               ? 'Your reflection space, uninterrupted'
               : 'Yansıma alanın, kesintisiz',
           subtitle: isEn
-              ? 'Remove all ads and focus on what matters — your inner journey.'
-              : 'Tüm reklamları kaldır ve önemli olana odaklan — iç yolculuğun.',
+              ? 'Remove all ads and focus on what matters — your reflection time.'
+              : 'Tüm reklamları kaldır ve önemli olana odaklan — yansıma zamanın.',
           cta: isEn ? 'Go Ad-Free' : 'Reklamsız Geç',
         );
 
@@ -600,22 +601,37 @@ class _ContextualPaywallSheetState
           accentColor: AppColors.celestialGold,
           headline: isEn ? 'Push your limits' : 'Sınırlarını zorla',
           subtitle: isEn
-              ? 'Premium growth challenges that transform your daily practice.'
+              ? 'Pro growth challenges that elevate your daily practice.'
               : 'Günlük pratiğini dönüştüren premium büyüme meydan okumaları.',
           cta: isEn ? 'Accept Challenge' : 'Meydan Okumayı Kabul Et',
         );
 
+      case PaywallContext.cycleSync:
+        return _PaywallConfig(
+          icon: Icons.favorite_rounded,
+          accentColor: AppColors.amethyst,
+          headline: isEn
+              ? 'Understand your cycle patterns'
+              : 'Döngü kalıplarını anla',
+          subtitle: isEn
+              ? 'See how your emotional patterns align with your hormonal cycle. Full history and phase-aware insights.'
+              : 'Duygusal kalıplarının hormonal döngünle nasıl uyumlandığını gör. Tam geçmiş ve evreye duyarlı içgörüler.',
+          cta: isEn
+              ? 'Unlock Cycle Insights'
+              : 'Döngü İçgörülerini Aç',
+        );
+
       case PaywallContext.general:
         return _PaywallConfig(
-          icon: Icons.auto_awesome,
+          icon: Icons.psychology_outlined,
           accentColor: AppColors.starGold,
           headline: isEn
-              ? "You've been writing your story — now read it"
-              : 'Hikayeni yazıyordun — şimdi oku',
+              ? 'Your journal is trying to tell you something'
+              : 'Günlüğün sana bir şey söylemeye çalışıyor',
           subtitle: isEn
-              ? 'Full pattern analysis, all dream perspectives, ad-free reflection, and more.'
-              : 'Tam kalıp analizi, tüm rüya perspektifleri, reklamsız yansıma ve daha fazlası.',
-          cta: isEn ? 'Unlock Full Insights' : 'Tüm İçgörüleri Aç',
+              ? 'No AI, no cloud — just your words revealing patterns you couldn\'t see before.'
+              : 'Yapay zeka yok, bulut yok — sadece senin sözlerin, daha önce göremediğin kalıpları ortaya çıkarıyor.',
+          cta: isEn ? 'Discover My Patterns' : 'Kalıplarımı Keşfet',
         );
     }
   }

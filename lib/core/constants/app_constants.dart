@@ -1,3 +1,5 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class AppConstants {
   AppConstants._();
 
@@ -11,10 +13,11 @@ class AppConstants {
   static const String termsOfServiceUrl = 'https://innercycles.app/terms';
   static const String supportEmail = 'support@innercycles.app';
 
-  // RevenueCat API Keys (iOS only)
-  static const String revenueCatAppleApiKey =
-      'appl_DaPzIEYbCInFGHwqlzOqcnKZhLY';
-  static const String revenueCatGoogleApiKey = ''; // iOS-only release
+  // RevenueCat API Keys — loaded from .env at runtime
+  static String get revenueCatAppleApiKey =>
+      dotenv.env['REVENUECAT_APPLE_API_KEY'] ?? '';
+  static String get revenueCatGoogleApiKey =>
+      dotenv.env['REVENUECAT_GOOGLE_API_KEY'] ?? ''; // iOS-only release
 
   // RevenueCat Product IDs
   static const String monthlyProductId = 'monthly';

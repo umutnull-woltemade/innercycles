@@ -1,45 +1,45 @@
 {
   "_metadata": {
-    "description": "App Store screenshot captions for InnerCycles — Anti-Similarity Optimized",
-    "version": "3.0.0",
-    "lastUpdated": "2026-02-17"
+    "description": "App Store screenshot captions for InnerCycles — Conversion Optimized",
+    "version": "4.0.0",
+    "lastUpdated": "2026-02-22"
   },
   "screenshots": {
-    "cycle_position": {
-      "caption": "Cycle position 3 of 7 — here's what happened last time"
+    "mood_tracking": {
+      "caption": "Track your mood daily — see emotional trends across weeks and months"
     },
-    "recurrence_detection": {
-      "caption": "This emotional pattern has recurred 4 times since October"
+    "pattern_detection": {
+      "caption": "This emotional pattern has repeated 4 times — now you can see it"
     },
-    "dream_archaeology": {
-      "caption": "Dream archaeology: this symbol appeared in 6 of your last 20 dreams"
-    },
-    "archetype_progression": {
-      "caption": "Archetype shift detected: Seeker to Explorer"
-    },
-    "cycle_mapped_journal": {
-      "caption": "Cycle-positioned journal entry mapped against past patterns"
+    "dream_journal": {
+      "caption": "Record your dreams and discover which symbols keep appearing"
     },
     "cycle_visualizer": {
-      "caption": "Emotional cycle visualizer — see your rhythms across months"
+      "caption": "Your emotional cycles mapped — see your rhythms at a glance"
     },
-    "shadow_light": {
-      "caption": "Shadow-light integration: 62% of fear themes resolved"
+    "journal_entry": {
+      "caption": "Journal your thoughts with text or voice — your private space"
     },
-    "monthly_cycle_report": {
-      "caption": "Monthly cycle report: 3 patterns identified, 1 breaking"
+    "breathing": {
+      "caption": "Guided breathing exercises when you need to feel grounded"
     },
-    "intelligence_cards": {
-      "caption": "Cyclical intelligence cards — share your pattern insights"
+    "streaks": {
+      "caption": "Build a journaling habit with streaks, milestones, and gentle reminders"
+    },
+    "monthly_report": {
+      "caption": "Monthly report: 3 patterns identified, 1 breaking"
+    },
+    "export": {
+      "caption": "Export your data anytime — CSV, JSON, completely yours"
     },
     "privacy": {
-      "caption": "Private by architecture — your cycle data is encrypted and under your control"
+      "caption": "Private by design — Face ID, on-device storage, no cloud required"
     }
   },
   "app_store_metadata": {
-    "title": "InnerCycles - Cycle Mapping",
-    "subtitle": "Emotional Cycle Intelligence",
-    "promotional_text": "New: Recurrence Detection Engine + Dream Archaeology + Archetype Progression. Map the emotional cycles you repeat — see your cycle position in 7 days.",
-    "keywords": "journal,pattern,dream,archaeology,recurrence,archetype,shadow,mood,tracker,wellness,self,awareness,habit,sleep,growth,insight"
+    "title": "InnerCycles",
+    "subtitle": "Mood Tracker & Dream Journal",
+    "promotional_text": "Track your mood, journal your dreams, and discover the emotional patterns you repeat. See your cycles mapped across weeks and months.",
+    "keywords": "mood tracker,dream journal,emotional patterns,self reflection,daily journal,mood diary,wellness log,gratitude,mindfulness,personal growth,habit tracker"
   }
 }

@@ -276,7 +276,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
   String _getProgressMessage(int earned, int total) {
     final remaining = total - earned;
     if (earned == 0) {
-      return isEn ? 'Start your journey!' : 'Yolculuğuna başla!';
+      return isEn ? 'Start tracking!' : 'Takibe başla!';
     }
     if (earned >= total) {
       return isEn ? 'You earned them all!' : 'Hepsini kazandin!';

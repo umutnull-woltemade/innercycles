@@ -49,6 +49,7 @@ enum ShareCardLayout {
   miniChart, // small inline chart + text
   quoteBlock, // decorative quote with attribution
   statRow, // key stat numbers in a row
+  cyclePosition, // circular arc + phase name (Instagram Stories 9:16)
 }
 
 /// A single shareable card template definition

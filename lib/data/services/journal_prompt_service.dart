@@ -741,7 +741,7 @@ class JournalPromptService {
     JournalPrompt(
       id: 'hl_02',
       promptEn:
-          'Reflect on a wound that has started to heal. What helped the process?',
+          'Reflect on a difficulty that has started to ease. What helped the process?',
       promptTr:
           'İyileşmeye başlayan bir yarayı düşünün. Sürece ne yardımcı oldu?',
       category: PromptCategory.recovery,
@@ -750,7 +750,7 @@ class JournalPromptService {
     JournalPrompt(
       id: 'hl_03',
       promptEn:
-          'What does self-care look like for you right now? Is there something you have been neglecting?',
+          'What does looking after yourself look like right now? Is there something you have been neglecting?',
       promptTr:
           'Şu anda öz bakım sizin için neye benziyor? İhmal ettiğiniz bir şey var mı?',
       category: PromptCategory.recovery,

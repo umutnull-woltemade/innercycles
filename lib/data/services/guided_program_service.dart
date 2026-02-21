@@ -701,9 +701,9 @@ class GuidedProgramService {
         titleEn: 'Integration',
         titleTr: 'Bütünleştirme',
         promptEn:
-            'Review your 21-day dream journey. What 3 discoveries stand out? How will you continue listening to your dreams?',
+            'Review your 21-day dream log. What 3 discoveries stand out? How will you continue listening to your dreams?',
         promptTr:
-            '21 günlük rüya yolculuğunu gözden geçir. Hangi 3 keşif öne çıkıyor? Rüyalarını dinlemeye nasıl devam edeceksin?',
+            '21 günlük rüya kaydını gözden geçir. Hangi 3 keşif öne çıkıyor? Rüyalarını dinlemeye nasıl devam edeceksin?',
       ),
     ],
   );
@@ -776,9 +776,9 @@ class GuidedProgramService {
         titleEn: 'Integration',
         titleTr: 'Bütünleştirme',
         promptEn:
-            'Review your 7-day journey. What one habit will you keep? What is your intention going forward?',
+            'Review your 7-day progress. What one habit will you keep? What is your intention going forward?',
         promptTr:
-            '7 günlük yolculuğunu gözden geçir. Hangi alışkanlığı koruyacaksın? İleriye dönük niyetin ne?',
+            '7 günlük sürecini gözden geçir. Hangi alışkanlığı koruyacaksın? İleriye dönük niyetin ne?',
       ),
     ],
   );

@@ -84,7 +84,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
       ),
       slivers: [
         GlassSliverAppBar(
-          title: isEn ? 'Daily Habits' : 'Günlük Alışkanlıklar',
+          title: isEn ? 'Routine Tracker' : 'Rutin Takipçisi',
         ),
         SliverPadding(
           padding: const EdgeInsets.all(16),

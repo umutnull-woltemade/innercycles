@@ -419,7 +419,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           : 'İyi bir başlangıç! Her kayıt seni yaklaştırıyor.';
     } else {
       return isEn
-          ? 'Begin your journey. One entry at a time.'
+          ? 'Begin your progress. One entry at a time.'
           : 'Yolculuğuna başla. Her seferinde bir kayıt.';
     }
   }
@@ -745,7 +745,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.local_fire_department,
-        title: isEn ? 'Week Warrior' : 'Hafta Savaşçısı',
+        title: isEn ? '7-Day Observer' : '7 Günlük Gözlemci',
         unlocked: maxStreak >= 7,
         progressHint: maxStreak < 7
             ? isEn
@@ -765,7 +765,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.nights_stay,
-        title: isEn ? 'Dream Explorer' : 'Rüya Kaşifi',
+        title: isEn ? 'Dream Logger' : 'Rüya Kaydedici',
         unlocked: dreamCount >= 3,
         progressHint: dreamCount < 3
             ? isEn
@@ -775,7 +775,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.emoji_events,
-        title: isEn ? 'Challenge Champion' : 'Görev Şampiyonu',
+        title: isEn ? 'Challenge Completer' : 'Görev Tamamlayıcı',
         unlocked: completedChallenges >= 3,
         progressHint: completedChallenges < 3
             ? isEn
@@ -785,7 +785,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.favorite,
-        title: isEn ? 'Gratitude Guru' : 'Şükran Ustası',
+        title: isEn ? 'Gratitude Streak' : 'Şükran Serisi',
         unlocked: gratitudeCount >= 7,
         progressHint: gratitudeCount < 7
             ? isEn
@@ -795,7 +795,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       ),
       _Milestone(
         icon: Icons.emoji_events,
-        title: isEn ? 'Month Master' : 'Ay Ustası',
+        title: isEn ? '30-Day Streak' : '30 Günlük Seri',
         unlocked: maxStreak >= 30,
         progressHint: maxStreak < 30
             ? isEn

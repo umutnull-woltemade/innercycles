@@ -262,12 +262,12 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                           hasScrollBody: false,
                           child: ToolEmptyState(
                             icon: Icons.nightlight_round,
-                            titleEn: 'No dreams recorded yet',
+                            titleEn: 'No dreams logged',
                             titleTr: 'Henüz rüya kaydedilmedi',
                             descriptionEn:
-                                'Your dream journal entries will appear here. Start recording to discover patterns.',
+                                'No dreams logged. The glossary is available when you are.',
                             descriptionTr:
-                                'Rüya günlüğü kayıtların burada görünecek. Kalıpları keşfetmek için kayda başla.',
+                                'Henüz rüya kaydedilmedi. Sözlük hazır olduğunda seni bekliyor.',
                             onStartTemplate: () =>
                                 context.push(Routes.dreamInterpretation),
                             isEn: isEn,

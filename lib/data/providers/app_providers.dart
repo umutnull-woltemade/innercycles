@@ -50,6 +50,8 @@ import '../services/app_lock_service.dart';
 import '../services/pattern_loop_service.dart';
 import '../services/shift_outlook_service.dart';
 import '../services/emotional_cycle_service.dart';
+import '../services/cycle_sync_service.dart';
+import '../services/cycle_correlation_service.dart';
 import '../models/journal_entry.dart';
 import '../models/cross_correlation_result.dart';
 
@@ -733,4 +735,21 @@ final emotionalCycleAnalysisProvider = FutureProvider<EmotionalCycleAnalysis>((
     );
   }
   return cycleService.analyze();
+});
+
+// =============================================================================
+// CYCLE SYNC PROVIDERS (Hormonal Cycle Tracking)
+// =============================================================================
+
+final cycleSyncServiceProvider = FutureProvider<CycleSyncService>((
+  ref,
+) async {
+  return await CycleSyncService.init();
+});
+
+final cycleCorrelationServiceProvider =
+    FutureProvider<CycleCorrelationService>((ref) async {
+  final cycleSyncService = await ref.watch(cycleSyncServiceProvider.future);
+  final journalService = await ref.watch(journalServiceProvider.future);
+  return CycleCorrelationService(cycleSyncService, journalService);
 });

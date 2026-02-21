@@ -9,6 +9,7 @@ struct InnerCyclesWidgetBundle: WidgetBundle {
     var body: some Widget {
         DailyReflectionWidget()
         MoodInsightWidget()
+        CyclePositionWidget()
         if #available(iOSApplicationExtension 16.0, *) {
             LockScreenWidget()
         }
