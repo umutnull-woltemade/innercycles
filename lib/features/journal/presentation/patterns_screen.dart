@@ -540,7 +540,9 @@ class PatternsScreen extends ConsumerWidget {
         border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
       ),
       child: Semantics(
-        label: isEn ? 'Focus area cycle averages chart' : 'Odak alanı döngü ortalamaları grafiği',
+        label: isEn
+            ? 'Focus area cycle averages chart'
+            : 'Odak alanı döngü ortalamaları grafiği',
         image: true,
         child: CustomPaint(
           size: const Size(double.infinity, 170),

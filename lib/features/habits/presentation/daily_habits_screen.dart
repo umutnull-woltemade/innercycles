@@ -141,25 +141,29 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                 // Browse more habits link
                 Center(
                   child: Semantics(
-                    label: isEn ? 'Browse all habits' : 'Tüm alışkanlıkları gözat',
+                    label: isEn
+                        ? 'Browse all habits'
+                        : 'Tüm alışkanlıkları gözat',
                     button: true,
                     child: GestureDetector(
-                    onTap: () => context.push(Routes.habitSuggestions),
-                    behavior: HitTestBehavior.opaque,
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(minHeight: 44),
-                      child: Center(
-                        child: Text(
-                      isEn ? 'Browse all habits' : 'Tüm alışkanlıkları gözat',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: AppColors.auroraStart,
-                        fontWeight: FontWeight.w500,
+                      onTap: () => context.push(Routes.habitSuggestions),
+                      behavior: HitTestBehavior.opaque,
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(minHeight: 44),
+                        child: Center(
+                          child: Text(
+                            isEn
+                                ? 'Browse all habits'
+                                : 'Tüm alışkanlıkları gözat',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: AppColors.auroraStart,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                    ),
-                    ),
-                  ),
                   ),
                 ),
               ],
@@ -335,35 +339,35 @@ class _HabitCheckCard extends StatelessWidget {
                     width: 44,
                     height: 44,
                     child: Center(
-                    child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 250),
-                    width: 36,
-                    height: 36,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: isChecked
-                          ? AppColors.success
-                          : (isDark
-                                ? Colors.white.withValues(alpha: 0.06)
-                                : Colors.black.withValues(alpha: 0.06)),
-                      border: isChecked
-                          ? null
-                          : Border.all(
-                              color: isDark
-                                  ? Colors.white.withValues(alpha: 0.15)
-                                  : Colors.black.withValues(alpha: 0.12),
-                              width: 2,
-                            ),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 250),
+                        width: 36,
+                        height: 36,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: isChecked
+                              ? AppColors.success
+                              : (isDark
+                                    ? Colors.white.withValues(alpha: 0.06)
+                                    : Colors.black.withValues(alpha: 0.06)),
+                          border: isChecked
+                              ? null
+                              : Border.all(
+                                  color: isDark
+                                      ? Colors.white.withValues(alpha: 0.15)
+                                      : Colors.black.withValues(alpha: 0.12),
+                                  width: 2,
+                                ),
+                        ),
+                        child: isChecked
+                            ? const Icon(
+                                Icons.check_rounded,
+                                color: Colors.white,
+                                size: 20,
+                              )
+                            : null,
+                      ),
                     ),
-                    child: isChecked
-                        ? const Icon(
-                            Icons.check_rounded,
-                            color: Colors.white,
-                            size: 20,
-                          )
-                        : null,
-                  ),
-                  ),
                   ),
                 ),
               ),

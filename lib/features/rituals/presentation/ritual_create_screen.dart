@@ -63,9 +63,9 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
     return Scaffold(
       body: CosmicBackground(
         child: GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            behavior: HitTestBehavior.opaque,
-            child: SafeArea(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.opaque,
+          child: SafeArea(
             child: CupertinoScrollbar(
               child: CustomScrollView(
                 physics: const BouncingScrollPhysics(
@@ -99,69 +99,72 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                             return ConstrainedBox(
                               constraints: const BoxConstraints(minHeight: 44),
                               child: Semantics(
-                                label: isEn ? time.displayNameEn : time.displayNameTr,
+                                label: isEn
+                                    ? time.displayNameEn
+                                    : time.displayNameTr,
                                 button: true,
                                 selected: isSelected,
                                 child: GestureDetector(
-                                onTap: () {
-                                  HapticFeedback.lightImpact();
-                                  setState(() {
-                                    _selectedTime = time;
-                                    _updateDefaultName();
-                                  });
-                                },
-                                child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 10,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: isSelected
-                                        ? AppColors.auroraStart.withValues(
-                                            alpha: 0.2,
-                                          )
-                                        : (isDark
-                                              ? AppColors.surfaceDark
-                                                    .withValues(alpha: 0.5)
-                                              : AppColors.lightSurfaceVariant),
-                                    borderRadius: BorderRadius.circular(24),
-                                    border: Border.all(
+                                  onTap: () {
+                                    HapticFeedback.lightImpact();
+                                    setState(() {
+                                      _selectedTime = time;
+                                      _updateDefaultName();
+                                    });
+                                  },
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 200),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                      vertical: 10,
+                                    ),
+                                    decoration: BoxDecoration(
                                       color: isSelected
-                                          ? AppColors.auroraStart
-                                          : Colors.transparent,
-                                      width: 2,
+                                          ? AppColors.auroraStart.withValues(
+                                              alpha: 0.2,
+                                            )
+                                          : (isDark
+                                                ? AppColors.surfaceDark
+                                                      .withValues(alpha: 0.5)
+                                                : AppColors
+                                                      .lightSurfaceVariant),
+                                      borderRadius: BorderRadius.circular(24),
+                                      border: Border.all(
+                                        color: isSelected
+                                            ? AppColors.auroraStart
+                                            : Colors.transparent,
+                                        width: 2,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          time.icon,
+                                          style: const TextStyle(fontSize: 18),
+                                        ),
+                                        const SizedBox(width: 6),
+                                        Text(
+                                          isEn
+                                              ? time.displayNameEn
+                                              : time.displayNameTr,
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: isSelected
+                                                ? FontWeight.w600
+                                                : FontWeight.normal,
+                                            color: isSelected
+                                                ? AppColors.auroraStart
+                                                : (isDark
+                                                      ? AppColors.textPrimary
+                                                      : AppColors
+                                                            .lightTextPrimary),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        time.icon,
-                                        style: const TextStyle(fontSize: 18),
-                                      ),
-                                      const SizedBox(width: 6),
-                                      Text(
-                                        isEn
-                                            ? time.displayNameEn
-                                            : time.displayNameTr,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: isSelected
-                                              ? FontWeight.w600
-                                              : FontWeight.normal,
-                                          color: isSelected
-                                              ? AppColors.auroraStart
-                                              : (isDark
-                                                    ? AppColors.textPrimary
-                                                    : AppColors
-                                                          .lightTextPrimary),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
                                 ),
-                              ),
                               ),
                             );
                           }).toList(),
@@ -437,48 +440,50 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
               label: title,
               button: true,
               child: GestureDetector(
-              onTap: () {
-                // Find first empty controller or add new one
-                final emptyIndex = _itemControllers.indexWhere(
-                  (c) => c.text.trim().isEmpty,
-                );
-                if (emptyIndex >= 0) {
-                  _itemControllers[emptyIndex].text = title;
-                } else {
-                  final isPremium = ref.read(premiumProvider).isPremium;
-                  final maxItems = isPremium ? 5 : 3;
-                  if (_itemControllers.length < maxItems) {
-                    setState(() {
-                      _itemControllers.add(TextEditingController(text: title));
-                    });
+                onTap: () {
+                  // Find first empty controller or add new one
+                  final emptyIndex = _itemControllers.indexWhere(
+                    (c) => c.text.trim().isEmpty,
+                  );
+                  if (emptyIndex >= 0) {
+                    _itemControllers[emptyIndex].text = title;
+                  } else {
+                    final isPremium = ref.read(premiumProvider).isPremium;
+                    final maxItems = isPremium ? 5 : 3;
+                    if (_itemControllers.length < maxItems) {
+                      setState(() {
+                        _itemControllers.add(
+                          TextEditingController(text: title),
+                        );
+                      });
+                    }
                   }
-                }
-                setState(() {});
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 6,
-                ),
-                decoration: BoxDecoration(
-                  color: isDark
-                      ? AppColors.auroraStart.withValues(alpha: 0.12)
-                      : AppColors.lightSurfaceVariant,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: AppColors.auroraStart.withValues(alpha: 0.3),
+                  setState(() {});
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 6,
                   ),
-                ),
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 12,
+                  decoration: BoxDecoration(
                     color: isDark
-                        ? AppColors.auroraStart
-                        : AppColors.lightTextPrimary,
+                        ? AppColors.auroraStart.withValues(alpha: 0.12)
+                        : AppColors.lightSurfaceVariant,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: AppColors.auroraStart.withValues(alpha: 0.3),
+                    ),
+                  ),
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: isDark
+                          ? AppColors.auroraStart
+                          : AppColors.lightTextPrimary,
+                    ),
                   ),
                 ),
-              ),
               ),
             );
           }).toList(),

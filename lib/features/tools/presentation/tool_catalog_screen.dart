@@ -105,9 +105,9 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
     return Scaffold(
       body: CosmicBackground(
         child: GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            behavior: HitTestBehavior.opaque,
-            child: CupertinoScrollbar(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.opaque,
+          child: CupertinoScrollbar(
             child: CustomScrollView(
               physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics(),
@@ -505,15 +505,17 @@ class _ToolCard extends StatelessWidget {
                         height: 44,
                         child: Center(
                           child: Icon(
-                        isFavorite
-                            ? Icons.star_rounded
-                            : Icons.star_outline_rounded,
-                        size: 20,
-                        color: isFavorite
-                            ? AppColors.starGold
-                            : (isDark
-                                  ? AppColors.textMuted.withValues(alpha: 0.5)
-                                  : AppColors.lightTextMuted),
+                            isFavorite
+                                ? Icons.star_rounded
+                                : Icons.star_outline_rounded,
+                            size: 20,
+                            color: isFavorite
+                                ? AppColors.starGold
+                                : (isDark
+                                      ? AppColors.textMuted.withValues(
+                                          alpha: 0.5,
+                                        )
+                                      : AppColors.lightTextMuted),
                           ),
                         ),
                       ),

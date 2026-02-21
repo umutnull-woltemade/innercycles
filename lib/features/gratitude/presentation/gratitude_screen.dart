@@ -64,9 +64,9 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
     return Scaffold(
       body: CosmicBackground(
         child: GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            behavior: HitTestBehavior.opaque,
-            child: SafeArea(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.opaque,
+          child: SafeArea(
             child: CustomScrollView(
               physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics(),

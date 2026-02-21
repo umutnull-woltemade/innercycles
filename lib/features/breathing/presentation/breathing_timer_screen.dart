@@ -448,35 +448,38 @@ class _PresetSelector extends StatelessWidget {
             child: GestureDetector(
               onTap: enabled ? () => onChanged(preset) : null,
               child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-              decoration: BoxDecoration(
-                color: isSelected
-                    ? AppColors.auroraStart.withValues(alpha: 0.2)
-                    : (isDark
-                          ? AppColors.surfaceDark
-                          : AppColors.lightSurfaceVariant),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: isSelected
-                      ? AppColors.auroraStart.withValues(alpha: 0.5)
-                      : Colors.transparent,
+                duration: const Duration(milliseconds: 200),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 8,
                 ),
-              ),
-              child: Text(
-                isEn ? preset.nameEn() : preset.nameTr(),
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                decoration: BoxDecoration(
                   color: isSelected
-                      ? AppColors.auroraStart
+                      ? AppColors.auroraStart.withValues(alpha: 0.2)
                       : (isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary),
+                            ? AppColors.surfaceDark
+                            : AppColors.lightSurfaceVariant),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: isSelected
+                        ? AppColors.auroraStart.withValues(alpha: 0.5)
+                        : Colors.transparent,
+                  ),
+                ),
+                child: Text(
+                  isEn ? preset.nameEn() : preset.nameTr(),
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                    color: isSelected
+                        ? AppColors.auroraStart
+                        : (isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary),
+                  ),
                 ),
               ),
             ),
-          ),
           ),
         );
       }).toList(),

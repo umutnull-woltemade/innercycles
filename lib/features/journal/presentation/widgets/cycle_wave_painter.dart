@@ -74,7 +74,9 @@ class _CycleWaveChartState extends State<CycleWaveChart> {
         });
       },
       child: Semantics(
-        label: widget.isEn ? 'Emotional cycle wave chart' : 'Duygusal döngü dalga grafiği',
+        label: widget.isEn
+            ? 'Emotional cycle wave chart'
+            : 'Duygusal döngü dalga grafiği',
         image: true,
         child: CustomPaint(
           size: const Size(double.infinity, 240),

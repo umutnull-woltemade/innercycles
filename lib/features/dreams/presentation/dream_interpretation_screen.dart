@@ -1697,7 +1697,10 @@ ${_getPersonalAdvice(sign)}''';
             children: [
               _buildHeader(context, isDark),
               Expanded(child: _buildChatArea(isDark)),
-              _buildInputArea(isDark, isEn: ref.watch(languageProvider) == AppLanguage.en),
+              _buildInputArea(
+                isDark,
+                isEn: ref.watch(languageProvider) == AppLanguage.en,
+              ),
             ],
           ),
         ),
@@ -2174,49 +2177,51 @@ ${_getPersonalAdvice(sign)}''';
                     ),
                     const SizedBox(height: 12),
                     Semantics(
-                      label: isEn ? 'Unlock all perspectives' : 'Tüm perspektifleri aç',
+                      label: isEn
+                          ? 'Unlock all perspectives'
+                          : 'Tüm perspektifleri aç',
                       button: true,
                       child: GestureDetector(
-                      onTap: () => showContextualPaywall(
-                        context,
-                        ref,
-                        paywallContext: PaywallContext.dreams,
-                      ),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 24,
-                          vertical: 10,
+                        onTap: () => showContextualPaywall(
+                          context,
+                          ref,
+                          paywallContext: PaywallContext.dreams,
                         ),
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [
-                              AppColors.mediumSlateBlue,
-                              AppColors.amethyst,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 10,
+                          ),
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                              colors: [
+                                AppColors.mediumSlateBlue,
+                                AppColors.amethyst,
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.mediumSlateBlue.withValues(
+                                  alpha: 0.4,
+                                ),
+                                blurRadius: 12,
+                                offset: const Offset(0, 4),
+                              ),
                             ],
                           ),
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.mediumSlateBlue.withValues(
-                                alpha: 0.4,
-                              ),
-                              blurRadius: 12,
-                              offset: const Offset(0, 4),
+                          child: Text(
+                            isEn
+                                ? 'Unlock All Perspectives'
+                                : 'Tum Perspektifleri Ac',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
                             ),
-                          ],
-                        ),
-                        child: Text(
-                          isEn
-                              ? 'Unlock All Perspectives'
-                              : 'Tum Perspektifleri Ac',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                    ),
                     ),
                   ],
                 ),
@@ -2342,39 +2347,45 @@ ${_getPersonalAdvice(sign)}''';
               Semantics(
                 label: isEn ? 'Send message' : 'Mesaj gönder',
                 button: true,
-                child: GestureDetector(
-                    onTap: _sendMessage,
-                    child: Container(
-                      padding: const EdgeInsets.all(14),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [AppColors.amethyst, AppColors.cosmicPurple],
-                        ),
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.amethyst.withValues(alpha: 0.4),
-                            blurRadius: 12,
-                            spreadRadius: 1,
+                child:
+                    GestureDetector(
+                          onTap: _sendMessage,
+                          child: Container(
+                            padding: const EdgeInsets.all(14),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  AppColors.amethyst,
+                                  AppColors.cosmicPurple,
+                                ],
+                              ),
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.amethyst.withValues(
+                                    alpha: 0.4,
+                                  ),
+                                  blurRadius: 12,
+                                  spreadRadius: 1,
+                                ),
+                              ],
+                            ),
+                            child: const Icon(
+                              Icons.send_rounded,
+                              color: Colors.white,
+                              size: 22,
+                            ),
                           ),
-                        ],
-                      ),
-                      child: const Icon(
-                        Icons.send_rounded,
-                        color: Colors.white,
-                        size: 22,
-                      ),
-                    ),
-                  )
-                  .animate(
-                    onComplete: (controller) =>
-                        controller.repeat(reverse: true),
-                  )
-                  .scale(
-                    begin: const Offset(1, 1),
-                    end: const Offset(1.05, 1.05),
-                    duration: 1500.ms,
-                  ),
+                        )
+                        .animate(
+                          onComplete: (controller) =>
+                              controller.repeat(reverse: true),
+                        )
+                        .scale(
+                          begin: const Offset(1, 1),
+                          end: const Offset(1.05, 1.05),
+                          duration: 1500.ms,
+                        ),
               ),
             ],
           ),

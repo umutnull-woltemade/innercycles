@@ -87,9 +87,9 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: GestureDetector(
-              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-              behavior: HitTestBehavior.opaque,
-              child: Column(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            behavior: HitTestBehavior.opaque,
+            child: Column(
               children: [
                 // Search bar + close button
                 Padding(

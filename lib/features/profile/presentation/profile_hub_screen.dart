@@ -238,93 +238,93 @@ class _GrowthScoreCard extends StatelessWidget {
           : 'Gelişim puanı $score. Detaylar için dokun',
       button: true,
       child: GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(AppConstants.spacingXl),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              AppColors.auroraStart.withValues(alpha: 0.12),
-              AppColors.auroraEnd.withValues(alpha: 0.06),
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(AppConstants.spacingXl),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                AppColors.auroraStart.withValues(alpha: 0.12),
+                AppColors.auroraEnd.withValues(alpha: 0.06),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(AppConstants.radiusXl),
+            border: Border.all(
+              color: AppColors.auroraStart.withValues(alpha: 0.25),
+            ),
+          ),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 72,
+                height: 72,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    SizedBox(
+                      width: 72,
+                      height: 72,
+                      child: CircularProgressIndicator(
+                        value: score / 100,
+                        strokeWidth: 6,
+                        backgroundColor: isDark
+                            ? Colors.white.withValues(alpha: 0.08)
+                            : Colors.black.withValues(alpha: 0.06),
+                        valueColor: const AlwaysStoppedAnimation(
+                          AppColors.auroraStart,
+                        ),
+                        strokeCap: StrokeCap.round,
+                      ),
+                    ),
+                    Text(
+                      '$score',
+                      style: GoogleFonts.inter(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w800,
+                        color: AppColors.auroraStart,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: AppConstants.spacingXl),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      isEn ? 'Growth Score' : 'Geli\u015fim Puan\u0131',
+                      style: GoogleFonts.inter(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    const SizedBox(height: AppConstants.spacingXs),
+                    Text(
+                      isEn
+                          ? 'Tap to see your growth dashboard'
+                          : 'Geli\u015fim panelini g\u00f6rmek i\u00e7in dokun',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.chevron_right_rounded,
+                color: AppColors.auroraStart.withValues(alpha: 0.5),
+              ),
             ],
           ),
-          borderRadius: BorderRadius.circular(AppConstants.radiusXl),
-          border: Border.all(
-            color: AppColors.auroraStart.withValues(alpha: 0.25),
-          ),
-        ),
-        child: Row(
-          children: [
-            SizedBox(
-              width: 72,
-              height: 72,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  SizedBox(
-                    width: 72,
-                    height: 72,
-                    child: CircularProgressIndicator(
-                      value: score / 100,
-                      strokeWidth: 6,
-                      backgroundColor: isDark
-                          ? Colors.white.withValues(alpha: 0.08)
-                          : Colors.black.withValues(alpha: 0.06),
-                      valueColor: const AlwaysStoppedAnimation(
-                        AppColors.auroraStart,
-                      ),
-                      strokeCap: StrokeCap.round,
-                    ),
-                  ),
-                  Text(
-                    '$score',
-                    style: GoogleFonts.inter(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w800,
-                      color: AppColors.auroraStart,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: AppConstants.spacingXl),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    isEn ? 'Growth Score' : 'Geli\u015fim Puan\u0131',
-                    style: GoogleFonts.inter(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w700,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                    ),
-                  ),
-                  const SizedBox(height: AppConstants.spacingXs),
-                  Text(
-                    isEn
-                        ? 'Tap to see your growth dashboard'
-                        : 'Geli\u015fim panelini g\u00f6rmek i\u00e7in dokun',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Icon(
-              Icons.chevron_right_rounded,
-              color: AppColors.auroraStart.withValues(alpha: 0.5),
-            ),
-          ],
         ),
       ),
-    ),
     );
   }
 }
@@ -431,50 +431,50 @@ class _SettingsLinkTile extends StatelessWidget {
       label: link.name,
       button: true,
       child: GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppConstants.spacingLg,
-          vertical: AppConstants.spacingMd,
-        ),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.6)
-              : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-          border: Border.all(
-            color: isDark
-                ? Colors.white.withValues(alpha: 0.06)
-                : Colors.black.withValues(alpha: 0.03),
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingLg,
+            vertical: AppConstants.spacingMd,
           ),
-        ),
-        child: Row(
-          children: [
-            Text(link.emoji, style: const TextStyle(fontSize: 22)),
-            const SizedBox(width: AppConstants.spacingLg),
-            Expanded(
-              child: Text(
-                link.name,
-                style: GoogleFonts.inter(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
+          decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.surfaceDark.withValues(alpha: 0.6)
+                : AppColors.lightCard,
+            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+            border: Border.all(
+              color: isDark
+                  ? Colors.white.withValues(alpha: 0.06)
+                  : Colors.black.withValues(alpha: 0.03),
+            ),
+          ),
+          child: Row(
+            children: [
+              Text(link.emoji, style: const TextStyle(fontSize: 22)),
+              const SizedBox(width: AppConstants.spacingLg),
+              Expanded(
+                child: Text(
+                  link.name,
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                  ),
                 ),
               ),
-            ),
-            Icon(
-              Icons.chevron_right_rounded,
-              color: isDark
-                  ? AppColors.textSecondary.withValues(alpha: 0.4)
-                  : AppColors.lightTextMuted,
-              size: 22,
-            ),
-          ],
+              Icon(
+                Icons.chevron_right_rounded,
+                color: isDark
+                    ? AppColors.textSecondary.withValues(alpha: 0.4)
+                    : AppColors.lightTextMuted,
+                size: 22,
+              ),
+            ],
+          ),
         ),
       ),
-    ),
     );
   }
 }

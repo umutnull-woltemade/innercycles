@@ -213,10 +213,10 @@ class _CompatibilityReflectionScreenState
     return Scaffold(
       body: CosmicBackground(
         child: GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            behavior: HitTestBehavior.opaque,
-            child: SafeArea(
-              child: switch (_mode) {
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.opaque,
+          child: SafeArea(
+            child: switch (_mode) {
               _ScreenMode.profileList => _buildProfileList(
                 context,
                 isDark,
@@ -1045,7 +1045,9 @@ class _CompatibilityReflectionScreenState
               ).animate().fadeIn(duration: 500.ms, delay: 900.ms),
               ContentDisclaimer(
                 language: isEn ? AppLanguage.en : AppLanguage.tr,
-                customText: DisclaimerTexts.compatibility(isEn ? AppLanguage.en : AppLanguage.tr),
+                customText: DisclaimerTexts.compatibility(
+                  isEn ? AppLanguage.en : AppLanguage.tr,
+                ),
               ),
               ToolEcosystemFooter(
                 currentToolId: 'compatibility',

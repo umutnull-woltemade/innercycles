@@ -245,9 +245,9 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
     return Scaffold(
       body: CosmicBackground(
         child: GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            behavior: HitTestBehavior.opaque,
-            child: SafeArea(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.opaque,
+          child: SafeArea(
             child: Column(
               children: [
                 // Header
@@ -522,36 +522,36 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
             button: true,
             selected: isSelected,
             child: GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: () => _onLetterSelected(letter),
-            child: SizedBox(
-              height: 44,
-              child: Center(
-                child: Container(
-                  width: 28,
-                  height: 28,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: isSelected
-                        ? CosmicPalette.starGold.withValues(alpha: 0.3)
-                        : Colors.transparent,
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Text(
-                    letter,
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: isSelected
-                          ? FontWeight.bold
-                          : FontWeight.normal,
+              behavior: HitTestBehavior.opaque,
+              onTap: () => _onLetterSelected(letter),
+              child: SizedBox(
+                height: 44,
+                child: Center(
+                  child: Container(
+                    width: 28,
+                    height: 28,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
                       color: isSelected
-                          ? CosmicPalette.starGold
-                          : AppColors.textSecondary,
+                          ? CosmicPalette.starGold.withValues(alpha: 0.3)
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Text(
+                      letter,
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: isSelected
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                        color: isSelected
+                            ? CosmicPalette.starGold
+                            : AppColors.textSecondary,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
             ),
           );
         },
@@ -1280,48 +1280,50 @@ class _SymbolDetailSheet extends StatelessWidget {
         onTap: hasDreamed ? null : onDreamed,
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 14),
-        decoration: BoxDecoration(
-          gradient: hasDreamed
-              ? null
-              : LinearGradient(
-                  colors: [
-                    CosmicPalette.starGold.withValues(alpha: 0.8),
-                    CosmicPalette.bronzeGlow.withValues(alpha: 0.8),
-                  ],
-                ),
-          color: hasDreamed ? CosmicPalette.bgElevated : null,
-          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-          border: hasDreamed
-              ? Border.all(color: CosmicPalette.starGold.withValues(alpha: 0.3))
-              : null,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              hasDreamed ? '\u{2705}' : '\u{1F319}',
-              style: const TextStyle(fontSize: 20),
-            ),
-            const SizedBox(width: 10),
-            Text(
-              hasDreamed
-                  ? L10nService.get(
-                      'screens.dream_glossary.dreamed_button.in_journal',
-                      language,
-                    )
-                  : L10nService.get(
-                      'screens.dream_glossary.dreamed_button.i_dreamed_this',
-                      language,
-                    ),
-              style: TextStyle(
-                color: hasDreamed ? CosmicPalette.starGold : Colors.black87,
-                fontWeight: FontWeight.w600,
-                fontSize: 15,
+          decoration: BoxDecoration(
+            gradient: hasDreamed
+                ? null
+                : LinearGradient(
+                    colors: [
+                      CosmicPalette.starGold.withValues(alpha: 0.8),
+                      CosmicPalette.bronzeGlow.withValues(alpha: 0.8),
+                    ],
+                  ),
+            color: hasDreamed ? CosmicPalette.bgElevated : null,
+            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+            border: hasDreamed
+                ? Border.all(
+                    color: CosmicPalette.starGold.withValues(alpha: 0.3),
+                  )
+                : null,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                hasDreamed ? '\u{2705}' : '\u{1F319}',
+                style: const TextStyle(fontSize: 20),
               ),
-            ),
-          ],
+              const SizedBox(width: 10),
+              Text(
+                hasDreamed
+                    ? L10nService.get(
+                        'screens.dream_glossary.dreamed_button.in_journal',
+                        language,
+                      )
+                    : L10nService.get(
+                        'screens.dream_glossary.dreamed_button.i_dreamed_this',
+                        language,
+                      ),
+                style: TextStyle(
+                  color: hasDreamed ? CosmicPalette.starGold : Colors.black87,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15,
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
       ),
     );
   }

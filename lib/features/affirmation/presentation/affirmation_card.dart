@@ -159,7 +159,9 @@ class _AffirmationCardState extends ConsumerState<AffirmationCard> {
                                     height: 44,
                                     child: Center(
                                       child: AnimatedSwitcher(
-                                        duration: const Duration(milliseconds: 250),
+                                        duration: const Duration(
+                                          milliseconds: 250,
+                                        ),
                                         transitionBuilder: (child, animation) {
                                           return ScaleTransition(
                                             scale: animation,

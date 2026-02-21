@@ -460,7 +460,11 @@ class _ChallengeCard extends StatelessWidget {
                           shape: BoxShape.circle,
                           color: AppColors.starGold.withValues(alpha: 0.15),
                         ),
-                        child: Icon(Icons.add, size: 18, color: AppColors.starGold),
+                        child: Icon(
+                          Icons.add,
+                          size: 18,
+                          color: AppColors.starGold,
+                        ),
                       ),
                     ),
                   ),

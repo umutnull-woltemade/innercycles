@@ -350,23 +350,23 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                 label: isEn ? option.textEn : option.textTr,
                 button: true,
                 child: GestureDetector(
-                onTap: () => _selectOption(option),
-                child: GlassPanel(
-                  elevation: GlassElevation.g2,
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  borderRadius: BorderRadius.circular(14),
-                  child: Text(
-                    isEn ? option.textEn : option.textTr,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
+                  onTap: () => _selectOption(option),
+                  child: GlassPanel(
+                    elevation: GlassElevation.g2,
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(16),
+                    borderRadius: BorderRadius.circular(14),
+                    child: Text(
+                      isEn ? option.textEn : option.textTr,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
                     ),
                   ),
                 ),
-              ),
               ),
             ).glassListItem(context: context, index: index);
           }),

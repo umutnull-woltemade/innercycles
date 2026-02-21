@@ -268,7 +268,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: Routes.tools, redirect: (_, _) => Routes.today),
       GoRoute(path: Routes.challengeHub, redirect: (_, _) => Routes.today),
       GoRoute(path: Routes.library, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.dreamInterpretation, redirect: (_, _) => Routes.today),
+      GoRoute(
+        path: Routes.dreamInterpretation,
+        redirect: (_, _) => Routes.today,
+      ),
       GoRoute(path: Routes.dreamGlossary, redirect: (_, _) => Routes.today),
       GoRoute(path: Routes.dreamArchive, redirect: (_, _) => Routes.today),
       GoRoute(path: Routes.quizHub, redirect: (_, _) => Routes.today),
@@ -285,7 +288,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: Routes.challenges, redirect: (_, _) => Routes.today),
       GoRoute(path: Routes.weeklyDigest, redirect: (_, _) => Routes.today),
       GoRoute(path: Routes.archetype, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.compatibilityReflection, redirect: (_, _) => Routes.today),
+      GoRoute(
+        path: Routes.compatibilityReflection,
+        redirect: (_, _) => Routes.today,
+      ),
       GoRoute(path: Routes.blindSpot, redirect: (_, _) => Routes.today),
       GoRoute(path: Routes.promptLibrary, redirect: (_, _) => Routes.today),
       GoRoute(path: Routes.milestones, redirect: (_, _) => Routes.today),
@@ -297,7 +303,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: Routes.gratitudeArchive, redirect: (_, _) => Routes.today),
       GoRoute(path: Routes.sleepTrends, redirect: (_, _) => Routes.today),
       GoRoute(path: Routes.affirmations, redirect: (_, _) => Routes.today),
-      GoRoute(path: Routes.emotionalVocabulary, redirect: (_, _) => Routes.today),
+      GoRoute(
+        path: Routes.emotionalVocabulary,
+        redirect: (_, _) => Routes.today,
+      ),
       GoRoute(path: Routes.articles, redirect: (_, _) => Routes.today),
       GoRoute(path: Routes.glossary, redirect: (_, _) => Routes.today),
       GoRoute(path: Routes.search, redirect: (_, _) => Routes.today),
@@ -316,13 +325,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/timing', redirect: (_, _) => Routes.today),
       GoRoute(path: '/celebrities', redirect: (_, _) => Routes.today),
       GoRoute(path: '/daily-rituals', redirect: (_, _) => Routes.today),
-      GoRoute(
-        path: '/kesif/ruhsal-donusum',
-        redirect: (_, _) => Routes.today,
-      ),
+      GoRoute(path: '/kesif/ruhsal-donusum', redirect: (_, _) => Routes.today),
       ...Routes.legacyRouteRedirects.entries.map(
-        (entry) =>
-            GoRoute(path: entry.key, redirect: (context, state) => Routes.today),
+        (entry) => GoRoute(
+          path: entry.key,
+          redirect: (context, state) => Routes.today,
+        ),
       ),
     ],
   );

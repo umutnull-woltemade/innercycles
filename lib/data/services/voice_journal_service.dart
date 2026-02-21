@@ -53,7 +53,11 @@ class VoiceJournalService {
       );
     } catch (e) {
       _isInitialized = false;
-      _errorController.add(_isEn ? 'Failed to initialize voice input' : 'Sesli giriş başlatılamadı');
+      _errorController.add(
+        _isEn
+            ? 'Failed to initialize voice input'
+            : 'Sesli giriş başlatılamadı',
+      );
     }
   }
 
@@ -86,7 +90,11 @@ class VoiceJournalService {
   /// Returns true if listening started successfully.
   Future<bool> startListening({String? localeId}) async {
     if (!_isInitialized) {
-      _errorController.add(_isEn ? 'Voice input is not available on this device.' : 'Bu cihazda sesli giriş kullanılamıyor.');
+      _errorController.add(
+        _isEn
+            ? 'Voice input is not available on this device.'
+            : 'Bu cihazda sesli giriş kullanılamıyor.',
+      );
       return false;
     }
 
@@ -111,7 +119,9 @@ class VoiceJournalService {
       _listeningStateController.add(true);
       return true;
     } catch (e) {
-      _errorController.add(_isEn ? 'Could not start listening' : 'Dinleme başlatılamadı');
+      _errorController.add(
+        _isEn ? 'Could not start listening' : 'Dinleme başlatılamadı',
+      );
       return false;
     }
   }
@@ -123,7 +133,11 @@ class VoiceJournalService {
     try {
       await _speech.stop();
     } catch (e) {
-      _errorController.add(_isEn ? 'Error stopping voice input' : 'Sesli giriş durdurulurken hata oluştu');
+      _errorController.add(
+        _isEn
+            ? 'Error stopping voice input'
+            : 'Sesli giriş durdurulurken hata oluştu',
+      );
     } finally {
       _isListening = false;
       _listeningStateController.add(false);

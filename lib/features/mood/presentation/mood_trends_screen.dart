@@ -87,8 +87,15 @@ class MoodTrendsScreen extends ConsumerWidget {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 // Stats row (free: 7-day avg, premium: 30-day avg)
-                _buildStatsRow(context, isDark, isEn, avg7, avg30,
-                    allEntries.length, isPremium),
+                _buildStatsRow(
+                  context,
+                  isDark,
+                  isEn,
+                  avg7,
+                  avg30,
+                  allEntries.length,
+                  isPremium,
+                ),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Week view (FREE)
@@ -103,7 +110,12 @@ class MoodTrendsScreen extends ConsumerWidget {
                   isEn,
                   isPremium,
                   child: _buildDistributionCard(
-                    context, isDark, isEn, distribution, maxCount),
+                    context,
+                    isDark,
+                    isEn,
+                    distribution,
+                    maxCount,
+                  ),
                 ),
                 const SizedBox(height: AppConstants.spacingLg),
 
@@ -116,8 +128,11 @@ class MoodTrendsScreen extends ConsumerWidget {
                     isEn,
                     isPremium,
                     child: _buildRecentCard(
-                      context, isDark, isEn,
-                      allEntries.take(20).toList()),
+                      context,
+                      isDark,
+                      isEn,
+                      allEntries.take(20).toList(),
+                    ),
                   ),
                 ContentDisclaimer(
                   language: isEn ? AppLanguage.en : AppLanguage.tr,
@@ -162,11 +177,7 @@ class MoodTrendsScreen extends ConsumerWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    Icons.lock_outline,
-                    size: 28,
-                    color: AppColors.starGold,
-                  ),
+                  Icon(Icons.lock_outline, size: 28, color: AppColors.starGold),
                   const SizedBox(height: 8),
                   Text(
                     isEn ? 'Unlock 30-Day Analytics' : '30 Gün Analitiği Aç',
@@ -181,7 +192,8 @@ class MoodTrendsScreen extends ConsumerWidget {
                   const SizedBox(height: 12),
                   ElevatedButton(
                     onPressed: () => showContextualPaywall(
-                      context, ref,
+                      context,
+                      ref,
                       paywallContext: PaywallContext.patterns,
                     ),
                     style: ElevatedButton.styleFrom(
@@ -189,7 +201,8 @@ class MoodTrendsScreen extends ConsumerWidget {
                       foregroundColor: AppColors.deepSpace,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
-                            AppConstants.radiusMd),
+                          AppConstants.radiusMd,
+                        ),
                       ),
                     ),
                     child: Text(
@@ -537,7 +550,9 @@ class _StatTile extends StatelessWidget {
           Text(
             value,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: isPro ? AppColors.starGold.withValues(alpha: 0.5) : AppColors.starGold,
+              color: isPro
+                  ? AppColors.starGold.withValues(alpha: 0.5)
+                  : AppColors.starGold,
               fontWeight: FontWeight.bold,
             ),
           ),

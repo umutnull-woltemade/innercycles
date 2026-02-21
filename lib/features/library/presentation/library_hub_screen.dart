@@ -184,53 +184,53 @@ class _CategoryCard extends StatelessWidget {
       label: isEn ? category.nameEn : category.nameTr,
       button: true,
       child: GestureDetector(
-      onTap: () {
-        HapticFeedback.lightImpact();
-        context.push(category.route);
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppConstants.spacingLg,
-          vertical: AppConstants.spacingMd,
-        ),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.75)
-              : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-          border: Border.all(
-            color: isDark
-                ? Colors.white.withValues(alpha: 0.08)
-                : Colors.black.withValues(alpha: 0.04),
+        onTap: () {
+          HapticFeedback.lightImpact();
+          context.push(category.route);
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingLg,
+            vertical: AppConstants.spacingMd,
           ),
-        ),
-        child: Row(
-          children: [
-            Text(category.emoji, style: const TextStyle(fontSize: 28)),
-            const SizedBox(width: AppConstants.spacingLg),
-            Expanded(
-              child: Text(
-                isEn ? category.nameEn : category.nameTr,
-                style: GoogleFonts.inter(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
+          decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.surfaceDark.withValues(alpha: 0.75)
+                : AppColors.lightCard,
+            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+            border: Border.all(
+              color: isDark
+                  ? Colors.white.withValues(alpha: 0.08)
+                  : Colors.black.withValues(alpha: 0.04),
+            ),
+          ),
+          child: Row(
+            children: [
+              Text(category.emoji, style: const TextStyle(fontSize: 28)),
+              const SizedBox(width: AppConstants.spacingLg),
+              Expanded(
+                child: Text(
+                  isEn ? category.nameEn : category.nameTr,
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                  ),
                 ),
               ),
-            ),
-            Icon(
-              Icons.chevron_right_rounded,
-              color: isDark
-                  ? AppColors.textSecondary.withValues(alpha: 0.5)
-                  : AppColors.lightTextMuted,
-              size: 24,
-            ),
-          ],
+              Icon(
+                Icons.chevron_right_rounded,
+                color: isDark
+                    ? AppColors.textSecondary.withValues(alpha: 0.5)
+                    : AppColors.lightTextMuted,
+                size: 24,
+              ),
+            ],
+          ),
         ),
       ),
-    ),
     );
   }
 }

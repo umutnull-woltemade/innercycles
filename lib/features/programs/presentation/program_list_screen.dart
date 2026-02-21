@@ -260,180 +260,188 @@ class _ProgramCard extends StatelessWidget {
         label: isEn ? program.titleEn : program.titleTr,
         button: true,
         child: GestureDetector(
-        onTap: () {
-          HapticFeedback.lightImpact();
-          onTap();
-        },
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.85)
-                : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: isCompleted
-                  ? AppColors.success.withValues(alpha: 0.3)
-                  : hasProgress
-                  ? AppColors.starGold.withValues(alpha: 0.3)
-                  : (isDark
-                        ? Colors.white.withValues(alpha: 0.15)
-                        : Colors.black.withValues(alpha: 0.05)),
+          onTap: () {
+            HapticFeedback.lightImpact();
+            onTap();
+          },
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: isDark
+                  ? AppColors.surfaceDark.withValues(alpha: 0.85)
+                  : AppColors.lightCard,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: isCompleted
+                    ? AppColors.success.withValues(alpha: 0.3)
+                    : hasProgress
+                    ? AppColors.starGold.withValues(alpha: 0.3)
+                    : (isDark
+                          ? Colors.white.withValues(alpha: 0.15)
+                          : Colors.black.withValues(alpha: 0.05)),
+              ),
             ),
-          ),
-          child: Row(
-            children: [
-              // Emoji badge
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  color: isLocked
-                      ? (isDark
-                            ? Colors.white.withValues(alpha: 0.05)
-                            : Colors.black.withValues(alpha: 0.03))
-                      : AppColors.starGold.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Center(
-                  child: Text(
-                    isLocked ? '🔒' : program.emoji,
-                    style: const TextStyle(fontSize: 24),
+            child: Row(
+              children: [
+                // Emoji badge
+                Container(
+                  width: 48,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: isLocked
+                        ? (isDark
+                              ? Colors.white.withValues(alpha: 0.05)
+                              : Colors.black.withValues(alpha: 0.03))
+                        : AppColors.starGold.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Center(
+                    child: Text(
+                      isLocked ? '🔒' : program.emoji,
+                      style: const TextStyle(fontSize: 24),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            isEn ? program.titleEn : program.titleTr,
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: isLocked
-                                  ? (isDark
-                                        ? AppColors.textMuted
-                                        : AppColors.lightTextMuted)
-                                  : (isDark
-                                        ? AppColors.textPrimary
-                                        : AppColors.lightTextPrimary),
-                            ),
-                          ),
-                        ),
-                        if (isCompleted)
-                          Icon(
-                            Icons.check_circle,
-                            size: 18,
-                            color: AppColors.success,
-                          ),
-                        if (isLocked)
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 2,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.starGold.withValues(alpha: 0.15),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Text(
-                              'PRO',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w700,
-                                color: AppColors.starGold,
-                              ),
-                            ),
-                          ),
-                        if (isFirstTasteFree && program.isPremium && !isPremium)
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 2,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.success.withValues(alpha: 0.15),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Text(
-                              isEn ? 'FREE' : 'ÜCRETSİZ',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w700,
-                                color: AppColors.success,
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      isEn ? program.descriptionEn : program.descriptionTr,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-                    if (hasProgress) ...[
-                      const SizedBox(height: 8),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Row(
                         children: [
                           Expanded(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
-                              child: LinearProgressIndicator(
-                                value: completionPercent / 100,
-                                minHeight: 4,
-                                backgroundColor: isDark
-                                    ? Colors.white.withValues(alpha: 0.08)
-                                    : Colors.black.withValues(alpha: 0.06),
-                                valueColor: AlwaysStoppedAnimation(
-                                  AppColors.starGold,
-                                ),
+                            child: Text(
+                              isEn ? program.titleEn : program.titleTr,
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: isLocked
+                                    ? (isDark
+                                          ? AppColors.textMuted
+                                          : AppColors.lightTextMuted)
+                                    : (isDark
+                                          ? AppColors.textPrimary
+                                          : AppColors.lightTextPrimary),
                               ),
                             ),
                           ),
-                          const SizedBox(width: 8),
-                          Text(
-                            '$completionPercent%',
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.starGold,
+                          if (isCompleted)
+                            Icon(
+                              Icons.check_circle,
+                              size: 18,
+                              color: AppColors.success,
                             ),
-                          ),
+                          if (isLocked)
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.starGold.withValues(
+                                  alpha: 0.15,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                'PRO',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.starGold,
+                                ),
+                              ),
+                            ),
+                          if (isFirstTasteFree &&
+                              program.isPremium &&
+                              !isPremium)
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.success.withValues(
+                                  alpha: 0.15,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                isEn ? 'FREE' : 'ÜCRETSİZ',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.success,
+                                ),
+                              ),
+                            ),
                         ],
                       ),
-                    ] else if (!isCompleted && !isLocked) ...[
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 2),
                       Text(
-                        '${program.durationDays} ${isEn ? 'days' : 'gün'}',
+                        isEn ? program.descriptionEn : program.descriptionTr,
                         style: TextStyle(
-                          fontSize: 11,
-                          color: AppColors.auroraStart,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
                         ),
                       ),
+                      if (hasProgress) ...[
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(4),
+                                child: LinearProgressIndicator(
+                                  value: completionPercent / 100,
+                                  minHeight: 4,
+                                  backgroundColor: isDark
+                                      ? Colors.white.withValues(alpha: 0.08)
+                                      : Colors.black.withValues(alpha: 0.06),
+                                  valueColor: AlwaysStoppedAnimation(
+                                    AppColors.starGold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              '$completionPercent%',
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.starGold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ] else if (!isCompleted && !isLocked) ...[
+                        const SizedBox(height: 4),
+                        Text(
+                          '${program.durationDays} ${isEn ? 'days' : 'gün'}',
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: AppColors.auroraStart,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
-              ),
-              const SizedBox(width: 8),
-              Icon(
-                Icons.chevron_right_rounded,
-                size: 20,
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
-            ],
-          ),
-        ).animate().fadeIn(duration: 300.ms),
+                const SizedBox(width: 8),
+                Icon(
+                  Icons.chevron_right_rounded,
+                  size: 20,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
+                ),
+              ],
+            ),
+          ).animate().fadeIn(duration: 300.ms),
         ),
       ),
     );

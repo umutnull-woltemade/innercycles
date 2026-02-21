@@ -54,9 +54,9 @@ class _EmotionalVocabularyScreenState
     return Scaffold(
       body: CosmicBackground(
         child: GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            behavior: HitTestBehavior.opaque,
-            child: CupertinoScrollbar(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.opaque,
+          child: CupertinoScrollbar(
             child:
                 CustomScrollView(
                       physics: const BouncingScrollPhysics(

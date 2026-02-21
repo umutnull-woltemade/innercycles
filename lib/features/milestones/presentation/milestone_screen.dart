@@ -356,100 +356,102 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
           label: name,
           button: earned,
           child: GestureDetector(
-          onTap: earned ? () => _showBadgeDetail(milestone) : null,
-          child: Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: earned
-                  ? (isDark
-                        ? AppColors.surfaceDark.withValues(alpha: 0.85)
-                        : AppColors.lightCard)
-                  : (isDark
-                        ? AppColors.surfaceDark.withValues(alpha: 0.35)
-                        : AppColors.lightSurfaceVariant.withValues(alpha: 0.5)),
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
+            onTap: earned ? () => _showBadgeDetail(milestone) : null,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
                 color: earned
-                    ? AppColors.starGold.withValues(alpha: 0.5)
-                    : isDark
-                    ? Colors.white.withValues(alpha: 0.06)
-                    : Colors.black.withValues(alpha: 0.04),
-                width: earned ? 1.5 : 1,
-              ),
-              boxShadow: earned
-                  ? [
-                      BoxShadow(
-                        color: AppColors.starGold.withValues(alpha: 0.08),
-                        blurRadius: 12,
-                        offset: const Offset(0, 4),
-                      ),
-                    ]
-                  : null,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Emoji or lock
-                if (earned)
-                  Text(milestone.emoji, style: const TextStyle(fontSize: 32))
-                else
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Text(
-                        milestone.emoji,
-                        style: TextStyle(
-                          fontSize: 32,
-                          color: Colors.white.withValues(alpha: 0.15),
-                        ),
-                      ),
-                      Icon(
-                        Icons.lock_outline_rounded,
-                        size: 20,
-                        color: isDark
-                            ? AppColors.textMuted.withValues(alpha: 0.5)
-                            : AppColors.lightTextMuted.withValues(alpha: 0.6),
-                      ),
-                    ],
-                  ),
-                const SizedBox(height: 8),
-                // Name
-                Text(
-                  name,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: earned
-                        ? (isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary)
-                        : (isDark
-                              ? AppColors.textMuted.withValues(alpha: 0.5)
-                              : AppColors.lightTextMuted),
-                  ),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                    ? (isDark
+                          ? AppColors.surfaceDark.withValues(alpha: 0.85)
+                          : AppColors.lightCard)
+                    : (isDark
+                          ? AppColors.surfaceDark.withValues(alpha: 0.35)
+                          : AppColors.lightSurfaceVariant.withValues(
+                              alpha: 0.5,
+                            )),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: earned
+                      ? AppColors.starGold.withValues(alpha: 0.5)
+                      : isDark
+                      ? Colors.white.withValues(alpha: 0.06)
+                      : Colors.black.withValues(alpha: 0.04),
+                  width: earned ? 1.5 : 1,
                 ),
-                // Hint text for locked
-                if (!earned) ...[
-                  const SizedBox(height: 4),
+                boxShadow: earned
+                    ? [
+                        BoxShadow(
+                          color: AppColors.starGold.withValues(alpha: 0.08),
+                          blurRadius: 12,
+                          offset: const Offset(0, 4),
+                        ),
+                      ]
+                    : null,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Emoji or lock
+                  if (earned)
+                    Text(milestone.emoji, style: const TextStyle(fontSize: 32))
+                  else
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Text(
+                          milestone.emoji,
+                          style: TextStyle(
+                            fontSize: 32,
+                            color: Colors.white.withValues(alpha: 0.15),
+                          ),
+                        ),
+                        Icon(
+                          Icons.lock_outline_rounded,
+                          size: 20,
+                          color: isDark
+                              ? AppColors.textMuted.withValues(alpha: 0.5)
+                              : AppColors.lightTextMuted.withValues(alpha: 0.6),
+                        ),
+                      ],
+                    ),
+                  const SizedBox(height: 8),
+                  // Name
                   Text(
-                    _getCategoryHint(milestone.category),
+                    name,
                     style: TextStyle(
-                      fontSize: 10,
-                      color: isDark
-                          ? AppColors.textMuted.withValues(alpha: 0.4)
-                          : AppColors.lightTextMuted.withValues(alpha: 0.6),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: earned
+                          ? (isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary)
+                          : (isDark
+                                ? AppColors.textMuted.withValues(alpha: 0.5)
+                                : AppColors.lightTextMuted),
                     ),
                     textAlign: TextAlign.center,
-                    maxLines: 1,
+                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
+                  // Hint text for locked
+                  if (!earned) ...[
+                    const SizedBox(height: 4),
+                    Text(
+                      _getCategoryHint(milestone.category),
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: isDark
+                            ? AppColors.textMuted.withValues(alpha: 0.4)
+                            : AppColors.lightTextMuted.withValues(alpha: 0.6),
+                      ),
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ],
-              ],
+              ),
             ),
-          ),
           ),
         )
         .animate(delay: (40 * index).ms)

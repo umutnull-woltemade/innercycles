@@ -157,7 +157,13 @@ class _AbstractPainter extends CustomPainter {
     );
   }
 
-  void _drawWash(Canvas canvas, Offset center, double radius, Color color, double opacity) {
+  void _drawWash(
+    Canvas canvas,
+    Offset center,
+    double radius,
+    Color color,
+    double opacity,
+  ) {
     final gradient = ui.Gradient.radial(
       center,
       radius,

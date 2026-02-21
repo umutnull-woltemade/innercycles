@@ -766,7 +766,9 @@ class _IdentityPageState extends State<_IdentityPage>
   Widget _buildAppleSignInButton() {
     return Semantics(
       button: true,
-      label: widget.language.name == 'en' ? 'Sign in with Apple' : 'Apple ile giriş yap',
+      label: widget.language.name == 'en'
+          ? 'Sign in with Apple'
+          : 'Apple ile giriş yap',
       child: GestureDetector(
         onTap: _isAppleLoading ? null : _handleAppleSignIn,
         child: Container(
@@ -1598,7 +1600,9 @@ class _PermissionStartPage extends StatelessWidget {
                   ),
                   Semantics(
                     button: true,
-                    label: isEn ? 'Enable notifications' : 'Bildirimleri etkinleştir',
+                    label: isEn
+                        ? 'Enable notifications'
+                        : 'Bildirimleri etkinleştir',
                     child: GestureDetector(
                       onTap: notificationsRequested
                           ? null
@@ -1607,41 +1611,43 @@ class _PermissionStartPage extends StatelessWidget {
                         width: 52,
                         height: 44,
                         child: Center(
-                        child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 250),
-                        width: 52,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: notificationsRequested
-                              ? AppColors.starGold
-                              : Colors.white.withValues(alpha: 0.1),
-                          border: Border.all(
-                            color: notificationsRequested
-                                ? AppColors.starGold
-                                : Colors.white.withValues(alpha: 0.2),
-                          ),
-                        ),
-                        child: AnimatedAlign(
-                          duration: const Duration(milliseconds: 250),
-                          curve: Curves.easeOutBack,
-                          alignment: notificationsRequested
-                              ? Alignment.centerRight
-                              : Alignment.centerLeft,
-                          child: Container(
-                            width: 24,
-                            height: 24,
-                            margin: const EdgeInsets.symmetric(horizontal: 2),
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 250),
+                            width: 52,
+                            height: 30,
                             decoration: BoxDecoration(
-                              shape: BoxShape.circle,
+                              borderRadius: BorderRadius.circular(15),
                               color: notificationsRequested
-                                  ? Colors.white
-                                  : Colors.white.withValues(alpha: 0.71),
+                                  ? AppColors.starGold
+                                  : Colors.white.withValues(alpha: 0.1),
+                              border: Border.all(
+                                color: notificationsRequested
+                                    ? AppColors.starGold
+                                    : Colors.white.withValues(alpha: 0.2),
+                              ),
+                            ),
+                            child: AnimatedAlign(
+                              duration: const Duration(milliseconds: 250),
+                              curve: Curves.easeOutBack,
+                              alignment: notificationsRequested
+                                  ? Alignment.centerRight
+                                  : Alignment.centerLeft,
+                              child: Container(
+                                width: 24,
+                                height: 24,
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 2,
+                                ),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: notificationsRequested
+                                      ? Colors.white
+                                      : Colors.white.withValues(alpha: 0.71),
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      ),
                       ),
                     ),
                   ),
@@ -1873,7 +1879,9 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
       color: Colors.transparent,
       child: Semantics(
         button: true,
-        label: widget.language.name == 'en' ? 'Tap to continue' : 'Devam etmek için dokunun',
+        label: widget.language.name == 'en'
+            ? 'Tap to continue'
+            : 'Devam etmek için dokunun',
         child: GestureDetector(
           onTap: widget.onComplete,
           child: Container(

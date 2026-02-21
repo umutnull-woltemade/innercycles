@@ -186,7 +186,8 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                       final quality = i + 1;
                       final isActive = quality == _selectedQuality;
                       return Semantics(
-                        label: '${isEn ? 'Sleep quality' : 'Uyku kalitesi'} $quality: ${_qualityLabel(quality, isEn)}',
+                        label:
+                            '${isEn ? 'Sleep quality' : 'Uyku kalitesi'} $quality: ${_qualityLabel(quality, isEn)}',
                         button: true,
                         selected: isActive,
                         child: GestureDetector(
@@ -196,34 +197,36 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                             _save();
                           },
                           child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          width: 52,
-                          height: 52,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: isActive
-                                ? _qualityColor(quality)
-                                : (isDark
-                                      ? AppColors.surfaceLight.withValues(
-                                          alpha: 0.3,
-                                        )
-                                      : AppColors.lightSurfaceVariant),
-                            border: Border.all(
+                            duration: const Duration(milliseconds: 200),
+                            width: 52,
+                            height: 52,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
                               color: isActive
                                   ? _qualityColor(quality)
                                   : (isDark
-                                        ? Colors.white.withValues(alpha: 0.15)
-                                        : Colors.black.withValues(alpha: 0.08)),
+                                        ? AppColors.surfaceLight.withValues(
+                                            alpha: 0.3,
+                                          )
+                                        : AppColors.lightSurfaceVariant),
+                              border: Border.all(
+                                color: isActive
+                                    ? _qualityColor(quality)
+                                    : (isDark
+                                          ? Colors.white.withValues(alpha: 0.15)
+                                          : Colors.black.withValues(
+                                              alpha: 0.08,
+                                            )),
+                              ),
                             ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              _qualityEmoji(quality),
-                              style: const TextStyle(fontSize: 22),
+                            child: Center(
+                              child: Text(
+                                _qualityEmoji(quality),
+                                style: const TextStyle(fontSize: 22),
+                              ),
                             ),
                           ),
                         ),
-                      ),
                       );
                     }),
                   ),

@@ -306,51 +306,54 @@ class _CalendarGrid extends StatelessWidget {
             selectedDay?.date.month == month.month;
 
         return Semantics(
-          label: '$dayNum${phaseData != null ? ' ${phaseData.phase.emoji}' : ''}',
+          label:
+              '$dayNum${phaseData != null ? ' ${phaseData.phase.emoji}' : ''}',
           button: phaseData != null,
           selected: isSelected,
           child: GestureDetector(
-          onTap: phaseData != null ? () => onDayTap(phaseData) : null,
-          child: Container(
-            decoration: BoxDecoration(
-              color: isSelected
-                  ? AppColors.moonSilver.withValues(alpha: 0.15)
-                  : isToday
-                  ? AppColors.starGold.withValues(alpha: 0.1)
-                  : null,
-              borderRadius: BorderRadius.circular(8),
-              border: isToday
-                  ? Border.all(color: AppColors.starGold.withValues(alpha: 0.4))
-                  : isSelected
-                  ? Border.all(
-                      color: AppColors.moonSilver.withValues(alpha: 0.4),
-                    )
-                  : null,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '$dayNum',
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: isToday ? FontWeight.w700 : FontWeight.w400,
-                    color: isToday
-                        ? AppColors.starGold
-                        : (isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary),
-                  ),
-                ),
-                if (phaseData != null)
+            onTap: phaseData != null ? () => onDayTap(phaseData) : null,
+            child: Container(
+              decoration: BoxDecoration(
+                color: isSelected
+                    ? AppColors.moonSilver.withValues(alpha: 0.15)
+                    : isToday
+                    ? AppColors.starGold.withValues(alpha: 0.1)
+                    : null,
+                borderRadius: BorderRadius.circular(8),
+                border: isToday
+                    ? Border.all(
+                        color: AppColors.starGold.withValues(alpha: 0.4),
+                      )
+                    : isSelected
+                    ? Border.all(
+                        color: AppColors.moonSilver.withValues(alpha: 0.4),
+                      )
+                    : null,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
                   Text(
-                    phaseData.phase.emoji,
-                    style: const TextStyle(fontSize: 14),
+                    '$dayNum',
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: isToday ? FontWeight.w700 : FontWeight.w400,
+                      color: isToday
+                          ? AppColors.starGold
+                          : (isDark
+                                ? AppColors.textSecondary
+                                : AppColors.lightTextSecondary),
+                    ),
                   ),
-              ],
+                  if (phaseData != null)
+                    Text(
+                      phaseData.phase.emoji,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                ],
+              ),
             ),
           ),
-        ),
         );
       },
     ).animate().fadeIn(duration: 300.ms);

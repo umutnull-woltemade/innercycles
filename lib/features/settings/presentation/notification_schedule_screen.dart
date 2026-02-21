@@ -90,7 +90,6 @@ class _NotificationScheduleScreenState
     await _loadSettings();
   }
 
-
   Future<void> _toggleWellness(bool enabled) async {
     await _notificationService.setWellnessRemindersEnabled(enabled);
     if (!mounted) return;
@@ -351,50 +350,52 @@ class _NotificationScheduleScreenState
     final formatted = time.format(context);
 
     return Semantics(
-      label: isEn ? 'Change reminder time: $formatted' : 'Hatırlatma saatini değiştir: $formatted',
+      label: isEn
+          ? 'Change reminder time: $formatted'
+          : 'Hatırlatma saatini değiştir: $formatted',
       button: true,
       child: GestureDetector(
-      onTap: _pickDailyTime,
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppConstants.spacingMd,
-          vertical: AppConstants.spacingSm,
-        ),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceLight.withValues(alpha: 0.1)
-              : AppColors.lightSurfaceVariant,
-          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              isEn ? 'Reminder time' : 'Hatırlatma saati',
-              style: TextStyle(
-                fontSize: 14,
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
-            ),
-            Row(
-              children: [
-                Text(
-                  formatted,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.starGold,
-                  ),
+        onTap: _pickDailyTime,
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingMd,
+            vertical: AppConstants.spacingSm,
+          ),
+          decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.surfaceLight.withValues(alpha: 0.1)
+                : AppColors.lightSurfaceVariant,
+            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                isEn ? 'Reminder time' : 'Hatırlatma saati',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
                 ),
-                const SizedBox(width: 4),
-                Icon(Icons.access_time, size: 16, color: AppColors.starGold),
-              ],
-            ),
-          ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    formatted,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Icon(Icons.access_time, size: 16, color: AppColors.starGold),
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
       ),
     );
   }

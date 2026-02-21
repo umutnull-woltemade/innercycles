@@ -291,43 +291,46 @@ class _YearSelector extends StatelessWidget {
             button: true,
             selected: isSelected,
             child: GestureDetector(
-            onTap: () {
-              HapticFeedback.selectionClick();
-              onYearSelected(year);
-            },
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-              decoration: BoxDecoration(
-                color: isSelected
-                    ? AppColors.starGold
-                    : isDark
-                    ? AppColors.surfaceDark.withValues(alpha: 0.8)
-                    : AppColors.lightCard,
-                borderRadius: BorderRadius.circular(24),
-                border: Border.all(
+              onTap: () {
+                HapticFeedback.selectionClick();
+                onYearSelected(year);
+              },
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 250),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 10,
+                ),
+                decoration: BoxDecoration(
                   color: isSelected
                       ? AppColors.starGold
                       : isDark
-                      ? Colors.white.withValues(alpha: 0.15)
-                      : Colors.black.withValues(alpha: 0.08),
-                ),
-              ),
-              child: Center(
-                child: Text(
-                  '$year',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
+                      ? AppColors.surfaceDark.withValues(alpha: 0.8)
+                      : AppColors.lightCard,
+                  borderRadius: BorderRadius.circular(24),
+                  border: Border.all(
                     color: isSelected
-                        ? Colors.black
+                        ? AppColors.starGold
                         : isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
+                        ? Colors.white.withValues(alpha: 0.15)
+                        : Colors.black.withValues(alpha: 0.08),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    '$year',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: isSelected
+                          ? Colors.black
+                          : isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                    ),
                   ),
                 ),
               ),
-            ),
             ),
           );
         },

@@ -271,48 +271,50 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
           button: true,
           selected: isSelected,
           child: GestureDetector(
-          onTap: () => setState(() => _selectedIndex = index),
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            decoration: BoxDecoration(
-              color: isSelected
-                  ? AppColors.starGold.withValues(alpha: 0.2)
-                  : Colors.transparent,
-              borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-              border: isSelected
-                  ? Border.all(color: AppColors.starGold.withValues(alpha: 0.5))
-                  : null,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  icon,
-                  size: 20,
-                  color: isSelected
-                      ? AppColors.starGold
-                      : (isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  label,
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            onTap: () => setState(() => _selectedIndex = index),
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              decoration: BoxDecoration(
+                color: isSelected
+                    ? AppColors.starGold.withValues(alpha: 0.2)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(AppConstants.radiusSm),
+                border: isSelected
+                    ? Border.all(
+                        color: AppColors.starGold.withValues(alpha: 0.5),
+                      )
+                    : null,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    icon,
+                    size: 20,
                     color: isSelected
                         ? AppColors.starGold
                         : (isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted),
-                    fontWeight: isSelected
-                        ? FontWeight.bold
-                        : FontWeight.normal,
                   ),
-                ),
-              ],
+                  const SizedBox(height: 4),
+                  Text(
+                    label,
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: isSelected
+                          ? AppColors.starGold
+                          : (isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted),
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
         ),
       ),
     );
@@ -873,7 +875,9 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
     }
 
     return Semantics(
-      label: lang == AppLanguage.en ? 'Analytics line chart' : 'Analitik çizgi grafiği',
+      label: lang == AppLanguage.en
+          ? 'Analytics line chart'
+          : 'Analitik çizgi grafiği',
       image: true,
       child: CustomPaint(
         size: Size.infinite,

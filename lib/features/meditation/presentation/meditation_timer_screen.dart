@@ -198,47 +198,48 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                 button: true,
                                 selected: isSelected,
                                 child: GestureDetector(
-                                onTap: () =>
-                                    setState(() => _selectedMinutes = m),
-                                child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 200),
-                                  width: 64,
-                                  height: 64,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: isSelected
-                                        ? AppColors.cosmicPurple.withValues(
-                                            alpha: 0.3,
-                                          )
-                                        : (isDark
-                                              ? AppColors.surfaceDark
-                                              : AppColors.lightSurfaceVariant),
-                                    border: Border.all(
+                                  onTap: () =>
+                                      setState(() => _selectedMinutes = m),
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 200),
+                                    width: 64,
+                                    height: 64,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
                                       color: isSelected
-                                          ? AppColors.cosmicPurple
-                                          : Colors.transparent,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      '${m}m',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: isSelected
-                                            ? FontWeight.w700
-                                            : FontWeight.w500,
+                                          ? AppColors.cosmicPurple.withValues(
+                                              alpha: 0.3,
+                                            )
+                                          : (isDark
+                                                ? AppColors.surfaceDark
+                                                : AppColors
+                                                      .lightSurfaceVariant),
+                                      border: Border.all(
                                         color: isSelected
                                             ? AppColors.cosmicPurple
-                                            : (isDark
-                                                  ? AppColors.textSecondary
-                                                  : AppColors
-                                                        .lightTextSecondary),
+                                            : Colors.transparent,
+                                        width: 2,
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        '${m}m',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: isSelected
+                                              ? FontWeight.w700
+                                              : FontWeight.w500,
+                                          color: isSelected
+                                              ? AppColors.cosmicPurple
+                                              : (isDark
+                                                    ? AppColors.textSecondary
+                                                    : AppColors
+                                                          .lightTextSecondary),
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
                               ),
                             );
                           }).toList(),

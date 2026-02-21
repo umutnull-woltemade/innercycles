@@ -268,58 +268,59 @@ class DreamFallingScreen extends ConsumerWidget {
       label: label,
       button: true,
       child: GestureDetector(
-      onTap: () => context.push(Routes.dreamWater),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.05)
-              : AppColors.cosmicPurple.withValues(alpha: 0.08),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
+        onTap: () => context.push(Routes.dreamWater),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
             color: isDark
-                ? Colors.white.withValues(alpha: 0.15)
-                : AppColors.cosmicPurple.withValues(alpha: 0.2),
+                ? Colors.white.withValues(alpha: 0.05)
+                : AppColors.cosmicPurple.withValues(alpha: 0.08),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: isDark
+                  ? Colors.white.withValues(alpha: 0.15)
+                  : AppColors.cosmicPurple.withValues(alpha: 0.2),
+            ),
+          ),
+          child: Row(
+            children: [
+              Text('💧', style: const TextStyle(fontSize: 24)),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      L10nService.get('common.also_discover', language),
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: isDark ? Colors.white38 : AppColors.textLight,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      L10nService.get(
+                        'dreams.canonical.water_question',
+                        language,
+                      ),
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: isDark ? Colors.white : AppColors.textDark,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 14,
+                color: isDark ? Colors.white38 : AppColors.textLight,
+              ),
+            ],
           ),
         ),
-        child: Row(
-          children: [
-            Text('💧', style: const TextStyle(fontSize: 24)),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    L10nService.get('common.also_discover', language),
-                    style: TextStyle(
-                      fontSize: 11,
-                      color: isDark ? Colors.white38 : AppColors.textLight,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    L10nService.get(
-                      'dreams.canonical.water_question',
-                      language,
-                    ),
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: isDark ? Colors.white : AppColors.textDark,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              size: 14,
-              color: isDark ? Colors.white38 : AppColors.textLight,
-            ),
-          ],
-        ),
       ),
-    )).animate().fadeIn(delay: 200.ms, duration: 400.ms);
+    ).animate().fadeIn(delay: 200.ms, duration: 400.ms);
   }
 }

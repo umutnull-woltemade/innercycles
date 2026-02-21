@@ -249,37 +249,37 @@ class _CategoryChip extends StatelessWidget {
       button: true,
       selected: isSelected,
       child: GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? AppColors.auroraStart.withValues(alpha: 0.2)
-              : (isDark
-                    ? AppColors.surfaceLight.withValues(alpha: 0.1)
-                    : AppColors.lightSurfaceVariant),
-          borderRadius: BorderRadius.circular(AppConstants.radiusFull),
-          border: Border.all(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          decoration: BoxDecoration(
             color: isSelected
-                ? AppColors.auroraStart
+                ? AppColors.auroraStart.withValues(alpha: 0.2)
                 : (isDark
-                      ? Colors.white.withValues(alpha: 0.1)
-                      : Colors.black.withValues(alpha: 0.05)),
+                      ? AppColors.surfaceLight.withValues(alpha: 0.1)
+                      : AppColors.lightSurfaceVariant),
+            borderRadius: BorderRadius.circular(AppConstants.radiusFull),
+            border: Border.all(
+              color: isSelected
+                  ? AppColors.auroraStart
+                  : (isDark
+                        ? Colors.white.withValues(alpha: 0.1)
+                        : Colors.black.withValues(alpha: 0.05)),
+            ),
+          ),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+              color: isSelected
+                  ? AppColors.auroraStart
+                  : (isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary),
+            ),
           ),
         ),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 13,
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-            color: isSelected
-                ? AppColors.auroraStart
-                : (isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary),
-          ),
-        ),
-      ),
       ),
     );
   }
@@ -312,238 +312,244 @@ class _ModuleCard extends StatelessWidget {
       label: isEn ? module.titleEn : module.titleTr,
       button: true,
       child: GestureDetector(
-      onTap: onTap,
-      child: GlassPanel(
-        elevation: isExpanded ? GlassElevation.g3 : GlassElevation.g2,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        padding: const EdgeInsets.all(AppConstants.spacingLg),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header row
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Read indicator
-                Container(
-                  width: 8,
-                  height: 8,
-                  margin: const EdgeInsets.only(top: 6),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: isRead
-                        ? AppColors.auroraEnd.withValues(alpha: 0.5)
-                        : AppColors.auroraStart,
+        onTap: onTap,
+        child: GlassPanel(
+          elevation: isExpanded ? GlassElevation.g3 : GlassElevation.g2,
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          padding: const EdgeInsets.all(AppConstants.spacingLg),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header row
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Read indicator
+                  Container(
+                    width: 8,
+                    height: 8,
+                    margin: const EdgeInsets.only(top: 6),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: isRead
+                          ? AppColors.auroraEnd.withValues(alpha: 0.5)
+                          : AppColors.auroraStart,
+                    ),
+                  ),
+                  const SizedBox(width: AppConstants.spacingMd),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          isEn ? module.titleEn : module.titleTr,
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.auroraStart.withValues(
+                                  alpha: 0.1,
+                                ),
+                                borderRadius: BorderRadius.circular(
+                                  AppConstants.radiusFull,
+                                ),
+                              ),
+                              child: Text(
+                                isEn
+                                    ? module.category.displayNameEn
+                                    : module.category.displayNameTr,
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.auroraStart,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 6),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.starGold.withValues(
+                                  alpha: 0.1,
+                                ),
+                                borderRadius: BorderRadius.circular(
+                                  AppConstants.radiusFull,
+                                ),
+                              ),
+                              child: Text(
+                                isEn
+                                    ? module.depth.displayNameEn
+                                    : module.depth.displayNameTr,
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.starGold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Semantics(
+                    label: isBookmarked
+                        ? (isEn ? 'Remove bookmark' : 'Yer imini kaldır')
+                        : (isEn ? 'Add bookmark' : 'Yer imi ekle'),
+                    button: true,
+                    child: GestureDetector(
+                      onTap: onToggleBookmark,
+                      behavior: HitTestBehavior.opaque,
+                      child: SizedBox(
+                        width: 44,
+                        height: 44,
+                        child: Center(
+                          child: Icon(
+                            isBookmarked
+                                ? Icons.bookmark
+                                : Icons.bookmark_border,
+                            size: 20,
+                            color: isBookmarked
+                                ? AppColors.starGold
+                                : (isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              // Summary (always shown)
+              const SizedBox(height: AppConstants.spacingMd),
+              Text(
+                isEn ? module.summaryEn : module.summaryTr,
+                style: TextStyle(
+                  fontSize: 13,
+                  height: 1.5,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
+                maxLines: isExpanded ? null : 2,
+                overflow: isExpanded ? null : TextOverflow.ellipsis,
+              ),
+
+              // Expanded content
+              if (isExpanded) ...[
+                const SizedBox(height: AppConstants.spacingLg),
+                Text(
+                  isEn ? module.bodyEn : module.bodyTr,
+                  style: TextStyle(
+                    fontSize: 14,
+                    height: 1.6,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
                   ),
                 ),
-                const SizedBox(width: AppConstants.spacingMd),
-                Expanded(
+                const SizedBox(height: AppConstants.spacingLg),
+
+                // "Why it matters" section
+                Container(
+                  padding: const EdgeInsets.all(AppConstants.spacingMd),
+                  decoration: BoxDecoration(
+                    color: AppColors.starGold.withValues(alpha: 0.08),
+                    borderRadius: BorderRadius.circular(AppConstants.radiusSm),
+                    border: Border.all(
+                      color: AppColors.starGold.withValues(alpha: 0.2),
+                    ),
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        isEn ? module.titleEn : module.titleTr,
+                        isEn ? 'Why It Matters' : 'Neden Önemli',
                         style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.starGold,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        isEn ? module.whyItMattersEn : module.whyItMattersTr,
+                        style: TextStyle(
+                          fontSize: 13,
+                          height: 1.5,
                           color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 2,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.auroraStart.withValues(
-                                alpha: 0.1,
-                              ),
-                              borderRadius: BorderRadius.circular(
-                                AppConstants.radiusFull,
-                              ),
-                            ),
-                            child: Text(
-                              isEn
-                                  ? module.category.displayNameEn
-                                  : module.category.displayNameTr,
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.auroraStart,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 6),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 2,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.starGold.withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(
-                                AppConstants.radiusFull,
-                              ),
-                            ),
-                            child: Text(
-                              isEn
-                                  ? module.depth.displayNameEn
-                                  : module.depth.displayNameTr,
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.starGold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Semantics(
-                  label: isBookmarked
-                      ? (isEn ? 'Remove bookmark' : 'Yer imini kaldır')
-                      : (isEn ? 'Add bookmark' : 'Yer imi ekle'),
-                  button: true,
-                  child: GestureDetector(
-                    onTap: onToggleBookmark,
-                    behavior: HitTestBehavior.opaque,
-                    child: SizedBox(
-                      width: 44,
-                      height: 44,
-                      child: Center(
-                        child: Icon(
-                          isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-                          size: 20,
-                          color: isBookmarked
-                              ? AppColors.starGold
-                              : (isDark
-                                    ? AppColors.textMuted
-                                    : AppColors.lightTextMuted),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            // Summary (always shown)
-            const SizedBox(height: AppConstants.spacingMd),
-            Text(
-              isEn ? module.summaryEn : module.summaryTr,
-              style: TextStyle(
-                fontSize: 13,
-                height: 1.5,
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
-              maxLines: isExpanded ? null : 2,
-              overflow: isExpanded ? null : TextOverflow.ellipsis,
-            ),
-
-            // Expanded content
-            if (isExpanded) ...[
-              const SizedBox(height: AppConstants.spacingLg),
-              Text(
-                isEn ? module.bodyEn : module.bodyTr,
-                style: TextStyle(
-                  fontSize: 14,
-                  height: 1.6,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                ),
-              ),
-              const SizedBox(height: AppConstants.spacingLg),
-
-              // "Why it matters" section
-              Container(
-                padding: const EdgeInsets.all(AppConstants.spacingMd),
-                decoration: BoxDecoration(
-                  color: AppColors.starGold.withValues(alpha: 0.08),
-                  borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-                  border: Border.all(
-                    color: AppColors.starGold.withValues(alpha: 0.2),
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      isEn ? 'Why It Matters' : 'Neden Önemli',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.starGold,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      isEn ? module.whyItMattersEn : module.whyItMattersTr,
-                      style: TextStyle(
-                        fontSize: 13,
-                        height: 1.5,
-                        color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              // Screenshot line / shareable insight
-              if (module.screenshotLineEn != null) ...[
-                const SizedBox(height: AppConstants.spacingMd),
-                Container(
-                  padding: const EdgeInsets.all(AppConstants.spacingMd),
-                  decoration: BoxDecoration(
-                    color: isDark
-                        ? AppColors.surfaceLight.withValues(alpha: 0.08)
-                        : AppColors.lightSurfaceVariant,
-                    borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.format_quote,
-                        size: 16,
-                        color: AppColors.auroraStart,
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Text(
-                          isEn
-                              ? module.screenshotLineEn!
-                              : (module.screenshotLineTr ??
-                                    module.screenshotLineEn!),
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontStyle: FontStyle.italic,
-                            height: 1.5,
-                            color: isDark
-                                ? AppColors.textSecondary
-                                : AppColors.lightTextSecondary,
-                          ),
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
                         ),
                       ),
                     ],
                   ),
                 ),
+
+                // Screenshot line / shareable insight
+                if (module.screenshotLineEn != null) ...[
+                  const SizedBox(height: AppConstants.spacingMd),
+                  Container(
+                    padding: const EdgeInsets.all(AppConstants.spacingMd),
+                    decoration: BoxDecoration(
+                      color: isDark
+                          ? AppColors.surfaceLight.withValues(alpha: 0.08)
+                          : AppColors.lightSurfaceVariant,
+                      borderRadius: BorderRadius.circular(
+                        AppConstants.radiusSm,
+                      ),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.format_quote,
+                          size: 16,
+                          color: AppColors.auroraStart,
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            isEn
+                                ? module.screenshotLineEn!
+                                : (module.screenshotLineTr ??
+                                      module.screenshotLineEn!),
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontStyle: FontStyle.italic,
+                              height: 1.5,
+                              color: isDark
+                                  ? AppColors.textSecondary
+                                  : AppColors.lightTextSecondary,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ],
             ],
-          ],
+          ),
         ),
-      ),
       ),
     );
   }

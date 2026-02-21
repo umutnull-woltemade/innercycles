@@ -965,9 +965,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     }
     if (entryCount == 14) {
       return (
-        isEn
-            ? 'Check your mood trends'
-            : 'Ruh hali trendlerini kontrol et',
+        isEn ? 'Check your mood trends' : 'Ruh hali trendlerini kontrol et',
         Routes.moodTrends,
       );
     }

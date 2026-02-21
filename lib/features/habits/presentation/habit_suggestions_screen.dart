@@ -320,208 +320,210 @@ class _DailySpotlightCard extends StatelessWidget {
               colors: isDark
                   ? [
                       AppColors.auroraStart.withValues(alpha: 0.2),
-                    AppColors.auroraEnd.withValues(alpha: 0.1),
-                    AppColors.surfaceDark.withValues(alpha: 0.9),
-                  ]
-                : [
-                    AppColors.auroraStart.withValues(alpha: 0.08),
-                    AppColors.lightAuroraEnd.withValues(alpha: 0.04),
-                    AppColors.lightCard,
-                  ],
-          ),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: AppColors.auroraStart.withValues(alpha: 0.3),
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: AppColors.auroraStart.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(
-                    HabitSuggestionService.categoryEmoji(habit.category),
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        isEn ? 'Today\'s Habit' : 'Bugünün Alışkanlığı',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.auroraStart,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        isEn ? habit.titleEn : habit.titleTr,
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w700,
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
-                        ),
-                      ),
+                      AppColors.auroraEnd.withValues(alpha: 0.1),
+                      AppColors.surfaceDark.withValues(alpha: 0.9),
+                    ]
+                  : [
+                      AppColors.auroraStart.withValues(alpha: 0.08),
+                      AppColors.lightAuroraEnd.withValues(alpha: 0.04),
+                      AppColors.lightCard,
                     ],
-                  ),
-                ),
-                if (isTried || isAdopted)
+            ),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: AppColors.auroraStart.withValues(alpha: 0.3),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
+                    padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color:
-                          (isAdopted
-                                  ? AppColors.success
-                                  : AppColors.auroraStart)
-                              .withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(8),
+                      color: AppColors.auroraStart.withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
-                      isAdopted
-                          ? (isEn ? 'Adopted' : 'Benimsendi')
-                          : (isEn ? 'Tried' : 'Denendi'),
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w600,
-                        color: isAdopted
-                            ? AppColors.success
-                            : AppColors.auroraStart,
-                      ),
+                      HabitSuggestionService.categoryEmoji(habit.category),
+                      style: const TextStyle(fontSize: 20),
                     ),
                   ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Text(
-              isEn ? habit.descriptionEn : habit.descriptionTr,
-              style: TextStyle(
-                fontSize: 13,
-                height: 1.5,
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
-            ),
-            const SizedBox(height: 14),
-            Row(
-              children: [
-                // Category pill
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.auroraStart.withValues(
-                      alpha: isDark ? 0.15 : 0.1,
-                    ),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    isEn
-                        ? HabitSuggestionService.categoryDisplayNameEn(
-                            habit.category,
-                          )
-                        : HabitSuggestionService.categoryDisplayNameTr(
-                            habit.category,
-                          ),
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.auroraStart,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                // Duration pill
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: isDark
-                        ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                        : AppColors.lightSurfaceVariant,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.timer_outlined,
-                        size: 12,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        '${habit.durationMinutes} ${isEn ? 'min' : 'dk'}',
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w500,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Spacer(),
-                if (!isTried)
-                  Semantics(
-                    label: isEn ? 'Try this habit' : 'Bu alışkanlığı dene',
-                    button: true,
-                    child: GestureDetector(
-                      onTap: () async {
-                        HapticFeedback.mediumImpact();
-                        await service.markAsTried(habit.id);
-                        onRefresh();
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.auroraStart.withValues(alpha: 0.2),
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: AppColors.auroraStart.withValues(alpha: 0.4),
-                          ),
-                        ),
-                        child: Text(
-                          isEn ? 'Try it' : 'Dene',
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          isEn ? 'Today\'s Habit' : 'Bugünün Alışkanlığı',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                             color: AppColors.auroraStart,
                           ),
                         ),
+                        const SizedBox(height: 2),
+                        Text(
+                          isEn ? habit.titleEn : habit.titleTr,
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w700,
+                            color: isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  if (isTried || isAdopted)
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color:
+                            (isAdopted
+                                    ? AppColors.success
+                                    : AppColors.auroraStart)
+                                .withValues(alpha: 0.15),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        isAdopted
+                            ? (isEn ? 'Adopted' : 'Benimsendi')
+                            : (isEn ? 'Tried' : 'Denendi'),
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: isAdopted
+                              ? AppColors.success
+                              : AppColors.auroraStart,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              Text(
+                isEn ? habit.descriptionEn : habit.descriptionTr,
+                style: TextStyle(
+                  fontSize: 13,
+                  height: 1.5,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
+              ),
+              const SizedBox(height: 14),
+              Row(
+                children: [
+                  // Category pill
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.auroraStart.withValues(
+                        alpha: isDark ? 0.15 : 0.1,
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      isEn
+                          ? HabitSuggestionService.categoryDisplayNameEn(
+                              habit.category,
+                            )
+                          : HabitSuggestionService.categoryDisplayNameTr(
+                              habit.category,
+                            ),
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.auroraStart,
                       ),
                     ),
                   ),
-              ],
-            ),
-          ],
-        ),
+                  const SizedBox(width: 8),
+                  // Duration pill
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: isDark
+                          ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                          : AppColors.lightSurfaceVariant,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.timer_outlined,
+                          size: 12,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          '${habit.durationMinutes} ${isEn ? 'min' : 'dk'}',
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w500,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Spacer(),
+                  if (!isTried)
+                    Semantics(
+                      label: isEn ? 'Try this habit' : 'Bu alışkanlığı dene',
+                      button: true,
+                      child: GestureDetector(
+                        onTap: () async {
+                          HapticFeedback.mediumImpact();
+                          await service.markAsTried(habit.id);
+                          onRefresh();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppColors.auroraStart.withValues(alpha: 0.2),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: AppColors.auroraStart.withValues(
+                                alpha: 0.4,
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            isEn ? 'Try it' : 'Dene',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.auroraStart,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.08, duration: 500.ms);
@@ -744,124 +746,124 @@ class _HabitCard extends StatelessWidget {
             ),
           ),
           child: Row(
-          children: [
-            // Category emoji
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: _categoryCardColor(
-                  habit.category,
-                ).withValues(alpha: isDark ? 0.12 : 0.08),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  HabitSuggestionService.categoryEmoji(habit.category),
-                  style: const TextStyle(fontSize: 18),
+            children: [
+              // Category emoji
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: _categoryCardColor(
+                    habit.category,
+                  ).withValues(alpha: isDark ? 0.12 : 0.08),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Text(
+                    HabitSuggestionService.categoryEmoji(habit.category),
+                    style: const TextStyle(fontSize: 18),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(width: 12),
-            // Content
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          isEn ? habit.titleEn : habit.titleTr,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
+              const SizedBox(width: 12),
+              // Content
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            isEn ? habit.titleEn : habit.titleTr,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
+                            ),
                           ),
                         ),
-                      ),
-                      if (isBookmarked)
-                        Padding(
-                          padding: const EdgeInsets.only(left: 4),
-                          child: Icon(
-                            Icons.bookmark_rounded,
-                            size: 16,
-                            color: AppColors.starGold,
+                        if (isBookmarked)
+                          Padding(
+                            padding: const EdgeInsets.only(left: 4),
+                            child: Icon(
+                              Icons.bookmark_rounded,
+                              size: 16,
+                              color: AppColors.starGold,
+                            ),
                           ),
-                        ),
-                    ],
-                  ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      // Duration
-                      Icon(
-                        Icons.timer_outlined,
-                        size: 12,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                      const SizedBox(width: 3),
-                      Text(
-                        '${habit.durationMinutes} ${isEn ? 'min' : 'dk'}',
-                        style: TextStyle(
-                          fontSize: 11,
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        // Duration
+                        Icon(
+                          Icons.timer_outlined,
+                          size: 12,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
                         ),
-                      ),
-                      if (isTried || isAdopted) ...[
-                        const SizedBox(width: 8),
-                        Container(
-                          width: 4,
-                          height: 4,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
+                        const SizedBox(width: 3),
+                        Text(
+                          '${habit.durationMinutes} ${isEn ? 'min' : 'dk'}',
+                          style: TextStyle(
+                            fontSize: 11,
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,
                           ),
                         ),
-                        const SizedBox(width: 8),
-                        Icon(
-                          isAdopted
-                              ? Icons.check_circle_rounded
-                              : Icons.check_rounded,
-                          size: 12,
-                          color: isAdopted
-                              ? AppColors.success
-                              : AppColors.auroraStart,
-                        ),
-                        const SizedBox(width: 3),
-                        Text(
-                          isAdopted
-                              ? (isEn ? 'Adopted' : 'Benimsendi')
-                              : (isEn ? 'Tried' : 'Denendi'),
-                          style: TextStyle(
-                            fontSize: 11,
+                        if (isTried || isAdopted) ...[
+                          const SizedBox(width: 8),
+                          Container(
+                            width: 4,
+                            height: 4,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Icon(
+                            isAdopted
+                                ? Icons.check_circle_rounded
+                                : Icons.check_rounded,
+                            size: 12,
                             color: isAdopted
                                 ? AppColors.success
                                 : AppColors.auroraStart,
                           ),
-                        ),
+                          const SizedBox(width: 3),
+                          Text(
+                            isAdopted
+                                ? (isEn ? 'Adopted' : 'Benimsendi')
+                                : (isEn ? 'Tried' : 'Denendi'),
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: isAdopted
+                                  ? AppColors.success
+                                  : AppColors.auroraStart,
+                            ),
+                          ),
+                        ],
                       ],
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Icon(
-              Icons.chevron_right_rounded,
-              size: 18,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-            ),
-          ],
+              Icon(
+                Icons.chevron_right_rounded,
+                size: 18,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
+            ],
+          ),
         ),
-      ),
       ),
     );
   }

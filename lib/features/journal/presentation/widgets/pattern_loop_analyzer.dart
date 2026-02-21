@@ -232,109 +232,109 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                 : '${loop.primaryArea.displayNameTr} kalıbı: ${loop.insightTr}',
             button: true,
             child: GestureDetector(
-            onTap: () => setState(() => _expanded = !_expanded),
-            behavior: HitTestBehavior.opaque,
-            child: Padding(
-              padding: const EdgeInsets.all(AppConstants.spacingLg),
-              child: Row(
-                children: [
-                  // Reinforcement indicator
-                  Container(
-                    width: 32,
-                    height: 32,
-                    decoration: BoxDecoration(
-                      color: color.withValues(alpha: 0.12),
-                      borderRadius: BorderRadius.circular(8),
+              onTap: () => setState(() => _expanded = !_expanded),
+              behavior: HitTestBehavior.opaque,
+              child: Padding(
+                padding: const EdgeInsets.all(AppConstants.spacingLg),
+                child: Row(
+                  children: [
+                    // Reinforcement indicator
+                    Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        color: color.withValues(alpha: 0.12),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Icon(
+                        _reinforcementIcon(loop.reinforcementType),
+                        color: color,
+                        size: 18,
+                      ),
                     ),
-                    child: Icon(
-                      _reinforcementIcon(loop.reinforcementType),
-                      color: color,
-                      size: 18,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            // Area badge
-                            Container(
-                              width: 8,
-                              height: 8,
-                              decoration: BoxDecoration(
-                                color: areaColor,
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            const SizedBox(width: 6),
-                            Text(
-                              widget.isEn
-                                  ? loop.primaryArea.displayNameEn
-                                  : loop.primaryArea.displayNameTr,
-                              style: TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w500,
-                                color: areaColor,
-                              ),
-                            ),
-                            if (loop.secondaryArea case final secondary?) ...[
-                              Text(
-                                ' + ',
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  color: widget.isDark
-                                      ? AppColors.textMuted
-                                      : AppColors.lightTextMuted,
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              // Area badge
+                              Container(
+                                width: 8,
+                                height: 8,
+                                decoration: BoxDecoration(
+                                  color: areaColor,
+                                  shape: BoxShape.circle,
                                 ),
                               ),
+                              const SizedBox(width: 6),
                               Text(
                                 widget.isEn
-                                    ? secondary.displayNameEn
-                                    : secondary.displayNameTr,
+                                    ? loop.primaryArea.displayNameEn
+                                    : loop.primaryArea.displayNameTr,
                                 style: TextStyle(
                                   fontSize: 11,
                                   fontWeight: FontWeight.w500,
-                                  color:
-                                      kAreaColors[secondary] ??
-                                      AppColors.auroraStart,
+                                  color: areaColor,
                                 ),
                               ),
+                              if (loop.secondaryArea case final secondary?) ...[
+                                Text(
+                                  ' + ',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    color: widget.isDark
+                                        ? AppColors.textMuted
+                                        : AppColors.lightTextMuted,
+                                  ),
+                                ),
+                                Text(
+                                  widget.isEn
+                                      ? secondary.displayNameEn
+                                      : secondary.displayNameTr,
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w500,
+                                    color:
+                                        kAreaColors[secondary] ??
+                                        AppColors.auroraStart,
+                                  ),
+                                ),
+                              ],
                             ],
-                          ],
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          widget.isEn ? loop.insightEn : loop.insightTr,
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: widget.isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
                           ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
+                          const SizedBox(height: 2),
+                          Text(
+                            widget.isEn ? loop.insightEn : loop.insightTr,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: widget.isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  // Expand icon
-                  AnimatedRotation(
-                    turns: _expanded ? 0.5 : 0,
-                    duration: const Duration(milliseconds: 200),
-                    child: Icon(
-                      Icons.keyboard_arrow_down,
-                      color: widget.isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
-                      size: 20,
+                    // Expand icon
+                    AnimatedRotation(
+                      turns: _expanded ? 0.5 : 0,
+                      duration: const Duration(milliseconds: 200),
+                      child: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: widget.isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                        size: 20,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
           ),
 
           // Expanded content: 5-stage chain

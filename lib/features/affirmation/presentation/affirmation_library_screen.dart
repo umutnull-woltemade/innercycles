@@ -446,7 +446,9 @@ class _AffirmationTile extends StatelessWidget {
                     size: 20,
                     color: isFavorite
                         ? AppColors.starGold
-                        : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                        : (isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted),
                   ),
                 ),
               ),

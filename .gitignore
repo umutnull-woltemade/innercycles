@@ -76,6 +76,7 @@ web/flutter_service_worker.js
 .worktrees/
 autonomous_submit.sh
 .agent_state.json
+.pairdev_state.json
 .last_build_cmd
 .crash_log.txt
 release_package/

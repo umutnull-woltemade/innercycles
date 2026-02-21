@@ -155,9 +155,10 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 sliver: SliverToBoxAdapter(
-                  child: const StreakCard()
-                      .animate()
-                      .fadeIn(delay: 300.ms, duration: 400.ms),
+                  child: const StreakCard().animate().fadeIn(
+                    delay: 300.ms,
+                    duration: 400.ms,
+                  ),
                 ),
               ),
 
@@ -293,8 +294,7 @@ class _TodaysInsightSection extends ConsumerWidget {
 
         // Pick the most notable trend (largest change)
         final best = trends.reduce(
-          (a, b) =>
-              a.changePercent.abs() > b.changePercent.abs() ? a : b,
+          (a, b) => a.changePercent.abs() > b.changePercent.abs() ? a : b,
         );
         final text = isEn ? best.getMessageEn() : best.getMessageTr();
 
@@ -304,7 +304,11 @@ class _TodaysInsightSection extends ConsumerWidget {
     );
   }
 
-  Widget _buildCard(BuildContext context, {required IconData icon, required String text}) {
+  Widget _buildCard(
+    BuildContext context, {
+    required IconData icon,
+    required String text,
+  }) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
       child: Semantics(
@@ -316,42 +320,42 @@ class _TodaysInsightSection extends ConsumerWidget {
             context.push(Routes.moodTrends);
           },
           child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.starGold.withValues(alpha: 0.08)
-              : AppColors.lightStarGold.withValues(alpha: 0.08),
-          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-          border: Border.all(
-            color: isDark
-                ? AppColors.starGold.withValues(alpha: 0.2)
-                : AppColors.lightStarGold.withValues(alpha: 0.2),
-          ),
-        ),
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              size: 20,
-              color: isDark ? AppColors.starGold : AppColors.lightStarGold,
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                text,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                  height: 1.4,
-                ),
+            width: double.infinity,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: isDark
+                  ? AppColors.starGold.withValues(alpha: 0.08)
+                  : AppColors.lightStarGold.withValues(alpha: 0.08),
+              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+              border: Border.all(
+                color: isDark
+                    ? AppColors.starGold.withValues(alpha: 0.2)
+                    : AppColors.lightStarGold.withValues(alpha: 0.2),
               ),
             ),
-          ],
-        ),
-      ),
+            child: Row(
+              children: [
+                Icon(
+                  icon,
+                  size: 20,
+                  color: isDark ? AppColors.starGold : AppColors.lightStarGold,
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                      height: 1.4,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     ).animate().fadeIn(delay: 250.ms, duration: 400.ms);
@@ -441,15 +445,11 @@ class _PersonalizedPromptSection extends ConsumerWidget {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      isEn
-                          ? 'For your $areaLabel'
-                          : '$areaLabel için',
+                      isEn ? 'For your $areaLabel' : '$areaLabel için',
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.amethyst
-                            : AppColors.amethyst,
+                        color: isDark ? AppColors.amethyst : AppColors.amethyst,
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -478,12 +478,18 @@ class _PersonalizedPromptSection extends ConsumerWidget {
 
   String _turkishLabel(String area) {
     switch (area) {
-      case 'energy': return 'Enerji';
-      case 'focus': return 'Odak';
-      case 'emotions': return 'Duygular';
-      case 'decisions': return 'Kararlar';
-      case 'social': return 'Sosyal';
-      default: return area;
+      case 'energy':
+        return 'Enerji';
+      case 'focus':
+        return 'Odak';
+      case 'emotions':
+        return 'Duygular';
+      case 'decisions':
+        return 'Kararlar';
+      case 'social':
+        return 'Sosyal';
+      default:
+        return area;
     }
   }
 }
@@ -529,28 +535,28 @@ class _RecentEntriesSection extends ConsumerWidget {
                     label: isEn ? 'See all entries' : 'Tüm kayıtları gör',
                     button: true,
                     child: GestureDetector(
-                    onTap: () {
-                      HapticFeedback.selectionClick();
-                      context.push(Routes.journalArchive);
-                    },
-                    behavior: HitTestBehavior.opaque,
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(minHeight: 44),
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                      isEn ? 'See All' : 'Tümünü Gör',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                        color: isDark
-                            ? AppColors.starGold
-                            : AppColors.lightStarGold,
+                      onTap: () {
+                        HapticFeedback.selectionClick();
+                        context.push(Routes.journalArchive);
+                      },
+                      behavior: HitTestBehavior.opaque,
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(minHeight: 44),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            isEn ? 'See All' : 'Tümünü Gör',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                              color: isDark
+                                  ? AppColors.starGold
+                                  : AppColors.lightStarGold,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                    ),
-                    ),
-                  ),
                   ),
                 ],
               ),
@@ -611,85 +617,109 @@ class _RecentEntryRow extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.only(bottom: 8),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.6)
-              : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-          border: Border.all(
+          decoration: BoxDecoration(
             color: isDark
-                ? Colors.white.withValues(alpha: 0.06)
-                : Colors.black.withValues(alpha: 0.04),
+                ? AppColors.surfaceDark.withValues(alpha: 0.6)
+                : AppColors.lightCard,
+            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+            border: Border.all(
+              color: isDark
+                  ? Colors.white.withValues(alpha: 0.06)
+                  : Colors.black.withValues(alpha: 0.04),
+            ),
+          ),
+          child: Row(
+            children: [
+              // Date
+              SizedBox(
+                width: 70,
+                child: Text(
+                  dateStr,
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              // Focus area label
+              Expanded(
+                child: Text(
+                  areaLabel,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              const SizedBox(width: 8),
+              // Rating dots (1-5)
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: List.generate(5, (i) {
+                  final filled = i < rating;
+                  return Container(
+                    width: 8,
+                    height: 8,
+                    margin: const EdgeInsets.only(left: 3),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: filled
+                          ? (isDark
+                                ? AppColors.starGold
+                                : AppColors.lightStarGold)
+                          : (isDark
+                                ? Colors.white.withValues(alpha: 0.12)
+                                : Colors.black.withValues(alpha: 0.08)),
+                    ),
+                  );
+                }),
+              ),
+            ],
           ),
         ),
-        child: Row(
-          children: [
-            // Date
-            SizedBox(
-              width: 70,
-              child: Text(
-                dateStr,
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
-              ),
-            ),
-            const SizedBox(width: 8),
-            // Focus area label
-            Expanded(
-              child: Text(
-                areaLabel,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            const SizedBox(width: 8),
-            // Rating dots (1-5)
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: List.generate(5, (i) {
-                final filled = i < rating;
-                return Container(
-                  width: 8,
-                  height: 8,
-                  margin: const EdgeInsets.only(left: 3),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: filled
-                        ? (isDark
-                            ? AppColors.starGold
-                            : AppColors.lightStarGold)
-                        : (isDark
-                            ? Colors.white.withValues(alpha: 0.12)
-                            : Colors.black.withValues(alpha: 0.08)),
-                  ),
-                );
-              }),
-            ),
-          ],
-        ),
-      ),
       ),
     );
   }
 
   static String _formatDate(DateTime date, bool isEn) {
     final months = isEn
-        ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-           'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        : ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
-           'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+        ? [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+          ]
+        : [
+            'Oca',
+            'Şub',
+            'Mar',
+            'Nis',
+            'May',
+            'Haz',
+            'Tem',
+            'Ağu',
+            'Eyl',
+            'Eki',
+            'Kas',
+            'Ara',
+          ];
     return '${months[date.month - 1]} ${date.day}';
   }
 

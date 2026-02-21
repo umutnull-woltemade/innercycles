@@ -87,9 +87,7 @@ class _EmptyRitualCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isEn
-                          ? 'Start a Daily Ritual'
-                          : 'Günlük Ritüel Başlat',
+                      isEn ? 'Start a Daily Ritual' : 'Günlük Ritüel Başlat',
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
@@ -340,7 +338,8 @@ class _RitualItemTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 4),
       child: Semantics(
-        label: '${item.name}, ${isCompleted ? (isEn ? 'completed' : 'tamamlandı') : (isEn ? 'not completed' : 'tamamlanmadı')}',
+        label:
+            '${item.name}, ${isCompleted ? (isEn ? 'completed' : 'tamamlandı') : (isEn ? 'not completed' : 'tamamlanmadı')}',
         button: true,
         toggled: isCompleted,
         child: InkWell(
@@ -367,9 +366,7 @@ class _RitualItemTile extends StatelessWidget {
                           color: isCompleted
                               ? AppColors.success
                               : (isDark
-                                    ? AppColors.textMuted.withValues(
-                                        alpha: 0.4,
-                                      )
+                                    ? AppColors.textMuted.withValues(alpha: 0.4)
                                     : AppColors.lightTextMuted.withValues(
                                         alpha: 0.4,
                                       )),
@@ -399,8 +396,9 @@ class _RitualItemTile extends StatelessWidget {
                           : (isDark
                                 ? AppColors.textPrimary
                                 : AppColors.lightTextPrimary),
-                      decoration:
-                          isCompleted ? TextDecoration.lineThrough : null,
+                      decoration: isCompleted
+                          ? TextDecoration.lineThrough
+                          : null,
                     ),
                   ),
                 ),

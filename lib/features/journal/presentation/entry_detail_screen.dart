@@ -267,7 +267,12 @@ class EntryDetailScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildPhotoCard(BuildContext context, String imagePath, bool isDark, bool isEn) {
+  Widget _buildPhotoCard(
+    BuildContext context,
+    String imagePath,
+    bool isDark,
+    bool isEn,
+  ) {
     final file = File(imagePath);
     try {
       if (!file.existsSync()) return const SizedBox.shrink();
@@ -284,7 +289,9 @@ class EntryDetailScreen extends ConsumerWidget {
           width: double.infinity,
           fit: BoxFit.cover,
           cacheWidth: 800,
-          semanticLabel: isEn ? 'Journal entry photo' : 'Günlük kaydı fotoğrafı',
+          semanticLabel: isEn
+              ? 'Journal entry photo'
+              : 'Günlük kaydı fotoğrafı',
           errorBuilder: (_, _, _) => const SizedBox.shrink(),
         ),
       ),

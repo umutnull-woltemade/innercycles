@@ -896,64 +896,64 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                   label: tool.title,
                   button: true,
                   child: GestureDetector(
-                  onTap: () {
-                    HapticFeedback.lightImpact();
-                    context.push(tool.route);
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: isDark
-                          ? tool.color.withValues(alpha: 0.08)
-                          : tool.color.withValues(alpha: 0.05),
-                      borderRadius: BorderRadius.circular(
-                        AppConstants.radiusMd,
+                    onTap: () {
+                      HapticFeedback.lightImpact();
+                      context.push(tool.route);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: isDark
+                            ? tool.color.withValues(alpha: 0.08)
+                            : tool.color.withValues(alpha: 0.05),
+                        borderRadius: BorderRadius.circular(
+                          AppConstants.radiusMd,
+                        ),
+                        border: Border.all(
+                          color: tool.color.withValues(alpha: 0.2),
+                        ),
                       ),
-                      border: Border.all(
-                        color: tool.color.withValues(alpha: 0.2),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: tool.color.withValues(alpha: 0.15),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Icon(tool.icon, color: tool.color, size: 22),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            tool.title,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
+                            ),
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            tool.subtitle,
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: tool.color.withValues(alpha: 0.15),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Icon(tool.icon, color: tool.color, size: 22),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          tool.title,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          tool.subtitle,
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
                   ),
                 )
                 .animate(delay: Duration(milliseconds: 50 * index))

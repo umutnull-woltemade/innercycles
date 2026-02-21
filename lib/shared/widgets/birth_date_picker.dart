@@ -456,45 +456,45 @@ class SelectedDateDisplay extends StatelessWidget {
           : 'Doğum tarihi: ${d.day} ${_getMonthName(d.month, language)} ${d.year}',
       button: true,
       child: GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppConstants.spacingLg,
-          vertical: AppConstants.spacingMd,
-        ),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              AppColors.auroraStart.withValues(alpha: 0.2),
-              AppColors.auroraEnd.withValues(alpha: 0.2),
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingLg,
+            vertical: AppConstants.spacingMd,
+          ),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                AppColors.auroraStart.withValues(alpha: 0.2),
+                AppColors.auroraEnd.withValues(alpha: 0.2),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+            border: Border.all(
+              color: AppColors.auroraStart.withValues(alpha: 0.3),
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.cake_outlined,
+                color: AppColors.starGold,
+                size: 20,
+              ),
+              const SizedBox(width: AppConstants.spacingMd),
+              Text(
+                '${_getMonthName(d.month, language)} ${d.day}, ${d.year}',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(width: AppConstants.spacingSm),
+              const Icon(Icons.edit, color: AppColors.textMuted, size: 16),
             ],
           ),
-          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-          border: Border.all(
-            color: AppColors.auroraStart.withValues(alpha: 0.3),
-          ),
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(
-              Icons.cake_outlined,
-              color: AppColors.starGold,
-              size: 20,
-            ),
-            const SizedBox(width: AppConstants.spacingMd),
-            Text(
-              '${_getMonthName(d.month, language)} ${d.day}, ${d.year}',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: AppColors.textPrimary,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            const SizedBox(width: AppConstants.spacingSm),
-            const Icon(Icons.edit, color: AppColors.textMuted, size: 16),
-          ],
-        ),
-      ),
       ),
     );
   }

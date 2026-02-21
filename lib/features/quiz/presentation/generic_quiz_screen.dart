@@ -347,77 +347,79 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
       button: true,
       selected: isSelected,
       child: GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-        padding: const EdgeInsets.all(AppConstants.spacingLg),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-          border: Border.all(
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+          padding: const EdgeInsets.all(AppConstants.spacingLg),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+            border: Border.all(
+              color: isSelected
+                  ? AppColors.auroraStart
+                  : isDark
+                  ? AppColors.surfaceLight.withValues(alpha: 0.4)
+                  : AppColors.lightSurfaceVariant,
+              width: isSelected ? 2 : 1,
+            ),
+            gradient: isSelected
+                ? LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppColors.auroraStart.withValues(alpha: 0.15),
+                      AppColors.auroraEnd.withValues(alpha: 0.10),
+                    ],
+                  )
+                : null,
             color: isSelected
-                ? AppColors.auroraStart
+                ? null
                 : isDark
-                ? AppColors.surfaceLight.withValues(alpha: 0.4)
-                : AppColors.lightSurfaceVariant,
-            width: isSelected ? 2 : 1,
+                ? AppColors.surfaceDark.withValues(alpha: 0.6)
+                : AppColors.lightCard.withValues(alpha: 0.9),
           ),
-          gradient: isSelected
-              ? LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    AppColors.auroraStart.withValues(alpha: 0.15),
-                    AppColors.auroraEnd.withValues(alpha: 0.10),
-                  ],
-                )
-              : null,
-          color: isSelected
-              ? null
-              : isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.6)
-              : AppColors.lightCard.withValues(alpha: 0.9),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              width: 22,
-              height: 22,
-              margin: const EdgeInsets.only(
-                top: 2,
-                right: AppConstants.spacingMd,
-              ),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                width: 22,
+                height: 22,
+                margin: const EdgeInsets.only(
+                  top: 2,
+                  right: AppConstants.spacingMd,
+                ),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: isSelected
+                        ? AppColors.auroraStart
+                        : AppColors.textSecondary.withValues(alpha: 0.5),
+                    width: 2,
+                  ),
                   color: isSelected
                       ? AppColors.auroraStart
-                      : AppColors.textSecondary.withValues(alpha: 0.5),
-                  width: 2,
+                      : Colors.transparent,
                 ),
-                color: isSelected ? AppColors.auroraStart : Colors.transparent,
+                child: isSelected
+                    ? const Icon(Icons.check, size: 14, color: Colors.white)
+                    : null,
               ),
-              child: isSelected
-                  ? const Icon(Icons.check, size: 14, color: Colors.white)
-                  : null,
-            ),
-            Expanded(
-              child: Text(
-                optionText,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  height: 1.5,
+              Expanded(
+                child: Text(
+                  optionText,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                    height: 1.5,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
     );
   }
 

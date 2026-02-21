@@ -132,7 +132,8 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                 onPrevious: () {
                   if (!isPremium) {
                     showContextualPaywall(
-                      context, ref,
+                      context,
+                      ref,
                       paywallContext: PaywallContext.patterns,
                     );
                     return;
@@ -216,7 +217,9 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
               else
                 _PremiumYearOverlay(isDark: isDark, isEn: isEn),
 
-              ContentDisclaimer(language: isEn ? AppLanguage.en : AppLanguage.tr),
+              ContentDisclaimer(
+                language: isEn ? AppLanguage.en : AppLanguage.tr,
+              ),
               const SizedBox(height: 40),
             ]),
           ),
@@ -1058,9 +1061,7 @@ class _PremiumYearOverlay extends ConsumerWidget {
             ? AppColors.starGold.withValues(alpha: 0.06)
             : AppColors.lightStarGold.withValues(alpha: 0.06),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
       ),
       child: Column(
         children: [
@@ -1084,15 +1085,14 @@ class _PremiumYearOverlay extends ConsumerWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 13,
-              color: isDark
-                  ? AppColors.textMuted
-                  : AppColors.lightTextMuted,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
           ),
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () => showContextualPaywall(
-              context, ref,
+              context,
+              ref,
               paywallContext: PaywallContext.patterns,
             ),
             style: ElevatedButton.styleFrom(

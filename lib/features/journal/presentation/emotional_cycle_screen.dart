@@ -934,11 +934,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
               child: Center(child: CupertinoActivityIndicator()),
             ),
             error: (_, _) => const SizedBox.shrink(),
-            data: (outlook) => ShiftOutlookCard(
-              outlook: outlook,
-              isDark: isDark,
-              isEn: isEn,
-            ),
+            data: (outlook) =>
+                ShiftOutlookCard(outlook: outlook, isDark: isDark, isEn: isEn),
           )
         else
           Semantics(
