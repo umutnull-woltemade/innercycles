@@ -577,7 +577,7 @@ class SettingsScreen extends ConsumerWidget {
 
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (dialogCtx) => AlertDialog(
         backgroundColor: isDark
             ? AppColors.surfaceDark
             : AppColors.lightSurface,
@@ -598,7 +598,7 @@ class SettingsScreen extends ConsumerWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pop(dialogCtx),
             child: Text(
               language == AppLanguage.en ? 'Cancel' : 'İptal',
               style: TextStyle(
@@ -608,7 +608,7 @@ class SettingsScreen extends ConsumerWidget {
           ),
           TextButton(
             onPressed: () async {
-              Navigator.pop(context);
+              Navigator.pop(dialogCtx);
               // Cancel scheduled notifications
               try {
                 await NotificationService().cancelAll();
@@ -1309,6 +1309,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
 
               await service.setPin(pin);
               await service.setEnabled(true);
+              if (!mounted) return;
               ref.invalidate(appLockServiceProvider);
               if (ctx.mounted) Navigator.pop(ctx);
             },

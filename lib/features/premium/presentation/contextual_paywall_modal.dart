@@ -358,6 +358,7 @@ class _ContextualPaywallSheetState
     });
 
     final result = await ref.read(paywallServiceProvider).presentPaywall();
+    if (!mounted) return;
 
     final experiment = ref
         .read(paywallExperimentProvider)

@@ -44,9 +44,9 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
           );
         }
 
-        if (_justLogged) {
+        if (_justLogged && todayMood != null) {
           return _ThankYouView(
-            todayMood: todayMood!,
+            todayMood: todayMood,
             weekMoods: weekMoods,
             isDark: isDark,
             isEn: isEn,
