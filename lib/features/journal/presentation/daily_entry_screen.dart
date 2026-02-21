@@ -286,11 +286,12 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       child: GestureDetector(
         onTap: () async {
           HapticFeedback.selectionClick();
+          final now = DateTime.now();
           final picked = await showDatePicker(
             context: context,
             initialDate: _selectedDate,
-            firstDate: DateTime.now().subtract(const Duration(days: 365)),
-            lastDate: DateTime.now(),
+            firstDate: now.subtract(const Duration(days: 365)),
+            lastDate: now,
           );
           if (picked != null && mounted) {
             setState(() => _selectedDate = picked);

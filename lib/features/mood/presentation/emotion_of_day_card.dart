@@ -19,8 +19,9 @@ class EmotionOfDayCard extends ConsumerStatefulWidget {
 
 class _EmotionOfDayCardState extends ConsumerState<EmotionOfDayCard> {
   bool _showBody = false;
+  late final GranularEmotion _dailyEmotion = _computeDailyEmotion();
 
-  GranularEmotion _getDailyEmotion() {
+  static GranularEmotion _computeDailyEmotion() {
     final now = DateTime.now();
     final dayHash = now.year * 10000 + now.month * 100 + now.day;
     return allGranularEmotions[dayHash % allGranularEmotions.length];
@@ -31,7 +32,7 @@ class _EmotionOfDayCardState extends ConsumerState<EmotionOfDayCard> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
     final isEn = language == AppLanguage.en;
-    final emotion = _getDailyEmotion();
+    final emotion = _dailyEmotion;
 
     return Semantics(
       button: true,

@@ -33,6 +33,10 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
     TextEditingController(),
   ];
 
+  // Cache allEntries to avoid refetching on every setState
+  GratitudeService? _lastService;
+  List<GratitudeEntry> _cachedEntries = const [];
+
   @override
   void initState() {
     super.initState();
@@ -99,7 +103,11 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                     data: (service) {
                       final today = service.getTodayEntry();
                       final summary = service.getWeeklySummary();
-                      final allEntries = service.getAllEntries();
+                      if (!identical(service, _lastService)) {
+                        _lastService = service;
+                        _cachedEntries = service.getAllEntries();
+                      }
+                      final allEntries = _cachedEntries;
 
                       // Pre-fill if today has entries
                       if (today != null && _controllers[0].text.isEmpty) {
