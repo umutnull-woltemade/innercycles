@@ -71,7 +71,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
 
       final shareText = isEn
           ? 'My weekly debrief from InnerCycles #InnerCycles #WeeklyDebrief'
-          : 'InnerCycles haftalik degerlendirmem #InnerCycles #HaftalikDegerlendirme';
+          : 'InnerCycles haftalık değerlendirmem #InnerCycles #HaftalıkDeğerlendirme';
 
       await SharePlus.instance.share(
         ShareParams(
@@ -542,7 +542,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     return Semantics(
       label: isEn
           ? '${data.entriesThisWeek} entries this week. $comparisonText'
-          : '${data.entriesThisWeek} kayit bu hafta. $comparisonText',
+          : '${data.entriesThisWeek} kayıt bu hafta. $comparisonText',
       child: Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -769,7 +769,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     return Semantics(
       label: isEn
           ? 'Mood trend ${changeStr.isNotEmpty ? changeStr : ''}: ${message.$1}'
-          : 'Ruh hali egilimi ${changeStr.isNotEmpty ? changeStr : ''}: ${message.$2}',
+          : 'Ruh hali eğilimi ${changeStr.isNotEmpty ? changeStr : ''}: ${message.$2}',
       child: Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -898,7 +898,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isEn ? 'Best Day' : 'En Iyi Gun',
+                  isEn ? 'Best Day' : 'En İyi Gün',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
@@ -983,7 +983,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
             return Semantics(
               label: isEn
                   ? '$label: ${avg.toStringAsFixed(1)} out of 5, $count entries'
-                  : '$label: 5 uzerinden ${avg.toStringAsFixed(1)}, $count kayit',
+                  : '$label: 5 üzerinden ${avg.toStringAsFixed(1)}, $count kayıt',
               child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
               child: Row(

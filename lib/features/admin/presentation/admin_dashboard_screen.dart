@@ -78,6 +78,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
 
     if (confirmed == true && mounted) {
       await AdminAuthService.logout();
+      if (!mounted) return;
       ref.invalidate(adminAuthProvider);
       if (mounted) {
         context.go(Routes.settings);

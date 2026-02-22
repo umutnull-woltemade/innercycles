@@ -114,43 +114,24 @@ class SettingsScreen extends ConsumerWidget {
                           child: Wrap(
                             spacing: 8,
                             runSpacing: 8,
-                            children: AppLanguage.values.map((lang) {
+                            children: AppLanguage.values
+                                .where((lang) => lang.hasStrictIsolation)
+                                .map((lang) {
                               final isSelected = lang == language;
-                              final isAvailable = lang.hasStrictIsolation;
                               return Semantics(
                                 label: lang.displayName,
                                 button: true,
                                 selected: isSelected,
-                                enabled: isAvailable,
                                 child: GestureDetector(
                                   onTap: () {
-                                    if (isAvailable) {
-                                      HapticFeedback.selectionClick();
-                                      ref
-                                              .read(languageProvider.notifier)
-                                              .state =
-                                          lang;
-                                      StorageService.saveLanguage(lang);
-                                    } else {
-                                      ScaffoldMessenger.of(
-                                        context,
-                                      ).showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            L10nService.get(
-                                              'settings.coming_soon_language',
-                                              language,
-                                            ),
-                                          ),
-                                          duration: const Duration(seconds: 2),
-                                          behavior: SnackBarBehavior.floating,
-                                        ),
-                                      );
-                                    }
+                                    HapticFeedback.selectionClick();
+                                    ref
+                                            .read(languageProvider.notifier)
+                                            .state =
+                                        lang;
+                                    StorageService.saveLanguage(lang);
                                   },
-                                  child: Opacity(
-                                    opacity: isAvailable ? 1.0 : 0.5,
-                                    child: Container(
+                                  child: Container(
                                       padding: const EdgeInsets.symmetric(
                                         horizontal: 12,
                                         vertical: 8,
@@ -206,7 +187,6 @@ class SettingsScreen extends ConsumerWidget {
                                       ),
                                     ),
                                   ),
-                                ),
                               );
                             }).toList(),
                           ),
@@ -250,6 +230,7 @@ class SettingsScreen extends ConsumerWidget {
                                       context,
                                       ref,
                                       paywallContext: PaywallContext.general,
+                                      bypassTimingGate: true,
                                     ),
                               trailing: Container(
                                 padding: const EdgeInsets.symmetric(

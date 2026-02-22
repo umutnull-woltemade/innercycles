@@ -54,6 +54,7 @@ class QuizEngineService {
     }
 
     for (int i = 0; i < answerIndices.length; i++) {
+      if (definition.questions[i].options.isEmpty) continue;
       final chosenIndex = answerIndices[i].clamp(
         0,
         definition.questions[i].options.length - 1,

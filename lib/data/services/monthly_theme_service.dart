@@ -41,13 +41,17 @@ class MonthlyThemeService {
   String getCurrentWeekPromptEn() {
     final theme = getCurrentTheme();
     final week = getCurrentWeek();
-    return theme.weeklyPromptsEn[week];
+    return week < theme.weeklyPromptsEn.length
+        ? theme.weeklyPromptsEn[week]
+        : theme.weeklyPromptsEn.last;
   }
 
   String getCurrentWeekPromptTr() {
     final theme = getCurrentTheme();
     final week = getCurrentWeek();
-    return theme.weeklyPromptsTr[week];
+    return week < theme.weeklyPromptsTr.length
+        ? theme.weeklyPromptsTr[week]
+        : theme.weeklyPromptsTr.last;
   }
 
   MonthlyTheme? getThemeForMonth(int month) {
