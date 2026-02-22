@@ -71,11 +71,10 @@ class Routes {
   static const String programDetail = '/programs/:id';
 
   // ════════════════════════════════════════════════════════════════
-  // P2: SEASONAL, BREATHING, MOON CALENDAR, CHALLENGES
+  // P2: SEASONAL, BREATHING, CHALLENGES
   // ════════════════════════════════════════════════════════════════
   static const String seasonal = '/seasonal';
   static const String breathing = '/breathing';
-  static const String moonCalendar = '/moon-calendar';
   static const String challenges = '/challenges';
 
   // ════════════════════════════════════════════════════════════════
@@ -87,10 +86,10 @@ class Routes {
   static const String sleepDetail = '/sleep';
 
   // ════════════════════════════════════════════════════════════════
-  // REFERENCE & CONTENT
+  // LEGACY REDIRECTS (killed features — kept for backward compat)
   // ════════════════════════════════════════════════════════════════
-  static const String glossary = '/glossary';
-  static const String articles = '/articles';
+  static const String glossary = '/glossary'; // redirect → dreamGlossary
+  // shareInsight stays at line 101 — redirect → shareCardGallery
 
   // ════════════════════════════════════════════════════════════════
   // GROWTH & ENGAGEMENT
@@ -139,7 +138,7 @@ class Routes {
   // ════════════════════════════════════════════════════════════════
   static const String weeklyDigest = '/weekly-digest';
   static const String archetype = '/archetype';
-  static const String compatibilityReflection = '/compatibility';
+  // compatibilityReflection removed (killed feature)
   static const String blindSpot = '/blind-spot';
   static const String promptLibrary = '/prompts';
   static const String milestones = '/milestones';
@@ -149,20 +148,14 @@ class Routes {
   static const String yearReview = '/year-review';
 
   // ════════════════════════════════════════════════════════════════
-  // PARTNER SYNC & ANNUAL REPORT
+  // ANNUAL REPORT
   // ════════════════════════════════════════════════════════════════
-  static const String partner = '/partner';
+  // partner + referral + deepLinkInvite removed (killed features)
   static const String annualReport = '/annual-report';
-
-  // ════════════════════════════════════════════════════════════════
-  // REFERRAL (Invite Friends & Earn Rewards)
-  // ════════════════════════════════════════════════════════════════
-  static const String referral = '/referral';
 
   // ════════════════════════════════════════════════════════════════
   // DEEP LINK ROUTES (innercycles:// scheme)
   // ════════════════════════════════════════════════════════════════
-  static const String deepLinkInvite = '/invite/:code';
   static const String deepLinkShare = '/share/:cardId';
 
   // ════════════════════════════════════════════════════════════════

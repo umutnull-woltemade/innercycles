@@ -959,22 +959,7 @@ JSON FORMATI:
           language,
         ),
       ),
-      DreamExplorationLink(
-        title: L10nService.get(
-          'dream_interpretation.exploration.moon_calendar_title',
-          language,
-        ),
-        description: L10nService.get(
-          'dream_interpretation.exploration.moon_calendar_desc',
-          language,
-        ),
-        route: Routes.moonCalendar,
-        emoji: '🌙',
-        category: L10nService.get(
-          'dream_interpretation.exploration.category_moon',
-          language,
-        ),
-      ),
+      // moonCalendar exploration link removed (killed feature)
       DreamExplorationLink(
         title: L10nService.get(
           'dream_interpretation.exploration.timing_insights_title',

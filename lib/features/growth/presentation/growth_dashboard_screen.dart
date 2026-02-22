@@ -842,15 +842,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         route: Routes.blindSpot,
         color: AppColors.brandPink,
       ),
-      _GrowthTool(
-        icon: Icons.people_outline_rounded,
-        title: isEn ? 'Relationship Reflection' : 'İlişki Yansıması',
-        subtitle: isEn
-            ? 'Explore recurring dynamics'
-            : 'Tekrarlayan dinamikleri keşfet',
-        route: Routes.compatibilityReflection,
-        color: AppColors.softCoral,
-      ),
+      // compatibility/relationship reflection removed (killed feature)
       _GrowthTool(
         icon: Icons.military_tech_outlined,
         title: isEn ? 'Milestones' : 'Rozetler',
