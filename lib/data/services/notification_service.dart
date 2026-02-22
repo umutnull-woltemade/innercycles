@@ -30,7 +30,8 @@ class NotificationService {
     try {
       final prefs = await SharedPreferences.getInstance();
       return (prefs.getInt('app_language') ?? 0) == 0;
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('Notification: read language pref error: $e');
       return true;
     }
   }

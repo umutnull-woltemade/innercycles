@@ -146,6 +146,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
     _searchFocusNode.dispose();
     _tabController.removeListener(_onTabChanged);
     _tabController.dispose();
+    _personalDictionary.dispose();
     super.dispose();
   }
 
@@ -1787,6 +1788,12 @@ class PersonalDictionaryService {
       ),
     );
     return entry.count;
+  }
+
+  /// Close the Hive box when no longer needed.
+  Future<void> dispose() async {
+    await _box?.close();
+    _box = null;
   }
 
   Future<void> setPersonalMeaning(String symbolId, String meaning) async {

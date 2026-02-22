@@ -7,6 +7,7 @@
 library;
 
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../content/context_modules_content.dart';
 
@@ -242,8 +243,8 @@ class ContextModuleService {
             .toList();
         await _prefs.setStringList(_bookmarksKey, bookmarks);
       }
-    } catch (_) {
-      // Corrupted import data — skip silently
+    } catch (e) {
+      if (kDebugMode) debugPrint('ContextModule: import data error: $e');
     }
   }
 }

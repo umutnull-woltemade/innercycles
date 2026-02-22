@@ -84,7 +84,8 @@ class AuthService {
     try {
       // ignore: unnecessary_null_comparison
       return Supabase.instance.client != null;
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('Auth: Supabase not initialized: $e');
       return false;
     }
   }

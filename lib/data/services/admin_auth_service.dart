@@ -172,6 +172,7 @@ class AdminAuthService {
       );
       return DateTime.now().isBefore(expiresAt);
     } catch (e) {
+      if (kDebugMode) debugPrint('AdminAuth: session check error: $e');
       return false;
     }
   }
@@ -188,6 +189,7 @@ class AdminAuthService {
       final session = jsonDecode(sessionJson) as Map<String, dynamic>;
       return AdminSession.fromJson(session);
     } catch (e) {
+      if (kDebugMode) debugPrint('AdminAuth: decode session error: $e');
       return null;
     }
   }

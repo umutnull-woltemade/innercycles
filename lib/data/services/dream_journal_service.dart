@@ -5,6 +5,7 @@ library;
 
 import 'dart:convert';
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import '../models/dream_interpretation_models.dart';
@@ -658,7 +659,8 @@ class DreamJournalService {
     try {
       final List<dynamic> decoded = jsonDecode(dreamsJson);
       return decoded.map((d) => DreamEntry.fromJson(d)).toList();
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('DreamJournal: decode dreams error: $e');
       return [];
     }
   }
@@ -943,7 +945,8 @@ class DreamJournalService {
     try {
       final List<dynamic> decoded = jsonDecode(patternsJson);
       return decoded.map((p) => RecurringPattern.fromJson(p)).toList();
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('DreamJournal: decode patterns error: $e');
       return [];
     }
   }
@@ -1754,7 +1757,8 @@ class DreamJournalService {
       return decoded.map(
         (key, value) => MapEntry(key, PersonalSymbolEntry.fromJson(value)),
       );
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('DreamJournal: decode personal dictionary: $e');
       return {};
     }
   }

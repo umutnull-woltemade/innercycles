@@ -676,9 +676,12 @@ class _MonthlyReflectionScreenState
           const SizedBox(height: AppConstants.spacingMd),
           ...summary.averagesByArea.entries.map((e) {
             final label = isEn ? e.key.displayNameEn : e.key.displayNameTr;
-            return Padding(
+            return Semantics(
+              label: '$label: ${e.value.toStringAsFixed(1)} out of 5',
+              child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
-              child: Row(
+              child: ExcludeSemantics(
+                child: Row(
                 children: [
                   SizedBox(
                     width: 90,
@@ -716,6 +719,8 @@ class _MonthlyReflectionScreenState
                   ),
                 ],
               ),
+              ),
+            ),
             );
           }),
         ],

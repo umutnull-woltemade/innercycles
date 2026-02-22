@@ -8,6 +8,7 @@ library;
 
 import 'dart:convert';
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // ════════════════════════════════════════════════════════════════
@@ -272,7 +273,8 @@ class AffirmationService {
     try {
       final decoded = jsonDecode(raw) as Map<String, dynamic>;
       return decoded.map((k, v) => MapEntry(k, v as int? ?? 0));
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('Affirmation: decode engagement map: $e');
       return {};
     }
   }

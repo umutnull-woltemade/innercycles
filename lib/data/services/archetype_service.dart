@@ -938,7 +938,8 @@ class ArchetypeService {
           if (yearCmp != 0) return yearCmp;
           return a.month.compareTo(b.month);
         });
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('Archetype: decode history error: $e');
       return [];
     }
   }

@@ -5,6 +5,7 @@
 // Drives immediate engagement + shareable result card.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -242,8 +243,8 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
     try {
       final service = await ref.read(archetypeServiceProvider.future);
       await service.setInitialArchetype(archetypeId);
-    } catch (_) {
-      // Non-critical — continue even if save fails
+    } catch (e) {
+      if (kDebugMode) debugPrint('ArchetypeQuiz: save error: $e');
     }
   }
 

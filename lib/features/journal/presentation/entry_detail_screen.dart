@@ -221,13 +221,16 @@ class EntryDetailScreen extends ConsumerWidget {
         children: entry.subRatings.entries.map((e) {
           final label = names[e.key] ?? e.key;
           final value = e.value;
-          return Padding(
+          return Semantics(
+            label: '$label: $value out of 5',
+            child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: Row(
               children: [
                 SizedBox(
                   width: 120,
-                  child: Text(
+                  child: ExcludeSemantics(
+                    child: Text(
                     label,
                     style: TextStyle(
                       fontSize: 14,
@@ -235,6 +238,7 @@ class EntryDetailScreen extends ConsumerWidget {
                           ? AppColors.textSecondary
                           : AppColors.lightTextSecondary,
                     ),
+                  ),
                   ),
                 ),
                 Expanded(
@@ -261,6 +265,7 @@ class EntryDetailScreen extends ConsumerWidget {
                 ),
               ],
             ),
+          ),
           );
         }).toList(),
       ),
@@ -276,7 +281,8 @@ class EntryDetailScreen extends ConsumerWidget {
     final file = File(imagePath);
     try {
       if (!file.existsSync()) return const SizedBox.shrink();
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('EntryDetail: photo file check error: $e');
       return const SizedBox.shrink();
     }
 

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/journal_entry.dart';
 import 'journal_service.dart';
@@ -425,7 +426,8 @@ class YearReviewService {
     try {
       final json = jsonDecode(jsonString) as Map<String, dynamic>;
       return YearReview.fromJson(json);
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('YearReview: decode cache error: $e');
       return null;
     }
   }

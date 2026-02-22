@@ -11,6 +11,7 @@
 import 'dart:io';
 import 'dart:ui' as ui;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -78,8 +79,8 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           text: shareText,
         ),
       );
-    } catch (_) {
-      // Share cancelled or failed silently
+    } catch (e) {
+      if (kDebugMode) debugPrint('WeeklyDigest: share error: $e');
     }
 
     if (mounted) setState(() => _isSharing = false);
@@ -285,19 +286,23 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         GlassSliverAppBar(
           title: isEn ? 'Weekly Debrief' : 'Haftalık Değerlendirme',
           actions: [
-            IconButton(
-              onPressed: _isSharing ? null : () => _shareDigest(isEn),
-              icon: _isSharing
-                  ? const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: AppColors.starGold,
-                      ),
-                    )
-                  : const Icon(Icons.ios_share, color: AppColors.starGold),
-              tooltip: isEn ? 'Share' : 'Paylas',
+            Semantics(
+              button: true,
+              label: isEn ? 'Share weekly debrief' : 'Haftalik degerlendirmeyi paylas',
+              child: IconButton(
+                onPressed: _isSharing ? null : () => _shareDigest(isEn),
+                icon: _isSharing
+                    ? const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: AppColors.starGold,
+                        ),
+                      )
+                    : const Icon(Icons.ios_share, color: AppColors.starGold),
+                tooltip: isEn ? 'Share' : 'Paylas',
+              ),
             ),
           ],
         ),
@@ -447,7 +452,11 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     final range =
         '${dateFormat.format(data.weekStart)} - ${dateFormat.format(data.weekEnd)}';
 
-    return Container(
+    return Semantics(
+      label: isEn
+          ? 'Week of $range'
+          : '$range Haftasi',
+      child: Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
       decoration: BoxDecoration(
@@ -487,6 +496,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           ),
         ],
       ),
+    ),
     );
   }
 
@@ -529,7 +539,11 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
       comparisonIcon = Icons.horizontal_rule;
     }
 
-    return Container(
+    return Semantics(
+      label: isEn
+          ? '${data.entriesThisWeek} entries this week. $comparisonText'
+          : '${data.entriesThisWeek} kayit bu hafta. $comparisonText',
+      child: Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
@@ -602,6 +616,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           ),
         ],
       ),
+    ),
     );
   }
 
@@ -659,7 +674,11 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     final color = _focusAreaColor(area);
     final pct = data.topFocusAreaPercentage;
 
-    return Container(
+    return Semantics(
+      label: isEn
+          ? 'Top focus area: $areaName, ${pct.toStringAsFixed(0)} percent'
+          : 'En cok odaklanilan alan: $areaName, yuzde ${pct.toStringAsFixed(0)}',
+      child: Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
@@ -726,6 +745,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           ),
         ],
       ),
+    ),
     );
   }
 
@@ -746,7 +766,11 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         ? '(${data.moodTrendChangePercent > 0 ? '+' : ''}${data.moodTrendChangePercent.toStringAsFixed(0)}%)'
         : '';
 
-    return Container(
+    return Semantics(
+      label: isEn
+          ? 'Mood trend ${changeStr.isNotEmpty ? changeStr : ''}: ${message.$1}'
+          : 'Ruh hali egilimi ${changeStr.isNotEmpty ? changeStr : ''}: ${message.$2}',
+      child: Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
         color: isDark
@@ -812,6 +836,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           ),
         ],
       ),
+    ),
     );
   }
 
@@ -829,7 +854,11 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     final dayName = _weekdayNameFull(bestDate.weekday, isEn);
     final dateStr = DateFormat('MMM d').format(bestDate);
 
-    return Container(
+    return Semantics(
+      label: isEn
+          ? 'Best day: $dayName, $dateStr. Average rating: ${data.bestDayRating} out of 5'
+          : 'En iyi gun: $dayName, $dateStr. Ortalama puan: ${data.bestDayRating} uzeri 5',
+      child: Container(
       padding: const EdgeInsets.all(AppConstants.spacingXl),
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -904,6 +933,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           ),
         ],
       ),
+    ),
     );
   }
 
@@ -950,7 +980,11 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
             final color = _focusAreaColor(area);
             final label = isEn ? area.displayNameEn : area.displayNameTr;
 
-            return Padding(
+            return Semantics(
+              label: isEn
+                  ? '$label: ${avg.toStringAsFixed(1)} out of 5, $count entries'
+                  : '$label: 5 uzerinden ${avg.toStringAsFixed(1)}, $count kayit',
+              child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
               child: Row(
                 children: [
@@ -1011,6 +1045,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                   ),
                 ],
               ),
+            ),
             );
           }),
         ],
@@ -1028,7 +1063,11 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     bool isDark,
     bool isEn,
   ) {
-    return Container(
+    return Semantics(
+      label: isEn
+          ? 'Weekly insight: ${data.highlightInsightEn}'
+          : 'Haftalik icgoru: ${data.highlightInsightTr}',
+      child: Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
       decoration: BoxDecoration(
@@ -1047,10 +1086,12 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
       ),
       child: Column(
         children: [
-          const Icon(
+          const ExcludeSemantics(
+            child: Icon(
             Icons.auto_awesome,
             color: AppColors.starGold,
             size: 28,
+          ),
           ),
           const SizedBox(height: 12),
           Text(
@@ -1078,6 +1119,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           ),
         ],
       ),
+    ),
     );
   }
 
@@ -1155,7 +1197,9 @@ class _StatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Semantics(
+      label: '$label: $value$sublabel',
+      child: Container(
       padding: const EdgeInsets.symmetric(
         vertical: AppConstants.spacingLg,
         horizontal: AppConstants.spacingMd,
@@ -1169,7 +1213,7 @@ class _StatCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Icon(icon, size: 22, color: color),
+          ExcludeSemantics(child: Icon(icon, size: 22, color: color)),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -1209,6 +1253,7 @@ class _StatCard extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }

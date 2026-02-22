@@ -25,7 +25,11 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 // ════════════════════════════════════════════════════════════════════════════
 
 class ReferralScreen extends ConsumerStatefulWidget {
-  const ReferralScreen({super.key});
+  /// Optional invite code from a deep link (innercycles://invite/:code).
+  /// When provided, the code is automatically applied as the referrer.
+  final String? inviteCode;
+
+  const ReferralScreen({super.key, this.inviteCode});
 
   @override
   ConsumerState<ReferralScreen> createState() => _ReferralScreenState();
@@ -56,6 +60,11 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
     setState(() => _loading = true);
     final service = await _getService();
     if (service != null && mounted) {
+      // Auto-apply invite code from deep link
+      if (widget.inviteCode != null && widget.inviteCode!.isNotEmpty) {
+        await service.setReferredBy(widget.inviteCode!);
+      }
+      if (!mounted) return;
       setState(() {
         _stats = service.getReferralStats();
         _loading = false;
@@ -91,9 +100,9 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
         ? 'I\'m tracking my emotional patterns with InnerCycles and it\'s been eye-opening! '
           'Use my invite code $code when you sign up and we both benefit. '
           'Download it free:\n\n$appUrl'
-        : 'InnerCycles ile duygusal kaliplarimi takip ediyorum ve cok faydali! '
-          'Kayit olurken davet kodumu kullan: $code. Ikimiz de kazanalim. '
-          'Ucretsiz indir:\n\n$appUrl';
+        : 'InnerCycles ile duygusal kalıplarımı takip ediyorum ve çok faydalı! '
+          'Kayıt olurken davet kodumu kullan: $code. İkimiz de kazanalım. '
+          'Ücretsiz indir:\n\n$appUrl';
 
     await SharePlus.instance.share(ShareParams(text: shareText));
 
@@ -125,7 +134,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
               // APP BAR
               // ═══════════════════════════════════════════════════════════
               GlassSliverAppBar(
-                title: isEn ? 'Invite Friends' : 'Arkadaslarini Davet Et',
+                title: isEn ? 'Invite Friends' : 'Arkadaşlarını Davet Et',
               ),
 
               // ═══════════════════════════════════════════════════════════
@@ -201,10 +210,12 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
   Widget _buildHeroSection(bool isEn, bool isDark) {
     return Column(
       children: [
-        Icon(
+        ExcludeSemantics(
+          child: Icon(
           Icons.card_giftcard_rounded,
           size: 56,
           color: AppColors.starGold.withValues(alpha: 0.85),
+        ),
         )
             .animate()
             .fadeIn(duration: 600.ms)
@@ -218,7 +229,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
         Text(
           isEn
               ? 'Invite Friends, Earn Rewards'
-              : 'Arkadaslarini Davet Et, Oduller Kazan',
+              : 'Arkadaşlarını Davet Et, Ödüller Kazan',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 22,
@@ -231,8 +242,8 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
           isEn
               ? 'Share your referral code with friends. After 3 friends join, '
                 'you unlock a free 7-day premium trial!'
-              : 'Davet kodunu arkadaslarinla paylas. 3 arkadas katildiktan sonra '
-                '7 gunluk ucretsiz premium deneme kazan!',
+              : 'Davet kodunu arkadaşlarınla paylaş. 3 arkadaş katıldıktan sonra '
+                '7 günlük ücretsiz premium deneme kazan!',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 15,
@@ -340,8 +351,8 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
           Center(
             child: Text(
               _codeCopied
-                  ? (isEn ? 'Copied!' : 'Kopyalandi!')
-                  : (isEn ? 'Tap to copy' : 'Kopyalamak icin dokun'),
+                  ? (isEn ? 'Copied!' : 'Kopyalandı!')
+                  : (isEn ? 'Tap to copy' : 'Kopyalamak için dokun'),
               style: TextStyle(
                 fontSize: 13,
                 color: _codeCopied
@@ -364,7 +375,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
   Widget _buildShareButton(bool isEn, bool isDark) {
     return Semantics(
       button: true,
-      label: isEn ? 'Share invite link' : 'Davet linkini paylas',
+      label: isEn ? 'Share invite link' : 'Davet linkini paylaş',
       child: GestureDetector(
         onTap: () {
           HapticFeedback.mediumImpact();
@@ -394,7 +405,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
               const Icon(Icons.share_rounded, size: 20, color: Colors.white),
               const SizedBox(width: 10),
               Text(
-                isEn ? 'Share Invite Link' : 'Davet Linkini Paylas',
+                isEn ? 'Share Invite Link' : 'Davet Linkini Paylaş',
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
@@ -430,7 +441,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
               ),
               const SizedBox(width: 10),
               Text(
-                isEn ? 'Referral Stats' : 'Davet Istatistikleri',
+                isEn ? 'Referral Stats' : 'Davet İstatistikleri',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -450,7 +461,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                 child: _StatTile(
                   icon: Icons.send_rounded,
                   value: '${stats?.totalInvitesSent ?? 0}',
-                  label: isEn ? 'Invites Sent' : 'Gonderilen',
+                  label: isEn ? 'Invites Sent' : 'Gönderilen',
                   color: AppColors.auroraStart,
                   isDark: isDark,
                 ),
@@ -460,7 +471,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                 child: _StatTile(
                   icon: Icons.people_rounded,
                   value: '${stats?.successfulReferrals ?? 0}',
-                  label: isEn ? 'Joined' : 'Katildi',
+                  label: isEn ? 'Joined' : 'Katıldı',
                   color: AppColors.success,
                   isDark: isDark,
                 ),
@@ -572,7 +583,11 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
           const SizedBox(height: 16),
 
           // ── Progress bar ──
-          ClipRRect(
+          Semantics(
+            label: isEn
+                ? 'Reward progress: ${stats?.successfulReferrals ?? 0} of ${ReferralService.requiredReferrals} referrals, ${(progress * 100).round()} percent'
+                : 'Odul ilerlemesi: ${ReferralService.requiredReferrals} davetten ${stats?.successfulReferrals ?? 0} tamamlandi, yuzde ${(progress * 100).round()}',
+            child: ClipRRect(
             borderRadius: BorderRadius.circular(6),
             child: LinearProgressIndicator(
               value: progress,
@@ -584,6 +599,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                 isActive ? AppColors.starGold : AppColors.auroraStart,
               ),
             ),
+          ),
           ),
           const SizedBox(height: 8),
 
@@ -602,7 +618,11 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                 ),
               ),
               if (isActive)
-                Container(
+                Semantics(
+                  label: isEn
+                      ? '$daysLeft days left on trial'
+                      : 'Denemede $daysLeft gun kaldi',
+                  child: Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 10,
                     vertical: 4,
@@ -615,13 +635,14 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                     ),
                   ),
                   child: Text(
-                    isEn ? '$daysLeft days left' : '$daysLeft gun kaldi',
+                    isEn ? '$daysLeft days left' : '$daysLeft gün kaldı',
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
                       color: AppColors.starGold,
                     ),
                   ),
+                ),
                 ),
             ],
           ),
@@ -644,7 +665,11 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
         final isCompleted = index < successful;
         final isCurrent = index == successful;
         return Expanded(
-          child: Padding(
+          child: Semantics(
+            label: isEn
+                ? 'Friend ${index + 1}: ${isCompleted ? 'completed' : (isCurrent ? 'current step' : 'pending')}'
+                : 'Arkadas ${index + 1}: ${isCompleted ? 'tamamlandi' : (isCurrent ? 'mevcut adim' : 'bekliyor')}',
+            child: Padding(
             padding: EdgeInsets.only(
               right: index < ReferralService.requiredReferrals - 1 ? 8 : 0,
             ),
@@ -696,7 +721,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  isEn ? 'Friend ${index + 1}' : 'Arkadas ${index + 1}',
+                  isEn ? 'Friend ${index + 1}' : 'Arkadaş ${index + 1}',
                   style: TextStyle(
                     fontSize: 11,
                     color: isCompleted
@@ -709,6 +734,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                 ),
               ],
             ),
+          ),
           ),
         );
       }),
@@ -724,9 +750,9 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
       return isEn ? 'Premium Trial Active!' : 'Premium Deneme Aktif!';
     }
     if (isGranted) {
-      return isEn ? 'Trial Expired' : 'Deneme Suresi Doldu';
+      return isEn ? 'Trial Expired' : 'Deneme Süresi Doldu';
     }
-    return isEn ? 'Premium Trial Reward' : 'Premium Deneme Odulu';
+    return isEn ? 'Premium Trial Reward' : 'Premium Deneme Ödülü';
   }
 
   String _rewardSubtitle(
@@ -739,16 +765,16 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
     if (isActive) {
       return isEn
           ? 'Enjoy all premium features! $daysLeft days remaining on your trial.'
-          : 'Tum premium ozelliklerin tadini cikar! Denemenizde $daysLeft gun kaldi.';
+          : 'Tüm premium özelliklerin tadını çıkar! Denemenizde $daysLeft gün kaldı.';
     }
     if (isGranted) {
       return isEn
           ? 'Your trial has ended. Upgrade to keep premium features.'
-          : 'Denemeniz sona erdi. Premium ozellikleri korumak icin yukselt.';
+          : 'Denemeniz sona erdi. Premium özellikleri korumak için yükselt.';
     }
     return isEn
         ? 'Invite $remaining more friends to unlock a free ${ReferralService.rewardTrialDays}-day premium trial. No subscription required.'
-        : '$remaining arkadas daha davet et ve ${ReferralService.rewardTrialDays} gunluk ucretsiz premium deneme kazan. Abonelik gerektirmez.';
+        : '$remaining arkadaş daha davet et ve ${ReferralService.rewardTrialDays} günlük ücretsiz premium deneme kazan. Abonelik gerektirmez.';
   }
 }
 
@@ -773,7 +799,9 @@ class _StatTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Semantics(
+      label: '$label: $value',
+      child: Container(
       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
@@ -788,7 +816,7 @@ class _StatTile extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Icon(icon, size: 22, color: color),
+          ExcludeSemantics(child: Icon(icon, size: 22, color: color)),
           const SizedBox(height: 8),
           Text(
             value,
@@ -810,6 +838,7 @@ class _StatTile extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }

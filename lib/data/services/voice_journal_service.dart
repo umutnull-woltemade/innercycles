@@ -7,6 +7,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
@@ -151,7 +152,7 @@ class VoiceJournalService {
     try {
       await _speech.cancel();
     } catch (e) {
-      // Silently handle cancel errors
+      if (kDebugMode) debugPrint('VoiceJournal: cancel error: $e');
     } finally {
       _isListening = false;
       _lastRecognizedText = '';
@@ -165,6 +166,7 @@ class VoiceJournalService {
     try {
       return await _speech.locales();
     } catch (e) {
+      if (kDebugMode) debugPrint('VoiceJournal: get locales error: $e');
       return [];
     }
   }

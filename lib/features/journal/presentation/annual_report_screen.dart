@@ -10,6 +10,7 @@
 import 'dart:math';
 import 'dart:ui' as ui;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -203,8 +204,8 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           text: shareText,
         ),
       );
-    } catch (_) {
-      // Share cancelled or failed silently
+    } catch (e) {
+      if (kDebugMode) debugPrint('AnnualReport: share error: $e');
     }
 
     if (mounted) setState(() => _isSharing = false);

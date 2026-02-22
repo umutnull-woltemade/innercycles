@@ -8,6 +8,7 @@
 
 import 'dart:convert';
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -548,8 +549,8 @@ class DailyHookService {
           final id = int.tryParse(shownIds[i]);
           if (id != null) recentIds.add(id);
         }
-      } catch (_) {
-        // Skip malformed entries
+      } catch (e) {
+        if (kDebugMode) debugPrint('DailyHook: malformed recent entry: $e');
       }
     }
 
@@ -564,7 +565,8 @@ class DailyHookService {
     try {
       final decoded = json.decode(engagementJson) as Map<String, dynamic>;
       return decoded.map((k, v) => MapEntry(k, (v as num).toInt()));
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('DailyHook: decode category engagement: $e');
       return {};
     }
   }
@@ -585,8 +587,8 @@ class DailyHookService {
           newIds.add(shownIds[i]);
           newTimestamps.add(timestamps[i]);
         }
-      } catch (_) {
-        // Drop malformed entries
+      } catch (e) {
+        if (kDebugMode) debugPrint('DailyHook: drop malformed cleanup entry: $e');
       }
     }
 
@@ -615,7 +617,8 @@ class DailyHookService {
       return lastDate.year == now.year &&
           lastDate.month == now.month &&
           lastDate.day == now.day;
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('DailyHook: parse hasShownHookToday: $e');
       return false;
     }
   }

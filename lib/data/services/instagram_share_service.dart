@@ -368,6 +368,7 @@ class InstagramShareService {
       final uri = Uri.parse('instagram://app');
       return await canLaunchUrl(uri);
     } catch (e) {
+      if (kDebugMode) debugPrint('Instagram: check installed error: $e');
       return false;
     }
   }

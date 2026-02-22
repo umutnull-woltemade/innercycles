@@ -144,7 +144,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove(_draftKey);
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) debugPrint('DailyEntry: clearDraft failed: $e');
+    }
   }
 
   @override
@@ -952,8 +954,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       );
       await nlcService.recordActivity();
       await nlcService.evaluate(journalService);
-    } catch (_) {
-      // Non-critical — silently ignore
+    } catch (e) {
+      if (kDebugMode) debugPrint('DailyEntry: notification lifecycle error: $e');
     }
   }
 
@@ -967,8 +969,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         currentStreak: streak,
         journalEntryCount: entryCount,
       );
-    } catch (_) {
-      // Review prompt is non-critical, silently ignore errors
+    } catch (e) {
+      if (kDebugMode) debugPrint('DailyEntry: review trigger error: $e');
     }
   }
 
@@ -1010,8 +1012,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         shortMessage: isEn ? '$streak day streak' : '$streak gün seri',
         energyLevel: _overallRating,
       );
-    } catch (_) {
-      // Widget update is non-critical
+    } catch (e) {
+      if (kDebugMode) debugPrint('DailyEntry: widget update error: $e');
     }
   }
 
@@ -1027,8 +1029,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           MilestoneCelebrationModal.show(context, milestone, isEn);
         }
       }
-    } catch (_) {
-      // Celebration is non-critical
+    } catch (e) {
+      if (kDebugMode) debugPrint('DailyEntry: streak milestone error: $e');
     }
   }
 

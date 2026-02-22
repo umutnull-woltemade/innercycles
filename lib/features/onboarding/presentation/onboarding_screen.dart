@@ -252,8 +252,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     try {
       final service = await ref.read(archetypeServiceProvider.future);
       await service.setInitialArchetype(archetypeId);
-    } catch (_) {
-      // Non-critical
+    } catch (e) {
+      if (kDebugMode) debugPrint('Onboarding: archetype save error: $e');
     }
   }
 

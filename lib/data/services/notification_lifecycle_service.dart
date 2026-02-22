@@ -125,7 +125,8 @@ class NotificationLifecycleService {
     if (str == null) return null;
     try {
       return DateTime.parse(str);
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('NotifLifecycle: parse lastActivityDate: $e');
       return null;
     }
   }
@@ -162,7 +163,8 @@ class NotificationLifecycleService {
     try {
       final decoded = json.decode(str) as List<dynamic>;
       return decoded.map((e) => (e as num).toInt()).toList();
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('NotifLifecycle: decode journaling hours: $e');
       return [];
     }
   }
@@ -213,7 +215,8 @@ class NotificationLifecycleService {
       return lastDate.year == now.year &&
           lastDate.month == now.month &&
           lastDate.day == now.day;
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('NotifLifecycle: parse hasNotifiedToday: $e');
       return false;
     }
   }
@@ -238,7 +241,8 @@ class NotificationLifecycleService {
     try {
       final decoded = json.decode(str) as List<dynamic>;
       return decoded.map((e) => (e as num).toInt()).toSet();
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('NotifLifecycle: decode milestones: $e');
       return {};
     }
   }

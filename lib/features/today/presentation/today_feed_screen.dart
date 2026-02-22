@@ -828,7 +828,12 @@ class _CycleSyncCard extends ConsumerWidget {
 
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: GestureDetector(
+          child: Semantics(
+            button: true,
+            label: isEn
+                ? 'Cycle day $cycleDay, $phaseName phase. Tap for details'
+                : 'Döngü günü $cycleDay, $phaseName fazı. Detaylar için dokun',
+            child: GestureDetector(
             onTap: () {
               HapticFeedback.selectionClick();
               context.push(Routes.cycleSync);
@@ -903,6 +908,7 @@ class _CycleSyncCard extends ConsumerWidget {
                 ],
               ),
             ),
+          ),
           ),
         ).animate().fadeIn(delay: 120.ms, duration: 400.ms);
       },

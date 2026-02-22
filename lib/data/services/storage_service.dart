@@ -171,6 +171,7 @@ class StorageService {
           .where((p) => p.name != null && p.name!.isNotEmpty)
           .toList();
     } catch (e) {
+      if (kDebugMode) debugPrint('Storage: decode profiles error: $e');
       return [];
     }
   }

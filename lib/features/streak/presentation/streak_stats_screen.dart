@@ -157,7 +157,9 @@ class StreakStatsScreen extends ConsumerWidget {
           ),
           if (stats.nextMilestone != null) ...[
             const SizedBox(height: 12),
-            ClipRRect(
+            Semantics(
+              label: '${stats.currentStreak} of ${stats.nextMilestone} day milestone',
+              child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: LinearProgressIndicator(
                 value: stats.nextMilestone! > 0
@@ -171,6 +173,7 @@ class StreakStatsScreen extends ConsumerWidget {
                     : AppColors.lightSurfaceVariant,
                 valueColor: AlwaysStoppedAnimation(AppColors.starGold),
                 minHeight: 6,
+              ),
               ),
             ),
             const SizedBox(height: 6),

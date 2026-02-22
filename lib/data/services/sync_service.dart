@@ -62,7 +62,8 @@ class SyncService {
     try {
       final result = await Connectivity().checkConnectivity();
       return !result.contains(ConnectivityResult.none);
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('Sync: connectivity check error: $e');
       return false;
     }
   }

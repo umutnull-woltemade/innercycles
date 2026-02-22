@@ -144,7 +144,8 @@ class UrlLauncherService {
       }
 
       return launchUrl(storeUrl, source: 'store_fallback');
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('UrlLauncher: store fallback error: $e');
       return false;
     }
   }

@@ -5,6 +5,7 @@
 // templates, next-tool suggestions, empty state, and time-to-value.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:flutter/foundation.dart';
 import '../../core/constants/routes.dart';
 
 enum ToolCategory { journal, analysis, discovery, support, reference, data }
@@ -118,7 +119,8 @@ class ToolManifestRegistry {
   static ToolManifest? findById(String id) {
     try {
       return all.firstWhere((t) => t.id == id);
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('ToolManifest: findById "$id" error: $e');
       return null;
     }
   }

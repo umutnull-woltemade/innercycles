@@ -340,15 +340,18 @@ class _MilestoneProgress extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 6),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(4),
-          child: LinearProgressIndicator(
-            value: progress,
-            backgroundColor: isDark
-                ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                : AppColors.lightSurfaceVariant,
-            valueColor: AlwaysStoppedAnimation(AppColors.starGold),
-            minHeight: 6,
+        Semantics(
+          label: '${(progress * 100).round()}% to next milestone',
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: LinearProgressIndicator(
+              value: progress,
+              backgroundColor: isDark
+                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                  : AppColors.lightSurfaceVariant,
+              valueColor: AlwaysStoppedAnimation(AppColors.starGold),
+              minHeight: 6,
+            ),
           ),
         ),
       ],

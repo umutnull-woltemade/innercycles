@@ -316,6 +316,7 @@ class PatternsScreen extends ConsumerWidget {
     final correlations = engine.detectCorrelations();
     final healthAsync = ref.watch(patternHealthReportProvider);
     final crossCorrelationsAsync = ref.watch(crossCorrelationsProvider);
+    final gratitudeMoodAsync = ref.watch(gratitudeMoodComparisonProvider);
     final isPremium = ref.watch(isPremiumUserProvider);
 
     // Extract dimension health map (null if loading/error)
@@ -326,6 +327,10 @@ class PatternsScreen extends ConsumerWidget {
     // Extract cross-correlations (empty list if loading/error)
     final crossCorrelations =
         crossCorrelationsAsync.whenOrNull(data: (list) => list) ?? [];
+
+    // Extract gratitude-mood comparison (null if loading/error/insufficient data)
+    final gratitudeMood =
+        gratitudeMoodAsync.whenOrNull(data: (comparison) => comparison);
 
     return CupertinoScrollbar(
       child: CustomScrollView(
@@ -364,7 +369,8 @@ class PatternsScreen extends ConsumerWidget {
                 if (!isPremium &&
                     (trends.isNotEmpty ||
                         correlations.isNotEmpty ||
-                        crossCorrelations.isNotEmpty))
+                        crossCorrelations.isNotEmpty ||
+                        gratitudeMood != null))
                   _buildPremiumBlurOverlay(
                     context,
                     ref,
@@ -392,6 +398,15 @@ class PatternsScreen extends ConsumerWidget {
                             isDark,
                             isEn,
                           ),
+                        if (gratitudeMood != null) ...[
+                          const SizedBox(height: AppConstants.spacingLg),
+                          _buildGratitudeMoodCard(
+                            context,
+                            gratitudeMood,
+                            isDark,
+                            isEn,
+                          ),
+                        ],
                       ],
                     ),
                   ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
@@ -423,6 +438,15 @@ class PatternsScreen extends ConsumerWidget {
                       isDark,
                       isEn,
                     ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+                  if (gratitudeMood != null) ...[
+                    const SizedBox(height: AppConstants.spacingLg),
+                    _buildGratitudeMoodCard(
+                      context,
+                      gratitudeMood,
+                      isDark,
+                      isEn,
+                    ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
+                  ],
                 ],
                 // Shadow Work suggestion based on weak areas
                 _ShadowWorkSuggestion(
@@ -623,9 +647,12 @@ class PatternsScreen extends ConsumerWidget {
                 : entry.key.displayNameTr;
             final dimensionHealth = healthMap?[entry.key];
 
-            return Padding(
+            return Semantics(
+              label: '$label: ${entry.value.toStringAsFixed(1)} out of 5',
+              child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
-              child: Row(
+              child: ExcludeSemantics(
+                child: Row(
                 children: [
                   // Health status dot
                   if (dimensionHealth != null) ...[
@@ -684,6 +711,8 @@ class PatternsScreen extends ConsumerWidget {
                     ),
                 ],
               ),
+              ),
+            ),
             );
           }),
         ],
@@ -972,6 +1001,141 @@ class PatternsScreen extends ConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildGratitudeMoodCard(
+    BuildContext context,
+    GratitudeMoodComparison comparison,
+    bool isDark,
+    bool isEn,
+  ) {
+    final isPositiveLift = comparison.lift > 0.2;
+    final accentColor =
+        isPositiveLift ? AppColors.success : AppColors.auroraStart;
+
+    return Container(
+      padding: const EdgeInsets.all(AppConstants.spacingLg),
+      decoration: BoxDecoration(
+        color: isDark
+            ? AppColors.surfaceDark.withValues(alpha: 0.85)
+            : AppColors.lightCard,
+        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+        border: Border.all(
+          color: accentColor.withValues(alpha: 0.25),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.favorite_border_rounded, color: accentColor, size: 20),
+              const SizedBox(width: 8),
+              Text(
+                isEn ? 'Gratitude & Mood' : 'Minnettarlık & Ruh Hali',
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppConstants.spacingMd),
+          // Side-by-side average comparison
+          Row(
+            children: [
+              Expanded(
+                child: _buildMoodAverageColumn(
+                  context,
+                  label: isEn ? 'Gratitude days' : 'Minnettarlık günleri',
+                  average: comparison.moodWithGratitude,
+                  days: comparison.daysWithGratitude,
+                  color: accentColor,
+                  isDark: isDark,
+                  isEn: isEn,
+                ),
+              ),
+              Container(
+                width: 1,
+                height: 48,
+                color: isDark
+                    ? Colors.white.withValues(alpha: 0.1)
+                    : Colors.black.withValues(alpha: 0.06),
+              ),
+              Expanded(
+                child: _buildMoodAverageColumn(
+                  context,
+                  label: isEn ? 'Other days' : 'Diğer günler',
+                  average: comparison.moodWithoutGratitude,
+                  days: comparison.daysWithoutGratitude,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                  isDark: isDark,
+                  isEn: isEn,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppConstants.spacingMd),
+          // Human-readable insight
+          Text(
+            isEn ? comparison.getInsightEn() : comparison.getInsightTr(),
+            style: TextStyle(
+              fontSize: 13,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMoodAverageColumn(
+    BuildContext context, {
+    required String label,
+    required double average,
+    required int days,
+    required Color color,
+    required bool isDark,
+    required bool isEn,
+  }) {
+    return Column(
+      children: [
+        Text(
+          average.toStringAsFixed(1),
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.w700,
+            color: color,
+          ),
+        ),
+        const SizedBox(height: 2),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 12,
+            color: isDark
+                ? AppColors.textSecondary
+                : AppColors.lightTextSecondary,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        Text(
+          isEn ? '$days days' : '$days gün',
+          style: TextStyle(
+            fontSize: 11,
+            color: isDark
+                ? AppColors.textSecondary.withValues(alpha: 0.6)
+                : AppColors.lightTextSecondary.withValues(alpha: 0.6),
+          ),
+        ),
+      ],
     );
   }
 }

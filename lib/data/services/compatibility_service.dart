@@ -8,6 +8,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
@@ -713,7 +714,8 @@ class CompatibilityService {
       return decoded
           .map((d) => CompatibilityProfile.fromJson(d as Map<String, dynamic>))
           .toList();
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('Compatibility: decode profiles error: $e');
       return [];
     }
   }

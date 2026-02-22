@@ -88,6 +88,7 @@ class AdminAnalyticsService {
       final list = jsonDecode(json) as List;
       return list.whereType<Map<String, dynamic>>().toList();
     } catch (e) {
+      if (kDebugMode) debugPrint('AdminAnalytics: decode events error: $e');
       return [];
     }
   }
@@ -125,8 +126,8 @@ class AdminAnalyticsService {
             firstFired: DateTime.parse(e['firstFired'] as String),
           ),
         );
-      } catch (_) {
-        // Skip corrupted event entries
+      } catch (e) {
+        if (kDebugMode) debugPrint('AdminAnalytics: corrupted event entry: $e');
       }
     }
     return results;
@@ -273,6 +274,7 @@ class AdminAnalyticsService {
       final list = jsonDecode(json) as List;
       return list.whereType<Map<String, dynamic>>().toList();
     } catch (e) {
+      if (kDebugMode) debugPrint('AdminAnalytics: decode sessions error: $e');
       return [];
     }
   }

@@ -6,6 +6,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/tool_manifest.dart';
@@ -132,8 +133,8 @@ class SmartRouterService {
           userGoals = goalsDecoded.whereType<String>().toSet();
         }
       }
-    } catch (_) {
-      // Reset to defaults on corrupted data
+    } catch (e) {
+      if (kDebugMode) debugPrint('SmartRouter: init decode error: $e');
     }
 
     final timeBudget = prefs.getInt(_timeBudgetKey) ?? 15;

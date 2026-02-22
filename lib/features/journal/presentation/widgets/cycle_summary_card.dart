@@ -94,12 +94,14 @@ class CycleSummaryCard extends StatelessWidget {
                 ),
               ),
               // Mini wave icon
-              SizedBox(
+              ExcludeSemantics(
+                child: SizedBox(
                 width: 48,
                 height: 24,
                 child: CustomPaint(
                   painter: _MiniWavePainter(color: color, hasData: hasData),
                 ),
+              ),
               ),
             ],
           ),
@@ -149,7 +151,9 @@ class CycleSummaryCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: ClipRRect(
+                  child: Semantics(
+                    label: '${summary.currentAverage.toStringAsFixed(1)} out of 5',
+                    child: ClipRRect(
                     borderRadius: BorderRadius.circular(3),
                     child: LinearProgressIndicator(
                       value: summary.currentAverage / 5.0,
@@ -159,6 +163,7 @@ class CycleSummaryCard extends StatelessWidget {
                       valueColor: AlwaysStoppedAnimation(color),
                       minHeight: 6,
                     ),
+                  ),
                   ),
                 ),
                 const SizedBox(width: 8),

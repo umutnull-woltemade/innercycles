@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/dream_memory.dart';
 import '../providers/app_providers.dart';
@@ -53,7 +54,8 @@ class DreamMemoryService {
     try {
       final List<dynamic> decoded = jsonDecode(dreamsJson);
       return decoded.map((d) => Dream.fromJson(d)).toList();
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('DreamMemory: decode dreams error: $e');
       return [];
     }
   }
@@ -111,7 +113,8 @@ class DreamMemoryService {
     }
     try {
       return DreamMemory.fromJson(jsonDecode(memoryJson));
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint('DreamMemory: decode memory error: $e');
       return DreamMemory(
         userId: 'local_user',
         emotionalProfile: EmotionalProfile(),
