@@ -323,19 +323,7 @@ class SettingsScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: 35),
 
-                      // ═══ SHARE & EARN SECTION ═══
-                      if (!isPremium) ...[
-                        _SectionHeader(
-                          title:
-                              (language == AppLanguage.en
-                                      ? 'Share & Earn'
-                                      : 'Paylaş ve Kazan')
-                                  .toUpperCase(),
-                          isDark: isDark,
-                        ),
-                        _ReferralCard(isDark: isDark, language: language),
-                        const SizedBox(height: 35),
-                      ],
+                      // Share & Earn section removed (killed feature)
 
                       // ═══ FEATURES SECTION ═══
                       _SectionHeader(
@@ -917,131 +905,7 @@ class _ThemeOption extends StatelessWidget {
 }
 
 /// Referral card — share app to earn premium trial
-class _ReferralCard extends ConsumerWidget {
-  final bool isDark;
-  final AppLanguage language;
-
-  const _ReferralCard({required this.isDark, required this.language});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final referralAsync = ref.watch(referralServiceProvider);
-
-    return referralAsync.when(
-      loading: () => const SizedBox.shrink(),
-      error: (_, _) => const SizedBox.shrink(),
-      data: (service) {
-        final status = service.getStatus(language);
-        final isEn = language == AppLanguage.en;
-
-        return _GroupedContainer(
-          isDark: isDark,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    status.isUnlocked
-                        ? Icons.card_giftcard
-                        : Icons.share_outlined,
-                    color: AppColors.starGold,
-                    size: 22,
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          status.headline,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          status.subtitle,
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: isDark
-                                ? AppColors.textSecondary
-                                : AppColors.lightTextSecondary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-              // Progress bar
-              ClipRRect(
-                borderRadius: BorderRadius.circular(4),
-                child: LinearProgressIndicator(
-                  value: status.progress,
-                  minHeight: 6,
-                  backgroundColor: isDark
-                      ? Colors.white.withValues(alpha: 0.1)
-                      : Colors.black.withValues(alpha: 0.08),
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    status.isUnlocked ? AppColors.success : AppColors.starGold,
-                  ),
-                ),
-              ),
-              if (!status.isUnlocked && !status.isExpired) ...[
-                const SizedBox(height: 12),
-                SizedBox(
-                  width: double.infinity,
-                  child: TextButton(
-                    onPressed: () async {
-                      final unlocked = await service.shareApp(
-                        language: language,
-                      );
-                      if (unlocked && context.mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              isEn
-                                  ? 'Pro trial activated for 7 days!'
-                                  : 'Pro deneme 7 gün için etkinleştirildi!',
-                            ),
-                            behavior: SnackBarBehavior.floating,
-                          ),
-                        );
-                      }
-                      // Refresh the provider
-                      ref.invalidate(referralServiceProvider);
-                    },
-                    style: TextButton.styleFrom(
-                      backgroundColor: AppColors.starGold.withValues(
-                        alpha: 0.15,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: Text(
-                      isEn ? 'Share InnerCycles' : 'InnerCycles\'ı Paylaş',
-                      style: TextStyle(
-                        color: AppColors.starGold,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ],
-          ),
-        );
-      },
-    );
-  }
-}
+// _ReferralCard removed (killed feature)
 
 /// App Lock toggle section
 class _AppLockSection extends ConsumerStatefulWidget {

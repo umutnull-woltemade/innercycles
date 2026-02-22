@@ -223,10 +223,6 @@
                 "title": "İçgörü Paylaş",
                 "subtitle": "Yansıtma anlarınızı paylaşın"
             },
-            "compatibility": {
-                "title": "Uyum Analizi",
-                "subtitle": "İlişki temalarını keşfet"
-            },
             "dream": {
                 "title": "Rüya Yorumu",
                 "subtitle": "Rüya sembollerini keşfet"
@@ -708,7 +704,6 @@
             "self_awareness": "Öz Farkındalık bir öz-refleksiyon aracıdır, tahmin değil",
             "card_insight": "Refleksiyon okumaları sadece kişisel içgörü içindir",
             "number_patterns": "Sayı örüntüleri sembolik perspektifler sunar",
-            "compatibility": "Uyum içgörüleri sadece refleksiyon içindir",
             "insight": "Bu içgörüler kişisel refleksiyon içindir",
             "reflection": "Bunu kendini keşfetme aracı olarak kullan"
         },
@@ -1295,7 +1290,6 @@
             "self_awareness": "Yalnızca öz-yansıtma amaçlıdır. Tahmin tavsiyesi değildir.",
             "card_insight": "Sadece düşünme amaçlıdır. Tahmin değildir.",
             "number_patterns": "Sadece öz-keşif amaçlıdır. Tahmin değildir.",
-            "compatibility": "Sadece düşünme amaçlıdır. İlişki tavsiyesi değildir.",
             "insight": "Sadece kişisel düşünme amaçlıdır. Profesyonel tavsiye değildir.",
             "reflection": "Burası öz-yansıtma alanıdır, tahmin veya tavsiye değil."
         }
@@ -1520,10 +1514,6 @@
                 "title": "Kişisel Profilim Ne Söylüyor?",
                 "description": "Kişisel parmak izini keşfet — ücretsiz hesapla."
             },
-            "partner_compatible": {
-                "title": "Partnerimle Uyumlu muyuz?",
-                "description": "İlişki dinamiklerinizi birlikte keşfedin."
-            },
             "dream_interpretation": {
                 "title": "Rüyanı Anlat, Birlikte Keşfedelim",
                 "description": "Bu gece ne gördün? Sembolik bir yolculuğa çıkalım."
@@ -1564,10 +1554,6 @@
                 "title": "Kişisel Profilini Hesapla",
                 "description": "Temel kimliğinin ötesini gör."
             },
-            "relationship_compatibility": {
-                "title": "İlişki Uyumu",
-                "description": "Sen ve o — kişisel dans nasıl?"
-            },
             "home": {
                 "title": "Ana Sayfa",
                 "description": "Başa dön"
@@ -1579,10 +1565,6 @@
             "all_signs": {
                 "title": "Tüm Arketipler",
                 "description": "12 arketipi gez"
-            },
-            "sign_compatibility": {
-                "title": "Kişilik Uyumu",
-                "description": "İkili analiz"
             },
             "progressions": {
                 "title": "Progresyonlar",
@@ -1665,9 +1647,6 @@
             },
             "numbers_in_cards": {
                 "description": "Kartlardaki sayılar."
-            },
-            "numerical_compatibility": {
-                "description": "Sayısal uyum analizi."
             },
             "dream_with_numbers": {
                 "title": "Sayılarla Rüya Yorumu",
@@ -1988,23 +1967,6 @@
         "things_to_watch": "Dikkat Edilecekler",
         "advice": "Tavsiye",
         "no_profiles_yet": "Henüz profil eklenmedi"
-    },
-    "compatibility": {
-        "calculate": "Uyumu Hesapla",
-        "your_sign": "Sizin Arketipiniz",
-        "opposite_sign": "Karşı Arketip",
-        "strengths": "Güçlü Yanlar",
-        "challenges": "Zorluklar",
-        "select": "Seç",
-        "select_sign": "Arketip Seç",
-        "excellent_match": "Mükemmel Uyum",
-        "good_match": "İyi Uyum",
-        "moderate_match": "Orta Uyum",
-        "challenging": "Zorlu",
-        "archetype_profiles": "Arketip Profilleri",
-        "brand_text": "Kişilik Uyumu — InnerCycles",
-        "cosmic_chemistry": "Kişisel Kimya",
-        "ancient_note": "İki arketip arasındaki uyum, sadece element ve modalite hesabı değildir. Her ilişki, iki kişinin birbirini tamamlama ve dönüştürme potansiyelini taşır. Zorluklar, en büyük öğretmenlerdir."
     },
     "auth": {
         "registration_success": "Kayıt başarılı! Email adresinizi doğrulayın.",

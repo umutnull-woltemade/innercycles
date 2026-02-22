@@ -223,10 +223,6 @@
         "title": "Share Insight",
         "subtitle": "Share your reflection moments"
       },
-      "compatibility": {
-        "title": "Compatibilité",
-        "subtitle": "Explorez les thèmes relationnels"
-      },
       "dream": {
         "title": "Interprétation des Rêves",
         "subtitle": "Explorez les symboles oniriques"
@@ -708,7 +704,6 @@
       "self_awareness": "La connaissance de soi est un outil de réflexion personnelle",
       "card_insight": "Les lectures de reflection card sont uniquement pour un aperçu personnel",
       "number_patterns": "Les Modèles Numériques offrent des perspectives symboliques",
-      "compatibility": "Les aperçus de compatibilité sont uniquement pour la réflexion",
       "insight": "Ces aperçus servent à la réflexion personnelle",
       "reflection": "Utilisez ceci comme outil de découverte de soi"
     },
@@ -1295,7 +1290,6 @@
       "self_awareness": "À des fins de réflexion personnelle uniquement. Pas de conseils prédictifs.",
       "card_insight": "À des fins de réflexion uniquement. Non prédictif.",
       "number_patterns": "Pour l'auto-exploration uniquement. Non prédictif.",
-      "compatibility": "Pour la réflexion uniquement. Pas de conseil relationnel.",
       "insight": "Pour la réflexion personnelle uniquement. Pas de conseil professionnel.",
       "reflection": "Ceci est un espace d'auto-réflexion, pas de réflexion ou de conseil."
     }
@@ -1520,10 +1514,6 @@
         "title": "Que dit mon profil personnel ?",
         "description": "Découvrez votre empreinte personnelle — calcul gratuit."
       },
-      "partner_compatible": {
-        "title": "Sommes-nous compatibles ?",
-        "description": "Voyez la danse de deux thèmes."
-      },
       "dream_interpretation": {
         "title": "Racontez votre rêve, explorons ensemble",
         "description": "Qu'avez-vous vu cette nuit ? Embarquons pour une exploration symbolique."
@@ -1564,10 +1554,6 @@
         "title": "Calculez votre profil personnel",
         "description": "Voyez au-delà de votre profil de personnalité centrale."
       },
-      "relationship_compatibility": {
-        "title": "Compatibilité relationnelle",
-        "description": "Vous et l'autre — comment est la danse relationnelle ?"
-      },
       "home": {
         "title": "Accueil",
         "description": "Retour au début"
@@ -1579,10 +1565,6 @@
       "all_signs": {
         "title": "Tous les archétypes",
         "description": "Explorez les 12 archétypes"
-      },
-      "sign_compatibility": {
-        "title": "Compatibilité des archétypes",
-        "description": "Analyse de couple"
       },
       "progressions": {
         "title": "Progressions",
@@ -1664,9 +1646,6 @@
       },
       "numbers_in_cards": {
         "description": "Nombres dans les cartes."
-      },
-      "numerical_compatibility": {
-        "description": "Analyse de compatibilité numérique."
       },
       "dream_with_numbers": {
         "title": "Interprétation des rêves avec les nombres",
@@ -1984,23 +1963,6 @@
     "things_to_watch": "À Surveiller",
     "advice": "Conseil",
     "no_profiles_yet": "Aucun profil ajouté"
-  },
-  "compatibility": {
-    "calculate": "Calculer la Compatibilité",
-    "your_sign": "Votre Archétype",
-    "opposite_sign": "Archétype Opposé",
-    "strengths": "Forces",
-    "challenges": "Défis",
-    "select": "Sélectionner",
-    "select_sign": "Sélectionner un Archétype",
-    "excellent_match": "Excellente Compatibilité",
-    "good_match": "Bonne Compatibilité",
-    "moderate_match": "Compatibilité Modérée",
-    "challenging": "Difficile",
-    "archetype_profiles": "Profils du Archétype",
-    "brand_text": "Compatibilité Archétype — InnerCycles",
-    "cosmic_chemistry": "Chimie Personnelle",
-    "ancient_note": "La compatibilité entre deux archétypes n'est pas qu'un calcul d'élément et de modalité. Chaque relation porte le potentiel pour deux personnes de se compléter et de se recadrer mutuellement. Les défis sont les plus grands enseignants."
   },
   "auth": {
     "registration_success": "Inscription réussie! Veuillez vérifier votre adresse email.",

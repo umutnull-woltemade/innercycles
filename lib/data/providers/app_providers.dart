@@ -30,7 +30,7 @@ import '../services/growth_challenge_service.dart';
 import '../services/weekly_digest_service.dart';
 import '../services/mood_checkin_service.dart';
 import '../services/archetype_service.dart';
-import '../services/compatibility_service.dart';
+// compatibility_service removed (killed feature)
 import '../services/blind_spot_service.dart';
 import '../services/export_service.dart';
 import '../services/affirmation_service.dart';
@@ -42,7 +42,7 @@ import '../services/notification_lifecycle_service.dart';
 import '../services/voice_journal_service.dart';
 import '../services/pattern_engine_service.dart';
 import '../services/year_review_service.dart';
-import '../services/referral_service.dart';
+// referral_service removed (killed feature)
 import '../services/context_module_service.dart';
 import '../services/habit_suggestion_service.dart';
 import '../services/monthly_theme_service.dart';
@@ -53,7 +53,7 @@ import '../services/emotional_cycle_service.dart';
 import '../services/cycle_sync_service.dart';
 import '../services/cycle_correlation_service.dart';
 import '../services/shadow_work_service.dart';
-import '../services/partner_sync_service.dart';
+// partner_sync_service removed (killed feature)
 import '../services/dream_journal_correlation_service.dart';
 import '../services/telemetry_service.dart';
 import '../services/progressive_unlock_service.dart';
@@ -513,11 +513,7 @@ final archetypeServiceProvider = FutureProvider<ArchetypeService>((ref) async {
 // COMPATIBILITY PROVIDER
 // =============================================================================
 
-final compatibilityServiceProvider = FutureProvider<CompatibilityService>((
-  ref,
-) async {
-  return await CompatibilityService.init();
-});
+// compatibilityServiceProvider removed (killed feature)
 
 // =============================================================================
 // BLIND SPOT PROVIDER
@@ -674,9 +670,7 @@ final yearReviewServiceProvider = FutureProvider<YearReviewService>((
 // REFERRAL SERVICE PROVIDER
 // =============================================================================
 
-final referralServiceProvider = FutureProvider<ReferralService>((ref) async {
-  return await ReferralService.init();
-});
+// referralServiceProvider removed (killed feature)
 
 // =============================================================================
 // CONTEXT MODULE SERVICE PROVIDER
@@ -798,11 +792,7 @@ final shadowWorkServiceProvider = FutureProvider<ShadowWorkService>((
 // PARTNER SYNC PROVIDERS (Partner Cycle Sharing — Local-First MVP)
 // =============================================================================
 
-final partnerSyncServiceProvider = FutureProvider<PartnerSyncService>((
-  ref,
-) async {
-  return await PartnerSyncService.init();
-});
+// partnerSyncServiceProvider removed (killed feature)
 
 // =============================================================================
 // DREAM-JOURNAL CORRELATION PROVIDERS (Dream-Mood Cross-Analysis)

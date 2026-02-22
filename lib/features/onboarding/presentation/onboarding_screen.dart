@@ -8,150 +8,33 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
-import '../../../core/theme/liquid_glass/glass_tokens.dart';
+// glass_tokens import removed (archetype result page removed)
 import '../../../data/models/journal_entry.dart';
 import '../../../data/models/user_profile.dart';
 import '../../../data/providers/app_providers.dart';
-import '../../../data/services/archetype_service.dart';
 import '../../../data/services/auth_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/services/notification_service.dart';
 import '../../../data/services/storage_service.dart';
-import '../../../shared/widgets/birth_date_picker.dart';
+// birth_date_picker removed (birthday deferred to settings)
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 
-// ════════════════════════════════════════════════════════════════════════════
-// ONBOARDING QUIZ DATA (3 key questions from archetype quiz)
-// ════════════════════════════════════════════════════════════════════════════
-
-class _QuizOption {
-  final String textEn;
-  final String textTr;
-  final Map<String, int> scores;
-
-  const _QuizOption({
-    required this.textEn,
-    required this.textTr,
-    required this.scores,
-  });
-}
-
-class _QuizQuestion {
-  final String questionEn;
-  final String questionTr;
-  final List<_QuizOption> options;
-
-  const _QuizQuestion({
-    required this.questionEn,
-    required this.questionTr,
-    required this.options,
-  });
-}
-
-const List<_QuizQuestion> _onboardingQuestions = [
-  _QuizQuestion(
-    questionEn: 'When you have free time, you tend to...',
-    questionTr: 'Boş zamanın olduğunda genellikle...',
-    options: [
-      _QuizOption(
-        textEn: 'Create something new',
-        textTr: 'Yeni bir şey yaratırsın',
-        scores: {'creator': 3, 'magician': 1},
-      ),
-      _QuizOption(
-        textEn: 'Explore somewhere unfamiliar',
-        textTr: 'Tanımadığın bir yeri keşfedersin',
-        scores: {'explorer': 3, 'hero': 1},
-      ),
-      _QuizOption(
-        textEn: 'Learn or read something deep',
-        textTr: 'Derin bir şey öğrenirsin',
-        scores: {'sage': 3, 'ruler': 1},
-      ),
-      _QuizOption(
-        textEn: 'Spend time with people you love',
-        textTr: 'Sevdiğin insanlarla vakit geçirirsin',
-        scores: {'lover': 2, 'caregiver': 2},
-      ),
-    ],
-  ),
-  _QuizQuestion(
-    questionEn:
-        'When facing a difficult situation, your first instinct is to...',
-    questionTr: 'Zor bir durumla karşılaştığında ilk içgüdün...',
-    options: [
-      _QuizOption(
-        textEn: 'Face it head-on with courage',
-        textTr: 'Cesaretle yüzyüze gelmek',
-        scores: {'hero': 3, 'rebel': 1},
-      ),
-      _QuizOption(
-        textEn: 'Analyze and find a clever solution',
-        textTr: 'Analiz edip akıllıca bir çözüm bulmak',
-        scores: {'sage': 2, 'magician': 2},
-      ),
-      _QuizOption(
-        textEn: 'Support others through it first',
-        textTr: 'Önce başkalarını desteklemek',
-        scores: {'caregiver': 3, 'lover': 1},
-      ),
-      _QuizOption(
-        textEn: 'Trust that things will work out',
-        textTr: 'İşlerin yoluna gireceğine güven',
-        scores: {'innocent': 3, 'orphan': 1},
-      ),
-    ],
-  ),
-  _QuizQuestion(
-    questionEn: 'What drives you most in life?',
-    questionTr: 'Hayatta seni en çok ne motive eder?',
-    options: [
-      _QuizOption(
-        textEn: 'Freedom and self-expression',
-        textTr: 'Özgürlük ve kendini ifade etmek',
-        scores: {'creator': 2, 'explorer': 2},
-      ),
-      _QuizOption(
-        textEn: 'Making a meaningful impact',
-        textTr: 'Anlamlı bir etki bırakmak',
-        scores: {'hero': 2, 'ruler': 2},
-      ),
-      _QuizOption(
-        textEn: 'Deep connections with others',
-        textTr: 'Başkalarla derin bağlar kurmak',
-        scores: {'lover': 3, 'orphan': 1},
-      ),
-      _QuizOption(
-        textEn: 'Evolving and reinventing yourself',
-        textTr: 'Gelişmek ve kendini yeniden keşfetmek',
-        scores: {'magician': 3, 'rebel': 1},
-      ),
-    ],
-  ),
-];
+// Quiz data moved to standalone ArchetypeQuizScreen (post-onboarding)
 
 // ════════════════════════════════════════════════════════════════════════════
-// ONBOARDING SCREEN — 9-Step Premium Flow
+// ONBOARDING SCREEN — 4-Step Focused Flow
 // ════════════════════════════════════════════════════════════════════════════
-// Value Prop Phase (pages 0-3):
-//   Page 0: Welcome — InnerCycles branding + tagline
-//   Page 1: Emotional Cycles — Detect emotional patterns
-//   Page 2: Dream Tracking — Track dream symbols over time
-//   Page 3: Pattern Insights — See what your journal reveals
-// Setup Phase (pages 4-8):
-//   Page 4: Identity — Name + Apple Sign-In
-//   Page 5: First Cycle — Focus area selection
-//   Page 6: Birthday — Optional date picker
-//   Page 7: Archetype Reveal — 3 quick questions + animated result
-//   Page 8: Permission + Start — Notifications + CTA
+//   Page 0: Welcome — Branding + 3 feature highlights
+//   Page 1: Identity — Name + Apple Sign-In
+//   Page 2: First Cycle — Focus area selection
+//   Page 3: Permission + Start — Notifications + CTA
 // ════════════════════════════════════════════════════════════════════════════
 
 class OnboardingScreen extends ConsumerStatefulWidget {
@@ -165,29 +48,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
-  // Step 0: Identity
   String? _userName;
-
-  // Step 1: Focus Area
   FocusArea? _selectedFocusArea;
-
-  // Step 2: Birth Date
-  DateTime? _selectedDate;
-
-  // Step 3: Archetype Quiz
-  int _quizQuestion = 0;
-  final Map<String, int> _quizScores = {};
-  Archetype? _archetypeResult;
-  bool _showArchetypeResult = false;
-
-  // Step 4: Notifications
   bool _notificationsRequested = false;
-
-  // Double-tap guard
   bool _isCompleting = false;
 
-  static const int _totalPages = 9; // 4 value prop + 5 original steps
-  static const int _valuePropCount = 4; // Welcome, Emotional Cycles, Dreams, Pattern Insights
+  static const int _totalPages = 4; // 1 welcome + 3 setup
+  static const int _valuePropCount = 1;
 
   @override
   void dispose() {
@@ -210,59 +77,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     } else {
       _completeOnboarding();
     }
-  }
-
-  void _selectQuizOption(_QuizOption option) {
-    HapticFeedback.lightImpact();
-
-    for (final entry in option.scores.entries) {
-      _quizScores[entry.key] = (_quizScores[entry.key] ?? 0) + entry.value;
-    }
-
-    if (_quizQuestion < _onboardingQuestions.length - 1) {
-      setState(() => _quizQuestion++);
-    } else {
-      _computeArchetypeResult();
-    }
-  }
-
-  void _computeArchetypeResult() {
-    String? topId;
-    int topScore = 0;
-    for (final entry in _quizScores.entries) {
-      if (entry.value > topScore) {
-        topScore = entry.value;
-        topId = entry.key;
-      }
-    }
-
-    if (topId != null) {
-      _archetypeResult = ArchetypeService.archetypes.firstWhere(
-        (a) => a.id == topId,
-        orElse: () => ArchetypeService.archetypes.first,
-      );
-      _saveArchetype(topId);
-    }
-
-    HapticFeedback.mediumImpact();
-    setState(() => _showArchetypeResult = true);
-  }
-
-  Future<void> _saveArchetype(String archetypeId) async {
-    try {
-      final service = await ref.read(archetypeServiceProvider.future);
-      await service.setInitialArchetype(archetypeId);
-    } catch (e) {
-      if (kDebugMode) debugPrint('Onboarding: archetype save error: $e');
-    }
-  }
-
-  void _skipArchetypeQuiz() {
-    setState(() {
-      _showArchetypeResult = false;
-      _archetypeResult = null;
-    });
-    _nextPage();
   }
 
   Future<void> _requestNotifications() async {
@@ -292,7 +106,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     if (_userName != null && _userName!.isNotEmpty) {
       final profile = UserProfile(
         name: _userName,
-        birthDate: _selectedDate ?? DateTime(2000, 1, 1),
+        birthDate: DateTime(2000, 1, 1),
       );
 
       ref.read(userProfileProvider.notifier).setProfile(profile);
@@ -316,32 +130,17 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   bool _canProceed() {
-    // Value prop pages (0-3) always allow proceeding
     if (_currentPage < _valuePropCount) return true;
-
     switch (_currentPage - _valuePropCount) {
       case 0: // Identity
         return _userName != null && _userName!.isNotEmpty;
       case 1: // Focus area
         return _selectedFocusArea != null;
-      case 2: // Birth date (optional)
-        return true;
-      case 3: // Archetype quiz
-        return _showArchetypeResult;
-      case 4: // Permission + start
+      case 2: // Permission + start
         return true;
       default:
         return true;
     }
-  }
-
-  // Should we show the bottom nav section (indicators + button)?
-  bool _showBottomNav() {
-    // Hide bottom nav during archetype quiz questions (not result)
-    if (_currentPage == _valuePropCount + 3 && !_showArchetypeResult) {
-      return false;
-    }
-    return true;
   }
 
   @override
@@ -364,78 +163,23 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     setState(() => _currentPage = index);
                   },
                   children: [
-                    // Value Proposition Pages (0-3)
-                    _ValuePropPage(
-                      icon: Icons.auto_awesome,
-                      iconColor: AppColors.starGold,
-                      headlineEn: 'InnerCycles',
-                      headlineTr: 'InnerCycles',
-                      subtitleEn: 'Understand the patterns you repeat',
-                      subtitleTr:
-                          'Tekrarladığın kalıpları anla',
-                      language: language,
-                      isWelcome: true,
-                    ),
-                    _ValuePropPage(
-                      icon: Icons.waves_rounded,
-                      iconColor: AppColors.amethyst,
-                      headlineEn: 'Detect Your Emotional Cycles',
-                      headlineTr: 'Duygusal Döngülerini Keşfet',
-                      subtitleEn:
-                          'See recurring moods and rhythms\nin your daily entries',
-                      subtitleTr:
-                          'Günlük girişlerinde tekrarlayan\nruh hallerini ve ritimlerini gör',
-                      language: language,
-                    ),
-                    _ValuePropPage(
-                      icon: Icons.nights_stay_rounded,
-                      iconColor: AppColors.auroraStart,
-                      headlineEn: 'Track Dream Symbols',
-                      headlineTr: 'Rüya Sembollerini Takip Et',
-                      subtitleEn:
-                          'Record your dreams and discover\nrecurring symbols over time',
-                      subtitleTr:
-                          'Rüyalarını kaydet ve zaman içinde\ntekrarlayan sembolleri keşfet',
-                      language: language,
-                    ),
-                    _ValuePropPage(
-                      icon: Icons.auto_graph_rounded,
-                      iconColor: AppColors.chartPink,
-                      headlineEn: 'See What Your Journal Reveals',
-                      headlineTr: 'Günlüğünün Ortaya Çıkardıklarını Gör',
-                      subtitleEn:
-                          'Uncover hidden patterns and insights\nfrom your own reflections',
-                      subtitleTr:
-                          'Kendi yansımalarından gizli kalıpları\nve içgörüleri ortaya çıkar',
-                      language: language,
-                    ),
-                    // Original Onboarding Pages (4-8)
+                    // Page 0: Welcome + Feature Highlights
+                    _WelcomePage(language: language),
+                    // Page 1: Identity — Name + Apple Sign-In
                     _IdentityPage(
                       userName: _userName,
                       onNameChanged: (name) => setState(() => _userName = name),
                       onContinue: _nextPage,
                       language: language,
                     ),
+                    // Page 2: Focus Area Selection
                     _FirstCyclePage(
                       selectedFocusArea: _selectedFocusArea,
                       onFocusAreaSelected: (area) =>
                           setState(() => _selectedFocusArea = area),
                       language: language,
                     ),
-                    _BirthdayPage(
-                      selectedDate: _selectedDate,
-                      onDateSelected: (date) =>
-                          setState(() => _selectedDate = date),
-                      language: language,
-                    ),
-                    _ArchetypeRevealPage(
-                      quizQuestion: _quizQuestion,
-                      showResult: _showArchetypeResult,
-                      result: _archetypeResult,
-                      onSelectOption: _selectQuizOption,
-                      onSkip: _skipArchetypeQuiz,
-                      language: language,
-                    ),
+                    // Page 3: Permissions + Start
                     _PermissionStartPage(
                       notificationsRequested: _notificationsRequested,
                       onRequestNotifications: _requestNotifications,
@@ -444,7 +188,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   ],
                 ),
               ),
-              if (_showBottomNav()) _buildBottomSection(language),
+              _buildBottomSection(language),
             ],
           ),
         ),
@@ -1124,432 +868,7 @@ class _FirstCyclePage extends StatelessWidget {
   }
 }
 
-// ════════════════════════════════════════════════════════════════════════════
-// STEP 2: BIRTHDAY — Optional Date Picker
-// ════════════════════════════════════════════════════════════════════════════
-
-class _BirthdayPage extends StatelessWidget {
-  final DateTime? selectedDate;
-  final ValueChanged<DateTime> onDateSelected;
-  final AppLanguage language;
-
-  const _BirthdayPage({
-    required this.selectedDate,
-    required this.onDateSelected,
-    required this.language,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final isEn = language == AppLanguage.en;
-
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 24),
-
-          // Title
-          Text(
-            isEn ? 'Your Birthday' : 'Doğum Günün',
-            style: const TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.w300,
-              color: Colors.white,
-              letterSpacing: 0.5,
-            ),
-          ).glassEntrance(context: context),
-
-          const SizedBox(height: 8),
-
-          Text(
-            isEn
-                ? 'Optional — for milestone reminders'
-                : 'İsteğe bağlı — hatırlatıcılar için',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: AppColors.textMuted,
-              fontSize: 15,
-            ),
-          ).glassListItem(context: context, index: 0),
-
-          const SizedBox(height: 32),
-
-          // Date picker
-          BirthDatePicker(
-            initialDate: selectedDate,
-            onDateChanged: onDateSelected,
-            language: language,
-          ).glassListItem(context: context, index: 1),
-
-          const SizedBox(height: 24),
-
-          // Privacy info box
-          GlassPanel(
-            elevation: GlassElevation.g2,
-            borderRadius: BorderRadius.circular(12),
-            padding: const EdgeInsets.all(AppConstants.spacingMd),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.lock_outline,
-                  color: Theme.of(context).colorScheme.primary,
-                  size: 20,
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    isEn
-                        ? 'Your data stays on your device. We never share personal information.'
-                        : 'Verilerin cihazında kalır. Kişisel bilgileri asla paylaşmayız.',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ).glassListItem(context: context, index: 2),
-
-          const SizedBox(height: 20),
-        ],
-      ),
-    );
-  }
-}
-
-// ════════════════════════════════════════════════════════════════════════════
-// STEP 3: ARCHETYPE REVEAL — 3 Quick Questions + Animated Result
-// ════════════════════════════════════════════════════════════════════════════
-
-class _ArchetypeRevealPage extends StatelessWidget {
-  final int quizQuestion;
-  final bool showResult;
-  final Archetype? result;
-  final ValueChanged<_QuizOption> onSelectOption;
-  final VoidCallback onSkip;
-  final AppLanguage language;
-
-  const _ArchetypeRevealPage({
-    required this.quizQuestion,
-    required this.showResult,
-    required this.result,
-    required this.onSelectOption,
-    required this.onSkip,
-    required this.language,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final isEn = language == AppLanguage.en;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    if (showResult && result != null) {
-      return _buildResult(context, isDark, isEn);
-    }
-
-    return _buildQuestion(context, isDark, isEn);
-  }
-
-  Widget _buildQuestion(BuildContext context, bool isDark, bool isEn) {
-    final question = _onboardingQuestions[quizQuestion];
-    final progress = (quizQuestion + 1) / _onboardingQuestions.length;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Skip + title row
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                isEn ? 'Discover Your Archetype' : 'Arketipini Keşfet',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.starGold,
-                  letterSpacing: 1,
-                ),
-              ),
-              TextButton(
-                onPressed: onSkip,
-                child: Text(
-                  isEn ? 'Skip' : 'Atla',
-                  style: TextStyle(
-                    color: AppColors.textMuted.withValues(alpha: 0.7),
-                    fontSize: 14,
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 12),
-
-          // Progress bar
-          ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child: LinearProgressIndicator(
-              value: progress,
-              backgroundColor: isDark
-                  ? Colors.white.withValues(alpha: 0.1)
-                  : Colors.black.withValues(alpha: 0.1),
-              valueColor: const AlwaysStoppedAnimation<Color>(
-                AppColors.starGold,
-              ),
-              minHeight: 4,
-            ),
-          ),
-
-          const SizedBox(height: 6),
-
-          Text(
-            '${quizQuestion + 1}/${_onboardingQuestions.length}',
-            style: TextStyle(
-              fontSize: 12,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-            ),
-          ),
-
-          const SizedBox(height: 28),
-
-          // Question text
-          Text(
-            isEn ? question.questionEn : question.questionTr,
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-              height: 1.3,
-            ),
-          ).glassEntrance(context: context),
-
-          const SizedBox(height: 28),
-
-          // Options
-          ...List.generate(question.options.length, (index) {
-            final option = question.options[index];
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: Semantics(
-                button: true,
-                label: isEn ? option.textEn : option.textTr,
-                child: GestureDetector(
-                  onTap: () => onSelectOption(option),
-                  child: GlassPanel(
-                    elevation: GlassElevation.g2,
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    borderRadius: BorderRadius.circular(14),
-                    child: Text(
-                      isEn ? option.textEn : option.textTr,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ).glassListItem(context: context, index: index);
-          }),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildResult(BuildContext context, bool isDark, bool isEn) {
-    final archetype = result!;
-
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-      child: Column(
-        children: [
-          const SizedBox(height: 16),
-
-          // Archetype emoji with gold glow
-          Container(
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.starGold.withValues(alpha: 0.24),
-                  blurRadius: 40,
-                  spreadRadius: 10,
-                ),
-                BoxShadow(
-                  color: AppColors.amethyst.withValues(alpha: 0.12),
-                  blurRadius: 60,
-                  spreadRadius: 5,
-                ),
-              ],
-            ),
-            child: Center(
-              child: Text(
-                archetype.emoji,
-                style: const TextStyle(fontSize: 56),
-              ),
-            ),
-          ).glassReveal(context: context),
-
-          const SizedBox(height: 16),
-
-          // Label
-          Text(
-            isEn ? 'Your Inner Archetype' : 'İç Arketipin',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: AppColors.starGold,
-              letterSpacing: 1.5,
-            ),
-          ).glassEntrance(
-            context: context,
-            delay: const Duration(milliseconds: 300),
-          ),
-
-          const SizedBox(height: 8),
-
-          // Name
-          Text(
-            archetype.getName(isEnglish: isEn),
-            style: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.w700,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-            ),
-          ).glassEntrance(
-            context: context,
-            delay: const Duration(milliseconds: 400),
-          ),
-
-          const SizedBox(height: 12),
-
-          // Description
-          Text(
-            archetype.getDescription(isEnglish: isEn),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              height: 1.5,
-            ),
-          ).glassEntrance(
-            context: context,
-            delay: const Duration(milliseconds: 500),
-          ),
-
-          const SizedBox(height: 24),
-
-          // Strengths card with gold glow
-          GlassPanel(
-            elevation: GlassElevation.g3,
-            glowColor: GlassTokens.glowGold,
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
-            borderRadius: BorderRadius.circular(14),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  isEn ? 'Your Strengths' : 'Güçlü Yönlerin',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.starGold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                ...archetype
-                    .getStrengths(isEnglish: isEn)
-                    .map(
-                      (s) => Padding(
-                        padding: const EdgeInsets.only(bottom: 4),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.star_rounded,
-                              size: 16,
-                              color: AppColors.starGold,
-                            ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Text(
-                                s,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: isDark
-                                      ? AppColors.textPrimary
-                                      : AppColors.lightTextPrimary,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-              ],
-            ),
-          ).glassEntrance(
-            context: context,
-            delay: const Duration(milliseconds: 600),
-          ),
-
-          const SizedBox(height: 14),
-
-          // Growth tip card with amethyst glow
-          GlassPanel(
-            elevation: GlassElevation.g3,
-            glowColor: GlassTokens.glowAmethyst,
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
-            borderRadius: BorderRadius.circular(14),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  isEn ? 'Growth Tip' : 'Büyüme İpucu',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.cosmicPurple,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  archetype.getGrowthTip(isEnglish: isEn),
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: isDark
-                        ? AppColors.textMuted
-                        : AppColors.lightTextMuted,
-                    height: 1.4,
-                  ),
-                ),
-              ],
-            ),
-          ).glassEntrance(
-            context: context,
-            delay: const Duration(milliseconds: 700),
-          ),
-
-          const SizedBox(height: 16),
-        ],
-      ),
-    );
-  }
-}
+// Birthday and Archetype Quiz pages removed — deferred to settings/post-onboarding
 
 // ════════════════════════════════════════════════════════════════════════════
 // STEP 4: PERMISSION + START
@@ -1821,29 +1140,13 @@ class _PermissionStartPage extends StatelessWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// VALUE PROPOSITION PAGE — Pre-onboarding feature highlights
+// WELCOME PAGE — Branding + 3 Feature Highlights
 // ════════════════════════════════════════════════════════════════════════════
 
-class _ValuePropPage extends StatelessWidget {
-  final IconData icon;
-  final Color iconColor;
-  final String headlineEn;
-  final String headlineTr;
-  final String subtitleEn;
-  final String subtitleTr;
+class _WelcomePage extends StatelessWidget {
   final AppLanguage language;
-  final bool isWelcome;
 
-  const _ValuePropPage({
-    required this.icon,
-    required this.iconColor,
-    required this.headlineEn,
-    required this.headlineTr,
-    required this.subtitleEn,
-    required this.subtitleTr,
-    required this.language,
-    this.isWelcome = false,
-  });
+  const _WelcomePage({required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -1856,45 +1159,45 @@ class _ValuePropPage extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
 
-          // Icon with ambient glow
+          // Logo with ambient glow
           Container(
-            width: isWelcome ? 120 : 100,
-            height: isWelcome ? 120 : 100,
+            width: 120,
+            height: 120,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  iconColor.withValues(alpha: 0.18),
-                  iconColor.withValues(alpha: 0.04),
+                  AppColors.starGold.withValues(alpha: 0.18),
+                  AppColors.starGold.withValues(alpha: 0.04),
                   Colors.transparent,
                 ],
                 stops: const [0.0, 0.6, 1.0],
               ),
               boxShadow: [
                 BoxShadow(
-                  color: iconColor.withValues(alpha: 0.2),
+                  color: AppColors.starGold.withValues(alpha: 0.2),
                   blurRadius: 40,
                   spreadRadius: 10,
                 ),
               ],
             ),
-            child: Icon(
-              icon,
-              size: isWelcome ? 56 : 48,
-              color: iconColor,
+            child: const Icon(
+              Icons.auto_awesome,
+              size: 56,
+              color: AppColors.starGold,
             ),
           ).glassReveal(context: context),
 
-          SizedBox(height: isWelcome ? 28 : 24),
+          const SizedBox(height: 28),
 
-          // Headline
-          Text(
-            isEn ? headlineEn : headlineTr,
+          // App name
+          const Text(
+            'InnerCycles',
             style: TextStyle(
-              fontSize: isWelcome ? 36 : 24,
-              fontWeight: isWelcome ? FontWeight.w200 : FontWeight.w600,
+              fontSize: 36,
+              fontWeight: FontWeight.w200,
               color: Colors.white,
-              letterSpacing: isWelcome ? 3 : 0.5,
+              letterSpacing: 3,
               height: 1.2,
             ),
             textAlign: TextAlign.center,
@@ -1905,14 +1208,16 @@ class _ValuePropPage extends StatelessWidget {
 
           const SizedBox(height: 14),
 
-          // Subtitle
+          // Tagline
           Text(
-            isEn ? subtitleEn : subtitleTr,
+            isEn
+                ? 'Understand the patterns you repeat'
+                : 'Tekrarladığın kalıpları anla',
             style: TextStyle(
               fontSize: 15,
               color: AppColors.textSecondary,
               height: 1.5,
-              letterSpacing: isWelcome ? 0.8 : 0.3,
+              letterSpacing: 0.8,
             ),
             textAlign: TextAlign.center,
           ).glassEntrance(
@@ -1920,9 +1225,94 @@ class _ValuePropPage extends StatelessWidget {
             delay: const Duration(milliseconds: 400),
           ),
 
+          const SizedBox(height: 40),
+
+          // Feature highlights row
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _FeatureHighlight(
+                icon: Icons.waves_rounded,
+                color: AppColors.amethyst,
+                labelEn: 'Emotional\nCycles',
+                labelTr: 'Duygusal\nDöngüler',
+                isEn: isEn,
+              ),
+              _FeatureHighlight(
+                icon: Icons.nights_stay_rounded,
+                color: AppColors.auroraStart,
+                labelEn: 'Dream\nJournal',
+                labelTr: 'Rüya\nGünlüğü',
+                isEn: isEn,
+              ),
+              _FeatureHighlight(
+                icon: Icons.auto_graph_rounded,
+                color: AppColors.chartPink,
+                labelEn: 'Pattern\nInsights',
+                labelTr: 'Kalıp\nİçgörüler',
+                isEn: isEn,
+              ),
+            ],
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 600),
+          ),
+
           const Spacer(flex: 3),
         ],
       ),
+    );
+  }
+}
+
+class _FeatureHighlight extends StatelessWidget {
+  final IconData icon;
+  final Color color;
+  final String labelEn;
+  final String labelTr;
+  final bool isEn;
+
+  const _FeatureHighlight({
+    required this.icon,
+    required this.color,
+    required this.labelEn,
+    required this.labelTr,
+    required this.isEn,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 56,
+          height: 56,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: RadialGradient(
+              colors: [
+                color.withValues(alpha: 0.2),
+                color.withValues(alpha: 0.05),
+              ],
+            ),
+            border: Border.all(
+              color: color.withValues(alpha: 0.3),
+            ),
+          ),
+          child: Icon(icon, size: 28, color: color),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          isEn ? labelEn : labelTr,
+          style: TextStyle(
+            fontSize: 12,
+            color: AppColors.textMuted,
+            height: 1.3,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ],
     );
   }
 }

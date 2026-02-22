@@ -223,10 +223,6 @@
                 "title": "Share Insight",
                 "subtitle": "Share your reflection moments"
             },
-            "compatibility": {
-                "title": "Kompatibilität",
-                "subtitle": "Beziehungsthemen erkunden"
-            },
             "dream": {
                 "title": "Traumdeutung",
                 "subtitle": "Traumsymbole erkunden"
@@ -708,7 +704,6 @@
             "self_awareness": "Selbstwahrnehmung ist ein Werkzeug zur Selbstreflexion",
             "card_insight": "Reflection Card-Lesungen sind nur für persönliche Einblicke",
             "number_patterns": "Zahlenmuster bieten symbolische Perspektiven",
-            "compatibility": "Kompatibilitätseinblicke dienen nur der Reflexion",
             "insight": "Diese Einblicke dienen der persönlichen Reflexion",
             "reflection": "Nutzen Sie dies als Werkzeug zur Selbstentdeckung"
         },
@@ -1295,7 +1290,6 @@
             "self_awareness": "Nur zur Selbstreflexion. Keine vorausschauende Beratung.",
             "card_insight": "Nur zu Reflexionszwecken. Nicht vorausschauend.",
             "number_patterns": "Nur zur Selbsterkundung. Nicht vorausschauend.",
-            "compatibility": "Nur zur Reflexion. Keine Beziehungsberatung.",
             "insight": "Nur zur persönlichen Reflexion. Keine professionelle Beratung.",
             "reflection": "Dies ist ein Raum für Selbstreflexion, nicht für Ausblicke oder Ratschläge."
         }
@@ -1520,10 +1514,6 @@
                 "title": "Was sagt mein Persönliches Profil?",
                 "description": "Entdecke deinen persönlichen Fingerabdruck — kostenlos berechnen."
             },
-            "partner_compatible": {
-                "title": "Sind wir kompatibel?",
-                "description": "Sieh den Tanz zweier Einblicke."
-            },
             "dream_interpretation": {
                 "title": "Erzähl deinen Traum, lass uns gemeinsam erkunden",
                 "description": "Was hast du heute Nacht gesehen? Lass uns eine symbolische Erkundung beginnen."
@@ -1564,10 +1554,6 @@
                 "title": "Berechne dein Persönliches Profil",
                 "description": "Sieh über dein Kernprofil hinaus."
             },
-            "relationship_compatibility": {
-                "title": "Beziehungskompatibilität",
-                "description": "Du und sie/er — wie ist der persönliche Tanz?"
-            },
             "home": {
                 "title": "Startseite",
                 "description": "Zurück zum Anfang"
@@ -1579,10 +1565,6 @@
             "all_signs": {
                 "title": "Alle Archetypen",
                 "description": "Erkunde 12 Archetypen"
-            },
-            "sign_compatibility": {
-                "title": "Archetyp-Kompatibilität",
-                "description": "Paaranalyse"
             },
             "progressions": {
                 "title": "Progressionen",
@@ -1665,9 +1647,6 @@
             },
             "numbers_in_cards": {
                 "description": "Zahlen in Karten."
-            },
-            "numerical_compatibility": {
-                "description": "Numerische Kompatibilitätsanalyse."
             },
             "dream_with_numbers": {
                 "title": "Traumdeutung mit Zahlen",
@@ -1988,23 +1967,6 @@
         "things_to_watch": "Zu Beachten",
         "advice": "Ratschlag",
         "no_profiles_yet": "Noch keine Profile hinzugefügt"
-    },
-    "compatibility": {
-        "calculate": "Kompatibilität Berechnen",
-        "your_sign": "Dein Persönlichkeitstyp",
-        "opposite_sign": "Gegenüber Archetyp",
-        "strengths": "Stärken",
-        "challenges": "Herausforderungen",
-        "select": "Auswählen",
-        "select_sign": "Persönlichkeitstyp Auswählen",
-        "excellent_match": "Ausgezeichnete Übereinstimmung",
-        "good_match": "Gute Übereinstimmung",
-        "moderate_match": "Mittlere Übereinstimmung",
-        "challenging": "Herausfordernd",
-        "archetype_profiles": "Persönlichkeitstyp-Profile",
-        "brand_text": "Persönlichkeitskompatibilität — InnerCycles",
-        "cosmic_chemistry": "Persönliche Chemie",
-        "ancient_note": "Die Kompatibilität zwischen zwei Archetypen ist nicht nur eine Element- und Modalitätsberechnung. Jede Beziehung trägt das Potenzial für zwei Menschen, sich gegenseitig zu ergänzen und zu verwandeln. Herausforderungen sind die größten Lehrer."
     },
     "auth": {
         "registration_success": "Registrierung erfolgreich! Bitte bestätige deine E-Mail-Adresse.",

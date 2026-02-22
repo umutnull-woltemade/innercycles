@@ -223,10 +223,6 @@
                 "title": "Share Cycle Insight",
                 "subtitle": "Share your cyclical pattern discoveries"
             },
-            "compatibility": {
-                "title": "Relationship Reflections",
-                "subtitle": "Explore relationship themes"
-            },
             "dream": {
                 "title": "Dream Interpretation",
                 "subtitle": "Explore dream symbols"
@@ -708,7 +704,6 @@
             "self_awareness": "Cycle awareness is a tool for pattern recognition and self-understanding",
             "card_insight": "Archetype insights are for personal cycle mapping only",
             "number_patterns": "Number patterns offer symbolic cycle perspectives",
-            "compatibility": "Relationship cycle mapping is for reflection only",
             "insight": "These cycle insights are for personal pattern awareness",
             "reflection": "Use this as a cyclical intelligence tool"
         },
@@ -1295,7 +1290,6 @@
             "self_awareness": "For cyclical self-awareness only. Not suggestive advice.",
             "card_insight": "For archetype reflection only. Not suggestive.",
             "number_patterns": "For cycle exploration only. Not suggestive.",
-            "compatibility": "For relationship cycle mapping only. Not relationship advice.",
             "insight": "For personal cycle awareness only. Not professional advice.",
             "reflection": "This is a space for pattern recognition, not advice."
         }
@@ -1520,10 +1514,6 @@
                 "title": "What Does My Personal Profile Say?",
                 "description": "Discover your unique profile — calculate for free."
             },
-            "partner_compatible": {
-                "title": "Are We Compatible?",
-                "description": "Explore your relationship dynamics together."
-            },
             "dream_interpretation": {
                 "title": "Tell Your Dream, Let's Explore Together",
                 "description": "What did you see tonight? Let's embark on a symbolic exploration."
@@ -1564,10 +1554,6 @@
                 "title": "Calculate Your Personal Profile",
                 "description": "See beyond your core identity."
             },
-            "relationship_compatibility": {
-                "title": "Relationship Compatibility",
-                "description": "You and them — explore the relationship dynamics."
-            },
             "home": {
                 "title": "Home",
                 "description": "Go back"
@@ -1579,10 +1565,6 @@
             "all_signs": {
                 "title": "All Archetypes",
                 "description": "Explore 12 archetypes"
-            },
-            "sign_compatibility": {
-                "title": "Archetype Compatibility",
-                "description": "Dual analysis"
             },
             "progressions": {
                 "title": "Progressions",
@@ -1665,9 +1647,6 @@
             },
             "numbers_in_cards": {
                 "description": "Numbers in cards."
-            },
-            "numerical_compatibility": {
-                "description": "Numerical compatibility analysis."
             },
             "dream_with_numbers": {
                 "title": "Dream Interpretation with Numbers",
@@ -1988,23 +1967,6 @@
         "things_to_watch": "Things to Watch",
         "advice": "Advice",
         "no_profiles_yet": "No profiles added yet"
-    },
-    "compatibility": {
-        "calculate": "Calculate Compatibility",
-        "your_sign": "Your Archetype",
-        "opposite_sign": "Opposite Archetype",
-        "strengths": "Strengths",
-        "challenges": "Challenges",
-        "select": "Select",
-        "select_sign": "Select Archetype",
-        "excellent_match": "Excellent Match",
-        "good_match": "Good Match",
-        "moderate_match": "Moderate Match",
-        "challenging": "Challenging",
-        "archetype_profiles": "Personality Profiles",
-        "brand_text": "Personality Compatibility — InnerCycles",
-        "cosmic_chemistry": "Relationship Chemistry",
-        "ancient_note": "The compatibility between two archetypes is not just a surface-level comparison. Every relationship carries the potential for two people to complete and transform each other. Challenges are the greatest teachers."
     },
     "auth": {
         "registration_success": "Registration successful! Please verify your email address.",
