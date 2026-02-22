@@ -931,7 +931,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                 Text(
                   isEn
                       ? '${report.longestStreak} consecutive days'
-                      : '${report.longestStreak} ardisik gun',
+                      : '${report.longestStreak} ardışık gün',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w800,

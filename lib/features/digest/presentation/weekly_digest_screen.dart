@@ -648,8 +648,8 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         Expanded(
           child: _StatCard(
             value: '${data.streakDays}',
-            label: isEn ? 'Day Streak' : 'Gun Serisi',
-            sublabel: isEn ? 'days' : 'gun',
+            label: isEn ? 'Day Streak' : 'Gün Serisi',
+            sublabel: isEn ? 'days' : 'gün',
             icon: Icons.local_fire_department,
             color: AppColors.streakOrange,
             isDark: isDark,
@@ -857,7 +857,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     return Semantics(
       label: isEn
           ? 'Best day: $dayName, $dateStr. Average rating: ${data.bestDayRating} out of 5'
-          : 'En iyi gun: $dayName, $dateStr. Ortalama puan: ${data.bestDayRating} uzeri 5',
+          : 'En iyi gün: $dayName, $dateStr. Ortalama puan: ${data.bestDayRating} üzeri 5',
       child: Container(
       padding: const EdgeInsets.all(AppConstants.spacingXl),
       decoration: BoxDecoration(

@@ -121,7 +121,7 @@ class AffirmationService {
   static const _defaultAffirmation = Affirmation(
     id: 'default',
     textEn: 'You are growing every day.',
-    textTr: 'Her gun buyuyorsun.',
+    textTr: 'Her gün büyüyorsun.',
     category: AffirmationCategory.growth,
   );
 

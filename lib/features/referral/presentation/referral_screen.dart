@@ -621,7 +621,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
                 Semantics(
                   label: isEn
                       ? '$daysLeft days left on trial'
-                      : 'Denemede $daysLeft gun kaldi',
+                      : 'Denemede $daysLeft gün kaldı',
                   child: Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 10,

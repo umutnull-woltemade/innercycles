@@ -283,7 +283,7 @@ class DreamJournalCorrelationService {
       } else {
         buffer.writeln(
           '- Rüyalarında "${c.theme}" göründüğünde, '
-          'ertesi gun ${c.direction.labelTr()} '
+          'ertesi gün ${c.direction.labelTr()} '
           '(${c.avgMoodBefore.toStringAsFixed(1)} -> '
           '${c.avgMoodAfter.toStringAsFixed(1)}, '
           '${c.sampleSize} kayda dayanarak, '

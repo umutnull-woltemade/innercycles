@@ -388,7 +388,7 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
                     _showSnackBar(
                       isEn
                           ? 'Code copied to clipboard'
-                          : 'Kod panoya kopyalandi',
+                          : 'Kod panoya kopyalandı',
                     );
                   },
                 ),
@@ -1165,7 +1165,7 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
                 Clipboard.setData(ClipboardData(text: _myInviteCode));
                 HapticFeedback.lightImpact();
                 _showSnackBar(
-                  isEn ? 'Code copied to clipboard' : 'Kod panoya kopyalandi',
+                  isEn ? 'Code copied to clipboard' : 'Kod panoya kopyalandı',
                 );
               },
               visualDensity: VisualDensity.compact,
@@ -1442,13 +1442,13 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
   String _formatRelativeTime(DateTime dateTime, bool isEn) {
     final diff = DateTime.now().difference(dateTime);
     if (diff.inMinutes < 1) {
-      return isEn ? 'Just now' : 'Az once';
+      return isEn ? 'Just now' : 'Az önce';
     } else if (diff.inMinutes < 60) {
-      return isEn ? '${diff.inMinutes}m ago' : '${diff.inMinutes}dk once';
+      return isEn ? '${diff.inMinutes}m ago' : '${diff.inMinutes}dk önce';
     } else if (diff.inHours < 24) {
-      return isEn ? '${diff.inHours}h ago' : '${diff.inHours}sa once';
+      return isEn ? '${diff.inHours}h ago' : '${diff.inHours}sa önce';
     } else {
-      return isEn ? '${diff.inDays}d ago' : '${diff.inDays}g once';
+      return isEn ? '${diff.inDays}d ago' : '${diff.inDays}g önce';
     }
   }
 }
