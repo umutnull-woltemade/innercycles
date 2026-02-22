@@ -1,0 +1,15 @@
+{
+  "language": "fr",
+  "app_name": "InnerCycles",
+  "subtitle": "Humeur · Rêves · Cycles Émotionnels",
+  "promotional_text": "Découvrez vos schémas émotionnels. Le journal qui voit ce que vous ne voyez pas.",
+  "description": "InnerCycles est un journal privé qui transforme vos réflexions quotidiennes en schémas émotionnels visibles.\n\nSuivez votre humeur dans 5 domaines — Énergie, Concentration, Émotions, Décisions et Social — avec 15 points de données par entrée.\n\nFONCTIONNALITÉS PRINCIPALES:\n\n• Journal quotidien avec 5 domaines de focus\n• Moteur de détection de schémas\n• Journal de rêves avec 12 catégories\n• Synchronisation des cycles\n• Carte thermique calendrier 365 jours\n• Réflexions mensuelles et annuelles\n• Exercices de respiration et méditation\n\nCONFIDENTIALITÉ D'ABORD:\nToutes les données restent sur votre appareil. Pas de cloud. Pas d'IA. Export complet.",
+  "keywords": "suivi humeur,journal intime,journal de rêves,intelligence émotionnelle,suivi de cycle,reconnaissance de schémas,croissance personnelle,habitudes,méditation",
+  "screenshot_copy": {
+    "1": { "headline": "Vos émotions ont un rythme.", "subline": "Découvrez des schémas jamais vus." },
+    "2": { "headline": "15 signaux par entrée.", "subline": "Plus profond que tout suivi d'humeur." },
+    "3": { "headline": "Rêves décodés.", "subline": "12 types liés à vos cycles." },
+    "4": { "headline": "Hormonal × Émotionnel.", "subline": "Le premier journal de corrélation croisée." },
+    "5": { "headline": "Privé. Local. Le vôtre.", "subline": "Zéro cloud. Export complet." }
+  }
+}

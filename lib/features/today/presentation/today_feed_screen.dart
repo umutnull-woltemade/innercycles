@@ -6,7 +6,6 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
@@ -16,11 +15,13 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/models/cycle_entry.dart';
-import '../../../data/content/reflection_prompts_content.dart';
 import '../../../data/services/archetype_service.dart';
+import '../../../data/services/content_rotation_service.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../streak/presentation/streak_card.dart';
 import '../../streak/presentation/streak_recovery_banner.dart';
 import '../../mood/presentation/mood_checkin_card.dart';
+import '../../unlock/presentation/unlock_progress_banner.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -104,7 +105,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        HapticFeedback.lightImpact();
+                        HapticService.buttonPress();
                         context.push(Routes.journal);
                       },
                       style: ElevatedButton.styleFrom(
@@ -166,6 +167,13 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               ),
 
               // ═══════════════════════════════════════════════════════
+              // PROGRESSIVE UNLOCK PROGRESS
+              // ═══════════════════════════════════════════════════════
+              const SliverToBoxAdapter(
+                child: UnlockProgressBanner(),
+              ),
+
+              // ═══════════════════════════════════════════════════════
               // DISCOVER MORE (quick links to features)
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
@@ -209,14 +217,9 @@ class _HomeHeader extends StatelessWidget {
     required this.isDark,
   });
 
-  String _getSubtitle(int hour, bool isEn) {
-    if (hour < 12) {
-      return isEn ? 'Start your day with intention' : 'Güne niyetle başla';
-    } else if (hour < 18) {
-      return isEn ? 'Take a moment to reflect' : 'Bir an düşünmeye zaman ayır';
-    } else {
-      return isEn ? 'Wind down and reflect' : 'Günü yansıtarak bitir';
-    }
+  String _getSubtitle(bool isEn) {
+    final insight = ContentRotationService.getDailyInsight();
+    return isEn ? insight.en : insight.tr;
   }
 
   @override
@@ -253,7 +256,7 @@ class _HomeHeader extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  _getSubtitle(hour, isEn),
+                  _getSubtitle(isEn),
                   style: TextStyle(
                     fontSize: 14,
                     color: isDark
@@ -267,7 +270,7 @@ class _HomeHeader extends StatelessWidget {
           IconButton(
             tooltip: isEn ? 'Settings' : 'Ayarlar',
             onPressed: () {
-              HapticFeedback.lightImpact();
+              HapticService.buttonPress();
               context.push(Routes.settings);
             },
             icon: Icon(
@@ -376,7 +379,7 @@ class _TodaysInsightSection extends ConsumerWidget {
         button: true,
         child: GestureDetector(
           onTap: () {
-            HapticFeedback.lightImpact();
+            HapticService.buttonPress();
             context.push(Routes.moodTrends);
           },
           child: Container(
@@ -464,13 +467,9 @@ class _PersonalizedPromptSection extends ConsumerWidget {
 
         // Map to prompt category and pick a date-rotated prompt
         final promptArea = _focusAreaToPromptArea[weakestArea] ?? 'mood';
-        final matching = allReflectionPrompts
-            .where((p) => p.focusArea == promptArea)
-            .toList();
-        if (matching.isEmpty) return const SizedBox.shrink();
-
-        final dayIndex = DateTime.now().day % matching.length;
-        final prompt = matching[dayIndex];
+        final prompt = ContentRotationService.getDailyPrompt(
+          weakestArea: promptArea,
+        );
 
         final areaName = weakestArea.name;
         final areaLabel = isEn
@@ -596,7 +595,7 @@ class _RecentEntriesSection extends ConsumerWidget {
                     button: true,
                     child: GestureDetector(
                       onTap: () {
-                        HapticFeedback.selectionClick();
+                        HapticService.selectionTap();
                         context.push(Routes.journalArchive);
                       },
                       behavior: HitTestBehavior.opaque,
@@ -671,7 +670,7 @@ class _RecentEntryRow extends StatelessWidget {
       button: true,
       child: GestureDetector(
         onTap: () {
-          HapticFeedback.selectionClick();
+          HapticService.selectionTap();
           onTap();
         },
         child: Container(
@@ -835,7 +834,7 @@ class _CycleSyncCard extends ConsumerWidget {
                 : 'Döngü günü $cycleDay, $phaseName fazı. Detaylar için dokun',
             child: GestureDetector(
             onTap: () {
-              HapticFeedback.selectionClick();
+              HapticService.selectionTap();
               context.push(Routes.cycleSync);
             },
             child: Container(
@@ -964,7 +963,7 @@ class _ShadowWorkCard extends ConsumerWidget {
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
           child: GestureDetector(
             onTap: () {
-              HapticFeedback.selectionClick();
+              HapticService.selectionTap();
               context.push(Routes.shadowWork);
             },
             child: Semantics(

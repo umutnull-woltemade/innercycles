@@ -460,7 +460,7 @@ class ShareCardTemplates {
           headline: topEmotionName ?? (isEn ? 'Calm' : 'Sakin'),
           subtitle: isEn
               ? 'Your most frequent emotion this month'
-              : 'Bu ayın en sık duygun',
+              : 'Bu ayın en sık duygusu',
           statValue: topEmotionEmoji ?? '\u{1F60C}',
           statLabel: isEn ? 'dominant this month' : 'bu ay baskın',
         );

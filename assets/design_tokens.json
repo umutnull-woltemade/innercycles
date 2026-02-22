@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-02-22",
+  "colors": {
+    "dark": {
+      "background": { "deep": "#0A0A14", "cosmic": "#1A1A2E", "elevated": "#252536" },
+      "primary": "#6B4C9A",
+      "secondary": "#FFD700",
+      "accent": { "warm": "#FF6B35", "earth": "#4A7C59", "cool": "#7FDBFF", "deep": "#4A6FA5" },
+      "text": { "primary": "#FFFFFF", "secondary": "#D4C8E8", "muted": "#9A8AAF", "gold": "#FFD700" },
+      "border": { "default": "rgba(107,76,154,0.3)", "active": "rgba(255,215,0,0.5)" },
+      "status": { "error": "#FF4444", "success": "#4A7C59", "warning": "#FFBF00" }
+    },
+    "light": {
+      "background": { "deep": "#E8E0F0", "cosmic": "#F0EBF5", "elevated": "#FFFFFF" },
+      "primary": "#2D1B4E",
+      "secondary": "#CD7F32",
+      "accent": { "warm": "#E65100", "earth": "#2E7D32", "cool": "#0277BD", "deep": "#1565C0" },
+      "text": { "primary": "#1A1020", "secondary": "#3A3050", "muted": "#6A5A7A", "gold": "#CD7F32" },
+      "border": { "default": "rgba(45,27,78,0.15)", "active": "rgba(205,127,50,0.4)" },
+      "status": { "error": "#D32F2F", "success": "#2E7D32", "warning": "#E65100" }
+    }
+  },
+  "typography": {
+    "display": { "family": "Playfair Display", "weights": [700], "sizes": { "large": 52, "medium": 36, "small": 28 }, "letterSpacing": 0.5 },
+    "heading": { "family": "Space Grotesk", "weights": [600, 700], "sizes": { "large": 28, "medium": 24, "small": 22 }, "letterSpacing": 0.2 },
+    "body": { "family": "Space Grotesk", "weights": [400, 500], "sizes": { "large": 19, "medium": 17, "small": 15 }, "lineHeight": 1.65 },
+    "accent": { "family": "Cinzel", "weights": [400, 600], "sizes": { "large": 20, "small": 14 }, "letterSpacing": 1.0 },
+    "label": { "family": "Space Grotesk", "weights": [500, 600], "sizes": { "large": 17, "medium": 15, "small": 13 }, "letterSpacing": 0.3 }
+  },
+  "spacing": { "xs": 4, "sm": 8, "md": 12, "lg": 16, "xl": 24, "xxl": 32, "huge": 48 },
+  "elevation": {
+    "G1": { "blur": 8, "opacity": 0.05, "borderOpacity": 0.08 },
+    "G2": { "blur": 12, "opacity": 0.18, "borderOpacity": 0.15 },
+    "G3": { "blur": 20, "opacity": 0.30, "borderOpacity": 0.20 },
+    "G4": { "blur": 28, "opacity": 0.45, "borderOpacity": 0.25 },
+    "G5": { "blur": 40, "opacity": 0.25, "borderOpacity": 0.30 }
+  },
+  "animation": {
+    "instant": 100, "fast": 200, "normal": 350, "slow": 500, "dramatic": 800,
+    "curves": { "enter": "easeOutCubic", "exit": "easeInCubic", "move": "easeInOutCubic", "bounce": "elasticOut", "entrance": "easeOutBack" }
+  },
+  "radius": { "sm": 8, "md": 12, "lg": 16, "xl": 24, "full": 9999 },
+  "border": { "thin": 0.5, "default": 1, "thick": 2 },
+  "blur": { "subtle": 4, "light": 8, "medium": 16, "heavy": 24, "max": 40 },
+  "haptics": {
+    "selection": "selectionClick",
+    "success": "notificationSuccess",
+    "error": "notificationError",
+    "warning": "notificationWarning",
+    "impactLight": "impactLight",
+    "impactMedium": "impactMedium",
+    "impactHeavy": "impactHeavy"
+  }
+}

@@ -1143,15 +1143,15 @@ JSON FORMATI:
 // ARKETİP-BAZLI RÜYA ANALİZİ
 // ═══════════════════════════════════════════════════════════════
 
-/// Arketip bazli ruya icgoruleri
+/// Arketip bazlı rüya içgörüleri
 class ArchetypeDreamInsights {
-  /// Arketipe ozel ruya analizi
+  /// Arketipe özel rüya analizi
   static ArchetypeDreamProfile? getProfile(String archetypeSign) {
     final normalizedSign = archetypeSign.toLowerCase().trim();
     return PsikolojikRuyaTemalari.arketipRuyaProfili[normalizedSign];
   }
 
-  /// Arketipe ozel ruya tavsiyesi
+  /// Arketipe özel rüya tavsiyesi
   static String getDreamAdvice(String archetypeSign) {
     final profile = getProfile(archetypeSign);
     return profile?.dreamAdvice ??
@@ -1161,25 +1161,25 @@ class ArchetypeDreamInsights {
         );
   }
 
-  /// Arketipe ozel lucid egilimi
+  /// Arketipe özel lucid eğilimi
   static String getLucidTendency(String archetypeSign) {
     final profile = getProfile(archetypeSign);
     return profile?.lucidTendency ?? 'Orta';
   }
 
-  /// Arketipe ozel rüya sembolleri
+  /// Arketipe özel rüya sembolleri
   static List<String> getDreamSymbols(String archetypeSign) {
     final profile = getProfile(archetypeSign);
     return profile?.dreamSymbols ?? [];
   }
 
-  /// Arketipe ozel yaygin temalar
+  /// Arketipe özel yaygın temalar
   static List<String> getCommonThemes(String archetypeSign) {
     final profile = getProfile(archetypeSign);
     return profile?.commonThemes ?? [];
   }
 
-  /// Arketipe ozel kabus temalari
+  /// Arketipe özel kabus temaları
   static List<String> getNightmareThemes(String archetypeSign) {
     final profile = getProfile(archetypeSign);
     return profile?.nightmareThemes ?? [];
@@ -1339,11 +1339,11 @@ class DreamRitualService {
       case MoonPhase.yeniay:
         return RuyaRituelleri.haftalikDonguRituelleri['pazartesi'] ?? [];
       case MoonPhase.hilal:
-        return RuyaRituelleri.haftalikDonguRituelleri['sali'] ?? [];
+        return RuyaRituelleri.haftalikDonguRituelleri['salı'] ?? [];
       case MoonPhase.ilkDordun:
-        return RuyaRituelleri.haftalikDonguRituelleri['carsamba'] ?? [];
+        return RuyaRituelleri.haftalikDonguRituelleri['çarşamba'] ?? [];
       case MoonPhase.dolunay:
-        return RuyaRituelleri.haftalikDonguRituelleri['persembe'] ?? [];
+        return RuyaRituelleri.haftalikDonguRituelleri['perşembe'] ?? [];
       case MoonPhase.sonDordun:
       case MoonPhase.karanlikAy:
         return RuyaRituelleri.haftalikDonguRituelleri['cuma'] ?? [];

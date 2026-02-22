@@ -683,6 +683,18 @@
             }
         }
     },
+    "progressive_unlock": {
+        "dream_journal": "Traumtagebuch",
+        "patterns": "Musteranalyse",
+        "monthly_reflection": "Monatliche Reflexion",
+        "annual_heatmap": "Jahres-Heatmap",
+        "cycle_correlation": "Zyklus-Korrelation",
+        "entries_until": "Noch {count} Einträge bis {feature}",
+        "entry_until": "Noch 1 Eintrag bis {feature}",
+        "unlocked": "Freigeschaltet!",
+        "all_unlocked": "Alle Funktionen freigeschaltet!",
+        "progress_label": "Reisefortschritt"
+    },
     "widgets": {
         "birth_date_picker": {
             "day": "Tag",
@@ -1355,9 +1367,9 @@
         "account": "Konto",
         "edit_profile": "Profil bearbeiten",
         "edit_profile_desc": "Update your birth information",
-        "premium": "Premium",
-        "premium_desc": "Zugriff auf alle Premium-Funktionen",
-        "premium_active": "Premium-Funktionen aktiv",
+        "premium": "Pro",
+        "premium_desc": "Zugriff auf alle Pro-Funktionen",
+        "premium_active": "Pro-Funktionen aktiv",
         "manage_subscription": "Manage Subscription",
         "manage_subscription_desc": "View and manage your subscription",
         "clear_data": "Daten löschen",
@@ -3316,7 +3328,7 @@
             "awareness": "Bewusstsein",
             "shadow_work": "Schattenarbeit",
             "recurring_pattern": "Wiederkehrendes Muster",
-            "hero_journey": "Heldenarchetyp",
+            "hero_journey": "Mut-Thema",
             "seeking": "Suchend"
         },
         "shadow": {
@@ -3326,13 +3338,13 @@
             "calm": "Schatten ist ruhig, Integration läuft weiter."
         },
         "archetype": {
-            "starting": "Archetyp-Erkundung beginnt.",
-            "hero": "Held-Archetyp aktiv - gehe mutig voran!",
-            "seeker": "Sucher-Archetyp - du bist auf einer inneren Erkundung.",
+            "starting": "Archetyp-Muster bildet sich.",
+            "hero": "Mut-Archetyp aktiv - gehe zuversichtlich voran!",
+            "seeker": "Sucher-Archetyp - du bist in einer Erkundungsphase.",
             "rescuer": "Retter-Archetyp - du unterstützt andere.",
             "observer": "Beobachter-Archetyp - du entwickelst Bewusstsein.",
             "fleeing": "Fluchtthema - wovor meidest du dich zu stellen?",
-            "evolving": "Deine Archetyp-Erkundung entwickelt sich weiter."
+            "evolving": "Dein Archetyp-Muster entwickelt sich weiter."
         },
         "story_arc": {
             "single": "Einzelepisode",
@@ -3384,7 +3396,7 @@
             "merak": "Schreibe deine Fragen auf, lerne mit Fragen zu leben statt Antworten zu suchen.",
             "sucluluk": "Untersuche die Schuld: ist sie echt oder erlernt? Schreibe dir selbst einen Brief.",
             "ozlem": "Ehre die Sehnsucht, aber bleibe präsent. Verlust akzeptieren öffnet Türen zur Zukunft.",
-            "heyecan": "Verwandle Aufregung in Handlung. Mache heute einen Schritt.",
+            "heyecan": "Kanalisiere Aufregung in Handlung. Mache heute einen Schritt.",
             "donukluk": "Kehre zu deinem Körper zurück. Bewege dich, atme, fühle langsam wieder.",
             "ofke": "Drücke Wut gesund aus: Sport, Schreiben, Kreativität. Aber verletze niemanden."
         },

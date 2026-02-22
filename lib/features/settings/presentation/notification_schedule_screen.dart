@@ -460,7 +460,7 @@ class _NotificationScheduleScreenState
     return Semantics(
       label: isEn
           ? 'Change prompt time: $formatted'
-          : 'Soru saatini degistir: $formatted',
+          : 'Soru saatini değiştir: $formatted',
       button: true,
       child: GestureDetector(
         onTap: _pickJournalPromptTime,

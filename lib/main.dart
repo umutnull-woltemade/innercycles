@@ -24,6 +24,8 @@ import 'data/services/l10n_service.dart';
 import 'data/services/sync_service.dart';
 import 'data/services/error_reporting_service.dart';
 import 'data/services/paywall_experiment_service.dart';
+import 'data/services/telemetry_service.dart';
+import 'data/services/progressive_unlock_service.dart';
 import 'data/providers/app_providers.dart';
 import 'data/services/premium_service.dart';
 import 'data/models/user_profile.dart';
@@ -257,6 +259,7 @@ class _AppInitializerState extends State<AppInitializer> {
       try {
         final lifecycleService = await NotificationLifecycleService.init();
         final journalService = await JournalService.init();
+        await lifecycleService.recordActivity(); // Record app open for re-engagement timer
         await lifecycleService.evaluate(journalService);
         if (kDebugMode) {
           debugPrint('✓ NotificationLifecycleService initialized');
@@ -309,6 +312,39 @@ class _AppInitializerState extends State<AppInitializer> {
     } catch (e) {
       if (kDebugMode) {
         debugPrint('⚠️ PaywallExperimentService init failed: $e');
+      }
+    }
+
+    // Initialize telemetry service
+    TelemetryService? telemetryInstance;
+    try {
+      telemetryInstance = await TelemetryService.init();
+      await telemetryInstance.appOpened(
+        sessionCount: telemetryInstance.sessionCount,
+      );
+      if (kDebugMode) {
+        debugPrint(
+          '✓ TelemetryService initialized (session #${telemetryInstance.sessionCount})',
+        );
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('⚠️ TelemetryService init failed: $e');
+      }
+    }
+
+    // Initialize progressive unlock service
+    try {
+      final unlockService = await ProgressiveUnlockService.init();
+      if (kDebugMode) {
+        debugPrint(
+          '✓ ProgressiveUnlockService: ${unlockService.entryCount} entries, '
+          '${unlockService.nextUnlockMessage}',
+        );
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('⚠️ ProgressiveUnlockService init failed: $e');
       }
     }
 

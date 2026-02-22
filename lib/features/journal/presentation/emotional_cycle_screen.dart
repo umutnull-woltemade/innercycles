@@ -1141,7 +1141,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 ),
               ),
               child: Text(
-                isEn ? 'Go Premium' : 'Premium\'a Geç',
+                isEn ? 'Go Pro' : 'Pro\'ya Geç',
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

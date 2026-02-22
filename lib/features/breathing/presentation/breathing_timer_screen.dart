@@ -8,11 +8,11 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -203,7 +203,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
         break;
     }
 
-    HapticFeedback.lightImpact();
+    HapticService.breathingPhase();
 
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -228,7 +228,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
       // Cycle complete
       _currentPhaseIndex = 0;
       _completedCycles++;
-      HapticFeedback.mediumImpact();
+      HapticService.success();
     }
 
     if (_isRunning) {

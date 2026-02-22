@@ -259,6 +259,16 @@
 				<string>com.venusone.innercycles</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>innercycles</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>innercycles</string>
+			</array>
+		</dict>
 	</array>
 	<key>UILaunchScreen</key>
 	<dict/>

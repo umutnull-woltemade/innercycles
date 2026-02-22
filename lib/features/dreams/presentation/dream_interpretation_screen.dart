@@ -2100,7 +2100,7 @@ ${_getPersonalAdvice(sign)}''';
                   Text(
                     isEn
                         ? 'Psychological Perspective\n━━━━━━━━━━━━━━━━━\nYour subconscious is revealing...'
-                        : 'Psikolojik Perspektif\n━━━━━━━━━━━━━━━━━\nBilinaltiniz ortaya koyuyor...',
+                        : 'Psikolojik Perspektif\n━━━━━━━━━━━━━━━━━\nBilinaltınız ortaya koyuyor...',
                     style: TextStyle(
                       color: isDark
                           ? AppColors.textPrimary.withValues(alpha: 0.5)

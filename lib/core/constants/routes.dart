@@ -152,6 +152,12 @@ class Routes {
   static const String referral = '/referral';
 
   // ════════════════════════════════════════════════════════════════
+  // DEEP LINK ROUTES (innercycles:// scheme)
+  // ════════════════════════════════════════════════════════════════
+  static const String deepLinkInvite = '/invite/:code';
+  static const String deepLinkShare = '/share/:cardId';
+
+  // ════════════════════════════════════════════════════════════════
   // AFFIRMATIONS, EMOTIONAL VOCABULARY
   // ════════════════════════════════════════════════════════════════
   static const String affirmations = '/affirmations';

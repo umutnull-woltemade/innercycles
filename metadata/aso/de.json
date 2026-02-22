@@ -1,0 +1,15 @@
+{
+  "language": "de",
+  "app_name": "InnerCycles",
+  "subtitle": "Stimmung · Träume · Zyklusmuster",
+  "promotional_text": "Entdecke deine emotionalen Muster. Das Tagebuch, das sieht, was du nicht siehst.",
+  "description": "InnerCycles ist ein privates Tagebuch, das deine täglichen Reflexionen in sichtbare emotionale Muster verwandelt.\n\nVerfolge deine Stimmung in 5 Fokus-Bereichen — Energie, Fokus, Emotionen, Entscheidungen und Soziales — mit 15 Datenpunkten pro Eintrag.\n\nHAUPTFUNKTIONEN:\n\n• Tägliches Tagebuch mit 5 Fokus-Bereichen\n• Mustererkennungs-Engine\n• Traumtagebuch mit 12 Kategorien\n• Zyklus-Synchronisation\n• 365-Tage Kalender-Heatmap\n• Monatliche und jährliche Reflexionen\n• Atem- und Meditationsübungen\n\nDATENSCHUTZ ZUERST:\nAlle Daten bleiben auf deinem Gerät. Keine Cloud. Kein KI-Processing. Vollständiger Export.",
+  "keywords": "Stimmungstracker,Tagebuch,Traumtagebuch,emotionale Intelligenz,Zyklustracker,Muster,Stimmung,Selbstreflexion,persönliches Wachstum",
+  "screenshot_copy": {
+    "1": { "headline": "Deine Emotionen haben einen Rhythmus.", "subline": "Entdecke Muster, die du nie gesehen hast." },
+    "2": { "headline": "15 Signale pro Eintrag.", "subline": "Mehr Tiefe als jeder Stimmungstracker." },
+    "3": { "headline": "Träume entschlüsselt.", "subline": "12 Typen, deinen Zyklen zugeordnet." },
+    "4": { "headline": "Hormonal × Emotional.", "subline": "Das erste Kreuzkorrelations-Tagebuch." },
+    "5": { "headline": "Privat. Lokal. Deins.", "subline": "Keine Cloud. Voller Export." }
+  }
+}

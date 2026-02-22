@@ -7,15 +7,16 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../data/services/haptic_service.dart';
 import '../../data/providers/app_providers.dart';
 import '../../data/services/ecosystem_analytics_service.dart';
 import '../../data/services/premium_service.dart';
+import '../../features/whats_new/presentation/whats_new_modal.dart';
 
 class MainShellScreen extends ConsumerStatefulWidget {
   final StatefulNavigationShell navigationShell;
@@ -36,6 +37,15 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) setState(() => _hasAnimated = true);
+
+      // Show "What's New" modal on first launch after app update
+      // Delayed slightly so the shell animation finishes first
+      Future.delayed(const Duration(milliseconds: 600), () {
+        if (!mounted) return;
+        final language = ref.read(languageProvider);
+        final isEn = language == AppLanguage.en;
+        WhatsNewModal.showIfNeeded(context, isEn);
+      });
     });
   }
 
@@ -55,7 +65,7 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
   }
 
   void _onTabTapped(int index) {
-    HapticFeedback.selectionClick();
+    HapticService.tabChanged();
     final from = widget.navigationShell.currentIndex;
     if (from != index) {
       ref

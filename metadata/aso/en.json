@@ -1,0 +1,15 @@
+{
+  "language": "en",
+  "app_name": "InnerCycles",
+  "subtitle": "Mood · Dreams · Cycle Patterns",
+  "promotional_text": "Discover your emotional patterns. The journal that sees what you can't.",
+  "description": "InnerCycles is a private journal that turns your daily reflections into visible emotional patterns.\n\nTrack your moods across 5 focus areas — Energy, Focus, Emotions, Decisions, and Social — with 15 data points per entry. Over time, InnerCycles reveals cycles and correlations you never noticed.\n\nKEY FEATURES:\n\n• Daily Journal with 5 Focus Areas\nRate your day across energy, focus, emotions, decisions, and social interactions. Add notes and photos.\n\n• Pattern Detection Engine\nAfter 7 entries, your first emotional patterns emerge. See trends, correlations, and recurring cycles visualized.\n\n• Dream Journal\n12 dream categories with interpretation guidance. Track recurring dreams and correlate them with your emotional data.\n\n• Cycle Sync\nMap hormonal phases to your emotional patterns. The first journal to cross-correlate biological and emotional cycles.\n\n• Calendar Heatmap\n365-day visualization of your emotional landscape. See your year at a glance.\n\n• Monthly & Annual Reflections\nStructured reviews that surface insights from your accumulated data.\n\n• Shadow Work Journal\nGuided prompts for deeper self-exploration through acceptance, integration, and transformation phases.\n\n• Breathing & Meditation\nBuilt-in breathing exercises and meditation timer.\n\nPRIVACY FIRST:\nAll data stays on your device. No cloud. No AI processing. Full export capability. Your journal is yours alone.\n\nAvailable in English, Turkish, German, and French.",
+  "keywords": "mood tracker,journal,dream journal,emotional intelligence,cycle tracker,pattern recognition,mood journal,self reflection,personal growth,habit tracker",
+  "screenshot_copy": {
+    "1": { "headline": "Your emotions have a rhythm.", "subline": "Discover patterns you've never seen." },
+    "2": { "headline": "15 signals per entry.", "subline": "More depth than any mood tracker." },
+    "3": { "headline": "Dreams decoded.", "subline": "12 types mapped to your cycles." },
+    "4": { "headline": "Hormonal × Emotional.", "subline": "The first cross-correlation journal." },
+    "5": { "headline": "Private. Local. Yours.", "subline": "Zero cloud. Full export. Data sovereignty." }
+  }
+}

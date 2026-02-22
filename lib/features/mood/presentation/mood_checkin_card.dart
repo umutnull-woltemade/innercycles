@@ -3,13 +3,13 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/content/emotional_vocabulary_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/mood_checkin_service.dart';
+import '../../../data/services/haptic_service.dart';
 
 class MoodCheckinCard extends ConsumerStatefulWidget {
   const MoodCheckinCard({super.key});
@@ -58,7 +58,7 @@ class _MoodCheckinCardState extends ConsumerState<MoodCheckinCard> {
           isEn: isEn,
           onSelect: (mood, emoji) async {
             await service.logMood(mood, emoji);
-            HapticFeedback.mediumImpact();
+            HapticService.moodSelected();
             if (!mounted) return;
             setState(() => _justLogged = true);
             ref.invalidate(moodCheckinServiceProvider);

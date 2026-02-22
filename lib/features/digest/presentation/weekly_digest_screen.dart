@@ -104,9 +104,9 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     const trDays = [
       '',
       'Pazartesi',
-      'Sali',
-      'Carsamba',
-      'Persembe',
+      'Salı',
+      'Çarşamba',
+      'Perşembe',
       'Cuma',
       'Cumartesi',
       'Pazar',

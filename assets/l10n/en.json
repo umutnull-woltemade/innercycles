@@ -683,6 +683,18 @@
             }
         }
     },
+    "progressive_unlock": {
+        "dream_journal": "Dream Journal",
+        "patterns": "Pattern Analysis",
+        "monthly_reflection": "Monthly Reflection",
+        "annual_heatmap": "Annual Heatmap",
+        "cycle_correlation": "Cycle Correlation",
+        "entries_until": "{count} more entries unlock {feature}",
+        "entry_until": "1 more entry unlocks {feature}",
+        "unlocked": "Unlocked!",
+        "all_unlocked": "All features unlocked!",
+        "progress_label": "Journey progress"
+    },
     "widgets": {
         "birth_date_picker": {
             "day": "Day",
@@ -980,7 +992,7 @@
                         "basic_meaning": "Water is your element and this dream indicates deep transformation! Time for renewal has come.",
                         "element_perspective": "Don't fear diving into the depths of water. There are treasures there. The cycle of death and rebirth is active.",
                         "psychological": "Water: The deepest layers of the subconscious\nAs a Transformer: Time for shadow work\nMessage: Instead of fearing darkness, illuminate it",
-                        "practice": "• Do deep meditations\n• Keep a shadow journal\n• Practice letting go ritual\n• Embrace deep inner transformation\n• Consider speaking with a trusted person or professional"
+                        "practice": "• Do deep meditations\n• Keep a shadow journal\n• Practice letting go ritual\n• Embrace deep inner renewal\n• Consider speaking with a trusted person or professional"
                     },
                     "dreamer": {
                         "basic_meaning": "Water is your element - your connection with deeper awareness is very strong! You can fully trust your intuition.",
@@ -1328,7 +1340,7 @@
             "decision_2": "Decisions often require us to balance multiple values at once. Could there be conflicting values that make this decision feel difficult?\n\nLooking back a year from now, which choice would you want to have made?\n\nWhat's preventing you from seeing this decision more clearly?",
             "relationship_1": "Relationships can be some of the most meaningful yet challenging aspects of our lives. Each relationship has its own dynamics.\n\nWhat are you feeling most in this relationship right now? And do you know what you're hoping for from this relationship?\n\nIn an ideal scenario, what would this relationship look like?",
             "relationship_2": "Challenges in relationships often reveal something about our needs or boundaries.\n\nWhat matters most to you in this situation? And have you been able to express that to the other person?\n\nHow do you feel about yourself in this relationship?",
-            "self_discovery_1": "The journey of self-discovery is a lifelong process. Asking questions shows you're already on this path.\n\nWhen do you feel most like yourself in life? And when do you struggle to feel like yourself?\n\nHow would someone who knows you best describe you?",
+            "self_discovery_1": "The path of self-discovery is a lifelong process. Asking questions shows you're already on this path.\n\nWhen do you feel most like yourself in life? And when do you struggle to feel like yourself?\n\nHow would someone who knows you best describe you?",
             "self_discovery_2": "Discovering who we are takes courage. Every experience teaches us something about ourselves.\n\nHave you ever thought about what your values - what you truly care about - are?\n\nWhat would you change in your life right now?",
             "general_1": "Thank you for sharing what's on your mind. Sometimes just putting thoughts into words can help us see them more clearly.\n\nWhat's been weighing on you the most? And how long has this been on your mind?\n\nWhat outcome would you hope for?",
             "general_2": "It sounds like you have a lot going on. Taking time to reflect is a valuable practice.\n\nIf you could change one thing about this situation, what would it be?\n\nWhat support do you need right now?"
@@ -1355,9 +1367,9 @@
         "account": "Account",
         "edit_profile": "Edit Profile",
         "edit_profile_desc": "Update your birth information",
-        "premium": "Premium",
+        "premium": "Pro",
         "premium_desc": "Access all Pro features",
-        "premium_active": "Premium Features Active",
+        "premium_active": "Pro Features Active",
         "manage_subscription": "Manage Subscription",
         "manage_subscription_desc": "View and manage your subscription",
         "clear_data": "Clear Data",
@@ -1514,7 +1526,7 @@
             },
             "dream_interpretation": {
                 "title": "Tell Your Dream, Let's Explore Together",
-                "description": "What did you see tonight? Let's embark on a symbolic journey."
+                "description": "What did you see tonight? Let's embark on a symbolic exploration."
             },
             "cosmic_guidance": {
                 "title": "Get Personal Guidance",
@@ -1616,7 +1628,7 @@
                 "description": "Guidance specific to your profile."
             },
             "number_mystery": {
-                "description": "The mystery of numbers — a similar journey."
+                "description": "The mystery of numbers — a similar exploration."
             },
             "daily_reflection": {
                 "title": "Daily Insight",
@@ -1787,7 +1799,7 @@
             },
             "tell_another_dream": {
                 "title": "Tell Another Dream",
-                "description": "Start a new journey."
+                "description": "Start a new exploration."
             },
             "symbol_glossary": {
                 "title": "Symbol Glossary",
@@ -2623,7 +2635,7 @@
             "being_chased": "Being chased dreams can represent emotions, responsibilities, or fears that are being avoided.",
             "baby": "Baby dreams can symbolize new beginnings, creative projects, or your connection to your inner child.",
             "house": "A house in dreams is seen as a reflection of the self and inner world. The condition of the house and rooms can represent different life areas.",
-            "car": "Car dreams point to themes of control, direction, and progress on life's journey.",
+            "car": "Car dreams point to themes of control, direction, and progress on life's path.",
             "dog": "A dog can represent loyalty, friendship, or our instinctive sides. The dog's behavior carries important clues.",
             "cat": "A cat is associated with independence, intuition, and mystery. It can also symbolize feminine energy and inner wisdom.",
             "money": "Money dreams may reflect themes of value, self-worth, and access to resources.",
@@ -3303,12 +3315,12 @@
         },
         "recommendations": {
             "keep_journal": "Discover patterns by keeping a dream journal every day.",
-            "nightmare_work": "Working with nightmares: Transform them with lucid techniques.",
+            "nightmare_work": "Working with nightmares: Reframe them with lucid techniques.",
             "relaxation_ritual": "Create a pre-sleep relaxation ritual.",
             "reality_check": "Try reality check technique - you have lucid dream potential.",
             "fear_theme": "Examine the fear theme - you can do shadow work.",
             "longing_journal": "Keep a reflection journal on the feeling of longing.",
-            "keep_going": "Your dream journey is going great. Keep recording!"
+            "keep_going": "Your dream log is going great. Keep recording!"
         },
         "themes": {
             "unknown": "Unknown",
@@ -3316,7 +3328,7 @@
             "awareness": "Awareness",
             "shadow_work": "Shadow Work",
             "recurring_pattern": "Recurring Pattern",
-            "hero_journey": "Hero Arc",
+            "hero_journey": "Courage Theme",
             "seeking": "Seeking"
         },
         "shadow": {
@@ -3326,13 +3338,13 @@
             "calm": "Shadow is calm, integration continues."
         },
         "archetype": {
-            "starting": "Archetype journey is beginning.",
-            "hero": "Hero archetype active - proceed with courage!",
-            "seeker": "Seeker archetype - you are on an inner journey.",
+            "starting": "Archetype pattern is forming.",
+            "hero": "Courage archetype active - proceed with confidence!",
+            "seeker": "Seeker archetype - you are in an exploratory phase.",
             "rescuer": "Rescuer archetype - you are supporting others.",
             "observer": "Observer archetype - you are developing awareness.",
             "fleeing": "Escape theme - what are you avoiding facing?",
-            "evolving": "Your archetype journey is evolving."
+            "evolving": "Your archetype pattern is evolving."
         },
         "story_arc": {
             "single": "Single episode",
@@ -3384,7 +3396,7 @@
             "merak": "Write down your questions, learn to live with questions rather than seeking answers.",
             "sucluluk": "Examine the guilt: is it real or learned? Write a letter to yourself.",
             "ozlem": "Honor the longing but stay present. Accepting loss opens doors to the future.",
-            "heyecan": "Transform excitement into action. Take a step today.",
+            "heyecan": "Channel excitement into action. Take a step today.",
             "donukluk": "Return to your body. Move, breathe, slowly begin to feel.",
             "ofke": "Express anger healthily: sports, writing, creativity. But don't hurt anyone."
         },

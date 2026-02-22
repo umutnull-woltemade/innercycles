@@ -226,7 +226,7 @@ class QuizContent {
       QuizQuestion(
         text: 'A friend is upset but says "I\'m fine." What do you tend to do?',
         textTr:
-            'Bir arkadasiniz uzgun ama "iyiyim" diyor. Ne yapma eğiliminde olursunuz?',
+            'Bir arkadaşınız üzgün ama "iyiyim" diyor. Ne yapma eğiliminde olursunuz?',
         category: 'empathy',
         options: [
           QuizOption(

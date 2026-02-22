@@ -832,17 +832,17 @@ class RuyaRituelleri {
       'Rüya günlüğüne başla veya yenile',
       'Dinlenmeye izin ver',
     ],
-    'sali': [
+    'salı': [
       'Yeni semboller için araştırma yap',
       'Büyüme niyetini rüyalara sor',
       'Cesaretli rüya hedefleri koy',
     ],
-    'carsamba': [
+    'çarşamba': [
       'Rüyalardaki çatışmaları incele',
       'Karar gerektiren konuları rüyaya sor',
       'Eylem çağrısı rüyalarına dikkat et',
     ],
-    'persembe': [
+    'perşembe': [
       'Yoğun rüya kaydı yap - birden fazla rüya olabilir',
       'Lucid rüya denemesi için uygun gece',
       'Açığa çıkan bilgiyi değerlendir',

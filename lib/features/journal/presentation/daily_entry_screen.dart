@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,6 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import '../../../core/constants/app_constants.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
@@ -213,14 +213,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                                 ),
                                 const SizedBox(height: AppConstants.spacingXl),
 
-                                // Sub-ratings
-                                _buildSectionLabel(
-                                  context,
-                                  isDark,
-                                  isEn ? 'Details' : 'Detaylar',
-                                ),
-                                const SizedBox(height: AppConstants.spacingMd),
-                                _buildSubRatings(isDark, isEn),
+                                // Sub-ratings (adaptive: collapsed if abandonment >40%)
+                                _buildAdaptiveSubRatings(
+                                    context, isDark, isEn),
                                 const SizedBox(height: AppConstants.spacingXl),
 
                                 // Note
@@ -298,7 +293,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       button: true,
       child: GestureDetector(
         onTap: () async {
-          HapticFeedback.selectionClick();
+          HapticService.dateSelected();
           final now = DateTime.now();
           final picked = await showDatePicker(
             context: context,
@@ -380,7 +375,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           selected: isSelected,
           child: GestureDetector(
             onTap: () {
-              HapticFeedback.selectionClick();
+              HapticService.moodSelected();
               setState(() {
                 _selectedArea = area;
                 _initSubRatings();
@@ -471,7 +466,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 selected: isActive,
                 child: GestureDetector(
                   onTap: () {
-                    HapticFeedback.selectionClick();
+                    HapticService.ratingChanged();
                     onChanged(rating);
                   },
                   child: AnimatedContainer(
@@ -526,6 +521,50 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     ).glassListItem(context: context, index: 2);
   }
 
+  /// Adaptive sub-ratings: if telemetry shows >40% entry abandonment,
+  /// collapse sub-ratings into an expandable section to reduce friction.
+  Widget _buildAdaptiveSubRatings(
+      BuildContext context, bool isDark, bool isEn) {
+    final telemetryAsync = ref.watch(telemetryServiceProvider);
+    final shouldSimplify = telemetryAsync.whenOrNull(
+          data: (t) => t.shouldSimplifyEntryForm,
+        ) ??
+        false;
+
+    if (shouldSimplify) {
+      // Collapsed mode: show expandable tile
+      return Theme(
+        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
+          tilePadding: EdgeInsets.zero,
+          title: Text(
+            isEn ? 'Details (optional)' : 'Detaylar (opsiyonel)',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: isDark ? AppColors.textSecondary : AppColors.lightTextPrimary,
+            ),
+          ),
+          children: [_buildSubRatings(isDark, isEn)],
+        ),
+      );
+    }
+
+    // Full mode: always show sub-ratings
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSectionLabel(
+          context,
+          isDark,
+          isEn ? 'Details' : 'Detaylar',
+        ),
+        const SizedBox(height: AppConstants.spacingMd),
+        _buildSubRatings(isDark, isEn),
+      ],
+    );
+  }
+
   Widget _buildSubRatings(bool isDark, bool isEn) {
     final names = isEn
         ? _selectedArea.subRatingNamesEn
@@ -574,7 +613,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                       divisions: 4,
                       semanticFormatterCallback: (v) => '$label: ${v.round()}',
                       onChanged: (v) {
-                        HapticFeedback.selectionClick();
+                        HapticService.ratingChanged();
                         setState(() => _subRatings[key] = v.round());
                         _scheduleDraftSave();
                       },
@@ -772,7 +811,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       button: true,
       child: GestureDetector(
         onTap: () {
-          HapticFeedback.lightImpact();
+          HapticService.buttonPress();
           _pickImage();
         },
         child: GlassPanel(
@@ -904,11 +943,32 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       // Push fresh data to iOS widgets
       _updateWidgetData(service);
 
+      // Increment progressive unlock entry count
+      ref.read(progressiveUnlockServiceProvider).whenData((unlock) async {
+        await unlock.incrementEntryCount();
+        // Check for newly unlocked features
+        final newlyUnlocked = unlock.getNewlyUnlockedFeatures();
+        for (final feature in newlyUnlocked) {
+          HapticService.featureUnlocked();
+          await unlock.markFeatureShown(feature);
+        }
+      });
+
+      // Track telemetry
+      ref.read(telemetryServiceProvider).whenData((telemetry) {
+        telemetry.entryCompleted(
+          focusArea: _selectedArea.name,
+          durationSeconds: 0,
+          hasNote: _noteController.text.isNotEmpty,
+          hasPhoto: _selectedImagePath != null,
+        );
+      });
+
       // Check for streak milestone celebration (D3, D7, D14, etc.)
       await _checkStreakMilestone();
 
       if (mounted) {
-        HapticFeedback.heavyImpact();
+        HapticService.entryCompleted();
         final isEn = ref.read(languageProvider) == AppLanguage.en;
         final entryCount = service.entryCount;
         final suggestion = _getPostSaveSuggestion(entryCount, isEn);

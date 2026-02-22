@@ -107,6 +107,49 @@ class MonthlySummary {
   });
 }
 
+/// Compares average mood on days with gratitude vs days without.
+class GratitudeMoodComparison {
+  final double moodWithGratitude;
+  final double moodWithoutGratitude;
+  final int daysWithGratitude;
+  final int daysWithoutGratitude;
+
+  const GratitudeMoodComparison({
+    required this.moodWithGratitude,
+    required this.moodWithoutGratitude,
+    required this.daysWithGratitude,
+    required this.daysWithoutGratitude,
+  });
+
+  /// The positive or negative lift that gratitude days show.
+  double get lift => moodWithGratitude - moodWithoutGratitude;
+
+  /// True when both groups have enough samples to be meaningful (>=3 each).
+  bool get isSignificant => daysWithGratitude >= 3 && daysWithoutGratitude >= 3;
+
+  String getInsightEn() {
+    final withStr = moodWithGratitude.toStringAsFixed(1);
+    final withoutStr = moodWithoutGratitude.toStringAsFixed(1);
+    if (lift > 0.2) {
+      return 'On days you practiced gratitude, your mood averaged $withStr vs $withoutStr on other days. Gratitude may be supporting your well-being.';
+    } else if (lift < -0.2) {
+      return 'On days you practiced gratitude, your mood averaged $withStr vs $withoutStr on other days. You may tend to reach for gratitude on harder days.';
+    }
+    return 'Your mood averaged $withStr on gratitude days and $withoutStr on other days — fairly similar so far.';
+  }
+
+  String getInsightTr() {
+    final withStr = moodWithGratitude.toStringAsFixed(1);
+    final withoutStr = moodWithoutGratitude.toStringAsFixed(1);
+    if (lift > 0.2) {
+      return 'Minnettarlık yazdığın günlerde ruh halin ortalama $withStr, diğer günlerde $withoutStr. Minnettarlık iyilik halini destekliyor olabilir.';
+    } else if (lift < -0.2) {
+      return 'Minnettarlık yazdığın günlerde ruh halin ortalama $withStr, diğer günlerde $withoutStr. Zor günlerde minnettarlığa yöneliyor olabilirsin.';
+    }
+    return 'Ruh halin minnettarlık günlerinde $withStr, diğer günlerde $withoutStr — şu ana kadar oldukça benzer.';
+  }
+}
+
 // ══════════════════════════════════════════════════════════════════════════
 // PATTERN ENGINE SERVICE
 // ══════════════════════════════════════════════════════════════════════════
@@ -459,6 +502,60 @@ class PatternEngineService {
     if (sleepStress != null) results.add(sleepStress);
 
     return results;
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // GRATITUDE-MOOD DAILY COMPARISON
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Compare average mood on days WITH gratitude entries vs days WITHOUT.
+  /// Returns null when either the gratitude or mood service is unavailable,
+  /// or when there isn't enough data in both groups (>=3 each).
+  GratitudeMoodComparison? getGratitudeMoodComparison() {
+    final gratitude = _gratitudeService;
+    final mood = _moodCheckinService;
+    if (gratitude == null || mood == null) return null;
+
+    final gratitudeEntries = gratitude.getAllEntries();
+    final moodEntries = mood.getAllEntries();
+    if (gratitudeEntries.isEmpty || moodEntries.isEmpty) return null;
+
+    // Build set of dateKeys where gratitude was practiced
+    final gratitudeDateKeys = <String>{};
+    for (final g in gratitudeEntries) {
+      if (g.items.isNotEmpty) {
+        gratitudeDateKeys.add(g.dateKey);
+      }
+    }
+
+    // Split mood entries into two groups
+    final moodsWithGratitude = <int>[];
+    final moodsWithoutGratitude = <int>[];
+
+    for (final m in moodEntries) {
+      final key = _dateToKey(m.date);
+      if (gratitudeDateKeys.contains(key)) {
+        moodsWithGratitude.add(m.mood);
+      } else {
+        moodsWithoutGratitude.add(m.mood);
+      }
+    }
+
+    if (moodsWithGratitude.length < 3 || moodsWithoutGratitude.length < 3) {
+      return null;
+    }
+
+    final avgWith = moodsWithGratitude.fold<int>(0, (s, v) => s + v) /
+        moodsWithGratitude.length;
+    final avgWithout = moodsWithoutGratitude.fold<int>(0, (s, v) => s + v) /
+        moodsWithoutGratitude.length;
+
+    return GratitudeMoodComparison(
+      moodWithGratitude: avgWith,
+      moodWithoutGratitude: avgWithout,
+      daysWithGratitude: moodsWithGratitude.length,
+      daysWithoutGratitude: moodsWithoutGratitude.length,
+    );
   }
 
   /// Sleep quality vs. next-day mood (from mood check-ins)
@@ -823,7 +920,7 @@ class PatternEngineService {
     if (!isSignificant) return null;
 
     final dirEn = r > 0 ? 'positively correlated' : 'negatively correlated';
-    final dirTr = r > 0 ? 'pozitif iliskili' : 'negatif iliskili';
+    final dirTr = r > 0 ? 'pozitif ilişkili' : 'negatif ilişkili';
     final rStr = r.toStringAsFixed(2);
 
     final insightEn = insightTemplateEn

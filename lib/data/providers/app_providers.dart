@@ -55,6 +55,8 @@ import '../services/cycle_correlation_service.dart';
 import '../services/shadow_work_service.dart';
 import '../services/partner_sync_service.dart';
 import '../services/dream_journal_correlation_service.dart';
+import '../services/telemetry_service.dart';
+import '../services/progressive_unlock_service.dart';
 import '../models/journal_entry.dart';
 import '../models/cross_correlation_result.dart';
 
@@ -637,6 +639,16 @@ final crossCorrelationsProvider = FutureProvider<List<CrossCorrelation>>((
 });
 
 // =============================================================================
+// GRATITUDE-MOOD COMPARISON PROVIDER
+// =============================================================================
+
+final gratitudeMoodComparisonProvider =
+    FutureProvider<GratitudeMoodComparison?>((ref) async {
+  final engine = await ref.watch(patternEngineServiceProvider.future);
+  return engine.getGratitudeMoodComparison();
+});
+
+// =============================================================================
 // QUIZ ENGINE SERVICE PROVIDER
 // =============================================================================
 
@@ -819,4 +831,21 @@ final topDreamMoodCorrelationsProvider =
     dreamJournalCorrelationServiceProvider.future,
   );
   return service.getTopCorrelations(5);
+});
+
+// =============================================================================
+// TELEMETRY SERVICE PROVIDER
+// =============================================================================
+
+final telemetryServiceProvider = FutureProvider<TelemetryService>((ref) async {
+  return await TelemetryService.init();
+});
+
+// =============================================================================
+// PROGRESSIVE UNLOCK SERVICE PROVIDER
+// =============================================================================
+
+final progressiveUnlockServiceProvider =
+    FutureProvider<ProgressiveUnlockService>((ref) async {
+  return await ProgressiveUnlockService.init();
 });

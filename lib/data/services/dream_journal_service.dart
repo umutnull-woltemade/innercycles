@@ -1549,9 +1549,9 @@ class DreamJournalService {
     // Weekday distribution
     final weekdays = <String, int>{
       'Pazartesi': 0,
-      'Sali': 0,
-      'Carsamba': 0,
-      'Persembe': 0,
+      'Salı': 0,
+      'Çarşamba': 0,
+      'Perşembe': 0,
       'Cuma': 0,
       'Cumartesi': 0,
       'Pazar': 0,
@@ -1560,9 +1560,9 @@ class DreamJournalService {
       final dayIndex = dream.dreamDate.weekday;
       final dayName = [
         'Pazartesi',
-        'Sali',
-        'Carsamba',
-        'Persembe',
+        'Salı',
+        'Çarşamba',
+        'Perşembe',
         'Cuma',
         'Cumartesi',
         'Pazar',

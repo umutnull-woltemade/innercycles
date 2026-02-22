@@ -1,7 +1,7 @@
 {
     "app": {
         "name": "InnerCycles",
-        "tagline": "İçsel Yolculuğun Başlıyor",
+        "tagline": "İçsel Keşfin Başlıyor",
         "loading_text": "Refleksiyon alanın hazırlanıyor..."
     },
     "common": {
@@ -498,7 +498,7 @@
             "autumn_equinox_desc": "Dengeleme ve düşünme zamanı",
             "winter_solstice_title": "Kış Dönümü",
             "winter_solstice_desc": "İçe dönüş ve planlama",
-            "advice_default": "Bu yıl kişisel gelişim yolculuğunuz üzerine düşünmeye davet ediyor."
+            "advice_default": "Bu yıl kişisel gelişim süreciniz üzerine düşünmeye davet ediyor."
         },
         "mindfulness_micro_ritual": {
             "todays_micro_ritual": "Bugünün Mikro Ritüeli",
@@ -682,6 +682,18 @@
                 ]
             }
         }
+    },
+    "progressive_unlock": {
+        "dream_journal": "Rüya Günlüğü",
+        "patterns": "Örüntü Analizi",
+        "monthly_reflection": "Aylık Yansıma",
+        "annual_heatmap": "Yıllık Isı Haritası",
+        "cycle_correlation": "Döngü Korelasyonu",
+        "entries_until": "{count} giriş daha {feature} açar",
+        "entry_until": "1 giriş daha {feature} açar",
+        "unlocked": "Kilidi Açıldı!",
+        "all_unlocked": "Tüm özellikler açıldı!",
+        "progress_label": "Yolculuk ilerlemesi"
     },
     "widgets": {
         "birth_date_picker": {
@@ -980,7 +992,7 @@
                         "basic_meaning": "Su senin elementi ve bu rüya derin dönüşümü işaret ediyor! Yenilenme zamanı geldi.",
                         "element_perspective": "Suyun derinliklerine dalmaktan korkma. Orada hazineler var. Ölüm ve yeniden doğuş döngüsü aktif.",
                         "psychological": "Su: Bilinçaltının en derin katmanları\nDönüştürücü olarak: Gölge çalışması zamanı\nMesaj: Karanlıktan korkmak yerine, onu aydınlat",
-                        "practice": "• Derin meditasyonlar yap\n• Gölge jurnal tut\n• Bırakma ritüeli uygula\n• derin iç dönüşümü kucakla\n• Terapi veya danışmanlık düşün"
+                        "practice": "• Derin meditasyonlar yap\n• Gölge jurnal tut\n• Bırakma ritüeli uygula\n• derin iç yenilenmeyi kucakla\n• Terapi veya danışmanlık düşün"
                     },
                     "dreamer": {
                         "basic_meaning": "Su senin elementi - içsel dünyalarla bağlantın çok güçlü! Sezgilerine tamamen güvenebilirsin.",
@@ -1168,7 +1180,7 @@
         "number_awareness_title": "Sayı Farkındalık Testi",
         "number_awareness_description": "Sayıların gizli mesajlarını keşfet",
         "general_title": "Kişisel Profil Testi",
-        "general_description": "İçsel yolculuğunu keşfet",
+        "general_description": "İçsel profilini keşfet",
         "dream_q1": "Rüyalarını ne sıklıkla hatırlıyorsun?",
         "dream_a1_1": "Her gece hatırlarım",
         "dream_a1_2": "Haftada birkaç kez",
@@ -1243,12 +1255,12 @@
         "result_dream_medium_desc": "Rüyalarınla bağlantın gelişiyor. Biraz daha farkındalıkla bilinçaltının mesajlarını daha net duyabilirsin.",
         "result_dream_low_title": "Rüya Uyuyanı",
         "result_dream_low_desc": "Rüya dünyasını keşfedebilirsin. Küçük adımlarla bilinçaltınla bağlantını güçlendirebilirsin.",
-        "result_self_awareness_high_title": "İç Usta",
-        "result_self_awareness_high_desc": "İçsel farkındalığın çok güçlü! Kişisel raporlar ve detaylı analiz ile kişisel yolculuğunu derinleştir.",
-        "result_self_awareness_medium_title": "İçsel Yolcu",
+        "result_self_awareness_high_title": "İç Uzmanı",
+        "result_self_awareness_high_desc": "İçsel farkındalığın çok güçlü! Kişisel raporlar ve detaylı analiz ile kişisel sürecini derinleştir.",
+        "result_self_awareness_medium_title": "İçsel Gezgin",
         "result_self_awareness_medium_desc": "Öz Farkındalık ile bağlantın gelişiyor. Kişisel profilini keşfederek kendini daha iyi tanıyabilirsin.",
         "result_self_awareness_low_title": "İç Kaşif",
-        "result_self_awareness_low_desc": "İç dünyanı keşfedebilirsin! Basit arketip yorumlarıyla başlayarak kişisel yolculuğuna adım at.",
+        "result_self_awareness_low_desc": "İç dünyanı keşfedebilirsin! Basit arketip yorumlarıyla başlayarak kişisel keşfine adım at.",
         "result_number_high_title": "Sayı Uzmanı",
         "result_number_high_desc": "Sayılarla güçlü bir bağın var! Kişisel sayı analiz raporun ile yaşam yolundaki örüntüleri keşfet.",
         "result_number_medium_title": "Sayı Yolcusu",
@@ -1256,11 +1268,11 @@
         "result_number_low_title": "Sayı Kaşifi",
         "result_number_low_desc": "Sayıların dünyasını keşfedebilirsin. Doğum tarihinden başlayarak sayı örüntülerinin kapılarını aralayabilirsin.",
         "result_general_high_title": "İçsel Rehber",
-        "result_general_high_desc": "İçsel yolculuğun derin ve anlamlı. Kişisel araçlarımız ile farkındalığını bir üst seviyeye taşıyabilirsin.",
-        "result_general_medium_title": "İçsel Yolcu",
-        "result_general_medium_desc": "Kendini keşfetme yolculuğundasın. Farklı kişisel araçları deneyerek sana en uygun olanı bulabilirsin.",
+        "result_general_high_desc": "İçsel keşfin derin ve anlamlı. Kişisel araçlarımız ile farkındalığını bir üst seviyeye taşıyabilirsin.",
+        "result_general_medium_title": "İçsel Gezgin",
+        "result_general_medium_desc": "Kendini keşfetme sürecindesin. Farklı kişisel araçları deneyerek sana en uygun olanı bulabilirsin.",
         "result_general_low_title": "İçsel Meraklı",
-        "result_general_low_desc": "Yeni başlangıçlar heyecan verici! Küçük adımlarla kendi içsel yolculuğuna başlayabilirsin.",
+        "result_general_low_desc": "Yeni başlangıçlar heyecan verici! Küçük adımlarla kendi içsel keşfine başlayabilirsin.",
         "cta": {
             "dream_headline": "Bu rüya herkeste aynı anlama gelmez...",
             "dream_subtext": "Kısa bir test, bunun sana özel olup olmadığını gösterebilir.",
@@ -1272,7 +1284,7 @@
             "number_awareness_subtext": "Yaşam yolunu keşfetmek için kısa bir test.",
             "number_awareness_button": "Sayı Testini Gör",
             "general_headline": "Kişisel profilini keşfet",
-            "general_subtext": "Kısa bir test ile içsel yolculuğuna başla.",
+            "general_subtext": "Kısa bir test ile içsel keşfine başla.",
             "general_button": "Teste Başla",
             "inline_default": "Bu sana özel mi? Kısa testle öğren"
         },
@@ -1355,9 +1367,9 @@
         "account": "Hesap",
         "edit_profile": "Profili Düzenle",
         "edit_profile_desc": "Doğum bilgilerini güncelle",
-        "premium": "Premium",
+        "premium": "Pro",
         "premium_desc": "Tüm Pro özelliklere eriş",
-        "premium_active": "Premium özellikler aktif",
+        "premium_active": "Pro özellikler aktif",
         "manage_subscription": "Aboneliği Yönet",
         "manage_subscription_desc": "Aboneliğini görüntüle ve yönet",
         "clear_data": "Verileri Sil",
@@ -2315,7 +2327,7 @@
         "nightmare_reduction": "Kabus Azaltma",
         "nightmare_frequency_change": "Kabus sıklığı değişimi",
         "shadow_integration": "GÖLGE ENTEGRASYONU",
-        "shadow_description": "Bilinçaltınızın farklı yönlerini keşfetme yolculuğunuz",
+        "shadow_description": "Bilinçaltınızın farklı yönlerini keşfetme süreciniz",
         "discovered_emotions": "Keşfedilen Duygular",
         "awareness": "Farkındalık",
         "acceptance": "Kabul",
@@ -2542,7 +2554,7 @@
                 "Bilinçaltımın bilgeliğine güveniyorum ve mesajlarını anlıyorum.",
                 "Her rüya beni kendime daha da yaklaştırıyor.",
                 "Gölgelerimi kabul ediyor, ışığımı parlak tutuyorum.",
-                "Kişisel rehberliğe açığım ve yolculuğumda destekleniyorum."
+                "Kişisel rehberliğe açığım ve ilerlememde destekleniyorum."
             ],
             "default_art_suggestions": [
                 "Ay ve yıldızlar kompozisyonu",
@@ -2623,7 +2635,7 @@
             "being_chased": "Kovalanma rüyaları, kaçılmaya çalışılan duygular, sorumluluklar veya korkuları temsil edebilir.",
             "baby": "Bebek rüyaları, yeni başlangıçları, yaratıcılık projelerini veya iç çocuğunuzla bağlantınızı simgeleyebilir.",
             "house": "Ev, rüyalarda benlik ve iç dünyanın bir yansıması olarak görülür. Evin durumu ve odaları farklı yaşam alanlarını temsil edebilir.",
-            "car": "Araba rüyaları, hayat yolculuğunda kontrol, yön ve ilerleme temalarını işaret eder.",
+            "car": "Araba rüyaları, hayat yolunda kontrol, yön ve ilerleme temalarını işaret eder.",
             "dog": "Köpek, sadakat, dostluk veya içgüdüsel yanlarımızı temsil edebilir. Köpeğin davranışı önemli ipuçları taşır.",
             "cat": "Kedi, bağımsızlık, sezgi ve gizemle ilişkilidir. Feminen enerji ve iç bilgeliği de simgeleyebilir.",
             "money": "Para rüyaları, değer, özsaygı ve kaynaklara erişim temalarını yansıtabilir.",
@@ -3303,12 +3315,12 @@
         },
         "recommendations": {
             "keep_journal": "Her gün rüya günlüğü tutarak örüntüleri keşfet.",
-            "nightmare_work": "Kabuslarla çalışma: Bilinçli rüya teknikleriyle dönüştür.",
+            "nightmare_work": "Kabuslarla çalışma: Bilinçli rüya teknikleriyle yeniden çerçevele.",
             "relaxation_ritual": "Uyku öncesi rahatlama ritüeli oluştur.",
             "reality_check": "Gerçeklik kontrolü tekniğini dene - bilinçli rüya potansiyelin var.",
             "fear_theme": "Korku temasını incele - gölge çalışması yapabilirsin.",
             "longing_journal": "Özlem duygusu üzerine yansıtma günlüğü tut.",
-            "keep_going": "Rüya yolculuğun harika gidiyor. Kaydetmeye devam et!"
+            "keep_going": "Rüya günlüğün harika gidiyor. Kaydetmeye devam et!"
         },
         "themes": {
             "unknown": "Belirsiz",
@@ -3316,7 +3328,7 @@
             "awareness": "Farkındalık",
             "shadow_work": "Gölge Çalışması",
             "recurring_pattern": "Tekrarlayan Kalıp",
-            "hero_journey": "Kahraman Arketipi",
+            "hero_journey": "Cesaret Teması",
             "seeking": "Arayış"
         },
         "shadow": {
@@ -3326,13 +3338,13 @@
             "calm": "Gölge sakin, entegrasyon sürüyor."
         },
         "archetype": {
-            "starting": "Arketip keşfi başlıyor.",
-            "hero": "Kahraman arketipi aktif - cesaretle ilerle!",
-            "seeker": "Arayıcı arketipi - içsel bir keşifteyesin.",
+            "starting": "Arketip örüntüsü oluşuyor.",
+            "hero": "Cesaret arketipi aktif - güvenle ilerle!",
+            "seeker": "Arayıcı arketipi - keşif aşamasındasın.",
             "rescuer": "Kurtarıcı arketipi - başkalarını destekliyorsun.",
             "observer": "Gözlemci arketipi - farkındalık geliştiriyorsun.",
             "fleeing": "Kaçış teması - neyle yüzleşmekten kaçınıyorsun?",
-            "evolving": "Arketip yolculuğun evrim geçiriyor."
+            "evolving": "Arketip örüntün evrim geçiriyor."
         },
         "story_arc": {
             "single": "Tek bölüm",
@@ -3384,7 +3396,7 @@
             "merak": "Sorularını yaz, cevapları aramak yerine sorularla yaşamayı öğren.",
             "sucluluk": "Suçluluğu incele: gerçek mi, öğrenilmiş mi? Kendine mektup yaz.",
             "ozlem": "Özlemi onurlandır ama şimdide kal. Kaybı kabul, geleceğe kapı açar.",
-            "heyecan": "Heyecanı eyleme dönüştür. Bugün bir adım at.",
+            "heyecan": "Heyecanı eyleme yönlendir. Bugün bir adım at.",
             "donukluk": "Bedenine dön. Hareket et, nefes al, yavaş yavaş hisset.",
             "ofke": "Öfkeyi sağlıklı ifade et: spor, yazı, yaratıcılık. Ama birini incitme."
         },
