@@ -311,13 +311,12 @@ class _TodaysInsightSection extends ConsumerWidget {
           data: (archetypeService) {
             final history = archetypeService.getArchetypeHistory();
             if (history.isEmpty) {
-              final needed = engine.microEntriesNeeded();
               return _buildCard(
                 context,
                 icon: Icons.auto_awesome_outlined,
                 text: isEn
-                    ? '$needed more entries to activate pattern detection.'
-                    : 'Kalıp tespitini etkinleştirmek için $needed kayıt daha gerekli.',
+                    ? 'Each entry builds your pattern library. Start journaling to see what emerges.'
+                    : 'Her kayıt örüntü kütüphaneni oluşturur. Ne ortaya çıkacağını görmek için yazmaya başla.',
               );
             }
             final latestId = history.last.archetypeId;
@@ -333,13 +332,12 @@ class _TodaysInsightSection extends ConsumerWidget {
             );
           },
           orElse: () {
-            final needed = engine.microEntriesNeeded();
             return _buildCard(
               context,
               icon: Icons.auto_awesome_outlined,
               text: isEn
-                  ? '$needed more entries to activate your first insight.'
-                  : 'İlk içgörünü etkinleştirmek için $needed kayıt daha gerekli.',
+                  ? 'You\'re building momentum — your first personal insight is just around the corner.'
+                  : 'İvme kazanıyorsun — ilk kişisel içgörün çok yakında.',
             );
           },
         );

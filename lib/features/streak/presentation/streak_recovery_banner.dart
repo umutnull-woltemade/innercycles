@@ -135,6 +135,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                     ref,
                     paywallContext: PaywallContext.streakFreeze,
                     streakDays: longestStreak,
+                    bypassTimingGate: true,
                   ),
                   child: Container(
                     margin: const EdgeInsets.only(bottom: 16),

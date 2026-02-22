@@ -53,7 +53,7 @@ Future<bool> showContextualPaywall(
     try {
       final experiment = await ref.read(paywallExperimentProvider.future);
       final journalService = await ref.read(journalServiceProvider.future);
-      final hasInsight = journalService.entryCount >= 7;
+      final hasInsight = journalService.entryCount >= 5;
 
       if (!experiment.shouldShowPaywall(hasGeneratedInsight: hasInsight)) {
         return false; // Timing says "not yet" — silently skip

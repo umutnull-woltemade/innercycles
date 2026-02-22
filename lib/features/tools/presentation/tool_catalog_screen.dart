@@ -1,5 +1,5 @@
 // ════════════════════════════════════════════════════════════════════════════
-// TOOL CATALOG SCREEN - Browse all 41 tools by category
+// TOOL CATALOG SCREEN - Browse all 35 tools by category
 // ════════════════════════════════════════════════════════════════════════════
 // Search bar + Recently Used + Favorites + Category sections (2-col grid)
 // ════════════════════════════════════════════════════════════════════════════
@@ -64,6 +64,29 @@ class _CategoryInfo {
     required this.nameEn,
     required this.nameTr,
   });
+}
+
+PaywallContext _paywallContextForTool(String toolId) {
+  switch (toolId) {
+    case 'patterns':
+    case 'emotionalCycles':
+    case 'insightsDiscovery':
+    case 'insight':
+    case 'sleepTrends':
+      return PaywallContext.patterns;
+    case 'dreamGlossary':
+      return PaywallContext.dreams;
+    case 'challenges':
+      return PaywallContext.challenges;
+    case 'programs':
+      return PaywallContext.programs;
+    case 'monthlyReport':
+    case 'weeklyDigest':
+    case 'yearReview':
+      return PaywallContext.monthlyReport;
+    default:
+      return PaywallContext.general;
+  }
 }
 
 class ToolCatalogScreen extends ConsumerStatefulWidget {
@@ -359,7 +382,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
                       onPremiumTap: () => showContextualPaywall(
                         context,
                         ref,
-                        paywallContext: PaywallContext.general,
+                        paywallContext: _paywallContextForTool(left.id),
                       ),
                     ),
                   ),
@@ -376,7 +399,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
                             onPremiumTap: () => showContextualPaywall(
                               context,
                               ref,
-                              paywallContext: PaywallContext.general,
+                              paywallContext: _paywallContextForTool(right.id),
                             ),
                           )
                         : const SizedBox.shrink(),

@@ -38,9 +38,9 @@ class AppConstants {
   static const double priceVariantC = 11.99;
 
   // Experiment Traffic Distribution
-  static const double timingVariantATraffic = 0.25; // Immediate
-  static const double timingVariantBTraffic = 0.50; // First Insight (default)
-  static const double timingVariantCTraffic = 0.25; // Delayed
+  static const double timingVariantATraffic = 0.30; // Immediate
+  static const double timingVariantBTraffic = 0.35; // First Insight
+  static const double timingVariantCTraffic = 0.35; // Delayed
 
   static const double pricingVariantATraffic = 0.50; // $7.99
   static const double pricingVariantBTraffic = 0.30; // $9.99
