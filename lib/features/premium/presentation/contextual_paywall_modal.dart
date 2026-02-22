@@ -32,13 +32,46 @@ enum PaywallContext {
 
 /// Shows a contextual paywall bottom sheet tailored to what the user just tried
 /// to do. Returns true if user purchased, false otherwise.
+///
+/// Respects the A/B timing gate from [PaywallExperimentService]:
+/// - `immediate`: always shows
+/// - `firstInsight`: shows only after user has enough journal data for insights
+/// - `delayed`: shows only after session 3+
+///
+/// Set [bypassTimingGate] to true for explicit user-initiated paywall views
+/// (e.g. tapping "Premium" in settings).
 Future<bool> showContextualPaywall(
   BuildContext context,
   WidgetRef ref, {
   required PaywallContext paywallContext,
   int? entryCount,
   int? streakDays,
+  bool bypassTimingGate = false,
 }) async {
+  // Skip timing gate for explicit user actions (settings, premium button)
+  if (!bypassTimingGate) {
+    try {
+      final experiment = await ref.read(paywallExperimentProvider.future);
+      final journalService = await ref.read(journalServiceProvider.future);
+      final hasInsight = journalService.entryCount >= 7;
+
+      if (!experiment.shouldShowPaywall(hasGeneratedInsight: hasInsight)) {
+        return false; // Timing says "not yet" — silently skip
+      }
+
+      // Adaptive telemetry gate: if user dismisses >80% of paywalls, skip
+      final telemetry = await ref.read(telemetryServiceProvider.future);
+      if (telemetry.shouldDelayPaywall) {
+        return false; // User is paywall-fatigued — back off
+      }
+    } catch (_) {
+      // If experiment service fails, default to showing paywall
+    }
+  }
+
+  // ignore: use_build_context_synchronously
+  if (!context.mounted) return false;
+
   final result = await showModalBottomSheet<bool>(
     context: context,
     isScrollControlled: true,
@@ -83,6 +116,13 @@ class _ContextualPaywallSheetState
         .read(paywallExperimentProvider)
         .whenOrNull(data: (e) => e);
     experiment?.logPaywallView();
+    // Track telemetry for adaptive paywall gate
+    ref.read(telemetryServiceProvider).whenData((t) {
+      t.paywallShown(
+        triggerPoint: widget.paywallContext.name,
+        entriesCount: widget.entryCount ?? 0,
+      );
+    });
   }
 
   @override
@@ -302,6 +342,11 @@ class _ContextualPaywallSheetState
                           .read(paywallExperimentProvider)
                           .whenOrNull(data: (e) => e);
                       experiment?.logPaywallDismissal();
+                      ref.read(telemetryServiceProvider).whenData((t) {
+                        t.paywallDismissed(
+                          triggerPoint: widget.paywallContext.name,
+                        );
+                      });
                       Navigator.pop(context, false);
                     },
                     child: Text(
@@ -384,9 +429,20 @@ class _ContextualPaywallSheetState
       if (result == PaywallResult.purchased ||
           result == PaywallResult.restored) {
         experiment?.logPaywallConversion();
+        ref.read(telemetryServiceProvider).whenData((t) {
+          t.paywallConverted(
+            plan: 'premium',
+            triggerPoint: widget.paywallContext.name,
+          );
+        });
         Navigator.pop(context, true);
       } else {
         experiment?.logPaywallDismissal();
+        ref.read(telemetryServiceProvider).whenData((t) {
+          t.paywallDismissed(
+            triggerPoint: widget.paywallContext.name,
+          );
+        });
       }
     }
   }

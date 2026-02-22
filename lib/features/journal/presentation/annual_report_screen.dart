@@ -582,7 +582,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
             children: [
               _StatBadge(
                 value: '${report.totalEntries}',
-                label: isEn ? 'Entries' : 'Kayit',
+                label: isEn ? 'Entries' : 'Kayıt',
                 color: AppColors.starGold,
                 isDark: isDark,
               ),
@@ -1023,7 +1023,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                 Text(
                   isEn
                       ? '$count entries recorded'
-                      : '$count kayit yazildi',
+                      : '$count kayıt yazıldı',
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark

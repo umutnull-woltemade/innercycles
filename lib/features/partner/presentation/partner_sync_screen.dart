@@ -991,7 +991,7 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
             children: [
               _buildStatColumn(
                 value: daysTogether.toString(),
-                label: isEn ? 'Days Together' : 'Birlikte Gun',
+                label: isEn ? 'Days Together' : 'Birlikte Gün',
                 isDark: isDark,
               ),
               Container(
@@ -1179,7 +1179,7 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
   Widget _buildUnlinkButton(bool isEn, bool isDark) {
     return Semantics(
       button: true,
-      label: isEn ? 'Unlink partner' : 'Partneri cikart',
+      label: isEn ? 'Unlink partner' : 'Partneri çıkart',
       child: TextButton(
         onPressed: () => _showUnlinkConfirmation(isEn, isDark),
         style: TextButton.styleFrom(

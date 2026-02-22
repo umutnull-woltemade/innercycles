@@ -299,7 +299,7 @@ class DreamJournalCorrelationService {
       );
     } else {
       buffer.write(
-        'Bu oruntular daha fazla kayit ekledikce gelisebilir.',
+        'Bu örüntüler daha fazla kayıt ekledikçe gelişebilir.',
       );
     }
 
