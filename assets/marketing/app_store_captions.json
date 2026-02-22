@@ -35,11 +35,5 @@
     "privacy": {
       "caption": "Private by design — Face ID, on-device storage, no cloud required"
     }
-  },
-  "app_store_metadata": {
-    "title": "InnerCycles",
-    "subtitle": "Mood Tracker & Dream Journal",
-    "promotional_text": "Track your mood, journal your dreams, and discover the emotional patterns you repeat. See your cycles mapped across weeks and months.",
-    "keywords": "mood tracker,dream journal,emotional patterns,self reflection,daily journal,mood diary,wellness log,gratitude,mindfulness,personal growth,habit tracker"
   }
 }

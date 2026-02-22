@@ -138,3 +138,51 @@ tr:
     Ücretsiz başla. İçinde yaşadığın döngüleri gör.
 
     Abonelik Bilgileri: Ödeme, satın alma onayında Apple Kimliği hesabınızdan tahsil edilir. Abonelik, mevcut dönemin bitiminden en az 24 saat önce iptal edilmediği takdirde otomatik olarak yenilenir. Gizlilik Politikası: https://innercycles.app/privacy | Kullanım Koşulları: https://innercycles.app/terms
+
+# ── APP STORE CONNECT PRIVACY NUTRITION LABELS ────────────────────────────
+# Paste these values into App Store Connect → App Privacy → Data Types
+# Must match PrivacyInfo.xcprivacy declarations exactly.
+privacy_nutrition_labels:
+  # ── Data Linked to You ──
+  - type: "Name"
+    linked: true
+    tracking: false
+    purpose: "App Functionality"
+    source: "Onboarding name input"
+
+  - type: "User ID"
+    linked: true
+    tracking: false
+    purpose: "App Functionality"
+    source: "Supabase Auth / Apple Sign-In"
+
+  - type: "Purchase History"
+    linked: true
+    tracking: false
+    purpose: "App Functionality"
+    source: "RevenueCat subscription status"
+
+  - type: "Other User Content"
+    linked: true
+    tracking: false
+    purpose: "App Functionality"
+    source: "Journal entries synced to Supabase (optional cloud backup)"
+
+  # ── Data Not Linked to You ──
+  - type: "Device ID"
+    linked: false
+    tracking: true
+    purpose: "Third-Party Advertising"
+    source: "Google AdMob IDFA (ATT-gated, free users only)"
+
+  - type: "Product Interaction"
+    linked: false
+    tracking: false
+    purpose: "Analytics"
+    source: "First-party analytics events sent to Supabase"
+
+  - type: "Crash Data"
+    linked: false
+    tracking: false
+    purpose: "App Functionality"
+    source: "Error reports sent to Supabase"

@@ -18,8 +18,8 @@ class AdminAuthService {
   static const Duration sessionDuration = Duration(hours: 24);
   static const Duration attemptResetWindow = Duration(minutes: 5);
 
-  // Default PIN (should be overridden via environment)
-  static const String _defaultPin = '4848';
+  // PIN from compile-time environment only — no hardcoded default
+  static const String _envPin = String.fromEnvironment('ADMIN_PIN');
 
   static Box? _adminBox;
 
@@ -39,15 +39,11 @@ class AdminAuthService {
     }
   }
 
-  /// Get PIN from environment or use default
-  static String get _pin {
-    // In production, this would come from:
-    // - Environment variable: String.fromEnvironment('ADMIN_PIN', defaultValue: _defaultPin)
-    // - Or secure storage
-    // For Flutter web/mobile, we use a compile-time constant
-    const envPin = String.fromEnvironment('ADMIN_PIN', defaultValue: '');
-    return envPin.isNotEmpty ? envPin : _defaultPin;
-  }
+  /// Whether admin access is available (requires ADMIN_PIN at compile time)
+  static bool get isAvailable => _envPin.isNotEmpty;
+
+  /// Get PIN — empty string when not configured (admin disabled)
+  static String get _pin => _envPin;
 
   /// Hash PIN for secure comparison
   static String _hashPin(String pin) {
@@ -103,6 +99,9 @@ class AdminAuthService {
 
   /// Verify PIN and return session token
   static Future<AdminAuthResult> verifyPin(String enteredPin) async {
+    if (!isAvailable) {
+      return AdminAuthResult.error('Admin access not configured');
+    }
     final box = _adminBox;
     if (box == null) {
       return AdminAuthResult.error('Admin service not initialized');
