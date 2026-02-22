@@ -404,18 +404,6 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                   .read(premiumProvider.notifier)
                   .getProductPrice(PremiumTier.monthly),
         ),
-        const SizedBox(height: AppConstants.spacingMd),
-
-        // Lifetime — aspirational anchor
-        _PlanCard(
-          tier: PremiumTier.lifetime,
-          isSelected: _selectedTier == PremiumTier.lifetime,
-          onTap: () => setState(() => _selectedTier = PremiumTier.lifetime),
-          isLifetime: true,
-          priceOverride: ref
-              .read(premiumProvider.notifier)
-              .getProductPrice(PremiumTier.lifetime),
-        ),
       ],
     ).glassListItem(context: context, index: 2);
   }
@@ -757,14 +745,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          if (premiumState.isLifetime)
-            Text(
-              L10nService.get('premium.lifetime_access', language),
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
-            )
-          else if (premiumState.expiryDate != null)
+          if (premiumState.expiryDate != null)
             Text(
               '${L10nService.get('common.next', language)}: ${_formatDate(premiumState.expiryDate!)}',
               style: Theme.of(
@@ -1084,7 +1065,6 @@ class _PlanCard extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
   final bool isBestValue;
-  final bool isLifetime;
   final String? priceOverride;
 
   const _PlanCard({
@@ -1092,7 +1072,6 @@ class _PlanCard extends StatelessWidget {
     required this.isSelected,
     required this.onTap,
     this.isBestValue = false,
-    this.isLifetime = false,
     this.priceOverride,
   });
 
@@ -1163,11 +1142,7 @@ class _PlanCard extends StatelessWidget {
                             Text(
                               tier.savings,
                               style: Theme.of(context).textTheme.bodySmall
-                                  ?.copyWith(
-                                    color: isLifetime
-                                        ? AppColors.auroraEnd
-                                        : AppColors.success,
-                                  ),
+                                  ?.copyWith(color: AppColors.success),
                             ),
                         ],
                       ),
@@ -1208,8 +1183,6 @@ class _PlanCard extends StatelessWidget {
         ),
         if (isBestValue)
           Positioned(top: -10, right: 16, child: _BestValueBadge()),
-        if (isLifetime)
-          Positioned(top: -10, right: 16, child: _LifetimeBadge()),
       ],
     );
   }
@@ -1239,26 +1212,4 @@ class _BestValueBadge extends ConsumerWidget {
   }
 }
 
-class _LifetimeBadge extends ConsumerWidget {
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final language = ref.watch(languageProvider);
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [AppColors.auroraStart, AppColors.auroraEnd],
-        ),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        L10nService.get('premium.lifetime', language),
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 11,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-}
+// _LifetimeBadge removed — lifetime tier killed from UI

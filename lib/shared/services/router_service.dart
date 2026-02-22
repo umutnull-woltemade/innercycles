@@ -42,8 +42,7 @@ import '../../features/prompts/presentation/prompt_library_screen.dart';
 import '../../features/milestones/presentation/milestone_screen.dart';
 import '../../features/year_review/presentation/year_review_screen.dart';
 import '../../features/habits/presentation/daily_habits_screen.dart';
-import '../../features/partner/presentation/partner_sync_screen.dart';
-import '../../features/referral/presentation/referral_screen.dart';
+// partner_sync_screen + referral_screen imports removed (killed features)
 import '../../features/journal/presentation/annual_report_screen.dart';
 import '../../features/sharing/presentation/share_card_gallery.dart';
 import '../../features/habits/presentation/habit_suggestions_screen.dart';
@@ -51,11 +50,11 @@ import '../../features/growth/presentation/growth_dashboard_screen.dart';
 import '../../features/digest/presentation/weekly_digest_screen.dart';
 import '../../features/affirmation/presentation/affirmation_library_screen.dart';
 import '../../features/archetype/presentation/archetype_screen.dart';
-import '../../features/articles/presentation/articles_screen.dart';
+// articles_screen import removed (killed feature)
 import '../../features/blind_spot/presentation/blind_spot_screen.dart';
 import '../../features/challenges/presentation/challenge_hub_screen.dart';
 import '../../features/challenges/presentation/challenge_list_screen.dart';
-import '../../features/compatibility/presentation/compatibility_reflection_screen.dart';
+// compatibility_reflection_screen import removed (killed feature)
 import '../../features/dreams/presentation/dream_archive_screen.dart';
 import '../../features/dreams/presentation/canonical/dream_theme_screen.dart';
 import '../../features/dreams/presentation/dream_glossary_screen.dart';
@@ -69,7 +68,7 @@ import '../../features/gratitude/presentation/gratitude_screen.dart';
 import '../../features/insight/presentation/insight_screen.dart';
 import '../../features/insight/presentation/insights_discovery_screen.dart';
 import '../../features/library/presentation/library_hub_screen.dart';
-import '../../features/moon/presentation/moon_calendar_screen.dart';
+// moon_calendar_screen import removed (killed feature)
 import '../../features/mood/presentation/emotional_vocabulary_screen.dart';
 import '../../features/programs/presentation/active_program_screen.dart';
 import '../../features/programs/presentation/program_completion_screen.dart';
@@ -359,17 +358,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.dailyHabits,
         builder: (context, state) => const DailyHabitsScreen(),
       ),
-      GoRoute(
-        path: Routes.partner,
-        builder: (context, state) => const PartnerSyncScreen(),
-      ),
-      GoRoute(
-        path: Routes.referral,
-        builder: (context, state) {
-          final code = state.uri.queryParameters['code'];
-          return ReferralScreen(inviteCode: code);
-        },
-      ),
+      // partner + referral routes removed (killed features)
       GoRoute(
         path: Routes.annualReport,
         builder: (context, state) => const AnnualReportScreen(),
@@ -460,10 +449,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.seasonal,
         builder: (context, state) => const SeasonalReflectionScreen(),
       ),
-      GoRoute(
-        path: Routes.moonCalendar,
-        builder: (context, state) => const MoonCalendarScreen(),
-      ),
+      // moonCalendar route removed (killed feature)
       GoRoute(
         path: Routes.challengeHub,
         builder: (context, state) => const ChallengeHubScreen(),
@@ -542,10 +528,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       // REFERENCE & CONTENT
       // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.articles,
-        builder: (context, state) => const ArticlesScreen(),
-      ),
+      // articles route removed (killed feature)
       GoRoute(
         path: Routes.affirmations,
         builder: (context, state) => const AffirmationLibraryScreen(),
@@ -571,10 +554,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.archetype,
         builder: (context, state) => const ArchetypeScreen(),
       ),
-      GoRoute(
-        path: Routes.compatibilityReflection,
-        builder: (context, state) => const CompatibilityReflectionScreen(),
-      ),
+      // compatibility route removed (killed feature)
       GoRoute(
         path: Routes.blindSpot,
         builder: (context, state) => const BlindSpotScreen(),
@@ -595,13 +575,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       // DEEP LINK ROUTES (innercycles:// scheme)
       // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.deepLinkInvite,
-        redirect: (context, state) {
-          final code = state.pathParameters['code'] ?? '';
-          return '${Routes.referral}?code=$code';
-        },
-      ),
+      // deepLinkInvite removed (referral killed)
       GoRoute(
         path: Routes.deepLinkShare,
         redirect: (context, state) {

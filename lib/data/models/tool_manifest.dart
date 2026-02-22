@@ -110,7 +110,7 @@ class ToolManifest {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// TOOL MANIFEST REGISTRY - All 41 tools
+// TOOL MANIFEST REGISTRY - 35 tools (post-surgery)
 // ════════════════════════════════════════════════════════════════════════════
 
 class ToolManifestRegistry {
@@ -263,6 +263,7 @@ class ToolManifestRegistry {
       inputTypes: ['journal_entries'],
       outputTypes: ['pattern_report'],
       timeToValueSeconds: 10,
+      requiresPremium: true,
       nextTools: [
         NextToolSuggestion(
           toolId: 'journal',
@@ -299,6 +300,7 @@ class ToolManifestRegistry {
       inputTypes: ['journal_entries'],
       outputTypes: ['cycle_chart'],
       timeToValueSeconds: 10,
+      requiresPremium: true,
       nextTools: [
         NextToolSuggestion(
           toolId: 'journal',
@@ -406,7 +408,7 @@ class ToolManifestRegistry {
       category: ToolCategory.support,
       intentTags: [IntentTag.grow, IntentTag.track],
       timeToValueSeconds: 30,
-      relatedToolIds: ['breathing', 'meditation', 'habitSuggestions'],
+      relatedToolIds: ['breathing', 'meditation'],
     ),
 
     // ── 11. Sleep Tracking ──
@@ -438,6 +440,7 @@ class ToolManifestRegistry {
       category: ToolCategory.analysis,
       intentTags: [IntentTag.analyze, IntentTag.track],
       timeToValueSeconds: 5,
+      requiresPremium: true,
       relatedToolIds: ['sleep', 'wellness'],
     ),
 
@@ -455,26 +458,10 @@ class ToolManifestRegistry {
       intentTags: [IntentTag.track],
       outputTypes: ['score'],
       timeToValueSeconds: 5,
-      relatedToolIds: ['sleep', 'moodTrends', 'energyMap'],
+      relatedToolIds: ['sleep', 'moodTrends'],
     ),
 
-    // ── 14. Energy Profile ──
-    ToolManifest(
-      id: 'energyMap',
-      nameEn: 'Energy Profile',
-      nameTr: 'Enerji Profili',
-      valuePropositionEn: 'Visualize your daily energy fluctuations.',
-      valuePropositionTr:
-          'G\u00fcnl\u00fck enerji dalgalanmalar\u0131n\u0131 g\u00f6rselle\u015ftir.',
-      route: Routes.energyMap,
-      icon: '\u{26A1}',
-      category: ToolCategory.analysis,
-      intentTags: [IntentTag.track, IntentTag.analyze],
-      timeToValueSeconds: 10,
-      relatedToolIds: ['wellness', 'moodTrends'],
-    ),
-
-    // ── 15. Quiz Hub ──
+    // ── 14. Quiz Hub ──
     ToolManifest(
       id: 'quizHub',
       nameEn: 'Quizzes',
@@ -536,6 +523,7 @@ class ToolManifestRegistry {
       category: ToolCategory.analysis,
       intentTags: [IntentTag.discover, IntentTag.analyze],
       timeToValueSeconds: 10,
+      requiresPremium: true,
       relatedToolIds: ['patterns', 'journal'],
     ),
 
@@ -567,6 +555,7 @@ class ToolManifestRegistry {
       category: ToolCategory.data,
       intentTags: [IntentTag.grow, IntentTag.track],
       timeToValueSeconds: 5,
+      requiresPremium: true,
       relatedToolIds: ['challenges', 'milestones', 'streakStats'],
     ),
 
@@ -583,6 +572,7 @@ class ToolManifestRegistry {
       category: ToolCategory.data,
       intentTags: [IntentTag.grow],
       timeToValueSeconds: 10,
+      requiresPremium: true,
       relatedToolIds: ['growthDashboard', 'milestones'],
     ),
 
@@ -634,55 +624,7 @@ class ToolManifestRegistry {
       relatedToolIds: ['journal', 'rituals'],
     ),
 
-    // ── 25. Seasonal Reflection ──
-    ToolManifest(
-      id: 'seasonal',
-      nameEn: 'Seasonal',
-      nameTr: 'Mevsimsel',
-      valuePropositionEn: 'Reflect on how seasons influence your inner state.',
-      valuePropositionTr:
-          'Mevsimlerin i\u00e7 d\u00fcnyan\u0131 nas\u0131l etkiledi\u011fini yans\u0131t.',
-      route: Routes.seasonal,
-      icon: '\u{1F343}',
-      category: ToolCategory.analysis,
-      intentTags: [IntentTag.reflect, IntentTag.discover],
-      timeToValueSeconds: 15,
-      relatedToolIds: ['journal', 'rituals'],
-    ),
-
-    // ── 26. Natural Rhythm Calendar ──
-    ToolManifest(
-      id: 'moonCalendar',
-      nameEn: 'Natural Rhythm Calendar',
-      nameTr: 'Doğal Ritim Takvimi',
-      valuePropositionEn: 'Track lunar phases alongside your entries.',
-      valuePropositionTr:
-          'Ay evrelerini g\u00fcnl\u00fc\u011f\u00fcnle birlikte izle.',
-      route: Routes.moonCalendar,
-      icon: '\u{1F31D}',
-      category: ToolCategory.reference,
-      intentTags: [IntentTag.track, IntentTag.discover],
-      timeToValueSeconds: 10,
-      relatedToolIds: ['journal', 'emotionalCycles'],
-    ),
-
-    // ── 27. Habit Suggestions ──
-    ToolManifest(
-      id: 'habitSuggestions',
-      nameEn: 'Habits',
-      nameTr: 'Al\u0131\u015fkanl\u0131klar',
-      valuePropositionEn: 'Personalized habit suggestions from your data.',
-      valuePropositionTr:
-          'Verilerinden ki\u015fiselle\u015ftirilmi\u015f al\u0131\u015fkanl\u0131k \u00f6nerileri.',
-      route: Routes.habitSuggestions,
-      icon: '\u{1F4AA}',
-      category: ToolCategory.support,
-      intentTags: [IntentTag.grow],
-      timeToValueSeconds: 15,
-      relatedToolIds: ['rituals', 'challenges'],
-    ),
-
-    // ── 28. Weekly Debrief ──
+    // ── 25. Weekly Debrief ──
     ToolManifest(
       id: 'weeklyDigest',
       nameEn: 'Weekly Debrief',
@@ -694,6 +636,7 @@ class ToolManifestRegistry {
       category: ToolCategory.analysis,
       intentTags: [IntentTag.analyze, IntentTag.reflect],
       timeToValueSeconds: 10,
+      requiresPremium: true,
       relatedToolIds: ['patterns', 'journal'],
       emptyState: ToolEmptyState(
         demoTemplateId: 'digest_current',
@@ -736,24 +679,7 @@ class ToolManifestRegistry {
       relatedToolIds: ['monthlyReport', 'growthDashboard'],
     ),
 
-    // ── 31. Compatibility ──
-    ToolManifest(
-      id: 'compatibility',
-      nameEn: 'Compatibility',
-      nameTr: 'Uyumluluk',
-      valuePropositionEn: 'Explore how you relate to others.',
-      valuePropositionTr:
-          'Ba\u015fkalar\u0131yla nas\u0131l ili\u015fkilendi\u011fini ke\u015ffet.',
-      route: Routes.compatibilityReflection,
-      icon: '\u{1F91D}',
-      category: ToolCategory.discovery,
-      intentTags: [IntentTag.discover],
-      timeToValueSeconds: 60,
-      requiresPremium: true,
-      relatedToolIds: ['archetype', 'quizHub'],
-    ),
-
-    // ── 32. Dream Glossary ──
+    // ── 31. Dream Glossary ──
     ToolManifest(
       id: 'dreamGlossary',
       nameEn: 'Dream Glossary',
@@ -766,42 +692,11 @@ class ToolManifestRegistry {
       category: ToolCategory.reference,
       intentTags: [IntentTag.discover],
       timeToValueSeconds: 10,
+      requiresPremium: true,
       relatedToolIds: ['dreamInterpretation'],
     ),
 
-    // ── 33. Glossary ──
-    ToolManifest(
-      id: 'glossary',
-      nameEn: 'Glossary',
-      nameTr: 'S\u00f6zl\u00fck',
-      valuePropositionEn: 'Reference for wellness and journaling terms.',
-      valuePropositionTr:
-          'Sa\u011fl\u0131k ve g\u00fcnl\u00fck terimler i\u00e7in referans.',
-      route: Routes.glossary,
-      icon: '\u{1F4D6}',
-      category: ToolCategory.reference,
-      intentTags: [IntentTag.discover],
-      timeToValueSeconds: 5,
-      relatedToolIds: ['articles'],
-    ),
-
-    // ── 34. Articles ──
-    ToolManifest(
-      id: 'articles',
-      nameEn: 'Articles',
-      nameTr: 'Makaleler',
-      valuePropositionEn: 'Curated wellness articles and guides.',
-      valuePropositionTr:
-          'Se\u00e7ilmi\u015f sa\u011fl\u0131k makaleleri ve k\u0131lavuzlar.',
-      route: Routes.articles,
-      icon: '\u{1F4F0}',
-      category: ToolCategory.reference,
-      intentTags: [IntentTag.discover],
-      timeToValueSeconds: 120,
-      relatedToolIds: ['glossary'],
-    ),
-
-    // ── 35. Prompt Engine ──
+    // ── 33. Prompt Engine ──
     ToolManifest(
       id: 'promptLibrary',
       nameEn: 'Prompt Engine',
@@ -833,40 +728,7 @@ class ToolManifestRegistry {
       relatedToolIds: ['journal', 'milestones'],
     ),
 
-    // ── 37. Share Insight ──
-    ToolManifest(
-      id: 'shareInsight',
-      nameEn: 'Share Insight',
-      nameTr: '\u0130\u00e7g\u00f6r\u00fc Payla\u015f',
-      valuePropositionEn: 'Share a meaningful insight with others.',
-      valuePropositionTr:
-          'Anlaml\u0131 bir i\u00e7g\u00f6r\u00fcy\u00fc ba\u015fkalar\u0131yla payla\u015f.',
-      route: Routes.shareInsight,
-      icon: '\u{1F4E4}',
-      category: ToolCategory.data,
-      intentTags: [IntentTag.reflect],
-      timeToValueSeconds: 15,
-      relatedToolIds: ['shareCards'],
-    ),
-
-    // ── 38. Emotional Vocabulary ──
-    ToolManifest(
-      id: 'emotionalVocabulary',
-      nameEn: 'Emotion Words',
-      nameTr: 'Duygu Kelimeler',
-      valuePropositionEn:
-          'Expand your emotional vocabulary for richer entries.',
-      valuePropositionTr:
-          'Daha zengin kay\u0131tlar i\u00e7in duygusal kelime da\u011farc\u0131\u011f\u0131n\u0131 geni\u015flet.',
-      route: Routes.emotionalVocabulary,
-      icon: '\u{1F4AC}',
-      category: ToolCategory.reference,
-      intentTags: [IntentTag.discover],
-      timeToValueSeconds: 10,
-      relatedToolIds: ['journal'],
-    ),
-
-    // ── 39. Archive Vault ──
+    // ── 37. Archive Vault ──
     ToolManifest(
       id: 'journalArchive',
       nameEn: 'Archive Vault',
@@ -927,6 +789,7 @@ class ToolManifestRegistry {
       category: ToolCategory.analysis,
       intentTags: [IntentTag.reflect, IntentTag.analyze],
       timeToValueSeconds: 30,
+      requiresPremium: true,
       relatedToolIds: ['insightsDiscovery', 'journal', 'dreamInterpretation'],
     ),
 
@@ -944,27 +807,10 @@ class ToolManifestRegistry {
       category: ToolCategory.support,
       intentTags: [IntentTag.track, IntentTag.grow],
       timeToValueSeconds: 10,
-      relatedToolIds: ['habitSuggestions', 'rituals', 'challenges'],
+      relatedToolIds: ['rituals', 'challenges'],
     ),
 
-    // ── 44. Monthly Pulse ──
-    ToolManifest(
-      id: 'monthlyReflection',
-      nameEn: 'Monthly Pulse',
-      nameTr: 'Aylık Nabız',
-      valuePropositionEn:
-          'Review your month with theme-based insights and patterns.',
-      valuePropositionTr:
-          'Ay\u0131n\u0131 tema bazl\u0131 i\u00e7g\u00f6r\u00fc ve kal\u0131plarla de\u011ferlendir.',
-      route: Routes.journalMonthly,
-      icon: '\u{1F4C6}',
-      category: ToolCategory.analysis,
-      intentTags: [IntentTag.reflect, IntentTag.analyze],
-      timeToValueSeconds: 15,
-      relatedToolIds: ['patterns', 'yearReview', 'journal'],
-    ),
-
-    // ── 45. Life Timeline ──
+    // ── 44. Life Timeline ──
     ToolManifest(
       id: 'lifeTimeline',
       nameEn: 'Life Timeline',
@@ -978,6 +824,7 @@ class ToolManifestRegistry {
       category: ToolCategory.journal,
       intentTags: [IntentTag.reflect, IntentTag.track],
       timeToValueSeconds: 30,
+      requiresPremium: true,
       relatedToolIds: ['calendarHeatmap', 'journal', 'yearReview'],
     ),
   ];

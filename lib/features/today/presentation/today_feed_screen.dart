@@ -1,8 +1,9 @@
 // ════════════════════════════════════════════════════════════════════════════
 // TODAY FEED SCREEN - InnerCycles Focused Home (Survival Release)
 // ════════════════════════════════════════════════════════════════════════════
-// Core loop: Streak → Mood Check-in → Start Journaling → Insight → Entries
-// All SECONDARY feature cards removed. Clean, focused, retention-optimized.
+// Core 8: Header → StreakRecovery → MoodCheckin → StartJournal → Insight →
+//          Prompt → RecentEntries → LifeEvents → StreakCard
+// Surgery: CycleSync, ShadowWork, UnlockProgress, DiscoverMore removed.
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
@@ -14,7 +15,6 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/journal_entry.dart';
-import '../../../data/models/cycle_entry.dart';
 import '../../../data/models/life_event.dart';
 import '../../../data/content/life_event_presets.dart';
 import '../../../data/services/archetype_service.dart';
@@ -23,7 +23,7 @@ import '../../../data/services/haptic_service.dart';
 import '../../streak/presentation/streak_card.dart';
 import '../../streak/presentation/streak_recovery_banner.dart';
 import '../../mood/presentation/mood_checkin_card.dart';
-import '../../unlock/presentation/unlock_progress_banner.dart';
+// unlock_progress_banner import removed (Today Feed simplified)
 import '../../../shared/widgets/cosmic_background.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
@@ -79,20 +79,6 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: const MoodCheckinCard(),
                 ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
-              ),
-
-              // ═══════════════════════════════════════════════════════
-              // CYCLE SYNC CARD (if user has cycle data)
-              // ═══════════════════════════════════════════════════════
-              SliverToBoxAdapter(
-                child: _CycleSyncCard(isEn: isEn, isDark: isDark),
-              ),
-
-              // ═══════════════════════════════════════════════════════
-              // SHADOW WORK CARD (if user has shadow entries)
-              // ═══════════════════════════════════════════════════════
-              SliverToBoxAdapter(
-                child: _ShadowWorkCard(isEn: isEn, isDark: isDark),
               ),
 
               const SliverToBoxAdapter(child: SizedBox(height: 12)),
@@ -173,20 +159,6 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
                 child: _RecentLifeEventsCard(isEn: isEn, isDark: isDark),
-              ),
-
-              // ═══════════════════════════════════════════════════════
-              // PROGRESSIVE UNLOCK PROGRESS
-              // ═══════════════════════════════════════════════════════
-              const SliverToBoxAdapter(
-                child: UnlockProgressBanner(),
-              ),
-
-              // ═══════════════════════════════════════════════════════
-              // DISCOVER MORE (quick links to features)
-              // ═══════════════════════════════════════════════════════
-              SliverToBoxAdapter(
-                child: _DiscoverMoreSection(isEn: isEn, isDark: isDark),
               ),
 
               // ═══════════════════════════════════════════════════════
@@ -805,360 +777,6 @@ class _RecentEntryRow extends StatelessWidget {
         return isEn ? 'Social' : 'Sosyal';
     }
   }
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// CYCLE SYNC CARD - Today Feed Integration
-// ═══════════════════════════════════════════════════════════════════════════
-
-class _CycleSyncCard extends ConsumerWidget {
-  final bool isEn;
-  final bool isDark;
-
-  const _CycleSyncCard({required this.isEn, required this.isDark});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final cycleSyncAsync = ref.watch(cycleSyncServiceProvider);
-
-    return cycleSyncAsync.when(
-      loading: () => const SizedBox.shrink(),
-      error: (_, _) => const SizedBox.shrink(),
-      data: (service) {
-        if (!service.hasData) return const SizedBox.shrink();
-
-        final cycleDay = service.getCurrentCycleDay();
-        final phase = service.getCurrentPhase();
-        if (cycleDay == null || phase == null) return const SizedBox.shrink();
-
-        final phaseColor = _cycleSyncPhaseColor(phase);
-        final phaseName = isEn ? phase.displayNameEn : phase.displayNameTr;
-
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Semantics(
-            button: true,
-            label: isEn
-                ? 'Cycle day $cycleDay, $phaseName phase. Tap for details'
-                : 'Döngü günü $cycleDay, $phaseName fazı. Detaylar için dokun',
-            child: GestureDetector(
-            onTap: () {
-              HapticService.selectionTap();
-              context.push(Routes.cycleSync);
-            },
-            child: Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              decoration: BoxDecoration(
-                color: phaseColor.withValues(alpha: isDark ? 0.12 : 0.08),
-                borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-                border: Border.all(
-                  color: phaseColor.withValues(alpha: 0.3),
-                ),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    width: 36,
-                    height: 36,
-                    decoration: BoxDecoration(
-                      color: phaseColor.withValues(alpha: 0.2),
-                      shape: BoxShape.circle,
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      '$cycleDay',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: phaseColor,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          isEn
-                              ? 'Cycle Day $cycleDay — $phaseName'
-                              : 'Döngü Günü $cycleDay — $phaseName',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            color: isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
-                          ),
-                        ),
-                        Text(
-                          isEn
-                              ? phase.descriptionEn
-                              : phase.descriptionTr,
-                          style: TextStyle(
-                            fontSize: 11,
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Icon(
-                    Icons.chevron_right_rounded,
-                    size: 20,
-                    color: isDark
-                        ? AppColors.textMuted
-                        : AppColors.lightTextMuted,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          ),
-        ).animate().fadeIn(delay: 120.ms, duration: 400.ms);
-      },
-    );
-  }
-
-  static Color _cycleSyncPhaseColor(CyclePhase phase) {
-    switch (phase) {
-      case CyclePhase.menstrual:
-        return const Color(0xFFE57373);
-      case CyclePhase.follicular:
-        return const Color(0xFF81C784);
-      case CyclePhase.ovulatory:
-        return AppColors.starGold;
-      case CyclePhase.luteal:
-        return AppColors.amethyst;
-    }
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// SHADOW WORK CARD - Today Feed Integration
-// ═══════════════════════════════════════════════════════════════════════════
-
-class _ShadowWorkCard extends ConsumerWidget {
-  final bool isEn;
-  final bool isDark;
-
-  const _ShadowWorkCard({required this.isEn, required this.isDark});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final shadowAsync = ref.watch(shadowWorkServiceProvider);
-
-    return shadowAsync.when(
-      loading: () => const SizedBox.shrink(),
-      error: (_, _) => const SizedBox.shrink(),
-      data: (service) {
-        final streak = service.getStreak();
-        final breakthroughs = service.getBreakthroughCount();
-        final total = service.totalEntries;
-
-        // Show card for all users — it's a discoverable entry point
-        final subtitle = total == 0
-            ? (isEn
-                ? 'Explore your hidden patterns'
-                : 'Gizli kalıplarını keşfet')
-            : (isEn
-                ? '$total entries · $breakthroughs insights${streak > 0 ? ' · $streak day streak' : ''}'
-                : '$total giriş · $breakthroughs içgörü${streak > 0 ? ' · $streak gün seri' : ''}');
-
-        return Padding(
-          padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
-          child: GestureDetector(
-            onTap: () {
-              HapticService.selectionTap();
-              context.push(Routes.shadowWork);
-            },
-            child: Semantics(
-              label: isEn ? 'Shadow Work Journal' : 'Gölge Çalışması Günlüğü',
-              button: true,
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF9C27B0)
-                      .withValues(alpha: isDark ? 0.12 : 0.08),
-                  borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-                  border: Border.all(
-                    color:
-                        const Color(0xFF9C27B0).withValues(alpha: 0.3),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 36,
-                      height: 36,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF9C27B0)
-                            .withValues(alpha: 0.2),
-                        shape: BoxShape.circle,
-                      ),
-                      alignment: Alignment.center,
-                      child: const Icon(
-                        Icons.psychology_rounded,
-                        size: 20,
-                        color: Color(0xFF9C27B0),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            isEn
-                                ? 'Shadow Work Journal'
-                                : 'Gölge Çalışması Günlüğü',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
-                            ),
-                          ),
-                          Text(
-                            subtitle,
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Icon(
-                      Icons.chevron_right_rounded,
-                      size: 20,
-                      color: isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ).animate().fadeIn(delay: 140.ms, duration: 400.ms);
-      },
-    );
-  }
-}
-
-// ════════════════════════════════════════════════════════════════════════════
-// DISCOVER MORE SECTION
-// ════════════════════════════════════════════════════════════════════════════
-
-class _DiscoverMoreSection extends StatelessWidget {
-  final bool isEn;
-  final bool isDark;
-  const _DiscoverMoreSection({required this.isEn, required this.isDark});
-
-  @override
-  Widget build(BuildContext context) {
-    final items = [
-      _DiscoverItem(
-        '\u{1F4DD}',
-        isEn ? 'Prompts' : '\u0130pu\u00e7lar\u0131',
-        Routes.promptLibrary,
-      ),
-      _DiscoverItem(
-        '\u{1F3C6}',
-        isEn ? 'Milestones' : 'Ba\u015far\u0131lar',
-        Routes.milestones,
-      ),
-      _DiscoverItem(
-        '\u{2705}',
-        isEn ? 'Habits' : 'Al\u0131\u015fkanl\u0131k',
-        Routes.dailyHabits,
-      ),
-    ];
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            isEn ? 'Explore' : 'Ke\u015ffet',
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextMuted,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            children: items.asMap().entries.map((entry) {
-              final index = entry.key;
-              final item = entry.value;
-              return Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    right: index < items.length - 1 ? 8 : 0,
-                  ),
-                  child: GestureDetector(
-                    onTap: () => context.push(item.route),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      decoration: BoxDecoration(
-                        color: isDark
-                            ? AppColors.surfaceDark.withValues(alpha: 0.6)
-                            : AppColors.lightCard,
-                        borderRadius: BorderRadius.circular(14),
-                        border: Border.all(
-                          color: isDark
-                              ? Colors.white.withValues(alpha: 0.06)
-                              : Colors.black.withValues(alpha: 0.04),
-                        ),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(item.emoji, style: const TextStyle(fontSize: 24)),
-                          const SizedBox(height: 4),
-                          Text(
-                            item.label,
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w500,
-                              color: isDark
-                                  ? AppColors.textSecondary
-                                  : AppColors.lightTextMuted,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ).animate().fadeIn(
-                  delay: Duration(milliseconds: 350 + index * 50),
-                  duration: 300.ms,
-                ),
-              );
-            }).toList(),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _DiscoverItem {
-  final String emoji;
-  final String label;
-  final String route;
-  const _DiscoverItem(this.emoji, this.label, this.route);
 }
 
 // ════════════════════════════════════════════════════════════════════════════
