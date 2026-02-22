@@ -9,8 +9,10 @@ class AppConstants {
   // App IDs and Links
   static const String appStoreId = '6758612716';
   static const String playStoreId = 'com.venusone.innercycles';
-  static const String privacyPolicyUrl = 'https://innercycles.app/privacy';
-  static const String termsOfServiceUrl = 'https://innercycles.app/terms';
+  static const String privacyPolicyUrl =
+      'https://umutnull-woltemade.github.io/innercycles/privacy.html';
+  static const String termsOfServiceUrl =
+      'https://umutnull-woltemade.github.io/innercycles/terms.html';
   static const String supportEmail = 'support@innercycles.app';
 
   // RevenueCat API Keys — loaded from .env at runtime

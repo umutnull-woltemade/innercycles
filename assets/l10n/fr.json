@@ -967,7 +967,7 @@
           "title": "🌊 WATER DREAM - {archetype} INTERPRETATION",
           "divider": "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
           "basic_meaning_label": "💧 BASIC MEANING",
-          "element_perspective_label": "🔥 {element} ELEMENT PERSPECTIVE",
+          "element_perspective_label": "🔥 PERSONAL PERSPECTIVE",
           "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION",
           "practice_label": "✨ PRACTICAL APPLICATION",
           "pioneer": {
@@ -1001,7 +1001,7 @@
             "practice": "• Artistic creation - painting, music, writing\n• Meditation by sea or lake\n• Lucid dream practices\n• Inner reflection work\n• Be open to inner guidance"
           },
           "default": {
-            "basic_meaning": "Water carries emotional messages for your {element} sign. The subconscious wants to flow.",
+            "basic_meaning": "Water carries emotional messages from your subconscious. It reflects your inner emotional landscape and wants to flow.",
             "element_perspective": "Water's fluid energy is communicating with you. A call to dive into emotional depths.",
             "practice": "• Spend time by water\n• Express your emotions\n• Trust the flow, let go of forcing\n• Listen to your intuition"
           }
@@ -1019,7 +1019,7 @@
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Write your fears and burn them\n• Go to a high place, look at the view\n• Repeat 'I can fly' affirmation\n• Set intention for lucid dreaming",
           "cosmic_message_label": "💫 PERSONAL MESSAGE",
-          "cosmic_message": "Your inner wisdom is saying 'you have wings, use them.' As a {element} element, {element_message}."
+          "cosmic_message": "Your inner wisdom is saying 'you have wings, use them.' Trust the process and let your strengths guide you forward."
         },
         "falling": {
           "title": "⬇️ FALLING DREAM - {archetype} INTERPRETATION",
@@ -1033,7 +1033,7 @@
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Walk barefoot on the earth\n• Do grounding meditation\n• List your security needs\n• Practice breathing exercises",
           "cosmic_message_label": "💫 PERSONAL MESSAGE",
-          "cosmic_message": "Falling is actually letting go. Let go of the illusion of control, trust yourself. As a {element} element, grounding practice is especially important."
+          "cosmic_message": "Falling is actually letting go. Let go of the illusion of control, trust yourself. Grounding practices like journaling and breathwork can help."
         },
         "death": {
           "title": "💀 DEATH DREAM - {archetype} INTERPRETATION",
@@ -1053,7 +1053,7 @@
           "title": "🏃 CHASE DREAM - {archetype} INTERPRETATION",
           "basic_meaning_label": "😰 BASIC MEANING",
           "basic_meaning": "Being chased is a call to face something you're running from in life. The more you run, the bigger the chaser grows!",
-          "special_interpretation": "With your {element} energy, bravely turn around and ask what's chasing you. Usually what we run from are the lessons we need most.",
+          "special_interpretation": "Bravely turn around and ask what's chasing you. Usually what we run from are the lessons we need most.",
           "psychological_label": "🌙 PSYCHOLOGICAL DIMENSION (JUNG ANALYSIS)",
           "psychological": "• The chaser: Shadow archetype - your rejected aspects\n• Running: Avoidance of confrontation\n• Being caught: Opportunity for shadow integration\n• Can't escape: Denial no longer works",
           "chaser_label": "🔍 WHAT COULD BE CHASING YOU?",
@@ -1075,13 +1075,13 @@
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Research that animal - mythology, symbolism\n• Do a guided meditation visualizing the animal\n• Journal about what the animal represents to you\n• Notice that animal in your daily life",
           "cosmic_message_label": "💫 PERSONAL MESSAGE",
-          "cosmic_message": "Les animaux dans les rêves représentent souvent vos instincts et forces intérieures. En tant qu'archétype {element}, ce symbolisme peut être particulièrement significatif."
+          "cosmic_message": "Les animaux dans les rêves représentent souvent vos instincts et forces intérieures. Réfléchissez aux qualités que cet animal symbolise et que vous développez peut-être."
         },
         "house": {
           "title": "🏠 HOUSE/BUILDING DREAM - {archetype} INTERPRETATION",
           "basic_meaning_label": "🏛️ BASIC MEANING",
           "basic_meaning": "Houses and buildings symbolize your inner structure and personal world. Each room represents different aspects of your self.",
-          "special_interpretation": "Think about which 'room' you're avoiding entering. As a {element} element, the structure of your inner world is important.",
+          "special_interpretation": "Think about which 'room' you're avoiding entering. The structure of your inner world is key to understanding this dream.",
           "room_meanings_label": "🚪 ROOM MEANINGS",
           "room_meanings": "• Basement: Subconscious, suppressed memories\n• Attic: Higher consciousness, inner awareness\n• Kitchen: Nourishment, creativity\n• Bedroom: Privacy, sexuality\n• Bathroom: Purification, emotional cleansing\n• Living room: Social aspect, relationship with outer world\n• Secret rooms: Unexplored potential",
           "house_states_label": "🔑 HOUSE STATES",
@@ -1105,7 +1105,7 @@
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Take a love language test\n• List your relationship needs\n• Work on self-worth\n• Heart-centered meditation",
           "cosmic_message_label": "💫 PERSONAL MESSAGE",
-          "cosmic_message": "Love yourself first. {element} element in love life {element_message}."
+          "cosmic_message": "Love yourself first. Your dream patterns may reflect what you value most in relationships — explore that in your journal."
         },
         "money": {
           "title": "💰 MONEY/WEALTH DREAM - {archetype} INTERPRETATION",
@@ -1121,14 +1121,14 @@
           "practice_label": "✨ PRACTICAL APPLICATION",
           "practice": "• Repeat abundance affirmations\n• Keep a gratitude list\n• Question your relationship with money\n• Practice generosity",
           "cosmic_message_label": "💫 PERSONAL MESSAGE",
-          "cosmic_message": "Life offers abundance - be a receiver. {element} element in financial matters {element_message}."
+          "cosmic_message": "Life offers abundance — be open to receiving. True wealth often starts with inner calm and gratitude."
         },
         "generic": {
           "title": "{archetype} PERSONAL DREAM INTERPRETATION",
           "subconscious_label": "💭 SUBCONSCIOUS MESSAGE",
           "subconscious": "The dream you described shows that your subconscious is sending you important messages.",
-          "element_perspective_label": "💫 {element} ELEMENT PERSPECTIVE",
-          "element_perspective": "With your {element} element's energy, the core message of this dream seems to be related to {element_message}.",
+          "element_perspective_label": "💫 PERSONAL PERSPECTIVE",
+          "element_perspective": "Based on your personality profile, the core message of this dream may be about self-discovery and personal growth.",
           "emotion_label": "🌙 EMOTION ANALYSIS",
           "emotion": "Focus on the emotions in your dream:\n• Fear: Need for security\n• Happiness: Sign that you're on the right path\n• Confusion: The unknown is being explored\n• Sadness: Incomplete feeling\n• Anger: Suppressed energy",
           "symbol_reading_label": "📍 SYMBOL READING",

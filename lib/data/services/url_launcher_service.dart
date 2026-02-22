@@ -153,7 +153,7 @@ class UrlLauncherService {
   /// Share app link
   Future<String> getAppShareLink() async {
     // Web'de platform kontrolü yapamayız
-    if (kIsWeb) return 'https://innercycles.app';
+    if (kIsWeb) return 'https://umutnull-woltemade.github.io/innercycles/';
 
     try {
       if (Platform.isIOS && AppConstants.appStoreId.isNotEmpty) {
@@ -164,7 +164,7 @@ class UrlLauncherService {
     } catch (e) {
       if (kDebugMode) debugPrint('Platform store URL lookup failed: $e');
     }
-    return 'https://innercycles.app';
+    return 'https://umutnull-woltemade.github.io/innercycles/';
   }
 }
 

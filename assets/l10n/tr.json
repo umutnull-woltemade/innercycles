@@ -967,7 +967,7 @@
                     "title": "🌊 SU RÜYASI - {archetype} YORUMU",
                     "divider": "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
                     "basic_meaning_label": "💧 TEMEL ANLAM",
-                    "element_perspective_label": "🔥 {element} ELEMENTİ PERSPEKTİFİ",
+                    "element_perspective_label": "🔥 KİŞİSEL PERSPEKTİF",
                     "psychological_label": "🌙 PSİKOLOJİK BOYUT",
                     "practice_label": "✨ PRATİK UYGULAMA",
                     "pioneer": {
@@ -1001,7 +1001,7 @@
                         "practice": "• Sanatsal yaratım - resim, müzik, yazı\n• Deniz veya göl kenarında meditasyon\n• Bilinçli rüya pratikleri\n• Şifa çalışmaları\n• İçsel rehberliğe açık ol"
                     },
                     "default": {
-                        "basic_meaning": "Su, {element} arketipin için duygusal mesajlar taşıyor. Bilinçaltı akışa geçmek istiyor.",
+                        "basic_meaning": "Su, bilinçaltından duygusal mesajlar taşır. İç duygusal manzaranı yansıtır ve akışa geçmek ister.",
                         "element_perspective": "Suyun akışkan enerjisi seninle iletişim kuruyor. Duygusal derinliklere inme çağrısı.",
                         "practice": "• Su kenarında zaman geçir\n• Duygularını ifade et\n• Akışa güven, zorlamayı bırak\n• Sezgilerine kulak ver"
                     }
@@ -1019,7 +1019,7 @@
                     "practice_label": "✨ PRATİK UYGULAMA",
                     "practice": "• Korkularını yaz ve yak\n• Yüksek bir yere çık, manzaraya bak\n• \"Uçabiliyorum\" afirmasyonu tekrarla\n• Bilinçli rüya için niyet koy",
                     "cosmic_message_label": "💫 KİŞİSEL MESAJ",
-                    "cosmic_message": "Bu düşünce sana \"kanatların var, kullan\" diyor. {element} elementi olarak {element_message}."
+                    "cosmic_message": "Bu düşünce sana \"kanatların var, kullan\" diyor. Sürece güven ve güçlü yönlerinin seni ileriye taşımasına izin ver."
                 },
                 "falling": {
                     "title": "⬇️ DÜŞME RÜYASI - {archetype} YORUMU",
@@ -1033,7 +1033,7 @@
                     "practice_label": "✨ PRATİK UYGULAMA",
                     "practice": "• Çıplak ayakla toprağa bas\n• Kök çakra meditasyonu yap\n• Güvenlik ihtiyaçlarını listele\n• Nefes egzersizleri uygula",
                     "cosmic_message_label": "💫 KİŞİSEL MESAJ",
-                    "cosmic_message": "Düşmek aslında bırakmaktır. Kontrol illüzyonunu bırak, sürece güven. {element} elementi olarak topraklanma pratiği özellikle önemli."
+                    "cosmic_message": "Düşmek aslında bırakmaktır. Kontrol illüzyonunu bırak, sürece güven. Günlük yazma ve nefes çalışması gibi topraklanma pratikleri yardımcı olabilir."
                 },
                 "death": {
                     "title": "💀 ÖLÜM RÜYASI - {archetype} YORUMU",
@@ -1053,7 +1053,7 @@
                     "title": "🏃 KOVALANMA RÜYASI - {archetype} YORUMU",
                     "basic_meaning_label": "😰 TEMEL ANLAM",
                     "basic_meaning": "Kovalanmak, hayatında kaçtığın bir konuyla yüzleşme çağrısıdır. Kaçtıkça kovalayan büyür!",
-                    "special_interpretation": "{element} enerjinle, cesaretle dön ve neyin peşinde olduğunu sor. Genellikle kaçtığımız şey, en çok ihtiyacımız olan derslerdir.",
+                    "special_interpretation": "Cesaretle dön ve neyin peşinde olduğunu sor. Genellikle kaçtığımız şey, en çok ihtiyacımız olan derslerdir.",
                     "psychological_label": "🌙 PSİKOLOJİK BOYUT (JUNG ANALİZİ)",
                     "psychological": "• Kovalayan: Gölge arketipi - reddedilen yönlerin\n• Kaçış: Yüzleşmekten kaçınma\n• Yakalanma: Gölgeyle entegrasyon fırsatı\n• Kaçamama: İnkar artık işe yaramıyor",
                     "chaser_label": "🔍 KOVALAYAN NE OLABİLİR?",
@@ -1075,13 +1075,13 @@
                     "practice_label": "✨ PRATİK UYGULAMA",
                     "practice": "• O hayvanı araştır - mitoloji, sembolizm\n• Hayvanı hayal ederek rehberli meditasyon yap\n• Hayvanın senin için neyi temsil ettiğini günlüğüne yaz\n• Günlük hayatta o hayvana dikkat et",
                     "cosmic_message_label": "💫 KİŞİSEL MESAJ",
-                    "cosmic_message": "Rüyalardaki hayvanlar genellikle içgüdülerini ve iç güçlerini temsil eder. {element} arketipi olarak bu sembolizm özellikle anlamlı olabilir."
+                    "cosmic_message": "Rüyalardaki hayvanlar genellikle içgüdülerini ve iç güçlerini temsil eder. Bu hayvanın geliştirmekte olduğun hangi nitelikleri simgelediğini düşün."
                 },
                 "house": {
                     "title": "🏠 EV/BİNA RÜYASI - {archetype} YORUMU",
                     "basic_meaning_label": "🏛️ TEMEL ANLAM",
                     "basic_meaning": "Ev ve binalar, içsel yapını ve iç dünyayı sembolize eder. Her oda benliğinin farklı yönlerini temsil eder.",
-                    "special_interpretation": "Hangi \"odaya\" girmekten kaçındığını düşün. {element} elementi olarak iç dünyanın yapısı önemli.",
+                    "special_interpretation": "Hangi \"odaya\" girmekten kaçındığını düşün. İç dünyanın yapısını keşfetmek kişisel gelişimin önemli bir parçasıdır.",
                     "room_meanings_label": "🚪 ODA ANLAMLARI",
                     "room_meanings": "• Bodrum: Bilinçaltı, bastırılmış anılar\n• Çatı katı: Yüksek bilinç, içsel farkındalık\n• Mutfak: Beslenme, yaratıcılık\n• Yatak odası: Mahremiyet, cinsellik\n• Banyo: Arınma, duygusal temizlik\n• Salon: Sosyal yön, dış dünya ilişkisi\n• Gizli odalar: Keşfedilmemiş potansiyel",
                     "house_states_label": "🔑 EV DURUMLARI",
@@ -1105,7 +1105,7 @@
                     "practice_label": "✨ PRATİK UYGULAMA",
                     "practice": "• Aşk dili testini yap\n• İlişki ihtiyaçlarını listele\n• Özdeğer çalışması yap\n• Kalp çakrası meditasyonu",
                     "cosmic_message_label": "💫 KİŞİSEL MESAJ",
-                    "cosmic_message": "Önce kendini sev. {element} elementi aşk yaşamında {element_message}."
+                    "cosmic_message": "Önce kendini sev. Rüya kalıpların ilişkilerde en çok neye değer verdiğini yansıtıyor olabilir — bunu günlüğünde keşfet."
                 },
                 "money": {
                     "title": "💰 PARA/ZENGİNLİK RÜYASI - {archetype} YORUMU",
@@ -1121,14 +1121,14 @@
                     "practice_label": "✨ PRATİK UYGULAMA",
                     "practice": "• Bolluk afirmasyonları tekrarla\n• Şükran listesi tut\n• Para ile ilişkini sorgula\n• Cömertlik pratiği yap",
                     "cosmic_message_label": "💫 KİŞİSEL MESAJ",
-                    "cosmic_message": "Hayat bolluk sunar - alıcı ol. {element} elementi finansal konularda {element_message}."
+                    "cosmic_message": "Hayat bolluk sunar — almaya açık ol. Gerçek zenginlik genellikle içsel huzur ve minnettarlıkla başlar."
                 },
                 "generic": {
                     "title": "{archetype} KİŞİSEL RÜYA YORUMU",
                     "subconscious_label": "💭 BİLİNÇALTI MESAJI",
                     "subconscious": "Anlattığın rüya, bilinçaltının sana önemli mesajlar ilettiğini gösteriyor.",
-                    "element_perspective_label": "💫 {element} ELEMENTİ PERSPEKTİFİ",
-                    "element_perspective": "{element} elementinin enerjisiyle, bu rüyanın temel mesajı {element_message} ile ilgili görünüyor.",
+                    "element_perspective_label": "💫 KİŞİSEL PERSPEKTİF",
+                    "element_perspective": "Kişilik profiline göre, bu rüyanın temel mesajı kendini keşfetme ve kişisel gelişimle ilgili olabilir.",
                     "emotion_label": "🌙 DUYGU ANALİZİ",
                     "emotion": "Rüyandaki duygulara odaklan:\n• Korku: Güvenlik ihtiyacı\n• Mutluluk: Doğru yoldasın işareti\n• Şaşkınlık: Bilinmeyen keşfediliyor\n• Üzüntü: Tamamlanmamış duygu\n• Öfke: Bastırılmış enerji",
                     "symbol_reading_label": "📍 SEMBOL OKUMA",

@@ -73,8 +73,8 @@ description: |
 
   Subscriptions: Monthly or Annual plans available. Payment charged to iTunes Account at confirmation of purchase. Subscription auto-renews unless turned off at least 24 hours before the end of the current period. Manage subscriptions in Account Settings.
 
-  Privacy Policy: https://innercycles.app/privacy
-  Terms of Use: https://innercycles.app/terms
+  Privacy Policy: https://umutnull-woltemade.github.io/innercycles/privacy.html
+  Terms of Use: https://umutnull-woltemade.github.io/innercycles/terms.html
 
 # ── PROMOTIONAL TEXT (170 chars, can be updated without review) ──────────
 promotional_text: "New: Recurrence Detection Engine + Dream Archaeology + Archetype Progression. Map the emotional cycles you repeat — see your cycle position in 7 days."
@@ -106,13 +106,13 @@ review_notes: |
 
   ATT PROMPT: The app requests App Tracking Transparency permission to serve personalized ads via Google AdMob. If the user declines, only non-personalized ads are shown. Premium subscribers see no ads.
 
-  CONTENT: Reflective prompts, dream symbol definitions, and cycle analysis text are generated locally from a curated content database combined with AI-assisted content generation. AI-generated content is clearly labeled, safety-filtered to remove predictive or diagnostic language, and reviewed by human editors. No user-generated content is displayed to other users. The app does not provide medical, psychological, or predictive advice. Full AI usage policy at https://innercycles.app/ai-policy.
+  CONTENT: Reflective prompts, dream symbol definitions, and cycle analysis text are generated locally from a curated content database combined with AI-assisted content generation. AI-generated content is clearly labeled, safety-filtered to remove predictive or diagnostic language, and reviewed by human editors. No user-generated content is displayed to other users. The app does not provide medical, psychological, or predictive advice. Full AI usage policy at https://umutnull-woltemade.github.io/innercycles/ai-policy.html.
 
   ARCHETYPE SYSTEM: The app uses a personality archetype framework (Pioneer, Builder, Communicator, etc.) inspired by narrative psychology and personality typing systems like the Enneagram and MBTI. These are NOT zodiac signs. The initial archetype is assigned via an onboarding quiz based on self-reported preferences. The system tracks how a user's dominant archetype evolves over time based on what they write and explore.
 
   BIRTH DATE: Birth date is collected solely for age verification and birthday-themed reflection prompts (e.g., "birthday reflection" on the user's birthday). Birth time and city fields exist for timezone-aware notification scheduling and are fully optional. No astrological calculations are performed.
 
-  PRIVACY: No personal data is shared with third parties beyond analytics (Apple App Analytics) and ads (AdMob). Full privacy policy at https://innercycles.app/privacy.
+  PRIVACY: No personal data is shared with third parties beyond analytics (Apple App Analytics) and ads (AdMob). Full privacy policy at https://umutnull-woltemade.github.io/innercycles/privacy.html.
 
   CONTACT: support@innercycles.app
 
@@ -137,7 +137,7 @@ tr:
 
     Ücretsiz başla. İçinde yaşadığın döngüleri gör.
 
-    Abonelik Bilgileri: Ödeme, satın alma onayında Apple Kimliği hesabınızdan tahsil edilir. Abonelik, mevcut dönemin bitiminden en az 24 saat önce iptal edilmediği takdirde otomatik olarak yenilenir. Gizlilik Politikası: https://innercycles.app/privacy | Kullanım Koşulları: https://innercycles.app/terms
+    Abonelik Bilgileri: Ödeme, satın alma onayında Apple Kimliği hesabınızdan tahsil edilir. Abonelik, mevcut dönemin bitiminden en az 24 saat önce iptal edilmediği takdirde otomatik olarak yenilenir. Gizlilik Politikası: https://umutnull-woltemade.github.io/innercycles/privacy.html | Kullanım Koşulları: https://umutnull-woltemade.github.io/innercycles/terms.html
 
 # ── APP STORE CONNECT PRIVACY NUTRITION LABELS ────────────────────────────
 # Paste these values into App Store Connect → App Privacy → Data Types
