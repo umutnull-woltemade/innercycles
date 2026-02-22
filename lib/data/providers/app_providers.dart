@@ -57,6 +57,7 @@ import '../services/partner_sync_service.dart';
 import '../services/dream_journal_correlation_service.dart';
 import '../services/telemetry_service.dart';
 import '../services/progressive_unlock_service.dart';
+import '../services/life_event_service.dart';
 import '../models/journal_entry.dart';
 import '../models/cross_correlation_result.dart';
 
@@ -848,4 +849,17 @@ final telemetryServiceProvider = FutureProvider<TelemetryService>((ref) async {
 final progressiveUnlockServiceProvider =
     FutureProvider<ProgressiveUnlockService>((ref) async {
   return await ProgressiveUnlockService.init();
+});
+
+// =============================================================================
+// LIFE EVENT SERVICE PROVIDER
+// =============================================================================
+
+final lifeEventServiceProvider = FutureProvider<LifeEventService>((ref) async {
+  return await LifeEventService.init();
+});
+
+final lifeEventCountProvider = FutureProvider<int>((ref) async {
+  final service = await ref.watch(lifeEventServiceProvider.future);
+  return service.eventCount;
 });

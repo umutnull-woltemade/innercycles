@@ -57,21 +57,13 @@ import '../../features/challenges/presentation/challenge_hub_screen.dart';
 import '../../features/challenges/presentation/challenge_list_screen.dart';
 import '../../features/compatibility/presentation/compatibility_reflection_screen.dart';
 import '../../features/dreams/presentation/dream_archive_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_falling_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_water_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_recurring_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_running_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_losing_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_flying_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_darkness_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_past_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_searching_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_voiceless_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_lost_screen.dart';
-import '../../features/dreams/presentation/canonical/dream_unable_to_fly_screen.dart';
+import '../../features/dreams/presentation/canonical/dream_theme_screen.dart';
 import '../../features/dreams/presentation/dream_glossary_screen.dart';
 import '../../features/dreams/presentation/dream_interpretation_screen.dart';
 import '../../features/energy/presentation/energy_map_screen.dart';
+import '../../features/life_events/presentation/life_event_screen.dart';
+import '../../features/life_events/presentation/life_event_detail_screen.dart';
+import '../../features/life_events/presentation/life_timeline_screen.dart';
 import '../../features/gratitude/presentation/gratitude_archive_screen.dart';
 import '../../features/gratitude/presentation/gratitude_screen.dart';
 import '../../features/insight/presentation/insight_screen.dart';
@@ -239,6 +231,35 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.calendarHeatmap,
         builder: (context, state) => const CalendarHeatmapScreen(),
       ),
+
+      // ════════════════════════════════════════════════════════════════
+      // LIFE EVENTS
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.lifeEventNew,
+        builder: (context, state) {
+          final date = state.uri.queryParameters['date'];
+          return LifeEventScreen(initialDate: date);
+        },
+      ),
+      GoRoute(
+        path: Routes.lifeEventEdit,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return LifeEventScreen(editId: id);
+        },
+      ),
+      GoRoute(
+        path: Routes.lifeEventDetail,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return LifeEventDetailScreen(eventId: id);
+        },
+      ),
+      GoRoute(
+        path: Routes.lifeTimeline,
+        builder: (context, state) => const LifeTimelineScreen(),
+      ),
       GoRoute(
         path: Routes.emotionalCycles,
         builder: (context, state) => const EmotionalCycleScreen(),
@@ -401,54 +422,15 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.dreamArchive,
         builder: (context, state) => const DreamArchiveScreen(),
       ),
-      // ── Dream Pages (canonical content) ──
+      // ── Dream Pages (single parameterized route) ──
       GoRoute(
-        path: Routes.dreamFalling,
-        builder: (context, state) => const DreamFallingScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamWater,
-        builder: (context, state) => const DreamWaterScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamRecurring,
-        builder: (context, state) => const DreamRecurringScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamRunning,
-        builder: (context, state) => const DreamRunningScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamLosing,
-        builder: (context, state) => const DreamLosingScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamFlying,
-        builder: (context, state) => const DreamFlyingScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamDarkness,
-        builder: (context, state) => const DreamDarknessScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamPast,
-        builder: (context, state) => const DreamPastScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamSearching,
-        builder: (context, state) => const DreamSearchingScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamVoiceless,
-        builder: (context, state) => const DreamVoicelessScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamLost,
-        builder: (context, state) => const DreamLostScreen(),
-      ),
-      GoRoute(
-        path: Routes.dreamUnableToFly,
-        builder: (context, state) => const DreamUnableToFlyScreen(),
+        path: '/dreams/:theme',
+        builder: (context, state) {
+          final theme = state.pathParameters['theme']!;
+          // Skip non-canonical routes handled above
+          if (theme == 'archive') return const DreamArchiveScreen();
+          return DreamThemeScreen(themeId: theme);
+        },
       ),
 
       // ════════════════════════════════════════════════════════════════

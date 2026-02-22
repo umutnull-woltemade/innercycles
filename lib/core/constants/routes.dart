@@ -114,6 +114,14 @@ class Routes {
   static const String shadowWork = '/shadow-work';
 
   // ════════════════════════════════════════════════════════════════
+  // LIFE EVENTS (Life Timeline)
+  // ════════════════════════════════════════════════════════════════
+  static const String lifeEventNew = '/life-events/new';
+  static const String lifeEventEdit = '/life-events/edit/:id';
+  static const String lifeEventDetail = '/life-events/:id';
+  static const String lifeTimeline = '/life-timeline';
+
+  // ════════════════════════════════════════════════════════════════
   // CALENDAR & SEARCH
   // ════════════════════════════════════════════════════════════════
   static const String calendarHeatmap = '/calendar';

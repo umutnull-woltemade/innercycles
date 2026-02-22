@@ -174,11 +174,6 @@ class ProfileHubScreen extends ConsumerWidget {
         Routes.yearReview,
       ),
       _SettingsLink(
-        '\u{1F491}',
-        isEn ? 'Partner Sync' : 'Partner Senkronu',
-        Routes.partner,
-      ),
-      _SettingsLink(
         '\u{1F4C8}',
         isEn ? 'Growth Dashboard' : 'Geli\u015fim Panosu',
         Routes.growthDashboard,

@@ -10,9 +10,12 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
+import '../../../data/models/life_event.dart';
 import '../../../core/constants/common_strings.dart';
+import '../../../data/content/life_event_presets.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_service.dart';
+import '../../../data/services/life_event_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../data/services/premium_service.dart';
@@ -40,6 +43,10 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
   Map<String, JournalEntry> _entryMap = const {};
   int _totalEntryCount = 0;
 
+  // Cache lifeEventMap
+  LifeEventService? _lastLifeEventService;
+  Map<String, List<LifeEvent>> _lifeEventMap = const {};
+
   @override
   void initState() {
     super.initState();
@@ -61,6 +68,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
     final serviceAsync = ref.watch(journalServiceProvider);
+    final lifeEventAsync = ref.watch(lifeEventServiceProvider);
     final isPremium = ref.watch(isPremiumUserProvider);
 
     return Scaffold(
@@ -77,8 +85,13 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
               ),
             ),
           ),
-          data: (service) =>
-              _buildContent(context, service, isDark, isEn, isPremium),
+          data: (service) {
+            // Life event service may still be loading — use empty map as fallback
+            final lifeEventService = lifeEventAsync.valueOrNull;
+            return _buildContent(
+              context, service, lifeEventService, isDark, isEn, isPremium,
+            );
+          },
         ),
       ),
     );
@@ -87,6 +100,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
   Widget _buildContent(
     BuildContext context,
     JournalService service,
+    LifeEventService? lifeEventService,
     bool isDark,
     bool isEn,
     bool isPremium,
@@ -103,6 +117,14 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
       _entryMap = map;
     }
     final entryMap = _entryMap;
+
+    // Cache lifeEventMap
+    if (lifeEventService != null &&
+        !identical(lifeEventService, _lastLifeEventService)) {
+      _lastLifeEventService = lifeEventService;
+      _lifeEventMap = lifeEventService.getEventsMap();
+    }
+    final lifeEventMap = _lifeEventMap;
 
     final monthEntries = service.getEntriesForMonth(
       _selectedYear,
@@ -184,6 +206,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                 year: _selectedYear,
                 month: _selectedMonth,
                 entryMap: entryMap,
+                lifeEventMap: lifeEventMap,
                 selectedDateKey: _selectedDateKey,
                 isDark: isDark,
                 isEn: isEn,
@@ -207,12 +230,19 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                 _DayDetail(
                   dateKey: _selectedDateKey!,
                   entry: entryMap[_selectedDateKey],
+                  lifeEvents: lifeEventMap[_selectedDateKey] ?? [],
                   isDark: isDark,
                   isEn: isEn,
                   onViewEntry: (id) => context.push(
                     Routes.journalEntryDetail.replaceFirst(':id', id),
                   ),
                   onCreateEntry: () => context.push(Routes.journal),
+                  onAddLifeEvent: () => context.push(
+                    '${Routes.lifeEventNew}?date=$_selectedDateKey',
+                  ),
+                  onViewLifeEvent: (id) => context.push(
+                    Routes.lifeEventDetail.replaceFirst(':id', id),
+                  ),
                 ),
                 const SizedBox(height: 20),
               ],
@@ -444,13 +474,14 @@ class _MonthNavigator extends StatelessWidget {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// CALENDAR GRID
+// CALENDAR GRID (with dot indicators)
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _CalendarGrid extends StatelessWidget {
   final int year;
   final int month;
   final Map<String, JournalEntry> entryMap;
+  final Map<String, List<LifeEvent>> lifeEventMap;
   final String? selectedDateKey;
   final bool isDark;
   final bool isEn;
@@ -460,6 +491,7 @@ class _CalendarGrid extends StatelessWidget {
     required this.year,
     required this.month,
     required this.entryMap,
+    required this.lifeEventMap,
     this.selectedDateKey,
     required this.isDark,
     required this.isEn,
@@ -523,13 +555,14 @@ class _CalendarGrid extends StatelessWidget {
                 children: List.generate(7, (weekday) {
                   final dayIndex = week * 7 + weekday - (startWeekday - 1);
                   if (dayIndex < 1 || dayIndex > daysInMonth) {
-                    return const Expanded(child: SizedBox(height: 44));
+                    return const Expanded(child: SizedBox(height: 52));
                   }
 
                   final date = DateTime(year, month, dayIndex);
                   final dateKey =
                       '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
                   final entry = entryMap[dateKey];
+                  final dayLifeEvents = lifeEventMap[dateKey] ?? [];
                   final isToday =
                       date.year == today.year &&
                       date.month == today.month &&
@@ -537,15 +570,28 @@ class _CalendarGrid extends StatelessWidget {
                   final isFuture = date.isAfter(today);
                   final isSelected = dateKey == selectedDateKey;
 
+                  // Determine which dot indicators to show
+                  final hasJournal = entry != null;
+                  final hasPositiveEvent = dayLifeEvents.any(
+                    (e) => e.type == LifeEventType.positive,
+                  );
+                  final hasChallengeEvent = dayLifeEvents.any(
+                    (e) =>
+                        e.type == LifeEventType.challenging ||
+                        e.type == LifeEventType.custom,
+                  );
+
                   return Expanded(
                     child: Semantics(
                       label:
-                          '${date.day}/${date.month}${entry != null ? (isEn ? ', has entry' : ', kayıt var') : ''}',
+                          '${date.day}/${date.month}'
+                          '${hasJournal ? (isEn ? ', has entry' : ', kayıt var') : ''}'
+                          '${dayLifeEvents.isNotEmpty ? (isEn ? ', life event' : ', yaşam olayı') : ''}',
                       button: !isFuture,
                       child: GestureDetector(
                         onTap: isFuture ? null : () => onDayTap(dateKey),
                         child: Container(
-                          height: 44,
+                          height: 52,
                           margin: const EdgeInsets.all(1),
                           decoration: BoxDecoration(
                             color: _getCellColor(
@@ -569,29 +615,50 @@ class _CalendarGrid extends StatelessWidget {
                                   )
                                 : null,
                           ),
-                          child: Center(
-                            child: Text(
-                              '$dayIndex',
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: entry != null
-                                    ? FontWeight.w600
-                                    : FontWeight.w400,
-                                color: isFuture
-                                    ? (isDark
-                                          ? AppColors.textMuted.withValues(
-                                              alpha: 0.3,
-                                            )
-                                          : AppColors.lightTextMuted.withValues(
-                                              alpha: 0.3,
-                                            ))
-                                    : entry != null
-                                    ? Colors.white
-                                    : (isDark
-                                          ? AppColors.textMuted
-                                          : AppColors.lightTextMuted),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '$dayIndex',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: entry != null
+                                      ? FontWeight.w600
+                                      : FontWeight.w400,
+                                  color: isFuture
+                                      ? (isDark
+                                            ? AppColors.textMuted.withValues(
+                                                alpha: 0.3,
+                                              )
+                                            : AppColors.lightTextMuted
+                                                  .withValues(alpha: 0.3))
+                                      : entry != null
+                                      ? Colors.white
+                                      : (isDark
+                                            ? AppColors.textMuted
+                                            : AppColors.lightTextMuted),
+                                ),
                               ),
-                            ),
+                              // Dot indicators row
+                              if (!isFuture &&
+                                  (hasJournal ||
+                                      hasPositiveEvent ||
+                                      hasChallengeEvent))
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 2),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      if (hasJournal)
+                                        _dot(AppColors.auroraStart),
+                                      if (hasPositiveEvent)
+                                        _dot(AppColors.starGold),
+                                      if (hasChallengeEvent)
+                                        _dot(AppColors.amethyst),
+                                    ],
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
                       ),
@@ -604,6 +671,18 @@ class _CalendarGrid extends StatelessWidget {
         ],
       ),
     ).animate().fadeIn(duration: 400.ms);
+  }
+
+  Widget _dot(Color color) {
+    return Container(
+      width: 5,
+      height: 5,
+      margin: const EdgeInsets.symmetric(horizontal: 1),
+      decoration: BoxDecoration(
+        color: color,
+        shape: BoxShape.circle,
+      ),
+    );
   }
 
   Color _getCellColor(
@@ -647,7 +726,7 @@ class _CalendarGrid extends StatelessWidget {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// LEGEND
+// LEGEND (with life event dot types)
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _Legend extends StatelessWidget {
@@ -658,130 +737,184 @@ class _Legend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    final mutedColor = isDark ? AppColors.textMuted : AppColors.lightTextMuted;
+    const dotSize = 8.0;
+
+    return Column(
       children: [
-        Text(
-          isEn ? 'Less' : 'Az',
-          style: TextStyle(
-            fontSize: 10,
-            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-          ),
-        ),
-        const SizedBox(width: 6),
-        ...[0.3, 0.45, 0.6, 0.8, 1.0].map((alpha) {
-          return Container(
-            width: 16,
-            height: 16,
-            margin: const EdgeInsets.symmetric(horizontal: 2),
-            decoration: BoxDecoration(
-              color: AppColors.auroraStart.withValues(alpha: alpha),
-              borderRadius: BorderRadius.circular(3),
+        // Rating intensity legend
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              isEn ? 'Less' : 'Az',
+              style: TextStyle(fontSize: 10, color: mutedColor),
             ),
-          );
-        }),
-        const SizedBox(width: 6),
-        Text(
-          isEn ? 'More' : 'Çok',
-          style: TextStyle(
-            fontSize: 10,
-            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-          ),
+            const SizedBox(width: 6),
+            ...[0.3, 0.45, 0.6, 0.8, 1.0].map((alpha) {
+              return Container(
+                width: 16,
+                height: 16,
+                margin: const EdgeInsets.symmetric(horizontal: 2),
+                decoration: BoxDecoration(
+                  color: AppColors.auroraStart.withValues(alpha: alpha),
+                  borderRadius: BorderRadius.circular(3),
+                ),
+              );
+            }),
+            const SizedBox(width: 6),
+            Text(
+              isEn ? 'More' : 'Çok',
+              style: TextStyle(fontSize: 10, color: mutedColor),
+            ),
+          ],
         ),
+        const SizedBox(height: 8),
+        // Dot indicator legend
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _legendDot(
+              AppColors.auroraStart,
+              isEn ? 'Journal' : 'Günlük',
+              mutedColor,
+              dotSize,
+            ),
+            const SizedBox(width: 14),
+            _legendDot(
+              AppColors.starGold,
+              isEn ? 'Positive' : 'Olumlu',
+              mutedColor,
+              dotSize,
+            ),
+            const SizedBox(width: 14),
+            _legendDot(
+              AppColors.amethyst,
+              isEn ? 'Challenging' : 'Zorlu',
+              mutedColor,
+              dotSize,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _legendDot(Color color, String label, Color textColor, double size) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: size,
+          height: size,
+          decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+        ),
+        const SizedBox(width: 4),
+        Text(label, style: TextStyle(fontSize: 10, color: textColor)),
       ],
     );
   }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// DAY DETAIL (shown when a day is tapped)
+// DAY DETAIL (shown when a day is tapped — now with life events)
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _DayDetail extends StatelessWidget {
   final String dateKey;
   final JournalEntry? entry;
+  final List<LifeEvent> lifeEvents;
   final bool isDark;
   final bool isEn;
   final ValueChanged<String> onViewEntry;
   final VoidCallback onCreateEntry;
+  final VoidCallback onAddLifeEvent;
+  final ValueChanged<String> onViewLifeEvent;
 
   const _DayDetail({
     required this.dateKey,
     this.entry,
+    this.lifeEvents = const [],
     required this.isDark,
     required this.isEn,
     required this.onViewEntry,
     required this.onCreateEntry,
+    required this.onAddLifeEvent,
+    required this.onViewLifeEvent,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (entry == null) {
-      return Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.8)
-              : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: isDark
-                ? Colors.white.withValues(alpha: 0.06)
-                : Colors.black.withValues(alpha: 0.05),
+    final hasContent = entry != null || lifeEvents.isNotEmpty;
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: isDark
+            ? AppColors.surfaceDark.withValues(alpha: 0.8)
+            : AppColors.lightCard,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: hasContent
+              ? AppColors.auroraStart.withValues(alpha: 0.2)
+              : (isDark
+                    ? Colors.white.withValues(alpha: 0.06)
+                    : Colors.black.withValues(alpha: 0.05)),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Hero date display
+          _buildDateHeader(),
+          const SizedBox(height: 12),
+
+          // Journal entry section
+          if (entry != null) _buildJournalCard(entry!),
+          if (entry == null) _buildAddJournalButton(),
+
+          // Life events section
+          if (lifeEvents.isNotEmpty) ...[
+            const SizedBox(height: 12),
+            ...lifeEvents.map(_buildLifeEventCard),
+          ],
+
+          // Add Life Event button
+          const SizedBox(height: 10),
+          _buildAddLifeEventButton(),
+        ],
+      ),
+    ).animate().fadeIn(duration: 200.ms);
+  }
+
+  Widget _buildDateHeader() {
+    final parts = dateKey.split('-');
+    final day = parts.length > 2 ? parts[2] : '';
+    final monthYear = parts.length > 1 ? '${parts[1]}/${parts[0]}' : dateKey;
+
+    return Row(
+      children: [
+        Text(
+          day,
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.w700,
+            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),
-        child: Column(
-          children: [
-            Text(
-              dateKey,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              isEn ? 'No entry for this day' : 'Bu gün için kayıt yok',
-              style: TextStyle(
-                fontSize: 13,
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Semantics(
-              label: isEn ? 'Log this day' : 'Bu günü kaydet',
-              button: true,
-              child: GestureDetector(
-                onTap: onCreateEntry,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.auroraStart.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(
-                    isEn ? 'Log this day' : 'Bu günü kaydet',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.auroraStart,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
+        const SizedBox(width: 8),
+        Text(
+          monthYear,
+          style: TextStyle(
+            fontSize: 14,
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          ),
         ),
-      ).animate().fadeIn(duration: 200.ms);
-    }
+      ],
+    );
+  }
 
-    final e = entry!;
+  Widget _buildJournalCard(JournalEntry e) {
     final ratingLabels = isEn
         ? ['Low', 'Below Avg', 'Average', 'Good', 'Excellent']
         : ['Düşük', 'Ortanın Altı', 'Orta', 'İyi', 'Mükemmel'];
@@ -794,14 +927,13 @@ class _DayDetail extends StatelessWidget {
       child: GestureDetector(
         onTap: () => onViewEntry(e.id),
         child: Container(
-          padding: const EdgeInsets.all(16),
+          width: double.infinity,
+          padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.8)
-                : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(14),
+            color: AppColors.auroraStart.withValues(alpha: 0.08),
+            borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              color: AppColors.auroraStart.withValues(alpha: 0.2),
+              color: AppColors.auroraStart.withValues(alpha: 0.15),
             ),
           ),
           child: Column(
@@ -810,21 +942,11 @@ class _DayDetail extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
+                    width: 8,
+                    height: 8,
                     decoration: BoxDecoration(
-                      color: AppColors.starGold.withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(
-                      dateKey,
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.starGold,
-                      ),
+                      color: AppColors.auroraStart,
+                      shape: BoxShape.circle,
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -834,23 +956,23 @@ class _DayDetail extends StatelessWidget {
                         : e.focusArea.displayNameTr,
                     style: TextStyle(
                       fontSize: 13,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                       color: isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary,
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
                     ),
                   ),
                   const Spacer(),
                   Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 8,
-                      vertical: 4,
+                      vertical: 3,
                     ),
                     decoration: BoxDecoration(
                       color: _ratingColor(
                         e.overallRating,
                       ).withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
                       ratingLabels[(e.overallRating - 1).clamp(
@@ -858,7 +980,7 @@ class _DayDetail extends StatelessWidget {
                         ratingLabels.length - 1,
                       )],
                       style: TextStyle(
-                        fontSize: 11,
+                        fontSize: 10,
                         fontWeight: FontWeight.w600,
                         color: _ratingColor(e.overallRating),
                       ),
@@ -867,26 +989,26 @@ class _DayDetail extends StatelessWidget {
                 ],
               ),
               if (e.note case final note? when note.isNotEmpty) ...[
-                const SizedBox(height: 10),
+                const SizedBox(height: 6),
                 Text(
-                  note.length > 120 ? '${note.substring(0, 120)}...' : note,
+                  note.length > 80 ? '${note.substring(0, 80)}...' : note,
                   style: TextStyle(
-                    fontSize: 13,
-                    height: 1.5,
+                    fontSize: 12,
+                    height: 1.4,
                     color: isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,
                   ),
                 ),
               ],
-              const SizedBox(height: 8),
+              const SizedBox(height: 6),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    isEn ? 'View entry' : 'Kaydı görüntüle',
+                    isEn ? 'View entry' : 'Kaydı gör',
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 11,
                       color: AppColors.auroraStart,
                       fontWeight: FontWeight.w500,
                     ),
@@ -894,7 +1016,7 @@ class _DayDetail extends StatelessWidget {
                   const SizedBox(width: 4),
                   Icon(
                     Icons.arrow_forward_ios_rounded,
-                    size: 12,
+                    size: 10,
                     color: AppColors.auroraStart,
                   ),
                 ],
@@ -903,7 +1025,150 @@ class _DayDetail extends StatelessWidget {
           ),
         ),
       ),
-    ).animate().fadeIn(duration: 200.ms);
+    );
+  }
+
+  Widget _buildAddJournalButton() {
+    return GestureDetector(
+      onTap: onCreateEntry,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+          color: AppColors.auroraStart.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: AppColors.auroraStart.withValues(alpha: 0.15),
+            style: BorderStyle.solid,
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.add_rounded,
+              size: 16,
+              color: AppColors.auroraStart,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              isEn ? 'Log this day' : 'Bu günü kaydet',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: AppColors.auroraStart,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLifeEventCard(LifeEvent event) {
+    final isPositive = event.type == LifeEventType.positive;
+    final accentColor = isPositive ? AppColors.starGold : AppColors.amethyst;
+
+    // Resolve emoji from preset if available
+    final preset = event.eventKey != null
+        ? LifeEventPresets.getByKey(event.eventKey!)
+        : null;
+    final emoji = preset?.emoji ?? (isPositive ? '\u{2728}' : '\u{1F4AD}');
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 6),
+      child: GestureDetector(
+        onTap: () => onViewLifeEvent(event.id),
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: accentColor.withValues(alpha: 0.08),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: accentColor.withValues(alpha: 0.15),
+            ),
+          ),
+          child: Row(
+            children: [
+              Text(emoji, style: const TextStyle(fontSize: 20)),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      event.title,
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    if (event.emotionTags.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 3),
+                        child: Text(
+                          event.emotionTags.take(3).join(' \u{2022} '),
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 12,
+                color: accentColor,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAddLifeEventButton() {
+    return GestureDetector(
+      onTap: onAddLifeEvent,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+          color: AppColors.starGold.withValues(alpha: 0.06),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: AppColors.starGold.withValues(alpha: 0.12),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.auto_awesome_rounded,
+              size: 16,
+              color: AppColors.starGold,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              isEn ? 'Add Life Event' : 'Yaşam Olayı Ekle',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: AppColors.starGold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Color _ratingColor(int rating) {

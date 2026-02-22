@@ -15,6 +15,8 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/models/cycle_entry.dart';
+import '../../../data/models/life_event.dart';
+import '../../../data/content/life_event_presets.dart';
 import '../../../data/services/archetype_service.dart';
 import '../../../data/services/content_rotation_service.dart';
 import '../../../data/services/haptic_service.dart';
@@ -164,6 +166,13 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
                 child: _RecentEntriesSection(isEn: isEn, isDark: isDark),
+              ),
+
+              // ═══════════════════════════════════════════════════════
+              // RECENT LIFE EVENTS
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _RecentLifeEventsCard(isEn: isEn, isDark: isDark),
               ),
 
               // ═══════════════════════════════════════════════════════
@@ -1072,11 +1081,6 @@ class _DiscoverMoreSection extends StatelessWidget {
         isEn ? 'Habits' : 'Al\u0131\u015fkanl\u0131k',
         Routes.dailyHabits,
       ),
-      _DiscoverItem(
-        '\u{1F491}',
-        isEn ? 'Partner' : 'Partner',
-        Routes.partner,
-      ),
     ];
 
     return Padding(
@@ -1155,4 +1159,216 @@ class _DiscoverItem {
   final String label;
   final String route;
   const _DiscoverItem(this.emoji, this.label, this.route);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// RECENT LIFE EVENTS CARD
+// ════════════════════════════════════════════════════════════════════════════
+
+class _RecentLifeEventsCard extends ConsumerWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _RecentLifeEventsCard({required this.isEn, required this.isDark});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final serviceAsync = ref.watch(lifeEventServiceProvider);
+
+    return serviceAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (service) {
+        final recentEvents = service.getRecentEvents(3);
+        if (recentEvents.isEmpty) {
+          // Show retention prompt if no life events at all
+          return _buildRetentionPrompt(context);
+        }
+
+        // Only show if there are events in the last 14 days
+        final cutoff = DateTime.now().subtract(const Duration(days: 14));
+        final recentEnough = recentEvents.where(
+          (e) => e.date.isAfter(cutoff),
+        ).toList();
+        if (recentEnough.isEmpty) {
+          return _buildRetentionPrompt(context);
+        }
+
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    isEn ? 'Recent Life Events' : 'Son Yaşam Olayları',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                    ),
+                  ),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: () => context.push(Routes.lifeTimeline),
+                    child: Text(
+                      isEn ? 'See all' : 'Tümünü gör',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColors.starGold,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              ...recentEnough.take(2).map((event) {
+                final isPositive = event.type == LifeEventType.positive;
+                final accentColor =
+                    isPositive ? AppColors.starGold : AppColors.amethyst;
+                final preset = event.eventKey != null
+                    ? LifeEventPresets.getByKey(event.eventKey!)
+                    : null;
+                final emoji =
+                    preset?.emoji ?? (isPositive ? '\u{2728}' : '\u{1F4AD}');
+
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: GestureDetector(
+                    onTap: () {
+                      HapticService.buttonPress();
+                      context.push(
+                        Routes.lifeEventDetail.replaceFirst(':id', event.id),
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: accentColor.withValues(alpha: 0.06),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: accentColor.withValues(alpha: 0.12),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Text(emoji, style: const TextStyle(fontSize: 20)),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  event.title,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: isDark
+                                        ? AppColors.textPrimary
+                                        : AppColors.lightTextPrimary,
+                                  ),
+                                ),
+                                if (event.emotionTags.isNotEmpty)
+                                  Text(
+                                    event.emotionTags.take(2).join(', '),
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      color: isDark
+                                          ? AppColors.textMuted
+                                          : AppColors.lightTextMuted,
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                          Icon(
+                            Icons.chevron_right_rounded,
+                            size: 18,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }),
+            ],
+          ),
+        ).animate().fadeIn(duration: 300.ms);
+      },
+    );
+  }
+
+  Widget _buildRetentionPrompt(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+      child: GestureDetector(
+        onTap: () {
+          HapticService.buttonPress();
+          context.push(Routes.lifeEventNew);
+        },
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: AppColors.starGold.withValues(alpha: 0.06),
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: AppColors.starGold.withValues(alpha: 0.12),
+            ),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.auto_awesome_rounded,
+                color: AppColors.starGold,
+                size: 24,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      isEn
+                          ? 'Any big moments this week?'
+                          : 'Bu hafta büyük anlar oldu mu?',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    Text(
+                      isEn
+                          ? 'Record a life event'
+                          : 'Bir yaşam olayı kaydedin',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 14,
+                color: AppColors.starGold,
+              ),
+            ],
+          ),
+        ),
+      ),
+    ).animate().fadeIn(duration: 300.ms);
+  }
 }

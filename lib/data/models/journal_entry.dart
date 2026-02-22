@@ -13,30 +13,30 @@ enum FocusArea {
   String get displayNameEn {
     switch (this) {
       case FocusArea.energy:
-        return 'Energy';
+        return 'Spark';
       case FocusArea.focus:
-        return 'Focus';
+        return 'Lens';
       case FocusArea.emotions:
-        return 'Emotions';
+        return 'Tides';
       case FocusArea.decisions:
-        return 'Decisions';
+        return 'Compass';
       case FocusArea.social:
-        return 'Social';
+        return 'Orbit';
     }
   }
 
   String get displayNameTr {
     switch (this) {
       case FocusArea.energy:
-        return 'Enerji';
+        return 'Kıvılcım';
       case FocusArea.focus:
-        return 'Odak';
+        return 'Mercek';
       case FocusArea.emotions:
-        return 'Duygular';
+        return 'Gelgit';
       case FocusArea.decisions:
-        return 'Kararlar';
+        return 'Pusula';
       case FocusArea.social:
-        return 'Sosyal';
+        return 'Yörünge';
     }
   }
 

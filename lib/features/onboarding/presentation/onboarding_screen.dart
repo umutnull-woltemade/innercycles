@@ -931,24 +931,24 @@ class _FirstCyclePage extends StatelessWidget {
   ];
 
   static const Map<FocusArea, IconData> _focusIcons = {
-    FocusArea.energy: Icons.bolt_rounded,
-    FocusArea.emotions: Icons.favorite_rounded,
-    FocusArea.focus: Icons.center_focus_strong_rounded,
-    FocusArea.social: Icons.people_rounded,
+    FocusArea.energy: Icons.local_fire_department_rounded,
+    FocusArea.emotions: Icons.water_drop_rounded,
+    FocusArea.focus: Icons.visibility_rounded,
+    FocusArea.social: Icons.public_rounded,
   };
 
   static const Map<FocusArea, String> _focusDescEn = {
-    FocusArea.energy: 'Track physical & mental energy',
-    FocusArea.emotions: 'Explore emotional patterns',
-    FocusArea.focus: 'Monitor clarity & productivity',
-    FocusArea.social: 'Understand social rhythms',
+    FocusArea.energy: 'What lights you up or burns you out',
+    FocusArea.emotions: 'The waves beneath the surface',
+    FocusArea.focus: 'Where your attention actually goes',
+    FocusArea.social: 'The people who shape your days',
   };
 
   static const Map<FocusArea, String> _focusDescTr = {
-    FocusArea.energy: 'Fiziksel ve zihinsel enerji',
-    FocusArea.emotions: 'Duygusal kalıpları keşfet',
-    FocusArea.focus: 'Netlik ve verimliliği takip et',
-    FocusArea.social: 'Sosyal ritimlerini anla',
+    FocusArea.energy: 'Seni neyin ateşlediği, neyin tükettiği',
+    FocusArea.emotions: 'Yüzeyin altındaki dalgalar',
+    FocusArea.focus: 'Dikkatinin gerçekte nereye gittiği',
+    FocusArea.social: 'Günlerini şekillendiren insanlar',
   };
 
   static const Map<FocusArea, Color> _focusColors = {
@@ -971,7 +971,7 @@ class _FirstCyclePage extends StatelessWidget {
 
           // Title
           Text(
-            isEn ? 'Choose Your First Cycle' : 'İlk Döngünü Seç',
+            isEn ? 'Pick Your Starting Signal' : 'İlk Sinyalini Seç',
             style: const TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w300,
@@ -984,8 +984,8 @@ class _FirstCyclePage extends StatelessWidget {
 
           Text(
             isEn
-                ? 'What would you like to track first?'
-                : 'İlk olarak neyi takip etmek istersin?',
+                ? 'Which part of your inner world are you most curious about?'
+                : 'İç dünyanın hangi köşesi seni en çok meraklandırıyor?',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: AppColors.textMuted,
               fontSize: 15,
@@ -1105,8 +1105,8 @@ class _FirstCyclePage extends StatelessWidget {
                 Expanded(
                   child: Text(
                     isEn
-                        ? 'You can track all areas later'
-                        : 'Diğer alanları sonra takip edebilirsin',
+                        ? 'All signals unlock as you journal'
+                        : 'Günlük tuttukça tüm sinyaller açılır',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.textMuted,
                       fontSize: 12,

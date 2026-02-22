@@ -963,5 +963,22 @@ class ToolManifestRegistry {
       timeToValueSeconds: 15,
       relatedToolIds: ['patterns', 'yearReview', 'journal'],
     ),
+
+    // ── 45. Life Timeline ──
+    ToolManifest(
+      id: 'lifeTimeline',
+      nameEn: 'Life Timeline',
+      nameTr: 'Yaşam Zaman Çizelgesi',
+      valuePropositionEn:
+          'Record and revisit the moments that shape your identity.',
+      valuePropositionTr:
+          'Kimliğinizi şekillendiren anları kaydedin ve yeniden keşfedin.',
+      route: Routes.lifeTimeline,
+      icon: '\u{2728}',
+      category: ToolCategory.journal,
+      intentTags: [IntentTag.reflect, IntentTag.track],
+      timeToValueSeconds: 30,
+      relatedToolIds: ['calendarHeatmap', 'journal', 'yearReview'],
+    ),
   ];
 }
