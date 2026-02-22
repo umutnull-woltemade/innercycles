@@ -551,7 +551,7 @@ class WeeklyDigestService {
     if (entriesThisWeek == 0) {
       return (
         'Start journaling to see your weekly highlights.',
-        'Haftalik ozetini gormek icin gunluk tutmaya basla.',
+        'Haftalık özetini görmek için günlük tutmaya başla.',
       );
     }
 
@@ -560,8 +560,8 @@ class WeeklyDigestService {
       return (
         'Your journaling streak has been going strong at $streakDays days. '
             'Consistency like this tends to deepen self-awareness.',
-        '$streakDays gunluk gunluk yazma serin devam ediyor. '
-            'Bu tur tutarlilik oz-farkindaligi derinlestirme egiliminde.',
+        '$streakDays günlük günlük yazma serisi devam ediyor. '
+            'Bu tür tutarlılık öz-farkındalığı derinleştirme eğiliminde.',
       );
     }
 
@@ -570,8 +570,8 @@ class WeeklyDigestService {
       return (
         'Your entries suggest an upward shift in your week. '
             'Past entries show that this momentum tends to carry forward.',
-        'Kayitlarin bu hafta yukselise gectigini gosteriyor. '
-            'Gecmis kayitlar bu ivmenin ileriye tasima egiliminde oldugunu gosteriyor.',
+        'Kayıtların bu hafta yükselişe geçtiğini gösteriyor. '
+            'Geçmiş kayıtlar bu ivmenin ileriye taşıma eğiliminde olduğunu gösteriyor.',
       );
     }
 
@@ -581,8 +581,8 @@ class WeeklyDigestService {
       return (
         'You logged $diff more entries than last week. '
             'More data tends to reveal clearer patterns over time.',
-        'Gecen haftaya gore $diff daha fazla kayit girdin. '
-            'Daha fazla veri zamanla daha net kalipler ortaya cikma egiliminde.',
+        'Geçen haftaya göre $diff daha fazla kayıt girdin. '
+            'Daha fazla veri zamanla daha net kalıplar ortaya çıkma eğiliminde.',
       );
     }
 
@@ -593,14 +593,14 @@ class WeeklyDigestService {
       return (
         'You focused most on $nameEn this week. '
             'Tracking a consistent area may help you notice subtle shifts.',
-        'Bu hafta en cok $nameTr alanina odaklandin. '
-            'Tutarli bir alani takip etmek ince degisimleri fark etmene yardimci olabilir.',
+        'Bu hafta en çok $nameTr alanına odaklandın. '
+            'Tutarlı bir alanı takip etmek ince değişimleri fark etmene yardımcı olabilir.',
       );
     }
 
     return (
       'Every entry you write builds a clearer picture of your patterns.',
-      'Yazdigin her kayit kaliplarinin daha net bir resmini olusturur.',
+      'Yazdığın her kayıt kalıplarının daha net bir resmini oluşturur.',
     );
   }
 
@@ -637,7 +637,7 @@ class WeeklyDigestService {
 
   (String, String) _legacyAnalyzeMoodTrend(List<JournalEntry> entries) {
     if (entries.length < 2) {
-      return ('Nothing recorded yet', 'Henuz kayit yok');
+      return ('Nothing recorded yet', 'Henüz kayıt yok');
     }
 
     final sorted = entries.toList()..sort((a, b) => a.date.compareTo(b.date));
@@ -655,17 +655,17 @@ class WeeklyDigestService {
     if (diff > 1.0) {
       return (
         'Your mood has been rising this week',
-        'Ruh halin bu hafta yukseliyor',
+        'Ruh halin bu hafta yükseliyor',
       );
     } else if (diff < -1.0) {
       return (
         'Your mood dipped this week — be gentle with yourself',
-        'Ruh halin bu hafta biraz dustu — kendine nazik ol',
+        'Ruh halin bu hafta biraz düştü — kendine nazik ol',
       );
     } else {
       return (
         'Your mood has been steady this week',
-        'Ruh halin bu hafta sabit kalmis',
+        'Ruh halin bu hafta sabit kalmış',
       );
     }
   }
@@ -678,18 +678,18 @@ class WeeklyDigestService {
     if (entryCount == 0) {
       return (
         'Start journaling to see your weekly highlights',
-        'Haftalik ozetini gormek icin gunluk tutmaya basla',
+        'Haftalık özetini görmek için günlük tutmaya başla',
       );
     }
     if (entryCount >= 5) {
       return (
         'Amazing consistency! You logged $entryCount entries this week',
-        'Harika tutarlilik! Bu hafta $entryCount kayit girdin',
+        'Harika tutarlılık! Bu hafta $entryCount kayıt girdin',
       );
     }
     return (
       'You focused most on ${_areaNameEn(topArea)} this week',
-      'Bu hafta en cok ${_areaNameTr(topArea)} alanina odaklandin',
+      'Bu hafta en çok ${_areaNameTr(topArea)} alanına odaklandın',
     );
   }
 
@@ -701,7 +701,7 @@ class WeeklyDigestService {
     if (entryCount == 0) {
       return (
         'Try logging just one entry today — small steps matter',
-        'Bugun sadece bir kayit girmeyi dene — kucuk adimlar onemli',
+        'Bugün sadece bir kayıt girmeyi dene — küçük adımlar önemli',
       );
     }
 
@@ -719,13 +719,13 @@ class WeeklyDigestService {
     if (leastTracked != null && minCount == 0) {
       return (
         'You haven\'t explored ${_areaNameEn(leastTracked)} this week — give it a try',
-        'Bu hafta ${_areaNameTr(leastTracked)} alanini kesfetmedin — bir dene',
+        'Bu hafta ${_areaNameTr(leastTracked)} alanını keşfetmedin — bir dene',
       );
     }
 
     return (
       'Keep the momentum going — consistency builds insight',
-      'Ivmeyi surdur — tutarlilik icgoru olusturur',
+      'İvmeyi sürdür — tutarlılık içgörü oluşturur',
     );
   }
 

@@ -419,7 +419,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                         ),
                       )
                     : const Icon(Icons.ios_share, color: AppColors.starGold),
-                tooltip: isEn ? 'Share' : 'Paylas',
+                tooltip: isEn ? 'Share' : 'Paylaş',
               ),
             ],
           ),
@@ -633,7 +633,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                   color: AppColors.starGold, size: 20),
               const SizedBox(width: 8),
               Text(
-                isEn ? 'Top Focus Areas' : 'En Cok Odaklanilan Alanlar',
+                isEn ? 'Top Focus Areas' : 'En Çok Odaklanılan Alanlar',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: isDark
                           ? AppColors.textPrimary

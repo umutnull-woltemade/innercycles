@@ -281,7 +281,7 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
         Text(
           isEn
               ? 'Share Your Cycle with a Partner'
-              : 'Dongunuzu Partnerinizle Paylasin',
+              : 'Döngünüzü Partnerinizle Paylaşın',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 22,
@@ -340,25 +340,33 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
 
           // ── Code display ──
           Center(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: isDark
-                    ? Colors.white.withValues(alpha: 0.06)
-                    : Colors.black.withValues(alpha: 0.04),
-                border: Border.all(
-                  color: AppColors.starGold.withValues(alpha: 0.3),
-                  width: 1,
+            child: Semantics(
+              label: isEn
+                  ? 'Your invite code: $_myInviteCode'
+                  : 'Davet kodunuz: $_myInviteCode',
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 28,
+                  vertical: 14,
                 ),
-              ),
-              child: SelectableText(
-                _myInviteCode,
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: 6,
-                  color: AppColors.starGold,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: isDark
+                      ? Colors.white.withValues(alpha: 0.06)
+                      : Colors.black.withValues(alpha: 0.04),
+                  border: Border.all(
+                    color: AppColors.starGold.withValues(alpha: 0.3),
+                    width: 1,
+                  ),
+                ),
+                child: SelectableText(
+                  _myInviteCode,
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 6,
+                    color: AppColors.starGold,
+                  ),
                 ),
               ),
             ),
@@ -414,78 +422,84 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
   }
 
   Widget _buildEnterCodeButton(bool isEn, bool isDark) {
-    return GlassPanel(
-      elevation: GlassElevation.g2,
-      padding: const EdgeInsets.all(4),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(14),
-          onTap: () {
-            HapticFeedback.lightImpact();
-            setState(() => _isLinking = true);
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                Container(
-                  width: 44,
-                  height: 44,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: LinearGradient(
-                      colors: [
-                        AppColors.auroraStart.withValues(alpha: 0.3),
-                        AppColors.auroraEnd.withValues(alpha: 0.3),
+    return Semantics(
+      button: true,
+      label: isEn
+          ? 'I have a partner\'s code. Enter their invite code to link'
+          : 'Partnerin kodu bende. Bağlanmak için davet kodunu girin',
+      child: GlassPanel(
+        elevation: GlassElevation.g2,
+        padding: const EdgeInsets.all(4),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(14),
+            onTap: () {
+              HapticFeedback.lightImpact();
+              setState(() => _isLinking = true);
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(
+                        colors: [
+                          AppColors.auroraStart.withValues(alpha: 0.3),
+                          AppColors.auroraEnd.withValues(alpha: 0.3),
+                        ],
+                      ),
+                    ),
+                    child: const Icon(
+                      Icons.link_rounded,
+                      color: AppColors.auroraStart,
+                      size: 22,
+                    ),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          isEn
+                              ? 'I Have a Partner\'s Code'
+                              : 'Partnerin Kodu Bende',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          isEn
+                              ? 'Enter their invite code to link'
+                              : 'Bağlanmak için davet kodunu girin',
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                  child: const Icon(
-                    Icons.link_rounded,
-                    color: AppColors.auroraStart,
-                    size: 22,
+                  Icon(
+                    Icons.chevron_right_rounded,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
                   ),
-                ),
-                const SizedBox(width: 14),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        isEn
-                            ? 'I Have a Partner\'s Code'
-                            : 'Partnerin Kodu Bende',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        isEn
-                            ? 'Enter their invite code to link'
-                            : 'Bağlanmak için davet kodunu girin',
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Icon(
-                  Icons.chevron_right_rounded,
-                  color: isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted,
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -766,33 +780,39 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
                   Row(
                     children: [
                       Expanded(
-                        child: OutlinedButton(
-                          onPressed: () {
-                            HapticFeedback.lightImpact();
-                            setState(() {
-                              _isLinking = false;
-                              _codeController.clear();
-                              _nameController.clear();
-                            });
-                          },
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: 14),
-                            side: BorderSide(
-                              color: isDark
-                                  ? Colors.white.withValues(alpha: 0.2)
-                                  : Colors.black.withValues(alpha: 0.15),
+                        child: Semantics(
+                          button: true,
+                          label: isEn
+                              ? 'Cancel linking'
+                              : 'Baglanmayi iptal et',
+                          child: OutlinedButton(
+                            onPressed: () {
+                              HapticFeedback.lightImpact();
+                              setState(() {
+                                _isLinking = false;
+                                _codeController.clear();
+                                _nameController.clear();
+                              });
+                            },
+                            style: OutlinedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                              side: BorderSide(
+                                color: isDark
+                                    ? Colors.white.withValues(alpha: 0.2)
+                                    : Colors.black.withValues(alpha: 0.15),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
                             ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          child: Text(
-                            isEn ? 'Cancel' : 'İptal',
-                            style: TextStyle(
-                              color: isDark
-                                  ? AppColors.textSecondary
-                                  : AppColors.lightTextSecondary,
-                              fontWeight: FontWeight.w600,
+                            child: Text(
+                              isEn ? 'Cancel' : 'İptal',
+                              style: TextStyle(
+                                color: isDark
+                                    ? AppColors.textSecondary
+                                    : AppColors.lightTextSecondary,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),
@@ -800,22 +820,26 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
                       const SizedBox(width: 12),
                       Expanded(
                         flex: 2,
-                        child: ElevatedButton(
-                          onPressed: _linkPartner,
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: 14),
-                            backgroundColor: AppColors.auroraStart,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                        child: Semantics(
+                          button: true,
+                          label: isEn ? 'Link partner' : 'Partneri bagla',
+                          child: ElevatedButton(
+                            onPressed: _linkPartner,
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                              backgroundColor: AppColors.auroraStart,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              elevation: 0,
                             ),
-                            elevation: 0,
-                          ),
-                          child: Text(
-                            isEn ? 'Link Partner' : 'Partneri Bagla',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 15,
+                            child: Text(
+                              isEn ? 'Link Partner' : 'Partneri Bagla',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 15,
+                              ),
                             ),
                           ),
                         ),
@@ -1004,7 +1028,7 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
               Icon(Icons.sync_rounded, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
               Text(
-                isEn ? 'Shared Cycle Data' : 'Paylasilan Dongu Verisi',
+                isEn ? 'Shared Cycle Data' : 'Paylaşılan Döngü Verisi',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -1128,20 +1152,24 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
             ),
           ),
           const Spacer(),
-          IconButton(
-            icon: Icon(
-              Icons.copy_rounded,
-              size: 18,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          Semantics(
+            button: true,
+            label: isEn ? 'Copy invite code' : 'Davet kodunu kopyala',
+            child: IconButton(
+              icon: Icon(
+                Icons.copy_rounded,
+                size: 18,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
+              onPressed: () {
+                Clipboard.setData(ClipboardData(text: _myInviteCode));
+                HapticFeedback.lightImpact();
+                _showSnackBar(
+                  isEn ? 'Code copied to clipboard' : 'Kod panoya kopyalandi',
+                );
+              },
+              visualDensity: VisualDensity.compact,
             ),
-            onPressed: () {
-              Clipboard.setData(ClipboardData(text: _myInviteCode));
-              HapticFeedback.lightImpact();
-              _showSnackBar(
-                isEn ? 'Code copied to clipboard' : 'Kod panoya kopyalandi',
-              );
-            },
-            visualDensity: VisualDensity.compact,
           ),
         ],
       ),
@@ -1149,30 +1177,34 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
   }
 
   Widget _buildUnlinkButton(bool isEn, bool isDark) {
-    return TextButton(
-      onPressed: () => _showUnlinkConfirmation(isEn, isDark),
-      style: TextButton.styleFrom(
-        foregroundColor: AppColors.error.withValues(alpha: 0.8),
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            Icons.link_off_rounded,
-            size: 18,
-            color: AppColors.error.withValues(alpha: 0.7),
-          ),
-          const SizedBox(width: 8),
-          Text(
-            isEn ? 'Unlink Partner' : 'Partneri Çıkart',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: AppColors.error.withValues(alpha: 0.8),
+    return Semantics(
+      button: true,
+      label: isEn ? 'Unlink partner' : 'Partneri cikart',
+      child: TextButton(
+        onPressed: () => _showUnlinkConfirmation(isEn, isDark),
+        style: TextButton.styleFrom(
+          foregroundColor: AppColors.error.withValues(alpha: 0.8),
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.link_off_rounded,
+              size: 18,
+              color: AppColors.error.withValues(alpha: 0.7),
             ),
-          ),
-        ],
+            const SizedBox(width: 8),
+            Text(
+              isEn ? 'Unlink Partner' : 'Partneri Çıkart',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: AppColors.error.withValues(alpha: 0.8),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -1248,46 +1280,50 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
     required bool isDark,
     required VoidCallback onTap,
   }) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(10),
-        onTap: onTap,
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: isDark
-                ? Colors.white.withValues(alpha: 0.06)
-                : Colors.black.withValues(alpha: 0.04),
-            border: Border.all(
+    return Semantics(
+      button: true,
+      label: label,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(10),
+          onTap: onTap,
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
               color: isDark
-                  ? Colors.white.withValues(alpha: 0.1)
-                  : Colors.black.withValues(alpha: 0.08),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                size: 16,
+                  ? Colors.white.withValues(alpha: 0.06)
+                  : Colors.black.withValues(alpha: 0.04),
+              border: Border.all(
                 color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
+                    ? Colors.white.withValues(alpha: 0.1)
+                    : Colors.black.withValues(alpha: 0.08),
               ),
-              const SizedBox(width: 6),
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  icon,
+                  size: 16,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
                 ),
-              ),
-            ],
+                const SizedBox(width: 6),
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -1299,25 +1335,30 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
     required String label,
     required bool isDark,
   }) {
-    return Column(
-      children: [
-        Text(
-          value,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+    return Semantics(
+      label: '$label: $value',
+      child: Column(
+        children: [
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+            ),
           ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -1327,32 +1368,37 @@ class _PartnerSyncScreenState extends ConsumerState<PartnerSyncScreen> {
     required String value,
     required bool isDark,
   }) {
-    return Row(
-      children: [
-        Icon(icon, size: 20, color: AppColors.auroraStart),
-        const SizedBox(width: 10),
-        Text(
-          '$label: ',
-          style: TextStyle(
-            fontSize: 14,
-            color: isDark
-                ? AppColors.textSecondary
-                : AppColors.lightTextSecondary,
+    return Semantics(
+      label: '$label: $value',
+      child: Row(
+        children: [
+          ExcludeSemantics(
+            child: Icon(icon, size: 20, color: AppColors.auroraStart),
           ),
-        ),
-        Expanded(
-          child: Text(
-            value,
+          const SizedBox(width: 10),
+          Text(
+            '$label: ',
             style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
+              fontSize: 14,
               color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
           ),
-        ),
-      ],
+          Expanded(
+            child: Text(
+              value,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

@@ -165,7 +165,11 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     final total = service.totalCount;
     final progress = service.getProgress();
 
-    return Container(
+    return Semantics(
+      label: isEn
+          ? '$earned of $total milestones earned, ${(progress * 100).round()} percent complete'
+          : '$total rozetin $earned tanesi kazanıldı, yüzde ${(progress * 100).round()} tamamlandı',
+      child: Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
@@ -250,7 +254,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                 Text(
                   isEn
                       ? '${(progress * 100).round()}% complete'
-                      : '%${(progress * 100).round()} tamamlandi',
+                      : '%${(progress * 100).round()} tamamlandı',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -270,6 +274,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
           ),
         ],
       ),
+    ),
     );
   }
 
@@ -300,12 +305,18 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
         children: categories.map((cat) {
           final selected = _selectedCategory == cat;
           final label = cat == null
-              ? (isEn ? 'All' : 'Tumu')
+              ? (isEn ? 'All' : 'Tümü')
               : (isEn ? cat.displayNameEn : cat.displayNameTr);
 
           return Padding(
             padding: const EdgeInsets.only(right: 8),
-            child: FilterChip(
+            child: Semantics(
+              label: selected
+                  ? (isEn ? '$label filter, selected' : '$label filtresi, seçili')
+                  : (isEn ? '$label filter' : '$label filtresi'),
+              button: true,
+              selected: selected,
+              child: FilterChip(
               label: Text(
                 label,
                 style: TextStyle(
@@ -339,6 +350,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
               ),
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             ),
+            ),
           );
         }).toList(),
       ),
@@ -353,8 +365,15 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     final name = isEn ? milestone.nameEn : milestone.nameTr;
 
     return Semantics(
-          label: name,
+          label: earned
+              ? (isEn
+                  ? '$name badge, earned. Double tap to view details'
+                  : '$name rozeti, kazanıldı. Ayrıntıları görmek için iki kez dokun')
+              : (isEn
+                  ? '$name badge, locked. ${_getCategoryHint(milestone.category)}'
+                  : '$name rozeti, kilitli. ${_getCategoryHint(milestone.category)}'),
           button: earned,
+          enabled: earned,
           child: GestureDetector(
             onTap: earned ? () => _showBadgeDetail(milestone) : null,
             child: Container(
@@ -612,7 +631,10 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                 ],
                 const SizedBox(height: 24),
                 // Close button
-                SizedBox(
+                Semantics(
+                  button: true,
+                  label: isEn ? 'Close dialog' : 'Pencereyi kapat',
+                  child: SizedBox(
                   width: double.infinity,
                   height: 44,
                   child: TextButton(
@@ -634,6 +656,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                       ),
                     ),
                   ),
+                ),
                 ),
               ],
             ),

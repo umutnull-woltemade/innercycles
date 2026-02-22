@@ -648,7 +648,9 @@ class PatternsScreen extends ConsumerWidget {
             final dimensionHealth = healthMap?[entry.key];
 
             return Semantics(
-              label: '$label: ${entry.value.toStringAsFixed(1)} out of 5',
+              label: isEn
+                  ? '$label: ${entry.value.toStringAsFixed(1)} out of 5'
+                  : '$label: 5 üzerinden ${entry.value.toStringAsFixed(1)}',
               child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
               child: ExcludeSemantics(

@@ -121,6 +121,7 @@ class EntryDetailScreen extends ConsumerWidget {
                     names,
                     entry,
                     isDark,
+                    isEn: isEn,
                   ).glassListItem(context: context, index: 1),
                 if (entry.subRatings.isNotEmpty)
                   const SizedBox(height: AppConstants.spacingLg),
@@ -210,8 +211,9 @@ class EntryDetailScreen extends ConsumerWidget {
     BuildContext context,
     Map<String, String> names,
     JournalEntry entry,
-    bool isDark,
-  ) {
+    bool isDark, {
+    bool isEn = true,
+  }) {
     return GlassPanel(
       elevation: GlassElevation.g2,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -222,7 +224,9 @@ class EntryDetailScreen extends ConsumerWidget {
           final label = names[e.key] ?? e.key;
           final value = e.value;
           return Semantics(
-            label: '$label: $value out of 5',
+            label: isEn
+                ? '$label: $value out of 5'
+                : '$label: 5 üzerinden $value',
             child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: Row(

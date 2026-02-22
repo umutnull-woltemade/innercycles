@@ -431,10 +431,10 @@ class NotificationLifecycleService {
       case LifecycleNotificationType.streakReminder:
         final streak = journalService.getCurrentStreak();
         return _NotificationContent(
-          title: isEn ? 'Your Streak is Waiting' : 'Serin Seni Bekliyor',
+          title: isEn ? 'Your Streak is Waiting' : 'Serin Seni Bekliyor!',
           body: isEn
               ? 'Your $streak-day streak is waiting! A quick entry keeps it going.'
-              : '$streak günlük serin devam ediyor! Kısa bir kayıt yeterli.',
+              : '$streak günlük seri devam ediyor! Kısa bir kayıt yeterli.',
         );
 
       case LifecycleNotificationType.insightTeaser:

@@ -36,11 +36,11 @@ enum CorrelationDirection {
   String labelTr() {
     switch (this) {
       case CorrelationDirection.moodRises:
-        return 'ruh halin yukselme egiliminde';
+        return 'ruh halin yükselme eğiliminde';
       case CorrelationDirection.moodDrops:
-        return 'ruh halin dusme egiliminde';
+        return 'ruh halin düşme eğiliminde';
       case CorrelationDirection.moodStable:
-        return 'ruh halin sabit kaliyor';
+        return 'ruh halin sabit kalıyor';
     }
   }
 }
@@ -252,8 +252,8 @@ class DreamJournalCorrelationService {
       return isEn
           ? 'Not enough overlapping dream and journal data yet. '
               'Keep recording to activate dream-mood insights.'
-          : 'Henuz yeterli ruya ve gunluk verisi yok. '
-              'Ruya-ruh hali icgoruleri icin kayit yapmaya devam et.';
+          : 'Henüz yeterli rüya ve günlük verisi yok. '
+              'Rüya-ruh hali içgörüleri için kayıt yapmaya devam et.';
     }
 
     final buffer = StringBuffer();
@@ -264,7 +264,7 @@ class DreamJournalCorrelationService {
       );
     } else {
       buffer.writeln(
-        'Kayitlarin asagidaki ruya-ruh hali baglantilarini gosteriyor:',
+        'Kayıtların aşağıdaki rüya-ruh hali bağlantılarını gösteriyor:',
       );
     }
 
@@ -282,12 +282,12 @@ class DreamJournalCorrelationService {
         );
       } else {
         buffer.writeln(
-          '- Ruyalarinda "${c.theme}" gorundugunde, '
+          '- Rüyalarında "${c.theme}" göründüğünde, '
           'ertesi gun ${c.direction.labelTr()} '
           '(${c.avgMoodBefore.toStringAsFixed(1)} -> '
           '${c.avgMoodAfter.toStringAsFixed(1)}, '
           '${c.sampleSize} kayda dayanarak, '
-          'degisim $deltaStr).',
+          'değişim $deltaStr).',
         );
       }
     }

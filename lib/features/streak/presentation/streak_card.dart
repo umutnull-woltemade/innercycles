@@ -341,7 +341,9 @@ class _MilestoneProgress extends StatelessWidget {
         ),
         const SizedBox(height: 6),
         Semantics(
-          label: '${(progress * 100).round()}% to next milestone',
+          label: isEn
+              ? '${(progress * 100).round()}% to next milestone'
+              : 'Sonraki kilometre taşına %${(progress * 100).round()}',
           child: ClipRRect(
             borderRadius: BorderRadius.circular(4),
             child: LinearProgressIndicator(

@@ -202,11 +202,11 @@ class _NotificationScheduleScreenState
                             icon: Icons.auto_awesome_outlined,
                             iconColor: AppColors.auroraEnd,
                             titleEn: 'Daily Journal Prompt',
-                            titleTr: 'Gunluk Soru',
+                            titleTr: 'Günlük Soru',
                             subtitleEn:
                                 'A fresh journaling question to inspire your writing',
                             subtitleTr:
-                                'Yazmaniza ilham verecek gunluk bir soru',
+                                'Yazmanıza ilham verecek günlük bir soru',
                             enabled:
                                 _settings?.journalPromptEnabled ?? false,
                             onToggle: _toggleJournalPrompt,

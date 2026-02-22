@@ -158,7 +158,9 @@ class StreakStatsScreen extends ConsumerWidget {
           if (stats.nextMilestone != null) ...[
             const SizedBox(height: 12),
             Semantics(
-              label: '${stats.currentStreak} of ${stats.nextMilestone} day milestone',
+              label: isEn
+                  ? '${stats.currentStreak} of ${stats.nextMilestone} day milestone'
+                  : '${stats.nextMilestone} günlük hedefin ${stats.currentStreak} günü tamamlandı',
               child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: LinearProgressIndicator(

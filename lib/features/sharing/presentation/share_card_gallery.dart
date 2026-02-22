@@ -507,7 +507,7 @@ class _ShareCardGalleryScreenState
             flex: 2,
             child: _ActionButton(
               icon: Icons.share_rounded,
-              label: isEn ? 'Share' : 'Paylas',
+              label: isEn ? 'Share' : 'Paylaş',
               isPrimary: true,
               isLoading: _isSharing,
               accentColor: accent,

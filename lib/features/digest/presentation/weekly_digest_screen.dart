@@ -164,17 +164,17 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
       case MoodTrendDirection.up:
         return (
           'Your entries suggest an upward shift this week.',
-          'Kayitlarin bu hafta yukselise gectigini gosteriyor.',
+          'Kayıtların bu hafta yükselişe geçtiğini gösteriyor.',
         );
       case MoodTrendDirection.down:
         return (
           'Your entries suggest a dip this week. Be gentle with yourself.',
-          'Kayitlarin bu hafta bir dusus gosteriyor. Kendine nazik ol.',
+          'Kayıtların bu hafta bir düşüş gösteriyor. Kendine nazik ol.',
         );
       case MoodTrendDirection.stable:
         return (
           'Your mood has been consistent this week.',
-          'Ruh halin bu hafta tutarli kalmis.',
+          'Ruh halin bu hafta tutarlı kalmış.',
         );
     }
   }
@@ -238,7 +238,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                   Text(
                     isEn
                         ? 'No entries this week yet'
-                        : 'Bu hafta henuz kayit yok',
+                        : 'Bu hafta henüz kayıt yok',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: isDark
                           ? AppColors.textPrimary
@@ -251,7 +251,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                   Text(
                     isEn
                         ? 'Start journaling to see your weekly digest with mood trends, patterns, and insights.'
-                        : 'Ruh hali egilmleri, kalipler ve icgoruler iceren haftalik ozetini gormek icin gunluk tutmaya basla.',
+                        : 'Ruh hali eğilimleri, kalıplar ve içgörüler içeren haftalık özetini görmek için günlük tutmaya başla.',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: isDark
                           ? AppColors.textSecondary
@@ -288,7 +288,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           actions: [
             Semantics(
               button: true,
-              label: isEn ? 'Share weekly debrief' : 'Haftalik degerlendirmeyi paylas',
+              label: isEn ? 'Share weekly debrief' : 'Haftalık değerlendirmeyi paylaş',
               child: IconButton(
                 onPressed: _isSharing ? null : () => _shareDigest(isEn),
                 icon: _isSharing
@@ -301,7 +301,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                         ),
                       )
                     : const Icon(Icons.ios_share, color: AppColors.starGold),
-                tooltip: isEn ? 'Share' : 'Paylas',
+                tooltip: isEn ? 'Share' : 'Paylaş',
               ),
             ),
           ],
@@ -518,23 +518,23 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     IconData comparisonIcon;
 
     if (!hasComparison) {
-      comparisonText = isEn ? 'First week tracked' : 'Ilk takip edilen hafta';
+      comparisonText = isEn ? 'First week tracked' : 'İlk takip edilen hafta';
       comparisonColor = AppColors.starGold;
       comparisonIcon = Icons.star_outline;
     } else if (diff > 0) {
       comparisonText = isEn
           ? '$diff more than last week'
-          : 'Gecen haftaya gore $diff fazla';
+          : 'Geçen haftaya göre $diff fazla';
       comparisonColor = AppColors.success;
       comparisonIcon = Icons.arrow_upward;
     } else if (diff < 0) {
       comparisonText = isEn
           ? '${diff.abs()} fewer than last week'
-          : 'Gecen haftaya gore ${diff.abs()} az';
+          : 'Geçen haftaya göre ${diff.abs()} az';
       comparisonColor = AppColors.warning;
       comparisonIcon = Icons.arrow_downward;
     } else {
-      comparisonText = isEn ? 'Same as last week' : 'Gecen haftayla ayni';
+      comparisonText = isEn ? 'Same as last week' : 'Geçen haftayla aynı';
       comparisonColor = AppColors.starGold;
       comparisonIcon = Icons.horizontal_rule;
     }
@@ -677,7 +677,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     return Semantics(
       label: isEn
           ? 'Top focus area: $areaName, ${pct.toStringAsFixed(0)} percent'
-          : 'En cok odaklanilan alan: $areaName, yuzde ${pct.toStringAsFixed(0)}',
+          : 'En çok odaklanılan alan: $areaName, yüzde ${pct.toStringAsFixed(0)}',
       child: Container(
       padding: const EdgeInsets.all(AppConstants.spacingLg),
       decoration: BoxDecoration(
@@ -705,7 +705,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isEn ? 'Top Focus Area' : 'En Cok Odaklanilan Alan',
+                  isEn ? 'Top Focus Area' : 'En Çok Odaklanılan Alan',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
@@ -1066,7 +1066,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     return Semantics(
       label: isEn
           ? 'Weekly insight: ${data.highlightInsightEn}'
-          : 'Haftalik icgoru: ${data.highlightInsightTr}',
+          : 'Haftalık içgörü: ${data.highlightInsightTr}',
       child: Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
@@ -1095,7 +1095,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           ),
           const SizedBox(height: 12),
           Text(
-            isEn ? 'Weekly Insight' : 'Haftalik Icgoru',
+            isEn ? 'Weekly Insight' : 'Haftalık İçgörü',
             style: TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w600,

@@ -349,7 +349,7 @@ class SleepTrendsScreen extends ConsumerWidget {
   ) {
     final labels = [
       (1, isEn ? 'Poor' : 'Kötü'),
-      (2, isEn ? 'Fair' : 'Fena'),
+      (2, isEn ? 'Fair' : 'Vasat'),
       (3, isEn ? 'Okay' : 'İdare'),
       (4, isEn ? 'Good' : 'İyi'),
       (5, isEn ? 'Great' : 'Harika'),

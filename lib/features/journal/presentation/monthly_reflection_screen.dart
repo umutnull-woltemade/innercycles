@@ -677,7 +677,9 @@ class _MonthlyReflectionScreenState
           ...summary.averagesByArea.entries.map((e) {
             final label = isEn ? e.key.displayNameEn : e.key.displayNameTr;
             return Semantics(
-              label: '$label: ${e.value.toStringAsFixed(1)} out of 5',
+              label: isEn
+                  ? '$label: ${e.value.toStringAsFixed(1)} out of 5'
+                  : '$label: 5 üzerinden ${e.value.toStringAsFixed(1)}',
               child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
               child: ExcludeSemantics(

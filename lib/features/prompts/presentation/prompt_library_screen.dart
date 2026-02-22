@@ -200,7 +200,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                isEn ? 'Your Progress' : 'Ilerlemeniz',
+                isEn ? 'Your Progress' : 'İlerlemeniz',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,

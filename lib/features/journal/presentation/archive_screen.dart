@@ -256,6 +256,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
             _filterArea == null,
             () => setState(() => _filterArea = null),
             isDark,
+            isEn: isEn,
           ),
           ...FocusArea.values.map((area) {
             final label = isEn ? area.displayNameEn : area.displayNameTr;
@@ -264,6 +265,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
               _filterArea == area,
               () => setState(() => _filterArea = area),
               isDark,
+              isEn: isEn,
             );
           }),
         ],
@@ -275,13 +277,14 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
     String label,
     bool isSelected,
     VoidCallback onTap,
-    bool isDark,
-  ) {
+    bool isDark, {
+    bool isEn = true,
+  }) {
     return Padding(
       padding: const EdgeInsets.only(right: 8),
       child: Semantics(
         button: true,
-        label: 'Filter: $label',
+        label: isEn ? 'Filter: $label' : 'Filtre: $label',
         child: GestureDetector(
           onTap: onTap,
           child: ConstrainedBox(

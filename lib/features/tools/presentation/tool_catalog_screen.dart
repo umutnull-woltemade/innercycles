@@ -495,8 +495,8 @@ class _ToolCard extends StatelessWidget {
                   Semantics(
                     button: true,
                     label: isFavorite
-                        ? 'Remove from favorites'
-                        : 'Add to favorites',
+                        ? (isEn ? 'Remove from favorites' : 'Favorilerden çıkar')
+                        : (isEn ? 'Add to favorites' : 'Favorilere ekle'),
                     child: GestureDetector(
                       onTap: onFavoriteToggle,
                       behavior: HitTestBehavior.opaque,

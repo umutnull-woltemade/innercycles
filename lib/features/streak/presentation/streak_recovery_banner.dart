@@ -90,7 +90,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                             Text(
                               isEn
                                   ? 'Your $longestStreak-day streak ended'
-                                  : '$longestStreak günlük serin sona erdi',
+                                  : '$longestStreak günlük seri sona erdi',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,

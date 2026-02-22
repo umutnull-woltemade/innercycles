@@ -152,7 +152,9 @@ class CycleSummaryCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Semantics(
-                    label: '${summary.currentAverage.toStringAsFixed(1)} out of 5',
+                    label: isEn
+                        ? '${summary.currentAverage.toStringAsFixed(1)} out of 5'
+                        : '5 üzerinden ${summary.currentAverage.toStringAsFixed(1)}',
                     child: ClipRRect(
                     borderRadius: BorderRadius.circular(3),
                     child: LinearProgressIndicator(

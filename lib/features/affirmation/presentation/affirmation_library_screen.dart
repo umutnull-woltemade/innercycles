@@ -238,6 +238,7 @@ class _AffirmationLibraryScreenState
             label: isEn ? 'All' : 'Tümü',
             isSelected: _selectedCategory == null && !_showFavoritesOnly,
             isDark: isDark,
+            isEn: isEn,
             onTap: () => setState(() {
               _selectedCategory = null;
               _showFavoritesOnly = false;
@@ -250,6 +251,7 @@ class _AffirmationLibraryScreenState
             label: isEn ? 'Favorites' : 'Favoriler',
             isSelected: _showFavoritesOnly,
             isDark: isDark,
+            isEn: isEn,
             icon: Icons.favorite,
             onTap: () => setState(() {
               _showFavoritesOnly = !_showFavoritesOnly;
@@ -266,6 +268,7 @@ class _AffirmationLibraryScreenState
                 label: isEn ? cat.displayNameEn : cat.displayNameTr,
                 isSelected: _selectedCategory == cat && !_showFavoritesOnly,
                 isDark: isDark,
+                isEn: isEn,
                 onTap: () => setState(() {
                   _selectedCategory = cat;
                   _showFavoritesOnly = false;
@@ -283,6 +286,7 @@ class _FilterChip extends StatelessWidget {
   final String label;
   final bool isSelected;
   final bool isDark;
+  final bool isEn;
   final IconData? icon;
   final VoidCallback onTap;
 
@@ -290,6 +294,7 @@ class _FilterChip extends StatelessWidget {
     required this.label,
     required this.isSelected,
     required this.isDark,
+    required this.isEn,
     this.icon,
     required this.onTap,
   });
@@ -298,7 +303,7 @@ class _FilterChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       button: true,
-      label: 'Filter: $label',
+      label: isEn ? 'Filter: $label' : 'Filtre: $label',
       child: GestureDetector(
         onTap: onTap,
         child: Container(

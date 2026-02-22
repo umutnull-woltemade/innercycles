@@ -586,7 +586,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
           Semantics(
             label: isEn
                 ? 'Reward progress: ${stats?.successfulReferrals ?? 0} of ${ReferralService.requiredReferrals} referrals, ${(progress * 100).round()} percent'
-                : 'Odul ilerlemesi: ${ReferralService.requiredReferrals} davetten ${stats?.successfulReferrals ?? 0} tamamlandi, yuzde ${(progress * 100).round()}',
+                : 'Ödül ilerlemesi: ${ReferralService.requiredReferrals} davetten ${stats?.successfulReferrals ?? 0} tamamlandı, yüzde ${(progress * 100).round()}',
             child: ClipRRect(
             borderRadius: BorderRadius.circular(6),
             child: LinearProgressIndicator(
@@ -668,7 +668,7 @@ class _ReferralScreenState extends ConsumerState<ReferralScreen> {
           child: Semantics(
             label: isEn
                 ? 'Friend ${index + 1}: ${isCompleted ? 'completed' : (isCurrent ? 'current step' : 'pending')}'
-                : 'Arkadas ${index + 1}: ${isCompleted ? 'tamamlandi' : (isCurrent ? 'mevcut adim' : 'bekliyor')}',
+                : 'Arkadaş ${index + 1}: ${isCompleted ? 'tamamlandı' : (isCurrent ? 'mevcut adım' : 'bekliyor')}',
             child: Padding(
             padding: EdgeInsets.only(
               right: index < ReferralService.requiredReferrals - 1 ? 8 : 0,
