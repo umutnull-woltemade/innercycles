@@ -30,6 +30,7 @@ import '../../../shared/widgets/share_card_sheet.dart';
 
 
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../data/services/premium_service.dart';
 import '../../gratitude/presentation/gratitude_section.dart';
@@ -367,10 +368,11 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   }
 
   Widget _buildSectionLabel(BuildContext context, bool isDark, String label) {
-    return Text(
+    return GradientText(
       label,
-      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-        color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+      variant: GradientTextVariant.gold,
+      style: const TextStyle(
+        fontSize: 14,
         fontWeight: FontWeight.w600,
         letterSpacing: 0.5,
       ),
