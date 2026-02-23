@@ -11,6 +11,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/mood_checkin_service.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class MoodCheckinCard extends ConsumerStatefulWidget {
   const MoodCheckinCard({super.key});
@@ -86,25 +87,8 @@ class _CheckinView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: isDark
-              ? [
-                  AppColors.surfaceDark.withValues(alpha: 0.9),
-                  AppColors.auroraStart.withValues(alpha: 0.15),
-                ]
-              : [
-                  AppColors.lightCard,
-                  AppColors.auroraStart.withValues(alpha: 0.05),
-                ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.2)),
-      ),
+    return PremiumCard(
+      style: PremiumCardStyle.aurora,
       child: Column(
         children: [
           Text(

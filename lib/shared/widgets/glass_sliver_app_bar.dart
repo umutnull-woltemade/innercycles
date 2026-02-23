@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/providers/app_providers.dart';
 import '../../data/services/storage_service.dart';
+import 'gradient_text.dart';
 
 /// iOS-native SliverAppBar with frosted glass backdrop blur.
 ///
@@ -14,12 +15,15 @@ import '../../data/services/storage_service.dart';
 /// - 0.33pt bottom separator (retina hairline)
 /// - iOS-standard chevron_left back button (28pt)
 /// - Large title collapse support
+/// - Optional gradient title via [useGradientTitle]
 class GlassSliverAppBar extends StatelessWidget {
   final String title;
   final bool showBackButton;
   final List<Widget>? actions;
   final bool largeTitleMode;
   final Color? titleColor;
+  final bool useGradientTitle;
+  final GradientTextVariant gradientVariant;
 
   const GlassSliverAppBar({
     super.key,
@@ -28,6 +32,8 @@ class GlassSliverAppBar extends StatelessWidget {
     this.actions,
     this.largeTitleMode = false,
     this.titleColor,
+    this.useGradientTitle = false,
+    this.gradientVariant = GradientTextVariant.aurora,
   });
 
   @override
@@ -71,15 +77,23 @@ class GlassSliverAppBar extends StatelessWidget {
                   start: 16,
                   bottom: 14,
                 ),
-                title: Text(
-                  title,
-                  style: TextStyle(
-                    color: effectiveTitleColor,
-                    fontWeight: FontWeight.w700,
-                    fontSize:
-                        17, // Collapsed size — FlexibleSpaceBar auto-scales
-                  ),
-                ),
+                title: useGradientTitle
+                    ? GradientText(
+                        title,
+                        variant: gradientVariant,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 17,
+                        ),
+                      )
+                    : Text(
+                        title,
+                        style: TextStyle(
+                          color: effectiveTitleColor,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 17,
+                        ),
+                      ),
                 collapseMode: CollapseMode.pin,
               ),
             ),
@@ -97,13 +111,21 @@ class GlassSliverAppBar extends StatelessWidget {
       leading: showBackButton && Navigator.of(context).canPop()
           ? _buildBackButton(context, backColor)
           : null,
-      title: Text(
-        title,
-        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-          color: effectiveTitleColor,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
+      title: useGradientTitle
+          ? GradientText(
+              title,
+              variant: gradientVariant,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            )
+          : Text(
+              title,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                color: effectiveTitleColor,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
       actions: actions,
       flexibleSpace: ClipRect(
         child: BackdropFilter(

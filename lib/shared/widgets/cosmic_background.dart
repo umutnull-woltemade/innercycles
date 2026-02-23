@@ -162,21 +162,181 @@ class _WebPainter extends CustomPainter {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// ABSTRACT DARK BACKGROUND - Soft gradient mesh + star field
+// ABSTRACT DARK BACKGROUND - Soft gradient mesh + star field + floating orbs
 // ═══════════════════════════════════════════════════════════════════════════
-class _AbstractDarkBackground extends StatelessWidget {
+class _AbstractDarkBackground extends StatefulWidget {
   const _AbstractDarkBackground();
 
   @override
+  State<_AbstractDarkBackground> createState() =>
+      _AbstractDarkBackgroundState();
+}
+
+class _AbstractDarkBackgroundState extends State<_AbstractDarkBackground>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  static const _orbs = [
+    _Orb(
+      center: Offset(0.25, 0.2),
+      radius: 120,
+      color: AppColors.cosmicPurple,
+      speed: 0.4,
+      phase: 0,
+      driftRadius: 30,
+    ),
+    _Orb(
+      center: Offset(0.75, 0.35),
+      radius: 100,
+      color: AppColors.auroraStart,
+      speed: 0.3,
+      phase: 1.2,
+      driftRadius: 25,
+    ),
+    _Orb(
+      center: Offset(0.4, 0.65),
+      radius: 140,
+      color: AppColors.amethyst,
+      speed: 0.25,
+      phase: 2.5,
+      driftRadius: 35,
+    ),
+    _Orb(
+      center: Offset(0.8, 0.8),
+      radius: 90,
+      color: AppColors.starGold,
+      speed: 0.35,
+      phase: 3.8,
+      driftRadius: 20,
+    ),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 60),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return RepaintBoundary(
-      child: CustomPaint(
-        painter: const _AbstractPainter(),
-        willChange: false,
-        isComplex: true,
-      ),
+    final disableAnimations =
+        MediaQuery.of(context).disableAnimations;
+
+    return Stack(
+      children: [
+        // Static star field + gradient base
+        RepaintBoundary(
+          child: CustomPaint(
+            painter: const _AbstractPainter(),
+            willChange: false,
+            isComplex: true,
+          ),
+        ),
+        // Animated floating orbs (dark mode only)
+        if (!disableAnimations)
+          Positioned.fill(
+            child: IgnorePointer(
+              child: AnimatedBuilder(
+                animation: _controller,
+                builder: (context, _) {
+                  return CustomPaint(
+                    painter: _OrbPainter(
+                      orbs: _orbs,
+                      progress: _controller.value,
+                    ),
+                    willChange: true,
+                  );
+                },
+              ),
+            ),
+          )
+        else
+          // Static orbs fallback for reduce-motion
+          Positioned.fill(
+            child: IgnorePointer(
+              child: RepaintBoundary(
+                child: CustomPaint(
+                  painter: _OrbPainter(
+                    orbs: _orbs,
+                    progress: 0,
+                  ),
+                  willChange: false,
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
+}
+
+class _Orb {
+  final Offset center; // normalized 0-1
+  final double radius;
+  final Color color;
+  final double speed; // radians per full cycle
+  final double phase; // starting angle
+  final double driftRadius;
+
+  const _Orb({
+    required this.center,
+    required this.radius,
+    required this.color,
+    required this.speed,
+    required this.phase,
+    required this.driftRadius,
+  });
+}
+
+class _OrbPainter extends CustomPainter {
+  final List<_Orb> orbs;
+  final double progress; // 0-1
+
+  const _OrbPainter({required this.orbs, required this.progress});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final angle = progress * 2 * pi;
+
+    for (final orb in orbs) {
+      final cx = orb.center.dx * size.width +
+          cos(angle * orb.speed + orb.phase) * orb.driftRadius;
+      final cy = orb.center.dy * size.height +
+          sin(angle * orb.speed * 0.7 + orb.phase) * orb.driftRadius * 0.8;
+
+      final gradient = ui.Gradient.radial(
+        Offset(cx, cy),
+        orb.radius,
+        [
+          orb.color.withValues(alpha: 0.06),
+          orb.color.withValues(alpha: 0.02),
+          orb.color.withValues(alpha: 0),
+        ],
+        [0.0, 0.5, 1.0],
+      );
+
+      canvas.drawCircle(
+        Offset(cx, cy),
+        orb.radius,
+        Paint()
+          ..shader = gradient
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 80),
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _OrbPainter oldDelegate) =>
+      oldDelegate.progress != progress;
 }
 
 class _AbstractPainter extends CustomPainter {

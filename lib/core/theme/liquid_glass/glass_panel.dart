@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'glass_tokens.dart';
+import '../../../shared/widgets/noise_overlay.dart';
 
 /// Glass elevation levels matching the G1-G5 system
 enum GlassElevation { g1, g2, g3, g4, g5 }
@@ -18,6 +19,8 @@ class GlassPanel extends StatelessWidget {
   final Color? glowColor;
   final double? width;
   final double? height;
+  final bool? showNoise;
+  final double noiseOpacity;
 
   const GlassPanel({
     super.key,
@@ -29,6 +32,8 @@ class GlassPanel extends StatelessWidget {
     this.glowColor,
     this.width,
     this.height,
+    this.showNoise,
+    this.noiseOpacity = 0.03,
   });
 
   int get _level => elevation.index + 1;
@@ -76,10 +81,17 @@ class GlassPanel extends StatelessWidget {
                     ]
                   : null,
             ),
-            child: child,
+            child: _shouldShowNoise
+                ? NoiseOverlay(
+                    opacity: noiseOpacity,
+                    child: child,
+                  )
+                : child,
           ),
         ),
       ),
     );
   }
+
+  bool get _shouldShowNoise => showNoise ?? (_level >= 3);
 }
