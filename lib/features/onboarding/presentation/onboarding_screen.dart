@@ -912,28 +912,98 @@ class _PermissionStartPage extends StatelessWidget {
                 stops: const [0.0, 0.6, 1.0],
               ),
             ),
-            child: Container(
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [AppColors.starGold, AppColors.celestialGold],
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.starGold.withValues(alpha: 0.25),
-                    blurRadius: 20,
-                    spreadRadius: 2,
+            child: SizedBox(
+              width: 100,
+              height: 100,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  // Outer sacred ring
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: AppColors.starGold.withValues(alpha: 0.25),
+                        width: 1.5,
+                      ),
+                    ),
+                  ),
+                  // Inner glow circle
+                  Container(
+                    width: 76,
+                    height: 76,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(
+                        colors: [
+                          AppColors.amethyst.withValues(alpha: 0.15),
+                          AppColors.auroraStart.withValues(alpha: 0.08),
+                          Colors.transparent,
+                        ],
+                      ),
+                      border: Border.all(
+                        color: AppColors.starGold.withValues(alpha: 0.12),
+                        width: 0.5,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.amethyst.withValues(alpha: 0.2),
+                          blurRadius: 24,
+                          spreadRadius: 4,
+                        ),
+                        BoxShadow(
+                          color: AppColors.starGold.withValues(alpha: 0.08),
+                          blurRadius: 40,
+                          spreadRadius: 8,
+                        ),
+                      ],
+                    ),
+                    child: Icon(
+                      Icons.auto_stories_rounded,
+                      size: 36,
+                      color: AppColors.starGold.withValues(alpha: 0.9),
+                    ),
+                  ),
+                  // Decorative sparkle dots
+                  Positioned(
+                    top: 6,
+                    right: 14,
+                    child: Container(
+                      width: 4,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.starGold.withValues(alpha: 0.6),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 10,
+                    left: 10,
+                    child: Container(
+                      width: 3,
+                      height: 3,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.amethyst.withValues(alpha: 0.5),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 18,
+                    left: 6,
+                    child: Container(
+                      width: 2.5,
+                      height: 2.5,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.starGold.withValues(alpha: 0.4),
+                      ),
+                    ),
                   ),
                 ],
-              ),
-              child: const Icon(
-                Icons.check_rounded,
-                size: 44,
-                color: AppColors.deepSpace,
               ),
             ),
           ).glassReveal(context: context),
