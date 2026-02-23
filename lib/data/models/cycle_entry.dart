@@ -4,6 +4,8 @@
 // Tracks menstrual/hormonal cycle data for emotional pattern correlation.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'package:uuid/uuid.dart';
+
 /// The four phases of a menstrual/hormonal cycle
 enum CyclePhase {
   menstrual,
@@ -117,8 +119,19 @@ class CyclePeriodLog {
     'symptoms': symptoms,
   };
 
-  factory CyclePeriodLog.fromJson(Map<String, dynamic> json) => CyclePeriodLog(
-    id: json['id'] as String? ?? '',
+  /// Check if an ID looks like an old timestamp-based ID
+  static bool _isTimestampId(String? id) {
+    if (id == null || id.isEmpty) return true;
+    // Timestamp IDs are purely numeric (millisecondsSinceEpoch)
+    return RegExp(r'^\d+$').hasMatch(id);
+  }
+
+  factory CyclePeriodLog.fromJson(Map<String, dynamic> json) {
+    final rawId = json['id'] as String?;
+    // Migrate old timestamp IDs to UUID
+    final id = _isTimestampId(rawId) ? const Uuid().v4() : rawId!;
+    return CyclePeriodLog(
+    id: id,
     periodStartDate:
         DateTime.tryParse(json['periodStartDate']?.toString() ?? '') ??
         DateTime.now(),
@@ -137,6 +150,7 @@ class CyclePeriodLog {
             .toList() ??
         [],
   );
+  }
 
   String get dateKey =>
       '${periodStartDate.year}-${periodStartDate.month.toString().padLeft(2, '0')}-${periodStartDate.day.toString().padLeft(2, '0')}';

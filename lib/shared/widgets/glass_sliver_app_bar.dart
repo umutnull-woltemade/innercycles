@@ -32,8 +32,8 @@ class GlassSliverAppBar extends StatelessWidget {
     this.actions,
     this.largeTitleMode = false,
     this.titleColor,
-    this.useGradientTitle = false,
-    this.gradientVariant = GradientTextVariant.aurora,
+    this.useGradientTitle = true,
+    this.gradientVariant = GradientTextVariant.gold,
   });
 
   @override

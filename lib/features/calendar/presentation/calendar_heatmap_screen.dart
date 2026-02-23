@@ -24,6 +24,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class CalendarHeatmapScreen extends ConsumerStatefulWidget {
@@ -507,19 +508,9 @@ class _CalendarGrid extends StatelessWidget {
         (firstDay.weekday % 7); // 0=Mon in ISO, adjust to Sun start
     final today = DateTime.now();
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.8)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.06)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         children: [
           // Day headers
@@ -846,23 +837,10 @@ class _DayDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hasContent = entry != null || lifeEvents.isNotEmpty;
-
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.aurora,
+      borderRadius: 14,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.8)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: hasContent
-              ? AppColors.auroraStart.withValues(alpha: 0.2)
-              : (isDark
-                    ? Colors.white.withValues(alpha: 0.06)
-                    : Colors.black.withValues(alpha: 0.05)),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1231,19 +1209,10 @@ class _YearHeatmap extends StatelessWidget {
         ? ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D']
         : ['O', 'Ş', 'M', 'N', 'M', 'H', 'T', 'A', 'E', 'E', 'K', 'A'];
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: 14,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.8)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.06)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1335,16 +1304,9 @@ class _PremiumYearOverlay extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      width: double.infinity,
+    return PremiumCard(
+      style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.starGold.withValues(alpha: 0.06)
-            : AppColors.lightStarGold.withValues(alpha: 0.06),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
-      ),
       child: Column(
         children: [
           Icon(Icons.calendar_today, size: 32, color: AppColors.starGold),

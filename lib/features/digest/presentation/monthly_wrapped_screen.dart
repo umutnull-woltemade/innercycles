@@ -13,6 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../data/services/monthly_wrapped_service.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/content/share_card_templates.dart';
@@ -73,10 +74,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          '\u{1F4CA}',
-                          style: const TextStyle(fontSize: 48),
-                        ),
+                        AppSymbol('\u{1F4CA}', size: AppSymbolSize.xl),
                         const SizedBox(height: 16),
                         Text(
                           isEn
@@ -303,10 +301,7 @@ class _Slide5Share extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            '\u{2728}',
-            style: const TextStyle(fontSize: 64),
-          ).animate().scale(
+          AppSymbol.hero('\u{2728}').animate().scale(
                 begin: const Offset(0.5, 0.5),
                 end: const Offset(1, 1),
                 duration: 600.ms,
@@ -391,10 +386,7 @@ class _SlideBase extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            emoji,
-            style: const TextStyle(fontSize: 64),
-          ).animate().scale(
+          AppSymbol.hero(emoji).animate().scale(
                 begin: const Offset(0.5, 0.5),
                 end: const Offset(1, 1),
                 duration: 600.ms,

@@ -16,6 +16,7 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class SleepDetailScreen extends ConsumerWidget {
   const SleepDetailScreen({super.key});
@@ -165,14 +166,10 @@ class _SummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: 14,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(14),
-      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -263,14 +260,10 @@ class _WeeklyChart extends StatelessWidget {
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: 14,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(14),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -436,14 +429,10 @@ class _SleepTips extends StatelessWidget {
             'Uyumadan önce nefes egzersizlerini deneyin',
           ];
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: 14,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(14),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -520,14 +509,10 @@ class _NightCard extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
-      child: Container(
+      child: PremiumCard(
+        style: PremiumCardStyle.subtle,
+        borderRadius: 12,
         padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.85)
-              : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(12),
-        ),
         child: Row(
           children: [
             AppSymbol.card(emoji),

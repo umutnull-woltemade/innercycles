@@ -20,6 +20,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class LibraryHubScreen extends ConsumerWidget {
@@ -189,21 +190,11 @@ class _CategoryCard extends StatelessWidget {
           HapticFeedback.lightImpact();
           context.push(category.route);
         },
-        child: Container(
+        child: PremiumCard(
+          style: PremiumCardStyle.subtle,
           padding: const EdgeInsets.symmetric(
             horizontal: AppConstants.spacingLg,
             vertical: AppConstants.spacingMd,
-          ),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.75)
-                : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-            border: Border.all(
-              color: isDark
-                  ? Colors.white.withValues(alpha: 0.08)
-                  : Colors.black.withValues(alpha: 0.04),
-            ),
           ),
           child: Row(
             children: [

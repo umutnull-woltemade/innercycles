@@ -22,6 +22,7 @@ import 'data/services/analytics_service.dart';
 import 'data/services/web_error_service.dart';
 import 'data/services/l10n_service.dart';
 import 'data/services/sync_service.dart';
+import 'data/services/data_migration_service.dart';
 import 'data/services/error_reporting_service.dart';
 import 'data/services/paywall_experiment_service.dart';
 import 'data/services/telemetry_service.dart';
@@ -295,6 +296,38 @@ class _AppInitializerState extends State<AppInitializer> {
         await SyncService.initialize();
         if (kDebugMode) {
           debugPrint('✓ SyncService initialized');
+        }
+
+        // Run one-time data migration if user is logged in
+        // (only if Supabase was initialized — requires valid URL in .env)
+        try {
+          final supabaseUrl = dotenv.env['SUPABASE_URL'] ?? '';
+          final currentUser = (supabaseUrl.isNotEmpty && !supabaseUrl.contains('placeholder'))
+              ? Supabase.instance.client.auth.currentUser
+              : null;
+          if (currentUser != null && await DataMigrationService.needsMigration()) {
+            if (kDebugMode) {
+              debugPrint('🔄 Starting data migration to Supabase...');
+            }
+            final result = await DataMigrationService.migrateAllLocalData(
+              userId: currentUser.id,
+              onProgress: (current, total, table) {
+                if (kDebugMode) {
+                  debugPrint('  Migration ($current/$total): $table');
+                }
+              },
+            );
+            if (kDebugMode) {
+              debugPrint(
+                '✓ Data migration complete: ${result.migrated} records'
+                '${result.hasErrors ? ', ${result.errors.length} errors' : ''}',
+              );
+            }
+          }
+        } catch (e) {
+          if (kDebugMode) {
+            debugPrint('⚠️ DataMigration failed: $e');
+          }
         }
       } catch (e) {
         if (kDebugMode) {

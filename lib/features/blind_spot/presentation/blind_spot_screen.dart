@@ -17,6 +17,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class BlindSpotScreen extends ConsumerWidget {
@@ -343,41 +344,10 @@ class _OverallInsightCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.aurora,
+      borderRadius: 20,
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: isDark
-              ? [
-                  AppColors.surfaceDark.withValues(alpha: 0.9),
-                  AppColors.cosmicPurple.withValues(alpha: 0.7),
-                ]
-              : [AppColors.lightCard, AppColors.lightSurfaceVariant],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: isDark
-              ? AppColors.auroraStart.withValues(alpha: 0.3)
-              : AppColors.auroraStart.withValues(alpha: 0.15),
-        ),
-        boxShadow: isDark
-            ? [
-                BoxShadow(
-                  color: AppColors.auroraStart.withValues(alpha: 0.08),
-                  blurRadius: 20,
-                  offset: const Offset(0, 4),
-                ),
-              ]
-            : [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.05),
-                  blurRadius: 10,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -474,19 +444,9 @@ class _BlindSpotsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (spots.isEmpty) {
-      return Container(
+      return PremiumCard(
+        style: PremiumCardStyle.subtle,
         padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.85)
-              : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: isDark
-                ? Colors.white.withValues(alpha: 0.15)
-                : Colors.black.withValues(alpha: 0.05),
-          ),
-        ),
         child: Row(
           children: [
             Icon(
@@ -807,19 +767,9 @@ class _GrowthSuggestionsCard extends StatelessWidget {
         ? report.growthSuggestionsEn
         : report.growthSuggestionsTr;
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? AppColors.success.withValues(alpha: 0.25)
-              : AppColors.success.withValues(alpha: 0.15),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

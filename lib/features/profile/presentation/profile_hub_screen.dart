@@ -16,6 +16,8 @@ import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class ProfileHubScreen extends ConsumerWidget {
   const ProfileHubScreen({super.key});
@@ -93,14 +95,12 @@ class ProfileHubScreen extends ConsumerWidget {
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Tools section
-                    Text(
+                    GradientText(
                       isEn ? 'Tools' : 'Araçlar',
+                      variant: GradientTextVariant.gold,
                       style: GoogleFonts.inter(
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
                       ),
                     ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingSm),
@@ -108,14 +108,12 @@ class ProfileHubScreen extends ConsumerWidget {
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Settings links
-                    Text(
+                    GradientText(
                       isEn ? 'Settings' : 'Ayarlar',
+                      variant: GradientTextVariant.gold,
                       style: GoogleFonts.inter(
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
                       ),
                     ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingSm),
@@ -272,15 +270,10 @@ class _ProfileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: AppConstants.radiusXl,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusXl),
-        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.15)),
-      ),
       child: Row(
         children: [
           Container(
@@ -304,14 +297,16 @@ class _ProfileHeader extends StatelessWidget {
             ),
           ),
           const SizedBox(width: AppConstants.spacingLg),
-          Text(
-            name,
-            style: GoogleFonts.inter(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
+          Expanded(
+            child: GradientText(
+              name,
+              variant: GradientTextVariant.gold,
+              style: GoogleFonts.inter(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
@@ -341,20 +336,10 @@ class _GrowthScoreCard extends StatelessWidget {
       button: true,
       child: GestureDetector(
         onTap: onTap,
-        child: Container(
+        child: PremiumCard(
+          style: PremiumCardStyle.aurora,
+          borderRadius: AppConstants.radiusXl,
           padding: const EdgeInsets.all(AppConstants.spacingXl),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                AppColors.auroraStart.withValues(alpha: 0.12),
-                AppColors.auroraEnd.withValues(alpha: 0.06),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(AppConstants.radiusXl),
-            border: Border.all(
-              color: AppColors.auroraStart.withValues(alpha: 0.25),
-            ),
-          ),
           child: Row(
             children: [
               SizedBox(
@@ -447,14 +432,9 @@ class _QuickStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -534,21 +514,12 @@ class _SettingsLinkTile extends StatelessWidget {
       button: true,
       child: GestureDetector(
         onTap: onTap,
-        child: Container(
+        child: PremiumCard(
+          style: PremiumCardStyle.subtle,
+          borderRadius: AppConstants.radiusMd,
           padding: const EdgeInsets.symmetric(
             horizontal: AppConstants.spacingLg,
             vertical: AppConstants.spacingMd,
-          ),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.6)
-                : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-            border: Border.all(
-              color: isDark
-                  ? Colors.white.withValues(alpha: 0.06)
-                  : Colors.black.withValues(alpha: 0.03),
-            ),
           ),
           child: Row(
             children: [

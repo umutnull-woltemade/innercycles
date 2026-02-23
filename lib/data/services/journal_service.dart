@@ -9,14 +9,18 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import '../models/journal_entry.dart';
+import '../mixins/supabase_sync_mixin.dart';
 
-class JournalService {
+class JournalService with SupabaseSyncMixin {
   static const String _storageKey = 'inner_cycles_journal_entries';
   static const _uuid = Uuid();
 
   final SharedPreferences _prefs;
   List<JournalEntry> _entries = [];
   List<JournalEntry>? _sortedCache;
+
+  @override
+  String get tableName => 'journal_entries';
 
   JournalService._(this._prefs) {
     _loadEntries();
@@ -55,6 +59,18 @@ class JournalService {
     _entries.add(entry);
     _sortedCache = null;
     await _persistEntries();
+
+    // Sync to Supabase
+    queueSync('UPSERT', entry.id, {
+      'id': entry.id,
+      'date': entry.dateKey,
+      'focus_area': entry.focusArea.name,
+      'overall_rating': entry.overallRating,
+      'sub_ratings': entry.subRatings,
+      'note': entry.note,
+      'image_path': entry.imagePath,
+    });
+
     return entry;
   }
 
@@ -63,6 +79,9 @@ class JournalService {
     _entries.removeWhere((e) => e.id == id);
     _sortedCache = null;
     await _persistEntries();
+
+    // Soft-delete remotely
+    queueSoftDelete(id);
   }
 
   /// Get a single entry by ID
@@ -187,6 +206,51 @@ class JournalService {
     }
 
     return longest;
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // REMOTE MERGE
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Merge entries pulled from Supabase into local storage.
+  Future<void> mergeRemoteEntries(List<Map<String, dynamic>> remoteData) async {
+    for (final row in remoteData) {
+      final id = row['id'] as String;
+      final isDeleted = row['is_deleted'] as bool? ?? false;
+
+      if (isDeleted) {
+        _entries.removeWhere((e) => e.id == id);
+        continue;
+      }
+
+      final entry = JournalEntry(
+        id: id,
+        date: DateTime.tryParse(row['date']?.toString() ?? '') ?? DateTime.now(),
+        createdAt: DateTime.tryParse(row['created_at']?.toString() ?? '') ?? DateTime.now(),
+        focusArea: FocusArea.values.firstWhere(
+          (f) => f.name == row['focus_area'],
+          orElse: () => FocusArea.emotions,
+        ),
+        overallRating: row['overall_rating'] as int? ?? 3,
+        subRatings: row['sub_ratings'] is Map
+            ? Map<String, int>.from(
+                (row['sub_ratings'] as Map).map((k, v) => MapEntry(k.toString(), v as int)),
+              )
+            : {},
+        note: row['note'] as String?,
+        imagePath: row['image_path'] as String?,
+      );
+
+      final existingIdx = _entries.indexWhere((e) => e.id == id);
+      if (existingIdx >= 0) {
+        _entries[existingIdx] = entry;
+      } else {
+        _entries.add(entry);
+      }
+    }
+
+    _sortedCache = null;
+    await _persistEntries();
   }
 
   // ══════════════════════════════════════════════════════════════════════════

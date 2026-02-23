@@ -897,32 +897,44 @@ class _PermissionStartPage extends StatelessWidget {
         children: [
           const Spacer(),
 
-          // Success icon
+          // Success icon — premium double-ring design
           Container(
             width: 100,
             height: 100,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+              gradient: RadialGradient(
                 colors: [
-                  AppColors.auroraStart.withValues(alpha: 0.16),
-                  AppColors.amethyst.withValues(alpha: 0.16),
+                  AppColors.starGold.withValues(alpha: 0.12),
+                  AppColors.starGold.withValues(alpha: 0.03),
+                  Colors.transparent,
+                ],
+                stops: const [0.0, 0.6, 1.0],
+              ),
+            ),
+            child: Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [AppColors.starGold, AppColors.celestialGold],
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.starGold.withValues(alpha: 0.25),
+                    blurRadius: 20,
+                    spreadRadius: 2,
+                  ),
                 ],
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.auroraStart.withValues(alpha: 0.2),
-                  blurRadius: 40,
-                  spreadRadius: 8,
-                ),
-              ],
-            ),
-            child: const Icon(
-              Icons.check_circle_outline,
-              size: 56,
-              color: AppColors.success,
+              child: const Icon(
+                Icons.check_rounded,
+                size: 44,
+                color: AppColors.deepSpace,
+              ),
             ),
           ).glassReveal(context: context),
 

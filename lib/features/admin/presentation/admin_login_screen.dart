@@ -15,6 +15,7 @@ import '../../../data/providers/admin_providers.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class AdminLoginScreen extends ConsumerStatefulWidget {
   const AdminLoginScreen({super.key});
@@ -154,27 +155,9 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
     int remainingAttempts,
     AppLanguage language,
   ) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.8)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? AppColors.starGold.withValues(alpha: 0.3)
-              : AppColors.lightStarGold.withValues(alpha: 0.3),
-          width: 2,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.starGold.withValues(alpha: 0.1),
-            blurRadius: 20,
-            spreadRadius: 2,
-          ),
-        ],
-      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -440,14 +423,10 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
     bool isDark,
     AppLanguage language,
   ) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: AppConstants.radiusMd,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceLight.withValues(alpha: 0.3)
-            : AppColors.lightSurfaceVariant,
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../shared/widgets/app_symbol.dart';
@@ -27,7 +26,7 @@ import '../../streak/presentation/streak_recovery_banner.dart';
 import '../../mood/presentation/mood_checkin_card.dart';
 // unlock_progress_banner import removed (Today Feed simplified)
 import '../../../shared/widgets/cosmic_background.dart';
-import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
   const TodayFeedScreen({super.key});
@@ -84,45 +83,56 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
               ),
 
-              const SliverToBoxAdapter(child: SizedBox(height: 12)),
+              const SliverToBoxAdapter(child: SizedBox(height: 16)),
 
               // ═══════════════════════════════════════════════════════
-              // PRIMARY CTA - Start Journaling
+              // PRIMARY CTA - Start Journaling (pill shape)
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        HapticService.buttonPress();
-                        context.go(Routes.journal);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: isDark
-                            ? AppColors.starGold
-                            : AppColors.lightStarGold,
-                        foregroundColor: AppColors.deepSpace,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            AppConstants.radiusLg,
-                          ),
+                  child: GestureDetector(
+                    onTap: () {
+                      HapticService.buttonPress();
+                      context.go(Routes.journal);
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(28),
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: isDark
+                              ? [AppColors.starGold, AppColors.celestialGold]
+                              : [AppColors.lightStarGold, AppColors.celestialGold],
                         ),
-                        elevation: 0,
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.starGold.withValues(alpha: 0.2),
+                            blurRadius: 16,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.edit_note_rounded, size: 20),
-                          const SizedBox(width: 8),
+                          Icon(
+                            Icons.edit_rounded,
+                            size: 20,
+                            color: AppColors.deepSpace,
+                          ),
+                          const SizedBox(width: 10),
                           Flexible(
                             child: Text(
                               isEn ? 'Start Journaling' : 'Günlüğe Başla',
                               style: const TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 0.3,
+                                color: AppColors.deepSpace,
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -130,11 +140,18 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                         ],
                       ),
                     ),
-                  ).animate().fadeIn(delay: 150.ms, duration: 400.ms),
+                  )
+                      .animate().fadeIn(delay: 180.ms, duration: 400.ms)
+                      .animate(onPlay: (c) => c.repeat())
+                      .shimmer(
+                        delay: 3000.ms,
+                        duration: 1800.ms,
+                        color: Colors.white.withValues(alpha: 0.12),
+                      ),
                 ),
               ),
 
-              const SliverToBoxAdapter(child: SizedBox(height: 24)),
+              const SliverToBoxAdapter(child: SizedBox(height: 20)),
 
               // ═══════════════════════════════════════════════════════
               // RETROSPECTIVE BANNER (if < 5 entries or never used)
@@ -219,7 +236,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 ),
               ),
 
-              const SliverToBoxAdapter(child: SizedBox(height: 32)),
+              const SliverToBoxAdapter(child: SizedBox(height: 40)),
             ],
           ),
         ),
@@ -229,7 +246,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// HOME HEADER
+// HOME HEADER — Split greeting: small line + bold name
 // ════════════════════════════════════════════════════════════════════════════
 
 class _HomeHeader extends StatelessWidget {
@@ -261,50 +278,89 @@ class _HomeHeader extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  userName.isNotEmpty ? '$greeting, $userName' : greeting,
+                  userName.isNotEmpty ? '$greeting,' : greeting,
                   style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  _getSubtitle(isEn),
-                  style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
                     color: isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,
                   ),
                 ),
+                if (userName.isNotEmpty) ...[
+                  const SizedBox(height: 2),
+                  GradientText(
+                    userName,
+                    variant: GradientTextVariant.gold,
+                    style: const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -0.5,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+                const SizedBox(height: 6),
+                Text(
+                  _getSubtitle(isEn),
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                    height: 1.3,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Container(
+                  height: 0.5,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.transparent,
+                        AppColors.starGold.withValues(alpha: 0.15),
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
-          IconButton(
-            tooltip: isEn ? 'Settings' : 'Ayarlar',
-            onPressed: () {
-              HapticService.buttonPress();
-              context.push(Routes.settings);
-            },
-            icon: Icon(
-              Icons.settings_outlined,
+          const SizedBox(width: 12),
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
               color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
-              size: 22,
+                  ? Colors.white.withValues(alpha: 0.06)
+                  : Colors.black.withValues(alpha: 0.04),
+            ),
+            child: IconButton(
+              tooltip: isEn ? 'Settings' : 'Ayarlar',
+              onPressed: () {
+                HapticService.buttonPress();
+                context.push(Routes.settings);
+              },
+              icon: Icon(
+                Icons.settings_outlined,
+                color: isDark
+                    ? AppColors.textMuted
+                    : AppColors.lightTextMuted,
+                size: 20,
+              ),
+              padding: EdgeInsets.zero,
             ),
           ),
         ],
@@ -314,7 +370,7 @@ class _HomeHeader extends StatelessWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// TODAY'S INSIGHT — Pattern-based note from journal history
+// TODAY'S INSIGHT — Left accent bar editorial style
 // ════════════════════════════════════════════════════════════════════════════
 
 class _TodaysInsightSection extends ConsumerWidget {
@@ -373,7 +429,7 @@ class _TodaysInsightSection extends ConsumerWidget {
             return _buildCard(
               context,
               icon: Icons.psychology_outlined,
-              text: '${archetype.emoji} ${archetype.getName(isEnglish: isEn)}: $tip',
+              text: '${archetype.getName(isEnglish: isEn)}: $tip',
             );
           },
           orElse: () {
@@ -406,13 +462,21 @@ class _TodaysInsightSection extends ConsumerWidget {
             HapticService.buttonPress();
             context.go(Routes.moodTrends);
           },
-          child: PremiumCard(
-            style: PremiumCardStyle.gold,
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(16, 14, 14, 14),
+            decoration: BoxDecoration(
+              border: Border(
+                left: BorderSide(
+                  color: isDark ? AppColors.starGold : AppColors.lightStarGold,
+                  width: 3,
+                ),
+              ),
+            ),
             child: Row(
               children: [
                 Icon(
                   icon,
-                  size: 20,
+                  size: 18,
                   color: isDark ? AppColors.starGold : AppColors.lightStarGold,
                 ),
                 const SizedBox(width: 12),
@@ -428,6 +492,14 @@ class _TodaysInsightSection extends ConsumerWidget {
                     ),
                   ),
                 ),
+                const SizedBox(width: 8),
+                Icon(
+                  Icons.chevron_right_rounded,
+                  size: 18,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
+                ),
               ],
             ),
           ),
@@ -438,7 +510,7 @@ class _TodaysInsightSection extends ConsumerWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// PERSONALIZED PROMPT — Filtered by weakest focus area from pattern engine
+// PERSONALIZED PROMPT — Left accent bar, amethyst
 // ════════════════════════════════════════════════════════════════════════════
 
 class _PersonalizedPromptSection extends ConsumerWidget {
@@ -491,17 +563,13 @@ class _PersonalizedPromptSection extends ConsumerWidget {
         return Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
             decoration: BoxDecoration(
-              color: isDark
-                  ? AppColors.amethyst.withValues(alpha: 0.08)
-                  : AppColors.amethyst.withValues(alpha: 0.06),
-              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-              border: Border.all(
-                color: isDark
-                    ? AppColors.amethyst.withValues(alpha: 0.2)
-                    : AppColors.amethyst.withValues(alpha: 0.15),
+              border: Border(
+                left: BorderSide(
+                  color: AppColors.amethyst.withValues(alpha: 0.6),
+                  width: 3,
+                ),
               ),
             ),
             child: Column(
@@ -511,22 +579,22 @@ class _PersonalizedPromptSection extends ConsumerWidget {
                   children: [
                     Icon(
                       Icons.tips_and_updates_outlined,
-                      size: 16,
-                      color: isDark ? AppColors.amethyst : AppColors.amethyst,
+                      size: 14,
+                      color: AppColors.amethyst,
                     ),
                     const SizedBox(width: 8),
                     Text(
                       isEn ? 'For your $areaLabel' : '$areaLabel için',
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 11,
                         fontWeight: FontWeight.w600,
-                        color: isDark ? AppColors.amethyst : AppColors.amethyst,
+                        color: AppColors.amethyst,
                         letterSpacing: 0.5,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 8),
                 Text(
                   isEn ? prompt.promptEn : prompt.promptTr,
                   style: TextStyle(
@@ -566,7 +634,7 @@ class _PersonalizedPromptSection extends ConsumerWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// RECENT ENTRIES — Last 3 journal entries (compact)
+// RECENT ENTRIES — Clean list with dividers, no cards
 // ════════════════════════════════════════════════════════════════════════════
 
 class _RecentEntriesSection extends ConsumerWidget {
@@ -592,14 +660,13 @@ class _RecentEntriesSection extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  GradientText(
                     isEn ? 'Recent Entries' : 'Son Kayıtlar',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
+                    variant: GradientTextVariant.gold,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.3,
                     ),
                   ),
                   Semantics(
@@ -639,6 +706,7 @@ class _RecentEntriesSection extends ConsumerWidget {
                   entry: entry,
                   isEn: isEn,
                   isDark: isDark,
+                  isLast: index == entries.length - 1,
                   onTap: () => context.push('/journal/entry/${entry.id}'),
                 ).animate().fadeIn(
                   delay: Duration(milliseconds: 250 + index * 60),
@@ -658,20 +726,31 @@ class _RecentEntryRow extends StatelessWidget {
   final JournalEntry entry;
   final bool isEn;
   final bool isDark;
+  final bool isLast;
   final VoidCallback onTap;
 
   const _RecentEntryRow({
     required this.entry,
     required this.isEn,
     required this.isDark,
+    required this.isLast,
     required this.onTap,
   });
+
+  static const _focusAreaColors = {
+    FocusArea.energy: AppColors.starGold,
+    FocusArea.focus: AppColors.chartBlue,
+    FocusArea.emotions: AppColors.chartPink,
+    FocusArea.decisions: AppColors.chartGreen,
+    FocusArea.social: AppColors.chartPurple,
+  };
 
   @override
   Widget build(BuildContext context) {
     final dateStr = _formatDate(entry.date, isEn);
     final areaLabel = _focusAreaLabel(entry.focusArea, isEn);
     final rating = entry.overallRating;
+    final accentColor = _focusAreaColors[entry.focusArea] ?? AppColors.starGold;
 
     final entryLabel = isEn
         ? '$areaLabel entry on $dateStr'
@@ -685,25 +764,43 @@ class _RecentEntryRow extends StatelessWidget {
           HapticService.selectionTap();
           onTap();
         },
+        behavior: HitTestBehavior.opaque,
         child: Container(
-          margin: const EdgeInsets.only(bottom: 8),
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+          padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.6)
-                : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-            border: Border.all(
-              color: isDark
-                  ? Colors.white.withValues(alpha: 0.06)
-                  : Colors.black.withValues(alpha: 0.04),
-            ),
+            border: isLast
+                ? null
+                : Border(
+                    bottom: BorderSide(
+                      color: isDark
+                          ? Colors.white.withValues(alpha: 0.06)
+                          : Colors.black.withValues(alpha: 0.04),
+                      width: 0.5,
+                    ),
+                  ),
           ),
           child: Row(
             children: [
+              // Focus area accent bar
+              Container(
+                width: 3,
+                height: 28,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(1.5),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      accentColor.withValues(alpha: 0.8),
+                      accentColor.withValues(alpha: 0.2),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
               // Date
               SizedBox(
-                width: 70,
+                width: 60,
                 child: Text(
                   dateStr,
                   style: TextStyle(
@@ -732,14 +829,14 @@ class _RecentEntryRow extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              // Rating dots (1-5)
+              // Rating dots
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: List.generate(5, (i) {
                   final filled = i < rating;
                   return Container(
-                    width: 8,
-                    height: 8,
+                    width: 7,
+                    height: 7,
                     margin: const EdgeInsets.only(left: 3),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -748,8 +845,17 @@ class _RecentEntryRow extends StatelessWidget {
                                 ? AppColors.starGold
                                 : AppColors.lightStarGold)
                           : (isDark
-                                ? Colors.white.withValues(alpha: 0.12)
-                                : Colors.black.withValues(alpha: 0.08)),
+                                ? Colors.white.withValues(alpha: 0.1)
+                                : Colors.black.withValues(alpha: 0.06)),
+                      boxShadow: filled
+                          ? [
+                              BoxShadow(
+                                color: AppColors.starGold.withValues(alpha: 0.4),
+                                blurRadius: 4,
+                                spreadRadius: 0.5,
+                              ),
+                            ]
+                          : null,
                     ),
                   );
                 }),
@@ -764,32 +870,12 @@ class _RecentEntryRow extends StatelessWidget {
   static String _formatDate(DateTime date, bool isEn) {
     final months = isEn
         ? [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec',
+            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
           ]
         : [
-            'Oca',
-            'Şub',
-            'Mar',
-            'Nis',
-            'May',
-            'Haz',
-            'Tem',
-            'Ağu',
-            'Eyl',
-            'Eki',
-            'Kas',
-            'Ara',
+            'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
+            'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara',
           ];
     return '${months[date.month - 1]} ${date.day}';
   }
@@ -811,7 +897,7 @@ class _RecentEntryRow extends StatelessWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// RECENT LIFE EVENTS CARD
+// RECENT LIFE EVENTS — Clean list, tinted retention prompt
 // ════════════════════════════════════════════════════════════════════════════
 
 class _RecentLifeEventsCard extends ConsumerWidget {
@@ -830,11 +916,9 @@ class _RecentLifeEventsCard extends ConsumerWidget {
       data: (service) {
         final recentEvents = service.getRecentEvents(3);
         if (recentEvents.isEmpty) {
-          // Show retention prompt if no life events at all
           return _buildRetentionPrompt(context);
         }
 
-        // Only show if there are events in the last 14 days
         final cutoff = DateTime.now().subtract(const Duration(days: 14));
         final recentEnough = recentEvents.where(
           (e) => e.date.isAfter(cutoff),
@@ -850,14 +934,13 @@ class _RecentLifeEventsCard extends ConsumerWidget {
             children: [
               Row(
                 children: [
-                  Text(
+                  GradientText(
                     isEn ? 'Recent Life Events' : 'Son Yaşam Olayları',
-                    style: TextStyle(
-                      fontSize: 16,
+                    variant: GradientTextVariant.gold,
+                    style: const TextStyle(
+                      fontSize: 15,
                       fontWeight: FontWeight.w700,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
+                      letterSpacing: 0.3,
                     ),
                   ),
                   const Spacer(),
@@ -867,7 +950,9 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                       isEn ? 'See all' : 'Tümünü gör',
                       style: TextStyle(
                         fontSize: 12,
-                        color: AppColors.starGold,
+                        color: isDark
+                            ? AppColors.starGold
+                            : AppColors.lightStarGold,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -875,74 +960,78 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: 10),
-              ...recentEnough.take(2).map((event) {
+              ...recentEnough.take(2).toList().asMap().entries.map((mapEntry) {
+                final index = mapEntry.key;
+                final event = mapEntry.value;
                 final isPositive = event.type == LifeEventType.positive;
-                final accentColor =
-                    isPositive ? AppColors.starGold : AppColors.amethyst;
                 final preset = event.eventKey != null
                     ? LifeEventPresets.getByKey(event.eventKey!)
                     : null;
                 final emoji =
                     preset?.emoji ?? (isPositive ? '\u{2728}' : '\u{1F4AD}');
+                final isLastItem = index == recentEnough.take(2).length - 1;
 
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: GestureDetector(
-                    onTap: () {
-                      HapticService.buttonPress();
-                      context.push(
-                        Routes.lifeEventDetail.replaceFirst(':id', event.id),
-                      );
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: accentColor.withValues(alpha: 0.06),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: accentColor.withValues(alpha: 0.12),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          AppSymbol(emoji, size: AppSymbolSize.sm),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+                return GestureDetector(
+                  onTap: () {
+                    HapticService.buttonPress();
+                    context.push(
+                      Routes.lifeEventDetail.replaceFirst(':id', event.id),
+                    );
+                  },
+                  behavior: HitTestBehavior.opaque,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                      border: isLastItem
+                          ? null
+                          : Border(
+                              bottom: BorderSide(
+                                color: isDark
+                                    ? Colors.white.withValues(alpha: 0.06)
+                                    : Colors.black.withValues(alpha: 0.04),
+                                width: 0.5,
+                              ),
+                            ),
+                    ),
+                    child: Row(
+                      children: [
+                        AppSymbol(emoji, size: AppSymbolSize.sm),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                event.title,
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600,
+                                  color: isDark
+                                      ? AppColors.textPrimary
+                                      : AppColors.lightTextPrimary,
+                                ),
+                              ),
+                              if (event.emotionTags.isNotEmpty)
                                 Text(
-                                  event.title,
+                                  event.emotionTags.take(2).join(', '),
                                   style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
+                                    fontSize: 11,
                                     color: isDark
-                                        ? AppColors.textPrimary
-                                        : AppColors.lightTextPrimary,
+                                        ? AppColors.textMuted
+                                        : AppColors.lightTextMuted,
                                   ),
                                 ),
-                                if (event.emotionTags.isNotEmpty)
-                                  Text(
-                                    event.emotionTags.take(2).join(', '),
-                                    style: TextStyle(
-                                      fontSize: 11,
-                                      color: isDark
-                                          ? AppColors.textMuted
-                                          : AppColors.lightTextMuted,
-                                    ),
-                                  ),
-                              ],
-                            ),
+                            ],
                           ),
-                          Icon(
-                            Icons.chevron_right_rounded,
-                            size: 18,
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
-                        ],
-                      ),
+                        ),
+                        Icon(
+                          Icons.chevron_right_rounded,
+                          size: 18,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                        ),
+                      ],
                     ),
                   ),
                 );
@@ -965,17 +1054,16 @@ class _RecentLifeEventsCard extends ConsumerWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: AppColors.starGold.withValues(alpha: 0.06),
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(
-              color: AppColors.starGold.withValues(alpha: 0.12),
-            ),
+            color: isDark
+                ? AppColors.starGold.withValues(alpha: 0.06)
+                : AppColors.starGold.withValues(alpha: 0.04),
+            borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
             children: [
               Icon(
                 Icons.auto_awesome_rounded,
-                color: AppColors.starGold,
+                color: isDark ? AppColors.starGold : AppColors.lightStarGold,
                 size: 24,
               ),
               const SizedBox(width: 12),
@@ -1012,7 +1100,7 @@ class _RecentLifeEventsCard extends ConsumerWidget {
               Icon(
                 Icons.arrow_forward_ios_rounded,
                 size: 14,
-                color: AppColors.starGold,
+                color: isDark ? AppColors.starGold : AppColors.lightStarGold,
               ),
             ],
           ),
@@ -1023,7 +1111,7 @@ class _RecentLifeEventsCard extends ConsumerWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// RETROSPECTIVE BANNER — Suggest adding past entries
+// RETROSPECTIVE BANNER — Tinted container, no card border
 // ════════════════════════════════════════════════════════════════════════════
 
 class _RetrospectiveBanner extends ConsumerWidget {
@@ -1037,7 +1125,6 @@ class _RetrospectiveBanner extends ConsumerWidget {
     final journalAsync = ref.watch(journalServiceProvider);
     final retroAsync = ref.watch(retrospectiveDateServiceProvider);
 
-    // Show if < 5 entries or never used retrospective
     final shouldShow = journalAsync.whenOrNull(data: (service) {
           final entryCount = service.getAllEntries().length;
           final hasRetro = retroAsync.whenOrNull(
@@ -1057,8 +1144,14 @@ class _RetrospectiveBanner extends ConsumerWidget {
           HapticService.buttonPress();
           context.push(Routes.retrospective);
         },
-        child: PremiumCard(
-          style: PremiumCardStyle.aurora,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.auroraStart.withValues(alpha: 0.08)
+                : AppColors.auroraStart.withValues(alpha: 0.05),
+            borderRadius: BorderRadius.circular(16),
+          ),
           child: Row(
             children: [
               Icon(
@@ -1112,7 +1205,7 @@ class _RetrospectiveBanner extends ConsumerWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// UPCOMING NOTE REMINDERS — Compact card with next 2 reminders
+// UPCOMING NOTE REMINDERS — Tinted container
 // ════════════════════════════════════════════════════════════════════════════
 
 class _UpcomingRemindersCard extends ConsumerWidget {
@@ -1145,25 +1238,24 @@ class _UpcomingRemindersCard extends ConsumerWidget {
                 child: Container(
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(
-                    color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.06),
+                    color: isDark
+                        ? AppColors.starGold.withValues(alpha: 0.06)
+                        : AppColors.starGold.withValues(alpha: 0.04),
                     borderRadius: BorderRadius.circular(14),
-                    border: Border.all(
-                      color: AppColors.starGold.withValues(alpha: 0.2),
-                    ),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.notifications_active, size: 16, color: AppColors.starGold),
+                          Icon(Icons.notifications_active, size: 16, color: isDark ? AppColors.starGold : AppColors.lightStarGold),
                           const SizedBox(width: 6),
                           Text(
                             isEn ? 'Upcoming Reminders' : 'Yaklaşan Hatırlatıcılar',
                             style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
-                              color: isDark ? Colors.white : Colors.black87,
+                              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                             ),
                           ),
                           const Spacer(),
@@ -1171,7 +1263,7 @@ class _UpcomingRemindersCard extends ConsumerWidget {
                             isEn ? 'See all' : 'Tümünü gör',
                             style: TextStyle(
                               fontSize: 11,
-                              color: AppColors.starGold,
+                              color: isDark ? AppColors.starGold : AppColors.lightStarGold,
                             ),
                           ),
                         ],
@@ -1234,7 +1326,7 @@ class _UpcomingRemindersCard extends ConsumerWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// WEEKLY SHARE CARD PROMPT — Shows once per week
+// WEEKLY SHARE CARD PROMPT — Tinted container
 // ════════════════════════════════════════════════════════════════════════════
 
 class _WeeklySharePrompt extends ConsumerWidget {
@@ -1244,7 +1336,6 @@ class _WeeklySharePrompt extends ConsumerWidget {
   const _WeeklySharePrompt({required this.isEn, required this.isDark});
 
   bool get _shouldShow {
-    // Show on Sundays (weekday 7) to prompt weekly sharing
     return DateTime.now().weekday == DateTime.sunday;
   }
 
@@ -1269,28 +1360,16 @@ class _WeeklySharePrompt extends ConsumerWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.auroraStart.withValues(alpha: 0.08)
+                : AppColors.auroraStart.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(16),
-            gradient: LinearGradient(
-              colors: isDark
-                  ? [
-                      AppColors.amethyst.withValues(alpha: 0.12),
-                      AppColors.auroraEnd.withValues(alpha: 0.06),
-                    ]
-                  : [
-                      AppColors.lightAuroraStart.withValues(alpha: 0.08),
-                      AppColors.lightAuroraEnd.withValues(alpha: 0.04),
-                    ],
-            ),
-            border: Border.all(
-              color: (isDark ? AppColors.amethyst : AppColors.lightAuroraStart)
-                  .withValues(alpha: 0.2),
-            ),
           ),
           child: Row(
             children: [
               Icon(
                 Icons.auto_awesome_rounded,
-                color: isDark ? AppColors.amethyst : AppColors.lightAuroraStart,
+                color: isDark ? AppColors.auroraStart : AppColors.lightAuroraStart,
                 size: 24,
               ),
               const SizedBox(width: 12),
@@ -1350,7 +1429,6 @@ class _WrappedBanner extends StatelessWidget {
 
   bool get _isWrappedSeason {
     final now = DateTime.now();
-    // Dec 26 - Jan 7
     return (now.month == 12 && now.day >= 26) ||
         (now.month == 1 && now.day <= 7);
   }
@@ -1369,22 +1447,16 @@ class _WrappedBanner extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.starGold.withValues(alpha: 0.08)
+                : AppColors.starGold.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(16),
-            gradient: LinearGradient(
-              colors: [
-                AppColors.starGold.withValues(alpha: 0.15),
-                AppColors.celestialGold.withValues(alpha: 0.08),
-              ],
-            ),
-            border: Border.all(
-              color: AppColors.starGold.withValues(alpha: 0.3),
-            ),
           ),
           child: Row(
             children: [
               Icon(
                 Icons.auto_awesome,
-                color: AppColors.starGold,
+                color: isDark ? AppColors.starGold : AppColors.lightStarGold,
                 size: 28,
               ),
               const SizedBox(width: 12),
@@ -1422,17 +1494,13 @@ class _WrappedBanner extends StatelessWidget {
               Icon(
                 Icons.arrow_forward_ios_rounded,
                 size: 14,
-                color: AppColors.starGold,
+                color: isDark ? AppColors.starGold : AppColors.lightStarGold,
               ),
             ],
           ),
         ),
       ),
-    ).animate().fadeIn(duration: 400.ms).shimmer(
-      delay: 500.ms,
-      duration: 1500.ms,
-      color: AppColors.starGold.withValues(alpha: 0.1),
-    );
+    ).animate().fadeIn(duration: 400.ms);
   }
 }
 
@@ -1449,9 +1517,7 @@ class _MonthlyWrappedBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
-    // Show only in the first 10 days of the month (last month's data)
     if (now.day > 10) return const SizedBox.shrink();
-    // Don't overlap with yearly wrapped season
     if ((now.month == 1 && now.day <= 7) ||
         (now.month == 12 && now.day >= 26)) {
       return const SizedBox.shrink();
@@ -1480,16 +1546,10 @@ class _MonthlyWrappedBanner extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
+            color: isDark
+                ? AppColors.amethyst.withValues(alpha: 0.08)
+                : AppColors.amethyst.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(16),
-            gradient: LinearGradient(
-              colors: [
-                AppColors.amethyst.withValues(alpha: 0.12),
-                AppColors.auroraEnd.withValues(alpha: 0.06),
-              ],
-            ),
-            border: Border.all(
-              color: AppColors.amethyst.withValues(alpha: 0.25),
-            ),
           ),
           child: Row(
             children: [

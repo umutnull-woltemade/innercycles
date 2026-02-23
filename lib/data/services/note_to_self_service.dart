@@ -6,9 +6,13 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import '../models/note_to_self.dart';
+import '../mixins/supabase_sync_mixin.dart';
 import 'notification_service.dart';
+import 'sync_service.dart';
 
-class NoteToSelfService {
+class NoteToSelfService with SupabaseSyncMixin {
+  @override
+  String get tableName => 'notes_to_self';
   static const String _notesKey = 'notes_to_self_entries';
   static const String _remindersKey = 'notes_to_self_reminders';
   static const _uuid = Uuid();
@@ -67,6 +71,18 @@ class NoteToSelfService {
 
     _notes.add(note);
     await _persistNotes();
+
+    // Sync to Supabase
+    queueSync('UPSERT', note.id, {
+      'id': note.id,
+      'title': note.title,
+      'content': note.content,
+      'is_pinned': note.isPinned,
+      'tags': note.tags,
+      'linked_journal_entry_id': note.linkedJournalEntryId,
+      'mood_at_creation': note.moodAtCreation,
+    });
+
     return note;
   }
 
@@ -79,6 +95,18 @@ class NoteToSelfService {
       _notes.add(updated);
     }
     await _persistNotes();
+
+    // Sync to Supabase
+    queueSync('UPSERT', updated.id, {
+      'id': updated.id,
+      'title': updated.title,
+      'content': updated.content,
+      'is_pinned': updated.isPinned,
+      'tags': updated.tags,
+      'linked_journal_entry_id': updated.linkedJournalEntryId,
+      'mood_at_creation': updated.moodAtCreation,
+    });
+
     return updated;
   }
 
@@ -88,10 +116,15 @@ class NoteToSelfService {
     final noteReminders = _reminders.where((r) => r.noteId == id).toList();
     for (final r in noteReminders) {
       await _cancelNotification(r.id);
+      // Soft-delete reminder remotely
+      _queueReminderSoftDelete(r.id);
     }
     _reminders.removeWhere((r) => r.noteId == id);
     await _persistNotes();
     await _persistReminders();
+
+    // Soft-delete note remotely
+    queueSoftDelete(id);
   }
 
   NoteToSelf? getNote(String id) {
@@ -176,6 +209,22 @@ class NoteToSelfService {
     _reminders.add(reminder);
     await _persistReminders();
     await _scheduleNotification(reminder);
+
+    // Sync reminder to Supabase
+    SyncService.queueOperation(
+      tableName: 'note_reminders',
+      operation: 'UPSERT',
+      recordId: reminder.id,
+      payload: {
+        'id': reminder.id,
+        'note_id': reminder.noteId,
+        'scheduled_at': reminder.scheduledAt.toIso8601String(),
+        'frequency': reminder.frequency.name,
+        'is_active': reminder.isActive,
+        'custom_message': reminder.customMessage,
+      },
+    );
+
     return reminder;
   }
 
@@ -183,6 +232,9 @@ class NoteToSelfService {
     await _cancelNotification(reminderId);
     _reminders.removeWhere((r) => r.id == reminderId);
     await _persistReminders();
+
+    // Soft-delete reminder remotely
+    _queueReminderSoftDelete(reminderId);
   }
 
   List<NoteReminder> getRemindersForNote(String noteId) {
@@ -214,6 +266,15 @@ class NoteToSelfService {
 
   List<NoteReminder> getAllReminders() {
     return List.unmodifiable(_reminders);
+  }
+
+  void _queueReminderSoftDelete(String reminderId) {
+    SyncService.queueOperation(
+      tableName: 'note_reminders',
+      operation: 'UPDATE',
+      recordId: reminderId,
+      payload: {'id': reminderId, 'is_deleted': true},
+    );
   }
 
   // ══════════════════════════════════════════════════════════════════════════

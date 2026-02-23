@@ -9,8 +9,11 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import '../models/life_event.dart';
+import '../mixins/supabase_sync_mixin.dart';
 
-class LifeEventService {
+class LifeEventService with SupabaseSyncMixin {
+  @override
+  String get tableName => 'life_events';
   static const String _storageKey = 'inner_cycles_life_events';
   static const _uuid = Uuid();
 
@@ -57,6 +60,20 @@ class LifeEventService {
     _events.add(event);
     _sortedCache = null;
     await _persistEvents();
+
+    // Sync to Supabase
+    queueSync('UPSERT', event.id, {
+      'id': event.id,
+      'date': event.dateKey,
+      'type': event.type.name,
+      'event_key': event.eventKey,
+      'title': event.title,
+      'note': event.note,
+      'emotion_tags': event.emotionTags,
+      'image_path': event.imagePath,
+      'intensity': event.intensity,
+    });
+
     return event;
   }
 
@@ -66,6 +83,20 @@ class LifeEventService {
     _events[index] = updated;
     _sortedCache = null;
     await _persistEvents();
+
+    // Sync to Supabase
+    queueSync('UPSERT', updated.id, {
+      'id': updated.id,
+      'date': updated.dateKey,
+      'type': updated.type.name,
+      'event_key': updated.eventKey,
+      'title': updated.title,
+      'note': updated.note,
+      'emotion_tags': updated.emotionTags,
+      'image_path': updated.imagePath,
+      'intensity': updated.intensity,
+    });
+
     return updated;
   }
 
@@ -73,6 +104,9 @@ class LifeEventService {
     _events.removeWhere((e) => e.id == id);
     _sortedCache = null;
     await _persistEvents();
+
+    // Soft-delete remotely
+    queueSoftDelete(id);
   }
 
   LifeEvent? getEvent(String id) {

@@ -7,33 +7,44 @@
 
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
+import '../mixins/supabase_sync_mixin.dart';
 
 class MoodEntry {
+  final String id;
   final DateTime date;
   final int mood; // 1-5
   final String emoji;
 
   const MoodEntry({
+    required this.id,
     required this.date,
     required this.mood,
     required this.emoji,
   });
 
   Map<String, dynamic> toJson() => {
+    'id': id,
     'date': date.toIso8601String(),
     'mood': mood,
     'emoji': emoji,
   };
 
   factory MoodEntry.fromJson(Map<String, dynamic> json) => MoodEntry(
+    // Backward-compatible: generate UUID if id missing (old data)
+    id: json['id'] as String? ?? const Uuid().v4(),
     date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
     mood: json['mood'] as int? ?? 3,
     emoji: json['emoji'] as String? ?? '',
   );
 }
 
-class MoodCheckinService {
+class MoodCheckinService with SupabaseSyncMixin {
+  @override
+  String get tableName => 'mood_entries';
+
   static const String _key = 'inner_cycles_mood_checkins';
+  static const _uuid = Uuid();
   final SharedPreferences _prefs;
   List<MoodEntry> _entries = [];
 
@@ -68,11 +79,20 @@ class MoodCheckinService {
           e.date.day == today.day,
     );
 
-    _entries.insert(0, MoodEntry(date: today, mood: mood, emoji: emoji));
+    final entry = MoodEntry(id: _uuid.v4(), date: today, mood: mood, emoji: emoji);
+    _entries.insert(0, entry);
 
     // Keep last 90 days
     if (_entries.length > 90) _entries = _entries.sublist(0, 90);
     await _persist();
+
+    // Sync to Supabase
+    queueSync('UPSERT', entry.id, {
+      'id': entry.id,
+      'date': '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}',
+      'mood': mood,
+      'emoji': emoji,
+    });
   }
 
   /// Get today's mood

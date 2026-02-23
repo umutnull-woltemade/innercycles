@@ -17,11 +17,13 @@ import 'package:share_plus/share_plus.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/archetype_service.dart';
-import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/app_symbol.dart';
+import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class ArchetypeScreen extends ConsumerWidget {
@@ -195,36 +197,10 @@ class _DominantArchetypeCard extends StatelessWidget {
     final archetype = result.dominant;
     final confidencePct = (result.confidence * 100).toStringAsFixed(0);
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.gold,
+      borderRadius: 20,
       padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: isDark
-              ? [
-                  AppColors.cosmicPurple.withValues(alpha: 0.9),
-                  AppColors.nebulaPurple.withValues(alpha: 0.9),
-                ]
-              : [AppColors.lightCard, AppColors.lightSurfaceVariant],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: isDark
-              ? AppColors.starGold.withValues(alpha: 0.3)
-              : AppColors.lightStarGold.withValues(alpha: 0.3),
-          width: 1.5,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.auroraStart.withValues(
-              alpha: isDark ? 0.15 : 0.08,
-            ),
-            blurRadius: 24,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
       child: Column(
         children: [
           // Emoji
@@ -295,19 +271,9 @@ class _StrengthsShadowSection extends StatelessWidget {
     final strengths = archetype.getStrengths(isEnglish: isEn);
     final shadow = archetype.getShadow(isEnglish: isEn);
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -316,14 +282,12 @@ class _StrengthsShadowSection extends StatelessWidget {
             children: [
               Icon(Icons.auto_awesome, size: 18, color: AppColors.starGold),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? 'Strengths' : 'Güçlü Yönler',
-                style: TextStyle(
+                variant: GradientTextVariant.gold,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                 ),
               ),
             ],
@@ -348,14 +312,12 @@ class _StrengthsShadowSection extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? 'Shadow Side' : 'Gölge Yönü',
-                style: TextStyle(
+                variant: GradientTextVariant.amethyst,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                 ),
               ),
             ],
@@ -455,14 +417,12 @@ class _GrowthTipCard extends StatelessWidget {
                 color: AppColors.starGold,
               ),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? 'Growth Insight' : 'Büyüme İçgörüsü',
-                style: TextStyle(
+                variant: GradientTextVariant.gold,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                 ),
               ),
             ],
@@ -525,14 +485,12 @@ class _EvolutionTimeline extends StatelessWidget {
                 color: AppColors.auroraStart,
               ),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? 'Evolution Timeline' : 'Gelişim Zaman Çizgisi',
-                style: TextStyle(
+                variant: GradientTextVariant.aurora,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                 ),
               ),
             ],
@@ -551,10 +509,7 @@ class _EvolutionTimeline extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        archetype.emoji,
-                        style: const TextStyle(fontSize: 28),
-                      ),
+                      AppSymbol(archetype.emoji, size: AppSymbolSize.sm),
                       const SizedBox(height: 6),
                       Text(
                         monthLabel,

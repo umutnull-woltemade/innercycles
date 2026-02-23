@@ -16,6 +16,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 
@@ -553,19 +554,10 @@ class _ProgressBar extends StatelessWidget {
     final total = service.totalCount;
     final progress = service.explorationProgress;
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: 14,
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.8)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.06)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         children: [
           Row(

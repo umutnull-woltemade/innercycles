@@ -1760,9 +1760,10 @@ ${_getPersonalAdvice(sign)}''';
                     ),
                   ],
                 ),
-                child: const Text(
-                  '\u{1F319}', // Crescent moon emoji
-                  style: TextStyle(fontSize: 24),
+                child: Icon(
+                  Icons.nightlight_round,
+                  size: 24,
+                  color: AppColors.amethyst,
                 ),
               );
             },
@@ -1901,9 +1902,9 @@ ${_getPersonalAdvice(sign)}''';
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              AppSymbol(
                                 prompt['emoji'],
-                                style: const TextStyle(fontSize: 22),
+                                size: AppSymbolSize.sm,
                               ),
                               const SizedBox(height: 8),
                               Expanded(
@@ -1979,9 +1980,10 @@ ${_getPersonalAdvice(sign)}''';
                     ),
                     shape: BoxShape.circle,
                   ),
-                  child: const Text(
-                    '\u{1F319}',
-                    style: TextStyle(fontSize: 18),
+                  child: Icon(
+                    Icons.nightlight_round,
+                    size: 18,
+                    color: AppColors.amethyst,
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -2005,9 +2007,10 @@ ${_getPersonalAdvice(sign)}''';
                       if (message.isInterpretation) ...[
                         Row(
                           children: [
-                            const Text(
-                              '\u{2728}',
-                              style: TextStyle(fontSize: 14),
+                            Icon(
+                              Icons.auto_awesome_rounded,
+                              size: 14,
+                              color: AppColors.starGold,
                             ),
                             const SizedBox(width: 6),
                             Text(
@@ -2029,9 +2032,10 @@ ${_getPersonalAdvice(sign)}''';
                       if (message.isQuestion) ...[
                         Row(
                           children: [
-                            const Text(
-                              '\u{2753}',
-                              style: TextStyle(fontSize: 12),
+                            Icon(
+                              Icons.help_outline_rounded,
+                              size: 14,
+                              color: AppColors.amethyst,
                             ),
                             const SizedBox(width: 4),
                             Text(
@@ -2262,9 +2266,10 @@ ${_getPersonalAdvice(sign)}''';
               children: List.generate(3, (index) {
                 return Container(
                       margin: const EdgeInsets.symmetric(horizontal: 2),
-                      child: const Text(
-                        '\u{2728}',
-                        style: TextStyle(fontSize: 14),
+                      child: Icon(
+                        Icons.auto_awesome_rounded,
+                        size: 14,
+                        color: AppColors.starGold,
                       ),
                     )
                     .animate(onComplete: (controller) => controller.repeat())

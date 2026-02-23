@@ -16,6 +16,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/tool_manifest.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class GlobalSearchScreen extends ConsumerStatefulWidget {
   const GlobalSearchScreen({super.key});
@@ -307,16 +308,11 @@ class _SearchResultTile extends StatelessWidget {
         onTap: () {
           context.go(tool.route);
         },
-        child: Container(
+        child: PremiumCard(
+          style: PremiumCardStyle.subtle,
           padding: const EdgeInsets.symmetric(
             horizontal: AppConstants.spacingLg,
             vertical: AppConstants.spacingMd,
-          ),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.5)
-                : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           ),
           child: Row(
             children: [

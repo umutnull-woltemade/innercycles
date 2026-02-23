@@ -152,19 +152,9 @@ class _LoggedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final nowTime = DateTime.now();
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         children: [
           Row(
@@ -349,7 +339,6 @@ class _ThankYouView extends StatelessWidget {
                 ],
         ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.success.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
@@ -394,11 +383,6 @@ class _ThankYouView extends StatelessWidget {
                       ? Colors.white.withValues(alpha: 0.06)
                       : Colors.black.withValues(alpha: 0.04),
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: isDark
-                        ? Colors.white.withValues(alpha: 0.1)
-                        : Colors.black.withValues(alpha: 0.08),
-                  ),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

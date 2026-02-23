@@ -253,7 +253,7 @@ class SettingsScreen extends ConsumerWidget {
                                   borderRadius: BorderRadius.circular(6),
                                 ),
                                 child: Text(
-                                  isPremium ? '✓ PRO' : 'PRO',
+                                  'PRO',
                                   style: TextStyle(
                                     fontSize: 11,
                                     fontWeight: FontWeight.bold,

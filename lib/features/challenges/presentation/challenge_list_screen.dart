@@ -15,6 +15,9 @@ import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/app_symbol.dart';
+import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../streak/presentation/challenge_celebration_modal.dart';
@@ -218,14 +221,10 @@ class _StatsBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: 14,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(14),
-      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -298,12 +297,12 @@ class _SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return GradientText(
       title,
-      style: TextStyle(
+      variant: GradientTextVariant.gold,
+      style: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w700,
-        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
       ),
     );
   }
@@ -337,29 +336,16 @@ class _ChallengeCard extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
-      child: Container(
+      child: PremiumCard(
+        style: PremiumCardStyle.subtle,
+        borderRadius: 14,
         padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.85)
-              : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: isCompleted
-                ? AppColors.success.withValues(alpha: 0.3)
-                : hasProgress
-                ? AppColors.starGold.withValues(alpha: 0.2)
-                : (isDark
-                      ? Colors.white.withValues(alpha: 0.08)
-                      : Colors.black.withValues(alpha: 0.04)),
-          ),
-        ),
         child: Row(
           children: [
-            Text(
-              isLocked ? '🔒' : challenge.emoji,
-              style: const TextStyle(fontSize: 28),
-            ),
+            isLocked
+                ? Icon(Icons.lock_rounded, size: 24,
+                    color: isDark ? Colors.white30 : Colors.black26)
+                : AppSymbol(challenge.emoji, size: AppSymbolSize.md),
             const SizedBox(width: 12),
             Expanded(
               child: Column(

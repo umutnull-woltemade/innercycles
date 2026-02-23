@@ -33,6 +33,8 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class WeeklyDigestScreen extends ConsumerStatefulWidget {
   const WeeklyDigestScreen({super.key});
@@ -456,17 +458,9 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
   ) {
     return GestureDetector(
       onTap: () => context.push(Routes.monthlyWrapped),
-      child: Container(
+      child: PremiumCard(
+        style: PremiumCardStyle.subtle,
         padding: const EdgeInsets.all(AppConstants.spacingLg),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.85)
-              : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-          border: Border.all(
-            color: AppColors.amethyst.withValues(alpha: 0.2),
-          ),
-        ),
         child: Row(
           children: [
             Icon(
@@ -642,14 +636,12 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                GradientText(
                   isEn ? 'Entries This Week' : 'Bu Haftaki Kayitlar',
-                  style: TextStyle(
+                  variant: GradientTextVariant.gold,
+                  style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -855,14 +847,12 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
               children: [
                 Row(
                   children: [
-                    Text(
+                    GradientText(
                       isEn ? 'Mood Trend' : 'Ruh Hali Egilimi',
-                      style: TextStyle(
+                      variant: GradientTextVariant.gold,
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
                       ),
                     ),
                     if (changeStr.isNotEmpty) ...[

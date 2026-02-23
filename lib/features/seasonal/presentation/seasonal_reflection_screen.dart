@@ -16,6 +16,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class SeasonalReflectionScreen extends ConsumerWidget {
@@ -162,14 +163,12 @@ class _SeasonHeader extends StatelessWidget {
         children: [
           AppSymbol.hero(module.emoji),
           const SizedBox(height: 12),
-          Text(
+          GradientText(
             isEn ? module.nameEn : module.nameTr,
-            style: TextStyle(
+            variant: GradientTextVariant.aurora,
+            style: const TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w700,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
             ),
           ),
           const SizedBox(height: 4),

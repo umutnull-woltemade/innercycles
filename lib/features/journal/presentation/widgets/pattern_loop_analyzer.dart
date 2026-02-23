@@ -11,6 +11,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/services/pattern_loop_service.dart';
+import '../../../../shared/widgets/premium_card.dart';
 import 'cycle_wave_painter.dart';
 
 class PatternLoopAnalyzer extends StatelessWidget {
@@ -77,19 +78,9 @@ class PatternLoopAnalyzer extends StatelessWidget {
   }
 
   Widget _buildEmpty(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? AppColors.surfaceLight.withValues(alpha: 0.3)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Row(
         children: [
           Icon(
@@ -207,21 +198,8 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
     final color = _reinforcementColor(loop.reinforcementType);
     final areaColor = kAreaColors[loop.primaryArea] ?? AppColors.auroraStart;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: widget.isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(color: color.withValues(alpha: 0.2)),
-        boxShadow: [
-          BoxShadow(
-            color: color.withValues(alpha: widget.isDark ? 0.08 : 0.04),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

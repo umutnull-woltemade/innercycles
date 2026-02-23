@@ -13,6 +13,7 @@ import 'dream_memory_service.dart';
 import 'dream_interpretation_service.dart';
 import 'l10n_service.dart';
 import '../providers/app_providers.dart';
+import '../mixins/supabase_sync_mixin.dart';
 
 // ════════════════════════════════════════════════════════════════
 // DREAM ENTRY MODEL
@@ -597,7 +598,10 @@ class DreamJournalExport {
 // ════════════════════════════════════════════════════════════════
 
 /// Comprehensive dream journal and pattern analysis service
-class DreamJournalService {
+class DreamJournalService with SupabaseSyncMixin {
+  @override
+  String get tableName => 'dream_entries';
+
   static const String _dreamsKey = 'dream_journal_entries';
   static const String _patternsKey = 'dream_journal_patterns';
   static const String _seriesKey = 'dream_journal_series';
@@ -641,6 +645,29 @@ class DreamJournalService {
 
     // Update personal dictionary
     await _updateDictionaryFromDream(entry);
+
+    // Sync to Supabase
+    queueSync('UPSERT', entry.id, {
+      'id': entry.id,
+      'dream_date': '${entry.dreamDate.year}-${entry.dreamDate.month.toString().padLeft(2, '0')}-${entry.dreamDate.day.toString().padLeft(2, '0')}',
+      'title': entry.title,
+      'content': entry.content,
+      'detected_symbols': entry.detectedSymbols,
+      'user_tags': entry.userTags,
+      'dominant_emotion': entry.dominantEmotion.name,
+      'emotional_intensity': entry.emotionalIntensity,
+      'is_recurring': entry.isRecurring,
+      'is_lucid': entry.isLucid,
+      'is_nightmare': entry.isNightmare,
+      'moon_phase': entry.moonPhase.name,
+      'interpretation': entry.interpretation?.toJson(),
+      'metadata': entry.metadata,
+      'characters': entry.characters ?? <String>[],
+      'locations': entry.locations ?? <String>[],
+      'clarity': entry.clarity,
+      'sleep_quality': entry.sleepQuality,
+      'dream_series_id': entry.dreamSeriesId,
+    });
 
     return entry;
   }
@@ -694,6 +721,9 @@ class DreamJournalService {
     final dreams = await getAllDreams();
     dreams.removeWhere((d) => d.id == id);
     await _saveDreams(dreams);
+
+    // Soft-delete remotely
+    queueSoftDelete(id);
   }
 
   Future<void> _saveDreams(List<DreamEntry> dreams) async {

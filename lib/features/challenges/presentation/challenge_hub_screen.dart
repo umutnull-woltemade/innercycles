@@ -25,6 +25,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 
 class ChallengeHubScreen extends ConsumerStatefulWidget {
@@ -270,12 +271,12 @@ class _SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return GradientText(
       title,
+      variant: GradientTextVariant.gold,
       style: GoogleFonts.inter(
         fontSize: 17,
         fontWeight: FontWeight.w700,
-        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
       ),
     );
   }
@@ -465,19 +466,10 @@ class _AvailableChallengeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: AppConstants.radiusLg,
       padding: const EdgeInsets.all(AppConstants.spacingMd),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.6)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? AppColors.surfaceLight.withValues(alpha: 0.3)
-              : AppColors.lightSurfaceVariant,
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -571,16 +563,12 @@ class _CompletedChallengeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: AppConstants.radiusMd,
       padding: const EdgeInsets.symmetric(
         horizontal: AppConstants.spacingLg,
         vertical: AppConstants.spacingMd,
-      ),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.5)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
       ),
       child: Row(
         children: [

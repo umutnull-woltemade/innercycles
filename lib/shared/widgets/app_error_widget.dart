@@ -55,12 +55,31 @@ class AppErrorWidget extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Icon
-                const Text(
-                  '✨',
-                  style: TextStyle(
-                    fontSize: 64,
-                    decoration: TextDecoration.none,
+                // Icon — premium gold circle (no Material ancestor needed)
+                Container(
+                  width: 72,
+                  height: 72,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        AppColors.starGold,
+                        AppColors.celestialGold,
+                      ],
+                    ),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      '!',
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.deepSpace,
+                        decoration: TextDecoration.none,
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 24),

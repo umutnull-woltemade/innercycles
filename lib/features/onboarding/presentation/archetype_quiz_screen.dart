@@ -17,6 +17,7 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/theme/liquid_glass/glass_tokens.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/archetype_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 
@@ -389,10 +390,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
           const SizedBox(height: 24),
 
           // Emoji
-          Text(
-            archetype.emoji,
-            style: const TextStyle(fontSize: 64),
-          ).glassReveal(context: context),
+          AppSymbol.hero(archetype.emoji).glassReveal(context: context),
 
           const SizedBox(height: 16),
 

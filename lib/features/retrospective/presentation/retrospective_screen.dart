@@ -18,6 +18,7 @@ import '../../../data/content/important_date_presets.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 class RetrospectiveScreen extends ConsumerStatefulWidget {
@@ -231,10 +232,7 @@ class _WelcomeStep extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            '\u{1F4D6}',
-            style: const TextStyle(fontSize: 64),
-          ).animate().scale(
+          AppSymbol.hero('\u{1F4D6}').animate().scale(
                 begin: const Offset(0.5, 0.5),
                 end: const Offset(1, 1),
                 duration: 600.ms,
@@ -516,20 +514,12 @@ class _DateEntryStep extends StatelessWidget {
               final preset = presets[index];
               final date = presetDates[preset.key];
 
-              return Container(
-                margin: const EdgeInsets.only(bottom: 12),
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: PremiumCard(
+                style: PremiumCardStyle.subtle,
+                borderRadius: AppConstants.radiusMd,
                 padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: isDark
-                      ? AppColors.surfaceDark.withValues(alpha: 0.6)
-                      : AppColors.lightCard,
-                  borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-                  border: Border.all(
-                    color: isDark
-                        ? Colors.white.withValues(alpha: 0.06)
-                        : Colors.black.withValues(alpha: 0.04),
-                  ),
-                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -611,6 +601,7 @@ class _DateEntryStep extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
               ).animate().fadeIn(
                     delay: Duration(milliseconds: 80 * index),
                     duration: 300.ms,
@@ -684,10 +675,7 @@ class _SummaryStep extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            '\u{2728}',
-            style: const TextStyle(fontSize: 64),
-          ).animate().scale(
+          AppSymbol.hero('\u{2728}').animate().scale(
                 begin: const Offset(0.3, 0.3),
                 end: const Offset(1, 1),
                 duration: 600.ms,

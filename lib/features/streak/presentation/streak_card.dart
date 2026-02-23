@@ -7,6 +7,7 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/streak_service.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 /// Streak card widget for the home screen
 class StreakCard extends ConsumerWidget {
@@ -51,27 +52,10 @@ class _StreakCardContent extends StatelessWidget {
           HapticFeedback.lightImpact();
           context.push(Routes.streakStats);
         },
-        child: Container(
+        child: PremiumCard(
+          style: PremiumCardStyle.gold,
           padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: isDark
-                  ? [
-                      AppColors.starGold.withValues(alpha: 0.15),
-                      AppColors.surfaceDark.withValues(alpha: 0.9),
-                    ]
-                  : [
-                      AppColors.lightStarGold.withValues(alpha: 0.1),
-                      Colors.white,
-                    ],
-            ),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: AppColors.starGold.withValues(alpha: 0.3),
-            ),
-          ),
+          borderRadius: 20,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

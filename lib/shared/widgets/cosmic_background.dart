@@ -496,21 +496,50 @@ class _LightPatternPainter extends CustomPainter {
     final rng = Random(42);
     final paint = Paint();
 
-    // ~50 small subtle dots in grey tones
-    for (var i = 0; i < 50; i++) {
+    // 1. Soft radial color washes — premium watercolor-paper feel
+    _drawSoftWash(canvas, Offset(size.width * 0.2, size.height * 0.12),
+        size.width * 0.55, const Color(0xFFE8D5F5), 0.07);
+    _drawSoftWash(canvas, Offset(size.width * 0.82, size.height * 0.45),
+        size.width * 0.4, const Color(0xFFF5E6D0), 0.05);
+    _drawSoftWash(canvas, Offset(size.width * 0.35, size.height * 0.78),
+        size.width * 0.45, const Color(0xFFD5E5F5), 0.04);
+
+    // 2. Fine noise grain texture
+    for (var i = 0; i < 200; i++) {
       final x = rng.nextDouble() * size.width;
       final y = rng.nextDouble() * size.height;
-      final r = 1.0 + rng.nextDouble() * 1.2; // 1.0-2.2px
-      final opacity = 0.06 + rng.nextDouble() * 0.06; // 0.06-0.12
-      final grey = 0.25 + rng.nextDouble() * 0.35; // 0.25-0.60 grey value
-      paint.color = Color.fromRGBO(
-        (grey * 255).round(),
-        (grey * 255).round(),
-        (grey * 255).round(),
-        opacity,
-      );
+      final r = 0.3 + rng.nextDouble() * 0.5;
+      final opacity = 0.025 + rng.nextDouble() * 0.035;
+      paint.color = Colors.black.withValues(alpha: opacity);
       canvas.drawCircle(Offset(x, y), r, paint);
     }
+
+    // 3. Subtle dot grid with jitter — structured depth
+    const spacing = 44.0;
+    final cols = (size.width / spacing).ceil() + 1;
+    final rows = (size.height / spacing).ceil() + 1;
+    for (var row = 0; row < rows; row++) {
+      for (var col = 0; col < cols; col++) {
+        final jitterX = (rng.nextDouble() - 0.5) * 8;
+        final jitterY = (rng.nextDouble() - 0.5) * 8;
+        final x = col * spacing + jitterX;
+        final y = row * spacing + jitterY;
+        final opacity = 0.03 + rng.nextDouble() * 0.025;
+        paint.color = Colors.black.withValues(alpha: opacity);
+        canvas.drawCircle(Offset(x, y), 0.7, paint);
+      }
+    }
+  }
+
+  void _drawSoftWash(
+      Canvas canvas, Offset center, double radius, Color color, double opacity) {
+    final gradient = ui.Gradient.radial(
+      center,
+      radius,
+      [color.withValues(alpha: opacity), color.withValues(alpha: 0)],
+      [0.0, 1.0],
+    );
+    canvas.drawCircle(center, radius, Paint()..shader = gradient);
   }
 
   @override

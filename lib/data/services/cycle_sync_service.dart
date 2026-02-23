@@ -7,12 +7,17 @@
 
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 import '../models/cycle_entry.dart';
+import '../mixins/supabase_sync_mixin.dart';
 
-class CycleSyncService {
+class CycleSyncService with SupabaseSyncMixin {
+  @override
+  String get tableName => 'cycle_period_logs';
   static const String _periodLogsKey = 'inner_cycles_period_logs';
   static const String _cycleLengthKey = 'inner_cycles_avg_cycle_length';
   static const String _periodLengthKey = 'inner_cycles_avg_period_length';
+  static const _uuid = Uuid();
   final SharedPreferences _prefs;
   List<CyclePeriodLog> _periodLogs = [];
 
@@ -51,15 +56,14 @@ class CycleSyncService {
           d.day == today.day;
     });
 
-    _periodLogs.insert(
-      0,
-      CyclePeriodLog(
-        id: '${today.millisecondsSinceEpoch}',
-        periodStartDate: today,
-        flowIntensity: flowIntensity,
-        symptoms: symptoms,
-      ),
+    final log = CyclePeriodLog(
+      id: _uuid.v4(),
+      periodStartDate: today,
+      flowIntensity: flowIntensity,
+      symptoms: symptoms,
     );
+
+    _periodLogs.insert(0, log);
 
     // Sort by date descending
     _periodLogs.sort((a, b) => b.periodStartDate.compareTo(a.periodStartDate));
@@ -71,6 +75,9 @@ class CycleSyncService {
 
     _recalculateAverages();
     await _persist();
+
+    // Sync to Supabase
+    _queueLogSync(log);
   }
 
   /// Mark period end for the most recent period
@@ -79,7 +86,7 @@ class CycleSyncService {
     final latest = _periodLogs.first;
     final endDate = DateTime(date.year, date.month, date.day);
 
-    _periodLogs[0] = CyclePeriodLog(
+    final updated = CyclePeriodLog(
       id: latest.id,
       periodStartDate: latest.periodStartDate,
       periodEndDate: endDate,
@@ -87,8 +94,13 @@ class CycleSyncService {
       symptoms: latest.symptoms,
     );
 
+    _periodLogs[0] = updated;
+
     _recalculateAverages();
     await _persist();
+
+    // Sync to Supabase
+    _queueLogSync(updated);
   }
 
   /// Delete a period log
@@ -96,6 +108,21 @@ class CycleSyncService {
     _periodLogs.removeWhere((l) => l.id == id);
     _recalculateAverages();
     await _persist();
+
+    // Soft-delete remotely
+    queueSoftDelete(id);
+  }
+
+  void _queueLogSync(CyclePeriodLog log) {
+    queueSync('UPSERT', log.id, {
+      'id': log.id,
+      'period_start_date': log.dateKey,
+      'period_end_date': log.periodEndDate != null
+          ? '${log.periodEndDate!.year}-${log.periodEndDate!.month.toString().padLeft(2, '0')}-${log.periodEndDate!.day.toString().padLeft(2, '0')}'
+          : null,
+      'flow_intensity': log.flowIntensity?.name,
+      'symptoms': log.symptoms,
+    });
   }
 
   // ═══════════════════════════════════════════════════════════════════════

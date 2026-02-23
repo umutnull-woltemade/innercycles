@@ -11,7 +11,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/note_to_self.dart';
 import '../../../data/providers/app_providers.dart';
@@ -20,6 +19,7 @@ import '../../../data/services/premium_service.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
@@ -324,23 +324,9 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                     title: _isCreateMode
                         ? (isEn ? 'New Note' : 'Yeni Not')
                         : (isEn ? 'Edit Note' : 'Notu D\u00fczenle'),
+                    useGradientTitle: true,
+                    gradientVariant: GradientTextVariant.gold,
                     actions: [
-                      // Pin toggle
-                      IconButton(
-                        icon: Icon(
-                          _isPinned
-                              ? CupertinoIcons.pin_fill
-                              : CupertinoIcons.pin,
-                          size: 20,
-                          color: _isPinned
-                              ? AppColors.starGold
-                              : (isDark ? Colors.white54 : Colors.black45),
-                        ),
-                        onPressed: () {
-                          HapticService.buttonPress();
-                          setState(() => _isPinned = !_isPinned);
-                        },
-                      ),
                       // Save
                       GestureDetector(
                         onTap: () => _save(service, isPremium),
@@ -376,28 +362,49 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // ═══════════════════════════════════════
-                          // TITLE INPUT
+                          // TITLE INPUT + PIN
                           // ═══════════════════════════════════════
-                          TextField(
-                            controller: _titleController,
-                            style: GoogleFonts.inter(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w700,
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
-                            ),
-                            decoration: InputDecoration(
-                              hintText: isEn ? 'Title' : 'Ba\u015fl\u0131k',
-                              hintStyle: GoogleFonts.inter(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                                color: isDark
-                                    ? Colors.white.withValues(alpha: 0.2)
-                                    : Colors.black.withValues(alpha: 0.15),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  controller: _titleController,
+                                  style: GoogleFonts.inter(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w700,
+                                    color: isDark
+                                        ? AppColors.textPrimary
+                                        : AppColors.lightTextPrimary,
+                                  ),
+                                  decoration: InputDecoration(
+                                    hintText: isEn ? 'Title' : 'Ba\u015fl\u0131k',
+                                    hintStyle: GoogleFonts.inter(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w700,
+                                      color: isDark
+                                          ? Colors.white.withValues(alpha: 0.2)
+                                          : Colors.black.withValues(alpha: 0.15),
+                                    ),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
                               ),
-                              border: InputBorder.none,
-                            ),
+                              GestureDetector(
+                                onTap: () {
+                                  HapticService.buttonPress();
+                                  setState(() => _isPinned = !_isPinned);
+                                },
+                                child: Icon(
+                                  _isPinned
+                                      ? Icons.push_pin
+                                      : Icons.push_pin_outlined,
+                                  size: 20,
+                                  color: _isPinned
+                                      ? AppColors.starGold
+                                      : (isDark ? Colors.white38 : Colors.black26),
+                                ),
+                              ),
+                            ],
                           ),
 
                           // Subtle divider
@@ -556,9 +563,8 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                         height: 38,
                                         decoration: BoxDecoration(
                                           color: AppColors.amethyst
-                                              .withValues(alpha: 0.15),
-                                          borderRadius:
-                                              BorderRadius.circular(10),
+                                              .withValues(alpha: 0.1),
+                                          shape: BoxShape.circle,
                                         ),
                                         child: Icon(
                                           CupertinoIcons.plus,
@@ -582,7 +588,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                               decoration: BoxDecoration(
                                 color:
                                     AppColors.amethyst.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(20),
                               ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -654,9 +660,9 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                             horizontal: 12, vertical: 6),
                                         decoration: BoxDecoration(
                                           color: AppColors.starGold
-                                              .withValues(alpha: 0.12),
+                                              .withValues(alpha: 0.1),
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                              BorderRadius.circular(20),
                                         ),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
@@ -693,11 +699,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                     decoration: BoxDecoration(
                                       color: AppColors.starGold
                                           .withValues(alpha: 0.08),
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                        color: AppColors.starGold
-                                            .withValues(alpha: 0.2),
-                                      ),
+                                      borderRadius: BorderRadius.circular(14),
                                     ),
                                     child: Row(
                                       children: [
@@ -925,12 +927,9 @@ class _GlassSection extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.6)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.06),
-        ),
+            ? Colors.white.withValues(alpha: 0.035)
+            : Colors.black.withValues(alpha: 0.025),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: child,
     );
@@ -955,13 +954,10 @@ class _RemovableTagChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 10, right: 4, top: 4, bottom: 4),
+      padding: const EdgeInsets.only(left: 12, right: 5, top: 6, bottom: 6),
       decoration: BoxDecoration(
-        color: AppColors.auroraStart.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: AppColors.auroraStart.withValues(alpha: 0.2),
-        ),
+        color: AppColors.amethyst.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -969,12 +965,14 @@ class _RemovableTagChip extends StatelessWidget {
           Text(
             tag,
             style: GoogleFonts.inter(
-              fontSize: 12,
+              fontSize: 13,
               fontWeight: FontWeight.w500,
-              color: isDark ? AppColors.auroraStart : AppColors.lightAuroraStart,
+              color: isDark
+                  ? AppColors.amethyst
+                  : AppColors.amethyst.withValues(alpha: 0.8),
             ),
           ),
-          const SizedBox(width: 2),
+          const SizedBox(width: 4),
           GestureDetector(
             onTap: onRemove,
             child: Icon(
@@ -1105,9 +1103,8 @@ class _ReminderForm extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: AppColors.starGold.withValues(alpha: 0.05),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.15)),
+        color: AppColors.starGold.withValues(alpha: 0.04),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1171,11 +1168,7 @@ class _ReminderForm extends StatelessWidget {
                         ? AppColors.starGold.withValues(alpha: 0.2)
                         : (isDark ? Colors.white : Colors.black)
                             .withValues(alpha: 0.05),
-                    borderRadius: BorderRadius.circular(8),
-                    border: isSelected
-                        ? Border.all(
-                            color: AppColors.starGold.withValues(alpha: 0.4))
-                        : null,
+                    borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
                     isLocked ? '$label (PRO)' : label,

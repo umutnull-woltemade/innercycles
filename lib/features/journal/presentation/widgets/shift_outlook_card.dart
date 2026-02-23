@@ -11,6 +11,7 @@ import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/services/shift_outlook_service.dart';
 import '../../../../data/services/emotional_cycle_service.dart';
+import '../../../../shared/widgets/premium_card.dart';
 
 class ShiftOutlookCard extends StatelessWidget {
   final ShiftOutlook outlook;
@@ -36,22 +37,10 @@ class ShiftOutlookCard extends StatelessWidget {
     final phaseColor = _phaseColor(window.suggestedNextPhase);
     final currentColor = _phaseColor(window.currentPhase);
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.aurora,
+      borderRadius: AppConstants.radiusXl,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.9)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusXl),
-        border: Border.all(color: phaseColor.withValues(alpha: 0.25)),
-        boxShadow: [
-          BoxShadow(
-            color: phaseColor.withValues(alpha: isDark ? 0.12 : 0.06),
-            blurRadius: 20,
-            offset: const Offset(0, 6),
-          ),
-        ],
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -283,19 +272,9 @@ class ShiftOutlookCard extends StatelessWidget {
   }
 
   Widget _buildNoOutlook(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.7)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? AppColors.surfaceLight.withValues(alpha: 0.3)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Row(
         children: [
           Icon(

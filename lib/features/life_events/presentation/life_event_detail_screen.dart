@@ -16,6 +16,7 @@ import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class LifeEventDetailScreen extends ConsumerWidget {
   final String eventId;
@@ -132,15 +133,9 @@ class LifeEventDetailScreen extends ConsumerWidget {
               ],
 
               // Emoji + Title + Type badge
-              Container(
+              PremiumCard(
+                style: PremiumCardStyle.gold,
                 padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: accentColor.withValues(alpha: 0.08),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: accentColor.withValues(alpha: 0.15),
-                  ),
-                ),
                 child: Column(
                   children: [
                     AppSymbol.hero(emoji),
@@ -209,20 +204,10 @@ class LifeEventDetailScreen extends ConsumerWidget {
 
               // Emotion tags
               if (event.emotionTags.isNotEmpty) ...[
-                Container(
-                  width: double.infinity,
+                PremiumCard(
+                  style: PremiumCardStyle.subtle,
+                  borderRadius: 14,
                   padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: isDark
-                        ? AppColors.surfaceDark.withValues(alpha: 0.8)
-                        : AppColors.lightCard,
-                    borderRadius: BorderRadius.circular(14),
-                    border: Border.all(
-                      color: isDark
-                          ? Colors.white.withValues(alpha: 0.06)
-                          : Colors.black.withValues(alpha: 0.05),
-                    ),
-                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -270,20 +255,10 @@ class LifeEventDetailScreen extends ConsumerWidget {
 
               // Reflection note
               if (event.note case final note? when note.isNotEmpty) ...[
-                Container(
-                  width: double.infinity,
+                PremiumCard(
+                  style: PremiumCardStyle.subtle,
+                  borderRadius: 14,
                   padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: isDark
-                        ? AppColors.surfaceDark.withValues(alpha: 0.8)
-                        : AppColors.lightCard,
-                    borderRadius: BorderRadius.circular(14),
-                    border: Border.all(
-                      color: isDark
-                          ? Colors.white.withValues(alpha: 0.06)
-                          : Colors.black.withValues(alpha: 0.05),
-                    ),
-                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -327,19 +302,10 @@ class LifeEventDetailScreen extends ConsumerWidget {
     required String value,
     required bool isDark,
   }) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: 12,
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.8)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.06)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

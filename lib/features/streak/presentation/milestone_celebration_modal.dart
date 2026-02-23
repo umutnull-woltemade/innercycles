@@ -65,17 +65,17 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
     }
   }
 
-  String get _emoji {
+  IconData get _milestoneIcon {
     switch (streakDays) {
-      case 3: return '\u{1F525}'; // fire
-      case 7: return '\u{26A1}';  // lightning
-      case 14: return '\u{1F31F}'; // star
-      case 30: return '\u{1F3C6}'; // trophy
-      case 60: return '\u{1F48E}'; // gem
-      case 90: return '\u{1F451}'; // crown
-      case 180: return '\u{1F30D}'; // globe
-      case 365: return '\u{2728}'; // sparkles
-      default: return '\u{1F525}';
+      case 3: return Icons.local_fire_department_rounded;
+      case 7: return Icons.bolt_rounded;
+      case 14: return Icons.star_rounded;
+      case 30: return Icons.emoji_events_rounded;
+      case 60: return Icons.diamond_rounded;
+      case 90: return Icons.workspace_premium_rounded;
+      case 180: return Icons.public_rounded;
+      case 365: return Icons.auto_awesome_rounded;
+      default: return Icons.local_fire_department_rounded;
     }
   }
 
@@ -159,9 +159,10 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                     ],
                   ),
                   alignment: Alignment.center,
-                  child: Text(
-                    _emoji,
-                    style: const TextStyle(fontSize: 48),
+                  child: Icon(
+                    _milestoneIcon,
+                    size: 44,
+                    color: AppColors.starGold,
                   ),
                 )
                     .animate()

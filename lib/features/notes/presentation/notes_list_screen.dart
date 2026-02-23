@@ -18,6 +18,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/note_to_self.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
@@ -503,12 +504,12 @@ class _SectionHeader extends StatelessWidget {
         children: [
           Icon(icon, size: 14, color: iconColor),
           const SizedBox(width: 6),
-          Text(
+          GradientText(
             label,
+            variant: GradientTextVariant.gold,
             style: GoogleFonts.inter(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: isDark ? Colors.white54 : Colors.black45,
               letterSpacing: 0.3,
             ),
           ),

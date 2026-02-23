@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 /// Collapsible sleep quality section for the daily entry screen
 class SleepSection extends ConsumerStatefulWidget {
@@ -75,18 +76,8 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -226,9 +217,12 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                               ),
                             ),
                             child: Center(
-                              child: Text(
-                                _qualityEmoji(quality),
-                                style: const TextStyle(fontSize: 22),
+                              child: Icon(
+                                _qualityIcon(quality),
+                                size: 24,
+                                color: isActive
+                                    ? (isDark ? Colors.white : AppColors.deepSpace)
+                                    : (isDark ? Colors.white54 : Colors.black38),
                               ),
                             ),
                           ),
@@ -299,20 +293,20 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
     );
   }
 
-  String _qualityEmoji(int quality) {
+  IconData _qualityIcon(int quality) {
     switch (quality) {
       case 1:
-        return '😫';
+        return Icons.sentiment_very_dissatisfied_rounded;
       case 2:
-        return '😔';
+        return Icons.sentiment_dissatisfied_rounded;
       case 3:
-        return '😐';
+        return Icons.sentiment_neutral_rounded;
       case 4:
-        return '😊';
+        return Icons.sentiment_satisfied_rounded;
       case 5:
-        return '😴';
+        return Icons.nights_stay_rounded;
       default:
-        return '💤';
+        return Icons.bedtime_rounded;
     }
   }
 
@@ -358,19 +352,9 @@ class SleepSummaryCard extends ConsumerWidget {
       data: (summary) {
         if (summary.nightsLogged == 0) return const SizedBox.shrink();
 
-        return Container(
+        return PremiumCard(
+          style: PremiumCardStyle.subtle,
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.85)
-                : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: isDark
-                  ? Colors.white.withValues(alpha: 0.15)
-                  : Colors.black.withValues(alpha: 0.05),
-            ),
-          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

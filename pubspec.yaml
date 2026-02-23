@@ -23,6 +23,7 @@ dependencies:
   shared_preferences: ^2.3.5
 
   # UI & Animations
+  cupertino_icons: ^1.0.8
   flutter_animate: ^4.5.2
   google_fonts: ^8.0.1
   # Utilities

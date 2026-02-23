@@ -1,5 +1,5 @@
 // ════════════════════════════════════════════════════════════════════════════
-// DAILY QUESTION CARD - Shareable question-of-the-day widget
+// DAILY QUESTION CARD - Editorial style question-of-the-day
 // ════════════════════════════════════════════════════════════════════════════
 // Uses JournalPromptService.getDailyPrompt() to display a beautiful card.
 // "Write" sends to journal, "Share" opens ShareCardSheet.
@@ -14,6 +14,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/content/share_card_templates.dart';
 import '../../../data/services/haptic_service.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/share_card_sheet.dart';
 
 class DailyQuestionCard extends ConsumerWidget {
@@ -38,152 +39,140 @@ class DailyQuestionCard extends ConsumerWidget {
         return Semantics(
           label: '${isEn ? 'Question of the Day' : 'Günün Sorusu'}: $questionText',
           child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: isDark
-                    ? [
-                        AppColors.amethyst.withValues(alpha: 0.15),
-                        AppColors.auroraEnd.withValues(alpha: 0.08),
-                      ]
-                    : [
-                        AppColors.amethyst.withValues(alpha: 0.08),
-                        AppColors.lightAuroraEnd.withValues(alpha: 0.05),
-                      ],
-              ),
-              border: Border.all(
-                color: AppColors.amethyst.withValues(alpha: 0.2),
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.help_outline_rounded,
-                      size: 16,
-                      color: AppColors.amethyst,
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+            child: PremiumCard(
+              style: PremiumCardStyle.amethyst,
+              borderRadius: 20,
+              padding: const EdgeInsets.fromLTRB(24, 24, 24, 20),
+              child: Column(
+                children: [
+                  // Large decorative open-quote mark
+                  Text(
+                    '\u201C',
+                    style: TextStyle(
+                      fontSize: 52,
+                      fontWeight: FontWeight.w800,
+                      height: 0.6,
+                      color: AppColors.amethyst.withValues(alpha: 0.25),
                     ),
-                    const SizedBox(width: 8),
-                    Text(
-                      isEn ? 'Question of the Day' : 'Günün Sorusu',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.amethyst,
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 14),
-                Text(
-                  questionText,
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
-                    height: 1.4,
                   ),
-                ),
-                const SizedBox(height: 16),
-                Row(
-                  children: [
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: () {
-                          HapticService.buttonPress();
-                          context.push(
-                            Routes.journal,
-                            extra: {'journalPrompt': questionText},
-                          );
-                        },
-                        icon: Icon(
-                          Icons.edit_note_rounded,
-                          size: 18,
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
-                        ),
-                        label: Text(
-                          isEn ? 'Write' : 'Yaz',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
+                  const SizedBox(height: 8),
+                  // Question text — centered, large, editorial
+                  Text(
+                    questionText,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
+                      height: 1.45,
+                      letterSpacing: -0.2,
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  // Label — small caps
+                  Text(
+                    isEn ? 'QUESTION OF THE DAY' : 'GÜNÜN SORUSU',
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.amethyst.withValues(alpha: 0.6),
+                      letterSpacing: 1.5,
+                    ),
+                  ),
+                  const SizedBox(height: 18),
+                  // Action buttons
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: () {
+                            HapticService.buttonPress();
+                            context.push(
+                              Routes.journal,
+                              extra: {'journalPrompt': questionText},
+                            );
+                          },
+                          icon: Icon(
+                            Icons.edit_note_rounded,
+                            size: 18,
                             color: isDark
                                 ? AppColors.textPrimary
                                 : AppColors.lightTextPrimary,
                           ),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          side: BorderSide(
-                            color: isDark
-                                ? Colors.white.withValues(alpha: 0.15)
-                                : Colors.black.withValues(alpha: 0.1),
+                          label: Text(
+                            isEn ? 'Write' : 'Yaz',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
+                            ),
                           ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(
+                              color: isDark
+                                  ? Colors.white.withValues(alpha: 0.12)
+                                  : Colors.black.withValues(alpha: 0.08),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 10),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 10),
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: () {
-                          HapticService.buttonPress();
-                          final template = ShareCardTemplates.questionOfTheDay;
-                          final cardData = ShareCardTemplates.buildData(
-                            template: template,
-                            isEn: isEn,
-                            reflectionText: questionText,
-                          );
-                          ShareCardSheet.show(
-                            context,
-                            template: template,
-                            data: cardData,
-                            isEn: isEn,
-                          );
-                        },
-                        icon: Icon(
-                          Icons.share_rounded,
-                          size: 16,
-                          color: AppColors.amethyst,
-                        ),
-                        label: Text(
-                          isEn ? 'Share' : 'Paylaş',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: () {
+                            HapticService.buttonPress();
+                            final template = ShareCardTemplates.questionOfTheDay;
+                            final cardData = ShareCardTemplates.buildData(
+                              template: template,
+                              isEn: isEn,
+                              reflectionText: questionText,
+                            );
+                            ShareCardSheet.show(
+                              context,
+                              template: template,
+                              data: cardData,
+                              isEn: isEn,
+                            );
+                          },
+                          icon: Icon(
+                            Icons.share_rounded,
+                            size: 16,
                             color: AppColors.amethyst,
                           ),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          side: BorderSide(
-                            color: AppColors.amethyst.withValues(alpha: 0.3),
+                          label: Text(
+                            isEn ? 'Share' : 'Paylaş',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.amethyst,
+                            ),
                           ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(
+                              color: AppColors.amethyst.withValues(alpha: 0.25),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 10),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 10),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
         ).animate().fadeIn(delay: 250.ms, duration: 400.ms);
       },
       orElse: () => const SizedBox.shrink(),

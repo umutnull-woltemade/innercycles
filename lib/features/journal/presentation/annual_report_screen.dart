@@ -26,6 +26,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 // ============================================================================
 // ANNUAL REPORT DATA MODEL
@@ -537,23 +538,9 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
-    return Container(
-      width: double.infinity,
+    return PremiumCard(
+      style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.auroraStart.withValues(alpha: isDark ? 0.15 : 0.08),
-            AppColors.auroraEnd.withValues(alpha: isDark ? 0.1 : 0.05),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.2),
-        ),
-      ),
       child: Column(
         children: [
           // Year
@@ -610,20 +597,9 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
-    return Container(
-      width: double.infinity,
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -748,20 +724,9 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
         : 5.0;
     const chartHeight = 140.0;
 
-    return Container(
-      width: double.infinity,
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -876,23 +841,9 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
-    return Container(
-      width: double.infinity,
+    return PremiumCard(
+      style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.streakOrange.withValues(alpha: isDark ? 0.12 : 0.06),
-            AppColors.starGold.withValues(alpha: isDark ? 0.08 : 0.04),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.streakOrange.withValues(alpha: 0.2),
-        ),
-      ),
       child: Row(
         children: [
           // Streak flame icon
@@ -959,23 +910,9 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     final month = report.mostActiveMonth!.key;
     final count = report.mostActiveMonth!.value;
 
-    return Container(
-      width: double.infinity,
+    return PremiumCard(
+      style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.chartBlue.withValues(alpha: isDark ? 0.12 : 0.06),
-            AppColors.auroraStart.withValues(alpha: isDark ? 0.08 : 0.04),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.chartBlue.withValues(alpha: 0.2),
-        ),
-      ),
       child: Row(
         children: [
           // Calendar icon
@@ -1049,23 +986,9 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     bool isDark,
     bool isEn,
   ) {
-    return Container(
-      width: double.infinity,
+    return PremiumCard(
+      style: PremiumCardStyle.amethyst,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            AppColors.amethyst.withValues(alpha: isDark ? 0.1 : 0.05),
-            AppColors.auroraEnd.withValues(alpha: isDark ? 0.08 : 0.04),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.amethyst.withValues(alpha: 0.2),
-        ),
-      ),
       child: Column(
         children: [
           Icon(

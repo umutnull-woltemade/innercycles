@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/gratitude_service.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 /// Collapsible gratitude section for the daily entry screen
 class GratitudeSection extends ConsumerStatefulWidget {
@@ -76,20 +77,8 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
   }
 
   Widget _buildSection(bool isDark, bool isEn, GratitudeService service) {
-    return Container(
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: _isExpanded
-              ? AppColors.success.withValues(alpha: 0.3)
-              : (isDark
-                    ? Colors.white.withValues(alpha: 0.15)
-                    : Colors.black.withValues(alpha: 0.05)),
-        ),
-      ),
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       child: Column(
         children: [
           // Toggle header
@@ -333,15 +322,9 @@ class _GratitudeSummaryContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.success.withValues(alpha: 0.08)
-            : AppColors.success.withValues(alpha: 0.05),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.success.withValues(alpha: 0.2)),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

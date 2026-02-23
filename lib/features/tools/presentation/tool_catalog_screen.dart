@@ -17,6 +17,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/tool_manifest.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/premium_service.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/app_symbol.dart';
@@ -472,19 +473,10 @@ class _ToolCard extends StatelessWidget {
           }
           context.push(tool.route);
         },
-        child: Container(
+        child: PremiumCard(
+          style: PremiumCardStyle.subtle,
+          borderRadius: AppConstants.radiusLg,
           padding: const EdgeInsets.all(AppConstants.spacingMd),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-            color: isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.6)
-                : AppColors.lightCard.withValues(alpha: 0.9),
-            border: Border.all(
-              color: isDark
-                  ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                  : AppColors.lightSurfaceVariant,
-            ),
-          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

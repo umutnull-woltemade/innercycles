@@ -12,6 +12,8 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/admin_auth_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class AdminDashboardScreen extends ConsumerStatefulWidget {
   const AdminDashboardScreen({super.key});
@@ -485,10 +487,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       children: [
         Icon(icon, color: AppColors.starGold, size: 20),
         const SizedBox(width: 8),
-        Text(
+        GradientText(
           title,
+          variant: GradientTextVariant.gold,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -547,19 +549,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
     final metrics = ref.watch(adminMetricsProvider);
     final lang = ref.watch(languageProvider);
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: AppConstants.radiusMd,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -890,18 +883,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
   Widget _buildGrowthTasksList(BuildContext context, bool isDark) {
     final tasks = ref.watch(growthTasksProvider);
 
-    return Container(
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: AppConstants.radiusMd,
+      padding: EdgeInsets.zero,
       child: ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -1001,18 +986,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
     final events = ref.watch(eventLogProvider);
     final lang = ref.watch(languageProvider);
 
-    return Container(
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: AppConstants.radiusMd,
+      padding: EdgeInsets.zero,
       child: Column(
         children: [
           // Header
@@ -1215,18 +1192,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
   Widget _buildSnapshotsList(BuildContext context, bool isDark) {
     final snapshots = ref.watch(snapshotsProvider);
 
-    return Container(
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: AppConstants.radiusMd,
+      padding: EdgeInsets.zero,
       child: snapshots.isEmpty
           ? Builder(
               builder: (context) {
@@ -1356,19 +1325,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
 
   Widget _buildNotesCard(BuildContext context, bool isDark) {
     final lang = ref.watch(languageProvider);
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: AppConstants.radiusMd,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -29,6 +29,7 @@ import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_card.dart';
 import 'widgets/cycle_wave_painter.dart';
 import 'widgets/cycle_summary_card.dart';
 import 'widgets/phase_ring.dart';
@@ -549,26 +550,10 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     int displayDays,
   ) {
     final hasData = chartData.values.any((list) => list.isNotEmpty);
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.aurora,
+      borderRadius: AppConstants.radiusXl,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.8)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusXl),
-        border: Border.all(
-          color: isDark
-              ? AppColors.auroraStart.withValues(alpha: 0.2)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.auroraStart.withValues(alpha: isDark ? 0.1 : 0.05),
-            blurRadius: 24,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -830,15 +815,9 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         ? (kAreaColors[insight.relatedArea!] ?? AppColors.auroraStart)
         : AppColors.auroraStart;
     final icon = _insightIcon(insight);
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(color: color.withValues(alpha: 0.2)),
-      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1085,20 +1064,9 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     bool isEn,
     int totalEntries,
   ) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.auroraStart.withValues(alpha: 0.12),
-            AppColors.auroraEnd.withValues(alpha: 0.12),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.35)),
-      ),
       child: Column(
         children: [
           const Icon(Icons.lock_outline, color: AppColors.starGold, size: 36),

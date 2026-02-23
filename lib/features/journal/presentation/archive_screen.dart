@@ -17,6 +17,7 @@ import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/ecosystem_widgets.dart';
 
 class ArchiveScreen extends ConsumerStatefulWidget {
@@ -344,19 +345,9 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
               Routes.journalEntryDetail.replaceFirst(':id', entry.id),
             );
           },
-          child: Container(
+          child: PremiumCard(
+            style: PremiumCardStyle.subtle,
             padding: const EdgeInsets.all(AppConstants.spacingLg),
-            decoration: BoxDecoration(
-              color: isDark
-                  ? AppColors.surfaceDark.withValues(alpha: 0.85)
-                  : AppColors.lightCard,
-              borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-              border: Border.all(
-                color: isDark
-                    ? Colors.white.withValues(alpha: 0.15)
-                    : Colors.black.withValues(alpha: 0.05),
-              ),
-            ),
             child: Row(
               children: [
                 // Rating circle

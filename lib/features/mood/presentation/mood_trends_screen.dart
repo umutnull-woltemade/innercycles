@@ -247,53 +247,59 @@ class MoodTrendsScreen extends ConsumerWidget {
                   : Colors.white.withValues(alpha: 0.3),
             ),
             child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.lock_outline, size: 20, color: AppColors.starGold),
-                  const SizedBox(height: 2),
-                  Text(
-                    isEn
-                        ? 'Your data has more to show'
-                        : 'Verilerinin gösterecekleri var',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  ElevatedButton(
-                    onPressed: () => showContextualPaywall(
-                      context,
-                      ref,
-                      paywallContext: PaywallContext.patterns,
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.starGold,
-                      foregroundColor: AppColors.deepSpace,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 8,
-                      ),
-                      minimumSize: Size.zero,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          AppConstants.radiusMd,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.lock_outline, size: 20, color: AppColors.starGold),
+                      const SizedBox(height: 2),
+                      Text(
+                        isEn
+                            ? 'Your data has more to show'
+                            : 'Verilerinin gösterecekleri var',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
                         ),
                       ),
-                    ),
-                    child: Text(
-                      isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                      const SizedBox(height: 4),
+                      ElevatedButton(
+                        onPressed: () => showContextualPaywall(
+                          context,
+                          ref,
+                          paywallContext: PaywallContext.patterns,
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.starGold,
+                          foregroundColor: AppColors.deepSpace,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 8,
+                          ),
+                          minimumSize: Size.zero,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              AppConstants.radiusMd,
+                            ),
+                          ),
+                        ),
+                        child: Text(
+                          isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ),

@@ -18,6 +18,7 @@ import '../../../data/services/journal_prompt_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class PromptLibraryScreen extends ConsumerWidget {
@@ -180,19 +181,10 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildProgressBar(double percent, int completed, int total) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: 14,
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: isDark
-            ? Colors.white.withValues(alpha: 0.06)
-            : Colors.white.withValues(alpha: 0.9),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
-              : AppColors.textMuted.withValues(alpha: 0.2),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -246,28 +238,9 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
     final promptText = isEn ? prompt.promptEn : prompt.promptTr;
     final isCompleted = service.isCompleted(prompt.id);
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: isDark
-              ? [
-                  AppColors.auroraStart.withValues(alpha: 0.25),
-                  AppColors.auroraEnd.withValues(alpha: 0.2),
-                ]
-              : [
-                  AppColors.lightAuroraStart.withValues(alpha: 0.15),
-                  AppColors.lightAuroraEnd.withValues(alpha: 0.1),
-                ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.auroraStart.withValues(alpha: 0.4),
-          width: 1.2,
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

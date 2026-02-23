@@ -25,6 +25,8 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../data/services/review_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/share_insight_button.dart';
+import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class PatternsScreen extends ConsumerWidget {
   const PatternsScreen({super.key});
@@ -614,28 +616,17 @@ class PatternsScreen extends ConsumerWidget {
     bool isEn, {
     Map<FocusArea, DimensionHealth>? healthMap,
   }) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'This Week vs Last Week' : 'Bu Hafta vs Geçen Hafta',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -729,28 +720,17 @@ class PatternsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Trends' : 'Eğilimler',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -801,28 +781,17 @@ class PatternsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Connections' : 'Bağlantılar',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
+            variant: GradientTextVariant.aurora,
+            style: const TextStyle(
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -864,19 +833,9 @@ class PatternsScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -884,12 +843,11 @@ class PatternsScreen extends ConsumerWidget {
             children: [
               Icon(Icons.insights, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? 'Cross-Dimension Insights' : 'Boyutlar Arası İçgörüler',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
+                variant: GradientTextVariant.aurora,
+                style: const TextStyle(
+                  fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -1020,17 +978,9 @@ class PatternsScreen extends ConsumerWidget {
     final accentColor =
         isPositiveLift ? AppColors.success : AppColors.auroraStart;
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: accentColor.withValues(alpha: 0.25),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1038,12 +988,11 @@ class PatternsScreen extends ConsumerWidget {
             children: [
               Icon(Icons.favorite_border_rounded, color: accentColor, size: 20),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? 'Gratitude & Mood' : 'Minnettarlık & Ruh Hali',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
+                variant: GradientTextVariant.gold,
+                style: const TextStyle(
+                  fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -1268,17 +1217,9 @@ class _ShadowWorkSuggestion extends StatelessWidget {
               ? 'Shadow work suggestion: ${top.displayNameEn}'
               : 'Gölge çalışması önerisi: ${top.displayNameTr}',
           button: true,
-          child: Container(
+          child: PremiumCard(
+            style: PremiumCardStyle.subtle,
             padding: const EdgeInsets.all(AppConstants.spacingLg),
-            decoration: BoxDecoration(
-              color: const Color(
-                0xFF9C27B0,
-              ).withValues(alpha: isDark ? 0.1 : 0.06),
-              borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-              border: Border.all(
-                color: const Color(0xFF9C27B0).withValues(alpha: 0.2),
-              ),
-            ),
             child: Row(
               children: [
                 const Icon(

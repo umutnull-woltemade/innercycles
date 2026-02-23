@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/user_profile.dart';
 import '../providers/app_providers.dart';
 import 'package:flutter/material.dart';
+import 'sync_service.dart';
 
 /// Local storage service using Hive for persisting user data
 class StorageService {
@@ -87,6 +89,9 @@ class StorageService {
 
     final json = jsonEncode(profile.toJson());
     await box.put(_profileKey, json);
+
+    // Sync to Supabase
+    _queueProfileSync(profile);
   }
 
   /// Load user profile from local storage
@@ -148,6 +153,9 @@ class StorageService {
     if (profile.isPrimary || profiles.length == 1) {
       await setPrimaryProfileId(profile.id);
     }
+
+    // Sync to Supabase
+    _queueProfileSync(profile);
   }
 
   static List<UserProfile> loadAllProfiles() {
@@ -222,6 +230,37 @@ class StorageService {
   static UserProfile? getProfileById(String id) {
     final profiles = loadAllProfiles();
     return profiles.where((p) => p.id == id).firstOrNull;
+  }
+
+  // ========== PROFILE SYNC HELPER ==========
+
+  static void _queueProfileSync(UserProfile profile) {
+    try {
+      final userId = Supabase.instance.client.auth.currentUser?.id;
+      if (userId == null) return;
+
+      SyncService.queueOperation(
+        tableName: 'user_profiles',
+        operation: 'UPSERT',
+        recordId: profile.id,
+        payload: {
+          'id': profile.id,
+          'user_id': userId,
+          'display_name': profile.name,
+          'avatar_emoji': profile.avatarEmoji,
+          'birth_date': '${profile.birthDate.year}-${profile.birthDate.month.toString().padLeft(2, '0')}-${profile.birthDate.day.toString().padLeft(2, '0')}',
+          'birth_time': profile.birthTime,
+          'birth_place': profile.birthPlace,
+          'birth_latitude': profile.birthLatitude,
+          'birth_longitude': profile.birthLongitude,
+          'is_primary': profile.isPrimary,
+          'relationship': profile.relationship,
+          'settings': <String, dynamic>{},
+        },
+      );
+    } catch (e) {
+      if (kDebugMode) debugPrint('StorageService: profile sync error: $e');
+    }
   }
 
   // ========== ONBOARDING ==========

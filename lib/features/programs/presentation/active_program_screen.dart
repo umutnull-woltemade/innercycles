@@ -17,6 +17,7 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class ActiveProgramScreen extends ConsumerStatefulWidget {
   final String programId;
@@ -193,21 +194,9 @@ class _ProgramHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final completed = progress?.completedDays.length ?? 0;
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.amethyst,
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: isDark
-              ? [
-                  AppColors.surfaceDark.withValues(alpha: 0.9),
-                  AppColors.nebulaPurple.withValues(alpha: 0.6),
-                ]
-              : [AppColors.lightCard, AppColors.lightSurfaceVariant],
-        ),
-        borderRadius: BorderRadius.circular(16),
-      ),
       child: Column(
         children: [
           AppSymbol.hero(program.emoji),
@@ -366,20 +355,9 @@ class _TodayPromptCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.starGold.withValues(alpha: isDark ? 0.12 : 0.08),
-            AppColors.auroraStart.withValues(alpha: isDark ? 0.08 : 0.04),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -452,18 +430,10 @@ class _ReflectionInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      showGradientBorder: false,
+      showInnerShadow: false,
       child: TextField(
         controller: controller,
         maxLines: 4,

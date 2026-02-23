@@ -20,6 +20,7 @@ import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../shared/widgets/share_insight_button.dart';
 
@@ -264,29 +265,10 @@ class _InsightsDiscoveryScreenState
           : 'Bugünün İçgörüsü: ${module.titleTr}',
       child: GestureDetector(
         onTap: () => _openModuleDetail(module, service),
-        child: Container(
+        child: PremiumCard(
+          style: PremiumCardStyle.aurora,
+          borderRadius: 20,
           padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: isDark
-                  ? [
-                      AppColors.auroraStart.withValues(alpha: 0.2),
-                      AppColors.auroraEnd.withValues(alpha: 0.15),
-                      AppColors.surfaceDark.withValues(alpha: 0.9),
-                    ]
-                  : [
-                      AppColors.lightAuroraStart.withValues(alpha: 0.08),
-                      AppColors.lightAuroraEnd.withValues(alpha: 0.06),
-                      AppColors.lightCard,
-                    ],
-            ),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: AppColors.auroraStart.withValues(alpha: 0.25),
-            ),
-          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -465,21 +447,9 @@ class _InsightsDiscoveryScreenState
       label: isEn ? module.titleEn : module.titleTr,
       child: GestureDetector(
         onTap: () => _openModuleDetail(module, service),
-        child: Container(
+        child: PremiumCard(
+          style: PremiumCardStyle.subtle,
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.7)
-                : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: isRead
-                  ? AppColors.auroraStart.withValues(alpha: 0.15)
-                  : (isDark
-                        ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                        : AppColors.lightSurfaceVariant),
-            ),
-          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

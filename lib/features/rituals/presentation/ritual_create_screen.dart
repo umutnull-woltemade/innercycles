@@ -12,6 +12,7 @@ import '../../../data/services/premium_service.dart';
 import '../../../data/content/habit_suggestions_content.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class RitualCreateScreen extends ConsumerStatefulWidget {
   const RitualCreateScreen({super.key});
@@ -185,20 +186,10 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: isDark
-                                ? AppColors.surfaceDark.withValues(alpha: 0.85)
-                                : AppColors.lightCard,
-                            borderRadius: BorderRadius.circular(
-                              AppConstants.radiusLg,
-                            ),
-                            border: Border.all(
-                              color: isDark
-                                  ? Colors.white.withValues(alpha: 0.15)
-                                  : Colors.black.withValues(alpha: 0.05),
-                            ),
-                          ),
+                        PremiumCard(
+                          style: PremiumCardStyle.subtle,
+                          showGradientBorder: false,
+                          showInnerShadow: false,
                           child: TextField(
                             controller: _nameController,
                             maxLength: 30,

@@ -16,6 +16,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/models/share_card_models.dart';
 import '../../../../data/content/share_card_templates.dart';
+import '../../../../shared/widgets/app_symbol.dart';
 
 // ============================================================================
 // MAIN RENDERER
@@ -339,7 +340,7 @@ class _BadgeHeroLayout extends StatelessWidget {
 
         // Large stat or icon
         if (isEmoji)
-          Text(data.statValue!, style: const TextStyle(fontSize: 64))
+          AppSymbol(data.statValue!, size: AppSymbolSize.xxl)
         else if (data.statValue != null)
           _HeroStat(value: data.statValue!, accent: accent)
         else
