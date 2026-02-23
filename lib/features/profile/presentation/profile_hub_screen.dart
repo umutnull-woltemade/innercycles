@@ -183,6 +183,11 @@ class ProfileHubScreen extends ConsumerWidget {
         isEn ? 'Share Cards' : 'Payla\u015f\u0131m Kartlar\u0131',
         Routes.shareCardGallery,
       ),
+      _SettingsLink(
+        '\u{1F5BC}\u{FE0F}',
+        isEn ? 'Memories' : 'An\u0131lar',
+        Routes.memories,
+      ),
     ];
 
     return links.asMap().entries.map((entry) {

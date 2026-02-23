@@ -87,6 +87,7 @@ import '../../features/search/presentation/global_search_screen.dart';
 import '../../features/seasonal/presentation/seasonal_reflection_screen.dart';
 import '../../features/sleep/presentation/sleep_detail_screen.dart';
 import '../../features/sleep/presentation/sleep_trends_screen.dart';
+import '../../features/memories/presentation/memories_screen.dart';
 import '../../features/tools/presentation/tool_catalog_screen.dart';
 import '../../features/wellness/presentation/wellness_detail_screen.dart';
 import '../../shared/widgets/main_shell_screen.dart';
@@ -234,6 +235,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.journalArchive,
         builder: (context, state) => const ArchiveScreen(),
+      ),
+      GoRoute(
+        path: Routes.memories,
+        builder: (context, state) => const MemoriesScreen(),
       ),
 
       // ════════════════════════════════════════════════════════════════

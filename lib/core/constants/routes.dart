@@ -26,6 +26,7 @@ class Routes {
   static const String journalPatterns = '/journal/patterns';
   static const String journalMonthly = '/journal/monthly';
   static const String journalArchive = '/journal/archive';
+  static const String memories = '/memories';
 
   // ════════════════════════════════════════════════════════════════
   // INSIGHT - Personal Reflection Assistant
