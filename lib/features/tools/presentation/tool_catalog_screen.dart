@@ -19,6 +19,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
@@ -335,7 +336,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
       ),
       child: Row(
         children: [
-          Text(info.emoji, style: const TextStyle(fontSize: 20)),
+          AppSymbol(info.emoji, size: AppSymbolSize.sm),
           const SizedBox(width: AppConstants.spacingSm),
           Text(
             isEn ? info.nameEn : info.nameTr,
@@ -490,7 +491,7 @@ class _ToolCard extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(tool.icon, style: const TextStyle(fontSize: 28)),
+                  AppSymbol(tool.icon, size: AppSymbolSize.lg),
                   const Spacer(),
                   if (tool.requiresPremium)
                     Container(

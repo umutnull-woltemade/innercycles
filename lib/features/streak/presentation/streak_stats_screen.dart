@@ -509,7 +509,7 @@ class StreakStatsScreen extends ConsumerWidget {
     return SizedBox(
       width: double.infinity,
       child: OutlinedButton.icon(
-        onPressed: () => context.push(Routes.journal),
+        onPressed: () => context.go(Routes.journal),
         icon: Icon(Icons.edit_note, color: AppColors.starGold),
         label: Text(
           isEn ? 'Log Today\'s Entry' : 'Bugünün Kaydını Yaz',

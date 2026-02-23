@@ -14,6 +14,7 @@ import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 class ProgramCompletionScreen extends ConsumerWidget {
@@ -61,7 +62,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
                 const SizedBox(height: AppConstants.spacingSm),
 
                 // Large program emoji
-                Text(programEmoji, style: const TextStyle(fontSize: 64)),
+                AppSymbol(programEmoji, size: AppSymbolSize.xxl),
                 const SizedBox(height: AppConstants.spacingXl),
 
                 // Congratulations heading in gold

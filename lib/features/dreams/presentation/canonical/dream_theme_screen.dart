@@ -14,6 +14,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/content_disclaimer.dart';
+import '../../../../shared/widgets/app_symbol.dart';
 import '../../../../shared/widgets/cosmic_background.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -853,7 +854,7 @@ class DreamThemeScreen extends ConsumerWidget {
           ),
           child: Row(
             children: [
-              Text(emoji, style: const TextStyle(fontSize: 24)),
+              AppSymbol.card(emoji),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(

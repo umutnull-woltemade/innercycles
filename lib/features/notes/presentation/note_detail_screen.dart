@@ -171,6 +171,8 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
 
   Future<void> _pickReminderDate() async {
     final now = DateTime.now();
+    final language = ref.read(languageProvider);
+    final isEn = language == AppLanguage.en;
     await showCupertinoModalPopup<void>(
       context: context,
       builder: (ctx) => Container(
@@ -182,11 +184,11 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CupertinoButton(
-                  child: const Text('Cancel'),
+                  child: Text(isEn ? 'Cancel' : 'İptal'),
                   onPressed: () => Navigator.pop(ctx),
                 ),
                 CupertinoButton(
-                  child: const Text('Done'),
+                  child: Text(isEn ? 'Done' : 'Tamam'),
                   onPressed: () => Navigator.pop(ctx),
                 ),
               ],

@@ -10,6 +10,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/ritual_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -185,7 +186,7 @@ class _StackCard extends ConsumerWidget {
           children: [
             Row(
               children: [
-                Text(stack.time.icon, style: const TextStyle(fontSize: 20)),
+                AppSymbol(stack.time.icon, size: AppSymbolSize.sm),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(

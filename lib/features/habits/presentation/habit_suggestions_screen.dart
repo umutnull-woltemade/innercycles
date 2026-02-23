@@ -11,6 +11,7 @@ import '../../../data/content/habit_suggestions_content.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/habit_suggestion_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -345,9 +346,9 @@ class _DailySpotlightCard extends StatelessWidget {
                       color: AppColors.auroraStart.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Text(
+                    child: AppSymbol(
                       HabitSuggestionService.categoryEmoji(habit.category),
-                      style: const TextStyle(fontSize: 20),
+                      size: AppSymbolSize.sm,
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -676,7 +677,7 @@ class _CategoryChip extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(emoji, style: const TextStyle(fontSize: 14)),
+              AppSymbol.inline(emoji),
               const SizedBox(width: 4),
               Text(
                 label,
@@ -758,9 +759,9 @@ class _HabitCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(
-                  child: Text(
+                  child: AppSymbol(
                     HabitSuggestionService.categoryEmoji(habit.category),
-                    style: const TextStyle(fontSize: 18),
+                    size: AppSymbolSize.sm,
                   ),
                 ),
               ),
@@ -966,9 +967,9 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                 // Category + Duration header
                 Row(
                   children: [
-                    Text(
+                    AppSymbol(
                       HabitSuggestionService.categoryEmoji(habit.category),
-                      style: const TextStyle(fontSize: 28),
+                      size: AppSymbolSize.lg,
                     ),
                     const SizedBox(width: 12),
                     Expanded(

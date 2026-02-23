@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/premium_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
@@ -45,7 +46,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
               child: GestureDetector(
                 onTap: () {
                   HapticFeedback.lightImpact();
-                  context.push(Routes.journal);
+                  context.go(Routes.journal);
                 },
                 child: Container(
                   margin: EdgeInsets.only(bottom: isPremium ? 16 : 8),
@@ -79,7 +80,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                           color: AppColors.warning.withValues(alpha: 0.2),
                         ),
                         child: const Center(
-                          child: Text('🔥', style: TextStyle(fontSize: 22)),
+                          child: AppSymbol('🔥', size: AppSymbolSize.sm),
                         ),
                       ),
                       const SizedBox(width: 14),

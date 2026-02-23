@@ -13,6 +13,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/milestone_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -412,17 +413,14 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                 children: [
                   // Emoji or lock
                   if (earned)
-                    Text(milestone.emoji, style: const TextStyle(fontSize: 32))
+                    AppSymbol(milestone.emoji, size: AppSymbolSize.lg)
                   else
                     Stack(
                       alignment: Alignment.center,
                       children: [
-                        Text(
-                          milestone.emoji,
-                          style: TextStyle(
-                            fontSize: 32,
-                            color: Colors.white.withValues(alpha: 0.15),
-                          ),
+                        Opacity(
+                          opacity: 0.15,
+                          child: AppSymbol(milestone.emoji, size: AppSymbolSize.lg),
                         ),
                         Icon(
                           Icons.lock_outline_rounded,
@@ -551,10 +549,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                     ),
                   ),
                   alignment: Alignment.center,
-                  child: Text(
-                    milestone.emoji,
-                    style: const TextStyle(fontSize: 40),
-                  ),
+                  child: AppSymbol.hero(milestone.emoji),
                 ),
                 const SizedBox(height: 16),
                 // Name

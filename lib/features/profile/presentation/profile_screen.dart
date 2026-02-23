@@ -482,7 +482,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           SizedBox(
             width: double.infinity,
             child: OutlinedButton.icon(
-              onPressed: () => context.push(Routes.moodTrends),
+              onPressed: () => context.go(Routes.moodTrends),
               icon: const Icon(Icons.insights),
               label: Text(isEn ? 'View Insights' : 'İçgörüleri Gör'),
               style: OutlinedButton.styleFrom(

@@ -11,6 +11,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/seasonal_reflection_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
@@ -159,7 +160,7 @@ class _SeasonHeader extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(module.emoji, style: const TextStyle(fontSize: 48)),
+          AppSymbol.hero(module.emoji),
           const SizedBox(height: 12),
           Text(
             isEn ? module.nameEn : module.nameTr,

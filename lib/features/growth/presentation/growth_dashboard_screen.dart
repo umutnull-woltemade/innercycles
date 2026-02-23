@@ -24,6 +24,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_service.dart';
 import '../../../data/services/growth_challenge_service.dart';
 import '../../../data/services/gratitude_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
@@ -458,7 +459,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
             crossAxisAlignment: CrossAxisAlignment.baseline,
             textBaseline: TextBaseline.alphabetic,
             children: [
-              Text('\u{1F525}', style: const TextStyle(fontSize: 32)),
+              const AppSymbol('\u{1F525}', size: AppSymbolSize.lg),
               const SizedBox(width: 8),
               Text(
                 '$currentStreak',

@@ -347,7 +347,7 @@ class SettingsScreen extends ConsumerWidget {
                                   ? 'Guided Breathwork'
                                   : 'Rehberli Nefes',
                               isDark: isDark,
-                              onTap: () => context.push(Routes.breathing),
+                              onTap: () => context.go(Routes.breathing),
                             ),
                             _GroupedSeparator(isDark: isDark),
                             _GroupedTile(

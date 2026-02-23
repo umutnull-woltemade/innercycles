@@ -305,8 +305,7 @@ class _SearchResultTile extends StatelessWidget {
       button: true,
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).pop();
-          context.push(tool.route);
+          context.go(tool.route);
         },
         child: Container(
           padding: const EdgeInsets.symmetric(

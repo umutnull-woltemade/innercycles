@@ -18,6 +18,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/content/quiz_content.dart';
 import '../../../data/models/quiz_models.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
@@ -209,7 +210,7 @@ class _QuizCard extends StatelessWidget {
                       : AppColors.lightSurfaceVariant.withValues(alpha: 0.8),
                 ),
                 child: Center(
-                  child: Text(quiz.emoji, style: const TextStyle(fontSize: 28)),
+                  child: AppSymbol(quiz.emoji, size: AppSymbolSize.lg),
                 ),
               ),
               const SizedBox(width: AppConstants.spacingLg),

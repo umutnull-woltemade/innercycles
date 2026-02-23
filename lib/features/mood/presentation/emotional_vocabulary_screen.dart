@@ -7,6 +7,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/content/emotional_vocabulary_content.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
@@ -283,7 +284,7 @@ class _FamilyChip extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(emoji, style: const TextStyle(fontSize: 14)),
+              symbolFor(emoji, AppSymbolSize.xs),
               const SizedBox(width: 6),
               Text(
                 label,
@@ -343,7 +344,7 @@ class _EmotionCardState extends State<_EmotionCard> {
             children: [
               Row(
                 children: [
-                  Text(e.emoji, style: const TextStyle(fontSize: 24)),
+                  AppSymbol.card(e.emoji),
                   const SizedBox(width: AppConstants.spacingMd),
                   Expanded(
                     child: Column(

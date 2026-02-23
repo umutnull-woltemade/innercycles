@@ -12,6 +12,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../shared/widgets/app_symbol.dart';
 
 // ---------------------------------------------------------------------------
 // Data model for a single feature highlight
@@ -314,7 +315,7 @@ class _FeatureTile extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             alignment: Alignment.center,
-            child: Text(emoji, style: const TextStyle(fontSize: 22)),
+            child: AppSymbol(emoji, size: AppSymbolSize.sm),
           ),
           const SizedBox(width: 14),
           // Text content

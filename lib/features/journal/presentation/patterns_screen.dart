@@ -253,7 +253,7 @@ class PatternsScreen extends ConsumerWidget {
                             SizedBox(
                               width: double.infinity,
                               child: ElevatedButton.icon(
-                                onPressed: () => context.push(Routes.journal),
+                                onPressed: () => context.go(Routes.journal),
                                 icon: const Icon(
                                   Icons.edit_note_outlined,
                                   size: 20,

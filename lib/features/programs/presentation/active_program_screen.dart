@@ -13,6 +13,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/guided_program_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -209,7 +210,7 @@ class _ProgramHeader extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(program.emoji, style: const TextStyle(fontSize: 48)),
+          AppSymbol.hero(program.emoji),
           const SizedBox(height: 12),
           Text(
             isEn ? program.descriptionEn : program.descriptionTr,

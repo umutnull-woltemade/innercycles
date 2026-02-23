@@ -13,6 +13,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
@@ -289,7 +290,7 @@ class _ProfileHeader extends StatelessWidget {
               ),
             ),
             child: const Center(
-              child: Text('\u{2728}', style: TextStyle(fontSize: 28)),
+              child: AppSymbol('\u{2728}', size: AppSymbolSize.lg),
             ),
           ),
           const SizedBox(width: AppConstants.spacingLg),
@@ -541,7 +542,7 @@ class _SettingsLinkTile extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Text(link.emoji, style: const TextStyle(fontSize: 22)),
+              AppSymbol(link.emoji, size: AppSymbolSize.sm),
               const SizedBox(width: AppConstants.spacingLg),
               Expanded(
                 child: Text(

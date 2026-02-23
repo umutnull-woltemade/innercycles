@@ -18,6 +18,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/growth_challenge_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -392,7 +393,7 @@ class _ActiveChallengeCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text(challenge.emoji, style: const TextStyle(fontSize: 28)),
+              symbolFor(challenge.emoji, AppSymbolSize.lg),
               const SizedBox(width: AppConstants.spacingMd),
               Expanded(
                 child: Column(
@@ -485,7 +486,7 @@ class _AvailableChallengeCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text(challenge.emoji, style: const TextStyle(fontSize: 24)),
+              symbolFor(challenge.emoji, AppSymbolSize.md),
               const Spacer(),
               if (challenge.isPremium)
                 Container(
@@ -586,7 +587,7 @@ class _CompletedChallengeTile extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Text(challenge.emoji, style: const TextStyle(fontSize: 22)),
+          symbolFor(challenge.emoji, AppSymbolSize.sm),
           const SizedBox(width: AppConstants.spacingMd),
           Expanded(
             child: Text(

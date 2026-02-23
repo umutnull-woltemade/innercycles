@@ -21,6 +21,7 @@ import '../../../data/services/l10n_service.dart';
 import '../../../data/services/notification_service.dart';
 import '../../../data/services/storage_service.dart';
 // birth_date_picker removed (birthday deferred to settings)
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
@@ -1537,7 +1538,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Text('📓', style: TextStyle(fontSize: 64)),
+                          const AppSymbol('📓', size: AppSymbolSize.xxl),
                           const SizedBox(height: 32),
 
                           ShaderMask(

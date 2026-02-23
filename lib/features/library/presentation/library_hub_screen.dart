@@ -17,6 +17,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
@@ -206,7 +207,7 @@ class _CategoryCard extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Text(category.emoji, style: const TextStyle(fontSize: 28)),
+              AppSymbol(category.emoji, size: AppSymbolSize.lg),
               const SizedBox(width: AppConstants.spacingLg),
               Expanded(
                 child: Text(

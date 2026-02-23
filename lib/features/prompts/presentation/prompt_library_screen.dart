@@ -326,7 +326,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
               onPressed: () {
                 HapticFeedback.mediumImpact();
                 service.markCompleted(prompt.id);
-                context.push(Routes.journal);
+                context.go(Routes.journal);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.auroraStart,
@@ -654,7 +654,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                       HapticFeedback.mediumImpact();
                       service.markCompleted(prompt.id);
                       Navigator.pop(ctx);
-                      context.push(Routes.journal);
+                      context.go(Routes.journal);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.auroraStart,

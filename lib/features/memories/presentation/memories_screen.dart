@@ -269,7 +269,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                 'Start journaling to build your memories collection.',
             descriptionTr:
                 'An\u0131lar\u0131n\u0131 olu\u015fturmak i\u00e7in g\u00fcnl\u00fck yazmaya ba\u015fla.',
-            onStartTemplate: () => context.push(Routes.journal),
+            onStartTemplate: () => context.go(Routes.journal),
             isEn: isEn,
             isDark: isDark,
           ),

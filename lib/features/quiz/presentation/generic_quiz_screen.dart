@@ -18,6 +18,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/content/quiz_content.dart';
 import '../../../data/models/quiz_models.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
@@ -581,7 +582,7 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
           ),
           child: Column(
             children: [
-              Text(dim.emoji, style: const TextStyle(fontSize: 48)),
+              AppSymbol.hero(dim.emoji),
               const SizedBox(height: AppConstants.spacingMd),
               Text(
                 isEn ? dim.nameEn : dim.nameTr,

@@ -18,6 +18,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/archetype_service.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -227,7 +228,7 @@ class _DominantArchetypeCard extends StatelessWidget {
       child: Column(
         children: [
           // Emoji
-          Text(archetype.emoji, style: const TextStyle(fontSize: 64)),
+          AppSymbol(archetype.emoji, size: AppSymbolSize.xxl),
           const SizedBox(height: 12),
           // Name
           Text(
@@ -740,7 +741,7 @@ class _BreakdownRow extends StatelessWidget {
         // Emoji
         SizedBox(
           width: 28,
-          child: Text(archetype.emoji, style: const TextStyle(fontSize: 16)),
+          child: AppSymbol(archetype.emoji, size: AppSymbolSize.sm),
         ),
         const SizedBox(width: 4),
         // Name

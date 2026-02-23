@@ -13,6 +13,7 @@ import '../../../data/services/first_taste_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
@@ -1849,7 +1850,7 @@ ${_getPersonalAdvice(sign)}''';
             padding: const EdgeInsets.only(bottom: 12),
             child: Row(
               children: [
-                const Text('💭', style: TextStyle(fontSize: 16)),
+                symbolFor('💭', AppSymbolSize.sm),
                 const SizedBox(width: 8),
                 Text(
                   L10nService.get(
@@ -2249,7 +2250,7 @@ ${_getPersonalAdvice(sign)}''';
               ),
               shape: BoxShape.circle,
             ),
-            child: const Text('\u{1F319}', style: TextStyle(fontSize: 18)),
+            child: const AppSymbol('\u{1F319}', size: AppSymbolSize.sm),
           ),
           const SizedBox(width: 8),
           GlassPanel(
@@ -2576,7 +2577,7 @@ class _DreamSymbolsSheet extends ConsumerWidget {
             padding: const EdgeInsets.all(20),
             child: Row(
               children: [
-                const Text('\u{1F52E}', style: TextStyle(fontSize: 28)),
+                const AppSymbol('\u{1F52E}', size: AppSymbolSize.lg),
                 const SizedBox(width: 12),
                 Text(
                   L10nService.get(

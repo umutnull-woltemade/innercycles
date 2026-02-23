@@ -18,6 +18,7 @@ import '../../../data/models/dream_interpretation_models.dart';
 import '../../../data/content/dream_symbols_database.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 // ============================================================================
@@ -318,10 +319,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
               ),
               shape: BoxShape.circle,
             ),
-            child: const Text(
-              '\u{1F4D6}', // Open book emoji
-              style: TextStyle(fontSize: 24),
-            ),
+            child: const AppSymbol.card('\u{1F4D6}'),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -445,10 +443,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
               mainAxisSize: MainAxisSize.min,
               children: [
                 if (cat.category != null) ...[
-                  Text(
-                    cat.category!.emoji,
-                    style: const TextStyle(fontSize: 14),
-                  ),
+                  symbolFor(cat.category!.emoji, AppSymbolSize.xs),
                   const SizedBox(width: 4),
                 ],
                 Text(cat.label),
@@ -466,7 +461,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('\u{1F50D}', style: TextStyle(fontSize: 48)),
+            const AppSymbol.hero('\u{1F50D}'),
             const SizedBox(height: 16),
             Text(
               L10nService.get('screens.dream_glossary.no_results', language),
@@ -646,10 +641,7 @@ class _SymbolCard extends StatelessWidget {
                     ),
                     shape: BoxShape.circle,
                   ),
-                  child: Text(
-                    symbol.emoji,
-                    style: const TextStyle(fontSize: 28),
-                  ),
+                  child: AppSymbol(symbol.emoji, size: AppSymbolSize.lg),
                 ),
                 const SizedBox(width: 12),
 
@@ -683,10 +675,7 @@ class _SymbolCard extends StatelessWidget {
                                 ),
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: const Text(
-                                '\u{2728}',
-                                style: TextStyle(fontSize: 12),
-                              ),
+                              child: const AppSymbol.inline('\u{2728}'),
                             ),
                           ],
                         ],
@@ -833,10 +822,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                     ),
                     shape: BoxShape.circle,
                   ),
-                  child: Text(
-                    symbol.emoji,
-                    style: const TextStyle(fontSize: 40),
-                  ),
+                  child: AppSymbol.hero(symbol.emoji),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
@@ -864,10 +850,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
-                              symbol.category.emoji,
-                              style: const TextStyle(fontSize: 12),
-                            ),
+                            AppSymbol.inline(symbol.category.emoji),
                             const SizedBox(width: 4),
                             Text(
                               symbol.category.label,
@@ -982,7 +965,7 @@ class _SymbolDetailSheet extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text(emoji, style: const TextStyle(fontSize: 18)),
+              AppSymbol(emoji, size: AppSymbolSize.sm),
               const SizedBox(width: 8),
               Text(
                 title,
@@ -1027,7 +1010,7 @@ class _SymbolDetailSheet extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Text('\u{1F3DB}', style: TextStyle(fontSize: 18)),
+              const AppSymbol('\u{1F3DB}', size: AppSymbolSize.sm),
               const SizedBox(width: 8),
               Text(
                 L10nService.get(
@@ -1098,7 +1081,7 @@ class _SymbolDetailSheet extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Text('\u{1F9E0}', style: TextStyle(fontSize: 18)),
+              const AppSymbol('\u{1F9E0}', size: AppSymbolSize.sm),
               const SizedBox(width: 8),
               Text(
                 L10nService.get(
@@ -1199,7 +1182,7 @@ class _SymbolDetailSheet extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Text('\u{1F517}', style: TextStyle(fontSize: 18)),
+              const AppSymbol('\u{1F517}', size: AppSymbolSize.sm),
               const SizedBox(width: 8),
               Text(
                 L10nService.get(
@@ -1243,10 +1226,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          relatedSymbol.emoji,
-                          style: const TextStyle(fontSize: 14),
-                        ),
+                        AppSymbol.inline(relatedSymbol.emoji),
                         const SizedBox(width: 4),
                         Text(
                           relatedSymbol.symbolTr,
@@ -1307,9 +1287,9 @@ class _SymbolDetailSheet extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              AppSymbol(
                 hasDreamed ? '\u{2705}' : '\u{1F319}',
-                style: const TextStyle(fontSize: 20),
+                size: AppSymbolSize.sm,
               ),
               const SizedBox(width: 10),
               Text(
@@ -1440,7 +1420,7 @@ class _PersonalDictionarySheet extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Row(
               children: [
-                const Text('\u{1F4D4}', style: TextStyle(fontSize: 32)),
+                const AppSymbol('\u{1F4D4}', size: AppSymbolSize.lg),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -1503,7 +1483,7 @@ class _PersonalDictionarySheet extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('\u{1F319}', style: TextStyle(fontSize: 64)),
+          const AppSymbol('\u{1F319}', size: AppSymbolSize.xxl),
           const SizedBox(height: 16),
           Text(
             L10nService.get(
@@ -1559,7 +1539,7 @@ class _PersonalDictionarySheet extends StatelessWidget {
             child: Row(
               children: [
                 // Emoji
-                Text(symbol.emoji, style: const TextStyle(fontSize: 32)),
+                AppSymbol(symbol.emoji, size: AppSymbolSize.lg),
                 const SizedBox(width: 14),
 
                 // Content
@@ -1578,10 +1558,7 @@ class _PersonalDictionarySheet extends StatelessWidget {
                       const SizedBox(height: 4),
                       Row(
                         children: [
-                          const Text(
-                            '\u{1F4C5}',
-                            style: TextStyle(fontSize: 12),
-                          ),
+                          const AppSymbol.inline('\u{1F4C5}'),
                           const SizedBox(width: 4),
                           Text(
                             L10nService.get(

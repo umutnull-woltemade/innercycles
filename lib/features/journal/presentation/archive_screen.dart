@@ -164,7 +164,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                                 'Your journal entries will appear here as you build your personal cycle map.',
                             descriptionTr:
                                 'Kişisel döngü haritanı oluşturdukça günlük kayıtların burada görünecek.',
-                            onStartTemplate: () => context.push(Routes.journal),
+                            onStartTemplate: () => context.go(Routes.journal),
                             isEn: isEn,
                             isDark: isDark,
                           ),

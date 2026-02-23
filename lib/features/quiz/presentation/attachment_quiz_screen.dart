@@ -21,6 +21,7 @@ import '../../../data/models/attachment_style.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/attachment_style_service.dart';
 import '../../../data/services/review_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
@@ -556,7 +557,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
           child: Column(
             children: [
               // Style icon
-              Text(style.emojiIcon, style: const TextStyle(fontSize: 48)),
+              AppSymbol.hero(style.emojiIcon),
               const SizedBox(height: AppConstants.spacingMd),
 
               // Style name

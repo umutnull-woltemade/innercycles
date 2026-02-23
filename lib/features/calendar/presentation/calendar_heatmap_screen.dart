@@ -19,6 +19,7 @@ import '../../../data/services/life_event_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../data/services/premium_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
@@ -236,7 +237,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                   onViewEntry: (id) => context.push(
                     Routes.journalEntryDetail.replaceFirst(':id', id),
                   ),
-                  onCreateEntry: () => context.push(Routes.journal),
+                  onCreateEntry: () => context.go(Routes.journal),
                   onAddLifeEvent: () => context.push(
                     '${Routes.lifeEventNew}?date=$_selectedDateKey',
                   ),
@@ -1091,7 +1092,7 @@ class _DayDetail extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Text(emoji, style: const TextStyle(fontSize: 20)),
+              AppSymbol(emoji, size: AppSymbolSize.sm),
               const SizedBox(width: 10),
               Expanded(
                 child: Column(

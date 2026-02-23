@@ -17,6 +17,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/content/important_date_presets.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
 class RetrospectiveScreen extends ConsumerStatefulWidget {
@@ -392,8 +393,7 @@ class _DaySelectionStep extends StatelessWidget {
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text(preset.emoji,
-                                  style: const TextStyle(fontSize: 16)),
+                              AppSymbol(preset.emoji, size: AppSymbolSize.sm),
                               const SizedBox(width: 6),
                               Flexible(
                                 child: Text(
@@ -535,8 +535,7 @@ class _DateEntryStep extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text(preset.emoji,
-                            style: const TextStyle(fontSize: 24)),
+                        AppSymbol.card(preset.emoji),
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text(

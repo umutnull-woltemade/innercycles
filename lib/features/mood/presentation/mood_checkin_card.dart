@@ -10,6 +10,7 @@ import '../../../data/content/emotional_vocabulary_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/mood_checkin_service.dart';
 import '../../../data/services/haptic_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 
 class MoodCheckinCard extends ConsumerStatefulWidget {
   const MoodCheckinCard({super.key});
@@ -128,22 +129,7 @@ class _CheckinView extends StatelessWidget {
                   onTap: () => onSelect(mood, emoji),
                   child: Column(
                     children: [
-                      Container(
-                        width: 48,
-                        height: 48,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: isDark
-                              ? Colors.white.withValues(alpha: 0.06)
-                              : Colors.black.withValues(alpha: 0.04),
-                        ),
-                        child: Center(
-                          child: Text(
-                            emoji,
-                            style: const TextStyle(fontSize: 24),
-                          ),
-                        ),
-                      ),
+                      AppSymbol.card(emoji),
                       const SizedBox(height: 4),
                       Text(
                         isEn ? labelEn : labelTr,
@@ -199,7 +185,7 @@ class _LoggedView extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text(todayMood.emoji, style: const TextStyle(fontSize: 28)),
+              AppSymbol(todayMood.emoji, size: AppSymbolSize.lg),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -253,31 +239,32 @@ class _LoggedView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Container(
-                    width: 28,
-                    height: 28,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: entry != null
-                          ? _moodColor(entry.mood).withValues(alpha: 0.2)
-                          : (isDark
+                  entry != null
+                      ? AppSymbol.inline(
+                          entry.emoji,
+                          accentOverride: _moodColor(entry.mood),
+                        )
+                      : Container(
+                          width: 24,
+                          height: 24,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: isDark
                                 ? Colors.white.withValues(alpha: 0.04)
-                                : Colors.black.withValues(alpha: 0.03)),
-                    ),
-                    child: Center(
-                      child: Text(
-                        entry?.emoji ?? '·',
-                        style: TextStyle(
-                          fontSize: entry != null ? 14 : 12,
-                          color: entry != null
-                              ? null
-                              : (isDark
+                                : Colors.black.withValues(alpha: 0.03),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '·',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: isDark
                                     ? AppColors.textMuted
-                                    : AppColors.lightTextMuted),
+                                    : AppColors.lightTextMuted,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
                 ],
               );
             }),
@@ -384,15 +371,14 @@ class _ThankYouView extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text(
-                todayMood.emoji,
-                style: const TextStyle(fontSize: 32),
-              ).animate().scale(
-                begin: const Offset(0.5, 0.5),
-                end: const Offset(1, 1),
-                duration: 300.ms,
-                curve: Curves.elasticOut,
-              ),
+              AppSymbol(todayMood.emoji, size: AppSymbolSize.lg)
+                  .animate()
+                  .scale(
+                    begin: const Offset(0.5, 0.5),
+                    end: const Offset(1, 1),
+                    duration: 300.ms,
+                    curve: Curves.elasticOut,
+                  ),
               const SizedBox(width: 14),
               Expanded(
                 child: Text(
@@ -433,7 +419,7 @@ class _ThankYouView extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(emotion.emoji, style: const TextStyle(fontSize: 14)),
+                    AppSymbol.inline(emotion.emoji),
                     const SizedBox(width: 4),
                     Text(
                       isEn ? emotion.nameEn : emotion.nameTr,

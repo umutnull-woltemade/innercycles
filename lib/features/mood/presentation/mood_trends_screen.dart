@@ -13,6 +13,7 @@ import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/mood_checkin_service.dart';
 import '../../../data/services/premium_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
@@ -464,7 +465,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(vertical: 6),
                 child: Row(
                   children: [
-                    Text(item.$2, style: const TextStyle(fontSize: 20)),
+                    AppSymbol(item.$2, size: AppSymbolSize.sm),
                     const SizedBox(width: 8),
                     SizedBox(
                       width: 60,
@@ -552,7 +553,7 @@ class MoodTrendsScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Row(
                 children: [
-                  Text(entry.emoji, style: const TextStyle(fontSize: 22)),
+                  AppSymbol(entry.emoji, size: AppSymbolSize.sm),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(

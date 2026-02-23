@@ -13,6 +13,7 @@ import '../../../data/content/life_event_presets.dart';
 import '../../../data/models/life_event.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
@@ -142,7 +143,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                 ),
                 child: Column(
                   children: [
-                    Text(emoji, style: const TextStyle(fontSize: 48)),
+                    AppSymbol.hero(emoji),
                     const SizedBox(height: 12),
                     Text(
                       event.title,

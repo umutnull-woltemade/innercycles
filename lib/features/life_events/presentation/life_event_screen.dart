@@ -15,6 +15,7 @@ import '../../../data/models/life_event.dart';
 import '../../../data/content/life_event_presets.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 
@@ -297,7 +298,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(preset.emoji, style: const TextStyle(fontSize: 16)),
+                    AppSymbol(preset.emoji, size: AppSymbolSize.sm),
                     const SizedBox(width: 6),
                     Text(
                       isEn ? preset.nameEn : preset.nameTr,

@@ -13,6 +13,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/models/life_event.dart';
@@ -95,7 +96,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         HapticService.buttonPress();
-                        context.push(Routes.journal);
+                        context.go(Routes.journal);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: isDark
@@ -402,7 +403,7 @@ class _TodaysInsightSection extends ConsumerWidget {
         child: GestureDetector(
           onTap: () {
             HapticService.buttonPress();
-            context.push(Routes.moodTrends);
+            context.go(Routes.moodTrends);
           },
           child: Container(
             width: double.infinity,
@@ -915,7 +916,7 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                       ),
                       child: Row(
                         children: [
-                          Text(emoji, style: const TextStyle(fontSize: 20)),
+                          AppSymbol(emoji, size: AppSymbolSize.sm),
                           const SizedBox(width: 10),
                           Expanded(
                             child: Column(
@@ -1521,7 +1522,7 @@ class _MonthlyWrappedBanner extends StatelessWidget {
           ),
           child: Row(
             children: [
-              const Text('\u{1F4CA}', style: TextStyle(fontSize: 24)),
+              const AppSymbol.card('\u{1F4CA}'),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(

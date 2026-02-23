@@ -12,6 +12,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/sleep_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -529,7 +530,7 @@ class _NightCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Text(emoji, style: const TextStyle(fontSize: 24)),
+            AppSymbol.card(emoji),
             const SizedBox(width: 12),
             Expanded(
               child: Column(

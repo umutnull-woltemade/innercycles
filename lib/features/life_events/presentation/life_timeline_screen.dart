@@ -14,6 +14,7 @@ import '../../../data/models/life_event.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/life_event_service.dart';
 import '../../../data/services/premium_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
@@ -304,7 +305,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
-                  child: Text(emoji, style: const TextStyle(fontSize: 22)),
+                  child: AppSymbol(emoji, size: AppSymbolSize.sm),
                 ),
               ),
               const SizedBox(width: 12),
