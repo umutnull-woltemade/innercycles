@@ -48,6 +48,12 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
   ReminderFrequency _reminderFrequency = ReminderFrequency.once;
   bool _showReminderForm = false;
 
+  // Pending reminder for create mode (will be attached after save)
+  DateTime? _pendingReminderDate;
+  ReminderFrequency _pendingReminderFrequency = ReminderFrequency.once;
+  String? _pendingReminderMessage;
+  bool _hasPendingReminder = false;
+
   bool get _isCreateMode => widget.noteId == null || widget.noteId!.isEmpty;
   bool _isLoaded = false;
   int _wordCount = 0;
@@ -100,11 +106,14 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
 
     HapticService.buttonPress();
 
+    NoteToSelf? savedNote;
+
     if (_isCreateMode) {
+      final effectiveTitle = title.isEmpty
+          ? (content.length > 30 ? '${content.substring(0, 30)}...' : content)
+          : title;
       final result = await service.saveNote(
-        title: title.isEmpty
-            ? (content.length > 30 ? '${content.substring(0, 30)}...' : content)
-            : title,
+        title: effectiveTitle,
         content: content,
         tags: _tags,
         isPinned: _isPinned,
@@ -117,6 +126,18 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
           paywallContext: PaywallContext.general,
         );
         return;
+      }
+      savedNote = result;
+
+      // Attach pending reminder if set during creation
+      if (_hasPendingReminder && _pendingReminderDate != null && savedNote != null) {
+        await service.addReminder(
+          noteId: savedNote.id,
+          scheduledAt: _pendingReminderDate!,
+          frequency: _pendingReminderFrequency,
+          customMessage: _pendingReminderMessage,
+          isPremium: isPremium,
+        );
       }
     } else if (_existingNote != null) {
       final updated = _existingNote!.copyWith(
@@ -203,6 +224,8 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
     final now = DateTime.now();
     final language = ref.read(languageProvider);
     final isEn = language == AppLanguage.en;
+    final currentDate = _isCreateMode ? _pendingReminderDate : _reminderDate;
+
     await showCupertinoModalPopup<void>(
       context: context,
       builder: (ctx) => Container(
@@ -226,10 +249,16 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
             Expanded(
               child: CupertinoDatePicker(
                 initialDateTime:
-                    _reminderDate ?? now.add(const Duration(hours: 1)),
+                    currentDate ?? now.add(const Duration(hours: 1)),
                 minimumDate: now,
                 onDateTimeChanged: (dt) {
-                  setState(() => _reminderDate = dt);
+                  setState(() {
+                    if (_isCreateMode) {
+                      _pendingReminderDate = dt;
+                    } else {
+                      _reminderDate = dt;
+                    }
+                  });
                 },
               ),
             ),
@@ -237,6 +266,29 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
         ),
       ),
     );
+  }
+
+  /// Set a pending reminder for create mode (will be attached after save)
+  void _setPendingReminder() {
+    if (_pendingReminderDate == null) return;
+    HapticService.buttonPress();
+    setState(() {
+      _hasPendingReminder = true;
+      _pendingReminderMessage = _reminderMessageController.text.trim().isNotEmpty
+          ? _reminderMessageController.text.trim()
+          : null;
+      _showReminderForm = false;
+      _reminderMessageController.clear();
+    });
+  }
+
+  String _formatReminderDate(DateTime dt, bool isEn) {
+    final months = isEn
+        ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        : ['Oca', '\u015eub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'A\u011fu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+    final h = dt.hour.toString().padLeft(2, '0');
+    final m = dt.minute.toString().padLeft(2, '0');
+    return '${dt.day} ${months[dt.month - 1]} ${dt.year}, $h:$m';
   }
 
   @override
@@ -557,116 +609,220 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                           ],
 
                           // ═══════════════════════════════════════
-                          // REMINDERS SECTION
+                          // REMINDERS SECTION (both create & edit)
                           // ═══════════════════════════════════════
-                          if (!_isCreateMode) ...[
-                            const SizedBox(height: 20),
-                            _GlassSection(
-                              isDark: isDark,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            CupertinoIcons.bell,
-                                            size: 15,
-                                            color: AppColors.starGold,
+                          const SizedBox(height: 20),
+                          _GlassSection(
+                            isDark: isDark,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          CupertinoIcons.bell,
+                                          size: 15,
+                                          color: AppColors.starGold,
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Text(
+                                          isEn
+                                              ? 'Remind Me'
+                                              : 'Hat\u0131rlat',
+                                          style: GoogleFonts.inter(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: isDark
+                                                ? Colors.white70
+                                                : Colors.black54,
                                           ),
-                                          const SizedBox(width: 8),
-                                          Text(
-                                            isEn
-                                                ? 'Reminders'
-                                                : 'Hat\u0131rlat\u0131c\u0131lar',
-                                            style: GoogleFonts.inter(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                              color: isDark
-                                                  ? Colors.white70
-                                                  : Colors.black54,
+                                        ),
+                                      ],
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        HapticService.buttonPress();
+                                        setState(() => _showReminderForm =
+                                            !_showReminderForm);
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 12, vertical: 6),
+                                        decoration: BoxDecoration(
+                                          color: AppColors.starGold
+                                              .withValues(alpha: 0.12),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Icon(
+                                              _showReminderForm
+                                                  ? CupertinoIcons.minus
+                                                  : CupertinoIcons.plus,
+                                              size: 14,
+                                              color: AppColors.starGold,
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          HapticService.buttonPress();
-                                          setState(() => _showReminderForm =
-                                              !_showReminderForm);
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 6),
-                                          decoration: BoxDecoration(
-                                            color: AppColors.starGold
-                                                .withValues(alpha: 0.12),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Icon(
-                                                _showReminderForm
-                                                    ? CupertinoIcons.minus
-                                                    : CupertinoIcons.plus,
-                                                size: 14,
+                                            const SizedBox(width: 4),
+                                            Text(
+                                              isEn ? 'Add' : 'Ekle',
+                                              style: GoogleFonts.inter(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600,
                                                 color: AppColors.starGold,
                                               ),
-                                              const SizedBox(width: 4),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+
+                                // Pending reminder indicator (create mode)
+                                if (_isCreateMode && _hasPendingReminder && _pendingReminderDate != null) ...[
+                                  const SizedBox(height: 12),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 12, vertical: 10),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.starGold
+                                          .withValues(alpha: 0.08),
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: AppColors.starGold
+                                            .withValues(alpha: 0.2),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          CupertinoIcons.bell_fill,
+                                          size: 16,
+                                          color: AppColors.starGold,
+                                        ),
+                                        const SizedBox(width: 10),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
                                               Text(
-                                                isEn ? 'Add' : 'Ekle',
+                                                _formatReminderDate(
+                                                    _pendingReminderDate!,
+                                                    isEn),
                                                 style: GoogleFonts.inter(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColors.starGold,
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: isDark
+                                                      ? Colors.white
+                                                      : Colors.black87,
+                                                ),
+                                              ),
+                                              Text(
+                                                isEn
+                                                    ? 'Will be set when you save'
+                                                    : 'Kaydetti\u011finde ayarlanacak',
+                                                style: GoogleFonts.inter(
+                                                  fontSize: 11,
+                                                  color: isDark
+                                                      ? Colors.white54
+                                                      : Colors.black45,
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  // Existing reminders
-                                  if (_reminders.isNotEmpty) ...[
-                                    const SizedBox(height: 12),
-                                    ..._reminders.map((r) => _ReminderRow(
-                                          reminder: r,
-                                          isEn: isEn,
-                                          isDark: isDark,
-                                          onDelete: () => _removeReminder(
-                                              service, r.id),
-                                        )),
-                                  ],
-
-                                  // Add reminder form
-                                  if (_showReminderForm) ...[
-                                    const SizedBox(height: 12),
-                                    _ReminderForm(
-                                      isEn: isEn,
-                                      isDark: isDark,
-                                      isPremium: isPremium,
-                                      reminderDate: _reminderDate,
-                                      frequency: _reminderFrequency,
-                                      messageController:
-                                          _reminderMessageController,
-                                      onPickDate: _pickReminderDate,
-                                      onFrequencyChanged: (f) => setState(
-                                          () => _reminderFrequency = f),
-                                      onSave: () =>
-                                          _addReminder(service, isPremium),
+                                        GestureDetector(
+                                          onTap: () {
+                                            HapticService.buttonPress();
+                                            setState(() {
+                                              _hasPendingReminder = false;
+                                              _pendingReminderDate = null;
+                                              _pendingReminderMessage = null;
+                                            });
+                                          },
+                                          child: Icon(
+                                            CupertinoIcons.xmark_circle,
+                                            size: 18,
+                                            color: isDark
+                                                ? Colors.white38
+                                                : Colors.black26,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ],
-                              ),
+
+                                // Existing reminders (edit mode)
+                                if (!_isCreateMode && _reminders.isNotEmpty) ...[
+                                  const SizedBox(height: 12),
+                                  ..._reminders.map((r) => _ReminderRow(
+                                        reminder: r,
+                                        isEn: isEn,
+                                        isDark: isDark,
+                                        onDelete: () => _removeReminder(
+                                            service, r.id),
+                                      )),
+                                ],
+
+                                // No reminders hint
+                                if (!_showReminderForm &&
+                                    _reminders.isEmpty &&
+                                    !(_isCreateMode && _hasPendingReminder)) ...[
+                                  const SizedBox(height: 10),
+                                  Text(
+                                    isEn
+                                        ? 'Set a date & time to get notified about this note'
+                                        : 'Bu not hakk\u0131nda bildirim almak i\u00e7in tarih ve saat belirle',
+                                    style: GoogleFonts.inter(
+                                      fontSize: 12,
+                                      color: isDark
+                                          ? Colors.white30
+                                          : Colors.black26,
+                                    ),
+                                  ),
+                                ],
+
+                                // Add reminder form
+                                if (_showReminderForm) ...[
+                                  const SizedBox(height: 12),
+                                  _ReminderForm(
+                                    isEn: isEn,
+                                    isDark: isDark,
+                                    isPremium: isPremium,
+                                    reminderDate: _isCreateMode
+                                        ? _pendingReminderDate
+                                        : _reminderDate,
+                                    frequency: _isCreateMode
+                                        ? _pendingReminderFrequency
+                                        : _reminderFrequency,
+                                    messageController:
+                                        _reminderMessageController,
+                                    onPickDate: _pickReminderDate,
+                                    onFrequencyChanged: (f) {
+                                      if (_isCreateMode) {
+                                        setState(
+                                            () => _pendingReminderFrequency = f);
+                                      } else {
+                                        setState(
+                                            () => _reminderFrequency = f);
+                                      }
+                                    },
+                                    onSave: _isCreateMode
+                                        ? _setPendingReminder
+                                        : () => _addReminder(service, isPremium),
+                                  ),
+                                ],
+                              ],
                             ),
-                          ],
+                          ),
 
                           // ═══════════════════════════════════════
                           // DELETE BUTTON
