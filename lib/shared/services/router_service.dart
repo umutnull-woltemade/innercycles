@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/constants/routes.dart';
+import '../../data/services/notification_service.dart' show navigatorKey;
 
 // ── CORE screen imports ──
 import '../../features/disclaimer/presentation/disclaimer_screen.dart';
@@ -96,6 +97,7 @@ import '../../data/services/storage_service.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
+    navigatorKey: navigatorKey,
     initialLocation: Routes.disclaimer,
     errorBuilder: (context, state) => _NotFoundScreen(path: state.uri.path),
     redirect: (context, state) {

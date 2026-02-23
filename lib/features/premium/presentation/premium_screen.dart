@@ -992,10 +992,13 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context);
-              if (Navigator.of(context).canPop()) {
-                Navigator.pop(context);
-              }
+              Navigator.pop(context); // dismiss dialog
+              // Use Future.microtask so the dialog fully closes first
+              Future.microtask(() {
+                if (context.mounted && Navigator.of(context).canPop()) {
+                  Navigator.pop(context); // pop premium screen
+                }
+              });
             },
             child: Text(
               L10nService.get('common.start_journey', language),

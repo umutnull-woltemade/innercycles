@@ -4,12 +4,14 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz_data;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:go_router/go_router.dart';
 import '../../core/constants/routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../models/note_to_self.dart';
 import 'journal_prompt_service.dart';
 
-/// Global navigator key for notification navigation
+/// Global navigator key — shared with GoRouter so notification taps
+/// can navigate via GoRouter.of(context).go(route).
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 /// Notification service for daily journal reminders
@@ -180,9 +182,16 @@ class NotificationService {
         }
     }
 
-    final state = navigatorKey.currentState;
-    if (state != null) {
-      state.pushNamed(route);
+    // Use GoRouter for navigation (not Navigator 1.0 pushNamed)
+    final ctx = navigatorKey.currentContext;
+    if (ctx != null) {
+      try {
+        GoRouter.of(ctx).go(route);
+      } catch (e) {
+        if (kDebugMode) {
+          debugPrint('Notification navigation failed: $e');
+        }
+      }
     }
   }
 
