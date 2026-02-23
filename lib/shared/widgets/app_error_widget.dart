@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
-import '../../data/providers/app_providers.dart';
+import '../../data/providers/app_providers.dart' show AppLanguage;
 import '../../data/services/l10n_service.dart';
 
 /// Global error fallback widget that prevents white screens.
