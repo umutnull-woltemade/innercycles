@@ -135,6 +135,16 @@ class ProfileHubScreen extends ConsumerWidget {
   List<Widget> _buildToolLinks(BuildContext context, bool isDark, bool isEn) {
     final links = [
       _SettingsLink(
+        '\u{1F32C}\u{FE0F}',
+        isEn ? 'Guided Breathwork' : 'Nefes Egzersizi',
+        Routes.breathing,
+      ),
+      _SettingsLink(
+        '\u{1F9D8}',
+        isEn ? 'Meditation Timer' : 'Meditasyon Zamanlayıcı',
+        Routes.meditation,
+      ),
+      _SettingsLink(
         '\u{1F50E}',
         isEn ? 'Cycle Sync' : 'Döngü Senkronu',
         Routes.cycleSync,

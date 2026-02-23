@@ -3,7 +3,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 // Wraps all tabs with a BottomNavigationBar, preserves state across
 // tab switches via StatefulShellRoute.
-// Tabs: Home | Journal | Insights | Breathe | Profile
+// Tabs: Home | Journal | Insights | Notes | Profile
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
@@ -138,9 +138,9 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen>
               label: isEn ? 'Insights' : '\u0130\u00e7g\u00f6r\u00fc',
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.self_improvement_outlined),
-              activeIcon: const Icon(Icons.self_improvement),
-              label: isEn ? 'Breathe' : 'Nefes',
+              icon: const Icon(Icons.sticky_note_2_outlined),
+              activeIcon: const Icon(Icons.sticky_note_2),
+              label: isEn ? 'Notes' : 'Notlar',
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.person_outline),

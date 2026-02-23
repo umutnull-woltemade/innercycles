@@ -1,7 +1,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 // ROUTER SERVICE - InnerCycles Navigation (Survival Release)
 // ════════════════════════════════════════════════════════════════════════════
-// 5-Tab: Home | Journal | Signal Dashboard | Guided Breathwork | Profile
+// 5-Tab: Home | Journal | Signal Dashboard | Notes | Profile
 // SECONDARY features soft-archived: code preserved, routes removed.
 // ════════════════════════════════════════════════════════════════════════════
 
@@ -153,7 +153,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const ArchetypeQuizScreen(),
       ),
       // ════════════════════════════════════════════════════════════════
-      // 5-TAB SHELL: Home | Journal | Insights | Breathe | Profile
+      // 5-TAB SHELL: Home | Journal | Insights | Notes | Profile
       // ════════════════════════════════════════════════════════════════
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
@@ -195,12 +195,12 @@ final routerProvider = Provider<GoRouter>((ref) {
               ),
             ],
           ),
-          // Tab 3: Breathe
+          // Tab 3: Notes
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: Routes.breathing,
-                builder: (context, state) => const BreathingTimerScreen(),
+                path: Routes.notesList,
+                builder: (context, state) => const NotesListScreen(),
               ),
             ],
           ),
@@ -292,8 +292,12 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const ShadowWorkScreen(),
       ),
       // ════════════════════════════════════════════════════════════════
-      // BREATHE (sub-screens, outside shell)
+      // BREATHE & MEDITATION (standalone, accessible from Profile)
       // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.breathing,
+        builder: (context, state) => const BreathingTimerScreen(),
+      ),
       GoRoute(
         path: Routes.meditation,
         builder: (context, state) => const MeditationTimerScreen(),
@@ -332,12 +336,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       // ════════════════════════════════════════════════════════════════
-      // NOTES TO SELF
+      // NOTES TO SELF (detail/create sub-screens, outside shell)
       // ════════════════════════════════════════════════════════════════
-      GoRoute(
-        path: Routes.notesList,
-        builder: (context, state) => const NotesListScreen(),
-      ),
       GoRoute(
         path: Routes.noteDetail,
         builder: (context, state) {
