@@ -250,21 +250,21 @@ class MoodTrendsScreen extends ConsumerWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.lock_outline, size: 28, color: AppColors.starGold),
-                  const SizedBox(height: 8),
+                  Icon(Icons.lock_outline, size: 20, color: AppColors.starGold),
+                  const SizedBox(height: 2),
                   Text(
                     isEn
                         ? 'Your data has more to show'
                         : 'Verilerinin gösterecekleri var',
                     style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 13,
                       fontWeight: FontWeight.w600,
                       color: isDark
                           ? AppColors.textPrimary
                           : AppColors.lightTextPrimary,
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 4),
                   ElevatedButton(
                     onPressed: () => showContextualPaywall(
                       context,
@@ -274,6 +274,11 @@ class MoodTrendsScreen extends ConsumerWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.starGold,
                       foregroundColor: AppColors.deepSpace,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 8,
+                      ),
+                      minimumSize: Size.zero,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                           AppConstants.radiusMd,
@@ -465,7 +470,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(vertical: 6),
                 child: Row(
                   children: [
-                    AppSymbol(item.$2, size: AppSymbolSize.sm),
+                    AppSymbol.inline(item.$2),
                     const SizedBox(width: 8),
                     SizedBox(
                       width: 60,
@@ -553,7 +558,7 @@ class MoodTrendsScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Row(
                 children: [
-                  AppSymbol(entry.emoji, size: AppSymbolSize.sm),
+                  AppSymbol.inline(entry.emoji),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
