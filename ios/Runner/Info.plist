@@ -285,6 +285,8 @@
 	<string>InnerCycles uses the camera to take photos for journal entries. Photos stay on your device unless you choose to share.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>InnerCycles uses your photo library to attach photos to journal entries.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>InnerCycles saves share cards to your photo library when you choose to save them.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

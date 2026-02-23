@@ -54,6 +54,10 @@ class ShareCardRenderer extends StatelessWidget {
   Widget build(BuildContext context) {
     final accent = ShareCardTemplates.accentColor(template);
 
+    // Use mood gradient override if available, otherwise use template default
+    final gradientColors = data.moodGradientOverride ??
+        (isDark ? template.gradientColors : _lightVariant(template.gradientColors));
+
     final card = Container(
       width: _cardWidth,
       height: _cardHeight,
@@ -71,12 +75,10 @@ class ShareCardRenderer extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
         child: Stack(
           children: [
-            // Background gradient
+            // Background gradient (mood-aware)
             Positioned.fill(
               child: _GradientBackground(
-                colors: isDark
-                    ? template.gradientColors
-                    : _lightVariant(template.gradientColors),
+                colors: gradientColors,
                 accent: accent,
               ),
             ),

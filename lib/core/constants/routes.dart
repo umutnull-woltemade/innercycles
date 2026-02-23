@@ -146,6 +146,13 @@ class Routes {
   static const String dailyHabits = '/habits/daily';
   static const String archetypeQuiz = '/onboarding/quiz';
   static const String yearReview = '/year-review';
+  static const String wrapped = '/year-review/wrapped';
+
+  // ════════════════════════════════════════════════════════════════
+  // RETROSPECTIVE & MONTHLY WRAPPED
+  // ════════════════════════════════════════════════════════════════
+  static const String retrospective = '/retrospective';
+  static const String monthlyWrapped = '/monthly-wrapped';
 
   // ════════════════════════════════════════════════════════════════
   // ANNUAL REPORT
@@ -171,6 +178,13 @@ class Routes {
   static const String dreamArchive = '/dreams/archive';
   static const String notifications = '/notifications';
   static const String programCompletion = '/programs/completion';
+
+  // ════════════════════════════════════════════════════════════════
+  // NOTES TO SELF
+  // ════════════════════════════════════════════════════════════════
+  static const String notesList = '/notes';
+  static const String noteDetail = '/notes/detail';
+  static const String noteCreate = '/notes/create';
 
   // ════════════════════════════════════════════════════════════════
   // APP LOCK

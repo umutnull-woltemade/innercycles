@@ -24,6 +24,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../data/services/review_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../../shared/widgets/share_insight_button.dart';
 
 class PatternsScreen extends ConsumerWidget {
   const PatternsScreen({super.key});
@@ -765,6 +766,7 @@ class PatternsScreen extends ConsumerWidget {
                 : t.direction == TrendDirection.down
                 ? AppColors.error
                 : AppColors.starGold;
+            final msg = isEn ? t.getMessageEn() : t.getMessageTr();
 
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
@@ -774,7 +776,7 @@ class PatternsScreen extends ConsumerWidget {
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      isEn ? t.getMessageEn() : t.getMessageTr(),
+                      msg,
                       style: TextStyle(
                         fontSize: 14,
                         color: isDark
@@ -783,6 +785,7 @@ class PatternsScreen extends ConsumerWidget {
                       ),
                     ),
                   ),
+                  ShareInsightButton(insightText: msg, iconSize: 16),
                 ],
               ),
             );
@@ -845,6 +848,7 @@ class PatternsScreen extends ConsumerWidget {
                       ),
                     ),
                   ),
+                  ShareInsightButton(insightText: msg, iconSize: 16),
                 ],
               ),
             );

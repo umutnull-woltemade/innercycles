@@ -58,7 +58,11 @@ import '../services/dream_journal_correlation_service.dart';
 import '../services/telemetry_service.dart';
 import '../services/progressive_unlock_service.dart';
 import '../services/life_event_service.dart';
+import '../services/retrospective_date_service.dart';
+import '../services/monthly_wrapped_service.dart';
+import '../services/note_to_self_service.dart';
 import '../models/journal_entry.dart';
+import '../models/note_to_self.dart';
 import '../models/cross_correlation_result.dart';
 
 // =============================================================================
@@ -852,4 +856,55 @@ final lifeEventServiceProvider = FutureProvider<LifeEventService>((ref) async {
 final lifeEventCountProvider = FutureProvider<int>((ref) async {
   final service = await ref.watch(lifeEventServiceProvider.future);
   return service.eventCount;
+});
+
+// =============================================================================
+// RETROSPECTIVE DATE SERVICE PROVIDER
+// =============================================================================
+
+final retrospectiveDateServiceProvider =
+    FutureProvider<RetrospectiveDateService>((ref) async {
+  return await RetrospectiveDateService.init();
+});
+
+// =============================================================================
+// MONTHLY WRAPPED SERVICE PROVIDER
+// =============================================================================
+
+final monthlyWrappedServiceProvider = FutureProvider<MonthlyWrappedService>((
+  ref,
+) async {
+  final journalService = await ref.watch(journalServiceProvider.future);
+  final patternEngine = await ref.watch(patternEngineServiceProvider.future);
+  return MonthlyWrappedService(
+    journalService: journalService,
+    patternEngine: patternEngine,
+  );
+});
+
+// =============================================================================
+// NOTES TO SELF SERVICE PROVIDER
+// =============================================================================
+
+final notesToSelfServiceProvider = FutureProvider<NoteToSelfService>((
+  ref,
+) async {
+  return await NoteToSelfService.init();
+});
+
+final allNotesProvider = FutureProvider<List<NoteToSelf>>((ref) async {
+  final service = await ref.watch(notesToSelfServiceProvider.future);
+  return service.getAllNotes();
+});
+
+final pinnedNotesProvider = FutureProvider<List<NoteToSelf>>((ref) async {
+  final service = await ref.watch(notesToSelfServiceProvider.future);
+  return service.getPinnedNotes();
+});
+
+final upcomingRemindersProvider = FutureProvider<List<NoteReminder>>((
+  ref,
+) async {
+  final service = await ref.watch(notesToSelfServiceProvider.future);
+  return service.getUpcomingReminders(hours: 48);
 });

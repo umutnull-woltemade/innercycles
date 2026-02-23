@@ -25,6 +25,9 @@ import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../data/services/widget_data_service.dart';
 import '../../streak/presentation/milestone_celebration_modal.dart';
+import '../../../data/content/share_card_templates.dart';
+import '../../../shared/widgets/share_card_sheet.dart';
+
 
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -34,7 +37,16 @@ import '../../sleep/presentation/sleep_section.dart';
 import 'widgets/voice_input_button.dart';
 
 class DailyEntryScreen extends ConsumerStatefulWidget {
-  const DailyEntryScreen({super.key});
+  final DateTime? initialDate;
+  final String? journalPrompt;
+  final String? retrospectiveDateId;
+
+  const DailyEntryScreen({
+    super.key,
+    this.initialDate,
+    this.journalPrompt,
+    this.retrospectiveDateId,
+  });
 
   @override
   ConsumerState<DailyEntryScreen> createState() => _DailyEntryScreenState();
@@ -59,6 +71,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   @override
   void initState() {
     super.initState();
+    if (widget.initialDate != null) {
+      _selectedDate = widget.initialDate!;
+    }
     _initSubRatings();
     _loadDraft();
     _noteController.addListener(_scheduleDraftSave);
@@ -298,7 +313,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           final picked = await showDatePicker(
             context: context,
             initialDate: _selectedDate,
-            firstDate: now.subtract(const Duration(days: 365)),
+            firstDate: widget.initialDate != null
+                ? DateTime(1950)
+                : now.subtract(const Duration(days: 365)),
             lastDate: now,
           );
           if (picked != null && mounted) {
@@ -660,9 +677,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                       : AppColors.lightTextPrimary,
                 ),
                 decoration: InputDecoration(
-                  hintText: isEn
-                      ? 'How was your day? Any reflections...'
-                      : 'Bugün nasıl geçti? Düşüncelerin...',
+                  hintText: widget.journalPrompt ??
+                      (isEn
+                          ? 'How was your day? Any reflections...'
+                          : 'Bugün nasıl geçti? Düşüncelerin...'),
                   hintStyle: TextStyle(
                     color: isDark
                         ? AppColors.textMuted
@@ -919,6 +937,19 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
       if (!mounted) return;
 
+      // Link retrospective date if applicable
+      if (widget.retrospectiveDateId != null) {
+        try {
+          final retroService = await ref.read(
+            retrospectiveDateServiceProvider.future,
+          );
+          await retroService.linkJournalEntry(
+            widget.retrospectiveDateId!,
+            'linked', // journal entry ID from save
+          );
+        } catch (_) {}
+      }
+
       // Clear draft on successful save
       await _clearDraft();
 
@@ -966,6 +997,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
       // Check for streak milestone celebration (D3, D7, D14, etc.)
       await _checkStreakMilestone();
+
+      // Check for streak share nudge (every 5 entries, non-milestone)
+      await _checkStreakShareNudge();
 
       if (mounted) {
         HapticService.entryCompleted();
@@ -1091,6 +1125,60 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       }
     } catch (e) {
       if (kDebugMode) debugPrint('DailyEntry: streak milestone error: $e');
+    }
+  }
+
+  /// Streak milestones that already have a celebration modal
+  static const _milestoneDays = {3, 7, 14, 30, 60, 90, 180, 365};
+
+  Future<void> _checkStreakShareNudge() async {
+    try {
+      final service = await ref.read(journalServiceProvider.future);
+      final streak = service.getCurrentStreak();
+
+      // Only fire on multiples of 5 that are NOT milestone days
+      if (streak < 5 || streak % 5 != 0 || _milestoneDays.contains(streak)) {
+        return;
+      }
+
+      // Don't show if we already nudged for this streak count
+      final prefs = await SharedPreferences.getInstance();
+      final lastNudgedStreak = prefs.getInt('streak_nudge_last') ?? 0;
+      if (lastNudgedStreak >= streak) return;
+
+      await prefs.setInt('streak_nudge_last', streak);
+
+      if (!mounted) return;
+
+      final isEn = ref.read(languageProvider) == AppLanguage.en;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            isEn
+                ? '$streak-day streak! Share your progress?'
+                : '$streak günlük seri! İlerlemeni paylaş?',
+          ),
+          behavior: SnackBarBehavior.floating,
+          action: SnackBarAction(
+            label: isEn ? 'Share' : 'Paylaş',
+            onPressed: () {
+              if (!mounted) return;
+              ShareCardSheet.show(
+                context,
+                template: ShareCardTemplates.streakFlame,
+                data: ShareCardTemplates.buildData(
+                  template: ShareCardTemplates.streakFlame,
+                  isEn: isEn,
+                  streak: streak,
+                ),
+                isEn: isEn,
+              );
+            },
+          ),
+        ),
+      );
+    } catch (e) {
+      if (kDebugMode) debugPrint('DailyEntry: streak share nudge error: $e');
     }
   }
 

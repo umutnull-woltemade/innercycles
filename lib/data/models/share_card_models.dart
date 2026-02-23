@@ -13,7 +13,8 @@ enum ShareCardCategory {
   identity,
   pattern,
   achievement,
-  wisdom;
+  wisdom,
+  reflection;
 
   String label(bool isEn) {
     switch (this) {
@@ -25,6 +26,8 @@ enum ShareCardCategory {
         return isEn ? 'Achievements' : 'Başarı';
       case ShareCardCategory.wisdom:
         return isEn ? 'Wisdom' : 'Bilgelik';
+      case ShareCardCategory.reflection:
+        return isEn ? 'Reflection' : 'Yansıma';
     }
   }
 
@@ -38,6 +41,8 @@ enum ShareCardCategory {
         return Icons.emoji_events_rounded;
       case ShareCardCategory.wisdom:
         return Icons.lightbulb_rounded;
+      case ShareCardCategory.reflection:
+        return Icons.self_improvement_rounded;
     }
   }
 }
@@ -90,6 +95,12 @@ class ShareCardData {
   final List<double>? chartValues;
   final List<String>? chartLabels;
 
+  /// Dynamic mood-based gradient override (from EmotionalGradient engine)
+  final List<Color>? moodGradientOverride;
+
+  /// When this card was generated (used for seasonal tone shifts)
+  final DateTime? generatedAt;
+
   const ShareCardData({
     required this.headline,
     required this.subtitle,
@@ -98,5 +109,20 @@ class ShareCardData {
     this.statLabel,
     this.chartValues,
     this.chartLabels,
+    this.moodGradientOverride,
+    this.generatedAt,
   });
+
+  /// Create a copy with mood gradient applied
+  ShareCardData withMoodGradient(List<Color> gradient) => ShareCardData(
+    headline: headline,
+    subtitle: subtitle,
+    detail: detail,
+    statValue: statValue,
+    statLabel: statLabel,
+    chartValues: chartValues,
+    chartLabels: chartLabels,
+    moodGradientOverride: gradient,
+    generatedAt: generatedAt ?? DateTime.now(),
+  );
 }

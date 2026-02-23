@@ -21,7 +21,10 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import 'package:go_router/go_router.dart';
+
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
@@ -428,6 +431,10 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                 ),
               ),
 
+              // Monthly Wrapped CTA
+              _buildMonthlyWrappedLink(context, isDark, isEn),
+              const SizedBox(height: AppConstants.spacingMd),
+
               // Disclaimer (outside RepaintBoundary)
               ContentDisclaimer(language: isEn ? AppLanguage.en : AppLanguage.tr),
               const SizedBox(height: 40),
@@ -435,6 +442,57 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           ),
         ),
       ],
+    );
+  }
+
+  // ==========================================================================
+  // MONTHLY WRAPPED LINK
+  // ==========================================================================
+
+  Widget _buildMonthlyWrappedLink(
+    BuildContext context,
+    bool isDark,
+    bool isEn,
+  ) {
+    return GestureDetector(
+      onTap: () => context.push(Routes.monthlyWrapped),
+      child: Container(
+        padding: const EdgeInsets.all(AppConstants.spacingLg),
+        decoration: BoxDecoration(
+          color: isDark
+              ? AppColors.surfaceDark.withValues(alpha: 0.85)
+              : AppColors.lightCard,
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          border: Border.all(
+            color: AppColors.amethyst.withValues(alpha: 0.2),
+          ),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              Icons.calendar_month_rounded,
+              color: AppColors.amethyst,
+              size: 22,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                isEn ? 'View Monthly Wrapped' : 'Aylık Özeti Gör',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.amethyst,
+                ),
+              ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios_rounded,
+              size: 14,
+              color: AppColors.amethyst,
+            ),
+          ],
+        ),
+      ),
     );
   }
 

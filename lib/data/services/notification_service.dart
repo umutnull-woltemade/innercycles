@@ -6,6 +6,7 @@ import 'package:timezone/data/latest.dart' as tz_data;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/constants/routes.dart';
 import '../../core/theme/app_colors.dart';
+import '../models/note_to_self.dart';
 import 'journal_prompt_service.dart';
 
 /// Global navigator key for notification navigation
@@ -156,8 +157,27 @@ class NotificationService {
       case 'journal_prompt':
         route = Routes.journal;
         break;
-      default:
+      case 'monthly_wrapped':
+        route = Routes.monthlyWrapped;
+        break;
+      case 'share_reminder':
         route = Routes.today;
+        break;
+      case 'pattern_discovery':
+        route = Routes.journalPatterns;
+        break;
+      case 'archetype_evolution':
+        route = Routes.archetype;
+        break;
+      case 'challenge_completed':
+        route = Routes.challenges;
+        break;
+      default:
+        if (payload.startsWith('note_reminder:')) {
+          route = Routes.noteDetail;
+        } else {
+          route = Routes.today;
+        }
     }
 
     final state = navigatorKey.currentState;
@@ -472,6 +492,75 @@ class NotificationService {
     if (!enabled) {
       await _notifications.cancel(id: wellnessReminderId);
     }
+  }
+
+  // ============== Note Reminder Notifications ==============
+
+  /// Schedule a note reminder notification
+  Future<void> scheduleNoteReminder({
+    required int notificationId,
+    required DateTime scheduledAt,
+    required String noteTitle,
+    String? message,
+    required String noteId,
+    required ReminderFrequency frequency,
+  }) async {
+    if (kIsWeb) return;
+    _isEn = await _readIsEn();
+
+    final title = _isEn ? 'Note Reminder' : 'Not Hatırlatıcı';
+    final body = message ?? noteTitle;
+
+    final scheduledTz = tz.TZDateTime.from(scheduledAt, tz.local);
+
+    DateTimeComponents? matchComponents;
+    switch (frequency) {
+      case ReminderFrequency.daily:
+        matchComponents = DateTimeComponents.time;
+        break;
+      case ReminderFrequency.weekly:
+        matchComponents = DateTimeComponents.dayOfWeekAndTime;
+        break;
+      case ReminderFrequency.monthly:
+        matchComponents = DateTimeComponents.dayOfMonthAndTime;
+        break;
+      case ReminderFrequency.once:
+        matchComponents = null;
+        break;
+    }
+
+    await _notifications.zonedSchedule(
+      id: notificationId,
+      title: title,
+      body: body,
+      scheduledDate: scheduledTz,
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'note_reminders',
+          _isEn ? 'Note Reminders' : 'Not Hatırlatıcıları',
+          channelDescription: _isEn
+              ? 'Reminders for your personal notes'
+              : 'Kişisel notlarınız için hatırlatıcılar',
+          importance: Importance.high,
+          priority: Priority.high,
+          icon: '@mipmap/ic_launcher',
+          color: AppColors.auroraEnd,
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      matchDateTimeComponents: matchComponents,
+      payload: 'note_reminder:$noteId',
+    );
+  }
+
+  /// Cancel a note reminder notification
+  Future<void> cancelNoteReminder(int notificationId) async {
+    await _notifications.cancel(id: notificationId);
   }
 
   // ============== Utility Methods ==============

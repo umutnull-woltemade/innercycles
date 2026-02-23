@@ -545,6 +545,8 @@ class _ShareCardGalleryScreenState
         return AppColors.starGold;
       case ShareCardCategory.wisdom:
         return AppColors.auroraStart;
+      case ShareCardCategory.reflection:
+        return AppColors.sunriseEnd;
     }
   }
 }

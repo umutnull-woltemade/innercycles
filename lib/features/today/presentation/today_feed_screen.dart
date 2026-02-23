@@ -21,6 +21,7 @@ import '../../../data/services/archetype_service.dart';
 import '../../../data/services/content_rotation_service.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../streak/presentation/streak_card.dart';
+import '../../prompts/presentation/daily_question_card.dart';
 import '../../streak/presentation/streak_recovery_banner.dart';
 import '../../mood/presentation/mood_checkin_card.dart';
 // unlock_progress_banner import removed (Today Feed simplified)
@@ -134,6 +135,13 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               const SliverToBoxAdapter(child: SizedBox(height: 24)),
 
               // ═══════════════════════════════════════════════════════
+              // RETROSPECTIVE BANNER (if < 5 entries or never used)
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _RetrospectiveBanner(isEn: isEn, isDark: isDark),
+              ),
+
+              // ═══════════════════════════════════════════════════════
               // TODAY'S INSIGHT (pattern-based, if 3+ entries)
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
@@ -141,10 +149,45 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               ),
 
               // ═══════════════════════════════════════════════════════
+              // DAILY QUESTION CARD (shareable question of the day)
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: DailyQuestionCard(isEn: isEn, isDark: isDark),
+              ),
+
+              // ═══════════════════════════════════════════════════════
               // PERSONALIZED PROMPT (filtered by weakest focus area)
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
                 child: _PersonalizedPromptSection(isEn: isEn, isDark: isDark),
+              ),
+
+              // ═══════════════════════════════════════════════════════
+              // UPCOMING NOTE REMINDERS (next 48h)
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _UpcomingRemindersCard(isEn: isEn, isDark: isDark),
+              ),
+
+              // ═══════════════════════════════════════════════════════
+              // WEEKLY SHARE CARD PROMPT (once per week)
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _WeeklySharePrompt(isEn: isEn, isDark: isDark),
+              ),
+
+              // ═══════════════════════════════════════════════════════
+              // WRAPPED BANNER (Dec 26 - Jan 7)
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _WrappedBanner(isEn: isEn, isDark: isDark),
+              ),
+
+              // ═══════════════════════════════════════════════════════
+              // MONTHLY WRAPPED BANNER (first 10 days of each month)
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _MonthlyWrappedBanner(isEn: isEn, isDark: isDark),
               ),
 
               // ═══════════════════════════════════════════════════════
@@ -986,5 +1029,540 @@ class _RecentLifeEventsCard extends ConsumerWidget {
         ),
       ),
     ).animate().fadeIn(duration: 300.ms);
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// RETROSPECTIVE BANNER — Suggest adding past entries
+// ════════════════════════════════════════════════════════════════════════════
+
+class _RetrospectiveBanner extends ConsumerWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _RetrospectiveBanner({required this.isEn, required this.isDark});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final journalAsync = ref.watch(journalServiceProvider);
+    final retroAsync = ref.watch(retrospectiveDateServiceProvider);
+
+    // Show if < 5 entries or never used retrospective
+    final shouldShow = journalAsync.whenOrNull(data: (service) {
+          final entryCount = service.getAllEntries().length;
+          final hasRetro = retroAsync.whenOrNull(
+                data: (retro) => retro.hasAnyDates,
+              ) ??
+              false;
+          return entryCount < 5 || !hasRetro;
+        }) ??
+        false;
+
+    if (!shouldShow) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+      child: GestureDetector(
+        onTap: () {
+          HapticService.buttonPress();
+          context.push(Routes.retrospective);
+        },
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            gradient: LinearGradient(
+              colors: isDark
+                  ? [
+                      AppColors.auroraStart.withValues(alpha: 0.12),
+                      AppColors.amethyst.withValues(alpha: 0.06),
+                    ]
+                  : [
+                      AppColors.lightAuroraStart.withValues(alpha: 0.08),
+                      AppColors.amethyst.withValues(alpha: 0.04),
+                    ],
+            ),
+            border: Border.all(
+              color: (isDark ? AppColors.auroraStart : AppColors.lightAuroraStart)
+                  .withValues(alpha: 0.2),
+            ),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.history_rounded,
+                color: isDark ? AppColors.auroraStart : AppColors.lightAuroraStart,
+                size: 24,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      isEn
+                          ? 'Add entries for your most meaningful days'
+                          : 'Geçmişindeki önemli günleri ekle',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      isEn
+                          ? 'Your story didn\'t start today'
+                          : 'Hikayen bugün başlamadı',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 14,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
+            ],
+          ),
+        ),
+      ),
+    ).animate().fadeIn(delay: 200.ms, duration: 300.ms);
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// UPCOMING NOTE REMINDERS — Compact card with next 2 reminders
+// ════════════════════════════════════════════════════════════════════════════
+
+class _UpcomingRemindersCard extends ConsumerWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _UpcomingRemindersCard({required this.isEn, required this.isDark});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final remindersAsync = ref.watch(upcomingRemindersProvider);
+    final notesServiceAsync = ref.watch(notesToSelfServiceProvider);
+
+    return remindersAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (reminders) {
+        if (reminders.isEmpty) return const SizedBox.shrink();
+
+        return notesServiceAsync.when(
+          loading: () => const SizedBox.shrink(),
+          error: (_, _) => const SizedBox.shrink(),
+          data: (service) {
+            final upcoming = reminders.take(2).toList();
+
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+              child: GestureDetector(
+                onTap: () => context.push(Routes.notesList),
+                child: Container(
+                  padding: const EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.06),
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(
+                      color: AppColors.starGold.withValues(alpha: 0.2),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.notifications_active, size: 16, color: AppColors.starGold),
+                          const SizedBox(width: 6),
+                          Text(
+                            isEn ? 'Upcoming Reminders' : 'Yaklaşan Hatırlatıcılar',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: isDark ? Colors.white : Colors.black87,
+                            ),
+                          ),
+                          const Spacer(),
+                          Text(
+                            isEn ? 'See all' : 'Tümünü gör',
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: AppColors.starGold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      ...upcoming.map((r) {
+                        final note = service.getNote(r.noteId);
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 6),
+                          child: Row(
+                            children: [
+                              Icon(Icons.schedule, size: 14, color: isDark ? Colors.white38 : Colors.black38),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  note?.title ?? (isEn ? 'Note' : 'Not'),
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: isDark ? Colors.white.withValues(alpha: 0.8) : Colors.black87,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                _formatTimeLeft(r.scheduledAt, isEn),
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: isDark ? Colors.white38 : Colors.black38,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ],
+                  ),
+                ),
+              ),
+            ).animate().fadeIn(delay: 150.ms, duration: 300.ms);
+          },
+        );
+      },
+    );
+  }
+
+  String _formatTimeLeft(DateTime dt, bool isEn) {
+    final now = DateTime.now();
+    final diff = dt.difference(now);
+    if (diff.isNegative) return isEn ? 'Now' : 'Şimdi';
+    if (diff.inMinutes < 60) {
+      return isEn ? 'in ${diff.inMinutes}m' : '${diff.inMinutes}dk içinde';
+    }
+    if (diff.inHours < 24) {
+      return isEn ? 'in ${diff.inHours}h' : '${diff.inHours}sa içinde';
+    }
+    return isEn ? 'in ${diff.inDays}d' : '${diff.inDays}g içinde';
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// WEEKLY SHARE CARD PROMPT — Shows once per week
+// ════════════════════════════════════════════════════════════════════════════
+
+class _WeeklySharePrompt extends ConsumerWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _WeeklySharePrompt({required this.isEn, required this.isDark});
+
+  bool get _shouldShow {
+    // Show on Sundays (weekday 7) to prompt weekly sharing
+    return DateTime.now().weekday == DateTime.sunday;
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (!_shouldShow) return const SizedBox.shrink();
+
+    final journalAsync = ref.watch(journalServiceProvider);
+    final hasEntries = journalAsync.whenOrNull(
+      data: (service) => service.getAllEntries().length >= 3,
+    ) ?? false;
+
+    if (!hasEntries) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      child: GestureDetector(
+        onTap: () {
+          HapticService.buttonPress();
+          context.push(Routes.shareCardGallery);
+        },
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            gradient: LinearGradient(
+              colors: isDark
+                  ? [
+                      AppColors.amethyst.withValues(alpha: 0.12),
+                      AppColors.auroraEnd.withValues(alpha: 0.06),
+                    ]
+                  : [
+                      AppColors.lightAuroraStart.withValues(alpha: 0.08),
+                      AppColors.lightAuroraEnd.withValues(alpha: 0.04),
+                    ],
+            ),
+            border: Border.all(
+              color: (isDark ? AppColors.amethyst : AppColors.lightAuroraStart)
+                  .withValues(alpha: 0.2),
+            ),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.auto_awesome_rounded,
+                color: isDark ? AppColors.amethyst : AppColors.lightAuroraStart,
+                size: 24,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      isEn
+                          ? 'Your latest pattern card is ready'
+                          : 'Son örüntü kartın hazır',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      isEn
+                          ? 'Share your week\'s insights'
+                          : 'Haftanın içgörülerini paylaş',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 14,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
+            ],
+          ),
+        ),
+      ),
+    ).animate().fadeIn(duration: 300.ms);
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// WRAPPED BANNER — Dec 26 - Jan 7
+// ════════════════════════════════════════════════════════════════════════════
+
+class _WrappedBanner extends StatelessWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _WrappedBanner({required this.isEn, required this.isDark});
+
+  bool get _isWrappedSeason {
+    final now = DateTime.now();
+    // Dec 26 - Jan 7
+    return (now.month == 12 && now.day >= 26) ||
+        (now.month == 1 && now.day <= 7);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_isWrappedSeason) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      child: GestureDetector(
+        onTap: () {
+          HapticService.buttonPress();
+          context.push(Routes.wrapped);
+        },
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            gradient: LinearGradient(
+              colors: [
+                AppColors.starGold.withValues(alpha: 0.15),
+                AppColors.celestialGold.withValues(alpha: 0.08),
+              ],
+            ),
+            border: Border.all(
+              color: AppColors.starGold.withValues(alpha: 0.3),
+            ),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.auto_awesome,
+                color: AppColors.starGold,
+                size: 28,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      isEn
+                          ? 'Your ${DateTime.now().year} Wrapped is ready!'
+                          : '${DateTime.now().year} Wrapped\'ın hazır!',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      isEn
+                          ? 'See your year in patterns'
+                          : 'Yılını örüntülerle gör',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 14,
+                color: AppColors.starGold,
+              ),
+            ],
+          ),
+        ),
+      ),
+    ).animate().fadeIn(duration: 400.ms).shimmer(
+      delay: 500.ms,
+      duration: 1500.ms,
+      color: AppColors.starGold.withValues(alpha: 0.1),
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// MONTHLY WRAPPED BANNER (first 10 days of month)
+// ════════════════════════════════════════════════════════════════════════════
+
+class _MonthlyWrappedBanner extends StatelessWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _MonthlyWrappedBanner({required this.isEn, required this.isDark});
+
+  @override
+  Widget build(BuildContext context) {
+    final now = DateTime.now();
+    // Show only in the first 10 days of the month (last month's data)
+    if (now.day > 10) return const SizedBox.shrink();
+    // Don't overlap with yearly wrapped season
+    if ((now.month == 1 && now.day <= 7) ||
+        (now.month == 12 && now.day >= 26)) {
+      return const SizedBox.shrink();
+    }
+
+    final lastMonth = now.month == 1 ? 12 : now.month - 1;
+    final monthNames = isEn
+        ? [
+            '',
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December',
+          ]
+        : [
+            '',
+            'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+            'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık',
+          ];
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      child: GestureDetector(
+        onTap: () {
+          HapticService.buttonPress();
+          context.push(Routes.monthlyWrapped);
+        },
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            gradient: LinearGradient(
+              colors: [
+                AppColors.amethyst.withValues(alpha: 0.12),
+                AppColors.auroraEnd.withValues(alpha: 0.06),
+              ],
+            ),
+            border: Border.all(
+              color: AppColors.amethyst.withValues(alpha: 0.25),
+            ),
+          ),
+          child: Row(
+            children: [
+              const Text('\u{1F4CA}', style: TextStyle(fontSize: 24)),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      isEn
+                          ? 'Your ${monthNames[lastMonth]} Wrapped'
+                          : '${monthNames[lastMonth]} Özetin Hazır',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      isEn
+                          ? 'See your month at a glance'
+                          : 'Ayına bir bakış at',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 14,
+                color: AppColors.amethyst,
+              ),
+            ],
+          ),
+        ),
+      ),
+    ).animate().fadeIn(duration: 400.ms);
   }
 }

@@ -17,6 +17,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
+import '../../streak/presentation/challenge_celebration_modal.dart';
 
 class ChallengeListScreen extends ConsumerWidget {
   const ChallengeListScreen({super.key});
@@ -109,12 +110,20 @@ class ChallengeListScreen extends ConsumerWidget {
                                 isDark: isDark,
                                 isEn: isEn,
                                 onIncrement: () async {
-                                  await service.incrementProgress(c.id);
+                                  final justCompleted =
+                                      await service.incrementProgress(c.id);
                                   if (!context.mounted) return;
                                   ref.invalidate(
                                     growthChallengeServiceProvider,
                                   );
                                   HapticFeedback.mediumImpact();
+                                  if (justCompleted && context.mounted) {
+                                    ChallengeCelebrationModal.show(
+                                      context,
+                                      c,
+                                      isEn,
+                                    );
+                                  }
                                 },
                               ),
                             ),

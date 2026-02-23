@@ -152,6 +152,34 @@ class WidgetDataService {
   }
 
   // --------------------------------------------------------------------------
+  // WIDGET METADATA (language, 7-day history, timestamps)
+  // --------------------------------------------------------------------------
+
+  /// Update shared widget metadata for bilingual support and 7-day history.
+  Future<void> updateWidgetMetadata({
+    required String languageCode,
+    required List<int> moodHistory7d,
+    required List<String> moodEmojis7d,
+    required List<String> dayLabels7d,
+  }) async {
+    if (!isSupported) return;
+
+    try {
+      await _channel.invokeMethod('updateWidgetData', {
+        'widget_language': languageCode,
+        'widget_mood_history_7d': moodHistory7d.take(7).join(','),
+        'widget_mood_history_emojis_7d': moodEmojis7d.take(7).join(','),
+        'widget_mood_history_dates_7d': dayLabels7d.take(7).join(','),
+        'widget_last_updated': DateTime.now().millisecondsSinceEpoch / 1000.0,
+      });
+
+      debugPrint('[WidgetDataService] Widget metadata updated (lang=$languageCode)');
+    } catch (e) {
+      debugPrint('[WidgetDataService] Error updating widget metadata: $e');
+    }
+  }
+
+  // --------------------------------------------------------------------------
   // FORCE REFRESH
   // --------------------------------------------------------------------------
 

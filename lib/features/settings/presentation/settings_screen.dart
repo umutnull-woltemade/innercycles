@@ -13,6 +13,8 @@ import '../../../data/services/l10n_service.dart';
 import '../../../data/services/notification_service.dart';
 import '../../../data/services/storage_service.dart';
 import '../../../data/services/url_launcher_service.dart';
+import 'package:share_plus/share_plus.dart';
+import '../../../core/constants/app_constants.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../data/services/paywall_service.dart';
 import '../../../data/services/app_lock_service.dart';
@@ -406,6 +408,22 @@ class SettingsScreen extends ConsumerWidget {
                         noPadding: true,
                         child: Column(
                           children: [
+                            _GroupedTile(
+                              icon: Icons.people_outline_rounded,
+                              title: language == AppLanguage.en
+                                  ? 'Tell a Friend'
+                                  : 'Arkadaşına Öner',
+                              isDark: isDark,
+                              onTap: () {
+                                final message = language == AppLanguage.en
+                                    ? 'I\'ve been journaling with InnerCycles and discovering my personal patterns. Try it out!\n\n${AppConstants.appStoreUrl}'
+                                    : 'InnerCycles ile günlük tutuyorum ve kişisel örüntülerimi keşfediyorum. Sen de dene!\n\n${AppConstants.appStoreUrl}';
+                                SharePlus.instance.share(
+                                  ShareParams(text: message),
+                                );
+                              },
+                            ),
+                            _GroupedSeparator(isDark: isDark),
                             _GroupedTile(
                               icon: Icons.star_outline,
                               title: L10nService.get(

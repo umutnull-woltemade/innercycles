@@ -20,11 +20,17 @@ import 'moon_phase_service.dart';
 /// All lifecycle notification types, ordered by priority (highest first).
 enum LifecycleNotificationType {
   milestonesCelebration,
+  challengeCompleted,
+  archetypeEvolution,
+  patternDiscovery,
   streakReminder,
   insightTeaser,
+  shareReminder,
   moodCheckIn,
   weeklyDigest,
+  monthlyWrappedReady,
   seasonalTrigger,
+  wrappedReady,
   reEngagement3Day,
   reEngagement7Day,
   reEngagement14Day,
@@ -60,6 +66,18 @@ class _LifecycleNotificationIds {
   static const int reEngagement30Day = 108;
   // ignore: unused_field
   static const int weeklyDigest = 109;
+  // ignore: unused_field
+  static const int wrappedReady = 110;
+  // ignore: unused_field
+  static const int challengeCompleted = 111;
+  // ignore: unused_field
+  static const int archetypeEvolution = 112;
+  // ignore: unused_field
+  static const int patternDiscovery = 113;
+  // ignore: unused_field
+  static const int shareReminder = 114;
+  // ignore: unused_field
+  static const int monthlyWrappedReady = 115;
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -74,6 +92,9 @@ class NotificationLifecycleService {
   static const String _keyLastNotifType = 'nlc_last_notification_type';
   static const String _keyCelebratedMilestones = 'nlc_celebrated_milestones';
   static const String _keyEnabled = 'nlc_lifecycle_enabled';
+  static const String _keyLastMilestoneDate = 'nlc_last_milestone_date';
+  static const String _keyLastArchetype = 'nlc_last_archetype';
+  static const String _keyLastPatternCount = 'nlc_last_pattern_count';
 
   final SharedPreferences _prefs;
   final NotificationService _notificationService;
@@ -266,7 +287,13 @@ class NotificationLifecycleService {
   /// after each journal save.
   ///
   /// Requires [journalService] to read streak and entry data.
-  Future<void> evaluate(JournalService journalService) async {
+  Future<void> evaluate(
+    JournalService journalService, {
+    String? currentArchetype,
+    int? patternCount,
+    bool? challengeJustCompleted,
+    bool? monthlyWrappedAvailable,
+  }) async {
     if (kIsWeb) return;
     if (!isEnabled) return;
 
@@ -274,7 +301,13 @@ class NotificationLifecycleService {
     await cancelAllLifecycleNotifications();
 
     // Determine the best notification to schedule
-    final selected = _selectNotification(journalService);
+    final selected = _selectNotification(
+      journalService,
+      currentArchetype: currentArchetype,
+      patternCount: patternCount,
+      challengeJustCompleted: challengeJustCompleted,
+      monthlyWrappedAvailable: monthlyWrappedAvailable,
+    );
     if (selected == null) return;
 
     await _scheduleNotification(selected, journalService);
@@ -283,8 +316,12 @@ class NotificationLifecycleService {
   /// Select the highest-priority notification type that applies right now.
   /// Returns null if no notification should be scheduled.
   LifecycleNotificationType? _selectNotification(
-    JournalService journalService,
-  ) {
+    JournalService journalService, {
+    String? currentArchetype,
+    int? patternCount,
+    bool? challengeJustCompleted,
+    bool? monthlyWrappedAvailable,
+  }) {
     final now = DateTime.now();
     final streak = journalService.getCurrentStreak();
     final totalEntries = journalService.entryCount;
@@ -299,6 +336,34 @@ class NotificationLifecycleService {
       }
     }
 
+    // Priority 1.5: Challenge completed
+    if (challengeJustCompleted == true) {
+      return LifecycleNotificationType.challengeCompleted;
+    }
+
+    // Priority 1.6: Archetype evolution (monthly archetype changed)
+    if (currentArchetype != null) {
+      final lastArchetype = _prefs.getString(_keyLastArchetype);
+      if (lastArchetype != null && lastArchetype != currentArchetype) {
+        _prefs.setString(_keyLastArchetype, currentArchetype);
+        return LifecycleNotificationType.archetypeEvolution;
+      }
+      // Save current archetype for future comparison
+      if (lastArchetype == null) {
+        _prefs.setString(_keyLastArchetype, currentArchetype);
+      }
+    }
+
+    // Priority 1.7: Pattern discovery (new correlation found)
+    if (patternCount != null) {
+      final lastPatternCount = _prefs.getInt(_keyLastPatternCount) ?? 0;
+      if (patternCount > lastPatternCount && lastPatternCount > 0) {
+        _prefs.setInt(_keyLastPatternCount, patternCount);
+        return LifecycleNotificationType.patternDiscovery;
+      }
+      _prefs.setInt(_keyLastPatternCount, patternCount);
+    }
+
     // Priority 2: Streak reminder (only if user has a streak and hasn't logged today)
     if (streak >= 2 && !hasLoggedToday) {
       return LifecycleNotificationType.streakReminder;
@@ -307,6 +372,16 @@ class NotificationLifecycleService {
     // Priority 3: Insight teaser (weekly, only if 7+ entries exist)
     if (totalEntries >= 7 && now.weekday == DateTime.thursday) {
       return LifecycleNotificationType.insightTeaser;
+    }
+
+    // Priority 3.5: Share reminder (1 day after milestone)
+    final lastMilestoneStr = _prefs.getString(_keyLastMilestoneDate);
+    if (lastMilestoneStr != null) {
+      final lastMilestone = DateTime.tryParse(lastMilestoneStr);
+      if (lastMilestone != null &&
+          now.difference(lastMilestone).inDays == 1) {
+        return LifecycleNotificationType.shareReminder;
+      }
     }
 
     // Priority 4: Mood check-in (gentle daily, only if logged today already)
@@ -323,7 +398,18 @@ class NotificationLifecycleService {
       return LifecycleNotificationType.weeklyDigest;
     }
 
-    // Priority 6: Seasonal / moon phase trigger
+    // Priority 5.5: Monthly wrapped ready (1st-3rd of month)
+    if (monthlyWrappedAvailable == true ||
+        (now.day >= 1 && now.day <= 3 && totalEntries >= 7)) {
+      return LifecycleNotificationType.monthlyWrappedReady;
+    }
+
+    // Priority 6: Wrapped ready (Dec 26 - Dec 31)
+    if (now.month == 12 && now.day >= 26 && totalEntries >= 7) {
+      return LifecycleNotificationType.wrappedReady;
+    }
+
+    // Priority 7: Seasonal / moon phase trigger
     final moonData = MoonPhaseService.today();
     if (moonData.phase == MoonPhase.newMoon ||
         moonData.phase == MoonPhase.fullMoon) {
@@ -368,7 +454,7 @@ class NotificationLifecycleService {
 
       await _markNotificationSent(type);
 
-      // If milestone, mark it celebrated
+      // If milestone, mark it celebrated and record date for share reminder
       if (type == LifecycleNotificationType.milestonesCelebration) {
         final totalEntries = journalService.entryCount;
         for (final milestone in milestoneDays) {
@@ -376,6 +462,10 @@ class NotificationLifecycleService {
             await _celebrateMilestone(milestone);
           }
         }
+        await _prefs.setString(
+          _keyLastMilestoneDate,
+          DateTime.now().toIso8601String(),
+        );
       }
 
       if (kDebugMode) {
@@ -394,25 +484,33 @@ class NotificationLifecycleService {
   int _getDeliveryHour(LifecycleNotificationType type) {
     switch (type) {
       case LifecycleNotificationType.streakReminder:
-        // Deliver at user's preferred time (or slightly after)
         return preferredHour;
       case LifecycleNotificationType.moodCheckIn:
-        // Evening check-in
         return _clampToAllowedHours(19);
       case LifecycleNotificationType.insightTeaser:
         return _clampToAllowedHours(18);
       case LifecycleNotificationType.milestonesCelebration:
-        // Morning celebration
+        return _clampToAllowedHours(10);
+      case LifecycleNotificationType.challengeCompleted:
+        return _clampToAllowedHours(12);
+      case LifecycleNotificationType.archetypeEvolution:
+        return _clampToAllowedHours(11);
+      case LifecycleNotificationType.patternDiscovery:
+        return _clampToAllowedHours(18);
+      case LifecycleNotificationType.shareReminder:
+        return _clampToAllowedHours(10);
+      case LifecycleNotificationType.monthlyWrappedReady:
         return _clampToAllowedHours(10);
       case LifecycleNotificationType.seasonalTrigger:
         return _clampToAllowedHours(20);
+      case LifecycleNotificationType.wrappedReady:
+        return _clampToAllowedHours(11);
       case LifecycleNotificationType.weeklyDigest:
         return _clampToAllowedHours(10);
       case LifecycleNotificationType.reEngagement3Day:
       case LifecycleNotificationType.reEngagement7Day:
       case LifecycleNotificationType.reEngagement14Day:
       case LifecycleNotificationType.reEngagement30Day:
-        // Re-engagement: preferred time or 10 AM default
         return preferredHour;
     }
   }
@@ -428,6 +526,46 @@ class NotificationLifecycleService {
   ) {
     final isEn = _isEn;
     switch (type) {
+      case LifecycleNotificationType.challengeCompleted:
+        return _NotificationContent(
+          title: isEn ? 'Challenge Completed!' : 'Meydan Okuma Tamamlandı!',
+          body: isEn
+              ? 'You finished a challenge! Share your achievement with friends.'
+              : 'Bir meydan okumayı tamamladın! Başarını arkadaşlarınla paylaş.',
+        );
+
+      case LifecycleNotificationType.archetypeEvolution:
+        return _NotificationContent(
+          title: isEn ? 'Your Archetype Shifted' : 'Arketipin Değişti',
+          body: isEn
+              ? 'Your monthly archetype has evolved — check out your new pattern.'
+              : 'Aylık arketipin değişti — yeni örüntünü keşfet.',
+        );
+
+      case LifecycleNotificationType.patternDiscovery:
+        return _NotificationContent(
+          title: isEn ? 'New Pattern Found' : 'Yeni Örüntü Bulundu',
+          body: isEn
+              ? 'A new correlation emerged in your journal entries.'
+              : 'Günlük kayıtlarında yeni bir korelasyon ortaya çıktı.',
+        );
+
+      case LifecycleNotificationType.shareReminder:
+        return _NotificationContent(
+          title: isEn ? 'Celebrate Your Progress' : 'İlerlemeni Kutla',
+          body: isEn
+              ? 'You reached a milestone recently — share it with someone who would appreciate it.'
+              : 'Yakın zamanda bir başarıya ulaştın — bunu takdir edecek biriyle paylaş.',
+        );
+
+      case LifecycleNotificationType.monthlyWrappedReady:
+        return _NotificationContent(
+          title: isEn ? 'Monthly Wrapped Ready' : 'Aylık Özetin Hazır',
+          body: isEn
+              ? 'Your monthly recap is ready to review — see your patterns at a glance.'
+              : 'Aylık özetin incelemeye hazır — örüntülerine bir göz at.',
+        );
+
       case LifecycleNotificationType.streakReminder:
         final streak = journalService.getCurrentStreak();
         return _NotificationContent(
@@ -514,6 +652,17 @@ class NotificationLifecycleService {
               : 'Bazen en güzel kayıtlar aradan sonra gelir. Tekrar hoş geldin?',
         );
 
+      case LifecycleNotificationType.wrappedReady:
+        final year = DateTime.now().year;
+        return _NotificationContent(
+          title: isEn
+              ? 'Your $year Wrapped is Ready!'
+              : '$year Wrapped\'ın Hazır!',
+          body: isEn
+              ? 'See your year in patterns — your personal recap awaits.'
+              : 'Yılını örüntülerle gör — kişisel özetin seni bekliyor.',
+        );
+
       case LifecycleNotificationType.weeklyDigest:
         return _NotificationContent(
           title: isEn ? 'Weekly Reflection' : 'Haftalık Yansıtma',
@@ -556,6 +705,9 @@ class NotificationLifecycleService {
     await _prefs.remove(_keyLastNotifType);
     await _prefs.remove(_keyCelebratedMilestones);
     await _prefs.remove(_keyEnabled);
+    await _prefs.remove(_keyLastMilestoneDate);
+    await _prefs.remove(_keyLastArchetype);
+    await _prefs.remove(_keyLastPatternCount);
   }
 
   // ══════════════════════════════════════════════════════════════════════════

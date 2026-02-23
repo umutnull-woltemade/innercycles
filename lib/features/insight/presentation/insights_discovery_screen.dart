@@ -21,6 +21,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../shared/widgets/share_insight_button.dart';
 
 class InsightsDiscoveryScreen extends ConsumerStatefulWidget {
   const InsightsDiscoveryScreen({super.key});
@@ -508,6 +509,12 @@ class _InsightsDiscoveryScreenState
                       ),
                     ),
                   ),
+                  // Share button
+                  ShareInsightButton(
+                    insightText: isEn ? module.summaryEn : module.summaryTr,
+                    iconSize: 16,
+                  ),
+                  const SizedBox(width: 4),
                   // Bookmark button
                   Semantics(
                     button: true,

@@ -251,17 +251,22 @@ class GrowthChallengeService {
     return progress;
   }
 
-  Future<void> incrementProgress(String challengeId) async {
+  /// Increments challenge progress. Returns true if the challenge was
+  /// just completed (transition from incomplete → complete).
+  Future<bool> incrementProgress(String challengeId) async {
     final progress = _activeProgress[challengeId];
-    if (progress == null || progress.isCompleted) return;
+    if (progress == null || progress.isCompleted) return false;
 
     progress.currentCount++;
     if (progress.currentCount >= progress.targetCount) {
       progress.isCompleted = true;
       _completedIds.add(challengeId);
       await _persistCompleted();
+      await _persistProgress();
+      return true;
     }
     await _persistProgress();
+    return false;
   }
 
   ChallengeProgress? getProgress(String challengeId) {

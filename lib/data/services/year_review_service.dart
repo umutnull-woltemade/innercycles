@@ -10,6 +10,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/journal_entry.dart';
+import '../models/wrapped_data.dart';
 import 'journal_service.dart';
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -200,6 +201,138 @@ class YearReviewService {
   /// Clear cached review for a year (e.g. when new entries are added)
   Future<void> invalidateCache(int year) async {
     await _prefs.remove('$_cacheKeyPrefix$year');
+  }
+
+  /// Generate a Wrapped experience from year review data.
+  /// Returns null if fewer than 7 entries for the year.
+  Future<WrappedData?> generateWrapped(int year) async {
+    final review = await generateReview(year);
+    if (review == null) return null;
+
+    final entries = _getEntriesForYear(year);
+
+    // --- Dominant emotional arc ---
+    final arc = _computeEmotionalArc(review.moodJourney);
+
+    // --- Breakthrough count (mood >= 4 starting a positive run) ---
+    final breakthroughs = _countBreakthroughs(entries);
+
+    // --- Most intense week (highest mood variance) ---
+    final intenseWeek = _findMostIntenseWeek(entries);
+
+    // --- Quietest and busiest months ---
+    int quietest = 1, busiest = 1;
+    int minCount = 999999, maxCount = 0;
+    for (final mb in review.monthlyBreakdown) {
+      if (mb.entryCount < minCount) {
+        minCount = mb.entryCount;
+        quietest = mb.month;
+      }
+      if (mb.entryCount > maxCount) {
+        maxCount = mb.entryCount;
+        busiest = mb.month;
+      }
+    }
+
+    // --- Top emotion tags (derived from sub-rating keys) ---
+    final tagCounts = <String, int>{};
+    for (final entry in entries) {
+      for (final key in entry.subRatings.keys) {
+        tagCounts[key] = (tagCounts[key] ?? 0) + 1;
+      }
+    }
+    final sortedTags = tagCounts.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    final topTags = sortedTags.take(5).map((e) => e.key).toList();
+
+    return WrappedData(
+      year: year,
+      totalEntries: review.totalEntries,
+      totalJournalingDays: review.totalJournalingDays,
+      averageMood: review.averageMood,
+      growthScore: review.growthScore,
+      streakBest: review.streakBest,
+      dominantEmotionalArc: arc,
+      breakthroughCount: breakthroughs,
+      mostIntenseWeek: intenseWeek,
+      quietestMonth: quietest,
+      busiestMonth: busiest,
+      topEmotionTags: topTags,
+      focusAreaCounts: review.focusAreaCounts,
+      topPatterns: review.topPatterns,
+      moodJourney: review.moodJourney,
+    );
+  }
+
+  EmotionalArc _computeEmotionalArc(List<double> moodJourney) {
+    final withData = moodJourney.where((v) => v > 0).toList();
+    if (withData.length < 2) return EmotionalArc.steady;
+
+    final half = withData.length ~/ 2;
+    final firstAvg =
+        withData.sublist(0, half).reduce((a, b) => a + b) / half;
+    final secondAvg =
+        withData.sublist(half).reduce((a, b) => a + b) /
+        (withData.length - half);
+
+    final diff = secondAvg - firstAvg;
+    // Also check variance for "transforming"
+    final mean = withData.reduce((a, b) => a + b) / withData.length;
+    final variance =
+        withData.map((v) => (v - mean) * (v - mean)).reduce((a, b) => a + b) /
+        withData.length;
+
+    if (variance > 0.8) return EmotionalArc.transforming;
+    if (diff > 0.3) return EmotionalArc.rising;
+    return EmotionalArc.steady;
+  }
+
+  int _countBreakthroughs(List<JournalEntry> entries) {
+    if (entries.length < 2) return 0;
+    final sorted = entries.toList()
+      ..sort((a, b) => a.date.compareTo(b.date));
+
+    int count = 0;
+    for (int i = 1; i < sorted.length; i++) {
+      if (sorted[i].overallRating >= 4 && sorted[i - 1].overallRating < 4) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  DateTime? _findMostIntenseWeek(List<JournalEntry> entries) {
+    if (entries.length < 7) return null;
+
+    // Group entries by ISO week
+    final weekGroups = <String, List<int>>{};
+    final weekStarts = <String, DateTime>{};
+    for (final entry in entries) {
+      final monday = entry.date.subtract(
+        Duration(days: entry.date.weekday - 1),
+      );
+      final key = '${monday.year}-${monday.month}-${monday.day}';
+      weekGroups.putIfAbsent(key, () => []);
+      weekGroups[key]!.add(entry.overallRating);
+      weekStarts.putIfAbsent(key, () => monday);
+    }
+
+    // Find the week with highest variance
+    String? bestWeek;
+    double bestVariance = 0;
+    for (final entry in weekGroups.entries) {
+      if (entry.value.length < 2) continue;
+      final mean = entry.value.reduce((a, b) => a + b) / entry.value.length;
+      final variance = entry.value
+          .map((v) => (v - mean) * (v - mean))
+          .reduce((a, b) => a + b) / entry.value.length;
+      if (variance > bestVariance) {
+        bestVariance = variance;
+        bestWeek = entry.key;
+      }
+    }
+
+    return bestWeek != null ? weekStarts[bestWeek] : null;
   }
 
   // ════════════════════════════════════════════════════════════════════════

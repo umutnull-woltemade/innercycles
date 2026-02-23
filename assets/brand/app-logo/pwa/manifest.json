@@ -4,8 +4,8 @@
   "description": "Your personal guide to journaling and cyclical pattern awareness",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FFF8F5",
-  "theme_color": "#E8ADA4",
+  "background_color": "#0E0C1D",
+  "theme_color": "#D89B64",
   "orientation": "portrait-primary",
   "icons": [
     {

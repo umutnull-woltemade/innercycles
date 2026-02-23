@@ -34,6 +34,8 @@ import '../../features/settings/presentation/notification_schedule_screen.dart';
 import '../../features/export/presentation/export_screen.dart';
 import '../../features/streak/presentation/streak_stats_screen.dart';
 import '../../features/app_lock/presentation/app_lock_screen.dart';
+import '../../features/notes/presentation/notes_list_screen.dart';
+import '../../features/notes/presentation/note_detail_screen.dart';
 import '../../features/admin/presentation/admin_login_screen.dart';
 import '../../features/admin/presentation/admin_dashboard_screen.dart';
 import '../../features/cycle_sync/presentation/cycle_sync_screen.dart';
@@ -41,9 +43,12 @@ import '../../features/shadow_work/presentation/shadow_work_screen.dart';
 import '../../features/prompts/presentation/prompt_library_screen.dart';
 import '../../features/milestones/presentation/milestone_screen.dart';
 import '../../features/year_review/presentation/year_review_screen.dart';
+import '../../features/year_review/presentation/wrapped_screen.dart';
 import '../../features/habits/presentation/daily_habits_screen.dart';
 // partner_sync_screen + referral_screen imports removed (killed features)
 import '../../features/journal/presentation/annual_report_screen.dart';
+import '../../features/retrospective/presentation/retrospective_screen.dart';
+import '../../features/digest/presentation/monthly_wrapped_screen.dart';
 import '../../features/sharing/presentation/share_card_gallery.dart';
 import '../../features/habits/presentation/habit_suggestions_screen.dart';
 import '../../features/growth/presentation/growth_dashboard_screen.dart';
@@ -166,7 +171,15 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: Routes.journal,
-                builder: (context, state) => const DailyEntryScreen(),
+                builder: (context, state) {
+                  final extra = state.extra as Map<String, dynamic>?;
+                  return DailyEntryScreen(
+                    initialDate: extra?['initialDate'] as DateTime?,
+                    journalPrompt: extra?['journalPrompt'] as String?,
+                    retrospectiveDateId:
+                        extra?['retrospectiveDateId'] as String?,
+                  );
+                },
               ),
             ],
           ),
@@ -312,6 +325,26 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       // ════════════════════════════════════════════════════════════════
+      // NOTES TO SELF
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.notesList,
+        builder: (context, state) => const NotesListScreen(),
+      ),
+      GoRoute(
+        path: Routes.noteDetail,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          final noteId = extra?['noteId'] as String? ?? '';
+          return NoteDetailScreen(noteId: noteId);
+        },
+      ),
+      GoRoute(
+        path: Routes.noteCreate,
+        builder: (context, state) => const NoteDetailScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
       // APP LOCK
       // ════════════════════════════════════════════════════════════════
       GoRoute(
@@ -355,6 +388,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const YearReviewScreen(),
       ),
       GoRoute(
+        path: Routes.wrapped,
+        builder: (context, state) => const WrappedScreen(),
+      ),
+      GoRoute(
         path: Routes.dailyHabits,
         builder: (context, state) => const DailyHabitsScreen(),
       ),
@@ -362,6 +399,18 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.annualReport,
         builder: (context, state) => const AnnualReportScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // RETROSPECTIVE & MONTHLY WRAPPED
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.retrospective,
+        builder: (context, state) => const RetrospectiveScreen(),
+      ),
+      GoRoute(
+        path: Routes.monthlyWrapped,
+        builder: (context, state) => const MonthlyWrappedScreen(),
       ),
       GoRoute(
         path: Routes.shareCardGallery,
