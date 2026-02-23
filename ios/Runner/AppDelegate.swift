@@ -63,9 +63,10 @@ import WidgetKit
 
     sharedDefaults?.synchronize()
 
-    // Reload widgets
+    // Targeted widget reload based on which keys changed
     if #available(iOS 14.0, *) {
-      WidgetCenter.shared.reloadAllTimelines()
+      let keys = Set(args.keys)
+      reloadAffectedWidgets(keys: keys)
     }
 
     result(true)
@@ -96,6 +97,51 @@ import WidgetKit
       result(true)
     } else {
       result(false)
+    }
+  }
+
+  // MARK: - Targeted Widget Reload
+
+  @available(iOS 14.0, *)
+  private func reloadAffectedWidgets(keys: Set<String>) {
+    let reflectionKeys: Set<String> = ["widget_mood_emoji", "widget_mood_label", "widget_daily_prompt",
+                                        "widget_focus_area", "widget_streak_days", "widget_mood_rating"]
+    let moodKeys: Set<String> = ["widget_current_mood", "widget_mood_emoji", "widget_mood_advice",
+                                  "widget_energy_level", "widget_week_trend"]
+    let cycleKeys: Set<String> = ["widget_emotional_phase", "widget_phase_emoji", "widget_phase_label",
+                                   "widget_cycle_day", "widget_cycle_length"]
+    let lockKeys: Set<String> = ["widget_mood_emoji", "widget_accent_emoji", "widget_short_message",
+                                  "widget_lock_energy"]
+    let weeklyKeys: Set<String> = ["widget_mood_history_7d", "widget_mood_history_emojis_7d",
+                                    "widget_mood_history_dates_7d", "widget_streak_days"]
+    let metaKeys: Set<String> = ["widget_language", "widget_last_updated"]
+
+    var reloaded = Set<String>()
+
+    if !keys.isDisjoint(with: reflectionKeys) || !keys.isDisjoint(with: metaKeys) {
+      WidgetCenter.shared.reloadTimelines(ofKind: "DailyReflectionWidget")
+      reloaded.insert("DailyReflectionWidget")
+    }
+    if !keys.isDisjoint(with: moodKeys) || !keys.isDisjoint(with: metaKeys) {
+      WidgetCenter.shared.reloadTimelines(ofKind: "MoodInsightWidget")
+      reloaded.insert("MoodInsightWidget")
+    }
+    if !keys.isDisjoint(with: cycleKeys) || !keys.isDisjoint(with: metaKeys) {
+      WidgetCenter.shared.reloadTimelines(ofKind: "CyclePositionWidget")
+      reloaded.insert("CyclePositionWidget")
+    }
+    if !keys.isDisjoint(with: lockKeys) {
+      WidgetCenter.shared.reloadTimelines(ofKind: "LockScreenWidget")
+      reloaded.insert("LockScreenWidget")
+    }
+    if !keys.isDisjoint(with: weeklyKeys) || !keys.isDisjoint(with: metaKeys) {
+      WidgetCenter.shared.reloadTimelines(ofKind: "WeeklyMoodGridWidget")
+      reloaded.insert("WeeklyMoodGridWidget")
+    }
+
+    // Fallback: if no specific match, reload all
+    if reloaded.isEmpty {
+      WidgetCenter.shared.reloadAllTimelines()
     }
   }
 

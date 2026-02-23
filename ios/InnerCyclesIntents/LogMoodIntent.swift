@@ -1,8 +1,10 @@
-// InnerCycles - Siri Shortcuts: Log Mood Intent
-// "Hey Siri, log my mood in InnerCycles"
+// InnerCycles - Siri Shortcuts & Widget Intents
+// LogMoodIntent: "Hey Siri, log my mood in InnerCycles"
+// QuickMoodIntent: Interactive widget button (iOS 17+)
 
 import AppIntents
 import Foundation
+import WidgetKit
 
 @available(iOS 16.0, *)
 enum MoodLevel: String, AppEnum {
@@ -43,6 +45,8 @@ enum MoodLevel: String, AppEnum {
     }
 }
 
+// MARK: - Siri Shortcuts Intent
+
 @available(iOS 16.0, *)
 struct LogMoodIntent: AppIntent {
     static var title: LocalizedStringResource = "Log Mood"
@@ -67,6 +71,57 @@ struct LogMoodIntent: AppIntent {
         return .result(dialog: "Logged: \(mood.emoji) \(mood.rawValue.capitalized)")
     }
 }
+
+// MARK: - Quick Mood Intent (iOS 17+ Widget Interactive Button)
+
+@available(iOS 17.0, *)
+struct QuickMoodIntent: AppIntent {
+    static var title: LocalizedStringResource = "Quick Mood Log"
+    static var description = IntentDescription("Log mood directly from widget")
+    static var isDiscoverable: Bool = false
+
+    @Parameter(title: "Mood Emoji")
+    var moodValue: String
+
+    init() {
+        self.moodValue = "\u{1F610}" // default neutral
+    }
+
+    init(moodValue: String) {
+        self.moodValue = moodValue
+    }
+
+    func perform() async throws -> some IntentResult {
+        let defaults = UserDefaults(suiteName: "group.com.venusone.innercycles")
+
+        // Map emoji to rating and label
+        let (rating, label) = emojiToRatingLabel(moodValue)
+
+        defaults?.set(moodValue, forKey: "widget_mood_emoji")
+        defaults?.set(label, forKey: "widget_mood_label")
+        defaults?.set(rating, forKey: "widget_mood_rating")
+        defaults?.set(Date().timeIntervalSince1970, forKey: "widget_last_updated")
+        defaults?.synchronize()
+
+        // Reload all widget timelines
+        WidgetCenter.shared.reloadAllTimelines()
+
+        return .result()
+    }
+
+    private func emojiToRatingLabel(_ emoji: String) -> (Int, String) {
+        switch emoji {
+        case "\u{1F614}", "\u{1F622}": return (1, "Difficult")
+        case "\u{1F615}": return (2, "Low")
+        case "\u{1F610}": return (3, "Neutral")
+        case "\u{1F60A}": return (4, "Good")
+        case "\u{1F929}", "\u{1F31F}": return (5, "Great")
+        default: return (3, "Neutral")
+        }
+    }
+}
+
+// MARK: - Shortcuts Provider
 
 @available(iOS 16.0, *)
 struct InnerCyclesShortcuts: AppShortcutsProvider {

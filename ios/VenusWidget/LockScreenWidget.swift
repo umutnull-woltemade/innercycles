@@ -1,5 +1,5 @@
-// InnerCycles - Lock Screen Widgets (iOS 16+)
-// Compact widgets for Lock Screen and StandBy mode
+// InnerCycles - Lock Screen Widgets (iOS 16+) (A++ Quality)
+// Deep link, bilingual, StandBy mode support
 
 import WidgetKit
 import SwiftUI
@@ -108,6 +108,7 @@ struct CircularLockScreenView: View {
                 }
             }
         }
+        .widgetURL(URL(string: "innercycles:///today"))
     }
 }
 
@@ -126,7 +127,7 @@ struct RectangularLockScreenView: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(entry.shortMessage)
-                    .font(.system(size: 12, weight: .medium))
+                    .font(.system(size: 12, weight: .medium, design: .rounded))
                     .lineLimit(2)
 
                 // Energy indicator
@@ -138,6 +139,7 @@ struct RectangularLockScreenView: View {
                 }
             }
         }
+        .widgetURL(URL(string: "innercycles:///today"))
     }
 }
 
@@ -151,6 +153,7 @@ struct InlineLockScreenView: View {
             Text(entry.shortMessage)
                 .lineLimit(1)
         }
+        .widgetURL(URL(string: "innercycles:///today"))
     }
 }
 

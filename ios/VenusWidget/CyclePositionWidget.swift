@@ -1,5 +1,5 @@
-// InnerCycles - Cycle Position Widget
-// Displays emotional cycle phase with circular progress ring
+// InnerCycles - Cycle Position Widget (A++ Quality)
+// Phase-based gradients, bilingual, deep link, rounded fonts
 
 import WidgetKit
 import SwiftUI
@@ -71,12 +71,6 @@ struct CyclePositionEntry: TimelineEntry {
     }
 }
 
-// MARK: - Colors
-
-private let starGold = Color(red: 212.0 / 255.0, green: 165.0 / 255.0, blue: 116.0 / 255.0)
-private let bgDarkTop = Color(red: 0.05, green: 0.05, blue: 0.1)
-private let bgDarkBottom = Color(red: 0.1, green: 0.05, blue: 0.15)
-
 // MARK: - Widget Views
 
 struct CyclePositionWidgetEntryView: View {
@@ -101,9 +95,11 @@ struct SmallCycleView: View {
     let entry: CyclePositionEntry
 
     var body: some View {
+        let gradientColors = MoodGradient.phaseGradient(entry.emotionalPhase)
+
         ZStack {
             LinearGradient(
-                gradient: Gradient(colors: [bgDarkTop, bgDarkBottom]),
+                gradient: Gradient(colors: gradientColors),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -120,7 +116,7 @@ struct SmallCycleView: View {
                     Circle()
                         .trim(from: 0, to: entry.progress)
                         .stroke(
-                            starGold,
+                            WidgetColor.starGold,
                             style: StrokeStyle(lineWidth: 5, lineCap: .round)
                         )
                         .frame(width: 72, height: 72)
@@ -133,13 +129,15 @@ struct SmallCycleView: View {
 
                 // Phase label
                 Text(entry.phaseLabel)
-                    .font(.system(size: 11, weight: .semibold))
+                    .font(.system(size: 11, weight: .semibold, design: .rounded))
                     .foregroundColor(.white)
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
             }
             .padding()
         }
+        .widgetContainerBackground(colors: gradientColors)
+        .widgetURL(URL(string: "innercycles:///emotional-cycles"))
     }
 }
 
@@ -147,11 +145,14 @@ struct SmallCycleView: View {
 
 struct MediumCycleView: View {
     let entry: CyclePositionEntry
+    private let strings = WidgetStrings()
 
     var body: some View {
+        let gradientColors = MoodGradient.phaseGradient(entry.emotionalPhase)
+
         ZStack {
             LinearGradient(
-                gradient: Gradient(colors: [bgDarkTop, bgDarkBottom]),
+                gradient: Gradient(colors: gradientColors),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -168,7 +169,7 @@ struct MediumCycleView: View {
                     Circle()
                         .trim(from: 0, to: entry.progress)
                         .stroke(
-                            starGold,
+                            WidgetColor.starGold,
                             style: StrokeStyle(lineWidth: 6, lineCap: .round)
                         )
                         .frame(width: 90, height: 90)
@@ -181,17 +182,17 @@ struct MediumCycleView: View {
 
                 // Right: Phase details
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Cycle Position")
-                        .font(.system(size: 10, weight: .medium))
-                        .foregroundColor(starGold.opacity(0.8))
+                    Text(strings.cyclePosition)
+                        .font(.system(size: 10, weight: .medium, design: .rounded))
+                        .foregroundColor(WidgetColor.starGold.opacity(0.8))
 
                     Text(entry.phaseLabel)
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.system(size: 16, weight: .semibold, design: .rounded))
                         .foregroundColor(.white)
                         .lineLimit(1)
 
-                    Text("Day \(entry.cycleDay) of \(entry.cycleLength)")
-                        .font(.system(size: 13, weight: .medium))
+                    Text(strings.dayOf(entry.cycleDay, entry.cycleLength))
+                        .font(.system(size: 13, weight: .medium, design: .rounded))
                         .foregroundColor(.white.opacity(0.7))
 
                     Spacer()
@@ -205,7 +206,7 @@ struct MediumCycleView: View {
                                 .frame(height: 4)
 
                             Capsule()
-                                .fill(starGold)
+                                .fill(WidgetColor.starGold)
                                 .frame(
                                     width: max(CGFloat(entry.progress) * 80, 4),
                                     height: 4
@@ -214,17 +215,19 @@ struct MediumCycleView: View {
                         .frame(width: 80)
 
                         Text("\(Int(entry.progress * 100))%")
-                            .font(.system(size: 10, weight: .semibold))
-                            .foregroundColor(starGold)
+                            .font(.system(size: 10, weight: .semibold, design: .rounded))
+                            .foregroundColor(WidgetColor.starGold)
                     }
 
-                    Text("InnerCycles")
-                        .font(.system(size: 9, weight: .medium))
-                        .foregroundColor(starGold.opacity(0.5))
+                    Text(strings.appName)
+                        .font(.system(size: 9, weight: .medium, design: .rounded))
+                        .foregroundColor(WidgetColor.starGold.opacity(0.5))
                 }
             }
             .padding()
         }
+        .widgetContainerBackground(colors: gradientColors)
+        .widgetURL(URL(string: "innercycles:///emotional-cycles"))
     }
 }
 

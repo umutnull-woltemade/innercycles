@@ -1,5 +1,6 @@
 // InnerCycles iOS Widget Bundle
-// Daily reflection and mood insight widgets for Home Screen and Lock Screen
+// Daily reflection, mood insight, cycle position, weekly mood grid,
+// and lock screen widgets for Home Screen, StandBy, and Lock Screen
 
 import WidgetKit
 import SwiftUI
@@ -10,6 +11,7 @@ struct InnerCyclesWidgetBundle: WidgetBundle {
         DailyReflectionWidget()
         MoodInsightWidget()
         CyclePositionWidget()
+        WeeklyMoodGridWidget()
         if #available(iOSApplicationExtension 16.0, *) {
             LockScreenWidget()
         }
