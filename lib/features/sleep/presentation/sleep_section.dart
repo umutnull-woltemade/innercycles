@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 
 /// Collapsible sleep quality section for the daily entry screen
@@ -103,14 +104,12 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                   ),
                   const SizedBox(width: 10),
                   Expanded(
-                    child: Text(
+                    child: GradientText(
                       isEn ? 'Sleep Quality' : 'Uyku Kalitesi',
-                      style: TextStyle(
+                      variant: GradientTextVariant.aurora,
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
                       ),
                     ),
                   ),
