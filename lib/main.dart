@@ -29,7 +29,8 @@ import 'data/services/progressive_unlock_service.dart';
 import 'data/providers/app_providers.dart';
 import 'data/services/premium_service.dart';
 import 'data/models/user_profile.dart';
-import 'shared/widgets/cosmic_loading_indicator.dart';
+// cosmic_loading_indicator import removed — loading states use basic widgets
+// to avoid requiring MaterialApp ancestor before InnerCyclesApp mounts.
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SAFE STARTUP PATTERN - Prevents white screen on Flutter Web
@@ -56,10 +57,14 @@ class BootstrapApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.dark,
-      home: const AppInitializer(),
+    // Minimal wrapper — NO MaterialApp here.
+    // InnerCyclesApp provides the single MaterialApp.router.
+    return Theme(
+      data: AppTheme.dark,
+      child: const Directionality(
+        textDirection: TextDirection.ltr,
+        child: AppInitializer(),
+      ),
     );
   }
 }
@@ -366,14 +371,22 @@ class _AppInitializerState extends State<AppInitializer> {
       future: _initFuture,
       builder: (context, snapshot) {
         // LOADING STATE - Always show visible UI
+        // Uses Container (not Scaffold) to avoid needing MaterialApp ancestor.
         if (snapshot.connectionState != ConnectionState.done) {
-          return Scaffold(
-            backgroundColor: AppColors.deepSpace,
-            body: Center(
+          return Container(
+            color: AppColors.deepSpace,
+            child: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const CosmicLoadingIndicator(),
+                  SizedBox(
+                    width: 32,
+                    height: 32,
+                    child: CircularProgressIndicator(
+                      color: AppColors.starGold,
+                      strokeWidth: 2.5,
+                    ),
+                  ),
                   const SizedBox(height: 16),
                   const Text(
                     'InnerCycles',
@@ -382,6 +395,7 @@ class _AppInitializerState extends State<AppInitializer> {
                       fontSize: 16,
                       fontWeight: FontWeight.w300,
                       letterSpacing: 2,
+                      decoration: TextDecoration.none,
                     ),
                   ),
                 ],
@@ -391,10 +405,11 @@ class _AppInitializerState extends State<AppInitializer> {
         }
 
         // ERROR STATE - Show error message (never white screen)
+        // Uses Container (not Scaffold) to avoid needing MaterialApp ancestor.
         if (snapshot.hasError) {
-          return Scaffold(
-            backgroundColor: AppColors.deepSpace,
-            body: Center(
+          return Container(
+            color: AppColors.deepSpace,
+            child: Center(
               child: Padding(
                 padding: const EdgeInsets.all(32),
                 child: Column(
@@ -412,6 +427,7 @@ class _AppInitializerState extends State<AppInitializer> {
                         color: Colors.white,
                         fontSize: 28,
                         fontWeight: FontWeight.w300,
+                        decoration: TextDecoration.none,
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -420,6 +436,7 @@ class _AppInitializerState extends State<AppInitializer> {
                       style: const TextStyle(
                         color: AppColors.error,
                         fontSize: 14,
+                        decoration: TextDecoration.none,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -432,9 +449,14 @@ class _AppInitializerState extends State<AppInitializer> {
 
         // SUCCESS - Launch the real app with providers
         if (snapshot.data == null) {
-          return const Scaffold(
-            backgroundColor: AppColors.deepSpace,
-            body: CosmicLoadingIndicator(),
+          return Container(
+            color: AppColors.deepSpace,
+            child: Center(
+              child: CircularProgressIndicator(
+                color: AppColors.starGold,
+                strokeWidth: 2.5,
+              ),
+            ),
           );
         }
         final result = snapshot.data!;

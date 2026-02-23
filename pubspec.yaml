@@ -77,5 +77,6 @@ flutter:
   assets:
     - assets/brand/app-logo/png/app-logo-256.png
     - assets/brand/app-logo/png/app-logo-96.png
+    - assets/brand/app-logo/png/app-planet-transparent.png
     - assets/.env
     - assets/l10n/

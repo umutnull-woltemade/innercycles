@@ -762,7 +762,7 @@ class DreamThemeScreen extends ConsumerWidget {
                   // Footer with disclaimer
                   PageFooterWithDisclaimer(
                     brandText:
-                        L10nService.get('dreams.brand_footer', language),
+                        L10nService.get('dreams.canonical.brand_footer', language),
                     disclaimerText: DisclaimerTexts.dreams(language),
                     language: language,
                   ),

@@ -435,15 +435,15 @@ class _IdentityPageState extends State<_IdentityPage>
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
-              'assets/brand/app-logo/png/app-logo-256.png',
-              width: 100,
-              height: 100,
+              'assets/brand/app-logo/png/app-planet-transparent.png',
+              width: 120,
+              height: 120,
               fit: BoxFit.contain,
               semanticLabel: 'InnerCycles logo',
               errorBuilder: (context, error, stackTrace) {
                 return Container(
-                  width: 100,
-                  height: 100,
+                  width: 120,
+                  height: 120,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: LinearGradient(
@@ -561,23 +561,23 @@ class _IdentityPageState extends State<_IdentityPage>
       animation: _glowController,
       builder: (context, child) {
         return Container(
-          width: 130,
-          height: 130,
+          width: 160,
+          height: 160,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: AppColors.auroraStart.withValues(
-                  alpha: (100 * _glowController.value + 50) / 255,
+                color: const Color(0xFFD89B64).withValues(
+                  alpha: (60 * _glowController.value + 20) / 255,
                 ),
-                blurRadius: 40 + (20 * _glowController.value),
-                spreadRadius: 10 + (10 * _glowController.value),
+                blurRadius: 50 + (25 * _glowController.value),
+                spreadRadius: 8 + (12 * _glowController.value),
               ),
               BoxShadow(
-                color: AppColors.amethyst.withValues(
-                  alpha: (80 * _glowController.value + 30) / 255,
+                color: const Color(0xFF8B7BA8).withValues(
+                  alpha: (40 * _glowController.value + 15) / 255,
                 ),
-                blurRadius: 60 + (30 * _glowController.value),
+                blurRadius: 70 + (30 * _glowController.value),
                 spreadRadius: 5,
               ),
             ],
@@ -586,9 +586,9 @@ class _IdentityPageState extends State<_IdentityPage>
         );
       },
       child: Image.asset(
-        'assets/brand/app-logo/png/app-logo-256.png',
-        width: 130,
-        height: 130,
+        'assets/brand/app-logo/png/app-planet-transparent.png',
+        width: 160,
+        height: 160,
         fit: BoxFit.contain,
         semanticLabel: 'InnerCycles logo',
         errorBuilder: (context, error, stackTrace) => const Icon(
