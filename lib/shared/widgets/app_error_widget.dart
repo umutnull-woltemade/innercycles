@@ -1,27 +1,49 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/services/l10n_service.dart';
-import '../../data/providers/app_providers.dart';
 
-/// Global error fallback widget that prevents white screens
-/// Shows a user-friendly error message with recovery options
-class AppErrorWidget extends ConsumerWidget {
+/// Global error fallback widget that prevents white screens.
+/// Must NOT depend on ProviderScope or MaterialApp — it can render
+/// anywhere in the tree when ErrorWidget.builder fires.
+class AppErrorWidget extends StatelessWidget {
   final FlutterErrorDetails details;
 
   const AppErrorWidget({super.key, required this.details});
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final language = ref.watch(languageProvider);
+  /// Safely fetch an L10n string, falling back to [fallback] if
+  /// L10nService hasn't been initialized yet.
+  String _safeL10n(String key, String fallback) {
+    try {
+      final value = L10nService.get(key, AppLanguage.en);
+      // L10nService returns [$key] when the key is missing
+      if (value.startsWith('[') && value.endsWith(']')) return fallback;
+      return value;
+    } catch (_) {
+      return fallback;
+    }
+  }
 
-    // Log the error in debug mode
+  @override
+  Widget build(BuildContext context) {
     if (kDebugMode) {
       debugPrint(
         'AppErrorWidget: Rendering error fallback for: ${details.exception}',
       );
     }
+
+    final title = _safeL10n(
+      'widgets.app_error.title',
+      'Something went wrong',
+    );
+    final subtitle = _safeL10n(
+      'widgets.app_error.subtitle',
+      'Don\'t worry, your data is safe. Try going back to the home screen.',
+    );
+    final buttonText = _safeL10n(
+      'widgets.app_error.back_to_home',
+      'Back to Home',
+    );
 
     return Container(
       color: AppColors.deepSpace,
@@ -33,16 +55,23 @@ class AppErrorWidget extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 // Icon
-                const Text('✨', style: TextStyle(fontSize: 64)),
+                const Text(
+                  '✨',
+                  style: TextStyle(
+                    fontSize: 64,
+                    decoration: TextDecoration.none,
+                  ),
+                ),
                 const SizedBox(height: 24),
 
                 // Title
                 Text(
-                  L10nService.get('widgets.app_error.title', language),
+                  title,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
+                    decoration: TextDecoration.none,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -50,10 +79,12 @@ class AppErrorWidget extends ConsumerWidget {
 
                 // Subtitle
                 Text(
-                  L10nService.get('widgets.app_error.subtitle', language),
+                  subtitle,
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.7),
                     fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                    decoration: TextDecoration.none,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -75,6 +106,7 @@ class AppErrorWidget extends ConsumerWidget {
                         color: Colors.white70,
                         fontSize: 10,
                         fontFamily: 'monospace',
+                        decoration: TextDecoration.none,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -82,42 +114,37 @@ class AppErrorWidget extends ConsumerWidget {
                   const SizedBox(height: 24),
                 ],
 
-                // Reload button
-                SizedBox(
-                  width: 200,
-                  height: 48,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Try to pop to root or reload
-                      try {
-                        if (Navigator.of(context).canPop()) {
-                          Navigator.of(
-                            context,
-                          ).popUntil((route) => route.isFirst);
-                        }
-                      } catch (e) {
-                        // If navigation fails, we're in a bad state
-                        // The user can manually reload
-                        if (kDebugMode) {
-                          debugPrint('Navigation failed in error widget: $e');
-                        }
+                // Back-to-home button — uses GestureDetector + Container
+                // instead of ElevatedButton to avoid requiring Material ancestor.
+                GestureDetector(
+                  onTap: () {
+                    try {
+                      if (Navigator.of(context).canPop()) {
+                        Navigator.of(
+                          context,
+                        ).popUntil((route) => route.isFirst);
                       }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.starGold,
-                      foregroundColor: AppColors.deepSpace,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
+                    } catch (e) {
+                      if (kDebugMode) {
+                        debugPrint('Navigation failed in error widget: $e');
+                      }
+                    }
+                  },
+                  child: Container(
+                    width: 200,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      color: AppColors.starGold,
+                      borderRadius: BorderRadius.circular(12),
                     ),
+                    alignment: Alignment.center,
                     child: Text(
-                      L10nService.get(
-                        'widgets.app_error.back_to_home',
-                        language,
-                      ),
+                      buttonText,
                       style: const TextStyle(
+                        color: AppColors.deepSpace,
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
+                        decoration: TextDecoration.none,
                       ),
                     ),
                   ),
@@ -125,12 +152,10 @@ class AppErrorWidget extends ConsumerWidget {
 
                 const SizedBox(height: 16),
 
-                // Secondary action - reload page (useful for web)
+                // Secondary action - reload page (web only)
                 if (kIsWeb)
-                  TextButton(
-                    onPressed: () {
-                      // On web, this will reload the page
-                      // Using JS interop would be cleaner but this is simpler
+                  GestureDetector(
+                    onTap: () {
                       if (kDebugMode) {
                         debugPrint(
                           'User requested page reload from error widget',
@@ -138,13 +163,14 @@ class AppErrorWidget extends ConsumerWidget {
                       }
                     },
                     child: Text(
-                      L10nService.get(
+                      _safeL10n(
                         'widgets.app_error.reload_page',
-                        language,
+                        'Reload Page',
                       ),
                       style: TextStyle(
                         color: Colors.white.withValues(alpha: 0.6),
                         fontSize: 14,
+                        decoration: TextDecoration.none,
                       ),
                     ),
                   ),
@@ -156,4 +182,3 @@ class AppErrorWidget extends ConsumerWidget {
     );
   }
 }
-

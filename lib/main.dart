@@ -532,6 +532,11 @@ class _InnerCyclesAppState extends ConsumerState<InnerCyclesApp>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+
+    // Set global error widget builder ONCE (not on every rebuild)
+    ErrorWidget.builder = (FlutterErrorDetails details) {
+      return AppErrorWidget(details: details);
+    };
   }
 
   @override
@@ -569,11 +574,6 @@ class _InnerCyclesAppState extends ConsumerState<InnerCyclesApp>
         GlobalCupertinoLocalizations.delegate,
       ],
       builder: (context, child) {
-        // Set global error widget builder
-        ErrorWidget.builder = (FlutterErrorDetails details) {
-          return AppErrorWidget(details: details);
-        };
-
         // Apply RTL direction for Arabic
         return Directionality(
           textDirection: language.isRTL ? TextDirection.rtl : TextDirection.ltr,
