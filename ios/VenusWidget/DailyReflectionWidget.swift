@@ -113,7 +113,7 @@ struct SmallReflectionView: View {
             VStack(spacing: 8) {
                 Text(entry.moodEmoji)
                     .font(.system(size: 36))
-                    .privacySensitive()
+                    .widgetPrivacySensitive()
 
                 Text(entry.moodLabel)
                     .font(.system(size: 14, weight: .semibold, design: .rounded))
@@ -160,7 +160,7 @@ struct MediumReflectionView: View {
                 VStack(spacing: 8) {
                     Text(entry.moodEmoji)
                         .font(.system(size: 44))
-                        .privacySensitive()
+                        .widgetPrivacySensitive()
 
                     Text(entry.moodLabel)
                         .font(.system(size: 16, weight: .semibold, design: .rounded))
@@ -191,7 +191,7 @@ struct MediumReflectionView: View {
                         .foregroundColor(.white.opacity(0.9))
                         .lineLimit(3)
                         .multilineTextAlignment(.leading)
-                        .privacySensitive()
+                        .widgetPrivacySensitive()
 
                     Spacer()
 
@@ -232,7 +232,7 @@ struct LargeReflectionView: View {
                 HStack {
                     Text(entry.moodEmoji)
                         .font(.system(size: 48))
-                        .privacySensitive()
+                        .widgetPrivacySensitive()
 
                     VStack(alignment: .leading, spacing: 4) {
                         Text(entry.moodLabel)
@@ -275,7 +275,7 @@ struct LargeReflectionView: View {
                         .foregroundColor(.white.opacity(0.9))
                         .lineLimit(6)
                         .multilineTextAlignment(.leading)
-                        .privacySensitive()
+                        .widgetPrivacySensitive()
                 }
 
                 // Full-width sparkline

@@ -22,6 +22,9 @@
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		9CC25233496815D862414832 /* VenusWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E933422282320A4661B34E4F /* VenusWidgetBundle.swift */; };
+		AABB0004CCDD0004EEFF0004 /* WidgetTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB0001CCDD0001EEFF0001 /* WidgetTheme.swift */; };
+		AABB0005CCDD0005EEFF0005 /* WeeklyMoodGridWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB0002CCDD0002EEFF0002 /* WeeklyMoodGridWidget.swift */; };
+		AABB0006CCDD0006EEFF0006 /* LogMoodIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB0003CCDD0003EEFF0003 /* LogMoodIntent.swift */; };
 		B2C3D4E5F6A7B8C9D0E1F2A3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* PrivacyInfo.xcprivacy */; };
 		E83B1439F15A98F6273A5A8C /* VenusWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E939B169E35A630787BE7A3F /* VenusWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -92,6 +95,9 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A57B1210499D82A0BE8ADC8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		AABB0001CCDD0001EEFF0001 /* WidgetTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WidgetTheme.swift; sourceTree = "<group>"; };
+		AABB0002CCDD0002EEFF0002 /* WeeklyMoodGridWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WeeklyMoodGridWidget.swift; sourceTree = "<group>"; };
+		AABB0003CCDD0003EEFF0003 /* LogMoodIntent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LogMoodIntent.swift; path = ../InnerCyclesIntents/LogMoodIntent.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F6A7B8C9D0E1F2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AB6091A7D92ED1268DF008EA /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
 		B07F606802700ED955B383D5 /* VenusWidget.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = VenusWidget.entitlements; sourceTree = "<group>"; };
@@ -134,11 +140,14 @@
 		04748A281780E2708DC9317E /* VenusWidget */ = {
 			isa = PBXGroup;
 			children = (
+				AABB0001CCDD0001EEFF0001 /* WidgetTheme.swift */,
 				E933422282320A4661B34E4F /* VenusWidgetBundle.swift */,
 				4799C21E90218CCD6A5B4F0A /* DailyReflectionWidget.swift */,
 				F34B93F47B68E7B5A26302C4 /* MoodInsightWidget.swift */,
 				5EE56249063CC8B2B7FF3F31 /* LockScreenWidget.swift */,
 				3CC57CF3026ADBBA4C8E284F /* CyclePositionWidget.swift */,
+				AABB0002CCDD0002EEFF0002 /* WeeklyMoodGridWidget.swift */,
+				AABB0003CCDD0003EEFF0003 /* LogMoodIntent.swift */,
 				F89D38486D509C484C21A2E5 /* Info.plist */,
 				B07F606802700ED955B383D5 /* VenusWidget.entitlements */,
 			);
@@ -494,11 +503,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AABB0004CCDD0004EEFF0004 /* WidgetTheme.swift in Sources */,
 				9CC25233496815D862414832 /* VenusWidgetBundle.swift in Sources */,
 				745DF11F7D5361049B5422F0 /* DailyReflectionWidget.swift in Sources */,
 				91B5D27D44593618B1F1B430 /* MoodInsightWidget.swift in Sources */,
 				34AA80E29511B35262D9FA7E /* LockScreenWidget.swift in Sources */,
 				277EEE112C7AC5DA8AA01DDF /* CyclePositionWidget.swift in Sources */,
+				AABB0005CCDD0005EEFF0005 /* WeeklyMoodGridWidget.swift in Sources */,
+				AABB0006CCDD0006EEFF0006 /* LogMoodIntent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,7 +568,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8RBH9ALBH6;
-				ENABLE_APP_INTENTS_METADATA_EXTRACTION = NO;
+				ENABLE_APP_INTENTS_METADATA_EXTRACTION = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = VenusWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -586,7 +598,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8RBH9ALBH6;
-				ENABLE_APP_INTENTS_METADATA_EXTRACTION = NO;
+				ENABLE_APP_INTENTS_METADATA_EXTRACTION = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = VenusWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -671,7 +683,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 8RBH9ALBH6;
-				ENABLE_APP_INTENTS_METADATA_EXTRACTION = NO;
+				ENABLE_APP_INTENTS_METADATA_EXTRACTION = YES;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = InnerCycles;
@@ -866,7 +878,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 8RBH9ALBH6;
-				ENABLE_APP_INTENTS_METADATA_EXTRACTION = NO;
+				ENABLE_APP_INTENTS_METADATA_EXTRACTION = YES;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = InnerCycles;
@@ -897,7 +909,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 8RBH9ALBH6;
-				ENABLE_APP_INTENTS_METADATA_EXTRACTION = NO;
+				ENABLE_APP_INTENTS_METADATA_EXTRACTION = YES;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = InnerCycles;
@@ -925,7 +937,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8RBH9ALBH6;
-				ENABLE_APP_INTENTS_METADATA_EXTRACTION = NO;
+				ENABLE_APP_INTENTS_METADATA_EXTRACTION = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = VenusWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

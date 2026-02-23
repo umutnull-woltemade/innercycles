@@ -162,19 +162,34 @@ struct MoodSparklineView: View {
 struct LastUpdatedView: View {
     let strings: WidgetStrings
 
-    var body: some View {
+    private var relativeTimeString: String? {
         let defaults = UserDefaults(suiteName: "group.com.venusone.innercycles")
         let timestamp = defaults?.double(forKey: "widget_last_updated") ?? 0
+        guard timestamp > 0 else { return nil }
+        let date = Date(timeIntervalSince1970: timestamp)
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .abbreviated
+        return formatter.localizedString(for: date, relativeTo: Date())
+    }
 
-        if timestamp > 0 {
-            let date = Date(timeIntervalSince1970: timestamp)
-            let formatter = RelativeDateTimeFormatter()
-            formatter.unitsStyle = .abbreviated
-            let relative = formatter.localizedString(for: date, relativeTo: Date())
-
+    var body: some View {
+        if let relative = relativeTimeString {
             Text("\(strings.lastUpdated) \(relative)")
                 .font(.system(size: 9, weight: .medium, design: .rounded))
                 .foregroundColor(.white.opacity(0.4))
+        }
+    }
+}
+
+// MARK: - Privacy Sensitive Extension
+
+extension View {
+    @ViewBuilder
+    func widgetPrivacySensitive() -> some View {
+        if #available(iOSApplicationExtension 15.0, *) {
+            self.privacySensitive()
+        } else {
+            self
         }
     }
 }
