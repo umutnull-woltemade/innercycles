@@ -27,6 +27,7 @@ import '../../streak/presentation/streak_recovery_banner.dart';
 import '../../mood/presentation/mood_checkin_card.dart';
 // unlock_progress_banner import removed (Today Feed simplified)
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
   const TodayFeedScreen({super.key});
@@ -405,20 +406,8 @@ class _TodaysInsightSection extends ConsumerWidget {
             HapticService.buttonPress();
             context.go(Routes.moodTrends);
           },
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: isDark
-                  ? AppColors.starGold.withValues(alpha: 0.08)
-                  : AppColors.lightStarGold.withValues(alpha: 0.08),
-              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-              border: Border.all(
-                color: isDark
-                    ? AppColors.starGold.withValues(alpha: 0.2)
-                    : AppColors.lightStarGold.withValues(alpha: 0.2),
-              ),
-            ),
+          child: PremiumCard(
+            style: PremiumCardStyle.gold,
             child: Row(
               children: [
                 Icon(
@@ -1068,26 +1057,8 @@ class _RetrospectiveBanner extends ConsumerWidget {
           HapticService.buttonPress();
           context.push(Routes.retrospective);
         },
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            gradient: LinearGradient(
-              colors: isDark
-                  ? [
-                      AppColors.auroraStart.withValues(alpha: 0.12),
-                      AppColors.amethyst.withValues(alpha: 0.06),
-                    ]
-                  : [
-                      AppColors.lightAuroraStart.withValues(alpha: 0.08),
-                      AppColors.amethyst.withValues(alpha: 0.04),
-                    ],
-            ),
-            border: Border.all(
-              color: (isDark ? AppColors.auroraStart : AppColors.lightAuroraStart)
-                  .withValues(alpha: 0.2),
-            ),
-          ),
+        child: PremiumCard(
+          style: PremiumCardStyle.aurora,
           child: Row(
             children: [
               Icon(

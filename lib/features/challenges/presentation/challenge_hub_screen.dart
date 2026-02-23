@@ -25,6 +25,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class ChallengeHubScreen extends ConsumerStatefulWidget {
   const ChallengeHubScreen({super.key});
@@ -381,13 +382,9 @@ class _ActiveChallengeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.gold,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.2)),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

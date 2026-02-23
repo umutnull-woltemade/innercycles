@@ -20,6 +20,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 // ============================================================================
 // SCREEN
@@ -288,18 +289,11 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
   }
 
   Widget _buildHeader(BuildContext context, AppLanguage language) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.amethyst,
+      showInnerShadow: false,
+      borderRadius: 0,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            CosmicPalette.amethyst.withValues(alpha: 0.3),
-            Colors.transparent,
-          ],
-        ),
-      ),
       child: Row(
         children: [
           IconButton(

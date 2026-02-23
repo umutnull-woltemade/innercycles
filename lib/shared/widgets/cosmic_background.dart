@@ -317,8 +317,8 @@ class _OrbPainter extends CustomPainter {
         Offset(cx, cy),
         orb.radius,
         [
-          orb.color.withValues(alpha: 0.06),
-          orb.color.withValues(alpha: 0.02),
+          orb.color.withValues(alpha: 0.12),
+          orb.color.withValues(alpha: 0.05),
           orb.color.withValues(alpha: 0),
         ],
         [0.0, 0.5, 1.0],
@@ -411,42 +411,42 @@ class _AbstractPainter extends CustomPainter {
       AppColors.auroraStart,
     ];
 
-    // Layer 1: Tiny stars (~60)
-    for (var i = 0; i < 60; i++) {
+    // Layer 1: Tiny stars (~80)
+    for (var i = 0; i < 80; i++) {
       final x = rng.nextDouble() * size.width;
       final y = rng.nextDouble() * size.height;
-      final r = 0.5 + rng.nextDouble() * 0.7; // 0.5-1.2px
-      final opacity = 0.08 + rng.nextDouble() * 0.12; // 0.08-0.20
+      final r = 0.6 + rng.nextDouble() * 1.0; // 0.6-1.6px
+      final opacity = 0.15 + rng.nextDouble() * 0.25; // 0.15-0.40
       paint.color = Colors.white.withValues(alpha: opacity);
       canvas.drawCircle(Offset(x, y), r, paint);
     }
 
-    // Layer 2: Medium stars (~25)
-    for (var i = 0; i < 25; i++) {
+    // Layer 2: Medium stars (~35)
+    for (var i = 0; i < 35; i++) {
       final x = rng.nextDouble() * size.width;
       final y = rng.nextDouble() * size.height;
-      final r = 1.5 + rng.nextDouble() * 1.0; // 1.5-2.5px
-      final opacity = 0.15 + rng.nextDouble() * 0.20; // 0.15-0.35
+      final r = 1.5 + rng.nextDouble() * 1.5; // 1.5-3.0px
+      final opacity = 0.25 + rng.nextDouble() * 0.30; // 0.25-0.55
       paint.color = Colors.white.withValues(alpha: opacity);
       canvas.drawCircle(Offset(x, y), r, paint);
     }
 
-    // Layer 3: Bright stars (~8) with halos
-    for (var i = 0; i < 8; i++) {
+    // Layer 3: Bright stars (~12) with halos
+    for (var i = 0; i < 12; i++) {
       final x = rng.nextDouble() * size.width;
       final y = rng.nextDouble() * size.height;
-      final r = 2.5 + rng.nextDouble() * 1.0; // 2.5-3.5px
-      final opacity = 0.25 + rng.nextDouble() * 0.25; // 0.25-0.50
+      final r = 2.5 + rng.nextDouble() * 1.5; // 2.5-4.0px
+      final opacity = 0.40 + rng.nextDouble() * 0.35; // 0.40-0.75
       final pos = Offset(x, y);
 
-      // 2-3 bright stars get a color tint
-      final isColored = i < 3;
+      // 3-4 bright stars get a color tint
+      final isColored = i < 4;
       final baseColor =
-          isColored ? coloredStarColors[i] : Colors.white;
+          isColored ? coloredStarColors[i % coloredStarColors.length] : Colors.white;
 
       // Halo glow
-      paint.color = baseColor.withValues(alpha: 0.06);
-      canvas.drawCircle(pos, r * 3, paint);
+      paint.color = baseColor.withValues(alpha: 0.12);
+      canvas.drawCircle(pos, r * 3.5, paint);
 
       // Core
       paint.color = baseColor.withValues(alpha: opacity);
@@ -496,13 +496,13 @@ class _LightPatternPainter extends CustomPainter {
     final rng = Random(42);
     final paint = Paint();
 
-    // ~30 small subtle dots in grey tones
-    for (var i = 0; i < 30; i++) {
+    // ~50 small subtle dots in grey tones
+    for (var i = 0; i < 50; i++) {
       final x = rng.nextDouble() * size.width;
       final y = rng.nextDouble() * size.height;
-      final r = 0.8 + rng.nextDouble() * 1.0; // 0.8-1.8px
-      final opacity = 0.03 + rng.nextDouble() * 0.03; // 0.03-0.06
-      final grey = 0.3 + rng.nextDouble() * 0.3; // 0.3-0.6 grey value
+      final r = 1.0 + rng.nextDouble() * 1.2; // 1.0-2.2px
+      final opacity = 0.06 + rng.nextDouble() * 0.06; // 0.06-0.12
+      final grey = 0.25 + rng.nextDouble() * 0.35; // 0.25-0.60 grey value
       paint.color = Color.fromRGBO(
         (grey * 255).round(),
         (grey * 255).round(),
