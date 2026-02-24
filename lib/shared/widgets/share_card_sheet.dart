@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 import '../../data/models/share_card_models.dart';
 import '../../data/content/share_card_templates.dart';
 import '../../data/services/instagram_share_service.dart';
@@ -151,7 +152,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
                     ),
                     child: Text(
                       widget.template.badge(widget.isEn),
-                      style: const TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 10,
                         fontWeight: FontWeight.w700,
                         color: Colors.white70,
@@ -163,7 +164,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
                   // Headline
                   Text(
                     widget.data.headline,
-                    style: const TextStyle(
+                    style: AppTypography.displayFont.copyWith(
                       fontSize: 22,
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
@@ -186,7 +187,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
                       children: [
                         Text(
                           widget.data.statValue!,
-                          style: TextStyle(
+                          style: AppTypography.displayFont.copyWith(
                             fontSize: 32,
                             fontWeight: FontWeight.w800,
                             color: accent,
@@ -217,11 +218,11 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
                       const SizedBox(width: 6),
                       Text(
                         'InnerCycles',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                           color: Colors.white.withValues(alpha: 0.4),
-                          letterSpacing: 0.5,
+                          letterSpacing: 1.5,
                         ),
                       ),
                     ],
@@ -247,7 +248,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
                   : const Icon(Icons.share_rounded, size: 20),
               label: Text(
                 widget.isEn ? 'Share' : 'Paylaş',
-                style: const TextStyle(
+                style: AppTypography.modernAccent(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),

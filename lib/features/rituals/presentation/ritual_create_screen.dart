@@ -13,6 +13,7 @@ import '../../../data/services/premium_service.dart';
 import '../../../data/content/habit_suggestions_content.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 
 class RitualCreateScreen extends ConsumerStatefulWidget {
@@ -219,16 +220,14 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            GradientText(
                               isEn
                                   ? 'Ritual Items (${_itemControllers.length}/$maxItems)'
                                   : 'Ritüel Maddeleri (${_itemControllers.length}/$maxItems)',
+                              variant: GradientTextVariant.gold,
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
-                                color: isDark
-                                    ? AppColors.textSecondary
-                                    : AppColors.lightTextSecondary,
                                 letterSpacing: 0.5,
                               ),
                             ),

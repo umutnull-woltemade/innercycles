@@ -20,6 +20,7 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class LibraryHubScreen extends ConsumerWidget {
@@ -200,14 +201,12 @@ class _CategoryCard extends StatelessWidget {
               AppSymbol(category.emoji, size: AppSymbolSize.lg),
               const SizedBox(width: AppConstants.spacingLg),
               Expanded(
-                child: Text(
+                child: GradientText(
                   isEn ? category.nameEn : category.nameTr,
+                  variant: GradientTextVariant.gold,
                   style: AppTypography.elegantAccent(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
                   ),
                 ),
               ),

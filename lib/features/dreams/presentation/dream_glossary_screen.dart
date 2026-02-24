@@ -22,6 +22,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 
 // ============================================================================
@@ -986,11 +987,11 @@ class _SymbolDetailSheet extends StatelessWidget {
             children: [
               AppSymbol(emoji, size: AppSymbolSize.sm),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 title,
+                variant: GradientTextVariant.gold,
                 style: AppTypography.elegantAccent(
                   fontSize: 16,
-                  color: color ?? CosmicPalette.starGold,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -1032,14 +1033,14 @@ class _SymbolDetailSheet extends StatelessWidget {
             children: [
               const AppSymbol('\u{1F3DB}', size: AppSymbolSize.sm),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 L10nService.get(
                   'screens.dream_glossary.sections.cultural_interpretations',
                   language,
                 ),
+                variant: GradientTextVariant.aurora,
                 style: AppTypography.elegantAccent(
                   fontSize: 16,
-                  color: CosmicPalette.etherealCyan,
                   fontWeight: FontWeight.w600,
                 ),
               ),

@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:file_picker/file_picker.dart';
 import '../../../core/constants/common_strings.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/models/birthday_contact.dart';
@@ -524,7 +525,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
           ),
           const SizedBox(height: 24),
           GestureDetector(
-            onTap: () => context.pop(),
+            onTap: () => context.go(Routes.birthdayAgenda),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
               decoration: BoxDecoration(

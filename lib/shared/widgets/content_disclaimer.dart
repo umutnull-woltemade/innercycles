@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 import '../../data/providers/app_providers.dart';
 import '../../data/services/l10n_service.dart';
 
@@ -39,12 +40,11 @@ class ContentDisclaimer extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Text(
           text,
-          style: TextStyle(
+          style: AppTypography.decorativeScript(
             fontSize: 10,
             color: isDark
                 ? Colors.white54
                 : AppColors.textLight.withValues(alpha: 0.6),
-            fontStyle: FontStyle.italic,
           ),
           textAlign: TextAlign.center,
         ),
@@ -153,8 +153,9 @@ class PageFooterWithDisclaimer extends StatelessWidget {
         Center(
           child: Text(
             brandText,
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
+              letterSpacing: 1.0,
               color: isDark ? Colors.white38 : AppColors.textLight,
             ),
           ),
