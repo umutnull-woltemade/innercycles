@@ -222,10 +222,16 @@ class BirthdayContact {
     return nextBirthday.difference(today).inDays;
   }
 
-  /// Whether this person's birthday is today
+  /// Whether this person's birthday is today.
+  /// For Feb 29 birthdays in non-leap years, recognizes Feb 28 as their birthday.
   bool get isBirthdayToday {
     final now = DateTime.now();
-    return now.month == birthdayMonth && now.day == birthdayDay;
+    if (now.month == birthdayMonth && now.day == birthdayDay) return true;
+    if (birthdayMonth == 2 && birthdayDay == 29 && now.month == 2 && now.day == 28) {
+      final isLeap = (now.year % 4 == 0 && now.year % 100 != 0) || (now.year % 400 == 0);
+      return !isLeap;
+    }
+    return false;
   }
 
   /// Whether birthday falls within this week (next 7 days)

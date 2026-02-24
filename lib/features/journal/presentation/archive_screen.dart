@@ -92,25 +92,16 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                   _lastService = service;
                   _cachedEntries = service.getAllEntries();
                 }
-                var entries = _cachedEntries;
-
-                // Apply filters
-                if (_filterArea != null) {
-                  entries = entries
-                      .where((e) => e.focusArea == _filterArea)
-                      .toList();
-                }
-                if (_searchQuery.isNotEmpty) {
-                  entries = entries
-                      .where(
-                        (e) =>
-                            e.note?.toLowerCase().contains(
-                              _searchQuery.toLowerCase(),
-                            ) ??
-                            false,
-                      )
-                      .toList();
-                }
+                final searchLower = _searchQuery.toLowerCase();
+                final entries = _cachedEntries.where((e) {
+                  if (_filterArea != null && e.focusArea != _filterArea) {
+                    return false;
+                  }
+                  if (searchLower.isNotEmpty) {
+                    return e.note?.toLowerCase().contains(searchLower) ?? false;
+                  }
+                  return true;
+                }).toList();
 
                 return CupertinoScrollbar(
                   child: CustomScrollView(

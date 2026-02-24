@@ -19,6 +19,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/notification_service.dart';
 import '../../../shared/widgets/birthday_avatar.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
@@ -43,6 +44,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   bool _dayBeforeReminder = true;
   bool _isSaving = false;
   bool _isEditing = false;
+  bool _hasChanges = false;
   BirthdayContact? _existingContact;
 
   @override
@@ -88,12 +90,21 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
 
-    return Scaffold(
-      body: CosmicBackground(
-        child: CustomScrollView(
-          physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
+    return PopScope(
+      canPop: !_hasChanges,
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
+        _showDiscardDialog();
+      },
+      child: Scaffold(
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: CosmicBackground(
+          child: CustomScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
           slivers: [
             GlassSliverAppBar(
               title: _isEditing
@@ -122,9 +133,29 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
               ),
             ),
           ],
+          ),
         ),
       ),
+      ),
     );
+  }
+
+  void _showDiscardDialog() async {
+    final language = ref.read(languageProvider);
+    final isEn = language == AppLanguage.en;
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: isEn ? 'Discard Changes?' : 'De\u{011F}i\u{015F}iklikleri At?',
+      message: isEn
+          ? 'You have unsaved changes. Are you sure you want to go back?'
+          : 'Kaydedilmemi\u{015F} de\u{011F}i\u{015F}iklikleriniz var. Geri d\u{00F6}nmek istedi\u{011F}inizden emin misiniz?',
+      cancelLabel: isEn ? 'Cancel' : '\u{0130}ptal',
+      confirmLabel: isEn ? 'Discard' : 'At',
+      isDestructive: true,
+    );
+    if (confirmed == true && mounted) {
+      if (context.canPop()) context.pop();
+    }
   }
 
   // ═════════════════════════════════════════════════════════════════════════
@@ -170,7 +201,10 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
     final fileName =
         'birthday_${DateTime.now().millisecondsSinceEpoch}${p.extension(picked.path)}';
     final savedFile = await File(picked.path).copy('${appDir.path}/$fileName');
-    setState(() => _imagePath = savedFile.path);
+    setState(() {
+      _imagePath = savedFile.path;
+      _hasChanges = true;
+    });
   }
 
   // ═════════════════════════════════════════════════════════════════════════
@@ -189,7 +223,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         const SizedBox(height: 8),
         TextField(
           controller: _nameController,
-          onChanged: (_) => setState(() {}),
+          onChanged: (_) => setState(() => _hasChanges = true),
           style: TextStyle(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
@@ -258,7 +292,10 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                       );
                     }),
                     onChanged: (v) {
-                      if (v != null) setState(() => _selectedMonth = v);
+                      if (v != null) setState(() {
+                        _selectedMonth = v;
+                        _hasChanges = true;
+                      });
                       HapticFeedback.selectionClick();
                     },
                   ),
@@ -287,7 +324,10 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                       );
                     }),
                     onChanged: (v) {
-                      if (v != null) setState(() => _selectedDay = v);
+                      if (v != null) setState(() {
+                        _selectedDay = v;
+                        _hasChanges = true;
+                      });
                       HapticFeedback.selectionClick();
                     },
                   ),
@@ -336,7 +376,10 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                         );
                       }),
                     ],
-                    onChanged: (v) => setState(() => _selectedYear = v),
+                    onChanged: (v) => setState(() {
+                      _selectedYear = v;
+                      _hasChanges = true;
+                    }),
                   ),
                 ),
               ),
@@ -382,7 +425,10 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
             return GestureDetector(
               onTap: () {
                 HapticFeedback.selectionClick();
-                setState(() => _relationship = rel);
+                setState(() {
+                  _relationship = rel;
+                  _hasChanges = true;
+                });
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(
@@ -489,14 +535,20 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
           isDark,
           label: isEn ? 'Birthday notification' : 'Do\u{011F}um g\u{00FC}n\u{00FC} bildirimi',
           value: _notificationsEnabled,
-          onChanged: (v) => setState(() => _notificationsEnabled = v),
+          onChanged: (v) => setState(() {
+            _notificationsEnabled = v;
+            _hasChanges = true;
+          }),
         ),
         const SizedBox(height: 8),
         _toggleRow(
           isDark,
           label: isEn ? 'Day before reminder' : 'Bir g\u{00FC}n \u{00F6}nce hat\u{0131}rlat',
           value: _dayBeforeReminder,
-          onChanged: (v) => setState(() => _dayBeforeReminder = v),
+          onChanged: (v) => setState(() {
+            _dayBeforeReminder = v;
+            _hasChanges = true;
+          }),
         ),
       ],
     ).animate().fadeIn(duration: 300.ms, delay: 300.ms);

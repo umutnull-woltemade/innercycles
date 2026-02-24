@@ -109,8 +109,11 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
             ),
             data: (allNotes) {
               final filtered = _filterNotes(allNotes);
-              final pinned = filtered.where((n) => n.isPinned).toList();
-              final unpinned = filtered.where((n) => !n.isPinned).toList();
+              final pinned = <NoteToSelf>[];
+              final unpinned = <NoteToSelf>[];
+              for (final n in filtered) {
+                (n.isPinned ? pinned : unpinned).add(n);
+              }
 
               // Collect all tags
               final allTags = <String>{};

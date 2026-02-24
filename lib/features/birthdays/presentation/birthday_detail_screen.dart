@@ -373,12 +373,26 @@ class BirthdayDetailScreen extends ConsumerWidget {
       confirmLabel: isEn ? 'Delete' : 'Sil',
       isDestructive: true,
       onConfirm: () async {
-        final service =
-            await ref.read(birthdayContactServiceProvider.future);
-        await service.deleteContact(contact.id);
-        await NotificationService().cancelBirthdayNotification(contact.id);
-        ref.invalidate(birthdayContactServiceProvider);
-        if (context.mounted) context.pop();
+        try {
+          final service =
+              await ref.read(birthdayContactServiceProvider.future);
+          await service.deleteContact(contact.id);
+          await NotificationService().cancelBirthdayNotification(contact.id);
+          ref.invalidate(birthdayContactServiceProvider);
+          if (context.mounted) context.pop();
+        } catch (_) {
+          if (context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  isEn
+                      ? 'Could not delete. Please try again.'
+                      : 'Silinemedi. L\u{00FC}tfen tekrar deneyin.',
+                ),
+              ),
+            );
+          }
+        }
       },
     );
   }

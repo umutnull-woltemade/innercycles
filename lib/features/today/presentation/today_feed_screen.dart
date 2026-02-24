@@ -436,7 +436,7 @@ class _HomeHeader extends StatelessWidget {
                       child: userName.isNotEmpty
                           ? Text(
                               _getInitials(),
-                              style: TextStyle(
+                              style: AppTypography.displayFont.copyWith(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
                                 color: isDark
@@ -635,7 +635,7 @@ class _StatCard extends StatelessWidget {
               const SizedBox(height: 6),
               Text(
                 value,
-                style: TextStyle(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                   color: isDark
@@ -648,12 +648,11 @@ class _StatCard extends StatelessWidget {
               const SizedBox(height: 2),
               Text(
                 label,
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 10,
-                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.3,
                   color:
                       isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                  letterSpacing: 0.3,
                 ),
               ),
             ],
@@ -694,7 +693,7 @@ class _HeroJournalCard extends ConsumerWidget {
                 // Decorative open quote
                 Text(
                   '\u201C',
-                  style: TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 48,
                     fontWeight: FontWeight.w800,
                     height: 0.5,
@@ -780,7 +779,7 @@ class _HeroJournalCard extends ConsumerWidget {
                         const SizedBox(width: 8),
                         Text(
                           isEn ? 'Start Writing' : 'Yazmaya Başla',
-                          style: const TextStyle(
+                          style: AppTypography.modernAccent(
                             fontSize: 15,
                             fontWeight: FontWeight.w700,
                             color: AppColors.deepSpace,
@@ -906,7 +905,7 @@ class _HeroJournalCard extends ConsumerWidget {
                     Flexible(
                       child: Text(
                         isEn ? 'Start Journaling' : 'Günlüğe Başla',
-                        style: const TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
                           letterSpacing: 0.3,
@@ -974,7 +973,7 @@ class _FocusPulseRow extends ConsumerWidget {
                     GradientText(
                       isEn ? 'Your Focus Pulse' : 'Odak Nabzın',
                       variant: GradientTextVariant.gold,
-                      style: const TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
                         letterSpacing: 0.3,
@@ -1069,9 +1068,8 @@ class _FocusPulseRow extends ConsumerWidget {
                               const SizedBox(height: 8),
                               Text(
                                 _areaLabel(area),
-                                style: TextStyle(
+                                style: AppTypography.elegantAccent(
                                   fontSize: 11,
-                                  fontWeight: FontWeight.w500,
                                   color: isDark
                                       ? AppColors.textSecondary
                                       : AppColors.lightTextSecondary,
@@ -1081,7 +1079,7 @@ class _FocusPulseRow extends ConsumerWidget {
                               ),
                               Text(
                                 score.toStringAsFixed(1),
-                                style: TextStyle(
+                                style: AppTypography.displayFont.copyWith(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w700,
                                   color: color,
@@ -1160,7 +1158,7 @@ class _RecentEntriesHorizontal extends ConsumerWidget {
                     GradientText(
                       isEn ? 'Recent Entries' : 'Son Kayıtlar',
                       variant: GradientTextVariant.gold,
-                      style: const TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
                         letterSpacing: 0.3,
@@ -1261,9 +1259,8 @@ class _RecentEntriesHorizontal extends ConsumerWidget {
                                       // Date
                                       Text(
                                         dateStr,
-                                        style: TextStyle(
+                                        style: AppTypography.elegantAccent(
                                           fontSize: 12,
-                                          fontWeight: FontWeight.w500,
                                           color: isDark
                                               ? AppColors.textMuted
                                               : AppColors.lightTextMuted,
@@ -1284,7 +1281,7 @@ class _RecentEntriesHorizontal extends ConsumerWidget {
                                         ),
                                         child: Text(
                                           areaLabel,
-                                          style: TextStyle(
+                                          style: AppTypography.modernAccent(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
                                             color: accentColor,
@@ -1493,12 +1490,11 @@ class _TodaysInsightSection extends ConsumerWidget {
                 Expanded(
                   child: Text(
                     text,
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 14,
                       color: isDark
                           ? AppColors.textSecondary
                           : AppColors.lightTextSecondary,
-                      height: 1.4,
                     ),
                   ),
                 ),
@@ -1587,9 +1583,8 @@ class _PersonalizedPromptSection extends ConsumerWidget {
                     GradientText(
                       isEn ? 'For your $areaLabel' : '$areaLabel için',
                       variant: GradientTextVariant.amethyst,
-                      style: const TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 11,
-                        fontWeight: FontWeight.w600,
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -1598,13 +1593,11 @@ class _PersonalizedPromptSection extends ConsumerWidget {
                 const SizedBox(height: 8),
                 Text(
                   isEn ? prompt.promptEn : prompt.promptTr,
-                  style: TextStyle(
+                  style: AppTypography.decorativeScript(
                     fontSize: 14,
                     color: isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,
-                    height: 1.5,
-                    fontStyle: FontStyle.italic,
                   ),
                 ),
               ],
@@ -1701,7 +1694,7 @@ class _TodayBirthdayBanner extends ConsumerWidget {
                             todayBirthdays.length == 1
                                 ? todayBirthdays.first.name
                                 : '${todayBirthdays.first.name} +${todayBirthdays.length - 1}',
-                            style: TextStyle(
+                            style: AppTypography.displayFont.copyWith(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
                               color: isDark
@@ -1784,7 +1777,7 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                   GradientText(
                     isEn ? 'Recent Life Events' : 'Son Yaşam Olayları',
                     variant: GradientTextVariant.gold,
-                    style: const TextStyle(
+                    style: AppTypography.displayFont.copyWith(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
                       letterSpacing: 0.3,
@@ -1865,7 +1858,7 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                               children: [
                                 Text(
                                   event.title,
-                                  style: TextStyle(
+                                  style: AppTypography.displayFont.copyWith(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                     color: isDark
@@ -1944,7 +1937,7 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                         isEn
                             ? 'Any big moments this week?'
                             : 'Bu hafta büyük anlar oldu mu?',
-                        style: TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                           color: isDark
@@ -2046,7 +2039,7 @@ class _RetrospectiveBanner extends ConsumerWidget {
                         isEn
                             ? 'Add entries for your most meaningful days'
                             : 'Geçmişindeki önemli günleri ekle',
-                        style: TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                           color: isDark
@@ -2141,7 +2134,7 @@ class _UpcomingRemindersCard extends ConsumerWidget {
                                   ? 'Upcoming Reminders'
                                   : 'Yaklaşan Hatırlatıcılar',
                               variant: GradientTextVariant.gold,
-                              style: const TextStyle(
+                              style: AppTypography.displayFont.copyWith(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -2283,7 +2276,7 @@ class _WeeklySharePrompt extends ConsumerWidget {
                             ? 'Your latest pattern card is ready'
                             : 'Son örüntü kartın hazır',
                         variant: GradientTextVariant.aurora,
-                        style: const TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                         ),
@@ -2370,7 +2363,7 @@ class _WrappedBanner extends StatelessWidget {
                             ? 'Your ${DateTime.now().year} Wrapped is ready!'
                             : '${DateTime.now().year} Wrapped\'ın hazır!',
                         variant: GradientTextVariant.gold,
-                        style: const TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
                         ),
@@ -2458,7 +2451,7 @@ class _MonthlyWrappedBanner extends StatelessWidget {
                             ? 'Your ${monthNames[lastMonth]} Wrapped'
                             : '${monthNames[lastMonth]} Özetin Hazır',
                         variant: GradientTextVariant.amethyst,
-                        style: const TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
                         ),

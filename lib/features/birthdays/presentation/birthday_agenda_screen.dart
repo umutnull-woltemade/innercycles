@@ -121,23 +121,33 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                 isDark: isDark,
                 isEn: isEn,
                 onPrevious: () {
+                  final minYear = DateTime.now().year - 1;
                   HapticFeedback.selectionClick();
                   setState(() {
                     _selectedMonth--;
                     if (_selectedMonth < 1) {
-                      _selectedMonth = 12;
-                      _selectedYear--;
+                      if (_selectedYear > minYear) {
+                        _selectedMonth = 12;
+                        _selectedYear--;
+                      } else {
+                        _selectedMonth = 1;
+                      }
                     }
                     _selectedDay = null;
                   });
                 },
                 onNext: () {
+                  final maxYear = DateTime.now().year + 1;
                   HapticFeedback.selectionClick();
                   setState(() {
                     _selectedMonth++;
                     if (_selectedMonth > 12) {
-                      _selectedMonth = 1;
-                      _selectedYear++;
+                      if (_selectedYear < maxYear) {
+                        _selectedMonth = 1;
+                        _selectedYear++;
+                      } else {
+                        _selectedMonth = 12;
+                      }
                     }
                     _selectedDay = null;
                   });

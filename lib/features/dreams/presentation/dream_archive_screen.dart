@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
@@ -114,36 +115,9 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     final year = parts[0];
     final month = int.tryParse(parts[1]) ?? 1;
 
-    final monthsEn = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-    final monthsTr = [
-      'Ocak',
-      'Şubat',
-      'Mart',
-      'Nisan',
-      'Mayıs',
-      'Haziran',
-      'Temmuz',
-      'Ağustos',
-      'Eylül',
-      'Ekim',
-      'Kasım',
-      'Aralık',
-    ];
+    final months = isEn ? CommonStrings.monthsFullEn : CommonStrings.monthsFullTr;
 
-    final monthName = isEn ? monthsEn[month - 1] : monthsTr[month - 1];
+    final monthName = months[month - 1];
     return '$monthName $year';
   }
 

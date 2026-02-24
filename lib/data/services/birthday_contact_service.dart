@@ -161,9 +161,10 @@ class BirthdayContactService with SupabaseSyncMixin {
   Future<List<BirthdayContact>> importContacts(List<BirthdayContact> newContacts) async {
     final imported = <BirthdayContact>[];
     for (final incoming in newContacts) {
+      final normalizedName = incoming.name.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
       final isDuplicate = _contacts.any(
         (c) =>
-            c.name.toLowerCase() == incoming.name.toLowerCase() &&
+            c.name.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ') == normalizedName &&
             c.birthdayMonth == incoming.birthdayMonth &&
             c.birthdayDay == incoming.birthdayDay,
       );
@@ -279,5 +280,6 @@ class BirthdayContactService with SupabaseSyncMixin {
     'source': c.source.name,
     'notifications_enabled': c.notificationsEnabled,
     'day_before_reminder': c.dayBeforeReminder,
+    'created_at': c.createdAt.toIso8601String(),
   };
 }

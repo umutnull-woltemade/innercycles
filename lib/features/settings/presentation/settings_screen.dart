@@ -298,7 +298,7 @@ class SettingsScreen extends ConsumerWidget {
                                   ),
                                   child: Text(
                                     'PRO',
-                                    style: TextStyle(
+                                    style: AppTypography.modernAccent(
                                       fontSize: 11,
                                       fontWeight: FontWeight.bold,
                                       color: isPremium
@@ -562,7 +562,7 @@ class SettingsScreen extends ConsumerWidget {
                       Center(
                         child: Text(
                           L10nService.get('settings.version', language),
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 13,
                             color: isDark
                                 ? AppColors.textMuted
@@ -598,7 +598,7 @@ class SettingsScreen extends ConsumerWidget {
                               ),
                               child: Text(
                                 L10nService.get('settings.pin', language),
-                                style: TextStyle(
+                                style: AppTypography.modernAccent(
                                   fontSize: 11,
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.deepSpace,
@@ -753,7 +753,7 @@ class SettingsScreen extends ConsumerWidget {
             onPressed: () => Navigator.pop(context),
             child: Text(
               language == AppLanguage.en ? 'OK' : 'Tamam',
-              style: const TextStyle(
+              style: AppTypography.modernAccent(
                 color: AppColors.starGold,
                 fontWeight: FontWeight.w600,
               ),
@@ -1078,7 +1078,7 @@ class _ThemeOption extends StatelessWidget {
               const SizedBox(height: 6),
               Text(
                 label,
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 13,
                   color: isSelected
                       ? (isDark

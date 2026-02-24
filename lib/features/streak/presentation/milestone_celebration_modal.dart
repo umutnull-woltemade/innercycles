@@ -245,9 +245,9 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                     const SizedBox(width: 4),
                     Text(
                       'InnerCycles',
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 11,
-                        fontWeight: FontWeight.w500,
+                        letterSpacing: 1.5,
                         color: isDark
                             ? Colors.white24
                             : AppColors.textDark.withValues(alpha: 0.3),
@@ -290,7 +290,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                         ),
                         child: Text(
                           isEn ? 'Keep Going' : 'Devam Et',
-                          style: const TextStyle(
+                          style: AppTypography.modernAccent(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                           ),
