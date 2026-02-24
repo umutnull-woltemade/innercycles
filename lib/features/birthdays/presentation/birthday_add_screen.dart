@@ -491,6 +491,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         const SizedBox(height: 8),
         TextField(
           controller: _noteController,
+          onChanged: (_) => setState(() => _hasChanges = true),
           maxLines: 3,
           style: TextStyle(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -692,7 +693,10 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
       // Invalidate providers
       ref.invalidate(birthdayContactServiceProvider);
 
-      if (mounted) context.pop();
+      if (mounted) {
+        _hasChanges = false;
+        context.pop();
+      }
     } catch (_) {
       if (mounted) {
         final lang = ref.read(languageProvider);
