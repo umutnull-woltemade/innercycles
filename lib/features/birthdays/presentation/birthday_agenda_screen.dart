@@ -14,6 +14,7 @@ import '../../../core/theme/app_typography.dart';
 import '../../../data/models/birthday_contact.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/birthday_contact_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/birthday_avatar.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
@@ -254,7 +255,7 @@ class _TodayBanner extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Text('\u{1F382}', style: TextStyle(fontSize: 24)),
+              const AppSymbol.card('\u{1F382}'),
               const SizedBox(width: 10),
               GradientText(
                 isEn ? 'Today\'s Birthdays!' : 'Bug\u{00FC}nk\u{00FC} Do\u{011F}um G\u{00FC}nleri!',
@@ -764,7 +765,7 @@ class _EmptyState extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
       child: Column(
         children: [
-          const Text('\u{1F382}', style: TextStyle(fontSize: 56)),
+          const AppSymbol.hero('\u{1F382}'),
           const SizedBox(height: 16),
           GradientText(
             isEn

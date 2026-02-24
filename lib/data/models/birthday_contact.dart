@@ -237,7 +237,7 @@ class BirthdayContact {
   /// Whether birthday falls within this week (next 7 days)
   bool get isBirthdayThisWeek => daysUntilBirthday <= 7;
 
-  /// Age if birth year is known, null otherwise
+  /// Age if birth year is known, null otherwise. Returns null for invalid/future years.
   int? get age {
     if (birthYear == null) return null;
     final now = DateTime.now();
@@ -246,7 +246,7 @@ class BirthdayContact {
         (now.month == birthdayMonth && now.day < birthdayDay)) {
       calculatedAge--;
     }
-    return calculatedAge;
+    return calculatedAge >= 0 ? calculatedAge : null;
   }
 
   /// Initials from name (first letters of first two words)
