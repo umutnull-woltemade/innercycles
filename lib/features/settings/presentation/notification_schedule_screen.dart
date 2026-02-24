@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
@@ -175,7 +176,7 @@ class _NotificationScheduleScreenState
                                 _settings?.dailyReflectionEnabled == true
                                 ? _buildTimePicker(isDark, isEn)
                                 : null,
-                          ),
+                          ).animate().fadeIn(duration: 300.ms),
                           const SizedBox(height: AppConstants.spacingMd),
 
                           // Evening reflection
@@ -194,7 +195,7 @@ class _NotificationScheduleScreenState
                             enabled:
                                 _settings?.eveningReflectionEnabled ?? false,
                             onToggle: _toggleEveningReflection,
-                          ),
+                          ).animate().fadeIn(duration: 300.ms, delay: 60.ms),
                           const SizedBox(height: AppConstants.spacingMd),
 
                           // Journal prompt
@@ -217,7 +218,7 @@ class _NotificationScheduleScreenState
                                 _settings?.journalPromptEnabled == true
                                 ? _buildJournalPromptTimePicker(isDark, isEn)
                                 : null,
-                          ),
+                          ).animate().fadeIn(duration: 300.ms, delay: 120.ms),
                           const SizedBox(height: AppConstants.spacingMd),
 
                           // Wellness reminders
@@ -236,7 +237,7 @@ class _NotificationScheduleScreenState
                             enabled:
                                 _settings?.wellnessRemindersEnabled ?? false,
                             onToggle: _toggleWellness,
-                          ),
+                          ).animate().fadeIn(duration: 300.ms, delay: 180.ms),
                           const SizedBox(height: AppConstants.spacingXl),
 
                           // Info text

@@ -16,6 +16,7 @@ import '../../../data/models/birthday_contact.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/facebook_birthday_import_service.dart';
 import '../../../data/services/notification_service.dart';
+import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/birthday_avatar.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -505,7 +506,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
       padding: const EdgeInsets.all(32),
       child: Column(
         children: [
-          const Text('\u{1F389}', style: TextStyle(fontSize: 48)),
+          const AppSymbol.hero('\u{1F389}'),
           const SizedBox(height: 16),
           GradientText(
             isEn ? 'Import Complete!' : 'Aktarma Tamamland\u{0131}!',

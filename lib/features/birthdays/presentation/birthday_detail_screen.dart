@@ -233,24 +233,24 @@ class BirthdayDetailScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    _infoRow(
+                    _toggleRow(
                       isDark,
                       icon: Icons.cake_rounded,
                       label: isEn ? 'Birthday notification' : 'Do\u{011F}um g\u{00FC}n\u{00FC} bildirimi',
-                      value: contact.notificationsEnabled
-                          ? (isEn ? 'On' : 'A\u{00E7}\u{0131}k')
-                          : (isEn ? 'Off' : 'Kapal\u{0131}'),
-                      isEnabled: contact.notificationsEnabled,
+                      value: contact.notificationsEnabled,
+                      onChanged: (v) => _updateNotificationSetting(
+                        ref, contact, notificationsEnabled: v,
+                      ),
                     ),
                     const SizedBox(height: 6),
-                    _infoRow(
+                    _toggleRow(
                       isDark,
                       icon: Icons.notifications_active_rounded,
                       label: isEn ? 'Day before' : 'Bir g\u{00FC}n \u{00F6}nce',
-                      value: contact.dayBeforeReminder
-                          ? (isEn ? 'On' : 'A\u{00E7}\u{0131}k')
-                          : (isEn ? 'Off' : 'Kapal\u{0131}'),
-                      isEnabled: contact.dayBeforeReminder,
+                      value: contact.dayBeforeReminder,
+                      onChanged: (v) => _updateNotificationSetting(
+                        ref, contact, dayBeforeReminder: v,
+                      ),
                     ),
                   ],
                 ),
@@ -321,40 +321,63 @@ class BirthdayDetailScreen extends ConsumerWidget {
     ).animate().fadeIn(duration: 300.ms, delay: 150.ms);
   }
 
-  Widget _infoRow(
+  Widget _toggleRow(
     bool isDark, {
     required IconData icon,
     required String label,
-    required String value,
-    required bool isEnabled,
+    required bool value,
+    required ValueChanged<bool> onChanged,
   }) {
     return Row(
       children: [
         Icon(
           icon,
           size: 16,
-          color: isEnabled ? AppColors.starGold : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+          color: value ? AppColors.starGold : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
         ),
         const SizedBox(width: 8),
-        Text(
-          label,
-          style: AppTypography.subtitle(
-            fontSize: 13,
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+        Expanded(
+          child: Text(
+            label,
+            style: AppTypography.subtitle(
+              fontSize: 13,
+              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+            ),
           ),
         ),
-        const Spacer(),
-        Text(
-          value,
-          style: AppTypography.elegantAccent(
-            fontSize: 13,
-            color: isEnabled
-                ? AppColors.starGold
-                : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
-          ),
+        Switch.adaptive(
+          value: value,
+          onChanged: onChanged,
+          activeTrackColor: AppColors.starGold,
         ),
       ],
     );
+  }
+
+  Future<void> _updateNotificationSetting(
+    WidgetRef ref,
+    BirthdayContact contact, {
+    bool? notificationsEnabled,
+    bool? dayBeforeReminder,
+  }) async {
+    try {
+      final service = await ref.read(birthdayContactServiceProvider.future);
+      final updated = contact.copyWith(
+        notificationsEnabled: notificationsEnabled,
+        dayBeforeReminder: dayBeforeReminder,
+      );
+      await service.updateContact(updated);
+
+      if (updated.notificationsEnabled) {
+        await NotificationService().scheduleBirthdayNotification(updated);
+      } else {
+        await NotificationService().cancelBirthdayNotification(updated.id);
+      }
+
+      ref.invalidate(birthdayContactServiceProvider);
+    } catch (_) {
+      // Silent — toggle will revert on next rebuild
+    }
   }
 
   void _confirmDelete(
