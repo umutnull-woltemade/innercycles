@@ -6,6 +6,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import '../mixins/supabase_sync_mixin.dart';
@@ -179,7 +180,8 @@ class MoodCheckinService with SupabaseSyncMixin {
         _entries = list
             .map((e) => MoodEntry.fromJson(e as Map<String, dynamic>))
             .toList();
-      } catch (_) {
+      } catch (e) {
+        debugPrint('MoodCheckinService._load: JSON decode failed: $e');
         _entries = [];
       }
     }

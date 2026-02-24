@@ -36,7 +36,7 @@ class SleepTrendsScreen extends ConsumerWidget {
               child: Text(
                 CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -73,7 +73,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                     ? 'No sleep data yet.\nLog your first night\'s sleep!'
                     : 'Henüz uyku verisi yok.\nİlk uyku kaydını oluştur!',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   color: isDark
                       ? AppColors.textMuted
                       : AppColors.lightTextMuted,
@@ -278,7 +278,7 @@ class SleepTrendsScreen extends ConsumerWidget {
           GradientText(
             isEn ? 'Last 14 Nights' : 'Son 14 Gece',
             variant: GradientTextVariant.aurora,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -323,7 +323,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                         const SizedBox(height: 4),
                         Text(
                           '${d.day.day}',
-                          style: TextStyle(
+                          style: AppTypography.subtitle(
                             fontSize: 10,
                             color: isDark
                                 ? AppColors.textMuted
@@ -367,7 +367,7 @@ class SleepTrendsScreen extends ConsumerWidget {
           GradientText(
             isEn ? 'Quality Distribution' : 'Kalite Dağılımı',
             variant: GradientTextVariant.aurora,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -384,7 +384,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                     width: 16,
                     child: Text(
                       '${item.$1}',
-                      style: TextStyle(
+                      style: AppTypography.modernAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.bold,
                         color: _qualityColor(item.$1),
@@ -396,7 +396,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                     width: 48,
                     child: Text(
                       item.$2,
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 12,
                         color: isDark
                             ? AppColors.textMuted
@@ -426,7 +426,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                     child: Text(
                       '$count',
                       textAlign: TextAlign.right,
-                      style: TextStyle(
+                      style: AppTypography.modernAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.bold,
                         color: isDark

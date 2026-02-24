@@ -55,7 +55,8 @@ class EnergyMapScreen extends ConsumerWidget {
                       child: Center(
                         child: Text(
                           isEn ? 'Could not load. Your local data is unaffected.' : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                          style: TextStyle(
+                          style: AppTypography.subtitle(
+                            fontSize: 14,
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,
@@ -237,7 +238,7 @@ class _HeatmapGrid extends StatelessWidget {
           GradientText(
             isEn ? 'Energy by Day & Area' : 'Gün ve Alana Göre Enerji',
             variant: GradientTextVariant.aurora,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -253,9 +254,8 @@ class _HeatmapGrid extends StatelessWidget {
                   child: Center(
                     child: Text(
                       dayLabels[i],
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 10,
-                        fontWeight: FontWeight.w500,
                         color: isDark
                             ? AppColors.textMuted
                             : AppColors.lightTextMuted,
@@ -277,7 +277,7 @@ class _HeatmapGrid extends StatelessWidget {
                     width: 60,
                     child: Text(
                       isEn ? area.displayNameEn : area.displayNameTr,
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 10,
                         color: isDark
                             ? AppColors.textMuted
@@ -317,7 +317,7 @@ class _HeatmapGrid extends StatelessWidget {
             children: [
               Text(
                 isEn ? 'Low' : 'Düşük',
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
                       ? AppColors.textMuted
@@ -340,7 +340,7 @@ class _HeatmapGrid extends StatelessWidget {
               const SizedBox(width: 4),
               Text(
                 isEn ? 'High' : 'Yüksek',
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
                       ? AppColors.textMuted
@@ -415,7 +415,7 @@ class _DailyChart extends StatelessWidget {
           GradientText(
             isEn ? 'Last 28 Days' : 'Son 28 Gün',
             variant: GradientTextVariant.aurora,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -456,7 +456,7 @@ class _DailyChart extends StatelessWidget {
             children: [
               Text(
                 isEn ? '4 weeks ago' : '4 hafta önce',
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
                       ? AppColors.textMuted
@@ -465,7 +465,7 @@ class _DailyChart extends StatelessWidget {
               ),
               Text(
                 isEn ? 'Today' : 'Bugün',
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   fontSize: 10,
                   color: isDark
                       ? AppColors.textMuted
@@ -549,7 +549,7 @@ class _InsightTips extends StatelessWidget {
               GradientText(
                 isEn ? 'Observations' : 'Gözlemler',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
@@ -565,7 +565,7 @@ class _InsightTips extends StatelessWidget {
                 children: [
                   Text(
                     '  •  ',
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       color: AppColors.auroraStart,
                       fontWeight: FontWeight.bold,
                     ),

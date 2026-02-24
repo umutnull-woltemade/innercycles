@@ -328,7 +328,7 @@ class _ContextualPaywallSheetState
                         ? 'Cancel anytime. Your entries are always yours.'
                         : 'Dilediğin zaman iptal et. Kayıtların her zaman senin.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       color: Colors.white.withValues(alpha: 0.55),
                       fontSize: 12,
                     ),
@@ -351,7 +351,7 @@ class _ContextualPaywallSheetState
                     },
                     child: Text(
                       isEn ? 'Not now' : 'Şimdi değil',
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         color: Colors.white.withValues(alpha: 0.7),
                         fontSize: 13,
                       ),
@@ -388,9 +388,10 @@ class _ContextualPaywallSheetState
           isEn
               ? monthlyLabel
               : monthlyLabel.replaceAll('.', ',').replaceAll('/mo', '/ay'),
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             color: Colors.white.withValues(alpha: 0.4),
             fontSize: 13,
+          ).copyWith(
             decoration: TextDecoration.lineThrough,
             decorationColor: Colors.white.withValues(alpha: 0.4),
           ),
@@ -461,10 +462,9 @@ class _ContextualPaywallSheetState
           isEn
               ? 'Surface patterns from your entries with Pro'
               : 'Pro ile kayıtlarındaki kalıpları ortaya çıkar',
-          style: TextStyle(
+          style: AppTypography.decorativeScript(
             color: Colors.white.withValues(alpha: 0.5),
             fontSize: 12,
-            fontWeight: FontWeight.w500,
           ),
         ),
       ],
@@ -542,10 +542,9 @@ class _ContextualPaywallSheetState
                       const SizedBox(width: 4),
                       Text(
                         item.label,
-                        style: TextStyle(
+                        style: AppTypography.subtitle(
                           color: Colors.white.withValues(alpha: 0.8),
                           fontSize: 12,
-                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],

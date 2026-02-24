@@ -3,6 +3,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import '../models/note_to_self.dart';
@@ -390,7 +391,8 @@ class NoteToSelfService with SupabaseSyncMixin {
       try {
         final List<dynamic> jsonList = json.decode(jsonString);
         _notes = jsonList.map((j) => NoteToSelf.fromJson(j)).toList();
-      } catch (_) {
+      } catch (e) {
+        debugPrint('NoteToSelfService._loadNotes: JSON decode failed: $e');
         _notes = [];
       }
     }
@@ -402,7 +404,8 @@ class NoteToSelfService with SupabaseSyncMixin {
       try {
         final List<dynamic> jsonList = json.decode(jsonString);
         _reminders = jsonList.map((j) => NoteReminder.fromJson(j)).toList();
-      } catch (_) {
+      } catch (e) {
+        debugPrint('NoteToSelfService._loadReminders: JSON decode failed: $e');
         _reminders = [];
       }
     }

@@ -6,6 +6,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import '../models/cycle_entry.dart';
@@ -336,7 +337,8 @@ class CycleSyncService with SupabaseSyncMixin {
         _periodLogs.sort(
           (a, b) => b.periodStartDate.compareTo(a.periodStartDate),
         );
-      } catch (_) {
+      } catch (e) {
+        debugPrint('CycleSyncService._load: JSON decode failed: $e');
         _periodLogs = [];
       }
     }

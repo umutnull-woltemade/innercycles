@@ -21,6 +21,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
@@ -414,22 +415,12 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
               ),
             ),
             const SizedBox(height: 12),
-            ElevatedButton(
+            GradientButton.gold(
+              label: isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
               onPressed: () => showContextualPaywall(
                 context,
                 ref,
                 paywallContext: PaywallContext.patterns,
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.starGold,
-                foregroundColor: AppColors.deepSpace,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: Text(
-                isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
-                style: const TextStyle(fontWeight: FontWeight.w600),
               ),
             ),
           ],

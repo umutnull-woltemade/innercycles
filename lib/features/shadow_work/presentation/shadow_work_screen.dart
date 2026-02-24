@@ -76,7 +76,8 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
+                  fontSize: 14,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -423,7 +424,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                 child: GradientText(
                   isEn ? "Today's Prompt" : 'Günün Sorusu',
                   variant: GradientTextVariant.amethyst,
-                  style: const TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),
@@ -493,7 +494,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                     const SizedBox(width: 8),
                     Text(
                       isEn ? 'Begin Writing' : 'Yazmaya Başla',
-                      style: const TextStyle(
+                      style: AppTypography.modernAccent(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
@@ -722,7 +723,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                       const SizedBox(width: 8),
                       Text(
                         isEn ? 'Save Entry' : 'Girişi Kaydet',
-                        style: const TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
                           color: Colors.white,
@@ -1040,7 +1041,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                   GradientText(
                     isEn ? 'Unlock your shadow map' : 'Gölge haritanı aç',
                     variant: GradientTextVariant.gold,
-                    style: const TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                     ),
@@ -1072,7 +1073,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                       ),
                       child: Text(
                         isEn ? 'Upgrade to Pro' : "Pro'ya Yükselt",
-                        style: const TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
                           color: AppColors.deepSpace,

@@ -20,6 +20,7 @@ import '../../../data/services/journal_prompt_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -294,31 +295,14 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
             ),
           ),
           const SizedBox(height: 14),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                HapticFeedback.mediumImpact();
-                service.markCompleted(prompt.id);
-                context.go(Routes.journal);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.auroraStart,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 13),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 0,
-              ),
-              child: Text(
-                isEn ? 'Start Writing' : 'Yazmaya Başla',
-                style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
+          GradientButton.gold(
+            label: isEn ? 'Start Writing' : 'Yazmaya Başla',
+            onPressed: () {
+              HapticFeedback.mediumImpact();
+              service.markCompleted(prompt.id);
+              context.go(Routes.journal);
+            },
+            expanded: true,
           ),
         ],
       ),
@@ -622,29 +606,14 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                     // Start Writing button
                     Expanded(
                       flex: 2,
-                      child: ElevatedButton(
+                      child: GradientButton.gold(
+                        label: isEn ? 'Start Writing' : 'Yazmaya Başla',
                         onPressed: () {
                           HapticFeedback.mediumImpact();
                           service.markCompleted(prompt.id);
                           Navigator.pop(ctx);
                           context.go(Routes.journal);
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.auroraStart,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 13),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          elevation: 0,
-                        ),
-                        child: Text(
-                          isEn ? 'Start Writing' : 'Yazmaya Başla',
-                          style: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
                       ),
                     ),
                   ],

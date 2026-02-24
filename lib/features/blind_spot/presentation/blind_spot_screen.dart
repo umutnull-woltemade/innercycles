@@ -42,7 +42,7 @@ class BlindSpotScreen extends ConsumerWidget {
             error: (e, s) => Center(
               child: Text(
                 isEn ? 'Could not load. Your local data is unaffected.' : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   color: isDark
                       ? AppColors.textMuted
                       : AppColors.lightTextMuted,
@@ -54,7 +54,7 @@ class BlindSpotScreen extends ConsumerWidget {
               error: (e, s) => Center(
                 child: Text(
                   isEn ? 'Could not load. Your local data is unaffected.' : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                  style: TextStyle(
+                  style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
@@ -280,9 +280,8 @@ class _NotEnoughData extends StatelessWidget {
                       'sonra, günlüğün kendi başına fark edemeyebileceğin '
                       'örüntüleri ortaya çıkarmak için yeterli veriye sahip olacak.',
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 15,
-              height: 1.5,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
@@ -314,7 +313,7 @@ class _NotEnoughData extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text(
                   isEn ? '$entryCount / 14 entries' : '$entryCount / 14 kayıt',
-                  style: TextStyle(
+                  style: AppTypography.modernAccent(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: AppColors.auroraStart,
@@ -372,7 +371,7 @@ class _OverallInsightCard extends StatelessWidget {
                 child: GradientText(
                   isEn ? 'Your Overview' : 'Genel Bakış',
                   variant: GradientTextVariant.aurora,
-                  style: const TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
                   ),
@@ -384,9 +383,8 @@ class _OverallInsightCard extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             isEn ? report.overallInsightEn : report.overallInsightTr,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 14,
-              height: 1.6,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
@@ -416,7 +414,7 @@ class _SpotCountBadge extends StatelessWidget {
       ),
       child: Text(
         '$count',
-        style: TextStyle(
+        style: AppTypography.modernAccent(
           fontSize: 13,
           fontWeight: FontWeight.w600,
           color: AppColors.auroraStart,
@@ -460,7 +458,7 @@ class _BlindSpotsList extends StatelessWidget {
                 isEn
                     ? 'No blind spots detected at this time. Keep journaling!'
                     : 'Şu anda bir kör nokta tespit edilmedi. Günlük tutmaya devam et!',
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
                   fontSize: 14,
                   color: isDark
                       ? AppColors.textSecondary
@@ -479,7 +477,7 @@ class _BlindSpotsList extends StatelessWidget {
         GradientText(
           isEn ? 'Blind Spots' : 'Kör Noktalar',
           variant: GradientTextVariant.amethyst,
-          style: const TextStyle(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 16,
             fontWeight: FontWeight.w700,
           ),
@@ -589,7 +587,7 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
                       children: [
                         Text(
                           isEn ? spot.typeEn : spot.typeTr,
-                          style: TextStyle(
+                          style: AppTypography.modernAccent(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                             color: isDark
@@ -622,9 +620,8 @@ class _BlindSpotCardState extends State<_BlindSpotCard>
                   padding: const EdgeInsets.only(top: 14),
                   child: Text(
                     isEn ? spot.insightEn : spot.insightTr,
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 13,
-                      height: 1.6,
                       color: isDark
                           ? AppColors.textSecondary
                           : AppColors.lightTextSecondary,
@@ -702,10 +699,9 @@ class _SeverityIndicator extends StatelessWidget {
         const SizedBox(width: 4),
         Text(
           label,
-          style: TextStyle(
+          style: AppTypography.subtitle(
             fontSize: 11,
             color: color,
-            fontWeight: FontWeight.w500,
           ),
         ),
       ],
@@ -791,7 +787,7 @@ class _GrowthSuggestionsCard extends StatelessWidget {
               GradientText(
                 isEn ? 'Growth Suggestions' : 'Gelişim Önerileri',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                 ),
@@ -816,7 +812,7 @@ class _GrowthSuggestionsCard extends StatelessWidget {
                     child: Center(
                       child: Text(
                         '${entry.key + 1}',
-                        style: TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 11,
                           fontWeight: FontWeight.w700,
                           color: AppColors.success,
@@ -828,9 +824,8 @@ class _GrowthSuggestionsCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       entry.value,
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 13,
-                        height: 1.5,
                         color: isDark
                             ? AppColors.textSecondary
                             : AppColors.lightTextSecondary,
@@ -881,7 +876,7 @@ class _ShareInsightsButton extends StatelessWidget {
         icon: const Icon(Icons.share_rounded, size: 18),
         label: Text(
           isEn ? 'Share Your Insights' : 'İçgörülerini Paylaş',
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          style: AppTypography.modernAccent(fontSize: 15, fontWeight: FontWeight.w600),
         ),
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.brandPink.withValues(alpha: 0.15),

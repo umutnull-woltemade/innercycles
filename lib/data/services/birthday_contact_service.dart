@@ -6,6 +6,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import '../models/birthday_contact.dart';
@@ -246,7 +247,8 @@ class BirthdayContactService with SupabaseSyncMixin {
       try {
         final List<dynamic> jsonList = json.decode(jsonString);
         _contacts = jsonList.map((j) => BirthdayContact.fromJson(j)).toList();
-      } catch (_) {
+      } catch (e) {
+        debugPrint('BirthdayContactService._loadContacts: JSON decode failed: $e');
         _contacts = [];
       }
     }

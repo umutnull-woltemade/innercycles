@@ -8,6 +8,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/streak_service.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/premium_card.dart';
 
 /// Streak card widget for the home screen
@@ -612,27 +613,10 @@ class StreakMilestoneCelebration {
                   const SizedBox(height: 28),
 
                   // CTA
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () => Navigator.pop(ctx),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.starGold,
-                        foregroundColor: AppColors.deepSpace,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                        elevation: 0,
-                      ),
-                      child: Text(
-                        isEn ? 'Keep Going' : 'Devam Et',
-                        style: AppTypography.displayFont.copyWith(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
+                  GradientButton.gold(
+                    label: isEn ? 'Keep Going' : 'Devam Et',
+                    onPressed: () => Navigator.pop(ctx),
+                    expanded: true,
                   ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
                 ],
               ),

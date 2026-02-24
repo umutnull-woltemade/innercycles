@@ -267,30 +267,13 @@ class _WelcomeStep extends StatelessWidget {
             ),
           ).animate().fadeIn(delay: 350.ms, duration: 400.ms),
           const SizedBox(height: 48),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                HapticService.buttonPress();
-                onContinue();
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.starGold,
-                foregroundColor: Colors.black87,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-                ),
-                elevation: 0,
-              ),
-              child: Text(
-                isEn ? 'Let\'s Begin' : 'Başlayalım',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
+          GradientButton.gold(
+            label: isEn ? 'Let\'s Begin' : 'Başlayalım',
+            onPressed: () {
+              HapticService.buttonPress();
+              onContinue();
+            },
+            expanded: true,
           ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
         ],
       ),
@@ -426,37 +409,17 @@ class _DaySelectionStep extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
-          child: SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: selectedPresets.isEmpty
-                  ? null
-                  : () {
-                      HapticService.buttonPress();
-                      onContinue();
-                    },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.starGold,
-                foregroundColor: Colors.black87,
-                disabledBackgroundColor: isDark
-                    ? Colors.white.withValues(alpha: 0.08)
-                    : Colors.black.withValues(alpha: 0.06),
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-                ),
-                elevation: 0,
-              ),
-              child: Text(
-                isEn
-                    ? 'Continue (${selectedPresets.length} selected)'
-                    : 'Devam (${selectedPresets.length} seçili)',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
+          child: GradientButton.gold(
+            label: isEn
+                ? 'Continue (${selectedPresets.length} selected)'
+                : 'Devam (${selectedPresets.length} seçili)',
+            onPressed: selectedPresets.isEmpty
+                ? null
+                : () {
+                    HapticService.buttonPress();
+                    onContinue();
+                  },
+            expanded: true,
           ),
         ),
       ],

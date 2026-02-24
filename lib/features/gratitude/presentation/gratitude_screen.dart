@@ -18,6 +18,7 @@ import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
@@ -397,26 +398,12 @@ class _TodaySection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: onSave,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.starGold,
-                foregroundColor: AppColors.deepSpace,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 0,
-                padding: const EdgeInsets.symmetric(vertical: 12),
-              ),
-              child: Text(
-                hasEntry
-                    ? (isEn ? 'Update' : 'Güncelle')
-                    : (isEn ? 'Save Gratitude' : 'Şükranı Kaydet'),
-                style: const TextStyle(fontWeight: FontWeight.w600),
-              ),
-            ),
+          GradientButton.gold(
+            label: hasEntry
+                ? (isEn ? 'Update' : 'Güncelle')
+                : (isEn ? 'Save Gratitude' : 'Şükranı Kaydet'),
+            onPressed: onSave,
+            expanded: true,
           ),
         ],
       ),

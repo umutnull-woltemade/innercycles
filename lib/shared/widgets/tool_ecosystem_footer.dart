@@ -131,7 +131,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
                               const Spacer(),
                               Text(
                                 isEn ? tool.nameEn : tool.nameTr,
-                                style: TextStyle(
+                                style: AppTypography.modernAccent(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
                                   color: isDark

@@ -6,6 +6,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import '../models/journal_entry.dart';
@@ -264,7 +265,8 @@ class JournalService with SupabaseSyncMixin {
       try {
         final List<dynamic> jsonList = json.decode(jsonString);
         _entries = jsonList.map((j) => JournalEntry.fromJson(j)).toList();
-      } catch (_) {
+      } catch (e) {
+        debugPrint('JournalService._loadEntries: JSON decode failed: $e');
         _entries = [];
       }
     }

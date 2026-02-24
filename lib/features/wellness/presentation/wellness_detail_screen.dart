@@ -56,7 +56,8 @@ class WellnessDetailScreen extends ConsumerWidget {
                               isEn
                                   ? 'Could not load. Your local data is unaffected.'
                                   : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                              style: TextStyle(
+                              style: AppTypography.decorativeScript(
+                                fontSize: 14,
                                 color: isDark
                                     ? AppColors.textMuted
                                     : AppColors.lightTextMuted,
@@ -336,7 +337,7 @@ class _BreakdownDetail extends StatelessWidget {
                       Expanded(
                         child: Text(
                           _categoryLabel(b.category, isEn),
-                          style: TextStyle(
+                          style: AppTypography.subtitle(
                             fontSize: 13,
                             color: isDark
                                 ? AppColors.textSecondary

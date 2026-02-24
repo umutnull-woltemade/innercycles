@@ -39,7 +39,8 @@ class StreakStatsScreen extends ConsumerWidget {
               child: Text(
                 CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
+                  fontSize: 14,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -186,9 +187,10 @@ class StreakStatsScreen extends ConsumerWidget {
               isEn
                   ? '${stats.nextMilestone! - stats.currentStreak} days to ${stats.nextMilestone}-day milestone'
                   : '${stats.nextMilestone}-gün kilometre taşına ${stats.nextMilestone! - stats.currentStreak} gün',
-              style: TextStyle(
+              style: AppTypography.elegantAccent(
                 fontSize: 12,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                letterSpacing: 0.5,
               ),
             ),
           ],
@@ -280,7 +282,7 @@ class StreakStatsScreen extends ConsumerWidget {
                 children: [
                   Text(
                     dayLabels[i],
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 11,
                       color: isToday
                           ? AppColors.starGold
@@ -288,6 +290,7 @@ class StreakStatsScreen extends ConsumerWidget {
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted),
                       fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
+                      letterSpacing: 0.5,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -314,11 +317,12 @@ class StreakStatsScreen extends ConsumerWidget {
                             )
                           : Text(
                               '${day.day}',
-                              style: TextStyle(
+                              style: AppTypography.elegantAccent(
                                 fontSize: 12,
                                 color: isDark
                                     ? AppColors.textMuted
                                     : AppColors.lightTextMuted,
+                                letterSpacing: 0.3,
                               ),
                             ),
                     ),
@@ -355,7 +359,7 @@ class StreakStatsScreen extends ConsumerWidget {
               GradientText(
                 isEn ? 'Streak Freeze' : 'Seri Dondurma',
                 variant: GradientTextVariant.aurora,
-                style: const TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
@@ -370,7 +374,7 @@ class StreakStatsScreen extends ConsumerWidget {
                   isEn
                       ? '${stats.freezesAvailable} freeze${stats.freezesAvailable == 1 ? '' : 's'} available this week'
                       : 'Bu hafta ${stats.freezesAvailable} dondurma hakkı',
-                  style: TextStyle(
+                  style: AppTypography.subtitle(
                     fontSize: 14,
                     color: isDark
                         ? AppColors.textPrimary
@@ -388,7 +392,10 @@ class StreakStatsScreen extends ConsumerWidget {
                   },
                   child: Text(
                     isEn ? 'Use Freeze' : 'Kullan',
-                    style: TextStyle(color: AppColors.auroraStart),
+                    style: AppTypography.modernAccent(
+                      fontSize: 14,
+                      color: AppColors.auroraStart,
+                    ),
                   ),
                 ),
             ],
@@ -399,10 +406,9 @@ class StreakStatsScreen extends ConsumerWidget {
               isEn
                   ? 'Premium: 3 freezes per week'
                   : 'Premium: Haftada 3 dondurma hakkı',
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 12,
                 color: AppColors.starGold.withValues(alpha: 0.7),
-                fontStyle: FontStyle.italic,
               ),
             ),
           ],
@@ -474,11 +480,12 @@ class StreakStatsScreen extends ConsumerWidget {
                             )
                           : Text(
                               '$milestone',
-                              style: TextStyle(
+                              style: AppTypography.elegantAccent(
                                 fontSize: 12,
                                 color: isDark
                                     ? AppColors.textMuted
                                     : AppColors.lightTextMuted,
+                                letterSpacing: 0.3,
                               ),
                             ),
                     ),
@@ -486,7 +493,7 @@ class StreakStatsScreen extends ConsumerWidget {
                   const SizedBox(height: 4),
                   Text(
                     isEn ? '$milestone d' : '$milestone g',
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: reached
                           ? AppColors.starGold
@@ -494,6 +501,7 @@ class StreakStatsScreen extends ConsumerWidget {
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted),
                       fontWeight: reached ? FontWeight.bold : FontWeight.normal,
+                      letterSpacing: 0.5,
                     ),
                   ),
                 ],
@@ -555,9 +563,10 @@ class _StatTile extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             label,
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 11,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              letterSpacing: 0.5,
             ),
             textAlign: TextAlign.center,
           ),

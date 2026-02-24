@@ -6,6 +6,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import '../models/life_event.dart';
@@ -218,7 +219,8 @@ class LifeEventService with SupabaseSyncMixin {
       try {
         final List<dynamic> jsonList = json.decode(jsonString);
         _events = jsonList.map((j) => LifeEvent.fromJson(j)).toList();
-      } catch (_) {
+      } catch (e) {
+        debugPrint('LifeEventService._loadEvents: JSON decode failed: $e');
         _events = [];
       }
     }

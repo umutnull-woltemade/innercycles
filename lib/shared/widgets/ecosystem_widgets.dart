@@ -77,9 +77,8 @@ class ToolEmptyState extends StatelessWidget {
               Text(
                 isEn ? descriptionEn : descriptionTr,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
                   fontSize: 14,
-                  height: 1.5,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -107,7 +106,7 @@ class ToolEmptyState extends StatelessWidget {
                       const SizedBox(height: 4),
                       Text(
                         '$currentEntries / $requiredEntries',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
                               ? AppColors.textMuted
@@ -136,7 +135,7 @@ class ToolEmptyState extends StatelessWidget {
                     ),
                     child: Text(
                       isEn ? 'Start with Template' : 'Şablonla Başla',
-                      style: const TextStyle(fontWeight: FontWeight.w600),
+                      style: AppTypography.modernAccent(fontWeight: FontWeight.w600),
                     ),
                   ),
                 ),
@@ -146,7 +145,7 @@ class ToolEmptyState extends StatelessWidget {
                   onPressed: onSeeExample,
                   child: Text(
                     isEn ? 'See Example' : 'Örnek Gör',
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       color: isDark
                           ? AppColors.textSecondary
                           : AppColors.lightTextSecondary,

@@ -8,6 +8,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 import '../../core/constants/app_constants.dart';
 import 'gradient_text.dart';
 
@@ -51,7 +52,7 @@ class GlassDialog extends StatelessWidget {
             onPressed: () => Navigator.pop(context, false),
             child: Text(
               cancelLabel,
-              style: TextStyle(
+              style: AppTypography.elegantAccent(
                 color: Theme.of(context).brightness == Brightness.dark
                     ? AppColors.textMuted
                     : AppColors.lightTextMuted,
@@ -65,7 +66,7 @@ class GlassDialog extends StatelessWidget {
             },
             child: Text(
               confirmLabel,
-              style: TextStyle(
+              style: AppTypography.modernAccent(
                 color: isDestructive ? AppColors.error : AppColors.auroraStart,
                 fontWeight: FontWeight.w600,
               ),
@@ -120,7 +121,7 @@ class GlassDialog extends StatelessWidget {
                 GradientText(
                   title,
                   variant: gradientVariant,
-                  style: const TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
                   ),
@@ -132,9 +133,8 @@ class GlassDialog extends StatelessWidget {
                   const SizedBox(height: 12),
                   Text(
                     content!,
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 14,
-                      height: 1.5,
                       color: isDark
                           ? AppColors.textSecondary
                           : AppColors.lightTextSecondary,
