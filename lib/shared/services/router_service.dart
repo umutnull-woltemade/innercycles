@@ -102,7 +102,7 @@ import '../../data/services/storage_service.dart';
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     navigatorKey: navigatorKey,
-    initialLocation: Routes.today, // TEMP: bypass for testing
+    initialLocation: Routes.disclaimer,
     errorBuilder: (context, state) => _NotFoundScreen(path: state.uri.path),
     redirect: (context, state) {
       final path = state.uri.path;
@@ -124,9 +124,6 @@ final routerProvider = Provider<GoRouter>((ref) {
       if (kIsWeb) {
         return null;
       }
-
-      // TEMP: bypass guards for testing
-      if (kDebugMode) return null;
 
       // MOBILE: First-launch disclaimer check
       final disclaimerAccepted = StorageService.loadDisclaimerAccepted();

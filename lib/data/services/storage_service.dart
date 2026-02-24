@@ -105,19 +105,9 @@ class StorageService {
 
     try {
       final data = jsonDecode(json) as Map<String, dynamic>;
-      final profile = UserProfile.fromJson(data);
-
-      // Validate profile has required data (name must exist and not be empty)
-      if (profile.name == null || profile.name!.isEmpty) {
-        // Clear invalid data
-        box.delete(_profileKey);
-        return null;
-      }
-
-      return profile;
+      return UserProfile.fromJson(data);
     } catch (e) {
-      // Clear corrupted data
-      box.delete(_profileKey);
+      if (kDebugMode) debugPrint('Storage: decode profile error: $e');
       return null;
     }
   }
@@ -321,26 +311,12 @@ class StorageService {
   }
 
   /// Load onboarding completion status
-  /// Returns false if there's no valid user profile (to force onboarding)
   static bool loadOnboardingComplete() {
     _warnIfNotInitialized('loadOnboardingComplete');
     final box = _settingsBox;
     if (box == null) return false;
 
-    final isComplete =
-        box.get(_onboardingKey, defaultValue: false) as bool? ?? false;
-
-    // If onboarding is marked complete but there's no valid profile, reset it
-    if (isComplete) {
-      final profile = loadUserProfile();
-      if (profile == null) {
-        // Reset onboarding flag since profile is invalid
-        box.put(_onboardingKey, false);
-        return false;
-      }
-    }
-
-    return isComplete;
+    return box.get(_onboardingKey, defaultValue: false) as bool? ?? false;
   }
 
   // ========== DISCLAIMER ==========

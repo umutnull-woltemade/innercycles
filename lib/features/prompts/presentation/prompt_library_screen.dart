@@ -19,6 +19,7 @@ import '../../../data/services/journal_prompt_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
@@ -603,34 +604,18 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                   children: [
                     // Skip button
                     Expanded(
-                      child: OutlinedButton(
+                      child: GradientOutlinedButton(
+                        label: isEn ? 'Skip' : 'Atla',
+                        variant: GradientTextVariant.aurora,
+                        expanded: true,
+                        fontSize: 15,
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
                         onPressed: () {
                           HapticFeedback.lightImpact();
                           service.markSkipped(prompt.id);
                           Navigator.pop(ctx);
                           setState(() {});
                         },
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary,
-                          side: BorderSide(
-                            color: isDark
-                                ? Colors.white.withValues(alpha: 0.15)
-                                : AppColors.textMuted.withValues(alpha: 0.3),
-                          ),
-                          padding: const EdgeInsets.symmetric(vertical: 13),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: Text(
-                          isEn ? 'Skip' : 'Atla',
-                          style: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
                       ),
                     ),
                     const SizedBox(width: 12),
