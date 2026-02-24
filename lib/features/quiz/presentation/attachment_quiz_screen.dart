@@ -24,6 +24,8 @@ import '../../../data/services/review_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // QUIZ SCREEN
@@ -793,33 +795,21 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   }
 
   Widget _buildGoDeeperButton(BuildContext context, bool isDark, bool isEn) {
-    return SizedBox(
-      width: double.infinity,
-      height: 52,
-      child: OutlinedButton.icon(
-        onPressed: () {
-          showContextualPaywall(
-            context,
-            ref,
-            paywallContext: PaywallContext.general,
-          );
-        },
-        icon: Icon(Icons.auto_awesome, size: 20, color: AppColors.starGold),
-        label: Text(
-          isEn ? 'Go Deeper - Premium' : 'Derine In - Premium',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-            color: AppColors.starGold,
-          ),
-        ),
-        style: OutlinedButton.styleFrom(
-          side: BorderSide(color: AppColors.starGold.withValues(alpha: 0.5)),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-          ),
-        ),
-      ),
+    return GradientOutlinedButton(
+      label: isEn ? 'Go Deeper - Premium' : 'Derine İn - Premium',
+      icon: Icons.auto_awesome,
+      variant: GradientTextVariant.gold,
+      expanded: true,
+      fontSize: 16,
+      borderRadius: AppConstants.radiusLg,
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+      onPressed: () {
+        showContextualPaywall(
+          context,
+          ref,
+          paywallContext: PaywallContext.general,
+        );
+      },
     ).animate().fadeIn(duration: 500.ms, delay: 900.ms);
   }
 
