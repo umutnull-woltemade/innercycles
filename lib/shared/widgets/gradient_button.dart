@@ -9,6 +9,8 @@ class GradientButton extends StatelessWidget {
   final bool isLoading;
   final double? width;
   final Gradient? gradient;
+  final bool expanded;
+  final Color? foregroundColor;
 
   const GradientButton({
     super.key,
@@ -18,16 +20,37 @@ class GradientButton extends StatelessWidget {
     this.isLoading = false,
     this.width,
     this.gradient,
+    this.expanded = false,
+    this.foregroundColor,
   });
+
+  /// Gold CTA variant — gold gradient with deep space text.
+  const GradientButton.gold({
+    super.key,
+    required this.label,
+    this.onPressed,
+    this.icon,
+    this.isLoading = false,
+    this.width,
+    this.expanded = false,
+  })  : gradient = const LinearGradient(
+          colors: [AppColors.starGold, AppColors.celestialGold],
+        ),
+        foregroundColor = AppColors.deepSpace;
 
   @override
   Widget build(BuildContext context) {
+    final fg = foregroundColor ?? Colors.white;
+    final shadowColor = gradient != null
+        ? (gradient as LinearGradient).colors.first
+        : AppColors.auroraStart;
+
     return Semantics(
       label: label,
       button: true,
       enabled: onPressed != null && !isLoading,
       child: SizedBox(
-        width: width,
+        width: expanded ? double.infinity : width,
         child: Material(
           color: Colors.transparent,
           child: InkWell(
@@ -43,7 +66,7 @@ class GradientButton extends StatelessWidget {
                 boxShadow: onPressed != null
                     ? [
                         BoxShadow(
-                          color: AppColors.auroraStart.withValues(alpha: 0.3),
+                          color: shadowColor.withValues(alpha: 0.3),
                           blurRadius: 12,
                           offset: const Offset(0, 4),
                         ),
@@ -56,7 +79,7 @@ class GradientButton extends StatelessWidget {
                   vertical: 16,
                 ),
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: expanded ? MainAxisSize.max : MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     if (isLoading)
@@ -67,14 +90,17 @@ class GradientButton extends StatelessWidget {
                       )
                     else ...[
                       if (icon != null) ...[
-                        Icon(icon, color: Colors.white, size: 20),
+                        Icon(icon, color: fg, size: 20),
                         const SizedBox(width: 8),
                       ],
                       Text(
                         label,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.labelLarge?.copyWith(color: Colors.white),
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: fg,
+                          letterSpacing: 0.3,
+                        ),
                       ),
                     ],
                   ],
