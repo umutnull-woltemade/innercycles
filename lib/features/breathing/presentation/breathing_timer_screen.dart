@@ -397,21 +397,36 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                           SizedBox(
                             width: double.infinity,
                             height: 56,
-                            child: ElevatedButton(
-                              onPressed: _stop,
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.error.withValues(alpha: 0.8),
-                                foregroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
+                            child: GestureDetector(
+                              onTap: _stop,
+                              child: Container(
+                                width: double.infinity,
+                                height: 56,
+                                decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(16),
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      AppColors.error.withValues(alpha: 0.9),
+                                      AppColors.error.withValues(alpha: 0.7),
+                                    ],
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: AppColors.error.withValues(alpha: 0.3),
+                                      blurRadius: 12,
+                                      offset: const Offset(0, 4),
+                                    ),
+                                  ],
                                 ),
-                                elevation: 0,
-                              ),
-                              child: Text(
-                                isEn ? 'Stop' : 'Durdur',
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
+                                child: Center(
+                                  child: Text(
+                                    isEn ? 'Stop' : 'Durdur',
+                                    style: AppTypography.modernAccent(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),

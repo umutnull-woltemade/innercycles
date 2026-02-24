@@ -74,7 +74,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 child: _QuickStatsRow(isEn: isEn, isDark: isDark),
               ),
 
-              const SliverToBoxAdapter(child: SizedBox(height: 24)),
+              const SliverToBoxAdapter(child: SizedBox(height: 20)),
 
               // ═══════════════════════════════════════════════════════
               // 3. MOOD CHECK-IN
@@ -115,7 +115,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     .slideY(begin: 0.05, delay: 180.ms, duration: 400.ms),
               ),
 
-              const SliverToBoxAdapter(child: SizedBox(height: 12)),
+              const SliverToBoxAdapter(child: SizedBox(height: 20)),
 
               // ═══════════════════════════════════════════════════════
               // 5. STREAK RECOVERY BANNER (if applicable)

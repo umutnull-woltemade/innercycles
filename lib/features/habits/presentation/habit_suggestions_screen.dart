@@ -442,9 +442,8 @@ class _DailySpotlightCard extends StatelessWidget {
                           : HabitSuggestionService.categoryDisplayNameTr(
                               habit.category,
                             ),
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 11,
-                        fontWeight: FontWeight.w500,
                         color: AppColors.auroraStart,
                       ),
                     ),
@@ -475,9 +474,8 @@ class _DailySpotlightCard extends StatelessWidget {
                         const SizedBox(width: 4),
                         Text(
                           '${habit.durationMinutes} ${isEn ? 'min' : 'dk'}',
-                          style: TextStyle(
+                          style: AppTypography.subtitle(
                             fontSize: 10,
-                            fontWeight: FontWeight.w500,
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,
@@ -513,7 +511,7 @@ class _DailySpotlightCard extends StatelessWidget {
                           ),
                           child: Text(
                             isEn ? 'Try it' : 'Dene',
-                            style: TextStyle(
+                            style: AppTypography.modernAccent(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
                               color: AppColors.auroraStart,
@@ -575,9 +573,8 @@ class _ProgressBar extends StatelessWidget {
               const Spacer(),
               Text(
                 '$tried / $total',
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   fontSize: 12,
-                  fontWeight: FontWeight.w500,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -611,7 +608,10 @@ class _ProgressBar extends StatelessWidget {
                   isEn
                       ? '$adopted adopted into your routine'
                       : '$adopted rutininize eklendi',
-                  style: TextStyle(fontSize: 11, color: AppColors.success),
+                  style: AppTypography.subtitle(
+                    fontSize: 11,
+                    color: AppColors.success,
+                  ),
                 ),
               ],
             ),
@@ -673,15 +673,18 @@ class _CategoryChip extends StatelessWidget {
               const SizedBox(width: 4),
               Text(
                 label,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                  color: isSelected
-                      ? AppColors.auroraStart
-                      : (isDark
+                style: isSelected
+                    ? AppTypography.modernAccent(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.auroraStart,
+                      )
+                    : AppTypography.subtitle(
+                        fontSize: 12,
+                        color: isDark
                             ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary),
-                ),
+                            : AppColors.lightTextSecondary,
+                      ),
               ),
             ],
           ),
@@ -802,7 +805,7 @@ class _HabitCard extends StatelessWidget {
                         const SizedBox(width: 3),
                         Text(
                           '${habit.durationMinutes} ${isEn ? 'min' : 'dk'}',
-                          style: TextStyle(
+                          style: AppTypography.subtitle(
                             fontSize: 11,
                             color: isDark
                                 ? AppColors.textMuted
@@ -836,7 +839,7 @@ class _HabitCard extends StatelessWidget {
                             isAdopted
                                 ? (isEn ? 'Adopted' : 'Benimsendi')
                                 : (isEn ? 'Tried' : 'Denendi'),
-                            style: TextStyle(
+                            style: AppTypography.subtitle(
                               fontSize: 11,
                               color: isAdopted
                                   ? AppColors.success
@@ -999,7 +1002,7 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                           ),
                           Text(
                             '${habit.durationMinutes} ${isEn ? 'minutes' : 'dakika'}',
-                            style: TextStyle(
+                            style: AppTypography.subtitle(
                               fontSize: 11,
                               color: isDark
                                   ? AppColors.textMuted
@@ -1195,7 +1198,7 @@ class _ActionButton extends StatelessWidget {
               Flexible(
                 child: Text(
                   label,
-                  style: TextStyle(
+                  style: AppTypography.modernAccent(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                     color: isActive

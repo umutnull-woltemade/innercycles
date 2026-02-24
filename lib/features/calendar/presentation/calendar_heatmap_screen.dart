@@ -82,7 +82,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
           error: (_, _) => Center(
             child: Text(
               CommonStrings.somethingWentWrong(language),
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,
@@ -445,7 +445,7 @@ class _MonthNavigator extends StatelessWidget {
         GradientText(
           '${monthNames[month - 1]} $year',
           variant: GradientTextVariant.gold,
-          style: const TextStyle(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
@@ -517,7 +517,7 @@ class _CalendarGrid extends StatelessWidget {
                         child: Center(
                           child: Text(
                             d,
-                            style: TextStyle(
+                            style: AppTypography.modernAccent(
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
                               color: isDark
@@ -605,11 +605,8 @@ class _CalendarGrid extends StatelessWidget {
                             children: [
                               Text(
                                 '$dayIndex',
-                                style: TextStyle(
+                                style: AppTypography.subtitle(
                                   fontSize: 13,
-                                  fontWeight: entry != null
-                                      ? FontWeight.w600
-                                      : FontWeight.w400,
                                   color: isFuture
                                       ? (isDark
                                             ? AppColors.textMuted.withValues(
@@ -622,6 +619,10 @@ class _CalendarGrid extends StatelessWidget {
                                       : (isDark
                                             ? AppColors.textMuted
                                             : AppColors.lightTextMuted),
+                                ).copyWith(
+                                  fontWeight: entry != null
+                                      ? FontWeight.w600
+                                      : FontWeight.w400,
                                 ),
                               ),
                               // Dot indicators row
@@ -733,7 +734,7 @@ class _Legend extends StatelessWidget {
           children: [
             Text(
               isEn ? 'Less' : 'Az',
-              style: TextStyle(fontSize: 10, color: mutedColor),
+              style: AppTypography.elegantAccent(fontSize: 10, color: mutedColor),
             ),
             const SizedBox(width: 6),
             ...[0.3, 0.45, 0.6, 0.8, 1.0].map((alpha) {
@@ -750,7 +751,7 @@ class _Legend extends StatelessWidget {
             const SizedBox(width: 6),
             Text(
               isEn ? 'More' : 'Çok',
-              style: TextStyle(fontSize: 10, color: mutedColor),
+              style: AppTypography.elegantAccent(fontSize: 10, color: mutedColor),
             ),
           ],
         ),
@@ -795,7 +796,7 @@ class _Legend extends StatelessWidget {
           decoration: BoxDecoration(color: color, shape: BoxShape.circle),
         ),
         const SizedBox(width: 4),
-        Text(label, style: TextStyle(fontSize: 10, color: textColor)),
+        Text(label, style: AppTypography.elegantAccent(fontSize: 10, color: textColor)),
       ],
     );
   }
@@ -877,7 +878,7 @@ class _DayDetail extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           monthYear,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 14,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -951,7 +952,7 @@ class _DayDetail extends StatelessWidget {
                         0,
                         ratingLabels.length - 1,
                       )],
-                      style: TextStyle(
+                      style: AppTypography.modernAccent(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
                         color: _ratingColor(e.overallRating),
@@ -964,9 +965,8 @@ class _DayDetail extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   note.length > 80 ? '${note.substring(0, 80)}...' : note,
-                  style: TextStyle(
+                  style: AppTypography.decorativeScript(
                     fontSize: 12,
-                    height: 1.4,
                     color: isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,
@@ -979,10 +979,9 @@ class _DayDetail extends StatelessWidget {
                 children: [
                   Text(
                     isEn ? 'View entry' : 'Kaydı gör',
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
                       fontSize: 11,
                       color: AppColors.auroraStart,
-                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   const SizedBox(width: 4),
@@ -1084,7 +1083,7 @@ class _DayDetail extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 3),
                         child: Text(
                           event.emotionTags.take(3).join(' \u{2022} '),
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 11,
                             color: isDark
                                 ? AppColors.textMuted
@@ -1212,7 +1211,7 @@ class _YearHeatmap extends StatelessWidget {
           GradientText(
             '$year ${isEn ? 'Overview' : 'Genel Bakış'}',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -1248,7 +1247,7 @@ class _YearHeatmap extends StatelessWidget {
                             ? Center(
                                 child: Text(
                                   '${monthCounts[i]}',
-                                  style: TextStyle(
+                                  style: AppTypography.modernAccent(
                                     fontSize: 10,
                                     fontWeight: FontWeight.w600,
                                     color: alpha > 0.5
@@ -1264,7 +1263,7 @@ class _YearHeatmap extends StatelessWidget {
                       const SizedBox(height: 4),
                       Text(
                         monthLabels[i],
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 10,
                           color: isDark
                               ? AppColors.textMuted
@@ -1305,7 +1304,7 @@ class _PremiumYearOverlay extends ConsumerWidget {
           GradientText(
             isEn ? 'Year Heatmap' : 'Yıl Isı Haritası',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
@@ -1345,7 +1344,7 @@ class _PremiumYearOverlay extends ConsumerWidget {
               ),
               child: Text(
                 isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
-                style: const TextStyle(
+                style: AppTypography.modernAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                   color: AppColors.deepSpace,

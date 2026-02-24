@@ -60,7 +60,8 @@ class _AffirmationLibraryScreenState
               child: Text(
                 CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
+                  fontSize: 14,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -148,7 +149,7 @@ class _AffirmationLibraryScreenState
                           const SizedBox(height: 12),
                           Text(
                             isEn ? 'No favorites yet' : 'Henüz favori yok',
-                            style: TextStyle(
+                            style: AppTypography.decorativeScript(
                               fontSize: 14,
                               color: isDark
                                   ? AppColors.textMuted
@@ -188,7 +189,7 @@ class _AffirmationLibraryScreenState
           GradientText(
             isEn ? "Today's Affirmation" : 'Günün Olumlaması',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 13,
               fontWeight: FontWeight.w600,
               letterSpacing: 0.5,
@@ -216,10 +217,11 @@ class _AffirmationLibraryScreenState
               isEn
                   ? today.category.displayNameEn
                   : today.category.displayNameTr,
-              style: TextStyle(
+              style: AppTypography.elegantAccent(
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
                 color: AppColors.starGold,
+                letterSpacing: 0.5,
               ),
             ),
           ),
@@ -340,7 +342,7 @@ class _FilterChip extends StatelessWidget {
               ],
               Text(
                 label,
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 13,
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                   color: isSelected
@@ -348,6 +350,7 @@ class _FilterChip extends StatelessWidget {
                       : (isDark
                             ? AppColors.textSecondary
                             : AppColors.lightTextSecondary),
+                  letterSpacing: 0.5,
                 ),
               ),
             ],
@@ -411,9 +414,8 @@ class _AffirmationTile extends StatelessWidget {
               children: [
                 Text(
                   isEn ? affirmation.textEn : affirmation.textTr,
-                  style: TextStyle(
+                  style: AppTypography.decorativeScript(
                     fontSize: 15,
-                    height: 1.5,
                     color: isDark
                         ? AppColors.textPrimary
                         : AppColors.lightTextPrimary,
@@ -424,11 +426,12 @@ class _AffirmationTile extends StatelessWidget {
                   isEn
                       ? affirmation.category.displayNameEn
                       : affirmation.category.displayNameTr,
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 11,
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
+                    letterSpacing: 0.5,
                   ),
                 ),
               ],

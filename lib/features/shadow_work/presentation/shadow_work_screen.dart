@@ -268,12 +268,10 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
   ) {
     return Column(
       children: [
-        Text(
+        GradientText(
           value,
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            color: _shadowPurple,
-            fontWeight: FontWeight.bold,
-          ),
+          variant: GradientTextVariant.amethyst,
+          style: AppTypography.modernAccent(fontSize: 22, fontWeight: FontWeight.bold),
         ),
         Text(
           label,
@@ -774,14 +772,10 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                 ),
               ),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? 'Your Shadow Map' : 'Gölge Haritan',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.w600,
-                ),
+                variant: GradientTextVariant.amethyst,
+                style: AppTypography.modernAccent(fontSize: 14, fontWeight: FontWeight.w600),
               ),
             ],
           ),
@@ -902,9 +896,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               GradientText(
                 isEn ? 'Recent Entries' : 'Son Girişler',
                 variant: GradientTextVariant.amethyst,
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+                style: AppTypography.modernAccent(fontSize: 14, fontWeight: FontWeight.w600),
               ),
             ],
           ),

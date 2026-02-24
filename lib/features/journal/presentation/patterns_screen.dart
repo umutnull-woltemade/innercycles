@@ -195,10 +195,7 @@ class PatternsScreen extends ConsumerWidget {
                                   : '7 Kayıttan Sonra Kalıplar Açılır',
                               variant: GradientTextVariant.gold,
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.titleLarge
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                              style: AppTypography.modernAccent(fontSize: 15, fontWeight: FontWeight.w700, letterSpacing: 0.3),
                             ),
                             const SizedBox(height: 12),
                             Text(

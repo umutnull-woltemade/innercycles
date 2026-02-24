@@ -334,7 +334,7 @@ class _SearchResultTile extends StatelessWidget {
                     ),
                     Text(
                       isEn ? tool.valuePropositionEn : tool.valuePropositionTr,
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 12,
                         color: isDark
                             ? AppColors.textMuted

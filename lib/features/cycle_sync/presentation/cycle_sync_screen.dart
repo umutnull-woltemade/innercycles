@@ -17,6 +17,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
@@ -314,13 +315,13 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Cycle Overview' : 'Döngü Özeti',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
-              fontWeight: FontWeight.w600,
+            variant: GradientTextVariant.aurora,
+            style: AppTypography.modernAccent(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.3,
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
@@ -647,13 +648,13 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Phase Timeline' : 'Evre Zaman Çizelgesi',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
-              fontWeight: FontWeight.w600,
+            variant: GradientTextVariant.aurora,
+            style: AppTypography.modernAccent(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.3,
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
@@ -858,8 +859,9 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   GradientText(
                     isEn ? 'Log Period Start' : 'Adet Başlangıcı Kaydet',
                     variant: GradientTextVariant.aurora,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
+                    style: AppTypography.modernAccent(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -875,33 +877,39 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 24),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        HapticFeedback.mediumImpact();
-                        Navigator.pop(ctx);
-                        final service = await ref.read(
-                          cycleSyncServiceProvider.future,
-                        );
-                        await service.logPeriodStart(date: DateTime.now());
-                        ref.invalidate(cycleSyncServiceProvider);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.amethyst,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            AppConstants.radiusMd,
-                          ),
+                  GestureDetector(
+                    onTap: () async {
+                      HapticFeedback.mediumImpact();
+                      Navigator.pop(ctx);
+                      final service = await ref.read(
+                        cycleSyncServiceProvider.future,
+                      );
+                      await service.logPeriodStart(date: DateTime.now());
+                      ref.invalidate(cycleSyncServiceProvider);
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                        gradient: const LinearGradient(
+                          colors: [AppColors.amethyst, AppColors.cosmicAmethyst],
                         ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.amethyst.withValues(alpha: 0.3),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
                       ),
                       child: Text(
                         isEn ? 'Period Started Today' : 'Adet Bugün Başladı',
+                        textAlign: TextAlign.center,
                         style: AppTypography.modernAccent(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -970,7 +978,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                     isEn
                         ? 'Unlock deeper cycle insights'
                         : 'Daha derin döngü içgörülerini aç',
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                       color: isDark
@@ -979,28 +987,14 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  ElevatedButton(
+                  GradientButton.gold(
+                    label: isEn ? 'Upgrade to Pro' : "Pro'ya Yükselt",
                     onPressed: () => showContextualPaywall(
                       context,
                       ref,
                       paywallContext: paywallContext,
                     ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.starGold,
-                      foregroundColor: AppColors.deepSpace,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          AppConstants.radiusMd,
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      isEn ? 'Upgrade to Pro' : "Pro'ya Yükselt",
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                    expanded: true,
                   ),
                 ],
               ),

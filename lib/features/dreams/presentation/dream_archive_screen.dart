@@ -145,7 +145,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Failed to load dreams' : 'Rüyalar yüklenemedi',
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
                   color: isDark
                       ? AppColors.textMuted
                       : AppColors.lightTextMuted,
@@ -271,7 +271,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                                   child: GradientText(
                                     _formatMonthHeader(monthKey, isEn),
                                     variant: GradientTextVariant.gold,
-                                    style: const TextStyle(
+                                    style: AppTypography.displayFont.copyWith(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w700,
                                       letterSpacing: 0.3,
@@ -511,7 +511,7 @@ class _DreamCard extends StatelessWidget {
           // Date
           Text(
             formatDate(dream.dreamDate, isEn),
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),

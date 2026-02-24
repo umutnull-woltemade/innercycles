@@ -460,7 +460,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             GradientText(
               isEn ? 'Emotion Tags' : 'Duygu Etiketleri',
               variant: GradientTextVariant.amethyst,
-              style: const TextStyle(
+              style: AppTypography.displayFont.copyWith(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
               ),
@@ -468,7 +468,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             const Spacer(),
             Text(
               '${_emotionTags.length}/5',
-              style: TextStyle(
+              style: AppTypography.elegantAccent(
                 fontSize: 12,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -550,7 +550,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             GradientText(
               isEn ? 'Intensity' : 'Yoğunluk',
               variant: GradientTextVariant.gold,
-              style: const TextStyle(
+              style: AppTypography.displayFont.copyWith(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
               ),
@@ -674,10 +674,9 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             onTap: () => setState(() => _imagePath = null),
             child: Text(
               isEn ? 'Remove photo' : 'Fotoğrafı kaldır',
-              style: TextStyle(
+              style: AppTypography.modernAccent(
                 fontSize: 12,
                 color: AppColors.error,
-                fontWeight: FontWeight.w500,
               ),
             ),
           ),
