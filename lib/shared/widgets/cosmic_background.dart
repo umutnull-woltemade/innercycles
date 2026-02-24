@@ -20,7 +20,7 @@ class CosmicBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    // Light mode - clean, soft gradient with subtle dot texture
+    // Light mode - clean, soft gradient with subtle organic texture
     if (!isDark) {
       return Stack(
         children: [
@@ -57,7 +57,7 @@ class CosmicBackground extends StatelessWidget {
       );
     }
 
-    // Dark mode - abstract gradient background
+    // Dark mode - flowing organic pattern
     return Stack(
       children: [
         Positioned.fill(
@@ -96,7 +96,6 @@ class _WebPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // Base gradient
     final rect = Rect.fromLTWH(0, 0, size.width, size.height);
     final gradient = ui.Gradient.linear(
       Offset.zero,
@@ -110,51 +109,9 @@ class _WebPainter extends CustomPainter {
       const [0.0, 0.3, 0.7, 1.0],
     );
     canvas.drawRect(rect, Paint()..shader = gradient);
-
-    // Star field
-    _drawStarField(canvas, size);
-  }
-
-  void _drawStarField(Canvas canvas, Size size) {
-    final rng = Random(42);
-    final paint = Paint();
-
-    // Tiny stars — 40 for web
-    for (var i = 0; i < 40; i++) {
-      final x = rng.nextDouble() * size.width;
-      final y = rng.nextDouble() * size.height;
-      final r = 0.5 + rng.nextDouble() * 0.7;
-      final opacity = 0.08 + rng.nextDouble() * 0.12;
-      paint.color = Colors.white.withValues(alpha: opacity);
-      canvas.drawCircle(Offset(x, y), r, paint);
-    }
-
-    // Medium stars — 15 for web
-    for (var i = 0; i < 15; i++) {
-      final x = rng.nextDouble() * size.width;
-      final y = rng.nextDouble() * size.height;
-      final r = 1.5 + rng.nextDouble() * 1.0;
-      final opacity = 0.15 + rng.nextDouble() * 0.20;
-      paint.color = Colors.white.withValues(alpha: opacity);
-      canvas.drawCircle(Offset(x, y), r, paint);
-    }
-
-    // Bright stars — 5 for web
-    for (var i = 0; i < 5; i++) {
-      final x = rng.nextDouble() * size.width;
-      final y = rng.nextDouble() * size.height;
-      final r = 2.5 + rng.nextDouble() * 1.0;
-      final opacity = 0.25 + rng.nextDouble() * 0.25;
-      final pos = Offset(x, y);
-
-      // Halo
-      paint.color = Colors.white.withValues(alpha: 0.06);
-      canvas.drawCircle(pos, r * 3, paint);
-
-      // Core
-      paint.color = Colors.white.withValues(alpha: opacity);
-      canvas.drawCircle(pos, r, paint);
-    }
+    _FlowingPattern.drawConcentric(canvas, size, layerCount: 2, opacity: 0.03);
+    _FlowingPattern.drawFlowLines(canvas, size, lineCount: 6, opacity: 0.025);
+    _FlowingPattern.drawBokeh(canvas, size, count: 10, opacity: 0.04);
   }
 
   @override
@@ -162,7 +119,7 @@ class _WebPainter extends CustomPainter {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// ABSTRACT DARK BACKGROUND - Soft gradient mesh + star field + floating orbs
+// ABSTRACT DARK BACKGROUND - Gradient mesh + flowing pattern + floating orbs
 // ═══════════════════════════════════════════════════════════════════════════
 class _AbstractDarkBackground extends StatefulWidget {
   const _AbstractDarkBackground();
@@ -233,7 +190,7 @@ class _AbstractDarkBackgroundState extends State<_AbstractDarkBackground>
 
     return Stack(
       children: [
-        // Static star field + gradient base
+        // Static base: gradient + flowing pattern
         RepaintBoundary(
           child: CustomPaint(
             painter: const _AbstractPainter(),
@@ -241,7 +198,7 @@ class _AbstractDarkBackgroundState extends State<_AbstractDarkBackground>
             isComplex: true,
           ),
         ),
-        // Animated floating orbs (dark mode only)
+        // Animated floating orbs
         if (!disableAnimations)
           Positioned.fill(
             child: IgnorePointer(
@@ -260,7 +217,6 @@ class _AbstractDarkBackgroundState extends State<_AbstractDarkBackground>
             ),
           )
         else
-          // Static orbs fallback for reduce-motion
           Positioned.fill(
             child: IgnorePointer(
               child: RepaintBoundary(
@@ -280,11 +236,11 @@ class _AbstractDarkBackgroundState extends State<_AbstractDarkBackground>
 }
 
 class _Orb {
-  final Offset center; // normalized 0-1
+  final Offset center;
   final double radius;
   final Color color;
-  final double speed; // radians per full cycle
-  final double phase; // starting angle
+  final double speed;
+  final double phase;
   final double driftRadius;
 
   const _Orb({
@@ -299,7 +255,7 @@ class _Orb {
 
 class _OrbPainter extends CustomPainter {
   final List<_Orb> orbs;
-  final double progress; // 0-1
+  final double progress;
 
   const _OrbPainter({required this.orbs, required this.progress});
 
@@ -339,19 +295,21 @@ class _OrbPainter extends CustomPainter {
       oldDelegate.progress != progress;
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+// ABSTRACT DARK PAINTER — Gradient + flowing organic pattern (no stars)
+// ═══════════════════════════════════════════════════════════════════════════
 class _AbstractPainter extends CustomPainter {
   const _AbstractPainter();
 
   @override
   void paint(Canvas canvas, Size size) {
-    // 1. Deep gradient base
     _drawBaseGradient(canvas, size);
-
-    // 2. Soft organic color washes (subtle, not nebula-like)
     _drawColorWashes(canvas, size);
-
-    // 3. Star field
-    _drawStarField(canvas, size);
+    // Flowing organic pattern instead of stars
+    _FlowingPattern.drawConcentric(canvas, size, layerCount: 4, opacity: 0.025);
+    _FlowingPattern.drawFlowLines(canvas, size, lineCount: 12, opacity: 0.02);
+    _FlowingPattern.drawBokeh(canvas, size, count: 20, opacity: 0.035);
+    _FlowingPattern.drawSacredDots(canvas, size, opacity: 0.03);
   }
 
   void _drawBaseGradient(Canvas canvas, Size size) {
@@ -372,86 +330,12 @@ class _AbstractPainter extends CustomPainter {
   }
 
   void _drawColorWashes(Canvas canvas, Size size) {
-    // Subtle warm wash — top area
-    _drawWash(
-      canvas,
-      Offset(size.width * 0.3, size.height * 0.15),
-      size.width * 0.5,
-      const Color(0xFF6C3483),
-      0.06,
-    );
-
-    // Cool wash — center-right
-    _drawWash(
-      canvas,
-      Offset(size.width * 0.75, size.height * 0.45),
-      size.width * 0.4,
-      const Color(0xFF2E4057),
-      0.05,
-    );
-
-    // Soft accent wash — bottom-left
-    _drawWash(
-      canvas,
-      Offset(size.width * 0.2, size.height * 0.75),
-      size.width * 0.45,
-      const Color(0xFF1A3A5C),
-      0.04,
-    );
-  }
-
-  void _drawStarField(Canvas canvas, Size size) {
-    final rng = Random(42);
-    final paint = Paint();
-
-    // Colored star colors for bright layer
-    const coloredStarColors = [
-      AppColors.auroraStart,
-      AppColors.starGold,
-      AppColors.auroraStart,
-    ];
-
-    // Layer 1: Tiny stars (~80)
-    for (var i = 0; i < 80; i++) {
-      final x = rng.nextDouble() * size.width;
-      final y = rng.nextDouble() * size.height;
-      final r = 0.6 + rng.nextDouble() * 1.0; // 0.6-1.6px
-      final opacity = 0.15 + rng.nextDouble() * 0.25; // 0.15-0.40
-      paint.color = Colors.white.withValues(alpha: opacity);
-      canvas.drawCircle(Offset(x, y), r, paint);
-    }
-
-    // Layer 2: Medium stars (~35)
-    for (var i = 0; i < 35; i++) {
-      final x = rng.nextDouble() * size.width;
-      final y = rng.nextDouble() * size.height;
-      final r = 1.5 + rng.nextDouble() * 1.5; // 1.5-3.0px
-      final opacity = 0.25 + rng.nextDouble() * 0.30; // 0.25-0.55
-      paint.color = Colors.white.withValues(alpha: opacity);
-      canvas.drawCircle(Offset(x, y), r, paint);
-    }
-
-    // Layer 3: Bright stars (~12) with halos
-    for (var i = 0; i < 12; i++) {
-      final x = rng.nextDouble() * size.width;
-      final y = rng.nextDouble() * size.height;
-      final r = 2.5 + rng.nextDouble() * 1.5; // 2.5-4.0px
-      final opacity = 0.40 + rng.nextDouble() * 0.35; // 0.40-0.75
-      final pos = Offset(x, y);
-
-      // 3-4 bright stars get a color tint
-      final isColored = i < 4;
-      final baseColor =
-          isColored ? coloredStarColors[i % coloredStarColors.length] : Colors.white;
-
-      // Halo glow
-      paint.color = baseColor.withValues(alpha: 0.12);
-      canvas.drawCircle(pos, r * 3.5, paint);
-
-      // Core
-      paint.color = baseColor.withValues(alpha: opacity);
-      canvas.drawCircle(pos, r, paint);
-    }
+    _drawWash(canvas, Offset(size.width * 0.3, size.height * 0.15),
+        size.width * 0.5, const Color(0xFF6C3483), 0.06);
+    _drawWash(canvas, Offset(size.width * 0.75, size.height * 0.45),
+        size.width * 0.4, const Color(0xFF2E4057), 0.05);
+    _drawWash(canvas, Offset(size.width * 0.2, size.height * 0.75),
+        size.width * 0.45, const Color(0xFF1A3A5C), 0.04);
   }
 
   void _drawWash(
@@ -471,7 +355,6 @@ class _AbstractPainter extends CustomPainter {
       ],
       [0.0, 0.5, 1.0],
     );
-
     canvas.drawCircle(
       center,
       radius,
@@ -486,7 +369,157 @@ class _AbstractPainter extends CustomPainter {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// LIGHT MODE PATTERN PAINTER - Subtle dot texture
+// FLOWING PATTERN — Concentric arcs, flow lines, bokeh, sacred geometry
+// Replaces star fields with organic, journal-appropriate visuals
+// ═══════════════════════════════════════════════════════════════════════════
+class _FlowingPattern {
+  _FlowingPattern._();
+
+  /// Concentric circular arcs — like ripples in still water
+  static void drawConcentric(
+    Canvas canvas,
+    Size size, {
+    int layerCount = 4,
+    double opacity = 0.025,
+  }) {
+    final rng = Random(77);
+    final paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+
+    // Two focal points for ripple origins
+    final centers = [
+      Offset(size.width * 0.3, size.height * 0.2),
+      Offset(size.width * 0.72, size.height * 0.6),
+    ];
+
+    for (final center in centers) {
+      for (var i = 1; i <= layerCount; i++) {
+        final radius = 60.0 + i * 65.0 + rng.nextDouble() * 20;
+        final sweep = 1.2 + rng.nextDouble() * 1.8; // partial arc
+        final startAngle = rng.nextDouble() * 2 * pi;
+        final alpha = opacity * (1.0 - i * 0.15);
+
+        paint
+          ..color = Colors.white.withValues(alpha: alpha.clamp(0.005, 0.04))
+          ..strokeWidth = 0.5 + rng.nextDouble() * 0.4;
+
+        canvas.drawArc(
+          Rect.fromCircle(center: center, radius: radius),
+          startAngle,
+          sweep,
+          false,
+          paint,
+        );
+      }
+    }
+  }
+
+  /// Smooth flowing curves — like gentle breath or wind
+  static void drawFlowLines(
+    Canvas canvas,
+    Size size, {
+    int lineCount = 12,
+    double opacity = 0.02,
+  }) {
+    final rng = Random(99);
+    final paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+
+    for (var i = 0; i < lineCount; i++) {
+      final path = Path();
+      final startY = size.height * (0.05 + rng.nextDouble() * 0.9);
+      final startX = -20.0;
+
+      path.moveTo(startX, startY);
+
+      // 3 control-point bezier across the screen
+      final cp1x = size.width * (0.15 + rng.nextDouble() * 0.2);
+      final cp1y = startY + (rng.nextDouble() - 0.5) * size.height * 0.15;
+      final cp2x = size.width * (0.55 + rng.nextDouble() * 0.2);
+      final cp2y = startY + (rng.nextDouble() - 0.5) * size.height * 0.2;
+      final endX = size.width + 20;
+      final endY = startY + (rng.nextDouble() - 0.5) * size.height * 0.12;
+
+      path.cubicTo(cp1x, cp1y, cp2x, cp2y, endX, endY);
+
+      final alpha = opacity * (0.6 + rng.nextDouble() * 0.4);
+
+      paint
+        ..color = Colors.white.withValues(alpha: alpha.clamp(0.005, 0.035))
+        ..strokeWidth = 0.3 + rng.nextDouble() * 0.5;
+
+      canvas.drawPath(path, paint);
+    }
+  }
+
+  /// Soft bokeh circles — like defocused light
+  static void drawBokeh(
+    Canvas canvas,
+    Size size, {
+    int count = 20,
+    double opacity = 0.035,
+  }) {
+    final rng = Random(55);
+    final paint = Paint()..style = PaintingStyle.stroke;
+
+    const tints = [
+      AppColors.amethyst,
+      AppColors.auroraStart,
+      AppColors.starGold,
+      Colors.white,
+    ];
+
+    for (var i = 0; i < count; i++) {
+      final x = rng.nextDouble() * size.width;
+      final y = rng.nextDouble() * size.height;
+      final radius = 8.0 + rng.nextDouble() * 28.0;
+      final tint = tints[i % tints.length];
+      final alpha = opacity * (0.4 + rng.nextDouble() * 0.6);
+
+      // Soft ring
+      paint
+        ..color = tint.withValues(alpha: alpha.clamp(0.008, 0.04))
+        ..strokeWidth = 0.4 + rng.nextDouble() * 0.4;
+      canvas.drawCircle(Offset(x, y), radius, paint);
+
+      // Inner fill with lower opacity
+      final fillPaint = Paint()
+        ..color = tint.withValues(alpha: (alpha * 0.25).clamp(0.002, 0.015));
+      canvas.drawCircle(Offset(x, y), radius, fillPaint);
+    }
+  }
+
+  /// Sacred geometry dots — evenly spaced with subtle glow
+  static void drawSacredDots(
+    Canvas canvas,
+    Size size, {
+    double opacity = 0.03,
+  }) {
+    final rng = Random(33);
+    final paint = Paint();
+    const spacing = 52.0;
+    final cols = (size.width / spacing).ceil() + 1;
+    final rows = (size.height / spacing).ceil() + 1;
+
+    for (var row = 0; row < rows; row++) {
+      for (var col = 0; col < cols; col++) {
+        // Hex-grid offset for organic feel
+        final offsetX = (row % 2 == 0) ? 0.0 : spacing * 0.5;
+        final x = col * spacing + offsetX + (rng.nextDouble() - 0.5) * 4;
+        final y = row * spacing + (rng.nextDouble() - 0.5) * 4;
+        final alpha = opacity * (0.3 + rng.nextDouble() * 0.7);
+
+        paint.color = Colors.white.withValues(alpha: alpha.clamp(0.005, 0.03));
+        canvas.drawCircle(Offset(x, y), 0.6, paint);
+      }
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// LIGHT MODE PATTERN PAINTER — Soft organic texture
 // ═══════════════════════════════════════════════════════════════════════════
 class _LightPatternPainter extends CustomPainter {
   const _LightPatternPainter();
@@ -496,7 +529,7 @@ class _LightPatternPainter extends CustomPainter {
     final rng = Random(42);
     final paint = Paint();
 
-    // 1. Soft radial color washes — premium watercolor-paper feel
+    // 1. Soft radial color washes — watercolor-paper feel
     _drawSoftWash(canvas, Offset(size.width * 0.2, size.height * 0.12),
         size.width * 0.55, const Color(0xFFE8D5F5), 0.07);
     _drawSoftWash(canvas, Offset(size.width * 0.82, size.height * 0.45),
@@ -514,19 +547,90 @@ class _LightPatternPainter extends CustomPainter {
       canvas.drawCircle(Offset(x, y), r, paint);
     }
 
-    // 3. Subtle dot grid with jitter — structured depth
-    const spacing = 44.0;
+    // 3. Flowing concentric arcs (light mode — very subtle)
+    _drawLightArcs(canvas, size);
+
+    // 4. Soft flow lines
+    _drawLightFlowLines(canvas, size);
+
+    // 5. Hex-grid sacred dots
+    _drawLightDots(canvas, size);
+  }
+
+  void _drawLightArcs(Canvas canvas, Size size) {
+    final rng = Random(77);
+    final paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+
+    final centers = [
+      Offset(size.width * 0.25, size.height * 0.15),
+      Offset(size.width * 0.78, size.height * 0.55),
+    ];
+
+    for (final center in centers) {
+      for (var i = 1; i <= 3; i++) {
+        final radius = 50.0 + i * 60.0 + rng.nextDouble() * 20;
+        final sweep = 1.0 + rng.nextDouble() * 1.5;
+        final startAngle = rng.nextDouble() * 2 * pi;
+
+        paint
+          ..color = Colors.black.withValues(alpha: 0.02 + rng.nextDouble() * 0.015)
+          ..strokeWidth = 0.4 + rng.nextDouble() * 0.3;
+
+        canvas.drawArc(
+          Rect.fromCircle(center: center, radius: radius),
+          startAngle,
+          sweep,
+          false,
+          paint,
+        );
+      }
+    }
+  }
+
+  void _drawLightFlowLines(Canvas canvas, Size size) {
+    final rng = Random(88);
+    final paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+
+    for (var i = 0; i < 6; i++) {
+      final path = Path();
+      final startY = size.height * (0.1 + rng.nextDouble() * 0.8);
+      path.moveTo(-10, startY);
+
+      final cp1x = size.width * (0.2 + rng.nextDouble() * 0.15);
+      final cp1y = startY + (rng.nextDouble() - 0.5) * size.height * 0.1;
+      final cp2x = size.width * (0.6 + rng.nextDouble() * 0.15);
+      final cp2y = startY + (rng.nextDouble() - 0.5) * size.height * 0.12;
+      final endY = startY + (rng.nextDouble() - 0.5) * size.height * 0.08;
+
+      path.cubicTo(cp1x, cp1y, cp2x, cp2y, size.width + 10, endY);
+
+      paint
+        ..color = Colors.black.withValues(alpha: 0.015 + rng.nextDouble() * 0.01)
+        ..strokeWidth = 0.3 + rng.nextDouble() * 0.3;
+
+      canvas.drawPath(path, paint);
+    }
+  }
+
+  void _drawLightDots(Canvas canvas, Size size) {
+    final rng = Random(33);
+    final paint = Paint();
+    const spacing = 48.0;
     final cols = (size.width / spacing).ceil() + 1;
     final rows = (size.height / spacing).ceil() + 1;
+
     for (var row = 0; row < rows; row++) {
       for (var col = 0; col < cols; col++) {
-        final jitterX = (rng.nextDouble() - 0.5) * 8;
-        final jitterY = (rng.nextDouble() - 0.5) * 8;
-        final x = col * spacing + jitterX;
-        final y = row * spacing + jitterY;
-        final opacity = 0.03 + rng.nextDouble() * 0.025;
+        final offsetX = (row % 2 == 0) ? 0.0 : spacing * 0.5;
+        final x = col * spacing + offsetX + (rng.nextDouble() - 0.5) * 4;
+        final y = row * spacing + (rng.nextDouble() - 0.5) * 4;
+        final opacity = 0.02 + rng.nextDouble() * 0.02;
         paint.color = Colors.black.withValues(alpha: opacity);
-        canvas.drawCircle(Offset(x, y), 0.7, paint);
+        canvas.drawCircle(Offset(x, y), 0.6, paint);
       }
     }
   }

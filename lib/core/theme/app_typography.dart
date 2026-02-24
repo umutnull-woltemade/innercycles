@@ -3,132 +3,132 @@ import 'package:google_fonts/google_fonts.dart';
 
 /// Typography styles for the InnerCycles app
 ///
-/// FONT CHOICES:
-/// - Playfair Display: Elegant serif for headers
-/// - Space Grotesk: Modern sans-serif for body
-/// - Cinzel: Ancient style for accent text
+/// FONT CHOICES (Premium Journaling):
+/// - Cormorant Garamond: Warm literary serif for display/headlines
+/// - Plus Jakarta Sans: Clean modern sans-serif for body (excellent readability)
+/// - Cormorant: Refined literary accent font
 class AppTypography {
   AppTypography._();
 
-  /// Display font - Playfair Display (elegant, serif, premium)
-  static TextStyle get displayFont => GoogleFonts.playfairDisplay();
+  /// Display font - Cormorant Garamond (warm, literary, elegant)
+  static TextStyle get displayFont => GoogleFonts.cormorantGaramond();
 
-  /// Accent font - Cinzel (ancient, decorative)
-  static TextStyle get accentFont => GoogleFonts.cinzel();
+  /// Accent font - Cormorant (refined, literary)
+  static TextStyle get accentFont => GoogleFonts.cormorant();
 
-  /// Body font - Space Grotesk (modern, clean, futuristic, highly readable)
-  static TextStyle get bodyFont => GoogleFonts.spaceGrotesk();
+  /// Body font - Plus Jakarta Sans (clean, warm, highly readable)
+  static TextStyle get bodyFont => GoogleFonts.plusJakartaSans();
 
   static TextTheme get textTheme => TextTheme(
-    // Display styles - Playfair Display for elegant headers
-    displayLarge: GoogleFonts.playfairDisplay(
+    // Display styles - Cormorant Garamond for warm, literary elegance
+    displayLarge: GoogleFonts.cormorantGaramond(
       fontSize: 52,
-      fontWeight: FontWeight.w700,
-      letterSpacing: 0.5,
-      height: 1.2,
-    ),
-    displayMedium: GoogleFonts.playfairDisplay(
-      fontSize: 40,
-      fontWeight: FontWeight.w600,
-      letterSpacing: 0.4,
-      height: 1.2,
-    ),
-    displaySmall: GoogleFonts.playfairDisplay(
-      fontSize: 32,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.3,
-      height: 1.3,
+      height: 1.15,
     ),
-
-    // Headline styles - Playfair Display
-    headlineLarge: GoogleFonts.playfairDisplay(
-      fontSize: 28,
+    displayMedium: GoogleFonts.cormorantGaramond(
+      fontSize: 40,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.2,
+      height: 1.2,
+    ),
+    displaySmall: GoogleFonts.cormorantGaramond(
+      fontSize: 32,
+      fontWeight: FontWeight.w600,
+      letterSpacing: 0.15,
+      height: 1.25,
+    ),
+
+    // Headline styles - Cormorant Garamond
+    headlineLarge: GoogleFonts.cormorantGaramond(
+      fontSize: 28,
+      fontWeight: FontWeight.w600,
+      letterSpacing: 0.1,
       height: 1.3,
     ),
-    headlineMedium: GoogleFonts.playfairDisplay(
+    headlineMedium: GoogleFonts.cormorantGaramond(
       fontSize: 24,
       fontWeight: FontWeight.w600,
-      letterSpacing: 0.15,
+      letterSpacing: 0.05,
       height: 1.3,
     ),
-    headlineSmall: GoogleFonts.playfairDisplay(
+    headlineSmall: GoogleFonts.cormorantGaramond(
       fontSize: 20,
       fontWeight: FontWeight.w500,
-      letterSpacing: 0.1,
-      height: 1.4,
+      letterSpacing: 0.05,
+      height: 1.35,
     ),
 
-    // Title styles - Space Grotesk for modern readability
-    titleLarge: GoogleFonts.spaceGrotesk(
+    // Title styles - Plus Jakarta Sans for modern clarity
+    titleLarge: GoogleFonts.plusJakartaSans(
       fontSize: 22,
       fontWeight: FontWeight.w600,
-      letterSpacing: 0.1,
-      height: 1.4,
+      letterSpacing: 0,
+      height: 1.35,
     ),
-    titleMedium: GoogleFonts.spaceGrotesk(
+    titleMedium: GoogleFonts.plusJakartaSans(
       fontSize: 18,
       fontWeight: FontWeight.w600,
-      letterSpacing: 0.05,
+      letterSpacing: 0,
       height: 1.4,
     ),
-    titleSmall: GoogleFonts.spaceGrotesk(
+    titleSmall: GoogleFonts.plusJakartaSans(
       fontSize: 16,
       fontWeight: FontWeight.w600,
-      letterSpacing: 0.05,
+      letterSpacing: 0,
       height: 1.4,
     ),
 
-    // Body styles - Space Grotesk for excellent readability (BÜYÜTÜLDÜ +1)
-    bodyLarge: GoogleFonts.spaceGrotesk(
-      fontSize: 19,
-      fontWeight: FontWeight.w400,
-      letterSpacing: 0.15,
-      height: 1.65,
-    ),
-    bodyMedium: GoogleFonts.spaceGrotesk(
+    // Body styles - Plus Jakarta Sans for excellent readability
+    bodyLarge: GoogleFonts.plusJakartaSans(
       fontSize: 17,
-      fontWeight: FontWeight.w400,
-      letterSpacing: 0.1,
-      height: 1.6,
-    ),
-    bodySmall: GoogleFonts.spaceGrotesk(
-      fontSize: 15,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.1,
       height: 1.55,
     ),
-
-    // Label styles - Space Grotesk (BÜYÜTÜLDÜ +1)
-    labelLarge: GoogleFonts.spaceGrotesk(
-      fontSize: 17,
-      fontWeight: FontWeight.w600,
-      letterSpacing: 0.3,
-      height: 1.4,
-    ),
-    labelMedium: GoogleFonts.spaceGrotesk(
+    bodyMedium: GoogleFonts.plusJakartaSans(
       fontSize: 15,
-      fontWeight: FontWeight.w600,
-      letterSpacing: 0.25,
-      height: 1.4,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.1,
+      height: 1.5,
     ),
-    labelSmall: GoogleFonts.spaceGrotesk(
+    bodySmall: GoogleFonts.plusJakartaSans(
       fontSize: 13,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.05,
+      height: 1.45,
+    ),
+
+    // Label styles - Plus Jakarta Sans with medium weight
+    labelLarge: GoogleFonts.plusJakartaSans(
+      fontSize: 15,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.2,
       height: 1.4,
     ),
+    labelMedium: GoogleFonts.plusJakartaSans(
+      fontSize: 13,
+      fontWeight: FontWeight.w600,
+      letterSpacing: 0.15,
+      height: 1.4,
+    ),
+    labelSmall: GoogleFonts.plusJakartaSans(
+      fontSize: 11,
+      fontWeight: FontWeight.w600,
+      letterSpacing: 0.1,
+      height: 1.4,
+    ),
   );
 
-  /// Get Cinzel style for elegant accents
+  /// Elegant accent for sacred/literary text (chapter headers, section titles)
   static TextStyle elegantAccent({
     double fontSize = 16,
     FontWeight fontWeight = FontWeight.w600,
     Color? color,
     double letterSpacing = 2.0,
   }) {
-    return GoogleFonts.cinzel(
+    return GoogleFonts.cormorant(
       fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
@@ -136,14 +136,14 @@ class AppTypography {
     );
   }
 
-  /// Get elegant script for special quotes and decorative text
+  /// Decorative script for quotes and reflective text
   static TextStyle decorativeScript({
     double fontSize = 18,
     FontWeight fontWeight = FontWeight.w400,
     Color? color,
     FontStyle fontStyle = FontStyle.italic,
   }) {
-    return GoogleFonts.playfairDisplay(
+    return GoogleFonts.cormorantGaramond(
       fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
@@ -152,14 +152,14 @@ class AppTypography {
     );
   }
 
-  /// Modern accent for UI elements (buttons, badges)
+  /// Modern accent for UI elements (buttons, badges, chips)
   static TextStyle modernAccent({
     double fontSize = 14,
     FontWeight fontWeight = FontWeight.w700,
     Color? color,
-    double letterSpacing = 1.0,
+    double letterSpacing = 0.5,
   }) {
-    return GoogleFonts.spaceGrotesk(
+    return GoogleFonts.plusJakartaSans(
       fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
