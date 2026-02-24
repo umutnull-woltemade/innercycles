@@ -36,6 +36,7 @@ import 'widgets/cycle_wave_painter.dart';
 import 'widgets/cycle_summary_card.dart';
 import 'widgets/phase_ring.dart';
 import 'widgets/shift_outlook_card.dart';
+import '../../../core/theme/app_typography.dart';
 import 'widgets/pattern_loop_analyzer.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -274,7 +275,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                           ),
                           Text(
                             '$current/7',
-                            style: const TextStyle(
+                            style: AppTypography.displayFont.copyWith(
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
                               color: AppColors.auroraStart,
@@ -392,9 +393,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                             ? analysis.overallPhase!.descriptionEn()
                             : analysis.overallPhase!.descriptionTr(),
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: AppTypography.decorativeScript(
                           fontSize: 13,
-                          height: 1.4,
                           color: isDark
                               ? AppColors.textSecondary
                               : AppColors.lightTextSecondary,
@@ -427,7 +427,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 GradientText(
                   isEn ? 'Your Dimensions' : 'Boyutların',
                   variant: GradientTextVariant.aurora,
-                  style: const TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                   ),
@@ -466,7 +466,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 if (analysis.insights.isNotEmpty) ...[
                   Text(
                     isEn ? 'Cycle Insights' : 'Döngü İçgörüleri',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 18,
                       color: isDark
                           ? AppColors.textPrimary
                           : AppColors.lightTextPrimary,
@@ -879,7 +880,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           children: [
             Text(
               isEn ? 'Shift Outlook' : 'Kayma Görünümü',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 18,
                 color: isDark
                     ? AppColors.textPrimary
                     : AppColors.lightTextPrimary,
@@ -1064,7 +1066,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             isEn ? 'Access Full 30-Day View' : 'Tam 30 Günlük Görünüme Eriş',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 18,
               color: AppColors.starGold,
               fontWeight: FontWeight.w600,
             ),

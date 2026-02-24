@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../core/theme/app_typography.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../data/services/haptic_service.dart';
@@ -273,13 +273,18 @@ class _NavTab extends StatelessWidget {
           // Label
           Text(
             item.label,
-            style: GoogleFonts.plusJakartaSans(
-              fontSize: 10,
-              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-              color: color,
-              letterSpacing: isSelected ? 0.2 : 0,
-              height: 1,
-            ),
+            style: isSelected
+                ? AppTypography.elegantAccent(
+                    fontSize: 10,
+                    color: color,
+                    letterSpacing: 0.2,
+                  )
+                : TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w400,
+                    color: color,
+                    height: 1,
+                  ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),

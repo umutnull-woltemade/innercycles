@@ -10,6 +10,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 import '../services/insight_routing_service.dart';
@@ -176,10 +177,10 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
         ),
         title: Text(
           L10nService.get('insight.title', language),
-          style: TextStyle(
+          style: AppTypography.displayFont.copyWith(
             color: isDark ? Colors.white : Colors.black87,
             fontWeight: FontWeight.w600,
-            fontSize: 18,
+            fontSize: 20,
           ),
         ),
         centerTitle: true,
@@ -270,13 +271,16 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
                   ),
                   child: Text(
                     message.text,
-                    style: TextStyle(
-                      color: isUser
-                          ? Colors.white
-                          : (isDark ? Colors.white70 : Colors.black87),
-                      fontSize: 15,
-                      height: 1.5,
-                    ),
+                    style: isUser
+                        ? AppTypography.bodyFont.copyWith(
+                            color: Colors.white,
+                            fontSize: 15,
+                            height: 1.5,
+                          )
+                        : AppTypography.decorativeScript(
+                            fontSize: 15,
+                            color: isDark ? Colors.white70 : Colors.black87,
+                          ),
                   ),
                 ),
               )
@@ -397,11 +401,13 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
                 ),
                 decoration: InputDecoration(
                   hintText: L10nService.get('insight.input_hint', language),
-                  hintStyle: TextStyle(
+                  hintStyle: AppTypography.elegantAccent(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
                     color: isDark
                         ? AppColors.textMuted.withValues(alpha: 0.38)
                         : AppColors.textMuted,
-                    fontSize: 15,
+                    letterSpacing: 1.0,
                   ),
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.symmetric(

@@ -15,6 +15,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/archetype_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
@@ -210,7 +211,7 @@ class _DominantArchetypeCard extends StatelessWidget {
           // Name
           Text(
             archetype.getName(isEnglish: isEn),
-            style: TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 28,
               fontWeight: FontWeight.w700,
               color: AppColors.starGold,
@@ -226,7 +227,7 @@ class _DominantArchetypeCard extends StatelessWidget {
             ),
             child: Text(
               isEn ? '$confidencePct% alignment' : '%$confidencePct uyum',
-              style: TextStyle(
+              style: AppTypography.elegantAccent(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
                 color: AppColors.auroraStart,
@@ -238,9 +239,8 @@ class _DominantArchetypeCard extends StatelessWidget {
           Text(
             archetype.getDescription(isEnglish: isEn),
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 14,
-              height: 1.5,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
@@ -286,7 +286,7 @@ class _StrengthsShadowSection extends StatelessWidget {
               GradientText(
                 isEn ? 'Strengths' : 'Güçlü Yönler',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -316,7 +316,7 @@ class _StrengthsShadowSection extends StatelessWidget {
               GradientText(
                 isEn ? 'Shadow Side' : 'Gölge Yönü',
                 variant: GradientTextVariant.amethyst,
-                style: const TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -326,9 +326,8 @@ class _StrengthsShadowSection extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             shadow,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 13,
-              height: 1.5,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
@@ -357,7 +356,7 @@ class _StrengthChip extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: TextStyle(
+        style: AppTypography.elegantAccent(
           fontSize: 13,
           fontWeight: FontWeight.w500,
           color: AppColors.success,
@@ -421,7 +420,7 @@ class _GrowthTipCard extends StatelessWidget {
               GradientText(
                 isEn ? 'Growth Insight' : 'Büyüme İçgörüsü',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -431,9 +430,8 @@ class _GrowthTipCard extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             archetype.getGrowthTip(isEnglish: isEn),
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 14,
-              height: 1.6,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
@@ -480,7 +478,7 @@ class _EvolutionTimeline extends StatelessWidget {
               GradientText(
                 isEn ? 'Evolution Timeline' : 'Gelişim Zaman Çizgisi',
                 variant: GradientTextVariant.aurora,
-                style: const TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -619,7 +617,7 @@ class _BreakdownChart extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 isEn ? 'Full Archetype Breakdown' : 'Tam Arketip Dağılımı',
-                style: TextStyle(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: isDark
@@ -794,9 +792,8 @@ class _DisclaimerCard extends StatelessWidget {
                         'kişilik testi değil, öz-yansıtma aracı olarak '
                         'tasarlanmıştır. Kayıtların zaman içinde '
                         'değiştikçe değişebilir.',
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 12,
-                height: 1.5,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
             ),

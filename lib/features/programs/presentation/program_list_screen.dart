@@ -13,6 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/first_taste_service.dart';
 import '../../../data/services/guided_program_service.dart';
@@ -76,7 +77,7 @@ class ProgramListScreen extends ConsumerWidget {
                             isEn
                                 ? 'Structured reflection journeys to deepen self-awareness'
                                 : 'Öz farkındalığı derinleştirmek için yapılandırılmış yansıma yolculukları',
-                            style: TextStyle(
+                            style: AppTypography.decorativeScript(
                               fontSize: 14,
                               color: isDark
                                   ? AppColors.textSecondary
@@ -90,7 +91,7 @@ class ProgramListScreen extends ConsumerWidget {
                             GradientText(
                               isEn ? 'In Progress' : 'Devam Eden',
                               variant: GradientTextVariant.aurora,
-                              style: const TextStyle(
+                              style: AppTypography.displayFont.copyWith(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
                               ),
@@ -122,7 +123,7 @@ class ProgramListScreen extends ConsumerWidget {
                           GradientText(
                             isEn ? 'All Programs' : 'Tüm Programlar',
                             variant: GradientTextVariant.gold,
-                            style: const TextStyle(
+                            style: AppTypography.displayFont.copyWith(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                             ),
@@ -309,7 +310,7 @@ class _ProgramCard extends StatelessWidget {
                           Expanded(
                             child: Text(
                               isEn ? program.titleEn : program.titleTr,
-                              style: TextStyle(
+                              style: AppTypography.displayFont.copyWith(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                                 color: isLocked
@@ -342,7 +343,7 @@ class _ProgramCard extends StatelessWidget {
                               ),
                               child: Text(
                                 'PRO',
-                                style: TextStyle(
+                                style: AppTypography.elegantAccent(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w700,
                                   color: AppColors.starGold,
@@ -365,7 +366,7 @@ class _ProgramCard extends StatelessWidget {
                               ),
                               child: Text(
                                 isEn ? 'FREE' : 'ÜCRETSİZ',
-                                style: TextStyle(
+                                style: AppTypography.elegantAccent(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w700,
                                   color: AppColors.success,

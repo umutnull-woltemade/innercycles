@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../../../data/services/pattern_loop_service.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import 'cycle_wave_painter.dart';
@@ -38,7 +39,8 @@ class PatternLoopAnalyzer extends StatelessWidget {
         // Section header
         Text(
           isEn ? 'Pattern Loops' : 'Kalıp Döngüleri',
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+          style: AppTypography.displayFont.copyWith(
+            fontSize: 18,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontWeight: FontWeight.w700,
           ),
@@ -455,9 +457,8 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                             widget.isEn
                                 ? stageLabelsEn[idx]
                                 : stageLabelsTr[idx],
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 10,
-                              fontWeight: FontWeight.w600,
                               color: color.withValues(alpha: 0.7),
                               letterSpacing: 0.5,
                             ),
@@ -465,7 +466,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                           const SizedBox(height: 2),
                           Text(
                             widget.isEn ? stage.labelEn : stage.labelTr,
-                            style: TextStyle(
+                            style: AppTypography.displayFont.copyWith(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
                               color: widget.isDark

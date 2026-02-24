@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/dream_journal_service.dart';
@@ -460,7 +461,7 @@ class _StatTile extends StatelessWidget {
         children: [
           Text(
             value,
-            style: TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 22,
               fontWeight: FontWeight.w700,
               color: AppColors.starGold,
@@ -469,7 +470,7 @@ class _StatTile extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             label,
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
               fontWeight: FontWeight.w500,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -513,7 +514,7 @@ class _DreamCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   dream.title,
-                  style: TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: isDark
@@ -549,9 +550,8 @@ class _DreamCard extends StatelessWidget {
               dream.content,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 14,
-                height: 1.4,
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,
@@ -583,7 +583,7 @@ class _DreamCard extends StatelessWidget {
                   ),
                   child: Text(
                     symbol,
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 11,
                       fontWeight: FontWeight.w500,
                       color: AppColors.starGold,

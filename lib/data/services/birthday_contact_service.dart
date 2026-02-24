@@ -156,9 +156,10 @@ class BirthdayContactService with SupabaseSyncMixin {
   // BATCH IMPORT
   // ══════════════════════════════════════════════════════════════════════════
 
-  /// Import multiple contacts, deduplicating by name+birthday
-  Future<int> importContacts(List<BirthdayContact> newContacts) async {
-    int imported = 0;
+  /// Import multiple contacts, deduplicating by name+birthday.
+  /// Returns the list of actually imported contacts with their final UUIDs.
+  Future<List<BirthdayContact>> importContacts(List<BirthdayContact> newContacts) async {
+    final imported = <BirthdayContact>[];
     for (final incoming in newContacts) {
       final isDuplicate = _contacts.any(
         (c) =>
@@ -170,10 +171,10 @@ class BirthdayContactService with SupabaseSyncMixin {
         final contact = incoming.copyWith(id: _uuid.v4());
         _contacts.add(contact);
         queueSync('UPSERT', contact.id, _toSupabasePayload(contact));
-        imported++;
+        imported.add(contact);
       }
     }
-    if (imported > 0) {
+    if (imported.isNotEmpty) {
       _sortedCache = null;
       await _persistContacts();
     }

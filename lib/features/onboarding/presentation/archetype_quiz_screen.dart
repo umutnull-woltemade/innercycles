@@ -12,6 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/theme/liquid_glass/glass_tokens.dart';
@@ -320,7 +321,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
 
           Text(
             '${_currentQuestion + 1}/${_questions.length}',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -332,7 +333,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
           GradientText(
             isEn ? question.questionEn : question.questionTr,
             variant: GradientTextVariant.aurora,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 22,
               fontWeight: FontWeight.w600,
               height: 1.3,
@@ -358,7 +359,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                     borderRadius: BorderRadius.circular(14),
                     child: Text(
                       isEn ? option.textEn : option.textTr,
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 16,
                         color: isDark
                             ? AppColors.textPrimary
@@ -396,9 +397,8 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
           // Title
           Text(
             isEn ? 'Your Inner Archetype' : 'İç Arketipin',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 14,
-              fontWeight: FontWeight.w500,
               color: AppColors.starGold,
               letterSpacing: 1.5,
             ),
@@ -413,7 +413,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
           GradientText(
             archetype.getName(isEnglish: isEn),
             variant: GradientTextVariant.cosmic,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 28,
               fontWeight: FontWeight.w700,
             ),
@@ -428,10 +428,9 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
           Text(
             archetype.getDescription(isEnglish: isEn),
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 15,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              height: 1.5,
             ),
           ).glassEntrance(
             context: context,
@@ -453,7 +452,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                 GradientText(
                   isEn ? 'Your Strengths' : 'Güçlü Yönlerin',
                   variant: GradientTextVariant.gold,
-                  style: const TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),
@@ -475,7 +474,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                             Expanded(
                               child: Text(
                                 s,
-                                style: TextStyle(
+                                style: AppTypography.subtitle(
                                   fontSize: 14,
                                   color: isDark
                                       ? AppColors.textPrimary
@@ -509,7 +508,7 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                 GradientText(
                   isEn ? 'Growth Tip' : 'Büyüme İpucu',
                   variant: GradientTextVariant.amethyst,
-                  style: const TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),
@@ -517,12 +516,11 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
                 const SizedBox(height: 8),
                 Text(
                   archetype.getGrowthTip(isEnglish: isEn),
-                  style: TextStyle(
+                  style: AppTypography.decorativeScript(
                     fontSize: 14,
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
-                    height: 1.4,
                   ),
                 ),
               ],
@@ -550,9 +548,8 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
               ),
               child: Text(
                 isEn ? 'Get Started' : 'Başla',
-                style: const TextStyle(
+                style: AppTypography.subtitle(
                   fontSize: 16,
-                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),

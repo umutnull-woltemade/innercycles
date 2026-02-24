@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
@@ -202,7 +203,8 @@ class GratitudeArchiveScreen extends ConsumerWidget {
         children: [
           Text(
             isEn ? 'Recurring Themes' : 'Tekrarlanan Temalar',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 16,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
@@ -231,10 +233,9 @@ class GratitudeArchiveScreen extends ConsumerWidget {
                 ),
                 child: Text(
                   '${theme.key} (${theme.value})',
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 13,
                     color: AppColors.auroraStart.withValues(alpha: opacity),
-                    fontWeight: FontWeight.w500,
                   ),
                 ),
               );
@@ -298,14 +299,15 @@ class GratitudeArchiveScreen extends ConsumerWidget {
           GradientText(
             '${monthNames[month]} $year',
             variant: GradientTextVariant.gold,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
           ),
           const Spacer(),
           Text(
             isEn ? '$count entries' : '$count kayıt',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -336,7 +338,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
           children: [
             Text(
               dayStr,
-              style: TextStyle(
+              style: AppTypography.elegantAccent(
                 fontSize: 12,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -358,12 +360,11 @@ class GratitudeArchiveScreen extends ConsumerWidget {
                     Expanded(
                       child: Text(
                         item,
-                        style: TextStyle(
+                        style: AppTypography.decorativeScript(
                           fontSize: 14,
                           color: isDark
                               ? AppColors.textPrimary
                               : AppColors.lightTextPrimary,
-                          height: 1.4,
                         ),
                       ),
                     ),
@@ -403,14 +404,15 @@ class _StatTile extends StatelessWidget {
           GradientText(
             value,
             variant: GradientTextVariant.aurora,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 22,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 4),
           Text(
             label,
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 11,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),

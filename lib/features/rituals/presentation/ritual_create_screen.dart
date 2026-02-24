@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/ritual_service.dart';
 import '../../../data/services/premium_service.dart';
@@ -83,9 +84,8 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                         // Time selector
                         Text(
                           isEn ? 'When' : 'Zaman',
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 14,
-                            fontWeight: FontWeight.w600,
                             color: isDark
                                 ? AppColors.textSecondary
                                 : AppColors.lightTextSecondary,
@@ -176,9 +176,8 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                         // Name field
                         Text(
                           isEn ? 'Name' : 'İsim',
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 14,
-                            fontWeight: FontWeight.w600,
                             color: isDark
                                 ? AppColors.textSecondary
                                 : AppColors.lightTextSecondary,

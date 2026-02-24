@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
@@ -198,10 +199,10 @@ class _AffirmationLibraryScreenState
             isEn ? today.textEn : today.textTr,
             variant: GradientTextVariant.amethyst,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 18,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 20,
               fontWeight: FontWeight.w600,
-              height: 1.5,
+              height: 1.4,
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),

@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/content/context_modules_content.dart';
 import '../../../core/constants/common_strings.dart';
@@ -167,7 +168,7 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
               GradientText(
                 isEn ? 'Reading Progress' : 'Okuma İlerlemesi',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
@@ -175,9 +176,10 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
               GradientText(
                 '$readCount / $totalCount',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 14,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 1.0,
                 ),
               ),
             ],
@@ -268,7 +270,7 @@ class _CategoryChip extends StatelessWidget {
           ),
           child: Text(
             label,
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 13,
               fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
               color: isSelected
@@ -342,7 +344,7 @@ class _ModuleCard extends StatelessWidget {
                       children: [
                         Text(
                           isEn ? module.titleEn : module.titleTr,
-                          style: TextStyle(
+                          style: AppTypography.displayFont.copyWith(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                             color: isDark
@@ -370,7 +372,7 @@ class _ModuleCard extends StatelessWidget {
                                 isEn
                                     ? module.category.displayNameEn
                                     : module.category.displayNameTr,
-                                style: TextStyle(
+                                style: AppTypography.elegantAccent(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.auroraStart,
@@ -395,7 +397,7 @@ class _ModuleCard extends StatelessWidget {
                                 isEn
                                     ? module.depth.displayNameEn
                                     : module.depth.displayNameTr,
-                                style: TextStyle(
+                                style: AppTypography.elegantAccent(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.starGold,
@@ -441,9 +443,8 @@ class _ModuleCard extends StatelessWidget {
               const SizedBox(height: AppConstants.spacingMd),
               Text(
                 isEn ? module.summaryEn : module.summaryTr,
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
                   fontSize: 13,
-                  height: 1.5,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -483,9 +484,9 @@ class _ModuleCard extends StatelessWidget {
                       GradientText(
                         isEn ? 'Why It Matters' : 'Neden Önemli',
                         variant: GradientTextVariant.gold,
-                        style: const TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 12,
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       const SizedBox(height: 6),
@@ -531,10 +532,8 @@ class _ModuleCard extends StatelessWidget {
                                 ? module.screenshotLineEn!
                                 : (module.screenshotLineTr ??
                                       module.screenshotLineEn!),
-                            style: TextStyle(
+                            style: AppTypography.decorativeScript(
                               fontSize: 13,
-                              fontStyle: FontStyle.italic,
-                              height: 1.5,
                               color: isDark
                                   ? AppColors.textSecondary
                                   : AppColors.lightTextSecondary,

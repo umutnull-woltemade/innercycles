@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
@@ -72,7 +73,7 @@ class UnlockProgressBanner extends ConsumerWidget {
                       children: [
                         Text(
                           isEn ? 'Unlocked!' : 'Kilidi Açıldı!',
-                          style: TextStyle(
+                          style: AppTypography.displayFont.copyWith(
                             color: AppColors.starGold,
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -81,7 +82,7 @@ class UnlockProgressBanner extends ConsumerWidget {
                         const SizedBox(height: 2),
                         Text(
                           celebrationFeature,
-                          style: TextStyle(
+                          style: AppTypography.decorativeScript(
                             color: isDark ? Colors.white70 : Colors.black54,
                             fontSize: 13,
                           ),
@@ -125,10 +126,9 @@ class UnlockProgressBanner extends ConsumerWidget {
                         isEn
                             ? '${next.remaining} more ${next.remaining == 1 ? 'entry' : 'entries'} unlock $featureName'
                             : '${next.remaining} giriş daha $featureName açar',
-                        style: TextStyle(
+                        style: AppTypography.subtitle(
                           color: isDark ? Colors.white70 : Colors.black87,
                           fontSize: 13,
-                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),

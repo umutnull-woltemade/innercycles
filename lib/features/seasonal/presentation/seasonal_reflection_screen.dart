@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/seasonal_reflection_service.dart';
@@ -166,17 +167,16 @@ class _SeasonHeader extends StatelessWidget {
           GradientText(
             isEn ? module.nameEn : module.nameTr,
             variant: GradientTextVariant.aurora,
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w700,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 24,
+              fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: 4),
           Text(
             isEn ? module.themeEn : module.themeTr,
-            style: TextStyle(
-              fontSize: 14,
-              fontStyle: FontStyle.italic,
+            style: AppTypography.decorativeScript(
+              fontSize: 15,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,

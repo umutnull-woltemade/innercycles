@@ -9,6 +9,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../data/content/life_event_presets.dart';
 import '../../../data/models/life_event.dart';
 import '../../../data/providers/app_providers.dart';
@@ -35,7 +37,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: serviceAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: CosmicLoadingIndicator()),
           error: (_, _) => Center(
             child: Text(
               isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
@@ -145,7 +147,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                     Text(
                       event.title,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 22,
                         fontWeight: FontWeight.w700,
                         color: isDark
@@ -167,7 +169,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                         isEn
                             ? event.type.displayNameEn
                             : event.type.displayNameTr,
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                           color: accentColor,
@@ -216,7 +218,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                       GradientText(
                         isEn ? 'Emotions' : 'Duygular',
                         variant: GradientTextVariant.amethyst,
-                        style: const TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
                         ),
@@ -238,7 +240,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                             ),
                             child: Text(
                               tag,
-                              style: TextStyle(
+                              style: AppTypography.elegantAccent(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.auroraStart,
@@ -265,7 +267,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                       GradientText(
                         isEn ? 'Reflection' : 'Düşünceler',
                         variant: GradientTextVariant.amethyst,
-                        style: const TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
                         ),
@@ -273,9 +275,8 @@ class LifeEventDetailScreen extends ConsumerWidget {
                       const SizedBox(height: 8),
                       Text(
                         note,
-                        style: TextStyle(
+                        style: AppTypography.decorativeScript(
                           fontSize: 15,
-                          height: 1.6,
                           color: isDark
                               ? AppColors.textSecondary
                               : AppColors.lightTextSecondary,
@@ -323,7 +324,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
           const SizedBox(height: 2),
           Text(
             value,
-            style: TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 14,
               fontWeight: FontWeight.w600,
               color: isDark

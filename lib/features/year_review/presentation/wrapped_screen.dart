@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../../core/theme/app_typography.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/emotional_gradient.dart';
@@ -308,7 +308,7 @@ class _WrappedCardBase extends StatelessWidget {
               right: 20,
               child: Text(
                 'InnerCycles',
-                style: GoogleFonts.plusJakartaSans(
+                style: AppTypography.elegantAccent(
                   fontSize: 11,
                   fontWeight: FontWeight.w500,
                   color: AppColors.textMuted.withValues(alpha: 0.5),
@@ -347,7 +347,7 @@ class _AnimatedStat extends StatelessWidget {
       builder: (context, val, _) {
         return Text(
           '${val.toInt()}',
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.displayFont.copyWith(
             fontSize: fontSize,
             fontWeight: FontWeight.w200,
             color: color,
@@ -399,7 +399,7 @@ class _IntroCard extends StatelessWidget {
             isEn ? 'Your Year in Patterns' : 'Örüntülerle Geçen Yılın',
             variant: GradientTextVariant.cosmic,
             textAlign: TextAlign.center,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 28,
               fontWeight: FontWeight.w800,
               height: 1.2,
@@ -414,7 +414,7 @@ class _IntroCard extends StatelessWidget {
           GradientText(
             '${data.year}',
             variant: GradientTextVariant.gold,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.elegantAccent(
               fontSize: 20,
               fontWeight: FontWeight.w300,
               letterSpacing: 4,
@@ -437,9 +437,8 @@ class _IntroCard extends StatelessWidget {
           const Spacer(flex: 3),
           Text(
             isEn ? 'Swipe to explore →' : 'Keşfetmek için kaydır →',
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.subtitle(
               fontSize: 13,
-              fontWeight: FontWeight.w500,
               color: AppColors.textMuted,
             ),
           ).animate(
@@ -483,7 +482,7 @@ class _EmotionalArcCard extends StatelessWidget {
           GradientText(
             isEn ? 'Your Emotional Arc' : 'Duygusal Yörüngen',
             variant: GradientTextVariant.aurora,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.elegantAccent(
               fontSize: 16,
               fontWeight: FontWeight.w500,
               letterSpacing: 1,
@@ -492,7 +491,7 @@ class _EmotionalArcCard extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             data.dominantEmotionalArc.label(isEn),
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 42,
               fontWeight: FontWeight.w800,
               color: AppColors.textPrimary,
@@ -510,11 +509,9 @@ class _EmotionalArcCard extends StatelessWidget {
             child: Text(
               data.dominantEmotionalArc.description(isEn),
               textAlign: TextAlign.center,
-              style: GoogleFonts.plusJakartaSans(
+              style: AppTypography.decorativeScript(
                 fontSize: 15,
-                fontWeight: FontWeight.w400,
                 color: AppColors.textSecondary,
-                height: 1.5,
               ),
             ),
           ).animate().fadeIn(delay: 500.ms, duration: 500.ms),
@@ -568,7 +565,7 @@ class _IntenseWeekCard extends StatelessWidget {
           GradientText(
             isEn ? 'Most Intense Week' : 'En Yoğun Haftan',
             variant: GradientTextVariant.amethyst,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.elegantAccent(
               fontSize: 16,
               fontWeight: FontWeight.w500,
               letterSpacing: 1,
@@ -590,7 +587,7 @@ class _IntenseWeekCard extends StatelessWidget {
           Text(
             weekStr,
             textAlign: TextAlign.center,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 24,
               fontWeight: FontWeight.w700,
               color: AppColors.textPrimary,
@@ -603,11 +600,9 @@ class _IntenseWeekCard extends StatelessWidget {
                 ? 'This week had the widest range of emotions in your entries'
                 : 'Bu hafta kayıtlarında en geniş duygu yelpazesi vardı',
             textAlign: TextAlign.center,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.decorativeScript(
               fontSize: 14,
-              fontWeight: FontWeight.w400,
               color: AppColors.textSecondary,
-              height: 1.5,
             ),
           ).animate().fadeIn(delay: 600.ms, duration: 500.ms),
           const Spacer(flex: 3),
@@ -664,7 +659,7 @@ class _FocusAreaCard extends StatelessWidget {
           GradientText(
             isEn ? 'Focus Area Map' : 'Odak Alanı Haritası',
             variant: GradientTextVariant.gold,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.elegantAccent(
               fontSize: 16,
               fontWeight: FontWeight.w500,
               letterSpacing: 1,
@@ -687,9 +682,8 @@ class _FocusAreaCard extends StatelessWidget {
                     width: 80,
                     child: Text(
                       isEn ? area.displayNameEn : area.displayNameTr,
-                      style: GoogleFonts.plusJakartaSans(
+                      style: AppTypography.subtitle(
                         fontSize: 13,
-                        fontWeight: FontWeight.w500,
                         color: AppColors.textSecondary,
                       ),
                     ),
@@ -730,7 +724,7 @@ class _FocusAreaCard extends StatelessWidget {
                     width: 28,
                     child: Text(
                       '$count',
-                      style: GoogleFonts.plusJakartaSans(
+                      style: AppTypography.elegantAccent(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
                         color: AppColors.textMuted,
@@ -786,7 +780,7 @@ class _GrowthScoreCard extends StatelessWidget {
           GradientText(
             isEn ? 'Growth Score' : 'Gelişim Puanı',
             variant: GradientTextVariant.gold,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.elegantAccent(
               fontSize: 16,
               fontWeight: FontWeight.w500,
               letterSpacing: 1,
@@ -818,11 +812,9 @@ class _GrowthScoreCard extends StatelessWidget {
           Text(
             _growthLabel(data.growthScore, isEn),
             textAlign: TextAlign.center,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.decorativeScript(
               fontSize: 15,
-              fontWeight: FontWeight.w500,
               color: AppColors.textSecondary,
-              height: 1.5,
             ),
           ).animate().fadeIn(delay: 600.ms, duration: 500.ms),
           const Spacer(flex: 3),
@@ -877,7 +869,7 @@ class _BreakthroughCard extends StatelessWidget {
           GradientText(
             isEn ? 'Breakthrough Moments' : 'Atılım Anları',
             variant: GradientTextVariant.amethyst,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.elegantAccent(
               fontSize: 16,
               fontWeight: FontWeight.w500,
               letterSpacing: 1,
@@ -892,7 +884,7 @@ class _BreakthroughCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             isEn ? 'breakthroughs' : 'atılım',
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.elegantAccent(
               fontSize: 14,
               fontWeight: FontWeight.w500,
               color: AppColors.textSecondary,
@@ -906,11 +898,9 @@ class _BreakthroughCard extends StatelessWidget {
                   ? 'Moments where your mood lifted and a positive streak began'
                   : 'Ruh halin yükselip pozitif bir seri başladığı anlar',
               textAlign: TextAlign.center,
-              style: GoogleFonts.plusJakartaSans(
+              style: AppTypography.decorativeScript(
                 fontSize: 14,
-                fontWeight: FontWeight.w400,
                 color: AppColors.textSecondary,
-                height: 1.5,
               ),
             ),
           ).animate().fadeIn(delay: 700.ms, duration: 500.ms),
@@ -953,7 +943,7 @@ class _TopPatternsCard extends StatelessWidget {
           GradientText(
             isEn ? 'Your Top Patterns' : 'En Önemli Örüntülerin',
             variant: GradientTextVariant.gold,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.elegantAccent(
               fontSize: 16,
               fontWeight: FontWeight.w500,
               letterSpacing: 1,
@@ -965,7 +955,7 @@ class _TopPatternsCard extends StatelessWidget {
               isEn
                   ? 'Keep journaling to discover patterns'
                   : 'Örüntüleri keşfetmek için yazmaya devam et',
-              style: GoogleFonts.plusJakartaSans(
+              style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: AppColors.textSecondary,
               ),
@@ -991,7 +981,7 @@ class _TopPatternsCard extends StatelessWidget {
                       child: Center(
                         child: Text(
                           '${i + 1}',
-                          style: GoogleFonts.plusJakartaSans(
+                          style: AppTypography.displayFont.copyWith(
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
                             color: AppColors.starGold,
@@ -1003,11 +993,9 @@ class _TopPatternsCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         label,
-                        style: GoogleFonts.plusJakartaSans(
+                        style: AppTypography.subtitle(
                           fontSize: 15,
-                          fontWeight: FontWeight.w500,
                           color: AppColors.textPrimary,
-                          height: 1.4,
                         ),
                       ),
                     ),
@@ -1119,7 +1107,7 @@ class _ClosingCard extends StatelessWidget {
             isEn ? 'See You Next Year' : 'Gelecek Yıl Görüşmek Üzere',
             variant: GradientTextVariant.cosmic,
             textAlign: TextAlign.center,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 28,
               fontWeight: FontWeight.w800,
               height: 1.2,
@@ -1137,11 +1125,9 @@ class _ClosingCard extends StatelessWidget {
                   ? 'Every entry you wrote brought you closer to yourself.'
                   : 'Yazdığın her kayıt seni kendine biraz daha yaklaştırdı.',
               textAlign: TextAlign.center,
-              style: GoogleFonts.plusJakartaSans(
+              style: AppTypography.decorativeScript(
                 fontSize: 15,
-                fontWeight: FontWeight.w400,
                 color: AppColors.textSecondary,
-                height: 1.6,
               ),
             ),
           ).animate().fadeIn(delay: 300.ms, duration: 500.ms),
@@ -1227,7 +1213,7 @@ class _PremiumGateCard extends StatelessWidget {
             isEn ? 'Unlock Your Full Wrapped' : 'Tam Wrapped\'ını Aç',
             variant: GradientTextVariant.gold,
             textAlign: TextAlign.center,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 22,
               fontWeight: FontWeight.w700,
             ),
@@ -1238,9 +1224,8 @@ class _PremiumGateCard extends StatelessWidget {
                 ? '5 more cards with deeper insights await you'
                 : '5 derin içgörü kartı seni bekliyor',
             textAlign: TextAlign.center,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.decorativeScript(
               fontSize: 14,
-              fontWeight: FontWeight.w400,
               color: AppColors.textSecondary,
             ),
           ),
@@ -1267,7 +1252,7 @@ class _MiniStatColumn extends StatelessWidget {
       children: [
         Text(
           value,
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 32,
             fontWeight: FontWeight.w200,
             color: AppColors.textPrimary,
@@ -1276,7 +1261,7 @@ class _MiniStatColumn extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           label,
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.elegantAccent(
             fontSize: 13,
             fontWeight: FontWeight.w500,
             color: AppColors.textMuted,

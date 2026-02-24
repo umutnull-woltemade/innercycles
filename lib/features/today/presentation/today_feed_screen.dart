@@ -12,6 +12,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/models/journal_entry.dart';
@@ -341,24 +342,24 @@ class _HomeHeader extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Date in gold small caps
+                    // Date in gold elegant small caps
                     Text(
                       dateStr.toUpperCase(),
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 11,
                         fontWeight: FontWeight.w600,
-                        letterSpacing: 1.2,
+                        letterSpacing: 1.5,
                         color: isDark
                             ? AppColors.starGold.withValues(alpha: 0.6)
                             : AppColors.lightStarGold.withValues(alpha: 0.7),
                       ),
                     ),
                     const SizedBox(height: 8),
-                    // Greeting
+                    // Greeting — literary serif
                     Text(
                       userName.isNotEmpty ? '$greeting,' : greeting,
-                      style: TextStyle(
-                        fontSize: 15,
+                      style: AppTypography.decorativeScript(
+                        fontSize: 16,
                         fontWeight: FontWeight.w500,
                         color: isDark
                             ? AppColors.textSecondary
@@ -370,10 +371,11 @@ class _HomeHeader extends StatelessWidget {
                       GradientText(
                         userName,
                         variant: GradientTextVariant.gold,
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.w800,
-                          letterSpacing: -0.5,
+                        style: AppTypography.displayFont.copyWith(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: -0.3,
+                          height: 1.1,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -382,13 +384,12 @@ class _HomeHeader extends StatelessWidget {
                     const SizedBox(height: 6),
                     Text(
                       isEn ? insight.en : insight.tr,
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 13,
+                        fontWeight: FontWeight.w400,
                         color: isDark
                             ? AppColors.textMuted
                             : AppColors.lightTextMuted,
-                        height: 1.3,
-                        fontStyle: FontStyle.italic,
                       ),
                     ),
                   ],
@@ -428,6 +429,13 @@ class _HomeHeader extends StatelessWidget {
                             .withValues(alpha: 0.3),
                         width: 1.5,
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.starGold.withValues(alpha: isDark ? 0.15 : 0.08),
+                          blurRadius: 12,
+                          spreadRadius: 1,
+                        ),
+                      ],
                     ),
                     child: Center(
                       child: userName.isNotEmpty
@@ -696,31 +704,31 @@ class _HeroJournalCard extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
-                // Question text
+                // Question text — literary serif for warmth
                 Text(
                   questionText,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 17,
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 19,
                     fontWeight: FontWeight.w600,
                     color: isDark
                         ? AppColors.textPrimary
                         : AppColors.lightTextPrimary,
-                    height: 1.45,
-                    letterSpacing: -0.2,
+                    height: 1.4,
+                    letterSpacing: -0.1,
                   ),
                 ),
                 const SizedBox(height: 10),
-                // Label
+                // Label — elegant accent
                 Text(
                   isEn ? 'DAILY REFLECTION' : 'GÜNLÜK YANSIMA',
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 10,
                     fontWeight: FontWeight.w600,
+                    letterSpacing: 2.0,
                     color: isDark
                         ? AppColors.auroraStart.withValues(alpha: 0.5)
                         : AppColors.lightAuroraStart.withValues(alpha: 0.6),
-                    letterSpacing: 1.5,
                   ),
                 ),
                 const SizedBox(height: 20),

@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
@@ -179,8 +180,8 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                         GradientText(
                           isEn ? 'Choose Duration' : 'Süre Seçin',
                           variant: GradientTextVariant.aurora,
-                          style: const TextStyle(
-                            fontSize: 16,
+                          style: AppTypography.displayFont.copyWith(
+                            fontSize: 18,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -305,8 +306,8 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                       if (hasStarted) ...[
                                         Text(
                                           _formatTime(_remainingSeconds),
-                                          style: TextStyle(
-                                            fontSize: 42,
+                                          style: AppTypography.displayFont.copyWith(
+                                            fontSize: 44,
                                             fontWeight: FontWeight.w300,
                                             color: isDark
                                                 ? Colors.white
@@ -322,8 +323,8 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                               : (isEn
                                                     ? 'Paused'
                                                     : 'Duraklatıldı'),
-                                          style: TextStyle(
-                                            fontSize: 13,
+                                          style: AppTypography.decorativeScript(
+                                            fontSize: 14,
                                             color: AppColors.cosmicPurple
                                                 .withValues(alpha: 0.8),
                                           ),
@@ -364,9 +365,8 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                           isEn
                               ? 'Focus on your breath...'
                               : 'Nefesinize odaklanın...',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontStyle: FontStyle.italic,
+                          style: AppTypography.decorativeScript(
+                            fontSize: 16,
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,

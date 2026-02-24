@@ -7,6 +7,8 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
+import '../../../shared/widgets/themed_picker.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/providers/app_providers.dart';
@@ -136,9 +138,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         GradientText(
           L10nService.get('navigation.profile', language),
           variant: GradientTextVariant.gold,
-          style: Theme.of(
-            context,
-          ).textTheme.headlineMedium,
+          style: AppTypography.displayFont.copyWith(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         const Spacer(),
         if (_hasChanges)
@@ -207,7 +210,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             GradientText(
               profile.name ?? profile.displayEmoji,
               variant: GradientTextVariant.gold,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 22,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -256,7 +260,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               GradientText(
                 L10nService.get('profile.edit_info', language),
                 variant: GradientTextVariant.gold,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -458,7 +463,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               GradientText(
                 isEn ? 'Your Progress' : 'İlerlemen',
                 variant: GradientTextVariant.gold,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -491,24 +497,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   }
 
   Future<void> _selectDate(BuildContext context) async {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    final date = await showDatePicker(
-      context: context,
+    final date = await ThemedPicker.showDate(
+      context,
       initialDate: _selectedDate ?? DateTime(1990, 1, 1),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
-      builder: (context, child) {
-        return Theme(
-          data: Theme.of(context).copyWith(
-            colorScheme: ColorScheme.dark(
-              primary: AppColors.auroraStart,
-              surface: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
-            ),
-          ),
-          child: child!,
-        );
-      },
     );
 
     if (date != null) {
@@ -521,17 +514,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   }
 
   Future<void> _selectTime(BuildContext context) async {
-    final time = await showTimePicker(
-      context: context,
+    final time = await ThemedPicker.showTime(
+      context,
       initialTime: _selectedTime ?? const TimeOfDay(hour: 12, minute: 0),
-      builder: (context, child) {
-        return Theme(
-          data: Theme.of(context).copyWith(
-            colorScheme: ColorScheme.dark(primary: AppColors.auroraStart),
-          ),
-          child: child!,
-        );
-      },
     );
 
     if (time != null) {
@@ -545,7 +530,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
   Future<void> _selectCity(BuildContext context, AppLanguage language) async {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final colorScheme = Theme.of(context).colorScheme;
 
     final result = await showModalBottomSheet<CityData>(
       context: context,
@@ -620,10 +604,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       GradientText(
                         L10nService.get('input.select_city', language),
                         variant: GradientTextVariant.aurora,
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
+                        style: AppTypography.displayFont.copyWith(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       const SizedBox(width: 60),
                     ],
@@ -678,10 +662,21 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           ),
                         ),
                         selected: showTurkeyOnly,
-                        selectedColor: colorScheme.primary,
+                        selectedColor: AppColors.auroraStart,
+                        checkmarkColor: Colors.white,
                         backgroundColor: isDark
                             ? AppColors.surfaceLight.withValues(alpha: 0.12)
                             : AppColors.lightSurfaceVariant,
+                        side: BorderSide(
+                          color: showTurkeyOnly
+                              ? AppColors.auroraStart.withValues(alpha: 0.5)
+                              : (isDark
+                                    ? Colors.white.withValues(alpha: 0.08)
+                                    : Colors.black.withValues(alpha: 0.06)),
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         onSelected: (selected) {
                           setModalState(() => showTurkeyOnly = selected);
                         },
@@ -698,10 +693,21 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           ),
                         ),
                         selected: !showTurkeyOnly,
-                        selectedColor: colorScheme.primary,
+                        selectedColor: AppColors.auroraStart,
+                        checkmarkColor: Colors.white,
                         backgroundColor: isDark
                             ? AppColors.surfaceLight.withValues(alpha: 0.12)
                             : AppColors.lightSurfaceVariant,
+                        side: BorderSide(
+                          color: !showTurkeyOnly
+                              ? AppColors.auroraStart.withValues(alpha: 0.5)
+                              : (isDark
+                                    ? Colors.white.withValues(alpha: 0.08)
+                                    : Colors.black.withValues(alpha: 0.06)),
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         onSelected: (selected) {
                           setModalState(() => showTurkeyOnly = !selected);
                         },

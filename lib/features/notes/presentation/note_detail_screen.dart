@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/models/note_to_self.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/note_to_self_service.dart';
@@ -345,7 +345,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                           ),
                           child: Text(
                             isEn ? 'Save' : 'Kaydet',
-                            style: GoogleFonts.plusJakartaSans(
+                            style: AppTypography.displayFont.copyWith(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: Colors.white,
@@ -369,18 +369,18 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                               Expanded(
                                 child: TextField(
                                   controller: _titleController,
-                                  style: GoogleFonts.plusJakartaSans(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w700,
+                                  style: AppTypography.displayFont.copyWith(
+                                    fontSize: 26,
+                                    fontWeight: FontWeight.w600,
                                     color: isDark
                                         ? AppColors.textPrimary
                                         : AppColors.lightTextPrimary,
                                   ),
                                   decoration: InputDecoration(
                                     hintText: isEn ? 'Title' : 'Ba\u015fl\u0131k',
-                                    hintStyle: GoogleFonts.plusJakartaSans(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w700,
+                                    hintStyle: AppTypography.displayFont.copyWith(
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.w600,
                                       color: isDark
                                           ? Colors.white.withValues(alpha: 0.2)
                                           : Colors.black.withValues(alpha: 0.15),
@@ -432,7 +432,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                             controller: _contentController,
                             maxLines: null,
                             minLines: 8,
-                            style: GoogleFonts.plusJakartaSans(
+                            style: TextStyle(
                               fontSize: 16,
                               color: isDark
                                   ? Colors.white.withValues(alpha: 0.9)
@@ -443,7 +443,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                               hintText: isEn
                                   ? 'Write your thoughts...'
                                   : 'D\u00fc\u015f\u00fcncelerini yaz...',
-                              hintStyle: GoogleFonts.plusJakartaSans(
+                              hintStyle: TextStyle(
                                 fontSize: 16,
                                 color: isDark
                                     ? Colors.white.withValues(alpha: 0.2)
@@ -462,7 +462,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                   : (isEn
                                       ? '$_wordCount words'
                                       : '$_wordCount kelime'),
-                              style: GoogleFonts.plusJakartaSans(
+                              style: TextStyle(
                                 fontSize: 11,
                                 color: isDark ? Colors.white24 : Colors.black.withValues(alpha: 0.2),
                               ),
@@ -489,9 +489,8 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                     const SizedBox(width: 8),
                                     Text(
                                       isEn ? 'Tags' : 'Etiketler',
-                                      style: GoogleFonts.plusJakartaSans(
+                                      style: AppTypography.elegantAccent(
                                         fontSize: 14,
-                                        fontWeight: FontWeight.w600,
                                         color: isDark
                                             ? Colors.white70
                                             : Colors.black54,
@@ -520,7 +519,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                     Expanded(
                                       child: TextField(
                                         controller: _tagController,
-                                        style: GoogleFonts.plusJakartaSans(
+                                        style: TextStyle(
                                           fontSize: 14,
                                           color: isDark
                                               ? Colors.white
@@ -602,7 +601,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                     isEn
                                         ? 'Mood when created'
                                         : 'Olu\u015fturuldu\u011fundaki ruh hali',
-                                    style: GoogleFonts.plusJakartaSans(
+                                    style: TextStyle(
                                       fontSize: 12,
                                       color: isDark
                                           ? Colors.white54
@@ -639,9 +638,8 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                           isEn
                                               ? 'Remind Me'
                                               : 'Hat\u0131rlat',
-                                          style: GoogleFonts.plusJakartaSans(
+                                          style: AppTypography.elegantAccent(
                                             fontSize: 14,
-                                            fontWeight: FontWeight.w600,
                                             color: isDark
                                                 ? Colors.white70
                                                 : Colors.black54,
@@ -677,9 +675,8 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                             const SizedBox(width: 4),
                                             Text(
                                               isEn ? 'Add' : 'Ekle',
-                                              style: GoogleFonts.plusJakartaSans(
+                                              style: AppTypography.elegantAccent(
                                                 fontSize: 12,
-                                                fontWeight: FontWeight.w600,
                                                 color: AppColors.starGold,
                                               ),
                                             ),
@@ -718,9 +715,8 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                                 _formatReminderDate(
                                                     _pendingReminderDate!,
                                                     isEn),
-                                                style: GoogleFonts.plusJakartaSans(
+                                                style: AppTypography.subtitle(
                                                   fontSize: 13,
-                                                  fontWeight: FontWeight.w500,
                                                   color: isDark
                                                       ? Colors.white
                                                       : Colors.black87,
@@ -730,7 +726,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                                 isEn
                                                     ? 'Will be set when you save'
                                                     : 'Kaydetti\u011finde ayarlanacak',
-                                                style: GoogleFonts.plusJakartaSans(
+                                                style: TextStyle(
                                                   fontSize: 11,
                                                   color: isDark
                                                       ? Colors.white54
@@ -783,7 +779,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                     isEn
                                         ? 'Set a date & time to get notified about this note'
                                         : 'Bu not hakk\u0131nda bildirim almak i\u00e7in tarih ve saat belirle',
-                                    style: GoogleFonts.plusJakartaSans(
+                                    style: TextStyle(
                                       fontSize: 12,
                                       color: isDark
                                           ? Colors.white30
@@ -883,9 +879,8 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                       const SizedBox(width: 8),
                                       Text(
                                         isEn ? 'Delete Note' : 'Notu Sil',
-                                        style: GoogleFonts.plusJakartaSans(
+                                        style: AppTypography.subtitle(
                                           fontSize: 14,
-                                          fontWeight: FontWeight.w500,
                                           color: Colors.redAccent,
                                         ),
                                       ),
@@ -964,9 +959,8 @@ class _RemovableTagChip extends StatelessWidget {
         children: [
           Text(
             tag,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.subtitle(
               fontSize: 13,
-              fontWeight: FontWeight.w500,
               color: isDark
                   ? AppColors.amethyst
                   : AppColors.amethyst.withValues(alpha: 0.8),
@@ -1027,15 +1021,14 @@ class _ReminderRow extends StatelessWidget {
               children: [
                 Text(
                   dateStr,
-                  style: GoogleFonts.plusJakartaSans(
+                  style: AppTypography.subtitle(
                     fontSize: 13,
-                    fontWeight: FontWeight.w500,
                     color: isDark ? Colors.white : Colors.black87,
                   ),
                 ),
                 Text(
                   freq,
-                  style: GoogleFonts.plusJakartaSans(
+                  style: TextStyle(
                     fontSize: 11,
                     color: isDark ? Colors.white54 : Colors.black45,
                   ),
@@ -1043,7 +1036,7 @@ class _ReminderRow extends StatelessWidget {
                 if (reminder.customMessage != null)
                   Text(
                     reminder.customMessage!,
-                    style: GoogleFonts.plusJakartaSans(
+                    style: TextStyle(
                       fontSize: 11,
                       fontStyle: FontStyle.italic,
                       color: isDark ? Colors.white38 : Colors.black38,
@@ -1129,7 +1122,7 @@ class _ReminderForm extends StatelessWidget {
                         : (isEn
                             ? 'Pick date & time'
                             : 'Tarih ve saat se\u00e7'),
-                    style: GoogleFonts.plusJakartaSans(
+                    style: TextStyle(
                       fontSize: 14,
                       color: reminderDate != null
                           ? (isDark ? Colors.white : Colors.black87)
@@ -1146,7 +1139,7 @@ class _ReminderForm extends StatelessWidget {
           // Frequency chips
           Text(
             isEn ? 'Frequency' : 'S\u0131kl\u0131k',
-            style: GoogleFonts.plusJakartaSans(
+            style: TextStyle(
               fontSize: 12,
               color: isDark ? Colors.white54 : Colors.black45,
             ),
@@ -1172,16 +1165,19 @@ class _ReminderForm extends StatelessWidget {
                   ),
                   child: Text(
                     isLocked ? '$label (PRO)' : label,
-                    style: GoogleFonts.plusJakartaSans(
-                      fontSize: 12,
-                      fontWeight:
-                          isSelected ? FontWeight.w600 : FontWeight.w400,
-                      color: isLocked
-                          ? (isDark ? Colors.white30 : Colors.black26)
-                          : isSelected
-                              ? AppColors.starGold
-                              : (isDark ? Colors.white70 : Colors.black54),
-                    ),
+                    style: isSelected
+                        ? AppTypography.elegantAccent(
+                            fontSize: 12,
+                            color: isLocked
+                                ? (isDark ? Colors.white30 : Colors.black26)
+                                : AppColors.starGold,
+                          )
+                        : TextStyle(
+                            fontSize: 12,
+                            color: isLocked
+                                ? (isDark ? Colors.white30 : Colors.black26)
+                                : (isDark ? Colors.white70 : Colors.black54),
+                          ),
                   ),
                 ),
               );
@@ -1193,7 +1189,7 @@ class _ReminderForm extends StatelessWidget {
           // Custom message
           TextField(
             controller: messageController,
-            style: GoogleFonts.plusJakartaSans(
+            style: TextStyle(
               fontSize: 14,
               color: isDark ? Colors.white : Colors.black87,
             ),
@@ -1239,7 +1235,7 @@ class _ReminderForm extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   isEn ? 'Set Reminder' : 'Hat\u0131rlat\u0131c\u0131 Ayarla',
-                  style: GoogleFonts.plusJakartaSans(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: reminderDate != null

@@ -11,11 +11,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -104,7 +103,7 @@ class LibraryHubScreen extends ConsumerWidget {
                       isEn
                           ? 'Your personal data vault'
                           : 'Ki\u015fisel veri kasan',
-                      style: GoogleFonts.plusJakartaSans(
+                      style: AppTypography.subtitle(
                         fontSize: 14,
                         color: isDark
                             ? AppColors.textSecondary
@@ -203,7 +202,7 @@ class _CategoryCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   isEn ? category.nameEn : category.nameTr,
-                  style: GoogleFonts.plusJakartaSans(
+                  style: AppTypography.elegantAccent(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                     color: isDark

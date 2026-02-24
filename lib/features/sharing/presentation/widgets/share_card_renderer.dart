@@ -12,8 +12,8 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../../../data/models/share_card_models.dart';
 import '../../../../data/content/share_card_templates.dart';
 import '../../../../shared/widgets/app_symbol.dart';
@@ -262,7 +262,7 @@ class _CenteredLayout extends StatelessWidget {
         Text(
           data.headline,
           textAlign: TextAlign.center,
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 26,
             fontWeight: FontWeight.w800,
             color: AppColors.textPrimary,
@@ -282,9 +282,8 @@ class _CenteredLayout extends StatelessWidget {
           textAlign: TextAlign.center,
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.subtitle(
             fontSize: 15,
-            fontWeight: FontWeight.w500,
             color: AppColors.textSecondary,
             height: 1.5,
           ),
@@ -296,7 +295,7 @@ class _CenteredLayout extends StatelessWidget {
           Text(
             data.detail!,
             textAlign: TextAlign.center,
-            style: GoogleFonts.plusJakartaSans(
+            style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w400,
               color: AppColors.textMuted,
@@ -352,7 +351,7 @@ class _BadgeHeroLayout extends StatelessWidget {
         Text(
           data.headline,
           textAlign: TextAlign.center,
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 24,
             fontWeight: FontWeight.w800,
             color: AppColors.textPrimary,
@@ -372,9 +371,8 @@ class _BadgeHeroLayout extends StatelessWidget {
             ),
             child: Text(
               data.statLabel!,
-              style: GoogleFonts.plusJakartaSans(
+              style: AppTypography.elegantAccent(
                 fontSize: 12,
-                fontWeight: FontWeight.w600,
                 color: accent,
                 letterSpacing: 0.5,
               ),
@@ -388,9 +386,8 @@ class _BadgeHeroLayout extends StatelessWidget {
           textAlign: TextAlign.center,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.subtitle(
             fontSize: 14,
-            fontWeight: FontWeight.w500,
             color: AppColors.textSecondary,
             height: 1.5,
           ),
@@ -433,7 +430,7 @@ class _MiniChartLayout extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               data.headline,
-              style: GoogleFonts.plusJakartaSans(
+              style: AppTypography.displayFont.copyWith(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 color: AppColors.textPrimary,
@@ -446,9 +443,8 @@ class _MiniChartLayout extends StatelessWidget {
         Text(
           data.subtitle,
           textAlign: TextAlign.center,
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.subtitle(
             fontSize: 12,
-            fontWeight: FontWeight.w500,
             color: AppColors.textMuted,
           ),
         ),
@@ -497,7 +493,7 @@ class _QuoteBlockLayout extends StatelessWidget {
         // Opening quote mark
         Text(
           '\u{201C}',
-          style: GoogleFonts.cormorantGaramond(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 64,
             fontWeight: FontWeight.w700,
             color: accent.withValues(alpha: 0.5),
@@ -514,7 +510,7 @@ class _QuoteBlockLayout extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 4,
             overflow: TextOverflow.ellipsis,
-            style: GoogleFonts.cormorantGaramond(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 20,
               fontWeight: FontWeight.w600,
               fontStyle: FontStyle.italic,
@@ -534,12 +530,10 @@ class _QuoteBlockLayout extends StatelessWidget {
         Text(
           data.subtitle,
           textAlign: TextAlign.center,
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.subtitle(
             fontSize: 13,
-            fontWeight: FontWeight.w500,
             color: AppColors.textMuted,
-            letterSpacing: 0.5,
-          ),
+          ).copyWith(letterSpacing: 0.5),
         ),
 
         const Spacer(flex: 3),
@@ -578,7 +572,7 @@ class _StatRowLayout extends StatelessWidget {
         Text(
           data.headline,
           textAlign: TextAlign.center,
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 24,
             fontWeight: FontWeight.w800,
             color: AppColors.textPrimary,
@@ -607,9 +601,8 @@ class _StatRowLayout extends StatelessWidget {
           textAlign: TextAlign.center,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.subtitle(
             fontSize: 14,
-            fontWeight: FontWeight.w500,
             color: AppColors.textSecondary,
             height: 1.5,
           ),
@@ -717,12 +710,11 @@ class _BadgePill extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: GoogleFonts.plusJakartaSans(
+        style: AppTypography.elegantAccent(
           fontSize: 10,
-          fontWeight: FontWeight.w700,
           color: color,
           letterSpacing: 0.8,
-        ),
+        ).copyWith(fontWeight: FontWeight.w700),
       ),
     );
   }
@@ -738,7 +730,7 @@ class _HeroStat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       value,
-      style: GoogleFonts.plusJakartaSans(
+      style: AppTypography.displayFont.copyWith(
         fontSize: 64,
         fontWeight: FontWeight.w900,
         foreground: Paint()
@@ -776,7 +768,7 @@ class _StatPill extends StatelessWidget {
         children: [
           Text(
             value,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 22,
               fontWeight: FontWeight.w800,
               color: accent,
@@ -785,9 +777,8 @@ class _StatPill extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             label,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.subtitle(
               fontSize: 13,
-              fontWeight: FontWeight.w500,
               color: AppColors.textSecondary,
             ),
           ),
@@ -827,9 +818,8 @@ class _BottomWatermark extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: Text(
               'InnerCycles',
-              style: GoogleFonts.plusJakartaSans(
+              style: AppTypography.elegantAccent(
                 fontSize: 11,
-                fontWeight: FontWeight.w500,
                 color: AppColors.textMuted,
                 letterSpacing: 1.2,
               ),
@@ -886,9 +876,8 @@ class _CyclePositionLayout extends StatelessWidget {
           ),
           child: Text(
             data.detail ?? 'Day ${cycleDay.toInt()} of ${cycleLength.toInt()}',
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
-              fontWeight: FontWeight.w600,
               color: accent,
               letterSpacing: 0.5,
             ),
@@ -926,7 +915,7 @@ class _CyclePositionLayout extends StatelessWidget {
                     children: [
                       Text(
                         '${cycleDay.toInt()}',
-                        style: GoogleFonts.plusJakartaSans(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: arcSize * 0.22,
                           fontWeight: FontWeight.w900,
                           foreground: Paint()
@@ -943,9 +932,8 @@ class _CyclePositionLayout extends StatelessWidget {
                       const SizedBox(height: 4),
                       Text(
                         'of ${cycleLength.toInt()}',
-                        style: GoogleFonts.plusJakartaSans(
+                        style: AppTypography.subtitle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w500,
                           color: AppColors.textMuted,
                         ),
                       ),
@@ -963,7 +951,7 @@ class _CyclePositionLayout extends StatelessWidget {
         Text(
           data.headline,
           textAlign: TextAlign.center,
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 30,
             fontWeight: FontWeight.w800,
             color: AppColors.textPrimary,
@@ -985,9 +973,8 @@ class _CyclePositionLayout extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.subtitle(
               fontSize: 15,
-              fontWeight: FontWeight.w500,
               color: AppColors.textSecondary,
               height: 1.6,
             ),
@@ -1145,10 +1132,10 @@ class _MiniBarChart extends StatelessWidget {
                     opacity: barProgress,
                     child: Text(
                       labels![i],
-                      style: GoogleFonts.plusJakartaSans(
+                      style: AppTypography.elegantAccent(
                         fontSize: 10,
-                        fontWeight: FontWeight.w600,
                         color: AppColors.textMuted,
+                        letterSpacing: 0.5,
                       ),
                     ),
                   ),

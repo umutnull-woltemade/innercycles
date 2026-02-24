@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
@@ -143,7 +144,7 @@ class StreakStatsScreen extends ConsumerWidget {
           GradientText(
             '${stats.currentStreak}',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontWeight: FontWeight.bold,
               fontSize: 72,
             ),
@@ -255,7 +256,7 @@ class StreakStatsScreen extends ConsumerWidget {
           GradientText(
             isEn ? 'This Week' : 'Bu Hafta',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -426,7 +427,7 @@ class StreakStatsScreen extends ConsumerWidget {
           GradientText(
             isEn ? 'Milestones' : 'Kilometre Taşları',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),

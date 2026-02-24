@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 
@@ -24,6 +25,8 @@ import '../../../shared/providers/sync_status_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/glass_dialog.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import 'notification_settings_section.dart';
@@ -617,138 +620,72 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  void _showClearDataDialog(
+  Future<void> _showClearDataDialog(
     BuildContext context,
     WidgetRef ref,
     AppLanguage language,
-  ) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    showDialog(
-      context: context,
-      builder: (dialogCtx) => AlertDialog(
-        backgroundColor: isDark
-            ? AppColors.surfaceDark
-            : AppColors.lightSurface,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        title: Text(
-          L10nService.get('settings.clear_data_confirm', language),
-          style: TextStyle(
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-          ),
-        ),
-        content: Text(
-          L10nService.get('settings.clear_data_warning', language),
-          style: TextStyle(
-            color: isDark
-                ? AppColors.textSecondary
-                : AppColors.lightTextSecondary,
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogCtx),
-            child: Text(
-              language == AppLanguage.en ? 'Cancel' : 'İptal',
-              style: TextStyle(
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
-            ),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(dialogCtx);
-              // Cancel scheduled notifications
-              try {
-                await NotificationService().cancelAll();
-              } catch (e) {
-                if (kDebugMode) debugPrint('Cancel notifications failed: $e');
-              }
-              await StorageService.clearAllData();
-              if (!context.mounted) return;
-              ref.read(userProfileProvider.notifier).clearProfile();
-              ref.read(onboardingCompleteProvider.notifier).state = false;
-              if (context.mounted) {
-                context.go(Routes.onboarding);
-              }
-            },
-            child: Text(
-              L10nService.get('settings.delete', language),
-              style: const TextStyle(color: AppColors.error),
-            ),
-          ),
-        ],
-      ),
+  ) async {
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: L10nService.get('settings.clear_data_confirm', language),
+      message: L10nService.get('settings.clear_data_warning', language),
+      cancelLabel: language == AppLanguage.en ? 'Cancel' : 'İptal',
+      confirmLabel: L10nService.get('settings.delete', language),
+      isDestructive: true,
     );
+    if (confirmed != true || !context.mounted) return;
+
+    // Cancel scheduled notifications
+    try {
+      await NotificationService().cancelAll();
+    } catch (e) {
+      if (kDebugMode) debugPrint('Cancel notifications failed: $e');
+    }
+    await StorageService.clearAllData();
+    if (!context.mounted) return;
+    ref.read(userProfileProvider.notifier).clearProfile();
+    ref.read(onboardingCompleteProvider.notifier).state = false;
+    if (context.mounted) {
+      context.go(Routes.onboarding);
+    }
   }
 
-  void _showSignOutDialog(
+  Future<void> _showSignOutDialog(
     BuildContext context,
     WidgetRef ref,
     AppLanguage language,
-  ) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    showDialog(
-      context: context,
-      builder: (dialogCtx) => AlertDialog(
-        backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        title: Text(
-          language == AppLanguage.en ? 'Sign Out?' : 'Çıkış Yap?',
-          style: TextStyle(
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-          ),
-        ),
-        content: Text(
-          language == AppLanguage.en
-              ? 'Your data is saved locally and will sync when you sign back in.'
-              : 'Verileriniz yerel olarak kaydedilir ve tekrar giriş yaptığınızda senkronize edilir.',
-          style: TextStyle(
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogCtx),
-            child: Text(
-              language == AppLanguage.en ? 'Cancel' : 'İptal',
-              style: TextStyle(
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
-            ),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(dialogCtx);
-              try {
-                await Supabase.instance.client.auth.signOut();
-              } catch (e) {
-                if (kDebugMode) debugPrint('Sign out error: $e');
-              }
-              if (context.mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      language == AppLanguage.en ? 'Signed out' : 'Çıkış yapıldı',
-                    ),
-                    backgroundColor: AppColors.surfaceLight,
-                    behavior: SnackBarBehavior.floating,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                );
-              }
-            },
-            child: Text(
-              language == AppLanguage.en ? 'Sign Out' : 'Çıkış Yap',
-              style: const TextStyle(color: AppColors.error),
-            ),
-          ),
-        ],
-      ),
+  ) async {
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: language == AppLanguage.en ? 'Sign Out?' : 'Çıkış Yap?',
+      message: language == AppLanguage.en
+          ? 'Your data is saved locally and will sync when you sign back in.'
+          : 'Verileriniz yerel olarak kaydedilir ve tekrar giriş yaptığınızda senkronize edilir.',
+      cancelLabel: language == AppLanguage.en ? 'Cancel' : 'İptal',
+      confirmLabel: language == AppLanguage.en ? 'Sign Out' : 'Çıkış Yap',
+      isDestructive: true,
     );
+    if (confirmed != true || !context.mounted) return;
+
+    try {
+      await Supabase.instance.client.auth.signOut();
+    } catch (e) {
+      if (kDebugMode) debugPrint('Sign out error: $e');
+    }
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            language == AppLanguage.en ? 'Signed out' : 'Çıkış yapıldı',
+          ),
+          backgroundColor: AppColors.surfaceLight,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      );
+    }
   }
 
   void _showDisclaimerDialog(
@@ -758,26 +695,10 @@ class SettingsScreen extends ConsumerWidget {
   ) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: isDark
-            ? AppColors.surfaceDark
-            : AppColors.lightSurface,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        title: Row(
-          children: [
-            Icon(Icons.info_outline, color: AppColors.starGold),
-            const SizedBox(width: 12),
-            Text(
-              L10nService.get('settings.disclaimer', language),
-              style: TextStyle(
-                color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
-              ),
-            ),
-          ],
-        ),
-        content: SingleChildScrollView(
+      builder: (_) => GlassDialog(
+        title: L10nService.get('settings.disclaimer', language),
+        gradientVariant: GradientTextVariant.gold,
+        contentWidget: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -832,7 +753,10 @@ class SettingsScreen extends ConsumerWidget {
             onPressed: () => Navigator.pop(context),
             child: Text(
               language == AppLanguage.en ? 'OK' : 'Tamam',
-              style: TextStyle(color: AppColors.starGold),
+              style: const TextStyle(
+                color: AppColors.starGold,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ],
@@ -875,11 +799,11 @@ class _SectionHeader extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             title,
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 13,
               fontWeight: FontWeight.w600,
               color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-              letterSpacing: 0.5,
+              letterSpacing: 1.2,
             ),
           ),
         ],
@@ -1327,20 +1251,10 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
 
     showDialog(
       context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: widget.isDark
-            ? AppColors.surfaceDark
-            : AppColors.lightSurface,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        title: Text(
-          isEn ? 'Set 4-Digit PIN' : '4 Haneli PIN Belirle',
-          style: TextStyle(
-            color: widget.isDark
-                ? AppColors.textPrimary
-                : AppColors.lightTextPrimary,
-          ),
-        ),
-        content: Column(
+      builder: (ctx) => GlassDialog(
+        title: isEn ? 'Set 4-Digit PIN' : '4 Haneli PIN Belirle',
+        gradientVariant: GradientTextVariant.gold,
+        contentWidget: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
@@ -1440,7 +1354,10 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
             },
             child: Text(
               isEn ? 'Save' : 'Kaydet',
-              style: TextStyle(color: AppColors.starGold),
+              style: const TextStyle(
+                color: AppColors.starGold,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ],

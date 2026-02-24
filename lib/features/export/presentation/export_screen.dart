@@ -11,6 +11,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/export_service.dart';
 import '../../../data/services/premium_service.dart';
@@ -113,9 +114,9 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                     // Format selector
                     Text(
                       isEn ? 'Export Format' : 'Dışa Aktarma Formatı',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
                         color: isDark
                             ? AppColors.textPrimary
                             : AppColors.lightTextPrimary,
@@ -405,14 +406,14 @@ class _EntryCountCard extends StatelessWidget {
               GradientText(
                 '$count',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
-                  fontSize: 24,
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 28,
                   fontWeight: FontWeight.w700,
                 ),
               ),
               Text(
                 isEn ? 'Total Entries' : 'Toplam Kayıt',
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 11,
                   color: isDark
                       ? AppColors.textMuted
@@ -426,14 +427,14 @@ class _EntryCountCard extends StatelessWidget {
               GradientText(
                 isPremium ? '$count' : '${count > 7 ? 7 : count}',
                 variant: GradientTextVariant.aurora,
-                style: const TextStyle(
-                  fontSize: 24,
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 28,
                   fontWeight: FontWeight.w700,
                 ),
               ),
               Text(
                 isEn ? 'Will Export' : 'Aktarılacak',
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 11,
                   color: isDark
                       ? AppColors.textMuted

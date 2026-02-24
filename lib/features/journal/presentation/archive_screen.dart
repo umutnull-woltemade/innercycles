@@ -14,6 +14,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -144,11 +145,12 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                             isEn
                                 ? '${entries.length} entries'
                                 : '${entries.length} kayıt',
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
+                              fontSize: 13,
                               color: isDark
                                   ? AppColors.textMuted
                                   : AppColors.lightTextMuted,
-                              fontSize: 13,
+                              letterSpacing: 0.5,
                             ),
                           ),
                         ),
@@ -305,7 +307,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
               ),
               child: Text(
                 label,
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 13,
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                   color: isSelected
@@ -313,6 +315,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                       : (isDark
                             ? AppColors.textSecondary
                             : AppColors.lightTextSecondary),
+                  letterSpacing: 0.5,
                 ),
               ),
             ),
@@ -364,7 +367,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                   child: Center(
                     child: Text(
                       '${entry.overallRating}',
-                      style: TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: AppColors.starGold,
@@ -379,7 +382,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                     children: [
                       Text(
                         areaLabel,
-                        style: TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: isDark
@@ -390,11 +393,12 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                       const SizedBox(height: 4),
                       Text(
                         dateStr,
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 13,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
+                          letterSpacing: 0.5,
                         ),
                       ),
                       if (entry.note != null && entry.note!.isNotEmpty) ...[
@@ -403,7 +407,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                           entry.note!,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
+                          style: AppTypography.decorativeScript(
                             fontSize: 13,
                             color: isDark
                                 ? AppColors.textSecondary

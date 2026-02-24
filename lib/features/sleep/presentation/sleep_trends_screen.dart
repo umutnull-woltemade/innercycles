@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
@@ -247,7 +248,7 @@ class SleepTrendsScreen extends ConsumerWidget {
           Expanded(
             child: Text(
               text,
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: isDark
                     ? AppColors.textPrimary
@@ -514,12 +515,11 @@ class SleepTrendsScreen extends ConsumerWidget {
                         const SizedBox(height: 2),
                         Text(
                           entry.note!,
-                          style: TextStyle(
+                          style: AppTypography.decorativeScript(
                             fontSize: 13,
                             color: isDark
                                 ? AppColors.textPrimary
                                 : AppColors.lightTextPrimary,
-                            height: 1.3,
                           ),
                         ),
                       ],
@@ -582,7 +582,8 @@ class _StatTile extends StatelessWidget {
         children: [
           Text(
             value,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 22,
               color: AppColors.starGold,
               fontWeight: FontWeight.bold,
             ),
@@ -590,9 +591,10 @@ class _StatTile extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             label,
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 11,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              letterSpacing: 1.0,
             ),
             textAlign: TextAlign.center,
           ),

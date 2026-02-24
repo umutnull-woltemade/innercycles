@@ -8,11 +8,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/models/birthday_contact.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/notification_service.dart';
 import '../../../shared/widgets/birthday_avatar.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/gradient_text.dart';
@@ -33,7 +35,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: serviceAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: CosmicLoadingIndicator()),
           error: (_, _) => Center(
             child: Text(
               isEn ? 'Something went wrong' : 'Bir \u{015F}eyler ters gitti',
@@ -125,7 +127,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                 child: GradientText(
                   contact.name,
                   variant: GradientTextVariant.gold,
-                  style: const TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 24,
                     fontWeight: FontWeight.w700,
                   ),
@@ -135,7 +137,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                 Center(
                   child: Text(
                     isEn ? '${contact.age} years old' : '${contact.age} ya\u{015F}\u{0131}nda',
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 14,
                       color: isDark
                           ? AppColors.textSecondary
@@ -148,7 +150,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                 child: Text(
                   '${monthNames[contact.birthdayMonth - 1]} ${contact.birthdayDay}'
                   '${contact.birthYear != null ? ', ${contact.birthYear}' : ''}',
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 14,
                     color: isDark
                         ? AppColors.textMuted
@@ -177,7 +179,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                       isEn
                           ? contact.relationship.displayNameEn
                           : contact.relationship.displayNameTr,
-                      style: TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: isDark
@@ -201,7 +203,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                       GradientText(
                         isEn ? 'Note' : 'Not',
                         variant: GradientTextVariant.gold,
-                        style: const TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                         ),
@@ -209,9 +211,8 @@ class BirthdayDetailScreen extends ConsumerWidget {
                       const SizedBox(height: 8),
                       Text(
                         contact.note!,
-                        style: TextStyle(
+                        style: AppTypography.decorativeScript(
                           fontSize: 14,
-                          height: 1.5,
                           color: isDark
                               ? AppColors.textSecondary
                               : AppColors.lightTextSecondary,
@@ -233,7 +234,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                     GradientText(
                       isEn ? 'Reminders' : 'Hat\u{0131}rlat\u{0131}c\u{0131}lar',
                       variant: GradientTextVariant.gold,
-                      style: const TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
@@ -303,12 +304,12 @@ class BirthdayDetailScreen extends ConsumerWidget {
             GradientText(
               isEn ? 'Happy Birthday!' : 'Do\u{011F}um G\u{00FC}n\u{00FC} Kutlu Olsun!',
               variant: GradientTextVariant.gold,
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+              style: AppTypography.displayFont.copyWith(fontSize: 22, fontWeight: FontWeight.w700),
             ),
           ] else ...[
             Text(
               '$days',
-              style: TextStyle(
+              style: AppTypography.displayFont.copyWith(
                 fontSize: 48,
                 fontWeight: FontWeight.w700,
                 color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -316,7 +317,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
             ),
             Text(
               isEn ? 'days left' : 'g\u{00FC}n kald\u{0131}',
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 16,
                 color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
               ),
@@ -344,7 +345,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
         const SizedBox(width: 8),
         Text(
           label,
-          style: TextStyle(
+          style: AppTypography.subtitle(
             fontSize: 13,
             color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
           ),
@@ -352,9 +353,8 @@ class BirthdayDetailScreen extends ConsumerWidget {
         const Spacer(),
         Text(
           value,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 13,
-            fontWeight: FontWeight.w600,
             color: isEnabled
                 ? AppColors.starGold
                 : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),

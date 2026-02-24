@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/content/life_event_presets.dart';
 import '../../../data/models/life_event.dart';
 import '../../../data/providers/app_providers.dart';
@@ -199,7 +200,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
         ),
         child: Text(
           label,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 12,
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
             color: isSelected
@@ -237,7 +238,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
         GradientText(
           '${monthNames[(monthIndex - 1).clamp(0, 11)]} $year',
           variant: GradientTextVariant.gold,
-          style: const TextStyle(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 16,
             fontWeight: FontWeight.w700,
           ),
@@ -251,7 +252,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
           ),
           child: Text(
             '$count',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 11,
               fontWeight: FontWeight.w600,
               color: AppColors.starGold,
@@ -311,7 +312,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                   children: [
                     Text(
                       event.title,
-                      style: TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: isDark
@@ -414,7 +415,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                   : 'Pro ile tüm zaman çizelgenizi açın',
               variant: GradientTextVariant.gold,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: AppTypography.displayFont.copyWith(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
               ),
@@ -478,7 +479,7 @@ class _AnimatedFAB extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               isEn ? 'New Event' : 'Yeni Olay',
-              style: TextStyle(
+              style: AppTypography.displayFont.copyWith(
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
                 color: AppColors.deepSpace,

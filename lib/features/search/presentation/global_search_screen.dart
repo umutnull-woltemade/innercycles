@@ -9,10 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/models/tool_manifest.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -122,7 +122,8 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                                 focusNode: _focusNode,
                                 onChanged: (v) =>
                                     setState(() => _query = v.trim()),
-                                style: GoogleFonts.plusJakartaSans(
+                                style: AppTypography.subtitle(
+                                  fontSize: 15,
                                   color: isDark
                                       ? AppColors.textPrimary
                                       : AppColors.lightTextPrimary,
@@ -194,7 +195,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
           GradientText(
             isEn ? 'Quick Actions' : 'H\u0131zl\u0131 Eri\u015fim',
             variant: GradientTextVariant.aurora,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.elegantAccent(
               fontSize: 15,
               fontWeight: FontWeight.w600,
             ),
@@ -233,7 +234,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                 ? '${results.length} result${results.length != 1 ? 's' : ''}'
                 : '${results.length} sonu\u00e7',
             variant: GradientTextVariant.aurora,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.elegantAccent(
               fontSize: 13,
             ),
           ).animate().fadeIn(duration: 200.ms),
@@ -274,7 +275,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
           const SizedBox(height: AppConstants.spacingLg),
           Text(
             isEn ? 'No results found' : 'Sonu\u00e7 bulunamad\u0131',
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.subtitle(
               fontSize: 16,
               color: isDark
                   ? AppColors.textSecondary
@@ -323,7 +324,7 @@ class _SearchResultTile extends StatelessWidget {
                   children: [
                     Text(
                       isEn ? tool.nameEn : tool.nameTr,
-                      style: GoogleFonts.plusJakartaSans(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: isDark

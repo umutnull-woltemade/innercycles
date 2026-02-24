@@ -11,6 +11,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
+import '../../../shared/widgets/themed_picker.dart';
 import '../../../data/models/life_event.dart';
 import '../../../data/content/life_event_presets.dart';
 import '../../../data/providers/app_providers.dart';
@@ -161,7 +163,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
         GradientText(
           isEn ? 'Event Type' : 'Olay Türü',
           variant: GradientTextVariant.gold,
-          style: const TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
@@ -211,7 +213,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                     child: Center(
                       child: Text(
                         isEn ? type.displayNameEn : type.displayNameTr,
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight:
                               isSelected ? FontWeight.w600 : FontWeight.w400,
@@ -248,7 +250,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
         GradientText(
           isEn ? 'Select Event' : 'Olay Seçin',
           variant: GradientTextVariant.gold,
-          style: const TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
@@ -303,7 +305,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                     const SizedBox(width: 6),
                     Text(
                       isEn ? preset.nameEn : preset.nameTr,
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 12,
                         fontWeight:
                             isSelected ? FontWeight.w600 : FontWeight.w400,
@@ -335,7 +337,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
         GradientText(
           isEn ? 'Event Title' : 'Olay Başlığı',
           variant: GradientTextVariant.gold,
-          style: const TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
@@ -385,8 +387,8 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
 
     return GestureDetector(
       onTap: () async {
-        final picked = await showDatePicker(
-          context: context,
+        final picked = await ThemedPicker.showDate(
+          context,
           initialDate: _selectedDate,
           firstDate: DateTime(2000),
           lastDate: DateTime.now(),
@@ -418,9 +420,8 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             const SizedBox(width: 12),
             Text(
               formatted,
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 fontSize: 15,
-                fontWeight: FontWeight.w500,
                 color: isDark
                     ? AppColors.textPrimary
                     : AppColors.lightTextPrimary,
@@ -513,7 +514,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                 ),
                 child: Text(
                   emotion,
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 11,
                     fontWeight:
                         isSelected ? FontWeight.w600 : FontWeight.w400,
@@ -557,7 +558,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             const Spacer(),
             Text(
               labels[(_intensity - 1).clamp(0, 4)],
-              style: TextStyle(
+              style: AppTypography.elegantAccent(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
                 color: AppColors.starGold,
@@ -601,7 +602,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
         GradientText(
           isEn ? 'Reflection' : 'Düşünceler',
           variant: GradientTextVariant.amethyst,
-          style: const TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
@@ -651,7 +652,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
         GradientText(
           isEn ? 'Photo (Optional)' : 'Fotoğraf (İsteğe Bağlı)',
           variant: GradientTextVariant.gold,
-          style: const TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
@@ -779,7 +780,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                   _isEditing
                       ? (isEn ? 'Update Event' : 'Olayı Güncelle')
                       : (isEn ? 'Save Event' : 'Olayı Kaydet'),
-                  style: TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: AppColors.deepSpace,

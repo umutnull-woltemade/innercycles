@@ -12,6 +12,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../../../data/services/emotional_cycle_service.dart';
 import 'cycle_wave_painter.dart';
 
@@ -73,11 +74,12 @@ class CycleSummaryCard extends StatelessWidget {
                   children: [
                     Text(
                       areaName,
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 16,
                         color: isDark
                             ? AppColors.textPrimary
                             : AppColors.lightTextPrimary,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     if (hasData)

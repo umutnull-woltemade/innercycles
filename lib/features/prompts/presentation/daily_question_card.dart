@@ -11,6 +11,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/content/share_card_templates.dart';
 import '../../../data/services/haptic_service.dart';
@@ -63,23 +64,21 @@ class DailyQuestionCard extends ConsumerWidget {
                   Text(
                     questionText,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18,
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 20,
                       fontWeight: FontWeight.w600,
                       color: isDark
                           ? AppColors.textPrimary
                           : AppColors.lightTextPrimary,
-                      height: 1.45,
-                      letterSpacing: -0.2,
+                      height: 1.4,
                     ),
                   ),
                   const SizedBox(height: 14),
                   // Label — small caps
                   Text(
                     isEn ? 'QUESTION OF THE DAY' : 'GÜNÜN SORUSU',
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 10,
-                      fontWeight: FontWeight.w700,
                       color: AppColors.amethyst.withValues(alpha: 0.6),
                       letterSpacing: 1.5,
                     ),

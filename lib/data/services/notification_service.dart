@@ -579,12 +579,13 @@ class NotificationService {
   // ============== Birthday Notifications ==============
 
   /// Schedule a birthday notification for a contact at 09:00 on their birthday.
-  /// Notification ID is derived from contact ID hash (range 200-999).
+  /// Notification ID is derived from contact ID hash (range 50000-50799).
+  /// Day-before reminders use range 51000-51799.
   Future<void> scheduleBirthdayNotification(BirthdayContact contact) async {
     if (kIsWeb || !contact.notificationsEnabled) return;
     _isEn = await _readIsEn();
 
-    final notifId = 200 + (contact.id.hashCode.abs() % 800);
+    final notifId = 50000 + (contact.id.hashCode.abs() % 800);
     final now = DateTime.now();
     var birthday = DateTime(now.year, contact.birthdayMonth, contact.birthdayDay, 9, 0);
     if (birthday.isBefore(now)) {
@@ -627,7 +628,7 @@ class NotificationService {
 
     // Day-before reminder
     if (contact.dayBeforeReminder) {
-      final dayBeforeId = 1000 + (contact.id.hashCode.abs() % 800);
+      final dayBeforeId = 51000 + (contact.id.hashCode.abs() % 800);
       final dayBefore = birthday.subtract(const Duration(days: 1));
       if (dayBefore.isAfter(now)) {
         final dayBeforeTz = tz.TZDateTime.from(dayBefore, tz.local);
@@ -668,8 +669,8 @@ class NotificationService {
 
   /// Cancel birthday notifications for a contact.
   Future<void> cancelBirthdayNotification(String contactId) async {
-    final notifId = 200 + (contactId.hashCode.abs() % 800);
-    final dayBeforeId = 1000 + (contactId.hashCode.abs() % 800);
+    final notifId = 50000 + (contactId.hashCode.abs() % 800);
+    final dayBeforeId = 51000 + (contactId.hashCode.abs() % 800);
     await _notifications.cancel(id: notifId);
     await _notifications.cancel(id: dayBeforeId);
   }

@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/growth_challenge_service.dart';
@@ -271,7 +272,7 @@ class _StatItem extends StatelessWidget {
       children: [
         Text(
           value,
-          style: TextStyle(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 20,
             fontWeight: FontWeight.w700,
             color: color,
@@ -279,7 +280,7 @@ class _StatItem extends StatelessWidget {
         ),
         Text(
           label,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 11,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -300,7 +301,7 @@ class _SectionTitle extends StatelessWidget {
     return GradientText(
       title,
       variant: GradientTextVariant.gold,
-      style: const TextStyle(
+      style: AppTypography.displayFont.copyWith(
         fontSize: 16,
         fontWeight: FontWeight.w700,
       ),
@@ -356,7 +357,7 @@ class _ChallengeCard extends StatelessWidget {
                       Expanded(
                         child: Text(
                           isEn ? challenge.titleEn : challenge.titleTr,
-                          style: TextStyle(
+                          style: AppTypography.displayFont.copyWith(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: isDark
@@ -383,10 +384,10 @@ class _ChallengeCard extends StatelessWidget {
                           ),
                           child: Text(
                             'PRO',
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 10,
-                              fontWeight: FontWeight.w700,
                               color: AppColors.starGold,
+                              letterSpacing: 1.5,
                             ),
                           ),
                         ),
@@ -395,7 +396,7 @@ class _ChallengeCard extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(
                     isEn ? challenge.descriptionEn : challenge.descriptionTr,
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 12,
                       color: isDark
                           ? AppColors.textMuted
@@ -424,9 +425,8 @@ class _ChallengeCard extends StatelessWidget {
                         const SizedBox(width: 8),
                         Text(
                           '${progress!.currentCount}/${progress!.targetCount}',
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 11,
-                            fontWeight: FontWeight.w600,
                             color: AppColors.starGold,
                           ),
                         ),
@@ -484,9 +484,8 @@ class _ChallengeCard extends StatelessWidget {
                       ),
                       child: Text(
                         isEn ? 'Start' : 'Başla',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 12,
-                          fontWeight: FontWeight.w600,
                           color: AppColors.auroraStart,
                         ),
                       ),

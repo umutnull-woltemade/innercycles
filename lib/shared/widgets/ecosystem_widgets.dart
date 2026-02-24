@@ -6,7 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../core/theme/app_typography.dart';
 
 import '../../core/constants/app_constants.dart';
 import '../../core/theme/app_colors.dart';
@@ -65,7 +65,7 @@ class ToolEmptyState extends StatelessWidget {
               Text(
                 isEn ? titleEn : titleTr,
                 textAlign: TextAlign.center,
-                style: GoogleFonts.plusJakartaSans(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: isDark
@@ -77,7 +77,7 @@ class ToolEmptyState extends StatelessWidget {
               Text(
                 isEn ? descriptionEn : descriptionTr,
                 textAlign: TextAlign.center,
-                style: GoogleFonts.plusJakartaSans(
+                style: TextStyle(
                   fontSize: 14,
                   height: 1.5,
                   color: isDark

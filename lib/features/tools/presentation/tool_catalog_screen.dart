@@ -10,10 +10,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/models/tool_manifest.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/premium_service.dart';
@@ -261,8 +260,8 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           const SizedBox(height: AppConstants.spacingLg),
           Text(
             isEn ? 'No tools found' : 'Ara\u00e7 bulunamad\u0131',
-            style: GoogleFonts.plusJakartaSans(
-              fontSize: 16,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 18,
               fontWeight: FontWeight.w600,
               color: isDark
                   ? AppColors.textSecondary
@@ -338,14 +337,30 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
       ),
       child: Row(
         children: [
+          // Decorative gold accent bar
+          Container(
+            width: 3,
+            height: 16,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(2),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: isDark
+                    ? [AppColors.starGold, AppColors.celestialGold]
+                    : [AppColors.lightStarGold, AppColors.celestialGold],
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
           AppSymbol(info.emoji, size: AppSymbolSize.sm),
           const SizedBox(width: AppConstants.spacingSm),
           GradientText(
             isEn ? info.nameEn : info.nameTr,
             variant: GradientTextVariant.gold,
-            style: GoogleFonts.plusJakartaSans(
-              fontSize: 17,
-              fontWeight: FontWeight.w700,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 19,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ],
@@ -499,7 +514,7 @@ class _ToolCard extends StatelessWidget {
                       ),
                       child: Text(
                         'PRO',
-                        style: GoogleFonts.plusJakartaSans(
+                        style: AppTypography.elegantAccent(
                           fontSize: 9,
                           fontWeight: FontWeight.w700,
                           color: Colors.white,
@@ -541,9 +556,8 @@ class _ToolCard extends StatelessWidget {
               const SizedBox(height: AppConstants.spacingSm),
               Text(
                 isEn ? tool.nameEn : tool.nameTr,
-                style: GoogleFonts.plusJakartaSans(
+                style: AppTypography.subtitle(
                   fontSize: 14,
-                  fontWeight: FontWeight.w600,
                   color: isDark
                       ? AppColors.textPrimary
                       : AppColors.lightTextPrimary,

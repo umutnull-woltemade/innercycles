@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/premium_service.dart';
@@ -92,7 +93,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                               isEn
                                   ? 'Your $longestStreak-day streak ended'
                                   : '$longestStreak günlük seri sona erdi',
-                              style: TextStyle(
+                              style: AppTypography.displayFont.copyWith(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
                                 color: isDark
@@ -105,10 +106,9 @@ class StreakRecoveryBanner extends ConsumerWidget {
                               isEn
                                   ? 'One entry to start a new one'
                                   : 'Yeni bir seri başlatmak için bir kayıt yeterli',
-                              style: TextStyle(
+                              style: AppTypography.decorativeScript(
                                 fontSize: 12,
                                 color: AppColors.warning,
-                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ],
@@ -166,21 +166,19 @@ class StreakRecoveryBanner extends ConsumerWidget {
                             isEn
                                 ? 'Premium streak freezes could have saved this'
                                 : 'Premium seri dondurmalar bunu kurtarabilirdi',
-                            style: TextStyle(
+                            style: AppTypography.decorativeScript(
                               fontSize: 12,
                               color: AppColors.streakOrange,
-                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
                         Text(
                           isEn ? 'Learn more' : 'Daha fazla',
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 11,
                             color: AppColors.streakOrange.withValues(
                               alpha: 0.7,
                             ),
-                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],

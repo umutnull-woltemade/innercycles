@@ -5,9 +5,11 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/cosmic_palette.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/services/storage_service.dart';
 import '../../../data/providers/app_providers.dart';
@@ -58,12 +60,14 @@ class DisclaimerScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 24),
                 // Title
-                Text(
+                GradientText(
                   L10nService.get('disclaimer.before_using', language),
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    color: AppColors.starGold,
-                    fontWeight: FontWeight.bold,
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0.5,
                   ),
+                  variant: GradientTextVariant.gold,
                   textAlign: TextAlign.center,
                 ).animate().fadeIn(duration: 400.ms),
                 const SizedBox(height: 32),
@@ -166,9 +170,11 @@ class DisclaimerScreen extends ConsumerWidget {
         Expanded(
           child: Text(
             text,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: textColor, height: 1.6),
+            style: AppTypography.subtitle(
+              fontSize: 15,
+              color: textColor,
+              height: 1.6,
+            ),
           ),
         ),
       ],

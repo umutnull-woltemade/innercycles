@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/wellness_score_service.dart';
 import '../../../data/services/premium_service.dart';
@@ -155,8 +156,8 @@ class WellnessDetailScreen extends ConsumerWidget {
           GradientText(
             isEn ? 'How your score works' : 'Skorun nasıl çalışır',
             variant: GradientTextVariant.aurora,
-            style: const TextStyle(
-              fontSize: 15,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 17,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -234,9 +235,9 @@ class _ScoreHero extends StatelessWidget {
             child: Center(
               child: Text(
                 '${score.score}',
-                style: const TextStyle(
-                  fontSize: 44,
-                  fontWeight: FontWeight.w800,
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 48,
+                  fontWeight: FontWeight.w700,
                   color: Colors.white,
                 ),
               ),
@@ -250,8 +251,8 @@ class _ScoreHero extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             _scoreLabel(score.score, isEn),
-            style: TextStyle(
-              fontSize: 18,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 20,
               fontWeight: FontWeight.w600,
               color: _scoreColor(score.score),
             ),
@@ -259,7 +260,7 @@ class _ScoreHero extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             isEn ? 'out of 100' : '100 üzerinden',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -307,8 +308,8 @@ class _BreakdownDetail extends StatelessWidget {
         children: [
           Text(
             isEn ? 'Score Breakdown' : 'Skor Dağılımı',
-            style: TextStyle(
-              fontSize: 15,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 17,
               fontWeight: FontWeight.w600,
               color: isDark
                   ? AppColors.textPrimary
@@ -454,8 +455,8 @@ class _WeeklyTrendChart extends StatelessWidget {
             children: [
               Text(
                 isEn ? 'Weekly Trend' : 'Haftalık Trend',
-                style: TextStyle(
-                  fontSize: 15,
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 17,
                   fontWeight: FontWeight.w600,
                   color: isDark
                       ? AppColors.textPrimary

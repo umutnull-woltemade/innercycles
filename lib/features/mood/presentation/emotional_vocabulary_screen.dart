@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/content/emotional_vocabulary_content.dart';
 import '../../../data/providers/app_providers.dart';
@@ -131,7 +132,7 @@ class _EmotionalVocabularyScreenState
                                           isEn
                                               ? 'No emotions found'
                                               : 'Duygu bulunamadı',
-                                          style: TextStyle(
+                                          style: AppTypography.decorativeScript(
                                             fontSize: 15,
                                             color: isDark
                                                 ? AppColors.textMuted
@@ -352,7 +353,7 @@ class _EmotionCardState extends State<_EmotionCard> {
                       children: [
                         Text(
                           isEn ? e.nameEn : e.nameTr,
-                          style: TextStyle(
+                          style: AppTypography.displayFont.copyWith(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             color: isDark
@@ -416,9 +417,8 @@ class _EmotionCardState extends State<_EmotionCard> {
                 const SizedBox(height: AppConstants.spacingMd),
                 Text(
                   isEn ? e.descriptionEn : e.descriptionTr,
-                  style: TextStyle(
+                  style: AppTypography.decorativeScript(
                     fontSize: 14,
-                    height: 1.5,
                     color: isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,
@@ -448,16 +448,16 @@ class _EmotionCardState extends State<_EmotionCard> {
                           children: [
                             Text(
                               isEn ? 'Body Sensation' : 'Bedensel Duyum',
-                              style: TextStyle(
+                              style: AppTypography.elegantAccent(
                                 fontSize: 11,
-                                fontWeight: FontWeight.w600,
                                 color: AppColors.auroraStart,
+                                letterSpacing: 1.0,
                               ),
                             ),
                             const SizedBox(height: 2),
                             Text(
                               isEn ? e.bodySensationEn : e.bodySensationTr,
-                              style: TextStyle(
+                              style: AppTypography.decorativeScript(
                                 fontSize: 13,
                                 color: isDark
                                     ? AppColors.textSecondary

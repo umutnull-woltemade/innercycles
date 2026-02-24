@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/journal_entry.dart';
@@ -171,8 +172,8 @@ class EntryDetailScreen extends ConsumerWidget {
           GradientText(
             areaLabel,
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
-              fontSize: 24,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 28,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -198,7 +199,8 @@ class EntryDetailScreen extends ConsumerWidget {
           const SizedBox(height: 8),
           Text(
             '${entry.overallRating}/5',
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 22,
               color: isDark
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,
@@ -239,7 +241,7 @@ class EntryDetailScreen extends ConsumerWidget {
                   child: ExcludeSemantics(
                     child: Text(
                     label,
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
                       fontSize: 14,
                       color: isDark
                           ? AppColors.textSecondary
@@ -326,21 +328,23 @@ class EntryDetailScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            isEn ? 'Notes' : 'Notlar',
+            (isEn ? 'Notes' : 'Notlar').toUpperCase(),
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 14,
               fontWeight: FontWeight.w600,
+              letterSpacing: 1.5,
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             note,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            style: AppTypography.decorativeScript(
+              fontSize: 17,
               color: isDark
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,
-              height: 1.5,
+              fontStyle: FontStyle.normal,
             ),
           ),
         ],

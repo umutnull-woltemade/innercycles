@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/content/emotional_vocabulary_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/mood_checkin_service.dart';
@@ -93,7 +94,7 @@ class _CheckinView extends StatelessWidget {
         children: [
           Text(
             isEn ? 'What\'s present for you right now?' : 'Şu an sende ne var?',
-            style: TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 15,
               fontWeight: FontWeight.w600,
               color: isDark
@@ -117,7 +118,7 @@ class _CheckinView extends StatelessWidget {
                       const SizedBox(height: 4),
                       Text(
                         isEn ? labelEn : labelTr,
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 10,
                           color: isDark
                               ? AppColors.textMuted
@@ -167,7 +168,7 @@ class _LoggedView extends StatelessWidget {
                   children: [
                     Text(
                       isEn ? 'Today\'s Mood' : 'Bugünkü Ruh Halin',
-                      style: TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: isDark
@@ -177,7 +178,7 @@ class _LoggedView extends StatelessWidget {
                     ),
                     Text(
                       _moodLabel(todayMood.mood, isEn),
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 12,
                         color: isDark
                             ? AppColors.textSecondary
@@ -358,7 +359,7 @@ class _ThankYouView extends StatelessWidget {
                   isEn
                       ? 'Mood logged! Get more specific?'
                       : 'Ruh hali kaydedildi! Daha spesifik ol?',
-                  style: TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: AppColors.success,
@@ -391,9 +392,8 @@ class _ThankYouView extends StatelessWidget {
                     const SizedBox(width: 4),
                     Text(
                       isEn ? emotion.nameEn : emotion.nameTr,
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 11,
-                        fontWeight: FontWeight.w500,
                         color: isDark
                             ? AppColors.textSecondary
                             : AppColors.lightTextSecondary,

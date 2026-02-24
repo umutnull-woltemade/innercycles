@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/models/birthday_contact.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/birthday_contact_service.dart';
@@ -65,22 +66,40 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
     bool isDark,
     bool isEn,
   ) {
+    final allContacts = service.getAllContacts();
     final todayBirthdays = service.getTodayBirthdays();
     final birthdayMap = service.getBirthdayMap();
     final upcoming = service.getUpcomingBirthdays(withinDays: 30);
+    final isEmpty = allContacts.isEmpty;
 
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      slivers: [
-        GlassSliverAppBar(
-          title: isEn ? 'Birthday Agenda' : 'Do\u{011F}um G\u{00FC}n\u{00FC} Ajandas\u{0131}',
+    return RefreshIndicator(
+      color: AppColors.starGold,
+      onRefresh: () async {
+        ref.invalidate(birthdayContactServiceProvider);
+      },
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
         ),
+        slivers: [
+          GlassSliverAppBar(
+            title: isEn ? 'Birthday Agenda' : 'Do\u{011F}um G\u{00FC}n\u{00FC} Ajandas\u{0131}',
+          ),
         SliverPadding(
           padding: const EdgeInsets.all(16),
           sliver: SliverList(
             delegate: SliverChildListDelegate([
+              // Empty state
+              if (isEmpty) ...[
+                _EmptyState(
+                  isDark: isDark,
+                  isEn: isEn,
+                  onImport: () => context.push(Routes.birthdayImport),
+                  onAdd: () => context.push(Routes.birthdayAdd),
+                ),
+                const SizedBox(height: 40),
+              ],
+
               // 1. Today banner
               if (todayBirthdays.isNotEmpty) ...[
                 _TodayBanner(
@@ -162,7 +181,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                 GradientText(
                   isEn ? 'Upcoming Birthdays' : 'Yakla\u{015F}an Do\u{011F}um G\u{00FC}nleri',
                   variant: GradientTextVariant.gold,
-                  style: const TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
@@ -192,6 +211,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
           ),
         ),
       ],
+      ),
     );
   }
 }
@@ -228,7 +248,7 @@ class _TodayBanner extends StatelessWidget {
               GradientText(
                 isEn ? 'Today\'s Birthdays!' : 'Bug\u{00FC}nk\u{00FC} Do\u{011F}um G\u{00FC}nleri!',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                 ),
@@ -262,9 +282,9 @@ class _TodayBanner extends StatelessWidget {
                           textAlign: TextAlign.center,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 11,
-                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0.5,
                             color: isDark
                                 ? AppColors.textPrimary
                                 : AppColors.lightTextPrimary,
@@ -329,7 +349,7 @@ class _MonthNav extends StatelessWidget {
         GradientText(
           '${monthNames[month - 1]} $year',
           variant: GradientTextVariant.gold,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+          style: AppTypography.displayFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
         ),
         IconButton(
           icon: Icon(
@@ -370,7 +390,7 @@ class _BirthdayCalendarGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final firstDay = DateTime(year, month, 1);
     final daysInMonth = DateTime(year, month + 1, 0).day;
-    final startWeekday = firstDay.weekday % 7; // Mon=0 based
+    final startOffset = firstDay.weekday - 1; // Mon=0 through Sun=6
     final today = DateTime.now();
 
     return PremiumCard(
@@ -388,9 +408,9 @@ class _BirthdayCalendarGrid extends StatelessWidget {
                           child: Center(
                             child: Text(
                               d,
-                              style: TextStyle(
+                              style: AppTypography.elegantAccent(
                                 fontSize: 11,
-                                fontWeight: FontWeight.w600,
+                                letterSpacing: 1.0,
                                 color: isDark
                                     ? AppColors.textMuted
                                     : AppColors.lightTextMuted,
@@ -403,12 +423,12 @@ class _BirthdayCalendarGrid extends StatelessWidget {
           const SizedBox(height: 8),
 
           // Day cells
-          ...List.generate(_weekCount(startWeekday, daysInMonth), (week) {
+          ...List.generate(_weekCount(startOffset, daysInMonth), (week) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 4),
               child: Row(
                 children: List.generate(7, (weekday) {
-                  final dayIndex = week * 7 + weekday - (startWeekday - 1);
+                  final dayIndex = week * 7 + weekday - startOffset + 1;
                   if (dayIndex < 1 || dayIndex > daysInMonth) {
                     return const Expanded(child: SizedBox(height: 64));
                   }
@@ -503,8 +523,8 @@ class _BirthdayCalendarGrid extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  int _weekCount(int startWeekday, int daysInMonth) {
-    return ((startWeekday - 1 + daysInMonth) / 7).ceil();
+  int _weekCount(int startOffset, int daysInMonth) {
+    return ((startOffset + daysInMonth) / 7).ceil();
   }
 }
 
@@ -702,9 +722,9 @@ class _UpcomingCard extends StatelessWidget {
                   isToday
                       ? (isEn ? 'Today!' : 'Bug\u{00FC}n!')
                       : '$days ${isEn ? 'days' : 'g\u{00FC}n'}',
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0.5,
                     color: isToday ? AppColors.starGold : AppColors.auroraStart,
                   ),
                 ),
@@ -714,6 +734,66 @@ class _UpcomingCard extends StatelessWidget {
         ),
       ),
     ).animate().fadeIn(duration: 300.ms);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// EMPTY STATE
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _EmptyState extends StatelessWidget {
+  final bool isDark;
+  final bool isEn;
+  final VoidCallback onImport;
+  final VoidCallback onAdd;
+
+  const _EmptyState({
+    required this.isDark,
+    required this.isEn,
+    required this.onImport,
+    required this.onAdd,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return PremiumCard(
+      style: PremiumCardStyle.aurora,
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+      child: Column(
+        children: [
+          const Text('\u{1F382}', style: TextStyle(fontSize: 56)),
+          const SizedBox(height: 16),
+          GradientText(
+            isEn
+                ? 'Never Miss a Birthday'
+                : 'Hi\u{00E7} Do\u{011F}um G\u{00FC}n\u{00FC} Ka\u{00E7}\u{0131}rma',
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            isEn
+                ? 'Add your friends and family to get reminders on their special days.'
+                : 'Arkada\u{015F}lar\u{0131}n\u{0131} ve aileni ekleyerek \u{00F6}zel g\u{00FC}nlerinde hat\u{0131}rlat\u{0131}c\u{0131} al.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 14,
+              height: 1.5,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
+            ),
+          ),
+          const SizedBox(height: 24),
+          _ActionButtons(
+            isDark: isDark,
+            isEn: isEn,
+            onImport: onImport,
+            onAdd: onAdd,
+          ),
+        ],
+      ),
+    ).animate().fadeIn(duration: 400.ms);
   }
 }
 
@@ -764,7 +844,7 @@ class _ActionButtons extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text(
                   isEn ? 'Import from Facebook' : 'Facebook\'tan Aktar',
-                  style: const TextStyle(
+                  style: AppTypography.modernAccent(
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
                     color: AppColors.deepSpace,
@@ -797,7 +877,7 @@ class _ActionButtons extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text(
                   isEn ? 'Add Manually' : 'Manuel Ekle',
-                  style: const TextStyle(
+                  style: AppTypography.modernAccent(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                     color: AppColors.starGold,

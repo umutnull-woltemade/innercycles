@@ -12,8 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:go_router/go_router.dart';
+import '../../../core/theme/app_typography.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
@@ -368,7 +369,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                       children: [
                         Text(
                           '${(value * 100).round()}',
-                          style: GoogleFonts.spaceMono(
+                          style: AppTypography.displayFont.copyWith(
                             fontSize: 48,
                             fontWeight: FontWeight.w700,
                             color: Colors.white,
@@ -378,10 +379,10 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                         const SizedBox(height: 4),
                         Text(
                           isEn ? 'Growth Score' : 'Büyüme Puanı',
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 13,
-                            fontWeight: FontWeight.w500,
                             color: Colors.white.withValues(alpha: 0.85),
+                            letterSpacing: 1.5,
                           ),
                         ),
                       ],
@@ -395,7 +396,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           // Motivational message
           Text(
             _getScoreMessage(score, isEn),
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 14,
               color: Colors.white.withValues(alpha: 0.9),
               fontWeight: FontWeight.w500,
@@ -455,7 +456,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
               const SizedBox(width: 8),
               Text(
                 '$currentStreak',
-                style: GoogleFonts.spaceMono(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 44,
                   fontWeight: FontWeight.w700,
                   color: AppColors.starGold,
@@ -465,7 +466,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
               const SizedBox(width: 8),
               Text(
                 isEn ? 'Days' : 'Gün',
-                style: TextStyle(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                   color: isDark
@@ -479,9 +480,10 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           // Longest streak
           Text(
             isEn ? 'Best: $longestStreak days' : 'En iyi: $longestStreak gün',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 14,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              letterSpacing: 1.0,
             ),
           ),
           const SizedBox(height: AppConstants.spacingLg),
@@ -521,6 +523,16 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 2),
             child: Tooltip(
               message: '${date.day}/${date.month}',
+              decoration: BoxDecoration(
+                color: isDark
+                    ? AppColors.surfaceLight.withValues(alpha: 0.95)
+                    : AppColors.lightTextPrimary.withValues(alpha: 0.92),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              textStyle: TextStyle(
+                color: isDark ? AppColors.textPrimary : Colors.white,
+                fontSize: 12,
+              ),
               child: Container(
                 width: 14,
                 height: 14,
@@ -674,9 +686,8 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
               // Title
               Text(
                 milestone.title,
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 13,
-                  fontWeight: FontWeight.w600,
                   color: unlocked
                       ? (isDark
                             ? AppColors.textPrimary
@@ -684,6 +695,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                       : (isDark
                             ? AppColors.textMuted
                             : AppColors.lightTextMuted),
+                  letterSpacing: 1.0,
                 ),
                 textAlign: TextAlign.center,
                 maxLines: 1,
@@ -917,12 +929,12 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                           const SizedBox(height: 8),
                           Text(
                             tool.title,
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 12,
-                              fontWeight: FontWeight.w600,
                               color: isDark
                                   ? AppColors.textPrimary
                                   : AppColors.lightTextPrimary,
+                              letterSpacing: 0.8,
                             ),
                             textAlign: TextAlign.center,
                             maxLines: 1,
@@ -931,7 +943,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                           const SizedBox(height: 2),
                           Text(
                             tool.subtitle,
-                            style: TextStyle(
+                            style: AppTypography.subtitle(
                               fontSize: 10,
                               color: isDark
                                   ? AppColors.textMuted
@@ -1072,7 +1084,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         Expanded(
           child: Text(
             label,
-            style: TextStyle(
+            style: AppTypography.subtitle(
               fontSize: 14,
               color: isDark
                   ? AppColors.textSecondary
@@ -1082,7 +1094,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         ),
         Text(
           value,
-          style: TextStyle(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 14,
             fontWeight: FontWeight.w600,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -1112,7 +1124,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         icon: const Icon(Icons.share, size: 20),
         label: Text(
           isEn ? 'Share Your Progress' : 'İlerlemeni Paylaş',
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          style: AppTypography.displayFont.copyWith(fontSize: 16, fontWeight: FontWeight.w600),
         ),
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.starGold,

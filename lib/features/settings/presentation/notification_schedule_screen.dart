@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
+import '../../../shared/widgets/themed_picker.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/notification_service.dart';
@@ -70,7 +72,7 @@ class _NotificationScheduleScreenState
   Future<void> _pickDailyTime() async {
     final current =
         _settings?.dailyReflectionTime ?? const TimeOfDay(hour: 9, minute: 0);
-    final picked = await showTimePicker(context: context, initialTime: current);
+    final picked = await ThemedPicker.showTime(context, initialTime: current);
     if (picked != null && mounted) {
       await _notificationService.scheduleDailyReflection(
         hour: picked.hour,
@@ -116,7 +118,7 @@ class _NotificationScheduleScreenState
     final current = _settings?.journalPromptTime ??
         const TimeOfDay(hour: 10, minute: 0);
     final picked =
-        await showTimePicker(context: context, initialTime: current);
+        await ThemedPicker.showTime(context, initialTime: current);
     if (picked != null && mounted) {
       await _notificationService.scheduleJournalPromptNotification(
         hour: picked.hour,
@@ -280,8 +282,8 @@ class _NotificationScheduleScreenState
             GradientText(
               isEn ? 'Notifications are disabled' : 'Bildirimler devre dışı',
               variant: GradientTextVariant.gold,
-              style: const TextStyle(
-                fontSize: 16,
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -358,9 +360,8 @@ class _NotificationScheduleScreenState
                   children: [
                     Text(
                       isEn ? titleEn : titleTr,
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 15,
-                        fontWeight: FontWeight.w600,
                         color: isDark
                             ? AppColors.textPrimary
                             : AppColors.lightTextPrimary,

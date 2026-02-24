@@ -15,6 +15,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/content/quiz_content.dart';
 import '../../../data/models/quiz_models.dart';
 import '../../../data/providers/app_providers.dart';
@@ -225,7 +226,8 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
             child: Text(
               isEn ? definition.title : definition.titleTr,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 22,
                 color: AppColors.starGold,
                 fontWeight: FontWeight.w600,
               ),
@@ -541,9 +543,9 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
                         'not a clinical assessment.'
                   : 'Bu, klinik bir değerlendirme değil, kişisel farkındalık '
                         'için bir öz yansıtma aracıdır.',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              style: AppTypography.decorativeScript(
+                fontSize: 13,
                 color: AppColors.textSecondary.withValues(alpha: 0.7),
-                fontStyle: FontStyle.italic,
               ),
             ),
           ),
@@ -586,7 +588,8 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
               const SizedBox(height: AppConstants.spacingMd),
               Text(
                 isEn ? dim.nameEn : dim.nameTr,
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 20,
                   color: dim.color,
                   fontWeight: FontWeight.bold,
                 ),
@@ -603,11 +606,11 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
               const SizedBox(height: AppConstants.spacingLg),
               Text(
                 isEn ? dim.descriptionEn : dim.descriptionTr,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                style: AppTypography.decorativeScript(
+                  fontSize: 15,
                   color: isDark
                       ? AppColors.textPrimary.withValues(alpha: 0.9)
                       : AppColors.lightTextPrimary,
-                  height: 1.6,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -631,7 +634,8 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
       children: [
         Text(
           isEn ? 'Full Breakdown' : 'Detaylı Dağılım',
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+          style: AppTypography.displayFont.copyWith(
+            fontSize: 18,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontWeight: FontWeight.w600,
           ),
@@ -723,7 +727,8 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
             const SizedBox(width: AppConstants.spacingSm),
             Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 18,
                 color: isDark
                     ? AppColors.textPrimary
                     : AppColors.lightTextPrimary,

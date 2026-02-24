@@ -12,12 +12,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../data/services/monthly_wrapped_service.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/content/share_card_templates.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/share_card_sheet.dart';
 
@@ -50,7 +52,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: wrappedAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CosmicLoadingIndicator()),
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Not enough data yet' : 'Henüz yeterli veri yok',
@@ -82,7 +84,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                               ? 'Keep journaling! Your monthly wrapped will be ready when you have at least 3 entries.'
                               : 'Yazmaya devam et! Aylık özetin en az 3 kayıtla hazır olacak.',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: AppTypography.decorativeScript(
                             fontSize: 16,
                             color: isDark
                                 ? AppColors.textSecondary
@@ -312,7 +314,7 @@ class _Slide5Share extends StatelessWidget {
           GradientText(
             isEn ? 'Your month at a glance' : 'Ayına bir bakış',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 24,
               fontWeight: FontWeight.w700,
             ),
@@ -398,7 +400,7 @@ class _SlideBase extends StatelessWidget {
             title,
             variant: GradientTextVariant.gold,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 24,
               fontWeight: FontWeight.w700,
               height: 1.3,
@@ -408,9 +410,8 @@ class _SlideBase extends StatelessWidget {
           Text(
             subtitle,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 16,
-              height: 1.5,
               color:
                   isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
             ),

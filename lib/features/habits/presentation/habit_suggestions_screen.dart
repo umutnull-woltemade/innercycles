@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/content/habit_suggestions_content.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
@@ -411,9 +412,8 @@ class _DailySpotlightCard extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 isEn ? habit.descriptionEn : habit.descriptionTr,
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
                   fontSize: 13,
-                  height: 1.5,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -564,12 +564,12 @@ class _ProgressBar extends StatelessWidget {
             children: [
               Text(
                 isEn ? 'Habits Explored' : 'Keşfedilen Alışkanlıklar',
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 13,
-                  fontWeight: FontWeight.w600,
                   color: isDark
                       ? AppColors.textPrimary
                       : AppColors.lightTextPrimary,
+                  letterSpacing: 1.0,
                 ),
               ),
               const Spacer(),
@@ -768,7 +768,7 @@ class _HabitCard extends StatelessWidget {
                         Expanded(
                           child: Text(
                             isEn ? habit.titleEn : habit.titleTr,
-                            style: TextStyle(
+                            style: AppTypography.displayFont.copyWith(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: isDark
@@ -991,10 +991,10 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                                 : HabitSuggestionService.categoryDisplayNameTr(
                                     habit.category,
                                   ),
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 12,
-                              fontWeight: FontWeight.w600,
                               color: AppColors.auroraStart,
+                              letterSpacing: 1.0,
                             ),
                           ),
                           Text(
@@ -1042,7 +1042,7 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                 // Title
                 Text(
                   isEn ? habit.titleEn : habit.titleTr,
-                  style: TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 22,
                     fontWeight: FontWeight.w700,
                     color: isDark
@@ -1056,9 +1056,8 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                 // Description
                 Text(
                   isEn ? habit.descriptionEn : habit.descriptionTr,
-                  style: TextStyle(
+                  style: AppTypography.decorativeScript(
                     fontSize: 15,
-                    height: 1.6,
                     color: isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,

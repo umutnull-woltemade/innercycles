@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/storage_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -103,7 +104,8 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
 
               Text(
                 isEn ? 'Enter PIN' : 'PIN Girin',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 20,
                   color: isDark
                       ? AppColors.textPrimary
                       : AppColors.lightTextPrimary,
@@ -211,7 +213,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
           child: Center(
             child: Text(
               '$digit',
-              style: TextStyle(
+              style: AppTypography.displayFont.copyWith(
                 fontSize: 28,
                 fontWeight: FontWeight.w300,
                 color: isDark

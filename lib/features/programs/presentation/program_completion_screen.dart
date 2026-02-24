@@ -12,6 +12,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/app_symbol.dart';
@@ -71,7 +72,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
                 GradientText(
                   isEn ? 'Congratulations!' : 'Tebrikler!',
                   variant: GradientTextVariant.gold,
-                  style: const TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 32,
                     fontWeight: FontWeight.w700,
                     letterSpacing: 0.5,
@@ -85,9 +86,8 @@ class ProgramCompletionScreen extends ConsumerWidget {
                       ? 'You completed $programTitle'
                       : '$programTitle tamamlandı',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: AppTypography.subtitle(
                     fontSize: 17,
-                    fontWeight: FontWeight.w500,
                     color: isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,
@@ -122,7 +122,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
                             ? 'Certificate of Completion'
                             : 'Tamamlama Sertifikası',
                         variant: GradientTextVariant.gold,
-                        style: const TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                           letterSpacing: 0.3,
@@ -143,7 +143,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
                         programTitle,
                         variant: GradientTextVariant.aurora,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                         ),
@@ -192,10 +192,8 @@ class ProgramCompletionScreen extends ConsumerWidget {
                             ? 'Every day of reflection is a step toward deeper self-understanding.'
                             : 'Her yansıma günü, kendinizi daha derinden anlamaya doğru atılan bir adımdır.',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: AppTypography.decorativeScript(
                           fontSize: 13,
-                          fontStyle: FontStyle.italic,
-                          height: 1.5,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
@@ -230,7 +228,7 @@ class ProgramCompletionScreen extends ConsumerWidget {
                       isEn
                           ? 'Start Another Program'
                           : 'Başka Bir Program Başlat',
-                      style: const TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
@@ -335,7 +333,7 @@ class _CertificateRow extends StatelessWidget {
               const SizedBox(height: 2),
               Text(
                 value,
-                style: TextStyle(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
                   color: isDark

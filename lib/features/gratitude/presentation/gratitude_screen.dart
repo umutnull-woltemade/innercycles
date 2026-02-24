@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/gratitude_service.dart';
@@ -177,8 +178,8 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                             GradientText(
                               isEn ? 'History' : 'Geçmiş',
                               variant: GradientTextVariant.gold,
-                              style: const TextStyle(
-                                fontSize: 16,
+                              style: AppTypography.displayFont.copyWith(
+                                fontSize: 18,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -276,8 +277,8 @@ class _Stat extends StatelessWidget {
       children: [
         Text(
           value,
-          style: TextStyle(
-            fontSize: 22,
+          style: AppTypography.displayFont.copyWith(
+            fontSize: 24,
             fontWeight: FontWeight.w700,
             color: color,
           ),
@@ -337,8 +338,8 @@ class _TodaySection extends StatelessWidget {
               GradientText(
                 isEn ? "Today's Gratitude" : 'Bugünkü Şükran',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
-                  fontSize: 15,
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 17,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -364,11 +365,11 @@ class _TodaySection extends StatelessWidget {
                 ),
                 decoration: InputDecoration(
                   hintText: prompts[i],
-                  hintStyle: TextStyle(
+                  hintStyle: AppTypography.decorativeScript(
+                    fontSize: 13,
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
-                    fontSize: 13,
                   ),
                   counterText: '',
                   filled: true,
@@ -446,8 +447,8 @@ class _ThemeCloud extends StatelessWidget {
           GradientText(
             isEn ? 'This Week\'s Themes' : 'Bu Haftanın Temaları',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
-              fontSize: 14,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -543,7 +544,7 @@ class _HistoryCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         item,
-                        style: TextStyle(
+                        style: AppTypography.decorativeScript(
                           fontSize: 13,
                           color: isDark
                               ? AppColors.textSecondary

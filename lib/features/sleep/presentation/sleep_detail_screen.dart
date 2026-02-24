@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/sleep_service.dart';
@@ -225,7 +226,7 @@ class _StatItem extends StatelessWidget {
       children: [
         Text(
           value,
-          style: TextStyle(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 22,
             fontWeight: FontWeight.w700,
             color: color,
@@ -233,9 +234,10 @@ class _StatItem extends StatelessWidget {
         ),
         Text(
           label,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 11,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            letterSpacing: 1.0,
           ),
         ),
       ],
@@ -390,12 +392,12 @@ class _TrendCard extends StatelessWidget {
           Expanded(
             child: Text(
               label,
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 14,
-                fontWeight: FontWeight.w500,
                 color: isDark
                     ? AppColors.textPrimary
                     : AppColors.lightTextPrimary,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),
@@ -469,12 +471,11 @@ class _SleepTips extends StatelessWidget {
                   Expanded(
                     child: Text(
                       tip,
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 13,
                         color: isDark
                             ? AppColors.textSecondary
                             : AppColors.lightTextSecondary,
-                        height: 1.4,
                       ),
                     ),
                   ),
@@ -519,12 +520,12 @@ class _NightCard extends StatelessWidget {
                 children: [
                   Text(
                     entry.dateKey,
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 13,
-                      fontWeight: FontWeight.w600,
                       color: isDark
                           ? AppColors.textPrimary
                           : AppColors.lightTextPrimary,
+                      letterSpacing: 1.0,
                     ),
                   ),
                   if (entry.note != null && entry.note!.isNotEmpty)

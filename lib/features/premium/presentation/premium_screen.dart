@@ -18,6 +18,7 @@ import '../../../data/services/premium_service.dart';
 import '../../../data/services/url_launcher_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
@@ -132,10 +133,12 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         Text(
           L10nService.get('premium.paywall.title', language),
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+          style: AppTypography.displayFont.copyWith(
+            fontSize: 28,
             color: AppColors.textPrimary,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
             height: 1.2,
+            letterSpacing: 0.3,
           ),
         ).animate().fadeIn(duration: 500.ms),
         const SizedBox(height: 8),
@@ -144,9 +147,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         Text(
           L10nService.get('premium.paywall.subtitle', language),
           textAlign: TextAlign.center,
-          style: Theme.of(
-            context,
-          ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+          style: AppTypography.decorativeScript(
+            fontSize: 16,
+            color: AppColors.textSecondary,
+          ),
         ).animate().fadeIn(duration: 500.ms, delay: 100.ms),
       ],
     );
@@ -170,9 +174,12 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         children: [
           Text(
             L10nService.get('premium.cosmic_powers', language),
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium?.copyWith(color: AppColors.starGold),
+            style: AppTypography.elegantAccent(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: AppColors.starGold,
+              letterSpacing: 2.0,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
           ...features.map((feature) => _FeatureItem(feature: feature)),
@@ -279,9 +286,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         children: [
           Text(
             L10nService.get('premium.comparison.title', language),
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 20,
               color: AppColors.textPrimary,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w700,
             ),
           ),
           const SizedBox(height: 16),
@@ -295,9 +303,11 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 child: Text(
                   L10nService.get('premium.tiers.free.name', language),
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  style: AppTypography.elegantAccent(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
                     color: AppColors.textMuted,
-                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2.0,
                   ),
                 ),
               ),
@@ -312,9 +322,11 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                   child: Text(
                     'PRO',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    style: AppTypography.elegantAccent(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
                       color: AppColors.starGold,
-                      fontWeight: FontWeight.bold,
+                      letterSpacing: 3.0,
                     ),
                   ),
                 ),
@@ -641,10 +653,11 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           ),
           child: Text(
             yearlyLabel,
-            style: const TextStyle(
-              color: AppColors.starGold,
+            style: AppTypography.elegantAccent(
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w700,
+              color: AppColors.starGold,
+              letterSpacing: 1.0,
             ),
           ),
         ),
@@ -719,10 +732,11 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           const SizedBox(height: 8),
           Text(
             premiumState.tier.displayName,
-            style: const TextStyle(
-              color: AppColors.starGold,
+            style: AppTypography.elegantAccent(
               fontSize: 16,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w700,
+              color: AppColors.starGold,
+              letterSpacing: 2.0,
             ),
           ),
         ],
@@ -741,9 +755,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         children: [
           Text(
             L10nService.get('premium.cosmic_powers_active', language),
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 24,
               color: AppColors.starGold,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w700,
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
@@ -962,36 +977,14 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     final language = ref.read(languageProvider);
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? AppColors.cosmicPurple
-            : AppColors.lightSurface,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: Row(
-          children: [
-            const Icon(Icons.star_rounded, size: 28, color: AppColors.starGold),
-            const SizedBox(width: 8),
-            Flexible(
-              child: Text(
-                L10nService.get('premium.cosmic_door_opened', language),
-                style: const TextStyle(color: AppColors.starGold),
-              ),
-            ),
-          ],
-        ),
-        content: Text(
-          L10nService.get('premium.success_message', language),
-          style: TextStyle(
-            color: Theme.of(context).brightness == Brightness.dark
-                ? Colors.white70
-                : AppColors.lightTextSecondary,
-          ),
-        ),
+      builder: (_) => GlassDialog(
+        title: L10nService.get('premium.cosmic_door_opened', language),
+        content: L10nService.get('premium.success_message', language),
+        gradientVariant: GradientTextVariant.gold,
         actions: [
           TextButton(
             onPressed: () {
               Navigator.pop(context); // dismiss dialog
-              // Use Future.microtask so the dialog fully closes first
               Future.microtask(() {
                 if (context.mounted && Navigator.of(context).canPop()) {
                   Navigator.pop(context); // pop premium screen
@@ -1000,7 +993,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             },
             child: Text(
               L10nService.get('common.start_journey', language),
-              style: const TextStyle(color: AppColors.starGold),
+              style: const TextStyle(
+                color: AppColors.starGold,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ],
@@ -1050,9 +1046,11 @@ class _FeatureItem extends StatelessWidget {
           Expanded(
             child: Text(
               feature,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: AppColors.textPrimary),
+              style: AppTypography.decorativeScript(
+                fontSize: 15,
+                color: AppColors.textPrimary,
+                fontStyle: FontStyle.normal,
+              ),
             ),
           ),
         ],
@@ -1203,10 +1201,11 @@ class _BestValueBadge extends ConsumerWidget {
       ),
       child: Text(
         L10nService.get('premium.best_value', language),
-        style: const TextStyle(
-          color: Colors.black,
+        style: AppTypography.elegantAccent(
           fontSize: 11,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w700,
+          color: Colors.black,
+          letterSpacing: 1.5,
         ),
       ),
     );

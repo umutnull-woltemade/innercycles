@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../data/services/smart_router_service.dart';
@@ -340,7 +341,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                                           isEn
                                               ? currentPhase.labelEn()
                                               : currentPhase.labelTr(),
-                                          style: TextStyle(
+                                          style: AppTypography.decorativeScript(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600,
                                             color: isDark
@@ -352,9 +353,10 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                                         GradientText(
                                           '$_phaseCountdown',
                                           variant: GradientTextVariant.aurora,
-                                          style: const TextStyle(
-                                            fontSize: 36,
-                                            fontWeight: FontWeight.w700,
+                                          style: AppTypography.displayFont.copyWith(
+                                            fontSize: 40,
+                                            fontWeight: FontWeight.w300,
+                                            letterSpacing: 2,
                                           ),
                                         ),
                                       ] else

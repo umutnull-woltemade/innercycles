@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
@@ -98,12 +99,12 @@ class MoodTrendsScreen extends ConsumerWidget {
                         isEn
                             ? 'No observations recorded'
                             : 'Henüz gözlem kaydedilmedi',
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(
+                        style: AppTypography.displayFont.copyWith(
                               color: isDark
                                   ? AppColors.textPrimary
                                   : AppColors.lightTextPrimary,
                               fontWeight: FontWeight.w600,
+                              fontSize: 20,
                             ),
                       ),
                       const SizedBox(height: AppConstants.spacingSm),
@@ -112,7 +113,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                             ? 'No observations recorded. Check in from the home screen to begin.'
                             : 'Henüz gözlem kaydedilmedi. Başlamak için ana ekrandan giriş yapın.',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: AppTypography.subtitle(
                           fontSize: 14,
                           color: isDark
                               ? AppColors.textMuted
@@ -387,7 +388,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                 children: [
                   Text(
                     dayLabels[dayIndex],
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
                       fontSize: 11,
                       color: isDark
                           ? AppColors.textMuted
@@ -479,7 +480,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                       width: 60,
                       child: Text(
                         item.$3,
-                        style: TextStyle(
+                        style: AppTypography.subtitle(
                           fontSize: 12,
                           color: isDark
                               ? AppColors.textMuted
@@ -745,11 +746,11 @@ class MoodTrendsScreen extends ConsumerWidget {
                     ),
                     Text(
                       isEn ? subtitleEn : subtitleTr,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      style: AppTypography.subtitle(
+                        fontSize: 11,
                         color: isDark
                             ? AppColors.textMuted
                             : AppColors.lightTextMuted,
-                        fontSize: 11,
                       ),
                     ),
                   ],
@@ -794,7 +795,8 @@ class _StatTile extends StatelessWidget {
         children: [
           Text(
             value,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 24,
               color: isPro
                   ? AppColors.starGold.withValues(alpha: 0.5)
                   : AppColors.starGold,
@@ -804,7 +806,7 @@ class _StatTile extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             label,
-            style: TextStyle(
+            style: AppTypography.subtitle(
               fontSize: 11,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),

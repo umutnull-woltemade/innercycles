@@ -12,6 +12,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/shadow_work_entry.dart';
@@ -70,7 +72,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: shadowAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CosmicLoadingIndicator()),
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
@@ -208,8 +210,8 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             isEn ? 'Explore Your Inner Landscape' : 'İç Dünyani Keşfet',
             variant: GradientTextVariant.amethyst,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 16,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 20,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -299,8 +301,8 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           GradientText(
             isEn ? 'Choose an Archetype' : 'Bir Arketip Seç',
             variant: GradientTextVariant.amethyst,
-            style: const TextStyle(
-              fontSize: 14,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -449,12 +451,12 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             isEn ? prompt.promptEn : prompt.promptTr,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            style: AppTypography.decorativeScript(
+              fontSize: 17,
+              fontWeight: FontWeight.w500,
               color: isDark
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,
-              height: 1.6,
-              fontWeight: FontWeight.w500,
             ),
           ),
           const SizedBox(height: AppConstants.spacingLg),

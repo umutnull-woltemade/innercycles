@@ -13,6 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_prompt_service.dart';
@@ -197,8 +198,8 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
               GradientText(
                 isEn ? 'Your Progress' : 'İlerlemeniz',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
-                  fontSize: 14,
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -258,10 +259,10 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                 ),
                 child: Text(
                   isEn ? "Today's Prompt" : 'Günün İlhamı',
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 12,
-                    fontWeight: FontWeight.w600,
                     color: AppColors.starGold,
+                    letterSpacing: 0.5,
                   ),
                 ),
               ),
@@ -276,10 +277,9 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
           const SizedBox(height: 14),
           Text(
             promptText,
-            style: TextStyle(
-              fontSize: 17,
+            style: AppTypography.decorativeScript(
+              fontSize: 18,
               fontWeight: FontWeight.w500,
-              height: 1.5,
               color: isDark
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,

@@ -9,10 +9,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/growth_challenge_service.dart';
@@ -272,13 +271,32 @@ class _SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GradientText(
-      title,
-      variant: GradientTextVariant.gold,
-      style: GoogleFonts.plusJakartaSans(
-        fontSize: 17,
-        fontWeight: FontWeight.w700,
-      ),
+    return Row(
+      children: [
+        Container(
+          width: 3,
+          height: 16,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(2),
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: isDark
+                  ? [AppColors.starGold, AppColors.celestialGold]
+                  : [AppColors.lightStarGold, AppColors.celestialGold],
+            ),
+          ),
+        ),
+        const SizedBox(width: 10),
+        GradientText(
+          title,
+          variant: GradientTextVariant.gold,
+          style: AppTypography.displayFont.copyWith(
+            fontSize: 19,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -352,8 +370,8 @@ class _StatItem extends StatelessWidget {
       children: [
         Text(
           value,
-          style: GoogleFonts.plusJakartaSans(
-            fontSize: 22,
+          style: AppTypography.displayFont.copyWith(
+            fontSize: 24,
             fontWeight: FontWeight.w700,
             color: color,
           ),
@@ -400,8 +418,8 @@ class _ActiveChallengeCard extends StatelessWidget {
                   children: [
                     Text(
                       isEn ? challenge.titleEn : challenge.titleTr,
-                      style: GoogleFonts.plusJakartaSans(
-                        fontSize: 16,
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 18,
                         fontWeight: FontWeight.w700,
                         color: isDark
                             ? AppColors.textPrimary
@@ -490,10 +508,11 @@ class _AvailableChallengeCard extends StatelessWidget {
                   ),
                   child: Text(
                     'PRO',
-                    style: GoogleFonts.plusJakartaSans(
+                    style: AppTypography.elegantAccent(
                       fontSize: 9,
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
+                      letterSpacing: 0.5,
                     ),
                   ),
                 ),
@@ -502,9 +521,8 @@ class _AvailableChallengeCard extends StatelessWidget {
           const SizedBox(height: AppConstants.spacingSm),
           Text(
             isEn ? challenge.titleEn : challenge.titleTr,
-            style: GoogleFonts.plusJakartaSans(
+            style: AppTypography.subtitle(
               fontSize: 14,
-              fontWeight: FontWeight.w600,
               color: isDark
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,
@@ -564,9 +582,8 @@ class _CompletedChallengeTile extends StatelessWidget {
           Expanded(
             child: Text(
               isEn ? challenge.titleEn : challenge.titleTr,
-              style: GoogleFonts.plusJakartaSans(
+              style: AppTypography.subtitle(
                 fontSize: 14,
-                fontWeight: FontWeight.w500,
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,

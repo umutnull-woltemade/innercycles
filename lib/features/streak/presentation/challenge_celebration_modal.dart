@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/services/growth_challenge_service.dart';
 import '../../../data/services/instagram_share_service.dart';
 import '../../../data/providers/app_providers.dart';
@@ -137,7 +138,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                   GradientText(
                     isEn ? 'Challenge Completed!' : 'Meydan Okuma Tamamlandı!',
                     variant: GradientTextVariant.gold,
-                    style: const TextStyle(
+                    style: AppTypography.displayFont.copyWith(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                     ),
@@ -153,7 +154,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                     title,
                     variant: GradientTextVariant.gold,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
+                    style: AppTypography.displayFont.copyWith(
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
                     ),
@@ -169,9 +170,8 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                         ? 'You showed real commitment'
                         : 'Gerçek bir kararlılık gösterdin',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 15,
-                      height: 1.5,
                       color: isDark
                           ? Colors.white70
                           : AppColors.textDark.withValues(alpha: 0.7),
@@ -195,9 +195,9 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                       const SizedBox(width: 4),
                       Text(
                         'InnerCycles',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 11,
-                          fontWeight: FontWeight.w500,
+                          letterSpacing: 1.5,
                           color: isDark
                               ? Colors.white24
                               : AppColors.textDark.withValues(alpha: 0.3),
@@ -238,7 +238,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                           ),
                           child: Text(
                             isEn ? 'Continue' : 'Devam Et',
-                            style: const TextStyle(
+                            style: AppTypography.modernAccent(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                             ),

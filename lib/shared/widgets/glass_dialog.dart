@@ -16,6 +16,7 @@ import 'gradient_text.dart';
 class GlassDialog extends StatelessWidget {
   final String title;
   final String? content;
+  final Widget? contentWidget;
   final GradientTextVariant gradientVariant;
   final List<Widget> actions;
 
@@ -23,6 +24,7 @@ class GlassDialog extends StatelessWidget {
     super.key,
     required this.title,
     this.content,
+    this.contentWidget,
     this.gradientVariant = GradientTextVariant.aurora,
     this.actions = const [],
   });
@@ -123,7 +125,10 @@ class GlassDialog extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                if (content != null) ...[
+                if (contentWidget != null) ...[
+                  const SizedBox(height: 12),
+                  contentWidget!,
+                ] else if (content != null) ...[
                   const SizedBox(height: 12),
                   Text(
                     content!,

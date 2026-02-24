@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'app_colors.dart';
 
 /// Typography styles for the InnerCycles app
 ///
@@ -164,6 +165,40 @@ class AppTypography {
       fontWeight: fontWeight,
       color: color,
       letterSpacing: letterSpacing,
+    );
+  }
+
+  /// Subtitle style — w500 medium weight between body (w400) and label (w600)
+  static TextStyle subtitle({
+    double fontSize = 15,
+    Color? color,
+    double height = 1.45,
+  }) {
+    return GoogleFonts.plusJakartaSans(
+      fontSize: fontSize,
+      fontWeight: FontWeight.w500,
+      color: color,
+      height: height,
+    );
+  }
+
+  /// Gold gradient text widget — wraps text in a ShaderMask
+  static Widget gradientText(
+    String text,
+    TextStyle style, {
+    List<Color>? colors,
+    TextAlign? textAlign,
+  }) {
+    final gradientColors = colors ??
+        [AppColors.starGold, AppColors.celestialGold, AppColors.starGold];
+    return ShaderMask(
+      blendMode: BlendMode.srcIn,
+      shaderCallback: (bounds) => LinearGradient(
+        colors: gradientColors,
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ).createShader(bounds),
+      child: Text(text, style: style, textAlign: textAlign),
     );
   }
 }

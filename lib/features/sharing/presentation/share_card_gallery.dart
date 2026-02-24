@@ -11,9 +11,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/models/share_card_models.dart';
 import '../../../data/content/share_card_templates.dart';
 import '../../../core/constants/common_strings.dart';
@@ -220,7 +219,7 @@ class _ShareCardGalleryScreenState
         elevation: 0,
         title: Text(
           isEn ? 'Share Cards' : 'Paylaşım Kartları',
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.displayFont.copyWith(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontWeight: FontWeight.w600,
             fontSize: 18,
@@ -326,11 +325,8 @@ class _ShareCardGalleryScreenState
                     const SizedBox(width: 6),
                     Text(
                       category.label(isEn),
-                      style: GoogleFonts.plusJakartaSans(
+                      style: AppTypography.subtitle(
                         fontSize: 13,
-                        fontWeight: isSelected
-                            ? FontWeight.w700
-                            : FontWeight.w500,
                         color: isSelected
                             ? accent
                             : (isDark
@@ -444,7 +440,7 @@ class _ShareCardGalleryScreenState
               ),
               label: Text(
                 isEn ? 'Back to gallery' : 'Galeriye dön',
-                style: GoogleFonts.plusJakartaSans(
+                style: AppTypography.subtitle(
                   fontSize: 13,
                   color: isDark
                       ? AppColors.textSecondary
@@ -611,9 +607,8 @@ class _ThumbnailCard extends StatelessWidget {
               ),
               child: Text(
                 template.badge(isEn),
-                style: GoogleFonts.plusJakartaSans(
+                style: AppTypography.elegantAccent(
                   fontSize: 10,
-                  fontWeight: FontWeight.w700,
                   color: accent,
                   letterSpacing: 0.5,
                 ),
@@ -635,7 +630,7 @@ class _ThumbnailCard extends StatelessWidget {
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.plusJakartaSans(
+                    style: AppTypography.displayFont.copyWith(
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
                       color: AppColors.textPrimary,
@@ -645,9 +640,8 @@ class _ThumbnailCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     template.category.label(isEn),
-                    style: GoogleFonts.plusJakartaSans(
+                    style: AppTypography.elegantAccent(
                       fontSize: 10,
-                      fontWeight: FontWeight.w500,
                       color: AppColors.textMuted,
                     ),
                   ),
@@ -748,9 +742,8 @@ class _ActionButton extends StatelessWidget {
               const SizedBox(width: 6),
               Text(
                 label,
-                style: GoogleFonts.plusJakartaSans(
+                style: AppTypography.subtitle(
                   fontSize: 14,
-                  fontWeight: isPrimary ? FontWeight.w700 : FontWeight.w500,
                   color: isPrimary
                       ? Colors.white
                       : (isDark

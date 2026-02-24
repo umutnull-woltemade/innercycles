@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/services/streak_service.dart';
 import '../../../data/services/instagram_share_service.dart';
 import '../../../core/constants/app_constants.dart';
@@ -182,8 +183,8 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                 GradientText(
                   _title,
                   variant: GradientTextVariant.gold,
-                  style: const TextStyle(
-                    fontSize: 24,
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 26,
                     fontWeight: FontWeight.w700,
                   ),
                 )
@@ -197,9 +198,8 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                 Text(
                   _message,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 15,
-                    height: 1.5,
+                  style: AppTypography.decorativeScript(
+                    fontSize: 16,
                     color: isDark
                         ? Colors.white70
                         : AppColors.textDark.withValues(alpha: 0.7),

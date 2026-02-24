@@ -14,12 +14,14 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../shared/widgets/themed_picker.dart';
 import '../../../data/content/important_date_presets.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
@@ -247,7 +249,7 @@ class _WelcomeStep extends StatelessWidget {
                 : 'Hikayen bugün başlamadı',
             variant: GradientTextVariant.aurora,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 26,
               fontWeight: FontWeight.w700,
             ),
@@ -258,9 +260,8 @@ class _WelcomeStep extends StatelessWidget {
                 ? 'Add journal entries for the most meaningful days in your past. Reflect on what shaped you.'
                 : 'Geçmişindeki en anlamlı günler için günlük kayıtları ekle. Seni şekillendiren şeyleri düşün.',
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 16,
-              height: 1.5,
               color:
                   isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
             ),
@@ -327,7 +328,7 @@ class _DaySelectionStep extends StatelessWidget {
                 ? 'Choose the days that matter to you'
                 : 'Senin için önemli günleri seç',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
@@ -346,7 +347,7 @@ class _DaySelectionStep extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 4, top: 12, bottom: 8),
                     child: Text(
                       category.label(isEn),
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
                         color: AppColors.starGold,
@@ -501,7 +502,7 @@ class _DateEntryStep extends StatelessWidget {
           child: GradientText(
             isEn ? 'When did these happen?' : 'Bunlar ne zaman oldu?',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
@@ -532,7 +533,7 @@ class _DateEntryStep extends StatelessWidget {
                         Expanded(
                           child: Text(
                             preset.name(isEn),
-                            style: TextStyle(
+                            style: AppTypography.displayFont.copyWith(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
                               color: isDark
@@ -546,13 +547,11 @@ class _DateEntryStep extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(
                       preset.prompt(isEn),
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 13,
-                        fontStyle: FontStyle.italic,
                         color: isDark
                             ? AppColors.textSecondary
                             : AppColors.lightTextSecondary,
-                        height: 1.4,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -568,8 +567,8 @@ class _DateEntryStep extends StatelessWidget {
                             expanded: true,
                             fontSize: 13,
                             onPressed: () async {
-                              final picked = await showDatePicker(
-                                context: context,
+                              final picked = await ThemedPicker.showDate(
+                                context,
                                 initialDate: date ?? DateTime.now(),
                                 firstDate: DateTime(1950),
                                 lastDate: DateTime.now(),
@@ -671,7 +670,7 @@ class _SummaryStep extends StatelessWidget {
                 : '$savedCount anı kaydedildi',
             variant: GradientTextVariant.aurora,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 26,
               fontWeight: FontWeight.w700,
             ),
@@ -682,9 +681,8 @@ class _SummaryStep extends StatelessWidget {
                 ? 'Your past is now part of your journey. Come back anytime to write about these days.'
                 : 'Geçmişin artık yolculuğunun bir parçası. Bu günler hakkında yazmak için istediğin zaman geri dön.',
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 16,
-              height: 1.5,
               color:
                   isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
             ),

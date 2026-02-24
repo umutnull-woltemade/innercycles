@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -166,7 +167,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                     isEn
                         ? 'How did you sleep last night?'
                         : 'Dün gece nasıl uyudun?',
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 13,
                       color: isDark
                           ? AppColors.textMuted
@@ -440,7 +441,7 @@ class _SleepStat extends StatelessWidget {
       children: [
         Text(
           value,
-          style: TextStyle(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 18,
             fontWeight: FontWeight.w700,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -448,9 +449,10 @@ class _SleepStat extends StatelessWidget {
         ),
         Text(
           label,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 11,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            letterSpacing: 1.0,
           ),
         ),
       ],

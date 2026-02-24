@@ -35,6 +35,7 @@ import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
 
 class WeeklyDigestScreen extends ConsumerStatefulWidget {
@@ -502,7 +503,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         children: [
           Text(
             isEn ? 'Week of' : 'Haftasi',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 13,
               fontWeight: FontWeight.w500,
               color: isDark
@@ -513,7 +514,8 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           const SizedBox(height: 4),
           Text(
             range,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 20,
               color: AppColors.starGold,
               fontWeight: FontWeight.w800,
               letterSpacing: 0.5,
@@ -596,7 +598,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
             child: Center(
               child: Text(
                 '${data.entriesThisWeek}',
-                style: const TextStyle(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 22,
                   fontWeight: FontWeight.w900,
                   color: AppColors.auroraStart,
@@ -612,7 +614,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                 GradientText(
                   isEn ? 'Entries This Week' : 'Bu Haftaki Kayitlar',
                   variant: GradientTextVariant.gold,
-                  style: const TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                   ),
@@ -729,7 +731,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
               children: [
                 Text(
                   isEn ? 'Top Focus Area' : 'En Çok Odaklanılan Alan',
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
                     color: isDark
@@ -740,7 +742,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                 const SizedBox(height: 4),
                 Text(
                   areaName,
-                  style: TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
                     color: color,
@@ -823,7 +825,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                     GradientText(
                       isEn ? 'Mood Trend' : 'Ruh Hali Egilimi',
                       variant: GradientTextVariant.gold,
-                      style: const TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                       ),
@@ -920,7 +922,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
               children: [
                 Text(
                   isEn ? 'Best Day' : 'En İyi Gün',
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
                     color: isDark
@@ -931,7 +933,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                 const SizedBox(height: 4),
                 Text(
                   '$dayName, $dateStr',
-                  style: TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
                     color: AppColors.starGold,
@@ -986,7 +988,8 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         children: [
           Text(
             isEn ? 'Focus Area Breakdown' : 'Odak Alani Dagilimi',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 16,
               color: isDark
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,
@@ -1117,7 +1120,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           const SizedBox(height: 12),
           Text(
             isEn ? 'Weekly Insight' : 'Haftalık İçgörü',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 13,
               fontWeight: FontWeight.w600,
               color: isDark
@@ -1129,13 +1132,12 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           Text(
             isEn ? data.highlightInsightEn : data.highlightInsightTr,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            style: AppTypography.decorativeScript(
+              fontSize: 17,
               color: isDark
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,
               fontWeight: FontWeight.w500,
-              height: 1.6,
-              fontStyle: FontStyle.italic,
             ),
           ),
         ],
@@ -1169,7 +1171,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           const SizedBox(width: 8),
           Text(
             'InnerCycles',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
               fontWeight: FontWeight.w500,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -1243,7 +1245,7 @@ class _StatCard extends StatelessWidget {
             children: [
               Text(
                 value,
-                style: TextStyle(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 24,
                   fontWeight: FontWeight.w900,
                   color: isDark
@@ -1266,10 +1268,11 @@ class _StatCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             label,
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 11,
               fontWeight: FontWeight.w500,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              letterSpacing: 0.5,
             ),
           ),
         ],

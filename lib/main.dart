@@ -23,6 +23,7 @@ import 'data/services/web_error_service.dart';
 import 'data/services/l10n_service.dart';
 import 'data/services/sync_service.dart';
 import 'data/services/data_migration_service.dart';
+import 'data/services/birthday_contact_service.dart';
 import 'data/services/error_reporting_service.dart';
 import 'data/services/paywall_experiment_service.dart';
 import 'data/services/telemetry_service.dart';
@@ -258,6 +259,21 @@ class _AppInitializerState extends State<AppInitializer> {
       } catch (e) {
         if (kDebugMode) {
           debugPrint('⚠️ NotificationService init failed: $e');
+        }
+      }
+
+      // Reschedule birthday notifications on app launch
+      try {
+        final birthdayService = await BirthdayContactService.init();
+        final allContacts = birthdayService.getAllContacts();
+        if (allContacts.isNotEmpty) {
+          await NotificationService().rescheduleAllBirthdayNotifications(
+            allContacts,
+          );
+        }
+      } catch (e) {
+        if (kDebugMode) {
+          debugPrint('⚠️ Birthday notification reschedule failed: $e');
         }
       }
 

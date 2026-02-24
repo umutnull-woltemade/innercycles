@@ -28,6 +28,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
 
 // ============================================================================
@@ -520,7 +521,8 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           // Year
           Text(
             '${report.year}',
-            style: Theme.of(context).textTheme.displaySmall?.copyWith(
+            style: AppTypography.displayFont.copyWith(
+                  fontSize: 32,
                   color: AppColors.starGold,
                   fontWeight: FontWeight.w900,
                   letterSpacing: 2,
@@ -530,7 +532,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           GradientText(
             isEn ? 'Your Year Synthesis' : 'Senin Yıl Sentezin',
             variant: GradientTextVariant.aurora,
-            style: const TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
@@ -584,7 +586,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               GradientText(
                 isEn ? 'Top Focus Areas' : 'En Çok Odaklanılan Alanlar',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                 ),
@@ -632,7 +634,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                   Expanded(
                     child: Text(
                       areaName,
-                      style: TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: isDark
@@ -712,7 +714,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                     ? 'Average Rating by Month'
                     : 'Aylik Ortalama Puanlar',
                 variant: GradientTextVariant.aurora,
-                style: const TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                 ),
@@ -841,7 +843,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               children: [
                 Text(
                   isEn ? 'Longest Streak' : 'En Uzun Seri',
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
                     color: isDark
@@ -854,7 +856,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                   isEn
                       ? '${report.longestStreak} consecutive days'
                       : '${report.longestStreak} ardışık gün',
-                  style: TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 22,
                     fontWeight: FontWeight.w800,
                     color: AppColors.streakOrange,
@@ -910,7 +912,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               children: [
                 Text(
                   isEn ? 'Most Active Month' : 'En Aktif Ay',
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
                     color: isDark
@@ -921,7 +923,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                 const SizedBox(height: 4),
                 Text(
                   _monthNameFull(month, isEn),
-                  style: TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 22,
                     fontWeight: FontWeight.w800,
                     color: AppColors.chartBlue,
@@ -971,13 +973,12 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           Text(
             _motivationalMessage(report, isEn),
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            style: AppTypography.decorativeScript(
+                  fontSize: 17,
                   color: isDark
                       ? AppColors.textPrimary
                       : AppColors.lightTextPrimary,
                   fontWeight: FontWeight.w500,
-                  height: 1.6,
-                  fontStyle: FontStyle.italic,
                 ),
           ),
         ],
@@ -1010,7 +1011,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           const SizedBox(width: 8),
           Text(
             'InnerCycles',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
               fontWeight: FontWeight.w500,
               color: isDark
@@ -1068,7 +1069,7 @@ class _StatBadge extends StatelessWidget {
         children: [
           Text(
             value,
-            style: TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 28,
               fontWeight: FontWeight.w900,
               color: color,
@@ -1077,7 +1078,7 @@ class _StatBadge extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             label,
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
               fontWeight: FontWeight.w500,
               color: isDark

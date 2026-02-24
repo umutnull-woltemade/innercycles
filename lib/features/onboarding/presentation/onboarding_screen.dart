@@ -10,6 +10,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 // glass_tokens import removed (archetype result page removed)
@@ -24,6 +25,7 @@ import '../../../data/services/storage_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 
@@ -460,14 +462,14 @@ class _IdentityPageState extends State<_IdentityPage>
               },
             ),
             const SizedBox(height: 16),
-            Text(
+            GradientText(
               L10nService.get('app.name', widget.language),
-              style: const TextStyle(
+              style: AppTypography.displayFont.copyWith(
                 fontSize: 40,
-                fontWeight: FontWeight.w100,
-                color: Colors.white,
+                fontWeight: FontWeight.w300,
                 letterSpacing: 4,
               ),
+              variant: GradientTextVariant.gold,
             ),
             const SizedBox(height: 32),
             SizedBox(
@@ -498,14 +500,14 @@ class _IdentityPageState extends State<_IdentityPage>
           const SizedBox(height: 20),
 
           // App name
-          Text(
+          GradientText(
             L10nService.get('app.name', widget.language),
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 48,
-              fontWeight: FontWeight.w100,
-              color: Colors.white,
+              fontWeight: FontWeight.w300,
               letterSpacing: 4,
             ),
+            variant: GradientTextVariant.gold,
           ).glassReveal(context: context),
 
           const SizedBox(height: 8),
@@ -513,10 +515,9 @@ class _IdentityPageState extends State<_IdentityPage>
           // Tagline
           Text(
             L10nService.get('onboarding.start_cosmic_journey', widget.language),
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            style: AppTypography.decorativeScript(
+              fontSize: 16,
               color: AppColors.textSecondary,
-              fontSize: 15,
-              letterSpacing: 1,
             ),
             textAlign: TextAlign.center,
           ).glassListItem(context: context, index: 1),
@@ -715,14 +716,14 @@ class _FirstCyclePage extends StatelessWidget {
           const SizedBox(height: 24),
 
           // Title
-          Text(
+          GradientText(
             isEn ? 'Pick Your Starting Signal' : 'İlk Sinyalini Seç',
-            style: const TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.w300,
-              color: Colors.white,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 28,
+              fontWeight: FontWeight.w600,
               letterSpacing: 0.5,
             ),
+            variant: GradientTextVariant.gold,
           ).glassEntrance(context: context),
 
           const SizedBox(height: 8),
@@ -731,9 +732,9 @@ class _FirstCyclePage extends StatelessWidget {
             isEn
                 ? 'Which part of your inner world are you most curious about?'
                 : 'İç dünyanın hangi köşesi seni en çok meraklandırıyor?',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            style: AppTypography.decorativeScript(
+              fontSize: 16,
               color: AppColors.textMuted,
-              fontSize: 15,
             ),
           ).glassListItem(context: context, index: 0),
 
@@ -805,12 +806,13 @@ class _FirstCyclePage extends StatelessWidget {
                             const SizedBox(height: 12),
                             Text(
                               isEn ? area.displayNameEn : area.displayNameTr,
-                              style: TextStyle(
+                              style: AppTypography.elegantAccent(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                                 color: isSelected
                                     ? Colors.white
                                     : Colors.white.withValues(alpha: 0.78),
+                                letterSpacing: 1.2,
                               ),
                             ),
                             const SizedBox(height: 4),
@@ -1010,14 +1012,14 @@ class _PermissionStartPage extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          Text(
+          GradientText(
             isEn ? 'You\'re All Set' : 'Her Şey Hazır',
-            style: const TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.w300,
-              color: Colors.white,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 30,
+              fontWeight: FontWeight.w600,
               letterSpacing: 1,
             ),
+            variant: GradientTextVariant.gold,
           ).glassListItem(context: context, index: 1),
 
           const SizedBox(height: 12),
@@ -1026,9 +1028,9 @@ class _PermissionStartPage extends StatelessWidget {
             isEn
                 ? 'One last thing — stay on track with gentle reminders'
                 : 'Son bir şey — nazik hatırlatıcılarla yolda kal',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            style: AppTypography.decorativeScript(
+              fontSize: 16,
               color: AppColors.textSecondary,
-              fontSize: 15,
             ),
             textAlign: TextAlign.center,
           ).glassListItem(context: context, index: 2),
@@ -1074,10 +1076,11 @@ class _PermissionStartPage extends StatelessWidget {
                           isEn
                               ? 'Daily Reflection Reminder'
                               : 'Günlük Yansıma Hatırlatıcı',
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                             color: AppColors.textPrimary,
+                            letterSpacing: 1.0,
                           ),
                         ),
                         const SizedBox(height: 2),
@@ -1162,10 +1165,11 @@ class _PermissionStartPage extends StatelessWidget {
               children: [
                 Text(
                   isEn ? 'What\'s Included' : 'Neler Dahil',
-                  style: const TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: AppColors.lavender,
+                    letterSpacing: 2.0,
                   ),
                 ),
                 const SizedBox(height: 14),
@@ -1274,15 +1278,15 @@ class _WelcomePage extends StatelessWidget {
           const SizedBox(height: 28),
 
           // App name
-          const Text(
+          GradientText(
             'InnerCycles',
-            style: TextStyle(
-              fontSize: 36,
-              fontWeight: FontWeight.w200,
-              color: Colors.white,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 38,
+              fontWeight: FontWeight.w600,
               letterSpacing: 3,
               height: 1.2,
             ),
+            variant: GradientTextVariant.gold,
             textAlign: TextAlign.center,
           ).glassEntrance(
             context: context,
@@ -1296,11 +1300,9 @@ class _WelcomePage extends StatelessWidget {
             isEn
                 ? 'Understand the patterns you repeat'
                 : 'Tekrarladığın kalıpları anla',
-            style: TextStyle(
-              fontSize: 15,
+            style: AppTypography.decorativeScript(
+              fontSize: 16,
               color: AppColors.textSecondary,
-              height: 1.5,
-              letterSpacing: 0.8,
             ),
             textAlign: TextAlign.center,
           ).glassEntrance(
@@ -1388,10 +1390,11 @@ class _FeatureHighlight extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           isEn ? labelEn : labelTr,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 12,
+            fontWeight: FontWeight.w500,
             color: AppColors.textMuted,
-            height: 1.3,
+            letterSpacing: 1.0,
           ),
           textAlign: TextAlign.center,
         ),
@@ -1633,9 +1636,9 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                             ).createShader(bounds),
                             child: Text(
                               widget.greeting,
-                              style: const TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.w300,
+                              style: AppTypography.displayFont.copyWith(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w600,
                                 color: Colors.white,
                                 letterSpacing: 1.5,
                               ),
@@ -1648,9 +1651,9 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                             const SizedBox(height: 16),
                             Text(
                               widget.name!,
-                              style: const TextStyle(
-                                fontSize: 36,
-                                fontWeight: FontWeight.bold,
+                              style: AppTypography.displayFont.copyWith(
+                                fontSize: 38,
+                                fontWeight: FontWeight.w700,
                                 color: AppColors.starGold,
                                 letterSpacing: 2,
                               ),

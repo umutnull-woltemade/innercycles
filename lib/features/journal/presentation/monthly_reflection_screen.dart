@@ -18,6 +18,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
@@ -343,7 +344,7 @@ class _MonthlyReflectionScreenState
               '${months[_selectedMonth - 1]} $_selectedYear',
               variant: GradientTextVariant.gold,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: AppTypography.displayFont.copyWith(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
@@ -498,7 +499,7 @@ class _MonthlyReflectionScreenState
         const SizedBox(width: 12),
         Text(
           '$label: ',
-          style: TextStyle(
+          style: AppTypography.subtitle(
             fontSize: 14,
             color: isDark
                 ? AppColors.textSecondary
@@ -507,7 +508,7 @@ class _MonthlyReflectionScreenState
         ),
         Text(
           value,
-          style: TextStyle(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 14,
             fontWeight: FontWeight.w600,
             color: color,
@@ -551,7 +552,7 @@ class _MonthlyReflectionScreenState
                 child: GradientText(
                   isEn ? theme.themeNameEn : theme.themeNameTr,
                   variant: GradientTextVariant.aurora,
-                  style: const TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),
@@ -562,9 +563,8 @@ class _MonthlyReflectionScreenState
           const SizedBox(height: 10),
           Text(
             isEn ? theme.descriptionEn : theme.descriptionTr,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 13,
-              height: 1.5,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
@@ -573,7 +573,7 @@ class _MonthlyReflectionScreenState
           const SizedBox(height: 16),
           Text(
             isEn ? 'Weekly Prompts' : 'Haftalık Sorular',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
               fontWeight: FontWeight.w600,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -627,10 +627,8 @@ class _MonthlyReflectionScreenState
                 Expanded(
                   child: Text(
                     tip,
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 12,
-                      fontStyle: FontStyle.italic,
-                      height: 1.4,
                       color: isDark
                           ? AppColors.textSecondary
                           : AppColors.lightTextSecondary,
@@ -670,7 +668,7 @@ class _MonthlyReflectionScreenState
           GradientText(
             isEn ? 'Area Breakdown' : 'Alan Dağılımı',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),

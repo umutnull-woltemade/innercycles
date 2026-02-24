@@ -11,6 +11,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/blind_spot_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -260,8 +261,8 @@ class _NotEnoughData extends StatelessWidget {
             isEn
                 ? 'A little more journaling to go'
                 : 'Biraz daha günlük tutmaya devam',
-            style: TextStyle(
-              fontSize: 20,
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 22,
               fontWeight: FontWeight.w600,
               color: isDark
                   ? AppColors.textPrimary

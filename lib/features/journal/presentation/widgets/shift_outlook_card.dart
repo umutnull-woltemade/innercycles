@@ -9,6 +9,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../../../data/services/shift_outlook_service.dart';
 import '../../../../data/services/emotional_cycle_service.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -63,11 +64,12 @@ class ShiftOutlookCard extends StatelessWidget {
                   children: [
                     Text(
                       isEn ? 'Shift Outlook' : 'Kayma Görünümü',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 16,
                         color: isDark
                             ? AppColors.textPrimary
                             : AppColors.lightTextPrimary,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     Text(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
+import '../../../shared/widgets/themed_picker.dart';
 import '../../../data/services/notification_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/providers/app_providers.dart';
@@ -72,20 +74,9 @@ class _NotificationSettingsSectionState
   }
 
   Future<void> _selectDailyTime() async {
-    final time = await showTimePicker(
-      context: context,
+    final time = await ThemedPicker.showTime(
+      context,
       initialTime: TimeOfDay(hour: _dailyHour, minute: _dailyMinute),
-      builder: (context, child) {
-        return Theme(
-          data: Theme.of(context).copyWith(
-            colorScheme: ColorScheme.dark(
-              primary: AppColors.starGold,
-              surface: AppColors.surfaceDark,
-            ),
-          ),
-          child: child!,
-        );
-      },
     );
 
     if (time != null) {
@@ -146,11 +137,12 @@ class _NotificationSettingsSectionState
               const SizedBox(width: AppConstants.spacingSm),
               Text(
                 L10nService.get('common.notifications', language),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
                   color: isDark
                       ? AppColors.textPrimary
                       : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -274,11 +266,11 @@ class _NotificationSettingsSectionState
               children: [
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  style: AppTypography.subtitle(
+                    fontSize: 15,
                     color: isDark
                         ? AppColors.textPrimary
                         : AppColors.lightTextPrimary,
-                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 Text(

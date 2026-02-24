@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/guided_program_service.dart';
@@ -257,7 +258,7 @@ class _MiniStat extends StatelessWidget {
         GradientText(
           value,
           variant: GradientTextVariant.gold,
-          style: const TextStyle(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 16,
             fontWeight: FontWeight.w700,
           ),
@@ -379,7 +380,7 @@ class _TodayPromptCard extends StatelessWidget {
                 ),
                 child: Text(
                   '${isEn ? 'Day' : 'Gün'} ${day.dayNumber}',
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
                     color: AppColors.starGold,
@@ -390,7 +391,7 @@ class _TodayPromptCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   isEn ? day.titleEn : day.titleTr,
-                  style: TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                     color: isDark
@@ -404,9 +405,8 @@ class _TodayPromptCard extends StatelessWidget {
           const SizedBox(height: 14),
           Text(
             isEn ? day.promptEn : day.promptTr,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 15,
-              height: 1.5,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
@@ -502,7 +502,7 @@ class _CompleteButton extends StatelessWidget {
           isAlreadyDone
               ? (isEn ? 'Completed' : 'Tamamlandı')
               : (isEn ? 'Complete Today' : 'Bugünü Tamamla'),
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          style: AppTypography.displayFont.copyWith(fontSize: 16, fontWeight: FontWeight.w600),
         ),
       ),
     ).animate().fadeIn(delay: 300.ms, duration: 300.ms);
@@ -539,7 +539,7 @@ class _CompletedBanner extends StatelessWidget {
               GradientText(
                 isEn ? 'Program Completed!' : 'Program Tamamlandı!',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                 ),

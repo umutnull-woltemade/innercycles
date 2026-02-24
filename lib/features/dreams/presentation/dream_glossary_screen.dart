@@ -13,6 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/cosmic_palette.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../data/models/dream_interpretation_models.dart';
@@ -323,7 +324,8 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
               children: [
                 Text(
                   L10nService.get('screens.dream_glossary.title', language),
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 22,
                     color: AppColors.textPrimary,
                     fontWeight: FontWeight.bold,
                   ),
@@ -336,7 +338,8 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
                     '{count}',
                     '${DreamSymbolsDatabase.allSymbols.length}',
                   ),
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  style: AppTypography.elegantAccent(
+                    fontSize: 13,
                     color: AppColors.textSecondary,
                   ),
                 ),
@@ -845,8 +848,8 @@ class _SymbolDetailSheet extends StatelessWidget {
                     children: [
                       Text(
                         symbol.symbolTr,
-                        style: Theme.of(context).textTheme.headlineSmall
-                            ?.copyWith(
+                        style: AppTypography.displayFont.copyWith(
+                              fontSize: 20,
                               color: AppColors.textPrimary,
                               fontWeight: FontWeight.bold,
                             ),
@@ -985,7 +988,8 @@ class _SymbolDetailSheet extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 title,
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                style: AppTypography.elegantAccent(
+                  fontSize: 16,
                   color: color ?? CosmicPalette.starGold,
                   fontWeight: FontWeight.w600,
                 ),
@@ -995,9 +999,9 @@ class _SymbolDetailSheet extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             content,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            style: AppTypography.decorativeScript(
+              fontSize: 15,
               color: AppColors.textSecondary,
-              height: 1.6,
             ),
           ),
         ],
@@ -1033,7 +1037,8 @@ class _SymbolDetailSheet extends StatelessWidget {
                   'screens.dream_glossary.sections.cultural_interpretations',
                   language,
                 ),
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                style: AppTypography.elegantAccent(
+                  fontSize: 16,
                   color: CosmicPalette.etherealCyan,
                   fontWeight: FontWeight.w600,
                 ),
@@ -1104,7 +1109,8 @@ class _SymbolDetailSheet extends StatelessWidget {
                   'screens.dream_glossary.sections.psychological_interpretations',
                   language,
                 ),
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                style: AppTypography.elegantAccent(
+                  fontSize: 16,
                   color: CosmicPalette.orchid,
                   fontWeight: FontWeight.w600,
                 ),
@@ -1205,7 +1211,8 @@ class _SymbolDetailSheet extends StatelessWidget {
                   'screens.dream_glossary.sections.related_symbols',
                   language,
                 ),
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                style: AppTypography.elegantAccent(
+                  fontSize: 16,
                   color: CosmicPalette.stardustBlue,
                   fontWeight: FontWeight.w600,
                 ),
@@ -1465,7 +1472,8 @@ class _PersonalDictionarySheet extends StatelessWidget {
                           'screens.dream_glossary.personal_dictionary_sheet.title',
                           language,
                         ),
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        style: AppTypography.displayFont.copyWith(
+                          fontSize: 22,
                           color: AppColors.textPrimary,
                           fontWeight: FontWeight.bold,
                         ),

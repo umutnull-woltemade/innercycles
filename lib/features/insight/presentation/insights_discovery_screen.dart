@@ -13,6 +13,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/content/context_modules_content.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/context_module_service.dart';
@@ -218,10 +219,11 @@ class _InsightsDiscoveryScreenState
           children: [
             Text(
               isEn ? 'Reading Progress' : 'Okuma İlerlemesi',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
+              style: AppTypography.elegantAccent(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                letterSpacing: 1.5,
               ),
             ),
             Text(
@@ -306,8 +308,8 @@ class _InsightsDiscoveryScreenState
               GradientText(
                 isEn ? module.titleEn : module.titleTr,
                 variant: GradientTextVariant.aurora,
-                style: const TextStyle(
-                  fontSize: 18,
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 20,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -316,9 +318,8 @@ class _InsightsDiscoveryScreenState
                 isEn ? module.summaryEn : module.summaryTr,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
                   fontSize: 14,
-                  height: 1.5,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -331,11 +332,13 @@ class _InsightsDiscoveryScreenState
                   _buildCategoryPill(module.category, isDark, isEn),
                   Text(
                     isEn ? 'Tap to read' : 'Okumak için dokun',
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 11,
+                      fontWeight: FontWeight.w500,
                       color: isDark
                           ? AppColors.textMuted.withValues(alpha: 0.6)
                           : AppColors.lightTextMuted.withValues(alpha: 0.6),
+                      letterSpacing: 1.0,
                     ),
                   ),
                 ],
@@ -468,8 +471,8 @@ class _InsightsDiscoveryScreenState
                   Expanded(
                     child: Text(
                       isEn ? module.titleEn : module.titleTr,
-                      style: TextStyle(
-                        fontSize: 15,
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: isDark
                             ? AppColors.textPrimary
@@ -516,9 +519,8 @@ class _InsightsDiscoveryScreenState
                 isEn ? module.summaryEn : module.summaryTr,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
                   fontSize: 13,
-                  height: 1.4,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -614,8 +616,8 @@ class _InsightsDiscoveryScreenState
               GradientText(
                 isEn ? module.titleEn : module.titleTr,
                 variant: GradientTextVariant.aurora,
-                style: const TextStyle(
-                  fontSize: 22,
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 24,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -624,11 +626,9 @@ class _InsightsDiscoveryScreenState
               // Summary
               Text(
                 isEn ? module.summaryEn : module.summaryTr,
-                style: TextStyle(
-                  fontSize: 15,
+                style: AppTypography.decorativeScript(
+                  fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  fontStyle: FontStyle.italic,
-                  height: 1.5,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -673,9 +673,10 @@ class _InsightsDiscoveryScreenState
                         GradientText(
                           isEn ? 'Why This Matters' : 'Neden Önemli',
                           variant: GradientTextVariant.gold,
-                          style: const TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 13,
                             fontWeight: FontWeight.w700,
+                            letterSpacing: 1.5,
                           ),
                         ),
                       ],
@@ -728,11 +729,9 @@ class _InsightsDiscoveryScreenState
                             : (module.screenshotLineTr ??
                                   module.screenshotLineEn!),
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
+                        style: AppTypography.decorativeScript(
+                          fontSize: 17,
                           fontWeight: FontWeight.w600,
-                          fontStyle: FontStyle.italic,
-                          height: 1.4,
                           color: isDark
                               ? AppColors.textPrimary
                               : AppColors.lightTextPrimary,
@@ -749,9 +748,10 @@ class _InsightsDiscoveryScreenState
                 GradientText(
                   isEn ? 'Related Insights' : 'İlgili İçgörüler',
                   variant: GradientTextVariant.gold,
-                  style: const TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
+                    letterSpacing: 1.5,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -863,10 +863,11 @@ class _InsightsDiscoveryScreenState
           const SizedBox(width: 4),
           Text(
             isEn ? category.displayNameEn : category.displayNameTr,
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 11,
               fontWeight: FontWeight.w500,
               color: color,
+              letterSpacing: 1.0,
             ),
           ),
         ],
@@ -885,10 +886,11 @@ class _InsightsDiscoveryScreenState
       ),
       child: Text(
         isEn ? depth.displayNameEn : depth.displayNameTr,
-        style: TextStyle(
+        style: AppTypography.elegantAccent(
           fontSize: 10,
           fontWeight: FontWeight.w500,
           color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          letterSpacing: 1.0,
         ),
       ),
     );

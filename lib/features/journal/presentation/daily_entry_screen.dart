@@ -15,6 +15,8 @@ import '../../../core/constants/app_constants.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
+import '../../../shared/widgets/themed_picker.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/journal_entry.dart';
@@ -311,8 +313,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         onTap: () async {
           HapticService.dateSelected();
           final now = DateTime.now();
-          final picked = await showDatePicker(
-            context: context,
+          final picked = await ThemedPicker.showDate(
+            context,
             initialDate: _selectedDate,
             firstDate: widget.initialDate != null
                 ? DateTime(1950)
@@ -337,7 +339,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 children: [
                   Text(
                     dayName,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 20,
                       color: isDark
                           ? AppColors.textPrimary
                           : AppColors.lightTextPrimary,
@@ -369,12 +372,12 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
   Widget _buildSectionLabel(BuildContext context, bool isDark, String label) {
     return GradientText(
-      label,
+      label.toUpperCase(),
       variant: GradientTextVariant.gold,
-      style: const TextStyle(
+      style: AppTypography.elegantAccent(
         fontSize: 14,
         fontWeight: FontWeight.w600,
-        letterSpacing: 0.5,
+        letterSpacing: 1.5,
       ),
     );
   }
@@ -538,10 +541,11 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             labels[(value - 1).clamp(0, labels.length - 1)],
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 14,
               color: AppColors.starGold,
               fontWeight: FontWeight.w500,
+              letterSpacing: 1.0,
             ),
           ),
         ],
@@ -567,10 +571,11 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           tilePadding: EdgeInsets.zero,
           title: Text(
             isEn ? 'Details (optional)' : 'Detaylar (opsiyonel)',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 14,
               fontWeight: FontWeight.w600,
               color: isDark ? AppColors.textSecondary : AppColors.lightTextPrimary,
+              letterSpacing: 1.0,
             ),
           ),
           children: [_buildSubRatings(isDark, isEn)],
@@ -692,7 +697,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                       (isEn
                           ? 'How was your day? Any reflections...'
                           : 'Bugün nasıl geçti? Düşüncelerin...'),
-                  hintStyle: TextStyle(
+                  hintStyle: AppTypography.decorativeScript(
+                    fontSize: 16,
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
@@ -948,7 +954,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     const SizedBox(width: 8),
                     Text(
                       isEn ? 'Save Entry' : 'Kaydet',
-                      style: const TextStyle(
+                      style: AppTypography.modernAccent(
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
                         color: AppColors.deepSpace,
@@ -1397,12 +1403,12 @@ class _CyclePhasePromptHint extends ConsumerWidget {
                 Expanded(
                   child: Text(
                     isEn ? prompt.promptEn : prompt.promptTr,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    style: AppTypography.decorativeScript(
+                      fontSize: 14,
                       color: isDark
                           ? AppColors.textSecondary
                           : AppColors.lightTextSecondary,
                       fontStyle: FontStyle.italic,
-                      height: 1.4,
                     ),
                   ),
                 ),

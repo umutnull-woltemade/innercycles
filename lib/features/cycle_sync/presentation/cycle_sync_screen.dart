@@ -8,6 +8,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/cycle_entry.dart';
@@ -38,7 +40,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
       body: CosmicBackground(
         child: SafeArea(
           child: cycleSyncAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CosmicLoadingIndicator()),
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
@@ -164,8 +166,8 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
               isEn ? 'Start Tracking Your Cycle' : 'Döngünü Takip Etmeye Başla',
               variant: GradientTextVariant.aurora,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 16,
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -227,7 +229,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                     children: [
                       Text(
                         isEn ? 'Day' : 'Gün',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
                               ? AppColors.textMuted
@@ -236,9 +238,9 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                       ),
                       Text(
                         '${cycleDay ?? '-'}',
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
+                        style: AppTypography.displayFont.copyWith(
+                          fontSize: 36,
+                          fontWeight: FontWeight.w700,
                           color: phaseColor,
                         ),
                       ),

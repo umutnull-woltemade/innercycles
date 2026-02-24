@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/ritual_service.dart';
@@ -14,6 +15,7 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -156,7 +158,7 @@ class _StackCard extends ConsumerWidget {
                       GradientText(
                         stack.name,
                         variant: GradientTextVariant.aurora,
-                        style: const TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
@@ -219,29 +221,15 @@ class _StackCard extends ConsumerWidget {
 
   Future<void> _confirmDelete(BuildContext context, WidgetRef ref) async {
     HapticFeedback.mediumImpact();
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(isEn ? 'Delete Ritual?' : 'Ritüelü Sil?'),
-        content: Text(
-          isEn
-              ? 'This will delete "${stack.name}" and all its completion history.'
-              : '"${stack.name}" ve tüm tamamlama geçmişi silinecek.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, false),
-            child: Text(isEn ? 'Cancel' : 'İptal'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, true),
-            child: Text(
-              isEn ? 'Delete' : 'Sil',
-              style: TextStyle(color: AppColors.error),
-            ),
-          ),
-        ],
-      ),
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: isEn ? 'Delete Ritual?' : 'Ritüelü Sil?',
+      message: isEn
+          ? 'This will delete "${stack.name}" and all its completion history.'
+          : '"${stack.name}" ve tüm tamamlama geçmişi silinecek.',
+      cancelLabel: isEn ? 'Cancel' : 'İptal',
+      confirmLabel: isEn ? 'Delete' : 'Sil',
+      isDestructive: true,
     );
 
     if (confirmed == true) {

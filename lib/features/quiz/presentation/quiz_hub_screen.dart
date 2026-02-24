@@ -15,6 +15,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/content/quiz_content.dart';
 import '../../../data/models/quiz_models.dart';
 import '../../../data/providers/app_providers.dart';
@@ -55,10 +56,9 @@ class QuizHubScreen extends ConsumerWidget {
                           isEn
                               ? 'Explore different aspects of yourself through thoughtful self-reflection. These are personal awareness tools, not clinical assessments.'
                               : 'Düşünceli öz yansıtma yoluyla kendinizin farklı yönlerini keşfedin. Bunlar kişisel farkındalık araçlarıdır, klinik değerlendirmeler değildir.',
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(
+                          style: AppTypography.decorativeScript(
+                                fontSize: 15,
                                 color: AppColors.textSecondary,
-                                height: 1.6,
                               ),
                         )
                         .animate()
@@ -225,8 +225,8 @@ class _QuizCard extends StatelessWidget {
                         Expanded(
                           child: Text(
                             isEn ? quiz.title : quiz.titleTr,
-                            style: Theme.of(context).textTheme.titleSmall
-                                ?.copyWith(
+                            style: AppTypography.displayFont.copyWith(
+                                  fontSize: 16,
                                   color: isDark
                                       ? AppColors.textPrimary
                                       : AppColors.lightTextPrimary,
@@ -250,8 +250,8 @@ class _QuizCard extends StatelessWidget {
                             ),
                             child: Text(
                               isEn ? 'Done' : 'Tamam',
-                              style: Theme.of(context).textTheme.labelSmall
-                                  ?.copyWith(
+                              style: AppTypography.elegantAccent(
+                                    fontSize: 11,
                                     color: AppColors.auroraStart,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -277,7 +277,8 @@ class _QuizCard extends StatelessWidget {
                         isEn
                             ? 'Your result: $lastResultName'
                             : 'Sonucunuz: $lastResultName',
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        style: AppTypography.elegantAccent(
+                          fontSize: 11,
                           color: AppColors.starGold,
                           fontWeight: FontWeight.w500,
                         ),

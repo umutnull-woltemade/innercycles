@@ -8,6 +8,7 @@ import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/analytics_service.dart';
 import '../../../data/services/paywall_experiment_service.dart';
@@ -195,7 +196,7 @@ class _ContextualPaywallSheetState
                   Text(
                     config.headline,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
+                    style: AppTypography.displayFont.copyWith(
                       color: Colors.white,
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -208,10 +209,9 @@ class _ContextualPaywallSheetState
                   Text(
                     config.subtitle,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.7),
+                    style: AppTypography.decorativeScript(
                       fontSize: 15,
-                      height: 1.4,
+                      color: Colors.white.withValues(alpha: 0.7),
                     ),
                   ).animate().fadeIn(duration: 400.ms, delay: 200.ms),
                   const SizedBox(height: 8),
@@ -233,10 +233,10 @@ class _ContextualPaywallSheetState
                       ),
                       child: Text(
                         config.detail!,
-                        style: TextStyle(
-                          color: config.accentColor,
+                        style: AppTypography.elegantAccent(
                           fontSize: 13,
-                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.5,
+                          color: config.accentColor,
                         ),
                       ),
                     ).animate().fadeIn(duration: 400.ms, delay: 250.ms),
@@ -301,7 +301,7 @@ class _ContextualPaywallSheetState
                                   ? const CosmicLoadingIndicator(size: 22)
                                   : Text(
                                       config.cta,
-                                      style: const TextStyle(
+                                      style: AppTypography.modernAccent(
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
@@ -400,7 +400,7 @@ class _ContextualPaywallSheetState
           isEn
               ? '$yearlyLabel billed yearly'
               : '${yearlyLabel.replaceAll('.', ',').replaceAll('/mo', '/ay')} yıllık',
-          style: TextStyle(
+          style: AppTypography.modernAccent(
             color: Colors.white.withValues(alpha: 0.7),
             fontSize: 13,
             fontWeight: FontWeight.w600,
@@ -524,11 +524,10 @@ class _ContextualPaywallSheetState
         children: [
           Text(
             isEn ? 'Your investment so far' : 'Şimdiye kadarki yatırımın',
-            style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.6),
+            style: AppTypography.elegantAccent(
               fontSize: 11,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 0.5,
+              letterSpacing: 1.0,
+              color: Colors.white.withValues(alpha: 0.6),
             ),
           ),
           const SizedBox(height: 8),

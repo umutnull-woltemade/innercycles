@@ -12,6 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/models/birthday_contact.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/notification_service.dart';
@@ -182,7 +183,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         GradientText(
           isEn ? 'Name' : '\u{0130}sim',
           variant: GradientTextVariant.gold,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+          style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
         const SizedBox(height: 8),
         TextField(
@@ -238,7 +239,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         GradientText(
           isEn ? 'Birthday' : 'Do\u{011F}um G\u{00FC}n\u{00FC}',
           variant: GradientTextVariant.gold,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+          style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
         const SizedBox(height: 10),
         Row(
@@ -377,7 +378,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         GradientText(
           isEn ? 'Relationship' : '\u{0130}li\u{015F}ki',
           variant: GradientTextVariant.gold,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+          style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
         const SizedBox(height: 10),
         Wrap(
@@ -446,7 +447,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         GradientText(
           isEn ? 'Note (Optional)' : 'Not (\u{0130}ste\u{011F}e Ba\u{011F}l\u{0131})',
           variant: GradientTextVariant.gold,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+          style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
         const SizedBox(height: 8),
         TextField(
@@ -488,7 +489,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         GradientText(
           isEn ? 'Reminders' : 'Hat\u{0131}rlat\u{0131}c\u{0131}lar',
           variant: GradientTextVariant.gold,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+          style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
         const SizedBox(height: 10),
         _toggleRow(
@@ -579,7 +580,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                   _isEditing
                       ? (isEn ? 'Update' : 'G\u{00FC}ncelle')
                       : (isEn ? 'Save' : 'Kaydet'),
-                  style: TextStyle(
+                  style: AppTypography.modernAccent(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: canSave
@@ -644,6 +645,20 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
       ref.invalidate(birthdayContactServiceProvider);
 
       if (mounted) context.pop();
+    } catch (_) {
+      if (mounted) {
+        final lang = ref.read(languageProvider);
+        final isEn = lang == AppLanguage.en;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              isEn
+                  ? 'Could not save. Please try again.'
+                  : 'Kaydedilemedi. L\u{00FC}tfen tekrar deneyin.',
+            ),
+          ),
+        );
+      }
     } finally {
       if (mounted) setState(() => _isSaving = false);
     }

@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/milestone_service.dart';
@@ -227,7 +228,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                     ),
                     Text(
                       '$earned/$total',
-                      style: const TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
@@ -247,7 +248,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                 GradientText(
                   isEn ? 'Milestones Earned' : 'Kazanılan Rozetler',
                   variant: GradientTextVariant.gold,
-                  style: const TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
                   ),
@@ -436,7 +437,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                   // Name
                   Text(
                     name,
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
                       color: earned
@@ -556,7 +557,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                 // Name
                 Text(
                   name,
-                  style: TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                     color: dialogDark
@@ -578,7 +579,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                   ),
                   child: Text(
                     categoryName,
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
                       color: AppColors.starGold,
@@ -589,9 +590,8 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                 // Description
                 Text(
                   description,
-                  style: TextStyle(
+                  style: AppTypography.decorativeScript(
                     fontSize: 15,
-                    height: 1.5,
                     color: dialogDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,

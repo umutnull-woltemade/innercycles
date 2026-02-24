@@ -11,6 +11,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../../../data/services/l10n_service.dart';
 import '../../../../data/providers/app_providers.dart';
 import '../../../../shared/widgets/content_disclaimer.dart';
@@ -695,7 +696,7 @@ class DreamThemeScreen extends ConsumerWidget {
                   // H1 title
                   Text(
                     L10nService.get(config.questionKey, language),
-                    style: TextStyle(
+                    style: AppTypography.displayFont.copyWith(
                       fontSize: 28,
                       fontWeight: FontWeight.w600,
                       color: isDark ? Colors.white : AppColors.textDark,
@@ -717,7 +718,7 @@ class DreamThemeScreen extends ConsumerWidget {
                     ),
                     child: Text(
                       L10nService.get('dreams.canonical.brand_tag', language),
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: color,
                         fontWeight: FontWeight.w500,
@@ -787,7 +788,7 @@ class DreamThemeScreen extends ConsumerWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 16,
             fontWeight: FontWeight.w600,
             color: isDark ? color : color.withValues(alpha: 0.8),
@@ -811,9 +812,8 @@ class DreamThemeScreen extends ConsumerWidget {
                 Expanded(
                   child: Text(
                     bullet,
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 15,
-                      height: 1.5,
                       color: isDark ? Colors.white70 : AppColors.textDark,
                     ),
                   ),
@@ -862,7 +862,7 @@ class DreamThemeScreen extends ConsumerWidget {
                   children: [
                     Text(
                       L10nService.get('common.also_discover', language),
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 11,
                         color: isDark ? Colors.white38 : AppColors.textLight,
                       ),
@@ -870,7 +870,7 @@ class DreamThemeScreen extends ConsumerWidget {
                     const SizedBox(height: 2),
                     Text(
                       text,
-                      style: TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color: isDark ? Colors.white : AppColors.textDark,

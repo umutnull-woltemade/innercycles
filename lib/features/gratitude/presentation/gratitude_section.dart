@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/gratitude_service.dart';
 import '../../../shared/widgets/gradient_text.dart';
@@ -120,7 +121,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                           GradientText(
                             isEn ? 'Gratitude' : 'Şükran',
                             variant: GradientTextVariant.gold,
-                            style: const TextStyle(
+                            style: AppTypography.displayFont.copyWith(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
                             ),
@@ -129,7 +130,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                             isEn
                                 ? 'What went well today?'
                                 : 'Bugün ne iyi gitti?',
-                            style: TextStyle(
+                            style: AppTypography.decorativeScript(
                               fontSize: 12,
                               color: isDark
                                   ? AppColors.textMuted
@@ -186,9 +187,8 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                 children: [
                   Text(
                     '${index + 1}.',
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 14,
-                      fontWeight: FontWeight.w500,
                       color: AppColors.success,
                     ),
                   ),
@@ -237,7 +237,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
               icon: Icon(Icons.add, size: 18, color: AppColors.success),
               label: Text(
                 isEn ? 'Add another' : 'Bir tane daha ekle',
-                style: TextStyle(fontSize: 13, color: AppColors.success),
+                style: AppTypography.elegantAccent(fontSize: 13, color: AppColors.success),
               ),
             ),
 
@@ -258,7 +258,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                       isEn
                           ? 'Premium: Add up to 3 gratitude items + theme analysis'
                           : 'Premium: 3 şükran maddesi + tema analizi',
-                      style: TextStyle(fontSize: 12, color: AppColors.starGold),
+                      style: AppTypography.elegantAccent(fontSize: 12, color: AppColors.starGold),
                     ),
                   ),
                 ],
@@ -334,7 +334,7 @@ class _GratitudeSummaryContent extends StatelessWidget {
               GradientText(
                 isEn ? 'This Week\'s Gratitude' : 'Bu Haftanın Şükranı',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
@@ -346,7 +346,7 @@ class _GratitudeSummaryContent extends StatelessWidget {
             isEn
                 ? '${summary.totalItems} gratitude items across ${summary.daysWithGratitude} days'
                 : '${summary.daysWithGratitude} günde ${summary.totalItems} şükran maddesi',
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -368,7 +368,7 @@ class _GratitudeSummaryContent extends StatelessWidget {
                   ),
                   child: Text(
                     theme,
-                    style: TextStyle(fontSize: 12, color: AppColors.success),
+                    style: AppTypography.elegantAccent(fontSize: 12, color: AppColors.success),
                   ),
                 );
               }).toList(),

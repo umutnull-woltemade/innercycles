@@ -26,6 +26,7 @@ import '../../../data/services/review_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/share_insight_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/premium_card.dart';
 
 class PatternsScreen extends ConsumerWidget {
@@ -239,7 +240,7 @@ class PatternsScreen extends ConsumerWidget {
                                   ),
                                   Text(
                                     '$current/7',
-                                    style: TextStyle(
+                                    style: AppTypography.displayFont.copyWith(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w700,
                                       color: AppColors.starGold,
@@ -623,7 +624,7 @@ class PatternsScreen extends ConsumerWidget {
           GradientText(
             isEn ? 'This Week vs Last Week' : 'Bu Hafta vs Geçen Hafta',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -727,7 +728,7 @@ class PatternsScreen extends ConsumerWidget {
           GradientText(
             isEn ? 'Trends' : 'Eğilimler',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -788,7 +789,7 @@ class PatternsScreen extends ConsumerWidget {
           GradientText(
             isEn ? 'Connections' : 'Bağlantılar',
             variant: GradientTextVariant.aurora,
-            style: const TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -844,7 +845,7 @@ class PatternsScreen extends ConsumerWidget {
               GradientText(
                 isEn ? 'Cross-Dimension Insights' : 'Boyutlar Arası İçgörüler',
                 variant: GradientTextVariant.aurora,
-                style: const TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
@@ -953,9 +954,8 @@ class PatternsScreen extends ConsumerWidget {
             isEn
                 ? 'Based on your personal journal entries. Not a clinical assessment.'
                 : 'Kişisel günlük kayıtlarınıza dayanmaktadır. Klinik bir değerlendirme değildir.',
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 11,
-              fontStyle: FontStyle.italic,
               color: isDark
                   ? AppColors.textSecondary.withValues(alpha: 0.5)
                   : AppColors.lightTextSecondary.withValues(alpha: 0.5),
@@ -989,7 +989,7 @@ class PatternsScreen extends ConsumerWidget {
               GradientText(
                 isEn ? 'Gratitude & Mood' : 'Minnettarlık & Ruh Hali',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
@@ -1062,7 +1062,7 @@ class PatternsScreen extends ConsumerWidget {
       children: [
         Text(
           average.toStringAsFixed(1),
-          style: TextStyle(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 28,
             fontWeight: FontWeight.w700,
             color: color,

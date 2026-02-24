@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../core/theme/app_typography.dart';
 
 import '../../core/constants/app_constants.dart';
 import '../../core/theme/app_colors.dart';
@@ -65,7 +65,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
         const SizedBox(height: AppConstants.spacingLg),
         Text(
           isEn ? 'Related Tools' : 'İlgili Araçlar',
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 15,
             fontWeight: FontWeight.w600,
             color: isDark

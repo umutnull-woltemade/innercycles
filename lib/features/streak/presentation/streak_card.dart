@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/streak_service.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -81,7 +82,7 @@ class _StreakCardContent extends StatelessWidget {
                       children: [
                         Text(
                           isEn ? 'Reflection Streak' : 'Yansıma Serisi',
-                          style: TextStyle(
+                          style: AppTypography.displayFont.copyWith(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: isDark
@@ -94,7 +95,7 @@ class _StreakCardContent extends StatelessWidget {
                             isEn
                                 ? '${stats.currentStreak} day${stats.currentStreak == 1 ? '' : 's'} in a row'
                                 : '${stats.currentStreak} gün üst üste',
-                            style: TextStyle(
+                            style: AppTypography.decorativeScript(
                               fontSize: 12,
                               color: isDark
                                   ? AppColors.textMuted
@@ -135,7 +136,7 @@ class _StreakCardContent extends StatelessWidget {
                         if (stats.currentStreak > 0) const SizedBox(width: 4),
                         Text(
                           '${stats.currentStreak}',
-                          style: TextStyle(
+                          style: AppTypography.displayFont.copyWith(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: stats.currentStreak > 0
@@ -216,9 +217,8 @@ class _WeekCalendar extends ConsumerWidget {
               children: [
                 Text(
                   dayLabels[day.weekday - 1],
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 11,
-                    fontWeight: FontWeight.w500,
                     color: isToday
                         ? AppColors.starGold
                         : (isDark
@@ -308,16 +308,15 @@ class _MilestoneProgress extends StatelessWidget {
               isEn
                   ? '$remaining day${remaining == 1 ? '' : 's'} to $target-day milestone'
                   : '$target günlük hedefe $remaining gün',
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 12,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
             ),
             Text(
               '${(progress * 100).toInt()}%',
-              style: TextStyle(
+              style: AppTypography.elegantAccent(
                 fontSize: 12,
-                fontWeight: FontWeight.w600,
                 color: AppColors.starGold,
               ),
             ),
@@ -384,7 +383,7 @@ class _StreakChain extends ConsumerWidget {
           children: [
             Text(
               isEn ? '14-Day Chain' : '14 Günlük Zincir',
-              style: TextStyle(
+              style: AppTypography.elegantAccent(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -576,7 +575,7 @@ class StreakMilestoneCelebration {
                   // Milestone number
                   Text(
                         '$milestone ${isEn ? 'Days' : 'Gün'}',
-                        style: TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: 32,
                           fontWeight: FontWeight.w800,
                           color: AppColors.starGold,
@@ -590,7 +589,7 @@ class StreakMilestoneCelebration {
 
                   Text(
                     isEn ? 'Milestone Reached' : 'Hedefe Ulaşıldı',
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
                       color: AppColors.starGold.withValues(alpha: 0.7),
@@ -603,9 +602,8 @@ class StreakMilestoneCelebration {
                   Text(
                     message,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 15,
-                      height: 1.5,
                       color: isDark
                           ? AppColors.textSecondary
                           : AppColors.lightTextSecondary,
@@ -629,7 +627,7 @@ class StreakMilestoneCelebration {
                       ),
                       child: Text(
                         isEn ? 'Keep Going' : 'Devam Et',
-                        style: const TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
                         ),

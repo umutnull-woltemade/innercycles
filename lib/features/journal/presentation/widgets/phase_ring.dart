@@ -9,6 +9,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../../../data/services/emotional_cycle_service.dart';
 
 class PhaseRing extends StatefulWidget {
@@ -117,7 +118,7 @@ class _PhaseRingState extends State<PhaseRing>
                     widget.isEn
                         ? widget.phase.labelEn()
                         : widget.phase.labelTr(),
-                    style: TextStyle(
+                    style: AppTypography.displayFont.copyWith(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                       color: widget.isDark

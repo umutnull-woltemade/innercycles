@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/content/habit_suggestions_content.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
@@ -155,10 +156,10 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                             isEn
                                 ? 'Browse all habits'
                                 : 'Tüm alışkanlıkları gözat',
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 14,
                               color: AppColors.auroraStart,
-                              fontWeight: FontWeight.w500,
+                              letterSpacing: 1.0,
                             ),
                           ),
                         ),
@@ -232,7 +233,7 @@ class _ProgressHeader extends StatelessWidget {
           allDone
               ? Text(
                   isEn ? 'All done for today!' : 'Bugün hepsi tamamlandı!',
-                  style: TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: AppColors.success,
@@ -392,7 +393,7 @@ class _HabitCheckCard extends StatelessWidget {
                   children: [
                     Text(
                       isEn ? habit.titleEn : habit.titleTr,
-                      style: TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: isDark

@@ -7,11 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -98,9 +97,10 @@ class ProfileHubScreen extends ConsumerWidget {
                     GradientText(
                       isEn ? 'Tools' : 'Araçlar',
                       variant: GradientTextVariant.gold,
-                      style: GoogleFonts.plusJakartaSans(
+                      style: AppTypography.elegantAccent(
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
+                        letterSpacing: 2.5,
                       ),
                     ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingSm),
@@ -111,9 +111,10 @@ class ProfileHubScreen extends ConsumerWidget {
                     GradientText(
                       isEn ? 'Settings' : 'Ayarlar',
                       variant: GradientTextVariant.gold,
-                      style: GoogleFonts.plusJakartaSans(
+                      style: AppTypography.elegantAccent(
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
+                        letterSpacing: 2.5,
                       ),
                     ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingSm),
@@ -301,9 +302,10 @@ class _ProfileHeader extends StatelessWidget {
             child: GradientText(
               name,
               variant: GradientTextVariant.gold,
-              style: GoogleFonts.plusJakartaSans(
-                fontSize: 20,
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 24,
                 fontWeight: FontWeight.w700,
+                letterSpacing: 0.3,
               ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -365,8 +367,8 @@ class _GrowthScoreCard extends StatelessWidget {
                     ),
                     Text(
                       '$score',
-                      style: GoogleFonts.plusJakartaSans(
-                        fontSize: 22,
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 24,
                         fontWeight: FontWeight.w800,
                         color: AppColors.auroraStart,
                       ),
@@ -382,9 +384,10 @@ class _GrowthScoreCard extends StatelessWidget {
                     GradientText(
                       isEn ? 'Growth Score' : 'Gelişim Puanı',
                       variant: GradientTextVariant.gold,
-                      style: GoogleFonts.plusJakartaSans(
-                        fontSize: 17,
+                      style: AppTypography.elegantAccent(
+                        fontSize: 18,
                         fontWeight: FontWeight.w700,
+                        letterSpacing: 1.5,
                       ),
                     ),
                     const SizedBox(height: AppConstants.spacingXs),
@@ -392,7 +395,7 @@ class _GrowthScoreCard extends StatelessWidget {
                       isEn
                           ? 'Tap to see your growth dashboard'
                           : 'Geli\u015fim panelini g\u00f6rmek i\u00e7in dokun',
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 12,
                         color: isDark
                             ? AppColors.textMuted
@@ -473,15 +476,20 @@ class _StatItem extends StatelessWidget {
       children: [
         Text(
           value,
-          style: GoogleFonts.plusJakartaSans(
-            fontSize: 22,
+          style: AppTypography.displayFont.copyWith(
+            fontSize: 24,
             fontWeight: FontWeight.w700,
             color: color,
           ),
         ),
         Text(
           label,
-          style: const TextStyle(fontSize: 11, color: AppColors.textMuted),
+          style: AppTypography.elegantAccent(
+            fontSize: 11,
+            fontWeight: FontWeight.w500,
+            color: AppColors.textMuted,
+            letterSpacing: 1.5,
+          ),
         ),
       ],
     );
@@ -526,9 +534,8 @@ class _SettingsLinkTile extends StatelessWidget {
               Expanded(
                 child: Text(
                   link.name,
-                  style: GoogleFonts.plusJakartaSans(
+                  style: AppTypography.subtitle(
                     fontSize: 15,
-                    fontWeight: FontWeight.w500,
                     color: isDark
                         ? AppColors.textPrimary
                         : AppColors.lightTextPrimary,

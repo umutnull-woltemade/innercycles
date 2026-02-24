@@ -7,11 +7,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_service.dart';
@@ -142,7 +142,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                           child: GradientText(
                             isEn ? 'On This Day' : 'Bug\u00fcn Ge\u00e7mi\u015fte',
                             variant: GradientTextVariant.gold,
-                            style: GoogleFonts.plusJakartaSans(
+                            style: AppTypography.displayFont.copyWith(
                               fontSize: 17,
                               fontWeight: FontWeight.w700,
                             ),
@@ -372,7 +372,7 @@ class _MiniStat extends StatelessWidget {
       children: [
         Text(
           value,
-          style: GoogleFonts.plusJakartaSans(
+          style: AppTypography.displayFont.copyWith(
             fontSize: isSmallValue ? 13 : 22,
             fontWeight: FontWeight.w700,
             color: color,
@@ -683,7 +683,7 @@ class _MemoryCard extends StatelessWidget {
                             children: [
                               Text(
                                 dateStr,
-                                style: GoogleFonts.plusJakartaSans(
+                                style: AppTypography.displayFont.copyWith(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.white,
@@ -761,7 +761,7 @@ class _MemoryCard extends StatelessWidget {
                       children: [
                         Text(
                           areaLabel,
-                          style: TextStyle(
+                          style: AppTypography.displayFont.copyWith(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                             color: isDark
@@ -798,7 +798,7 @@ class _MemoryCard extends StatelessWidget {
                         entry.note!,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: AppTypography.decorativeScript(
                           fontSize: 13,
                           color: isDark
                               ? AppColors.textSecondary

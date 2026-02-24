@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/models/personality_archetype.dart' as archetype;
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
@@ -1779,7 +1780,8 @@ ${_getPersonalAdvice(sign)}''';
                     'dreams.interpretation_title',
                     ref.watch(languageProvider),
                   ),
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 22,
                     color: isDark
                         ? AppColors.textPrimary
                         : AppColors.lightTextPrimary,
@@ -1791,7 +1793,8 @@ ${_getPersonalAdvice(sign)}''';
                     'dreams.interpretation_subtitle',
                     ref.watch(languageProvider),
                   ),
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  style: AppTypography.subtitle(
+                    fontSize: 13,
                     color: isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,
@@ -1859,12 +1862,13 @@ ${_getPersonalAdvice(sign)}''';
                     'dreams.example_prompts_label',
                     ref.read(languageProvider),
                   ),
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
                     color: isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,
+                    letterSpacing: 1.0,
                   ),
                 ),
               ],
@@ -1939,8 +1943,8 @@ ${_getPersonalAdvice(sign)}''';
                 'widgets.dreams.tap_or_write_hint',
                 ref.read(languageProvider),
               ),
-              style: TextStyle(
-                fontSize: 11,
+              style: AppTypography.decorativeScript(
+                fontSize: 12,
                 color: isDark
                     ? AppColors.textSecondary.withValues(alpha: 0.7)
                     : AppColors.lightTextSecondary.withValues(alpha: 0.7),
@@ -2019,11 +2023,11 @@ ${_getPersonalAdvice(sign)}''';
                                 'widgets.dreams.interpretation_label',
                                 language,
                               ),
-                              style: Theme.of(context).textTheme.labelSmall
-                                  ?.copyWith(
+                              style: AppTypography.elegantAccent(
+                                    fontSize: 11,
                                     color: AppColors.starGold,
                                     fontWeight: FontWeight.w600,
-                                    letterSpacing: 1,
+                                    letterSpacing: 1.5,
                                   ),
                             ),
                           ],
@@ -2044,11 +2048,11 @@ ${_getPersonalAdvice(sign)}''';
                                 'widgets.dreams.question_label',
                                 language,
                               ),
-                              style: Theme.of(context).textTheme.labelSmall
-                                  ?.copyWith(
+                              style: AppTypography.elegantAccent(
+                                    fontSize: 11,
                                     color: AppColors.amethyst,
                                     fontWeight: FontWeight.w600,
-                                    letterSpacing: 1,
+                                    letterSpacing: 1.5,
                                   ),
                             ),
                           ],
@@ -2057,12 +2061,20 @@ ${_getPersonalAdvice(sign)}''';
                       ],
                       Text(
                         message.text,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
-                          height: 1.5,
-                        ),
+                        style: isUser
+                            ? Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: isDark
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary,
+                                height: 1.5,
+                              )
+                            : AppTypography.decorativeScript(
+                                fontSize: 15,
+                                color: isDark
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary,
+                                fontStyle: FontStyle.normal,
+                              ),
                       ),
                     ],
                   ),

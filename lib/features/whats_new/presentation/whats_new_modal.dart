@@ -13,6 +13,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
@@ -209,7 +210,7 @@ class _WhatsNewSheet extends StatelessWidget {
           GradientText(
             isEn ? "What's New" : 'Yenilikler',
             variant: GradientTextVariant.aurora,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
@@ -220,7 +221,7 @@ class _WhatsNewSheet extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             isEn ? 'Latest features and improvements' : 'Son \u00f6zellikler ve iyile\u015ftirmeler',
-            style: TextStyle(fontSize: 14, color: subtextColor),
+            style: AppTypography.decorativeScript(fontSize: 14, color: subtextColor),
           )
               .animate()
               .fadeIn(delay: 100.ms, duration: 400.ms),
@@ -270,10 +271,9 @@ class _WhatsNewSheet extends StatelessWidget {
                   ),
                   child: Text(
                     isEn ? 'Got it' : 'Anla\u015f\u0131ld\u0131',
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: AppTypography.subtitle(
                       fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -351,7 +351,7 @@ class _FeatureTile extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                     color: textColor,
@@ -360,7 +360,7 @@ class _FeatureTile extends StatelessWidget {
                 const SizedBox(height: 3),
                 Text(
                   description,
-                  style: TextStyle(fontSize: 13, color: subtextColor, height: 1.35),
+                  style: AppTypography.decorativeScript(fontSize: 13, color: subtextColor),
                 ),
               ],
             ),

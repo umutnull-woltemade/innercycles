@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:file_picker/file_picker.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/models/birthday_contact.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/facebook_birthday_import_service.dart';
@@ -107,7 +108,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
               GradientText(
                 isEn ? 'How to Export from Facebook' : 'Facebook\'tan Nas\u{0131}l D\u{0131}\u{015F}a Aktar\u{0131}l\u{0131}r',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -129,9 +130,9 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                         child: Center(
                           child: Text(
                             '${entry.key + 1}',
-                            style: const TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 12,
-                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0,
                               color: AppColors.starGold,
                             ),
                           ),
@@ -198,7 +199,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                         const SizedBox(width: 8),
                         Text(
                           isEn ? 'Select JSON File' : 'JSON Dosyas\u{0131} Se\u{00E7}',
-                          style: const TextStyle(
+                          style: AppTypography.modernAccent(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
                             color: AppColors.deepSpace,
@@ -252,6 +253,19 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
         _isLoading = false;
       });
     } catch (_) {
+      if (mounted) {
+        final lang = ref.read(languageProvider);
+        final isEn = lang == AppLanguage.en;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              isEn
+                  ? 'Could not read this file. Please check the format.'
+                  : 'Dosya okunamad\u{0131}. L\u{00FC}tfen format\u{0131} kontrol edin.',
+            ),
+          ),
+        );
+      }
       setState(() => _isLoading = false);
     }
   }
@@ -272,7 +286,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                   ? '${_parsedContacts.length} Birthdays Found'
                   : '${_parsedContacts.length} Do\u{011F}um G\u{00FC}n\u{00FC} Bulundu',
               variant: GradientTextVariant.gold,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              style: AppTypography.displayFont.copyWith(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             TextButton(
               onPressed: () {
@@ -290,7 +304,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                 _selectedIndices.length == _parsedContacts.length
                     ? (isEn ? 'Deselect All' : 'T\u{00FC}m\u{00FC}n\u{00FC} Kald\u{0131}r')
                     : (isEn ? 'Select All' : 'T\u{00FC}m\u{00FC}n\u{00FC} Se\u{00E7}'),
-                style: const TextStyle(
+                style: AppTypography.modernAccent(
                   color: AppColors.starGold,
                   fontWeight: FontWeight.w600,
                 ),
@@ -360,7 +374,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                         children: [
                           Text(
                             contact.name,
-                            style: TextStyle(
+                            style: AppTypography.modernAccent(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: isDark
@@ -421,7 +435,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                       isEn
                           ? 'Import ${_selectedIndices.length} Contacts'
                           : '${_selectedIndices.length} Ki\u{015F}iyi Aktar',
-                      style: TextStyle(
+                      style: AppTypography.modernAccent(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
                         color: _selectedIndices.isNotEmpty
@@ -446,11 +460,11 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
       final selected = _selectedIndices
           .map((i) => _parsedContacts[i])
           .toList();
-      final count = await service.importContacts(selected);
+      final imported = await service.importContacts(selected);
 
-      // Schedule notifications for imported contacts
+      // Schedule notifications using the actual imported contacts (correct UUIDs)
       final notifService = NotificationService();
-      for (final contact in selected) {
+      for (final contact in imported) {
         if (contact.notificationsEnabled) {
           await notifService.scheduleBirthdayNotification(contact);
         }
@@ -459,11 +473,24 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
       ref.invalidate(birthdayContactServiceProvider);
 
       setState(() {
-        _importedCount = count;
+        _importedCount = imported.length;
         _step = _ImportStep.success;
         _isLoading = false;
       });
     } catch (_) {
+      if (mounted) {
+        final lang = ref.read(languageProvider);
+        final isEn = lang == AppLanguage.en;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              isEn
+                  ? 'Import failed. Please try again.'
+                  : 'Aktarma ba\u{015F}ar\u{0131}s\u{0131}z. L\u{00FC}tfen tekrar deneyin.',
+            ),
+          ),
+        );
+      }
       setState(() => _isLoading = false);
     }
   }
@@ -483,7 +510,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
           GradientText(
             isEn ? 'Import Complete!' : 'Aktarma Tamamland\u{0131}!',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+            style: AppTypography.displayFont.copyWith(fontSize: 20, fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 8),
           Text(
@@ -509,7 +536,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
               ),
               child: Text(
                 isEn ? 'View Birthdays' : 'Do\u{011F}um G\u{00FC}nlerini G\u{00F6}r',
-                style: const TextStyle(
+                style: AppTypography.modernAccent(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
                   color: AppColors.deepSpace,

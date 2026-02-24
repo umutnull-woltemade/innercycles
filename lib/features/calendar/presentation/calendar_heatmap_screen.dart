@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/models/life_event.dart';
 import '../../../core/constants/common_strings.dart';
@@ -356,7 +357,7 @@ class _StatPill extends StatelessWidget {
           children: [
             Text(
               value,
-              style: TextStyle(
+              style: AppTypography.displayFont.copyWith(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 color: accent
@@ -369,9 +370,10 @@ class _StatPill extends StatelessWidget {
             const SizedBox(height: 2),
             Text(
               label,
-              style: TextStyle(
+              style: AppTypography.elegantAccent(
                 fontSize: 11,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                letterSpacing: 1.0,
               ),
             ),
           ],
@@ -876,7 +878,7 @@ class _DayDetail extends StatelessWidget {
       children: [
         Text(
           day,
-          style: TextStyle(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 28,
             fontWeight: FontWeight.w700,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -934,12 +936,12 @@ class _DayDetail extends StatelessWidget {
                     isEn
                         ? e.focusArea.displayNameEn
                         : e.focusArea.displayNameTr,
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 13,
-                      fontWeight: FontWeight.w600,
                       color: isDark
                           ? AppColors.textPrimary
                           : AppColors.lightTextPrimary,
+                      letterSpacing: 1.0,
                     ),
                   ),
                   const Spacer(),
@@ -1033,10 +1035,10 @@ class _DayDetail extends StatelessWidget {
             const SizedBox(width: 6),
             Text(
               isEn ? 'Log this day' : 'Bu günü kaydet',
-              style: TextStyle(
+              style: AppTypography.elegantAccent(
                 fontSize: 12,
-                fontWeight: FontWeight.w600,
                 color: AppColors.auroraStart,
+                letterSpacing: 1.0,
               ),
             ),
           ],
@@ -1079,7 +1081,7 @@ class _DayDetail extends StatelessWidget {
                   children: [
                     Text(
                       event.title,
-                      style: TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
                         color: isDark
@@ -1139,10 +1141,10 @@ class _DayDetail extends StatelessWidget {
             const SizedBox(width: 6),
             Text(
               isEn ? 'Add Life Event' : 'Yaşam Olayı Ekle',
-              style: TextStyle(
+              style: AppTypography.elegantAccent(
                 fontSize: 12,
-                fontWeight: FontWeight.w600,
                 color: AppColors.starGold,
+                letterSpacing: 1.0,
               ),
             ),
           ],
@@ -1324,7 +1326,7 @@ class _PremiumYearOverlay extends ConsumerWidget {
                 ? 'See your full year at a glance with Pro'
                 : 'Pro ile tüm yılını bir bakışta gör',
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),

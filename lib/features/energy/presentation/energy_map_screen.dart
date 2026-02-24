@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/energy_map_service.dart';
@@ -183,7 +184,7 @@ class _StatChip extends StatelessWidget {
         children: [
           Text(
             value,
-            style: TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 16,
               fontWeight: FontWeight.w700,
               color: color,
@@ -192,9 +193,10 @@ class _StatChip extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             label,
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 11,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              letterSpacing: 1.0,
             ),
             textAlign: TextAlign.center,
           ),
@@ -571,12 +573,11 @@ class _InsightTips extends StatelessWidget {
                   Expanded(
                     child: Text(
                       tip,
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 13,
                         color: isDark
                             ? AppColors.textSecondary
                             : AppColors.lightTextSecondary,
-                        height: 1.4,
                       ),
                     ),
                   ),
