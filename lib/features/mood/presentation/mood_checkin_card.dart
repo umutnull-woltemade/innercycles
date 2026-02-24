@@ -206,7 +206,7 @@ class _LoggedView extends StatelessWidget {
                 children: [
                   Text(
                     dayLabels[dayIndex],
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: isDark
                           ? AppColors.textMuted
@@ -231,7 +231,7 @@ class _LoggedView extends StatelessWidget {
                           child: Center(
                             child: Text(
                               '·',
-                              style: TextStyle(
+                              style: AppTypography.elegantAccent(
                                 fontSize: 12,
                                 color: isDark
                                     ? AppColors.textMuted

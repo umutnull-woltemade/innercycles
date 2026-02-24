@@ -37,7 +37,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
               child: Text(
                 CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -352,7 +352,7 @@ class GratitudeArchiveScreen extends ConsumerWidget {
                   children: [
                     Text(
                       '✦ ',
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         color: AppColors.auroraStart,
                         fontSize: 14,
                       ),

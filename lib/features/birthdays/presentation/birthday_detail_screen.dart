@@ -40,7 +40,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
           error: (_, _) => Center(
             child: Text(
               isEn ? 'Something went wrong' : 'Bir \u{015F}eyler ters gitti',
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,
@@ -53,7 +53,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
               return Center(
                 child: Text(
                   isEn ? 'Contact not found' : 'Ki\u{015F}i bulunamad\u{0131}',
-                  style: TextStyle(
+                  style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
@@ -264,7 +264,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                   icon: Icon(Icons.delete_outline_rounded, color: AppColors.error, size: 18),
                   label: Text(
                     isEn ? 'Delete Contact' : 'Ki\u{015F}iyi Sil',
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       color: AppColors.error,
                       fontWeight: FontWeight.w500,
                     ),

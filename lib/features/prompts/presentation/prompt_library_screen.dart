@@ -43,7 +43,8 @@ class PromptLibraryScreen extends ConsumerWidget {
           error: (_, _) => Center(
             child: Text(
               CommonStrings.somethingWentWrong(language),
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
+                fontSize: 14,
                 color: isDark
                     ? AppColors.textPrimary
                     : AppColors.lightTextPrimary,
@@ -206,7 +207,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
               ),
               Text(
                 '$completed / $total',
-                style: TextStyle(
+                style: AppTypography.modernAccent(
                   fontSize: 13,
                   fontWeight: FontWeight.w500,
                   color: AppColors.starGold,
@@ -289,9 +290,10 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
           const SizedBox(height: 6),
           Text(
             _categoryLabel(prompt.category),
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              letterSpacing: 0.5,
             ),
           ),
           const SizedBox(height: 14),
@@ -340,14 +342,15 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
         selected: isSelected,
         label: Text(
           label,
-          style: TextStyle(
+          style: AppTypography.subtitle(
             fontSize: 13,
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
             color: isSelected
                 ? Colors.white
                 : (isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary),
+          ).copyWith(
+            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
           ),
         ),
         onSelected: (_) {
@@ -418,12 +421,13 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                       Expanded(
                         child: Text(
                           _categoryLabel(prompt.category),
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 11,
                             fontWeight: FontWeight.w500,
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,
+                            letterSpacing: 0.5,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -433,9 +437,8 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                   const SizedBox(height: 8),
                   Text(
                     promptText,
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 14,
-                      height: 1.45,
                       fontWeight: FontWeight.w400,
                       color: isCompleted
                           ? (isDark
@@ -539,9 +542,8 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                     const SizedBox(width: 8),
                     Text(
                       _categoryLabel(prompt.category),
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 13,
-                        fontWeight: FontWeight.w500,
                         color: AppColors.auroraStart,
                       ),
                     ),
@@ -558,9 +560,10 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                           const SizedBox(width: 4),
                           Text(
                             isEn ? 'Completed' : 'Tamamlandı',
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 12,
                               color: AppColors.success,
+                              letterSpacing: 0.5,
                             ),
                           ),
                         ],
@@ -572,10 +575,9 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                 // Prompt text
                 Text(
                   promptText,
-                  style: TextStyle(
+                  style: AppTypography.decorativeScript(
                     fontSize: 19,
                     fontWeight: FontWeight.w500,
-                    height: 1.55,
                     color: isDark
                         ? AppColors.textPrimary
                         : AppColors.lightTextPrimary,
@@ -654,7 +656,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
       ),
       child: Text(
         label,
-        style: TextStyle(
+        style: AppTypography.modernAccent(
           fontSize: 11,
           fontWeight: FontWeight.w600,
           color: color,

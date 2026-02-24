@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 export 'gradient_text.dart' show GradientTextVariant;
 import 'gradient_text.dart';
 
@@ -83,7 +84,7 @@ class PremiumEmptyState extends StatelessWidget {
             title,
             variant: gradientVariant,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 18,
               fontWeight: FontWeight.w700,
             ),
@@ -95,9 +96,8 @@ class PremiumEmptyState extends StatelessWidget {
           Text(
             description,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 14,
-              height: 1.5,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
           ).animate().fadeIn(delay: 150.ms, duration: 400.ms),
@@ -176,7 +176,7 @@ class _GradientCTA extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               label,
-              style: const TextStyle(
+              style: AppTypography.modernAccent(
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
                 color: Colors.white,

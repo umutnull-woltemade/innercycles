@@ -151,18 +151,18 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                                           isEn
                                               ? time.displayNameEn
                                               : time.displayNameTr,
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: isSelected
-                                                ? FontWeight.w600
-                                                : FontWeight.normal,
-                                            color: isSelected
-                                                ? AppColors.auroraStart
-                                                : (isDark
+                                          style: isSelected
+                                              ? AppTypography.modernAccent(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: AppColors.auroraStart,
+                                                )
+                                              : AppTypography.subtitle(
+                                                  fontSize: 14,
+                                                  color: isDark
                                                       ? AppColors.textPrimary
-                                                      : AppColors
-                                                            .lightTextPrimary),
-                                          ),
+                                                      : AppColors.lightTextPrimary,
+                                                ),
                                         ),
                                       ],
                                     ),
@@ -226,7 +226,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                                   ? 'Ritual Items (${_itemControllers.length}/$maxItems)'
                                   : 'Ritüel Maddeleri (${_itemControllers.length}/$maxItems)',
                               variant: GradientTextVariant.gold,
-                              style: TextStyle(
+                              style: AppTypography.displayFont.copyWith(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
                                 letterSpacing: 0.5,
@@ -285,9 +285,8 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                                         ),
                                         child: Text(
                                           '${i + 1}.',
-                                          style: TextStyle(
+                                          style: AppTypography.subtitle(
                                             fontSize: 14,
-                                            fontWeight: FontWeight.w500,
                                             color: AppColors.auroraStart,
                                           ),
                                         ),
@@ -391,7 +390,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
       children: [
         Text(
           isEn ? 'Suggestions' : 'Öneriler',
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 12,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -442,7 +441,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                   ),
                   child: Text(
                     title,
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 12,
                       color: isDark
                           ? AppColors.auroraStart

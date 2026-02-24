@@ -448,17 +448,18 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     const SizedBox(width: 6),
                     Text(
                       label,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: isSelected
-                            ? FontWeight.w600
-                            : FontWeight.normal,
-                        color: isSelected
-                            ? AppColors.starGold
-                            : (isDark
+                      style: isSelected
+                          ? AppTypography.modernAccent(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.starGold,
+                            )
+                          : AppTypography.subtitle(
+                              fontSize: 14,
+                              color: isDark
                                   ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary),
-                      ),
+                                  : AppColors.lightTextPrimary,
+                            ),
                     ),
                   ],
                 ),
@@ -522,7 +523,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     child: Center(
                       child: Text(
                         '$rating',
-                        style: TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: isActive
@@ -620,7 +621,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                   width: 120,
                   child: Text(
                     label,
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
                       fontSize: 14,
                       color: isDark
                           ? AppColors.textSecondary
@@ -658,7 +659,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                   child: Text(
                     '$value',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: AppColors.starGold,
@@ -755,11 +756,12 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     const SizedBox(width: AppConstants.spacingSm),
                     Text(
                       isEn ? 'Tap to speak' : 'Konuşmak için dokun',
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: isDark
                             ? AppColors.textMuted
                             : AppColors.lightTextMuted,
+                        letterSpacing: 0.5,
                       ),
                     ),
                   ],
@@ -806,7 +808,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                   ),
                   label: Text(
                     isEn ? 'Change' : 'Değiştir',
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       color: AppColors.auroraStart,
                       fontSize: 13,
                     ),
@@ -826,11 +828,11 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                   ),
                   label: Text(
                     isEn ? 'Remove' : 'Kaldır',
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
+                      fontSize: 13,
                       color: isDark
                           ? AppColors.textMuted
                           : AppColors.lightTextMuted,
-                      fontSize: 13,
                     ),
                   ),
                 ),
@@ -864,7 +866,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
               const SizedBox(width: AppConstants.spacingSm),
               Text(
                 isEn ? 'Add a photo' : 'Fotoğraf ekle',
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   fontSize: 14,
                   color: isDark
                       ? AppColors.textMuted

@@ -61,7 +61,7 @@ class ProgramListScreen extends ConsumerWidget {
                           isEn
                               ? 'Could not load. Your local data is unaffected.'
                               : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                          style: TextStyle(
+                          style: AppTypography.subtitle(
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,
@@ -369,7 +369,7 @@ class _ProgramCard extends StatelessWidget {
                       const SizedBox(height: 2),
                       Text(
                         isEn ? program.descriptionEn : program.descriptionTr,
-                        style: TextStyle(
+                        style: AppTypography.decorativeScript(
                           fontSize: 12,
                           color: isDark
                               ? AppColors.textMuted
@@ -398,7 +398,7 @@ class _ProgramCard extends StatelessWidget {
                             const SizedBox(width: 8),
                             Text(
                               '$completionPercent%',
-                              style: TextStyle(
+                              style: AppTypography.modernAccent(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.starGold,
@@ -410,7 +410,7 @@ class _ProgramCard extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           '${program.durationDays} ${isEn ? 'days' : 'gün'}',
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 11,
                             color: AppColors.auroraStart,
                             fontWeight: FontWeight.w500,

@@ -293,7 +293,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           error: (_, _) => Center(
             child: Text(
               isEn ? 'Something went wrong' : 'Bir hata oluştu',
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,
@@ -610,7 +610,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                     child: Center(
                       child: Text(
                         '#$rank',
-                        style: TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 11,
                           fontWeight: FontWeight.w700,
                           color: color,
@@ -654,7 +654,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                         const SizedBox(width: 8),
                         Text(
                           '${pct.toStringAsFixed(0)}%',
-                          style: TextStyle(
+                          style: AppTypography.modernAccent(
                             fontSize: 13,
                             fontWeight: FontWeight.w700,
                             color: color,
@@ -734,7 +734,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                         if (hasData)
                           Text(
                             avg.toStringAsFixed(1),
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 8,
                               fontWeight: FontWeight.w600,
                               color: isDark
@@ -773,7 +773,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                         // Month label
                         Text(
                           _monthName(month, isEn),
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 9,
                             fontWeight: FontWeight.w500,
                             color: isDark
@@ -923,7 +923,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                   isEn
                       ? '$count entries recorded'
                       : '$count kayıt yazıldı',
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 12,
                     color: isDark
                         ? AppColors.textMuted

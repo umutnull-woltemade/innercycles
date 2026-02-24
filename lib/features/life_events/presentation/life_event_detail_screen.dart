@@ -41,7 +41,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
           error: (_, _) => Center(
             child: Text(
               isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,
@@ -54,7 +54,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
               return Center(
                 child: Text(
                   isEn ? 'Event not found' : 'Olay bulunamadı',
-                  style: TextStyle(
+                  style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
@@ -316,7 +316,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
           const SizedBox(height: 6),
           Text(
             label,
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 11,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),

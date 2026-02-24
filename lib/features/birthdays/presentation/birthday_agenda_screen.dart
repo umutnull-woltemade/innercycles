@@ -70,7 +70,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
           error: (_, _) => Center(
             child: Text(
               isEn ? 'Something went wrong' : 'Bir \u{015F}eyler ters gitti',
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,
@@ -398,7 +398,7 @@ class _MonthNav extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 2),
                   child: Text(
                     isEn ? 'Tap for today' : 'Bug\u{00FC}ne d\u{00F6}n',
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: AppColors.starGold.withValues(alpha: 0.6),
                     ),
@@ -526,7 +526,7 @@ class _BirthdayCalendarGrid extends StatelessWidget {
                           children: [
                             Text(
                               '$dayIndex',
-                              style: TextStyle(
+                              style: AppTypography.elegantAccent(
                                 fontSize: 12,
                                 fontWeight: dayContacts.isNotEmpty
                                     ? FontWeight.w700
@@ -559,7 +559,7 @@ class _BirthdayCalendarGrid extends StatelessWidget {
                               if (dayContacts.length > 3)
                                 Text(
                                   '+${dayContacts.length - 3}',
-                                  style: const TextStyle(
+                                  style: AppTypography.elegantAccent(
                                     fontSize: 8,
                                     color: AppColors.starGold,
                                   ),
@@ -620,7 +620,7 @@ class _SelectedDayDetail extends StatelessWidget {
             isEn
                 ? 'No birthdays on this day'
                 : 'Bu g\u{00FC}nde do\u{011F}um g\u{00FC}n\u{00FC} yok',
-            style: TextStyle(
+            style: AppTypography.subtitle(
               fontSize: 14,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -653,7 +653,7 @@ class _SelectedDayDetail extends StatelessWidget {
                       children: [
                         Text(
                           contact.name,
-                          style: TextStyle(
+                          style: AppTypography.modernAccent(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                             color: isDark
@@ -665,7 +665,7 @@ class _SelectedDayDetail extends StatelessWidget {
                         Text(
                           '${contact.relationship.emoji} ${isEn ? contact.relationship.displayNameEn : contact.relationship.displayNameTr}'
                           '${contact.age != null ? ' \u{2022} ${contact.age} ${isEn ? "years" : "ya\u{015F}"}' : ''}',
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 12,
                             color: isDark
                                 ? AppColors.textMuted
@@ -742,7 +742,7 @@ class _UpcomingCard extends StatelessWidget {
                   children: [
                     Text(
                       contact.name,
-                      style: TextStyle(
+                      style: AppTypography.modernAccent(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: isDark
@@ -753,7 +753,7 @@ class _UpcomingCard extends StatelessWidget {
                     const SizedBox(height: 2),
                     Text(
                       '${contact.relationship.emoji} ${isEn ? contact.relationship.displayNameEn : contact.relationship.displayNameTr}',
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: isDark
                             ? AppColors.textMuted
@@ -824,7 +824,7 @@ class _EmptyState extends StatelessWidget {
                 ? 'Never Miss a Birthday'
                 : 'Hi\u{00E7} Do\u{011F}um G\u{00FC}n\u{00FC} Ka\u{00E7}\u{0131}rma',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+            style: AppTypography.displayFont.copyWith(fontSize: 20, fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 8),
           Text(
@@ -832,9 +832,8 @@ class _EmptyState extends StatelessWidget {
                 ? 'Add your friends and family to get reminders on their special days.'
                 : 'Arkada\u{015F}lar\u{0131}n\u{0131} ve aileni ekleyerek \u{00F6}zel g\u{00FC}nlerinde hat\u{0131}rlat\u{0131}c\u{0131} al.',
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 14,
-              height: 1.5,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,

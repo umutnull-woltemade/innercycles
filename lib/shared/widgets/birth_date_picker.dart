@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/constants/app_constants.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 import '../../data/providers/app_providers.dart';
 import '../../data/services/l10n_service.dart';
 
@@ -291,7 +292,7 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
       children: [
         Text(
           label,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             color: AppColors.textMuted,
             fontSize: 12,
             letterSpacing: 1,
@@ -312,7 +313,7 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
             isExpanded: true,
             underline: const SizedBox(),
             dropdownColor: AppColors.cosmicPurple,
-            style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
+            style: AppTypography.subtitle(color: AppColors.textPrimary, fontSize: 16),
             items: items.map((item) {
               return DropdownMenuItem<T>(
                 value: item,

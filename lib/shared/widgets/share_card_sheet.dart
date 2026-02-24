@@ -175,10 +175,9 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
                   // Subtitle
                   Text(
                     widget.data.subtitle,
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 14,
                       color: Colors.white.withValues(alpha: 0.7),
-                      height: 1.4,
                     ),
                   ),
                   if (widget.data.statValue != null) ...[
@@ -197,7 +196,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
                           const SizedBox(width: 8),
                           Text(
                             widget.data.statLabel!,
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 14,
                               color: Colors.white.withValues(alpha: 0.6),
                             ),

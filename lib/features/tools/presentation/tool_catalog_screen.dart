@@ -568,12 +568,11 @@ class _ToolCard extends StatelessWidget {
               const SizedBox(height: 2),
               Text(
                 isEn ? tool.valuePropositionEn : tool.valuePropositionTr,
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
                   fontSize: 12,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
-                  height: 1.3,
                 ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

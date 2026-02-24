@@ -53,7 +53,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
           error: (_, _) => Center(
             child: Text(
               isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,
@@ -319,7 +319,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                       children: [
                         Text(
                           formatted,
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 11,
                             color: isDark
                                 ? AppColors.textMuted
@@ -329,7 +329,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                         if (event.emotionTags.isNotEmpty) ...[
                           Text(
                             '  \u{2022}  ',
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 11,
                               color: isDark
                                   ? AppColors.textMuted
@@ -340,7 +340,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                             child: Text(
                               event.emotionTags.take(2).join(', '),
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style: AppTypography.elegantAccent(
                                 fontSize: 11,
                                 color: accentColor.withValues(alpha: 0.8),
                               ),

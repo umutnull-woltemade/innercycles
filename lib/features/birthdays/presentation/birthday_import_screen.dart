@@ -145,9 +145,8 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                       Expanded(
                         child: Text(
                           entry.value,
-                          style: TextStyle(
+                          style: AppTypography.decorativeScript(
                             fontSize: 14,
-                            height: 1.4,
                             color: isDark
                                 ? AppColors.textSecondary
                                 : AppColors.lightTextSecondary,
@@ -386,7 +385,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                           Text(
                             '${monthNames[contact.birthdayMonth - 1]} ${contact.birthdayDay}'
                             '${contact.birthYear != null ? ', ${contact.birthYear}' : ''}',
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 12,
                               color: isDark
                                   ? AppColors.textMuted
@@ -519,7 +518,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                 ? '$_importedCount birthdays imported successfully'
                 : '$_importedCount do\u{011F}um g\u{00FC}n\u{00FC} ba\u{015F}ar\u{0131}yla aktar\u{0131}ld\u{0131}',
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 14,
               color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
             ),

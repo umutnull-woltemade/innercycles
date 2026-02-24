@@ -79,7 +79,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                   child: Text(
                     CommonStrings.somethingWentWrong(language),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
                       color: isDark
                           ? AppColors.textSecondary
                           : AppColors.lightTextSecondary,

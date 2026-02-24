@@ -276,7 +276,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                         const SizedBox(height: 12),
                         Text(
                           isEn ? _preset.descEn() : _preset.descTr(),
-                          style: TextStyle(
+                          style: AppTypography.decorativeScript(
                             fontSize: 13,
                             color: isDark
                                 ? AppColors.textMuted
@@ -383,10 +383,9 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                             isEn
                                 ? '$_completedCycles ${_completedCycles == 1 ? 'cycle' : 'cycles'} completed'
                                 : '$_completedCycles döngü tamamlandı',
-                            style: TextStyle(
+                            style: AppTypography.subtitle(
                               fontSize: 14,
                               color: AppColors.success,
-                              fontWeight: FontWeight.w500,
                             ),
                           ),
 
@@ -506,7 +505,7 @@ class _PresetSelector extends StatelessWidget {
                 ),
                 child: Text(
                   isEn ? preset.nameEn() : preset.nameTr(),
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 12,
                     fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                     color: isSelected

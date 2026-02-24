@@ -430,11 +430,8 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
         indicatorWeight: 3,
         labelColor: CosmicPalette.starGold,
         unselectedLabelColor: AppColors.textSecondary,
-        labelStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
-        unselectedLabelStyle: const TextStyle(
-          fontWeight: FontWeight.normal,
-          fontSize: 13,
-        ),
+        labelStyle: AppTypography.modernAccent(fontSize: 13, fontWeight: FontWeight.w600),
+        unselectedLabelStyle: AppTypography.subtitle(fontSize: 13),
         dividerColor: Colors.transparent,
         tabs: categories.map((cat) {
           return Tab(
@@ -540,7 +537,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
                     ),
                     child: Text(
                       letter,
-                      style: TextStyle(
+                      style: AppTypography.modernAccent(
                         fontSize: 11,
                         fontWeight: isSelected
                             ? FontWeight.bold
@@ -873,9 +870,9 @@ class _SymbolDetailSheet extends StatelessWidget {
                             const SizedBox(width: 4),
                             Text(
                               symbol.category.label,
-                              style: const TextStyle(
-                                color: CosmicPalette.lavender,
+                              style: AppTypography.elegantAccent(
                                 fontSize: 12,
+                                color: CosmicPalette.lavender,
                               ),
                             ),
                           ],
@@ -1163,10 +1160,10 @@ class _SymbolDetailSheet extends StatelessWidget {
           ),
           child: Text(
             label,
-            style: const TextStyle(
-              color: AppColors.textMuted,
+            style: AppTypography.modernAccent(
               fontSize: 10,
               fontWeight: FontWeight.w600,
+              color: AppColors.textMuted,
             ),
             textAlign: TextAlign.center,
           ),
@@ -1255,9 +1252,9 @@ class _SymbolDetailSheet extends StatelessWidget {
                         const SizedBox(width: 4),
                         Text(
                           relatedSymbol.symbolTr,
-                          style: const TextStyle(
-                            color: AppColors.textSecondary,
+                          style: AppTypography.elegantAccent(
                             fontSize: 12,
+                            color: AppColors.textSecondary,
                           ),
                         ),
                       ],
@@ -1327,10 +1324,10 @@ class _SymbolDetailSheet extends StatelessWidget {
                         'screens.dream_glossary.dreamed_button.i_dreamed_this',
                         language,
                       ),
-                style: TextStyle(
-                  color: hasDreamed ? CosmicPalette.starGold : Colors.black87,
-                  fontWeight: FontWeight.w600,
+                style: AppTypography.modernAccent(
                   fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: hasDreamed ? CosmicPalette.starGold : Colors.black87,
                 ),
               ),
             ],

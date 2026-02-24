@@ -59,7 +59,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
           error: (_, _) => Center(
             child: Text(
               CommonStrings.somethingWentWrong(language),
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,
@@ -223,7 +223,7 @@ class _ProgressHeader extends StatelessWidget {
               : GradientText(
                   isEn ? 'Today\'s Progress' : 'Bugünkü İlerleme',
                   variant: GradientTextVariant.gold,
-                  style: const TextStyle(
+                  style: AppTypography.displayFont.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
@@ -234,7 +234,7 @@ class _ProgressHeader extends StatelessWidget {
               allDone
                   ? Text(
                       '$completed / $total',
-                      style: TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 28,
                         fontWeight: FontWeight.w700,
                         color: AppColors.success,
@@ -243,7 +243,7 @@ class _ProgressHeader extends StatelessWidget {
                   : GradientText(
                       '$completed / $total',
                       variant: GradientTextVariant.gold,
-                      style: const TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 28,
                         fontWeight: FontWeight.w700,
                       ),
@@ -376,7 +376,7 @@ class _HabitCheckCard extends StatelessWidget {
                     const SizedBox(height: 2),
                     Text(
                       '${HabitSuggestionService.categoryEmoji(habit.category)} ${habit.durationMinutes} ${isEn ? 'min' : 'dk'}',
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: isDark
                             ? AppColors.textMuted
@@ -409,7 +409,7 @@ class _HabitCheckCard extends StatelessWidget {
                       const SizedBox(width: 3),
                       Text(
                         '$streak',
-                        style: TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
                           color: AppColors.starGold,
@@ -462,7 +462,7 @@ class _HabitCheckCard extends StatelessWidget {
                           const SizedBox(height: 2),
                           Text(
                             day,
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 10,
                               color: isDark
                                   ? AppColors.textMuted

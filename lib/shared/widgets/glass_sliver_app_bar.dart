@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 import '../../data/providers/app_providers.dart';
 import '../../data/services/storage_service.dart';
 import 'gradient_text.dart';
@@ -81,14 +82,14 @@ class GlassSliverAppBar extends StatelessWidget {
                     ? GradientText(
                         title,
                         variant: gradientVariant,
-                        style: TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontWeight: FontWeight.w700,
                           fontSize: 17,
                         ),
                       )
                     : Text(
                         title,
-                        style: TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           color: effectiveTitleColor,
                           fontWeight: FontWeight.w700,
                           fontSize: 17,

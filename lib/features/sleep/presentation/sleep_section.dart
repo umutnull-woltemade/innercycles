@@ -108,7 +108,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                     child: GradientText(
                       isEn ? 'Sleep Quality' : 'Uyku Kalitesi',
                       variant: GradientTextVariant.aurora,
-                      style: const TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                       ),
@@ -128,7 +128,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                       ),
                       child: Text(
                         '$_selectedQuality/5',
-                        style: TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                           color: _qualityColor(_selectedQuality),
@@ -236,9 +236,8 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                     Center(
                       child: Text(
                         _qualityLabel(_selectedQuality, isEn),
-                        style: TextStyle(
+                        style: AppTypography.subtitle(
                           fontSize: 13,
-                          fontWeight: FontWeight.w500,
                           color: _qualityColor(_selectedQuality),
                         ),
                       ),
@@ -371,7 +370,7 @@ class SleepSummaryCard extends ConsumerWidget {
                   GradientText(
                     isEn ? 'Sleep This Week' : 'Bu Hafta Uyku',
                     variant: GradientTextVariant.aurora,
-                    style: const TextStyle(
+                    style: AppTypography.displayFont.copyWith(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                     ),

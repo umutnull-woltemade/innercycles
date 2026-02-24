@@ -55,7 +55,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                           padding: const EdgeInsets.all(32),
                           child: Text(
                             CommonStrings.somethingWentWrong(language),
-                            style: TextStyle(
+                            style: AppTypography.subtitle(
                               color: isDark
                                   ? AppColors.textMuted
                                   : AppColors.lightTextMuted,
@@ -184,10 +184,10 @@ class _SeasonHeader extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             '${(completion * 100).round()}% ${isEn ? 'complete' : 'tamamlandı'}',
-            style: TextStyle(
+            style: AppTypography.modernAccent(
               fontSize: 12,
-              color: _seasonColor(module.season),
               fontWeight: FontWeight.w600,
+              color: _seasonColor(module.season),
             ),
           ),
         ],
@@ -255,7 +255,7 @@ class _PromptCard extends StatelessWidget {
                         ? const Icon(Icons.check, size: 16, color: Colors.white)
                         : Text(
                             '${prompt.index + 1}',
-                            style: TextStyle(
+                            style: AppTypography.modernAccent(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
                               color: isDark
@@ -269,12 +269,13 @@ class _PromptCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     isEn ? prompt.titleEn : prompt.titleTr,
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                       color: isDark
                           ? AppColors.textPrimary
                           : AppColors.lightTextPrimary,
+                    ).copyWith(
                       decoration: isCompleted
                           ? TextDecoration.lineThrough
                           : null,
@@ -286,9 +287,8 @@ class _PromptCard extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               isEn ? prompt.promptEn : prompt.promptTr,
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 13,
-                height: 1.5,
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,
@@ -302,7 +302,7 @@ class _PromptCard extends StatelessWidget {
                   onPressed: onComplete,
                   child: Text(
                     isEn ? 'Mark Complete' : 'Tamamlandı',
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
                       color: AppColors.auroraStart,
@@ -337,7 +337,7 @@ class _AllSeasonsRow extends StatelessWidget {
         children: [
           Text(
             isEn ? 'All Seasons' : 'Tüm Mevsimler',
-            style: TextStyle(
+            style: AppTypography.modernAccent(
               fontSize: 14,
               fontWeight: FontWeight.w600,
               color: isDark
@@ -380,7 +380,7 @@ class _AllSeasonsRow extends StatelessWidget {
                     isEn
                         ? m.nameEn.split(' ').first
                         : m.nameTr.split(' ').first,
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 11,
                       fontWeight: isCurrent ? FontWeight.w600 : FontWeight.w400,
                       color: isCurrent

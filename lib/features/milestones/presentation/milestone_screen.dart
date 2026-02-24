@@ -46,7 +46,7 @@ class MilestoneScreen extends ConsumerWidget {
               child: Text(
                 CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -259,16 +259,15 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                   isEn
                       ? '${(progress * 100).round()}% complete'
                       : '%${(progress * 100).round()} tamamlandı',
-                  style: TextStyle(
+                  style: AppTypography.subtitle(
                     fontSize: 14,
-                    fontWeight: FontWeight.w500,
                     color: Colors.white.withValues(alpha: 0.75),
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   _getProgressMessage(earned, total),
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 12,
                     color: Colors.white.withValues(alpha: 0.6),
                   ),
@@ -323,7 +322,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
               child: FilterChip(
               label: Text(
                 label,
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 13,
                   fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
                   color: selected
@@ -458,7 +457,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                     const SizedBox(height: 4),
                     Text(
                       _getCategoryHint(milestone.category),
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 10,
                         color: isDark
                             ? AppColors.textMuted.withValues(alpha: 0.4)
@@ -642,10 +641,9 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                         isEn
                             ? 'Earned ${_formatDate(earnedDate, isEn)}'
                             : 'Kazanildi: ${_formatDate(earnedDate, isEn)}',
-                        style: TextStyle(
+                        style: AppTypography.subtitle(
                           fontSize: 13,
                           color: AppColors.success,
-                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
@@ -671,7 +669,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                     ),
                     child: Text(
                       isEn ? 'Close' : 'Kapat',
-                      style: TextStyle(
+                      style: AppTypography.modernAccent(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: AppColors.starGold,

@@ -176,7 +176,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
             const SizedBox(height: 8),
             Text(
               isEn ? 'Tap to change photo' : 'Foto\u{011F}raf\u{0131} de\u{011F}i\u{015F}tirmek i\u{00E7}in dokun',
-              style: TextStyle(
+              style: AppTypography.elegantAccent(
                 fontSize: 12,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -455,7 +455,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                     const SizedBox(width: 6),
                     Text(
                       isEn ? rel.displayNameEn : rel.displayNameTr,
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                         color: isSelected
@@ -567,7 +567,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         Expanded(
           child: Text(
             label,
-            style: TextStyle(
+            style: AppTypography.subtitle(
               fontSize: 14,
               color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
             ),

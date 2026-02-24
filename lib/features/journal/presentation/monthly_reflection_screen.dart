@@ -92,7 +92,7 @@ class _MonthlyReflectionScreenState
                 child: Text(
                   CommonStrings.somethingWentWrong(language),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: AppTypography.decorativeScript(
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
@@ -239,7 +239,7 @@ class _MonthlyReflectionScreenState
                           ? 'Access your full monthly report'
                           : 'Aylık raporunun tamamına eriş',
                       variant: GradientTextVariant.gold,
-                      style: const TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
@@ -266,7 +266,7 @@ class _MonthlyReflectionScreenState
                       ),
                       child: Text(
                         isEn ? 'See Full Report' : 'Raporun Tamamını Gör',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: AppTypography.modernAccent(fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
@@ -419,7 +419,7 @@ class _MonthlyReflectionScreenState
                   isEn
                       ? 'No entries for this month yet.'
                       : 'Bu ay için henüz kayıt yok.',
-                  style: TextStyle(
+                  style: AppTypography.decorativeScript(
                     fontSize: 14,
                     color: isDark
                         ? AppColors.textMuted
@@ -570,7 +570,7 @@ class _MonthlyReflectionScreenState
                 children: [
                   Text(
                     '${isEn ? 'W' : 'H'}${i + 1}',
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       fontSize: 11,
                       fontWeight: FontWeight.w700,
                       color: AppColors.starGold,
@@ -580,9 +580,8 @@ class _MonthlyReflectionScreenState
                   Expanded(
                     child: Text(
                       prompts[i],
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 13,
-                        height: 1.4,
                         color: isDark
                             ? AppColors.textPrimary
                             : AppColors.lightTextPrimary,
@@ -660,7 +659,7 @@ class _MonthlyReflectionScreenState
                     width: 90,
                     child: Text(
                       label,
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 14,
                         color: isDark
                             ? AppColors.textSecondary
@@ -684,7 +683,7 @@ class _MonthlyReflectionScreenState
                   const SizedBox(width: 12),
                   Text(
                     e.value.toStringAsFixed(1),
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: AppColors.starGold,

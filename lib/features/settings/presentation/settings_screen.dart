@@ -171,18 +171,18 @@ class SettingsScreen extends ConsumerWidget {
                                           const SizedBox(width: 6),
                                           Text(
                                             lang.displayName,
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              color: isSelected
-                                                  ? AppColors.auroraStart
-                                                  : (isDark
+                                            style: isSelected
+                                                ? AppTypography.modernAccent(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: AppColors.auroraStart,
+                                                  )
+                                                : AppTypography.subtitle(
+                                                    fontSize: 15,
+                                                    color: isDark
                                                         ? AppColors.textPrimary
-                                                        : AppColors
-                                                              .lightTextPrimary),
-                                              fontWeight: isSelected
-                                                  ? FontWeight.w600
-                                                  : FontWeight.normal,
-                                            ),
+                                                        : AppColors.lightTextPrimary,
+                                                  ),
                                           ),
                                           if (isSelected) ...[
                                             const SizedBox(width: 4),
@@ -705,11 +705,10 @@ class SettingsScreen extends ConsumerWidget {
             children: [
               Text(
                 L10nService.get('settings.disclaimer_content', language),
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
-                  height: 1.5,
                 ),
               ),
               const SizedBox(height: 16),
@@ -733,12 +732,11 @@ class SettingsScreen extends ConsumerWidget {
                     Expanded(
                       child: Text(
                         L10nService.get('settings.disclaimer_tip', language),
-                        style: TextStyle(
+                        style: AppTypography.decorativeScript(
+                          fontSize: 12,
                           color: isDark
                               ? AppColors.textSecondary
                               : AppColors.lightTextSecondary,
-                          fontSize: 12,
-                          fontStyle: FontStyle.italic,
                         ),
                       ),
                     ),
@@ -906,7 +904,7 @@ class _SyncStatusTile extends ConsumerWidget {
           Expanded(
             child: Text(
               label,
-              style: TextStyle(fontSize: 17, color: color),
+              style: AppTypography.subtitle(fontSize: 17, color: color),
             ),
           ),
           if (pendingCount > 0)
@@ -918,7 +916,7 @@ class _SyncStatusTile extends ConsumerWidget {
               ),
               child: Text(
                 '$pendingCount',
-                style: TextStyle(
+                style: AppTypography.modernAccent(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                   color: AppColors.warning,
@@ -975,7 +973,7 @@ class _GroupedTile extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title,
-                    style: TextStyle(fontSize: 17, color: textColor),
+                    style: AppTypography.subtitle(fontSize: 17, color: textColor),
                   ),
                 ),
                 if (trailing != null) ...[
@@ -1150,7 +1148,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                         children: [
                           Text(
                             isEn ? 'App Lock' : 'Uygulama Kilidi',
-                            style: TextStyle(
+                            style: AppTypography.subtitle(
                               fontSize: 17,
                               color: widget.isDark
                                   ? AppColors.textPrimary
@@ -1161,7 +1159,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                             isEn
                                 ? 'Require PIN or biometrics to open'
                                 : 'Açmak için PIN veya biyometrik gerekli',
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 13,
                               color: widget.isDark
                                   ? AppColors.textMuted
@@ -1214,7 +1212,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                           Expanded(
                             child: Text(
                               isEn ? 'Change PIN' : 'PIN Değiştir',
-                              style: TextStyle(
+                              style: AppTypography.subtitle(
                                 fontSize: 17,
                                 color: widget.isDark
                                     ? AppColors.textPrimary
@@ -1302,7 +1300,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
             onPressed: () => Navigator.pop(ctx),
             child: Text(
               isEn ? 'Cancel' : 'İptal',
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 color: widget.isDark
                     ? AppColors.textMuted
                     : AppColors.lightTextMuted,
@@ -1354,7 +1352,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
             },
             child: Text(
               isEn ? 'Save' : 'Kaydet',
-              style: const TextStyle(
+              style: AppTypography.modernAccent(
                 color: AppColors.starGold,
                 fontWeight: FontWeight.w600,
               ),

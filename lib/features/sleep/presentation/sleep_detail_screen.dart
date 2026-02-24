@@ -54,7 +54,8 @@ class SleepDetailScreen extends ConsumerWidget {
                         padding: const EdgeInsets.all(32),
                         child: Text(
                           CommonStrings.somethingWentWrong(language),
-                          style: TextStyle(
+                          style: AppTypography.decorativeScript(
+                            fontSize: 14,
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,
@@ -107,7 +108,7 @@ class SleepDetailScreen extends ConsumerWidget {
                           GradientText(
                             isEn ? 'Recent Nights' : 'Son Geceler',
                             variant: GradientTextVariant.gold,
-                            style: const TextStyle(
+                            style: AppTypography.displayFont.copyWith(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                             ),
@@ -272,7 +273,7 @@ class _WeeklyChart extends StatelessWidget {
           GradientText(
             isEn ? 'Last 7 Days' : 'Son 7 Gün',
             variant: GradientTextVariant.aurora,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -293,7 +294,7 @@ class _WeeklyChart extends StatelessWidget {
                       if (q > 0)
                         Text(
                           '$q',
-                          style: TextStyle(
+                          style: AppTypography.modernAccent(
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
                             color: _barColor(q),
@@ -317,11 +318,12 @@ class _WeeklyChart extends StatelessWidget {
                       const SizedBox(height: 6),
                       Text(
                         label,
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 10,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
+                          letterSpacing: 0.5,
                         ),
                       ),
                     ],
@@ -447,7 +449,7 @@ class _SleepTips extends StatelessWidget {
               GradientText(
                 isEn ? 'Sleep Tips' : 'Uyku İpuçları',
                 variant: GradientTextVariant.gold,
-                style: const TextStyle(
+                style: AppTypography.displayFont.copyWith(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
@@ -463,9 +465,10 @@ class _SleepTips extends StatelessWidget {
                 children: [
                   Text(
                     '  •  ',
-                    style: TextStyle(
-                      color: AppColors.auroraStart,
+                    style: AppTypography.modernAccent(
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
+                      color: AppColors.auroraStart,
                     ),
                   ),
                   Expanded(
@@ -531,7 +534,7 @@ class _NightCard extends StatelessWidget {
                   if (entry.note != null && entry.note!.isNotEmpty)
                     Text(
                       entry.note!,
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 12,
                         color: isDark
                             ? AppColors.textMuted
@@ -551,7 +554,7 @@ class _NightCard extends StatelessWidget {
               ),
               child: Text(
                 '${entry.quality}/5',
-                style: TextStyle(
+                style: AppTypography.modernAccent(
                   fontSize: 13,
                   fontWeight: FontWeight.w700,
                   color: _qualityColor(entry.quality),

@@ -446,7 +446,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
             Expanded(
               child: Text(
                 isEn ? 'View Monthly Wrapped' : 'Aylık Özeti Gör',
-                style: TextStyle(
+                style: AppTypography.modernAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                   color: AppColors.amethyst,
@@ -627,10 +627,9 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                     Flexible(
                       child: Text(
                         comparisonText,
-                        style: TextStyle(
+                        style: AppTypography.subtitle(
                           fontSize: 13,
                           color: comparisonColor,
-                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
@@ -761,7 +760,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
             ),
             child: Text(
               '${pct.toStringAsFixed(0)}%',
-              style: TextStyle(
+              style: AppTypography.modernAccent(
                 fontSize: 16,
                 fontWeight: FontWeight.w800,
                 color: color,
@@ -834,7 +833,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                       const SizedBox(width: 6),
                       Text(
                         changeStr,
-                        style: TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
                           color: color,
@@ -846,12 +845,11 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                 const SizedBox(height: 4),
                 Text(
                   isEn ? message.$1 : message.$2,
-                  style: TextStyle(
+                  style: AppTypography.decorativeScript(
                     fontSize: 13,
                     color: isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,
-                    height: 1.4,
                   ),
                 ),
               ],
@@ -944,11 +942,12 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                   isEn
                       ? 'Average rating: ${data.bestDayRating}/5'
                       : 'Ortalama puan: ${data.bestDayRating}/5',
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 12,
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
+                    letterSpacing: 0.5,
                   ),
                 ),
               ],
@@ -1025,7 +1024,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                     width: 80,
                     child: Text(
                       label,
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 13,
                         color: isDark
                             ? AppColors.textSecondary
@@ -1049,7 +1048,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                   const SizedBox(width: 8),
                   Text(
                     avg.toStringAsFixed(1),
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
                       color: isDark
@@ -1060,11 +1059,12 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                   const SizedBox(width: 4),
                   Text(
                     '($count)',
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 11,
                       color: isDark
                           ? AppColors.textMuted
                           : AppColors.lightTextMuted,
+                      letterSpacing: 0.5,
                     ),
                   ),
                 ],
@@ -1255,12 +1255,13 @@ class _StatCard extends StatelessWidget {
               ),
               Text(
                 sublabel,
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
                   color: isDark
                       ? AppColors.textMuted
                       : AppColors.lightTextMuted,
+                  letterSpacing: 0.5,
                 ),
               ),
             ],

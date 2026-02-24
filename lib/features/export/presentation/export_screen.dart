@@ -101,7 +101,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                             isEn
                                 ? 'Could not load. Your local data is unaffected.'
                                 : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                            style: TextStyle(
+                            style: AppTypography.subtitle(
                               color: isDark
                                   ? AppColors.textMuted
                                   : AppColors.lightTextMuted,
@@ -336,12 +336,11 @@ class _InfoCard extends StatelessWidget {
                   : (isEn
                         ? 'Free: last 7 days as text. Upgrade for full history & all formats.'
                         : 'Ücretsiz: son 7 gün metin olarak. Tam geçmiş ve tüm formatlar için yükseltin.'),
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 13,
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,
-                height: 1.4,
               ),
             ),
           ),
@@ -472,7 +471,7 @@ class _LockedEntriesCta extends StatelessWidget {
                       isEn
                           ? '$lockedEntries entries locked'
                           : '$lockedEntries kayıt kilitli',
-                      style: TextStyle(
+                      style: AppTypography.modernAccent(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: isDark
@@ -485,7 +484,7 @@ class _LockedEntriesCta extends StatelessWidget {
                       isEn
                           ? 'Upgrade to export all $totalEntries entries'
                           : 'Tüm $totalEntries kaydı aktarmak için yükselt',
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: isDark
                             ? AppColors.textMuted
@@ -508,7 +507,7 @@ class _LockedEntriesCta extends StatelessWidget {
                 ),
                 child: Text(
                   isEn ? 'Access' : 'Eriş',
-                  style: const TextStyle(
+                  style: AppTypography.modernAccent(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -586,7 +585,7 @@ class _FormatOption extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: TextStyle(
+                      style: AppTypography.modernAccent(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: isDark
@@ -596,7 +595,7 @@ class _FormatOption extends StatelessWidget {
                     ),
                     Text(
                       subtitle,
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: isDark
                             ? AppColors.textMuted
@@ -618,7 +617,7 @@ class _FormatOption extends StatelessWidget {
                   ),
                   child: Text(
                     'PRO',
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       fontSize: 10,
                       fontWeight: FontWeight.w700,
                       color: AppColors.starGold,

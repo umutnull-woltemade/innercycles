@@ -854,7 +854,7 @@ class _HeroJournalCard extends ConsumerWidget {
                             isEn
                                 ? 'Share this question'
                                 : 'Bu soruyu paylaş',
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 12,
                               color: isDark
                                   ? AppColors.textMuted
@@ -1009,9 +1009,8 @@ class _FocusPulseRow extends ConsumerWidget {
                         behavior: HitTestBehavior.opaque,
                         child: Text(
                           isEn ? 'Details' : 'Detaylar',
-                          style: TextStyle(
+                          style: AppTypography.subtitle(
                             fontSize: 12,
-                            fontWeight: FontWeight.w500,
                             color: isDark
                                 ? AppColors.starGold
                                 : AppColors.lightStarGold,
@@ -1195,9 +1194,8 @@ class _RecentEntriesHorizontal extends ConsumerWidget {
                             alignment: Alignment.centerRight,
                             child: Text(
                               isEn ? 'See All' : 'Tümünü Gör',
-                              style: TextStyle(
+                              style: AppTypography.subtitle(
                                 fontSize: 13,
-                                fontWeight: FontWeight.w500,
                                 color: isDark
                                     ? AppColors.starGold
                                     : AppColors.lightStarGold,
@@ -1723,10 +1721,9 @@ class _TodayBirthdayBanner extends ConsumerWidget {
                             isEn
                                 ? '\u{1F382} Birthday today!'
                                 : '\u{1F382} Bug\u{00FC}n do\u{011F}um g\u{00FC}n\u{00FC}!',
-                            style: TextStyle(
+                            style: AppTypography.subtitle(
                               fontSize: 12,
                               color: AppColors.starGold,
-                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ],
@@ -1809,12 +1806,11 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                       onTap: () => context.push(Routes.lifeTimeline),
                       child: Text(
                         isEn ? 'See all' : 'Tümünü gör',
-                        style: TextStyle(
+                        style: AppTypography.subtitle(
                           fontSize: 12,
                           color: isDark
                               ? AppColors.starGold
                               : AppColors.lightStarGold,
-                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
@@ -1887,7 +1883,7 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                                     event.emotionTags
                                         .take(2)
                                         .join(', '),
-                                    style: TextStyle(
+                                    style: AppTypography.elegantAccent(
                                       fontSize: 11,
                                       color: isDark
                                           ? AppColors.textMuted
@@ -1965,7 +1961,7 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                         isEn
                             ? 'Record a life event'
                             : 'Bir yaşam olayı kaydedin',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
                               ? AppColors.textMuted
@@ -2068,7 +2064,7 @@ class _RetrospectiveBanner extends ConsumerWidget {
                         isEn
                             ? 'Your story didn\'t start today'
                             : 'Hikayen bugün başlamadı',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
                               ? AppColors.textMuted
@@ -2158,7 +2154,7 @@ class _UpcomingRemindersCard extends ConsumerWidget {
                             const Spacer(),
                             Text(
                               isEn ? 'See all' : 'Tümünü gör',
-                              style: TextStyle(
+                              style: AppTypography.elegantAccent(
                                 fontSize: 11,
                                 color: isDark
                                     ? AppColors.starGold
@@ -2183,7 +2179,7 @@ class _UpcomingRemindersCard extends ConsumerWidget {
                               Expanded(
                                 child: Text(
                                   note?.title ?? (isEn ? 'Note' : 'Not'),
-                                  style: TextStyle(
+                                  style: AppTypography.subtitle(
                                     fontSize: 13,
                                     color: isDark
                                         ? Colors.white.withValues(alpha: 0.8)
@@ -2196,7 +2192,7 @@ class _UpcomingRemindersCard extends ConsumerWidget {
                               const SizedBox(width: 8),
                               Text(
                                 _formatTimeLeft(r.scheduledAt),
-                                style: TextStyle(
+                                style: AppTypography.elegantAccent(
                                   fontSize: 11,
                                   color: isDark
                                       ? Colors.white38
@@ -2302,7 +2298,7 @@ class _WeeklySharePrompt extends ConsumerWidget {
                         isEn
                             ? 'Share your week\'s insights'
                             : 'Haftanın içgörülerini paylaş',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
                               ? AppColors.textMuted
@@ -2389,7 +2385,7 @@ class _WrappedBanner extends StatelessWidget {
                         isEn
                             ? 'See your year in patterns'
                             : 'Yılını örüntülerle gör',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
                               ? AppColors.textSecondary
@@ -2477,7 +2473,7 @@ class _MonthlyWrappedBanner extends StatelessWidget {
                         isEn
                             ? 'See your month at a glance'
                             : 'Ayına bir bakış at',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
                               ? AppColors.textSecondary

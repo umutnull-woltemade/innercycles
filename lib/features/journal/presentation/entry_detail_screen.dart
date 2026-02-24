@@ -43,7 +43,7 @@ class EntryDetailScreen extends ConsumerWidget {
                 child: Text(
                   CommonStrings.somethingWentWrong(language),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,
@@ -57,7 +57,7 @@ class EntryDetailScreen extends ConsumerWidget {
                 return Center(
                   child: Text(
                     isEn ? 'Entry not found' : 'Kayıt bulunamadı',
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
                       color: isDark
                           ? AppColors.textPrimary
                           : AppColors.lightTextPrimary,
@@ -266,7 +266,7 @@ class EntryDetailScreen extends ConsumerWidget {
                 const SizedBox(width: 12),
                 Text(
                   '$value',
-                  style: TextStyle(
+                  style: AppTypography.modernAccent(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: AppColors.starGold,

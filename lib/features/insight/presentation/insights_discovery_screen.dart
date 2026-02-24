@@ -70,7 +70,8 @@ class _InsightsDiscoveryScreenState
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Could not load. Your local data is unaffected.' : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
+                  fontSize: 14,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -155,7 +156,8 @@ class _InsightsDiscoveryScreenState
               child: Center(
                 child: Text(
                   isEn ? 'No insights found' : 'İçgörü bulunamadı',
-                  style: TextStyle(
+                  style: AppTypography.decorativeScript(
+                    fontSize: 14,
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
@@ -228,7 +230,7 @@ class _InsightsDiscoveryScreenState
             ),
             Text(
               '$read / $total',
-              style: TextStyle(
+              style: AppTypography.modernAccent(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
                 color: AppColors.auroraStart,
@@ -295,7 +297,7 @@ class _InsightsDiscoveryScreenState
                     child: GradientText(
                       isEn ? 'Today\'s Insight' : 'Bugünün İçgörüsü',
                       variant: GradientTextVariant.gold,
-                      style: const TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
                       ),
@@ -415,14 +417,15 @@ class _InsightsDiscoveryScreenState
           ),
           child: Text(
             label,
-            style: TextStyle(
+            style: AppTypography.subtitle(
               fontSize: 12,
-              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
               color: isSelected
                   ? AppColors.auroraStart
                   : (isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary),
+            ).copyWith(
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
             ),
           ),
         ),
@@ -639,9 +642,8 @@ class _InsightsDiscoveryScreenState
               // Body
               Text(
                 isEn ? module.bodyEn : module.bodyTr,
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
                   fontSize: 15,
-                  height: 1.7,
                   color: isDark
                       ? AppColors.textPrimary
                       : AppColors.lightTextPrimary,
@@ -684,9 +686,8 @@ class _InsightsDiscoveryScreenState
                     const SizedBox(height: 8),
                     Text(
                       isEn ? module.whyItMattersEn : module.whyItMattersTr,
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 14,
-                        height: 1.5,
                         color: isDark
                             ? AppColors.textPrimary
                             : AppColors.lightTextPrimary,
@@ -795,9 +796,8 @@ class _InsightsDiscoveryScreenState
                                   Expanded(
                                     child: Text(
                                       isEn ? related.titleEn : related.titleTr,
-                                      style: TextStyle(
+                                      style: AppTypography.subtitle(
                                         fontSize: 13,
-                                        fontWeight: FontWeight.w500,
                                         color: isDark
                                             ? AppColors.textPrimary
                                             : AppColors.lightTextPrimary,

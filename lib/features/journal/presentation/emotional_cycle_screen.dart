@@ -104,7 +104,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Unable to load data' : 'Veri yüklenemedi',
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
+                  fontSize: 15,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -305,7 +306,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                         icon: const Icon(Icons.edit_note, size: 20),
                         label: Text(
                           isEn ? 'Start Journaling' : 'Kayıt Yapmaya Başla',
-                          style: const TextStyle(
+                          style: AppTypography.modernAccent(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
@@ -594,7 +595,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                       isEn
                           ? 'Start journaling to see your cycles'
                           : 'Döngüleri görmek için kayıt yapmaya başla',
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
+                        fontSize: 14,
                         color: isDark
                             ? AppColors.textMuted
                             : AppColors.lightTextMuted,
@@ -633,20 +635,22 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 children: [
                   Text(
                     isEn ? '$displayDays days ago' : '$displayDays gün önce',
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: isDark
                           ? AppColors.textMuted
                           : AppColors.lightTextMuted,
+                      letterSpacing: 0.3,
                     ),
                   ),
                   Text(
                     isEn ? 'Today' : 'Bugün',
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: isDark
                           ? AppColors.textMuted
                           : AppColors.lightTextMuted,
+                      letterSpacing: 0.3,
                     ),
                   ),
                 ],
@@ -679,7 +683,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           const SizedBox(width: 8),
           Text(
             '$areaName: ${point.value.toStringAsFixed(1)}',
-            style: TextStyle(
+            style: AppTypography.modernAccent(
               fontSize: 13,
               fontWeight: FontWeight.w600,
               color: isDark
@@ -690,9 +694,10 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           const Spacer(),
           Text(
             dateStr,
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              letterSpacing: 0.5,
             ),
           ),
         ],
@@ -777,19 +782,20 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                         const SizedBox(width: 6),
                         Text(
                           label,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: isVisible
-                                ? FontWeight.w600
-                                : FontWeight.normal,
-                            color: isVisible
-                                ? (isDark
+                          style: isVisible
+                              ? AppTypography.modernAccent(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: isDark
                                       ? AppColors.textPrimary
-                                      : AppColors.lightTextPrimary)
-                                : (isDark
+                                      : AppColors.lightTextPrimary,
+                                )
+                              : AppTypography.subtitle(
+                                  fontSize: 12,
+                                  color: isDark
                                       ? AppColors.textMuted
-                                      : AppColors.lightTextMuted),
-                          ),
+                                      : AppColors.lightTextMuted,
+                                ),
                         ),
                       ],
                     ),
@@ -836,9 +842,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           Expanded(
             child: Text(
               isEn ? insight.messageEn : insight.messageTr,
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 14,
-                height: 1.4,
                 color: isDark
                     ? AppColors.textPrimary
                     : AppColors.lightTextPrimary,
@@ -896,9 +901,9 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                   color: AppColors.starGold.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(AppConstants.radiusFull),
                 ),
-                child: const Text(
+                child: Text(
                   'PRO',
-                  style: TextStyle(
+                  style: AppTypography.modernAccent(
                     fontSize: 10,
                     fontWeight: FontWeight.w700,
                     color: AppColors.starGold,
@@ -949,7 +954,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                         isEn
                             ? 'Access Shift Outlook to see when your emotional phases may shift'
                             : 'Duygusal evrelerinin ne zaman kayabileceğini görmek için Kayma Görünümüne eriş',
-                        style: TextStyle(
+                        style: AppTypography.decorativeScript(
                           fontSize: 13,
                           color: isDark
                               ? AppColors.textSecondary
@@ -1032,7 +1037,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                   const SizedBox(width: 10),
                   Text(
                     isEn ? 'Share My Inner Cycles' : 'İç Döngülerimi Paylaş',
-                    style: const TextStyle(
+                    style: AppTypography.modernAccent(
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -1078,7 +1083,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 ? 'You have $totalEntries entries. Log 30+ days for the full cycle view, or go premium.'
                 : '$totalEntries kaydın var. Tam döngü görünümü için 30+ gün kayıt yap veya premium\'a geç.',
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 14,
               color: isDark
                   ? AppColors.textSecondary

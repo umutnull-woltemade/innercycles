@@ -226,7 +226,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                     child: Center(
                                       child: Text(
                                         '${m}m',
-                                        style: TextStyle(
+                                        style: AppTypography.elegantAccent(
                                           fontSize: 16,
                                           fontWeight: isSelected
                                               ? FontWeight.w700
@@ -340,7 +340,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                         const SizedBox(height: 8),
                                         Text(
                                           '$_selectedMinutes ${isEn ? 'min' : 'dk'}',
-                                          style: TextStyle(
+                                          style: AppTypography.modernAccent(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600,
                                             color: isDark
@@ -422,7 +422,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                     _isRunning
                                         ? (isEn ? 'Pause' : 'Duraklat')
                                         : (isEn ? 'Resume' : 'Devam'),
-                                    style: const TextStyle(
+                                    style: AppTypography.modernAccent(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,
                                     ),

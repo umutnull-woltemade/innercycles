@@ -74,10 +74,11 @@ class ShiftOutlookCard extends StatelessWidget {
                     ),
                     Text(
                       '${isEn ? window.confidence.labelEn() : window.confidence.labelTr()} ${isEn ? 'confidence' : 'güven'}',
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 11,
                         color: _confidenceColor(window.confidence),
                         fontWeight: FontWeight.w500,
+                        letterSpacing: 0.5,
                       ),
                     ),
                   ],
@@ -96,7 +97,7 @@ class ShiftOutlookCard extends StatelessWidget {
                 ),
                 child: Text(
                   '~${window.estimatedDaysUntilShift}${isEn ? 'd' : 'g'}',
-                  style: TextStyle(
+                  style: AppTypography.modernAccent(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
                     color: phaseColor,
@@ -122,9 +123,8 @@ class ShiftOutlookCard extends StatelessWidget {
           // Description
           Text(
             isEn ? window.descriptionEn : window.descriptionTr,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 14,
-              height: 1.5,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
@@ -149,9 +149,8 @@ class ShiftOutlookCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     isEn ? window.actionEn : window.actionTr,
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 13,
-                      height: 1.4,
                       color: isDark
                           ? AppColors.textPrimary
                           : AppColors.lightTextPrimary,
@@ -167,7 +166,7 @@ class ShiftOutlookCard extends StatelessWidget {
             const SizedBox(height: AppConstants.spacingMd),
             Text(
               isEn ? 'Supporting Signals' : 'Destekleyen Sinyaller',
-              style: TextStyle(
+              style: AppTypography.modernAccent(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -193,7 +192,7 @@ class ShiftOutlookCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         isEn ? signal.signalEn : signal.signalTr,
-                        style: TextStyle(
+                        style: AppTypography.decorativeScript(
                           fontSize: 12,
                           color: isDark
                               ? AppColors.textSecondary
@@ -264,7 +263,7 @@ class ShiftOutlookCard extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: TextStyle(
+        style: AppTypography.modernAccent(
           fontSize: 12,
           fontWeight: FontWeight.w600,
           color: color,
@@ -290,7 +289,7 @@ class ShiftOutlookCard extends StatelessWidget {
               isEn
                   ? 'Not enough data for shift outlook yet'
                   : 'Kayma görünümü için henüz yeterli veri yok',
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),

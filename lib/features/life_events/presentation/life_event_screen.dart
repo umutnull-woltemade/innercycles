@@ -710,7 +710,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                   const SizedBox(height: 6),
                   Text(
                     isEn ? 'Add a photo' : 'Fotoğraf ekle',
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 12,
                       color: isDark
                           ? AppColors.textMuted

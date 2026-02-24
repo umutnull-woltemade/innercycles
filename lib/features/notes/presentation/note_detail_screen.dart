@@ -309,8 +309,9 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Something went wrong' : 'Bir \u015feyler ters gitti',
-                style:
-                    TextStyle(color: isDark ? Colors.white70 : Colors.black54),
+                style: AppTypography.decorativeScript(
+                  color: isDark ? Colors.white70 : Colors.black54,
+                ),
               ),
             ),
             data: (service) {
@@ -462,7 +463,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                   : (isEn
                                       ? '$_wordCount words'
                                       : '$_wordCount kelime'),
-                              style: TextStyle(
+                              style: AppTypography.elegantAccent(
                                 fontSize: 11,
                                 color: isDark ? Colors.white24 : Colors.black.withValues(alpha: 0.2),
                               ),
@@ -601,7 +602,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                     isEn
                                         ? 'Mood when created'
                                         : 'Olu\u015fturuldu\u011fundaki ruh hali',
-                                    style: TextStyle(
+                                    style: AppTypography.elegantAccent(
                                       fontSize: 12,
                                       color: isDark
                                           ? Colors.white54
@@ -726,7 +727,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                                 isEn
                                                     ? 'Will be set when you save'
                                                     : 'Kaydetti\u011finde ayarlanacak',
-                                                style: TextStyle(
+                                                style: AppTypography.elegantAccent(
                                                   fontSize: 11,
                                                   color: isDark
                                                       ? Colors.white54
@@ -779,7 +780,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                     isEn
                                         ? 'Set a date & time to get notified about this note'
                                         : 'Bu not hakk\u0131nda bildirim almak i\u00e7in tarih ve saat belirle',
-                                    style: TextStyle(
+                                    style: AppTypography.elegantAccent(
                                       fontSize: 12,
                                       color: isDark
                                           ? Colors.white30
@@ -1013,7 +1014,7 @@ class _ReminderRow extends StatelessWidget {
                 ),
                 Text(
                   freq,
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 11,
                     color: isDark ? Colors.white54 : Colors.black45,
                   ),
@@ -1021,9 +1022,8 @@ class _ReminderRow extends StatelessWidget {
                 if (reminder.customMessage != null)
                   Text(
                     reminder.customMessage!,
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 11,
-                      fontStyle: FontStyle.italic,
                       color: isDark ? Colors.white38 : Colors.black38,
                     ),
                   ),
@@ -1105,7 +1105,7 @@ class _ReminderForm extends StatelessWidget {
                         : (isEn
                             ? 'Pick date & time'
                             : 'Tarih ve saat se\u00e7'),
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
                       fontSize: 14,
                       color: reminderDate != null
                           ? (isDark ? Colors.white : Colors.black87)
@@ -1122,7 +1122,7 @@ class _ReminderForm extends StatelessWidget {
           // Frequency chips
           Text(
             isEn ? 'Frequency' : 'S\u0131kl\u0131k',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
               color: isDark ? Colors.white54 : Colors.black45,
             ),
@@ -1155,7 +1155,7 @@ class _ReminderForm extends StatelessWidget {
                                 ? (isDark ? Colors.white30 : Colors.black26)
                                 : AppColors.starGold,
                           )
-                        : TextStyle(
+                        : AppTypography.elegantAccent(
                             fontSize: 12,
                             color: isLocked
                                 ? (isDark ? Colors.white30 : Colors.black26)

@@ -76,7 +76,7 @@ class CycleSummaryCard extends StatelessWidget {
                     if (hasData)
                       Text(
                         isEn ? summary.getSummaryEn() : summary.getSummaryTr(),
-                        style: TextStyle(
+                        style: AppTypography.decorativeScript(
                           fontSize: 12,
                           color: isDark
                               ? AppColors.textMuted
@@ -135,11 +135,12 @@ class CycleSummaryCard extends StatelessWidget {
               children: [
                 Text(
                   isEn ? 'Current avg' : 'Ort.',
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 11,
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
+                    letterSpacing: 0.5,
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -164,7 +165,7 @@ class CycleSummaryCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text(
                   summary.currentAverage.toStringAsFixed(1),
-                  style: TextStyle(
+                  style: AppTypography.modernAccent(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
                     color: color,
@@ -191,12 +192,11 @@ class CycleSummaryCard extends StatelessWidget {
                     isEn
                         ? 'No entries yet for $areaName'
                         : '$areaName için henüz kayıt yok',
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 12,
                       color: isDark
                           ? AppColors.textMuted
                           : AppColors.lightTextMuted,
-                      fontStyle: FontStyle.italic,
                     ),
                   ),
                 ],
@@ -227,7 +227,7 @@ class CycleSummaryCard extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             label,
-            style: TextStyle(
+            style: AppTypography.modernAccent(
               fontSize: 11,
               fontWeight: FontWeight.w600,
               color: color,
@@ -261,7 +261,7 @@ class CycleSummaryCard extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             phaseLabel,
-            style: TextStyle(
+            style: AppTypography.modernAccent(
               fontSize: 11,
               fontWeight: FontWeight.w600,
               color: phaseColor,
@@ -284,10 +284,11 @@ class CycleSummaryCard extends StatelessWidget {
         const SizedBox(width: 3),
         Text(
           trendLabel,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 11,
             fontWeight: FontWeight.w500,
             color: trendColor,
+            letterSpacing: 0.5,
           ),
         ),
       ],

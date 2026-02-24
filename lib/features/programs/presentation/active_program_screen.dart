@@ -58,7 +58,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
               error: (_, _) => Center(
                 child: Text(
                   CommonStrings.errorLoadingProgram(language),
-                  style: TextStyle(color: AppColors.textMuted),
+                  style: AppTypography.subtitle(color: AppColors.textMuted),
                 ),
               ),
               data: (service) {
@@ -210,7 +210,7 @@ class _ProgramHeader extends StatelessWidget {
           Text(
             isEn ? program.descriptionEn : program.descriptionTr,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 14,
               color: isDark
                   ? AppColors.textSecondary
@@ -265,7 +265,7 @@ class _MiniStat extends StatelessWidget {
         ),
         Text(
           label,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 11,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -323,7 +323,7 @@ class _DayProgressRow extends StatelessWidget {
                     ? const Icon(Icons.check, size: 16, color: Colors.white)
                     : Text(
                         '$dayNum',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 12,
                           fontWeight: isCurrent
                               ? FontWeight.w700
@@ -550,7 +550,7 @@ class _CompletedBanner extends StatelessWidget {
                     ? 'You have finished this guided program. Well done!'
                     : 'Bu rehberli programı tamamladın. Tebrikler!',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
                   fontSize: 14,
                   color: isDark
                       ? AppColors.textSecondary
@@ -591,7 +591,7 @@ class _NotStartedBanner extends StatelessWidget {
             ? 'This program hasn\'t been started yet.'
             : 'Bu program henüz başlatılmadı.',
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: AppTypography.decorativeScript(
           fontSize: 14,
           color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
         ),

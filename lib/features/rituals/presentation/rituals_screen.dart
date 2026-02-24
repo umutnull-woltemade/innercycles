@@ -54,7 +54,7 @@ class RitualsScreen extends ConsumerWidget {
                           padding: const EdgeInsets.all(32),
                           child: Text(
                             CommonStrings.somethingWentWrong(language),
-                            style: TextStyle(
+                            style: AppTypography.subtitle(
                               color: isDark
                                   ? AppColors.textMuted
                                   : AppColors.lightTextMuted,
@@ -165,7 +165,7 @@ class _StackCard extends ConsumerWidget {
                       ),
                       Text(
                         '${stack.items.length} ${isEn ? 'items' : 'madde'}',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
                               ? AppColors.textMuted
@@ -202,7 +202,7 @@ class _StackCard extends ConsumerWidget {
                     const SizedBox(width: 8),
                     Text(
                       item.name,
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 14,
                         color: isDark
                             ? AppColors.textSecondary

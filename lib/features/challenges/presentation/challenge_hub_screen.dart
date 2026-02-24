@@ -63,7 +63,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
           error: (_, _) => Center(
             child: Text(
               CommonStrings.somethingWentWrong(language),
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
             ),
@@ -378,7 +378,7 @@ class _StatItem extends StatelessWidget {
         ),
         Text(
           label,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 11,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -428,7 +428,7 @@ class _ActiveChallengeCard extends StatelessWidget {
                     ),
                     Text(
                       '${progress.currentCount} / ${progress.targetCount}',
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: isDark
                             ? AppColors.textSecondary
@@ -457,12 +457,11 @@ class _ActiveChallengeCard extends StatelessWidget {
           const SizedBox(height: AppConstants.spacingSm),
           Text(
             isEn ? challenge.descriptionEn : challenge.descriptionTr,
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 13,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
-              height: 1.4,
             ),
           ),
         ],
@@ -535,7 +534,7 @@ class _AvailableChallengeCard extends StatelessWidget {
             isEn
                 ? '${challenge.targetCount} days'
                 : '${challenge.targetCount} g\u00fcn',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),

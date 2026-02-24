@@ -44,7 +44,7 @@ class MoodTrendsScreen extends ConsumerWidget {
               child: Text(
                 CommonStrings.somethingWentWrong(language),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -266,7 +266,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                             ? 'Your data has more to show'
                             : 'Verilerinin gösterecekleri var',
                         variant: GradientTextVariant.gold,
-                        style: const TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
                         ),
@@ -355,7 +355,7 @@ class MoodTrendsScreen extends ConsumerWidget {
           GradientText(
             isEn ? 'This Week' : 'Bu Hafta',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -442,7 +442,7 @@ class MoodTrendsScreen extends ConsumerWidget {
           GradientText(
             isEn ? 'Last 30 Days' : 'Son 30 Gün',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -496,7 +496,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                       child: Text(
                         '$count',
                         textAlign: TextAlign.right,
-                        style: TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: isDark
@@ -531,7 +531,7 @@ class MoodTrendsScreen extends ConsumerWidget {
           GradientText(
             isEn ? 'Recent Check-ins' : 'Son Kayıtlar',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -549,7 +549,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                   Expanded(
                     child: Text(
                       dateStr,
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 14,
                         color: isDark
                             ? AppColors.textPrimary
@@ -622,7 +622,7 @@ class MoodTrendsScreen extends ConsumerWidget {
           GradientText(
             isEn ? 'Go Deeper' : 'Derine Dal',
             variant: GradientTextVariant.amethyst,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),

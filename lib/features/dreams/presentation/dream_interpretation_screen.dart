@@ -1915,12 +1915,11 @@ ${_getPersonalAdvice(sign)}''';
                               Expanded(
                                 child: Text(
                                   prompt['text'],
-                                  style: TextStyle(
+                                  style: AppTypography.decorativeScript(
                                     fontSize: 11,
                                     color: isDark
                                         ? AppColors.textPrimary
                                         : AppColors.lightTextPrimary,
-                                    height: 1.3,
                                   ),
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
@@ -2120,12 +2119,11 @@ ${_getPersonalAdvice(sign)}''';
                       isEn
                           ? 'Psychological Perspective\n━━━━━━━━━━━━━━━━━\nYour subconscious is revealing...'
                           : 'Psikolojik Perspektif\n━━━━━━━━━━━━━━━━━\nBilinaltınız ortaya koyuyor...',
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
+                        fontSize: 13,
                         color: isDark
                             ? AppColors.textPrimary.withValues(alpha: 0.5)
                             : AppColors.lightTextPrimary.withValues(alpha: 0.5),
-                        fontSize: 13,
-                        height: 1.5,
                       ),
                     ),
                   ],
@@ -2175,7 +2173,7 @@ ${_getPersonalAdvice(sign)}''';
                           : '$lockedCount perspektif daha mevcut',
                       variant: GradientTextVariant.amethyst,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: AppTypography.displayFont.copyWith(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                       ),
@@ -2186,11 +2184,11 @@ ${_getPersonalAdvice(sign)}''';
                           ? 'See your dream through every lens'
                           : 'Rüyanızı her açıdan görün',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
+                        fontSize: 12,
                         color: isDark
                             ? Colors.white.withValues(alpha: 0.6)
                             : Colors.black.withValues(alpha: 0.6),
-                        fontSize: 12,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -2232,10 +2230,10 @@ ${_getPersonalAdvice(sign)}''';
                             isEn
                                 ? 'Access All Perspectives'
                                 : 'Tüm Perspektiflere Eriş',
-                            style: const TextStyle(
-                              color: Colors.white,
+                            style: AppTypography.modernAccent(
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
                           ),
                         ),
@@ -2658,17 +2656,18 @@ class _DreamSymbolsSheet extends ConsumerWidget {
                               children: [
                                 Text(
                                   symbol['name'] ?? '',
-                                  style: TextStyle(
+                                  style: AppTypography.modernAccent(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
                                     color: isDark
                                         ? AppColors.textPrimary
                                         : AppColors.lightTextPrimary,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13,
                                   ),
                                 ),
                                 Text(
                                   symbol['meaning'] ?? '',
-                                  style: TextStyle(
+                                  style: AppTypography.elegantAccent(
+                                    fontSize: 10,
                                     color: isDark
                                         ? AppColors.textSecondary.withValues(
                                             alpha: 0.8,
@@ -2677,7 +2676,6 @@ class _DreamSymbolsSheet extends ConsumerWidget {
                                             .withValues(
                                             alpha: 0.8,
                                           ),
-                                    fontSize: 10,
                                   ),
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,

@@ -50,7 +50,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
           isEn
               ? 'Behavioral patterns detected in your entries'
               : 'Kayıtlarında tespit edilen davranışsal kalıplar',
-          style: TextStyle(
+          style: AppTypography.decorativeScript(
             fontSize: 13,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -96,7 +96,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
               isEn
                   ? 'Keep journaling to discover your behavioral patterns'
                   : 'Davranışsal kalıplarını keşfetmek için kayıt yapmaya devam et',
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -162,7 +162,7 @@ class PatternLoopAnalyzer extends StatelessWidget {
       ),
       child: Text(
         '$label: $count',
-        style: TextStyle(
+        style: AppTypography.modernAccent(
           fontSize: 11,
           fontWeight: FontWeight.w600,
           color: color,
@@ -253,32 +253,35 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                                 widget.isEn
                                     ? loop.primaryArea.displayNameEn
                                     : loop.primaryArea.displayNameTr,
-                                style: TextStyle(
+                                style: AppTypography.elegantAccent(
                                   fontSize: 11,
                                   fontWeight: FontWeight.w500,
                                   color: areaColor,
+                                  letterSpacing: 0.5,
                                 ),
                               ),
                               if (loop.secondaryArea case final secondary?) ...[
                                 Text(
                                   ' + ',
-                                  style: TextStyle(
+                                  style: AppTypography.elegantAccent(
                                     fontSize: 11,
                                     color: widget.isDark
                                         ? AppColors.textMuted
                                         : AppColors.lightTextMuted,
+                                    letterSpacing: 0.0,
                                   ),
                                 ),
                                 Text(
                                   widget.isEn
                                       ? secondary.displayNameEn
                                       : secondary.displayNameTr,
-                                  style: TextStyle(
+                                  style: AppTypography.elegantAccent(
                                     fontSize: 11,
                                     fontWeight: FontWeight.w500,
                                     color:
                                         kAreaColors[secondary] ??
                                         AppColors.auroraStart,
+                                    letterSpacing: 0.5,
                                   ),
                                 ),
                               ],
@@ -287,7 +290,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                           const SizedBox(height: 2),
                           Text(
                             widget.isEn ? loop.insightEn : loop.insightTr,
-                            style: TextStyle(
+                            style: AppTypography.decorativeScript(
                               fontSize: 13,
                               color: widget.isDark
                                   ? AppColors.textPrimary
@@ -378,11 +381,12 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
             children: [
               Text(
                 widget.isEn ? 'Strength' : 'Güç',
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 11,
                   color: widget.isDark
                       ? AppColors.textMuted
                       : AppColors.lightTextMuted,
+                  letterSpacing: 0.5,
                 ),
               ),
               const SizedBox(width: 8),
@@ -402,7 +406,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
               const SizedBox(width: 8),
               Text(
                 '${(loop.strength * 100).round()}%',
-                style: TextStyle(
+                style: AppTypography.modernAccent(
                   fontSize: 11,
                   fontWeight: FontWeight.w600,
                   color: color,
@@ -480,7 +484,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                                   ? stage.descriptionEn!
                                   : (stage.descriptionTr ??
                                         stage.descriptionEn!),
-                              style: TextStyle(
+                              style: AppTypography.decorativeScript(
                                 fontSize: 12,
                                 color: widget.isDark
                                     ? AppColors.textMuted
@@ -516,7 +520,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                       widget.isEn
                           ? loop.actionEn!
                           : (loop.actionTr ?? loop.actionEn!),
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 12,
                         color: widget.isDark
                             ? AppColors.textSecondary

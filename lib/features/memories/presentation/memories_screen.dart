@@ -53,7 +53,8 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Something went wrong' : 'Bir hata oluştu',
-                style: TextStyle(
+                style: AppTypography.decorativeScript(
+                  fontSize: 14,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -212,11 +213,11 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                               isEn
                                   ? 'No entries this month'
                                   : 'Bu ayda kay\u0131t yok',
-                              style: TextStyle(
+                              style: AppTypography.decorativeScript(
+                                fontSize: 14,
                                 color: isDark
                                     ? AppColors.textMuted
                                     : AppColors.lightTextMuted,
-                                fontSize: 14,
                               ),
                             ),
                           ),
@@ -382,9 +383,10 @@ class _MiniStat extends StatelessWidget {
         const SizedBox(height: 2),
         Text(
           label,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 11,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+            letterSpacing: 1.0,
           ),
         ),
       ],
@@ -455,7 +457,7 @@ class _OnThisDayCard extends StatelessWidget {
                   children: [
                     Text(
                       dateStr,
-                      style: TextStyle(
+                      style: AppTypography.modernAccent(
                         fontSize: 11,
                         fontWeight: FontWeight.w600,
                         color: AppColors.auroraStart,
@@ -468,11 +470,12 @@ class _OnThisDayCard extends StatelessWidget {
                           : entry.focusArea.displayNameTr,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: isDark
                             ? AppColors.textSecondary
                             : AppColors.lightTextSecondary,
+                        letterSpacing: 0.5,
                       ),
                     ),
                     Row(
@@ -560,15 +563,16 @@ class _MonthSelector extends StatelessWidget {
                   ),
                   child: Text(
                     label,
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
                       fontSize: 13,
-                      fontWeight:
-                          isSelected ? FontWeight.w600 : FontWeight.normal,
                       color: isSelected
                           ? AppColors.auroraStart
                           : (isDark
                                 ? AppColors.textSecondary
                                 : AppColors.lightTextSecondary),
+                    ).copyWith(
+                      fontWeight:
+                          isSelected ? FontWeight.w600 : FontWeight.normal,
                     ),
                   ),
                 ),
@@ -684,9 +688,10 @@ class _MemoryCard extends StatelessWidget {
                               ),
                               Text(
                                 areaLabel,
-                                style: const TextStyle(
+                                style: AppTypography.elegantAccent(
                                   fontSize: 12,
                                   color: Colors.white70,
+                                  letterSpacing: 0.5,
                                 ),
                               ),
                             ],
@@ -778,11 +783,12 @@ class _MemoryCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       dateStr,
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: isDark
                             ? AppColors.textMuted
                             : AppColors.lightTextMuted,
+                        letterSpacing: 0.5,
                       ),
                     ),
                     if (entry.note != null && entry.note!.isNotEmpty) ...[
