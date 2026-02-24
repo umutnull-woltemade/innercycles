@@ -2622,9 +2622,7 @@ class _DreamSymbolsSheet extends ConsumerWidget {
                         language,
                       ),
                       variant: GradientTextVariant.amethyst,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppTypography.modernAccent(fontSize: 15, fontWeight: FontWeight.w700, letterSpacing: 0.3),
                     ),
                   ],
                 ),

@@ -655,9 +655,10 @@ class _SymbolCard extends StatelessWidget {
                             child: _buildHighlightedText(
                               symbol.symbolTr,
                               searchQuery,
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                color: AppColors.textPrimary,
+                              AppTypography.modernAccent(
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
+                                color: AppColors.textPrimary,
                               ),
                             ),
                           ),
@@ -1594,11 +1595,11 @@ class _PersonalDictionarySheet extends StatelessWidget {
                     children: [
                       Text(
                         symbol.symbolTr,
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(
-                              color: AppColors.textPrimary,
-                              fontWeight: FontWeight.w600,
-                            ),
+                        style: AppTypography.modernAccent(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textPrimary,
+                        ),
                       ),
                       const SizedBox(height: 4),
                       Row(

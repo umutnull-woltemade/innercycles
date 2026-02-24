@@ -118,7 +118,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                                   isEn
                                       ? 'Could not load. Your local data is unaffected.'
                                       : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                                  style: TextStyle(
+                                  style: AppTypography.subtitle(
                                     color: isDark
                                         ? AppColors.textMuted
                                         : AppColors.lightTextMuted,
@@ -165,7 +165,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                                     isEn
                                         ? 'Could not load. Your local data is unaffected.'
                                         : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                                    style: TextStyle(
+                                    style: AppTypography.subtitle(
                                       color: isDark
                                           ? AppColors.textMuted
                                           : AppColors.lightTextMuted,
@@ -322,7 +322,7 @@ class _YearSelector extends StatelessWidget {
                 child: Center(
                   child: Text(
                     '$year',
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                       color: isSelected
@@ -503,7 +503,7 @@ class _StatColumn extends StatelessWidget {
       children: [
         Text(
           value,
-          style: TextStyle(
+          style: AppTypography.displayFont.copyWith(
             fontSize: 22,
             fontWeight: FontWeight.w800,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -512,7 +512,7 @@ class _StatColumn extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           label,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 11,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -581,7 +581,7 @@ class _MoodJourneyCard extends StatelessWidget {
           GradientText(
             isEn ? 'Mood Trajectory' : 'Ruh Hali Seyri',
             variant: GradientTextVariant.aurora,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
@@ -591,7 +591,7 @@ class _MoodJourneyCard extends StatelessWidget {
             isEn
                 ? 'Monthly average mood (1-5)'
                 : 'Aylık ortalama ruh hali (1-5)',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -615,7 +615,7 @@ class _MoodJourneyCard extends StatelessWidget {
                         if (hasData)
                           Text(
                             value.toStringAsFixed(1),
-                            style: TextStyle(
+                            style: AppTypography.modernAccent(
                               fontSize: 10,
                               fontWeight: FontWeight.w600,
                               color: isDark
@@ -649,9 +649,8 @@ class _MoodJourneyCard extends StatelessWidget {
                         const SizedBox(height: 6),
                         Text(
                           monthLabels[i],
-                          style: TextStyle(
+                          style: AppTypography.subtitle(
                             fontSize: 11,
-                            fontWeight: FontWeight.w500,
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,
@@ -717,7 +716,7 @@ class _FocusAreasCard extends StatelessWidget {
           GradientText(
             isEn ? 'Focus Areas' : 'Odak Alanları',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
@@ -725,7 +724,7 @@ class _FocusAreasCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             isEn ? 'Time spent per area' : 'Alan başına harcanan zaman',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -749,9 +748,8 @@ class _FocusAreasCard extends StatelessWidget {
                     children: [
                       Text(
                         label,
-                        style: TextStyle(
+                        style: AppTypography.subtitle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w500,
                           color: isDark
                               ? AppColors.textPrimary
                               : AppColors.lightTextPrimary,
@@ -759,7 +757,7 @@ class _FocusAreasCard extends StatelessWidget {
                       ),
                       Text(
                         '$count ($pct%)',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 13,
                           color: isDark
                               ? AppColors.textMuted
@@ -823,7 +821,7 @@ class _GrowthScoreCard extends StatelessWidget {
           GradientText(
             isEn ? 'Growth Score' : 'Gelişim Skoru',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
@@ -833,7 +831,7 @@ class _GrowthScoreCard extends StatelessWidget {
             isEn
                 ? 'Based on your mood improvement trend'
                 : 'Ruh hali iyileşme eğilimi bazında',
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -858,7 +856,7 @@ class _GrowthScoreCard extends StatelessWidget {
                     children: [
                       Text(
                         '$score',
-                        style: TextStyle(
+                        style: AppTypography.displayFont.copyWith(
                           fontSize: 42,
                           fontWeight: FontWeight.w800,
                           color: _scoreColor(score),
@@ -866,9 +864,8 @@ class _GrowthScoreCard extends StatelessWidget {
                       ),
                       Text(
                         label,
-                        style: TextStyle(
+                        style: AppTypography.subtitle(
                           fontSize: 12,
-                          fontWeight: FontWeight.w500,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
@@ -991,7 +988,7 @@ class _HighlightsCard extends StatelessWidget {
           GradientText(
             isEn ? 'Highlights' : 'Öne Çıkanlar',
             variant: GradientTextVariant.gold,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
@@ -1027,12 +1024,11 @@ class _HighlightsCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         h.text,
-                        style: TextStyle(
+                        style: AppTypography.decorativeScript(
                           fontSize: 14,
                           color: isDark
                               ? AppColors.textPrimary
                               : AppColors.lightTextPrimary,
-                          height: 1.4,
                         ),
                       ),
                     ),
@@ -1229,7 +1225,7 @@ class _ShareableSummaryCard extends StatelessWidget {
           GradientText(
             isEn ? 'My ${review.year} Summary' : '${review.year} Özetim',
             variant: GradientTextVariant.aurora,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 16,
               fontWeight: FontWeight.w700,
             ),
@@ -1245,9 +1241,8 @@ class _ShareableSummaryCard extends StatelessWidget {
                       'En çok odak: $topAreaName\n'
                       'Gelişim skoru: ${review.growthScore}/100\n'
                       'En iyi seri: ${review.streakBest} gün',
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 15,
-              height: 1.7,
               color: isDark
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,

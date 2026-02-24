@@ -152,11 +152,12 @@ class StreakStatsScreen extends ConsumerWidget {
           ),
           Text(
             isEn ? 'day streak' : 'günlük seri',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            style: AppTypography.modernAccent(
+              fontSize: 16,
+              fontWeight: FontWeight.w300,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
-              fontWeight: FontWeight.w300,
             ),
           ),
           if (stats.nextMilestone != null) ...[
@@ -553,11 +554,12 @@ class _StatTile extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             value,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            style: AppTypography.modernAccent(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
               color: isDark
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,
-              fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 2),
