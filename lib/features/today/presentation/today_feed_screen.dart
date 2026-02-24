@@ -28,6 +28,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/share_card_sheet.dart';
+import '../../../shared/widgets/birthday_avatar.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
   const TodayFeedScreen({super.key});
@@ -199,6 +200,13 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     ),
                   ),
                 ),
+              ),
+
+              // ═══════════════════════════════════════════════════════
+              // 9b. TODAY'S BIRTHDAYS (conditional)
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _TodayBirthdayBanner(isEn: isEn, isDark: isDark),
               ),
 
               // ═══════════════════════════════════════════════════════
@@ -1586,6 +1594,109 @@ class _PersonalizedPromptSection extends ConsumerWidget {
       default:
         return area;
     }
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// TODAY'S BIRTHDAYS — Gold banner shown only when someone has a birthday
+// ════════════════════════════════════════════════════════════════════════════
+
+class _TodayBirthdayBanner extends ConsumerWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _TodayBirthdayBanner({required this.isEn, required this.isDark});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final serviceAsync = ref.watch(birthdayContactServiceProvider);
+    return serviceAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (service) {
+        final todayBirthdays = service.getTodayBirthdays();
+        if (todayBirthdays.isEmpty) return const SizedBox.shrink();
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: GestureDetector(
+            onTap: () => context.push(Routes.birthdayAgenda),
+            child: PremiumCard(
+              style: PremiumCardStyle.gold,
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  // Stacked avatars
+                  SizedBox(
+                    width: todayBirthdays.length == 1 ? 48 : 64,
+                    height: 48,
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        BirthdayAvatar(
+                          photoPath: todayBirthdays.first.photoPath,
+                          name: todayBirthdays.first.name,
+                          size: 44,
+                          showBirthdayCake: true,
+                        ),
+                        if (todayBirthdays.length > 1)
+                          Positioned(
+                            left: 24,
+                            child: BirthdayAvatar(
+                              photoPath: todayBirthdays[1].photoPath,
+                              name: todayBirthdays[1].name,
+                              size: 44,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          todayBirthdays.length == 1
+                              ? todayBirthdays.first.name
+                              : '${todayBirthdays.first.name} +${todayBirthdays.length - 1}',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: isDark
+                                ? AppColors.textPrimary
+                                : AppColors.lightTextPrimary,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          isEn
+                              ? '\u{1F382} Birthday today!'
+                              : '\u{1F382} Bug\u{00FC}n do\u{011F}um g\u{00FC}n\u{00FC}!',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: AppColors.starGold,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 14,
+                    color: AppColors.starGold,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ).animate().fadeIn(delay: 660.ms, duration: 400.ms).slideY(
+          begin: 0.05,
+          delay: 660.ms,
+          duration: 400.ms,
+        );
+      },
+    );
   }
 }
 

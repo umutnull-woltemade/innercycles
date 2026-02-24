@@ -827,5 +827,22 @@ class ToolManifestRegistry {
       requiresPremium: true,
       relatedToolIds: ['calendarHeatmap', 'journal', 'yearReview'],
     ),
+
+    // ── 45. Birthday Agenda ──
+    ToolManifest(
+      id: 'birthdayAgenda',
+      nameEn: 'Birthday Agenda',
+      nameTr: 'Do\u{011F}um G\u{00FC}n\u{00FC} Ajandas\u{0131}',
+      valuePropositionEn:
+          'Never miss a birthday. Calendar view with reminders.',
+      valuePropositionTr:
+          'Hi\u{00E7}bir do\u{011F}um g\u{00FC}n\u{00FC}n\u{00FC} ka\u{00E7}\u{0131}rma. Hat\u{0131}rlat\u{0131}c\u{0131}l\u{0131} takvim g\u{00F6}r\u{00FC}n\u{00FC}m\u{00FC}.',
+      route: Routes.birthdayAgenda,
+      icon: '\u{1F382}',
+      category: ToolCategory.journal,
+      intentTags: [IntentTag.track],
+      timeToValueSeconds: 30,
+      relatedToolIds: ['lifeTimeline', 'calendarHeatmap'],
+    ),
   ];
 }
