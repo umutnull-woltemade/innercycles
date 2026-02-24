@@ -462,7 +462,7 @@ class SleepTrendsScreen extends ConsumerWidget {
           GradientText(
             isEn ? 'Notes' : 'Notlar',
             variant: GradientTextVariant.aurora,
-            style: const TextStyle(
+            style: AppTypography.displayFont.copyWith(
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -490,7 +490,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                     child: Center(
                       child: Text(
                         '${entry.quality}',
-                        style: TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
                           color: _qualityColor(entry.quality),
@@ -505,7 +505,7 @@ class SleepTrendsScreen extends ConsumerWidget {
                       children: [
                         Text(
                           dateStr,
-                          style: TextStyle(
+                          style: AppTypography.subtitle(
                             fontSize: 11,
                             color: isDark
                                 ? AppColors.textMuted

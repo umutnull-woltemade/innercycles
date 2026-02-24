@@ -347,7 +347,7 @@ class _BreakdownDetail extends StatelessWidget {
                       ),
                       Text(
                         '${b.score.round()}/100',
-                        style: TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
                           color: isDark
@@ -358,11 +358,12 @@ class _BreakdownDetail extends StatelessWidget {
                       const SizedBox(width: 8),
                       Text(
                         '(${(b.weight * 100).round()}%)',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 11,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
+                          letterSpacing: 0.3,
                         ),
                       ),
                     ],
@@ -481,7 +482,7 @@ class _WeeklyTrendChart extends StatelessWidget {
               const SizedBox(width: 4),
               Text(
                 _trendLabel(trend.direction, isEn),
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 12,
                   color: trend.direction == 'up'
                       ? AppColors.success
@@ -490,6 +491,7 @@ class _WeeklyTrendChart extends StatelessWidget {
                       : (isDark
                             ? AppColors.textMuted
                             : AppColors.lightTextMuted),
+                  letterSpacing: 0.5,
                 ),
               ),
             ],
@@ -513,11 +515,12 @@ class _WeeklyTrendChart extends StatelessWidget {
                       children: [
                         Text(
                           '${score.score}',
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 10,
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,
+                            letterSpacing: 0.3,
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -534,11 +537,12 @@ class _WeeklyTrendChart extends StatelessWidget {
                           score.dateKey.length > 8
                               ? score.dateKey.substring(8)
                               : score.dateKey,
-                          style: TextStyle(
+                          style: AppTypography.elegantAccent(
                             fontSize: 10,
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,
+                            letterSpacing: 0.3,
                           ),
                         ),
                       ],
@@ -593,7 +597,7 @@ class _TipRow extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 fontSize: 13,
                 color: isDark
                     ? AppColors.textSecondary

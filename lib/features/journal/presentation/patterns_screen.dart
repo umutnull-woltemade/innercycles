@@ -50,7 +50,7 @@ class PatternsScreen extends ConsumerWidget {
                 child: Text(
                   CommonStrings.somethingWentWrong(language),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,
@@ -261,7 +261,7 @@ class PatternsScreen extends ConsumerWidget {
                                 ),
                                 label: Text(
                                   isEn ? 'Write Entry' : 'Kayıt Yaz',
-                                  style: const TextStyle(
+                                  style: AppTypography.modernAccent(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -547,7 +547,7 @@ class PatternsScreen extends ConsumerWidget {
                         const SizedBox(width: 8),
                         Text(
                           isEn ? 'See Full Analysis' : 'Tam Analizi Gör',
-                          style: const TextStyle(
+                          style: AppTypography.modernAccent(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
@@ -665,7 +665,7 @@ class PatternsScreen extends ConsumerWidget {
                     width: dimensionHealth != null ? 76 : 90,
                     child: Text(
                       label,
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 14,
                         color: isDark
                             ? AppColors.textSecondary
@@ -689,7 +689,7 @@ class PatternsScreen extends ConsumerWidget {
                   const SizedBox(width: 8),
                   Text(
                     entry.value.toStringAsFixed(1),
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: isDark
@@ -758,7 +758,7 @@ class PatternsScreen extends ConsumerWidget {
                   Expanded(
                     child: Text(
                       msg,
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 14,
                         color: isDark
                             ? AppColors.textPrimary
@@ -810,7 +810,7 @@ class PatternsScreen extends ConsumerWidget {
                   Expanded(
                     child: Text(
                       msg,
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 14,
                         color: isDark
                             ? AppColors.textPrimary
@@ -881,7 +881,7 @@ class PatternsScreen extends ConsumerWidget {
                       const SizedBox(width: 8),
                       Text(
                         isEn ? cc.shortDisplayEn() : cc.shortDisplayTr(),
-                        style: TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                           color: isDark
@@ -897,7 +897,7 @@ class PatternsScreen extends ConsumerWidget {
                     padding: const EdgeInsets.only(left: 16),
                     child: Text(
                       isEn ? cc.insightTextEn : cc.insightTextTr,
-                      style: TextStyle(
+                      style: AppTypography.decorativeScript(
                         fontSize: 13,
                         color: isDark
                             ? AppColors.textSecondary
@@ -916,7 +916,7 @@ class PatternsScreen extends ConsumerWidget {
                             isEn
                                 ? '${cc.sampleSize} days'
                                 : '${cc.sampleSize} gün',
-                            style: TextStyle(
+                            style: AppTypography.subtitle(
                               fontSize: 11,
                               color: isDark
                                   ? AppColors.textSecondary.withValues(
@@ -1039,7 +1039,7 @@ class PatternsScreen extends ConsumerWidget {
           // Human-readable insight
           Text(
             isEn ? comparison.getInsightEn() : comparison.getInsightTr(),
-            style: TextStyle(
+            style: AppTypography.decorativeScript(
               fontSize: 13,
               color: isDark
                   ? AppColors.textSecondary
@@ -1073,7 +1073,7 @@ class PatternsScreen extends ConsumerWidget {
         const SizedBox(height: 2),
         Text(
           label,
-          style: TextStyle(
+          style: AppTypography.subtitle(
             fontSize: 12,
             color: isDark
                 ? AppColors.textSecondary
@@ -1083,7 +1083,7 @@ class PatternsScreen extends ConsumerWidget {
         ),
         Text(
           isEn ? '$days days' : '$days gün',
-          style: TextStyle(
+          style: AppTypography.subtitle(
             fontSize: 11,
             color: isDark
                 ? AppColors.textSecondary.withValues(alpha: 0.6)
@@ -1155,10 +1155,9 @@ class _CycleArcsPainter extends CustomPainter {
       final labelPainter = TextPainter(
         text: TextSpan(
           text: isEn ? area.displayNameEn : area.displayNameTr,
-          style: TextStyle(
-            color: _colors[i],
+          style: AppTypography.subtitle(
             fontSize: 10,
-            fontWeight: FontWeight.w500,
+            color: _colors[i],
           ),
         ),
         textDirection: TextDirection.ltr,

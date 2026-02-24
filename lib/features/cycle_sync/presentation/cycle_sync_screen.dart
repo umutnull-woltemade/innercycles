@@ -44,7 +44,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -246,7 +246,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                       ),
                       Text(
                         isEn ? 'of $cycleLength' : '/ $cycleLength',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: isDark
                               ? AppColors.textMuted
@@ -271,7 +271,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                 ),
                 child: Text(
                   isEn ? phase.displayNameEn : phase.displayNameTr,
-                  style: TextStyle(
+                  style: AppTypography.modernAccent(
                     color: phaseColor,
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
@@ -386,7 +386,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
         Expanded(
           child: Text(
             label,
-            style: TextStyle(
+            style: AppTypography.subtitle(
               fontSize: 14,
               color: isDark
                   ? AppColors.textSecondary
@@ -396,7 +396,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
         ),
         Text(
           value,
-          style: TextStyle(
+          style: AppTypography.modernAccent(
             fontSize: 14,
             fontWeight: FontWeight.w600,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -443,7 +443,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                 isEn
                     ? '${phase.displayNameEn} Phase Prompt'
                     : '${phase.displayNameTr} Evresi İpucu',
-                style: TextStyle(
+                style: AppTypography.modernAccent(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                   color: phaseColor,
@@ -569,7 +569,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                     isEn
                         ? 'Add more entries to surface cycle-emotion correlations.'
                         : 'Döngü-duygu korelasyonlarını ortaya çıkarmak için daha fazla kayıt ekle.',
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 13,
                       color: isDark
                           ? AppColors.textSecondary
@@ -603,7 +603,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   GradientText(
                     isEn ? 'Cycle Insight' : 'Döngü İçgörüsü',
                     variant: GradientTextVariant.aurora,
-                    style: const TextStyle(
+                    style: AppTypography.displayFont.copyWith(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
                     ),
@@ -688,7 +688,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                                     0,
                                     phase.displayNameTr.length.clamp(0, 3),
                                   ),
-                            style: const TextStyle(
+                            style: AppTypography.modernAccent(
                               fontSize: 10,
                               fontWeight: FontWeight.w600,
                               color: Colors.white,
@@ -747,7 +747,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   const SizedBox(width: 8),
                   Text(
                     isEn ? phase.displayNameEn : phase.displayNameTr,
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
                       fontSize: 12,
                       color: isDark
                           ? AppColors.textSecondary
@@ -757,7 +757,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   const Spacer(),
                   Text(
                     isEn ? phase.descriptionEn : phase.descriptionTr,
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 11,
                       color: isDark
                           ? AppColors.textMuted
@@ -805,7 +805,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
         icon: const Icon(Icons.water_drop_rounded),
         label: Text(
           isEn ? 'Log Period' : 'Adet Kaydet',
-          style: const TextStyle(fontWeight: FontWeight.w600),
+          style: AppTypography.modernAccent(fontWeight: FontWeight.w600),
         ),
       ),
     );
@@ -867,7 +867,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                     isEn
                         ? 'Mark today as the start of your period.'
                         : 'Bugünü adet başlangıcı olarak işaretle.',
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
                       color: isDark
                           ? AppColors.textSecondary
                           : AppColors.lightTextSecondary,
@@ -899,7 +899,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                       ),
                       child: Text(
                         isEn ? 'Period Started Today' : 'Adet Bugün Başladı',
-                        style: const TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
@@ -911,7 +911,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                     onPressed: () => Navigator.pop(ctx),
                     child: Text(
                       isEn ? 'Cancel' : 'İptal',
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         color: isDark
                             ? AppColors.textMuted
                             : AppColors.lightTextMuted,

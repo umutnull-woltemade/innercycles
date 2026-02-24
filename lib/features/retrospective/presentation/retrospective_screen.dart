@@ -19,6 +19,7 @@ import '../../../data/content/important_date_presets.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../core/theme/app_typography.dart';
@@ -556,37 +557,17 @@ class _DateEntryStep extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
-          child: SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: presetDates.isEmpty
-                  ? null
-                  : () {
-                      HapticService.buttonPress();
-                      onSaveAll();
-                    },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.starGold,
-                foregroundColor: Colors.black87,
-                disabledBackgroundColor: isDark
-                    ? Colors.white.withValues(alpha: 0.08)
-                    : Colors.black.withValues(alpha: 0.06),
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-                ),
-                elevation: 0,
-              ),
-              child: Text(
-                isEn
-                    ? 'Save ${presetDates.length} memories'
-                    : '${presetDates.length} anıyı kaydet',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
+          child: GradientButton.gold(
+            label: isEn
+                ? 'Save ${presetDates.length} memories'
+                : '${presetDates.length} anıyı kaydet',
+            onPressed: presetDates.isEmpty
+                ? null
+                : () {
+                    HapticService.buttonPress();
+                    onSaveAll();
+                  },
+            expanded: true,
           ),
         ),
       ],
@@ -651,30 +632,13 @@ class _SummaryStep extends StatelessWidget {
             ),
           ).animate().fadeIn(delay: 350.ms, duration: 400.ms),
           const SizedBox(height: 48),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                HapticService.buttonPress();
-                onDone();
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.starGold,
-                foregroundColor: Colors.black87,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-                ),
-                elevation: 0,
-              ),
-              child: Text(
-                isEn ? 'Back to Home' : 'Ana Sayfaya Dön',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
+          GradientButton.gold(
+            label: isEn ? 'Back to Home' : 'Ana Sayfaya Dön',
+            onPressed: () {
+              HapticService.buttonPress();
+              onDone();
+            },
+            expanded: true,
           ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
         ],
       ),

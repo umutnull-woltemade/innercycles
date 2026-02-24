@@ -62,7 +62,8 @@ class ArchetypeScreen extends ConsumerWidget {
                       child: Center(
                         child: Text(
                           isEn ? 'Could not load. Your local data is unaffected.' : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                          style: TextStyle(
+                          style: AppTypography.decorativeScript(
+                            fontSize: 14,
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,
@@ -81,7 +82,8 @@ class ArchetypeScreen extends ConsumerWidget {
                               isEn
                                   ? 'Could not load. Your local data is unaffected.'
                                   : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                              style: TextStyle(
+                              style: AppTypography.decorativeScript(
+                                fontSize: 14,
                                 color: isDark
                                     ? AppColors.textMuted
                                     : AppColors.lightTextMuted,
@@ -485,21 +487,23 @@ class _EvolutionTimeline extends StatelessWidget {
                       const SizedBox(height: 6),
                       Text(
                         monthLabel,
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 10,
                           fontWeight: FontWeight.w500,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
+                          letterSpacing: 0.5,
                         ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 2),
                       Text(
                         '${(snapshot.confidence * 100).toStringAsFixed(0)}%',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 10,
                           color: AppColors.auroraStart.withValues(alpha: 0.8),
+                          letterSpacing: 0.3,
                         ),
                       ),
                     ],
@@ -667,7 +671,7 @@ class _BreakdownRow extends StatelessWidget {
           width: 90,
           child: Text(
             archetype.getName(isEnglish: isEn),
-            style: TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 11,
               fontWeight: isTop ? FontWeight.w600 : FontWeight.w400,
               color: isDark
@@ -675,6 +679,7 @@ class _BreakdownRow extends StatelessWidget {
                   : (isTop
                         ? AppColors.lightTextPrimary
                         : AppColors.lightTextSecondary),
+              letterSpacing: 0.5,
             ),
             overflow: TextOverflow.ellipsis,
           ),
@@ -716,7 +721,7 @@ class _BreakdownRow extends StatelessWidget {
           child: Text(
             '$pctStr%',
             textAlign: TextAlign.right,
-            style: TextStyle(
+            style: AppTypography.modernAccent(
               fontSize: 11,
               fontWeight: FontWeight.w600,
               color: isTop
@@ -837,7 +842,10 @@ class _ShareArchetypeButton extends StatelessWidget {
         icon: const Icon(Icons.share_rounded, size: 18),
         label: Text(
           isEn ? 'Share Your Archetype' : 'Arketipini Paylaş',
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          style: AppTypography.modernAccent(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.amethyst.withValues(alpha: 0.15),

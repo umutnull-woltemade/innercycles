@@ -87,11 +87,12 @@ class _EmotionalVocabularyScreenState
                                 isEn
                                     ? '${emotions.length} emotions'
                                     : '${emotions.length} duygu',
-                                style: TextStyle(
+                                style: AppTypography.elegantAccent(
                                   fontSize: 12,
                                   color: isDark
                                       ? AppColors.textMuted
                                       : AppColors.lightTextMuted,
+                                  letterSpacing: 0.5,
                                 ),
                               ),
                               const SizedBox(height: AppConstants.spacingMd),
@@ -289,7 +290,7 @@ class _FamilyChip extends StatelessWidget {
               const SizedBox(width: 6),
               Text(
                 label,
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 13,
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                   color: isSelected
@@ -297,6 +298,7 @@ class _FamilyChip extends StatelessWidget {
                       : (isDark
                             ? AppColors.textSecondary
                             : AppColors.lightTextSecondary),
+                  letterSpacing: 0.5,
                 ),
               ),
             ],
@@ -380,10 +382,11 @@ class _EmotionCardState extends State<_EmotionCard> {
                                 isEn
                                     ? e.intensity.displayNameEn
                                     : e.intensity.displayNameTr,
-                                style: TextStyle(
+                                style: AppTypography.elegantAccent(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w600,
                                   color: _getIntensityColor(e.intensity),
+                                  letterSpacing: 0.5,
                                 ),
                               ),
                             ),
@@ -392,11 +395,12 @@ class _EmotionCardState extends State<_EmotionCard> {
                               isEn
                                   ? e.family.displayNameEn
                                   : e.family.displayNameTr,
-                              style: TextStyle(
+                              style: AppTypography.elegantAccent(
                                 fontSize: 11,
                                 color: isDark
                                     ? AppColors.textMuted
                                     : AppColors.lightTextMuted,
+                                letterSpacing: 0.5,
                               ),
                             ),
                           ],

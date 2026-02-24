@@ -65,7 +65,7 @@ class _HabitSuggestionsScreenState
           error: (_, _) => Center(
             child: Text(
               CommonStrings.somethingWentWrong(language),
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,
@@ -215,7 +215,7 @@ class _HabitSuggestionsScreenState
                   isEn
                       ? 'No bookmarked habits yet'
                       : 'Henüz kayıtlı alışkanlık yok',
-                  style: TextStyle(
+                  style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
@@ -363,7 +363,7 @@ class _DailySpotlightCard extends StatelessWidget {
                         GradientText(
                           isEn ? 'Today\'s Habit' : 'Bugünün Alışkanlığı',
                           variant: GradientTextVariant.aurora,
-                          style: const TextStyle(
+                          style: AppTypography.displayFont.copyWith(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                           ),
@@ -372,7 +372,7 @@ class _DailySpotlightCard extends StatelessWidget {
                         GradientText(
                           isEn ? habit.titleEn : habit.titleTr,
                           variant: GradientTextVariant.gold,
-                          style: const TextStyle(
+                          style: AppTypography.displayFont.copyWith(
                             fontSize: 17,
                             fontWeight: FontWeight.w700,
                           ),
@@ -398,7 +398,7 @@ class _DailySpotlightCard extends StatelessWidget {
                         isAdopted
                             ? (isEn ? 'Adopted' : 'Benimsendi')
                             : (isEn ? 'Tried' : 'Denendi'),
-                        style: TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,
                           color: isAdopted
