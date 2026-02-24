@@ -14,6 +14,7 @@ import '../../../../core/constants/app_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/services/emotional_cycle_service.dart';
+import '../../../../shared/widgets/premium_card.dart';
 import 'cycle_wave_painter.dart';
 
 class CycleSummaryCard extends StatelessWidget {
@@ -36,22 +37,12 @@ class CycleSummaryCard extends StatelessWidget {
         ? summary.area.displayNameEn
         : summary.area.displayNameTr;
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(color: color.withValues(alpha: 0.25)),
-        boxShadow: [
-          BoxShadow(
-            color: color.withValues(alpha: isDark ? 0.08 : 0.04),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+      borderRadius: AppConstants.radiusLg,
+      showGradientBorder: false,
+      showInnerShadow: false,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

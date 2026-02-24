@@ -383,29 +383,11 @@ class _GrowthTipCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: isDark
-              ? [
-                  AppColors.auroraStart.withValues(alpha: 0.12),
-                  AppColors.cosmicPurple.withValues(alpha: 0.3),
-                ]
-              : [
-                  AppColors.lightAuroraStart.withValues(alpha: 0.08),
-                  AppColors.lightSurfaceVariant,
-                ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? AppColors.auroraStart.withValues(alpha: 0.25)
-              : AppColors.lightAuroraStart.withValues(alpha: 0.15),
-        ),
-      ),
+      borderRadius: 16,
+      showInnerShadow: false,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -760,19 +742,13 @@ class _DisclaimerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? Colors.white.withValues(alpha: 0.03)
-            : Colors.black.withValues(alpha: 0.02),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.08)
-              : Colors.black.withValues(alpha: 0.04),
-        ),
-      ),
+      borderRadius: 12,
+      showGradientBorder: false,
+      showInnerShadow: false,
+      showNoise: false,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

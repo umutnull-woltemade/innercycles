@@ -323,24 +323,12 @@ class _ThankYouView extends StatelessWidget {
   Widget build(BuildContext context) {
     final suggestions = _getSuggestedEmotions(todayMood.mood);
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: isDark
-              ? [
-                  AppColors.success.withValues(alpha: 0.15),
-                  AppColors.surfaceDark.withValues(alpha: 0.9),
-                ]
-              : [
-                  AppColors.success.withValues(alpha: 0.08),
-                  AppColors.lightCard,
-                ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-      ),
+      borderRadius: 16,
+      showGradientBorder: false,
+      showInnerShadow: false,
       child: Column(
         children: [
           Row(
