@@ -127,7 +127,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
     return Row(
       children: [
         IconButton(
-          tooltip: 'Back',
+          tooltip: language == AppLanguage.tr ? 'Geri' : 'Back',
           onPressed: () => context.pop(),
           icon: Icon(
             Icons.chevron_left,

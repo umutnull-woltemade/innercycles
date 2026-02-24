@@ -115,7 +115,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       child: Row(
         children: [
           IconButton(
-            tooltip: 'Back to settings',
+            tooltip: lang == AppLanguage.tr ? 'Ayarlara dön' : 'Back to settings',
             onPressed: () => context.go(Routes.settings),
             icon: Icon(
               Icons.chevron_left,

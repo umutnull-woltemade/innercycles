@@ -19,6 +19,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
@@ -271,32 +272,12 @@ class MoodTrendsScreen extends ConsumerWidget {
                         ),
                       ),
                       const SizedBox(height: 4),
-                      ElevatedButton(
+                      GradientButton.gold(
+                        label: isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
                         onPressed: () => showContextualPaywall(
                           context,
                           ref,
                           paywallContext: PaywallContext.patterns,
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.starGold,
-                          foregroundColor: AppColors.deepSpace,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 8,
-                          ),
-                          minimumSize: Size.zero,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                              AppConstants.radiusMd,
-                            ),
-                          ),
-                        ),
-                        child: Text(
-                          isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
                         ),
                       ),
                     ],

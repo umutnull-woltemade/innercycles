@@ -474,7 +474,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                               'premium.paywall.continue_pro',
                               language,
                             ),
-                            style: const TextStyle(
+                            style: AppTypography.modernAccent(
                               color: Colors.black,
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -488,7 +488,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                                       .read(premiumProvider.notifier)
                                       .getProductPrice(_selectedTier) ??
                                   _selectedTier.price,
-                              style: TextStyle(
+                              style: AppTypography.elegantAccent(
                                 color: Colors.black.withValues(alpha: 0.6),
                                 fontSize: 12,
                               ),
@@ -595,7 +595,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                                 'premium.paywall.continue_pro',
                                 language,
                               ),
-                              style: const TextStyle(
+                              style: AppTypography.modernAccent(
                                 color: Colors.black,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -871,10 +871,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             },
       child: Text(
         L10nService.get('premium.restore_purchases', language),
-        style: TextStyle(
+        style: AppTypography.elegantAccent(
           color: AppColors.textSecondary,
-          decoration: TextDecoration.underline,
-        ),
+        ).copyWith(decoration: TextDecoration.underline),
       ),
     );
   }
@@ -994,7 +993,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             },
             child: Text(
               L10nService.get('common.start_journey', language),
-              style: const TextStyle(
+              style: AppTypography.modernAccent(
                 color: AppColors.starGold,
                 fontWeight: FontWeight.w600,
               ),

@@ -18,6 +18,7 @@ import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
 enum BreathingPreset {
@@ -392,32 +393,38 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                         const Spacer(),
 
                         // Start/Stop button
-                        SizedBox(
-                          width: double.infinity,
-                          height: 56,
-                          child: ElevatedButton(
-                            onPressed: _isRunning ? _stop : _start,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: _isRunning
-                                  ? AppColors.error.withValues(alpha: 0.8)
-                                  : AppColors.auroraStart,
-                              foregroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
+                        if (_isRunning)
+                          SizedBox(
+                            width: double.infinity,
+                            height: 56,
+                            child: ElevatedButton(
+                              onPressed: _stop,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.error.withValues(alpha: 0.8),
+                                foregroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                elevation: 0,
                               ),
-                              elevation: 0,
+                              child: Text(
+                                isEn ? 'Stop' : 'Durdur',
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                             ),
-                            child: Text(
-                              _isRunning
-                                  ? (isEn ? 'Stop' : 'Durdur')
-                                  : (isEn ? 'Start Breathing' : 'Nefese Başla'),
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
+                          )
+                        else
+                          GradientButton(
+                            label: isEn ? 'Start Breathing' : 'Nefese Başla',
+                            onPressed: _start,
+                            expanded: true,
+                            gradient: LinearGradient(
+                              colors: [AppColors.auroraStart, AppColors.auroraEnd],
                             ),
                           ),
-                        ),
                         const SizedBox(height: 24),
                       ],
                     ),

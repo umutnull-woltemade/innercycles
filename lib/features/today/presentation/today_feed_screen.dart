@@ -367,14 +367,30 @@ class _HomeHeader extends StatelessWidget {
                         userName,
                         variant: GradientTextVariant.gold,
                         style: AppTypography.displayFont.copyWith(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: -0.3,
+                          fontSize: 32,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: -0.5,
                           height: 1.1,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                      ),
+                      )
+                          .animate()
+                          .fadeIn(
+                            duration: 600.ms,
+                            curve: Curves.easeOut,
+                          )
+                          .slideX(
+                            begin: -0.05,
+                            end: 0,
+                            duration: 600.ms,
+                            curve: Curves.easeOut,
+                          )
+                          .then(delay: 800.ms)
+                          .shimmer(
+                            duration: 2000.ms,
+                            color: AppColors.starGold.withValues(alpha: 0.15),
+                          ),
                     ],
                     const SizedBox(height: 6),
                     Text(

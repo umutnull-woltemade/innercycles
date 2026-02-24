@@ -17,6 +17,7 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
@@ -209,31 +210,12 @@ class ProgramCompletionScreen extends ConsumerWidget {
                 // ═══════════════════════════════════════════════════
 
                 // Start Another Program button
-                SizedBox(
-                  width: double.infinity,
-                  height: 52,
-                  child: ElevatedButton(
-                    onPressed: () => context.go(Routes.programs),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.auroraStart,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          AppConstants.radiusMd,
-                        ),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: Text(
-                      isEn
-                          ? 'Start Another Program'
-                          : 'Başka Bir Program Başlat',
-                      style: AppTypography.displayFont.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
+                GradientButton.gold(
+                  label: isEn
+                      ? 'Start Another Program'
+                      : 'Başka Bir Program Başlat',
+                  onPressed: () => context.go(Routes.programs),
+                  expanded: true,
                 ),
                 const SizedBox(height: AppConstants.spacingMd),
 
