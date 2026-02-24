@@ -462,21 +462,46 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           const SizedBox(height: AppConstants.spacingLg),
           SizedBox(
             width: double.infinity,
-            child: ElevatedButton.icon(
-              onPressed: () {
+            child: GestureDetector(
+              onTap: () {
                 HapticFeedback.lightImpact();
                 setState(() => _isWriting = true);
               },
-              icon: const Icon(Icons.edit_rounded, size: 18),
-              label: Text(isEn ? 'Begin Writing' : 'Yazmaya Başla'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: _shadowPurple,
-                foregroundColor: Colors.white,
+              child: Container(
+                width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.amethyst,
+                      AppColors.cosmicAmethyst,
+                    ],
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.amethyst.withValues(alpha: 0.25),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
                 ),
-                elevation: 0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.edit_rounded, size: 18, color: Colors.white),
+                    const SizedBox(width: 8),
+                    Text(
+                      isEn ? 'Begin Writing' : 'Yazmaya Başla',
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                        letterSpacing: 0.3,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -628,8 +653,8 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           // Save button
           SizedBox(
             width: double.infinity,
-            child: ElevatedButton.icon(
-              onPressed: !_hasText
+            child: GestureDetector(
+              onTap: !_hasText
                   ? null
                   : () async {
                       HapticFeedback.mediumImpact();
@@ -666,18 +691,47 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                         ),
                       );
                     },
-              icon: const Icon(Icons.save_rounded, size: 18),
-              label: Text(isEn ? 'Save Entry' : 'Girişi Kaydet'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: _shadowPurple,
-                foregroundColor: Colors.white,
-                disabledBackgroundColor: _shadowPurple.withValues(alpha: 0.3),
-                disabledForegroundColor: Colors.white.withValues(alpha: 0.5),
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+              child: AnimatedOpacity(
+                opacity: _hasText ? 1.0 : 0.4,
+                duration: const Duration(milliseconds: 200),
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+                    gradient: LinearGradient(
+                      colors: [
+                        AppColors.amethyst,
+                        AppColors.cosmicAmethyst,
+                      ],
+                    ),
+                    boxShadow: _hasText
+                        ? [
+                            BoxShadow(
+                              color: AppColors.amethyst.withValues(alpha: 0.25),
+                              blurRadius: 12,
+                              offset: const Offset(0, 4),
+                            ),
+                          ]
+                        : null,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.save_rounded, size: 18, color: Colors.white),
+                      const SizedBox(width: 8),
+                      Text(
+                        isEn ? 'Save Entry' : 'Girişi Kaydet',
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                          letterSpacing: 0.3,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                elevation: 0,
               ),
             ),
           ),
@@ -992,26 +1046,38 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  ElevatedButton(
-                    onPressed: () => showContextualPaywall(
+                  GestureDetector(
+                    onTap: () => showContextualPaywall(
                       context,
                       ref,
                       paywallContext: PaywallContext.shadowWork,
                     ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: _shadowGold,
-                      foregroundColor: AppColors.deepSpace,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          AppConstants.radiusMd,
-                        ),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 12,
                       ),
-                    ),
-                    child: Text(
-                      isEn ? 'Upgrade to Pro' : "Pro'ya Yükselt",
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                        gradient: const LinearGradient(
+                          colors: [AppColors.starGold, AppColors.celestialGold],
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.starGold.withValues(alpha: 0.3),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        isEn ? 'Upgrade to Pro' : "Pro'ya Yükselt",
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.deepSpace,
+                          letterSpacing: 0.3,
+                        ),
                       ),
                     ),
                   ),

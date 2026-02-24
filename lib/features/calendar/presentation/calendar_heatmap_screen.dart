@@ -336,23 +336,13 @@ class _StatPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
+      child: PremiumCard(
+        style: accent ? PremiumCardStyle.gold : PremiumCardStyle.subtle,
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-        decoration: BoxDecoration(
-          color: accent
-              ? AppColors.starGold.withValues(alpha: isDark ? 0.15 : 0.1)
-              : (isDark
-                    ? AppColors.surfaceDark.withValues(alpha: 0.8)
-                    : AppColors.lightCard),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: accent
-                ? AppColors.starGold.withValues(alpha: 0.3)
-                : (isDark
-                      ? Colors.white.withValues(alpha: 0.06)
-                      : Colors.black.withValues(alpha: 0.05)),
-          ),
-        ),
+        borderRadius: 12,
+        showGradientBorder: accent,
+        showInnerShadow: false,
+        showNoise: false,
         child: Column(
           children: [
             Text(
@@ -1332,22 +1322,36 @@ class _PremiumYearOverlay extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () => showContextualPaywall(
+          GestureDetector(
+            onTap: () => showContextualPaywall(
               context,
               ref,
               paywallContext: PaywallContext.patterns,
             ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.starGold,
-              foregroundColor: AppColors.deepSpace,
-              shape: RoundedRectangleBorder(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
+                gradient: const LinearGradient(
+                  colors: [AppColors.starGold, AppColors.celestialGold],
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.starGold.withValues(alpha: 0.3),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
-            ),
-            child: Text(
-              isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
-              style: const TextStyle(fontWeight: FontWeight.w600),
+              child: Text(
+                isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.deepSpace,
+                  letterSpacing: 0.3,
+                ),
+              ),
             ),
           ),
         ],
