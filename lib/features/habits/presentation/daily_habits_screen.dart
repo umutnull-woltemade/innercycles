@@ -18,6 +18,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../data/services/smart_router_service.dart';
@@ -205,29 +206,9 @@ class _ProgressHeader extends StatelessWidget {
     final allDone = completed == total && total > 0;
     final progress = total > 0 ? completed / total : 0.0;
 
-    return Container(
+    return PremiumCard(
+      style: allDone ? PremiumCardStyle.aurora : PremiumCardStyle.gold,
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: allDone
-              ? [
-                  AppColors.success.withValues(alpha: isDark ? 0.2 : 0.1),
-                  AppColors.success.withValues(alpha: isDark ? 0.08 : 0.04),
-                ]
-              : [
-                  AppColors.starGold.withValues(alpha: isDark ? 0.15 : 0.08),
-                  AppColors.auroraStart.withValues(alpha: isDark ? 0.08 : 0.04),
-                ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: allDone
-              ? AppColors.success.withValues(alpha: 0.3)
-              : AppColors.starGold.withValues(alpha: 0.2),
-        ),
-      ),
       child: Column(
         children: [
           allDone
@@ -316,23 +297,10 @@ class _HabitCheckCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isChecked
-            ? AppColors.success.withValues(alpha: isDark ? 0.12 : 0.06)
-            : (isDark
-                  ? AppColors.surfaceDark.withValues(alpha: 0.8)
-                  : AppColors.lightCard),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: isChecked
-              ? AppColors.success.withValues(alpha: 0.3)
-              : (isDark
-                    ? Colors.white.withValues(alpha: 0.06)
-                    : Colors.black.withValues(alpha: 0.05)),
-        ),
-      ),
+      borderRadius: 14,
       child: Column(
         children: [
           Row(

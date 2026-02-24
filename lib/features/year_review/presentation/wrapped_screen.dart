@@ -13,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../core/theme/app_typography.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -613,15 +614,7 @@ class _IntenseWeekCard extends StatelessWidget {
   }
 
   String _formatWeek(DateTime monday, bool isEn) {
-    final months = isEn
-        ? [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-          ]
-        : [
-            'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
-            'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara',
-          ];
+    final months = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
     return '${months[monday.month - 1]} ${monday.day}';
   }
 }
@@ -1064,14 +1057,8 @@ class _TopPatternsCard extends StatelessWidget {
   }
 
   String _monthName(int month, bool isEn) {
-    const en = [
-      '', 'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December',
-    ];
-    const tr = [
-      '', 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık',
-    ];
+    final en = ['', ...CommonStrings.monthsFullEn];
+    final tr = ['', ...CommonStrings.monthsFullTr];
     if (month < 1 || month > 12) return '';
     return isEn ? en[month] : tr[month];
   }

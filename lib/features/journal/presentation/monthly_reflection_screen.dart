@@ -18,6 +18,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../data/services/smart_router_service.dart';
@@ -202,9 +203,11 @@ class _MonthlyReflectionScreenState
       borderRadius: BorderRadius.circular(AppConstants.radiusLg),
       child: Stack(
         children: [
-          ImageFiltered(
-            imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-            child: child,
+          ExcludeSemantics(
+            child: ImageFiltered(
+              imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+              child: child,
+            ),
           ),
           Positioned.fill(
             child: Container(
@@ -307,17 +310,11 @@ class _MonthlyReflectionScreenState
             'Aralık',
           ];
 
-    return Container(
-      padding: const EdgeInsets.symmetric(
+    return PremiumCard(
+      style: PremiumCardStyle.gold,
+      padding: EdgeInsets.symmetric(
         horizontal: AppConstants.spacingLg,
         vertical: AppConstants.spacingMd,
-      ),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(color: AppColors.starGold.withValues(alpha: 0.3)),
       ),
       child: Row(
         children: [
@@ -383,19 +380,9 @@ class _MonthlyReflectionScreenState
     bool isDark,
     bool isEn,
   ) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingXl),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         children: [
           // Entry count
@@ -532,15 +519,9 @@ class _MonthlyReflectionScreenState
     final prompts = isEn ? theme.weeklyPromptsEn : theme.weeklyPromptsTr;
     final tip = isEn ? theme.wellnessTipEn : theme.wellnessTipTr;
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.3)),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -649,19 +630,9 @@ class _MonthlyReflectionScreenState
     bool isDark,
     bool isEn,
   ) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

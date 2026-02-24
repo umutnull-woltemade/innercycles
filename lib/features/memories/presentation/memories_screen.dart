@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
@@ -580,15 +581,7 @@ class _MonthSelector extends StatelessWidget {
   }
 
   String _monthLabel(DateTime month, bool isEn) {
-    const enMonths = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-    ];
-    const trMonths = [
-      'Oca', '\u015eub', 'Mar', 'Nis', 'May', 'Haz',
-      'Tem', 'A\u011fu', 'Eyl', 'Eki', 'Kas', 'Ara',
-    ];
-    final names = isEn ? enMonths : trMonths;
+    final names = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
     final name = names[month.month - 1];
     final now = DateTime.now();
     if (month.year == now.year) return name;

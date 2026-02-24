@@ -8,6 +8,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:file_picker/file_picker.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/models/birthday_contact.dart';
@@ -317,9 +318,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
           final contact = _parsedContacts[index];
           final isSelected = _selectedIndices.contains(index);
 
-          final monthNames = isEn
-              ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-              : ['Oca', '\u{015E}ub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'A\u{011F}u', 'Eyl', 'Eki', 'Kas', 'Ara'];
+          final monthNames = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
 
           return Padding(
             padding: const EdgeInsets.only(bottom: 8),

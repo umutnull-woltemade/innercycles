@@ -578,6 +578,15 @@ class NotificationService {
 
   // ============== Birthday Notifications ==============
 
+  /// Construct a birthday DateTime safely, handling Feb 29 in non-leap years.
+  static DateTime _safeBirthdayDate(int year, int month, int day, int hour, int minute) {
+    if (month == 2 && day == 29) {
+      final isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+      if (!isLeap) return DateTime(year, 2, 28, hour, minute);
+    }
+    return DateTime(year, month, day, hour, minute);
+  }
+
   /// Schedule a birthday notification for a contact at 09:00 on their birthday.
   /// Notification ID is derived from contact ID hash (range 50000-50799).
   /// Day-before reminders use range 51000-51799.
@@ -587,9 +596,9 @@ class NotificationService {
 
     final notifId = 50000 + (contact.id.hashCode.abs() % 800);
     final now = DateTime.now();
-    var birthday = DateTime(now.year, contact.birthdayMonth, contact.birthdayDay, 9, 0);
+    var birthday = _safeBirthdayDate(now.year, contact.birthdayMonth, contact.birthdayDay, 9, 0);
     if (birthday.isBefore(now)) {
-      birthday = DateTime(now.year + 1, contact.birthdayMonth, contact.birthdayDay, 9, 0);
+      birthday = _safeBirthdayDate(now.year + 1, contact.birthdayMonth, contact.birthdayDay, 9, 0);
     }
 
     final scheduledTz = tz.TZDateTime.from(birthday, tz.local);

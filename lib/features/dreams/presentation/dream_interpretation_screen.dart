@@ -2106,28 +2106,30 @@ ${_getPersonalAdvice(sign)}''';
       child: Stack(
         children: [
           // Blurred background hint
-          ImageFiltered(
-            imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-            child: GlassPanel(
-              elevation: GlassElevation.g1,
-              borderRadius: BorderRadius.circular(16),
-              padding: const EdgeInsets.all(14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    isEn
-                        ? 'Psychological Perspective\n━━━━━━━━━━━━━━━━━\nYour subconscious is revealing...'
-                        : 'Psikolojik Perspektif\n━━━━━━━━━━━━━━━━━\nBilinaltınız ortaya koyuyor...',
-                    style: TextStyle(
-                      color: isDark
-                          ? AppColors.textPrimary.withValues(alpha: 0.5)
-                          : AppColors.lightTextPrimary.withValues(alpha: 0.5),
-                      fontSize: 13,
-                      height: 1.5,
+          ExcludeSemantics(
+            child: ImageFiltered(
+              imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+              child: GlassPanel(
+                elevation: GlassElevation.g1,
+                borderRadius: BorderRadius.circular(16),
+                padding: const EdgeInsets.all(14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      isEn
+                          ? 'Psychological Perspective\n━━━━━━━━━━━━━━━━━\nYour subconscious is revealing...'
+                          : 'Psikolojik Perspektif\n━━━━━━━━━━━━━━━━━\nBilinaltınız ortaya koyuyor...',
+                      style: TextStyle(
+                        color: isDark
+                            ? AppColors.textPrimary.withValues(alpha: 0.5)
+                            : AppColors.lightTextPrimary.withValues(alpha: 0.5),
+                        fontSize: 13,
+                        height: 1.5,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

@@ -943,11 +943,13 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
 
     return Stack(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-          child: ImageFiltered(
-            imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-            child: child,
+        ExcludeSemantics(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+            child: ImageFiltered(
+              imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+              child: child,
+            ),
           ),
         ),
         Positioned.fill(

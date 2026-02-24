@@ -489,12 +489,14 @@ class PatternsScreen extends ConsumerWidget {
         },
         child: Stack(
           children: [
-            // Blurred content
-            ClipRRect(
-              borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-              child: ImageFiltered(
-                imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-                child: IgnorePointer(child: child),
+            // Blurred content — hidden from screen readers
+            ExcludeSemantics(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+                child: ImageFiltered(
+                  imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                  child: IgnorePointer(child: child),
+                ),
               ),
             ),
             // Overlay CTA

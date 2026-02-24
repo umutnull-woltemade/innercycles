@@ -240,7 +240,7 @@ class CycleCorrelationService {
             CycleHeatmapCell(
               cycleDay: day,
               focusArea: area,
-              averageRating: sums[key]! / count,
+              averageRating: (sums[key] ?? 0.0) / count,
               sampleCount: count,
             ),
           );

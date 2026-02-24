@@ -22,6 +22,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
@@ -262,23 +263,13 @@ class _ProgramCard extends StatelessWidget {
             HapticFeedback.lightImpact();
             onTap();
           },
-          child: Container(
+          child: PremiumCard(
+            style: isCompleted
+                ? PremiumCardStyle.aurora
+                : hasProgress
+                    ? PremiumCardStyle.gold
+                    : PremiumCardStyle.subtle,
             padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: isDark
-                  ? AppColors.surfaceDark.withValues(alpha: 0.85)
-                  : AppColors.lightCard,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: isCompleted
-                    ? AppColors.success.withValues(alpha: 0.3)
-                    : hasProgress
-                    ? AppColors.starGold.withValues(alpha: 0.3)
-                    : (isDark
-                          ? Colors.white.withValues(alpha: 0.15)
-                          : Colors.black.withValues(alpha: 0.05)),
-              ),
-            ),
             child: Row(
               children: [
                 // Emoji badge

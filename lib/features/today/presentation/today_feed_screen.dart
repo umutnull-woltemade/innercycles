@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
@@ -301,14 +302,8 @@ class _HomeHeader extends StatelessWidget {
     final now = DateTime.now();
     const dayNamesEn = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const dayNamesTr = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
-    const monthsEn = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-    ];
-    const monthsTr = [
-      'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
-      'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara',
-    ];
+    final monthsEn = CommonStrings.monthsShortEn;
+    final monthsTr = CommonStrings.monthsShortTr;
     final dayIndex = now.weekday - 1;
     if (isEn) {
       return '${dayNamesEn[dayIndex]}, ${monthsEn[now.month - 1]} ${now.day}';
@@ -618,46 +613,51 @@ class _StatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        HapticService.selectionTap();
-        onTap();
-      },
-      child: PremiumCard(
-        style: PremiumCardStyle.subtle,
-        showGradientBorder: false,
-        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
-        borderRadius: 14,
-        child: Column(
-          children: [
-            if (emoji != null)
-              Text(emoji!, style: const TextStyle(fontSize: 22))
-            else
-              Icon(icon, size: 22, color: iconColor),
-            const SizedBox(height: 6),
-            Text(
-              value,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
+    return Semantics(
+      button: true,
+      label: '$value $label',
+      child: GestureDetector(
+        onTap: () {
+          HapticService.selectionTap();
+          onTap();
+        },
+        child: PremiumCard(
+          style: PremiumCardStyle.subtle,
+          showGradientBorder: false,
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+          borderRadius: 14,
+          child: Column(
+            children: [
+              if (emoji != null)
+                Text(emoji!, style: const TextStyle(fontSize: 22))
+              else
+                Icon(icon, size: 22, color: iconColor),
+              const SizedBox(height: 6),
+              Text(
+                value,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const SizedBox(height: 2),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w500,
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                letterSpacing: 0.3,
+              const SizedBox(height: 2),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w500,
+                  color:
+                      isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                  letterSpacing: 0.3,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -733,15 +733,20 @@ class _HeroJournalCard extends ConsumerWidget {
                 ),
                 const SizedBox(height: 20),
                 // Gold CTA button
-                GestureDetector(
-                  onTap: () {
-                    HapticService.buttonPress();
-                    context.push(
-                      Routes.journal,
-                      extra: {'journalPrompt': questionText},
-                    );
-                  },
-                  child: Container(
+                Semantics(
+                  button: true,
+                  label: isEn
+                      ? 'Start writing journal entry'
+                      : 'Günlük kaydı yazmaya başla',
+                  child: GestureDetector(
+                    onTap: () {
+                      HapticService.buttonPress();
+                      context.push(
+                        Routes.journal,
+                        extra: {'journalPrompt': questionText},
+                      );
+                    },
+                    child: Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     decoration: BoxDecoration(
@@ -784,58 +789,65 @@ class _HeroJournalCard extends ConsumerWidget {
                         ),
                       ],
                     ),
-                  ),
-                )
-                    .animate(onPlay: (c) => c.repeat())
-                    .shimmer(
-                      delay: 3000.ms,
-                      duration: 1800.ms,
-                      color: Colors.white.withValues(alpha: 0.1),
                     ),
+                  )
+                      .animate(onPlay: (c) => c.repeat())
+                      .shimmer(
+                        delay: 3000.ms,
+                        duration: 1800.ms,
+                        color: Colors.white.withValues(alpha: 0.1),
+                      ),
+                ),
                 const SizedBox(height: 12),
                 // Share link
-                GestureDetector(
-                  onTap: () {
-                    HapticService.buttonPress();
-                    final template = ShareCardTemplates.questionOfTheDay;
-                    final cardData = ShareCardTemplates.buildData(
-                      template: template,
-                      isEn: isEn,
-                      reflectionText: questionText,
-                    );
-                    ShareCardSheet.show(
-                      context,
-                      template: template,
-                      data: cardData,
-                      isEn: isEn,
-                    );
-                  },
-                  behavior: HitTestBehavior.opaque,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.share_rounded,
-                          size: 14,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          isEn
-                              ? 'Share this question'
-                              : 'Bu soruyu paylaş',
-                          style: TextStyle(
-                            fontSize: 12,
+                Semantics(
+                  button: true,
+                  label: isEn
+                      ? 'Share this question'
+                      : 'Bu soruyu paylaş',
+                  child: GestureDetector(
+                    onTap: () {
+                      HapticService.buttonPress();
+                      final template = ShareCardTemplates.questionOfTheDay;
+                      final cardData = ShareCardTemplates.buildData(
+                        template: template,
+                        isEn: isEn,
+                        reflectionText: questionText,
+                      );
+                      ShareCardSheet.show(
+                        context,
+                        template: template,
+                        data: cardData,
+                        isEn: isEn,
+                      );
+                    },
+                    behavior: HitTestBehavior.opaque,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.share_rounded,
+                            size: 14,
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,
                           ),
-                        ),
-                      ],
+                          const SizedBox(width: 4),
+                          Text(
+                            isEn
+                                ? 'Share this question'
+                                : 'Bu soruyu paylaş',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -851,57 +863,64 @@ class _HeroJournalCard extends ConsumerWidget {
         // Fallback: simple CTA pill
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: GestureDetector(
-            onTap: () {
-              HapticService.buttonPress();
-              context.go(Routes.journal);
-            },
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(28),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: isDark
-                      ? [AppColors.starGold, AppColors.celestialGold]
-                      : [AppColors.lightStarGold, AppColors.celestialGold],
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.starGold.withValues(alpha: 0.2),
-                    blurRadius: 16,
-                    offset: const Offset(0, 4),
+          child: Semantics(
+            button: true,
+            label: isEn ? 'Start journaling' : 'Günlüğe başla',
+            child: GestureDetector(
+              onTap: () {
+                HapticService.buttonPress();
+                context.go(Routes.journal);
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(28),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: isDark
+                        ? [AppColors.starGold, AppColors.celestialGold]
+                        : [
+                            AppColors.lightStarGold,
+                            AppColors.celestialGold,
+                          ],
                   ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.edit_rounded,
-                    size: 20,
-                    color: AppColors.deepSpace,
-                  ),
-                  const SizedBox(width: 10),
-                  Flexible(
-                    child: Text(
-                      isEn ? 'Start Journaling' : 'Günlüğe Başla',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.3,
-                        color: AppColors.deepSpace,
-                      ),
-                      overflow: TextOverflow.ellipsis,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.starGold.withValues(alpha: 0.2),
+                      blurRadius: 16,
+                      offset: const Offset(0, 4),
                     ),
-                  ),
-                ],
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.edit_rounded,
+                      size: 20,
+                      color: AppColors.deepSpace,
+                    ),
+                    const SizedBox(width: 10),
+                    Flexible(
+                      child: Text(
+                        isEn ? 'Start Journaling' : 'Günlüğe Başla',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.3,
+                          color: AppColors.deepSpace,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ).animate().fadeIn(delay: 180.ms, duration: 400.ms),
-        );
+          ),
+        ).animate().fadeIn(delay: 180.ms, duration: 400.ms);
       },
     );
   }
@@ -962,20 +981,26 @@ class _FocusPulseRow extends ConsumerWidget {
                       ),
                     ),
                     const Spacer(),
-                    GestureDetector(
-                      onTap: () {
-                        HapticService.selectionTap();
-                        context.push(Routes.moodTrends);
-                      },
-                      behavior: HitTestBehavior.opaque,
-                      child: Text(
-                        isEn ? 'Details' : 'Detaylar',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: isDark
-                              ? AppColors.starGold
-                              : AppColors.lightStarGold,
+                    Semantics(
+                      button: true,
+                      label: isEn
+                          ? 'View focus pulse details'
+                          : 'Odak nabzı detaylarını gör',
+                      child: GestureDetector(
+                        onTap: () {
+                          HapticService.selectionTap();
+                          context.push(Routes.moodTrends);
+                        },
+                        behavior: HitTestBehavior.opaque,
+                        child: Text(
+                          isEn ? 'Details' : 'Detaylar',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: isDark
+                                ? AppColors.starGold
+                                : AppColors.lightStarGold,
+                          ),
                         ),
                       ),
                     ),
@@ -997,67 +1022,73 @@ class _FocusPulseRow extends ConsumerWidget {
                         _focusAreaColors[area] ?? AppColors.starGold;
                     final emoji = _focusAreaEmoji[area] ?? '\u2728';
 
-                    return GestureDetector(
-                      onTap: () {
-                        HapticService.selectionTap();
-                        context.push(Routes.moodTrends);
-                      },
-                      child: SizedBox(
-                        width: 80,
-                        child: Column(
-                          children: [
-                            // Circular progress ring
-                            SizedBox(
-                              width: 56,
-                              height: 56,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  SizedBox(
-                                    width: 56,
-                                    height: 56,
-                                    child: CircularProgressIndicator(
-                                      value: (score / 5.0).clamp(0.0, 1.0),
-                                      strokeWidth: 3,
-                                      strokeCap: StrokeCap.round,
-                                      backgroundColor: isDark
-                                          ? Colors.white
-                                              .withValues(alpha: 0.06)
-                                          : Colors.black
-                                              .withValues(alpha: 0.04),
-                                      valueColor:
-                                          AlwaysStoppedAnimation(color),
+                    return Semantics(
+                      button: true,
+                      label:
+                          '${_areaLabel(area)} ${score.toStringAsFixed(1)}',
+                      child: GestureDetector(
+                        onTap: () {
+                          HapticService.selectionTap();
+                          context.push(Routes.moodTrends);
+                        },
+                        child: SizedBox(
+                          width: 80,
+                          child: Column(
+                            children: [
+                              // Circular progress ring
+                              SizedBox(
+                                width: 56,
+                                height: 56,
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: 56,
+                                      height: 56,
+                                      child: CircularProgressIndicator(
+                                        value:
+                                            (score / 5.0).clamp(0.0, 1.0),
+                                        strokeWidth: 3,
+                                        strokeCap: StrokeCap.round,
+                                        backgroundColor: isDark
+                                            ? Colors.white
+                                                .withValues(alpha: 0.06)
+                                            : Colors.black
+                                                .withValues(alpha: 0.04),
+                                        valueColor:
+                                            AlwaysStoppedAnimation(color),
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    emoji,
-                                    style: const TextStyle(fontSize: 20),
-                                  ),
-                                ],
+                                    Text(
+                                      emoji,
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              _areaLabel(area),
-                              style: TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w500,
-                                color: isDark
-                                    ? AppColors.textSecondary
-                                    : AppColors.lightTextSecondary,
+                              const SizedBox(height: 8),
+                              Text(
+                                _areaLabel(area),
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w500,
+                                  color: isDark
+                                      ? AppColors.textSecondary
+                                      : AppColors.lightTextSecondary,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            Text(
-                              score.toStringAsFixed(1),
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w700,
-                                color: color,
+                              Text(
+                                score.toStringAsFixed(1),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w700,
+                                  color: color,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     );
@@ -1181,14 +1212,19 @@ class _RecentEntriesHorizontal extends ConsumerWidget {
                     final dateStr = _formatDate(entry.date);
                     final areaLabel = _focusAreaLabel(entry.focusArea);
 
-                    return GestureDetector(
-                      onTap: () {
-                        HapticService.selectionTap();
-                        context.push(
-                          '/journal/entry/${entry.id}',
-                        );
-                      },
-                      child: SizedBox(
+                    return Semantics(
+                      button: true,
+                      label: isEn
+                          ? 'View journal entry from $dateStr'
+                          : '$dateStr tarihli günlük kaydını gör',
+                      child: GestureDetector(
+                        onTap: () {
+                          HapticService.selectionTap();
+                          context.push(
+                            '/journal/entry/${entry.id}',
+                          );
+                        },
+                        child: SizedBox(
                         width: 160,
                         child: PremiumCard(
                           style: PremiumCardStyle.subtle,
@@ -1302,6 +1338,7 @@ class _RecentEntriesHorizontal extends ConsumerWidget {
                               ),
                             ],
                           ),
+                          ),
                         ),
                       ),
                     ).animate().fadeIn(
@@ -1322,15 +1359,7 @@ class _RecentEntriesHorizontal extends ConsumerWidget {
   }
 
   String _formatDate(DateTime date) {
-    final months = isEn
-        ? [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-          ]
-        : [
-            'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
-            'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara',
-          ];
+    final months = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
     return '${months[date.month - 1]} ${date.day}';
   }
 
@@ -1626,75 +1655,81 @@ class _TodayBirthdayBanner extends ConsumerWidget {
         if (todayBirthdays.isEmpty) return const SizedBox.shrink();
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: GestureDetector(
-            onTap: () => context.push(Routes.birthdayAgenda),
-            child: PremiumCard(
-              style: PremiumCardStyle.gold,
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  // Stacked avatars
-                  SizedBox(
-                    width: todayBirthdays.length == 1 ? 48 : 64,
-                    height: 48,
-                    child: Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        BirthdayAvatar(
-                          photoPath: todayBirthdays.first.photoPath,
-                          name: todayBirthdays.first.name,
-                          size: 44,
-                          showBirthdayCake: true,
-                        ),
-                        if (todayBirthdays.length > 1)
-                          Positioned(
-                            left: 24,
-                            child: BirthdayAvatar(
-                              photoPath: todayBirthdays[1].photoPath,
-                              name: todayBirthdays[1].name,
-                              size: 44,
+          child: Semantics(
+            button: true,
+            label: isEn
+                ? 'View birthday agenda'
+                : 'Doğum günü ajandası',
+            child: GestureDetector(
+              onTap: () => context.push(Routes.birthdayAgenda),
+              child: PremiumCard(
+                style: PremiumCardStyle.gold,
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    // Stacked avatars
+                    SizedBox(
+                      width: todayBirthdays.length == 1 ? 48 : 64,
+                      height: 48,
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          BirthdayAvatar(
+                            photoPath: todayBirthdays.first.photoPath,
+                            name: todayBirthdays.first.name,
+                            size: 44,
+                            showBirthdayCake: true,
+                          ),
+                          if (todayBirthdays.length > 1)
+                            Positioned(
+                              left: 24,
+                              child: BirthdayAvatar(
+                                photoPath: todayBirthdays[1].photoPath,
+                                name: todayBirthdays[1].name,
+                                size: 44,
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            todayBirthdays.length == 1
+                                ? todayBirthdays.first.name
+                                : '${todayBirthdays.first.name} +${todayBirthdays.length - 1}',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
                             ),
                           ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          todayBirthdays.length == 1
-                              ? todayBirthdays.first.name
-                              : '${todayBirthdays.first.name} +${todayBirthdays.length - 1}',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
+                          const SizedBox(height: 2),
+                          Text(
+                            isEn
+                                ? '\u{1F382} Birthday today!'
+                                : '\u{1F382} Bug\u{00FC}n do\u{011F}um g\u{00FC}n\u{00FC}!',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: AppColors.starGold,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          isEn
-                              ? '\u{1F382} Birthday today!'
-                              : '\u{1F382} Bug\u{00FC}n do\u{011F}um g\u{00FC}n\u{00FC}!',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: AppColors.starGold,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 14,
-                    color: AppColors.starGold,
-                  ),
-                ],
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 14,
+                      color: AppColors.starGold,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -1756,16 +1791,22 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                     ),
                   ),
                   const Spacer(),
-                  GestureDetector(
-                    onTap: () => context.push(Routes.lifeTimeline),
-                    child: Text(
-                      isEn ? 'See all' : 'Tümünü gör',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isDark
-                            ? AppColors.starGold
-                            : AppColors.lightStarGold,
-                        fontWeight: FontWeight.w500,
+                  Semantics(
+                    button: true,
+                    label: isEn
+                        ? 'See all life events'
+                        : 'Tüm yaşam olaylarını gör',
+                    child: GestureDetector(
+                      onTap: () => context.push(Routes.lifeTimeline),
+                      child: Text(
+                        isEn ? 'See all' : 'Tümünü gör',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.starGold
+                              : AppColors.lightStarGold,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ),
@@ -1783,67 +1824,79 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                     preset?.emoji ?? (isPositive ? '\u{2728}' : '\u{1F4AD}');
                 final isLastItem = index == recentEnough.take(2).length - 1;
 
-                return GestureDetector(
-                  onTap: () {
-                    HapticService.buttonPress();
-                    context.push(
-                      Routes.lifeEventDetail.replaceFirst(':id', event.id),
-                    );
-                  },
-                  behavior: HitTestBehavior.opaque,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    decoration: BoxDecoration(
-                      border: isLastItem
-                          ? null
-                          : Border(
-                              bottom: BorderSide(
-                                color: isDark
-                                    ? Colors.white.withValues(alpha: 0.06)
-                                    : Colors.black.withValues(alpha: 0.04),
-                                width: 0.5,
-                              ),
-                            ),
-                    ),
-                    child: Row(
-                      children: [
-                        AppSymbol(emoji, size: AppSymbolSize.sm),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                event.title,
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w600,
+                return Semantics(
+                  button: true,
+                  label: isEn
+                      ? 'View life event: ${event.title}'
+                      : 'Yaşam olayını gör: ${event.title}',
+                  child: GestureDetector(
+                    onTap: () {
+                      HapticService.buttonPress();
+                      context.push(
+                        Routes.lifeEventDetail
+                            .replaceFirst(':id', event.id),
+                      );
+                    },
+                    behavior: HitTestBehavior.opaque,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        border: isLastItem
+                            ? null
+                            : Border(
+                                bottom: BorderSide(
                                   color: isDark
-                                      ? AppColors.textPrimary
-                                      : AppColors.lightTextPrimary,
+                                      ? Colors.white
+                                          .withValues(alpha: 0.06)
+                                      : Colors.black
+                                          .withValues(alpha: 0.04),
+                                  width: 0.5,
                                 ),
                               ),
-                              if (event.emotionTags.isNotEmpty)
+                      ),
+                      child: Row(
+                        children: [
+                          AppSymbol(emoji, size: AppSymbolSize.sm),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                              children: [
                                 Text(
-                                  event.emotionTags.take(2).join(', '),
+                                  event.title,
                                   style: TextStyle(
-                                    fontSize: 11,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
                                     color: isDark
-                                        ? AppColors.textMuted
-                                        : AppColors.lightTextMuted,
+                                        ? AppColors.textPrimary
+                                        : AppColors.lightTextPrimary,
                                   ),
                                 ),
-                            ],
+                                if (event.emotionTags.isNotEmpty)
+                                  Text(
+                                    event.emotionTags
+                                        .take(2)
+                                        .join(', '),
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      color: isDark
+                                          ? AppColors.textMuted
+                                          : AppColors.lightTextMuted,
+                                    ),
+                                  ),
+                              ],
+                            ),
                           ),
-                        ),
-                        Icon(
-                          Icons.chevron_right_rounded,
-                          size: 18,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
-                        ),
-                      ],
+                          Icon(
+                            Icons.chevron_right_rounded,
+                            size: 18,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -1858,63 +1911,69 @@ class _RecentLifeEventsCard extends ConsumerWidget {
   Widget _buildRetentionPrompt(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
-      child: GestureDetector(
-        onTap: () {
-          HapticService.buttonPress();
-          context.push(Routes.lifeEventNew);
-        },
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.starGold.withValues(alpha: 0.06)
-                : AppColors.starGold.withValues(alpha: 0.04),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Row(
-            children: [
-              Icon(
-                Icons.auto_awesome_rounded,
-                color: isDark ? AppColors.starGold : AppColors.lightStarGold,
-                size: 24,
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      isEn
-                          ? 'Any big moments this week?'
-                          : 'Bu hafta büyük anlar oldu mu?',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
-                    ),
-                    Text(
-                      isEn
-                          ? 'Record a life event'
-                          : 'Bir yaşam olayı kaydedin',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-                  ],
+      child: Semantics(
+        button: true,
+        label: isEn ? 'Record a life event' : 'Yaşam olayı kaydet',
+        child: GestureDetector(
+          onTap: () {
+            HapticService.buttonPress();
+            context.push(Routes.lifeEventNew);
+          },
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: isDark
+                  ? AppColors.starGold.withValues(alpha: 0.06)
+                  : AppColors.starGold.withValues(alpha: 0.04),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.auto_awesome_rounded,
+                  color:
+                      isDark ? AppColors.starGold : AppColors.lightStarGold,
+                  size: 24,
                 ),
-              ),
-              Icon(
-                Icons.arrow_forward_ios_rounded,
-                size: 14,
-                color: isDark ? AppColors.starGold : AppColors.lightStarGold,
-              ),
-            ],
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        isEn
+                            ? 'Any big moments this week?'
+                            : 'Bu hafta büyük anlar oldu mu?',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                        ),
+                      ),
+                      Text(
+                        isEn
+                            ? 'Record a life event'
+                            : 'Bir yaşam olayı kaydedin',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 14,
+                  color:
+                      isDark ? AppColors.starGold : AppColors.lightStarGold,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -1951,66 +2010,73 @@ class _RetrospectiveBanner extends ConsumerWidget {
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
-      child: GestureDetector(
-        onTap: () {
-          HapticService.buttonPress();
-          context.push(Routes.retrospective);
-        },
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.auroraStart.withValues(alpha: 0.08)
-                : AppColors.auroraStart.withValues(alpha: 0.05),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Row(
-            children: [
-              Icon(
-                Icons.history_rounded,
-                color: isDark
-                    ? AppColors.auroraStart
-                    : AppColors.lightAuroraStart,
-                size: 24,
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      isEn
-                          ? 'Add entries for your most meaningful days'
-                          : 'Geçmişindeki önemli günleri ekle',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      isEn
-                          ? 'Your story didn\'t start today'
-                          : 'Hikayen bugün başlamadı',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-                  ],
+      child: Semantics(
+        button: true,
+        label: isEn
+            ? 'Add retrospective entries'
+            : 'Geçmişe dönük kayıtlar ekle',
+        child: GestureDetector(
+          onTap: () {
+            HapticService.buttonPress();
+            context.push(Routes.retrospective);
+          },
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: isDark
+                  ? AppColors.auroraStart.withValues(alpha: 0.08)
+                  : AppColors.auroraStart.withValues(alpha: 0.05),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.history_rounded,
+                  color: isDark
+                      ? AppColors.auroraStart
+                      : AppColors.lightAuroraStart,
+                  size: 24,
                 ),
-              ),
-              Icon(
-                Icons.arrow_forward_ios_rounded,
-                size: 14,
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
-            ],
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        isEn
+                            ? 'Add entries for your most meaningful days'
+                            : 'Geçmişindeki önemli günleri ekle',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        isEn
+                            ? 'Your story didn\'t start today'
+                            : 'Hikayen bugün başlamadı',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 14,
+                  color:
+                      isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -2048,45 +2114,50 @@ class _UpcomingRemindersCard extends ConsumerWidget {
             return Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-              child: GestureDetector(
-                onTap: () => context.push(Routes.notesList),
-                child: PremiumCard(
-                  style: PremiumCardStyle.gold,
-                  showInnerShadow: false,
-                  padding: const EdgeInsets.all(14),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(Icons.notifications_active,
-                              size: 16,
-                              color: isDark
-                                  ? AppColors.starGold
-                                  : AppColors.lightStarGold),
-                          const SizedBox(width: 6),
-                          GradientText(
-                            isEn
-                                ? 'Upcoming Reminders'
-                                : 'Yaklaşan Hatırlatıcılar',
-                            variant: GradientTextVariant.gold,
-                            style: const TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
+              child: Semantics(
+                button: true,
+                label: isEn
+                    ? 'View upcoming reminders'
+                    : 'Yaklaşan hatırlatıcıları gör',
+                child: GestureDetector(
+                  onTap: () => context.push(Routes.notesList),
+                  child: PremiumCard(
+                    style: PremiumCardStyle.gold,
+                    showInnerShadow: false,
+                    padding: const EdgeInsets.all(14),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.notifications_active,
+                                size: 16,
+                                color: isDark
+                                    ? AppColors.starGold
+                                    : AppColors.lightStarGold),
+                            const SizedBox(width: 6),
+                            GradientText(
+                              isEn
+                                  ? 'Upcoming Reminders'
+                                  : 'Yaklaşan Hatırlatıcılar',
+                              variant: GradientTextVariant.gold,
+                              style: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
-                          ),
-                          const Spacer(),
-                          Text(
-                            isEn ? 'See all' : 'Tümünü gör',
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: isDark
-                                  ? AppColors.starGold
-                                  : AppColors.lightStarGold,
+                            const Spacer(),
+                            Text(
+                              isEn ? 'See all' : 'Tümünü gör',
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: isDark
+                                    ? AppColors.starGold
+                                    : AppColors.lightStarGold,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
                       const SizedBox(height: 10),
                       ...upcoming.map((r) {
                         final note = service.getNote(r.noteId);
@@ -2127,7 +2198,8 @@ class _UpcomingRemindersCard extends ConsumerWidget {
                           ),
                         );
                       }),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -2180,60 +2252,65 @@ class _WeeklySharePrompt extends ConsumerWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      child: GestureDetector(
-        onTap: () {
-          HapticService.buttonPress();
-          context.push(Routes.shareCardGallery);
-        },
-        child: PremiumCard(
-          style: PremiumCardStyle.aurora,
-          showInnerShadow: false,
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              Icon(
-                Icons.auto_awesome_rounded,
-                color: isDark
-                    ? AppColors.auroraStart
-                    : AppColors.lightAuroraStart,
-                size: 24,
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GradientText(
-                      isEn
-                          ? 'Your latest pattern card is ready'
-                          : 'Son örüntü kartın hazır',
-                      variant: GradientTextVariant.aurora,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      isEn
-                          ? 'Share your week\'s insights'
-                          : 'Haftanın içgörülerini paylaş',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                    ),
-                  ],
+      child: Semantics(
+        button: true,
+        label: isEn ? 'Share weekly insights' : 'Haftalık içgörüleri paylaş',
+        child: GestureDetector(
+          onTap: () {
+            HapticService.buttonPress();
+            context.push(Routes.shareCardGallery);
+          },
+          child: PremiumCard(
+            style: PremiumCardStyle.aurora,
+            showInnerShadow: false,
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.auto_awesome_rounded,
+                  color: isDark
+                      ? AppColors.auroraStart
+                      : AppColors.lightAuroraStart,
+                  size: 24,
                 ),
-              ),
-              Icon(
-                Icons.arrow_forward_ios_rounded,
-                size: 14,
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
-            ],
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GradientText(
+                        isEn
+                            ? 'Your latest pattern card is ready'
+                            : 'Son örüntü kartın hazır',
+                        variant: GradientTextVariant.aurora,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        isEn
+                            ? 'Share your week\'s insights'
+                            : 'Haftanın içgörülerini paylaş',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 14,
+                  color:
+                      isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -2263,58 +2340,64 @@ class _WrappedBanner extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      child: GestureDetector(
-        onTap: () {
-          HapticService.buttonPress();
-          context.push(Routes.wrapped);
-        },
-        child: PremiumCard(
-          style: PremiumCardStyle.gold,
-          showInnerShadow: false,
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              Icon(
-                Icons.auto_awesome,
-                color: isDark ? AppColors.starGold : AppColors.lightStarGold,
-                size: 28,
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GradientText(
-                      isEn
-                          ? 'Your ${DateTime.now().year} Wrapped is ready!'
-                          : '${DateTime.now().year} Wrapped\'ın hazır!',
-                      variant: GradientTextVariant.gold,
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      isEn
-                          ? 'See your year in patterns'
-                          : 'Yılını örüntülerle gör',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
-                      ),
-                    ),
-                  ],
+      child: Semantics(
+        button: true,
+        label: isEn ? 'View year wrapped' : 'Yıllık özeti gör',
+        child: GestureDetector(
+          onTap: () {
+            HapticService.buttonPress();
+            context.push(Routes.wrapped);
+          },
+          child: PremiumCard(
+            style: PremiumCardStyle.gold,
+            showInnerShadow: false,
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.auto_awesome,
+                  color:
+                      isDark ? AppColors.starGold : AppColors.lightStarGold,
+                  size: 28,
                 ),
-              ),
-              Icon(
-                Icons.arrow_forward_ios_rounded,
-                size: 14,
-                color: isDark ? AppColors.starGold : AppColors.lightStarGold,
-              ),
-            ],
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GradientText(
+                        isEn
+                            ? 'Your ${DateTime.now().year} Wrapped is ready!'
+                            : '${DateTime.now().year} Wrapped\'ın hazır!',
+                        variant: GradientTextVariant.gold,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        isEn
+                            ? 'See your year in patterns'
+                            : 'Yılını örüntülerle gör',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 14,
+                  color:
+                      isDark ? AppColors.starGold : AppColors.lightStarGold,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -2343,67 +2426,65 @@ class _MonthlyWrappedBanner extends StatelessWidget {
 
     final lastMonth = now.month == 1 ? 12 : now.month - 1;
     final monthNames = isEn
-        ? [
-            '',
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December',
-          ]
-        : [
-            '',
-            'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-            'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık',
-          ];
+        ? ['', ...CommonStrings.monthsFullEn]
+        : ['', ...CommonStrings.monthsFullTr];
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      child: GestureDetector(
-        onTap: () {
-          HapticService.buttonPress();
-          context.push(Routes.monthlyWrapped);
-        },
-        child: PremiumCard(
-          style: PremiumCardStyle.amethyst,
-          showInnerShadow: false,
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              const AppSymbol.card('\u{1F4CA}'),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GradientText(
-                      isEn
-                          ? 'Your ${monthNames[lastMonth]} Wrapped'
-                          : '${monthNames[lastMonth]} Özetin Hazır',
-                      variant: GradientTextVariant.amethyst,
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
+      child: Semantics(
+        button: true,
+        label: isEn
+            ? 'View monthly wrapped'
+            : 'Aylık özeti gör',
+        child: GestureDetector(
+          onTap: () {
+            HapticService.buttonPress();
+            context.push(Routes.monthlyWrapped);
+          },
+          child: PremiumCard(
+            style: PremiumCardStyle.amethyst,
+            showInnerShadow: false,
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                const AppSymbol.card('\u{1F4CA}'),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GradientText(
+                        isEn
+                            ? 'Your ${monthNames[lastMonth]} Wrapped'
+                            : '${monthNames[lastMonth]} Özetin Hazır',
+                        variant: GradientTextVariant.amethyst,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      isEn
-                          ? 'See your month at a glance'
-                          : 'Ayına bir bakış at',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
+                      const SizedBox(height: 2),
+                      Text(
+                        isEn
+                            ? 'See your month at a glance'
+                            : 'Ayına bir bakış at',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Icon(
-                Icons.arrow_forward_ios_rounded,
-                size: 14,
-                color: AppColors.amethyst,
-              ),
-            ],
+                Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 14,
+                  color: AppColors.amethyst,
+                ),
+              ],
+            ),
           ),
         ),
       ),

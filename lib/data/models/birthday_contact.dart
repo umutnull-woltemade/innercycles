@@ -201,13 +201,23 @@ class BirthdayContact {
   String get birthdayDateKey =>
       '${birthdayMonth.toString().padLeft(2, '0')}-${birthdayDay.toString().padLeft(2, '0')}';
 
+  /// Construct a birthday DateTime safely, handling Feb 29 in non-leap years.
+  /// Falls back to Feb 28 when the year is not a leap year.
+  static DateTime _safeBirthdayDate(int year, int month, int day, [int hour = 0, int minute = 0]) {
+    if (month == 2 && day == 29) {
+      final isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+      if (!isLeap) return DateTime(year, 2, 28, hour, minute);
+    }
+    return DateTime(year, month, day, hour, minute);
+  }
+
   /// Days until next birthday from today
   int get daysUntilBirthday {
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
-    var nextBirthday = DateTime(now.year, birthdayMonth, birthdayDay);
+    var nextBirthday = _safeBirthdayDate(now.year, birthdayMonth, birthdayDay);
     if (nextBirthday.isBefore(today)) {
-      nextBirthday = DateTime(now.year + 1, birthdayMonth, birthdayDay);
+      nextBirthday = _safeBirthdayDate(now.year + 1, birthdayMonth, birthdayDay);
     }
     return nextBirthday.difference(today).inDays;
   }

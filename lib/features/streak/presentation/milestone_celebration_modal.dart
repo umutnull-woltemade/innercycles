@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -123,12 +124,33 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
           ? '$streakDays day streak milestone celebration'
           : '$streakDays günlük seri kutlaması',
       child: Dialog(
-      backgroundColor:
-          isDark ? AppColors.surfaceDark : AppColors.lightSurface,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 36),
-        child: RepaintBoundary(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(28),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
+          child: Container(
+            decoration: BoxDecoration(
+              color: (isDark ? AppColors.surfaceDark : AppColors.lightSurface)
+                  .withValues(alpha: isDark ? 0.82 : 0.90),
+              borderRadius: BorderRadius.circular(28),
+              border: Border(
+                top: BorderSide(
+                  color: AppColors.starGold.withValues(alpha: 0.4),
+                  width: 1.5,
+                ),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.starGold.withValues(alpha: 0.08),
+                  blurRadius: 24,
+                  offset: const Offset(0, 8),
+                ),
+              ],
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 36),
+            child: RepaintBoundary(
           key: _boundaryKey,
           child: Container(
             color: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
@@ -282,6 +304,8 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                     .slideY(begin: 0.2, end: 0, duration: 400.ms),
               ],
             ),
+          ),
+        ),
           ),
         ),
       ),

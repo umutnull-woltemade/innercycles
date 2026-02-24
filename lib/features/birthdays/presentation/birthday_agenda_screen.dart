@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
@@ -326,15 +327,7 @@ class _MonthNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final monthNames = isEn
-        ? [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December',
-          ]
-        : [
-            'Ocak', '\u{015E}ubat', 'Mart', 'Nisan', 'May\u{0131}s', 'Haziran',
-            'Temmuz', 'A\u{011F}ustos', 'Eyl\u{00FC}l', 'Ekim', 'Kas\u{0131}m', 'Aral\u{0131}k',
-          ];
+    final monthNames = isEn ? CommonStrings.monthsFullEn : CommonStrings.monthsFullTr;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

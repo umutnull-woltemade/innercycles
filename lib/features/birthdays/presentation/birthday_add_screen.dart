@@ -11,6 +11,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
+import '../../../core/constants/common_strings.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/models/birthday_contact.dart';
@@ -220,15 +221,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildDateSection(bool isDark, bool isEn) {
-    final monthNames = isEn
-        ? [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December',
-          ]
-        : [
-            'Ocak', '\u{015E}ubat', 'Mart', 'Nisan', 'May\u{0131}s', 'Haziran',
-            'Temmuz', 'A\u{011F}ustos', 'Eyl\u{00FC}l', 'Ekim', 'Kas\u{0131}m', 'Aral\u{0131}k',
-          ];
+    final monthNames = isEn ? CommonStrings.monthsFullEn : CommonStrings.monthsFullTr;
 
     final daysInMonth = DateTime(2024, _selectedMonth + 1, 0).day;
     if (_selectedDay > daysInMonth) _selectedDay = daysInMonth;

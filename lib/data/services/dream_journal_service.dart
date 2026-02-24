@@ -920,10 +920,8 @@ class DreamJournalService with SupabaseSyncMixin {
     // Location patterns
     final locationCounts = <String, List<DreamEntry>>{};
     for (final dream in dreams) {
-      if (dream.locations != null) {
-        for (final location in dream.locations!) {
-          locationCounts.putIfAbsent(location, () => []).add(dream);
-        }
+      for (final location in dream.locations ?? <String>[]) {
+        locationCounts.putIfAbsent(location, () => []).add(dream);
       }
     }
     for (final entry in locationCounts.entries) {
@@ -949,10 +947,8 @@ class DreamJournalService with SupabaseSyncMixin {
     // Character patterns
     final characterCounts = <String, List<DreamEntry>>{};
     for (final dream in dreams) {
-      if (dream.characters != null) {
-        for (final character in dream.characters!) {
-          characterCounts.putIfAbsent(character, () => []).add(dream);
-        }
+      for (final character in dream.characters ?? <String>[]) {
+        characterCounts.putIfAbsent(character, () => []).add(dream);
       }
     }
     for (final entry in characterCounts.entries) {

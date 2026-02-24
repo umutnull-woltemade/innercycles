@@ -20,6 +20,7 @@ import 'package:share_plus/share_plus.dart';
 import 'dart:io';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
@@ -220,27 +221,15 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
   // =========================================================================
 
   String _monthName(int month, bool isEn) {
-    const enMonths = [
-      '', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-    ];
-    const trMonths = [
-      '', 'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
-      'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara',
-    ];
+    final enMonths = ['', ...CommonStrings.monthsShortEn];
+    final trMonths = ['', ...CommonStrings.monthsShortTr];
     if (month < 1 || month > 12) return '';
     return isEn ? enMonths[month] : trMonths[month];
   }
 
   String _monthNameFull(int month, bool isEn) {
-    const enMonths = [
-      '', 'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December',
-    ];
-    const trMonths = [
-      '', 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık',
-    ];
+    final enMonths = ['', ...CommonStrings.monthsFullEn];
+    final trMonths = ['', ...CommonStrings.monthsFullTr];
     if (month < 1 || month > 12) return '';
     return isEn ? enMonths[month] : trMonths[month];
   }

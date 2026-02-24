@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/models/note_to_self.dart';
@@ -21,6 +22,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/glass_dialog.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class NoteDetailScreen extends ConsumerStatefulWidget {
@@ -283,9 +285,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
   }
 
   String _formatReminderDate(DateTime dt, bool isEn) {
-    final months = isEn
-        ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        : ['Oca', '\u015eub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'A\u011fu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+    final months = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
     final h = dt.hour.toString().padLeft(2, '0');
     final m = dt.minute.toString().padLeft(2, '0');
     return '${dt.day} ${months[dt.month - 1]} ${dt.year}, $h:$m';
@@ -831,32 +831,17 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                               child: GestureDetector(
                                 onTap: () async {
                                   final confirmed =
-                                      await showCupertinoDialog<bool>(
-                                    context: context,
-                                    builder: (ctx) => CupertinoAlertDialog(
-                                      title: Text(isEn
-                                          ? 'Delete Note?'
-                                          : 'Not Silinsin mi?'),
-                                      content: Text(
-                                        isEn
-                                            ? 'This action cannot be undone.'
-                                            : 'Bu i\u015flem geri al\u0131namaz.',
-                                      ),
-                                      actions: [
-                                        CupertinoDialogAction(
-                                          child:
-                                              Text(isEn ? 'Cancel' : '\u0130ptal'),
-                                          onPressed: () =>
-                                              Navigator.pop(ctx, false),
-                                        ),
-                                        CupertinoDialogAction(
-                                          isDestructiveAction: true,
-                                          child: Text(isEn ? 'Delete' : 'Sil'),
-                                          onPressed: () =>
-                                              Navigator.pop(ctx, true),
-                                        ),
-                                      ],
-                                    ),
+                                      await GlassDialog.confirm(
+                                    context,
+                                    title: isEn
+                                        ? 'Delete Note?'
+                                        : 'Not Silinsin mi?',
+                                    message: isEn
+                                        ? 'This action cannot be undone.'
+                                        : 'Bu işlem geri alınamaz.',
+                                    cancelLabel: isEn ? 'Cancel' : 'İptal',
+                                    confirmLabel: isEn ? 'Delete' : 'Sil',
+                                    isDestructive: true,
                                   );
                                   if (confirmed == true) _delete(service);
                                 },
@@ -1055,9 +1040,7 @@ class _ReminderRow extends StatelessWidget {
   }
 
   String _formatDate(DateTime dt, bool isEn) {
-    final months = isEn
-        ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        : ['Oca', '\u015eub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'A\u011fu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+    final months = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
     final h = dt.hour.toString().padLeft(2, '0');
     final m = dt.minute.toString().padLeft(2, '0');
     return '${dt.day} ${months[dt.month - 1]} ${dt.year}, $h:$m';
@@ -1252,9 +1235,7 @@ class _ReminderForm extends StatelessWidget {
   }
 
   String _formatDate(DateTime dt, bool isEn) {
-    final months = isEn
-        ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        : ['Oca', '\u015eub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'A\u011fu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+    final months = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
     final h = dt.hour.toString().padLeft(2, '0');
     final m = dt.minute.toString().padLeft(2, '0');
     return '${dt.day} ${months[dt.month - 1]} ${dt.year}, $h:$m';

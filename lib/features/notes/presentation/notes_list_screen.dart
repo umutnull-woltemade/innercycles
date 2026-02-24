@@ -12,6 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
@@ -23,6 +24,7 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/glass_dialog.dart';
 
 class NotesListScreen extends ConsumerStatefulWidget {
   const NotesListScreen({super.key});
@@ -349,25 +351,13 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
     final language = ref.read(languageProvider);
     final isEn = language == AppLanguage.en;
 
-    final confirmed = await showCupertinoDialog<bool>(
-      context: context,
-      builder: (ctx) => CupertinoAlertDialog(
-        title: Text(isEn ? 'Delete Note?' : 'Not Silinsin mi?'),
-        content: Text(
-          isEn ? 'This action cannot be undone.' : 'Bu i\u015flem geri al\u0131namaz.',
-        ),
-        actions: [
-          CupertinoDialogAction(
-            child: Text(isEn ? 'Cancel' : '\u0130ptal'),
-            onPressed: () => Navigator.pop(ctx, false),
-          ),
-          CupertinoDialogAction(
-            isDestructiveAction: true,
-            child: Text(isEn ? 'Delete' : 'Sil'),
-            onPressed: () => Navigator.pop(ctx, true),
-          ),
-        ],
-      ),
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: isEn ? 'Delete Note?' : 'Not Silinsin mi?',
+      message: isEn ? 'This action cannot be undone.' : 'Bu işlem geri alınamaz.',
+      cancelLabel: isEn ? 'Cancel' : 'İptal',
+      confirmLabel: isEn ? 'Delete' : 'Sil',
+      isDestructive: true,
     );
 
     if (confirmed == true) {
@@ -838,15 +828,7 @@ class _NoteCard extends StatelessWidget {
     if (diff.inDays < 7) {
       return isEn ? '${diff.inDays}d' : '${diff.inDays}g';
     }
-    final months = isEn
-        ? [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-          ]
-        : [
-            'Oca', '\u015eub', 'Mar', 'Nis', 'May', 'Haz',
-            'Tem', 'A\u011fu', 'Eyl', 'Eki', 'Kas', 'Ara'
-          ];
+    final months = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
     return '${dt.day} ${months[dt.month - 1]}';
   }
 }

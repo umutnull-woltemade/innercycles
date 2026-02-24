@@ -6,6 +6,7 @@
 // lock icon and hint text. Tapping an earned badge opens a detail dialog.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -520,15 +521,40 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
         final dialogDark = Theme.of(ctx).brightness == Brightness.dark;
 
         return Dialog(
-          backgroundColor: dialogDark
-              ? AppColors.surfaceDark
-              : AppColors.lightSurface,
-          shape: RoundedRectangleBorder(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          child: ClipRRect(
             borderRadius: BorderRadius.circular(24),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 32),
-            child: Column(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: (dialogDark
+                          ? AppColors.surfaceDark
+                          : AppColors.lightSurface)
+                      .withValues(alpha: dialogDark ? 0.82 : 0.90),
+                  borderRadius: BorderRadius.circular(24),
+                  border: Border(
+                    top: BorderSide(
+                      color: AppColors.starGold.withValues(alpha: 0.4),
+                      width: 1.5,
+                    ),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.starGold.withValues(alpha: 0.06),
+                      blurRadius: 24,
+                      offset: const Offset(0, 8),
+                    ),
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.2),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 32),
+                child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 // Emoji large
@@ -655,6 +681,8 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                 ),
                 ),
               ],
+            ),
+          ),
             ),
           ),
         );

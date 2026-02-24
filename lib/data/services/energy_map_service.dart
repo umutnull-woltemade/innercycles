@@ -83,7 +83,7 @@ class EnergyMapService {
       for (final area in FocusArea.values) {
         final key = '${day}_${area.index}';
         final count = counts[key] ?? 0;
-        final avg = count > 0 ? (sums[key]! / count) : 0.0;
+        final avg = count > 0 ? ((sums[key] ?? 0.0) / count) : 0.0;
         cells.add(
           HeatmapCell(
             weekday: day,
@@ -150,7 +150,9 @@ class EnergyMapService {
     double bestAvg = 0;
     double worstAvg = 6;
     for (final day in daySums.keys) {
-      final avg = daySums[day]! / dayCounts[day]!;
+      final dayCount = dayCounts[day] ?? 0;
+      if (dayCount == 0) continue;
+      final avg = (daySums[day] ?? 0.0) / dayCount;
       if (avg > bestAvg) {
         bestAvg = avg;
         bestDay = day;

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/constants/common_strings.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
@@ -223,15 +224,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     final parts = monthKey.split('-');
     final year = parts[0];
     final monthIndex = int.tryParse(parts[1]) ?? 1;
-    final monthNames = isEn
-        ? [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December',
-          ]
-        : [
-            'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
-            'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık',
-          ];
+    final monthNames = isEn ? CommonStrings.monthsFullEn : CommonStrings.monthsFullTr;
 
     return Row(
       children: [
