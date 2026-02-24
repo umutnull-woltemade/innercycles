@@ -639,7 +639,7 @@ class _IdentityPageState extends State<_IdentityPage>
                         'onboarding.connect_with_apple',
                         widget.language,
                       ),
-                style: const TextStyle(
+                style: AppTypography.modernAccent(
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
@@ -820,7 +820,7 @@ class _FirstCyclePage extends StatelessWidget {
                               isEn
                                   ? (_focusDescEn[area] ?? '')
                                   : (_focusDescTr[area] ?? ''),
-                              style: TextStyle(
+                              style: AppTypography.decorativeScript(
                                 fontSize: 12,
                                 color: AppColors.textMuted.withValues(
                                   alpha: 0.71,
@@ -1088,7 +1088,7 @@ class _PermissionStartPage extends StatelessWidget {
                           isEn
                               ? 'A gentle nudge at 9:00 AM'
                               : 'Sabah 9:00\'da nazik bir hatırlatma',
-                          style: TextStyle(
+                          style: AppTypography.decorativeScript(
                             fontSize: 13,
                             color: AppColors.textMuted,
                           ),
@@ -1420,7 +1420,7 @@ class _FeatureRow extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(fontSize: 14, color: Colors.white70),
+              style: AppTypography.decorativeScript(fontSize: 14, color: Colors.white70),
             ),
           ),
         ],
@@ -1667,7 +1667,7 @@ class _CosmicWelcomeOverlayState extends State<_CosmicWelcomeOverlay>
                               'onboarding.tap_to_continue',
                               widget.language,
                             ),
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 14,
                               color: Colors.white.withValues(alpha: 0.5),
                               letterSpacing: 1,

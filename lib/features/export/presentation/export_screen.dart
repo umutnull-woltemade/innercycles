@@ -19,6 +19,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -187,43 +188,14 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                     const SizedBox(height: 32),
 
                     // Export button
-                    SizedBox(
-                      width: double.infinity,
-                      height: 56,
-                      child: ElevatedButton(
-                        onPressed: _isExporting
-                            ? null
-                            : () => _doExport(isPremium, isEn),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.auroraStart,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          elevation: 0,
-                        ),
-                        child: _isExporting
-                            ? const CosmicLoadingIndicator(size: 24)
-                            : Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Icon(
-                                    Icons.file_download_outlined,
-                                    size: 20,
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    isEn
-                                        ? 'Export & Share'
-                                        : 'Dışa Aktar ve Paylaş',
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                      ),
+                    GradientButton.gold(
+                      label: isEn ? 'Export & Share' : 'Dışa Aktar ve Paylaş',
+                      icon: Icons.file_download_outlined,
+                      onPressed: _isExporting
+                          ? null
+                          : () => _doExport(isPremium, isEn),
+                      isLoading: _isExporting,
+                      expanded: true,
                     ),
 
                     const SizedBox(height: 16),

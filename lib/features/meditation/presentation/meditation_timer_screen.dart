@@ -17,6 +17,7 @@ import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
@@ -377,26 +378,12 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
 
                       // Controls
                       if (!hasStarted)
-                        SizedBox(
-                          width: double.infinity,
-                          height: 56,
-                          child: ElevatedButton(
-                            onPressed: _start,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.cosmicPurple,
-                              foregroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              elevation: 0,
-                            ),
-                            child: Text(
-                              isEn ? 'Begin Meditation' : 'Meditasyona Başla',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
+                        GradientButton(
+                          label: isEn ? 'Begin Meditation' : 'Meditasyona Başla',
+                          onPressed: _start,
+                          expanded: true,
+                          gradient: const LinearGradient(
+                            colors: [AppColors.cosmicPurple, AppColors.auroraEnd],
                           ),
                         )
                       else

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 import 'gradient_border.dart';
 import 'gradient_text.dart';
 
@@ -70,7 +71,7 @@ class GradientOutlinedButton extends StatelessWidget {
                   shaderCallback: (bounds) => gradient.createShader(bounds),
                   child: Text(
                     label,
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       fontSize: fontSize ?? 15,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.3,

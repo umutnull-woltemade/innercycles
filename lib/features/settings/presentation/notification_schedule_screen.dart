@@ -12,6 +12,7 @@ import '../../../data/services/notification_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
 class NotificationScheduleScreen extends ConsumerStatefulWidget {
@@ -300,22 +301,10 @@ class _NotificationScheduleScreenState
               ),
             ),
             const SizedBox(height: AppConstants.spacingMd),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _requestPermission,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.auroraStart,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-                  ),
-                  elevation: 0,
-                ),
-                child: Text(
-                  isEn ? 'Enable Notifications' : 'Bildirimleri Etkinleştir',
-                ),
-              ),
+            GradientButton.gold(
+              label: isEn ? 'Enable Notifications' : 'Bildirimleri Etkinleştir',
+              onPressed: _requestPermission,
+              expanded: true,
             ),
           ],
         ),

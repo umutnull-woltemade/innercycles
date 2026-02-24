@@ -136,23 +136,26 @@ class AppErrorWidget extends StatelessWidget {
 
                 // Back-to-home button — uses GestureDetector + Container
                 // instead of ElevatedButton to avoid requiring Material ancestor.
-                GestureDetector(
-                  onTap: () {
-                    try {
-                      if (Navigator.of(context).canPop()) {
-                        Navigator.of(
-                          context,
-                        ).popUntil((route) => route.isFirst);
+                Semantics(
+                  label: buttonText,
+                  button: true,
+                  child: GestureDetector(
+                    onTap: () {
+                      try {
+                        if (Navigator.of(context).canPop()) {
+                          Navigator.of(
+                            context,
+                          ).popUntil((route) => route.isFirst);
+                        }
+                      } catch (e) {
+                        if (kDebugMode) {
+                          debugPrint('Navigation failed in error widget: $e');
+                        }
                       }
-                    } catch (e) {
-                      if (kDebugMode) {
-                        debugPrint('Navigation failed in error widget: $e');
-                      }
-                    }
-                  },
-                  child: Container(
-                    width: 200,
-                    height: 48,
+                    },
+                    child: Container(
+                      width: 200,
+                      height: 48,
                     decoration: BoxDecoration(
                       color: AppColors.starGold,
                       borderRadius: BorderRadius.circular(12),
@@ -169,12 +172,16 @@ class AppErrorWidget extends StatelessWidget {
                     ),
                   ),
                 ),
+                ),
 
                 const SizedBox(height: 16),
 
                 // Secondary action - reload page (web only)
                 if (kIsWeb)
-                  GestureDetector(
+                  Semantics(
+                    label: 'Reload Page',
+                    button: true,
+                    child: GestureDetector(
                     onTap: () {
                       if (kDebugMode) {
                         debugPrint(
@@ -182,17 +189,23 @@ class AppErrorWidget extends StatelessWidget {
                         );
                       }
                     },
-                    child: Text(
-                      _safeL10n(
-                        'widgets.app_error.reload_page',
-                        'Reload Page',
-                      ),
-                      style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.6),
-                        fontSize: 14,
-                        decoration: TextDecoration.none,
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(minHeight: 44),
+                      child: Center(
+                        child: Text(
+                          _safeL10n(
+                            'widgets.app_error.reload_page',
+                            'Reload Page',
+                          ),
+                          style: TextStyle(
+                            color: Colors.white.withValues(alpha: 0.6),
+                            fontSize: 14,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
                       ),
                     ),
+                  ),
                   ),
               ],
             ),

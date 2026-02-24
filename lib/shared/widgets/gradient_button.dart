@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 
 class GradientButton extends StatelessWidget {
   final String label;
@@ -95,7 +96,7 @@ class GradientButton extends StatelessWidget {
                       ],
                       Text(
                         label,
-                        style: TextStyle(
+                        style: AppTypography.modernAccent(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
                           color: fg,

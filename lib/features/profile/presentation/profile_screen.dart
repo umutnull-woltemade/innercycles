@@ -149,7 +149,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             onPressed: _saveProfile,
             child: Text(
               L10nService.get('common.save', language),
-              style: TextStyle(
+              style: AppTypography.modernAccent(
                 color: AppColors.auroraStart,
                 fontWeight: FontWeight.bold,
               ),
@@ -594,7 +594,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         onPressed: () => Navigator.pop(context),
                         child: Text(
                           L10nService.get('common.cancel', language),
-                          style: TextStyle(
+                          style: AppTypography.modernAccent(
                             color: isDark
                                 ? AppColors.textMuted
                                 : AppColors.lightTextMuted,
@@ -653,7 +653,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       FilterChip(
                         label: Text(
                           L10nService.get('input.turkey_kktc', language),
-                          style: TextStyle(
+                          style: AppTypography.modernAccent(
+                            fontSize: 13,
                             color: showTurkeyOnly
                                 ? Colors.white
                                 : (isDark
@@ -684,7 +685,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       FilterChip(
                         label: Text(
                           L10nService.get('input.whole_world', language),
-                          style: TextStyle(
+                          style: AppTypography.modernAccent(
+                            fontSize: 13,
                             color: !showTurkeyOnly
                                 ? Colors.white
                                 : (isDark
@@ -732,7 +734,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           ),
                           title: Text(
                             city.name,
-                            style: TextStyle(
+                            style: AppTypography.subtitle(
                               color: isDark
                                   ? AppColors.textPrimary
                                   : AppColors.lightTextPrimary,
@@ -740,7 +742,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           ),
                           subtitle: Text(
                             city.country,
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
+                              fontSize: 13,
                               color: isDark
                                   ? AppColors.textMuted
                                   : AppColors.lightTextMuted,

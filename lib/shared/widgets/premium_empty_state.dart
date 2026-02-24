@@ -147,10 +147,15 @@ class _GradientCTA extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
+    return Semantics(
+      label: label,
+      button: true,
+      child: GestureDetector(
+        onTap: onPressed,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 44),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [accent, accent.withValues(alpha: 0.7)],
@@ -179,6 +184,8 @@ class _GradientCTA extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      ),
       ),
     );
   }

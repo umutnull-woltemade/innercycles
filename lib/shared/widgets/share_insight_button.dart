@@ -48,18 +48,23 @@ class ShareInsightButton extends ConsumerWidget {
             isEn: isEn,
           );
         },
-        child: Container(
-          padding: const EdgeInsets.all(6),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: isDark
-                ? Colors.white.withValues(alpha: 0.06)
-                : Colors.black.withValues(alpha: 0.04),
-          ),
-          child: Icon(
-            Icons.share_rounded,
-            size: iconSize,
-            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minWidth: 44, minHeight: 44),
+          child: Center(
+            child: Container(
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isDark
+                    ? Colors.white.withValues(alpha: 0.06)
+                    : Colors.black.withValues(alpha: 0.04),
+              ),
+              child: Icon(
+                Icons.share_rounded,
+                size: iconSize,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
+            ),
           ),
         ),
       ),

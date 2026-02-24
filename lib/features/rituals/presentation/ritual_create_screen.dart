@@ -13,6 +13,7 @@ import '../../../data/services/premium_service.dart';
 import '../../../data/content/habit_suggestions_content.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 
@@ -345,35 +346,11 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                         const SizedBox(height: 32),
 
                         // Save button
-                        SizedBox(
-                          width: double.infinity,
-                          height: 56,
-                          child: ElevatedButton(
-                            onPressed: _isSaving ? null : _save,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.auroraStart,
-                              foregroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  AppConstants.radiusLg,
-                                ),
-                              ),
-                              elevation: 0,
-                            ),
-                            child: _isSaving
-                                ? const SizedBox(
-                                    width: 24,
-                                    height: 24,
-                                    child: CupertinoActivityIndicator(),
-                                  )
-                                : Text(
-                                    isEn ? 'Create Ritual' : 'Ritüel Oluştur',
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                          ),
+                        GradientButton.gold(
+                          label: isEn ? 'Create Ritual' : 'Ritüel Oluştur',
+                          onPressed: _isSaving ? null : _save,
+                          isLoading: _isSaving,
+                          expanded: true,
                         ).animate().fadeIn(delay: 500.ms, duration: 300.ms),
 
                         const SizedBox(height: 40),

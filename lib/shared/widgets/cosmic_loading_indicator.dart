@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 
 /// Themed loading indicator matching the cosmic design system.
 /// Replaces bare CircularProgressIndicator across all screens.
@@ -96,7 +97,7 @@ class _CosmicLoadingIndicatorState extends State<CosmicLoadingIndicator>
             const SizedBox(height: 12),
             Text(
               widget.message!,
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 13,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -124,7 +125,7 @@ class _CosmicLoadingIndicatorState extends State<CosmicLoadingIndicator>
             const SizedBox(height: 12),
             Text(
               widget.message!,
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 13,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),

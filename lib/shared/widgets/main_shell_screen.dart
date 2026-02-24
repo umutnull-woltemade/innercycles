@@ -219,10 +219,16 @@ class _NavTab extends StatelessWidget {
         : AppColors.lightTextMuted.withValues(alpha: 0.7);
     final color = isSelected ? activeColor : inactiveColor;
 
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: Column(
+    return Semantics(
+      label: item.label,
+      button: true,
+      selected: isSelected,
+      child: GestureDetector(
+        onTap: onTap,
+        behavior: HitTestBehavior.opaque,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minWidth: 44, minHeight: 44),
+          child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           // Glow dot indicator
@@ -289,6 +295,8 @@ class _NavTab extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
         ],
+      ),
+      ),
       ),
     );
   }
