@@ -602,18 +602,21 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
           await ref.read(birthdayContactServiceProvider.future);
 
       BirthdayContact saved;
+      final trimmedNote = _noteController.text.trim();
       if (_isEditing && _existingContact != null) {
+        // Construct directly to allow clearing nullable fields
         saved = await service.updateContact(
-          _existingContact!.copyWith(
+          BirthdayContact(
+            id: _existingContact!.id,
             name: _nameController.text.trim(),
             birthdayMonth: _selectedMonth,
             birthdayDay: _selectedDay,
             birthYear: _selectedYear,
+            createdAt: _existingContact!.createdAt,
             photoPath: _imagePath,
             relationship: _relationship,
-            note: _noteController.text.trim().isEmpty
-                ? null
-                : _noteController.text.trim(),
+            note: trimmedNote.isEmpty ? null : trimmedNote,
+            source: _existingContact!.source,
             notificationsEnabled: _notificationsEnabled,
             dayBeforeReminder: _dayBeforeReminder,
           ),
