@@ -22,6 +22,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class QuizHubScreen extends ConsumerWidget {
@@ -169,34 +170,11 @@ class _QuizCard extends StatelessWidget {
       hint: isCompleted ? (isEn ? 'Completed' : 'Tamamlandı') : null,
       child: GestureDetector(
         onTap: onTap,
-        child: Container(
+        child: PremiumCard(
+          style: isCompleted
+              ? PremiumCardStyle.aurora
+              : PremiumCardStyle.subtle,
           padding: const EdgeInsets.all(AppConstants.spacingLg),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(AppConstants.radiusXl),
-            border: Border.all(
-              color: isCompleted
-                  ? AppColors.auroraStart.withValues(alpha: 0.4)
-                  : isDark
-                  ? AppColors.surfaceLight.withValues(alpha: 0.4)
-                  : AppColors.lightSurfaceVariant,
-              width: isCompleted ? 1.5 : 1,
-            ),
-            gradient: isCompleted
-                ? LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      AppColors.auroraStart.withValues(alpha: 0.08),
-                      AppColors.auroraEnd.withValues(alpha: 0.04),
-                    ],
-                  )
-                : null,
-            color: isCompleted
-                ? null
-                : isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.6)
-                : AppColors.lightCard.withValues(alpha: 0.9),
-          ),
           child: Row(
             children: [
               // Emoji

@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../core/theme/app_typography.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -1138,21 +1139,23 @@ class _ClosingCard extends StatelessWidget {
             child: ElevatedButton.icon(
               onPressed: () {
                 HapticFeedback.selectionClick();
-                // Share functionality placeholder — uses existing share system
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      isEn
-                          ? 'Share your Wrapped from Share Cards gallery'
-                          : 'Wrapped\'ını Paylaşım Kartları galerisinden paylaş',
-                    ),
-                    backgroundColor: AppColors.surfaceLight,
-                    behavior: SnackBarBehavior.floating,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                );
+                final moodStr = data.averageMood.toStringAsFixed(1);
+                final shareText = isEn
+                    ? 'My ${data.year} InnerCycles Wrapped\n\n'
+                      '${data.totalEntries} journal entries across ${data.totalJournalingDays} days\n'
+                      'Average mood: $moodStr/5\n'
+                      'Growth score: ${data.growthScore}%\n'
+                      'Best streak: ${data.streakBest} days\n'
+                      '${data.breakthroughCount} breakthrough moments\n\n'
+                      'Discover your inner patterns with InnerCycles.'
+                    : '${data.year} InnerCycles Wrapped\'ım\n\n'
+                      '${data.totalJournalingDays} günde ${data.totalEntries} günlük kaydı\n'
+                      'Ortalama ruh hali: $moodStr/5\n'
+                      'Gelişim puanı: ${data.growthScore}%\n'
+                      'En iyi seri: ${data.streakBest} gün\n'
+                      '${data.breakthroughCount} atılım anı\n\n'
+                      'InnerCycles ile iç örüntülerini keşfet.';
+                SharePlus.instance.share(ShareParams(text: shareText));
               },
               icon: const Icon(Icons.share_rounded, size: 18),
               label: Text(

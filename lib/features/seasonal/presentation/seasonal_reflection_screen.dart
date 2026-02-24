@@ -18,6 +18,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class SeasonalReflectionScreen extends ConsumerWidget {
@@ -142,24 +143,9 @@ class _SeasonHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.aurora,
       padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: isDark
-              ? [
-                  AppColors.surfaceDark.withValues(alpha: 0.9),
-                  _seasonColor(module.season).withValues(alpha: 0.3),
-                ]
-              : [
-                  AppColors.lightCard,
-                  _seasonColor(module.season).withValues(alpha: 0.1),
-                ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-      ),
       child: Column(
         children: [
           AppSymbol.hero(module.emoji),
@@ -242,21 +228,12 @@ class _PromptCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
-      child: Container(
+      child: PremiumCard(
+        style: isCompleted
+            ? PremiumCardStyle.gold
+            : PremiumCardStyle.subtle,
         padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceDark.withValues(alpha: 0.85)
-              : AppColors.lightCard,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: isCompleted
-                ? AppColors.success.withValues(alpha: 0.3)
-                : (isDark
-                      ? Colors.white.withValues(alpha: 0.1)
-                      : Colors.black.withValues(alpha: 0.05)),
-          ),
-        ),
+        borderRadius: 14,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -351,14 +328,10 @@ class _AllSeasonsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final current = SeasonalReflectionService.currentSeason();
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(14),
-      ),
+      borderRadius: 14,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
