@@ -71,19 +71,36 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 child: _QuickStatsRow(isEn: isEn, isDark: isDark),
               ),
 
-              const SliverToBoxAdapter(child: SizedBox(height: 20)),
+              const SliverToBoxAdapter(child: SizedBox(height: 24)),
 
               // ═══════════════════════════════════════════════════════
               // 3. MOOD CHECK-IN
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: const MoodCheckinCard(),
                 ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
               ),
 
-              const SliverToBoxAdapter(child: SizedBox(height: 20)),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 4),
+                  child: Container(
+                    height: 0.5,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.transparent,
+                          (isDark ? AppColors.starGold : AppColors.lightStarGold)
+                              .withValues(alpha: 0.1),
+                          Colors.transparent,
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
 
               // ═══════════════════════════════════════════════════════
               // 4. HERO JOURNAL CARD — Daily question + CTA
@@ -92,7 +109,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 child: _HeroJournalCard(isEn: isEn, isDark: isDark),
               ),
 
-              const SliverToBoxAdapter(child: SizedBox(height: 8)),
+              const SliverToBoxAdapter(child: SizedBox(height: 12)),
 
               // ═══════════════════════════════════════════════════════
               // 5. STREAK RECOVERY BANNER (if applicable)
@@ -118,6 +135,25 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 child: _PersonalizedPromptSection(isEn: isEn, isDark: isDark),
               ),
 
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 4),
+                  child: Container(
+                    height: 0.5,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.transparent,
+                          (isDark ? AppColors.starGold : AppColors.lightStarGold)
+                              .withValues(alpha: 0.1),
+                          Colors.transparent,
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
               // ═══════════════════════════════════════════════════════
               // 8. FOCUS PULSE — Horizontal focus area scores
               // ═══════════════════════════════════════════════════════
@@ -132,6 +168,25 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 child: _RecentEntriesHorizontal(isEn: isEn, isDark: isDark),
               ),
 
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 4),
+                  child: Container(
+                    height: 0.5,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.transparent,
+                          (isDark ? AppColors.starGold : AppColors.lightStarGold)
+                              .withValues(alpha: 0.1),
+                          Colors.transparent,
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
               // ═══════════════════════════════════════════════════════
               // 10. RECENT LIFE EVENTS
               // ═══════════════════════════════════════════════════════
@@ -143,7 +198,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               // 11. STREAK CARD
               // ═══════════════════════════════════════════════════════
               SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 sliver: SliverToBoxAdapter(
                   child: const StreakCard().animate().fadeIn(
                     delay: 300.ms,
@@ -152,7 +207,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 ),
               ),
 
-              const SliverToBoxAdapter(child: SizedBox(height: 16)),
+              const SliverToBoxAdapter(child: SizedBox(height: 20)),
 
               // ═══════════════════════════════════════════════════════
               // 12. UPCOMING NOTE REMINDERS
@@ -251,8 +306,10 @@ class _HomeHeader extends StatelessWidget {
     final insight = ContentRotationService.getDailyInsight();
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
-      child: Row(
+      padding: const EdgeInsets.fromLTRB(24, 20, 24, 8),
+      child: Column(
+        children: [
+          Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
@@ -366,6 +423,23 @@ class _HomeHeader extends StatelessWidget {
               ),
             ),
           ),
+          ],
+        ),
+          const SizedBox(height: 12),
+          // Subtle gold divider
+          Container(
+            height: 0.5,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.transparent,
+                  (isDark ? AppColors.starGold : AppColors.lightStarGold)
+                      .withValues(alpha: 0.15),
+                  Colors.transparent,
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -403,7 +477,7 @@ class _QuickStatsRow extends ConsumerWidget {
         0;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+      padding: const EdgeInsets.fromLTRB(24, 12, 24, 0),
       child: Row(
         children: [
           // Streak
@@ -573,7 +647,7 @@ class _HeroJournalCard extends ConsumerWidget {
         final questionText = isEn ? prompt.promptEn : prompt.promptTr;
 
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: PremiumCard(
             style: PremiumCardStyle.aurora,
             borderRadius: 24,
@@ -1083,8 +1157,31 @@ class _RecentEntriesHorizontal extends ConsumerWidget {
                           style: PremiumCardStyle.subtle,
                           showGradientBorder: false,
                           borderRadius: 16,
-                          padding: const EdgeInsets.all(14),
-                          child: Column(
+                          padding: EdgeInsets.zero,
+                          child: Row(
+                            children: [
+                              // Focus area accent bar
+                              Container(
+                                width: 3,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+                                      accentColor.withValues(alpha: 0.8),
+                                      accentColor.withValues(alpha: 0.2),
+                                    ],
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(16),
+                                    bottomLeft: Radius.circular(16),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(14),
+                                  child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               // Date
@@ -1152,6 +1249,10 @@ class _RecentEntriesHorizontal extends ConsumerWidget {
                                     ),
                                   );
                                 }),
+                              ),
+                            ],
+                          ),
+                                  ),
                               ),
                             ],
                           ),
@@ -2160,3 +2261,4 @@ class _MonthlyWrappedBanner extends StatelessWidget {
     ).animate().fadeIn(duration: 400.ms);
   }
 }
+

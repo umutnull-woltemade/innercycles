@@ -18,6 +18,10 @@ import '../../../core/constants/app_constants.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../data/services/paywall_service.dart';
 import '../../../data/services/app_lock_service.dart';
+import '../../../data/services/auth_service.dart';
+import '../../../data/services/sync_service.dart';
+import '../../../shared/providers/sync_status_provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -218,48 +222,87 @@ class SettingsScreen extends ConsumerWidget {
                               isDark: isDark,
                               onTap: () => context.push(Routes.profile),
                             ),
-                            _GroupedSeparator(isDark: isDark),
-                            _GroupedTile(
-                              icon: Icons.workspace_premium_outlined,
-                              title: L10nService.get(
-                                'settings.premium',
-                                language,
+                            if (AuthService.isSupabaseInitialized && AuthService.currentUser != null) ...[
+                              _GroupedSeparator(isDark: isDark),
+                              _SyncStatusTile(
+                                isDark: isDark,
+                                isEn: language == AppLanguage.en,
                               ),
-                              isDark: isDark,
-                              onTap: () => isPremium
-                                  ? context.push(Routes.premium)
-                                  : showContextualPaywall(
-                                      context,
-                                      ref,
-                                      paywallContext: PaywallContext.general,
-                                      bypassTimingGate: true,
-                                    ),
-                              trailing: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 4,
+                            ],
+                            _GroupedSeparator(isDark: isDark),
+                            Container(
+                              decoration: !isPremium
+                                  ? BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          AppColors.starGold.withValues(alpha: isDark ? 0.06 : 0.04),
+                                          AppColors.celestialGold.withValues(alpha: isDark ? 0.03 : 0.02),
+                                        ],
+                                      ),
+                                    )
+                                  : null,
+                              child: _GroupedTile(
+                                icon: Icons.workspace_premium_outlined,
+                                title: L10nService.get(
+                                  'settings.premium',
+                                  language,
                                 ),
-                                decoration: BoxDecoration(
-                                  gradient: isPremium
-                                      ? LinearGradient(
-                                          colors: [
-                                            AppColors.success,
-                                            AppColors.success.withValues(
-                                              alpha: 0.8,
+                                isDark: isDark,
+                                onTap: () => isPremium
+                                    ? context.push(Routes.premium)
+                                    : showContextualPaywall(
+                                        context,
+                                        ref,
+                                        paywallContext: PaywallContext.general,
+                                        bypassTimingGate: true,
+                                      ),
+                                trailing: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 5,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    gradient: isPremium
+                                        ? LinearGradient(
+                                            colors: [
+                                              AppColors.success,
+                                              AppColors.success.withValues(
+                                                alpha: 0.8,
+                                              ),
+                                            ],
+                                          )
+                                        : LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            colors: [
+                                              AppColors.starGold,
+                                              AppColors.celestialGold,
+                                            ],
+                                          ),
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: !isPremium
+                                        ? [
+                                            BoxShadow(
+                                              color: AppColors.starGold.withValues(alpha: 0.3),
+                                              blurRadius: 8,
+                                              offset: const Offset(0, 2),
                                             ),
-                                          ],
-                                        )
-                                      : AppColors.goldGradient,
-                                  borderRadius: BorderRadius.circular(6),
-                                ),
-                                child: Text(
-                                  'PRO',
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.bold,
-                                    color: isPremium
-                                        ? Colors.white
-                                        : AppColors.deepSpace,
+                                          ]
+                                        : null,
+                                  ),
+                                  child: Text(
+                                    'PRO',
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold,
+                                      color: isPremium
+                                          ? Colors.white
+                                          : AppColors.deepSpace,
+                                      letterSpacing: 0.5,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -303,6 +346,13 @@ class SettingsScreen extends ConsumerWidget {
                                                   ? 'No purchases found'
                                                   : 'Satın alım bulunamadı'),
                                       ),
+                                      backgroundColor: restored
+                                          ? AppColors.success
+                                          : AppColors.surfaceLight,
+                                      behavior: SnackBarBehavior.floating,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
                                     ),
                                   );
                                 }
@@ -320,6 +370,16 @@ class SettingsScreen extends ConsumerWidget {
                               onTap: () =>
                                   _showClearDataDialog(context, ref, language),
                             ),
+                            if (AuthService.isSupabaseInitialized && AuthService.currentUser != null) ...[
+                              _GroupedSeparator(isDark: isDark),
+                              _GroupedTile(
+                                icon: Icons.logout_rounded,
+                                title: language == AppLanguage.en ? 'Sign Out' : 'Çıkış Yap',
+                                isDark: isDark,
+                                isDestructive: true,
+                                onTap: () => _showSignOutDialog(context, ref, language),
+                              ),
+                            ],
                           ],
                         ),
                       ),
@@ -622,6 +682,75 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
+  void _showSignOutDialog(
+    BuildContext context,
+    WidgetRef ref,
+    AppLanguage language,
+  ) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    showDialog(
+      context: context,
+      builder: (dialogCtx) => AlertDialog(
+        backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        title: Text(
+          language == AppLanguage.en ? 'Sign Out?' : 'Çıkış Yap?',
+          style: TextStyle(
+            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+          ),
+        ),
+        content: Text(
+          language == AppLanguage.en
+              ? 'Your data is saved locally and will sync when you sign back in.'
+              : 'Verileriniz yerel olarak kaydedilir ve tekrar giriş yaptığınızda senkronize edilir.',
+          style: TextStyle(
+            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogCtx),
+            child: Text(
+              language == AppLanguage.en ? 'Cancel' : 'İptal',
+              style: TextStyle(
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(dialogCtx);
+              try {
+                await Supabase.instance.client.auth.signOut();
+              } catch (e) {
+                if (kDebugMode) debugPrint('Sign out error: $e');
+              }
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      language == AppLanguage.en ? 'Signed out' : 'Çıkış yapıldı',
+                    ),
+                    backgroundColor: AppColors.surfaceLight,
+                    behavior: SnackBarBehavior.floating,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                );
+              }
+            },
+            child: Text(
+              language == AppLanguage.en ? 'Sign Out' : 'Çıkış Yap',
+              style: const TextStyle(color: AppColors.error),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   void _showDisclaimerDialog(
     BuildContext context,
     AppLanguage language,
@@ -716,7 +845,7 @@ class SettingsScreen extends ConsumerWidget {
 // iOS GROUPED LIST COMPONENTS
 // ══════════════════════════════════════════════════════════════════════════════
 
-/// iOS-style section header (13pt uppercase, secondaryLabel color)
+/// Section header with decorative accent line
 class _SectionHeader extends StatelessWidget {
   final String title;
   final bool isDark;
@@ -726,15 +855,34 @@ class _SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16, bottom: 8),
-      child: Text(
-        title,
-        style: TextStyle(
-          fontSize: 13,
-          fontWeight: FontWeight.w400,
-          color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-          letterSpacing: -0.08,
-        ),
+      padding: const EdgeInsets.only(left: 16, bottom: 10),
+      child: Row(
+        children: [
+          Container(
+            width: 3,
+            height: 14,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(2),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: isDark
+                    ? [AppColors.starGold, AppColors.celestialGold]
+                    : [AppColors.lightStarGold, AppColors.celestialGold],
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              letterSpacing: 0.5,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -777,6 +925,84 @@ class _GroupedSeparator extends StatelessWidget {
       color: isDark
           ? Colors.white.withValues(alpha: 0.15)
           : Colors.black.withValues(alpha: 0.1),
+    );
+  }
+}
+
+/// Sync status indicator tile for Settings → Account section
+class _SyncStatusTile extends ConsumerWidget {
+  final bool isDark;
+  final bool isEn;
+
+  const _SyncStatusTile({required this.isDark, required this.isEn});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final syncAsync = ref.watch(syncStatusProvider);
+    final pendingCount = ref.watch(pendingSyncCountProvider);
+
+    final status = syncAsync.when(
+      data: (s) => s,
+      loading: () => SyncStatus.idle,
+      error: (_, __) => SyncStatus.error,
+    );
+
+    final IconData icon;
+    final String label;
+    final Color color;
+    switch (status) {
+      case SyncStatus.syncing:
+        icon = Icons.sync;
+        label = isEn ? 'Syncing...' : 'Senkronize ediliyor...';
+        color = AppColors.auroraStart;
+      case SyncStatus.synced:
+        icon = Icons.cloud_done_outlined;
+        label = isEn ? 'Synced' : 'Senkronize';
+        color = AppColors.success;
+      case SyncStatus.error:
+        icon = Icons.cloud_off_outlined;
+        label = isEn ? 'Sync error' : 'Senkronizasyon hatası';
+        color = AppColors.error;
+      case SyncStatus.offline:
+        icon = Icons.cloud_off_outlined;
+        label = isEn ? 'Offline' : 'Çevrimdışı';
+        color = isDark ? AppColors.textMuted : AppColors.lightTextMuted;
+      case SyncStatus.idle:
+        icon = Icons.cloud_outlined;
+        label = isEn ? 'Ready' : 'Hazır';
+        color = isDark ? AppColors.textMuted : AppColors.lightTextMuted;
+    }
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Row(
+        children: [
+          Icon(icon, color: color, size: 22),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Text(
+              label,
+              style: TextStyle(fontSize: 17, color: color),
+            ),
+          ),
+          if (pendingCount > 0)
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              decoration: BoxDecoration(
+                color: AppColors.warning.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text(
+                '$pendingCount',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.warning,
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
@@ -874,21 +1100,47 @@ class _ThemeOption extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.all(12),
+          duration: const Duration(milliseconds: 250),
+          padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
+            gradient: isSelected
+                ? LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: isDark
+                        ? [
+                            AppColors.auroraStart.withValues(alpha: 0.15),
+                            AppColors.auroraEnd.withValues(alpha: 0.08),
+                          ]
+                        : [
+                            AppColors.auroraStart.withValues(alpha: 0.08),
+                            AppColors.auroraEnd.withValues(alpha: 0.04),
+                          ],
+                  )
+                : null,
             color: isSelected
-                ? AppColors.auroraStart.withValues(alpha: 0.15)
+                ? null
                 : (isDark
-                      ? AppColors.surfaceLight.withValues(alpha: 0.2)
+                      ? AppColors.surfaceLight.withValues(alpha: 0.15)
                       : AppColors.lightSurfaceVariant),
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: isSelected
-                  ? AppColors.auroraStart.withValues(alpha: 0.6)
-                  : Colors.transparent,
-              width: 1.5,
+                  ? AppColors.starGold.withValues(alpha: 0.5)
+                  : (isDark
+                        ? Colors.white.withValues(alpha: 0.06)
+                        : Colors.black.withValues(alpha: 0.04)),
+              width: isSelected ? 1.5 : 1,
             ),
+            boxShadow: isSelected
+                ? [
+                    BoxShadow(
+                      color: AppColors.starGold.withValues(alpha: 0.1),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ]
+                : null,
           ),
           child: Column(
             children: [
@@ -1154,7 +1406,11 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                     content: Text(
                       isEn ? 'PIN must be 4 digits' : 'PIN 4 haneli olmalı',
                     ),
+                    backgroundColor: AppColors.warning,
                     behavior: SnackBarBehavior.floating,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
                 );
                 return;
@@ -1166,7 +1422,11 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                     content: Text(
                       isEn ? 'PINs do not match' : 'PIN\'ler eşleşmiyor',
                     ),
+                    backgroundColor: AppColors.warning,
                     behavior: SnackBarBehavior.floating,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
                 );
                 return;
