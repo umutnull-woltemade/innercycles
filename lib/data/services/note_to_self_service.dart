@@ -278,6 +278,79 @@ class NoteToSelfService with SupabaseSyncMixin {
   }
 
   // ══════════════════════════════════════════════════════════════════════════
+  // REMOTE MERGE
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Merge notes pulled from Supabase into local storage.
+  Future<void> mergeRemoteNotes(List<Map<String, dynamic>> remoteData) async {
+    for (final row in remoteData) {
+      final id = row['id'] as String;
+      final isDeleted = row['is_deleted'] as bool? ?? false;
+
+      if (isDeleted) {
+        _notes.removeWhere((n) => n.id == id);
+        continue;
+      }
+
+      final note = NoteToSelf(
+        id: id,
+        createdAt: DateTime.tryParse(row['created_at']?.toString() ?? '') ?? DateTime.now(),
+        updatedAt: DateTime.tryParse(row['updated_at']?.toString() ?? '') ?? DateTime.now(),
+        title: row['title'] as String? ?? '',
+        content: row['content'] as String? ?? '',
+        isPinned: row['is_pinned'] as bool? ?? false,
+        tags: (row['tags'] as List<dynamic>?)
+                ?.map((e) => e.toString())
+                .toList() ??
+            [],
+        linkedJournalEntryId: row['linked_journal_entry_id'] as String?,
+        moodAtCreation: row['mood_at_creation'] as String?,
+      );
+
+      final existingIdx = _notes.indexWhere((n) => n.id == id);
+      if (existingIdx >= 0) {
+        _notes[existingIdx] = note;
+      } else {
+        _notes.add(note);
+      }
+    }
+    await _persistNotes();
+  }
+
+  /// Merge reminders pulled from Supabase into local storage.
+  Future<void> mergeRemoteReminders(List<Map<String, dynamic>> remoteData) async {
+    for (final row in remoteData) {
+      final id = row['id'] as String;
+      final isDeleted = row['is_deleted'] as bool? ?? false;
+
+      if (isDeleted) {
+        _reminders.removeWhere((r) => r.id == id);
+        continue;
+      }
+
+      final reminder = NoteReminder(
+        id: id,
+        noteId: row['note_id'] as String? ?? '',
+        scheduledAt: DateTime.tryParse(row['scheduled_at']?.toString() ?? '') ?? DateTime.now(),
+        frequency: ReminderFrequency.values.firstWhere(
+          (e) => e.name == row['frequency'],
+          orElse: () => ReminderFrequency.once,
+        ),
+        isActive: row['is_active'] as bool? ?? true,
+        customMessage: row['custom_message'] as String?,
+      );
+
+      final existingIdx = _reminders.indexWhere((r) => r.id == id);
+      if (existingIdx >= 0) {
+        _reminders[existingIdx] = reminder;
+      } else {
+        _reminders.add(reminder);
+      }
+    }
+    await _persistReminders();
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
   // NOTIFICATION SCHEDULING
   // ══════════════════════════════════════════════════════════════════════════
 

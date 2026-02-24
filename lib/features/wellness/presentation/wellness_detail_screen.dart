@@ -12,6 +12,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class WellnessDetailScreen extends ConsumerWidget {
@@ -133,35 +134,13 @@ class WellnessDetailScreen extends ConsumerWidget {
   }
 
   Widget _buildEmptyState(bool isDark, bool isEn) {
-    return Column(
-      children: [
-        const SizedBox(height: 40),
-        Icon(
-          Icons.favorite_outline,
-          size: 64,
-          color: AppColors.auroraStart.withValues(alpha: 0.5),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          isEn ? 'No score yet' : 'Henüz skor yok',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          isEn
-              ? 'Log a cycle entry, gratitude, or sleep to see your cycle score'
-              : 'Döngü skorunu görmek için döngü kaydı, şükran veya uyku kaydı oluştur',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 14,
-            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-          ),
-        ),
-      ],
+    return PremiumEmptyState(
+      icon: Icons.favorite_outline,
+      title: isEn ? 'No score yet' : 'Henüz skor yok',
+      description: isEn
+          ? 'Log a cycle entry, gratitude, or sleep to see your cycle score'
+          : 'Döngü skorunu görmek için döngü kaydı, şükran veya uyku kaydı oluştur',
+      gradientVariant: GradientTextVariant.aurora,
     );
   }
 

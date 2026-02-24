@@ -18,6 +18,7 @@ import '../../../data/services/first_taste_service.dart';
 import '../../../data/services/guided_program_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
@@ -86,14 +87,12 @@ class ProgramListScreen extends ConsumerWidget {
 
                           // Active programs section
                           if (service.activeProgramCount > 0) ...[
-                            Text(
+                            GradientText(
                               isEn ? 'In Progress' : 'Devam Eden',
-                              style: TextStyle(
+                              variant: GradientTextVariant.aurora,
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
-                                color: isDark
-                                    ? AppColors.textPrimary
-                                    : AppColors.lightTextPrimary,
                               ),
                             ),
                             const SizedBox(height: 12),
@@ -120,14 +119,12 @@ class ProgramListScreen extends ConsumerWidget {
                           ],
 
                           // All programs
-                          Text(
+                          GradientText(
                             isEn ? 'All Programs' : 'Tüm Programlar',
-                            style: TextStyle(
+                            variant: GradientTextVariant.gold,
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
                             ),
                           ),
                           const SizedBox(height: 12),

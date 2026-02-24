@@ -274,7 +274,7 @@ class _SectionTitle extends StatelessWidget {
     return GradientText(
       title,
       variant: GradientTextVariant.gold,
-      style: GoogleFonts.inter(
+      style: GoogleFonts.plusJakartaSans(
         fontSize: 17,
         fontWeight: FontWeight.w700,
       ),
@@ -351,7 +351,7 @@ class _StatItem extends StatelessWidget {
       children: [
         Text(
           value,
-          style: GoogleFonts.inter(
+          style: GoogleFonts.plusJakartaSans(
             fontSize: 22,
             fontWeight: FontWeight.w700,
             color: color,
@@ -399,7 +399,7 @@ class _ActiveChallengeCard extends StatelessWidget {
                   children: [
                     Text(
                       isEn ? challenge.titleEn : challenge.titleTr,
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
                         color: isDark
@@ -489,7 +489,7 @@ class _AvailableChallengeCard extends StatelessWidget {
                   ),
                   child: Text(
                     'PRO',
-                    style: GoogleFonts.inter(
+                    style: GoogleFonts.plusJakartaSans(
                       fontSize: 9,
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
@@ -501,7 +501,7 @@ class _AvailableChallengeCard extends StatelessWidget {
           const SizedBox(height: AppConstants.spacingSm),
           Text(
             isEn ? challenge.titleEn : challenge.titleTr,
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 14,
               fontWeight: FontWeight.w600,
               color: isDark
@@ -577,7 +577,7 @@ class _CompletedChallengeTile extends StatelessWidget {
           Expanded(
             child: Text(
               isEn ? challenge.titleEn : challenge.titleTr,
-              style: GoogleFonts.inter(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
                 color: isDark

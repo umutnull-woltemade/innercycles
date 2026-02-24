@@ -15,6 +15,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class CycleSyncScreen extends ConsumerStatefulWidget {
@@ -159,15 +160,14 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
               ),
             ),
             const SizedBox(height: AppConstants.spacingMd),
-            Text(
+            GradientText(
               isEn ? 'Start Tracking Your Cycle' : 'Döngünü Takip Etmeye Başla',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
+              variant: GradientTextVariant.aurora,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
-              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             Text(
@@ -598,12 +598,12 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Text(
+                  GradientText(
                     isEn ? 'Cycle Insight' : 'Döngü İçgörüsü',
-                    style: TextStyle(
+                    variant: GradientTextVariant.aurora,
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.auroraStart,
                     ),
                   ),
                 ],
@@ -816,92 +816,109 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (ctx) => Container(
-        decoration: BoxDecoration(
-          color: isDark ? AppColors.deepSpace : Colors.white,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-        ),
-        padding: const EdgeInsets.all(24),
-        child: SafeArea(
-          top: false,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: isDark ? Colors.white24 : Colors.black12,
-                  borderRadius: BorderRadius.circular(2),
+      builder: (ctx) => ClipRRect(
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+          child: Container(
+            decoration: BoxDecoration(
+              color: (isDark ? AppColors.deepSpace : Colors.white)
+                  .withValues(alpha: isDark ? 0.85 : 0.92),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(24)),
+              border: Border(
+                top: BorderSide(
+                  color: AppColors.auroraStart.withValues(alpha: 0.3),
+                  width: 1.5,
                 ),
               ),
-              const SizedBox(height: 24),
-              Text(
-                isEn ? 'Log Period Start' : 'Adet Başlangıcı Kaydet',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                isEn
-                    ? 'Mark today as the start of your period.'
-                    : 'Bugünü adet başlangıcı olarak işaretle.',
-                style: TextStyle(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    HapticFeedback.mediumImpact();
-                    Navigator.pop(ctx);
-                    final service = await ref.read(
-                      cycleSyncServiceProvider.future,
-                    );
-                    await service.logPeriodStart(date: DateTime.now());
-                    ref.invalidate(cycleSyncServiceProvider);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.amethyst,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        AppConstants.radiusMd,
+            ),
+            padding: const EdgeInsets.all(24),
+            child: SafeArea(
+              top: false,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 40,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          AppColors.auroraStart.withValues(alpha: 0.6),
+                          AppColors.auroraEnd.withValues(alpha: 0.6),
+                        ],
                       ),
+                      borderRadius: BorderRadius.circular(2),
                     ),
                   ),
-                  child: Text(
-                    isEn ? 'Period Started Today' : 'Adet Bugün Başladı',
-                    style: const TextStyle(
-                      fontSize: 16,
+                  const SizedBox(height: 24),
+                  GradientText(
+                    isEn ? 'Log Period Start' : 'Adet Başlangıcı Kaydet',
+                    variant: GradientTextVariant.aurora,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextButton(
-                onPressed: () => Navigator.pop(ctx),
-                child: Text(
-                  isEn ? 'Cancel' : 'İptal',
-                  style: TextStyle(
-                    color: isDark
-                        ? AppColors.textMuted
-                        : AppColors.lightTextMuted,
+                  const SizedBox(height: 8),
+                  Text(
+                    isEn
+                        ? 'Mark today as the start of your period.'
+                        : 'Bugünü adet başlangıcı olarak işaretle.',
+                    style: TextStyle(
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        HapticFeedback.mediumImpact();
+                        Navigator.pop(ctx);
+                        final service = await ref.read(
+                          cycleSyncServiceProvider.future,
+                        );
+                        await service.logPeriodStart(date: DateTime.now());
+                        ref.invalidate(cycleSyncServiceProvider);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.amethyst,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            AppConstants.radiusMd,
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        isEn ? 'Period Started Today' : 'Adet Bugün Başladı',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton(
+                    onPressed: () => Navigator.pop(ctx),
+                    child: Text(
+                      isEn ? 'Cancel' : 'İptal',
+                      style: TextStyle(
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

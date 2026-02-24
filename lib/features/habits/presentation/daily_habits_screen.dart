@@ -16,6 +16,8 @@ import '../../../data/services/habit_suggestion_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
@@ -227,31 +229,43 @@ class _ProgressHeader extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(
-            allDone
-                ? (isEn ? 'All done for today!' : 'Bugün hepsi tamamlandı!')
-                : (isEn ? 'Today\'s Progress' : 'Bugünkü İlerleme'),
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: allDone
-                  ? AppColors.success
-                  : (isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary),
-            ),
-          ),
+          allDone
+              ? Text(
+                  isEn ? 'All done for today!' : 'Bugün hepsi tamamlandı!',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.success,
+                  ),
+                )
+              : GradientText(
+                  isEn ? 'Today\'s Progress' : 'Bugünkü İlerleme',
+                  variant: GradientTextVariant.gold,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
           const SizedBox(height: 12),
           Row(
             children: [
-              Text(
-                '$completed / $total',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w700,
-                  color: allDone ? AppColors.success : AppColors.starGold,
-                ),
-              ),
+              allDone
+                  ? Text(
+                      '$completed / $total',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.success,
+                      ),
+                    )
+                  : GradientText(
+                      '$completed / $total',
+                      variant: GradientTextVariant.gold,
+                      style: const TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
               const SizedBox(width: 16),
               Expanded(
                 child: ClipRRect(
@@ -510,62 +524,15 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(32),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 40),
-          ExcludeSemantics(
-            child: Icon(
-              Icons.playlist_add_check_rounded,
-              size: 64,
-              color: AppColors.starGold.withValues(alpha: 0.4),
-            ),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            isEn ? 'No habits adopted yet' : 'Henüz benimsenen alışkanlık yok',
-            style: TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            isEn
-                ? 'Browse the habit library and adopt habits to track them daily'
-                : 'Alışkanlık kütüphanesine göz at ve günlük takip için alışkanlık benimse',
-            style: TextStyle(
-              fontSize: 14,
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: () => context.push(Routes.habitSuggestions),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.starGold,
-              foregroundColor: AppColors.deepSpace,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            ),
-            child: Text(
-              isEn ? 'Browse Habits' : 'Alışkanlıkları Gözat',
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-            ),
-          ),
-        ],
-      ),
-    ).animate().fadeIn(duration: 400.ms);
+    return PremiumEmptyState(
+      icon: Icons.playlist_add_check_rounded,
+      title: isEn ? 'No habits adopted yet' : 'Henüz benimsenen alışkanlık yok',
+      description: isEn
+          ? 'Browse the habit library and adopt habits to track them daily'
+          : 'Alışkanlık kütüphanesine göz at ve günlük takip için alışkanlık benimse',
+      gradientVariant: GradientTextVariant.gold,
+      ctaLabel: isEn ? 'Browse Habits' : 'Alışkanlıkları Gözat',
+      onCtaPressed: () => context.push(Routes.habitSuggestions),
+    );
   }
 }

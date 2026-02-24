@@ -5,6 +5,7 @@
 // Compares current app version against SharedPreferences 'last_seen_version'.
 // ============================================================================
 
+import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -13,6 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../shared/widgets/app_symbol.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 // ---------------------------------------------------------------------------
 // Data model for a single feature highlight
@@ -165,13 +167,23 @@ class _WhatsNewSheet extends StatelessWidget {
         isDark ? AppColors.textSecondary : AppColors.lightTextSecondary;
     final mutedColor = isDark ? AppColors.textMuted : AppColors.lightTextMuted;
 
-    return Container(
+    return ClipRRect(
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+        child: Container(
       constraints: BoxConstraints(
         maxHeight: MediaQuery.of(context).size.height * 0.8,
       ),
       decoration: BoxDecoration(
-        color: bgColor,
+        color: bgColor.withValues(alpha: isDark ? 0.85 : 0.92),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        border: Border(
+          top: BorderSide(
+            color: AppColors.auroraStart.withValues(alpha: 0.3),
+            width: 1.5,
+          ),
+        ),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -182,19 +194,24 @@ class _WhatsNewSheet extends StatelessWidget {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: mutedColor.withValues(alpha: 0.4),
+              gradient: LinearGradient(
+                colors: [
+                  AppColors.auroraStart.withValues(alpha: 0.6),
+                  AppColors.auroraEnd.withValues(alpha: 0.6),
+                ],
+              ),
               borderRadius: BorderRadius.circular(2),
             ),
           ),
           const SizedBox(height: 20),
 
           // ---- Header ----
-          Text(
+          GradientText(
             isEn ? "What's New" : 'Yenilikler',
-            style: TextStyle(
+            variant: GradientTextVariant.aurora,
+            style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: textColor,
             ),
           )
               .animate()
@@ -274,6 +291,8 @@ class _WhatsNewSheet extends StatelessWidget {
           SizedBox(height: MediaQuery.of(context).padding.bottom + 16),
         ],
       ),
+        ),
+      ),
     );
   }
 }
@@ -311,7 +330,14 @@ class _FeatureTile extends StatelessWidget {
             width: 44,
             height: 44,
             decoration: BoxDecoration(
-              color: AppColors.cosmicPurple.withValues(alpha: 0.6),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  AppColors.auroraStart.withValues(alpha: 0.15),
+                  AppColors.auroraEnd.withValues(alpha: 0.08),
+                ],
+              ),
               borderRadius: BorderRadius.circular(12),
             ),
             alignment: Alignment.center,

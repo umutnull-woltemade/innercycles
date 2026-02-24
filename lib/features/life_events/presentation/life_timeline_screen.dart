@@ -19,6 +19,9 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/premium_empty_state.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class LifeTimelineScreen extends ConsumerStatefulWidget {
@@ -58,10 +61,9 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
               _buildContent(context, service, isDark, isEn, isPremium),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: _AnimatedFAB(
+        isEn: isEn,
         onPressed: () => context.push(Routes.lifeEventNew),
-        backgroundColor: AppColors.starGold,
-        child: Icon(Icons.add_rounded, color: AppColors.deepSpace),
       ),
     );
   }
@@ -232,12 +234,12 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
 
     return Row(
       children: [
-        Text(
+        GradientText(
           '${monthNames[(monthIndex - 1).clamp(0, 11)]} $year',
-          style: TextStyle(
+          variant: GradientTextVariant.gold,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),
         const SizedBox(width: 8),
@@ -283,17 +285,10 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
         onTap: () => context.push(
           Routes.lifeEventDetail.replaceFirst(':id', event.id),
         ),
-        child: Container(
+        child: PremiumCard(
+          style: PremiumCardStyle.subtle,
+          borderRadius: 14,
           padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.8)
-                : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(
-              color: accentColor.withValues(alpha: 0.15),
-            ),
-          ),
           child: Row(
             children: [
               // Emoji + accent line
@@ -388,91 +383,113 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
   }
 
   Widget _buildEmptyState(bool isDark, bool isEn) {
-    return Container(
-      padding: const EdgeInsets.all(40),
-      child: Column(
-        children: [
-          Icon(
-            Icons.auto_awesome_rounded,
-            size: 48,
-            color: AppColors.starGold.withValues(alpha: 0.4),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            isEn ? 'No life events yet' : 'Henüz yaşam olayı yok',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            isEn
-                ? 'Start recording the moments that shape your story'
-                : 'Hikayenizi şekillendiren anları kaydetmeye başlayın',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 13,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-            ),
-          ),
-        ],
-      ),
+    return PremiumEmptyState(
+      icon: Icons.auto_awesome_rounded,
+      title: isEn ? 'No life events yet' : 'Henüz yaşam olayı yok',
+      description: isEn
+          ? 'Start recording the moments that shape your story'
+          : 'Hikayenizi şekillendiren anları kaydetmeye başlayın',
+      gradientVariant: GradientTextVariant.gold,
     );
   }
 
   Widget _buildPremiumGate(BuildContext context, bool isDark, bool isEn) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      margin: const EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
-        color: AppColors.starGold.withValues(alpha: 0.06),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.15),
-        ),
-      ),
-      child: Column(
-        children: [
-          Icon(Icons.lock_outline_rounded, color: AppColors.starGold, size: 28),
-          const SizedBox(height: 8),
-          Text(
-            isEn
-                ? 'Unlock your full timeline with Pro'
-                : 'Pro ile tüm zaman çizelgenizi açın',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: PremiumCard(
+        style: PremiumCardStyle.gold,
+        borderRadius: 14,
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Icon(
+              Icons.lock_outline_rounded,
+              color: AppColors.starGold,
+              size: 28,
             ),
-          ),
-          const SizedBox(height: 12),
-          ElevatedButton(
-            onPressed: () => showContextualPaywall(
-              context,
-              ref,
-              paywallContext: PaywallContext.patterns,
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.starGold,
-              foregroundColor: AppColors.deepSpace,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+            const SizedBox(height: 8),
+            GradientText(
+              isEn
+                  ? 'Unlock your full timeline with Pro'
+                  : 'Pro ile tüm zaman çizelgenizi açın',
+              variant: GradientTextVariant.gold,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
               ),
             ),
-            child: Text(
-              isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
-              style: const TextStyle(fontWeight: FontWeight.w600),
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: () => showContextualPaywall(
+                context,
+                ref,
+                paywallContext: PaywallContext.patterns,
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.starGold,
+                foregroundColor: AppColors.deepSpace,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Text(
+                isEn ? 'Upgrade to Pro' : 'Pro\'ya Yükselt',
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
+  }
+}
+
+class _AnimatedFAB extends StatelessWidget {
+  final bool isEn;
+  final VoidCallback onPressed;
+
+  const _AnimatedFAB({required this.isEn, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        height: 56,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [AppColors.starGold, AppColors.celestialGold],
+          ),
+          borderRadius: BorderRadius.circular(28),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.starGold.withValues(alpha: 0.3),
+              blurRadius: 16,
+              offset: const Offset(0, 6),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.add_rounded, size: 20, color: AppColors.deepSpace),
+            const SizedBox(width: 8),
+            Text(
+              isEn ? 'New Event' : 'Yeni Olay',
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: AppColors.deepSpace,
+              ),
+            ),
+          ],
+        ),
+      ),
+    )
+        .animate()
+        .fadeIn(duration: 400.ms, delay: 300.ms)
+        .slideY(begin: 0.3, end: 0, duration: 400.ms, curve: Curves.easeOut);
   }
 }

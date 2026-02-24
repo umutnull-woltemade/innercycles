@@ -1,9 +1,9 @@
 // ════════════════════════════════════════════════════════════════════════════
-// TODAY FEED SCREEN - InnerCycles Focused Home (Survival Release)
+// TODAY FEED SCREEN - InnerCycles Premium Home (v2 Refit)
 // ════════════════════════════════════════════════════════════════════════════
-// Core 8: Header → StreakRecovery → MoodCheckin → StartJournal → Insight →
-//          Prompt → RecentEntries → LifeEvents → StreakCard
-// Surgery: CycleSync, ShadowWork, UnlockProgress, DiscoverMore removed.
+// Hero Layout: Header → QuickStats → MoodCheckin → HeroJournal →
+//              Insight → Prompt → FocusPulse → RecentEntries →
+//              LifeEvents → StreakCard → Banners
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
@@ -17,16 +17,17 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/models/life_event.dart';
 import '../../../data/content/life_event_presets.dart';
+import '../../../data/content/share_card_templates.dart';
 import '../../../data/services/archetype_service.dart';
 import '../../../data/services/content_rotation_service.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../streak/presentation/streak_card.dart';
-import '../../prompts/presentation/daily_question_card.dart';
 import '../../streak/presentation/streak_recovery_banner.dart';
 import '../../mood/presentation/mood_checkin_card.dart';
-// unlock_progress_banner import removed (Today Feed simplified)
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/share_card_sheet.dart';
 
 class TodayFeedScreen extends ConsumerStatefulWidget {
   const TodayFeedScreen({super.key});
@@ -53,7 +54,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
             ),
             slivers: [
               // ═══════════════════════════════════════════════════════
-              // HEADER - Greeting + Settings
+              // 1. HEADER — Date + Greeting + Name + Avatar
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
                 child: _HomeHeader(
@@ -64,7 +65,37 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               ),
 
               // ═══════════════════════════════════════════════════════
-              // STREAK RECOVERY BANNER (if applicable)
+              // 2. QUICK STATS ROW — Streak / Mood / Entries
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _QuickStatsRow(isEn: isEn, isDark: isDark),
+              ),
+
+              const SliverToBoxAdapter(child: SizedBox(height: 20)),
+
+              // ═══════════════════════════════════════════════════════
+              // 3. MOOD CHECK-IN
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: const MoodCheckinCard(),
+                ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
+              ),
+
+              const SliverToBoxAdapter(child: SizedBox(height: 20)),
+
+              // ═══════════════════════════════════════════════════════
+              // 4. HERO JOURNAL CARD — Daily question + CTA
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _HeroJournalCard(isEn: isEn, isDark: isDark),
+              ),
+
+              const SliverToBoxAdapter(child: SizedBox(height: 8)),
+
+              // ═══════════════════════════════════════════════════════
+              // 5. STREAK RECOVERY BANNER (if applicable)
               // ═══════════════════════════════════════════════════════
               const SliverToBoxAdapter(
                 child: Padding(
@@ -74,157 +105,42 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               ),
 
               // ═══════════════════════════════════════════════════════
-              // MOOD CHECK-IN
-              // ═══════════════════════════════════════════════════════
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: const MoodCheckinCard(),
-                ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
-              ),
-
-              const SliverToBoxAdapter(child: SizedBox(height: 16)),
-
-              // ═══════════════════════════════════════════════════════
-              // PRIMARY CTA - Start Journaling (pill shape)
-              // ═══════════════════════════════════════════════════════
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: GestureDetector(
-                    onTap: () {
-                      HapticService.buttonPress();
-                      context.go(Routes.journal);
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(28),
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: isDark
-                              ? [AppColors.starGold, AppColors.celestialGold]
-                              : [AppColors.lightStarGold, AppColors.celestialGold],
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.starGold.withValues(alpha: 0.2),
-                            blurRadius: 16,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.edit_rounded,
-                            size: 20,
-                            color: AppColors.deepSpace,
-                          ),
-                          const SizedBox(width: 10),
-                          Flexible(
-                            child: Text(
-                              isEn ? 'Start Journaling' : 'Günlüğe Başla',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                letterSpacing: 0.3,
-                                color: AppColors.deepSpace,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                      .animate().fadeIn(delay: 180.ms, duration: 400.ms)
-                      .animate(onPlay: (c) => c.repeat())
-                      .shimmer(
-                        delay: 3000.ms,
-                        duration: 1800.ms,
-                        color: Colors.white.withValues(alpha: 0.12),
-                      ),
-                ),
-              ),
-
-              const SliverToBoxAdapter(child: SizedBox(height: 20)),
-
-              // ═══════════════════════════════════════════════════════
-              // RETROSPECTIVE BANNER (if < 5 entries or never used)
-              // ═══════════════════════════════════════════════════════
-              SliverToBoxAdapter(
-                child: _RetrospectiveBanner(isEn: isEn, isDark: isDark),
-              ),
-
-              // ═══════════════════════════════════════════════════════
-              // TODAY'S INSIGHT (pattern-based, if 3+ entries)
+              // 6. TODAY'S INSIGHT (pattern-based, if 3+ entries)
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
                 child: _TodaysInsightSection(isEn: isEn, isDark: isDark),
               ),
 
               // ═══════════════════════════════════════════════════════
-              // DAILY QUESTION CARD (shareable question of the day)
-              // ═══════════════════════════════════════════════════════
-              SliverToBoxAdapter(
-                child: DailyQuestionCard(isEn: isEn, isDark: isDark),
-              ),
-
-              // ═══════════════════════════════════════════════════════
-              // PERSONALIZED PROMPT (filtered by weakest focus area)
+              // 7. PERSONALIZED PROMPT (filtered by weakest area)
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
                 child: _PersonalizedPromptSection(isEn: isEn, isDark: isDark),
               ),
 
               // ═══════════════════════════════════════════════════════
-              // UPCOMING NOTE REMINDERS (next 48h)
+              // 8. FOCUS PULSE — Horizontal focus area scores
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
-                child: _UpcomingRemindersCard(isEn: isEn, isDark: isDark),
+                child: _FocusPulseRow(isEn: isEn, isDark: isDark),
               ),
 
               // ═══════════════════════════════════════════════════════
-              // WEEKLY SHARE CARD PROMPT (once per week)
+              // 9. RECENT ENTRIES — Horizontal scroll cards
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
-                child: _WeeklySharePrompt(isEn: isEn, isDark: isDark),
+                child: _RecentEntriesHorizontal(isEn: isEn, isDark: isDark),
               ),
 
               // ═══════════════════════════════════════════════════════
-              // WRAPPED BANNER (Dec 26 - Jan 7)
-              // ═══════════════════════════════════════════════════════
-              SliverToBoxAdapter(
-                child: _WrappedBanner(isEn: isEn, isDark: isDark),
-              ),
-
-              // ═══════════════════════════════════════════════════════
-              // MONTHLY WRAPPED BANNER (first 10 days of each month)
-              // ═══════════════════════════════════════════════════════
-              SliverToBoxAdapter(
-                child: _MonthlyWrappedBanner(isEn: isEn, isDark: isDark),
-              ),
-
-              // ═══════════════════════════════════════════════════════
-              // RECENT ENTRIES (last 3)
-              // ═══════════════════════════════════════════════════════
-              SliverToBoxAdapter(
-                child: _RecentEntriesSection(isEn: isEn, isDark: isDark),
-              ),
-
-              // ═══════════════════════════════════════════════════════
-              // RECENT LIFE EVENTS
+              // 10. RECENT LIFE EVENTS
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
                 child: _RecentLifeEventsCard(isEn: isEn, isDark: isDark),
               ),
 
               // ═══════════════════════════════════════════════════════
-              // STREAK CARD
+              // 11. STREAK CARD
               // ═══════════════════════════════════════════════════════
               SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -234,6 +150,39 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     duration: 400.ms,
                   ),
                 ),
+              ),
+
+              const SliverToBoxAdapter(child: SizedBox(height: 16)),
+
+              // ═══════════════════════════════════════════════════════
+              // 12. UPCOMING NOTE REMINDERS
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _UpcomingRemindersCard(isEn: isEn, isDark: isDark),
+              ),
+
+              // ═══════════════════════════════════════════════════════
+              // 13. RETROSPECTIVE BANNER
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _RetrospectiveBanner(isEn: isEn, isDark: isDark),
+              ),
+
+              // ═══════════════════════════════════════════════════════
+              // 14. WRAPPED / MONTHLY WRAPPED BANNERS
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _WrappedBanner(isEn: isEn, isDark: isDark),
+              ),
+              SliverToBoxAdapter(
+                child: _MonthlyWrappedBanner(isEn: isEn, isDark: isDark),
+              ),
+
+              // ═══════════════════════════════════════════════════════
+              // 15. WEEKLY SHARE PROMPT
+              // ═══════════════════════════════════════════════════════
+              SliverToBoxAdapter(
+                child: _WeeklySharePrompt(isEn: isEn, isDark: isDark),
               ),
 
               const SliverToBoxAdapter(child: SizedBox(height: 40)),
@@ -246,7 +195,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// HOME HEADER — Split greeting: small line + bold name
+// HOME HEADER — Date badge + Greeting + Name + Avatar circle
 // ════════════════════════════════════════════════════════════════════════════
 
 class _HomeHeader extends StatelessWidget {
@@ -260,25 +209,49 @@ class _HomeHeader extends StatelessWidget {
     required this.isDark,
   });
 
-  String _getSubtitle(bool isEn) {
-    final insight = ContentRotationService.getDailyInsight();
-    return isEn ? insight.en : insight.tr;
+  String _getGreeting() {
+    final hour = DateTime.now().hour;
+    if (hour < 12) return isEn ? 'Good morning' : 'Günaydın';
+    if (hour < 18) return isEn ? 'Good afternoon' : 'İyi günler';
+    return isEn ? 'Good evening' : 'İyi akşamlar';
+  }
+
+  String _getFormattedDate() {
+    final now = DateTime.now();
+    const dayNamesEn = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const dayNamesTr = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
+    const monthsEn = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+    ];
+    const monthsTr = [
+      'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
+      'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara',
+    ];
+    final dayIndex = now.weekday - 1;
+    if (isEn) {
+      return '${dayNamesEn[dayIndex]}, ${monthsEn[now.month - 1]} ${now.day}';
+    }
+    return '${dayNamesTr[dayIndex]}, ${now.day} ${monthsTr[now.month - 1]}';
+  }
+
+  String _getInitials() {
+    if (userName.isEmpty) return '';
+    final parts = userName.trim().split(' ');
+    if (parts.length >= 2) {
+      return '${parts.first[0]}${parts.last[0]}'.toUpperCase();
+    }
+    return userName[0].toUpperCase();
   }
 
   @override
   Widget build(BuildContext context) {
-    final hour = DateTime.now().hour;
-    String greeting;
-    if (hour < 12) {
-      greeting = isEn ? 'Good morning' : 'Günaydın';
-    } else if (hour < 18) {
-      greeting = isEn ? 'Good afternoon' : 'İyi günler';
-    } else {
-      greeting = isEn ? 'Good evening' : 'İyi akşamlar';
-    }
+    final greeting = _getGreeting();
+    final dateStr = _getFormattedDate();
+    final insight = ContentRotationService.getDailyInsight();
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+      padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -286,6 +259,20 @@ class _HomeHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Date in gold small caps
+                Text(
+                  dateStr.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 1.2,
+                    color: isDark
+                        ? AppColors.starGold.withValues(alpha: 0.6)
+                        : AppColors.lightStarGold.withValues(alpha: 0.7),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                // Greeting
                 Text(
                   userName.isNotEmpty ? '$greeting,' : greeting,
                   style: TextStyle(
@@ -312,24 +299,431 @@ class _HomeHeader extends StatelessWidget {
                 ],
                 const SizedBox(height: 6),
                 Text(
-                  _getSubtitle(isEn),
+                  isEn ? insight.en : insight.tr,
                   style: TextStyle(
                     fontSize: 13,
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
                     height: 1.3,
+                    fontStyle: FontStyle.italic,
                   ),
                 ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 12),
+          // Avatar circle → Settings
+          Semantics(
+            label: isEn ? 'Profile & Settings' : 'Profil ve Ayarlar',
+            button: true,
+            child: GestureDetector(
+              onTap: () {
+                HapticService.buttonPress();
+                context.push(Routes.settings);
+              },
+              child: Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(
+                    colors: [
+                      (isDark ? AppColors.starGold : AppColors.lightStarGold)
+                          .withValues(alpha: 0.15),
+                      (isDark ? AppColors.starGold : AppColors.lightStarGold)
+                          .withValues(alpha: 0.05),
+                    ],
+                  ),
+                  border: Border.all(
+                    color: (isDark
+                            ? AppColors.starGold
+                            : AppColors.lightStarGold)
+                        .withValues(alpha: 0.3),
+                    width: 1.5,
+                  ),
+                ),
+                child: Center(
+                  child: userName.isNotEmpty
+                      ? Text(
+                          _getInitials(),
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: isDark
+                                ? AppColors.starGold
+                                : AppColors.lightStarGold,
+                          ),
+                        )
+                      : Icon(
+                          Icons.person_outline_rounded,
+                          size: 22,
+                          color: isDark
+                              ? AppColors.starGold
+                              : AppColors.lightStarGold,
+                        ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// QUICK STATS ROW — 3 glass mini-cards: Streak / Mood / Entries
+// ════════════════════════════════════════════════════════════════════════════
+
+class _QuickStatsRow extends ConsumerWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _QuickStatsRow({required this.isEn, required this.isDark});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final streakAsync = ref.watch(streakStatsProvider);
+    final moodAsync = ref.watch(moodCheckinServiceProvider);
+    final journalAsync = ref.watch(journalServiceProvider);
+
+    final streakCount = streakAsync.whenOrNull(
+          data: (stats) => stats.currentStreak,
+        ) ??
+        0;
+
+    final todayMood = moodAsync.whenOrNull(
+      data: (service) => service.getTodayMood(),
+    );
+
+    final entryCount = journalAsync.whenOrNull(
+          data: (service) => service.getAllEntries().length,
+        ) ??
+        0;
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+      child: Row(
+        children: [
+          // Streak
+          Expanded(
+            child: _StatCard(
+              icon: Icons.local_fire_department_rounded,
+              iconColor: AppColors.streakOrange,
+              value: '$streakCount',
+              label: isEn ? 'Streak' : 'Seri',
+              isDark: isDark,
+              onTap: () => context.push(Routes.streakStats),
+            ),
+          ),
+          const SizedBox(width: 10),
+          // Mood
+          Expanded(
+            child: _StatCard(
+              emoji: todayMood?.emoji,
+              icon: Icons.favorite_rounded,
+              iconColor: AppColors.auroraStart,
+              value: todayMood != null
+                  ? _moodLabel(todayMood.mood)
+                  : (isEn ? 'Check in' : 'Kaydet'),
+              label: isEn ? 'Mood' : 'Ruh Hali',
+              isDark: isDark,
+              onTap: () => context.push(Routes.moodTrends),
+            ),
+          ),
+          const SizedBox(width: 10),
+          // Entries
+          Expanded(
+            child: _StatCard(
+              icon: Icons.auto_stories_rounded,
+              iconColor: AppColors.amethyst,
+              value: '$entryCount',
+              label: isEn ? 'Entries' : 'Kayıt',
+              isDark: isDark,
+              onTap: () => context.push(Routes.journalArchive),
+            ),
+          ),
+        ],
+      ),
+    )
+        .animate()
+        .fadeIn(delay: 80.ms, duration: 400.ms)
+        .slideY(begin: 0.05, duration: 400.ms);
+  }
+
+  String _moodLabel(int mood) {
+    if (isEn) {
+      switch (mood) {
+        case 1:
+          return 'Low';
+        case 2:
+          return 'Meh';
+        case 3:
+          return 'Okay';
+        case 4:
+          return 'Good';
+        case 5:
+          return 'Great';
+        default:
+          return '';
+      }
+    }
+    switch (mood) {
+      case 1:
+        return 'Zor';
+      case 2:
+        return 'Düşük';
+      case 3:
+        return 'İdare';
+      case 4:
+        return 'İyi';
+      case 5:
+        return 'Harika';
+      default:
+        return '';
+    }
+  }
+}
+
+class _StatCard extends StatelessWidget {
+  final IconData? icon;
+  final String? emoji;
+  final Color iconColor;
+  final String value;
+  final String label;
+  final bool isDark;
+  final VoidCallback onTap;
+
+  const _StatCard({
+    this.icon,
+    this.emoji,
+    required this.iconColor,
+    required this.value,
+    required this.label,
+    required this.isDark,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        HapticService.selectionTap();
+        onTap();
+      },
+      child: PremiumCard(
+        style: PremiumCardStyle.subtle,
+        showGradientBorder: false,
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+        borderRadius: 14,
+        child: Column(
+          children: [
+            if (emoji != null)
+              Text(emoji!, style: const TextStyle(fontSize: 22))
+            else
+              Icon(icon, size: 22, color: iconColor),
+            const SizedBox(height: 6),
+            Text(
+              value,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(height: 2),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                letterSpacing: 0.3,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// HERO JOURNAL CARD — Daily question + Start Writing CTA
+// ════════════════════════════════════════════════════════════════════════════
+
+class _HeroJournalCard extends ConsumerWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _HeroJournalCard({required this.isEn, required this.isDark});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final promptAsync = ref.watch(journalPromptServiceProvider);
+
+    return promptAsync.maybeWhen(
+      data: (service) {
+        final prompt = service.getDailyPrompt();
+        final questionText = isEn ? prompt.promptEn : prompt.promptTr;
+
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: PremiumCard(
+            style: PremiumCardStyle.aurora,
+            borderRadius: 24,
+            padding: const EdgeInsets.fromLTRB(24, 28, 24, 20),
+            child: Column(
+              children: [
+                // Decorative open quote
+                Text(
+                  '\u201C',
+                  style: TextStyle(
+                    fontSize: 48,
+                    fontWeight: FontWeight.w800,
+                    height: 0.5,
+                    color: isDark
+                        ? Colors.white.withValues(alpha: 0.12)
+                        : Colors.black.withValues(alpha: 0.06),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                // Question text
+                Text(
+                  questionText,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                    height: 1.45,
+                    letterSpacing: -0.2,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                // Label
+                Text(
+                  isEn ? 'DAILY REFLECTION' : 'GÜNLÜK YANSIMA',
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                    color: isDark
+                        ? AppColors.auroraStart.withValues(alpha: 0.5)
+                        : AppColors.lightAuroraStart.withValues(alpha: 0.6),
+                    letterSpacing: 1.5,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                // Gold CTA button
+                GestureDetector(
+                  onTap: () {
+                    HapticService.buttonPress();
+                    context.push(
+                      Routes.journal,
+                      extra: {'journalPrompt': questionText},
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: isDark
+                            ? [AppColors.starGold, AppColors.celestialGold]
+                            : [
+                                AppColors.lightStarGold,
+                                AppColors.celestialGold,
+                              ],
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.starGold.withValues(alpha: 0.25),
+                          blurRadius: 12,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.edit_rounded,
+                          size: 18,
+                          color: AppColors.deepSpace,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          isEn ? 'Start Writing' : 'Yazmaya Başla',
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.deepSpace,
+                            letterSpacing: 0.3,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+                    .animate(onPlay: (c) => c.repeat())
+                    .shimmer(
+                      delay: 3000.ms,
+                      duration: 1800.ms,
+                      color: Colors.white.withValues(alpha: 0.1),
+                    ),
                 const SizedBox(height: 12),
-                Container(
-                  height: 0.5,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.transparent,
-                        AppColors.starGold.withValues(alpha: 0.15),
-                        Colors.transparent,
+                // Share link
+                GestureDetector(
+                  onTap: () {
+                    HapticService.buttonPress();
+                    final template = ShareCardTemplates.questionOfTheDay;
+                    final cardData = ShareCardTemplates.buildData(
+                      template: template,
+                      isEn: isEn,
+                      reflectionText: questionText,
+                    );
+                    ShareCardSheet.show(
+                      context,
+                      template: template,
+                      data: cardData,
+                      isEn: isEn,
+                    );
+                  },
+                  behavior: HitTestBehavior.opaque,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.share_rounded,
+                          size: 14,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          isEn
+                              ? 'Share this question'
+                              : 'Bu soruyu paylaş',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -337,35 +731,475 @@ class _HomeHeader extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 12),
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: isDark
-                  ? Colors.white.withValues(alpha: 0.06)
-                  : Colors.black.withValues(alpha: 0.04),
-            ),
-            child: IconButton(
-              tooltip: isEn ? 'Settings' : 'Ayarlar',
-              onPressed: () {
-                HapticService.buttonPress();
-                context.push(Routes.settings);
-              },
-              icon: Icon(
-                Icons.settings_outlined,
-                color: isDark
-                    ? AppColors.textMuted
-                    : AppColors.lightTextMuted,
-                size: 20,
+        )
+            .animate()
+            .fadeIn(delay: 200.ms, duration: 400.ms)
+            .slideY(begin: 0.03, duration: 400.ms);
+      },
+      orElse: () {
+        // Fallback: simple CTA pill
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: GestureDetector(
+            onTap: () {
+              HapticService.buttonPress();
+              context.go(Routes.journal);
+            },
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(28),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: isDark
+                      ? [AppColors.starGold, AppColors.celestialGold]
+                      : [AppColors.lightStarGold, AppColors.celestialGold],
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.starGold.withValues(alpha: 0.2),
+                    blurRadius: 16,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
-              padding: EdgeInsets.zero,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.edit_rounded,
+                    size: 20,
+                    color: AppColors.deepSpace,
+                  ),
+                  const SizedBox(width: 10),
+                  Flexible(
+                    child: Text(
+                      isEn ? 'Start Journaling' : 'Günlüğe Başla',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.3,
+                        color: AppColors.deepSpace,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
+          ).animate().fadeIn(delay: 180.ms, duration: 400.ms),
+        );
+      },
     );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// FOCUS PULSE ROW — Horizontal scroll of focus area circular scores
+// ════════════════════════════════════════════════════════════════════════════
+
+class _FocusPulseRow extends ConsumerWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _FocusPulseRow({required this.isEn, required this.isDark});
+
+  static const _focusAreaEmoji = {
+    FocusArea.energy: '\u26A1',
+    FocusArea.focus: '\uD83C\uDFAF',
+    FocusArea.emotions: '\uD83D\uDC9C',
+    FocusArea.decisions: '\uD83E\uDDED',
+    FocusArea.social: '\uD83E\uDD1D',
+  };
+
+  static const _focusAreaColors = {
+    FocusArea.energy: AppColors.starGold,
+    FocusArea.focus: AppColors.chartBlue,
+    FocusArea.emotions: AppColors.chartPink,
+    FocusArea.decisions: AppColors.chartGreen,
+    FocusArea.social: AppColors.chartPurple,
+  };
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final engineAsync = ref.watch(patternEngineServiceProvider);
+
+    return engineAsync.maybeWhen(
+      data: (engine) {
+        if (!engine.hasEnoughData()) return const SizedBox.shrink();
+        final averages = engine.getOverallAverages();
+        if (averages.isEmpty) return const SizedBox.shrink();
+
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+                child: Row(
+                  children: [
+                    GradientText(
+                      isEn ? 'Your Focus Pulse' : 'Odak Nabzın',
+                      variant: GradientTextVariant.gold,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.3,
+                      ),
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        HapticService.selectionTap();
+                        context.push(Routes.moodTrends);
+                      },
+                      behavior: HitTestBehavior.opaque,
+                      child: Text(
+                        isEn ? 'Details' : 'Detaylar',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: isDark
+                              ? AppColors.starGold
+                              : AppColors.lightStarGold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 110,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  itemCount: averages.length,
+                  separatorBuilder: (_, _) => const SizedBox(width: 12),
+                  itemBuilder: (context, index) {
+                    final entry = averages.entries.elementAt(index);
+                    final area = entry.key;
+                    final score = entry.value;
+                    final color =
+                        _focusAreaColors[area] ?? AppColors.starGold;
+                    final emoji = _focusAreaEmoji[area] ?? '\u2728';
+
+                    return GestureDetector(
+                      onTap: () {
+                        HapticService.selectionTap();
+                        context.push(Routes.moodTrends);
+                      },
+                      child: SizedBox(
+                        width: 80,
+                        child: Column(
+                          children: [
+                            // Circular progress ring
+                            SizedBox(
+                              width: 56,
+                              height: 56,
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 56,
+                                    height: 56,
+                                    child: CircularProgressIndicator(
+                                      value: (score / 5.0).clamp(0.0, 1.0),
+                                      strokeWidth: 3,
+                                      strokeCap: StrokeCap.round,
+                                      backgroundColor: isDark
+                                          ? Colors.white
+                                              .withValues(alpha: 0.06)
+                                          : Colors.black
+                                              .withValues(alpha: 0.04),
+                                      valueColor:
+                                          AlwaysStoppedAnimation(color),
+                                    ),
+                                  ),
+                                  Text(
+                                    emoji,
+                                    style: const TextStyle(fontSize: 20),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              _areaLabel(area),
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w500,
+                                color: isDark
+                                    ? AppColors.textSecondary
+                                    : AppColors.lightTextSecondary,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Text(
+                              score.toStringAsFixed(1),
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                color: color,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
+      },
+      orElse: () => const SizedBox.shrink(),
+    );
+  }
+
+  String _areaLabel(FocusArea area) {
+    switch (area) {
+      case FocusArea.energy:
+        return isEn ? 'Energy' : 'Enerji';
+      case FocusArea.focus:
+        return isEn ? 'Focus' : 'Odak';
+      case FocusArea.emotions:
+        return isEn ? 'Emotions' : 'Duygular';
+      case FocusArea.decisions:
+        return isEn ? 'Decisions' : 'Kararlar';
+      case FocusArea.social:
+        return isEn ? 'Social' : 'Sosyal';
+    }
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// RECENT ENTRIES — Horizontal scroll of entry cards
+// ════════════════════════════════════════════════════════════════════════════
+
+class _RecentEntriesHorizontal extends ConsumerWidget {
+  final bool isEn;
+  final bool isDark;
+
+  const _RecentEntriesHorizontal({required this.isEn, required this.isDark});
+
+  static const _focusAreaColors = {
+    FocusArea.energy: AppColors.starGold,
+    FocusArea.focus: AppColors.chartBlue,
+    FocusArea.emotions: AppColors.chartPink,
+    FocusArea.decisions: AppColors.chartGreen,
+    FocusArea.social: AppColors.chartPurple,
+  };
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final journalAsync = ref.watch(journalServiceProvider);
+
+    return journalAsync.maybeWhen(
+      data: (service) {
+        final entries = service.getRecentEntries(5);
+        if (entries.isEmpty) return const SizedBox.shrink();
+
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Section header
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GradientText(
+                      isEn ? 'Recent Entries' : 'Son Kayıtlar',
+                      variant: GradientTextVariant.gold,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.3,
+                      ),
+                    ),
+                    Semantics(
+                      label: isEn ? 'See all entries' : 'Tüm kayıtları gör',
+                      button: true,
+                      child: GestureDetector(
+                        onTap: () {
+                          HapticService.selectionTap();
+                          context.push(Routes.journalArchive);
+                        },
+                        behavior: HitTestBehavior.opaque,
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(minHeight: 44),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              isEn ? 'See All' : 'Tümünü Gör',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: isDark
+                                    ? AppColors.starGold
+                                    : AppColors.lightStarGold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Horizontal scroll
+              SizedBox(
+                height: 135,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  itemCount: entries.length,
+                  separatorBuilder: (_, _) => const SizedBox(width: 12),
+                  itemBuilder: (context, index) {
+                    final entry = entries[index];
+                    final accentColor =
+                        _focusAreaColors[entry.focusArea] ??
+                            AppColors.starGold;
+                    final dateStr = _formatDate(entry.date);
+                    final areaLabel = _focusAreaLabel(entry.focusArea);
+
+                    return GestureDetector(
+                      onTap: () {
+                        HapticService.selectionTap();
+                        context.push(
+                          '/journal/entry/${entry.id}',
+                        );
+                      },
+                      child: SizedBox(
+                        width: 160,
+                        child: PremiumCard(
+                          style: PremiumCardStyle.subtle,
+                          showGradientBorder: false,
+                          borderRadius: 16,
+                          padding: const EdgeInsets.all(14),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Date
+                              Text(
+                                dateStr,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              // Focus area chip
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 5,
+                                ),
+                                decoration: BoxDecoration(
+                                  color:
+                                      accentColor.withValues(alpha: 0.12),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Text(
+                                  areaLabel,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    color: accentColor,
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              // Rating dots
+                              Row(
+                                children: List.generate(5, (i) {
+                                  final filled = i < entry.overallRating;
+                                  return Container(
+                                    width: 8,
+                                    height: 8,
+                                    margin: const EdgeInsets.only(right: 4),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: filled
+                                          ? (isDark
+                                              ? AppColors.starGold
+                                              : AppColors.lightStarGold)
+                                          : (isDark
+                                              ? Colors.white
+                                                  .withValues(alpha: 0.1)
+                                              : Colors.black.withValues(
+                                                  alpha: 0.06,
+                                                )),
+                                      boxShadow: filled
+                                          ? [
+                                              BoxShadow(
+                                                color: AppColors.starGold
+                                                    .withValues(alpha: 0.3),
+                                                blurRadius: 4,
+                                              ),
+                                            ]
+                                          : null,
+                                    ),
+                                  );
+                                }),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ).animate().fadeIn(
+                          delay: Duration(
+                            milliseconds: 250 + index * 60,
+                          ),
+                          duration: 400.ms,
+                        );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+      orElse: () => const SizedBox.shrink(),
+    );
+  }
+
+  String _formatDate(DateTime date) {
+    final months = isEn
+        ? [
+            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+          ]
+        : [
+            'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
+            'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara',
+          ];
+    return '${months[date.month - 1]} ${date.day}';
+  }
+
+  String _focusAreaLabel(FocusArea area) {
+    switch (area) {
+      case FocusArea.energy:
+        return isEn ? 'Energy' : 'Enerji';
+      case FocusArea.focus:
+        return isEn ? 'Focus' : 'Odak';
+      case FocusArea.emotions:
+        return isEn ? 'Emotions' : 'Duygular';
+      case FocusArea.decisions:
+        return isEn ? 'Decisions' : 'Kararlar';
+      case FocusArea.social:
+        return isEn ? 'Social' : 'Sosyal';
+    }
   }
 }
 
@@ -510,7 +1344,7 @@ class _TodaysInsightSection extends ConsumerWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// PERSONALIZED PROMPT — Left accent bar, amethyst
+// PERSONALIZED PROMPT — PremiumCard amethyst, focus-area filtered
 // ════════════════════════════════════════════════════════════════════════════
 
 class _PersonalizedPromptSection extends ConsumerWidget {
@@ -519,7 +1353,6 @@ class _PersonalizedPromptSection extends ConsumerWidget {
 
   const _PersonalizedPromptSection({required this.isEn, required this.isDark});
 
-  // Map journal FocusArea enum to prompt focusArea strings
   static const _focusAreaToPromptArea = {
     FocusArea.energy: 'energy',
     FocusArea.focus: 'productivity',
@@ -536,7 +1369,6 @@ class _PersonalizedPromptSection extends ConsumerWidget {
       data: (engine) {
         if (!engine.hasEnoughData()) return const SizedBox.shrink();
 
-        // Find weakest focus area from overall averages
         final averages = engine.getOverallAverages();
         if (averages.isEmpty) return const SizedBox.shrink();
 
@@ -549,7 +1381,6 @@ class _PersonalizedPromptSection extends ConsumerWidget {
           }
         }
 
-        // Map to prompt category and pick a date-rotated prompt
         final promptArea = _focusAreaToPromptArea[weakestArea] ?? 'mood';
         final prompt = ContentRotationService.getDailyPrompt(
           weakestArea: promptArea,
@@ -562,16 +1393,10 @@ class _PersonalizedPromptSection extends ConsumerWidget {
 
         return Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-          child: Container(
+          child: PremiumCard(
+            style: PremiumCardStyle.amethyst,
+            showInnerShadow: false,
             padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(
-                  color: AppColors.amethyst.withValues(alpha: 0.6),
-                  width: 3,
-                ),
-              ),
-            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -583,12 +1408,12 @@ class _PersonalizedPromptSection extends ConsumerWidget {
                       color: AppColors.amethyst,
                     ),
                     const SizedBox(width: 8),
-                    Text(
+                    GradientText(
                       isEn ? 'For your $areaLabel' : '$areaLabel için',
-                      style: TextStyle(
+                      variant: GradientTextVariant.amethyst,
+                      style: const TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.amethyst,
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -629,269 +1454,6 @@ class _PersonalizedPromptSection extends ConsumerWidget {
         return 'Sosyal';
       default:
         return area;
-    }
-  }
-}
-
-// ════════════════════════════════════════════════════════════════════════════
-// RECENT ENTRIES — Clean list with dividers, no cards
-// ════════════════════════════════════════════════════════════════════════════
-
-class _RecentEntriesSection extends ConsumerWidget {
-  final bool isEn;
-  final bool isDark;
-
-  const _RecentEntriesSection({required this.isEn, required this.isDark});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final journalAsync = ref.watch(journalServiceProvider);
-
-    return journalAsync.maybeWhen(
-      data: (service) {
-        final entries = service.getRecentEntries(3);
-        if (entries.isEmpty) return const SizedBox.shrink();
-
-        return Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GradientText(
-                    isEn ? 'Recent Entries' : 'Son Kayıtlar',
-                    variant: GradientTextVariant.gold,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0.3,
-                    ),
-                  ),
-                  Semantics(
-                    label: isEn ? 'See all entries' : 'Tüm kayıtları gör',
-                    button: true,
-                    child: GestureDetector(
-                      onTap: () {
-                        HapticService.selectionTap();
-                        context.push(Routes.journalArchive);
-                      },
-                      behavior: HitTestBehavior.opaque,
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(minHeight: 44),
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            isEn ? 'See All' : 'Tümünü Gör',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                              color: isDark
-                                  ? AppColors.starGold
-                                  : AppColors.lightStarGold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-              ...entries.asMap().entries.map((mapEntry) {
-                final index = mapEntry.key;
-                final entry = mapEntry.value;
-                return _RecentEntryRow(
-                  entry: entry,
-                  isEn: isEn,
-                  isDark: isDark,
-                  isLast: index == entries.length - 1,
-                  onTap: () => context.push('/journal/entry/${entry.id}'),
-                ).animate().fadeIn(
-                  delay: Duration(milliseconds: 250 + index * 60),
-                  duration: 400.ms,
-                );
-              }),
-            ],
-          ),
-        );
-      },
-      orElse: () => const SizedBox.shrink(),
-    );
-  }
-}
-
-class _RecentEntryRow extends StatelessWidget {
-  final JournalEntry entry;
-  final bool isEn;
-  final bool isDark;
-  final bool isLast;
-  final VoidCallback onTap;
-
-  const _RecentEntryRow({
-    required this.entry,
-    required this.isEn,
-    required this.isDark,
-    required this.isLast,
-    required this.onTap,
-  });
-
-  static const _focusAreaColors = {
-    FocusArea.energy: AppColors.starGold,
-    FocusArea.focus: AppColors.chartBlue,
-    FocusArea.emotions: AppColors.chartPink,
-    FocusArea.decisions: AppColors.chartGreen,
-    FocusArea.social: AppColors.chartPurple,
-  };
-
-  @override
-  Widget build(BuildContext context) {
-    final dateStr = _formatDate(entry.date, isEn);
-    final areaLabel = _focusAreaLabel(entry.focusArea, isEn);
-    final rating = entry.overallRating;
-    final accentColor = _focusAreaColors[entry.focusArea] ?? AppColors.starGold;
-
-    final entryLabel = isEn
-        ? '$areaLabel entry on $dateStr'
-        : '$dateStr tarihli $areaLabel kaydı';
-
-    return Semantics(
-      label: entryLabel,
-      button: true,
-      child: GestureDetector(
-        onTap: () {
-          HapticService.selectionTap();
-          onTap();
-        },
-        behavior: HitTestBehavior.opaque,
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          decoration: BoxDecoration(
-            border: isLast
-                ? null
-                : Border(
-                    bottom: BorderSide(
-                      color: isDark
-                          ? Colors.white.withValues(alpha: 0.06)
-                          : Colors.black.withValues(alpha: 0.04),
-                      width: 0.5,
-                    ),
-                  ),
-          ),
-          child: Row(
-            children: [
-              // Focus area accent bar
-              Container(
-                width: 3,
-                height: 28,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(1.5),
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      accentColor.withValues(alpha: 0.8),
-                      accentColor.withValues(alpha: 0.2),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              // Date
-              SizedBox(
-                width: 60,
-                child: Text(
-                  dateStr,
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 8),
-              // Focus area label
-              Expanded(
-                child: Text(
-                  areaLabel,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              const SizedBox(width: 8),
-              // Rating dots
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: List.generate(5, (i) {
-                  final filled = i < rating;
-                  return Container(
-                    width: 7,
-                    height: 7,
-                    margin: const EdgeInsets.only(left: 3),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: filled
-                          ? (isDark
-                                ? AppColors.starGold
-                                : AppColors.lightStarGold)
-                          : (isDark
-                                ? Colors.white.withValues(alpha: 0.1)
-                                : Colors.black.withValues(alpha: 0.06)),
-                      boxShadow: filled
-                          ? [
-                              BoxShadow(
-                                color: AppColors.starGold.withValues(alpha: 0.4),
-                                blurRadius: 4,
-                                spreadRadius: 0.5,
-                              ),
-                            ]
-                          : null,
-                    ),
-                  );
-                }),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  static String _formatDate(DateTime date, bool isEn) {
-    final months = isEn
-        ? [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-          ]
-        : [
-            'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
-            'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara',
-          ];
-    return '${months[date.month - 1]} ${date.day}';
-  }
-
-  static String _focusAreaLabel(FocusArea area, bool isEn) {
-    switch (area) {
-      case FocusArea.energy:
-        return isEn ? 'Energy' : 'Enerji';
-      case FocusArea.focus:
-        return isEn ? 'Focus' : 'Odak';
-      case FocusArea.emotions:
-        return isEn ? 'Emotions' : 'Duygular';
-      case FocusArea.decisions:
-        return isEn ? 'Decisions' : 'Kararlar';
-      case FocusArea.social:
-        return isEn ? 'Social' : 'Sosyal';
     }
   }
 }
@@ -1156,7 +1718,9 @@ class _RetrospectiveBanner extends ConsumerWidget {
             children: [
               Icon(
                 Icons.history_rounded,
-                color: isDark ? AppColors.auroraStart : AppColors.lightAuroraStart,
+                color: isDark
+                    ? AppColors.auroraStart
+                    : AppColors.lightAuroraStart,
                 size: 24,
               ),
               const SizedBox(width: 12),
@@ -1205,7 +1769,7 @@ class _RetrospectiveBanner extends ConsumerWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// UPCOMING NOTE REMINDERS — Tinted container
+// UPCOMING NOTE REMINDERS — PremiumCard gold
 // ════════════════════════════════════════════════════════════════════════════
 
 class _UpcomingRemindersCard extends ConsumerWidget {
@@ -1232,30 +1796,33 @@ class _UpcomingRemindersCard extends ConsumerWidget {
             final upcoming = reminders.take(2).toList();
 
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
               child: GestureDetector(
                 onTap: () => context.push(Routes.notesList),
-                child: Container(
+                child: PremiumCard(
+                  style: PremiumCardStyle.gold,
+                  showInnerShadow: false,
                   padding: const EdgeInsets.all(14),
-                  decoration: BoxDecoration(
-                    color: isDark
-                        ? AppColors.starGold.withValues(alpha: 0.06)
-                        : AppColors.starGold.withValues(alpha: 0.04),
-                    borderRadius: BorderRadius.circular(14),
-                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.notifications_active, size: 16, color: isDark ? AppColors.starGold : AppColors.lightStarGold),
+                          Icon(Icons.notifications_active,
+                              size: 16,
+                              color: isDark
+                                  ? AppColors.starGold
+                                  : AppColors.lightStarGold),
                           const SizedBox(width: 6),
-                          Text(
-                            isEn ? 'Upcoming Reminders' : 'Yaklaşan Hatırlatıcılar',
-                            style: TextStyle(
+                          GradientText(
+                            isEn
+                                ? 'Upcoming Reminders'
+                                : 'Yaklaşan Hatırlatıcılar',
+                            variant: GradientTextVariant.gold,
+                            style: const TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
-                              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                             ),
                           ),
                           const Spacer(),
@@ -1263,7 +1830,9 @@ class _UpcomingRemindersCard extends ConsumerWidget {
                             isEn ? 'See all' : 'Tümünü gör',
                             style: TextStyle(
                               fontSize: 11,
-                              color: isDark ? AppColors.starGold : AppColors.lightStarGold,
+                              color: isDark
+                                  ? AppColors.starGold
+                                  : AppColors.lightStarGold,
                             ),
                           ),
                         ],
@@ -1275,14 +1844,20 @@ class _UpcomingRemindersCard extends ConsumerWidget {
                           padding: const EdgeInsets.only(bottom: 6),
                           child: Row(
                             children: [
-                              Icon(Icons.schedule, size: 14, color: isDark ? Colors.white38 : Colors.black38),
+                              Icon(Icons.schedule,
+                                  size: 14,
+                                  color: isDark
+                                      ? Colors.white38
+                                      : Colors.black38),
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
                                   note?.title ?? (isEn ? 'Note' : 'Not'),
                                   style: TextStyle(
                                     fontSize: 13,
-                                    color: isDark ? Colors.white.withValues(alpha: 0.8) : Colors.black87,
+                                    color: isDark
+                                        ? Colors.white.withValues(alpha: 0.8)
+                                        : Colors.black87,
                                   ),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
@@ -1290,10 +1865,12 @@ class _UpcomingRemindersCard extends ConsumerWidget {
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                _formatTimeLeft(r.scheduledAt, isEn),
+                                _formatTimeLeft(r.scheduledAt),
                                 style: TextStyle(
                                   fontSize: 11,
-                                  color: isDark ? Colors.white38 : Colors.black38,
+                                  color: isDark
+                                      ? Colors.white38
+                                      : Colors.black38,
                                 ),
                               ),
                             ],
@@ -1311,7 +1888,7 @@ class _UpcomingRemindersCard extends ConsumerWidget {
     );
   }
 
-  String _formatTimeLeft(DateTime dt, bool isEn) {
+  String _formatTimeLeft(DateTime dt) {
     final now = DateTime.now();
     final diff = dt.difference(now);
     if (diff.isNegative) return isEn ? 'Now' : 'Şimdi';
@@ -1326,7 +1903,7 @@ class _UpcomingRemindersCard extends ConsumerWidget {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-// WEEKLY SHARE CARD PROMPT — Tinted container
+// WEEKLY SHARE CARD PROMPT — PremiumCard aurora (Sundays only)
 // ════════════════════════════════════════════════════════════════════════════
 
 class _WeeklySharePrompt extends ConsumerWidget {
@@ -1345,8 +1922,9 @@ class _WeeklySharePrompt extends ConsumerWidget {
 
     final journalAsync = ref.watch(journalServiceProvider);
     final hasEntries = journalAsync.whenOrNull(
-      data: (service) => service.getAllEntries().length >= 3,
-    ) ?? false;
+          data: (service) => service.getAllEntries().length >= 3,
+        ) ??
+        false;
 
     if (!hasEntries) return const SizedBox.shrink();
 
@@ -1357,19 +1935,17 @@ class _WeeklySharePrompt extends ConsumerWidget {
           HapticService.buttonPress();
           context.push(Routes.shareCardGallery);
         },
-        child: Container(
+        child: PremiumCard(
+          style: PremiumCardStyle.aurora,
+          showInnerShadow: false,
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.auroraStart.withValues(alpha: 0.08)
-                : AppColors.auroraStart.withValues(alpha: 0.05),
-            borderRadius: BorderRadius.circular(16),
-          ),
           child: Row(
             children: [
               Icon(
                 Icons.auto_awesome_rounded,
-                color: isDark ? AppColors.auroraStart : AppColors.lightAuroraStart,
+                color: isDark
+                    ? AppColors.auroraStart
+                    : AppColors.lightAuroraStart,
                 size: 24,
               ),
               const SizedBox(width: 12),
@@ -1377,16 +1953,14 @@ class _WeeklySharePrompt extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    GradientText(
                       isEn
                           ? 'Your latest pattern card is ready'
                           : 'Son örüntü kartın hazır',
-                      style: TextStyle(
+                      variant: GradientTextVariant.aurora,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -1444,14 +2018,10 @@ class _WrappedBanner extends StatelessWidget {
           HapticService.buttonPress();
           context.push(Routes.wrapped);
         },
-        child: Container(
+        child: PremiumCard(
+          style: PremiumCardStyle.gold,
+          showInnerShadow: false,
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.starGold.withValues(alpha: 0.08)
-                : AppColors.starGold.withValues(alpha: 0.05),
-            borderRadius: BorderRadius.circular(16),
-          ),
           child: Row(
             children: [
               Icon(
@@ -1464,16 +2034,14 @@ class _WrappedBanner extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    GradientText(
                       isEn
                           ? 'Your ${DateTime.now().year} Wrapped is ready!'
                           : '${DateTime.now().year} Wrapped\'ın hazır!',
-                      style: TextStyle(
+                      variant: GradientTextVariant.gold,
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -1543,14 +2111,10 @@ class _MonthlyWrappedBanner extends StatelessWidget {
           HapticService.buttonPress();
           context.push(Routes.monthlyWrapped);
         },
-        child: Container(
+        child: PremiumCard(
+          style: PremiumCardStyle.amethyst,
+          showInnerShadow: false,
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.amethyst.withValues(alpha: 0.08)
-                : AppColors.amethyst.withValues(alpha: 0.05),
-            borderRadius: BorderRadius.circular(16),
-          ),
           child: Row(
             children: [
               const AppSymbol.card('\u{1F4CA}'),
@@ -1559,16 +2123,14 @@ class _MonthlyWrappedBanner extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    GradientText(
                       isEn
                           ? 'Your ${monthNames[lastMonth]} Wrapped'
                           : '${monthNames[lastMonth]} Özetin Hazır',
-                      style: TextStyle(
+                      variant: GradientTextVariant.amethyst,
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
                       ),
                     ),
                     const SizedBox(height: 2),

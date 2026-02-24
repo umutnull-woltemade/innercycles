@@ -26,6 +26,8 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_empty_state.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -351,42 +353,13 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(32),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(height: 60),
-          Icon(
-            Icons.auto_awesome,
-            size: 64,
-            color: AppColors.starGold.withValues(alpha: 0.5),
-          ),
-          const SizedBox(height: 24),
-          Text(
-            isEn
-                ? 'Your Year Synthesis is ready'
-                : 'Yıl senteziniz hazır',
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-              fontWeight: FontWeight.w600,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 12),
-          Text(
-            isEn
-                ? 'Keep recording to activate your annual summary. You need at least 7 entries in a year.'
-                : 'Yıllık sentezinizi etkinleştirmek için kayıt yapmaya devam edin. Bir yılda en az 7 kayıt gerekli.',
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
+    return PremiumEmptyState(
+      icon: Icons.auto_awesome,
+      title: isEn ? 'Your Year Synthesis is ready' : 'Yıl senteziniz hazır',
+      description: isEn
+          ? 'Keep recording to activate your annual summary. You need at least 7 entries in a year.'
+          : 'Yıllık sentezinizi etkinleştirmek için kayıt yapmaya devam edin. Bir yılda en az 7 kayıt gerekli.',
+      gradientVariant: GradientTextVariant.gold,
     );
   }
 }
@@ -399,42 +372,15 @@ class _NotEnoughData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(32),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(height: 60),
-          Icon(
-            Icons.lock_outline,
-            size: 56,
-            color: AppColors.starGold.withValues(alpha: 0.5),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            isEn
-                ? 'Not enough entries for this year'
-                : 'Bu yıl için yeterli kayıt yok',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-              fontWeight: FontWeight.w600,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            isEn
-                ? 'You need at least 7 journal entries to generate a review.'
-                : 'Değerlendirme oluşturmak için en az 7 kayıt gerekli.',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
+    return PremiumEmptyState(
+      icon: Icons.lock_outline,
+      title: isEn
+          ? 'Not enough entries for this year'
+          : 'Bu yıl için yeterli kayıt yok',
+      description: isEn
+          ? 'You need at least 7 journal entries to generate a review.'
+          : 'Değerlendirme oluşturmak için en az 7 kayıt gerekli.',
+      gradientVariant: GradientTextVariant.gold,
     );
   }
 }
@@ -631,12 +577,11 @@ class _MoodJourneyCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Mood Trajectory' : 'Ruh Hali Seyri',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
+            variant: GradientTextVariant.aurora,
+            style: const TextStyle(
+              fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -768,12 +713,11 @@ class _FocusAreasCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Focus Areas' : 'Odak Alanları',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
+              fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -875,12 +819,11 @@ class _GrowthScoreCard extends StatelessWidget {
       padding: const EdgeInsets.all(24),
       child: Column(
         children: [
-          Text(
+          GradientText(
             isEn ? 'Growth Score' : 'Gelişim Skoru',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
+              fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -1044,12 +987,11 @@ class _HighlightsCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Highlights' : 'Öne Çıkanlar',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
+              fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -1283,12 +1225,11 @@ class _ShareableSummaryCard extends StatelessWidget {
       glowColor: AppColors.auroraStart.withValues(alpha: 0.15),
       child: Column(
         children: [
-          Text(
+          GradientText(
             isEn ? 'My ${review.year} Summary' : '${review.year} Özetim',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
+            variant: GradientTextVariant.aurora,
+            style: const TextStyle(
+              fontSize: 16,
               fontWeight: FontWeight.w700,
             ),
           ),

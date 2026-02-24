@@ -65,7 +65,7 @@ class ToolEmptyState extends StatelessWidget {
               Text(
                 isEn ? titleEn : titleTr,
                 textAlign: TextAlign.center,
-                style: GoogleFonts.inter(
+                style: GoogleFonts.plusJakartaSans(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: isDark
@@ -77,7 +77,7 @@ class ToolEmptyState extends StatelessWidget {
               Text(
                 isEn ? descriptionEn : descriptionTr,
                 textAlign: TextAlign.center,
-                style: GoogleFonts.inter(
+                style: GoogleFonts.plusJakartaSans(
                   fontSize: 14,
                   height: 1.5,
                   color: isDark

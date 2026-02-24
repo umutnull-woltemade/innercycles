@@ -27,6 +27,8 @@ import '../../../data/services/journal_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_empty_state.dart';
 
 // ============================================================================
 // ANNUAL REPORT DATA MODEL
@@ -344,43 +346,15 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           SliverFillRemaining(
             hasScrollBody: false,
             child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(32),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.auto_stories_outlined,
-                      size: 64,
-                      color: AppColors.starGold.withValues(alpha: 0.6),
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      isEn
-                          ? 'No entries for $year yet'
-                          : '$year için henüz kayıt yok',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
-                            fontWeight: FontWeight.w700,
-                          ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      isEn
-                          ? 'Start journaling to see your year in review.'
-                          : 'Yıllık raporunu görmek için günlük yazmaya başla.',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: isDark
-                                ? AppColors.textSecondary
-                                : AppColors.lightTextSecondary,
-                          ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+              child: PremiumEmptyState(
+                icon: Icons.auto_stories_outlined,
+                title: isEn
+                    ? 'No entries for $year yet'
+                    : '$year için henüz kayıt yok',
+                description: isEn
+                    ? 'Start journaling to see your year in review.'
+                    : 'Yıllık raporunu görmek için günlük yazmaya başla.',
+                gradientVariant: GradientTextVariant.gold,
               ),
             ),
           ),
@@ -553,14 +527,13 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                 ),
           ),
           const SizedBox(height: 8),
-          Text(
+          GradientText(
             isEn ? 'Your Year Synthesis' : 'Senin Yıl Sentezin',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                  fontWeight: FontWeight.w500,
-                ),
+            variant: GradientTextVariant.aurora,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
           ),
           const SizedBox(height: 20),
           // Total entries stat
@@ -608,14 +581,13 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               Icon(Icons.pie_chart_outline,
                   color: AppColors.starGold, size: 20),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? 'Top Focus Areas' : 'En Çok Odaklanılan Alanlar',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w700,
-                    ),
+                variant: GradientTextVariant.gold,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ],
           ),
@@ -735,16 +707,15 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               Icon(Icons.bar_chart_rounded,
                   color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn
                     ? 'Average Rating by Month'
                     : 'Aylik Ortalama Puanlar',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w700,
-                    ),
+                variant: GradientTextVariant.aurora,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ],
           ),

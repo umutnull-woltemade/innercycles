@@ -163,6 +163,51 @@ class LifeEventService with SupabaseSyncMixin {
   int get eventCount => _events.length;
 
   // ══════════════════════════════════════════════════════════════════════════
+  // REMOTE MERGE
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Merge events pulled from Supabase into local storage.
+  Future<void> mergeRemoteEvents(List<Map<String, dynamic>> remoteData) async {
+    for (final row in remoteData) {
+      final id = row['id'] as String;
+      final isDeleted = row['is_deleted'] as bool? ?? false;
+
+      if (isDeleted) {
+        _events.removeWhere((e) => e.id == id);
+        continue;
+      }
+
+      final event = LifeEvent(
+        id: id,
+        date: DateTime.tryParse(row['date']?.toString() ?? '') ?? DateTime.now(),
+        createdAt: DateTime.tryParse(row['created_at']?.toString() ?? '') ?? DateTime.now(),
+        type: LifeEventType.values.firstWhere(
+          (e) => e.name == row['type'],
+          orElse: () => LifeEventType.custom,
+        ),
+        eventKey: row['event_key'] as String?,
+        title: row['title'] as String? ?? '',
+        note: row['note'] as String?,
+        emotionTags: (row['emotion_tags'] as List<dynamic>?)
+                ?.map((e) => e.toString())
+                .toList() ??
+            [],
+        intensity: (row['intensity'] as int?) ?? 3,
+      );
+
+      final existingIdx = _events.indexWhere((e) => e.id == id);
+      if (existingIdx >= 0) {
+        _events[existingIdx] = event;
+      } else {
+        _events.add(event);
+      }
+    }
+
+    _sortedCache = null;
+    await _persistEvents();
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
   // PERSISTENCE
   // ══════════════════════════════════════════════════════════════════════════
 

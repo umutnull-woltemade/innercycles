@@ -16,6 +16,8 @@ import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/glass_dialog.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 
 class LifeEventDetailScreen extends ConsumerWidget {
@@ -211,14 +213,12 @@ class LifeEventDetailScreen extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      GradientText(
                         isEn ? 'Emotions' : 'Duygular',
-                        style: TextStyle(
+                        variant: GradientTextVariant.amethyst,
+                        style: const TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -262,14 +262,12 @@ class LifeEventDetailScreen extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      GradientText(
                         isEn ? 'Reflection' : 'Düşünceler',
-                        style: TextStyle(
+                        variant: GradientTextVariant.amethyst,
+                        style: const TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -338,42 +336,24 @@ class LifeEventDetailScreen extends ConsumerWidget {
     );
   }
 
-  void _confirmDelete(
+  Future<void> _confirmDelete(
     BuildContext context,
     WidgetRef ref,
     LifeEvent event,
     bool isEn,
-  ) {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(isEn ? 'Delete Event?' : 'Olayı Sil?'),
-        content: Text(
-          isEn
-              ? 'This action cannot be undone.'
-              : 'Bu işlem geri alınamaz.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: Text(isEn ? 'Cancel' : 'İptal'),
-          ),
-          TextButton(
-            onPressed: () async {
-              HapticService.warning();
-              final service =
-                  await ref.read(lifeEventServiceProvider.future);
-              await service.deleteEvent(event.id);
-              if (ctx.mounted) Navigator.pop(ctx);
-              if (context.mounted) context.pop();
-            },
-            child: Text(
-              isEn ? 'Delete' : 'Sil',
-              style: TextStyle(color: AppColors.error),
-            ),
-          ),
-        ],
-      ),
+  ) async {
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: isEn ? 'Delete Event?' : 'Olayı Sil?',
+      message: isEn ? 'This action cannot be undone.' : 'Bu işlem geri alınamaz.',
+      cancelLabel: isEn ? 'Cancel' : 'İptal',
+      confirmLabel: isEn ? 'Delete' : 'Sil',
+      isDestructive: true,
     );
+    if (confirmed != true) return;
+    HapticService.warning();
+    final service = await ref.read(lifeEventServiceProvider.future);
+    await service.deleteEvent(event.id);
+    if (context.mounted) context.pop();
   }
 }

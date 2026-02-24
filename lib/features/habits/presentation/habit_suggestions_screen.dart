@@ -2,6 +2,7 @@
 // HABIT SUGGESTIONS SCREEN - Browsable Micro-Habit Library
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -15,6 +16,7 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../data/services/smart_router_service.dart';
@@ -357,23 +359,21 @@ class _DailySpotlightCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        GradientText(
                           isEn ? 'Today\'s Habit' : 'Bugünün Alışkanlığı',
-                          style: TextStyle(
+                          variant: GradientTextVariant.aurora,
+                          style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
-                            color: AppColors.auroraStart,
                           ),
                         ),
                         const SizedBox(height: 2),
-                        Text(
+                        GradientText(
                           isEn ? habit.titleEn : habit.titleTr,
-                          style: TextStyle(
+                          variant: GradientTextVariant.gold,
+                          style: const TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w700,
-                            color: isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
                           ),
                         ),
                       ],
@@ -930,12 +930,24 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
       minChildSize: 0.3,
       maxChildSize: 0.85,
       builder: (context, scrollController) {
-        return Container(
-          decoration: BoxDecoration(
-            color: isDark ? AppColors.cosmicPurple : Colors.white,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-          ),
-          child: SingleChildScrollView(
+        return ClipRRect(
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+            child: Container(
+              decoration: BoxDecoration(
+                color: (isDark ? AppColors.cosmicPurple : Colors.white)
+                    .withValues(alpha: isDark ? 0.85 : 0.92),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(24)),
+                border: Border(
+                  top: BorderSide(
+                    color: AppColors.auroraStart.withValues(alpha: 0.3),
+                    width: 1.5,
+                  ),
+                ),
+              ),
+              child: SingleChildScrollView(
             controller: scrollController,
             padding: const EdgeInsets.all(24),
             child: Column(
@@ -947,9 +959,12 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                     width: 36,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: isDark
-                          ? Colors.white.withValues(alpha: 0.2)
-                          : Colors.black.withValues(alpha: 0.15),
+                      gradient: LinearGradient(
+                        colors: [
+                          AppColors.auroraStart.withValues(alpha: 0.6),
+                          AppColors.auroraEnd.withValues(alpha: 0.6),
+                        ],
+                      ),
                       borderRadius: BorderRadius.circular(2),
                     ),
                   ),
@@ -1116,6 +1131,8 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
 
                 const SizedBox(height: 32),
               ],
+            ),
+          ),
             ),
           ),
         );

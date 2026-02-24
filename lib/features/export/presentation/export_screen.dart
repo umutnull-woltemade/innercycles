@@ -18,6 +18,8 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class ExportScreen extends ConsumerStatefulWidget {
   const ExportScreen({super.key});
@@ -362,15 +364,10 @@ class _InfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: 14,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: AppColors.auroraStart.withValues(alpha: 0.2)),
-      ),
       child: Row(
         children: [
           Icon(Icons.info_outline, size: 20, color: AppColors.auroraStart),
@@ -414,25 +411,21 @@ class _EntryCountCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: 14,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(14),
-      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Column(
             children: [
-              Text(
+              GradientText(
                 '$count',
-                style: TextStyle(
+                variant: GradientTextVariant.gold,
+                style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.starGold,
                 ),
               ),
               Text(
@@ -448,12 +441,12 @@ class _EntryCountCard extends StatelessWidget {
           ),
           Column(
             children: [
-              Text(
+              GradientText(
                 isPremium ? '$count' : '${count > 7 ? 7 : count}',
-                style: TextStyle(
+                variant: GradientTextVariant.aurora,
+                style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.auroraStart,
                 ),
               ),
               Text(
@@ -497,22 +490,10 @@ class _LockedEntriesCta extends StatelessWidget {
           : '$lockedEntries kilitli kayda eriş',
       child: GestureDetector(
         onTap: onUnlock,
-        child: Container(
+        child: PremiumCard(
+          style: PremiumCardStyle.subtle,
+          borderRadius: 14,
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                AppColors.exportGreen.withValues(alpha: 0.08),
-                AppColors.exportGreen.withValues(alpha: 0.02),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(
-              color: AppColors.exportGreen.withValues(alpha: 0.3),
-            ),
-          ),
           child: Row(
             children: [
               Container(

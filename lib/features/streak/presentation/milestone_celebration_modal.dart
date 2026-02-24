@@ -7,6 +7,7 @@ import '../../../data/services/streak_service.dart';
 import '../../../data/services/instagram_share_service.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 /// Full-screen celebration modal for streak milestones (D3, D7, D14, etc.)
 class MilestoneCelebrationModal extends StatefulWidget {
@@ -177,12 +178,12 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                 const SizedBox(height: 24),
 
                 // Streak count
-                Text(
+                GradientText(
                   _title,
-                  style: TextStyle(
+                  variant: GradientTextVariant.gold,
+                  style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w700,
-                    color: isDark ? Colors.white : AppColors.textDark,
                   ),
                 )
                     .animate(delay: 200.ms)

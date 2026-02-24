@@ -16,6 +16,8 @@ import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/glass_dialog.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 class EntryDetailScreen extends ConsumerWidget {
   final String entryId;
@@ -166,10 +168,11 @@ class EntryDetailScreen extends ConsumerWidget {
       borderRadius: BorderRadius.circular(AppConstants.radiusLg),
       child: Column(
         children: [
-          Text(
+          GradientText(
             areaLabel,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              color: AppColors.starGold,
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
+              fontSize: 24,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -322,12 +325,11 @@ class EntryDetailScreen extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Notes' : 'Notlar',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -346,46 +348,31 @@ class EntryDetailScreen extends ConsumerWidget {
     );
   }
 
-  void _confirmDelete(
+  Future<void> _confirmDelete(
     BuildContext context,
     WidgetRef ref,
     String id,
     bool isEn,
-  ) {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(isEn ? 'Delete Entry?' : 'Kaydı Sil?'),
-        content: Text(
-          isEn ? 'This action cannot be undone.' : 'Bu işlem geri alınamaz.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: Text(isEn ? 'Cancel' : 'İptal'),
-          ),
-          TextButton(
-            onPressed: () async {
-              HapticFeedback.heavyImpact();
-              Navigator.pop(ctx);
-              try {
-                final service = await ref.read(journalServiceProvider.future);
-                await service.deleteEntry(id);
-                if (!context.mounted) return;
-                ref.invalidate(todayJournalEntryProvider);
-                ref.invalidate(journalStreakProvider);
-              } catch (e) {
-                if (kDebugMode) debugPrint('Failed to delete entry: $e');
-              }
-              if (context.mounted) context.pop();
-            },
-            child: Text(
-              isEn ? 'Delete' : 'Sil',
-              style: TextStyle(color: AppColors.error),
-            ),
-          ),
-        ],
-      ),
+  ) async {
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: isEn ? 'Delete Entry?' : 'Kaydı Sil?',
+      message: isEn ? 'This action cannot be undone.' : 'Bu işlem geri alınamaz.',
+      cancelLabel: isEn ? 'Cancel' : 'İptal',
+      confirmLabel: isEn ? 'Delete' : 'Sil',
+      isDestructive: true,
     );
+    if (confirmed != true) return;
+    HapticFeedback.heavyImpact();
+    try {
+      final service = await ref.read(journalServiceProvider.future);
+      await service.deleteEntry(id);
+      if (!context.mounted) return;
+      ref.invalidate(todayJournalEntryProvider);
+      ref.invalidate(journalStreakProvider);
+    } catch (e) {
+      if (kDebugMode) debugPrint('Failed to delete entry: $e');
+    }
+    if (context.mounted) context.pop();
   }
 }

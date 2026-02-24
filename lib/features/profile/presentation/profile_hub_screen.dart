@@ -98,7 +98,7 @@ class ProfileHubScreen extends ConsumerWidget {
                     GradientText(
                       isEn ? 'Tools' : 'Araçlar',
                       variant: GradientTextVariant.gold,
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
                       ),
@@ -111,7 +111,7 @@ class ProfileHubScreen extends ConsumerWidget {
                     GradientText(
                       isEn ? 'Settings' : 'Ayarlar',
                       variant: GradientTextVariant.gold,
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
                       ),
@@ -301,7 +301,7 @@ class _ProfileHeader extends StatelessWidget {
             child: GradientText(
               name,
               variant: GradientTextVariant.gold,
-              style: GoogleFonts.inter(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),
@@ -365,7 +365,7 @@ class _GrowthScoreCard extends StatelessWidget {
                     ),
                     Text(
                       '$score',
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 22,
                         fontWeight: FontWeight.w800,
                         color: AppColors.auroraStart,
@@ -379,14 +379,12 @@ class _GrowthScoreCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      isEn ? 'Growth Score' : 'Geli\u015fim Puan\u0131',
-                      style: GoogleFonts.inter(
+                    GradientText(
+                      isEn ? 'Growth Score' : 'Gelişim Puanı',
+                      variant: GradientTextVariant.gold,
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
                       ),
                     ),
                     const SizedBox(height: AppConstants.spacingXs),
@@ -475,7 +473,7 @@ class _StatItem extends StatelessWidget {
       children: [
         Text(
           value,
-          style: GoogleFonts.inter(
+          style: GoogleFonts.plusJakartaSans(
             fontSize: 22,
             fontWeight: FontWeight.w700,
             color: color,
@@ -528,7 +526,7 @@ class _SettingsLinkTile extends StatelessWidget {
               Expanded(
                 child: Text(
                   link.name,
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                     color: isDark

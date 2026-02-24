@@ -188,18 +188,16 @@ class PatternsScreen extends ConsumerWidget {
                               ],
                             ),
                             const SizedBox(height: 28),
-                            Text(
+                            GradientText(
                               isEn
                                   ? 'Patterns Unlock After 7 Entries'
                                   : '7 Kayıttan Sonra Kalıplar Açılır',
+                              variant: GradientTextVariant.gold,
+                              textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.titleLarge
                                   ?.copyWith(
-                                    color: isDark
-                                        ? AppColors.textPrimary
-                                        : AppColors.lightTextPrimary,
                                     fontWeight: FontWeight.w700,
                                   ),
-                              textAlign: TextAlign.center,
                             ),
                             const SizedBox(height: 12),
                             Text(

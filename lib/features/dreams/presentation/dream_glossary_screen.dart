@@ -4,6 +4,7 @@ library;
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -775,17 +776,31 @@ class _SymbolDetailSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return Container(
-      height: screenHeight * 0.85,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [CosmicPalette.bgCosmic, CosmicPalette.bgDeepSpace],
-        ),
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
-      ),
-      child: Column(
+    return ClipRRect(
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+        child: Container(
+          height: screenHeight * 0.85,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                CosmicPalette.bgCosmic.withValues(alpha: 0.92),
+                CosmicPalette.bgDeepSpace.withValues(alpha: 0.95),
+              ],
+            ),
+            borderRadius:
+                const BorderRadius.vertical(top: Radius.circular(24)),
+            border: Border(
+              top: BorderSide(
+                color: AppColors.amethyst.withValues(alpha: 0.4),
+                width: 1.5,
+              ),
+            ),
+          ),
+          child: Column(
         children: [
           // Handle
           Container(
@@ -793,7 +808,12 @@ class _SymbolDetailSheet extends StatelessWidget {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: AppColors.textSecondary.withValues(alpha: 0.3),
+              gradient: LinearGradient(
+                colors: [
+                  AppColors.amethyst.withValues(alpha: 0.6),
+                  AppColors.cosmicAmethyst.withValues(alpha: 0.6),
+                ],
+              ),
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -927,8 +947,10 @@ class _SymbolDetailSheet extends StatelessWidget {
               ],
             ),
           ),
-        ],
+          ],
+        ),
       ),
+    ),
     );
   }
 
@@ -1386,15 +1408,28 @@ class _PersonalDictionarySheet extends StatelessWidget {
     final dreamedSymbols = personalDictionary.getDreamedSymbols();
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return Container(
+    return ClipRRect(
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+        child: Container(
       height: screenHeight * 0.7,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [CosmicPalette.bgCosmic, CosmicPalette.bgDeepSpace],
+          colors: [
+            CosmicPalette.bgCosmic.withValues(alpha: 0.92),
+            CosmicPalette.bgDeepSpace.withValues(alpha: 0.95),
+          ],
         ),
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        border: Border(
+          top: BorderSide(
+            color: AppColors.amethyst.withValues(alpha: 0.4),
+            width: 1.5,
+          ),
+        ),
       ),
       child: Column(
         children: [
@@ -1404,7 +1439,12 @@ class _PersonalDictionarySheet extends StatelessWidget {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: AppColors.textSecondary.withValues(alpha: 0.3),
+              gradient: LinearGradient(
+                colors: [
+                  AppColors.amethyst.withValues(alpha: 0.6),
+                  AppColors.cosmicAmethyst.withValues(alpha: 0.6),
+                ],
+              ),
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -1468,6 +1508,8 @@ class _PersonalDictionarySheet extends StatelessWidget {
                   ),
           ),
         ],
+      ),
+    ),
       ),
     );
   }

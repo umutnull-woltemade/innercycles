@@ -14,7 +14,9 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class RitualsScreen extends ConsumerWidget {
@@ -105,50 +107,16 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 60),
-        Icon(
-          Icons.playlist_add_check_rounded,
-          size: 64,
-          color: AppColors.auroraStart.withValues(alpha: 0.5),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          isEn ? 'No rituals yet' : 'Henüz ritüel yok',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          isEn
-              ? 'Create your first daily ritual to start tracking habits'
-              : 'Alışkanlıkları takip etmek için ilk ritüelini oluştur',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 14,
-            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-          ),
-        ),
-        const SizedBox(height: 24),
-        ElevatedButton.icon(
-          onPressed: () => context.push(Routes.ritualCreate),
-          icon: const Icon(Icons.add),
-          label: Text(isEn ? 'Create Ritual' : 'Ritüel Oluştur'),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.auroraStart,
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-        ),
-      ],
-    ).animate().fadeIn(duration: 400.ms);
+    return PremiumEmptyState(
+      icon: Icons.playlist_add_check_rounded,
+      title: isEn ? 'No rituals yet' : 'Henüz ritüel yok',
+      description: isEn
+          ? 'Create your first daily ritual to start tracking habits'
+          : 'Alışkanlıkları takip etmek için ilk ritüelini oluştur',
+      gradientVariant: GradientTextVariant.aurora,
+      ctaLabel: isEn ? 'Create Ritual' : 'Ritüel Oluştur',
+      onCtaPressed: () => context.push(Routes.ritualCreate),
+    );
   }
 }
 
@@ -184,14 +152,12 @@ class _StackCard extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      GradientText(
                         stack.name,
-                        style: TextStyle(
+                        variant: GradientTextVariant.aurora,
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
                         ),
                       ),
                       Text(

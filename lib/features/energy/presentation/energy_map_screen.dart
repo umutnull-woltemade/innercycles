@@ -18,6 +18,8 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/premium_empty_state.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class EnergyMapScreen extends ConsumerWidget {
@@ -223,30 +225,19 @@ class _HeatmapGrid extends StatelessWidget {
         ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: 16,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Energy by Day & Area' : 'Gün ve Alana Göre Enerji',
-            style: TextStyle(
+            variant: GradientTextVariant.aurora,
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
             ),
           ),
           const SizedBox(height: 16),
@@ -412,30 +403,19 @@ class _DailyChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: 16,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Last 28 Days' : 'Son 28 Gün',
-            style: TextStyle(
+            variant: GradientTextVariant.aurora,
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
             ),
           ),
           const SizedBox(height: 16),
@@ -549,19 +529,10 @@ class _InsightTips extends StatelessWidget {
       );
     }
 
-    return Container(
+    return PremiumCard(
+      style: PremiumCardStyle.subtle,
+      borderRadius: 16,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -573,14 +544,12 @@ class _InsightTips extends StatelessWidget {
                 color: AppColors.starGold,
               ),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? 'Observations' : 'Gözlemler',
-                style: TextStyle(
+                variant: GradientTextVariant.gold,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                 ),
               ),
             ],
@@ -659,42 +628,13 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(32),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.grid_view_rounded,
-            size: 64,
-            color: isDark
-                ? AppColors.textMuted.withValues(alpha: 0.5)
-                : AppColors.lightTextMuted.withValues(alpha: 0.5),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            isEn ? 'Nothing recorded yet' : 'Henüz kayıt yok',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            isEn
-                ? 'Add at least 5 entries to see your energy map'
-                : 'Enerji haritanı görmek için en az 5 kayıt ekle',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-            ),
-          ),
-        ],
-      ),
-    ).animate().fadeIn(duration: 300.ms);
+    return PremiumEmptyState(
+      icon: Icons.grid_view_rounded,
+      title: isEn ? 'Nothing recorded yet' : 'Henüz kayıt yok',
+      description: isEn
+          ? 'Add at least 5 entries to see your energy map'
+          : 'Enerji haritanı görmek için en az 5 kayıt ekle',
+      gradientVariant: GradientTextVariant.aurora,
+    );
   }
 }

@@ -16,6 +16,7 @@ import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 class MeditationTimerScreen extends ConsumerStatefulWidget {
   const MeditationTimerScreen({super.key});
@@ -174,14 +175,12 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                     children: [
                       // Duration selector
                       if (!hasStarted) ...[
-                        Text(
+                        GradientText(
                           isEn ? 'Choose Duration' : 'Süre Seçin',
-                          style: TextStyle(
+                          variant: GradientTextVariant.aurora,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
-                            color: isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
                           ),
                         ),
                         const SizedBox(height: 16),

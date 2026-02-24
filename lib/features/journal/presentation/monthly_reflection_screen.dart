@@ -17,6 +17,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
@@ -229,12 +230,12 @@ class _MonthlyReflectionScreenState
                       size: 28,
                     ),
                     const SizedBox(height: 8),
-                    Text(
+                    GradientText(
                       isEn
                           ? 'Access your full monthly report'
                           : 'Aylık raporunun tamamına eriş',
-                      style: TextStyle(
-                        color: isDark ? Colors.white : Colors.black87,
+                      variant: GradientTextVariant.gold,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
@@ -338,11 +339,12 @@ class _MonthlyReflectionScreenState
             ),
           ),
           Expanded(
-            child: Text(
+            child: GradientText(
               '${months[_selectedMonth - 1]} $_selectedYear',
+              variant: GradientTextVariant.gold,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: AppColors.starGold,
+              style: const TextStyle(
+                fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -546,10 +548,11 @@ class _MonthlyReflectionScreenState
               Icon(Icons.auto_awesome, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
               Expanded(
-                child: Text(
+                child: GradientText(
                   isEn ? theme.themeNameEn : theme.themeNameTr,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: AppColors.auroraStart,
+                  variant: GradientTextVariant.aurora,
+                  style: const TextStyle(
+                    fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -664,12 +667,11 @@ class _MonthlyReflectionScreenState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Area Breakdown' : 'Alan Dağılımı',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),

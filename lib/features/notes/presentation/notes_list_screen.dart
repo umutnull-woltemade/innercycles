@@ -19,6 +19,7 @@ import '../../../data/models/note_to_self.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
@@ -162,7 +163,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                           focusNode: _searchFocus,
                           onChanged: _onSearchChanged,
                           onTap: () => setState(() => _isSearchActive = true),
-                          style: GoogleFonts.inter(
+                          style: GoogleFonts.plusJakartaSans(
                             fontSize: 14,
                             color: isDark ? Colors.white : Colors.black87,
                           ),
@@ -467,7 +468,7 @@ class _StatPill extends StatelessWidget {
           const SizedBox(width: 5),
           Text(
             '$value $label',
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 11,
               fontWeight: FontWeight.w500,
               color: color,
@@ -507,7 +508,7 @@ class _SectionHeader extends StatelessWidget {
           GradientText(
             label,
             variant: GradientTextVariant.gold,
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 13,
               fontWeight: FontWeight.w600,
               letterSpacing: 0.3,
@@ -552,7 +553,7 @@ class _EmptyState extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               isEn ? 'No matching notes' : 'E\u015fle\u015fen not bulunamad\u0131',
-              style: GoogleFonts.inter(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: isDark ? Colors.white38 : Colors.black38,
@@ -607,7 +608,7 @@ class _EmptyState extends StatelessWidget {
               isEn
                   ? 'Capture your thoughts'
                   : 'D\u00fc\u015f\u00fcncelerini kaydet',
-              style: GoogleFonts.inter(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 22,
                 fontWeight: FontWeight.w700,
                 color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
@@ -619,7 +620,7 @@ class _EmptyState extends StatelessWidget {
               isEn
                   ? 'Quick notes, reminders, ideas —\neverything in one place.'
                   : 'H\u0131zl\u0131 notlar, hat\u0131rlat\u0131c\u0131lar, fikirler —\nher \u015fey tek yerde.',
-              style: GoogleFonts.inter(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -656,7 +657,7 @@ class _EmptyState extends StatelessWidget {
                     const SizedBox(width: 8),
                     Text(
                       isEn ? 'Write your first note' : '\u0130lk notunu yaz',
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
@@ -713,30 +714,13 @@ class _NoteCard extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: onTap,
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark
-                ? AppColors.surfaceDark.withValues(alpha: 0.7)
-                : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-            border: Border.all(
-              color: note.isPinned
-                  ? AppColors.starGold.withValues(alpha: 0.2)
-                  : (isDark ? Colors.white : Colors.black).withValues(alpha: 0.06),
-            ),
-            boxShadow: isDark
-                ? null
-                : [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.04),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-          ),
-          child: Column(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+          child: PremiumCard(
+            style: PremiumCardStyle.subtle,
+            borderRadius: AppConstants.radiusMd,
+            padding: const EdgeInsets.all(16),
+            child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Title row with pin
@@ -756,7 +740,7 @@ class _NoteCard extends StatelessWidget {
                       note.title.isEmpty
                           ? (isEn ? 'Untitled' : 'Ba\u015fl\u0131ks\u0131z')
                           : note.title,
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: isDark
@@ -770,7 +754,7 @@ class _NoteCard extends StatelessWidget {
                   const SizedBox(width: 8),
                   Text(
                     _formatDate(note.updatedAt, isEn),
-                    style: GoogleFonts.inter(
+                    style: GoogleFonts.plusJakartaSans(
                       fontSize: 11,
                       color: isDark ? Colors.white30 : Colors.black26,
                     ),
@@ -783,7 +767,7 @@ class _NoteCard extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   note.preview,
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 13,
                     color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                     height: 1.4,
@@ -816,7 +800,7 @@ class _NoteCard extends StatelessWidget {
                           ),
                           child: Text(
                             tag,
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 10,
                               fontWeight: FontWeight.w500,
                               color: isDark
@@ -828,7 +812,7 @@ class _NoteCard extends StatelessWidget {
                     if (note.tags.length > 3)
                       Text(
                         '+${note.tags.length - 3}',
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 10,
                           color: isDark ? Colors.white38 : Colors.black26,
                         ),
@@ -838,6 +822,7 @@ class _NoteCard extends StatelessWidget {
               ],
             ],
           ),
+        ),
         ),
       ),
     );
@@ -912,7 +897,7 @@ class _TagChip extends StatelessWidget {
         ),
         child: Text(
           label,
-          style: GoogleFonts.inter(
+          style: GoogleFonts.plusJakartaSans(
             fontSize: 12,
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
             color: isSelected
@@ -967,7 +952,7 @@ class _AnimatedFAB extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               isEn ? 'New Note' : 'Yeni Not',
-              style: GoogleFonts.inter(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
                 color: Colors.white,

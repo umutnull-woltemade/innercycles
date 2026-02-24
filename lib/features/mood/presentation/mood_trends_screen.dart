@@ -18,6 +18,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class MoodTrendsScreen extends ConsumerWidget {
@@ -256,16 +257,14 @@ class MoodTrendsScreen extends ConsumerWidget {
                     children: [
                       Icon(Icons.lock_outline, size: 20, color: AppColors.starGold),
                       const SizedBox(height: 2),
-                      Text(
+                      GradientText(
                         isEn
                             ? 'Your data has more to show'
                             : 'Verilerinin gösterecekleri var',
-                        style: TextStyle(
+                        variant: GradientTextVariant.gold,
+                        style: const TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -369,12 +368,11 @@ class MoodTrendsScreen extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'This Week' : 'Bu Hafta',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -457,12 +455,11 @@ class MoodTrendsScreen extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Last 30 Days' : 'Son 30 Gün',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -547,12 +544,11 @@ class MoodTrendsScreen extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Recent Check-ins' : 'Son Kayıtlar',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -639,12 +635,11 @@ class MoodTrendsScreen extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Go Deeper' : 'Derine Dal',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
+            variant: GradientTextVariant.amethyst,
+            style: const TextStyle(
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),

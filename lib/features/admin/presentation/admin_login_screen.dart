@@ -15,6 +15,7 @@ import '../../../data/providers/admin_providers.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 
 class AdminLoginScreen extends ConsumerStatefulWidget {
@@ -136,12 +137,14 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
         ),
         const SizedBox(width: AppConstants.spacingSm),
         Flexible(
-          child: Text(
+          child: GradientText(
             L10nService.get('screens.admin_login.title', language),
+            variant: GradientTextVariant.gold,
             style: Theme.of(
               context,
-            ).textTheme.headlineMedium?.copyWith(color: AppColors.starGold),
+            ).textTheme.headlineMedium,
             overflow: TextOverflow.ellipsis,
+            maxLines: 1,
           ),
         ),
       ],

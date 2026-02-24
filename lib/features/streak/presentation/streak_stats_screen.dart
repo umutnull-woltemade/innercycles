@@ -14,6 +14,7 @@ import '../../../data/services/streak_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 class StreakStatsScreen extends ConsumerWidget {
   const StreakStatsScreen({super.key});
@@ -138,10 +139,10 @@ class StreakStatsScreen extends ConsumerWidget {
       borderRadius: BorderRadius.circular(AppConstants.radiusLg),
       child: Column(
         children: [
-          Text(
+          GradientText(
             '${stats.currentStreak}',
-            style: Theme.of(context).textTheme.displayLarge?.copyWith(
-              color: AppColors.starGold,
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 72,
             ),
@@ -250,12 +251,11 @@ class StreakStatsScreen extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'This Week' : 'Bu Hafta',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -350,12 +350,11 @@ class StreakStatsScreen extends ConsumerWidget {
             children: [
               Icon(Icons.ac_unit, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? 'Streak Freeze' : 'Seri Dondurma',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
+                variant: GradientTextVariant.aurora,
+                style: const TextStyle(
+                  fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -423,12 +422,11 @@ class StreakStatsScreen extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Milestones' : 'Kilometre Taşları',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),

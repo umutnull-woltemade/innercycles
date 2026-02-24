@@ -17,6 +17,7 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -243,12 +244,12 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                GradientText(
                   isEn ? 'Milestones Earned' : 'Kazanılan Rozetler',
-                  style: TextStyle(
+                  variant: GradientTextVariant.gold,
+                  style: const TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
-                    color: Colors.white.withValues(alpha: 0.95),
                   ),
                 ),
                 const SizedBox(height: 6),

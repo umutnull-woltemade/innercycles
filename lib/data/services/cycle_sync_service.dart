@@ -258,6 +258,52 @@ class CycleSyncService with SupabaseSyncMixin {
   }
 
   // ═══════════════════════════════════════════════════════════════════════
+  // REMOTE MERGE
+  // ═══════════════════════════════════════════════════════════════════════
+
+  /// Merge cycle logs pulled from Supabase into local storage.
+  Future<void> mergeRemoteLogs(List<Map<String, dynamic>> remoteData) async {
+    for (final row in remoteData) {
+      final id = row['id'] as String;
+      final isDeleted = row['is_deleted'] as bool? ?? false;
+
+      if (isDeleted) {
+        _periodLogs.removeWhere((l) => l.id == id);
+        continue;
+      }
+
+      final log = CyclePeriodLog(
+        id: id,
+        periodStartDate: DateTime.tryParse(row['period_start_date']?.toString() ?? '') ?? DateTime.now(),
+        periodEndDate: row['period_end_date'] != null
+            ? DateTime.tryParse(row['period_end_date'].toString())
+            : null,
+        flowIntensity: row['flow_intensity'] != null
+            ? FlowIntensity.values.firstWhere(
+                (e) => e.name == row['flow_intensity'],
+                orElse: () => FlowIntensity.medium,
+              )
+            : null,
+        symptoms: (row['symptoms'] as List<dynamic>?)
+                ?.map((e) => e.toString())
+                .toList() ??
+            [],
+      );
+
+      final existingIdx = _periodLogs.indexWhere((l) => l.id == id);
+      if (existingIdx >= 0) {
+        _periodLogs[existingIdx] = log;
+      } else {
+        _periodLogs.add(log);
+      }
+    }
+
+    _periodLogs.sort((a, b) => b.periodStartDate.compareTo(a.periodStartDate));
+    _recalculateAverages();
+    await _persist();
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════
   // QUERIES
   // ═══════════════════════════════════════════════════════════════════════
 

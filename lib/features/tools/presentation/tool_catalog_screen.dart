@@ -23,6 +23,7 @@ import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 const Map<ToolCategory, _CategoryInfo> _categoryDisplayInfo = {
   ToolCategory.journal: _CategoryInfo(
@@ -260,7 +261,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           const SizedBox(height: AppConstants.spacingLg),
           Text(
             isEn ? 'No tools found' : 'Ara\u00e7 bulunamad\u0131',
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 16,
               fontWeight: FontWeight.w600,
               color: isDark
@@ -339,14 +340,12 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
         children: [
           AppSymbol(info.emoji, size: AppSymbolSize.sm),
           const SizedBox(width: AppConstants.spacingSm),
-          Text(
+          GradientText(
             isEn ? info.nameEn : info.nameTr,
-            style: GoogleFonts.inter(
+            variant: GradientTextVariant.gold,
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 17,
               fontWeight: FontWeight.w700,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
             ),
           ),
         ],
@@ -500,7 +499,7 @@ class _ToolCard extends StatelessWidget {
                       ),
                       child: Text(
                         'PRO',
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 9,
                           fontWeight: FontWeight.w700,
                           color: Colors.white,
@@ -542,7 +541,7 @@ class _ToolCard extends StatelessWidget {
               const SizedBox(height: AppConstants.spacingSm),
               Text(
                 isEn ? tool.nameEn : tool.nameTr,
-                style: GoogleFonts.inter(
+                style: GoogleFonts.plusJakartaSans(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                   color: isDark

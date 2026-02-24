@@ -23,6 +23,7 @@ import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_service.dart';
 import '../../../data/services/growth_challenge_service.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../data/services/gratitude_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -577,10 +578,10 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        GradientText(
           isEn ? 'Milestones' : 'Kilometre Taşları',
+          variant: GradientTextVariant.gold,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -861,10 +862,10 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        GradientText(
           isEn ? 'Explore Growth Tools' : 'Büyüme Araçlarını Keşfet',
+          variant: GradientTextVariant.aurora,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -993,10 +994,10 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'This Month' : 'Bu Ay',
+            variant: GradientTextVariant.gold,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: AppColors.starGold,
               fontWeight: FontWeight.w600,
             ),
           ),

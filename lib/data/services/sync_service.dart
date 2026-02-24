@@ -38,6 +38,21 @@ class SyncService {
     'cycle_period_logs',
   ];
 
+  /// Registered merge handlers for pull sync (table → merge callback)
+  static final Map<String, Future<void> Function(List<Map<String, dynamic>>)>
+      _mergeHandlers = {};
+
+  /// Periodic sync timer
+  static Timer? _periodicSyncTimer;
+
+  /// Register a merge handler for a table (called by each service on init)
+  static void registerMergeHandler(
+    String tableName,
+    Future<void> Function(List<Map<String, dynamic>>) handler,
+  ) {
+    _mergeHandlers[tableName] = handler;
+  }
+
   /// Initialize the sync service
   static Future<void> initialize() async {
     if (kIsWeb) {
@@ -63,6 +78,13 @@ class SyncService {
       // Try initial sync
       syncPendingOperations();
 
+      // Start periodic full sync every 5 minutes
+      _periodicSyncTimer?.cancel();
+      _periodicSyncTimer = Timer.periodic(
+        const Duration(minutes: 5),
+        (_) => fullSync(),
+      );
+
       if (kDebugMode) {
         debugPrint(
           'SyncService: Initialized with ${_syncBox?.length ?? 0} pending operations',
@@ -75,10 +97,18 @@ class SyncService {
     }
   }
 
-  /// Dispose resources (cancel connectivity listener)
+  /// Dispose resources (cancel connectivity listener and periodic timer)
   static void dispose() {
     _connectivitySub?.cancel();
     _connectivitySub = null;
+    _periodicSyncTimer?.cancel();
+    _periodicSyncTimer = null;
+  }
+
+  /// Called when app resumes from background — triggers full sync
+  static void onAppResumed() {
+    if (kDebugMode) debugPrint('SyncService: App resumed — triggering sync');
+    fullSync();
   }
 
   /// Check if device is online
@@ -195,6 +225,7 @@ class SyncService {
   }
 
   /// Pull remote changes for a table since the given timestamp.
+  /// Fetches data from Supabase and merges into local storage via registered handler.
   /// Returns the number of records pulled.
   static Future<int> pullRemoteChanges(
     String tableName,
@@ -213,10 +244,23 @@ class SyncService {
 
       final List<dynamic> data = await query;
 
-      if (data.isNotEmpty) {
-        await setLastSyncTime(tableName, DateTime.now());
+      if (data.isEmpty) return 0;
+
+      // Merge into local storage via registered handler
+      final handler = _mergeHandlers[tableName];
+      if (handler != null) {
+        final rows = data
+            .map((e) => Map<String, dynamic>.from(e as Map))
+            .toList();
+        await handler(rows);
+        if (kDebugMode) {
+          debugPrint('SyncService: Merged ${rows.length} rows for $tableName');
+        }
+      } else if (kDebugMode) {
+        debugPrint('SyncService: No merge handler for $tableName (${data.length} rows skipped)');
       }
 
+      await setLastSyncTime(tableName, DateTime.now());
       return data.length;
     } catch (e) {
       if (kDebugMode) {

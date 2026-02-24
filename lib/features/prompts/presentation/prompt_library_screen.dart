@@ -5,6 +5,7 @@
 // daily prompt highlight, category filtering, and completion tracking.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -18,6 +19,7 @@ import '../../../data/services/journal_prompt_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
@@ -191,14 +193,12 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              GradientText(
                 isEn ? 'Your Progress' : 'İlerlemeniz',
-                style: TextStyle(
+                variant: GradientTextVariant.gold,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                 ),
               ),
               Text(
@@ -507,149 +507,166 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (ctx) => Container(
-        padding: const EdgeInsets.fromLTRB(24, 12, 24, 40),
-        decoration: BoxDecoration(
-          color: isDark ? AppColors.surfaceDark : Colors.white,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Drag handle
-            Center(
-              child: Container(
-                width: 40,
-                height: 4,
-                margin: const EdgeInsets.only(bottom: 20),
-                decoration: BoxDecoration(
-                  color: isDark
-                      ? Colors.white.withValues(alpha: 0.2)
-                      : AppColors.textMuted.withValues(alpha: 0.3),
-                  borderRadius: BorderRadius.circular(2),
+      builder: (ctx) => ClipRRect(
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(24, 12, 24, 40),
+            decoration: BoxDecoration(
+              color: (isDark ? AppColors.surfaceDark : Colors.white)
+                  .withValues(alpha: isDark ? 0.85 : 0.92),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(24)),
+              border: Border(
+                top: BorderSide(
+                  color: AppColors.auroraStart.withValues(alpha: 0.3),
+                  width: 1.5,
                 ),
               ),
             ),
-
-            // Category and depth
-            Row(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildDepthIndicator(prompt.depth),
-                const SizedBox(width: 8),
-                Text(
-                  _categoryLabel(prompt.category),
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.auroraStart,
+                // Drag handle
+                Center(
+                  child: Container(
+                    width: 40,
+                    height: 4,
+                    margin: const EdgeInsets.only(bottom: 20),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          AppColors.auroraStart.withValues(alpha: 0.6),
+                          AppColors.auroraEnd.withValues(alpha: 0.6),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(2),
+                    ),
                   ),
                 ),
-                const Spacer(),
-                if (isCompleted)
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.check_circle,
-                        size: 18,
-                        color: AppColors.success,
+
+                // Category and depth
+                Row(
+                  children: [
+                    _buildDepthIndicator(prompt.depth),
+                    const SizedBox(width: 8),
+                    Text(
+                      _categoryLabel(prompt.category),
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.auroraStart,
                       ),
-                      const SizedBox(width: 4),
-                      Text(
-                        isEn ? 'Completed' : 'Tamamlandı',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: AppColors.success,
+                    ),
+                    const Spacer(),
+                    if (isCompleted)
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.check_circle,
+                            size: 18,
+                            color: AppColors.success,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            isEn ? 'Completed' : 'Tamamlandı',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: AppColors.success,
+                            ),
+                          ),
+                        ],
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 18),
+
+                // Prompt text
+                Text(
+                  promptText,
+                  style: TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.w500,
+                    height: 1.55,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                // Action buttons
+                Row(
+                  children: [
+                    // Skip button
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: () {
+                          HapticFeedback.lightImpact();
+                          service.markSkipped(prompt.id);
+                          Navigator.pop(ctx);
+                          setState(() {});
+                        },
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                          side: BorderSide(
+                            color: isDark
+                                ? Colors.white.withValues(alpha: 0.15)
+                                : AppColors.textMuted.withValues(alpha: 0.3),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 13),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Text(
+                          isEn ? 'Skip' : 'Atla',
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                    ],
-                  ),
-              ],
-            ),
-            const SizedBox(height: 18),
-
-            // Prompt text
-            Text(
-              promptText,
-              style: TextStyle(
-                fontSize: 19,
-                fontWeight: FontWeight.w500,
-                height: 1.55,
-                color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            // Action buttons
-            Row(
-              children: [
-                // Skip button
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: () {
-                      HapticFeedback.lightImpact();
-                      service.markSkipped(prompt.id);
-                      Navigator.pop(ctx);
-                      setState(() {});
-                    },
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary,
-                      side: BorderSide(
-                        color: isDark
-                            ? Colors.white.withValues(alpha: 0.15)
-                            : AppColors.textMuted.withValues(alpha: 0.3),
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 13),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                    ),
+                    const SizedBox(width: 12),
+                    // Start Writing button
+                    Expanded(
+                      flex: 2,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          HapticFeedback.mediumImpact();
+                          service.markCompleted(prompt.id);
+                          Navigator.pop(ctx);
+                          context.go(Routes.journal);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.auroraStart,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 13),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          elevation: 0,
+                        ),
+                        child: Text(
+                          isEn ? 'Start Writing' : 'Yazmaya Başla',
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
                     ),
-                    child: Text(
-                      isEn ? 'Skip' : 'Atla',
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                // Start Writing button
-                Expanded(
-                  flex: 2,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      HapticFeedback.mediumImpact();
-                      service.markCompleted(prompt.id);
-                      Navigator.pop(ctx);
-                      context.go(Routes.journal);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.auroraStart,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 13),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: Text(
-                      isEn ? 'Start Writing' : 'Yazmaya Başla',
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
+                  ],
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );

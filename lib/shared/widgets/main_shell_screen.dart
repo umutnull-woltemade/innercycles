@@ -273,7 +273,7 @@ class _NavTab extends StatelessWidget {
           // Label
           Text(
             item.label,
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 10,
               fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
               color: color,

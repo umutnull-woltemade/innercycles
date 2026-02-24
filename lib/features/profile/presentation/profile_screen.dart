@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -12,6 +13,8 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/services/storage_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/glass_dialog.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../data/cities/world_cities.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
@@ -129,11 +132,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ),
         ),
         const SizedBox(width: AppConstants.spacingSm),
-        Text(
+        GradientText(
           L10nService.get('navigation.profile', language),
+          variant: GradientTextVariant.gold,
           style: Theme.of(
             context,
-          ).textTheme.headlineMedium?.copyWith(color: AppColors.starGold),
+          ).textTheme.headlineMedium,
         ),
         const Spacer(),
         if (_hasChanges)
@@ -199,12 +203,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            GradientText(
               profile.name ?? profile.displayEmoji,
+              variant: GradientTextVariant.gold,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -454,12 +456,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             children: [
               Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
               const SizedBox(width: AppConstants.spacingSm),
-              Text(
+              GradientText(
                 isEn ? 'Your Progress' : 'İlerlemen',
+                variant: GradientTextVariant.gold,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -560,10 +560,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final result = await showModalBottomSheet<CityData>(
       context: context,
       isScrollControlled: true,
-      backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-      ),
+      backgroundColor: Colors.transparent,
       builder: (context) {
         String searchQuery = '';
         bool showTurkeyOnly = true;
@@ -579,11 +576,43 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               filteredCities = WorldCities.search(searchQuery);
             }
 
-            return Container(
+            return ClipRRect(
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                child: Container(
               height: MediaQuery.of(context).size.height * 0.8,
+              decoration: BoxDecoration(
+                color: (isDark ? AppColors.surfaceDark : AppColors.lightSurface)
+                    .withValues(alpha: isDark ? 0.85 : 0.92),
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+                border: Border(
+                  top: BorderSide(
+                    color: AppColors.auroraStart.withValues(alpha: 0.3),
+                    width: 1.5,
+                  ),
+                ),
+              ),
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
+                  // Gradient drag handle
+                  Center(
+                    child: Container(
+                      width: 40,
+                      height: 4,
+                      margin: const EdgeInsets.only(bottom: 12),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.auroraStart.withValues(alpha: 0.6),
+                            AppColors.auroraEnd.withValues(alpha: 0.6),
+                          ],
+                        ),
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -598,13 +627,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           ),
                         ),
                       ),
-                      Text(
+                      GradientText(
                         L10nService.get('input.select_city', language),
+                        variant: GradientTextVariant.aurora,
                         style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -730,6 +757,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   ),
                 ],
               ),
+            ),
+              ),
             );
           },
         );
@@ -784,54 +813,17 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     );
   }
 
-  void _showDiscardDialog(BuildContext context, AppLanguage language) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: isDark
-            ? AppColors.surfaceDark
-            : AppColors.lightSurface,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        ),
-        title: Text(
-          L10nService.get('profile.discard_changes_title', language),
-          style: TextStyle(
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
-          ),
-        ),
-        content: Text(
-          L10nService.get('profile.discard_changes_message', language),
-          style: TextStyle(
-            color: isDark
-                ? AppColors.textSecondary
-                : AppColors.lightTextSecondary,
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(
-              L10nService.get('common.cancel', language),
-              style: TextStyle(
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              if (context.canPop()) context.pop();
-            },
-            child: Text(
-              L10nService.get('common.delete', language),
-              style: const TextStyle(color: AppColors.error),
-            ),
-          ),
-        ],
-      ),
+  void _showDiscardDialog(BuildContext context, AppLanguage language) async {
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: L10nService.get('profile.discard_changes_title', language),
+      message: L10nService.get('profile.discard_changes_message', language),
+      cancelLabel: L10nService.get('common.cancel', language),
+      confirmLabel: L10nService.get('common.delete', language),
+      isDestructive: true,
     );
+    if (confirmed == true && context.mounted) {
+      if (context.canPop()) context.pop();
+    }
   }
 }

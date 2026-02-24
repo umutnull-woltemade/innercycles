@@ -138,6 +138,38 @@ class MoodCheckinService with SupabaseSyncMixin {
     return recent.map((e) => e.mood).reduce((a, b) => a + b) / recent.length;
   }
 
+  // ══════════════════════════════════════════════════════════════════════════
+  // REMOTE MERGE
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Merge entries pulled from Supabase into local storage.
+  Future<void> mergeRemoteMoods(List<Map<String, dynamic>> remoteData) async {
+    for (final row in remoteData) {
+      final id = row['id'] as String;
+      final isDeleted = row['is_deleted'] as bool? ?? false;
+
+      if (isDeleted) {
+        _entries.removeWhere((e) => e.id == id);
+        continue;
+      }
+
+      final entry = MoodEntry(
+        id: id,
+        date: DateTime.tryParse(row['date']?.toString() ?? '') ?? DateTime.now(),
+        mood: row['mood'] as int? ?? 3,
+        emoji: row['emoji'] as String? ?? '',
+      );
+
+      final existingIdx = _entries.indexWhere((e) => e.id == id);
+      if (existingIdx >= 0) {
+        _entries[existingIdx] = entry;
+      } else {
+        _entries.add(entry);
+      }
+    }
+    await _persist();
+  }
+
   // Persistence
   void _load() {
     final jsonString = _prefs.getString(_key);

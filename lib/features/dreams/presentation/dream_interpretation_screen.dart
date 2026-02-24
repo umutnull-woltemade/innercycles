@@ -15,6 +15,7 @@ import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
@@ -2154,15 +2155,13 @@ ${_getPersonalAdvice(sign)}''';
                       size: 28,
                     ),
                     const SizedBox(height: 8),
-                    Text(
+                    GradientText(
                       isEn
                           ? '$lockedCount more perspectives available'
                           : '$lockedCount perspektif daha mevcut',
+                      variant: GradientTextVariant.amethyst,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: isDark
-                            ? Colors.white
-                            : AppColors.lightTextPrimary,
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                       ),

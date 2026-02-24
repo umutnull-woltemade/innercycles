@@ -64,6 +64,7 @@ import '../services/note_to_self_service.dart';
 import '../models/journal_entry.dart';
 import '../models/note_to_self.dart';
 import '../models/cross_correlation_result.dart';
+import '../services/sync_service.dart';
 
 // =============================================================================
 // USER PROFILE PROVIDERS
@@ -266,7 +267,8 @@ final themeModeProvider = StateProvider<ThemeMode>((ref) => ThemeMode.dark);
 final dreamJournalServiceProvider = FutureProvider<DreamJournalService>((
   ref,
 ) async {
-  return await DreamJournalService.init();
+  final service = await DreamJournalService.init();
+  return service;
 });
 
 /// Derived dream count provider (sync-safe for widget builds).
@@ -281,7 +283,9 @@ final dreamCountProvider = FutureProvider<int>((ref) async {
 
 /// Journal Service provider - async initialization
 final journalServiceProvider = FutureProvider<JournalService>((ref) async {
-  return await JournalService.init();
+  final service = await JournalService.init();
+  SyncService.registerMergeHandler('journal_entries', service.mergeRemoteEntries);
+  return service;
 });
 
 /// Today's journal entry (null if not logged yet)
@@ -494,7 +498,9 @@ final weeklyDigestDataProvider = FutureProvider<WeeklyDigestData?>((
 final moodCheckinServiceProvider = FutureProvider<MoodCheckinService>((
   ref,
 ) async {
-  return await MoodCheckinService.init();
+  final service = await MoodCheckinService.init();
+  SyncService.registerMergeHandler('mood_entries', service.mergeRemoteMoods);
+  return service;
 });
 
 // =============================================================================
@@ -772,7 +778,9 @@ final emotionalCycleAnalysisProvider = FutureProvider<EmotionalCycleAnalysis>((
 final cycleSyncServiceProvider = FutureProvider<CycleSyncService>((
   ref,
 ) async {
-  return await CycleSyncService.init();
+  final service = await CycleSyncService.init();
+  SyncService.registerMergeHandler('cycle_period_logs', service.mergeRemoteLogs);
+  return service;
 });
 
 final cycleCorrelationServiceProvider =
@@ -850,7 +858,9 @@ final progressiveUnlockServiceProvider =
 // =============================================================================
 
 final lifeEventServiceProvider = FutureProvider<LifeEventService>((ref) async {
-  return await LifeEventService.init();
+  final service = await LifeEventService.init();
+  SyncService.registerMergeHandler('life_events', service.mergeRemoteEvents);
+  return service;
 });
 
 final lifeEventCountProvider = FutureProvider<int>((ref) async {
@@ -889,7 +899,10 @@ final monthlyWrappedServiceProvider = FutureProvider<MonthlyWrappedService>((
 final notesToSelfServiceProvider = FutureProvider<NoteToSelfService>((
   ref,
 ) async {
-  return await NoteToSelfService.init();
+  final service = await NoteToSelfService.init();
+  SyncService.registerMergeHandler('notes_to_self', service.mergeRemoteNotes);
+  SyncService.registerMergeHandler('note_reminders', service.mergeRemoteReminders);
+  return service;
 });
 
 final allNotesProvider = FutureProvider<List<NoteToSelf>>((ref) async {

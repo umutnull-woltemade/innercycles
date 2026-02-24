@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/gratitude_service.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 
 /// Collapsible gratitude section for the daily entry screen
@@ -116,14 +117,12 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          GradientText(
                             isEn ? 'Gratitude' : 'Şükran',
-                            style: TextStyle(
+                            variant: GradientTextVariant.gold,
+                            style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
                             ),
                           ),
                           Text(
@@ -332,14 +331,12 @@ class _GratitudeSummaryContent extends StatelessWidget {
             children: [
               Icon(Icons.favorite_rounded, size: 18, color: AppColors.success),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? 'This Week\'s Gratitude' : 'Bu Haftanın Şükranı',
-                style: TextStyle(
+                variant: GradientTextVariant.gold,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                 ),
               ),
             ],

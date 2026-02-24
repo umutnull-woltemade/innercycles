@@ -20,6 +20,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/ecosystem_widgets.dart';
 import '../../../shared/widgets/app_symbol.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 
 class MemoriesScreen extends ConsumerStatefulWidget {
@@ -138,14 +139,12 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                             top: AppConstants.spacingXl,
                             bottom: AppConstants.spacingMd,
                           ),
-                          child: Text(
+                          child: GradientText(
                             isEn ? 'On This Day' : 'Bug\u00fcn Ge\u00e7mi\u015fte',
-                            style: GoogleFonts.inter(
+                            variant: GradientTextVariant.gold,
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 17,
                               fontWeight: FontWeight.w700,
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
                             ),
                           ),
                         ),
@@ -373,7 +372,7 @@ class _MiniStat extends StatelessWidget {
       children: [
         Text(
           value,
-          style: GoogleFonts.inter(
+          style: GoogleFonts.plusJakartaSans(
             fontSize: isSmallValue ? 13 : 22,
             fontWeight: FontWeight.w700,
             color: color,
@@ -684,7 +683,7 @@ class _MemoryCard extends StatelessWidget {
                             children: [
                               Text(
                                 dateStr,
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.plusJakartaSans(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.white,

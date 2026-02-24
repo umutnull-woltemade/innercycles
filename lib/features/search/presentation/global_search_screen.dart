@@ -16,6 +16,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/tool_manifest.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 
 class GlobalSearchScreen extends ConsumerStatefulWidget {
@@ -121,7 +122,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                                 focusNode: _focusNode,
                                 onChanged: (v) =>
                                     setState(() => _query = v.trim()),
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.plusJakartaSans(
                                   color: isDark
                                       ? AppColors.textPrimary
                                       : AppColors.lightTextPrimary,
@@ -190,14 +191,12 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Quick Actions' : 'H\u0131zl\u0131 Eri\u015fim',
-            style: GoogleFonts.inter(
+            variant: GradientTextVariant.aurora,
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 15,
               fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
             ),
           ).animate().fadeIn(delay: 100.ms, duration: 300.ms),
           const SizedBox(height: AppConstants.spacingMd),
@@ -229,13 +228,13 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn
                 ? '${results.length} result${results.length != 1 ? 's' : ''}'
                 : '${results.length} sonu\u00e7',
-            style: GoogleFonts.inter(
+            variant: GradientTextVariant.aurora,
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 13,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
           ).animate().fadeIn(duration: 200.ms),
           const SizedBox(height: AppConstants.spacingSm),
@@ -275,7 +274,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
           const SizedBox(height: AppConstants.spacingLg),
           Text(
             isEn ? 'No results found' : 'Sonu\u00e7 bulunamad\u0131',
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 16,
               color: isDark
                   ? AppColors.textSecondary
@@ -324,7 +323,7 @@ class _SearchResultTile extends StatelessWidget {
                   children: [
                     Text(
                       isEn ? tool.nameEn : tool.nameTr,
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: isDark

@@ -11,6 +11,7 @@ import '../../../data/services/gratitude_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/ecosystem_widgets.dart';
 import '../../../core/constants/routes.dart';
 import 'package:go_router/go_router.dart';
@@ -294,10 +295,10 @@ class GratitudeArchiveScreen extends ConsumerWidget {
       ),
       child: Row(
         children: [
-          Text(
+          GradientText(
             '${monthNames[month]} $year',
+            variant: GradientTextVariant.gold,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: AppColors.starGold,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -399,10 +400,10 @@ class _StatTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(AppConstants.radiusMd),
       child: Column(
         children: [
-          Text(
+          GradientText(
             value,
+            variant: GradientTextVariant.aurora,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: AppColors.auroraStart,
               fontWeight: FontWeight.bold,
             ),
           ),

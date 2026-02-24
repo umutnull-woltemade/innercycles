@@ -14,6 +14,7 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/ecosystem_widgets.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../core/constants/routes.dart';
@@ -292,12 +293,12 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                                     AppConstants.spacingLg,
                                     AppConstants.spacingSm,
                                   ),
-                                  child: Text(
+                                  child: GradientText(
                                     _formatMonthHeader(monthKey, isEn),
-                                    style: TextStyle(
+                                    variant: GradientTextVariant.gold,
+                                    style: const TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w700,
-                                      color: AppColors.starGold,
                                       letterSpacing: 0.3,
                                     ),
                                   ),

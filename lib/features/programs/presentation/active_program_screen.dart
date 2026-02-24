@@ -17,6 +17,7 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 
 class ActiveProgramScreen extends ConsumerStatefulWidget {
@@ -249,12 +250,12 @@ class _MiniStat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
+        GradientText(
           value,
-          style: TextStyle(
+          variant: GradientTextVariant.gold,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,
-            color: AppColors.starGold,
           ),
         ),
         Text(
@@ -531,14 +532,12 @@ class _CompletedBanner extends StatelessWidget {
                 color: AppColors.starGold,
               ),
               const SizedBox(height: 12),
-              Text(
+              GradientText(
                 isEn ? 'Program Completed!' : 'Program Tamamlandı!',
-                style: TextStyle(
+                variant: GradientTextVariant.gold,
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                 ),
               ),
               const SizedBox(height: 4),

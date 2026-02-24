@@ -20,6 +20,7 @@ import '../../../data/services/archetype_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // QUIZ DATA
@@ -328,14 +329,12 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
           const SizedBox(height: 32),
 
           // Question
-          Text(
+          GradientText(
             isEn ? question.questionEn : question.questionTr,
-            style: TextStyle(
+            variant: GradientTextVariant.aurora,
+            style: const TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
               height: 1.3,
             ),
           ).glassEntrance(context: context),
@@ -411,14 +410,12 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
           const SizedBox(height: 8),
 
           // Archetype name
-          Text(
+          GradientText(
             archetype.getName(isEnglish: isEn),
-            style: TextStyle(
+            variant: GradientTextVariant.cosmic,
+            style: const TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w700,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
             ),
           ).glassEntrance(
             context: context,
@@ -453,12 +450,12 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                GradientText(
                   isEn ? 'Your Strengths' : 'Güçlü Yönlerin',
-                  style: TextStyle(
+                  variant: GradientTextVariant.gold,
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.starGold,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -509,12 +506,12 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                GradientText(
                   isEn ? 'Growth Tip' : 'Büyüme İpucu',
-                  style: TextStyle(
+                  variant: GradientTextVariant.amethyst,
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.cosmicPurple,
                   ),
                 ),
                 const SizedBox(height: 8),

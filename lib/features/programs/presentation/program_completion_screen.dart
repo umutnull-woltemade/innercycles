@@ -16,6 +16,7 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 class ProgramCompletionScreen extends ConsumerWidget {
   final String programTitle;
@@ -66,17 +67,13 @@ class ProgramCompletionScreen extends ConsumerWidget {
                 const SizedBox(height: AppConstants.spacingXl),
 
                 // Congratulations heading in gold
-                ShaderMask(
-                  shaderCallback: (bounds) =>
-                      AppColors.goldGradient.createShader(bounds),
-                  child: Text(
-                    isEn ? 'Congratulations!' : 'Tebrikler!',
-                    style: const TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                      letterSpacing: 0.5,
-                    ),
+                GradientText(
+                  isEn ? 'Congratulations!' : 'Tebrikler!',
+                  variant: GradientTextVariant.gold,
+                  style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.5,
                   ),
                 ),
                 const SizedBox(height: AppConstants.spacingMd),
@@ -119,14 +116,14 @@ class ProgramCompletionScreen extends ConsumerWidget {
                       const SizedBox(height: AppConstants.spacingLg),
 
                       // Certificate title
-                      Text(
+                      GradientText(
                         isEn
                             ? 'Certificate of Completion'
                             : 'Tamamlama Sertifikası',
-                        style: TextStyle(
+                        variant: GradientTextVariant.gold,
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.starGold,
                           letterSpacing: 0.3,
                         ),
                       ),
@@ -141,15 +138,13 @@ class ProgramCompletionScreen extends ConsumerWidget {
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Program name
-                      Text(
+                      GradientText(
                         programTitle,
+                        variant: GradientTextVariant.aurora,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
                         ),
                       ),
                       const SizedBox(height: AppConstants.spacingLg),

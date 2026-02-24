@@ -367,14 +367,12 @@ class SleepSummaryCard extends ConsumerWidget {
                         : AppColors.lightAuroraEnd,
                   ),
                   const SizedBox(width: 8),
-                  Text(
+                  GradientText(
                     isEn ? 'Sleep This Week' : 'Bu Hafta Uyku',
-                    style: TextStyle(
+                    variant: GradientTextVariant.aurora,
+                    style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
                     ),
                   ),
                   const Spacer(),

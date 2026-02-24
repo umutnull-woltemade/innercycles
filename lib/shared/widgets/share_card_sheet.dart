@@ -5,6 +5,7 @@
 // InstagramShareService for native share sheet.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -86,10 +87,21 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
       label: widget.isEn
           ? 'Share card: ${widget.data.headline}'
           : 'Paylaşım kartı: ${widget.data.headline}',
-      child: Container(
+      child: ClipRRect(
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+        child: Container(
       decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
+        color: (isDark ? AppColors.surfaceDark : AppColors.lightSurface)
+            .withValues(alpha: isDark ? 0.85 : 0.92),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        border: Border(
+          top: BorderSide(
+            color: accent.withValues(alpha: 0.4),
+            width: 1.5,
+          ),
+        ),
       ),
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
       child: Column(
@@ -100,9 +112,12 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: isDark
-                  ? Colors.white.withValues(alpha: 0.2)
-                  : Colors.black.withValues(alpha: 0.1),
+              gradient: LinearGradient(
+                colors: [
+                  accent.withValues(alpha: 0.6),
+                  accent.withValues(alpha: 0.3),
+                ],
+              ),
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -249,6 +264,8 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
             ),
           ).animate().fadeIn(delay: 200.ms, duration: 300.ms),
         ],
+      ),
+    ),
       ),
     ),
     );

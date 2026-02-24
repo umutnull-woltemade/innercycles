@@ -35,6 +35,7 @@ import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/premium_empty_state.dart';
 
 class WeeklyDigestScreen extends ConsumerStatefulWidget {
   const WeeklyDigestScreen({super.key});
@@ -229,43 +230,15 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         SliverFillRemaining(
           hasScrollBody: false,
           child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(32),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.calendar_view_week_outlined,
-                    size: 64,
-                    color: AppColors.starGold.withValues(alpha: 0.6),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    isEn
-                        ? 'No entries this week yet'
-                        : 'Bu hafta henüz kayıt yok',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w700,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    isEn
-                        ? 'Start journaling to see your weekly digest with mood trends, patterns, and insights.'
-                        : 'Ruh hali eğilimleri, kalıplar ve içgörüler içeren haftalık özetini görmek için günlük tutmaya başla.',
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
+            child: PremiumEmptyState(
+              icon: Icons.calendar_view_week_outlined,
+              title: isEn
+                  ? 'No entries this week yet'
+                  : 'Bu hafta henüz kayıt yok',
+              description: isEn
+                  ? 'Start journaling to see your weekly digest with mood trends, patterns, and insights.'
+                  : 'Ruh hali eğilimleri, kalıplar ve içgörüler içeren haftalık özetini görmek için günlük tutmaya başla.',
+              gradientVariant: GradientTextVariant.gold,
             ),
           ),
         ),

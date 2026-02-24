@@ -12,6 +12,7 @@ import '../../../data/services/context_module_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class ArticlesScreen extends ConsumerStatefulWidget {
@@ -163,22 +164,20 @@ class _ArticlesScreenState extends ConsumerState<ArticlesScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              GradientText(
                 isEn ? 'Reading Progress' : 'Okuma İlerlemesi',
-                style: TextStyle(
+                variant: GradientTextVariant.gold,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
                 ),
               ),
-              Text(
+              GradientText(
                 '$readCount / $totalCount',
-                style: TextStyle(
+                variant: GradientTextVariant.gold,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.starGold,
                 ),
               ),
             ],
@@ -481,12 +480,12 @@ class _ModuleCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      GradientText(
                         isEn ? 'Why It Matters' : 'Neden Önemli',
-                        style: TextStyle(
+                        variant: GradientTextVariant.gold,
+                        style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,
-                          color: AppColors.starGold,
                         ),
                       ),
                       const SizedBox(height: 6),

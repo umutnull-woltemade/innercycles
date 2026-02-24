@@ -29,6 +29,7 @@ import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import 'widgets/cycle_wave_painter.dart';
 import 'widgets/cycle_summary_card.dart';
@@ -422,12 +423,11 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 const SizedBox(height: AppConstants.spacingXl),
 
                 // SUMMARY CARDS
-                Text(
+                GradientText(
                   isEn ? 'Your Dimensions' : 'Boyutların',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
+                  variant: GradientTextVariant.aurora,
+                  style: const TextStyle(
+                    fontSize: 16,
                     fontWeight: FontWeight.w700,
                   ),
                 ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
@@ -929,20 +929,10 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                   paywallContext: PaywallContext.patterns,
                 );
               },
-              child: Container(
+              child: PremiumCard(
+                style: PremiumCardStyle.gold,
+                borderRadius: AppConstants.radiusLg,
                 padding: const EdgeInsets.all(AppConstants.spacingLg),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColors.auroraStart.withValues(alpha: 0.08),
-                      AppColors.auroraEnd.withValues(alpha: 0.08),
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-                  border: Border.all(
-                    color: AppColors.starGold.withValues(alpha: 0.2),
-                  ),
-                ),
                 child: Row(
                   children: [
                     const Icon(

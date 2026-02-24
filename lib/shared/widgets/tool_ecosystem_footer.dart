@@ -65,7 +65,7 @@ class ToolEcosystemFooter extends ConsumerWidget {
         const SizedBox(height: AppConstants.spacingLg),
         Text(
           isEn ? 'Related Tools' : 'İlgili Araçlar',
-          style: GoogleFonts.inter(
+          style: GoogleFonts.plusJakartaSans(
             fontSize: 15,
             fontWeight: FontWeight.w600,
             color: isDark

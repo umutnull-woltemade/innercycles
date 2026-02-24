@@ -18,6 +18,7 @@ import '../../../data/content/important_date_presets.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 
@@ -239,15 +240,15 @@ class _WelcomeStep extends StatelessWidget {
                 curve: Curves.elasticOut,
               ),
           const SizedBox(height: 32),
-          Text(
+          GradientText(
             isEn
                 ? 'Your story didn\'t start today'
                 : 'Hikayen bugün başlamadı',
+            variant: GradientTextVariant.aurora,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w700,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             ),
           ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
           const SizedBox(height: 16),
@@ -320,14 +321,14 @@ class _DaySelectionStep extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
-          child: Text(
+          child: GradientText(
             isEn
                 ? 'Choose the days that matter to you'
                 : 'Senin için önemli günleri seç',
-            style: TextStyle(
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             ),
           ),
         ),
@@ -496,12 +497,12 @@ class _DateEntryStep extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
-          child: Text(
+          child: GradientText(
             isEn ? 'When did these happen?' : 'Bunlar ne zaman oldu?',
-            style: TextStyle(
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             ),
           ),
         ),
@@ -682,15 +683,15 @@ class _SummaryStep extends StatelessWidget {
                 curve: Curves.elasticOut,
               ),
           const SizedBox(height: 32),
-          Text(
+          GradientText(
             isEn
                 ? '$savedCount memories saved'
                 : '$savedCount anı kaydedildi',
+            variant: GradientTextVariant.aurora,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w700,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             ),
           ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
           const SizedBox(height: 16),

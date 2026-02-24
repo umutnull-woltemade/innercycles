@@ -420,6 +420,15 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                     color: isSelected ? AppColors.starGold : Colors.transparent,
                     width: 2,
                   ),
+                  boxShadow: isSelected
+                      ? [
+                          BoxShadow(
+                            color: AppColors.starGold.withValues(alpha: 0.2),
+                            blurRadius: 8,
+                            spreadRadius: 0,
+                          ),
+                        ]
+                      : null,
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -894,32 +903,61 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   }
 
   Widget _buildSaveButton(bool isDark, bool isEn) {
-    return SizedBox(
-      width: double.infinity,
-      height: 56,
-      child: ElevatedButton(
-        onPressed: _isSaving ? null : _saveEntry,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.starGold,
-          foregroundColor: AppColors.deepSpace,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+    return GestureDetector(
+      onTap: _isSaving ? null : _saveEntry,
+      child: Container(
+        width: double.infinity,
+        height: 56,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: _isSaving
+                ? [
+                    AppColors.starGold.withValues(alpha: 0.5),
+                    AppColors.celestialGold.withValues(alpha: 0.5),
+                  ]
+                : [AppColors.starGold, AppColors.celestialGold],
           ),
-          elevation: 0,
+          boxShadow: _isSaving
+              ? null
+              : [
+                  BoxShadow(
+                    color: AppColors.starGold.withValues(alpha: 0.25),
+                    blurRadius: 16,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
         ),
-        child: _isSaving
-            ? const SizedBox(
-                width: 24,
-                height: 24,
-                child: CupertinoActivityIndicator(),
-              )
-            : Text(
-                isEn ? 'Save Entry' : 'Kaydet',
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
+        child: Center(
+          child: _isSaving
+              ? const SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: CupertinoActivityIndicator(),
+                )
+              : Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(
+                      Icons.check_rounded,
+                      size: 22,
+                      color: AppColors.deepSpace,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      isEn ? 'Save Entry' : 'Kaydet',
+                      style: const TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.deepSpace,
+                        letterSpacing: 0.3,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+        ),
       ),
     ).glassListItem(context: context, index: 5);
   }

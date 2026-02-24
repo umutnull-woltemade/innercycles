@@ -104,7 +104,7 @@ class LibraryHubScreen extends ConsumerWidget {
                       isEn
                           ? 'Your personal data vault'
                           : 'Ki\u015fisel veri kasan',
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 14,
                         color: isDark
                             ? AppColors.textSecondary
@@ -203,7 +203,7 @@ class _CategoryCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   isEn ? category.nameEn : category.nameTr,
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                     color: isDark

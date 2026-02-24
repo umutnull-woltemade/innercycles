@@ -9,6 +9,7 @@ import '../../../data/services/notification_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 class NotificationScheduleScreen extends ConsumerStatefulWidget {
   const NotificationScheduleScreen({super.key});
@@ -276,14 +277,12 @@ class _NotificationScheduleScreenState
               color: AppColors.warning,
             ),
             const SizedBox(height: AppConstants.spacingMd),
-            Text(
+            GradientText(
               isEn ? 'Notifications are disabled' : 'Bildirimler devre dışı',
-              style: TextStyle(
+              variant: GradientTextVariant.gold,
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
               ),
             ),
             const SizedBox(height: AppConstants.spacingSm),

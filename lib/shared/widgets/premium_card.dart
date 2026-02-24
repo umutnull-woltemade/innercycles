@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
@@ -10,12 +11,12 @@ enum PremiumCardStyle { aurora, gold, amethyst, subtle }
 /// luxurious, Figma-level appearance:
 ///
 /// 1. Outer + mid drop shadows
-/// 2. Gradient stroke border
+/// 2. Animated gradient stroke border (aurora/gold/amethyst)
 /// 3. Glass surface (BackdropFilter)
 /// 4. Inner shadow highlight/depth
 /// 5. Noise grain overlay
 /// 6. Child content
-class PremiumCard extends StatelessWidget {
+class PremiumCard extends StatefulWidget {
   final Widget child;
   final PremiumCardStyle style;
   final bool showNoise;
@@ -36,14 +37,57 @@ class PremiumCard extends StatelessWidget {
   });
 
   @override
+  State<PremiumCard> createState() => _PremiumCardState();
+}
+
+class _PremiumCardState extends State<PremiumCard>
+    with SingleTickerProviderStateMixin {
+  AnimationController? _borderController;
+
+  bool get _shouldAnimateBorder =>
+      widget.showGradientBorder && widget.style != PremiumCardStyle.subtle;
+
+  @override
+  void initState() {
+    super.initState();
+    if (_shouldAnimateBorder) {
+      _borderController = AnimationController(
+        vsync: this,
+        duration: const Duration(seconds: 10),
+      )..repeat();
+    }
+  }
+
+  @override
+  void didUpdateWidget(PremiumCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (_shouldAnimateBorder && _borderController == null) {
+      _borderController = AnimationController(
+        vsync: this,
+        duration: const Duration(seconds: 10),
+      )..repeat();
+    } else if (!_shouldAnimateBorder && _borderController != null) {
+      _borderController!.dispose();
+      _borderController = null;
+    }
+  }
+
+  @override
+  void dispose() {
+    _borderController?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final colors = _getStyleColors(isDark);
+    final disableAnimations = MediaQuery.of(context).disableAnimations;
 
     // Outer shadow container
     Widget card = Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: BorderRadius.circular(widget.borderRadius),
         boxShadow: [
           // Outer colored shadow
           BoxShadow(
@@ -60,7 +104,7 @@ class PremiumCard extends StatelessWidget {
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: BorderRadius.circular(widget.borderRadius),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
           child: Container(
@@ -68,18 +112,18 @@ class PremiumCard extends StatelessWidget {
               color: isDark
                   ? colors.surface.withValues(alpha: 0.18)
                   : colors.surface.withValues(alpha: 0.65),
-              borderRadius: BorderRadius.circular(borderRadius),
+              borderRadius: BorderRadius.circular(widget.borderRadius),
             ),
             child: Stack(
               children: [
                 // Inner shadow
-                if (showInnerShadow)
+                if (widget.showInnerShadow)
                   Positioned.fill(
                     child: IgnorePointer(
                       child: RepaintBoundary(
                         child: CustomPaint(
                           painter: _InnerShadowPainter(
-                            borderRadius: borderRadius,
+                            borderRadius: widget.borderRadius,
                             isDark: isDark,
                           ),
                           willChange: false,
@@ -89,7 +133,7 @@ class PremiumCard extends StatelessWidget {
                   ),
 
                 // Noise grain
-                if (showNoise)
+                if (widget.showNoise)
                   Positioned.fill(
                     child: IgnorePointer(
                       child: RepaintBoundary(
@@ -103,8 +147,8 @@ class PremiumCard extends StatelessWidget {
 
                 // Content
                 Padding(
-                  padding: padding ?? const EdgeInsets.all(16),
-                  child: child,
+                  padding: widget.padding ?? const EdgeInsets.all(16),
+                  child: widget.child,
                 ),
               ],
             ),
@@ -114,20 +158,48 @@ class PremiumCard extends StatelessWidget {
     );
 
     // Gradient border wrapper
-    if (showGradientBorder) {
-      card = GradientBorderContainer(
-        gradient: colors.gradient,
-        strokeWidth: 1.0,
-        borderRadius: borderRadius,
-        child: card,
-      );
+    if (widget.showGradientBorder) {
+      if (_borderController != null && !disableAnimations) {
+        card = AnimatedBuilder(
+          animation: _borderController!,
+          builder: (context, child) {
+            return GradientBorderContainer(
+              gradient: _rotateGradient(
+                colors.gradient,
+                _borderController!.value,
+              ),
+              strokeWidth: 1.0,
+              borderRadius: widget.borderRadius,
+              child: child!,
+            );
+          },
+          child: card,
+        );
+      } else {
+        card = GradientBorderContainer(
+          gradient: colors.gradient,
+          strokeWidth: 1.0,
+          borderRadius: widget.borderRadius,
+          child: card,
+        );
+      }
     }
 
     return card;
   }
 
+  LinearGradient _rotateGradient(LinearGradient base, double progress) {
+    final angle = progress * 2 * pi;
+    return LinearGradient(
+      begin: Alignment(cos(angle), sin(angle)),
+      end: Alignment(-cos(angle), -sin(angle)),
+      colors: base.colors,
+      stops: base.stops,
+    );
+  }
+
   _PremiumColors _getStyleColors(bool isDark) {
-    switch (style) {
+    switch (widget.style) {
       case PremiumCardStyle.aurora:
         return _PremiumColors(
           accent: isDark ? AppColors.auroraStart : AppColors.lightAuroraStart,

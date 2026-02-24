@@ -13,6 +13,7 @@ import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class AffirmationLibraryScreen extends ConsumerStatefulWidget {
@@ -183,25 +184,23 @@ class _AffirmationLibraryScreenState
         children: [
           Icon(Icons.auto_awesome, size: 28, color: AppColors.starGold),
           const SizedBox(height: AppConstants.spacingMd),
-          Text(
+          GradientText(
             isEn ? "Today's Affirmation" : 'Günün Olumlaması',
-            style: TextStyle(
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: AppColors.starGold,
               letterSpacing: 0.5,
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          Text(
+          GradientText(
             isEn ? today.textEn : today.textTr,
+            variant: GradientTextVariant.amethyst,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
               height: 1.5,
             ),
           ),

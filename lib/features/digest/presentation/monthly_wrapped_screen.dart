@@ -18,6 +18,7 @@ import '../../../data/services/monthly_wrapped_service.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/content/share_card_templates.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/share_card_sheet.dart';
 
 class MonthlyWrappedScreen extends ConsumerStatefulWidget {
@@ -308,12 +309,12 @@ class _Slide5Share extends StatelessWidget {
                 curve: Curves.elasticOut,
               ),
           const SizedBox(height: 24),
-          Text(
+          GradientText(
             isEn ? 'Your month at a glance' : 'Ayına bir bakış',
-            style: TextStyle(
+            variant: GradientTextVariant.gold,
+            style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w700,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             ),
           ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
           const SizedBox(height: 32),
@@ -393,13 +394,13 @@ class _SlideBase extends StatelessWidget {
                 curve: Curves.elasticOut,
               ),
           const SizedBox(height: 32),
-          Text(
+          GradientText(
             title,
+            variant: GradientTextVariant.gold,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w700,
-              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
               height: 1.3,
             ),
           ).animate().fadeIn(delay: 200.ms, duration: 400.ms),

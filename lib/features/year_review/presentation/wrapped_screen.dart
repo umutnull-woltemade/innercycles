@@ -23,6 +23,7 @@ import '../../../data/services/premium_service.dart';
 import '../../../features/premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 // ============================================================================
 // PROVIDERS
@@ -394,13 +395,13 @@ class _IntroCard extends StatelessWidget {
             curve: Curves.elasticOut,
           ),
           const SizedBox(height: 24),
-          Text(
+          GradientText(
             isEn ? 'Your Year in Patterns' : 'Örüntülerle Geçen Yılın',
+            variant: GradientTextVariant.cosmic,
             textAlign: TextAlign.center,
             style: GoogleFonts.plusJakartaSans(
               fontSize: 28,
               fontWeight: FontWeight.w800,
-              color: AppColors.textPrimary,
               height: 1.2,
             ),
           ).animate().fadeIn(delay: 200.ms, duration: 500.ms).slideY(
@@ -410,12 +411,12 @@ class _IntroCard extends StatelessWidget {
             duration: 500.ms,
           ),
           const SizedBox(height: 8),
-          Text(
+          GradientText(
             '${data.year}',
+            variant: GradientTextVariant.gold,
             style: GoogleFonts.plusJakartaSans(
               fontSize: 20,
               fontWeight: FontWeight.w300,
-              color: AppColors.starGold,
               letterSpacing: 4,
             ),
           ).animate().fadeIn(delay: 400.ms, duration: 500.ms),
@@ -479,12 +480,12 @@ class _EmotionalArcCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Spacer(flex: 2),
-          Text(
+          GradientText(
             isEn ? 'Your Emotional Arc' : 'Duygusal Yörüngen',
+            variant: GradientTextVariant.aurora,
             style: GoogleFonts.plusJakartaSans(
               fontSize: 16,
               fontWeight: FontWeight.w500,
-              color: AppColors.textMuted,
               letterSpacing: 1,
             ),
           ).animate().fadeIn(duration: 400.ms),
@@ -564,12 +565,12 @@ class _IntenseWeekCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Spacer(flex: 2),
-          Text(
+          GradientText(
             isEn ? 'Most Intense Week' : 'En Yoğun Haftan',
+            variant: GradientTextVariant.amethyst,
             style: GoogleFonts.plusJakartaSans(
               fontSize: 16,
               fontWeight: FontWeight.w500,
-              color: AppColors.textMuted,
               letterSpacing: 1,
             ),
           ).animate().fadeIn(duration: 400.ms),
@@ -660,12 +661,12 @@ class _FocusAreaCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Spacer(flex: 2),
-          Text(
+          GradientText(
             isEn ? 'Focus Area Map' : 'Odak Alanı Haritası',
+            variant: GradientTextVariant.gold,
             style: GoogleFonts.plusJakartaSans(
               fontSize: 16,
               fontWeight: FontWeight.w500,
-              color: AppColors.textMuted,
               letterSpacing: 1,
             ),
           ).animate().fadeIn(duration: 400.ms),
@@ -782,12 +783,12 @@ class _GrowthScoreCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Spacer(flex: 2),
-          Text(
+          GradientText(
             isEn ? 'Growth Score' : 'Gelişim Puanı',
+            variant: GradientTextVariant.gold,
             style: GoogleFonts.plusJakartaSans(
               fontSize: 16,
               fontWeight: FontWeight.w500,
-              color: AppColors.textMuted,
               letterSpacing: 1,
             ),
           ).animate().fadeIn(duration: 400.ms),
@@ -873,12 +874,12 @@ class _BreakthroughCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Spacer(flex: 2),
-          Text(
+          GradientText(
             isEn ? 'Breakthrough Moments' : 'Atılım Anları',
+            variant: GradientTextVariant.amethyst,
             style: GoogleFonts.plusJakartaSans(
               fontSize: 16,
               fontWeight: FontWeight.w500,
-              color: AppColors.textMuted,
               letterSpacing: 1,
             ),
           ).animate().fadeIn(duration: 400.ms),
@@ -949,12 +950,12 @@ class _TopPatternsCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Spacer(flex: 2),
-          Text(
+          GradientText(
             isEn ? 'Your Top Patterns' : 'En Önemli Örüntülerin',
+            variant: GradientTextVariant.gold,
             style: GoogleFonts.plusJakartaSans(
               fontSize: 16,
               fontWeight: FontWeight.w500,
-              color: AppColors.textMuted,
               letterSpacing: 1,
             ),
           ).animate().fadeIn(duration: 400.ms),
@@ -1114,13 +1115,13 @@ class _ClosingCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Spacer(flex: 2),
-          Text(
+          GradientText(
             isEn ? 'See You Next Year' : 'Gelecek Yıl Görüşmek Üzere',
+            variant: GradientTextVariant.cosmic,
             textAlign: TextAlign.center,
             style: GoogleFonts.plusJakartaSans(
               fontSize: 28,
               fontWeight: FontWeight.w800,
-              color: AppColors.textPrimary,
               height: 1.2,
             ),
           ).animate().fadeIn(duration: 500.ms).slideY(
@@ -1217,13 +1218,13 @@ class _PremiumGateCard extends StatelessWidget {
             size: 48,
           ),
           const SizedBox(height: 20),
-          Text(
+          GradientText(
             isEn ? 'Unlock Your Full Wrapped' : 'Tam Wrapped\'ını Aç',
+            variant: GradientTextVariant.gold,
             textAlign: TextAlign.center,
             style: GoogleFonts.plusJakartaSans(
               fontSize: 22,
               fontWeight: FontWeight.w700,
-              color: AppColors.textPrimary,
             ),
           ),
           const SizedBox(height: 12),

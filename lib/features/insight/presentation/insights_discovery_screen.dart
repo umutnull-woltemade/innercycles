@@ -6,6 +6,7 @@
 // bookmarks, and focus-area filtering.
 // ════════════════════════════════════════════════════════════════════════════
 
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -20,6 +21,7 @@ import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../shared/widgets/share_insight_button.dart';
@@ -288,14 +290,12 @@ class _InsightsDiscoveryScreenState
                   ),
                   const SizedBox(width: 10),
                   Expanded(
-                    child: Text(
+                    child: GradientText(
                       isEn ? 'Today\'s Insight' : 'Bugünün İçgörüsü',
-                      style: TextStyle(
+                      variant: GradientTextVariant.gold,
+                      style: const TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
                       ),
                     ),
                   ),
@@ -303,14 +303,12 @@ class _InsightsDiscoveryScreenState
                 ],
               ),
               const SizedBox(height: 14),
-              Text(
+              GradientText(
                 isEn ? module.titleEn : module.titleTr,
-                style: TextStyle(
+                variant: GradientTextVariant.aurora,
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                 ),
               ),
               const SizedBox(height: 8),
@@ -561,10 +559,21 @@ class _InsightsDiscoveryScreenState
         initialChildSize: 0.85,
         maxChildSize: 0.95,
         minChildSize: 0.5,
-        builder: (_, scrollController) => Container(
+        builder: (_, scrollController) => ClipRRect(
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+            child: Container(
           decoration: BoxDecoration(
-            color: isDark ? AppColors.surfaceDark : AppColors.lightBackground,
+            color: (isDark ? AppColors.surfaceDark : AppColors.lightBackground)
+                .withValues(alpha: isDark ? 0.85 : 0.92),
             borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+            border: Border(
+              top: BorderSide(
+                color: AppColors.auroraStart.withValues(alpha: 0.3),
+                width: 1.5,
+              ),
+            ),
           ),
           child: ListView(
             controller: scrollController,
@@ -579,9 +588,12 @@ class _InsightsDiscoveryScreenState
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: isDark
-                        ? AppColors.surfaceLight
-                        : AppColors.lightSurfaceVariant,
+                    gradient: LinearGradient(
+                      colors: [
+                        AppColors.auroraStart.withValues(alpha: 0.6),
+                        AppColors.auroraEnd.withValues(alpha: 0.6),
+                      ],
+                    ),
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
@@ -599,14 +611,12 @@ class _InsightsDiscoveryScreenState
               const SizedBox(height: 16),
 
               // Title
-              Text(
+              GradientText(
                 isEn ? module.titleEn : module.titleTr,
-                style: TextStyle(
+                variant: GradientTextVariant.aurora,
+                style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w700,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                 ),
               ),
               const SizedBox(height: 12),
@@ -660,12 +670,12 @@ class _InsightsDiscoveryScreenState
                           color: AppColors.starGold,
                         ),
                         const SizedBox(width: 6),
-                        Text(
+                        GradientText(
                           isEn ? 'Why This Matters' : 'Neden Önemli',
-                          style: TextStyle(
+                          variant: GradientTextVariant.gold,
+                          style: const TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w700,
-                            color: AppColors.starGold,
                           ),
                         ),
                       ],
@@ -736,14 +746,12 @@ class _InsightsDiscoveryScreenState
               // Related modules
               if (module.relatedModuleIds.isNotEmpty) ...[
                 const SizedBox(height: 24),
-                Text(
+                GradientText(
                   isEn ? 'Related Insights' : 'İlgili İçgörüler',
-                  style: TextStyle(
+                  variant: GradientTextVariant.gold,
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -806,6 +814,8 @@ class _InsightsDiscoveryScreenState
               ],
               const SizedBox(height: 24),
             ],
+          ),
+        ),
           ),
         ),
       ),

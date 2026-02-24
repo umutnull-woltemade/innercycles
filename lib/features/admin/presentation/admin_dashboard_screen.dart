@@ -12,6 +12,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/admin_auth_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 
@@ -53,29 +54,14 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
 
   Future<void> _handleLogout() async {
     final lang = ref.read(languageProvider);
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? AppColors.surfaceDark
-            : AppColors.lightSurface,
-        title: Text(L10nService.get('admin.logout', lang)),
-        content: Text(L10nService.get('admin.logout_confirm', lang)),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: Text(L10nService.get('admin.cancel', lang)),
-          ),
-          TextButton(
-            onPressed: () {
-              HapticFeedback.heavyImpact();
-              Navigator.pop(context, true);
-            },
-            style: TextButton.styleFrom(foregroundColor: AppColors.error),
-            child: Text(L10nService.get('admin.logout', lang)),
-          ),
-        ],
-      ),
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: L10nService.get('admin.logout', lang),
+      message: L10nService.get('admin.logout_confirm', lang),
+      cancelLabel: L10nService.get('admin.cancel', lang),
+      confirmLabel: L10nService.get('admin.logout', lang),
+      isDestructive: true,
+      onConfirm: () => HapticFeedback.heavyImpact(),
     );
 
     if (confirmed == true && mounted) {

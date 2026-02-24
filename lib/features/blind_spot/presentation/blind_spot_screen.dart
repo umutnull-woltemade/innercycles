@@ -18,6 +18,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class BlindSpotScreen extends ConsumerWidget {
@@ -367,14 +368,12 @@ class _OverallInsightCard extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: Text(
+                child: GradientText(
                   isEn ? 'Your Overview' : 'Genel Bakış',
-                  style: TextStyle(
+                  variant: GradientTextVariant.aurora,
+                  style: const TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
                   ),
                 ),
               ),
@@ -476,12 +475,12 @@ class _BlindSpotsList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        GradientText(
           isEn ? 'Blind Spots' : 'Kör Noktalar',
-          style: TextStyle(
+          variant: GradientTextVariant.amethyst,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),
         const SizedBox(height: 12),
@@ -788,14 +787,12 @@ class _GrowthSuggestionsCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 12),
-              Text(
+              GradientText(
                 isEn ? 'Growth Suggestions' : 'Gelişim Önerileri',
-                style: TextStyle(
+                variant: GradientTextVariant.gold,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                 ),
               ),
             ],

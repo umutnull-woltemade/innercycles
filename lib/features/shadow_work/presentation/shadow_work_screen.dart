@@ -20,6 +20,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class ShadowWorkScreen extends ConsumerStatefulWidget {
@@ -203,15 +204,14 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          Text(
+          GradientText(
             isEn ? 'Explore Your Inner Landscape' : 'İç Dünyani Keşfet',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
+            variant: GradientTextVariant.amethyst,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
-            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
           Text(
@@ -296,12 +296,11 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Choose an Archetype' : 'Bir Arketip Seç',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
+            variant: GradientTextVariant.amethyst,
+            style: const TextStyle(
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -419,12 +418,11 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: Text(
+                child: GradientText(
                   isEn ? "Today's Prompt" : 'Günün Sorusu',
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
+                  variant: GradientTextVariant.amethyst,
+                  style: const TextStyle(
+                    fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -834,12 +832,10 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                 ),
               ),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? 'Recent Entries' : 'Son Girişler',
+                variant: GradientTextVariant.amethyst,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -973,14 +969,12 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                 children: [
                   Icon(Icons.lock_outline, size: 28, color: _shadowGold),
                   const SizedBox(height: 8),
-                  Text(
+                  GradientText(
                     isEn ? 'Unlock your shadow map' : 'Gölge haritanı aç',
-                    style: TextStyle(
+                    variant: GradientTextVariant.gold,
+                    style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
                     ),
                   ),
                   const SizedBox(height: 12),

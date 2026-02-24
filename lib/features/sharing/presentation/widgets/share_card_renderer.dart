@@ -497,7 +497,7 @@ class _QuoteBlockLayout extends StatelessWidget {
         // Opening quote mark
         Text(
           '\u{201C}',
-          style: GoogleFonts.playfairDisplay(
+          style: GoogleFonts.cormorantGaramond(
             fontSize: 64,
             fontWeight: FontWeight.w700,
             color: accent.withValues(alpha: 0.5),
@@ -514,7 +514,7 @@ class _QuoteBlockLayout extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 4,
             overflow: TextOverflow.ellipsis,
-            style: GoogleFonts.playfairDisplay(
+            style: GoogleFonts.cormorantGaramond(
               fontSize: 20,
               fontWeight: FontWeight.w600,
               fontStyle: FontStyle.italic,

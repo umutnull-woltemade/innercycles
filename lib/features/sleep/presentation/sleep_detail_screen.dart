@@ -16,7 +16,9 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/premium_empty_state.dart';
 
 class SleepDetailScreen extends ConsumerWidget {
   const SleepDetailScreen({super.key});
@@ -101,14 +103,12 @@ class SleepDetailScreen extends ConsumerWidget {
 
                         // Recent entries
                         if (entries.isNotEmpty) ...[
-                          Text(
+                          GradientText(
                             isEn ? 'Recent Nights' : 'Son Geceler',
-                            style: TextStyle(
+                            variant: GradientTextVariant.gold,
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
                             ),
                           ),
                           const SizedBox(height: 12),
@@ -267,14 +267,12 @@ class _WeeklyChart extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          GradientText(
             isEn ? 'Last 7 Days' : 'Son 7 Gün',
-            style: TextStyle(
+            variant: GradientTextVariant.aurora,
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
             ),
           ),
           const SizedBox(height: 16),
@@ -444,14 +442,12 @@ class _SleepTips extends StatelessWidget {
                 color: AppColors.starGold,
               ),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? 'Sleep Tips' : 'Uyku İpuçları',
-                style: TextStyle(
+                variant: GradientTextVariant.gold,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                 ),
               ),
             ],
@@ -583,42 +579,13 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(32),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.bedtime_outlined,
-            size: 64,
-            color: isDark
-                ? AppColors.textMuted.withValues(alpha: 0.5)
-                : AppColors.lightTextMuted.withValues(alpha: 0.5),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            isEn ? 'No sleep data yet' : 'Henüz uyku verisi yok',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            isEn
-                ? 'Log your sleep quality in your daily journal'
-                : 'Günlük kayıtınızda uyku kalitenizi kaydedin',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-            ),
-          ),
-        ],
-      ),
-    ).animate().fadeIn(duration: 300.ms);
+    return PremiumEmptyState(
+      icon: Icons.bedtime_outlined,
+      title: isEn ? 'No sleep data yet' : 'Henüz uyku verisi yok',
+      description: isEn
+          ? 'Log your sleep quality in your daily journal'
+          : 'Günlük kayıtınızda uyku kalitenizi kaydedin',
+      gradientVariant: GradientTextVariant.amethyst,
+    );
   }
 }

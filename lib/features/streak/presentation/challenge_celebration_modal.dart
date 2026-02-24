@@ -7,6 +7,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/services/growth_challenge_service.dart';
 import '../../../data/services/instagram_share_service.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 /// Full-screen celebration modal for challenge completions.
 class ChallengeCelebrationModal extends StatefulWidget {
@@ -132,12 +133,12 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                   const SizedBox(height: 24),
 
                   // Title
-                  Text(
+                  GradientText(
                     isEn ? 'Challenge Completed!' : 'Meydan Okuma Tamamlandı!',
-                    style: TextStyle(
+                    variant: GradientTextVariant.gold,
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
-                      color: isDark ? Colors.white : AppColors.textDark,
                     ),
                   )
                       .animate(delay: 200.ms)
@@ -147,13 +148,13 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                   const SizedBox(height: 8),
 
                   // Challenge name
-                  Text(
+                  GradientText(
                     title,
+                    variant: GradientTextVariant.gold,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.celestialGold,
                     ),
                   )
                       .animate(delay: 300.ms)

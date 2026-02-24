@@ -18,6 +18,7 @@ import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 class LifeEventScreen extends ConsumerStatefulWidget {
   final String? editId;
@@ -157,12 +158,12 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        GradientText(
           isEn ? 'Event Type' : 'Olay Türü',
-          style: TextStyle(
+          variant: GradientTextVariant.gold,
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),
         const SizedBox(height: 10),
@@ -244,12 +245,12 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        GradientText(
           isEn ? 'Select Event' : 'Olay Seçin',
-          style: TextStyle(
+          variant: GradientTextVariant.gold,
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),
         const SizedBox(height: 10),
@@ -331,12 +332,12 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        GradientText(
           isEn ? 'Event Title' : 'Olay Başlığı',
-          style: TextStyle(
+          variant: GradientTextVariant.gold,
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),
         const SizedBox(height: 10),
@@ -455,14 +456,12 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
       children: [
         Row(
           children: [
-            Text(
+            GradientText(
               isEn ? 'Emotion Tags' : 'Duygu Etiketleri',
-              style: TextStyle(
+              variant: GradientTextVariant.amethyst,
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
               ),
             ),
             const Spacer(),
@@ -547,14 +546,12 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
       children: [
         Row(
           children: [
-            Text(
+            GradientText(
               isEn ? 'Intensity' : 'Yoğunluk',
-              style: TextStyle(
+              variant: GradientTextVariant.gold,
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
               ),
             ),
             const Spacer(),
@@ -601,12 +598,12 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        GradientText(
           isEn ? 'Reflection' : 'Düşünceler',
-          style: TextStyle(
+          variant: GradientTextVariant.amethyst,
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),
         const SizedBox(height: 10),
@@ -651,12 +648,12 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        GradientText(
           isEn ? 'Photo (Optional)' : 'Fotoğraf (İsteğe Bağlı)',
-          style: TextStyle(
+          variant: GradientTextVariant.gold,
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
         ),
         const SizedBox(height: 10),

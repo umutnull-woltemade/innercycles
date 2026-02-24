@@ -17,6 +17,7 @@ import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
 class GratitudeScreen extends ConsumerStatefulWidget {
@@ -172,14 +173,12 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
 
                           // History
                           if (allEntries.isNotEmpty) ...[
-                            Text(
+                            GradientText(
                               isEn ? 'History' : 'Geçmiş',
-                              style: TextStyle(
+                              variant: GradientTextVariant.gold,
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
-                                color: isDark
-                                    ? AppColors.textPrimary
-                                    : AppColors.lightTextPrimary,
                               ),
                             ),
                             const SizedBox(height: 12),
@@ -343,14 +342,12 @@ class _TodaySection extends StatelessWidget {
             children: [
               Icon(Icons.favorite_outline, size: 18, color: AppColors.starGold),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? "Today's Gratitude" : 'Bugünkü Şükran',
-                style: TextStyle(
+                variant: GradientTextVariant.gold,
+                style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                 ),
               ),
               if (hasEntry) ...[
