@@ -975,6 +975,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
   void _showSuccessDialog() {
     final language = ref.read(languageProvider);
+    final navigator = Navigator.of(context);
     showDialog(
       context: context,
       builder: (_) => GlassDialog(
@@ -984,10 +985,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // dismiss dialog
+              navigator.pop(); // dismiss dialog
               Future.microtask(() {
-                if (context.mounted && Navigator.of(context).canPop()) {
-                  Navigator.pop(context); // pop premium screen
+                if (navigator.canPop()) {
+                  navigator.pop(); // pop premium screen
                 }
               });
             },

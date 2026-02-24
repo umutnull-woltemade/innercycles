@@ -868,7 +868,7 @@ class _SyncStatusTile extends ConsumerWidget {
     final status = syncAsync.when(
       data: (s) => s,
       loading: () => SyncStatus.idle,
-      error: (_, __) => SyncStatus.error,
+      error: (_, _) => SyncStatus.error,
     );
 
     final IconData icon;

@@ -43,6 +43,27 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
     final serviceAsync = ref.watch(birthdayContactServiceProvider);
 
     return Scaffold(
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [AppColors.starGold, AppColors.celestialGold],
+          ),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.starGold.withValues(alpha: 0.3),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: FloatingActionButton(
+          onPressed: () => context.push(Routes.birthdayAdd),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          child: const Icon(Icons.person_add_rounded, color: AppColors.deepSpace),
+        ),
+      ),
       body: CosmicBackground(
         child: serviceAsync.when(
           loading: () => const CosmicLoadingIndicator(),
@@ -150,6 +171,15 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                         _selectedMonth = 12;
                       }
                     }
+                    _selectedDay = null;
+                  });
+                },
+                onToday: () {
+                  HapticFeedback.selectionClick();
+                  setState(() {
+                    final now = DateTime.now();
+                    _selectedYear = now.year;
+                    _selectedMonth = now.month;
                     _selectedDay = null;
                   });
                 },
@@ -326,6 +356,7 @@ class _MonthNav extends StatelessWidget {
   final bool isEn;
   final VoidCallback onPrevious;
   final VoidCallback onNext;
+  final VoidCallback? onToday;
 
   const _MonthNav({
     required this.year,
@@ -334,11 +365,14 @@ class _MonthNav extends StatelessWidget {
     required this.isEn,
     required this.onPrevious,
     required this.onNext,
+    this.onToday,
   });
 
   @override
   Widget build(BuildContext context) {
     final monthNames = isEn ? CommonStrings.monthsFullEn : CommonStrings.monthsFullTr;
+    final now = DateTime.now();
+    final isCurrentMonth = year == now.year && month == now.month;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -350,10 +384,28 @@ class _MonthNav extends StatelessWidget {
           ),
           onPressed: onPrevious,
         ),
-        GradientText(
-          '${monthNames[month - 1]} $year',
-          variant: GradientTextVariant.gold,
-          style: AppTypography.displayFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
+        GestureDetector(
+          onTap: isCurrentMonth ? null : onToday,
+          child: Column(
+            children: [
+              GradientText(
+                '${monthNames[month - 1]} $year',
+                variant: GradientTextVariant.gold,
+                style: AppTypography.displayFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
+              ),
+              if (!isCurrentMonth)
+                Padding(
+                  padding: const EdgeInsets.only(top: 2),
+                  child: Text(
+                    isEn ? 'Tap for today' : 'Bug\u{00FC}ne d\u{00F6}n',
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: AppColors.starGold.withValues(alpha: 0.6),
+                    ),
+                  ),
+                ),
+            ],
+          ),
         ),
         IconButton(
           icon: Icon(
