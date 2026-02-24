@@ -14,6 +14,7 @@ import '../../../data/services/l10n_service.dart';
 import '../../../data/services/storage_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_dialog.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../data/cities/world_cities.dart';
 
@@ -477,21 +478,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           // Navigate to Signal Dashboard (CORE Insights)
-          SizedBox(
-            width: double.infinity,
-            child: OutlinedButton.icon(
-              onPressed: () => context.go(Routes.moodTrends),
-              icon: const Icon(Icons.insights),
-              label: Text(isEn ? 'View Insights' : 'İçgörüleri Gör'),
-              style: OutlinedButton.styleFrom(
-                foregroundColor: AppColors.auroraStart,
-                side: BorderSide(color: AppColors.auroraStart),
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-                ),
-              ),
-            ),
+          GradientOutlinedButton(
+            label: isEn ? 'View Insights' : 'İçgörüleri Gör',
+            icon: Icons.insights,
+            variant: GradientTextVariant.aurora,
+            expanded: true,
+            onPressed: () => context.go(Routes.moodTrends),
           ),
         ],
       ),

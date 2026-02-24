@@ -16,6 +16,7 @@ import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
 class MeditationTimerScreen extends ConsumerStatefulWidget {
@@ -404,27 +405,13 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                             Expanded(
                               child: SizedBox(
                                 height: 56,
-                                child: OutlinedButton(
+                                child: GradientOutlinedButton(
+                                  label: isEn ? 'Reset' : 'Sıfırla',
+                                  variant: GradientTextVariant.aurora,
+                                  expanded: true,
+                                  fontSize: 16,
+                                  borderRadius: 16,
                                   onPressed: _reset,
-                                  style: OutlinedButton.styleFrom(
-                                    side: BorderSide(
-                                      color: isDark
-                                          ? Colors.white.withValues(alpha: 0.2)
-                                          : Colors.black.withValues(alpha: 0.1),
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    isEn ? 'Reset' : 'Sıfırla',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: isDark
-                                          ? AppColors.textSecondary
-                                          : AppColors.lightTextSecondary,
-                                    ),
-                                  ),
                                 ),
                               ),
                             ),

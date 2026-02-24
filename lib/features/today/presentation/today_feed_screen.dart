@@ -106,7 +106,10 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               // 4. HERO JOURNAL CARD — Daily question + CTA
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
-                child: _HeroJournalCard(isEn: isEn, isDark: isDark),
+                child: _HeroJournalCard(isEn: isEn, isDark: isDark)
+                    .animate()
+                    .fadeIn(delay: 180.ms, duration: 400.ms)
+                    .slideY(begin: 0.05, delay: 180.ms, duration: 400.ms),
               ),
 
               const SliverToBoxAdapter(child: SizedBox(height: 12)),
@@ -125,14 +128,20 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               // 6. TODAY'S INSIGHT (pattern-based, if 3+ entries)
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
-                child: _TodaysInsightSection(isEn: isEn, isDark: isDark),
+                child: _TodaysInsightSection(isEn: isEn, isDark: isDark)
+                    .animate()
+                    .fadeIn(delay: 320.ms, duration: 400.ms)
+                    .slideY(begin: 0.05, delay: 320.ms, duration: 400.ms),
               ),
 
               // ═══════════════════════════════════════════════════════
               // 7. PERSONALIZED PROMPT (filtered by weakest area)
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
-                child: _PersonalizedPromptSection(isEn: isEn, isDark: isDark),
+                child: _PersonalizedPromptSection(isEn: isEn, isDark: isDark)
+                    .animate()
+                    .fadeIn(delay: 450.ms, duration: 400.ms)
+                    .slideY(begin: 0.05, delay: 450.ms, duration: 400.ms),
               ),
 
               SliverToBoxAdapter(
@@ -158,14 +167,19 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               // 8. FOCUS PULSE — Horizontal focus area scores
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
-                child: _FocusPulseRow(isEn: isEn, isDark: isDark),
+                child: _FocusPulseRow(isEn: isEn, isDark: isDark)
+                    .animate()
+                    .fadeIn(delay: 520.ms, duration: 400.ms),
               ),
 
               // ═══════════════════════════════════════════════════════
               // 9. RECENT ENTRIES — Horizontal scroll cards
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
-                child: _RecentEntriesHorizontal(isEn: isEn, isDark: isDark),
+                child: _RecentEntriesHorizontal(isEn: isEn, isDark: isDark)
+                    .animate()
+                    .fadeIn(delay: 600.ms, duration: 400.ms)
+                    .slideY(begin: 0.05, delay: 600.ms, duration: 400.ms),
               ),
 
               SliverToBoxAdapter(
@@ -191,7 +205,10 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
               // 10. RECENT LIFE EVENTS
               // ═══════════════════════════════════════════════════════
               SliverToBoxAdapter(
-                child: _RecentLifeEventsCard(isEn: isEn, isDark: isDark),
+                child: _RecentLifeEventsCard(isEn: isEn, isDark: isDark)
+                    .animate()
+                    .fadeIn(delay: 680.ms, duration: 400.ms)
+                    .slideY(begin: 0.05, delay: 680.ms, duration: 400.ms),
               ),
 
               // ═══════════════════════════════════════════════════════
@@ -201,9 +218,9 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 sliver: SliverToBoxAdapter(
                   child: const StreakCard().animate().fadeIn(
-                    delay: 300.ms,
+                    delay: 750.ms,
                     duration: 400.ms,
-                  ),
+                  ).slideY(begin: 0.05, delay: 750.ms, duration: 400.ms),
                 ),
               ),
 
@@ -310,121 +327,125 @@ class _HomeHeader extends StatelessWidget {
       child: Column(
         children: [
           Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Date in gold small caps
-                Text(
-                  dateStr.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 1.2,
-                    color: isDark
-                        ? AppColors.starGold.withValues(alpha: 0.6)
-                        : AppColors.lightStarGold.withValues(alpha: 0.7),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                // Greeting
-                Text(
-                  userName.isNotEmpty ? '$greeting,' : greeting,
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
-                  ),
-                ),
-                if (userName.isNotEmpty) ...[
-                  const SizedBox(height: 2),
-                  GradientText(
-                    userName,
-                    variant: GradientTextVariant.gold,
-                    style: const TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: -0.5,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Date in gold small caps
+                    Text(
+                      dateStr.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 1.2,
+                        color: isDark
+                            ? AppColors.starGold.withValues(alpha: 0.6)
+                            : AppColors.lightStarGold.withValues(alpha: 0.7),
+                      ),
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-                const SizedBox(height: 6),
-                Text(
-                  isEn ? insight.en : insight.tr,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: isDark
-                        ? AppColors.textMuted
-                        : AppColors.lightTextMuted,
-                    height: 1.3,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 12),
-          // Avatar circle → Settings
-          Semantics(
-            label: isEn ? 'Profile & Settings' : 'Profil ve Ayarlar',
-            button: true,
-            child: GestureDetector(
-              onTap: () {
-                HapticService.buttonPress();
-                context.push(Routes.settings);
-              },
-              child: Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: RadialGradient(
-                    colors: [
-                      (isDark ? AppColors.starGold : AppColors.lightStarGold)
-                          .withValues(alpha: 0.15),
-                      (isDark ? AppColors.starGold : AppColors.lightStarGold)
-                          .withValues(alpha: 0.05),
-                    ],
-                  ),
-                  border: Border.all(
-                    color: (isDark
-                            ? AppColors.starGold
-                            : AppColors.lightStarGold)
-                        .withValues(alpha: 0.3),
-                    width: 1.5,
-                  ),
-                ),
-                child: Center(
-                  child: userName.isNotEmpty
-                      ? Text(
-                          _getInitials(),
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: isDark
-                                ? AppColors.starGold
-                                : AppColors.lightStarGold,
-                          ),
-                        )
-                      : Icon(
-                          Icons.person_outline_rounded,
-                          size: 22,
-                          color: isDark
-                              ? AppColors.starGold
-                              : AppColors.lightStarGold,
+                    const SizedBox(height: 8),
+                    // Greeting
+                    Text(
+                      userName.isNotEmpty ? '$greeting,' : greeting,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
+                    if (userName.isNotEmpty) ...[
+                      const SizedBox(height: 2),
+                      GradientText(
+                        userName,
+                        variant: GradientTextVariant.gold,
+                        style: const TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: -0.5,
                         ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                    const SizedBox(height: 6),
+                    Text(
+                      isEn ? insight.en : insight.tr,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                        height: 1.3,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
+              const SizedBox(width: 12),
+              // Avatar circle → Settings
+              Semantics(
+                label: isEn ? 'Profile & Settings' : 'Profil ve Ayarlar',
+                button: true,
+                child: GestureDetector(
+                  onTap: () {
+                    HapticService.buttonPress();
+                    context.push(Routes.settings);
+                  },
+                  child: Container(
+                    width: 48,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(
+                        colors: [
+                          (isDark
+                                  ? AppColors.starGold
+                                  : AppColors.lightStarGold)
+                              .withValues(alpha: 0.15),
+                          (isDark
+                                  ? AppColors.starGold
+                                  : AppColors.lightStarGold)
+                              .withValues(alpha: 0.05),
+                        ],
+                      ),
+                      border: Border.all(
+                        color: (isDark
+                                ? AppColors.starGold
+                                : AppColors.lightStarGold)
+                            .withValues(alpha: 0.3),
+                        width: 1.5,
+                      ),
+                    ),
+                    child: Center(
+                      child: userName.isNotEmpty
+                          ? Text(
+                              _getInitials(),
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: isDark
+                                    ? AppColors.starGold
+                                    : AppColors.lightStarGold,
+                              ),
+                            )
+                          : Icon(
+                              Icons.person_outline_rounded,
+                              size: 22,
+                              color: isDark
+                                  ? AppColors.starGold
+                                  : AppColors.lightStarGold,
+                            ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-          ],
-        ),
           const SizedBox(height: 12),
           // Subtle gold divider
           Container(
@@ -1182,77 +1203,86 @@ class _RecentEntriesHorizontal extends ConsumerWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.all(14),
                                   child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Date
-                              Text(
-                                dateStr,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: isDark
-                                      ? AppColors.textMuted
-                                      : AppColors.lightTextMuted,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              // Focus area chip
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 5,
-                                ),
-                                decoration: BoxDecoration(
-                                  color:
-                                      accentColor.withValues(alpha: 0.12),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Text(
-                                  areaLabel,
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    color: accentColor,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      // Date
+                                      Text(
+                                        dateStr,
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                          color: isDark
+                                              ? AppColors.textMuted
+                                              : AppColors.lightTextMuted,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      // Focus area chip
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 10,
+                                          vertical: 5,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: accentColor
+                                              .withValues(alpha: 0.12),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: Text(
+                                          areaLabel,
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                            color: accentColor,
+                                          ),
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      // Rating dots
+                                      Row(
+                                        children: List.generate(5, (i) {
+                                          final filled =
+                                              i < entry.overallRating;
+                                          return Container(
+                                            width: 8,
+                                            height: 8,
+                                            margin: const EdgeInsets.only(
+                                                right: 4),
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: filled
+                                                  ? (isDark
+                                                      ? AppColors.starGold
+                                                      : AppColors
+                                                          .lightStarGold)
+                                                  : (isDark
+                                                      ? Colors.white
+                                                          .withValues(
+                                                              alpha: 0.1)
+                                                      : Colors.black
+                                                          .withValues(
+                                                          alpha: 0.06,
+                                                        )),
+                                              boxShadow: filled
+                                                  ? [
+                                                      BoxShadow(
+                                                        color: AppColors
+                                                            .starGold
+                                                            .withValues(
+                                                                alpha: 0.3),
+                                                        blurRadius: 4,
+                                                      ),
+                                                    ]
+                                                  : null,
+                                            ),
+                                          );
+                                        }),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ),
-                              const Spacer(),
-                              // Rating dots
-                              Row(
-                                children: List.generate(5, (i) {
-                                  final filled = i < entry.overallRating;
-                                  return Container(
-                                    width: 8,
-                                    height: 8,
-                                    margin: const EdgeInsets.only(right: 4),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: filled
-                                          ? (isDark
-                                              ? AppColors.starGold
-                                              : AppColors.lightStarGold)
-                                          : (isDark
-                                              ? Colors.white
-                                                  .withValues(alpha: 0.1)
-                                              : Colors.black.withValues(
-                                                  alpha: 0.06,
-                                                )),
-                                      boxShadow: filled
-                                          ? [
-                                              BoxShadow(
-                                                color: AppColors.starGold
-                                                    .withValues(alpha: 0.3),
-                                                blurRadius: 4,
-                                              ),
-                                            ]
-                                          : null,
-                                    ),
-                                  );
-                                }),
-                              ),
-                            ],
-                          ),
-                                  ),
                               ),
                             ],
                           ),

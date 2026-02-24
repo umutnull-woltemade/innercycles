@@ -27,6 +27,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
@@ -1264,46 +1265,29 @@ class _ShareableSummaryCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          SizedBox(
-            width: double.infinity,
-            child: OutlinedButton.icon(
-              onPressed: () {
-                HapticFeedback.mediumImpact();
-                final shareText = isEn
-                    ? 'My ${review.year} in Review\n\n'
-                          '${review.totalEntries} entries across ${review.totalJournalingDays} days\n'
-                          'Top focus: $topAreaName\n'
-                          'Growth score: ${review.growthScore}/100\n'
-                          'Best streak: ${review.streakBest} days\n\n'
-                          'Reflected with InnerCycles'
-                    : '${review.year} Yılı Değerlendirmem\n\n'
-                          '${review.totalJournalingDays} günde ${review.totalEntries} kayıt\n'
-                          'En çok odak: $topAreaName\n'
-                          'Gelişim skoru: ${review.growthScore}/100\n'
-                          'En iyi seri: ${review.streakBest} gün\n\n'
-                          'InnerCycles ile yansıma yaptım';
-                SharePlus.instance.share(ShareParams(text: shareText));
-              },
-              icon: const Icon(Icons.share, size: 18),
-              label: Text(isEn ? 'Share Summary' : 'Özeti Paylaş'),
-              style: OutlinedButton.styleFrom(
-                foregroundColor: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
-                side: BorderSide(
-                  color: isDark
-                      ? Colors.white.withValues(alpha: 0.25)
-                      : Colors.black.withValues(alpha: 0.15),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 14,
-                ),
-              ),
-            ),
+          GradientOutlinedButton(
+            label: isEn ? 'Share Summary' : 'Özeti Paylaş',
+            icon: Icons.share,
+            variant: GradientTextVariant.gold,
+            expanded: true,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+            onPressed: () {
+              HapticFeedback.mediumImpact();
+              final shareText = isEn
+                  ? 'My ${review.year} in Review\n\n'
+                        '${review.totalEntries} entries across ${review.totalJournalingDays} days\n'
+                        'Top focus: $topAreaName\n'
+                        'Growth score: ${review.growthScore}/100\n'
+                        'Best streak: ${review.streakBest} days\n\n'
+                        'Reflected with InnerCycles'
+                  : '${review.year} Yılı Değerlendirmem\n\n'
+                        '${review.totalJournalingDays} günde ${review.totalEntries} kayıt\n'
+                        'En çok odak: $topAreaName\n'
+                        'Gelişim skoru: ${review.growthScore}/100\n'
+                        'En iyi seri: ${review.streakBest} gün\n\n'
+                        'InnerCycles ile yansıma yaptım';
+              SharePlus.instance.share(ShareParams(text: shareText));
+            },
           ),
         ],
       ),

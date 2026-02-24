@@ -16,6 +16,7 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
 class ProgramCompletionScreen extends ConsumerWidget {
@@ -239,35 +240,14 @@ class ProgramCompletionScreen extends ConsumerWidget {
                 const SizedBox(height: AppConstants.spacingMd),
 
                 // Back to Home button
-                SizedBox(
-                  width: double.infinity,
-                  height: 52,
-                  child: OutlinedButton(
-                    onPressed: () => context.go(Routes.today),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary,
-                      side: BorderSide(
-                        color: isDark
-                            ? Colors.white.withValues(alpha: 0.15)
-                            : Colors.black.withValues(alpha: 0.1),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          AppConstants.radiusMd,
-                        ),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: Text(
-                      isEn ? 'Back to Home' : 'Ana Sayfaya Dön',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
+                GradientOutlinedButton(
+                  label: isEn ? 'Back to Home' : 'Ana Sayfaya Dön',
+                  variant: GradientTextVariant.aurora,
+                  expanded: true,
+                  fontSize: 16,
+                  borderRadius: AppConstants.radiusMd,
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                  onPressed: () => context.go(Routes.today),
                 ),
                 const SizedBox(height: AppConstants.spacingHuge),
               ],

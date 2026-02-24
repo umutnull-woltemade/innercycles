@@ -25,6 +25,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 
@@ -522,28 +523,14 @@ class _AvailableChallengeCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          SizedBox(
-            width: double.infinity,
-            child: OutlinedButton(
-              onPressed: onStart,
-              style: OutlinedButton.styleFrom(
-                foregroundColor: AppColors.auroraStart,
-                side: BorderSide(
-                  color: AppColors.auroraStart.withValues(alpha: 0.4),
-                ),
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppConstants.radiusSm),
-                ),
-              ),
-              child: Text(
-                isEn ? 'Start' : 'Ba\u015fla',
-                style: const TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
+          GradientOutlinedButton(
+            label: isEn ? 'Start' : 'Başla',
+            variant: GradientTextVariant.aurora,
+            expanded: true,
+            fontSize: 13,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            borderRadius: AppConstants.radiusSm,
+            onPressed: onStart,
           ),
         ],
       ),

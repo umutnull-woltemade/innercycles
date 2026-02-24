@@ -18,6 +18,8 @@ import '../../../data/services/premium_service.dart';
 import '../../../data/services/url_launcher_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
+import '../../../shared/widgets/gradient_text.dart';
 
 class PremiumScreen extends ConsumerStatefulWidget {
   const PremiumScreen({super.key});
@@ -759,9 +761,14 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
   Widget _buildManageSubscriptionButton(BuildContext context) {
     final language = ref.watch(languageProvider);
-    return SizedBox(
-      width: double.infinity,
-      child: OutlinedButton.icon(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: GradientOutlinedButton(
+        label: L10nService.get('premium.manage_subscription', language),
+        icon: Icons.settings,
+        variant: GradientTextVariant.gold,
+        expanded: true,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         onPressed: _isManagingSubscription
             ? null
             : () async {
@@ -774,17 +781,8 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                   if (mounted) setState(() => _isManagingSubscription = false);
                 }
               },
-        icon: const Icon(Icons.settings, color: AppColors.starGold),
-        label: Text(
-          L10nService.get('premium.manage_subscription', language),
-          style: const TextStyle(color: AppColors.starGold),
-        ),
-        style: OutlinedButton.styleFrom(
-          side: const BorderSide(color: AppColors.starGold),
-          padding: const EdgeInsets.symmetric(vertical: 16),
-        ),
       ),
-    ).glassListItem(context: context, index: 2);
+    );
   }
 
   String _formatDate(DateTime date) {

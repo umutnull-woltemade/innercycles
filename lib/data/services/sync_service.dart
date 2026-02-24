@@ -36,6 +36,7 @@ class SyncService {
     'note_reminders',
     'life_events',
     'cycle_period_logs',
+    'birthday_contacts',
   ];
 
   /// Registered merge handlers for pull sync (table → merge callback)

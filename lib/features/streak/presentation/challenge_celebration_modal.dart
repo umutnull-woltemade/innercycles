@@ -7,6 +7,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/services/growth_challenge_service.dart';
 import '../../../data/services/instagram_share_service.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
 /// Full-screen celebration modal for challenge completions.
@@ -211,35 +212,15 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                   Row(
                     children: [
                       Expanded(
-                        child: OutlinedButton.icon(
+                        child: GradientOutlinedButton(
+                          label: isEn ? 'Share' : 'Paylaş',
+                          icon: _isSharing ? null : Icons.share_rounded,
+                          variant: GradientTextVariant.gold,
+                          expanded: true,
+                          fontSize: 14,
+                          borderRadius: 14,
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                           onPressed: _isSharing ? null : _shareCard,
-                          icon: _isSharing
-                              ? const SizedBox(
-                                  width: 16,
-                                  height: 16,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                  ),
-                                )
-                              : const Icon(Icons.share_rounded, size: 18),
-                          label: Text(
-                            isEn ? 'Share' : 'Paylaş',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          style: OutlinedButton.styleFrom(
-                            foregroundColor: AppColors.celestialGold,
-                            side: BorderSide(
-                              color:
-                                  AppColors.celestialGold.withValues(alpha: 0.5),
-                            ),
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14),
-                            ),
-                          ),
                         ),
                       ),
                       const SizedBox(width: 12),

@@ -15,6 +15,8 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/content/share_card_templates.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
+import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/share_card_sheet.dart';
 
 class DailyQuestionCard extends ConsumerWidget {
@@ -87,7 +89,13 @@ class DailyQuestionCard extends ConsumerWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: OutlinedButton.icon(
+                        child: GradientOutlinedButton(
+                          label: isEn ? 'Write' : 'Yaz',
+                          icon: Icons.edit_note_rounded,
+                          variant: GradientTextVariant.aurora,
+                          fontSize: 13,
+                          expanded: true,
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                           onPressed: () {
                             HapticService.buttonPress();
                             context.push(
@@ -95,39 +103,17 @@ class DailyQuestionCard extends ConsumerWidget {
                               extra: {'journalPrompt': questionText},
                             );
                           },
-                          icon: Icon(
-                            Icons.edit_note_rounded,
-                            size: 18,
-                            color: isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
-                          ),
-                          label: Text(
-                            isEn ? 'Write' : 'Yaz',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
-                            ),
-                          ),
-                          style: OutlinedButton.styleFrom(
-                            side: BorderSide(
-                              color: isDark
-                                  ? Colors.white.withValues(alpha: 0.12)
-                                  : Colors.black.withValues(alpha: 0.08),
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                          ),
                         ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
-                        child: OutlinedButton.icon(
+                        child: GradientOutlinedButton(
+                          label: isEn ? 'Share' : 'Paylaş',
+                          icon: Icons.share_rounded,
+                          variant: GradientTextVariant.amethyst,
+                          fontSize: 13,
+                          expanded: true,
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                           onPressed: () {
                             HapticService.buttonPress();
                             final template = ShareCardTemplates.questionOfTheDay;
@@ -143,28 +129,6 @@ class DailyQuestionCard extends ConsumerWidget {
                               isEn: isEn,
                             );
                           },
-                          icon: Icon(
-                            Icons.share_rounded,
-                            size: 16,
-                            color: AppColors.amethyst,
-                          ),
-                          label: Text(
-                            isEn ? 'Share' : 'Paylaş',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.amethyst,
-                            ),
-                          ),
-                          style: OutlinedButton.styleFrom(
-                            side: BorderSide(
-                              color: AppColors.amethyst.withValues(alpha: 0.25),
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                          ),
                         ),
                       ),
                     ],

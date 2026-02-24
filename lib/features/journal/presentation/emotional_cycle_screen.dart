@@ -29,6 +29,7 @@ import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import 'widgets/cycle_wave_painter.dart';
@@ -1082,29 +1083,17 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
             ),
           ),
           const SizedBox(height: AppConstants.spacingLg),
-          SizedBox(
-            width: double.infinity,
-            child: OutlinedButton(
-              onPressed: () => showContextualPaywall(
-                context,
-                ref,
-                paywallContext: PaywallContext.patterns,
-              ),
-              style: OutlinedButton.styleFrom(
-                foregroundColor: AppColors.starGold,
-                side: const BorderSide(color: AppColors.starGold),
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-                ),
-              ),
-              child: Text(
-                isEn ? 'Go Pro' : 'Pro\'ya Geç',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+          GradientOutlinedButton(
+            label: isEn ? 'Go Pro' : 'Pro\'ya Geç',
+            variant: GradientTextVariant.gold,
+            expanded: true,
+            fontSize: 16,
+            borderRadius: AppConstants.radiusLg,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+            onPressed: () => showContextualPaywall(
+              context,
+              ref,
+              paywallContext: PaywallContext.patterns,
             ),
           ),
         ],

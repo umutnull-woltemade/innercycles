@@ -176,7 +176,12 @@ class _NotificationSettingsSectionState
               onTap: _dailyInsightEnabled ? _selectDailyTime : null,
             ),
 
-            const Divider(height: 24),
+            Divider(
+              height: 24,
+              color: isDark
+                  ? Colors.white.withValues(alpha: 0.08)
+                  : Colors.black.withValues(alpha: 0.06),
+            ),
 
             _buildNotificationTile(
               context,

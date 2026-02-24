@@ -533,7 +533,12 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               contentPadding: EdgeInsets.zero,
             ),
           ),
-          const Divider(height: 24),
+          Divider(
+            height: 24,
+            color: isDark
+                ? Colors.white.withValues(alpha: 0.08)
+                : Colors.black.withValues(alpha: 0.06),
+          ),
 
           // Intensity Slider
           Text(

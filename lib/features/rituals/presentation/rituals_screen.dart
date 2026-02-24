@@ -14,6 +14,7 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
@@ -262,18 +263,11 @@ class _AddButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: OutlinedButton.icon(
+      child: GradientOutlinedButton(
+        label: isEn ? 'Add Ritual' : 'Ritüel Ekle',
+        icon: Icons.add,
+        variant: GradientTextVariant.aurora,
         onPressed: () => context.push(Routes.ritualCreate),
-        icon: const Icon(Icons.add),
-        label: Text(isEn ? 'Add Ritual' : 'Ritüel Ekle'),
-        style: OutlinedButton.styleFrom(
-          foregroundColor: AppColors.auroraStart,
-          side: BorderSide(color: AppColors.auroraStart.withValues(alpha: 0.5)),
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
       ),
     );
   }

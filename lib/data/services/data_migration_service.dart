@@ -8,6 +8,7 @@ import 'note_to_self_service.dart';
 import 'life_event_service.dart';
 import 'cycle_sync_service.dart';
 import 'storage_service.dart';
+import 'birthday_contact_service.dart';
 
 /// One-time migration service that pushes all existing local data to Supabase
 /// for users who already have data before the sync feature was added.
@@ -29,7 +30,7 @@ class DataMigrationService {
     final supabase = Supabase.instance.client;
     final errors = <String>[];
     int migrated = 0;
-    const totalSteps = 7;
+    const totalSteps = 8;
 
     // 1. Profiles
     onProgress?.call(1, totalSteps, 'user_profiles');
@@ -236,6 +237,38 @@ class DataMigrationService {
     } catch (e) {
       errors.add('cycle_period_logs: $e');
       if (kDebugMode) debugPrint('Migration: cycle_period_logs error: $e');
+    }
+
+    // 8. Birthday contacts
+    onProgress?.call(8, totalSteps, 'birthday_contacts');
+    try {
+      final birthdayService = await BirthdayContactService.init();
+      final contacts = birthdayService.getAllContacts();
+      if (contacts.isNotEmpty) {
+        final rows = contacts.map((c) => {
+          'id': c.id,
+          'user_id': userId,
+          'name': c.name,
+          'birthday_month': c.birthdayMonth,
+          'birthday_day': c.birthdayDay,
+          'birth_year': c.birthYear,
+          'photo_path': c.photoPath,
+          'avatar_emoji': c.avatarEmoji,
+          'relationship': c.relationship.name,
+          'note': c.note,
+          'source': c.source.name,
+          'notifications_enabled': c.notificationsEnabled,
+          'day_before_reminder': c.dayBeforeReminder,
+        }).toList();
+        for (var i = 0; i < rows.length; i += 50) {
+          final chunk = rows.sublist(i, (i + 50).clamp(0, rows.length));
+          await supabase.from('birthday_contacts').upsert(chunk);
+        }
+        migrated += rows.length;
+      }
+    } catch (e) {
+      errors.add('birthday_contacts: $e');
+      if (kDebugMode) debugPrint('Migration: birthday_contacts error: $e');
     }
 
     // Mark migration complete (even if partial — errors are tracked)

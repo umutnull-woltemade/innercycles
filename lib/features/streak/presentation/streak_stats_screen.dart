@@ -14,6 +14,7 @@ import '../../../data/services/streak_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
 class StreakStatsScreen extends ConsumerWidget {
@@ -504,23 +505,13 @@ class StreakStatsScreen extends ConsumerWidget {
   }
 
   Widget _buildQuickAction(BuildContext context, bool isDark, bool isEn) {
-    return SizedBox(
-      width: double.infinity,
-      child: OutlinedButton.icon(
-        onPressed: () => context.go(Routes.journal),
-        icon: Icon(Icons.edit_note, color: AppColors.starGold),
-        label: Text(
-          isEn ? 'Log Today\'s Entry' : 'Bugünün Kaydını Yaz',
-          style: TextStyle(color: AppColors.starGold),
-        ),
-        style: OutlinedButton.styleFrom(
-          side: BorderSide(color: AppColors.starGold.withValues(alpha: 0.5)),
-          padding: const EdgeInsets.symmetric(vertical: 14),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-          ),
-        ),
-      ),
+    return GradientOutlinedButton(
+      label: isEn ? 'Log Today\'s Entry' : 'Bugünün Kaydını Yaz',
+      icon: Icons.edit_note,
+      variant: GradientTextVariant.gold,
+      expanded: true,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+      onPressed: () => context.go(Routes.journal),
     );
   }
 }

@@ -18,6 +18,7 @@ import '../../../data/content/important_date_presets.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -558,7 +559,14 @@ class _DateEntryStep extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          child: OutlinedButton.icon(
+                          child: GradientOutlinedButton(
+                            label: date != null
+                                ? '${date.day}.${date.month}.${date.year}'
+                                : (isEn ? 'Pick a date' : 'Tarih seç'),
+                            icon: Icons.calendar_today,
+                            variant: GradientTextVariant.gold,
+                            expanded: true,
+                            fontSize: 13,
                             onPressed: () async {
                               final picked = await showDatePicker(
                                 context: context,
@@ -570,32 +578,6 @@ class _DateEntryStep extends StatelessWidget {
                                 onDateChanged(preset.key, picked);
                               }
                             },
-                            icon: Icon(
-                              Icons.calendar_today,
-                              size: 16,
-                              color: AppColors.starGold,
-                            ),
-                            label: Text(
-                              date != null
-                                  ? '${date.day}.${date.month}.${date.year}'
-                                  : (isEn ? 'Pick a date' : 'Tarih seç'),
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: date != null
-                                    ? (isDark
-                                        ? AppColors.textPrimary
-                                        : AppColors.lightTextPrimary)
-                                    : AppColors.starGold,
-                              ),
-                            ),
-                            style: OutlinedButton.styleFrom(
-                              side: BorderSide(
-                                color: AppColors.starGold.withValues(alpha: 0.4),
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                            ),
                           ),
                         ),
                       ],

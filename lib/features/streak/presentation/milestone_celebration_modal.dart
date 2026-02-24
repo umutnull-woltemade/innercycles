@@ -7,6 +7,7 @@ import '../../../data/services/streak_service.dart';
 import '../../../data/services/instagram_share_service.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
 /// Full-screen celebration modal for streak milestones (D3, D7, D14, etc.)
@@ -240,34 +241,15 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                   children: [
                     // Share button
                     Expanded(
-                      child: OutlinedButton.icon(
+                      child: GradientOutlinedButton(
+                        label: isEn ? 'Share' : 'Paylaş',
+                        icon: _isSharing ? null : Icons.share_rounded,
+                        variant: GradientTextVariant.gold,
+                        expanded: true,
+                        fontSize: 14,
+                        borderRadius: 14,
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                         onPressed: _isSharing ? null : _shareCard,
-                        icon: _isSharing
-                            ? const SizedBox(
-                                width: 16,
-                                height: 16,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                ),
-                              )
-                            : const Icon(Icons.share_rounded, size: 18),
-                        label: Text(
-                          isEn ? 'Share' : 'Paylaş',
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: AppColors.starGold,
-                          side: BorderSide(
-                            color: AppColors.starGold.withValues(alpha: 0.5),
-                          ),
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                        ),
                       ),
                     ),
                     const SizedBox(width: 12),

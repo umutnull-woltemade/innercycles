@@ -18,6 +18,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 
@@ -227,39 +228,15 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                     const SizedBox(height: 16),
 
                     // Copy to clipboard button
-                    SizedBox(
-                      width: double.infinity,
-                      height: 48,
-                      child: OutlinedButton.icon(
-                        onPressed: _isExporting
-                            ? null
-                            : () => _copyToClipboard(isPremium, isEn),
-                        icon: Icon(
-                          Icons.copy_outlined,
-                          size: 18,
-                          color: isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary,
-                        ),
-                        label: Text(
-                          isEn ? 'Copy to Clipboard' : 'Panoya Kopyala',
-                          style: TextStyle(
-                            color: isDark
-                                ? AppColors.textSecondary
-                                : AppColors.lightTextSecondary,
-                          ),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          side: BorderSide(
-                            color: isDark
-                                ? Colors.white.withValues(alpha: 0.15)
-                                : Colors.black.withValues(alpha: 0.1),
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                      ),
+                    GradientOutlinedButton(
+                      label: isEn ? 'Copy to Clipboard' : 'Panoya Kopyala',
+                      icon: Icons.copy_outlined,
+                      variant: GradientTextVariant.aurora,
+                      expanded: true,
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                      onPressed: _isExporting
+                          ? null
+                          : () => _copyToClipboard(isPremium, isEn),
                     ),
 
                     const SizedBox(height: 40),
