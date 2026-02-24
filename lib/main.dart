@@ -294,6 +294,10 @@ class _AppInitializerState extends State<AppInitializer> {
     if (!kIsWeb) {
       try {
         await SyncService.initialize();
+        SyncService.registerMergeHandler(
+          'user_profiles',
+          StorageService.mergeRemoteProfiles,
+        );
         if (kDebugMode) {
           debugPrint('✓ SyncService initialized');
         }
@@ -583,6 +587,8 @@ class _InnerCyclesAppState extends ConsumerState<InnerCyclesApp>
     if (state == AppLifecycleState.resumed) {
       // Re-verify premium entitlement when returning from background
       ref.read(premiumProvider.notifier).onAppResumed();
+      // Trigger full sync (push pending + pull remote changes)
+      SyncService.onAppResumed();
     }
   }
 

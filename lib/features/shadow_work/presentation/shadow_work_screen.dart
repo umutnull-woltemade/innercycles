@@ -650,6 +650,11 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                           content: Text(
                             isEn ? 'Entry saved' : 'Giriş kaydedildi',
                           ),
+                          backgroundColor: AppColors.success,
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                           duration: const Duration(seconds: 2),
                         ),
                       );

@@ -252,12 +252,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             children: [
               Icon(Icons.edit_outlined, color: AppColors.starGold, size: 20),
               const SizedBox(width: AppConstants.spacingSm),
-              Text(
+              GradientText(
                 L10nService.get('profile.edit_info', language),
+                variant: GradientTextVariant.gold,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
                   fontWeight: FontWeight.w600,
                 ),
               ),

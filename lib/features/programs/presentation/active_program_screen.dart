@@ -167,7 +167,11 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
           content: Text(
             isEn ? 'Day $dayNumber completed!' : '$dayNumber. gün tamamlandı!',
           ),
+          backgroundColor: AppColors.success,
           behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
         ),
       );
     }

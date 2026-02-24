@@ -69,6 +69,10 @@ import '../../features/energy/presentation/energy_map_screen.dart';
 import '../../features/life_events/presentation/life_event_screen.dart';
 import '../../features/life_events/presentation/life_event_detail_screen.dart';
 import '../../features/life_events/presentation/life_timeline_screen.dart';
+import '../../features/birthdays/presentation/birthday_agenda_screen.dart';
+import '../../features/birthdays/presentation/birthday_detail_screen.dart';
+import '../../features/birthdays/presentation/birthday_add_screen.dart';
+import '../../features/birthdays/presentation/birthday_import_screen.dart';
 import '../../features/gratitude/presentation/gratitude_archive_screen.dart';
 import '../../features/gratitude/presentation/gratitude_screen.dart';
 import '../../features/insight/presentation/insight_screen.dart';
@@ -282,6 +286,36 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.emotionalCycles,
         builder: (context, state) => const EmotionalCycleScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // BIRTHDAY AGENDA
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.birthdayAgenda,
+        builder: (context, state) => const BirthdayAgendaScreen(),
+      ),
+      GoRoute(
+        path: Routes.birthdayDetail,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return BirthdayDetailScreen(contactId: id);
+        },
+      ),
+      GoRoute(
+        path: Routes.birthdayAdd,
+        builder: (context, state) => const BirthdayAddScreen(),
+      ),
+      GoRoute(
+        path: Routes.birthdayEdit,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return BirthdayAddScreen(editId: id);
+        },
+      ),
+      GoRoute(
+        path: Routes.birthdayImport,
+        builder: (context, state) => const BirthdayImportScreen(),
       ),
       GoRoute(
         path: Routes.cycleSync,

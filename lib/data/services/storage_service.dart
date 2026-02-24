@@ -263,6 +263,52 @@ class StorageService {
     }
   }
 
+  // ========== REMOTE MERGE ==========
+
+  /// Merge profiles pulled from Supabase into local storage.
+  static Future<void> mergeRemoteProfiles(
+    List<Map<String, dynamic>> remoteData,
+  ) async {
+    final box = _profileBox;
+    if (box == null) return;
+
+    final profiles = loadAllProfiles();
+
+    for (final row in remoteData) {
+      final id = row['id'] as String? ?? '';
+      final isDeleted = row['is_deleted'] as bool? ?? false;
+
+      if (isDeleted) {
+        profiles.removeWhere((p) => p.id == id);
+        continue;
+      }
+
+      final profile = UserProfile(
+        id: id,
+        name: row['display_name'] as String?,
+        avatarEmoji: row['avatar_emoji'] as String?,
+        birthDate: DateTime.tryParse(row['birth_date']?.toString() ?? '') ??
+            DateTime(2000, 1, 1),
+        birthTime: row['birth_time'] as String?,
+        birthPlace: row['birth_place'] as String?,
+        birthLatitude: (row['birth_latitude'] as num?)?.toDouble(),
+        birthLongitude: (row['birth_longitude'] as num?)?.toDouble(),
+        isPrimary: row['is_primary'] as bool? ?? false,
+        relationship: row['relationship'] as String?,
+      );
+
+      final idx = profiles.indexWhere((p) => p.id == id);
+      if (idx >= 0) {
+        profiles[idx] = profile;
+      } else {
+        profiles.add(profile);
+      }
+    }
+
+    final jsonList = profiles.map((p) => p.toJson()).toList();
+    await box.put(_allProfilesKey, jsonEncode(jsonList));
+  }
+
   // ========== ONBOARDING ==========
 
   /// Save onboarding completion status

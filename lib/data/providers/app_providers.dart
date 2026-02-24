@@ -58,6 +58,8 @@ import '../services/dream_journal_correlation_service.dart';
 import '../services/telemetry_service.dart';
 import '../services/progressive_unlock_service.dart';
 import '../services/life_event_service.dart';
+import '../services/birthday_contact_service.dart';
+import '../models/birthday_contact.dart';
 import '../services/retrospective_date_service.dart';
 import '../services/monthly_wrapped_service.dart';
 import '../services/note_to_self_service.dart';
@@ -268,6 +270,7 @@ final dreamJournalServiceProvider = FutureProvider<DreamJournalService>((
   ref,
 ) async {
   final service = await DreamJournalService.init();
+  SyncService.registerMergeHandler('dream_entries', service.mergeRemoteDreams);
   return service;
 });
 
@@ -866,6 +869,31 @@ final lifeEventServiceProvider = FutureProvider<LifeEventService>((ref) async {
 final lifeEventCountProvider = FutureProvider<int>((ref) async {
   final service = await ref.watch(lifeEventServiceProvider.future);
   return service.eventCount;
+});
+
+// =============================================================================
+// BIRTHDAY CONTACT SERVICE PROVIDER
+// =============================================================================
+
+final birthdayContactServiceProvider = FutureProvider<BirthdayContactService>((ref) async {
+  final service = await BirthdayContactService.init();
+  SyncService.registerMergeHandler('birthday_contacts', service.mergeRemoteContacts);
+  return service;
+});
+
+final todayBirthdaysProvider = FutureProvider<List<BirthdayContact>>((ref) async {
+  final service = await ref.watch(birthdayContactServiceProvider.future);
+  return service.getTodayBirthdays();
+});
+
+final upcomingBirthdaysProvider = FutureProvider<List<BirthdayContact>>((ref) async {
+  final service = await ref.watch(birthdayContactServiceProvider.future);
+  return service.getUpcomingBirthdays(withinDays: 30);
+});
+
+final birthdayContactCountProvider = FutureProvider<int>((ref) async {
+  final service = await ref.watch(birthdayContactServiceProvider.future);
+  return service.contactCount;
 });
 
 // =============================================================================

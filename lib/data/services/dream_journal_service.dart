@@ -726,6 +726,75 @@ class DreamJournalService with SupabaseSyncMixin {
     queueSoftDelete(id);
   }
 
+  // ═══════════════════════════════════════════════════════════════
+  // REMOTE MERGE
+  // ═══════════════════════════════════════════════════════════════
+
+  /// Merge dreams pulled from Supabase into local storage.
+  Future<void> mergeRemoteDreams(List<Map<String, dynamic>> remoteData) async {
+    final dreams = List<DreamEntry>.from(await getAllDreams());
+    for (final row in remoteData) {
+      final id = row['id'] as String;
+      final isDeleted = row['is_deleted'] as bool? ?? false;
+
+      if (isDeleted) {
+        dreams.removeWhere((d) => d.id == id);
+        continue;
+      }
+
+      // Build DreamEntry from Supabase column names (snake_case)
+      final entry = DreamEntry(
+        id: id,
+        dreamDate: DateTime.tryParse(row['dream_date']?.toString() ?? '') ?? DateTime.now(),
+        recordedAt: DateTime.tryParse(row['created_at']?.toString() ?? '') ?? DateTime.now(),
+        title: row['title'] as String? ?? '',
+        content: row['content'] as String? ?? '',
+        detectedSymbols: (row['detected_symbols'] as List<dynamic>?)
+                ?.map((e) => e.toString())
+                .toList() ??
+            [],
+        userTags: (row['user_tags'] as List<dynamic>?)
+                ?.map((e) => e.toString())
+                .toList() ??
+            [],
+        dominantEmotion: EmotionalTone.values.firstWhere(
+          (e) => e.name == row['dominant_emotion'],
+          orElse: () => EmotionalTone.merak,
+        ),
+        emotionalIntensity: row['emotional_intensity'] as int? ?? 5,
+        isRecurring: row['is_recurring'] as bool? ?? false,
+        isLucid: row['is_lucid'] as bool? ?? false,
+        isNightmare: row['is_nightmare'] as bool? ?? false,
+        moonPhase: MoonPhase.values.firstWhere(
+          (e) => e.name == row['moon_phase'],
+          orElse: () => MoonPhaseCalculator.today,
+        ),
+        interpretation: row['interpretation'] is Map
+            ? FullDreamInterpretation.fromJson(
+                Map<String, dynamic>.from(row['interpretation'] as Map))
+            : null,
+        characters: (row['characters'] as List<dynamic>?)
+                ?.map((e) => e.toString())
+                .toList(),
+        locations: (row['locations'] as List<dynamic>?)
+                ?.map((e) => e.toString())
+                .toList(),
+        metadata: row['metadata'] is Map
+            ? Map<String, dynamic>.from(row['metadata'] as Map)
+            : null,
+      );
+
+      final existingIdx = dreams.indexWhere((d) => d.id == id);
+      if (existingIdx >= 0) {
+        dreams[existingIdx] = entry;
+      } else {
+        dreams.add(entry);
+      }
+    }
+
+    await _saveDreams(dreams);
+  }
+
   Future<void> _saveDreams(List<DreamEntry> dreams) async {
     await _prefs.setString(
       _dreamsKey,

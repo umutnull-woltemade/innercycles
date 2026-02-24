@@ -1160,6 +1160,11 @@ class _ClosingCard extends StatelessWidget {
                           ? 'Share your Wrapped from Share Cards gallery'
                           : 'Wrapped\'ını Paylaşım Kartları galerisinden paylaş',
                     ),
+                    backgroundColor: AppColors.surfaceLight,
+                    behavior: SnackBarBehavior.floating,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
                 );
               },

@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -1277,33 +1278,70 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
     final isDark = Theme.of(context).brightness == Brightness.dark;
     showModalBottomSheet(
       context: context,
-      backgroundColor: isDark ? AppColors.surfaceDark : AppColors.lightSurface,
+      backgroundColor: Colors.transparent,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
-      builder: (context) => Padding(
-        padding: const EdgeInsets.all(AppConstants.spacingLg),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              snapshot.title,
-              style: Theme.of(
-                context,
-              ).textTheme.titleLarge?.copyWith(color: AppColors.starGold),
-            ),
-            const SizedBox(height: AppConstants.spacingMd),
-            Text(
-              snapshot.content,
-              style: TextStyle(
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
+      builder: (context) => ClipRRect(
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+          child: Container(
+            decoration: BoxDecoration(
+              color: isDark
+                  ? AppColors.surfaceDark.withValues(alpha: 0.85)
+                  : AppColors.lightSurface.withValues(alpha: 0.92),
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+              border: Border(
+                top: BorderSide(
+                  color: AppColors.starGold.withValues(alpha: 0.3),
+                  width: 1.5,
+                ),
               ),
             ),
-            const SizedBox(height: AppConstants.spacingLg),
-          ],
+            child: Padding(
+              padding: const EdgeInsets.all(AppConstants.spacingLg),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Container(
+                      width: 40,
+                      height: 4,
+                      margin: const EdgeInsets.only(bottom: 16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2),
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.starGold.withValues(alpha: 0.6),
+                            AppColors.celestialGold.withValues(alpha: 0.6),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  GradientText(
+                    snapshot.title,
+                    variant: GradientTextVariant.gold,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleLarge,
+                  ),
+                  const SizedBox(height: AppConstants.spacingMd),
+                  Text(
+                    snapshot.content,
+                    style: TextStyle(
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: AppConstants.spacingLg),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

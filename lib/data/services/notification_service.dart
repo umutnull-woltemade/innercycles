@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/constants/routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../models/note_to_self.dart';
+import '../models/birthday_contact.dart';
 import 'journal_prompt_service.dart';
 
 /// Global navigator key — shared with GoRouter so notification taps
@@ -175,7 +176,10 @@ class NotificationService {
         route = Routes.challenges;
         break;
       default:
-        if (payload.startsWith('note_reminder:')) {
+        if (payload.startsWith('birthday:')) {
+          final contactId = payload.substring('birthday:'.length);
+          route = Routes.birthdayDetail.replaceFirst(':id', contactId);
+        } else if (payload.startsWith('note_reminder:')) {
           route = Routes.noteDetail;
         } else {
           route = Routes.today;
@@ -570,6 +574,115 @@ class NotificationService {
   /// Cancel a note reminder notification
   Future<void> cancelNoteReminder(int notificationId) async {
     await _notifications.cancel(id: notificationId);
+  }
+
+  // ============== Birthday Notifications ==============
+
+  /// Schedule a birthday notification for a contact at 09:00 on their birthday.
+  /// Notification ID is derived from contact ID hash (range 200-999).
+  Future<void> scheduleBirthdayNotification(BirthdayContact contact) async {
+    if (kIsWeb || !contact.notificationsEnabled) return;
+    _isEn = await _readIsEn();
+
+    final notifId = 200 + (contact.id.hashCode.abs() % 800);
+    final now = DateTime.now();
+    var birthday = DateTime(now.year, contact.birthdayMonth, contact.birthdayDay, 9, 0);
+    if (birthday.isBefore(now)) {
+      birthday = DateTime(now.year + 1, contact.birthdayMonth, contact.birthdayDay, 9, 0);
+    }
+
+    final scheduledTz = tz.TZDateTime.from(birthday, tz.local);
+
+    await _notifications.zonedSchedule(
+      id: notifId,
+      title: _isEn
+          ? '\u{1F382} ${contact.name}\'s Birthday!'
+          : '\u{1F382} ${contact.name} Do\u{011F}um G\u{00FC}n\u{00FC}!',
+      body: _isEn
+          ? 'Today is ${contact.name}\'s birthday!'
+          : 'Bug\u{00FC}n ${contact.name}\'in do\u{011F}um g\u{00FC}n\u{00FC}!',
+      scheduledDate: scheduledTz,
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'birthday_reminders',
+          _isEn ? 'Birthday Reminders' : 'Do\u{011F}um G\u{00FC}n\u{00FC} Hat\u{0131}rlat\u{0131}c\u{0131}lar\u{0131}',
+          channelDescription: _isEn
+              ? 'Birthday reminder notifications'
+              : 'Do\u{011F}um g\u{00FC}n\u{00FC} hat\u{0131}rlat\u{0131}c\u{0131} bildirimleri',
+          importance: Importance.high,
+          priority: Priority.high,
+          icon: '@mipmap/ic_launcher',
+          color: AppColors.starGold,
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.dateAndTime,
+      payload: 'birthday:${contact.id}',
+    );
+
+    // Day-before reminder
+    if (contact.dayBeforeReminder) {
+      final dayBeforeId = 1000 + (contact.id.hashCode.abs() % 800);
+      final dayBefore = birthday.subtract(const Duration(days: 1));
+      if (dayBefore.isAfter(now)) {
+        final dayBeforeTz = tz.TZDateTime.from(dayBefore, tz.local);
+        await _notifications.zonedSchedule(
+          id: dayBeforeId,
+          title: _isEn
+              ? '\u{1F389} Tomorrow: ${contact.name}\'s Birthday'
+              : '\u{1F389} Yar\u{0131}n: ${contact.name} Do\u{011F}um G\u{00FC}n\u{00FC}',
+          body: _isEn
+              ? '${contact.name}\'s birthday is tomorrow!'
+              : '${contact.name}\'in do\u{011F}um g\u{00FC}n\u{00FC} yar\u{0131}n!',
+          scheduledDate: dayBeforeTz,
+          notificationDetails: NotificationDetails(
+            android: AndroidNotificationDetails(
+              'birthday_reminders',
+              _isEn ? 'Birthday Reminders' : 'Do\u{011F}um G\u{00FC}n\u{00FC} Hat\u{0131}rlat\u{0131}c\u{0131}lar\u{0131}',
+              channelDescription: _isEn
+                  ? 'Birthday reminder notifications'
+                  : 'Do\u{011F}um g\u{00FC}n\u{00FC} hat\u{0131}rlat\u{0131}c\u{0131} bildirimleri',
+              importance: Importance.defaultImportance,
+              priority: Priority.defaultPriority,
+              icon: '@mipmap/ic_launcher',
+              color: AppColors.starGold,
+            ),
+            iOS: const DarwinNotificationDetails(
+              presentAlert: true,
+              presentBadge: false,
+              presentSound: true,
+            ),
+          ),
+          androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+          matchDateTimeComponents: DateTimeComponents.dateAndTime,
+          payload: 'birthday:${contact.id}',
+        );
+      }
+    }
+  }
+
+  /// Cancel birthday notifications for a contact.
+  Future<void> cancelBirthdayNotification(String contactId) async {
+    final notifId = 200 + (contactId.hashCode.abs() % 800);
+    final dayBeforeId = 1000 + (contactId.hashCode.abs() % 800);
+    await _notifications.cancel(id: notifId);
+    await _notifications.cancel(id: dayBeforeId);
+  }
+
+  /// Reschedule all birthday notifications (call on app launch).
+  Future<void> rescheduleAllBirthdayNotifications(
+    List<BirthdayContact> contacts,
+  ) async {
+    for (final contact in contacts) {
+      if (contact.notificationsEnabled) {
+        await scheduleBirthdayNotification(contact);
+      }
+    }
   }
 
   // ============== Utility Methods ==============

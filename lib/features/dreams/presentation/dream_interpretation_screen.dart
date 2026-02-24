@@ -2550,118 +2550,138 @@ class _DreamSymbolsSheet extends ConsumerWidget {
       },
     ];
 
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: isDark
-              ? [AppColors.nebulaPurple, AppColors.deepSpace]
-              : [AppColors.lightSurfaceVariant, AppColors.lightSurface],
-        ),
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
-      ),
-      child: Column(
-        children: [
-          // Handle
-          Container(
-            margin: const EdgeInsets.only(top: 12),
-            width: 40,
-            height: 4,
-            decoration: BoxDecoration(
-              color: isDark
-                  ? AppColors.textSecondary.withValues(alpha: 0.3)
-                  : AppColors.lightTextSecondary.withValues(alpha: 0.3),
-              borderRadius: BorderRadius.circular(2),
+    return ClipRRect(
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.7,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: isDark
+                  ? [
+                      AppColors.nebulaPurple.withValues(alpha: 0.92),
+                      AppColors.deepSpace.withValues(alpha: 0.95),
+                    ]
+                  : [
+                      AppColors.lightSurfaceVariant.withValues(alpha: 0.92),
+                      AppColors.lightSurface.withValues(alpha: 0.95),
+                    ],
             ),
-          ),
-          // Title
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              children: [
-                const AppSymbol('\u{1F52E}', size: AppSymbolSize.lg),
-                const SizedBox(width: 12),
-                Text(
-                  L10nService.get(
-                    'widgets.dreams.symbols_guide_title',
-                    language,
-                  ),
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          // Symbols grid
-          Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 2.2,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+            border: Border(
+              top: BorderSide(
+                color: AppColors.amethyst.withValues(alpha: 0.4),
+                width: 1.5,
               ),
-              itemCount: symbols.length,
-              itemBuilder: (context, index) {
-                final symbol = symbols[index];
-                return GlassPanel(
-                  elevation: GlassElevation.g2,
-                  borderRadius: BorderRadius.circular(14),
-                  padding: const EdgeInsets.all(12),
-                  child: Row(
-                    children: [
-                      Text(
-                        symbol['emoji'] ?? '',
-                        style: const TextStyle(fontSize: 28),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              symbol['name'] ?? '',
-                              style: TextStyle(
-                                color: isDark
-                                    ? AppColors.textPrimary
-                                    : AppColors.lightTextPrimary,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 13,
-                              ),
-                            ),
-                            Text(
-                              symbol['meaning'] ?? '',
-                              style: TextStyle(
-                                color: isDark
-                                    ? AppColors.textSecondary.withValues(
-                                        alpha: 0.8,
-                                      )
-                                    : AppColors.lightTextSecondary.withValues(
-                                        alpha: 0.8,
-                                      ),
-                                fontSize: 10,
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
+            ),
+          ),
+          child: Column(
+            children: [
+              // Handle
+              Container(
+                margin: const EdgeInsets.only(top: 12),
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.amethyst.withValues(alpha: 0.6),
+                      AppColors.cosmicAmethyst.withValues(alpha: 0.6),
                     ],
                   ),
-                ).glassListItem(context: context, index: index);
-              },
-            ),
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              // Title
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  children: [
+                    const AppSymbol('\u{1F52E}', size: AppSymbolSize.lg),
+                    const SizedBox(width: 12),
+                    GradientText(
+                      L10nService.get(
+                        'widgets.dreams.symbols_guide_title',
+                        language,
+                      ),
+                      variant: GradientTextVariant.amethyst,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Symbols grid
+              Expanded(
+                child: GridView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 2.2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                  ),
+                  itemCount: symbols.length,
+                  itemBuilder: (context, index) {
+                    final symbol = symbols[index];
+                    return GlassPanel(
+                      elevation: GlassElevation.g2,
+                      borderRadius: BorderRadius.circular(14),
+                      padding: const EdgeInsets.all(12),
+                      child: Row(
+                        children: [
+                          Text(
+                            symbol['emoji'] ?? '',
+                            style: const TextStyle(fontSize: 28),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  symbol['name'] ?? '',
+                                  style: TextStyle(
+                                    color: isDark
+                                        ? AppColors.textPrimary
+                                        : AppColors.lightTextPrimary,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                                Text(
+                                  symbol['meaning'] ?? '',
+                                  style: TextStyle(
+                                    color: isDark
+                                        ? AppColors.textSecondary.withValues(
+                                            alpha: 0.8,
+                                          )
+                                        : AppColors.lightTextSecondary
+                                            .withValues(
+                                            alpha: 0.8,
+                                          ),
+                                    fontSize: 10,
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ).glassListItem(context: context, index: index);
+                  },
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

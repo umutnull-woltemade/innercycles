@@ -1073,6 +1073,11 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                   ? 'Entry not saved. Try again — your text is preserved.'
                   : 'Giriş kaydedilemedi. Tekrar dene — yazın korunuyor.',
             ),
+            backgroundColor: AppColors.error,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
           ),
         );
       }

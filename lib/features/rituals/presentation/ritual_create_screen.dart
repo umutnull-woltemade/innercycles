@@ -515,7 +515,11 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
           content: Text(
             isEn ? 'Add at least one ritual item' : 'En az bir madde ekle',
           ),
+          backgroundColor: AppColors.warning,
           behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
         ),
       );
       return;
@@ -551,6 +555,11 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
               ref.read(languageProvider) == AppLanguage.en
                   ? 'Entry not saved. Try again — your text is preserved.'
                   : 'Kayıt kaydedilemedi. Tekrar dene — metniniz korunuyor.',
+            ),
+            backgroundColor: AppColors.error,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
             ),
           ),
         );

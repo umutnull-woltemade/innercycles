@@ -122,6 +122,15 @@ class Routes {
   static const String lifeTimeline = '/life-timeline';
 
   // ════════════════════════════════════════════════════════════════
+  // BIRTHDAY AGENDA
+  // ════════════════════════════════════════════════════════════════
+  static const String birthdayAgenda = '/birthdays';
+  static const String birthdayDetail = '/birthdays/:id';
+  static const String birthdayAdd = '/birthdays/add';
+  static const String birthdayEdit = '/birthdays/edit/:id';
+  static const String birthdayImport = '/birthdays/import';
+
+  // ════════════════════════════════════════════════════════════════
   // CALENDAR & SEARCH
   // ════════════════════════════════════════════════════════════════
   static const String calendarHeatmap = '/calendar';
