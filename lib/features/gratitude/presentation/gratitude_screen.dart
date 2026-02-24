@@ -95,7 +95,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                           padding: const EdgeInsets.all(32),
                           child: Text(
                             CommonStrings.somethingWentWrong(language),
-                            style: TextStyle(
+                            style: AppTypography.decorativeScript(
                               color: isDark
                                   ? AppColors.textMuted
                                   : AppColors.lightTextMuted,
@@ -286,7 +286,7 @@ class _Stat extends StatelessWidget {
         ),
         Text(
           label,
-          style: TextStyle(
+          style: AppTypography.elegantAccent(
             fontSize: 11,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -387,7 +387,7 @@ class _TodaySection extends StatelessWidget {
                   ),
                   prefixIcon: Text(
                     '  ${i + 1}. ',
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       color: AppColors.starGold,
                       fontWeight: FontWeight.w600,
                     ),
@@ -468,9 +468,8 @@ class _ThemeCloud extends StatelessWidget {
                     ),
                     child: Text(
                       e.key,
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 13,
-                        fontWeight: FontWeight.w500,
                         color: AppColors.starGold,
                       ),
                     ),
@@ -508,9 +507,8 @@ class _HistoryCard extends StatelessWidget {
           children: [
             Text(
               entry.dateKey,
-              style: TextStyle(
+              style: AppTypography.modernAccent(
                 fontSize: 11,
-                fontWeight: FontWeight.w600,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
             ),
@@ -523,7 +521,7 @@ class _HistoryCard extends StatelessWidget {
                   children: [
                     Text(
                       '  •  ',
-                      style: TextStyle(
+                      style: AppTypography.modernAccent(
                         color: AppColors.starGold,
                         fontWeight: FontWeight.bold,
                       ),

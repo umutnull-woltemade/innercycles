@@ -104,7 +104,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Something went wrong' : 'Bir \u015feyler ters gitti',
-                style: TextStyle(color: isDark ? Colors.white70 : Colors.black54),
+                style: AppTypography.decorativeScript(color: isDark ? Colors.white70 : Colors.black54),
               ),
             ),
             data: (allNotes) {
@@ -743,7 +743,7 @@ class _NoteCard extends StatelessWidget {
                   const SizedBox(width: 8),
                   Text(
                     _formatDate(note.updatedAt, isEn),
-                    style: TextStyle(
+                    style: AppTypography.elegantAccent(
                       fontSize: 11,
                       color: isDark ? Colors.white30 : Colors.black26,
                     ),
@@ -756,10 +756,9 @@ class _NoteCard extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   note.preview,
-                  style: TextStyle(
+                  style: AppTypography.decorativeScript(
                     fontSize: 13,
                     color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                    height: 1.4,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -800,7 +799,7 @@ class _NoteCard extends StatelessWidget {
                     if (note.tags.length > 3)
                       Text(
                         '+${note.tags.length - 3}',
-                        style: TextStyle(
+                        style: AppTypography.elegantAccent(
                           fontSize: 10,
                           color: isDark ? Colors.white38 : Colors.black26,
                         ),
