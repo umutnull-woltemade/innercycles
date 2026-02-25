@@ -70,7 +70,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
   }
 
   void _markChanged() {
-    if (!_hasChanges && _isLoaded) {
+    if (!_hasChanges && (_isLoaded || _isCreateMode)) {
       setState(() => _hasChanges = true);
     }
   }
@@ -168,7 +168,10 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
     ref.invalidate(pinnedNotesProvider);
     ref.invalidate(upcomingRemindersProvider);
 
-    if (mounted) context.pop();
+    if (mounted) {
+      _hasChanges = false;
+      context.pop();
+    }
   }
 
   Future<void> _delete(NoteToSelfService service) async {
@@ -908,7 +911,26 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
           ),
         ),
       ),
+      ),
     );
+  }
+
+  void _showDiscardDialog() async {
+    final language = ref.read(languageProvider);
+    final isEn = language == AppLanguage.en;
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: isEn ? 'Discard Changes?' : 'De\u{011F}i\u{015F}iklikleri At?',
+      message: isEn
+          ? 'You have unsaved changes. Are you sure you want to go back?'
+          : 'Kaydedilmemi\u{015F} de\u{011F}i\u{015F}iklikleriniz var. Geri d\u{00F6}nmek istedi\u{011F}inizden emin misiniz?',
+      cancelLabel: isEn ? 'Cancel' : '\u{0130}ptal',
+      confirmLabel: isEn ? 'Discard' : 'At',
+      isDestructive: true,
+    );
+    if (confirmed == true && mounted) {
+      if (context.canPop()) context.pop();
+    }
   }
 }
 

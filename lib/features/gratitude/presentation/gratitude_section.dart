@@ -197,7 +197,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                     child: TextField(
                       controller: _controllers[index],
                       maxLength: 150,
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 14,
                         color: isDark
                             ? AppColors.textPrimary
@@ -207,11 +207,11 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                         hintText: isEn
                             ? 'I\'m grateful for...'
                             : 'Şükran duyduğum...',
-                        hintStyle: TextStyle(
+                        hintStyle: AppTypography.subtitle(
+                          fontSize: 14,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
-                          fontSize: 14,
                         ),
                         border: InputBorder.none,
                         counterText: '',

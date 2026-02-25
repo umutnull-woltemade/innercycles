@@ -746,7 +746,7 @@ class _MemoryCard extends StatelessWidget {
                 child: Center(
                   child: Text(
                     _focusEmoji(entry.focusArea),
-                    style: const TextStyle(fontSize: 22),
+                    style: AppTypography.subtitle(fontSize: 22),
                   ),
                 ),
               ),

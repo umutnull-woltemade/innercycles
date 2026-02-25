@@ -224,12 +224,12 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         TextField(
           controller: _nameController,
           onChanged: (_) => setState(() => _hasChanges = true),
-          style: TextStyle(
+          style: AppTypography.subtitle(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
           decoration: InputDecoration(
             hintText: isEn ? 'Enter name...' : '\u{0130}sim girin...',
-            hintStyle: TextStyle(
+            hintStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
             filled: true,
@@ -281,7 +281,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                     value: _selectedMonth,
                     isExpanded: true,
                     dropdownColor: isDark ? AppColors.surfaceDark : Colors.white,
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
                       fontSize: 14,
                       color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                     ),
@@ -313,7 +313,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                     value: _selectedDay,
                     isExpanded: true,
                     dropdownColor: isDark ? AppColors.surfaceDark : Colors.white,
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
                       fontSize: 14,
                       color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                     ),
@@ -348,7 +348,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                     value: _selectedYear,
                     isExpanded: true,
                     dropdownColor: isDark ? AppColors.surfaceDark : Colors.white,
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
                       fontSize: 14,
                       color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                     ),
