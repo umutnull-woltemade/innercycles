@@ -237,7 +237,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
             style: AppTypography.elegantAccent(
               fontSize: 13,
             ),
-          ).animate().fadeIn(duration: 200.ms),
+          ).animate().fadeIn(duration: 200.ms, delay: 80.ms),
           const SizedBox(height: AppConstants.spacingSm),
           Expanded(
             child: ListView.separated(
@@ -284,7 +284,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
           ),
         ],
       ),
-    ).animate().fadeIn(duration: 300.ms);
+    ).animate().fadeIn(duration: 300.ms, delay: 120.ms);
   }
 }
 

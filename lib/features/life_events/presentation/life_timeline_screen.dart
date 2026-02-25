@@ -373,7 +373,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
             ],
           ),
         ),
-      ).animate().fadeIn(duration: 200.ms),
+      ).animate().fadeIn(duration: 200.ms, delay: 80.ms),
     );
   }
 
