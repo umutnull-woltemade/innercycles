@@ -404,29 +404,16 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                             ),
                             const SizedBox(width: 16),
                             Expanded(
-                              child: SizedBox(
-                                height: 56,
-                                child: ElevatedButton(
-                                  onPressed: _isRunning ? _pause : _resume,
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: _isRunning
-                                        ? AppColors.warning
-                                        : AppColors.cosmicPurple,
-                                    foregroundColor: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16),
-                                    ),
-                                    elevation: 0,
-                                  ),
-                                  child: Text(
-                                    _isRunning
-                                        ? (isEn ? 'Pause' : 'Duraklat')
-                                        : (isEn ? 'Resume' : 'Devam'),
-                                    style: AppTypography.modernAccent(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
+                              child: GradientButton(
+                                label: _isRunning
+                                    ? (isEn ? 'Pause' : 'Duraklat')
+                                    : (isEn ? 'Resume' : 'Devam'),
+                                onPressed: _isRunning ? _pause : _resume,
+                                expanded: true,
+                                gradient: LinearGradient(
+                                  colors: _isRunning
+                                      ? [AppColors.warning, AppColors.warning.withValues(alpha: 0.8)]
+                                      : [AppColors.cosmicPurple, AppColors.auroraEnd],
                                 ),
                               ),
                             ),

@@ -260,7 +260,7 @@ class _WeekCalendar extends ConsumerWidget {
                         ? const SizedBox.shrink()
                         : Text(
                             '${day.day}',
-                            style: TextStyle(
+                            style: AppTypography.elegantAccent(
                               fontSize: 12,
                               color: isDark
                                   ? AppColors.textMuted.withValues(alpha: 0.5)

@@ -52,11 +52,12 @@ class DailyQuestionCard extends ConsumerWidget {
                   // Large decorative open-quote mark
                   Text(
                     '\u201C',
-                    style: TextStyle(
+                    style: AppTypography.decorativeScript(
                       fontSize: 52,
+                      color: AppColors.amethyst.withValues(alpha: 0.25),
+                    ).copyWith(
                       fontWeight: FontWeight.w800,
                       height: 0.6,
-                      color: AppColors.amethyst.withValues(alpha: 0.25),
                     ),
                   ),
                   const SizedBox(height: 8),

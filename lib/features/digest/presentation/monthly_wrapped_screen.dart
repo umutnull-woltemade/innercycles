@@ -20,6 +20,7 @@ import '../../../data/models/journal_entry.dart';
 import '../../../data/content/share_card_templates.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../core/theme/app_typography.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/share_card_sheet.dart';
 
@@ -56,7 +57,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Not enough data yet' : 'Henüz yeterli veri yok',
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -320,44 +321,27 @@ class _Slide5Share extends StatelessWidget {
             ),
           ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
           const SizedBox(height: 32),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton.icon(
-              onPressed: () {
-                final template = ShareCardTemplates.monthlyWrapped;
-                final cardData = ShareCardTemplates.buildData(
-                  template: template,
-                  isEn: isEn,
-                  journalDays: data.totalEntries,
-                  moodValues: data.dailyRatings
-                      .where((r) => r > 0)
-                      .toList(),
-                );
-                ShareCardSheet.show(
-                  context,
-                  template: template,
-                  data: cardData,
-                  isEn: isEn,
-                );
-              },
-              icon: const Icon(Icons.share_rounded, size: 20),
-              label: Text(
-                isEn ? 'Share Your Month' : 'Ayını Paylaş',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.starGold,
-                foregroundColor: Colors.black87,
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                elevation: 0,
-              ),
-            ),
+          GradientButton.gold(
+            label: isEn ? 'Share Your Month' : 'Ayını Paylaş',
+            icon: Icons.share_rounded,
+            onPressed: () {
+              final template = ShareCardTemplates.monthlyWrapped;
+              final cardData = ShareCardTemplates.buildData(
+                template: template,
+                isEn: isEn,
+                journalDays: data.totalEntries,
+                moodValues: data.dailyRatings
+                    .where((r) => r > 0)
+                    .toList(),
+              );
+              ShareCardSheet.show(
+                context,
+                template: template,
+                data: cardData,
+                isEn: isEn,
+              );
+            },
+            expanded: true,
           ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
         ],
       ),

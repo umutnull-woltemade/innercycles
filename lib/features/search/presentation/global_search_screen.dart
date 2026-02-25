@@ -132,7 +132,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                                   hintText: isEn
                                       ? 'Search tools, entries...'
                                       : 'Ara\u00e7, kay\u0131t ara...',
-                                  hintStyle: TextStyle(
+                                  hintStyle: AppTypography.subtitle(
                                     color: isDark
                                         ? AppColors.textMuted
                                         : AppColors.lightTextMuted,
@@ -316,7 +316,7 @@ class _SearchResultTile extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Text(tool.icon, style: const TextStyle(fontSize: 24)),
+              Text(tool.icon, style: AppTypography.subtitle(fontSize: 24)),
               const SizedBox(width: AppConstants.spacingMd),
               Expanded(
                 child: Column(

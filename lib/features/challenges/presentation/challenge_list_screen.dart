@@ -58,7 +58,7 @@ class ChallengeListScreen extends ConsumerWidget {
                           padding: const EdgeInsets.all(32),
                           child: Text(
                             CommonStrings.somethingWentWrong(language),
-                            style: TextStyle(
+                            style: AppTypography.subtitle(
                               color: isDark
                                   ? AppColors.textMuted
                                   : AppColors.lightTextMuted,

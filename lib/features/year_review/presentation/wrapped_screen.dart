@@ -92,7 +92,7 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                   isEn
                       ? 'Not enough entries for your Wrapped yet'
                       : 'Wrapped için henüz yeterli kayıt yok',
-                  style: TextStyle(color: AppColors.textSecondary),
+                  style: AppTypography.subtitle(color: AppColors.textSecondary),
                 ),
               ],
             ),
@@ -113,7 +113,7 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                       isEn
                           ? 'Keep journaling to unlock your Wrapped!'
                           : 'Wrapped\'ını açmak için yazmaya devam et!',
-                      style: TextStyle(color: AppColors.textSecondary),
+                      style: AppTypography.subtitle(color: AppColors.textSecondary),
                       textAlign: TextAlign.center,
                     ),
                   ],

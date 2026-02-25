@@ -23,6 +23,7 @@ import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -825,38 +826,23 @@ class _ShareArchetypeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 48,
-      child: ElevatedButton.icon(
-        onPressed: () {
-          HapticFeedback.mediumImpact();
-          final name = isEn ? archetype.nameEn : archetype.nameTr;
-          final text = isEn
-              ? 'My emotional archetype is "$name" — discovered through self-reflection with InnerCycles.\n\n'
-                    'What\'s yours? Try it free:\nhttps://apps.apple.com/app/innercycles/id6758612716'
-              : 'Duygusal arketipim "$name" — InnerCycles ile kendimi keşfederek buldum.\n\n'
-                    'Seninki ne? Ücretsiz dene:\nhttps://apps.apple.com/app/innercycles/id6758612716';
-          SharePlus.instance.share(ShareParams(text: text));
-        },
-        icon: const Icon(Icons.share_rounded, size: 18),
-        label: Text(
-          isEn ? 'Share Your Archetype' : 'Arketipini Paylaş',
-          style: AppTypography.modernAccent(
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.amethyst.withValues(alpha: 0.15),
-          foregroundColor: AppColors.amethyst,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-            side: BorderSide(color: AppColors.amethyst.withValues(alpha: 0.3)),
-          ),
-        ),
+    return GradientButton(
+      label: isEn ? 'Share Your Archetype' : 'Arketipini Paylaş',
+      icon: Icons.share_rounded,
+      expanded: true,
+      gradient: const LinearGradient(
+        colors: [AppColors.amethyst, AppColors.cosmicPurple],
       ),
+      onPressed: () {
+        HapticFeedback.mediumImpact();
+        final name = isEn ? archetype.nameEn : archetype.nameTr;
+        final text = isEn
+            ? 'My emotional archetype is "$name" — discovered through self-reflection with InnerCycles.\n\n'
+                  'What\'s yours? Try it free:\nhttps://apps.apple.com/app/innercycles/id6758612716'
+            : 'Duygusal arketipim "$name" — InnerCycles ile kendimi keşfederek buldum.\n\n'
+                  'Seninki ne? Ücretsiz dene:\nhttps://apps.apple.com/app/innercycles/id6758612716';
+        SharePlus.instance.share(ShareParams(text: text));
+      },
     );
   }
 }

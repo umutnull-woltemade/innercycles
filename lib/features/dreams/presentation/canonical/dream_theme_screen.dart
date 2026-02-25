@@ -803,7 +803,7 @@ class DreamThemeScreen extends ConsumerWidget {
               children: [
                 Text(
                   '•',
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 14,
                     color: isDark ? Colors.white54 : AppColors.textLight,
                   ),

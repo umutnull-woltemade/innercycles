@@ -18,6 +18,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
@@ -860,34 +861,22 @@ class _ShareInsightsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 48,
-      child: ElevatedButton.icon(
-        onPressed: () {
-          HapticFeedback.mediumImpact();
-          final text = isEn
-              ? 'I uncovered $spotCount emotional blind spots through self-reflection with InnerCycles.\n\n'
-                    'Discover your hidden patterns:\nhttps://apps.apple.com/app/innercycles/id6758612716'
-              : 'InnerCycles ile öz yansıma yaparak $spotCount duygusal kör noktamı keşfettim.\n\n'
-                    'Gizli kalıplarını keşfet:\nhttps://apps.apple.com/app/innercycles/id6758612716';
-          SharePlus.instance.share(ShareParams(text: text));
-        },
-        icon: const Icon(Icons.share_rounded, size: 18),
-        label: Text(
-          isEn ? 'Share Your Insights' : 'İçgörülerini Paylaş',
-          style: AppTypography.modernAccent(fontSize: 15, fontWeight: FontWeight.w600),
-        ),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.brandPink.withValues(alpha: 0.15),
-          foregroundColor: AppColors.brandPink,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-            side: BorderSide(color: AppColors.brandPink.withValues(alpha: 0.3)),
-          ),
-        ),
+    return GradientButton(
+      label: isEn ? 'Share Your Insights' : 'İçgörülerini Paylaş',
+      icon: Icons.share_rounded,
+      expanded: true,
+      gradient: const LinearGradient(
+        colors: [AppColors.brandPink, AppColors.amethyst],
       ),
+      onPressed: () {
+        HapticFeedback.mediumImpact();
+        final text = isEn
+            ? 'I uncovered $spotCount emotional blind spots through self-reflection with InnerCycles.\n\n'
+                  'Discover your hidden patterns:\nhttps://apps.apple.com/app/innercycles/id6758612716'
+            : 'InnerCycles ile öz yansıma yaparak $spotCount duygusal kör noktamı keşfettim.\n\n'
+                  'Gizli kalıplarını keşfet:\nhttps://apps.apple.com/app/innercycles/id6758612716';
+        SharePlus.instance.share(ShareParams(text: text));
+      },
     );
   }
 }

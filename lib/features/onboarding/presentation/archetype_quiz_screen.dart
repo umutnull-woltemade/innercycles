@@ -21,6 +21,7 @@ import '../../../data/services/archetype_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -292,9 +293,9 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
               onPressed: _skipQuiz,
               child: Text(
                 isEn ? 'Skip' : 'Atla',
-                style: TextStyle(
-                  color: AppColors.textMuted.withValues(alpha: 0.7),
+                style: AppTypography.elegantAccent(
                   fontSize: 14,
+                  color: AppColors.textMuted.withValues(alpha: 0.7),
                 ),
               ),
             ),
@@ -533,26 +534,10 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
           const SizedBox(height: 32),
 
           // Continue button
-          SizedBox(
-            width: double.infinity,
-            height: 52,
-            child: ElevatedButton(
-              onPressed: _goHome,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.starGold,
-                foregroundColor: Colors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                elevation: 0,
-              ),
-              child: Text(
-                isEn ? 'Get Started' : 'Başla',
-                style: AppTypography.subtitle(
-                  fontSize: 16,
-                ),
-              ),
-            ),
+          GradientButton.gold(
+            label: isEn ? 'Get Started' : 'Başla',
+            onPressed: _goHome,
+            expanded: true,
           ).glassEntrance(
             context: context,
             delay: const Duration(milliseconds: 800),
@@ -564,9 +549,9 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
             onPressed: _goHome,
             child: Text(
               isEn ? 'Skip for now' : 'Şimdilik atla',
-              style: TextStyle(
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              style: AppTypography.elegantAccent(
                 fontSize: 14,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
             ),
           ),

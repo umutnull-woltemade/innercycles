@@ -88,7 +88,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                 child: Text(
                   CommonStrings.somethingWentWrong(language),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
@@ -530,7 +530,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
                     : AppColors.lightTextPrimary.withValues(alpha: 0.92),
                 borderRadius: BorderRadius.circular(8),
               ),
-              textStyle: TextStyle(
+              textStyle: AppTypography.modernAccent(
                 color: isDark ? AppColors.textPrimary : Colors.white,
                 fontSize: 12,
               ),
@@ -705,7 +705,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
               if (!unlocked)
                 Text(
                   milestone.progressHint,
-                  style: TextStyle(
+                  style: AppTypography.elegantAccent(
                     fontSize: 11,
                     color: isDark
                         ? AppColors.textMuted.withValues(alpha: 0.6)

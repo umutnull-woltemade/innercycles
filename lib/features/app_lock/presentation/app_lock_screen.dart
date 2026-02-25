@@ -117,7 +117,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
               if (_showError)
                 Text(
                   isEn ? 'Incorrect PIN' : 'Yanlış PIN',
-                  style: TextStyle(color: AppColors.error, fontSize: 14),
+                  style: AppTypography.subtitle(color: AppColors.error, fontSize: 14),
                 ),
 
               const SizedBox(height: 32),

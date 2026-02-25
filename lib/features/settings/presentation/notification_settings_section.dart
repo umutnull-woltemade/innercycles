@@ -223,7 +223,7 @@ class _NotificationSettingsSectionState
             onPressed: _requestPermissions,
             child: Text(
               L10nService.get('common.grant_permission', language),
-              style: TextStyle(color: AppColors.starGold),
+              style: AppTypography.modernAccent(color: AppColors.starGold),
             ),
           ),
         ],

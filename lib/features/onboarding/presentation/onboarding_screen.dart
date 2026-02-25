@@ -1452,13 +1452,13 @@ class _NameInput extends StatelessWidget {
 
     return TextField(
       onChanged: onNameChanged,
-      style: TextStyle(
+      style: AppTypography.subtitle(
         color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         fontSize: 16,
       ),
       decoration: InputDecoration(
         hintText: L10nService.get('input.your_name', language),
-        hintStyle: TextStyle(
+        hintStyle: AppTypography.subtitle(
           color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           fontSize: 15,
         ),

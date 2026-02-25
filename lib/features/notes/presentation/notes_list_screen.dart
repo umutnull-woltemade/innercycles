@@ -881,7 +881,7 @@ class _TagChip extends StatelessWidget {
                   fontSize: 12,
                   color: isDark ? AppColors.auroraStart : AppColors.lightAuroraStart,
                 )
-              : TextStyle(
+              : AppTypography.elegantAccent(
                   fontSize: 12,
                   color: isDark ? Colors.white60 : Colors.black45,
                 ),

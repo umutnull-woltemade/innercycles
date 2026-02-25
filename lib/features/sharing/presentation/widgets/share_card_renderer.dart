@@ -295,12 +295,10 @@ class _CenteredLayout extends StatelessWidget {
           Text(
             data.detail!,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: AppTypography.elegantAccent(
               fontSize: 12,
-              fontWeight: FontWeight.w400,
               color: AppColors.textMuted,
-              height: 1.5,
-            ),
+            ).copyWith(height: 1.5),
           ),
         ],
 

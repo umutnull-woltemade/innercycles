@@ -726,9 +726,9 @@ class _NotFoundScreen extends StatelessWidget {
             TextButton.icon(
               onPressed: () => context.go(Routes.today),
               icon: const Icon(Icons.home, color: Colors.white70),
-              label: const Text(
+              label: Text(
                 'Home / Ana Sayfa',
-                style: TextStyle(color: Colors.white70),
+                style: AppTypography.elegantAccent(color: Colors.white70),
               ),
             ),
           ],

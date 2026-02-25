@@ -11,6 +11,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
+import '../../shared/widgets/gradient_button.dart';
 import '../../data/models/share_card_models.dart';
 import '../../data/content/share_card_templates.dart';
 import '../../data/services/instagram_share_service.dart';
@@ -234,34 +235,16 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
           const SizedBox(height: 20),
 
           // Share button
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton.icon(
-              onPressed: _isSharing ? null : _share,
-              icon: _isSharing
-                  ? const SizedBox(
-                      width: 18,
-                      height: 18,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : const Icon(Icons.share_rounded, size: 20),
-              label: Text(
-                widget.isEn ? 'Share' : 'Paylaş',
-                style: AppTypography.modernAccent(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: accent,
-                foregroundColor: Colors.black87,
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                elevation: 0,
-              ),
+          GradientButton(
+            label: widget.isEn ? 'Share' : 'Paylaş',
+            icon: Icons.share_rounded,
+            onPressed: _isSharing ? null : _share,
+            isLoading: _isSharing,
+            expanded: true,
+            gradient: LinearGradient(
+              colors: [accent, accent.withValues(alpha: 0.85)],
             ),
+            foregroundColor: Colors.black87,
           ).animate().fadeIn(delay: 200.ms, duration: 300.ms),
         ],
       ),

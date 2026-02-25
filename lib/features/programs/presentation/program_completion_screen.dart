@@ -304,9 +304,8 @@ class _CertificateRow extends StatelessWidget {
             children: [
               Text(
                 label,
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 11,
-                  fontWeight: FontWeight.w500,
                   color: isDark
                       ? AppColors.textMuted
                       : AppColors.lightTextMuted,

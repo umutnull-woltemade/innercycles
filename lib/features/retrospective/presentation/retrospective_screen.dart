@@ -383,16 +383,17 @@ class _DaySelectionStep extends StatelessWidget {
                               Flexible(
                                 child: Text(
                                   preset.name(isEn),
-                                  style: TextStyle(
+                                  style: AppTypography.elegantAccent(
                                     fontSize: 13,
-                                    fontWeight: selected
-                                        ? FontWeight.w600
-                                        : FontWeight.normal,
                                     color: selected
                                         ? AppColors.starGold
                                         : (isDark
                                             ? AppColors.textPrimary
                                             : AppColors.lightTextPrimary),
+                                  ).copyWith(
+                                    fontWeight: selected
+                                        ? FontWeight.w600
+                                        : FontWeight.normal,
                                   ),
                                 ),
                               ),

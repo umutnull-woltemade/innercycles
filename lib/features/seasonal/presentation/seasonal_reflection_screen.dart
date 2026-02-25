@@ -18,6 +18,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 
@@ -298,16 +299,12 @@ class _PromptCard extends StatelessWidget {
               const SizedBox(height: 12),
               Align(
                 alignment: Alignment.centerRight,
-                child: TextButton(
+                child: GradientOutlinedButton(
+                  label: isEn ? 'Mark Complete' : 'Tamamlandı',
+                  icon: Icons.check_rounded,
+                  variant: GradientTextVariant.aurora,
+                  fontSize: 13,
                   onPressed: onComplete,
-                  child: Text(
-                    isEn ? 'Mark Complete' : 'Tamamlandı',
-                    style: AppTypography.modernAccent(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.auroraStart,
-                    ),
-                  ),
                 ),
               ),
             ],
@@ -371,7 +368,7 @@ class _AllSeasonsRow extends StatelessWidget {
                     child: Center(
                       child: Text(
                         m.emoji,
-                        style: const TextStyle(fontSize: 22),
+                        style: AppTypography.subtitle(fontSize: 22),
                       ),
                     ),
                   ),

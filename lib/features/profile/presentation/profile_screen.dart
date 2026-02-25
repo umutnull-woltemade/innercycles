@@ -343,12 +343,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         const SizedBox(height: 6),
         TextField(
           controller: controller,
-          style: TextStyle(
+          style: AppTypography.subtitle(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: TextStyle(
+            hintStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
             prefixIcon: Icon(
@@ -614,14 +614,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   ),
                   const SizedBox(height: 16),
                   TextField(
-                    style: TextStyle(
+                    style: AppTypography.subtitle(
                       color: isDark
                           ? AppColors.textPrimary
                           : AppColors.lightTextPrimary,
                     ),
                     decoration: InputDecoration(
                       hintText: L10nService.get('input.search_city', language),
-                      hintStyle: TextStyle(
+                      hintStyle: AppTypography.subtitle(
                         color: isDark
                             ? AppColors.textMuted
                             : AppColors.lightTextMuted,

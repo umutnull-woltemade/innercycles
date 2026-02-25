@@ -134,9 +134,8 @@ class _PhaseRingState extends State<PhaseRing>
                       widget.isEn
                           ? widget.arc!.labelEn()
                           : widget.arc!.labelTr(),
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 11,
-                        fontWeight: FontWeight.w500,
                         color: phaseColor.withValues(alpha: 0.8),
                       ),
                     ),
