@@ -25,6 +25,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../data/services/review_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/share_insight_button.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -248,33 +249,11 @@ class PatternsScreen extends ConsumerWidget {
                             ),
                             const SizedBox(height: 24),
                             // CTA to journal
-                            SizedBox(
-                              width: double.infinity,
-                              child: ElevatedButton.icon(
-                                onPressed: () => context.go(Routes.journal),
-                                icon: const Icon(
-                                  Icons.edit_note_outlined,
-                                  size: 20,
-                                ),
-                                label: Text(
-                                  isEn ? 'Write Entry' : 'Kayıt Yaz',
-                                  style: AppTypography.modernAccent(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColors.starGold,
-                                  foregroundColor: AppColors.deepSpace,
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 14,
-                                  ),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  elevation: 0,
-                                ),
-                              ),
+                            GradientButton.gold(
+                              label: isEn ? 'Write Entry' : 'Kayıt Yaz',
+                              icon: Icons.edit_note_outlined,
+                              onPressed: () => context.go(Routes.journal),
+                              expanded: true,
                             ),
                           ]
                           .animate(interval: 80.ms)

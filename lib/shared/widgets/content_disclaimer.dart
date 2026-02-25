@@ -78,12 +78,11 @@ class ContentDisclaimer extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: TextStyle(
+              style: AppTypography.elegantAccent(
                 fontSize: 11,
                 color: isDark
                     ? Colors.white38
                     : AppColors.textLight.withValues(alpha: 0.7),
-                height: 1.4,
               ),
             ),
           ),

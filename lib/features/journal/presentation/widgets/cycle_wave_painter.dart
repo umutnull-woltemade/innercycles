@@ -78,7 +78,8 @@ class _CycleWaveChartState extends State<CycleWaveChart> {
             ? 'Emotional cycle wave chart'
             : 'Duygusal döngü dalga grafiği',
         image: true,
-        child: CustomPaint(
+        child: RepaintBoundary(
+          child: CustomPaint(
           size: const Size(double.infinity, 240),
           painter: _CycleWavePainterImpl(
             data: widget.areaData,
@@ -88,6 +89,7 @@ class _CycleWaveChartState extends State<CycleWaveChart> {
             progress: widget.animationProgress,
             selectedPoint: _selectedPoint,
           ),
+        ),
         ),
       ),
     );

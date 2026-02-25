@@ -26,6 +26,7 @@ import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -287,13 +288,14 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
               // Question text
               Text(
                     questionText,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    style: AppTypography.modernAccent(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.2,
                       color: isDark
                           ? AppColors.textPrimary
                           : AppColors.lightTextPrimary,
-                      fontWeight: FontWeight.w500,
-                      height: 1.5,
-                    ),
+                    ).copyWith(height: 1.5),
                   )
                   .animate()
                   .fadeIn(duration: 500.ms, delay: 100.ms)
@@ -579,9 +581,10 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
               // Percentage
               Text(
                 '$percentage%',
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: style.color.withValues(alpha: 0.8),
+                style: AppTypography.modernAccent(
+                  fontSize: 20,
                   fontWeight: FontWeight.w300,
+                  color: style.color.withValues(alpha: 0.8),
                 ),
               ),
               const SizedBox(height: AppConstants.spacingLg),
@@ -769,32 +772,21 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
   // ══════════════════════════════════════════════════════════════════════════
 
   Widget _buildShareButton(BuildContext context, bool isDark, bool isEn) {
-    return SizedBox(
-      width: double.infinity,
-      height: 52,
-      child: ElevatedButton.icon(
-        onPressed: () {
-          if (_result == null) return;
-          final style = _result!.attachmentStyle;
-          final pct = (_result!.percentageFor(style) * 100).toStringAsFixed(0);
-          final text = isEn
-              ? 'I discovered my attachment style: ${style.displayNameEn} ($pct%)\n\nUnderstanding your patterns is the first step to growth.\n\nExplore yours with InnerCycles'
-              : 'Bağlanma stilimi keşfettim: ${style.displayNameTr} (%$pct)\n\nKalıplarını anlamak büyümenin ilk adımıdır.\n\nInnerCycles ile keşfet';
-          SharePlus.instance.share(ShareParams(text: text));
-        },
-        icon: const Icon(Icons.share_rounded, size: 20),
-        label: Text(
-          isEn ? 'Share Your Result' : 'Sonucunu Paylaş',
-          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
-        ),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.auroraStart,
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-          ),
-          elevation: 0,
-        ),
+    return GradientButton(
+      label: isEn ? 'Share Your Result' : 'Sonucunu Paylaş',
+      icon: Icons.share_rounded,
+      onPressed: () {
+        if (_result == null) return;
+        final style = _result!.attachmentStyle;
+        final pct = (_result!.percentageFor(style) * 100).toStringAsFixed(0);
+        final text = isEn
+            ? 'I discovered my attachment style: ${style.displayNameEn} ($pct%)\n\nUnderstanding your patterns is the first step to growth.\n\nExplore yours with InnerCycles'
+            : 'Bağlanma stilimi keşfettim: ${style.displayNameTr} (%$pct)\n\nKalıplarını anlamak büyümenin ilk adımıdır.\n\nInnerCycles ile keşfet';
+        SharePlus.instance.share(ShareParams(text: text));
+      },
+      expanded: true,
+      gradient: const LinearGradient(
+        colors: [AppColors.auroraStart, AppColors.auroraEnd],
       ),
     ).animate().fadeIn(duration: 500.ms, delay: 800.ms);
   }

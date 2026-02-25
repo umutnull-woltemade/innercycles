@@ -10,6 +10,7 @@ import '../../../data/services/instagram_share_service.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
 /// Full-screen celebration modal for streak milestones (D3, D7, D14, etc.)
@@ -277,24 +278,10 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                     const SizedBox(width: 12),
                     // Keep Going button
                     Expanded(
-                      child: ElevatedButton(
+                      child: GradientButton.gold(
+                        label: isEn ? 'Keep Going' : 'Devam Et',
                         onPressed: () => Navigator.of(context).pop(),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.starGold,
-                          foregroundColor: Colors.black87,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                          elevation: 0,
-                        ),
-                        child: Text(
-                          isEn ? 'Keep Going' : 'Devam Et',
-                          style: AppTypography.modernAccent(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+                        expanded: true,
                       ),
                     ),
                   ],

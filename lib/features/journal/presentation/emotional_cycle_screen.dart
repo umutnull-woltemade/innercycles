@@ -564,13 +564,13 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
             children: [
               const Icon(Icons.waves, color: AppColors.auroraStart, size: 20),
               const SizedBox(width: 8),
-              Text(
+              GradientText(
                 isEn ? 'Last $displayDays Days' : 'Son $displayDays Gün',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                  fontWeight: FontWeight.w600,
+                variant: GradientTextVariant.aurora,
+                style: AppTypography.modernAccent(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 0.3,
                 ),
               ),
             ],

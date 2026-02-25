@@ -10,6 +10,7 @@ import '../../core/theme/app_typography.dart';
 
 import '../../core/constants/app_constants.dart';
 import '../../core/theme/app_colors.dart';
+import '../../shared/widgets/gradient_button.dart';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TOOL EMPTY STATE
@@ -119,24 +120,12 @@ class ToolEmptyState extends StatelessWidget {
               ],
               const SizedBox(height: AppConstants.spacingXl),
               if (onStartTemplate != null)
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: onStartTemplate,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.auroraStart,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          AppConstants.radiusMd,
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      isEn ? 'Start with Template' : 'Şablonla Başla',
-                      style: AppTypography.modernAccent(fontWeight: FontWeight.w600),
-                    ),
+                GradientButton(
+                  label: isEn ? 'Start with Template' : 'Şablonla Başla',
+                  onPressed: onStartTemplate,
+                  expanded: true,
+                  gradient: const LinearGradient(
+                    colors: [AppColors.auroraStart, AppColors.auroraEnd],
                   ),
                 ),
               if (onSeeExample != null) ...[

@@ -5,6 +5,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_typography.dart';
 
 class BirthdayAvatar extends StatelessWidget {
   final String? photoPath;
@@ -104,7 +105,7 @@ class BirthdayAvatar extends StatelessWidget {
       child: Center(
         child: Text(
           initials,
-          style: TextStyle(
+          style: AppTypography.modernAccent(
             fontSize: size * 0.32,
             fontWeight: FontWeight.w600,
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,

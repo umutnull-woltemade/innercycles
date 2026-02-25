@@ -9,6 +9,7 @@ import '../../../data/services/growth_challenge_service.dart';
 import '../../../data/services/instagram_share_service.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
 /// Full-screen celebration modal for challenge completions.
@@ -225,24 +226,10 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                       ),
                       const SizedBox(width: 12),
                       Expanded(
-                        child: ElevatedButton(
+                        child: GradientButton.gold(
+                          label: isEn ? 'Continue' : 'Devam Et',
                           onPressed: () => Navigator.of(context).pop(),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.celestialGold,
-                            foregroundColor: Colors.black87,
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14),
-                            ),
-                            elevation: 0,
-                          ),
-                          child: Text(
-                            isEn ? 'Continue' : 'Devam Et',
-                            style: AppTypography.modernAccent(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
+                          expanded: true,
                         ),
                       ),
                     ],

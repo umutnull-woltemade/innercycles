@@ -19,6 +19,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/premium_card.dart';
 
 class ActiveProgramScreen extends ConsumerStatefulWidget {
@@ -483,28 +484,18 @@ class _CompleteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 52,
-      child: ElevatedButton(
-        onPressed: isAlreadyDone ? null : onComplete,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: isAlreadyDone
-              ? AppColors.success
-              : AppColors.starGold,
-          foregroundColor: isAlreadyDone ? Colors.white : AppColors.deepSpace,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
-          ),
-          elevation: 0,
-        ),
-        child: Text(
-          isAlreadyDone
-              ? (isEn ? 'Completed' : 'Tamamlandı')
-              : (isEn ? 'Complete Today' : 'Bugünü Tamamla'),
-          style: AppTypography.displayFont.copyWith(fontSize: 16, fontWeight: FontWeight.w600),
-        ),
+    return GradientButton(
+      label: isAlreadyDone
+          ? (isEn ? 'Completed' : 'Tamamlandı')
+          : (isEn ? 'Complete Today' : 'Bugünü Tamamla'),
+      onPressed: isAlreadyDone ? null : onComplete,
+      expanded: true,
+      gradient: LinearGradient(
+        colors: isAlreadyDone
+            ? [AppColors.success, AppColors.success]
+            : [AppColors.starGold, AppColors.celestialGold],
       ),
+      foregroundColor: isAlreadyDone ? Colors.white : AppColors.deepSpace,
     ).animate().fadeIn(delay: 300.ms, duration: 300.ms);
   }
 }

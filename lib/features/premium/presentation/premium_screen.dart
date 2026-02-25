@@ -1129,19 +1129,21 @@ class _PlanCard extends StatelessWidget {
                         children: [
                           Text(
                             tier.displayName,
-                            style: Theme.of(context).textTheme.titleSmall
-                                ?.copyWith(
+                            style: AppTypography.modernAccent(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
                                   color: isSelected
                                       ? AppColors.starGold
                                       : AppColors.textPrimary,
-                                  fontWeight: FontWeight.bold,
                                 ),
                           ),
                           if (tier.savings.isNotEmpty)
                             Text(
                               tier.savings,
-                              style: Theme.of(context).textTheme.bodySmall
-                                  ?.copyWith(color: AppColors.success),
+                              style: AppTypography.subtitle(
+                                  fontSize: 12,
+                                  color: AppColors.success,
+                                ),
                             ),
                         ],
                       ),
@@ -1151,12 +1153,12 @@ class _PlanCard extends StatelessWidget {
                       children: [
                         Text(
                           priceOverride ?? tier.price,
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(
+                          style: AppTypography.modernAccent(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                                 color: isSelected
                                     ? AppColors.starGold
                                     : AppColors.textPrimary,
-                                fontWeight: FontWeight.bold,
                               ),
                         ),
                         // Show monthly equivalent for yearly

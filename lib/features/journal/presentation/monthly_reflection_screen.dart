@@ -17,6 +17,7 @@ import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/content_disclaimer.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../core/theme/app_typography.dart';
@@ -245,28 +246,12 @@ class _MonthlyReflectionScreenState
                       ),
                     ),
                     const SizedBox(height: 12),
-                    ElevatedButton(
+                    GradientButton.gold(
+                      label: isEn ? 'See Full Report' : 'Raporun Tamamını Gör',
                       onPressed: () => showContextualPaywall(
                         context,
                         ref,
                         paywallContext: PaywallContext.monthlyReport,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.starGold,
-                        foregroundColor: Colors.black,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 24,
-                          vertical: 10,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            AppConstants.radiusMd,
-                          ),
-                        ),
-                      ),
-                      child: Text(
-                        isEn ? 'See Full Report' : 'Raporun Tamamını Gör',
-                        style: AppTypography.modernAccent(fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
@@ -394,7 +379,9 @@ class _MonthlyReflectionScreenState
                 isEn
                     ? '${summary.totalEntries} entries this month'
                     : 'Bu ay ${summary.totalEntries} kayıt',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                style: AppTypography.modernAccent(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
                   color: isDark
                       ? AppColors.textPrimary
                       : AppColors.lightTextPrimary,

@@ -285,11 +285,10 @@ class _NavTab extends StatelessWidget {
                     color: color,
                     letterSpacing: 0.2,
                   )
-                : TextStyle(
+                : AppTypography.elegantAccent(
                     fontSize: 10,
                     fontWeight: FontWeight.w400,
                     color: color,
-                    height: 1,
                   ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,

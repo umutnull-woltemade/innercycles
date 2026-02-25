@@ -19,6 +19,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
@@ -593,9 +594,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         GradientText(
           isEn ? 'Milestones' : 'Kilometre Taşları',
           variant: GradientTextVariant.gold,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w600,
-          ),
+          style: AppTypography.modernAccent(fontSize: 15, fontWeight: FontWeight.w700, letterSpacing: 0.3),
         ),
         const SizedBox(height: AppConstants.spacingMd),
         GridView.builder(
@@ -877,9 +876,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         GradientText(
           isEn ? 'Explore Growth Tools' : 'Büyüme Araçlarını Keşfet',
           variant: GradientTextVariant.aurora,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w600,
-          ),
+          style: AppTypography.modernAccent(fontSize: 15, fontWeight: FontWeight.w700, letterSpacing: 0.3),
         ),
         const SizedBox(height: AppConstants.spacingMd),
         GridView.builder(
@@ -1009,9 +1006,7 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           GradientText(
             isEn ? 'This Month' : 'Bu Ay',
             variant: GradientTextVariant.gold,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w600,
-            ),
+            style: AppTypography.modernAccent(fontSize: 15, fontWeight: FontWeight.w700, letterSpacing: 0.3),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           _buildSummaryRow(
@@ -1116,25 +1111,11 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
     bool isDark,
     bool isEn,
   ) {
-    return SizedBox(
-      width: double.infinity,
-      height: 52,
-      child: ElevatedButton.icon(
-        onPressed: () => _shareProgress(score, streak, totalEntries, isEn),
-        icon: const Icon(Icons.share, size: 20),
-        label: Text(
-          isEn ? 'Share Your Progress' : 'İlerlemeni Paylaş',
-          style: AppTypography.displayFont.copyWith(fontSize: 16, fontWeight: FontWeight.w600),
-        ),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.starGold,
-          foregroundColor: AppColors.deepSpace,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-          ),
-          elevation: 0,
-        ),
-      ),
+    return GradientButton.gold(
+      label: isEn ? 'Share Your Progress' : 'İlerlemeni Paylaş',
+      icon: Icons.share,
+      onPressed: () => _shareProgress(score, streak, totalEntries, isEn),
+      expanded: true,
     );
   }
 

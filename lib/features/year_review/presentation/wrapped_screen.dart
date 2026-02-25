@@ -25,6 +25,7 @@ import '../../../data/services/premium_service.dart';
 import '../../../features/premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
 // ============================================================================
@@ -1121,43 +1122,30 @@ class _ClosingCard extends StatelessWidget {
           ).animate().fadeIn(delay: 300.ms, duration: 500.ms),
           const Spacer(flex: 2),
           // Share button
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton.icon(
-              onPressed: () {
-                HapticFeedback.selectionClick();
-                final moodStr = data.averageMood.toStringAsFixed(1);
-                final shareText = isEn
-                    ? 'My ${data.year} InnerCycles Wrapped\n\n'
-                      '${data.totalEntries} journal entries across ${data.totalJournalingDays} days\n'
-                      'Average mood: $moodStr/5\n'
-                      'Growth score: ${data.growthScore}%\n'
-                      'Best streak: ${data.streakBest} days\n'
-                      '${data.breakthroughCount} breakthrough moments\n\n'
-                      'Discover your inner patterns with InnerCycles.'
-                    : '${data.year} InnerCycles Wrapped\'ım\n\n'
-                      '${data.totalJournalingDays} günde ${data.totalEntries} günlük kaydı\n'
-                      'Ortalama ruh hali: $moodStr/5\n'
-                      'Gelişim puanı: ${data.growthScore}%\n'
-                      'En iyi seri: ${data.streakBest} gün\n'
-                      '${data.breakthroughCount} atılım anı\n\n'
-                      'InnerCycles ile iç örüntülerini keşfet.';
-                SharePlus.instance.share(ShareParams(text: shareText));
-              },
-              icon: const Icon(Icons.share_rounded, size: 18),
-              label: Text(
-                isEn ? 'Share Your Wrapped' : 'Wrapped\'ını Paylaş',
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.starGold,
-                foregroundColor: AppColors.deepSpace,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                elevation: 0,
-              ),
-            ),
+          GradientButton.gold(
+            label: isEn ? 'Share Your Wrapped' : 'Wrapped\'ını Paylaş',
+            icon: Icons.share_rounded,
+            onPressed: () {
+              HapticFeedback.selectionClick();
+              final moodStr = data.averageMood.toStringAsFixed(1);
+              final shareText = isEn
+                  ? 'My ${data.year} InnerCycles Wrapped\n\n'
+                    '${data.totalEntries} journal entries across ${data.totalJournalingDays} days\n'
+                    'Average mood: $moodStr/5\n'
+                    'Growth score: ${data.growthScore}%\n'
+                    'Best streak: ${data.streakBest} days\n'
+                    '${data.breakthroughCount} breakthrough moments\n\n'
+                    'Discover your inner patterns with InnerCycles.'
+                  : '${data.year} InnerCycles Wrapped\'ım\n\n'
+                    '${data.totalJournalingDays} günde ${data.totalEntries} günlük kaydı\n'
+                    'Ortalama ruh hali: $moodStr/5\n'
+                    'Gelişim puanı: ${data.growthScore}%\n'
+                    'En iyi seri: ${data.streakBest} gün\n'
+                    '${data.breakthroughCount} atılım anı\n\n'
+                    'InnerCycles ile iç örüntülerini keşfet.';
+              SharePlus.instance.share(ShareParams(text: shareText));
+            },
+            expanded: true,
           ).animate().fadeIn(delay: 600.ms, duration: 500.ms).slideY(
             begin: 0.3,
             end: 0,
