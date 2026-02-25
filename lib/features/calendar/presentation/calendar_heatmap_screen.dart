@@ -316,7 +316,7 @@ class _StatsRow extends StatelessWidget {
           accent: true,
         ),
       ],
-    ).animate().fadeIn(duration: 300.ms);
+    ).animate().fadeIn(duration: 300.ms, delay: 80.ms);
   }
 }
 
@@ -656,7 +656,7 @@ class _CalendarGrid extends StatelessWidget {
           }),
         ],
       ),
-    ).animate().fadeIn(duration: 400.ms);
+    ).animate().fadeIn(duration: 400.ms, delay: 160.ms);
   }
 
   Widget _dot(Color color) {
@@ -857,7 +857,7 @@ class _DayDetail extends StatelessWidget {
           _buildAddLifeEventButton(),
         ],
       ),
-    ).animate().fadeIn(duration: 200.ms);
+    ).animate().fadeIn(duration: 200.ms, delay: 240.ms);
   }
 
   Widget _buildDateHeader() {
