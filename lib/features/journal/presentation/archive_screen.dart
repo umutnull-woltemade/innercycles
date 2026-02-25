@@ -218,12 +218,12 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
             if (mounted) setState(() => _searchQuery = v);
           });
         },
-        style: TextStyle(
+        style: AppTypography.subtitle(
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
           hintText: isEn ? 'Search notes...' : 'Notlarda ara...',
-          hintStyle: TextStyle(
+          hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
           prefixIcon: Icon(

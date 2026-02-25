@@ -553,7 +553,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                           hintText: isEn
                                               ? 'Add tag...'
                                               : 'Etiket ekle...',
-                                          hintStyle: TextStyle(
+                                          hintStyle: AppTypography.subtitle(
                                             color: isDark
                                                 ? Colors.white24
                                                 : Colors.black.withValues(alpha: 0.2),
@@ -1222,7 +1222,7 @@ class _ReminderForm extends StatelessWidget {
               hintText: isEn
                   ? 'Custom message (optional)'
                   : '\u00d6zel mesaj (iste\u011fe ba\u011fl\u0131)',
-              hintStyle: TextStyle(color: isDark ? Colors.white24 : Colors.black.withValues(alpha: 0.2)),
+              hintStyle: AppTypography.subtitle(color: isDark ? Colors.white24 : Colors.black.withValues(alpha: 0.2)),
               isDense: true,
               filled: true,
               fillColor:

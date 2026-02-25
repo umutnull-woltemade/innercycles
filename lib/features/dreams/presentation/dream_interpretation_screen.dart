@@ -2329,7 +2329,7 @@ ${_getPersonalAdvice(sign)}''';
                     },
                     child: TextField(
                       controller: _dreamController,
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         color: isDark
                             ? AppColors.textPrimary
                             : AppColors.lightTextPrimary,
@@ -2342,7 +2342,7 @@ ${_getPersonalAdvice(sign)}''';
                           'dreams.input_placeholder',
                           ref.read(languageProvider),
                         ),
-                        hintStyle: TextStyle(
+                        hintStyle: AppTypography.subtitle(
                           color: isDark
                               ? AppColors.textSecondary.withValues(alpha: 0.6)
                               : AppColors.lightTextSecondary.withValues(
@@ -2646,7 +2646,7 @@ class _DreamSymbolsSheet extends ConsumerWidget {
                         children: [
                           Text(
                             symbol['emoji'] ?? '',
-                            style: const TextStyle(fontSize: 28),
+                            style: AppTypography.subtitle(fontSize: 28),
                           ),
                           const SizedBox(width: 10),
                           Expanded(

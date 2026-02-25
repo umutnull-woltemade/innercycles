@@ -12,6 +12,7 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../../../data/models/journal_entry.dart';
 import '../../../../data/services/emotional_cycle_service.dart';
 
@@ -334,7 +335,7 @@ class _CycleWavePainterImpl extends CustomPainter {
       final labelPainter = TextPainter(
         text: TextSpan(
           text: '$rating',
-          style: TextStyle(
+          style: AppTypography.modernAccent(
             color: (isDark ? Colors.white : Colors.black).withValues(
               alpha: 0.3,
             ),
@@ -427,7 +428,7 @@ class _CycleWavePainterImpl extends CustomPainter {
     final textPainter = TextPainter(
       text: TextSpan(
         text: text,
-        style: TextStyle(
+        style: AppTypography.modernAccent(
           color: isDark ? Colors.white : Colors.black87,
           fontSize: 11,
           fontWeight: FontWeight.w600,

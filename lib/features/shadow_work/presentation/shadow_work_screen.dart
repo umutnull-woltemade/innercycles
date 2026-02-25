@@ -19,7 +19,6 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/shadow_work_entry.dart';
 import '../../../data/content/shadow_prompts_content.dart';
 import '../../../data/providers/app_providers.dart';
-import 'package:go_router/go_router.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/glass_dialog.dart';
@@ -183,6 +182,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
           ),
         ),
       ),
+    ),
     );
   }
 
@@ -996,8 +996,25 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             );
           }),
         ],
-      ),
+      ));
+  }
+
+  void _showDiscardDialog() async {
+    final language = ref.read(languageProvider);
+    final isEn = language == AppLanguage.en;
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: isEn ? 'Discard Changes?' : 'De\u{011F}i\u{015F}iklikleri At?',
+      message: isEn
+          ? 'You have unsaved text. Are you sure you want to go back?'
+          : 'Kaydedilmemi\u{015F} metniniz var. Geri d\u{00F6}nmek istedi\u{011F}inizden emin misiniz?',
+      cancelLabel: isEn ? 'Cancel' : '\u{0130}ptal',
+      confirmLabel: isEn ? 'Discard' : 'At',
+      isDestructive: true,
     );
+    if (confirmed == true && mounted) {
+      Navigator.of(context).pop();
+    }
   }
 
   // ═══════════════════════════════════════════════════════════════════════

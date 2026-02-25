@@ -645,7 +645,7 @@ class _StatCard extends StatelessWidget {
           child: Column(
             children: [
               if (emoji != null)
-                Text(emoji!, style: const TextStyle(fontSize: 22))
+                Text(emoji!, style: AppTypography.subtitle(fontSize: 22))
               else
                 Icon(icon, size: 22, color: iconColor),
               const SizedBox(height: 6),
@@ -1075,7 +1075,7 @@ class _FocusPulseRow extends ConsumerWidget {
                                     ),
                                     Text(
                                       emoji,
-                                      style: const TextStyle(fontSize: 20),
+                                      style: AppTypography.subtitle(fontSize: 20),
                                     ),
                                   ],
                                 ),

@@ -174,7 +174,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                           ),
                           decoration: InputDecoration(
                             hintText: isEn ? 'Search notes...' : 'Notlarda ara...',
-                            hintStyle: TextStyle(
+                            hintStyle: AppTypography.subtitle(
                               color: isDark ? Colors.white30 : Colors.black26,
                             ),
                             prefixIcon: Icon(

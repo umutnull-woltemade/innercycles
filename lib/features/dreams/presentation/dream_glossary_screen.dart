@@ -387,7 +387,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
               'screens.dream_glossary.search_hint',
               language,
             ),
-            hintStyle: TextStyle(
+            hintStyle: AppTypography.subtitle(
               color: AppColors.textSecondary.withValues(alpha: 0.6),
             ),
             prefixIcon: const Icon(Icons.search, color: CosmicPalette.starGold),

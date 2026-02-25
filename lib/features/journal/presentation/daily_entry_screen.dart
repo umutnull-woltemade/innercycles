@@ -688,7 +688,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 controller: _noteController,
                 maxLines: 4,
                 maxLength: 2000,
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   color: isDark
                       ? AppColors.textPrimary
                       : AppColors.lightTextPrimary,
