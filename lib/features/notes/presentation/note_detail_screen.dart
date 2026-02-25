@@ -456,7 +456,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                             controller: _contentController,
                             maxLines: null,
                             minLines: 8,
-                            style: TextStyle(
+                            style: AppTypography.subtitle(
                               fontSize: 16,
                               color: isDark
                                   ? Colors.white.withValues(alpha: 0.9)
@@ -467,7 +467,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                               hintText: isEn
                                   ? 'Write your thoughts...'
                                   : 'D\u00fc\u015f\u00fcncelerini yaz...',
-                              hintStyle: TextStyle(
+                              hintStyle: AppTypography.subtitle(
                                 fontSize: 16,
                                 color: isDark
                                     ? Colors.white.withValues(alpha: 0.2)
@@ -543,7 +543,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                     Expanded(
                                       child: TextField(
                                         controller: _tagController,
-                                        style: TextStyle(
+                                        style: AppTypography.subtitle(
                                           fontSize: 14,
                                           color: isDark
                                               ? Colors.white
@@ -618,7 +618,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                 children: [
                                   Text(
                                     _existingNote!.moodAtCreation!,
-                                    style: const TextStyle(fontSize: 18),
+                                    style: AppTypography.subtitle(fontSize: 18),
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
@@ -1214,7 +1214,7 @@ class _ReminderForm extends StatelessWidget {
           // Custom message
           TextField(
             controller: messageController,
-            style: TextStyle(
+            style: AppTypography.subtitle(
               fontSize: 14,
               color: isDark ? Colors.white : Colors.black87,
             ),

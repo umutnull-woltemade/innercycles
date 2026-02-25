@@ -19,6 +19,7 @@ import '../../../data/providers/app_providers.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 
@@ -43,6 +44,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   String? _imagePath;
   bool _isSaving = false;
   bool _isEditing = false;
+  bool _hasChanges = false;
   LifeEvent? _existingEvent;
 
   @override
@@ -56,6 +58,12 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
       _isEditing = true;
       _loadExistingEvent();
     }
+    _titleController.addListener(_markChanged);
+    _noteController.addListener(_markChanged);
+  }
+
+  void _markChanged() {
+    if (!_hasChanges) setState(() => _hasChanges = true);
   }
 
   void _loadExistingEvent() {
@@ -82,6 +90,8 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
 
   @override
   void dispose() {
+    _titleController.removeListener(_markChanged);
+    _noteController.removeListener(_markChanged);
     _titleController.dispose();
     _noteController.dispose();
     super.dispose();
@@ -93,7 +103,13 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isEn = language == AppLanguage.en;
 
-    return Scaffold(
+    return PopScope(
+      canPop: !_hasChanges,
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
+        _showDiscardDialog();
+      },
+      child: Scaffold(
       body: CosmicBackground(
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(
@@ -149,7 +165,26 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
           ],
         ),
       ),
+      ),
     );
+  }
+
+  void _showDiscardDialog() async {
+    final language = ref.read(languageProvider);
+    final isEn = language == AppLanguage.en;
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: isEn ? 'Discard Changes?' : 'De\u{011F}i\u{015F}iklikleri At?',
+      message: isEn
+          ? 'You have unsaved changes. Are you sure you want to go back?'
+          : 'Kaydedilmemi\u{015F} de\u{011F}i\u{015F}iklikleriniz var. Geri d\u{00F6}nmek istedi\u{011F}inizden emin misiniz?',
+      cancelLabel: isEn ? 'Cancel' : '\u{0130}ptal',
+      confirmLabel: isEn ? 'Discard' : 'At',
+      isDestructive: true,
+    );
+    if (confirmed == true && mounted) {
+      if (context.canPop()) context.pop();
+    }
   }
 
   // ═════════════════════════════════════════════════════════════════════════
@@ -346,7 +381,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
         TextField(
           controller: _titleController,
           maxLength: 100,
-          style: TextStyle(
+          style: AppTypography.subtitle(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontSize: 15,
           ),
@@ -354,7 +389,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             hintText: isEn
                 ? 'Describe your life event...'
                 : 'Yaşam olayınızı tanımlayın...',
-            hintStyle: TextStyle(
+            hintStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
             filled: true,
@@ -612,7 +647,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
           controller: _noteController,
           maxLines: 4,
           maxLength: 500,
-          style: TextStyle(
+          style: AppTypography.subtitle(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontSize: 14,
           ),
@@ -620,7 +655,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             hintText: isEn
                 ? 'How did this event shape you?'
                 : 'Bu olay sizi nasıl şekillendirdi?',
-            hintStyle: TextStyle(
+            hintStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
             filled: true,
@@ -741,7 +776,10 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
     final savedFile = await File(picked.path).copy(
       '${appDir.path}/$fileName',
     );
-    setState(() => _imagePath = savedFile.path);
+    setState(() {
+      _imagePath = savedFile.path;
+      _hasChanges = true;
+    });
   }
 
   // ═════════════════════════════════════════════════════════════════════════
@@ -834,7 +872,10 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
         );
       }
 
-      if (mounted) context.pop();
+      if (mounted) {
+        _hasChanges = false;
+        context.pop();
+      }
     } finally {
       if (mounted) setState(() => _isSaving = false);
     }

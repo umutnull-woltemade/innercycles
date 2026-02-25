@@ -493,14 +493,14 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
           controller: _noteController,
           onChanged: (_) => setState(() => _hasChanges = true),
           maxLines: 3,
-          style: TextStyle(
+          style: AppTypography.subtitle(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
           decoration: InputDecoration(
             hintText: isEn
                 ? 'Gift ideas, memories...'
                 : 'Hediye fikirleri, an\u{0131}lar...',
-            hintStyle: TextStyle(
+            hintStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
             filled: true,
