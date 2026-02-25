@@ -403,7 +403,7 @@ class MoodTrendsScreen extends ConsumerWidget {
                       child: Center(
                         child: Text(
                           mood?.emoji ?? '·',
-                          style: const TextStyle(fontSize: 18),
+                          style: AppTypography.subtitle(fontSize: 18),
                         ),
                       ),
                     ),

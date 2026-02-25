@@ -204,12 +204,12 @@ class _EmotionalVocabularyScreenState
       child: TextField(
         controller: _searchController,
         onChanged: (v) => setState(() => _searchQuery = v.trim()),
-        style: TextStyle(
+        style: AppTypography.subtitle(
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
           hintText: isEn ? 'Search emotions...' : 'Duygu ara...',
-          hintStyle: TextStyle(
+          hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
           prefixIcon: Icon(

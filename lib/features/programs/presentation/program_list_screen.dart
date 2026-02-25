@@ -287,7 +287,7 @@ class _ProgramCard extends StatelessWidget {
                   child: Center(
                     child: Text(
                       isLocked ? '🔒' : program.emoji,
-                      style: const TextStyle(fontSize: 24),
+                      style: AppTypography.subtitle(fontSize: 24),
                     ),
                   ),
                 ),

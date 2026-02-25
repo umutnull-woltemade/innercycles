@@ -250,7 +250,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                       maxLines: 2,
                       maxLength: 200,
                       onChanged: (_) => _save(),
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         fontSize: 14,
                         color: isDark
                             ? AppColors.textPrimary
@@ -260,11 +260,11 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                         hintText: isEn
                             ? 'Any sleep notes... (optional)'
                             : 'Uyku notları... (opsiyonel)',
-                        hintStyle: TextStyle(
+                        hintStyle: AppTypography.subtitle(
+                          fontSize: 13,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
-                          fontSize: 13,
                         ),
                         contentPadding: const EdgeInsets.all(12),
                         filled: true,
@@ -275,11 +275,11 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide.none,
                         ),
-                        counterStyle: TextStyle(
+                        counterStyle: AppTypography.subtitle(
+                          fontSize: 11,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
-                          fontSize: 11,
                         ),
                       ),
                     ),

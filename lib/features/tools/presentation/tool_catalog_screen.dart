@@ -206,12 +206,12 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
       child: TextField(
         controller: _searchController,
         onChanged: (v) => setState(() => _searchQuery = v.trim().toLowerCase()),
-        style: TextStyle(
+        style: AppTypography.subtitle(
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
           hintText: isEn ? 'Search tools...' : 'Ara\u00e7 ara...',
-          hintStyle: TextStyle(
+          hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
           prefixIcon: Icon(

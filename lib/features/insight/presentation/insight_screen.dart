@@ -395,9 +395,9 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
                 minLines: 1,
                 textInputAction: TextInputAction.send,
                 onSubmitted: (_) => _sendMessage(),
-                style: TextStyle(
-                  color: isDark ? Colors.white : Colors.black87,
+                style: AppTypography.subtitle(
                   fontSize: 15,
+                  color: isDark ? Colors.white : Colors.black87,
                 ),
                 decoration: InputDecoration(
                   hintText: L10nService.get('insight.input_hint', language),

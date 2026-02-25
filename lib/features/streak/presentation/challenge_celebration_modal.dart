@@ -121,7 +121,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                     alignment: Alignment.center,
                     child: Text(
                       challenge.emoji,
-                      style: const TextStyle(fontSize: 48),
+                      style: AppTypography.subtitle(fontSize: 48),
                     ),
                   )
                       .animate()

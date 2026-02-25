@@ -58,17 +58,28 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
 
   bool get _isCreateMode => widget.noteId == null || widget.noteId!.isEmpty;
   bool _isLoaded = false;
+  bool _hasChanges = false;
   int _wordCount = 0;
 
   @override
   void initState() {
     super.initState();
     _contentController.addListener(_updateWordCount);
+    _titleController.addListener(_markChanged);
+    _contentController.addListener(_markChanged);
+  }
+
+  void _markChanged() {
+    if (!_hasChanges && _isLoaded) {
+      setState(() => _hasChanges = true);
+    }
   }
 
   @override
   void dispose() {
     _contentController.removeListener(_updateWordCount);
+    _titleController.removeListener(_markChanged);
+    _contentController.removeListener(_markChanged);
     _titleController.dispose();
     _contentController.dispose();
     _tagController.dispose();
@@ -174,7 +185,10 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
     final tag = _tagController.text.trim();
     if (tag.isNotEmpty && !_tags.contains(tag)) {
       HapticService.buttonPress();
-      setState(() => _tags.add(tag));
+      setState(() {
+        _tags.add(tag);
+        _hasChanges = true;
+      });
       _tagController.clear();
     }
   }
@@ -299,7 +313,13 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
     final isPremium = ref.watch(isPremiumUserProvider);
     final serviceAsync = ref.watch(notesToSelfServiceProvider);
 
-    return Scaffold(
+    return PopScope(
+      canPop: !_hasChanges,
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
+        _showDiscardDialog();
+      },
+      child: Scaffold(
       body: CosmicBackground(
         child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

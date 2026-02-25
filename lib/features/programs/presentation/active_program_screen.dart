@@ -444,19 +444,19 @@ class _ReflectionInput extends StatelessWidget {
         controller: controller,
         maxLines: 4,
         maxLength: 500,
-        style: TextStyle(
+        style: AppTypography.subtitle(
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
           hintText: isEn
               ? 'Write your reflection here (optional)...'
               : 'Yansımanı buraya yaz (opsiyonel)...',
-          hintStyle: TextStyle(
+          hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
           contentPadding: const EdgeInsets.all(16),
           border: InputBorder.none,
-          counterStyle: TextStyle(
+          counterStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
         ),

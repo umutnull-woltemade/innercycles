@@ -346,7 +346,7 @@ class _InfoCard extends StatelessWidget {
           ),
         ],
       ),
-    ).animate().fadeIn(duration: 300.ms);
+    ).animate().fadeIn(duration: 300.ms, delay: 80.ms);
   }
 }
 
@@ -416,7 +416,7 @@ class _EntryCountCard extends StatelessWidget {
           ),
         ],
       ),
-    ).animate().fadeIn(duration: 300.ms);
+    ).animate().fadeIn(duration: 300.ms, delay: 160.ms);
   }
 }
 
@@ -518,7 +518,7 @@ class _LockedEntriesCta extends StatelessWidget {
           ),
         ),
       ),
-    ).animate().fadeIn(duration: 400.ms, delay: 200.ms);
+    ).animate().fadeIn(duration: 400.ms, delay: 240.ms);
   }
 }
 

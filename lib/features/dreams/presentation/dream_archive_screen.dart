@@ -367,12 +367,12 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
       child: TextField(
         controller: _searchController,
         onChanged: _onSearchChanged,
-        style: TextStyle(
+        style: AppTypography.subtitle(
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
           hintText: isEn ? 'Search dreams...' : 'Rüyalarda ara...',
-          hintStyle: TextStyle(
+          hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
           prefixIcon: Icon(

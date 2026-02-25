@@ -358,7 +358,7 @@ class _TodaySection extends StatelessWidget {
               child: TextField(
                 controller: controllers[i],
                 maxLength: 200,
-                style: TextStyle(
+                style: AppTypography.subtitle(
                   fontSize: 14,
                   color: isDark
                       ? AppColors.textPrimary
