@@ -718,10 +718,10 @@ class _NotFoundScreen extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               path,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              style: AppTypography.subtitle(
+                fontSize: 12,
                 color: Colors.white38,
-                fontFamily: 'monospace',
-              ),
+              ).copyWith(fontFamily: 'monospace'),
             ),
             const SizedBox(height: 32),
             TextButton.icon(

@@ -228,7 +228,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 ),
                 child: Text(
                   '${profile.age}',
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  style: AppTypography.modernAccent(
+                    fontSize: 11,
                     color: AppColors.starGold,
                     fontWeight: FontWeight.w600,
                   ),

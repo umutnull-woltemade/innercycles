@@ -116,13 +116,13 @@ class GlassSliverAppBar extends StatelessWidget {
           ? GradientText(
               title,
               variant: gradientVariant,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              style: AppTypography.displayFont.copyWith(
                 fontWeight: FontWeight.w600,
               ),
             )
           : Text(
               title,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              style: AppTypography.displayFont.copyWith(
                 color: effectiveTitleColor,
                 fontWeight: FontWeight.w600,
               ),

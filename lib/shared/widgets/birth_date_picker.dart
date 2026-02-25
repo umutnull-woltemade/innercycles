@@ -353,7 +353,7 @@ class _WheelPicker extends StatelessWidget {
           padding: const EdgeInsets.only(top: 8),
           child: Text(
             label,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            style: AppTypography.elegantAccent(
               color: AppColors.textMuted,
               letterSpacing: 1,
             ),
@@ -391,8 +391,8 @@ class _WheelPicker extends StatelessWidget {
                     return Center(
                       child: Text(
                         itemBuilder(index),
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(
+                        style: AppTypography.modernAccent(
+                              fontSize: 16,
                               color: isSelected
                                   ? AppColors.textPrimary
                                   : AppColors.textMuted,
