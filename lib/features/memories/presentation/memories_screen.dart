@@ -23,6 +23,7 @@ import '../../../shared/widgets/ecosystem_widgets.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/premium_empty_state.dart';
 
 class MemoriesScreen extends ConsumerStatefulWidget {
   const MemoriesScreen({super.key});
@@ -206,21 +207,15 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                     // Month entries
                     if (monthEntries.isEmpty)
                       SliverToBoxAdapter(
-                        child: Padding(
-                          padding: const EdgeInsets.all(AppConstants.spacingXl),
-                          child: Center(
-                            child: Text(
-                              isEn
-                                  ? 'No entries this month'
-                                  : 'Bu ayda kay\u0131t yok',
-                              style: AppTypography.decorativeScript(
-                                fontSize: 14,
-                                color: isDark
-                                    ? AppColors.textMuted
-                                    : AppColors.lightTextMuted,
-                              ),
-                            ),
-                          ),
+                        child: PremiumEmptyState(
+                          icon: Icons.auto_stories_rounded,
+                          title: isEn
+                              ? 'No entries this month'
+                              : 'Bu ayda kayıt yok',
+                          description: isEn
+                              ? 'Your memories from this period will appear here'
+                              : 'Bu döneme ait anıların burada görünecek',
+                          gradientVariant: GradientTextVariant.gold,
                         ),
                       )
                     else

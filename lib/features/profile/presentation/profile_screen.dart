@@ -336,7 +336,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       children: [
         Text(
           label,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+          style: AppTypography.subtitle(
+            fontSize: 12,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
         ),
@@ -389,7 +390,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       children: [
         Text(
           label,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+          style: AppTypography.subtitle(
+            fontSize: 12,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
         ),
@@ -419,7 +421,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   Expanded(
                     child: Text(
                       value,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      style: AppTypography.subtitle(
+                        fontSize: 14,
                         color: isDark
                             ? AppColors.textPrimary
                             : AppColors.lightTextPrimary,
@@ -475,7 +478,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             isEn
                 ? 'Explore your patterns, track your growth, and discover insights from your journal entries.'
                 : 'Örüntülerini keşfet, gelişimini takip et ve günlük kayıtlarından içgörüler elde et.',
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            style: AppTypography.subtitle(
+              fontSize: 12,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,

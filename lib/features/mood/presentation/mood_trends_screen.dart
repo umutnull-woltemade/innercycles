@@ -720,7 +720,8 @@ class MoodTrendsScreen extends ConsumerWidget {
                   children: [
                     Text(
                       isEn ? titleEn : titleTr,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      style: AppTypography.modernAccent(
+                        fontSize: 14,
                         color: isDark
                             ? AppColors.textPrimary
                             : AppColors.lightTextPrimary,

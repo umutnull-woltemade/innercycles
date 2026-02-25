@@ -228,8 +228,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     const SizedBox(height: 24),
                     Text(
                       isEn ? 'Your Cycles Are Forming' : 'Döngülerin Oluşuyor',
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(
+                      style: AppTypography.modernAccent(
+                            fontSize: 24,
                             color: isDark
                                 ? AppColors.textPrimary
                                 : AppColors.lightTextPrimary,
@@ -242,7 +242,8 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                       isEn
                           ? 'Pattern detection requires a minimum of 7 entries across 5 days. You have $current so far.'
                           : 'Kalıp tespiti en az 7 kayıt ve 5 gün gerektirir. Şu ana kadar $current kaydın var.',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      style: AppTypography.subtitle(
+                        fontSize: 16,
                         color: isDark
                             ? AppColors.textSecondary
                             : AppColors.lightTextSecondary,

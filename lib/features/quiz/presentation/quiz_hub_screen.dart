@@ -240,7 +240,8 @@ class _QuizCard extends StatelessWidget {
                     const SizedBox(height: AppConstants.spacingXs),
                     Text(
                       isEn ? quiz.description : quiz.descriptionTr,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      style: AppTypography.subtitle(
+                        fontSize: 12,
                         color: isDark
                             ? AppColors.textSecondary
                             : AppColors.lightTextSecondary,

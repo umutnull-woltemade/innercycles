@@ -229,7 +229,8 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             isEn
                 ? 'Shadow work helps you understand hidden patterns that shape your emotions and behaviors.'
                 : 'Gölge çalışması, duygularını ve davranışlarını şekillendiren gizli kalıpları anlamanı sağlar.',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            style: AppTypography.subtitle(
+              fontSize: 14,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
@@ -283,7 +284,8 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
         ),
         Text(
           label,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+          style: AppTypography.subtitle(
+            fontSize: 12,
             color: isDark
                 ? AppColors.textSecondary
                 : AppColors.lightTextSecondary,
@@ -354,12 +356,14 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                     ),
                     child: Text(
                       isEn ? archetype.displayNameEn : archetype.displayNameTr,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      style: AppTypography.subtitle(
+                        fontSize: 12,
                         color: isSelected
                             ? _shadowPurple
                             : (isDark
                                   ? AppColors.textSecondary
                                   : AppColors.lightTextSecondary),
+                      ).copyWith(
                         fontWeight: isSelected
                             ? FontWeight.w600
                             : FontWeight.normal,
@@ -376,13 +380,13 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             isEn
                 ? _selectedArchetype.descriptionEn
                 : _selectedArchetype.descriptionTr,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            style: AppTypography.subtitle(
+              fontSize: 12,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
-              fontStyle: FontStyle.italic,
               height: 1.4,
-            ),
+            ).copyWith(fontStyle: FontStyle.italic),
           ),
         ],
       ),
@@ -446,11 +450,10 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                   isEn
                       ? prompt.depth.displayNameEn
                       : prompt.depth.displayNameTr,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: _shadowPurple,
+                  style: AppTypography.subtitle(
                     fontSize: 10,
-                    fontWeight: FontWeight.w600,
-                  ),
+                    color: _shadowPurple,
+                  ).copyWith(fontWeight: FontWeight.w600),
                 ),
               ),
             ],
@@ -548,7 +551,8 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             controller: _responseController,
             maxLines: 8,
             minLines: 4,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            style: AppTypography.subtitle(
+              fontSize: 14,
               color: isDark
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,
@@ -579,7 +583,8 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             isEn
                 ? 'Emotional Intensity: $_intensity/10'
                 : 'Duygusal Yoğunluk: $_intensity/10',
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            style: AppTypography.subtitle(
+              fontSize: 12,
               color: isDark
                   ? AppColors.textSecondary
                   : AppColors.lightTextSecondary,
@@ -638,12 +643,14 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                         isEn
                             ? 'This was a breakthrough moment'
                             : 'Bu bir içgörü anıydı',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        style: AppTypography.subtitle(
+                          fontSize: 12,
                           color: _breakthroughMoment
                               ? _shadowGold
                               : (isDark
                                     ? AppColors.textSecondary
                                     : AppColors.lightTextSecondary),
+                        ).copyWith(
                           fontWeight: _breakthroughMoment
                               ? FontWeight.w600
                               : FontWeight.normal,
@@ -804,11 +811,11 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                         isEn
                             ? archetype.displayNameEn
                             : archetype.displayNameTr,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        style: AppTypography.subtitle(
+                          fontSize: 11,
                           color: isDark
                               ? AppColors.textSecondary
                               : AppColors.lightTextSecondary,
-                          fontSize: 11,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -834,11 +841,10 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                       width: 24,
                       child: Text(
                         '$count',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: _shadowPurple,
-                          fontWeight: FontWeight.w600,
+                        style: AppTypography.subtitle(
                           fontSize: 11,
-                        ),
+                          color: _shadowPurple,
+                        ).copyWith(fontWeight: FontWeight.w600),
                         textAlign: TextAlign.end,
                       ),
                     ),
@@ -855,11 +861,10 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               isEn
                   ? '${(shadowService.getUnexploredArchetypes() as List).length} archetypes still unexplored'
                   : '${(shadowService.getUnexploredArchetypes() as List).length} arketip henüz keşfedilmedi',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: _shadowGold.withValues(alpha: 0.8),
-                fontStyle: FontStyle.italic,
+              style: AppTypography.subtitle(
                 fontSize: 11,
-              ),
+                color: _shadowGold.withValues(alpha: 0.8),
+              ).copyWith(fontStyle: FontStyle.italic),
             ),
           ],
         ],
@@ -944,11 +949,10 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                                 isEn
                                     ? entry.archetype.displayNameEn
                                     : entry.archetype.displayNameTr,
-                                style: Theme.of(context).textTheme.bodySmall
-                                    ?.copyWith(
+                                style: AppTypography.subtitle(
+                                      fontSize: 12,
                                       color: _shadowPurple,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                    ).copyWith(fontWeight: FontWeight.w600),
                               ),
                             ),
                             if (entry.breakthroughMoment)
@@ -965,12 +969,11 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                             const SizedBox(width: 4),
                             Text(
                               dateLabel,
-                              style: Theme.of(context).textTheme.bodySmall
-                                  ?.copyWith(
+                              style: AppTypography.subtitle(
+                                    fontSize: 10,
                                     color: isDark
                                         ? AppColors.textSecondary
                                         : AppColors.lightTextSecondary,
-                                    fontSize: 10,
                                   ),
                             ),
                           ],
@@ -980,8 +983,8 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                           entry.response,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(
+                          style: AppTypography.subtitle(
+                                fontSize: 12,
                                 color: isDark
                                     ? AppColors.textSecondary
                                     : AppColors.lightTextSecondary,

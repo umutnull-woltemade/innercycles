@@ -177,7 +177,8 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
               isEn
                   ? 'Log your period to see how your emotional patterns align with your cycle.'
                   : 'Duygusal kalıplarının döngünle nasıl uyumlandığını görmek için adetini kaydet.',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              style: AppTypography.subtitle(
+                fontSize: 14,
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,
@@ -283,7 +284,8 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
             if (phase != null)
               Text(
                 isEn ? phase.descriptionEn : phase.descriptionTr,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                style: AppTypography.subtitle(
+                  fontSize: 12,
                   color: isDark
                       ? AppColors.textSecondary
                       : AppColors.lightTextSecondary,
@@ -455,13 +457,13 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
           const SizedBox(height: AppConstants.spacingMd),
           Text(
             prompt,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            style: AppTypography.subtitle(
+              fontSize: 14,
               color: isDark
                   ? AppColors.textPrimary
                   : AppColors.lightTextPrimary,
-              fontStyle: FontStyle.italic,
               height: 1.5,
-            ),
+            ).copyWith(fontStyle: FontStyle.italic),
           ),
         ],
       ),
@@ -614,7 +616,8 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
               const SizedBox(height: AppConstants.spacingMd),
               Text(
                 insight,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                style: AppTypography.subtitle(
+                  fontSize: 14,
                   color: isDark
                       ? AppColors.textPrimary
                       : AppColors.lightTextPrimary,

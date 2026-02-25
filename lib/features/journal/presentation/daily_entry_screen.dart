@@ -349,7 +349,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                   ),
                   Text(
                     dateStr,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    style: AppTypography.subtitle(
+                      fontSize: 12,
                       color: isDark
                           ? AppColors.textMuted
                           : AppColors.lightTextMuted,

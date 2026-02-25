@@ -163,9 +163,10 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
             isEn
                 ? 'Question ${_currentPage + 1} of $_totalPages'
                 : 'Soru ${_currentPage + 1} / $_totalPages',
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+            style: AppTypography.subtitle(
+              fontSize: 14,
+              color: AppColors.textSecondary,
+            ),
           ),
         ),
         const SizedBox(height: AppConstants.spacingSm),
@@ -415,7 +416,8 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
               Expanded(
                 child: Text(
                   optionText,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  style: AppTypography.subtitle(
+                    fontSize: 14,
                     color: isDark
                         ? AppColors.textPrimary
                         : AppColors.lightTextPrimary,
@@ -683,7 +685,8 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
             Expanded(
               child: Text(
                 isEn ? dim.nameEn : dim.nameTr,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                style: AppTypography.subtitle(
+                  fontSize: 14,
                   color: isDark
                       ? AppColors.textPrimary
                       : AppColors.lightTextPrimary,
@@ -692,10 +695,10 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
             ),
             Text(
               percentText,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              style: AppTypography.subtitle(
+                fontSize: 14,
                 color: dim.color,
-                fontWeight: FontWeight.w600,
-              ),
+              ).copyWith(fontWeight: FontWeight.w600),
             ),
           ],
         ),
@@ -761,7 +764,8 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
                     Expanded(
                       child: Text(
                         entry.value,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        style: AppTypography.subtitle(
+                          fontSize: 14,
                           color: isDark
                               ? AppColors.textSecondary
                               : AppColors.lightTextSecondary,

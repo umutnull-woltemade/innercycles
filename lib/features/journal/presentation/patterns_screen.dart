@@ -203,8 +203,8 @@ class PatternsScreen extends ConsumerWidget {
                               isEn
                                   ? 'You have $current entries. $needed more to go!'
                                   : '$current kaydınız var. $needed tane daha!',
-                              style: Theme.of(context).textTheme.bodyLarge
-                                  ?.copyWith(
+                              style: AppTypography.subtitle(
+                                    fontSize: 16,
                                     color: isDark
                                         ? AppColors.textSecondary
                                         : AppColors.lightTextSecondary,
@@ -1211,7 +1211,8 @@ class _ShadowWorkSuggestion extends StatelessWidget {
                         isEn
                             ? 'Your patterns suggest exploring: ${top.displayNameEn}'
                             : 'Kalıpların keşfetmeni öneriyor: ${top.displayNameTr}',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        style: AppTypography.modernAccent(
+                          fontSize: 14,
                           color: isDark
                               ? AppColors.textPrimary
                               : AppColors.lightTextPrimary,
@@ -1221,11 +1222,11 @@ class _ShadowWorkSuggestion extends StatelessWidget {
                       const SizedBox(height: 2),
                       Text(
                         isEn ? top.descriptionEn : top.descriptionTr,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        style: AppTypography.subtitle(
+                          fontSize: 11,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
-                          fontSize: 11,
                         ),
                       ),
                     ],

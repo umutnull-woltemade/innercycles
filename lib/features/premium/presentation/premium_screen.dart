@@ -345,7 +345,8 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                     flex: 3,
                     child: Text(
                       row.feature,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      style: AppTypography.subtitle(
+                        fontSize: 12,
                         color: AppColors.textSecondary,
                       ),
                     ),
@@ -355,9 +356,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                     child: Text(
                       row.free,
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.textMuted,
+                      style: AppTypography.subtitle(
                         fontSize: 11,
+                        color: AppColors.textMuted,
                       ),
                     ),
                   ),
@@ -366,14 +367,15 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                     child: Text(
                       row.pro,
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      style: AppTypography.subtitle(
+                        fontSize: 11,
                         color: row.isHighlight
                             ? AppColors.starGold
                             : AppColors.textPrimary,
+                      ).copyWith(
                         fontWeight: row.isHighlight
                             ? FontWeight.w600
                             : FontWeight.normal,
-                        fontSize: 11,
                       ),
                     ),
                   ),
@@ -513,9 +515,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     return Text(
       L10nService.get('premium.risk_reversal', language),
       textAlign: TextAlign.center,
-      style: Theme.of(
-        context,
-      ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted, fontSize: 12),
+      style: AppTypography.subtitle(
+        fontSize: 12,
+        color: AppColors.textMuted,
+      ),
     );
   }
 
@@ -635,8 +638,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       children: [
         Text(
           monthlyLabel,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          style: AppTypography.subtitle(
+            fontSize: 14,
             color: AppColors.textMuted,
+          ).copyWith(
             decoration: TextDecoration.lineThrough,
             decorationColor: AppColors.textMuted,
           ),
@@ -765,9 +770,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           if (premiumState.expiryDate != null)
             Text(
               '${L10nService.get('common.next', language)}: ${_formatDate(premiumState.expiryDate!)}',
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+              style: AppTypography.subtitle(
+                fontSize: 14,
+                color: AppColors.textSecondary,
+              ),
             ),
         ],
       ),
@@ -820,9 +826,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           Expanded(
             child: Text(
               'RevenueCat Paywall',
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.streakOrange),
+              style: AppTypography.subtitle(
+                fontSize: 12,
+                color: AppColors.streakOrange,
+              ),
             ),
           ),
           Switch(
@@ -888,9 +895,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           Text(
             L10nService.get('premium.terms_text', language),
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.textMuted,
+            style: AppTypography.subtitle(
               fontSize: 11,
+              color: AppColors.textMuted,
             ),
           ),
           const SizedBox(height: 8),
@@ -913,9 +920,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                                 'settings.privacy_policy',
                                 language,
                               ),
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.starGold,
+                        style: AppTypography.subtitle(
                           fontSize: 11,
+                          color: AppColors.starGold,
+                        ).copyWith(
                           decoration: TextDecoration.underline,
                           decorationColor: AppColors.starGold,
                         ),
@@ -928,9 +936,9 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
                   '|',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textMuted,
+                  style: AppTypography.subtitle(
                     fontSize: 11,
+                    color: AppColors.textMuted,
                   ),
                 ),
               ),
@@ -950,9 +958,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                                 'settings.terms_of_service',
                                 language,
                               ),
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.starGold,
+                        style: AppTypography.subtitle(
                           fontSize: 11,
+                          color: AppColors.starGold,
+                        ).copyWith(
                           decoration: TextDecoration.underline,
                           decorationColor: AppColors.starGold,
                         ),
@@ -1165,12 +1174,11 @@ class _PlanCard extends StatelessWidget {
                         if (tier == PremiumTier.yearly)
                           Text(
                             tier.monthlyEquivalent,
-                            style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(
+                            style: AppTypography.subtitle(
+                                  fontSize: 11,
                                   color: AppColors.starGold.withValues(
                                     alpha: 0.7,
                                   ),
-                                  fontSize: 11,
                                 ),
                           ),
                       ],

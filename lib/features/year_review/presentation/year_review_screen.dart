@@ -426,7 +426,8 @@ class _HeroCard extends StatelessWidget {
             isEn
                 ? 'Your ${review.year} in Review'
                 : '${review.year} Yılı Değerlendirmesi',
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            style: AppTypography.modernAccent(
+              fontSize: 24,
               color: AppColors.starGold,
               fontWeight: FontWeight.w700,
             ),

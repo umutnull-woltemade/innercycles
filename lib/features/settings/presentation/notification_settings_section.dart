@@ -212,7 +212,8 @@ class _NotificationSettingsSectionState
           Expanded(
             child: Text(
               L10nService.get('common.permission_required', language),
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              style: AppTypography.subtitle(
+                fontSize: 12,
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,
@@ -275,7 +276,8 @@ class _NotificationSettingsSectionState
                 ),
                 Text(
                   subtitle,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  style: AppTypography.subtitle(
+                    fontSize: 12,
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextSecondary,

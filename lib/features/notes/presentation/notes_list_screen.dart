@@ -23,6 +23,7 @@ import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/premium_empty_state.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_dialog.dart';
 
@@ -532,27 +533,14 @@ class _EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     if (hasNotes) {
       // Filtered empty
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              CupertinoIcons.search,
-              size: 48,
-              color: isDark ? Colors.white.withValues(alpha: 0.2) : Colors.black12,
-            ),
-            const SizedBox(height: 12),
-            Text(
-              isEn ? 'No matching notes' : 'E\u015fle\u015fen not bulunamad\u0131',
-              style: AppTypography.displayFont.copyWith(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: isDark ? Colors.white38 : Colors.black38,
-              ),
-            ),
-          ],
-        ),
-      ).animate().fadeIn(duration: 400.ms);
+      return PremiumEmptyState(
+        icon: CupertinoIcons.search,
+        title: isEn ? 'No matching notes' : 'Eşleşen not bulunamadı',
+        description: isEn
+            ? 'Try a different search term'
+            : 'Farklı bir arama terimi deneyin',
+        gradientVariant: GradientTextVariant.aurora,
+      );
     }
 
     // First-time empty — welcoming onboarding state

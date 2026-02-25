@@ -682,7 +682,8 @@ class _SymbolCard extends StatelessWidget {
                         symbol.universalMeanings.isNotEmpty
                             ? symbol.universalMeanings.first
                             : '',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        style: AppTypography.subtitle(
+                          fontSize: 12,
                           color: AppColors.textSecondary,
                         ),
                         maxLines: 2,
@@ -1172,7 +1173,8 @@ class _SymbolDetailSheet extends StatelessWidget {
         Expanded(
           child: Text(
             content,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            style: AppTypography.subtitle(
+              fontSize: 12,
               color: AppColors.textSecondary,
               height: 1.4,
             ),
@@ -1482,7 +1484,8 @@ class _PersonalDictionarySheet extends StatelessWidget {
                           'screens.dream_glossary.personal_dictionary_sheet.symbol_count',
                           language,
                         ).replaceAll('{count}', '${dreamedSymbols.length}'),
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        style: AppTypography.subtitle(
+                          fontSize: 12,
                           color: CosmicPalette.starGold,
                         ),
                       ),
@@ -1608,14 +1611,18 @@ class _PersonalDictionarySheet extends StatelessWidget {
                               'screens.dream_glossary.personal_dictionary_sheet.times_count',
                               language,
                             ).replaceAll('{count}', '${entry.count}'),
-                            style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(color: CosmicPalette.starGold),
+                            style: AppTypography.subtitle(
+                                fontSize: 12,
+                                color: CosmicPalette.starGold,
+                              ),
                           ),
                           const SizedBox(width: 12),
                           Text(
                             _formatDate(entry.lastDreamed),
-                            style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(color: AppColors.textMuted),
+                            style: AppTypography.subtitle(
+                                fontSize: 12,
+                                color: AppColors.textMuted,
+                              ),
                           ),
                         ],
                       ),

@@ -541,9 +541,9 @@ class _IdentityPageState extends State<_IdentityPage>
           // Terms text
           Text(
             L10nService.get('onboarding.by_continuing', widget.language),
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.textMuted.withValues(alpha: 0.59),
+            style: AppTypography.subtitle(
               fontSize: 13,
+              color: AppColors.textMuted.withValues(alpha: 0.59),
             ),
             textAlign: TextAlign.center,
           ).glassListItem(context: context, index: 5),
@@ -854,9 +854,9 @@ class _FirstCyclePage extends StatelessWidget {
                     isEn
                         ? 'All signals unlock as you journal'
                         : 'Günlük tuttukça tüm sinyaller açılır',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.textMuted,
+                    style: AppTypography.subtitle(
                       fontSize: 12,
+                      color: AppColors.textMuted,
                     ),
                   ),
                 ),
@@ -1209,9 +1209,9 @@ class _PermissionStartPage extends StatelessWidget {
                 Expanded(
                   child: Text(
                     L10nService.get('disclaimer.reflection_only', language),
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.textMuted,
+                    style: AppTypography.subtitle(
                       fontSize: 11,
+                      color: AppColors.textMuted,
                     ),
                   ),
                 ),

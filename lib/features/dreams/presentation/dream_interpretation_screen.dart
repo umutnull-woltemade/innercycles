@@ -2061,7 +2061,8 @@ ${_getPersonalAdvice(sign)}''';
                       Text(
                         message.text,
                         style: isUser
-                            ? Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            ? AppTypography.subtitle(
+                                fontSize: 14,
                                 color: isDark
                                     ? AppColors.textPrimary
                                     : AppColors.lightTextPrimary,
