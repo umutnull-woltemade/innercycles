@@ -114,7 +114,13 @@ void main() {
     });
 
     test('age returns null when birthYear is null', () {
-      final noYear = contact.copyWith(birthYear: null);
+      final noYear = BirthdayContact(
+        id: 'no-year',
+        name: 'No Year',
+        birthdayMonth: 3,
+        birthdayDay: 15,
+        createdAt: DateTime(2026, 1, 1),
+      );
       expect(noYear.age, isNull);
     });
 

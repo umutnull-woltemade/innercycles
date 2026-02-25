@@ -165,7 +165,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                   children: [
                     Text(
                       contact.relationship.emoji,
-                      style: const TextStyle(fontSize: 24),
+                      style: AppTypography.subtitle(fontSize: 24),
                     ),
                     const SizedBox(width: 12),
                     Text(
@@ -290,7 +290,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
         children: [
           Text(
             isToday ? '\u{1F389}' : '\u{1F382}',
-            style: const TextStyle(fontSize: 36),
+            style: AppTypography.subtitle(fontSize: 36),
           ),
           const SizedBox(height: 12),
           if (isToday) ...[

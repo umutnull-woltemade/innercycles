@@ -144,7 +144,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                                       children: [
                                         Text(
                                           time.icon,
-                                          style: const TextStyle(fontSize: 18),
+                                          style: AppTypography.subtitle(fontSize: 18),
                                         ),
                                         const SizedBox(width: 6),
                                         Text(
@@ -194,7 +194,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                           child: TextField(
                             controller: _nameController,
                             maxLength: 30,
-                            style: TextStyle(
+                            style: AppTypography.subtitle(
                               color: isDark
                                   ? AppColors.textPrimary
                                   : AppColors.lightTextPrimary,
@@ -203,7 +203,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                               hintText: isEn
                                   ? 'e.g. Morning Routine'
                                   : 'ör. Sabah Rutini',
-                              hintStyle: TextStyle(
+                              hintStyle: AppTypography.subtitle(
                                 color: isDark
                                     ? AppColors.textMuted
                                     : AppColors.lightTextMuted,
@@ -295,14 +295,14 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                                         child: TextField(
                                           controller: _itemControllers[i],
                                           maxLength: 50,
-                                          style: TextStyle(
+                                          style: AppTypography.subtitle(
                                             color: isDark
                                                 ? AppColors.textPrimary
                                                 : AppColors.lightTextPrimary,
                                           ),
                                           decoration: InputDecoration(
                                             hintText: _getPlaceholder(i, isEn),
-                                            hintStyle: TextStyle(
+                                            hintStyle: AppTypography.subtitle(
                                               color: isDark
                                                   ? AppColors.textMuted
                                                   : AppColors.lightTextMuted,

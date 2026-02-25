@@ -380,7 +380,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
         child: TextField(
           controller: _searchController,
           focusNode: _searchFocusNode,
-          style: const TextStyle(color: AppColors.textPrimary),
+          style: AppTypography.subtitle(color: AppColors.textPrimary),
           onChanged: _onSearchChanged,
           decoration: InputDecoration(
             hintText: L10nService.get(

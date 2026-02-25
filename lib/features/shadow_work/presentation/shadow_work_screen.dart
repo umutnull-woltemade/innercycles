@@ -19,8 +19,10 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/shadow_work_entry.dart';
 import '../../../data/content/shadow_prompts_content.dart';
 import '../../../data/providers/app_providers.dart';
+import 'package:go_router/go_router.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../data/services/premium_service.dart';
+import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
@@ -68,7 +70,13 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
     final shadowAsync = ref.watch(shadowWorkServiceProvider);
     final isPremium = ref.watch(isPremiumUserProvider);
 
-    return Scaffold(
+    return PopScope(
+      canPop: !_hasText,
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
+        _showDiscardDialog();
+      },
+      child: Scaffold(
       body: CosmicBackground(
         child: SafeArea(
           child: shadowAsync.when(

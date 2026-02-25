@@ -164,7 +164,7 @@ class SettingsScreen extends ConsumerWidget {
                                         children: [
                                           Text(
                                             lang.flag,
-                                            style: const TextStyle(
+                                            style: AppTypography.subtitle(
                                               fontSize: 16,
                                             ),
                                           ),
@@ -1260,14 +1260,14 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
               keyboardType: TextInputType.number,
               maxLength: 4,
               obscureText: true,
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 color: widget.isDark
                     ? AppColors.textPrimary
                     : AppColors.lightTextPrimary,
               ),
               decoration: InputDecoration(
                 labelText: isEn ? 'PIN' : 'PIN',
-                labelStyle: TextStyle(
+                labelStyle: AppTypography.subtitle(
                   color: widget.isDark
                       ? AppColors.textMuted
                       : AppColors.lightTextMuted,
@@ -1279,14 +1279,14 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
               keyboardType: TextInputType.number,
               maxLength: 4,
               obscureText: true,
-              style: TextStyle(
+              style: AppTypography.subtitle(
                 color: widget.isDark
                     ? AppColors.textPrimary
                     : AppColors.lightTextPrimary,
               ),
               decoration: InputDecoration(
                 labelText: isEn ? 'Confirm PIN' : 'PIN Onayla',
-                labelStyle: TextStyle(
+                labelStyle: AppTypography.subtitle(
                   color: widget.isDark
                       ? AppColors.textMuted
                       : AppColors.lightTextMuted,

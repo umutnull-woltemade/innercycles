@@ -168,7 +168,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                           focusNode: _searchFocus,
                           onChanged: _onSearchChanged,
                           onTap: () => setState(() => _isSearchActive = true),
-                          style: TextStyle(
+                          style: AppTypography.subtitle(
                             fontSize: 14,
                             color: isDark ? Colors.white : Colors.black87,
                           ),
@@ -775,7 +775,7 @@ class _NoteCard extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
                           note.moodAtCreation!,
-                          style: const TextStyle(fontSize: 16),
+                          style: AppTypography.subtitle(fontSize: 16),
                         ),
                       ),
                     ...note.tags.take(3).map((tag) => Container(
