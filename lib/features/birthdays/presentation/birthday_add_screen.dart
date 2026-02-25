@@ -354,7 +354,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                     ),
                     hint: Text(
                       isEn ? 'Year (optional)' : 'Y\u{0131}l (iste\u{011F}e ba\u{011F}l\u{0131})',
-                      style: TextStyle(
+                      style: AppTypography.subtitle(
                         color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                       ),
                     ),
@@ -363,7 +363,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                         value: null,
                         child: Text(
                           isEn ? 'Not specified' : 'Belirtilmemi\u{015F}',
-                          style: TextStyle(
+                          style: AppTypography.subtitle(
                             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                           ),
                         ),
@@ -451,7 +451,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(rel.emoji, style: const TextStyle(fontSize: 14)),
+                    Text(rel.emoji, style: AppTypography.subtitle(fontSize: 14)),
                     const SizedBox(width: 6),
                     Text(
                       isEn ? rel.displayNameEn : rel.displayNameTr,

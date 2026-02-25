@@ -150,7 +150,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
                       _buildSearchBar(
                         isDark,
                         isEn,
-                      ).animate().fadeIn(duration: 400.ms),
+                      ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       if (_searchQuery.isNotEmpty) ...[
@@ -158,7 +158,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
                           _buildEmptySearch(
                             isDark,
                             isEn,
-                          ).animate().fadeIn(duration: 400.ms)
+                          ).animate().fadeIn(duration: 400.ms, delay: 200.ms)
                         else
                           _buildToolGrid(
                             filteredTools,
