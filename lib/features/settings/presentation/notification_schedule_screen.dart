@@ -246,12 +246,11 @@ class _NotificationScheduleScreenState
                             isEn
                                 ? 'Notifications help you build a consistent journaling habit. You can change these settings at any time.'
                                 : 'Bildirimler tutarlı bir günlük yazma alışkanlığı oluşturmanıza yardımcı olur. Bu ayarları istediğiniz zaman değiştirebilirsiniz.',
-                            style: TextStyle(
+                            style: AppTypography.decorativeScript(
                               fontSize: 13,
                               color: isDark
                                   ? AppColors.textMuted
                                   : AppColors.lightTextMuted,
-                              height: 1.5,
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -295,7 +294,7 @@ class _NotificationScheduleScreenState
                   ? 'Enable notifications to receive journaling reminders'
                   : 'Günlük hatırlatıcıları almak için bildirimleri etkinleştirin',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: AppTypography.decorativeScript(
                 fontSize: 13,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
@@ -360,7 +359,7 @@ class _NotificationScheduleScreenState
                     const SizedBox(height: 2),
                     Text(
                       isEn ? subtitleEn : subtitleTr,
-                      style: TextStyle(
+                      style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: isDark
                             ? AppColors.textMuted
@@ -414,7 +413,7 @@ class _NotificationScheduleScreenState
             children: [
               Text(
                 isEn ? 'Reminder time' : 'Hatırlatma saati',
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 14,
                   color: isDark
                       ? AppColors.textSecondary
@@ -425,7 +424,7 @@ class _NotificationScheduleScreenState
                 children: [
                   Text(
                     formatted,
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: AppColors.starGold,
@@ -470,7 +469,7 @@ class _NotificationScheduleScreenState
             children: [
               Text(
                 isEn ? 'Prompt time' : 'Soru saati',
-                style: TextStyle(
+                style: AppTypography.elegantAccent(
                   fontSize: 14,
                   color: isDark
                       ? AppColors.textSecondary
@@ -481,7 +480,7 @@ class _NotificationScheduleScreenState
                 children: [
                   Text(
                     formatted,
-                    style: TextStyle(
+                    style: AppTypography.modernAccent(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: AppColors.auroraEnd,
