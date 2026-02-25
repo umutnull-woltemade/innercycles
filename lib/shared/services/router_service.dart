@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/constants/routes.dart';
+import '../../core/theme/app_typography.dart';
 import '../../data/services/notification_service.dart' show navigatorKey;
 
 // ── CORE screen imports ──
