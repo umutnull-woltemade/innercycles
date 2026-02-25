@@ -357,7 +357,7 @@ class _HomeHeader extends StatelessWidget {
                     Text(
                       dateStr.toUpperCase(),
                       style: AppTypography.elegantAccent(
-                        fontSize: 11,
+                        fontSize: 13,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 1.5,
                         color: isDark
@@ -370,7 +370,7 @@ class _HomeHeader extends StatelessWidget {
                     Text(
                       userName.isNotEmpty ? '$greeting,' : greeting,
                       style: AppTypography.decorativeScript(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.w500,
                         color: isDark
                             ? AppColors.textSecondary
@@ -409,7 +409,7 @@ class _HomeHeader extends StatelessWidget {
                     Text(
                       isEn ? insight.en : insight.tr,
                       style: AppTypography.decorativeScript(
-                        fontSize: 13,
+                        fontSize: 15,
                         fontWeight: FontWeight.w400,
                         color: isDark
                             ? AppColors.textMuted
@@ -667,7 +667,7 @@ class _StatCard extends StatelessWidget {
               Text(
                 value,
                 style: AppTypography.displayFont.copyWith(
-                  fontSize: 14,
+                  fontSize: 16,
                   fontWeight: FontWeight.w700,
                   color: isDark
                       ? AppColors.textPrimary
@@ -680,7 +680,7 @@ class _StatCard extends StatelessWidget {
               Text(
                 label,
                 style: AppTypography.elegantAccent(
-                  fontSize: 10,
+                  fontSize: 13,
                   letterSpacing: 0.3,
                   color: isDark
                       ? AppColors.textMuted
@@ -754,7 +754,7 @@ class _HeroJournalCard extends ConsumerWidget {
                     Text(
                       isEn ? 'DAILY REFLECTION' : 'GÜNLÜK YANSIMA',
                       style: AppTypography.elegantAccent(
-                        fontSize: 10,
+                        fontSize: 12,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 2.0,
                         color: isDark
@@ -879,7 +879,7 @@ class _HeroJournalCard extends ConsumerWidget {
                                     ? 'Share this question'
                                     : 'Bu soruyu paylaş',
                                 style: AppTypography.elegantAccent(
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   color: isDark
                                       ? AppColors.textMuted
                                       : AppColors.lightTextMuted,
@@ -1011,7 +1011,7 @@ class _FocusPulseRow extends ConsumerWidget {
                       isEn ? 'Your Focus Pulse' : 'Odak Nabzın',
                       variant: GradientTextVariant.gold,
                       style: AppTypography.displayFont.copyWith(
-                        fontSize: 15,
+                        fontSize: 17,
                         fontWeight: FontWeight.w700,
                         letterSpacing: 0.3,
                       ),
@@ -1031,7 +1031,7 @@ class _FocusPulseRow extends ConsumerWidget {
                         child: Text(
                           isEn ? 'Details' : 'Detaylar',
                           style: AppTypography.subtitle(
-                            fontSize: 12,
+                            fontSize: 14,
                             color: isDark
                                 ? AppColors.starGold
                                 : AppColors.lightStarGold,
@@ -1107,7 +1107,7 @@ class _FocusPulseRow extends ConsumerWidget {
                               Text(
                                 _areaLabel(area),
                                 style: AppTypography.elegantAccent(
-                                  fontSize: 11,
+                                  fontSize: 13,
                                   color: isDark
                                       ? AppColors.textSecondary
                                       : AppColors.lightTextSecondary,
@@ -1118,7 +1118,7 @@ class _FocusPulseRow extends ConsumerWidget {
                               Text(
                                 score.toStringAsFixed(1),
                                 style: AppTypography.displayFont.copyWith(
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w700,
                                   color: color,
                                 ),
@@ -1197,7 +1197,7 @@ class _RecentEntriesHorizontal extends ConsumerWidget {
                       isEn ? 'Recent Entries' : 'Son Kayıtlar',
                       variant: GradientTextVariant.gold,
                       style: AppTypography.displayFont.copyWith(
-                        fontSize: 15,
+                        fontSize: 17,
                         fontWeight: FontWeight.w700,
                         letterSpacing: 0.3,
                       ),
@@ -1218,7 +1218,7 @@ class _RecentEntriesHorizontal extends ConsumerWidget {
                             child: Text(
                               isEn ? 'See All' : 'Tümünü Gör',
                               style: AppTypography.subtitle(
-                                fontSize: 13,
+                                fontSize: 14,
                                 color: isDark
                                     ? AppColors.starGold
                                     : AppColors.lightStarGold,
@@ -1294,7 +1294,7 @@ class _RecentEntriesHorizontal extends ConsumerWidget {
                                         Text(
                                           dateStr,
                                           style: AppTypography.elegantAccent(
-                                            fontSize: 12,
+                                            fontSize: 13,
                                             color: isDark
                                                 ? AppColors.textMuted
                                                 : AppColors.lightTextMuted,
@@ -1318,7 +1318,7 @@ class _RecentEntriesHorizontal extends ConsumerWidget {
                                           child: Text(
                                             areaLabel,
                                             style: AppTypography.modernAccent(
-                                              fontSize: 12,
+                                              fontSize: 13,
                                               fontWeight: FontWeight.w600,
                                               color: accentColor,
                                             ),
@@ -1625,7 +1625,7 @@ class _PersonalizedPromptSection extends ConsumerWidget {
                       isEn ? 'For your $areaLabel' : '$areaLabel için',
                       variant: GradientTextVariant.amethyst,
                       style: AppTypography.elegantAccent(
-                        fontSize: 11,
+                        fontSize: 13,
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -1635,7 +1635,7 @@ class _PersonalizedPromptSection extends ConsumerWidget {
                 Text(
                   isEn ? prompt.promptEn : prompt.promptTr,
                   style: AppTypography.decorativeScript(
-                    fontSize: 14,
+                    fontSize: 16,
                     color: isDark
                         ? AppColors.textSecondary
                         : AppColors.lightTextSecondary,
@@ -1747,7 +1747,7 @@ class _TodayBirthdayBanner extends ConsumerWidget {
                                     ? '\u{1F382} Birthday today!'
                                     : '\u{1F382} Bug\u{00FC}n do\u{011F}um g\u{00FC}n\u{00FC}!',
                                 style: AppTypography.subtitle(
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   color: AppColors.starGold,
                                 ),
                               ),
@@ -1815,7 +1815,7 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                     isEn ? 'Recent Life Events' : 'Son Yaşam Olayları',
                     variant: GradientTextVariant.gold,
                     style: AppTypography.displayFont.copyWith(
-                      fontSize: 15,
+                      fontSize: 17,
                       fontWeight: FontWeight.w700,
                       letterSpacing: 0.3,
                     ),
@@ -1831,7 +1831,7 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                       child: Text(
                         isEn ? 'See all' : 'Tümünü gör',
                         style: AppTypography.subtitle(
-                          fontSize: 12,
+                          fontSize: 14,
                           color: isDark
                               ? AppColors.starGold
                               : AppColors.lightStarGold,
@@ -1891,7 +1891,7 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                                 Text(
                                   event.title,
                                   style: AppTypography.displayFont.copyWith(
-                                    fontSize: 13,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w600,
                                     color: isDark
                                         ? AppColors.textPrimary
@@ -1902,7 +1902,7 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                                   Text(
                                     event.emotionTags.take(2).join(', '),
                                     style: AppTypography.elegantAccent(
-                                      fontSize: 11,
+                                      fontSize: 13,
                                       color: isDark
                                           ? AppColors.textMuted
                                           : AppColors.lightTextMuted,
@@ -1967,7 +1967,7 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                             ? 'Any big moments this week?'
                             : 'Bu hafta büyük anlar oldu mu?',
                         style: AppTypography.displayFont.copyWith(
-                          fontSize: 14,
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: isDark
                               ? AppColors.textPrimary
@@ -1979,7 +1979,7 @@ class _RecentLifeEventsCard extends ConsumerWidget {
                             ? 'Record a life event'
                             : 'Bir yaşam olayı kaydedin',
                         style: AppTypography.elegantAccent(
-                          fontSize: 12,
+                          fontSize: 14,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
@@ -2070,7 +2070,7 @@ class _RetrospectiveBanner extends ConsumerWidget {
                             ? 'Add entries for your most meaningful days'
                             : 'Geçmişindeki önemli günleri ekle',
                         style: AppTypography.displayFont.copyWith(
-                          fontSize: 14,
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                           color: isDark
                               ? AppColors.textPrimary
@@ -2083,7 +2083,7 @@ class _RetrospectiveBanner extends ConsumerWidget {
                             ? 'Your story didn\'t start today'
                             : 'Hikayen bugün başlamadı',
                         style: AppTypography.elegantAccent(
-                          fontSize: 12,
+                          fontSize: 14,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
@@ -2167,7 +2167,7 @@ class _UpcomingRemindersCard extends ConsumerWidget {
                                   : 'Yaklaşan Hatırlatıcılar',
                               variant: GradientTextVariant.gold,
                               style: AppTypography.displayFont.copyWith(
-                                fontSize: 13,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -2175,7 +2175,7 @@ class _UpcomingRemindersCard extends ConsumerWidget {
                             Text(
                               isEn ? 'See all' : 'Tümünü gör',
                               style: AppTypography.elegantAccent(
-                                fontSize: 11,
+                                fontSize: 13,
                                 color: isDark
                                     ? AppColors.starGold
                                     : AppColors.lightStarGold,
@@ -2202,7 +2202,7 @@ class _UpcomingRemindersCard extends ConsumerWidget {
                                   child: Text(
                                     note?.title ?? (isEn ? 'Note' : 'Not'),
                                     style: AppTypography.subtitle(
-                                      fontSize: 13,
+                                      fontSize: 14,
                                       color: isDark
                                           ? Colors.white.withValues(alpha: 0.8)
                                           : Colors.black87,
@@ -2215,7 +2215,7 @@ class _UpcomingRemindersCard extends ConsumerWidget {
                                 Text(
                                   _formatTimeLeft(r.scheduledAt),
                                   style: AppTypography.elegantAccent(
-                                    fontSize: 11,
+                                    fontSize: 13,
                                     color: isDark
                                         ? Colors.white38
                                         : Colors.black38,
@@ -2312,7 +2312,7 @@ class _WeeklySharePrompt extends ConsumerWidget {
                             : 'Son örüntü kartın hazır',
                         variant: GradientTextVariant.aurora,
                         style: AppTypography.displayFont.copyWith(
-                          fontSize: 14,
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -2322,7 +2322,7 @@ class _WeeklySharePrompt extends ConsumerWidget {
                             ? 'Share your week\'s insights'
                             : 'Haftanın içgörülerini paylaş',
                         style: AppTypography.elegantAccent(
-                          fontSize: 12,
+                          fontSize: 14,
                           color: isDark
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
@@ -2409,7 +2409,7 @@ class _WrappedBanner extends StatelessWidget {
                             ? 'See your year in patterns'
                             : 'Yılını örüntülerle gör',
                         style: AppTypography.elegantAccent(
-                          fontSize: 12,
+                          fontSize: 14,
                           color: isDark
                               ? AppColors.textSecondary
                               : AppColors.lightTextSecondary,
@@ -2494,7 +2494,7 @@ class _MonthlyWrappedBanner extends StatelessWidget {
                             ? 'See your month at a glance'
                             : 'Ayına bir bakış at',
                         style: AppTypography.elegantAccent(
-                          fontSize: 12,
+                          fontSize: 14,
                           color: isDark
                               ? AppColors.textSecondary
                               : AppColors.lightTextSecondary,

@@ -109,9 +109,9 @@ class _WebPainter extends CustomPainter {
       const [0.0, 0.3, 0.7, 1.0],
     );
     canvas.drawRect(rect, Paint()..shader = gradient);
-    _FlowingPattern.drawConcentric(canvas, size, layerCount: 2, opacity: 0.03);
-    _FlowingPattern.drawFlowLines(canvas, size, lineCount: 6, opacity: 0.025);
-    _FlowingPattern.drawBokeh(canvas, size, count: 10, opacity: 0.04);
+    _FlowingPattern.drawConcentric(canvas, size, layerCount: 3, opacity: 0.05);
+    _FlowingPattern.drawFlowLines(canvas, size, lineCount: 8, opacity: 0.04);
+    _FlowingPattern.drawBokeh(canvas, size, count: 15, opacity: 0.06);
   }
 
   @override
@@ -135,35 +135,43 @@ class _AbstractDarkBackgroundState extends State<_AbstractDarkBackground>
 
   static const _orbs = [
     _Orb(
-      center: Offset(0.25, 0.2),
-      radius: 120,
-      color: AppColors.cosmicPurple,
-      speed: 0.4,
-      phase: 0,
-      driftRadius: 30,
-    ),
-    _Orb(
-      center: Offset(0.75, 0.35),
-      radius: 100,
-      color: AppColors.auroraStart,
-      speed: 0.3,
-      phase: 1.2,
-      driftRadius: 25,
-    ),
-    _Orb(
-      center: Offset(0.4, 0.65),
+      center: Offset(0.22, 0.18),
       radius: 140,
-      color: AppColors.amethyst,
-      speed: 0.25,
-      phase: 2.5,
+      color: Color(0xFFB695C0), // soft pastel lavender
+      speed: 0.35,
+      phase: 0,
       driftRadius: 35,
     ),
     _Orb(
-      center: Offset(0.8, 0.8),
-      radius: 90,
-      color: AppColors.starGold,
-      speed: 0.35,
+      center: Offset(0.78, 0.32),
+      radius: 120,
+      color: Color(0xFF7EA8BE), // pastel steel blue
+      speed: 0.3,
+      phase: 1.2,
+      driftRadius: 30,
+    ),
+    _Orb(
+      center: Offset(0.38, 0.6),
+      radius: 150,
+      color: Color(0xFFD4A07A), // warm peach/apricot
+      speed: 0.25,
+      phase: 2.5,
+      driftRadius: 40,
+    ),
+    _Orb(
+      center: Offset(0.82, 0.78),
+      radius: 110,
+      color: Color(0xFFC9B8D8), // pale amethyst
+      speed: 0.3,
       phase: 3.8,
+      driftRadius: 25,
+    ),
+    _Orb(
+      center: Offset(0.5, 0.42),
+      radius: 100,
+      color: AppColors.starGold,
+      speed: 0.2,
+      phase: 5.0,
       driftRadius: 20,
     ),
   ];
@@ -271,8 +279,8 @@ class _OrbPainter extends CustomPainter {
         Offset(cx, cy),
         orb.radius,
         [
-          orb.color.withValues(alpha: 0.12),
-          orb.color.withValues(alpha: 0.05),
+          orb.color.withValues(alpha: 0.18),
+          orb.color.withValues(alpha: 0.08),
           orb.color.withValues(alpha: 0),
         ],
         [0.0, 0.5, 1.0],
@@ -283,7 +291,7 @@ class _OrbPainter extends CustomPainter {
         orb.radius,
         Paint()
           ..shader = gradient
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 80),
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 70),
       );
     }
   }
@@ -303,11 +311,11 @@ class _AbstractPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     _drawBaseGradient(canvas, size);
     _drawColorWashes(canvas, size);
-    // Flowing organic pattern instead of stars
-    _FlowingPattern.drawConcentric(canvas, size, layerCount: 4, opacity: 0.025);
-    _FlowingPattern.drawFlowLines(canvas, size, lineCount: 12, opacity: 0.02);
-    _FlowingPattern.drawBokeh(canvas, size, count: 20, opacity: 0.035);
-    _FlowingPattern.drawSacredDots(canvas, size, opacity: 0.03);
+    // Flowing organic pattern — visible & warm
+    _FlowingPattern.drawConcentric(canvas, size, layerCount: 5, opacity: 0.06);
+    _FlowingPattern.drawFlowLines(canvas, size, lineCount: 14, opacity: 0.045);
+    _FlowingPattern.drawBokeh(canvas, size, count: 25, opacity: 0.07);
+    _FlowingPattern.drawSacredDots(canvas, size, opacity: 0.055);
   }
 
   void _drawBaseGradient(Canvas canvas, Size size) {
@@ -328,26 +336,37 @@ class _AbstractPainter extends CustomPainter {
   }
 
   void _drawColorWashes(Canvas canvas, Size size) {
+    // Warm pastel lavender wash — top left
     _drawWash(
       canvas,
-      Offset(size.width * 0.3, size.height * 0.15),
-      size.width * 0.5,
-      const Color(0xFF6C3483),
-      0.06,
+      Offset(size.width * 0.25, size.height * 0.12),
+      size.width * 0.55,
+      const Color(0xFF8B6AAE), // soft lavender
+      0.10,
     );
+    // Warm rose gold wash — center right
     _drawWash(
       canvas,
-      Offset(size.width * 0.75, size.height * 0.45),
-      size.width * 0.4,
-      const Color(0xFF2E4057),
-      0.05,
-    );
-    _drawWash(
-      canvas,
-      Offset(size.width * 0.2, size.height * 0.75),
+      Offset(size.width * 0.78, size.height * 0.38),
       size.width * 0.45,
-      const Color(0xFF1A3A5C),
-      0.04,
+      const Color(0xFF7B5C6B), // dusty rose
+      0.08,
+    );
+    // Warm amber wash — bottom
+    _drawWash(
+      canvas,
+      Offset(size.width * 0.35, size.height * 0.72),
+      size.width * 0.5,
+      const Color(0xFF6B5B3E), // warm amber
+      0.07,
+    );
+    // Soft teal accent — bottom right
+    _drawWash(
+      canvas,
+      Offset(size.width * 0.7, size.height * 0.85),
+      size.width * 0.35,
+      const Color(0xFF3A6B6E), // sage teal
+      0.06,
     );
   }
 
@@ -414,8 +433,8 @@ class _FlowingPattern {
         final alpha = opacity * (1.0 - i * 0.15);
 
         paint
-          ..color = Colors.white.withValues(alpha: alpha.clamp(0.005, 0.04))
-          ..strokeWidth = 0.5 + rng.nextDouble() * 0.4;
+          ..color = Colors.white.withValues(alpha: alpha.clamp(0.01, 0.08))
+          ..strokeWidth = 0.6 + rng.nextDouble() * 0.5;
 
         canvas.drawArc(
           Rect.fromCircle(center: center, radius: radius),
@@ -460,8 +479,8 @@ class _FlowingPattern {
       final alpha = opacity * (0.6 + rng.nextDouble() * 0.4);
 
       paint
-        ..color = Colors.white.withValues(alpha: alpha.clamp(0.005, 0.035))
-        ..strokeWidth = 0.3 + rng.nextDouble() * 0.5;
+        ..color = Colors.white.withValues(alpha: alpha.clamp(0.01, 0.06))
+        ..strokeWidth = 0.4 + rng.nextDouble() * 0.6;
 
       canvas.drawPath(path, paint);
     }
@@ -478,9 +497,11 @@ class _FlowingPattern {
     final paint = Paint()..style = PaintingStyle.stroke;
 
     const tints = [
-      AppColors.amethyst,
-      AppColors.auroraStart,
+      Color(0xFFB695C0), // pastel lavender
+      Color(0xFF7EA8BE), // pastel blue
+      Color(0xFFD4A07A), // warm peach
       AppColors.starGold,
+      Color(0xFFE8B4B8), // rose gold
       Colors.white,
     ];
 
@@ -493,13 +514,13 @@ class _FlowingPattern {
 
       // Soft ring
       paint
-        ..color = tint.withValues(alpha: alpha.clamp(0.008, 0.04))
-        ..strokeWidth = 0.4 + rng.nextDouble() * 0.4;
+        ..color = tint.withValues(alpha: alpha.clamp(0.015, 0.07))
+        ..strokeWidth = 0.5 + rng.nextDouble() * 0.5;
       canvas.drawCircle(Offset(x, y), radius, paint);
 
       // Inner fill with lower opacity
       final fillPaint = Paint()
-        ..color = tint.withValues(alpha: (alpha * 0.25).clamp(0.002, 0.015));
+        ..color = tint.withValues(alpha: (alpha * 0.3).clamp(0.005, 0.025));
       canvas.drawCircle(Offset(x, y), radius, fillPaint);
     }
   }
@@ -524,8 +545,8 @@ class _FlowingPattern {
         final y = row * spacing + (rng.nextDouble() - 0.5) * 4;
         final alpha = opacity * (0.3 + rng.nextDouble() * 0.7);
 
-        paint.color = Colors.white.withValues(alpha: alpha.clamp(0.005, 0.03));
-        canvas.drawCircle(Offset(x, y), 0.6, paint);
+        paint.color = Colors.white.withValues(alpha: alpha.clamp(0.01, 0.05));
+        canvas.drawCircle(Offset(x, y), 0.8, paint);
       }
     }
   }

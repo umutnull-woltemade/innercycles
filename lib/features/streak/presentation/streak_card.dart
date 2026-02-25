@@ -84,7 +84,7 @@ class _StreakCardContent extends StatelessWidget {
                         Text(
                           isEn ? 'Reflection Streak' : 'Yansıma Serisi',
                           style: AppTypography.displayFont.copyWith(
-                            fontSize: 16,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: isDark
                                 ? AppColors.textPrimary
@@ -97,7 +97,7 @@ class _StreakCardContent extends StatelessWidget {
                                 ? '${stats.currentStreak} day${stats.currentStreak == 1 ? '' : 's'} in a row'
                                 : '${stats.currentStreak} gün üst üste',
                             style: AppTypography.decorativeScript(
-                              fontSize: 12,
+                              fontSize: 14,
                               color: isDark
                                   ? AppColors.textMuted
                                   : AppColors.lightTextMuted,
@@ -219,7 +219,7 @@ class _WeekCalendar extends ConsumerWidget {
                 Text(
                   dayLabels[day.weekday - 1],
                   style: AppTypography.elegantAccent(
-                    fontSize: 11,
+                    fontSize: 13,
                     color: isToday
                         ? AppColors.starGold
                         : (isDark
@@ -261,7 +261,7 @@ class _WeekCalendar extends ConsumerWidget {
                         : Text(
                             '${day.day}',
                             style: AppTypography.elegantAccent(
-                              fontSize: 12,
+                              fontSize: 14,
                               color: isDark
                                   ? AppColors.textMuted.withValues(alpha: 0.5)
                                   : AppColors.lightTextMuted.withValues(
@@ -310,14 +310,14 @@ class _MilestoneProgress extends StatelessWidget {
                   ? '$remaining day${remaining == 1 ? '' : 's'} to $target-day milestone'
                   : '$target günlük hedefe $remaining gün',
               style: AppTypography.decorativeScript(
-                fontSize: 12,
+                fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),
             ),
             Text(
               '${(progress * 100).toInt()}%',
               style: AppTypography.elegantAccent(
-                fontSize: 12,
+                fontSize: 14,
                 color: AppColors.starGold,
               ),
             ),
@@ -385,7 +385,7 @@ class _StreakChain extends ConsumerWidget {
             Text(
               isEn ? '14-Day Chain' : '14 Günlük Zincir',
               style: AppTypography.elegantAccent(
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               ),

@@ -516,7 +516,7 @@ class _IdentityPageState extends State<_IdentityPage>
           Text(
             L10nService.get('onboarding.start_cosmic_journey', widget.language),
             style: AppTypography.decorativeScript(
-              fontSize: 16,
+              fontSize: 18,
               color: AppColors.textSecondary,
             ),
             textAlign: TextAlign.center,
@@ -542,7 +542,7 @@ class _IdentityPageState extends State<_IdentityPage>
           Text(
             L10nService.get('onboarding.by_continuing', widget.language),
             style: AppTypography.subtitle(
-              fontSize: 13,
+              fontSize: 14,
               color: AppColors.textMuted.withValues(alpha: 0.59),
             ),
             textAlign: TextAlign.center,
@@ -733,7 +733,7 @@ class _FirstCyclePage extends StatelessWidget {
                 ? 'Which part of your inner world are you most curious about?'
                 : 'İç dünyanın hangi köşesi seni en çok meraklandırıyor?',
             style: AppTypography.decorativeScript(
-              fontSize: 16,
+              fontSize: 19,
               color: AppColors.textMuted,
             ),
           ).glassListItem(context: context, index: 0),
@@ -746,7 +746,7 @@ class _FirstCyclePage extends StatelessWidget {
               crossAxisCount: 2,
               mainAxisSpacing: 14,
               crossAxisSpacing: 14,
-              childAspectRatio: 1.05,
+              childAspectRatio: 0.9,
               physics: const NeverScrollableScrollPhysics(),
               children: _focusAreas.asMap().entries.map((entry) {
                 final index = entry.key;
@@ -807,7 +807,7 @@ class _FirstCyclePage extends StatelessWidget {
                             Text(
                               isEn ? area.displayNameEn : area.displayNameTr,
                               style: AppTypography.elegantAccent(
-                                fontSize: 16,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w600,
                                 color: isSelected
                                     ? Colors.white
@@ -821,7 +821,7 @@ class _FirstCyclePage extends StatelessWidget {
                                   ? (_focusDescEn[area] ?? '')
                                   : (_focusDescTr[area] ?? ''),
                               style: AppTypography.decorativeScript(
-                                fontSize: 12,
+                                fontSize: 15,
                                 color: AppColors.textMuted.withValues(
                                   alpha: 0.71,
                                 ),
@@ -855,7 +855,7 @@ class _FirstCyclePage extends StatelessWidget {
                         ? 'All signals unlock as you journal'
                         : 'Günlük tuttukça tüm sinyaller açılır',
                     style: AppTypography.subtitle(
-                      fontSize: 12,
+                      fontSize: 14,
                       color: AppColors.textMuted,
                     ),
                   ),
@@ -1089,7 +1089,7 @@ class _PermissionStartPage extends StatelessWidget {
                               ? 'A gentle nudge at 9:00 AM'
                               : 'Sabah 9:00\'da nazik bir hatırlatma',
                           style: AppTypography.decorativeScript(
-                            fontSize: 13,
+                            fontSize: 15,
                             color: AppColors.textMuted,
                           ),
                         ),
@@ -1166,7 +1166,7 @@ class _PermissionStartPage extends StatelessWidget {
                 Text(
                   isEn ? 'What\'s Included' : 'Neler Dahil',
                   style: AppTypography.elegantAccent(
-                    fontSize: 14,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: AppColors.lavender,
                     letterSpacing: 2.0,
@@ -1210,7 +1210,7 @@ class _PermissionStartPage extends StatelessWidget {
                   child: Text(
                     L10nService.get('disclaimer.reflection_only', language),
                     style: AppTypography.subtitle(
-                      fontSize: 11,
+                      fontSize: 13,
                       color: AppColors.textMuted,
                     ),
                   ),
@@ -1389,7 +1389,7 @@ class _FeatureHighlight extends StatelessWidget {
         Text(
           isEn ? labelEn : labelTr,
           style: AppTypography.elegantAccent(
-            fontSize: 12,
+            fontSize: 14,
             fontWeight: FontWeight.w500,
             color: AppColors.textMuted,
             letterSpacing: 1.0,
@@ -1419,7 +1419,7 @@ class _FeatureRow extends StatelessWidget {
             child: Text(
               text,
               style: AppTypography.decorativeScript(
-                fontSize: 14,
+                fontSize: 16,
                 color: Colors.white70,
               ),
             ),

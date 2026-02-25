@@ -95,7 +95,7 @@ class AppTypography {
       height: 1.5,
     ),
     bodySmall: GoogleFonts.plusJakartaSans(
-      fontSize: 13,
+      fontSize: 15,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.05,
       height: 1.45,
@@ -109,13 +109,13 @@ class AppTypography {
       height: 1.4,
     ),
     labelMedium: GoogleFonts.plusJakartaSans(
-      fontSize: 13,
+      fontSize: 14,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.15,
       height: 1.4,
     ),
     labelSmall: GoogleFonts.plusJakartaSans(
-      fontSize: 11,
+      fontSize: 13,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.1,
       height: 1.4,
