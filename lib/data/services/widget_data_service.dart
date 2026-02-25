@@ -173,7 +173,9 @@ class WidgetDataService {
         'widget_last_updated': DateTime.now().millisecondsSinceEpoch / 1000.0,
       });
 
-      debugPrint('[WidgetDataService] Widget metadata updated (lang=$languageCode)');
+      debugPrint(
+        '[WidgetDataService] Widget metadata updated (lang=$languageCode)',
+      );
     } catch (e) {
       debugPrint('[WidgetDataService] Error updating widget metadata: $e');
     }

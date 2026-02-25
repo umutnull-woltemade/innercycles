@@ -73,18 +73,10 @@ class EmotionalGradient {
       ];
     } else if (m <= 5) {
       // Spring — fresh, awakening
-      return [
-        AppColors.auroraStart,
-        AppColors.success,
-        AppColors.auroraEnd,
-      ];
+      return [AppColors.auroraStart, AppColors.success, AppColors.auroraEnd];
     } else if (m <= 8) {
       // Summer — warm, energized
-      return [
-        AppColors.sunriseStart,
-        AppColors.starGold,
-        AppColors.sunriseEnd,
-      ];
+      return [AppColors.sunriseStart, AppColors.starGold, AppColors.sunriseEnd];
     } else {
       // Autumn — amber, grounding
       return [

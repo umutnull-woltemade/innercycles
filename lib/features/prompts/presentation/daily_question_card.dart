@@ -40,7 +40,8 @@ class DailyQuestionCard extends ConsumerWidget {
         final questionText = isEn ? prompt.promptEn : prompt.promptTr;
 
         return Semantics(
-          label: '${isEn ? 'Question of the Day' : 'Günün Sorusu'}: $questionText',
+          label:
+              '${isEn ? 'Question of the Day' : 'Günün Sorusu'}: $questionText',
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
             child: PremiumCard(
@@ -55,10 +56,7 @@ class DailyQuestionCard extends ConsumerWidget {
                     style: AppTypography.decorativeScript(
                       fontSize: 52,
                       color: AppColors.amethyst.withValues(alpha: 0.25),
-                    ).copyWith(
-                      fontWeight: FontWeight.w800,
-                      height: 0.6,
-                    ),
+                    ).copyWith(fontWeight: FontWeight.w800, height: 0.6),
                   ),
                   const SizedBox(height: 8),
                   // Question text — centered, large, editorial
@@ -95,7 +93,10 @@ class DailyQuestionCard extends ConsumerWidget {
                           variant: GradientTextVariant.aurora,
                           fontSize: 13,
                           expanded: true,
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 10,
+                          ),
                           onPressed: () {
                             HapticService.buttonPress();
                             context.push(
@@ -113,10 +114,14 @@ class DailyQuestionCard extends ConsumerWidget {
                           variant: GradientTextVariant.amethyst,
                           fontSize: 13,
                           expanded: true,
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 10,
+                          ),
                           onPressed: () {
                             HapticService.buttonPress();
-                            final template = ShareCardTemplates.questionOfTheDay;
+                            final template =
+                                ShareCardTemplates.questionOfTheDay;
                             final cardData = ShareCardTemplates.buildData(
                               template: template,
                               isEn: isEn,

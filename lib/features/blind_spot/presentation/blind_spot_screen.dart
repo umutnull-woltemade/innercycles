@@ -42,7 +42,9 @@ class BlindSpotScreen extends ConsumerWidget {
             loading: () => const CosmicLoadingIndicator(),
             error: (e, s) => Center(
               child: Text(
-                isEn ? 'Could not load. Your local data is unaffected.' : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                isEn
+                    ? 'Could not load. Your local data is unaffected.'
+                    : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
                 style: AppTypography.subtitle(
                   color: isDark
                       ? AppColors.textMuted
@@ -54,7 +56,9 @@ class BlindSpotScreen extends ConsumerWidget {
               loading: () => const CosmicLoadingIndicator(),
               error: (e, s) => Center(
                 child: Text(
-                  isEn ? 'Could not load. Your local data is unaffected.' : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                  isEn
+                      ? 'Could not load. Your local data is unaffected.'
+                      : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textMuted
@@ -698,13 +702,7 @@ class _SeverityIndicator extends StatelessWidget {
           );
         }),
         const SizedBox(width: 4),
-        Text(
-          label,
-          style: AppTypography.subtitle(
-            fontSize: 11,
-            color: color,
-          ),
-        ),
+        Text(label, style: AppTypography.subtitle(fontSize: 11, color: color)),
       ],
     );
   }

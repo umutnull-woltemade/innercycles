@@ -37,7 +37,8 @@ class UnlockProgressBanner extends ConsumerWidget {
         final newlyUnlocked = unlock.getNewlyUnlockedFeatures();
         if (newlyUnlocked.isNotEmpty) {
           // Show celebration for first newly unlocked
-          final celebrationFeature = featureNames[newlyUnlocked.first] ?? newlyUnlocked.first;
+          final celebrationFeature =
+              featureNames[newlyUnlocked.first] ?? newlyUnlocked.first;
           WidgetsBinding.instance.addPostFrameCallback((_) {
             HapticService.featureUnlocked();
             for (final f in newlyUnlocked) {

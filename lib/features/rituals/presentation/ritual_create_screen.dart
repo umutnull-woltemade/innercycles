@@ -144,7 +144,9 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                                       children: [
                                         Text(
                                           time.icon,
-                                          style: AppTypography.subtitle(fontSize: 18),
+                                          style: AppTypography.subtitle(
+                                            fontSize: 18,
+                                          ),
                                         ),
                                         const SizedBox(width: 6),
                                         Text(
@@ -161,7 +163,8 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                                                   fontSize: 14,
                                                   color: isDark
                                                       ? AppColors.textPrimary
-                                                      : AppColors.lightTextPrimary,
+                                                      : AppColors
+                                                            .lightTextPrimary,
                                                 ),
                                         ),
                                       ],

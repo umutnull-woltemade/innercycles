@@ -58,9 +58,9 @@ class QuizHubScreen extends ConsumerWidget {
                               ? 'Explore different aspects of yourself through thoughtful self-reflection. These are personal awareness tools, not clinical assessments.'
                               : 'Düşünceli öz yansıtma yoluyla kendinizin farklı yönlerini keşfedin. Bunlar kişisel farkındalık araçlarıdır, klinik değerlendirmeler değildir.',
                           style: AppTypography.decorativeScript(
-                                fontSize: 15,
-                                color: AppColors.textSecondary,
-                              ),
+                            fontSize: 15,
+                            color: AppColors.textSecondary,
+                          ),
                         )
                         .animate()
                         .fadeIn(duration: 500.ms)
@@ -204,12 +204,12 @@ class _QuizCard extends StatelessWidget {
                           child: Text(
                             isEn ? quiz.title : quiz.titleTr,
                             style: AppTypography.displayFont.copyWith(
-                                  fontSize: 16,
-                                  color: isDark
-                                      ? AppColors.textPrimary
-                                      : AppColors.lightTextPrimary,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                              fontSize: 16,
+                              color: isDark
+                                  ? AppColors.textPrimary
+                                  : AppColors.lightTextPrimary,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                         if (isCompleted)
@@ -229,10 +229,10 @@ class _QuizCard extends StatelessWidget {
                             child: Text(
                               isEn ? 'Done' : 'Tamam',
                               style: AppTypography.elegantAccent(
-                                    fontSize: 11,
-                                    color: AppColors.auroraStart,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                fontSize: 11,
+                                color: AppColors.auroraStart,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                       ],

@@ -367,16 +367,17 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                     child: Text(
                       row.pro,
                       textAlign: TextAlign.center,
-                      style: AppTypography.subtitle(
-                        fontSize: 11,
-                        color: row.isHighlight
-                            ? AppColors.starGold
-                            : AppColors.textPrimary,
-                      ).copyWith(
-                        fontWeight: row.isHighlight
-                            ? FontWeight.w600
-                            : FontWeight.normal,
-                      ),
+                      style:
+                          AppTypography.subtitle(
+                            fontSize: 11,
+                            color: row.isHighlight
+                                ? AppColors.starGold
+                                : AppColors.textPrimary,
+                          ).copyWith(
+                            fontWeight: row.isHighlight
+                                ? FontWeight.w600
+                                : FontWeight.normal,
+                          ),
                     ),
                   ),
                 ],
@@ -450,57 +451,57 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           label: L10nService.get('premium.paywall.continue_pro', language),
           button: true,
           child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: premiumState.isLoading
-                ? null
-                : () async {
-                    HapticFeedback.mediumImpact();
-                    final success = await ref
-                        .read(premiumProvider.notifier)
-                        .purchasePremium(_selectedTier);
-                    if (success && mounted) {
-                      _showSuccessDialog();
-                    }
-                  },
-            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Center(
-                child: premiumState.isLoading
-                    ? const CosmicLoadingIndicator(size: 24)
-                    : Column(
-                        children: [
-                          Text(
-                            L10nService.get(
-                              'premium.paywall.continue_pro',
-                              language,
-                            ),
-                            style: AppTypography.modernAccent(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          if (_selectedTier == PremiumTier.yearly)
-                            const SizedBox(height: 2),
-                          if (_selectedTier == PremiumTier.yearly)
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: premiumState.isLoading
+                  ? null
+                  : () async {
+                      HapticFeedback.mediumImpact();
+                      final success = await ref
+                          .read(premiumProvider.notifier)
+                          .purchasePremium(_selectedTier);
+                      if (success && mounted) {
+                        _showSuccessDialog();
+                      }
+                    },
+              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Center(
+                  child: premiumState.isLoading
+                      ? const CosmicLoadingIndicator(size: 24)
+                      : Column(
+                          children: [
                             Text(
-                              ref
-                                      .read(premiumProvider.notifier)
-                                      .getProductPrice(_selectedTier) ??
-                                  _selectedTier.price,
-                              style: AppTypography.elegantAccent(
-                                color: Colors.black.withValues(alpha: 0.6),
-                                fontSize: 12,
+                              L10nService.get(
+                                'premium.paywall.continue_pro',
+                                language,
+                              ),
+                              style: AppTypography.modernAccent(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                        ],
-                      ),
+                            if (_selectedTier == PremiumTier.yearly)
+                              const SizedBox(height: 2),
+                            if (_selectedTier == PremiumTier.yearly)
+                              Text(
+                                ref
+                                        .read(premiumProvider.notifier)
+                                        .getProductPrice(_selectedTier) ??
+                                    _selectedTier.price,
+                                style: AppTypography.elegantAccent(
+                                  color: Colors.black.withValues(alpha: 0.6),
+                                  fontSize: 12,
+                                ),
+                              ),
+                          ],
+                        ),
+                ),
               ),
             ),
           ),
-        ),
         ),
       ),
     ).glassListItem(context: context, index: 3);
@@ -515,10 +516,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     return Text(
       L10nService.get('premium.risk_reversal', language),
       textAlign: TextAlign.center,
-      style: AppTypography.subtitle(
-        fontSize: 12,
-        color: AppColors.textMuted,
-      ),
+      style: AppTypography.subtitle(fontSize: 12, color: AppColors.textMuted),
     );
   }
 
@@ -638,13 +636,14 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
       children: [
         Text(
           monthlyLabel,
-          style: AppTypography.subtitle(
-            fontSize: 14,
-            color: AppColors.textMuted,
-          ).copyWith(
-            decoration: TextDecoration.lineThrough,
-            decorationColor: AppColors.textMuted,
-          ),
+          style:
+              AppTypography.subtitle(
+                fontSize: 14,
+                color: AppColors.textMuted,
+              ).copyWith(
+                decoration: TextDecoration.lineThrough,
+                decorationColor: AppColors.textMuted,
+              ),
         ),
         const SizedBox(width: 12),
         Container(
@@ -920,13 +919,14 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                                 'settings.privacy_policy',
                                 language,
                               ),
-                        style: AppTypography.subtitle(
-                          fontSize: 11,
-                          color: AppColors.starGold,
-                        ).copyWith(
-                          decoration: TextDecoration.underline,
-                          decorationColor: AppColors.starGold,
-                        ),
+                        style:
+                            AppTypography.subtitle(
+                              fontSize: 11,
+                              color: AppColors.starGold,
+                            ).copyWith(
+                              decoration: TextDecoration.underline,
+                              decorationColor: AppColors.starGold,
+                            ),
                       ),
                     ),
                   ),
@@ -958,13 +958,14 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                                 'settings.terms_of_service',
                                 language,
                               ),
-                        style: AppTypography.subtitle(
-                          fontSize: 11,
-                          color: AppColors.starGold,
-                        ).copyWith(
-                          decoration: TextDecoration.underline,
-                          decorationColor: AppColors.starGold,
-                        ),
+                        style:
+                            AppTypography.subtitle(
+                              fontSize: 11,
+                              color: AppColors.starGold,
+                            ).copyWith(
+                              decoration: TextDecoration.underline,
+                              decorationColor: AppColors.starGold,
+                            ),
                       ),
                     ),
                   ),
@@ -1100,94 +1101,94 @@ class _PlanCard extends StatelessWidget {
             button: true,
             selected: isSelected,
             child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: onTap,
-              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-              child: Padding(
-                padding: const EdgeInsets.all(AppConstants.spacingLg),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 24,
-                      height: 24,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: onTap,
+                borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                child: Padding(
+                  padding: const EdgeInsets.all(AppConstants.spacingLg),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 24,
+                        height: 24,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: isSelected
+                                ? AppColors.starGold
+                                : AppColors.textMuted,
+                            width: 2,
+                          ),
                           color: isSelected
                               ? AppColors.starGold
-                              : AppColors.textMuted,
-                          width: 2,
+                              : Colors.transparent,
                         ),
-                        color: isSelected
-                            ? AppColors.starGold
-                            : Colors.transparent,
+                        child: isSelected
+                            ? const Icon(
+                                Icons.check,
+                                size: 16,
+                                color: Colors.black,
+                              )
+                            : null,
                       ),
-                      child: isSelected
-                          ? const Icon(
-                              Icons.check,
-                              size: 16,
-                              color: Colors.black,
-                            )
-                          : null,
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            tier.displayName,
-                            style: AppTypography.modernAccent(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: isSelected
-                                      ? AppColors.starGold
-                                      : AppColors.textPrimary,
-                                ),
-                          ),
-                          if (tier.savings.isNotEmpty)
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
                             Text(
-                              tier.savings,
-                              style: AppTypography.subtitle(
-                                  fontSize: 12,
-                                  color: AppColors.success,
-                                ),
-                            ),
-                        ],
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          priceOverride ?? tier.price,
-                          style: AppTypography.modernAccent(
-                                fontSize: 16,
+                              tier.displayName,
+                              style: AppTypography.modernAccent(
+                                fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 color: isSelected
                                     ? AppColors.starGold
                                     : AppColors.textPrimary,
                               ),
-                        ),
-                        // Show monthly equivalent for yearly
-                        if (tier == PremiumTier.yearly)
-                          Text(
-                            tier.monthlyEquivalent,
-                            style: AppTypography.subtitle(
-                                  fontSize: 11,
-                                  color: AppColors.starGold.withValues(
-                                    alpha: 0.7,
-                                  ),
+                            ),
+                            if (tier.savings.isNotEmpty)
+                              Text(
+                                tier.savings,
+                                style: AppTypography.subtitle(
+                                  fontSize: 12,
+                                  color: AppColors.success,
                                 ),
+                              ),
+                          ],
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            priceOverride ?? tier.price,
+                            style: AppTypography.modernAccent(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: isSelected
+                                  ? AppColors.starGold
+                                  : AppColors.textPrimary,
+                            ),
                           ),
-                      ],
-                    ),
-                  ],
+                          // Show monthly equivalent for yearly
+                          if (tier == PremiumTier.yearly)
+                            Text(
+                              tier.monthlyEquivalent,
+                              style: AppTypography.subtitle(
+                                fontSize: 11,
+                                color: AppColors.starGold.withValues(
+                                  alpha: 0.7,
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
           ),
         ),
         if (isBestValue)

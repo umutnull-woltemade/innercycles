@@ -285,33 +285,35 @@ class _ContextualPaywallSheetState
                         label: config.cta,
                         button: true,
                         child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: _isLoading ? null : () {
-                            HapticFeedback.mediumImpact();
-                            _handlePrimaryCta();
-                          },
-                          borderRadius: BorderRadius.circular(
-                            AppConstants.radiusMd,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            child: Center(
-                              child: _isLoading
-                                  ? const CosmicLoadingIndicator(size: 22)
-                                  : Text(
-                                      config.cta,
-                                      style: AppTypography.modernAccent(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: _isLoading
+                                ? null
+                                : () {
+                                    HapticFeedback.mediumImpact();
+                                    _handlePrimaryCta();
+                                  },
+                            borderRadius: BorderRadius.circular(
+                              AppConstants.radiusMd,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              child: Center(
+                                child: _isLoading
+                                    ? const CosmicLoadingIndicator(size: 22)
+                                    : Text(
+                                        config.cta,
+                                        style: AppTypography.modernAccent(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
                     ),
                   ).animate().fadeIn(duration: 400.ms, delay: 300.ms),
                   const SizedBox(height: 12),
@@ -388,13 +390,14 @@ class _ContextualPaywallSheetState
           isEn
               ? monthlyLabel
               : monthlyLabel.replaceAll('.', ',').replaceAll('/mo', '/ay'),
-          style: AppTypography.elegantAccent(
-            color: Colors.white.withValues(alpha: 0.4),
-            fontSize: 13,
-          ).copyWith(
-            decoration: TextDecoration.lineThrough,
-            decorationColor: Colors.white.withValues(alpha: 0.4),
-          ),
+          style:
+              AppTypography.elegantAccent(
+                color: Colors.white.withValues(alpha: 0.4),
+                fontSize: 13,
+              ).copyWith(
+                decoration: TextDecoration.lineThrough,
+                decorationColor: Colors.white.withValues(alpha: 0.4),
+              ),
         ),
         const SizedBox(width: 8),
         Text(
@@ -440,9 +443,7 @@ class _ContextualPaywallSheetState
       } else {
         experiment?.logPaywallDismissal();
         ref.read(telemetryServiceProvider).whenData((t) {
-          t.paywallDismissed(
-            triggerPoint: widget.paywallContext.name,
-          );
+          t.paywallDismissed(triggerPoint: widget.paywallContext.name);
         });
       }
     }
@@ -679,9 +680,7 @@ class _ContextualPaywallSheetState
           subtitle: isEn
               ? 'See how your emotional patterns align with your hormonal cycle. Full history and phase-aware insights.'
               : 'Duygusal kalıplarının hormonal döngünle nasıl uyumlandığını gör. Tam geçmiş ve evreye duyarlı içgörüler.',
-          cta: isEn
-              ? 'Access Cycle Insights'
-              : 'Döngü İçgörülerine Eriş',
+          cta: isEn ? 'Access Cycle Insights' : 'Döngü İçgörülerine Eriş',
         );
 
       case PaywallContext.shadowWork:
@@ -694,9 +693,7 @@ class _ContextualPaywallSheetState
           subtitle: isEn
               ? 'Guided shadow work helps you understand the unconscious patterns shaping your emotions and behaviors.'
               : 'Rehberli gölge çalışması, duygularını ve davranışlarını şekillendiren bilinçdışı kalıpları anlamanı sağlar.',
-          cta: isEn
-              ? 'Access Shadow Work'
-              : 'Gölge Çalışmasına Eriş',
+          cta: isEn ? 'Access Shadow Work' : 'Gölge Çalışmasına Eriş',
         );
 
       case PaywallContext.general:

@@ -52,19 +52,21 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
           ),
           slivers: [
             GlassSliverAppBar(
-              title: isEn ? 'Import Birthdays' : 'Do\u{011F}um G\u{00FC}nlerini Aktar',
+              title: isEn
+                  ? 'Import Birthdays'
+                  : 'Do\u{011F}um G\u{00FC}nlerini Aktar',
             ),
             SliverPadding(
               padding: const EdgeInsets.all(16),
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
                   switch (_step) {
-                    _ImportStep.instructions =>
-                      _buildInstructions(isDark, isEn),
-                    _ImportStep.preview =>
-                      _buildPreview(isDark, isEn),
-                    _ImportStep.success =>
-                      _buildSuccess(isDark, isEn),
+                    _ImportStep.instructions => _buildInstructions(
+                      isDark,
+                      isEn,
+                    ),
+                    _ImportStep.preview => _buildPreview(isDark, isEn),
+                    _ImportStep.success => _buildSuccess(isDark, isEn),
                   },
                   const SizedBox(height: 40),
                 ]),
@@ -109,7 +111,9 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GradientText(
-                isEn ? 'How to Export from Facebook' : 'Facebook\'tan Nas\u{0131}l D\u{0131}\u{015F}a Aktar\u{0131}l\u{0131}r',
+                isEn
+                    ? 'How to Export from Facebook'
+                    : 'Facebook\'tan Nas\u{0131}l D\u{0131}\u{015F}a Aktar\u{0131}l\u{0131}r',
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 16,
@@ -200,7 +204,9 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          isEn ? 'Select JSON File' : 'JSON Dosyas\u{0131} Se\u{00E7}',
+                          isEn
+                              ? 'Select JSON File'
+                              : 'JSON Dosyas\u{0131} Se\u{00E7}',
                           style: AppTypography.modernAccent(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
@@ -288,7 +294,10 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                   ? '${_parsedContacts.length} Birthdays Found'
                   : '${_parsedContacts.length} Do\u{011F}um G\u{00FC}n\u{00FC} Bulundu',
               variant: GradientTextVariant.gold,
-              style: AppTypography.displayFont.copyWith(fontSize: 16, fontWeight: FontWeight.w600),
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             TextButton(
               onPressed: () {
@@ -304,8 +313,12 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
               },
               child: Text(
                 _selectedIndices.length == _parsedContacts.length
-                    ? (isEn ? 'Deselect All' : 'T\u{00FC}m\u{00FC}n\u{00FC} Kald\u{0131}r')
-                    : (isEn ? 'Select All' : 'T\u{00FC}m\u{00FC}n\u{00FC} Se\u{00E7}'),
+                    ? (isEn
+                          ? 'Deselect All'
+                          : 'T\u{00FC}m\u{00FC}n\u{00FC} Kald\u{0131}r')
+                    : (isEn
+                          ? 'Select All'
+                          : 'T\u{00FC}m\u{00FC}n\u{00FC} Se\u{00E7}'),
                 style: AppTypography.modernAccent(
                   color: AppColors.starGold,
                   fontWeight: FontWeight.w600,
@@ -319,7 +332,9 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
           final contact = _parsedContacts[index];
           final isSelected = _selectedIndices.contains(index);
 
-          final monthNames = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
+          final monthNames = isEn
+              ? CommonStrings.monthsShortEn
+              : CommonStrings.monthsShortTr;
 
           return Padding(
             padding: const EdgeInsets.only(bottom: 8),
@@ -363,10 +378,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
                       },
                       activeColor: AppColors.starGold,
                     ),
-                    BirthdayAvatar(
-                      name: contact.name,
-                      size: 36,
-                    ),
+                    BirthdayAvatar(name: contact.name, size: 36),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Column(
@@ -455,11 +467,8 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
   Future<void> _importSelected() async {
     setState(() => _isLoading = true);
     try {
-      final service =
-          await ref.read(birthdayContactServiceProvider.future);
-      final selected = _selectedIndices
-          .map((i) => _parsedContacts[i])
-          .toList();
+      final service = await ref.read(birthdayContactServiceProvider.future);
+      final selected = _selectedIndices.map((i) => _parsedContacts[i]).toList();
       final imported = await service.importContacts(selected);
 
       // Schedule notifications using the actual imported contacts (correct UUIDs)
@@ -501,56 +510,69 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
 
   Widget _buildSuccess(bool isDark, bool isEn) {
     return PremiumCard(
-      style: PremiumCardStyle.gold,
-      padding: const EdgeInsets.all(32),
-      child: Column(
-        children: [
-          const AppSymbol.hero('\u{1F389}'),
-          const SizedBox(height: 16),
-          GradientText(
-            isEn ? 'Import Complete!' : 'Aktarma Tamamland\u{0131}!',
-            variant: GradientTextVariant.gold,
-            style: AppTypography.displayFont.copyWith(fontSize: 20, fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            isEn
-                ? '$_importedCount birthdays imported successfully'
-                : '$_importedCount do\u{011F}um g\u{00FC}n\u{00FC} ba\u{015F}ar\u{0131}yla aktar\u{0131}ld\u{0131}',
-            textAlign: TextAlign.center,
-            style: AppTypography.decorativeScript(
-              fontSize: 14,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
-            ),
-          ),
-          const SizedBox(height: 24),
-          GestureDetector(
-            onTap: () => context.go(Routes.birthdayAgenda),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [AppColors.starGold, AppColors.celestialGold],
-                ),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                isEn ? 'View Birthdays' : 'Do\u{011F}um G\u{00FC}nlerini G\u{00F6}r',
-                style: AppTypography.modernAccent(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.deepSpace,
+          style: PremiumCardStyle.gold,
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            children: [
+              const AppSymbol.hero('\u{1F389}'),
+              const SizedBox(height: 16),
+              GradientText(
+                isEn ? 'Import Complete!' : 'Aktarma Tamamland\u{0131}!',
+                variant: GradientTextVariant.gold,
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-            ),
+              const SizedBox(height: 8),
+              Text(
+                isEn
+                    ? '$_importedCount birthdays imported successfully'
+                    : '$_importedCount do\u{011F}um g\u{00FC}n\u{00FC} ba\u{015F}ar\u{0131}yla aktar\u{0131}ld\u{0131}',
+                textAlign: TextAlign.center,
+                style: AppTypography.decorativeScript(
+                  fontSize: 14,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
+              ),
+              const SizedBox(height: 24),
+              GestureDetector(
+                onTap: () => context.go(Routes.birthdayAgenda),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                    vertical: 14,
+                  ),
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [AppColors.starGold, AppColors.celestialGold],
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    isEn
+                        ? 'View Birthdays'
+                        : 'Do\u{011F}um G\u{00FC}nlerini G\u{00F6}r',
+                    style: AppTypography.modernAccent(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.deepSpace,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ).animate().fadeIn(duration: 400.ms).scale(
-      begin: const Offset(0.95, 0.95),
-      end: const Offset(1, 1),
-      duration: 400.ms,
-    );
+        )
+        .animate()
+        .fadeIn(duration: 400.ms)
+        .scale(
+          begin: const Offset(0.95, 0.95),
+          end: const Offset(1, 1),
+          duration: 400.ms,
+        );
   }
 }
 

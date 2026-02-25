@@ -83,9 +83,7 @@ class StreakStatsScreen extends ConsumerWidget {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(
-            title: isEn ? 'Streak Engine' : 'Seri Motoru',
-          ),
+          GlassSliverAppBar(title: isEn ? 'Streak Engine' : 'Seri Motoru'),
           SliverPadding(
             padding: const EdgeInsets.all(AppConstants.spacingLg),
             sliver: SliverList(
@@ -167,20 +165,20 @@ class StreakStatsScreen extends ConsumerWidget {
                   ? '${stats.currentStreak} of ${stats.nextMilestone} day milestone'
                   : '${stats.nextMilestone} günlük hedefin ${stats.currentStreak} günü tamamlandı',
               child: ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: LinearProgressIndicator(
-                value: stats.nextMilestone! > 0
-                    ? (stats.currentStreak / stats.nextMilestone!).clamp(
-                        0.0,
-                        1.0,
-                      )
-                    : 0.0,
-                backgroundColor: isDark
-                    ? AppColors.surfaceLight.withValues(alpha: 0.15)
-                    : AppColors.lightSurfaceVariant,
-                valueColor: AlwaysStoppedAnimation(AppColors.starGold),
-                minHeight: 6,
-              ),
+                borderRadius: BorderRadius.circular(4),
+                child: LinearProgressIndicator(
+                  value: stats.nextMilestone! > 0
+                      ? (stats.currentStreak / stats.nextMilestone!).clamp(
+                          0.0,
+                          1.0,
+                        )
+                      : 0.0,
+                  backgroundColor: isDark
+                      ? AppColors.surfaceLight.withValues(alpha: 0.15)
+                      : AppColors.lightSurfaceVariant,
+                  valueColor: AlwaysStoppedAnimation(AppColors.starGold),
+                  minHeight: 6,
+                ),
               ),
             ),
             const SizedBox(height: 6),

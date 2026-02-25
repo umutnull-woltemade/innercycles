@@ -76,113 +76,113 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
         _showDiscardDialog();
       },
       child: Scaffold(
-      body: CosmicBackground(
-        child: SafeArea(
-          child: shadowAsync.when(
-            loading: () => const Center(child: CosmicLoadingIndicator()),
-            error: (_, _) => Center(
-              child: Text(
-                isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
-                style: AppTypography.decorativeScript(
-                  fontSize: 14,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
+        body: CosmicBackground(
+          child: SafeArea(
+            child: shadowAsync.when(
+              loading: () => const Center(child: CosmicLoadingIndicator()),
+              error: (_, _) => Center(
+                child: Text(
+                  isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
+                  style: AppTypography.decorativeScript(
+                    fontSize: 14,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
                 ),
               ),
-            ),
-            data: (shadowService) {
-              return CustomScrollView(
-                physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics(),
-                ),
-                slivers: [
-                  GlassSliverAppBar(
-                    title: isEn ? 'Shadow Work' : 'Gölge Çalışması',
+              data: (shadowService) {
+                return CustomScrollView(
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
                   ),
-                  SliverPadding(
-                    padding: const EdgeInsets.all(AppConstants.spacingLg),
-                    sliver: SliverList(
-                      delegate: SliverChildListDelegate([
-                        // Hero Section
-                        _buildHeroSection(
-                          context,
-                          shadowService,
-                          isDark,
-                          isEn,
-                        ).glassReveal(context: context),
-                        const SizedBox(height: AppConstants.spacingLg),
-
-                        // Archetype Selector
-                        _buildArchetypeSelector(
-                          context,
-                          isDark,
-                          isEn,
-                        ).glassListItem(context: context, index: 1),
-                        const SizedBox(height: AppConstants.spacingLg),
-
-                        // Today's Prompt
-                        _buildPromptCard(
-                          context,
-                          shadowService,
-                          isDark,
-                          isEn,
-                        ).glassListItem(context: context, index: 2),
-                        const SizedBox(height: AppConstants.spacingLg),
-
-                        // Response Area (when writing)
-                        if (_isWriting) ...[
-                          _buildResponseArea(
+                  slivers: [
+                    GlassSliverAppBar(
+                      title: isEn ? 'Shadow Work' : 'Gölge Çalışması',
+                    ),
+                    SliverPadding(
+                      padding: const EdgeInsets.all(AppConstants.spacingLg),
+                      sliver: SliverList(
+                        delegate: SliverChildListDelegate([
+                          // Hero Section
+                          _buildHeroSection(
                             context,
                             shadowService,
                             isDark,
                             isEn,
-                          ).glassListItem(context: context, index: 3),
+                          ).glassReveal(context: context),
                           const SizedBox(height: AppConstants.spacingLg),
-                        ],
 
-                        // Archetype Stats (PREMIUM)
-                        if (shadowService.hasData)
-                          _buildPremiumGate(
+                          // Archetype Selector
+                          _buildArchetypeSelector(
                             context,
                             isDark,
                             isEn,
-                            isPremium,
-                            child: _buildArchetypeStats(
+                          ).glassListItem(context: context, index: 1),
+                          const SizedBox(height: AppConstants.spacingLg),
+
+                          // Today's Prompt
+                          _buildPromptCard(
+                            context,
+                            shadowService,
+                            isDark,
+                            isEn,
+                          ).glassListItem(context: context, index: 2),
+                          const SizedBox(height: AppConstants.spacingLg),
+
+                          // Response Area (when writing)
+                          if (_isWriting) ...[
+                            _buildResponseArea(
                               context,
                               shadowService,
                               isDark,
                               isEn,
-                            ),
-                          ).glassListItem(context: context, index: 4),
-                        if (shadowService.hasData)
-                          const SizedBox(height: AppConstants.spacingLg),
+                            ).glassListItem(context: context, index: 3),
+                            const SizedBox(height: AppConstants.spacingLg),
+                          ],
 
-                        // Recent Entries (PREMIUM)
-                        if (shadowService.hasData)
-                          _buildPremiumGate(
-                            context,
-                            isDark,
-                            isEn,
-                            isPremium,
-                            child: _buildRecentEntries(
+                          // Archetype Stats (PREMIUM)
+                          if (shadowService.hasData)
+                            _buildPremiumGate(
                               context,
-                              shadowService,
                               isDark,
                               isEn,
-                            ),
-                          ).glassListItem(context: context, index: 5),
-                        const SizedBox(height: AppConstants.spacingXl),
-                      ]),
+                              isPremium,
+                              child: _buildArchetypeStats(
+                                context,
+                                shadowService,
+                                isDark,
+                                isEn,
+                              ),
+                            ).glassListItem(context: context, index: 4),
+                          if (shadowService.hasData)
+                            const SizedBox(height: AppConstants.spacingLg),
+
+                          // Recent Entries (PREMIUM)
+                          if (shadowService.hasData)
+                            _buildPremiumGate(
+                              context,
+                              isDark,
+                              isEn,
+                              isPremium,
+                              child: _buildRecentEntries(
+                                context,
+                                shadowService,
+                                isDark,
+                                isEn,
+                              ),
+                            ).glassListItem(context: context, index: 5),
+                          const SizedBox(height: AppConstants.spacingXl),
+                        ]),
+                      ),
                     ),
-                  ),
-                ],
-              );
-            },
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),
-    ),
     );
   }
 
@@ -280,7 +280,10 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
         GradientText(
           value,
           variant: GradientTextVariant.amethyst,
-          style: AppTypography.modernAccent(fontSize: 22, fontWeight: FontWeight.bold),
+          style: AppTypography.modernAccent(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Text(
           label,
@@ -356,18 +359,19 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                     ),
                     child: Text(
                       isEn ? archetype.displayNameEn : archetype.displayNameTr,
-                      style: AppTypography.subtitle(
-                        fontSize: 12,
-                        color: isSelected
-                            ? _shadowPurple
-                            : (isDark
-                                  ? AppColors.textSecondary
-                                  : AppColors.lightTextSecondary),
-                      ).copyWith(
-                        fontWeight: isSelected
-                            ? FontWeight.w600
-                            : FontWeight.normal,
-                      ),
+                      style:
+                          AppTypography.subtitle(
+                            fontSize: 12,
+                            color: isSelected
+                                ? _shadowPurple
+                                : (isDark
+                                      ? AppColors.textSecondary
+                                      : AppColors.lightTextSecondary),
+                          ).copyWith(
+                            fontWeight: isSelected
+                                ? FontWeight.w600
+                                : FontWeight.normal,
+                          ),
                     ),
                   ),
                 ),
@@ -483,10 +487,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppConstants.radiusLg),
                   gradient: LinearGradient(
-                    colors: [
-                      AppColors.amethyst,
-                      AppColors.cosmicAmethyst,
-                    ],
+                    colors: [AppColors.amethyst, AppColors.cosmicAmethyst],
                   ),
                   boxShadow: [
                     BoxShadow(
@@ -499,7 +500,11 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.edit_rounded, size: 18, color: Colors.white),
+                    const Icon(
+                      Icons.edit_rounded,
+                      size: 18,
+                      color: Colors.white,
+                    ),
                     const SizedBox(width: 8),
                     Text(
                       isEn ? 'Begin Writing' : 'Yazmaya Başla',
@@ -643,18 +648,19 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                         isEn
                             ? 'This was a breakthrough moment'
                             : 'Bu bir içgörü anıydı',
-                        style: AppTypography.subtitle(
-                          fontSize: 12,
-                          color: _breakthroughMoment
-                              ? _shadowGold
-                              : (isDark
-                                    ? AppColors.textSecondary
-                                    : AppColors.lightTextSecondary),
-                        ).copyWith(
-                          fontWeight: _breakthroughMoment
-                              ? FontWeight.w600
-                              : FontWeight.normal,
-                        ),
+                        style:
+                            AppTypography.subtitle(
+                              fontSize: 12,
+                              color: _breakthroughMoment
+                                  ? _shadowGold
+                                  : (isDark
+                                        ? AppColors.textSecondary
+                                        : AppColors.lightTextSecondary),
+                            ).copyWith(
+                              fontWeight: _breakthroughMoment
+                                  ? FontWeight.w600
+                                  : FontWeight.normal,
+                            ),
                       ),
                     ),
                   ],
@@ -714,10 +720,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(AppConstants.radiusLg),
                     gradient: LinearGradient(
-                      colors: [
-                        AppColors.amethyst,
-                        AppColors.cosmicAmethyst,
-                      ],
+                      colors: [AppColors.amethyst, AppColors.cosmicAmethyst],
                     ),
                     boxShadow: _hasText
                         ? [
@@ -732,7 +735,11 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.save_rounded, size: 18, color: Colors.white),
+                      const Icon(
+                        Icons.save_rounded,
+                        size: 18,
+                        color: Colors.white,
+                      ),
                       const SizedBox(width: 8),
                       Text(
                         isEn ? 'Save Entry' : 'Girişi Kaydet',
@@ -790,7 +797,10 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               GradientText(
                 isEn ? 'Your Shadow Map' : 'Gölge Haritan',
                 variant: GradientTextVariant.amethyst,
-                style: AppTypography.modernAccent(fontSize: 14, fontWeight: FontWeight.w600),
+                style: AppTypography.modernAccent(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
@@ -909,7 +919,10 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               GradientText(
                 isEn ? 'Recent Entries' : 'Son Girişler',
                 variant: GradientTextVariant.amethyst,
-                style: AppTypography.modernAccent(fontSize: 14, fontWeight: FontWeight.w600),
+                style: AppTypography.modernAccent(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
@@ -950,9 +963,9 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                                     ? entry.archetype.displayNameEn
                                     : entry.archetype.displayNameTr,
                                 style: AppTypography.subtitle(
-                                      fontSize: 12,
-                                      color: _shadowPurple,
-                                    ).copyWith(fontWeight: FontWeight.w600),
+                                  fontSize: 12,
+                                  color: _shadowPurple,
+                                ).copyWith(fontWeight: FontWeight.w600),
                               ),
                             ),
                             if (entry.breakthroughMoment)
@@ -970,11 +983,11 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                             Text(
                               dateLabel,
                               style: AppTypography.subtitle(
-                                    fontSize: 10,
-                                    color: isDark
-                                        ? AppColors.textSecondary
-                                        : AppColors.lightTextSecondary,
-                                  ),
+                                fontSize: 10,
+                                color: isDark
+                                    ? AppColors.textSecondary
+                                    : AppColors.lightTextSecondary,
+                              ),
                             ),
                           ],
                         ),
@@ -984,12 +997,12 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: AppTypography.subtitle(
-                                fontSize: 12,
-                                color: isDark
-                                    ? AppColors.textSecondary
-                                    : AppColors.lightTextSecondary,
-                                height: 1.4,
-                              ),
+                            fontSize: 12,
+                            color: isDark
+                                ? AppColors.textSecondary
+                                : AppColors.lightTextSecondary,
+                            height: 1.4,
+                          ),
                         ),
                       ],
                     ),
@@ -999,7 +1012,8 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             );
           }),
         ],
-      ));
+      ),
+    );
   }
 
   void _showDiscardDialog() async {
@@ -1079,7 +1093,9 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                         vertical: 12,
                       ),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                        borderRadius: BorderRadius.circular(
+                          AppConstants.radiusMd,
+                        ),
                         gradient: const LinearGradient(
                           colors: [AppColors.starGold, AppColors.celestialGold],
                         ),

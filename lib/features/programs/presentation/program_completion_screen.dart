@@ -226,7 +226,10 @@ class ProgramCompletionScreen extends ConsumerWidget {
                   expanded: true,
                   fontSize: 16,
                   borderRadius: AppConstants.radiusMd,
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 14,
+                  ),
                   onPressed: () => context.go(Routes.today),
                 ),
                 const SizedBox(height: AppConstants.spacingHuge),

@@ -73,9 +73,7 @@ class WatchMoodService {
         label: label,
         rating: rating,
         timestamp: timestamp != null
-            ? DateTime.fromMillisecondsSinceEpoch(
-                (timestamp * 1000).toInt(),
-              )
+            ? DateTime.fromMillisecondsSinceEpoch((timestamp * 1000).toInt())
             : DateTime.now(),
       );
     } catch (e) {

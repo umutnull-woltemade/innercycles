@@ -269,8 +269,7 @@ class YearReviewService {
     if (withData.length < 2) return EmotionalArc.steady;
 
     final half = withData.length ~/ 2;
-    final firstAvg =
-        withData.sublist(0, half).reduce((a, b) => a + b) / half;
+    final firstAvg = withData.sublist(0, half).reduce((a, b) => a + b) / half;
     final secondAvg =
         withData.sublist(half).reduce((a, b) => a + b) /
         (withData.length - half);
@@ -289,8 +288,7 @@ class YearReviewService {
 
   int _countBreakthroughs(List<JournalEntry> entries) {
     if (entries.length < 2) return 0;
-    final sorted = entries.toList()
-      ..sort((a, b) => a.date.compareTo(b.date));
+    final sorted = entries.toList()..sort((a, b) => a.date.compareTo(b.date));
 
     int count = 0;
     for (int i = 1; i < sorted.length; i++) {
@@ -323,9 +321,11 @@ class YearReviewService {
     for (final entry in weekGroups.entries) {
       if (entry.value.length < 2) continue;
       final mean = entry.value.reduce((a, b) => a + b) / entry.value.length;
-      final variance = entry.value
-          .map((v) => (v - mean) * (v - mean))
-          .reduce((a, b) => a + b) / entry.value.length;
+      final variance =
+          entry.value
+              .map((v) => (v - mean) * (v - mean))
+              .reduce((a, b) => a + b) /
+          entry.value.length;
       if (variance > bestVariance) {
         bestVariance = variance;
         bestWeek = entry.key;

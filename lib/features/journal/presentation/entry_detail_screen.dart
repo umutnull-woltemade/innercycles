@@ -233,48 +233,48 @@ class EntryDetailScreen extends ConsumerWidget {
                 ? '$label: $value out of 5'
                 : '$label: 5 üzerinden $value',
             child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 120,
-                  child: ExcludeSemantics(
-                    child: Text(
-                    label,
-                    style: AppTypography.subtitle(
-                      fontSize: 14,
-                      color: isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary,
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 120,
+                    child: ExcludeSemantics(
+                      child: Text(
+                        label,
+                        style: AppTypography.subtitle(
+                          fontSize: 14,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                        ),
+                      ),
                     ),
                   ),
-                  ),
-                ),
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(4),
-                    child: LinearProgressIndicator(
-                      value: value / 5.0,
-                      backgroundColor: isDark
-                          ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                          : AppColors.lightSurfaceVariant,
-                      valueColor: AlwaysStoppedAnimation(AppColors.starGold),
-                      minHeight: 8,
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(4),
+                      child: LinearProgressIndicator(
+                        value: value / 5.0,
+                        backgroundColor: isDark
+                            ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                            : AppColors.lightSurfaceVariant,
+                        valueColor: AlwaysStoppedAnimation(AppColors.starGold),
+                        minHeight: 8,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  '$value',
-                  style: AppTypography.modernAccent(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.starGold,
+                  const SizedBox(width: 12),
+                  Text(
+                    '$value',
+                    style: AppTypography.modernAccent(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.starGold,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
           );
         }).toList(),
       ),
@@ -361,7 +361,9 @@ class EntryDetailScreen extends ConsumerWidget {
     final confirmed = await GlassDialog.confirm(
       context,
       title: isEn ? 'Delete Entry?' : 'Kaydı Sil?',
-      message: isEn ? 'This action cannot be undone.' : 'Bu işlem geri alınamaz.',
+      message: isEn
+          ? 'This action cannot be undone.'
+          : 'Bu işlem geri alınamaz.',
       cancelLabel: isEn ? 'Cancel' : 'İptal',
       confirmLabel: isEn ? 'Delete' : 'Sil',
       isDestructive: true,

@@ -81,16 +81,16 @@ class _CycleWaveChartState extends State<CycleWaveChart> {
         image: true,
         child: RepaintBoundary(
           child: CustomPaint(
-          size: const Size(double.infinity, 240),
-          painter: _CycleWavePainterImpl(
-            data: widget.areaData,
-            visibleAreas: widget.visibleAreas,
-            isDark: widget.isDark,
-            displayDays: widget.displayDays,
-            progress: widget.animationProgress,
-            selectedPoint: _selectedPoint,
+            size: const Size(double.infinity, 240),
+            painter: _CycleWavePainterImpl(
+              data: widget.areaData,
+              visibleAreas: widget.visibleAreas,
+              isDark: widget.isDark,
+              displayDays: widget.displayDays,
+              progress: widget.animationProgress,
+              selectedPoint: _selectedPoint,
+            ),
           ),
-        ),
         ),
       ),
     );

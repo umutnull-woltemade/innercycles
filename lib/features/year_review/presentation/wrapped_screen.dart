@@ -113,7 +113,9 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                       isEn
                           ? 'Keep journaling to unlock your Wrapped!'
                           : 'Wrapped\'ını açmak için yazmaya devam et!',
-                      style: AppTypography.subtitle(color: AppColors.textSecondary),
+                      style: AppTypography.subtitle(
+                        color: AppColors.textSecondary,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -242,10 +244,10 @@ class _PageIndicator extends StatelessWidget {
               color: isLocked
                   ? AppColors.textMuted.withValues(alpha: 0.2)
                   : isActive
-                      ? AppColors.starGold
-                      : i < current
-                          ? AppColors.starGold.withValues(alpha: 0.5)
-                          : AppColors.textMuted.withValues(alpha: 0.3),
+                  ? AppColors.starGold
+                  : i < current
+                  ? AppColors.starGold.withValues(alpha: 0.5)
+                  : AppColors.textMuted.withValues(alpha: 0.3),
             ),
           ),
         );
@@ -262,10 +264,7 @@ class _WrappedCardBase extends StatelessWidget {
   final List<Color> gradientColors;
   final Widget child;
 
-  const _WrappedCardBase({
-    required this.gradientColors,
-    required this.child,
-  });
+  const _WrappedCardBase({required this.gradientColors, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -300,10 +299,7 @@ class _WrappedCardBase extends StatelessWidget {
             ),
             // Content
             Positioned.fill(
-              child: Padding(
-                padding: const EdgeInsets.all(32),
-                child: child,
-              ),
+              child: Padding(padding: const EdgeInsets.all(32), child: child),
             ),
             // Watermark
             Positioned(
@@ -393,26 +389,21 @@ class _IntroCard extends StatelessWidget {
             Icons.auto_awesome,
             color: AppColors.starGold,
             size: 48,
-          ).animate().scale(
-            duration: 600.ms,
-            curve: Curves.elasticOut,
-          ),
+          ).animate().scale(duration: 600.ms, curve: Curves.elasticOut),
           const SizedBox(height: 24),
           GradientText(
-            isEn ? 'Your Year in Patterns' : 'Örüntülerle Geçen Yılın',
-            variant: GradientTextVariant.cosmic,
-            textAlign: TextAlign.center,
-            style: AppTypography.displayFont.copyWith(
-              fontSize: 28,
-              fontWeight: FontWeight.w800,
-              height: 1.2,
-            ),
-          ).animate().fadeIn(delay: 200.ms, duration: 500.ms).slideY(
-            begin: 0.2,
-            end: 0,
-            delay: 200.ms,
-            duration: 500.ms,
-          ),
+                isEn ? 'Your Year in Patterns' : 'Örüntülerle Geçen Yılın',
+                variant: GradientTextVariant.cosmic,
+                textAlign: TextAlign.center,
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w800,
+                  height: 1.2,
+                ),
+              )
+              .animate()
+              .fadeIn(delay: 200.ms, duration: 500.ms)
+              .slideY(begin: 0.2, end: 0, delay: 200.ms, duration: 500.ms),
           const SizedBox(height: 8),
           GradientText(
             '${data.year}',
@@ -439,14 +430,16 @@ class _IntroCard extends StatelessWidget {
           ).animate().fadeIn(delay: 600.ms, duration: 500.ms),
           const Spacer(flex: 3),
           Text(
-            isEn ? 'Swipe to explore →' : 'Keşfetmek için kaydır →',
-            style: AppTypography.subtitle(
-              fontSize: 13,
-              color: AppColors.textMuted,
-            ),
-          ).animate(
-            onPlay: (c) => c.repeat(reverse: true),
-          ).fadeIn(duration: 800.ms).then().fadeOut(duration: 800.ms),
+                isEn ? 'Swipe to explore →' : 'Keşfetmek için kaydır →',
+                style: AppTypography.subtitle(
+                  fontSize: 13,
+                  color: AppColors.textMuted,
+                ),
+              )
+              .animate(onPlay: (c) => c.repeat(reverse: true))
+              .fadeIn(duration: 800.ms)
+              .then()
+              .fadeOut(duration: 800.ms),
         ],
       ),
     );
@@ -493,19 +486,22 @@ class _EmotionalArcCard extends StatelessWidget {
           ).animate().fadeIn(duration: 400.ms),
           const SizedBox(height: 16),
           Text(
-            data.dominantEmotionalArc.label(isEn),
-            style: AppTypography.displayFont.copyWith(
-              fontSize: 42,
-              fontWeight: FontWeight.w800,
-              color: AppColors.textPrimary,
-              height: 1.1,
-            ),
-          ).animate().fadeIn(delay: 300.ms, duration: 500.ms).scale(
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1, 1),
-            delay: 300.ms,
-            duration: 500.ms,
-          ),
+                data.dominantEmotionalArc.label(isEn),
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 42,
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.textPrimary,
+                  height: 1.1,
+                ),
+              )
+              .animate()
+              .fadeIn(delay: 300.ms, duration: 500.ms)
+              .scale(
+                begin: const Offset(0.8, 0.8),
+                end: const Offset(1, 1),
+                delay: 300.ms,
+                duration: 500.ms,
+              ),
           const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -575,17 +571,16 @@ class _IntenseWeekCard extends StatelessWidget {
             ),
           ).animate().fadeIn(duration: 400.ms),
           const SizedBox(height: 24),
-          Icon(
-            Icons.whatshot_rounded,
-            color: AppColors.sunriseEnd,
-            size: 56,
-          ).animate().fadeIn(delay: 200.ms, duration: 400.ms).scale(
-            begin: const Offset(0.5, 0.5),
-            end: const Offset(1, 1),
-            delay: 200.ms,
-            duration: 600.ms,
-            curve: Curves.elasticOut,
-          ),
+          Icon(Icons.whatshot_rounded, color: AppColors.sunriseEnd, size: 56)
+              .animate()
+              .fadeIn(delay: 200.ms, duration: 400.ms)
+              .scale(
+                begin: const Offset(0.5, 0.5),
+                end: const Offset(1, 1),
+                delay: 200.ms,
+                duration: 600.ms,
+                curve: Curves.elasticOut,
+              ),
           const SizedBox(height: 20),
           Text(
             weekStr,
@@ -615,7 +610,9 @@ class _IntenseWeekCard extends StatelessWidget {
   }
 
   String _formatWeek(DateTime monday, bool isEn) {
-    final months = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
+    final months = isEn
+        ? CommonStrings.monthsShortEn
+        : CommonStrings.monthsShortTr;
     return '${months[monday.month - 1]} ${monday.day}';
   }
 }
@@ -666,77 +663,81 @@ class _FocusAreaCard extends StatelessWidget {
             final area = entry.value.key;
             final count = entry.value.value;
             final pct = maxVal > 0 ? count / maxVal : 0.0;
-            final color = AppColors.focusAreaPalette[
-                area.index % AppColors.focusAreaPalette.length];
+            final color =
+                AppColors.focusAreaPalette[area.index %
+                    AppColors.focusAreaPalette.length];
 
             return Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 80,
-                    child: Text(
-                      isEn ? area.displayNameEn : area.displayNameTr,
-                      style: AppTypography.subtitle(
-                        fontSize: 13,
-                        color: AppColors.textSecondary,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: TweenAnimationBuilder<double>(
-                      tween: Tween(begin: 0, end: pct),
-                      duration: Duration(milliseconds: 800 + i * 150),
-                      curve: Curves.easeOutCubic,
-                      builder: (context, val, _) {
-                        return Container(
-                          height: 20,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: color.withValues(alpha: 0.1),
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 80,
+                        child: Text(
+                          isEn ? area.displayNameEn : area.displayNameTr,
+                          style: AppTypography.subtitle(
+                            fontSize: 13,
+                            color: AppColors.textSecondary,
                           ),
-                          child: FractionallySizedBox(
-                            alignment: Alignment.centerLeft,
-                            widthFactor: val,
-                            child: Container(
+                        ),
+                      ),
+                      Expanded(
+                        child: TweenAnimationBuilder<double>(
+                          tween: Tween(begin: 0, end: pct),
+                          duration: Duration(milliseconds: 800 + i * 150),
+                          curve: Curves.easeOutCubic,
+                          builder: (context, val, _) {
+                            return Container(
+                              height: 20,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                gradient: LinearGradient(
-                                  colors: [
-                                    color.withValues(alpha: 0.8),
-                                    color,
-                                  ],
+                                color: color.withValues(alpha: 0.1),
+                              ),
+                              child: FractionallySizedBox(
+                                alignment: Alignment.centerLeft,
+                                widthFactor: val,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        color.withValues(alpha: 0.8),
+                                        color,
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  SizedBox(
-                    width: 28,
-                    child: Text(
-                      '$count',
-                      style: AppTypography.elegantAccent(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.textMuted,
+                            );
+                          },
+                        ),
                       ),
-                    ),
+                      const SizedBox(width: 8),
+                      SizedBox(
+                        width: 28,
+                        child: Text(
+                          '$count',
+                          style: AppTypography.elegantAccent(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.textMuted,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ).animate().fadeIn(
-              delay: Duration(milliseconds: 300 + i * 100),
-              duration: 400.ms,
-            ).slideX(
-              begin: -0.1,
-              end: 0,
-              delay: Duration(milliseconds: 300 + i * 100),
-              duration: 400.ms,
-            );
+                )
+                .animate()
+                .fadeIn(
+                  delay: Duration(milliseconds: 300 + i * 100),
+                  duration: 400.ms,
+                )
+                .slideX(
+                  begin: -0.1,
+                  end: 0,
+                  delay: Duration(milliseconds: 300 + i * 100),
+                  duration: 400.ms,
+                );
           }),
           const Spacer(flex: 3),
         ],
@@ -960,51 +961,54 @@ class _TopPatternsCard extends StatelessWidget {
               final i = entry.key;
               final label = _formatPattern(entry.value, isEn);
               return Padding(
-                padding: const EdgeInsets.only(bottom: 16),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 32,
-                      height: 32,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.starGold.withValues(alpha: 0.15),
-                        border: Border.all(
-                          color: AppColors.starGold.withValues(alpha: 0.3),
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          '${i + 1}',
-                          style: AppTypography.displayFont.copyWith(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.starGold,
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.starGold.withValues(alpha: 0.15),
+                            border: Border.all(
+                              color: AppColors.starGold.withValues(alpha: 0.3),
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '${i + 1}',
+                              style: AppTypography.displayFont.copyWith(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.starGold,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        label,
-                        style: AppTypography.subtitle(
-                          fontSize: 15,
-                          color: AppColors.textPrimary,
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            label,
+                            style: AppTypography.subtitle(
+                              fontSize: 15,
+                              color: AppColors.textPrimary,
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
-              ).animate().fadeIn(
-                delay: Duration(milliseconds: 300 + i * 200),
-                duration: 400.ms,
-              ).slideX(
-                begin: 0.1,
-                end: 0,
-                delay: Duration(milliseconds: 300 + i * 200),
-                duration: 400.ms,
-              );
+                  )
+                  .animate()
+                  .fadeIn(
+                    delay: Duration(milliseconds: 300 + i * 200),
+                    duration: 400.ms,
+                  )
+                  .slideX(
+                    begin: 0.1,
+                    end: 0,
+                    delay: Duration(milliseconds: 300 + i * 200),
+                    duration: 400.ms,
+                  );
             }),
           const Spacer(flex: 3),
         ],
@@ -1093,19 +1097,18 @@ class _ClosingCard extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
           GradientText(
-            isEn ? 'See You Next Year' : 'Gelecek Yıl Görüşmek Üzere',
-            variant: GradientTextVariant.cosmic,
-            textAlign: TextAlign.center,
-            style: AppTypography.displayFont.copyWith(
-              fontSize: 28,
-              fontWeight: FontWeight.w800,
-              height: 1.2,
-            ),
-          ).animate().fadeIn(duration: 500.ms).slideY(
-            begin: 0.2,
-            end: 0,
-            duration: 500.ms,
-          ),
+                isEn ? 'See You Next Year' : 'Gelecek Yıl Görüşmek Üzere',
+                variant: GradientTextVariant.cosmic,
+                textAlign: TextAlign.center,
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w800,
+                  height: 1.2,
+                ),
+              )
+              .animate()
+              .fadeIn(duration: 500.ms)
+              .slideY(begin: 0.2, end: 0, duration: 500.ms),
           const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -1123,35 +1126,33 @@ class _ClosingCard extends StatelessWidget {
           const Spacer(flex: 2),
           // Share button
           GradientButton.gold(
-            label: isEn ? 'Share Your Wrapped' : 'Wrapped\'ını Paylaş',
-            icon: Icons.share_rounded,
-            onPressed: () {
-              HapticFeedback.selectionClick();
-              final moodStr = data.averageMood.toStringAsFixed(1);
-              final shareText = isEn
-                  ? 'My ${data.year} InnerCycles Wrapped\n\n'
-                    '${data.totalEntries} journal entries across ${data.totalJournalingDays} days\n'
-                    'Average mood: $moodStr/5\n'
-                    'Growth score: ${data.growthScore}%\n'
-                    'Best streak: ${data.streakBest} days\n'
-                    '${data.breakthroughCount} breakthrough moments\n\n'
-                    'Discover your inner patterns with InnerCycles.'
-                  : '${data.year} InnerCycles Wrapped\'ım\n\n'
-                    '${data.totalJournalingDays} günde ${data.totalEntries} günlük kaydı\n'
-                    'Ortalama ruh hali: $moodStr/5\n'
-                    'Gelişim puanı: ${data.growthScore}%\n'
-                    'En iyi seri: ${data.streakBest} gün\n'
-                    '${data.breakthroughCount} atılım anı\n\n'
-                    'InnerCycles ile iç örüntülerini keşfet.';
-              SharePlus.instance.share(ShareParams(text: shareText));
-            },
-            expanded: true,
-          ).animate().fadeIn(delay: 600.ms, duration: 500.ms).slideY(
-            begin: 0.3,
-            end: 0,
-            delay: 600.ms,
-            duration: 500.ms,
-          ),
+                label: isEn ? 'Share Your Wrapped' : 'Wrapped\'ını Paylaş',
+                icon: Icons.share_rounded,
+                onPressed: () {
+                  HapticFeedback.selectionClick();
+                  final moodStr = data.averageMood.toStringAsFixed(1);
+                  final shareText = isEn
+                      ? 'My ${data.year} InnerCycles Wrapped\n\n'
+                            '${data.totalEntries} journal entries across ${data.totalJournalingDays} days\n'
+                            'Average mood: $moodStr/5\n'
+                            'Growth score: ${data.growthScore}%\n'
+                            'Best streak: ${data.streakBest} days\n'
+                            '${data.breakthroughCount} breakthrough moments\n\n'
+                            'Discover your inner patterns with InnerCycles.'
+                      : '${data.year} InnerCycles Wrapped\'ım\n\n'
+                            '${data.totalJournalingDays} günde ${data.totalEntries} günlük kaydı\n'
+                            'Ortalama ruh hali: $moodStr/5\n'
+                            'Gelişim puanı: ${data.growthScore}%\n'
+                            'En iyi seri: ${data.streakBest} gün\n'
+                            '${data.breakthroughCount} atılım anı\n\n'
+                            'InnerCycles ile iç örüntülerini keşfet.';
+                  SharePlus.instance.share(ShareParams(text: shareText));
+                },
+                expanded: true,
+              )
+              .animate()
+              .fadeIn(delay: 600.ms, duration: 500.ms)
+              .slideY(begin: 0.3, end: 0, delay: 600.ms, duration: 500.ms),
           const Spacer(flex: 2),
         ],
       ),
@@ -1321,11 +1322,7 @@ class _GrowthArcPainter extends CustomPainter {
       ..strokeWidth = 8
       ..strokeCap = StrokeCap.round
       ..shader = SweepGradient(
-        colors: [
-          AppColors.amethyst,
-          AppColors.auroraEnd,
-          AppColors.starGold,
-        ],
+        colors: [AppColors.amethyst, AppColors.auroraEnd, AppColors.starGold],
         transform: const GradientRotation(-math.pi / 2),
       ).createShader(arcRect);
 

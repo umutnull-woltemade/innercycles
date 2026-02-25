@@ -229,73 +229,73 @@ class _NavTab extends StatelessWidget {
         child: ConstrainedBox(
           constraints: const BoxConstraints(minWidth: 44, minHeight: 44),
           child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Glow dot indicator
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 250),
-            curve: Curves.easeOut,
-            width: isSelected ? 16 : 0,
-            height: 2.5,
-            margin: const EdgeInsets.only(bottom: 6),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(2),
-              color: isSelected ? activeColor : Colors.transparent,
-              boxShadow: isSelected
-                  ? [
-                      BoxShadow(
-                        color: activeColor.withValues(alpha: 0.5),
-                        blurRadius: 8,
-                        spreadRadius: 1,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Glow dot indicator
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 250),
+                curve: Curves.easeOut,
+                width: isSelected ? 16 : 0,
+                height: 2.5,
+                margin: const EdgeInsets.only(bottom: 6),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(2),
+                  color: isSelected ? activeColor : Colors.transparent,
+                  boxShadow: isSelected
+                      ? [
+                          BoxShadow(
+                            color: activeColor.withValues(alpha: 0.5),
+                            blurRadius: 8,
+                            spreadRadius: 1,
+                          ),
+                        ]
+                      : null,
+                ),
+              ),
+
+              // Icon with subtle background for selected state
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 250),
+                curve: Curves.easeOut,
+                padding: EdgeInsets.symmetric(
+                  horizontal: isSelected ? 14 : 10,
+                  vertical: isSelected ? 6 : 4,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: isSelected
+                      ? activeColor.withValues(alpha: isDark ? 0.1 : 0.08)
+                      : Colors.transparent,
+                ),
+                child: Icon(
+                  isSelected ? item.activeIcon : item.icon,
+                  size: 22,
+                  color: color,
+                ),
+              ),
+
+              const SizedBox(height: 3),
+
+              // Label
+              Text(
+                item.label,
+                style: isSelected
+                    ? AppTypography.elegantAccent(
+                        fontSize: 10,
+                        color: color,
+                        letterSpacing: 0.2,
+                      )
+                    : AppTypography.elegantAccent(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w400,
+                        color: color,
                       ),
-                    ]
-                  : null,
-            ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
           ),
-
-          // Icon with subtle background for selected state
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 250),
-            curve: Curves.easeOut,
-            padding: EdgeInsets.symmetric(
-              horizontal: isSelected ? 14 : 10,
-              vertical: isSelected ? 6 : 4,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: isSelected
-                  ? activeColor.withValues(alpha: isDark ? 0.1 : 0.08)
-                  : Colors.transparent,
-            ),
-            child: Icon(
-              isSelected ? item.activeIcon : item.icon,
-              size: 22,
-              color: color,
-            ),
-          ),
-
-          const SizedBox(height: 3),
-
-          // Label
-          Text(
-            item.label,
-            style: isSelected
-                ? AppTypography.elegantAccent(
-                    fontSize: 10,
-                    color: color,
-                    letterSpacing: 0.2,
-                  )
-                : AppTypography.elegantAccent(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: color,
-                  ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      ),
-      ),
+        ),
       ),
     );
   }

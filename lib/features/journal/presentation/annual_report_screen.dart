@@ -67,8 +67,7 @@ class AnnualReportScreen extends ConsumerStatefulWidget {
   const AnnualReportScreen({super.key, this.year});
 
   @override
-  ConsumerState<AnnualReportScreen> createState() =>
-      _AnnualReportScreenState();
+  ConsumerState<AnnualReportScreen> createState() => _AnnualReportScreenState();
 }
 
 class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
@@ -81,8 +80,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
 
   _AnnualReportData? _computeReport(JournalService service, int year) {
     final allEntries = service.getAllEntries();
-    final yearEntries =
-        allEntries.where((e) => e.date.year == year).toList();
+    final yearEntries = allEntries.where((e) => e.date.year == year).toList();
 
     if (yearEntries.isEmpty) return null;
 
@@ -94,8 +92,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
       areaCounts[e.focusArea] = (areaCounts[e.focusArea] ?? 0) + 1;
       areaRatingSums[e.focusArea] =
           (areaRatingSums[e.focusArea] ?? 0) + e.overallRating;
-      areaRatingCounts[e.focusArea] =
-          (areaRatingCounts[e.focusArea] ?? 0) + 1;
+      areaRatingCounts[e.focusArea] = (areaRatingCounts[e.focusArea] ?? 0) + 1;
     }
 
     final sortedAreas = areaCounts.entries.toList()
@@ -103,10 +100,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
 
     final topFocusAreas = sortedAreas
         .take(3)
-        .map((e) => MapEntry(
-              e.key,
-              (e.value / yearEntries.length) * 100,
-            ))
+        .map((e) => MapEntry(e.key, (e.value / yearEntries.length) * 100))
         .toList();
 
     // --- Monthly average ratings ---
@@ -155,8 +149,10 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     }
 
     // --- Overall average rating ---
-    final totalRating =
-        yearEntries.fold<int>(0, (sum, e) => sum + e.overallRating);
+    final totalRating = yearEntries.fold<int>(
+      0,
+      (sum, e) => sum + e.overallRating,
+    );
     final overallAvg = yearEntries.isNotEmpty
         ? totalRating / yearEntries.length
         : 0.0;
@@ -177,16 +173,16 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
   // =========================================================================
 
   Future<void> _shareReport(bool isEn) async {
-    final boundary = _repaintKey.currentContext?.findRenderObject()
-        as RenderRepaintBoundary?;
+    final boundary =
+        _repaintKey.currentContext?.findRenderObject()
+            as RenderRepaintBoundary?;
     if (boundary == null) return;
 
     setState(() => _isSharing = true);
 
     try {
       final image = await boundary.toImage(pixelRatio: 3.0);
-      final byteData =
-          await image.toByteData(format: ui.ImageByteFormat.png);
+      final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       if (byteData == null) {
         if (mounted) setState(() => _isSharing = false);
         return;
@@ -194,9 +190,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
 
       final bytes = byteData.buffer.asUint8List();
       final tempDir = await getTemporaryDirectory();
-      final file = File(
-        '${tempDir.path}/innercycles_annual_report.png',
-      );
+      final file = File('${tempDir.path}/innercycles_annual_report.png');
       await file.writeAsBytes(bytes);
 
       final shareText = isEn
@@ -204,10 +198,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           : 'InnerCycles ile yıllık raporum! #InnerCycles #YıllıkRapor';
 
       await SharePlus.instance.share(
-        ShareParams(
-          files: [XFile(file.path)],
-          text: shareText,
-        ),
+        ShareParams(files: [XFile(file.path)], text: shareText),
       );
     } catch (e) {
       if (kDebugMode) debugPrint('AnnualReport: share error: $e');
@@ -249,10 +240,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     }
   }
 
-  String _motivationalMessage(
-    _AnnualReportData data,
-    bool isEn,
-  ) {
+  String _motivationalMessage(_AnnualReportData data, bool isEn) {
     if (data.totalEntries >= 200) {
       return isEn
           ? 'An extraordinary year of self-reflection. Your dedication to understanding yourself has been remarkable.'
@@ -330,9 +318,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         slivers: [
-          GlassSliverAppBar(
-            title: isEn ? 'Year Synthesis' : 'Yıl Sentezi',
-          ),
+          GlassSliverAppBar(title: isEn ? 'Year Synthesis' : 'Yıl Sentezi'),
           SliverFillRemaining(
             hasScrollBody: false,
             child: Center(
@@ -449,8 +435,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
 
                         // 5) Most active month
                         if (report.mostActiveMonth != null)
-                          _buildMostActiveMonth(
-                                  context, report, isDark, isEn)
+                          _buildMostActiveMonth(context, report, isDark, isEn)
                               .animate()
                               .fadeIn(delay: 600.ms, duration: 500.ms)
                               .slideY(
@@ -463,8 +448,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                           const SizedBox(height: AppConstants.spacingXl),
 
                         // 6) Motivational summary
-                        _buildMotivationalSummary(
-                                context, report, isDark, isEn)
+                        _buildMotivationalSummary(context, report, isDark, isEn)
                             .animate()
                             .fadeIn(delay: 750.ms, duration: 500.ms)
                             .slideY(
@@ -476,9 +460,9 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                         const SizedBox(height: AppConstants.spacingLg),
 
                         // Watermark
-                        _buildWatermark(isDark)
-                            .animate()
-                            .fadeIn(delay: 900.ms, duration: 500.ms),
+                        _buildWatermark(
+                          isDark,
+                        ).animate().fadeIn(delay: 900.ms, duration: 500.ms),
                       ],
                     ),
                   ),
@@ -511,11 +495,11 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
           Text(
             '${report.year}',
             style: AppTypography.displayFont.copyWith(
-                  fontSize: 32,
-                  color: AppColors.starGold,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 2,
-                ),
+              fontSize: 32,
+              color: AppColors.starGold,
+              fontWeight: FontWeight.w900,
+              letterSpacing: 2,
+            ),
           ),
           const SizedBox(height: 8),
           GradientText(
@@ -569,8 +553,11 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
         children: [
           Row(
             children: [
-              Icon(Icons.pie_chart_outline,
-                  color: AppColors.starGold, size: 20),
+              Icon(
+                Icons.pie_chart_outline,
+                color: AppColors.starGold,
+                size: 20,
+              ),
               const SizedBox(width: 8),
               GradientText(
                 isEn ? 'Top Focus Areas' : 'En Çok Odaklanılan Alanlar',
@@ -589,8 +576,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
             final area = entry.key;
             final pct = entry.value;
             final color = _focusAreaColor(area);
-            final areaName =
-                isEn ? area.displayNameEn : area.displayNameTr;
+            final areaName = isEn ? area.displayNameEn : area.displayNameTr;
 
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
@@ -603,9 +589,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: color.withValues(alpha: 0.15),
-                      border: Border.all(
-                        color: color.withValues(alpha: 0.4),
-                      ),
+                      border: Border.all(color: color.withValues(alpha: 0.4)),
                     ),
                     child: Center(
                       child: Text(
@@ -643,8 +627,9 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                             child: LinearProgressIndicator(
                               value: pct / 100,
                               backgroundColor: isDark
-                                  ? AppColors.surfaceLight
-                                      .withValues(alpha: 0.3)
+                                  ? AppColors.surfaceLight.withValues(
+                                      alpha: 0.3,
+                                    )
                                   : AppColors.lightSurfaceVariant,
                               valueColor: AlwaysStoppedAnimation(color),
                               minHeight: 8,
@@ -695,13 +680,14 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
         children: [
           Row(
             children: [
-              Icon(Icons.bar_chart_rounded,
-                  color: AppColors.auroraStart, size: 20),
+              Icon(
+                Icons.bar_chart_rounded,
+                color: AppColors.auroraStart,
+                size: 20,
+              ),
               const SizedBox(width: 8),
               GradientText(
-                isEn
-                    ? 'Average Rating by Month'
-                    : 'Aylik Ortalama Puanlar',
+                isEn ? 'Average Rating by Month' : 'Aylik Ortalama Puanlar',
                 variant: GradientTextVariant.aurora,
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
@@ -717,8 +703,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: List.generate(12, (i) {
                 final month = i + 1;
-                final avg =
-                    report.monthlyAverageRatings[month] ?? 0.0;
+                final avg = report.monthlyAverageRatings[month] ?? 0.0;
                 final normalizedHeight = maxRating > 0
                     ? (avg / maxRating) * chartHeight
                     : 0.0;
@@ -745,8 +730,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                         const SizedBox(height: 2),
                         // Bar
                         Container(
-                          height:
-                              hasData ? max(4.0, normalizedHeight) : 4.0,
+                          height: hasData ? max(4.0, normalizedHeight) : 4.0,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
                             gradient: hasData
@@ -754,19 +738,22 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
                                     colors: [
-                                      AppColors.auroraStart
-                                          .withValues(alpha: 0.9),
-                                      AppColors.auroraEnd
-                                          .withValues(alpha: 0.5),
+                                      AppColors.auroraStart.withValues(
+                                        alpha: 0.9,
+                                      ),
+                                      AppColors.auroraEnd.withValues(
+                                        alpha: 0.5,
+                                      ),
                                     ],
                                   )
                                 : null,
                             color: hasData
                                 ? null
                                 : (isDark
-                                    ? AppColors.surfaceLight
-                                        .withValues(alpha: 0.2)
-                                    : AppColors.lightSurfaceVariant),
+                                      ? AppColors.surfaceLight.withValues(
+                                          alpha: 0.2,
+                                        )
+                                      : AppColors.lightSurfaceVariant),
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -920,9 +907,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  isEn
-                      ? '$count entries recorded'
-                      : '$count kayıt yazıldı',
+                  isEn ? '$count entries recorded' : '$count kayıt yazıldı',
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     color: isDark
@@ -953,22 +938,18 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
       padding: const EdgeInsets.all(AppConstants.spacingXl),
       child: Column(
         children: [
-          Icon(
-            Icons.auto_awesome,
-            color: AppColors.starGold,
-            size: 32,
-          ),
+          Icon(Icons.auto_awesome, color: AppColors.starGold, size: 32),
           const SizedBox(height: 12),
           Text(
             _motivationalMessage(report, isEn),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
-                  fontSize: 17,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
-                  fontWeight: FontWeight.w500,
-                ),
+              fontSize: 17,
+              color: isDark
+                  ? AppColors.textPrimary
+                  : AppColors.lightTextPrimary,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ],
       ),
@@ -1003,9 +984,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
             style: AppTypography.elegantAccent(
               fontSize: 12,
               fontWeight: FontWeight.w500,
-              color: isDark
-                  ? AppColors.textMuted
-                  : AppColors.lightTextMuted,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               letterSpacing: 1.2,
             ),
           ),

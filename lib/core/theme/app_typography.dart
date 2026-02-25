@@ -189,7 +189,8 @@ class AppTypography {
     List<Color>? colors,
     TextAlign? textAlign,
   }) {
-    final gradientColors = colors ??
+    final gradientColors =
+        colors ??
         [AppColors.starGold, AppColors.celestialGold, AppColors.starGold];
     return ShaderMask(
       blendMode: BlendMode.srcIn,

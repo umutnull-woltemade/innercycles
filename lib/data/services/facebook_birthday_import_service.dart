@@ -46,18 +46,20 @@ class FacebookBirthdayImportService {
 
         final year = birthday['year'] as int?;
 
-        contacts.add(BirthdayContact(
-          id: _uuid.v4(),
-          name: _decodeFbName(name),
-          birthdayMonth: month,
-          birthdayDay: day,
-          birthYear: year != null && year > 1900 ? year : null,
-          createdAt: DateTime.now(),
-          source: BirthdayContactSource.facebook,
-          relationship: BirthdayRelationship.friend,
-          notificationsEnabled: true,
-          dayBeforeReminder: true,
-        ));
+        contacts.add(
+          BirthdayContact(
+            id: _uuid.v4(),
+            name: _decodeFbName(name),
+            birthdayMonth: month,
+            birthdayDay: day,
+            birthYear: year != null && year > 1900 ? year : null,
+            createdAt: DateTime.now(),
+            source: BirthdayContactSource.facebook,
+            relationship: BirthdayRelationship.friend,
+            notificationsEnabled: true,
+            dayBeforeReminder: true,
+          ),
+        );
       }
 
       return contacts;
@@ -86,18 +88,20 @@ class FacebookBirthdayImportService {
       final parsed = _parseHtmlDate(dateStr);
       if (parsed == null) continue;
 
-      contacts.add(BirthdayContact(
-        id: _uuid.v4(),
-        name: _decodeFbName(name),
-        birthdayMonth: parsed.$1,
-        birthdayDay: parsed.$2,
-        birthYear: parsed.$3,
-        createdAt: DateTime.now(),
-        source: BirthdayContactSource.facebook,
-        relationship: BirthdayRelationship.friend,
-        notificationsEnabled: true,
-        dayBeforeReminder: true,
-      ));
+      contacts.add(
+        BirthdayContact(
+          id: _uuid.v4(),
+          name: _decodeFbName(name),
+          birthdayMonth: parsed.$1,
+          birthdayDay: parsed.$2,
+          birthYear: parsed.$3,
+          createdAt: DateTime.now(),
+          source: BirthdayContactSource.facebook,
+          relationship: BirthdayRelationship.friend,
+          notificationsEnabled: true,
+          dayBeforeReminder: true,
+        ),
+      );
     }
 
     return contacts;

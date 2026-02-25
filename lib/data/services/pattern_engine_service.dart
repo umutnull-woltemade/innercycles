@@ -545,9 +545,11 @@ class PatternEngineService {
       return null;
     }
 
-    final avgWith = moodsWithGratitude.fold<int>(0, (s, v) => s + v) /
+    final avgWith =
+        moodsWithGratitude.fold<int>(0, (s, v) => s + v) /
         moodsWithGratitude.length;
-    final avgWithout = moodsWithoutGratitude.fold<int>(0, (s, v) => s + v) /
+    final avgWithout =
+        moodsWithoutGratitude.fold<int>(0, (s, v) => s + v) /
         moodsWithoutGratitude.length;
 
     return GratitudeMoodComparison(

@@ -186,8 +186,7 @@ class ToolManifestRegistry {
       nameEn: 'Anchor Log',
       nameTr: 'Çapa Kaydı',
       valuePropositionEn: 'Capture moments of gratitude to shift perspective.',
-      valuePropositionTr:
-          'Şükran anlarını kaydet, bakış açını değiştir.',
+      valuePropositionTr: 'Şükran anlarını kaydet, bakış açını değiştir.',
       route: Routes.gratitudeJournal,
       icon: '\u{1F64F}',
       category: ToolCategory.journal,
@@ -290,7 +289,8 @@ class ToolManifestRegistry {
       id: 'emotionalCycles',
       nameEn: 'Waveform View',
       nameTr: 'Dalga Formu Görünümü',
-      valuePropositionEn: 'Visualize how your emotional patterns flow over time.',
+      valuePropositionEn:
+          'Visualize how your emotional patterns flow over time.',
       valuePropositionTr:
           'Duygusal kalıplarının zaman içinde nasıl aktığını görselleştir.',
       route: Routes.emotionalCycles,
@@ -326,7 +326,8 @@ class ToolManifestRegistry {
       id: 'moodTrends',
       nameEn: 'Signal Dashboard',
       nameTr: 'Sinyal Paneli',
-      valuePropositionEn: 'Record observations and surface patterns over days and weeks.',
+      valuePropositionEn:
+          'Record observations and surface patterns over days and weeks.',
       valuePropositionTr:
           'G\u00fcnler ve haftalar boyunca g\u00f6zlem kaydet ve kal\u0131plar\u0131 ortaya \u00e7\u0131kar.',
       route: Routes.moodTrends,
@@ -342,7 +343,8 @@ class ToolManifestRegistry {
       id: 'breathing',
       nameEn: 'Guided Breathwork',
       nameTr: 'Rehberli Nefes Çalışması',
-      valuePropositionEn: 'Guided breathing exercises for regulation and focus.',
+      valuePropositionEn:
+          'Guided breathing exercises for regulation and focus.',
       valuePropositionTr:
           'Sakinlik ve odak i\u00e7in rehberli nefes egzersizleri.',
       route: Routes.breathing,
@@ -734,8 +736,7 @@ class ToolManifestRegistry {
       nameEn: 'Archive Vault',
       nameTr: 'Arşiv Kasası',
       valuePropositionEn: 'Browse all past entries in one place.',
-      valuePropositionTr:
-          'Tüm geçmiş kayıtlarını tek yerde gör.',
+      valuePropositionTr: 'Tüm geçmiş kayıtlarını tek yerde gör.',
       route: Routes.journalArchive,
       icon: '\u{1F4DA}',
       category: ToolCategory.data,
@@ -798,8 +799,7 @@ class ToolManifestRegistry {
       id: 'dailyHabits',
       nameEn: 'Routine Tracker',
       nameTr: 'Rutin Takipçisi',
-      valuePropositionEn:
-          'Log your daily micro-habits and build consistency.',
+      valuePropositionEn: 'Log your daily micro-habits and build consistency.',
       valuePropositionTr:
           'Günlük mikro alışkanlıklarını kaydet ve tutarlılık oluştur.',
       route: Routes.dailyHabits,

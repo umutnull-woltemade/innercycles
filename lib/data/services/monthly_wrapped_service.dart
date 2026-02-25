@@ -80,9 +80,9 @@ class MonthlyWrappedService {
     // Best day of week
     final dayRatings = <int, List<double>>{};
     for (final entry in entries) {
-      dayRatings.putIfAbsent(entry.date.weekday, () => []).add(
-        entry.overallRating.toDouble(),
-      );
+      dayRatings
+          .putIfAbsent(entry.date.weekday, () => [])
+          .add(entry.overallRating.toDouble());
     }
     int bestDay = 1;
     double bestAvg = 0;

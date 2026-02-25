@@ -420,8 +420,7 @@ class _ShareCardGalleryScreenState
       streak,
       cycleAnalysis: cycleAnalysis,
     );
-    final isStory =
-        template.layoutType == ShareCardLayout.cyclePosition;
+    final isStory = template.layoutType == ShareCardLayout.cyclePosition;
 
     return SafeArea(
       child: Column(

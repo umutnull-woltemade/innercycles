@@ -201,11 +201,15 @@ class DreamMemoryService {
 
     // Simple trend detection
     String trend = current.recentTrend;
-    if (newEmotion.contains('kaygı') || newEmotion.contains('kaygi') || newEmotion.contains('korku')) {
+    if (newEmotion.contains('kaygı') ||
+        newEmotion.contains('kaygi') ||
+        newEmotion.contains('korku')) {
       trend = 'processing';
     } else if (newEmotion.contains('mutlu') || newEmotion.contains('huzur')) {
       trend = 'integrating';
-    } else if (newEmotion.contains('merak') || newEmotion.contains('şaşkın') || newEmotion.contains('saskin')) {
+    } else if (newEmotion.contains('merak') ||
+        newEmotion.contains('şaşkın') ||
+        newEmotion.contains('saskin')) {
       trend = 'seeking';
     }
 

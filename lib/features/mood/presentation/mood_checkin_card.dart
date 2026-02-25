@@ -333,14 +333,15 @@ class _ThankYouView extends StatelessWidget {
         children: [
           Row(
             children: [
-              AppSymbol(todayMood.emoji, size: AppSymbolSize.lg)
-                  .animate()
-                  .scale(
-                    begin: const Offset(0.5, 0.5),
-                    end: const Offset(1, 1),
-                    duration: 300.ms,
-                    curve: Curves.elasticOut,
-                  ),
+              AppSymbol(
+                todayMood.emoji,
+                size: AppSymbolSize.lg,
+              ).animate().scale(
+                begin: const Offset(0.5, 0.5),
+                end: const Offset(1, 1),
+                duration: 300.ms,
+                curve: Curves.elasticOut,
+              ),
               const SizedBox(width: 14),
               Expanded(
                 child: Text(

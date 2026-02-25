@@ -114,10 +114,7 @@ class DreamJournalCorrelationService {
   /// Minimum |delta| (on a 1-5 scale) to be considered non-stable.
   static const double _stableThreshold = 0.25;
 
-  DreamJournalCorrelationService._(
-    this._dreamService,
-    this._journalService,
-  );
+  DreamJournalCorrelationService._(this._dreamService, this._journalService);
 
   /// Factory initializer following project convention.
   static Future<DreamJournalCorrelationService> init({
@@ -225,9 +222,7 @@ class DreamJournalCorrelationService {
     }
 
     // Sort strongest signal first.
-    correlations.sort(
-      (a, b) => b.delta.abs().compareTo(a.delta.abs()),
-    );
+    correlations.sort((a, b) => b.delta.abs().compareTo(a.delta.abs()));
 
     return correlations;
   }
@@ -251,9 +246,9 @@ class DreamJournalCorrelationService {
     if (correlations.isEmpty) {
       return isEn
           ? 'Not enough overlapping dream and journal data yet. '
-              'Keep recording to activate dream-mood insights.'
+                'Keep recording to activate dream-mood insights.'
           : 'Henüz yeterli rüya ve günlük verisi yok. '
-              'Rüya-ruh hali içgörüleri için kayıt yapmaya devam et.';
+                'Rüya-ruh hali içgörüleri için kayıt yapmaya devam et.';
     }
 
     final buffer = StringBuffer();
@@ -294,13 +289,9 @@ class DreamJournalCorrelationService {
 
     // Add a general note
     if (isEn) {
-      buffer.write(
-        'These patterns may evolve as you log more entries.',
-      );
+      buffer.write('These patterns may evolve as you log more entries.');
     } else {
-      buffer.write(
-        'Bu örüntüler daha fazla kayıt ekledikçe gelişebilir.',
-      );
+      buffer.write('Bu örüntüler daha fazla kayıt ekledikçe gelişebilir.');
     }
 
     return buffer.toString().trim();
@@ -346,8 +337,7 @@ class DreamJournalCorrelationService {
       '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
 
   /// Round to 2 decimal places.
-  double _round2(double value) =>
-      (value * 100).roundToDouble() / 100;
+  double _round2(double value) => (value * 100).roundToDouble() / 100;
 }
 
 // ══════════════════════════════════════════════════════════════════════════

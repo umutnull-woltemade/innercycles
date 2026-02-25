@@ -164,7 +164,9 @@ class NoteToSelfService with SupabaseSyncMixin {
 
   List<NoteToSelf> getNotesByTag(String tag) {
     final t = tag.toLowerCase();
-    return _notes.where((n) => n.tags.any((nt) => nt.toLowerCase() == t)).toList()
+    return _notes
+        .where((n) => n.tags.any((nt) => nt.toLowerCase() == t))
+        .toList()
       ..sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
   }
 
@@ -295,12 +297,17 @@ class NoteToSelfService with SupabaseSyncMixin {
 
       final note = NoteToSelf(
         id: id,
-        createdAt: DateTime.tryParse(row['created_at']?.toString() ?? '') ?? DateTime.now(),
-        updatedAt: DateTime.tryParse(row['updated_at']?.toString() ?? '') ?? DateTime.now(),
+        createdAt:
+            DateTime.tryParse(row['created_at']?.toString() ?? '') ??
+            DateTime.now(),
+        updatedAt:
+            DateTime.tryParse(row['updated_at']?.toString() ?? '') ??
+            DateTime.now(),
         title: row['title'] as String? ?? '',
         content: row['content'] as String? ?? '',
         isPinned: row['is_pinned'] as bool? ?? false,
-        tags: (row['tags'] as List<dynamic>?)
+        tags:
+            (row['tags'] as List<dynamic>?)
                 ?.map((e) => e.toString())
                 .toList() ??
             [],
@@ -319,7 +326,9 @@ class NoteToSelfService with SupabaseSyncMixin {
   }
 
   /// Merge reminders pulled from Supabase into local storage.
-  Future<void> mergeRemoteReminders(List<Map<String, dynamic>> remoteData) async {
+  Future<void> mergeRemoteReminders(
+    List<Map<String, dynamic>> remoteData,
+  ) async {
     for (final row in remoteData) {
       final id = row['id'] as String;
       final isDeleted = row['is_deleted'] as bool? ?? false;
@@ -332,7 +341,9 @@ class NoteToSelfService with SupabaseSyncMixin {
       final reminder = NoteReminder(
         id: id,
         noteId: row['note_id'] as String? ?? '',
-        scheduledAt: DateTime.tryParse(row['scheduled_at']?.toString() ?? '') ?? DateTime.now(),
+        scheduledAt:
+            DateTime.tryParse(row['scheduled_at']?.toString() ?? '') ??
+            DateTime.now(),
         frequency: ReminderFrequency.values.firstWhere(
           (e) => e.name == row['frequency'],
           orElse: () => ReminderFrequency.once,

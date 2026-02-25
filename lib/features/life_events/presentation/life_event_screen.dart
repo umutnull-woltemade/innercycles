@@ -110,61 +110,61 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
         _showDiscardDialog();
       },
       child: Scaffold(
-      body: CosmicBackground(
-        child: CustomScrollView(
-          physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
-          slivers: [
-            GlassSliverAppBar(
-              title: _isEditing
-                  ? (isEn ? 'Edit Life Event' : 'Yaşam Olayını Düzenle')
-                  : (isEn ? 'New Life Event' : 'Yeni Yaşam Olayı'),
+        body: CosmicBackground(
+          child: CustomScrollView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
             ),
-            SliverPadding(
-              padding: const EdgeInsets.all(16),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate([
-                  // 1. Event Type Selector
-                  _buildTypeSelector(isDark, isEn),
-                  const SizedBox(height: 20),
-
-                  // 2. Preset Picker or Custom Title
-                  if (_selectedType != LifeEventType.custom)
-                    _buildPresetPicker(isDark, isEn)
-                  else
-                    _buildCustomTitle(isDark, isEn),
-                  const SizedBox(height: 20),
-
-                  // 3. Date Picker
-                  _buildDatePicker(context, isDark, isEn),
-                  const SizedBox(height: 20),
-
-                  // 4. Emotion Tags
-                  _buildEmotionTags(isDark, isEn),
-                  const SizedBox(height: 20),
-
-                  // 5. Intensity Slider
-                  _buildIntensitySlider(isDark, isEn),
-                  const SizedBox(height: 20),
-
-                  // 6. Reflection Note
-                  _buildReflectionNote(isDark, isEn),
-                  const SizedBox(height: 20),
-
-                  // 7. Photo Upload
-                  _buildPhotoSection(isDark, isEn),
-                  const SizedBox(height: 24),
-
-                  // 8. Save Button
-                  _buildSaveButton(isDark, isEn),
-                  const SizedBox(height: 40),
-                ]),
+            slivers: [
+              GlassSliverAppBar(
+                title: _isEditing
+                    ? (isEn ? 'Edit Life Event' : 'Yaşam Olayını Düzenle')
+                    : (isEn ? 'New Life Event' : 'Yeni Yaşam Olayı'),
               ),
-            ),
-          ],
+              SliverPadding(
+                padding: const EdgeInsets.all(16),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate([
+                    // 1. Event Type Selector
+                    _buildTypeSelector(isDark, isEn),
+                    const SizedBox(height: 20),
+
+                    // 2. Preset Picker or Custom Title
+                    if (_selectedType != LifeEventType.custom)
+                      _buildPresetPicker(isDark, isEn)
+                    else
+                      _buildCustomTitle(isDark, isEn),
+                    const SizedBox(height: 20),
+
+                    // 3. Date Picker
+                    _buildDatePicker(context, isDark, isEn),
+                    const SizedBox(height: 20),
+
+                    // 4. Emotion Tags
+                    _buildEmotionTags(isDark, isEn),
+                    const SizedBox(height: 20),
+
+                    // 5. Intensity Slider
+                    _buildIntensitySlider(isDark, isEn),
+                    const SizedBox(height: 20),
+
+                    // 6. Reflection Note
+                    _buildReflectionNote(isDark, isEn),
+                    const SizedBox(height: 20),
+
+                    // 7. Photo Upload
+                    _buildPhotoSection(isDark, isEn),
+                    const SizedBox(height: 24),
+
+                    // 8. Save Button
+                    _buildSaveButton(isDark, isEn),
+                    const SizedBox(height: 40),
+                  ]),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
       ),
     );
   }
@@ -250,8 +250,9 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                         isEn ? type.displayNameEn : type.displayNameTr,
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
-                          fontWeight:
-                              isSelected ? FontWeight.w600 : FontWeight.w400,
+                          fontWeight: isSelected
+                              ? FontWeight.w600
+                              : FontWeight.w400,
                           color: isSelected
                               ? color
                               : (isDark
@@ -305,8 +306,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                 HapticService.selectionTap();
                 setState(() {
                   _selectedPreset = preset;
-                  _titleController.text =
-                      isEn ? preset.nameEn : preset.nameTr;
+                  _titleController.text = isEn ? preset.nameEn : preset.nameTr;
                   // Pre-fill suggested emotions
                   if (_emotionTags.isEmpty) {
                     _emotionTags.addAll(preset.defaultEmotions.take(3));
@@ -342,8 +342,9 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                       isEn ? preset.nameEn : preset.nameTr,
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
-                        fontWeight:
-                            isSelected ? FontWeight.w600 : FontWeight.w400,
+                        fontWeight: isSelected
+                            ? FontWeight.w600
+                            : FontWeight.w400,
                         color: isSelected
                             ? color
                             : (isDark
@@ -480,11 +481,33 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
 
   Widget _buildEmotionTags(bool isDark, bool isEn) {
     const emotions = [
-      'joy', 'pride', 'gratitude', 'excitement', 'love', 'hope',
-      'relief', 'curiosity', 'awe', 'confidence', 'peace', 'warmth',
-      'sadness', 'grief', 'anxiety', 'fear', 'anger', 'frustration',
-      'loneliness', 'confusion', 'guilt', 'shame', 'vulnerability',
-      'courage', 'determination', 'acceptance', 'nostalgia',
+      'joy',
+      'pride',
+      'gratitude',
+      'excitement',
+      'love',
+      'hope',
+      'relief',
+      'curiosity',
+      'awe',
+      'confidence',
+      'peace',
+      'warmth',
+      'sadness',
+      'grief',
+      'anxiety',
+      'fear',
+      'anger',
+      'frustration',
+      'loneliness',
+      'confusion',
+      'guilt',
+      'shame',
+      'vulnerability',
+      'courage',
+      'determination',
+      'acceptance',
+      'nostalgia',
     ];
 
     return Column(
@@ -551,8 +574,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                   emotion,
                   style: AppTypography.elegantAccent(
                     fontSize: 11,
-                    fontWeight:
-                        isSelected ? FontWeight.w600 : FontWeight.w400,
+                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                     color: isSelected
                         ? AppColors.auroraStart
                         : (isDark
@@ -773,9 +795,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
     final appDir = await getApplicationDocumentsDirectory();
     final fileName =
         'life_event_${DateTime.now().millisecondsSinceEpoch}${p.extension(picked.path)}';
-    final savedFile = await File(picked.path).copy(
-      '${appDir.path}/$fileName',
-    );
+    final savedFile = await File(picked.path).copy('${appDir.path}/$fileName');
     setState(() {
       _imagePath = savedFile.path;
       _hasChanges = true;

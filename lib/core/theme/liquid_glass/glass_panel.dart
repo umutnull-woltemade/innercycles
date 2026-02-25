@@ -82,10 +82,7 @@ class GlassPanel extends StatelessWidget {
                   : null,
             ),
             child: _shouldShowNoise
-                ? NoiseOverlay(
-                    opacity: noiseOpacity,
-                    child: child,
-                  )
+                ? NoiseOverlay(opacity: noiseOpacity, child: child)
                 : child,
           ),
         ),

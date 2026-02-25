@@ -115,7 +115,9 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
     final year = parts[0];
     final month = int.tryParse(parts[1]) ?? 1;
 
-    final months = isEn ? CommonStrings.monthsFullEn : CommonStrings.monthsFullTr;
+    final months = isEn
+        ? CommonStrings.monthsFullEn
+        : CommonStrings.monthsFullTr;
 
     final monthName = months[month - 1];
     return '$monthName $year';

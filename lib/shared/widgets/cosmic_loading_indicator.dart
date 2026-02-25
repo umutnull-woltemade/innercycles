@@ -66,10 +66,11 @@ class _CosmicLoadingIndicatorState extends State<CosmicLoadingIndicator>
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: (isDark
-                                ? AppColors.starGold
-                                : AppColors.lightStarGold)
-                            .withValues(alpha: 0.15),
+                        color:
+                            (isDark
+                                    ? AppColors.starGold
+                                    : AppColors.lightStarGold)
+                                .withValues(alpha: 0.15),
                         blurRadius: 20,
                         spreadRadius: 4,
                       ),

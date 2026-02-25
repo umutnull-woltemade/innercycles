@@ -30,10 +30,8 @@ class ChallengeCelebrationModal extends StatefulWidget {
       context: context,
       barrierDismissible: true,
       barrierColor: Colors.black54,
-      builder: (_) => ChallengeCelebrationModal(
-        challenge: challenge,
-        isEn: isEn,
-      ),
+      builder: (_) =>
+          ChallengeCelebrationModal(challenge: challenge, isEn: isEn),
     );
   }
 
@@ -52,8 +50,9 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
   Future<void> _shareCard() async {
     setState(() => _isSharing = true);
     try {
-      final boundary = _boundaryKey.currentContext?.findRenderObject()
-          as RenderRepaintBoundary?;
+      final boundary =
+          _boundaryKey.currentContext?.findRenderObject()
+              as RenderRepaintBoundary?;
       if (boundary == null) return;
 
       final title = isEn ? challenge.titleEn : challenge.titleTr;
@@ -80,8 +79,9 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
           ? '$title challenge completed celebration'
           : '$title meydan okuma tamamlandı kutlaması',
       child: Dialog(
-        backgroundColor:
-            isDark ? AppColors.surfaceDark : AppColors.lightSurface,
+        backgroundColor: isDark
+            ? AppColors.surfaceDark
+            : AppColors.lightSurface,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 36),
@@ -94,36 +94,40 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                 children: [
                   // Animated emoji badge
                   Container(
-                    width: 96,
-                    height: 96,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          AppColors.celestialGold.withValues(alpha: 0.25),
-                          AppColors.auroraStart.withValues(alpha: 0.15),
-                        ],
-                      ),
-                      border: Border.all(
-                        color: AppColors.celestialGold.withValues(alpha: 0.5),
-                        width: 2.5,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.celestialGold.withValues(alpha: 0.3),
-                          blurRadius: 24,
-                          spreadRadius: 4,
+                        width: 96,
+                        height: 96,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              AppColors.celestialGold.withValues(alpha: 0.25),
+                              AppColors.auroraStart.withValues(alpha: 0.15),
+                            ],
+                          ),
+                          border: Border.all(
+                            color: AppColors.celestialGold.withValues(
+                              alpha: 0.5,
+                            ),
+                            width: 2.5,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.celestialGold.withValues(
+                                alpha: 0.3,
+                              ),
+                              blurRadius: 24,
+                              spreadRadius: 4,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      challenge.emoji,
-                      style: AppTypography.subtitle(fontSize: 48),
-                    ),
-                  )
+                        alignment: Alignment.center,
+                        child: Text(
+                          challenge.emoji,
+                          style: AppTypography.subtitle(fontSize: 48),
+                        ),
+                      )
                       .animate()
                       .scale(
                         begin: const Offset(0.3, 0.3),
@@ -137,13 +141,15 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
 
                   // Title
                   GradientText(
-                    isEn ? 'Challenge Completed!' : 'Meydan Okuma Tamamlandı!',
-                    variant: GradientTextVariant.gold,
-                    style: AppTypography.displayFont.copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  )
+                        isEn
+                            ? 'Challenge Completed!'
+                            : 'Meydan Okuma Tamamlandı!',
+                        variant: GradientTextVariant.gold,
+                        style: AppTypography.displayFont.copyWith(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      )
                       .animate(delay: 200.ms)
                       .fadeIn(duration: 400.ms)
                       .slideY(begin: 0.3, end: 0, duration: 400.ms),
@@ -159,9 +165,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
                     ),
-                  )
-                      .animate(delay: 300.ms)
-                      .fadeIn(duration: 400.ms),
+                  ).animate(delay: 300.ms).fadeIn(duration: 400.ms),
 
                   const SizedBox(height: 12),
 
@@ -177,9 +181,7 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
                           ? Colors.white70
                           : AppColors.textDark.withValues(alpha: 0.7),
                     ),
-                  )
-                      .animate(delay: 350.ms)
-                      .fadeIn(duration: 400.ms),
+                  ).animate(delay: 350.ms).fadeIn(duration: 400.ms),
 
                   // InnerCycles watermark
                   const SizedBox(height: 12),
@@ -211,29 +213,32 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
 
                   // Buttons row: Share + Continue
                   Row(
-                    children: [
-                      Expanded(
-                        child: GradientOutlinedButton(
-                          label: isEn ? 'Share' : 'Paylaş',
-                          icon: _isSharing ? null : Icons.share_rounded,
-                          variant: GradientTextVariant.gold,
-                          expanded: true,
-                          fontSize: 14,
-                          borderRadius: 14,
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                          onPressed: _isSharing ? null : _shareCard,
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: GradientButton.gold(
-                          label: isEn ? 'Continue' : 'Devam Et',
-                          onPressed: () => Navigator.of(context).pop(),
-                          expanded: true,
-                        ),
-                      ),
-                    ],
-                  )
+                        children: [
+                          Expanded(
+                            child: GradientOutlinedButton(
+                              label: isEn ? 'Share' : 'Paylaş',
+                              icon: _isSharing ? null : Icons.share_rounded,
+                              variant: GradientTextVariant.gold,
+                              expanded: true,
+                              fontSize: 14,
+                              borderRadius: 14,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 12,
+                              ),
+                              onPressed: _isSharing ? null : _shareCard,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: GradientButton.gold(
+                              label: isEn ? 'Continue' : 'Devam Et',
+                              onPressed: () => Navigator.of(context).pop(),
+                              expanded: true,
+                            ),
+                          ),
+                        ],
+                      )
                       .animate(delay: 500.ms)
                       .fadeIn(duration: 400.ms)
                       .slideY(begin: 0.2, end: 0, duration: 400.ms),

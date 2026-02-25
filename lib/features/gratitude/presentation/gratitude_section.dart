@@ -90,71 +90,71 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                 : (_isExpanded ? 'Şükranı daralt' : 'Şükranı genişlet'),
             button: true,
             child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: () {
-                HapticFeedback.lightImpact();
-                setState(() => _isExpanded = !_isExpanded);
-              },
-              borderRadius: BorderRadius.circular(16),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: AppColors.success.withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(10),
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () {
+                  HapticFeedback.lightImpact();
+                  setState(() => _isExpanded = !_isExpanded);
+                },
+                borderRadius: BorderRadius.circular(16),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: AppColors.success.withValues(alpha: 0.15),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Icon(
+                          Icons.favorite_rounded,
+                          color: AppColors.success,
+                          size: 20,
+                        ),
                       ),
-                      child: Icon(
-                        Icons.favorite_rounded,
-                        color: AppColors.success,
-                        size: 20,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GradientText(
-                            isEn ? 'Gratitude' : 'Şükran',
-                            variant: GradientTextVariant.gold,
-                            style: AppTypography.displayFont.copyWith(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GradientText(
+                              isEn ? 'Gratitude' : 'Şükran',
+                              variant: GradientTextVariant.gold,
+                              style: AppTypography.displayFont.copyWith(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
-                          ),
-                          Text(
-                            isEn
-                                ? 'What went well today?'
-                                : 'Bugün ne iyi gitti?',
-                            style: AppTypography.decorativeScript(
-                              fontSize: 12,
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
+                            Text(
+                              isEn
+                                  ? 'What went well today?'
+                                  : 'Bugün ne iyi gitti?',
+                              style: AppTypography.decorativeScript(
+                                fontSize: 12,
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    AnimatedRotation(
-                      turns: _isExpanded ? 0.5 : 0,
-                      duration: const Duration(milliseconds: 200),
-                      child: Icon(
-                        Icons.expand_more_rounded,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
+                      AnimatedRotation(
+                        turns: _isExpanded ? 0.5 : 0,
+                        duration: const Duration(milliseconds: 200),
+                        child: Icon(
+                          Icons.expand_more_rounded,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
           ),
 
           // Expanded content
@@ -237,7 +237,10 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
               icon: Icon(Icons.add, size: 18, color: AppColors.success),
               label: Text(
                 isEn ? 'Add another' : 'Bir tane daha ekle',
-                style: AppTypography.elegantAccent(fontSize: 13, color: AppColors.success),
+                style: AppTypography.elegantAccent(
+                  fontSize: 13,
+                  color: AppColors.success,
+                ),
               ),
             ),
 
@@ -258,7 +261,10 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                       isEn
                           ? 'Premium: Add up to 3 gratitude items + theme analysis'
                           : 'Premium: 3 şükran maddesi + tema analizi',
-                      style: AppTypography.elegantAccent(fontSize: 12, color: AppColors.starGold),
+                      style: AppTypography.elegantAccent(
+                        fontSize: 12,
+                        color: AppColors.starGold,
+                      ),
                     ),
                   ),
                 ],
@@ -368,7 +374,10 @@ class _GratitudeSummaryContent extends StatelessWidget {
                   ),
                   child: Text(
                     theme,
-                    style: AppTypography.elegantAccent(fontSize: 12, color: AppColors.success),
+                    style: AppTypography.elegantAccent(
+                      fontSize: 12,
+                      color: AppColors.success,
+                    ),
                   ),
                 );
               }).toList(),

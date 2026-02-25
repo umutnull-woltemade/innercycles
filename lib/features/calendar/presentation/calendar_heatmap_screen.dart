@@ -93,7 +93,12 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
             // Life event service may still be loading — use empty map as fallback
             final lifeEventService = lifeEventAsync.valueOrNull;
             return _buildContent(
-              context, service, lifeEventService, isDark, isEn, isPremium,
+              context,
+              service,
+              lifeEventService,
+              isDark,
+              isEn,
+              isPremium,
             );
           },
         ),
@@ -145,7 +150,9 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
         parent: AlwaysScrollableScrollPhysics(),
       ),
       slivers: [
-        GlassSliverAppBar(title: isEn ? 'Heatmap Timeline' : 'Isı Haritası Zaman Çizelgesi'),
+        GlassSliverAppBar(
+          title: isEn ? 'Heatmap Timeline' : 'Isı Haritası Zaman Çizelgesi',
+        ),
         SliverPadding(
           padding: const EdgeInsets.all(16),
           sliver: SliverList(
@@ -605,25 +612,25 @@ class _CalendarGrid extends StatelessWidget {
                             children: [
                               Text(
                                 '$dayIndex',
-                                style: AppTypography.subtitle(
-                                  fontSize: 13,
-                                  color: isFuture
-                                      ? (isDark
-                                            ? AppColors.textMuted.withValues(
-                                                alpha: 0.3,
-                                              )
-                                            : AppColors.lightTextMuted
-                                                  .withValues(alpha: 0.3))
-                                      : entry != null
-                                      ? Colors.white
-                                      : (isDark
-                                            ? AppColors.textMuted
-                                            : AppColors.lightTextMuted),
-                                ).copyWith(
-                                  fontWeight: entry != null
-                                      ? FontWeight.w600
-                                      : FontWeight.w400,
-                                ),
+                                style:
+                                    AppTypography.subtitle(
+                                      fontSize: 13,
+                                      color: isFuture
+                                          ? (isDark
+                                                ? AppColors.textMuted
+                                                      .withValues(alpha: 0.3)
+                                                : AppColors.lightTextMuted
+                                                      .withValues(alpha: 0.3))
+                                          : entry != null
+                                          ? Colors.white
+                                          : (isDark
+                                                ? AppColors.textMuted
+                                                : AppColors.lightTextMuted),
+                                    ).copyWith(
+                                      fontWeight: entry != null
+                                          ? FontWeight.w600
+                                          : FontWeight.w400,
+                                    ),
                               ),
                               // Dot indicators row
                               if (!isFuture &&
@@ -664,10 +671,7 @@ class _CalendarGrid extends StatelessWidget {
       width: 5,
       height: 5,
       margin: const EdgeInsets.symmetric(horizontal: 1),
-      decoration: BoxDecoration(
-        color: color,
-        shape: BoxShape.circle,
-      ),
+      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
     );
   }
 
@@ -734,7 +738,10 @@ class _Legend extends StatelessWidget {
           children: [
             Text(
               isEn ? 'Less' : 'Az',
-              style: AppTypography.elegantAccent(fontSize: 10, color: mutedColor),
+              style: AppTypography.elegantAccent(
+                fontSize: 10,
+                color: mutedColor,
+              ),
             ),
             const SizedBox(width: 6),
             ...[0.3, 0.45, 0.6, 0.8, 1.0].map((alpha) {
@@ -751,7 +758,10 @@ class _Legend extends StatelessWidget {
             const SizedBox(width: 6),
             Text(
               isEn ? 'More' : 'Çok',
-              style: AppTypography.elegantAccent(fontSize: 10, color: mutedColor),
+              style: AppTypography.elegantAccent(
+                fontSize: 10,
+                color: mutedColor,
+              ),
             ),
           ],
         ),
@@ -796,7 +806,10 @@ class _Legend extends StatelessWidget {
           decoration: BoxDecoration(color: color, shape: BoxShape.circle),
         ),
         const SizedBox(width: 4),
-        Text(label, style: AppTypography.elegantAccent(fontSize: 10, color: textColor)),
+        Text(
+          label,
+          style: AppTypography.elegantAccent(fontSize: 10, color: textColor),
+        ),
       ],
     );
   }
@@ -1016,11 +1029,7 @@ class _DayDetail extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.add_rounded,
-              size: 16,
-              color: AppColors.auroraStart,
-            ),
+            Icon(Icons.add_rounded, size: 16, color: AppColors.auroraStart),
             const SizedBox(width: 6),
             Text(
               isEn ? 'Log this day' : 'Bu günü kaydet',
@@ -1056,9 +1065,7 @@ class _DayDetail extends StatelessWidget {
           decoration: BoxDecoration(
             color: accentColor.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              color: accentColor.withValues(alpha: 0.15),
-            ),
+            border: Border.all(color: accentColor.withValues(alpha: 0.15)),
           ),
           child: Row(
             children: [
@@ -1115,9 +1122,7 @@ class _DayDetail extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.starGold.withValues(alpha: 0.06),
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: AppColors.starGold.withValues(alpha: 0.12),
-          ),
+          border: Border.all(color: AppColors.starGold.withValues(alpha: 0.12)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

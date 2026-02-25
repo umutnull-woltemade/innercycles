@@ -92,8 +92,10 @@ class BirthdayAvatar extends StatelessWidget {
     final initials = parts.isEmpty
         ? '?'
         : parts.length == 1
-            ? parts[0].isNotEmpty ? parts[0][0].toUpperCase() : '?'
-            : '${parts[0][0]}${parts[1][0]}'.toUpperCase();
+        ? parts[0].isNotEmpty
+              ? parts[0][0].toUpperCase()
+              : '?'
+        : '${parts[0][0]}${parts[1][0]}'.toUpperCase();
 
     return Container(
       decoration: BoxDecoration(

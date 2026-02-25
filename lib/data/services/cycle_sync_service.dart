@@ -275,7 +275,9 @@ class CycleSyncService with SupabaseSyncMixin {
 
       final log = CyclePeriodLog(
         id: id,
-        periodStartDate: DateTime.tryParse(row['period_start_date']?.toString() ?? '') ?? DateTime.now(),
+        periodStartDate:
+            DateTime.tryParse(row['period_start_date']?.toString() ?? '') ??
+            DateTime.now(),
         periodEndDate: row['period_end_date'] != null
             ? DateTime.tryParse(row['period_end_date'].toString())
             : null,
@@ -285,7 +287,8 @@ class CycleSyncService with SupabaseSyncMixin {
                 orElse: () => FlowIntensity.medium,
               )
             : null,
-        symptoms: (row['symptoms'] as List<dynamic>?)
+        symptoms:
+            (row['symptoms'] as List<dynamic>?)
                 ?.map((e) => e.toString())
                 .toList() ??
             [],

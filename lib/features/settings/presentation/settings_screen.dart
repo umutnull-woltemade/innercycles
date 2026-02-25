@@ -126,78 +126,84 @@ class SettingsScreen extends ConsumerWidget {
                             children: AppLanguage.values
                                 .where((lang) => lang.hasStrictIsolation)
                                 .map((lang) {
-                              final isSelected = lang == language;
-                              return Semantics(
-                                label: lang.displayName,
-                                button: true,
-                                selected: isSelected,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    HapticFeedback.selectionClick();
-                                    ref
-                                            .read(languageProvider.notifier)
-                                            .state =
-                                        lang;
-                                    StorageService.saveLanguage(lang);
-                                  },
-                                  child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
-                                        vertical: 8,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: isSelected
-                                            ? AppColors.auroraStart.withValues(
-                                                alpha: 0.2,
-                                              )
-                                            : Colors.transparent,
-                                        borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(
+                                  final isSelected = lang == language;
+                                  return Semantics(
+                                    label: lang.displayName,
+                                    button: true,
+                                    selected: isSelected,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        HapticFeedback.selectionClick();
+                                        ref
+                                                .read(languageProvider.notifier)
+                                                .state =
+                                            lang;
+                                        StorageService.saveLanguage(lang);
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 8,
+                                        ),
+                                        decoration: BoxDecoration(
                                           color: isSelected
                                               ? AppColors.auroraStart
+                                                    .withValues(alpha: 0.2)
                                               : Colors.transparent,
-                                          width: 1.5,
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                          border: Border.all(
+                                            color: isSelected
+                                                ? AppColors.auroraStart
+                                                : Colors.transparent,
+                                            width: 1.5,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              lang.flag,
+                                              style: AppTypography.subtitle(
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 6),
+                                            Text(
+                                              lang.displayName,
+                                              style: isSelected
+                                                  ? AppTypography.modernAccent(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color:
+                                                          AppColors.auroraStart,
+                                                    )
+                                                  : AppTypography.subtitle(
+                                                      fontSize: 15,
+                                                      color: isDark
+                                                          ? AppColors
+                                                                .textPrimary
+                                                          : AppColors
+                                                                .lightTextPrimary,
+                                                    ),
+                                            ),
+                                            if (isSelected) ...[
+                                              const SizedBox(width: 4),
+                                              Icon(
+                                                Icons.check_circle,
+                                                size: 14,
+                                                color: AppColors.auroraStart,
+                                              ),
+                                            ],
+                                          ],
                                         ),
                                       ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                                            lang.flag,
-                                            style: AppTypography.subtitle(
-                                              fontSize: 16,
-                                            ),
-                                          ),
-                                          const SizedBox(width: 6),
-                                          Text(
-                                            lang.displayName,
-                                            style: isSelected
-                                                ? AppTypography.modernAccent(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColors.auroraStart,
-                                                  )
-                                                : AppTypography.subtitle(
-                                                    fontSize: 15,
-                                                    color: isDark
-                                                        ? AppColors.textPrimary
-                                                        : AppColors.lightTextPrimary,
-                                                  ),
-                                          ),
-                                          if (isSelected) ...[
-                                            const SizedBox(width: 4),
-                                            Icon(
-                                              Icons.check_circle,
-                                              size: 14,
-                                              color: AppColors.auroraStart,
-                                            ),
-                                          ],
-                                        ],
-                                      ),
                                     ),
-                                  ),
-                              );
-                            }).toList(),
+                                  );
+                                })
+                                .toList(),
                           ),
                         ),
                       ),
@@ -225,7 +231,8 @@ class SettingsScreen extends ConsumerWidget {
                               isDark: isDark,
                               onTap: () => context.push(Routes.profile),
                             ),
-                            if (AuthService.isSupabaseInitialized && AuthService.currentUser != null) ...[
+                            if (AuthService.isSupabaseInitialized &&
+                                AuthService.currentUser != null) ...[
                               _GroupedSeparator(isDark: isDark),
                               _SyncStatusTile(
                                 isDark: isDark,
@@ -241,8 +248,12 @@ class SettingsScreen extends ConsumerWidget {
                                         begin: Alignment.topLeft,
                                         end: Alignment.bottomRight,
                                         colors: [
-                                          AppColors.starGold.withValues(alpha: isDark ? 0.06 : 0.04),
-                                          AppColors.celestialGold.withValues(alpha: isDark ? 0.03 : 0.02),
+                                          AppColors.starGold.withValues(
+                                            alpha: isDark ? 0.06 : 0.04,
+                                          ),
+                                          AppColors.celestialGold.withValues(
+                                            alpha: isDark ? 0.03 : 0.02,
+                                          ),
                                         ],
                                       ),
                                     )
@@ -289,7 +300,8 @@ class SettingsScreen extends ConsumerWidget {
                                     boxShadow: !isPremium
                                         ? [
                                             BoxShadow(
-                                              color: AppColors.starGold.withValues(alpha: 0.3),
+                                              color: AppColors.starGold
+                                                  .withValues(alpha: 0.3),
                                               blurRadius: 8,
                                               offset: const Offset(0, 2),
                                             ),
@@ -373,14 +385,18 @@ class SettingsScreen extends ConsumerWidget {
                               onTap: () =>
                                   _showClearDataDialog(context, ref, language),
                             ),
-                            if (AuthService.isSupabaseInitialized && AuthService.currentUser != null) ...[
+                            if (AuthService.isSupabaseInitialized &&
+                                AuthService.currentUser != null) ...[
                               _GroupedSeparator(isDark: isDark),
                               _GroupedTile(
                                 icon: Icons.logout_rounded,
-                                title: language == AppLanguage.en ? 'Sign Out' : 'Çıkış Yap',
+                                title: language == AppLanguage.en
+                                    ? 'Sign Out'
+                                    : 'Çıkış Yap',
                                 isDark: isDark,
                                 isDestructive: true,
-                                onTap: () => _showSignOutDialog(context, ref, language),
+                                onTap: () =>
+                                    _showSignOutDialog(context, ref, language),
                               ),
                             ],
                           ],
@@ -800,7 +816,9 @@ class _SectionHeader extends StatelessWidget {
             style: AppTypography.elegantAccent(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
               letterSpacing: 1.2,
             ),
           ),
@@ -973,7 +991,10 @@ class _GroupedTile extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title,
-                    style: AppTypography.subtitle(fontSize: 17, color: textColor),
+                    style: AppTypography.subtitle(
+                      fontSize: 17,
+                      color: textColor,
+                    ),
                   ),
                 ),
                 if (trailing != null) ...[

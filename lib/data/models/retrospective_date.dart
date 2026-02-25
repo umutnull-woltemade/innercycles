@@ -41,20 +41,21 @@ class RetrospectiveDate {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'presetKey': presetKey,
-        'date': date.toIso8601String(),
-        'createdAt': createdAt.toIso8601String(),
-        'hasJournalEntry': hasJournalEntry,
-        'journalEntryId': journalEntryId,
-      };
+    'id': id,
+    'presetKey': presetKey,
+    'date': date.toIso8601String(),
+    'createdAt': createdAt.toIso8601String(),
+    'hasJournalEntry': hasJournalEntry,
+    'journalEntryId': journalEntryId,
+  };
 
   factory RetrospectiveDate.fromJson(Map<String, dynamic> json) {
     return RetrospectiveDate(
       id: json['id'] as String? ?? '',
       presetKey: json['presetKey'] as String? ?? '',
       date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
-      createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ??
+      createdAt:
+          DateTime.tryParse(json['createdAt']?.toString() ?? '') ??
           DateTime.now(),
       hasJournalEntry: json['hasJournalEntry'] as bool? ?? false,
       journalEntryId: json['journalEntryId'] as String?,

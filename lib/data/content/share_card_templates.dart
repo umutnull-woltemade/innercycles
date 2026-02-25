@@ -795,9 +795,9 @@ class ShareCardTemplates {
       case 'cycle_position':
         final day = cycleDay > 0 ? cycleDay : 12;
         final length = cycleLength > 0 ? cycleLength : 28;
-        final phase = cyclePhaseName ??
-            (isEn ? 'Expansion' : 'Genişleme');
-        final desc = cyclePhaseDescription ??
+        final phase = cyclePhaseName ?? (isEn ? 'Expansion' : 'Genişleme');
+        final desc =
+            cyclePhaseDescription ??
             (isEn
                 ? 'Your recent entries suggest a period of openness and growth'
                 : 'Son kayıtların açıklık ve büyüme dönemi öneriyor');
@@ -897,7 +897,7 @@ class ShareCardTemplates {
         final entries = journalDays > 0 ? journalDays : 0;
         final avg = (moodValues != null && moodValues.isNotEmpty)
             ? (moodValues.reduce((a, b) => a + b) / moodValues.length)
-                .toStringAsFixed(1)
+                  .toStringAsFixed(1)
             : '—';
         result = ShareCardData(
           headline: isEn
@@ -926,7 +926,8 @@ class ShareCardTemplates {
       // ── Question of the Day ─────────────────────────────────────
       case 'question_of_the_day':
         result = ShareCardData(
-          headline: reflectionText ??
+          headline:
+              reflectionText ??
               (isEn
                   ? 'What would you tell your younger self today?'
                   : 'Bugün daha genç haline ne söylerdin?'),

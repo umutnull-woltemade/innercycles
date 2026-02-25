@@ -30,7 +30,6 @@ import '../../streak/presentation/milestone_celebration_modal.dart';
 import '../../../data/content/share_card_templates.dart';
 import '../../../shared/widgets/share_card_sheet.dart';
 
-
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -179,120 +178,95 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           behavior: HitTestBehavior.opaque,
           child: SafeArea(
-            child:
-                CupertinoScrollbar(
-                      child: CustomScrollView(
-                        physics: const BouncingScrollPhysics(
-                          parent: AlwaysScrollableScrollPhysics(),
+            child: CupertinoScrollbar(
+              child: CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
+                slivers: [
+                  GlassSliverAppBar(
+                    title: isEn ? 'Log Your Day' : 'Gününü Kaydet',
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.all(AppConstants.spacingLg),
+                    sliver: SliverList(
+                      delegate: SliverChildListDelegate([
+                        // Date selector
+                        _buildDateSelector(context, isDark, isEn),
+                        const SizedBox(height: AppConstants.spacingSm),
+
+                        const SizedBox(height: AppConstants.spacingMd),
+
+                        // Focus area selector
+                        _buildSectionLabel(
+                          context,
+                          isDark,
+                          isEn ? 'Focus Area' : 'Odak Alanı',
                         ),
-                        slivers: [
-                          GlassSliverAppBar(
-                            title: isEn ? 'Log Your Day' : 'Gününü Kaydet',
+                        const SizedBox(height: AppConstants.spacingMd),
+                        _buildFocusAreaSelector(isDark, isEn),
+                        const SizedBox(height: AppConstants.spacingXl),
+
+                        // Overall rating
+                        _buildSectionLabel(
+                          context,
+                          isDark,
+                          isEn ? 'Overall Rating' : 'Genel Değerlendirme',
+                        ),
+                        const SizedBox(height: AppConstants.spacingMd),
+                        _buildRatingSlider(isDark, isEn, _overallRating, (v) {
+                          setState(() => _overallRating = v);
+                          _scheduleDraftSave();
+                        }),
+                        const SizedBox(height: AppConstants.spacingXl),
+
+                        // Sub-ratings (adaptive: collapsed if abandonment >40%)
+                        _buildAdaptiveSubRatings(context, isDark, isEn),
+                        const SizedBox(height: AppConstants.spacingXl),
+
+                        // Note
+                        _buildSectionLabel(
+                          context,
+                          isDark,
+                          isEn ? 'Notes (optional)' : 'Notlar (opsiyonel)',
+                        ),
+                        const SizedBox(height: AppConstants.spacingMd),
+                        _CyclePhasePromptHint(isEn: isEn, isDark: isDark),
+                        _buildNoteField(isDark, isEn),
+                        const SizedBox(height: AppConstants.spacingXl),
+
+                        // Photo attachment
+                        if (!kIsWeb) ...[
+                          _buildSectionLabel(
+                            context,
+                            isDark,
+                            isEn ? 'Photo (optional)' : 'Fotoğraf (opsiyonel)',
                           ),
-                          SliverPadding(
-                            padding: const EdgeInsets.all(
-                              AppConstants.spacingLg,
-                            ),
-                            sliver: SliverList(
-                              delegate: SliverChildListDelegate([
-                                // Date selector
-                                _buildDateSelector(context, isDark, isEn),
-                                const SizedBox(height: AppConstants.spacingSm),
-
-                                const SizedBox(height: AppConstants.spacingMd),
-
-                                // Focus area selector
-                                _buildSectionLabel(
-                                  context,
-                                  isDark,
-                                  isEn ? 'Focus Area' : 'Odak Alanı',
-                                ),
-                                const SizedBox(height: AppConstants.spacingMd),
-                                _buildFocusAreaSelector(isDark, isEn),
-                                const SizedBox(height: AppConstants.spacingXl),
-
-                                // Overall rating
-                                _buildSectionLabel(
-                                  context,
-                                  isDark,
-                                  isEn
-                                      ? 'Overall Rating'
-                                      : 'Genel Değerlendirme',
-                                ),
-                                const SizedBox(height: AppConstants.spacingMd),
-                                _buildRatingSlider(
-                                  isDark,
-                                  isEn,
-                                  _overallRating,
-                                  (v) {
-                                    setState(() => _overallRating = v);
-                                    _scheduleDraftSave();
-                                  },
-                                ),
-                                const SizedBox(height: AppConstants.spacingXl),
-
-                                // Sub-ratings (adaptive: collapsed if abandonment >40%)
-                                _buildAdaptiveSubRatings(
-                                    context, isDark, isEn),
-                                const SizedBox(height: AppConstants.spacingXl),
-
-                                // Note
-                                _buildSectionLabel(
-                                  context,
-                                  isDark,
-                                  isEn
-                                      ? 'Notes (optional)'
-                                      : 'Notlar (opsiyonel)',
-                                ),
-                                const SizedBox(height: AppConstants.spacingMd),
-                                _CyclePhasePromptHint(
-                                  isEn: isEn,
-                                  isDark: isDark,
-                                ),
-                                _buildNoteField(isDark, isEn),
-                                const SizedBox(height: AppConstants.spacingXl),
-
-                                // Photo attachment
-                                if (!kIsWeb) ...[
-                                  _buildSectionLabel(
-                                    context,
-                                    isDark,
-                                    isEn
-                                        ? 'Photo (optional)'
-                                        : 'Fotoğraf (opsiyonel)',
-                                  ),
-                                  const SizedBox(
-                                    height: AppConstants.spacingMd,
-                                  ),
-                                  _buildPhotoPicker(isDark, isEn),
-                                  const SizedBox(
-                                    height: AppConstants.spacingXl,
-                                  ),
-                                ],
-
-                                // Gratitude section (collapsible)
-                                GratitudeSection(
-                                  date: _selectedDate,
-                                  isPremium: ref.watch(isPremiumUserProvider),
-                                ),
-                                const SizedBox(height: AppConstants.spacingXl),
-
-                                // Sleep quality section (collapsible)
-                                SleepSection(date: _selectedDate),
-                                const SizedBox(height: AppConstants.spacingXl),
-
-                                // Save button
-                                _buildSaveButton(isDark, isEn),
-                                const SizedBox(height: 40),
-                              ]),
-                            ),
-                          ),
+                          const SizedBox(height: AppConstants.spacingMd),
+                          _buildPhotoPicker(isDark, isEn),
+                          const SizedBox(height: AppConstants.spacingXl),
                         ],
-                      ),
-                    )
-                    .animate()
-                    .fadeIn(duration: 400.ms)
-                    .slideY(begin: 0.05, duration: 400.ms),
+
+                        // Gratitude section (collapsible)
+                        GratitudeSection(
+                          date: _selectedDate,
+                          isPremium: ref.watch(isPremiumUserProvider),
+                        ),
+                        const SizedBox(height: AppConstants.spacingXl),
+
+                        // Sleep quality section (collapsible)
+                        SleepSection(date: _selectedDate),
+                        const SizedBox(height: AppConstants.spacingXl),
+
+                        // Save button
+                        _buildSaveButton(isDark, isEn),
+                        const SizedBox(height: 40),
+                      ]),
+                    ),
+                  ),
+                ],
+              ),
+            ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms),
           ),
         ),
       ),
@@ -558,11 +532,13 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   /// Adaptive sub-ratings: if telemetry shows >40% entry abandonment,
   /// collapse sub-ratings into an expandable section to reduce friction.
   Widget _buildAdaptiveSubRatings(
-      BuildContext context, bool isDark, bool isEn) {
+    BuildContext context,
+    bool isDark,
+    bool isEn,
+  ) {
     final telemetryAsync = ref.watch(telemetryServiceProvider);
-    final shouldSimplify = telemetryAsync.whenOrNull(
-          data: (t) => t.shouldSimplifyEntryForm,
-        ) ??
+    final shouldSimplify =
+        telemetryAsync.whenOrNull(data: (t) => t.shouldSimplifyEntryForm) ??
         false;
 
     if (shouldSimplify) {
@@ -576,7 +552,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
             style: AppTypography.elegantAccent(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextPrimary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextPrimary,
               letterSpacing: 1.0,
             ),
           ),
@@ -589,11 +567,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSectionLabel(
-          context,
-          isDark,
-          isEn ? 'Details' : 'Detaylar',
-        ),
+        _buildSectionLabel(context, isDark, isEn ? 'Details' : 'Detaylar'),
         const SizedBox(height: AppConstants.spacingMd),
         _buildSubRatings(isDark, isEn),
       ],
@@ -695,7 +669,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                       : AppColors.lightTextPrimary,
                 ),
                 decoration: InputDecoration(
-                  hintText: widget.journalPrompt ??
+                  hintText:
+                      widget.journalPrompt ??
                       (isEn
                           ? 'How was your day? Any reflections...'
                           : 'Bugün nasıl geçti? Düşüncelerin...'),
@@ -1103,7 +1078,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       await nlcService.recordActivity();
       await nlcService.evaluate(journalService);
     } catch (e) {
-      if (kDebugMode) debugPrint('DailyEntry: notification lifecycle error: $e');
+      if (kDebugMode)
+        debugPrint('DailyEntry: notification lifecycle error: $e');
     }
   }
 

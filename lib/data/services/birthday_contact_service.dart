@@ -120,9 +120,7 @@ class BirthdayContactService with SupabaseSyncMixin {
 
   /// Contacts with birthdays within the next [withinDays] days
   List<BirthdayContact> getUpcomingBirthdays({int withinDays = 30}) {
-    return _contacts
-        .where((c) => c.daysUntilBirthday <= withinDays)
-        .toList()
+    return _contacts.where((c) => c.daysUntilBirthday <= withinDays).toList()
       ..sort((a, b) => a.daysUntilBirthday.compareTo(b.daysUntilBirthday));
   }
 
@@ -159,13 +157,19 @@ class BirthdayContactService with SupabaseSyncMixin {
 
   /// Import multiple contacts, deduplicating by name+birthday.
   /// Returns the list of actually imported contacts with their final UUIDs.
-  Future<List<BirthdayContact>> importContacts(List<BirthdayContact> newContacts) async {
+  Future<List<BirthdayContact>> importContacts(
+    List<BirthdayContact> newContacts,
+  ) async {
     final imported = <BirthdayContact>[];
     for (final incoming in newContacts) {
-      final normalizedName = incoming.name.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
+      final normalizedName = incoming.name.trim().toLowerCase().replaceAll(
+        RegExp(r'\s+'),
+        ' ',
+      );
       final isDuplicate = _contacts.any(
         (c) =>
-            c.name.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ') == normalizedName &&
+            c.name.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ') ==
+                normalizedName &&
             c.birthdayMonth == incoming.birthdayMonth &&
             c.birthdayDay == incoming.birthdayDay,
       );
@@ -188,7 +192,9 @@ class BirthdayContactService with SupabaseSyncMixin {
   // ══════════════════════════════════════════════════════════════════════════
 
   /// Merge contacts pulled from Supabase into local storage.
-  Future<void> mergeRemoteContacts(List<Map<String, dynamic>> remoteData) async {
+  Future<void> mergeRemoteContacts(
+    List<Map<String, dynamic>> remoteData,
+  ) async {
     for (final row in remoteData) {
       final id = row['id'] as String;
       final isDeleted = row['is_deleted'] as bool? ?? false;
@@ -218,10 +224,8 @@ class BirthdayContactService with SupabaseSyncMixin {
           (e) => e.name == row['source'],
           orElse: () => BirthdayContactSource.manual,
         ),
-        notificationsEnabled:
-            (row['notifications_enabled'] as bool?) ?? true,
-        dayBeforeReminder:
-            (row['day_before_reminder'] as bool?) ?? true,
+        notificationsEnabled: (row['notifications_enabled'] as bool?) ?? true,
+        dayBeforeReminder: (row['day_before_reminder'] as bool?) ?? true,
       );
 
       final existingIdx = _contacts.indexWhere((c) => c.id == id);
@@ -248,7 +252,9 @@ class BirthdayContactService with SupabaseSyncMixin {
         final List<dynamic> jsonList = json.decode(jsonString);
         _contacts = jsonList.map((j) => BirthdayContact.fromJson(j)).toList();
       } catch (e) {
-        debugPrint('BirthdayContactService._loadContacts: JSON decode failed: $e');
+        debugPrint(
+          'BirthdayContactService._loadContacts: JSON decode failed: $e',
+        );
         _contacts = [];
       }
     }

@@ -99,8 +99,9 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
               }).toList();
 
               // Stats
-              final photoEntries =
-                  allEntries.where((e) => e.imagePath != null).length;
+              final photoEntries = allEntries
+                  .where((e) => e.imagePath != null)
+                  .length;
               final firstEntry = sorted.last;
               final firstDateStr =
                   '${firstEntry.date.day}.${firstEntry.date.month}.${firstEntry.date.year}';
@@ -114,9 +115,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                     parent: AlwaysScrollableScrollPhysics(),
                   ),
                   slivers: [
-                    GlassSliverAppBar(
-                      title: isEn ? 'Memories' : 'An\u0131lar',
-                    ),
+                    GlassSliverAppBar(title: isEn ? 'Memories' : 'An\u0131lar'),
                     // Stats header
                     SliverToBoxAdapter(
                       child: Padding(
@@ -143,7 +142,9 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                             bottom: AppConstants.spacingMd,
                           ),
                           child: GradientText(
-                            isEn ? 'On This Day' : 'Bug\u00fcn Ge\u00e7mi\u015fte',
+                            isEn
+                                ? 'On This Day'
+                                : 'Bug\u00fcn Ge\u00e7mi\u015fte',
                             variant: GradientTextVariant.gold,
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 17,
@@ -174,11 +175,11 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                                   ),
                                 ),
                               ).animate().fadeIn(
-                                    delay: Duration(
-                                      milliseconds: 50 * (index % 10),
-                                    ),
-                                    duration: 300.ms,
-                                  );
+                                delay: Duration(
+                                  milliseconds: 50 * (index % 10),
+                                ),
+                                duration: 300.ms,
+                              );
                             },
                           ),
                         ),
@@ -222,24 +223,21 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                       SliverPadding(
                         padding: const EdgeInsets.all(AppConstants.spacingLg),
                         sliver: SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                              final entry = monthEntries[index];
-                              return _MemoryCard(
-                                entry: entry,
-                                isDark: isDark,
-                                isEn: isEn,
-                                onTap: () =>
-                                    _navigateToEntry(context, entry),
-                              ).animate().fadeIn(
-                                    delay: Duration(
-                                      milliseconds: 50 * (index % 10),
-                                    ),
-                                    duration: 300.ms,
-                                  );
-                            },
-                            childCount: monthEntries.length,
-                          ),
+                          delegate: SliverChildBuilderDelegate((
+                            context,
+                            index,
+                          ) {
+                            final entry = monthEntries[index];
+                            return _MemoryCard(
+                              entry: entry,
+                              isDark: isDark,
+                              isEn: isEn,
+                              onTap: () => _navigateToEntry(context, entry),
+                            ).animate().fadeIn(
+                              delay: Duration(milliseconds: 50 * (index % 10)),
+                              duration: 300.ms,
+                            );
+                          }, childCount: monthEntries.length),
                         ),
                       ),
                     const SliverToBoxAdapter(child: SizedBox(height: 40)),
@@ -280,18 +278,18 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
     final months = <String, DateTime>{};
     for (final entry in sortedEntries) {
       final key = '${entry.date.year}-${entry.date.month}';
-      months.putIfAbsent(key, () => DateTime(entry.date.year, entry.date.month));
+      months.putIfAbsent(
+        key,
+        () => DateTime(entry.date.year, entry.date.month),
+      );
     }
-    final result = months.values.toList()
-      ..sort((a, b) => b.compareTo(a));
+    final result = months.values.toList()..sort((a, b) => b.compareTo(a));
     return result;
   }
 
   void _navigateToEntry(BuildContext context, JournalEntry entry) {
     HapticFeedback.lightImpact();
-    context.push(
-      Routes.journalEntryDetail.replaceFirst(':id', entry.id),
-    );
+    context.push(Routes.journalEntryDetail.replaceFirst(':id', entry.id));
   }
 }
 
@@ -439,10 +437,7 @@ class _OnThisDayCard extends StatelessWidget {
                 ),
               )
             else
-              SizedBox(
-                height: 100,
-                child: _placeholderIcon(),
-              ),
+              SizedBox(height: 100, child: _placeholderIcon()),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(AppConstants.spacingSm),
@@ -497,10 +492,7 @@ class _OnThisDayCard extends StatelessWidget {
 
   Widget _placeholderIcon() {
     return Center(
-      child: AppSymbol(
-        _focusEmoji(entry.focusArea),
-        size: AppSymbolSize.lg,
-      ),
+      child: AppSymbol(_focusEmoji(entry.focusArea), size: AppSymbolSize.lg),
     );
   }
 }
@@ -530,7 +522,8 @@ class _MonthSelector extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: months.map((month) {
-          final isSelected = month.year == selectedMonth.year &&
+          final isSelected =
+              month.year == selectedMonth.year &&
               month.month == selectedMonth.month;
           final label = _monthLabel(month, isEn);
           return Padding(
@@ -540,16 +533,19 @@ class _MonthSelector extends StatelessWidget {
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minHeight: 44),
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 8,
+                  ),
                   decoration: BoxDecoration(
                     color: isSelected
                         ? AppColors.auroraStart.withValues(alpha: 0.2)
                         : (isDark
                               ? AppColors.surfaceDark.withValues(alpha: 0.5)
                               : AppColors.lightSurfaceVariant),
-                    borderRadius:
-                        BorderRadius.circular(AppConstants.radiusFull),
+                    borderRadius: BorderRadius.circular(
+                      AppConstants.radiusFull,
+                    ),
                     border: Border.all(
                       color: isSelected
                           ? AppColors.auroraStart
@@ -558,17 +554,19 @@ class _MonthSelector extends StatelessWidget {
                   ),
                   child: Text(
                     label,
-                    style: AppTypography.subtitle(
-                      fontSize: 13,
-                      color: isSelected
-                          ? AppColors.auroraStart
-                          : (isDark
-                                ? AppColors.textSecondary
-                                : AppColors.lightTextSecondary),
-                    ).copyWith(
-                      fontWeight:
-                          isSelected ? FontWeight.w600 : FontWeight.normal,
-                    ),
+                    style:
+                        AppTypography.subtitle(
+                          fontSize: 13,
+                          color: isSelected
+                              ? AppColors.auroraStart
+                              : (isDark
+                                    ? AppColors.textSecondary
+                                    : AppColors.lightTextSecondary),
+                        ).copyWith(
+                          fontWeight: isSelected
+                              ? FontWeight.w600
+                              : FontWeight.normal,
+                        ),
                   ),
                 ),
               ),
@@ -580,7 +578,9 @@ class _MonthSelector extends StatelessWidget {
   }
 
   String _monthLabel(DateTime month, bool isEn) {
-    final names = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
+    final names = isEn
+        ? CommonStrings.monthsShortEn
+        : CommonStrings.monthsShortTr;
     final name = names[month.month - 1];
     final now = DateTime.now();
     if (month.year == now.year) return name;
@@ -616,8 +616,9 @@ class _MemoryCard extends StatelessWidget {
 
   Widget _buildPhotoCard(BuildContext context) {
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
-    final areaLabel =
-        isEn ? entry.focusArea.displayNameEn : entry.focusArea.displayNameTr;
+    final areaLabel = isEn
+        ? entry.focusArea.displayNameEn
+        : entry.focusArea.displayNameTr;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
@@ -718,8 +719,9 @@ class _MemoryCard extends StatelessWidget {
 
   Widget _buildTextCard(BuildContext context) {
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
-    final areaLabel =
-        isEn ? entry.focusArea.displayNameEn : entry.focusArea.displayNameTr;
+    final areaLabel = isEn
+        ? entry.focusArea.displayNameEn
+        : entry.focusArea.displayNameTr;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),

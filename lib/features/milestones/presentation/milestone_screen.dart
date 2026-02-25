@@ -174,110 +174,112 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
           ? '$earned of $total milestones earned, ${(progress * 100).round()} percent complete'
           : '$total rozetin $earned tanesi kazanıldı, yüzde ${(progress * 100).round()} tamamlandı',
       child: Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [AppColors.auroraStart, AppColors.auroraEnd],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.auroraStart.withValues(alpha: 0.3),
-            blurRadius: 20,
-            offset: const Offset(0, 8),
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [AppColors.auroraStart, AppColors.auroraEnd],
           ),
-        ],
-      ),
-      child: Row(
-        children: [
-          // Progress ring
-          SizedBox(
-            width: 80,
-            height: 80,
-            child: TweenAnimationBuilder<double>(
-              tween: Tween(begin: 0, end: progress),
-              duration: const Duration(milliseconds: 1200),
-              curve: Curves.easeOutCubic,
-              builder: (context, value, _) {
-                return Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    SizedBox(
-                      width: 80,
-                      height: 80,
-                      child: CircularProgressIndicator(
-                        value: 1.0,
-                        strokeWidth: 6,
-                        backgroundColor: Colors.transparent,
-                        valueColor: AlwaysStoppedAnimation(
-                          Colors.white.withValues(alpha: 0.15),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.auroraStart.withValues(alpha: 0.3),
+              blurRadius: 20,
+              offset: const Offset(0, 8),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            // Progress ring
+            SizedBox(
+              width: 80,
+              height: 80,
+              child: TweenAnimationBuilder<double>(
+                tween: Tween(begin: 0, end: progress),
+                duration: const Duration(milliseconds: 1200),
+                curve: Curves.easeOutCubic,
+                builder: (context, value, _) {
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SizedBox(
+                        width: 80,
+                        height: 80,
+                        child: CircularProgressIndicator(
+                          value: 1.0,
+                          strokeWidth: 6,
+                          backgroundColor: Colors.transparent,
+                          valueColor: AlwaysStoppedAnimation(
+                            Colors.white.withValues(alpha: 0.15),
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 80,
-                      height: 80,
-                      child: CircularProgressIndicator(
-                        value: value,
-                        strokeWidth: 6,
-                        strokeCap: StrokeCap.round,
-                        backgroundColor: Colors.transparent,
-                        valueColor: const AlwaysStoppedAnimation(Colors.white),
+                      SizedBox(
+                        width: 80,
+                        height: 80,
+                        child: CircularProgressIndicator(
+                          value: value,
+                          strokeWidth: 6,
+                          strokeCap: StrokeCap.round,
+                          backgroundColor: Colors.transparent,
+                          valueColor: const AlwaysStoppedAnimation(
+                            Colors.white,
+                          ),
+                        ),
                       ),
-                    ),
-                    Text(
-                      '$earned/$total',
-                      style: AppTypography.displayFont.copyWith(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
+                      Text(
+                        '$earned/$total',
+                        style: AppTypography.displayFont.copyWith(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
                       ),
+                    ],
+                  );
+                },
+              ),
+            ),
+            const SizedBox(width: 20),
+            // Text block
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GradientText(
+                    isEn ? 'Milestones Earned' : 'Kazanılan Rozetler',
+                    variant: GradientTextVariant.gold,
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w700,
                     ),
-                  ],
-                );
-              },
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    isEn
+                        ? '${(progress * 100).round()}% complete'
+                        : '%${(progress * 100).round()} tamamlandı',
+                    style: AppTypography.subtitle(
+                      fontSize: 14,
+                      color: Colors.white.withValues(alpha: 0.75),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    _getProgressMessage(earned, total),
+                    style: AppTypography.elegantAccent(
+                      fontSize: 12,
+                      color: Colors.white.withValues(alpha: 0.6),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(width: 20),
-          // Text block
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GradientText(
-                  isEn ? 'Milestones Earned' : 'Kazanılan Rozetler',
-                  variant: GradientTextVariant.gold,
-                  style: AppTypography.displayFont.copyWith(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  isEn
-                      ? '${(progress * 100).round()}% complete'
-                      : '%${(progress * 100).round()} tamamlandı',
-                  style: AppTypography.subtitle(
-                    fontSize: 14,
-                    color: Colors.white.withValues(alpha: 0.75),
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  _getProgressMessage(earned, total),
-                  style: AppTypography.elegantAccent(
-                    fontSize: 12,
-                    color: Colors.white.withValues(alpha: 0.6),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
     );
   }
 
@@ -315,44 +317,46 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
             padding: const EdgeInsets.only(right: 8),
             child: Semantics(
               label: selected
-                  ? (isEn ? '$label filter, selected' : '$label filtresi, seçili')
+                  ? (isEn
+                        ? '$label filter, selected'
+                        : '$label filtresi, seçili')
                   : (isEn ? '$label filter' : '$label filtresi'),
               button: true,
               selected: selected,
               child: FilterChip(
-              label: Text(
-                label,
-                style: AppTypography.elegantAccent(
-                  fontSize: 13,
-                  fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
-                  color: selected
-                      ? (isDark ? AppColors.deepSpace : Colors.white)
-                      : (isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary),
+                label: Text(
+                  label,
+                  style: AppTypography.elegantAccent(
+                    fontSize: 13,
+                    fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+                    color: selected
+                        ? (isDark ? AppColors.deepSpace : Colors.white)
+                        : (isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary),
+                  ),
                 ),
-              ),
-              selected: selected,
-              onSelected: (_) {
-                setState(() => _selectedCategory = cat);
-              },
-              backgroundColor: isDark
-                  ? AppColors.surfaceDark.withValues(alpha: 0.6)
-                  : AppColors.lightSurfaceVariant,
-              selectedColor: AppColors.starGold,
-              checkmarkColor: isDark ? AppColors.deepSpace : Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-                side: BorderSide(
-                  color: selected
-                      ? AppColors.starGold
-                      : isDark
-                      ? Colors.white.withValues(alpha: 0.1)
-                      : Colors.black.withValues(alpha: 0.06),
+                selected: selected,
+                onSelected: (_) {
+                  setState(() => _selectedCategory = cat);
+                },
+                backgroundColor: isDark
+                    ? AppColors.surfaceDark.withValues(alpha: 0.6)
+                    : AppColors.lightSurfaceVariant,
+                selectedColor: AppColors.starGold,
+                checkmarkColor: isDark ? AppColors.deepSpace : Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  side: BorderSide(
+                    color: selected
+                        ? AppColors.starGold
+                        : isDark
+                        ? Colors.white.withValues(alpha: 0.1)
+                        : Colors.black.withValues(alpha: 0.06),
+                  ),
                 ),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            ),
             ),
           );
         }).toList(),
@@ -370,11 +374,11 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     return Semantics(
           label: earned
               ? (isEn
-                  ? '$name badge, earned. Double tap to view details'
-                  : '$name rozeti, kazanıldı. Ayrıntıları görmek için iki kez dokun')
+                    ? '$name badge, earned. Double tap to view details'
+                    : '$name rozeti, kazanıldı. Ayrıntıları görmek için iki kez dokun')
               : (isEn
-                  ? '$name badge, locked. ${_getCategoryHint(milestone.category)}'
-                  : '$name rozeti, kilitli. ${_getCategoryHint(milestone.category)}'),
+                    ? '$name badge, locked. ${_getCategoryHint(milestone.category)}'
+                    : '$name rozeti, kilitli. ${_getCategoryHint(milestone.category)}'),
           button: earned,
           enabled: earned,
           child: GestureDetector(
@@ -422,7 +426,10 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                       children: [
                         Opacity(
                           opacity: 0.15,
-                          child: AppSymbol(milestone.emoji, size: AppSymbolSize.lg),
+                          child: AppSymbol(
+                            milestone.emoji,
+                            size: AppSymbolSize.lg,
+                          ),
                         ),
                         Icon(
                           Icons.lock_outline_rounded,
@@ -528,10 +535,11 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
               filter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
               child: Container(
                 decoration: BoxDecoration(
-                  color: (dialogDark
-                          ? AppColors.surfaceDark
-                          : AppColors.lightSurface)
-                      .withValues(alpha: dialogDark ? 0.82 : 0.90),
+                  color:
+                      (dialogDark
+                              ? AppColors.surfaceDark
+                              : AppColors.lightSurface)
+                          .withValues(alpha: dialogDark ? 0.82 : 0.90),
                   borderRadius: BorderRadius.circular(24),
                   border: Border(
                     top: BorderSide(
@@ -552,135 +560,138 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                     ),
                   ],
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 32),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 28,
+                  vertical: 32,
+                ),
                 child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Emoji large
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        AppColors.starGold.withValues(alpha: 0.2),
-                        AppColors.auroraStart.withValues(alpha: 0.15),
-                      ],
-                    ),
-                    border: Border.all(
-                      color: AppColors.starGold.withValues(alpha: 0.4),
-                      width: 2,
-                    ),
-                  ),
-                  alignment: Alignment.center,
-                  child: AppSymbol.hero(milestone.emoji),
-                ),
-                const SizedBox(height: 16),
-                // Name
-                Text(
-                  name,
-                  style: AppTypography.displayFont.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: dialogDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 4),
-                // Category chip
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.starGold.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    categoryName,
-                    style: AppTypography.elegantAccent(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.starGold,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                // Description
-                Text(
-                  description,
-                  style: AppTypography.decorativeScript(
-                    fontSize: 15,
-                    color: dialogDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                // Earned date
-                if (earnedDate != null) ...[
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ExcludeSemantics(
-                        child: Icon(
-                          Icons.check_circle_outline,
-                          size: 16,
-                          color: AppColors.success,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Emoji large
+                    Container(
+                      width: 80,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            AppColors.starGold.withValues(alpha: 0.2),
+                            AppColors.auroraStart.withValues(alpha: 0.15),
+                          ],
+                        ),
+                        border: Border.all(
+                          color: AppColors.starGold.withValues(alpha: 0.4),
+                          width: 2,
                         ),
                       ),
-                      const SizedBox(width: 6),
-                      Text(
-                        isEn
-                            ? 'Earned ${_formatDate(earnedDate, isEn)}'
-                            : 'Kazanildi: ${_formatDate(earnedDate, isEn)}',
-                        style: AppTypography.subtitle(
-                          fontSize: 13,
-                          color: AppColors.success,
-                        ),
+                      alignment: Alignment.center,
+                      child: AppSymbol.hero(milestone.emoji),
+                    ),
+                    const SizedBox(height: 16),
+                    // Name
+                    Text(
+                      name,
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: dialogDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
                       ),
-                    ],
-                  ),
-                ],
-                const SizedBox(height: 24),
-                // Close button
-                Semantics(
-                  button: true,
-                  label: isEn ? 'Close dialog' : 'Pencereyi kapat',
-                  child: SizedBox(
-                  width: double.infinity,
-                  height: 44,
-                  child: TextButton(
-                    onPressed: () => Navigator.of(ctx).pop(),
-                    style: TextButton.styleFrom(
-                      backgroundColor: AppColors.starGold.withValues(
-                        alpha: 0.1,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 4),
+                    // Category chip
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 4,
                       ),
-                      shape: RoundedRectangleBorder(
+                      decoration: BoxDecoration(
+                        color: AppColors.starGold.withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                    ),
-                    child: Text(
-                      isEn ? 'Close' : 'Kapat',
-                      style: AppTypography.modernAccent(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.starGold,
+                      child: Text(
+                        categoryName,
+                        style: AppTypography.elegantAccent(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.starGold,
+                        ),
                       ),
                     ),
-                  ),
+                    const SizedBox(height: 16),
+                    // Description
+                    Text(
+                      description,
+                      style: AppTypography.decorativeScript(
+                        fontSize: 15,
+                        color: dialogDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    // Earned date
+                    if (earnedDate != null) ...[
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ExcludeSemantics(
+                            child: Icon(
+                              Icons.check_circle_outline,
+                              size: 16,
+                              color: AppColors.success,
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            isEn
+                                ? 'Earned ${_formatDate(earnedDate, isEn)}'
+                                : 'Kazanildi: ${_formatDate(earnedDate, isEn)}',
+                            style: AppTypography.subtitle(
+                              fontSize: 13,
+                              color: AppColors.success,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                    const SizedBox(height: 24),
+                    // Close button
+                    Semantics(
+                      button: true,
+                      label: isEn ? 'Close dialog' : 'Pencereyi kapat',
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 44,
+                        child: TextButton(
+                          onPressed: () => Navigator.of(ctx).pop(),
+                          style: TextButton.styleFrom(
+                            backgroundColor: AppColors.starGold.withValues(
+                              alpha: 0.1,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child: Text(
+                            isEn ? 'Close' : 'Kapat',
+                            style: AppTypography.modernAccent(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.starGold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                ),
-              ],
-            ),
-          ),
+              ),
             ),
           ),
         );

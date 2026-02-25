@@ -313,7 +313,10 @@ class _BirthDatePickerState extends State<BirthDatePicker> {
             isExpanded: true,
             underline: const SizedBox(),
             dropdownColor: AppColors.cosmicPurple,
-            style: AppTypography.subtitle(color: AppColors.textPrimary, fontSize: 16),
+            style: AppTypography.subtitle(
+              color: AppColors.textPrimary,
+              fontSize: 16,
+            ),
             items: items.map((item) {
               return DropdownMenuItem<T>(
                 value: item,
@@ -392,14 +395,14 @@ class _WheelPicker extends StatelessWidget {
                       child: Text(
                         itemBuilder(index),
                         style: AppTypography.modernAccent(
-                              fontSize: 16,
-                              color: isSelected
-                                  ? AppColors.textPrimary
-                                  : AppColors.textMuted,
-                              fontWeight: isSelected
-                                  ? FontWeight.w600
-                                  : FontWeight.w400,
-                            ),
+                          fontSize: 16,
+                          color: isSelected
+                              ? AppColors.textPrimary
+                              : AppColors.textMuted,
+                          fontWeight: isSelected
+                              ? FontWeight.w600
+                              : FontWeight.w400,
+                        ),
                       ),
                     );
                   },

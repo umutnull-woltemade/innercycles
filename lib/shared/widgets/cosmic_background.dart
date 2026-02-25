@@ -185,8 +185,7 @@ class _AbstractDarkBackgroundState extends State<_AbstractDarkBackground>
 
   @override
   Widget build(BuildContext context) {
-    final disableAnimations =
-        MediaQuery.of(context).disableAnimations;
+    final disableAnimations = MediaQuery.of(context).disableAnimations;
 
     return Stack(
       children: [
@@ -221,10 +220,7 @@ class _AbstractDarkBackgroundState extends State<_AbstractDarkBackground>
             child: IgnorePointer(
               child: RepaintBoundary(
                 child: CustomPaint(
-                  painter: _OrbPainter(
-                    orbs: _orbs,
-                    progress: 0,
-                  ),
+                  painter: _OrbPainter(orbs: _orbs, progress: 0),
                   willChange: false,
                 ),
               ),
@@ -264,9 +260,11 @@ class _OrbPainter extends CustomPainter {
     final angle = progress * 2 * pi;
 
     for (final orb in orbs) {
-      final cx = orb.center.dx * size.width +
+      final cx =
+          orb.center.dx * size.width +
           cos(angle * orb.speed + orb.phase) * orb.driftRadius;
-      final cy = orb.center.dy * size.height +
+      final cy =
+          orb.center.dy * size.height +
           sin(angle * orb.speed * 0.7 + orb.phase) * orb.driftRadius * 0.8;
 
       final gradient = ui.Gradient.radial(
@@ -330,12 +328,27 @@ class _AbstractPainter extends CustomPainter {
   }
 
   void _drawColorWashes(Canvas canvas, Size size) {
-    _drawWash(canvas, Offset(size.width * 0.3, size.height * 0.15),
-        size.width * 0.5, const Color(0xFF6C3483), 0.06);
-    _drawWash(canvas, Offset(size.width * 0.75, size.height * 0.45),
-        size.width * 0.4, const Color(0xFF2E4057), 0.05);
-    _drawWash(canvas, Offset(size.width * 0.2, size.height * 0.75),
-        size.width * 0.45, const Color(0xFF1A3A5C), 0.04);
+    _drawWash(
+      canvas,
+      Offset(size.width * 0.3, size.height * 0.15),
+      size.width * 0.5,
+      const Color(0xFF6C3483),
+      0.06,
+    );
+    _drawWash(
+      canvas,
+      Offset(size.width * 0.75, size.height * 0.45),
+      size.width * 0.4,
+      const Color(0xFF2E4057),
+      0.05,
+    );
+    _drawWash(
+      canvas,
+      Offset(size.width * 0.2, size.height * 0.75),
+      size.width * 0.45,
+      const Color(0xFF1A3A5C),
+      0.04,
+    );
   }
 
   void _drawWash(
@@ -530,12 +543,27 @@ class _LightPatternPainter extends CustomPainter {
     final paint = Paint();
 
     // 1. Soft radial color washes — watercolor-paper feel
-    _drawSoftWash(canvas, Offset(size.width * 0.2, size.height * 0.12),
-        size.width * 0.55, const Color(0xFFE8D5F5), 0.07);
-    _drawSoftWash(canvas, Offset(size.width * 0.82, size.height * 0.45),
-        size.width * 0.4, const Color(0xFFF5E6D0), 0.05);
-    _drawSoftWash(canvas, Offset(size.width * 0.35, size.height * 0.78),
-        size.width * 0.45, const Color(0xFFD5E5F5), 0.04);
+    _drawSoftWash(
+      canvas,
+      Offset(size.width * 0.2, size.height * 0.12),
+      size.width * 0.55,
+      const Color(0xFFE8D5F5),
+      0.07,
+    );
+    _drawSoftWash(
+      canvas,
+      Offset(size.width * 0.82, size.height * 0.45),
+      size.width * 0.4,
+      const Color(0xFFF5E6D0),
+      0.05,
+    );
+    _drawSoftWash(
+      canvas,
+      Offset(size.width * 0.35, size.height * 0.78),
+      size.width * 0.45,
+      const Color(0xFFD5E5F5),
+      0.04,
+    );
 
     // 2. Fine noise grain texture
     for (var i = 0; i < 200; i++) {
@@ -575,7 +603,9 @@ class _LightPatternPainter extends CustomPainter {
         final startAngle = rng.nextDouble() * 2 * pi;
 
         paint
-          ..color = Colors.black.withValues(alpha: 0.02 + rng.nextDouble() * 0.015)
+          ..color = Colors.black.withValues(
+            alpha: 0.02 + rng.nextDouble() * 0.015,
+          )
           ..strokeWidth = 0.4 + rng.nextDouble() * 0.3;
 
         canvas.drawArc(
@@ -609,7 +639,9 @@ class _LightPatternPainter extends CustomPainter {
       path.cubicTo(cp1x, cp1y, cp2x, cp2y, size.width + 10, endY);
 
       paint
-        ..color = Colors.black.withValues(alpha: 0.015 + rng.nextDouble() * 0.01)
+        ..color = Colors.black.withValues(
+          alpha: 0.015 + rng.nextDouble() * 0.01,
+        )
         ..strokeWidth = 0.3 + rng.nextDouble() * 0.3;
 
       canvas.drawPath(path, paint);
@@ -636,7 +668,12 @@ class _LightPatternPainter extends CustomPainter {
   }
 
   void _drawSoftWash(
-      Canvas canvas, Offset center, double radius, Color color, double opacity) {
+    Canvas canvas,
+    Offset center,
+    double radius,
+    Color color,
+    double opacity,
+  ) {
     final gradient = ui.Gradient.radial(
       center,
       radius,

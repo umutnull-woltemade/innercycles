@@ -267,8 +267,8 @@ class _ProgramCard extends StatelessWidget {
             style: isCompleted
                 ? PremiumCardStyle.aurora
                 : hasProgress
-                    ? PremiumCardStyle.gold
-                    : PremiumCardStyle.subtle,
+                ? PremiumCardStyle.gold
+                : PremiumCardStyle.subtle,
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [

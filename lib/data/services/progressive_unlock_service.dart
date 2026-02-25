@@ -18,7 +18,6 @@ class ProgressiveUnlockService {
   static const String _entryCountKey = 'progressive_entry_count';
   static const String _unlockedFeaturesKey = 'progressive_unlocked';
 
-
   ProgressiveUnlockService(this._prefs);
 
   static Future<ProgressiveUnlockService> init() async {
@@ -53,9 +52,12 @@ class ProgressiveUnlockService {
 
   bool get isDreamJournalUnlocked => entryCount >= thresholds['dream_journal']!;
   bool get isPatternsUnlocked => entryCount >= thresholds['patterns']!;
-  bool get isMonthlyReflectionUnlocked => entryCount >= thresholds['monthly_reflection']!;
-  bool get isAnnualHeatmapUnlocked => entryCount >= thresholds['annual_heatmap']!;
-  bool get isCycleCorrelationUnlocked => entryCount >= thresholds['cycle_correlation']!;
+  bool get isMonthlyReflectionUnlocked =>
+      entryCount >= thresholds['monthly_reflection']!;
+  bool get isAnnualHeatmapUnlocked =>
+      entryCount >= thresholds['annual_heatmap']!;
+  bool get isCycleCorrelationUnlocked =>
+      entryCount >= thresholds['cycle_correlation']!;
 
   /// Check if a specific feature is unlocked
   bool isUnlocked(String featureKey) {

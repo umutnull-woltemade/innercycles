@@ -828,10 +828,12 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
           filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
           child: Container(
             decoration: BoxDecoration(
-              color: (isDark ? AppColors.deepSpace : Colors.white)
-                  .withValues(alpha: isDark ? 0.85 : 0.92),
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(24)),
+              color: (isDark ? AppColors.deepSpace : Colors.white).withValues(
+                alpha: isDark ? 0.85 : 0.92,
+              ),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(24),
+              ),
               border: Border(
                 top: BorderSide(
                   color: AppColors.auroraStart.withValues(alpha: 0.3),
@@ -894,9 +896,14 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                        borderRadius: BorderRadius.circular(
+                          AppConstants.radiusMd,
+                        ),
                         gradient: const LinearGradient(
-                          colors: [AppColors.amethyst, AppColors.cosmicAmethyst],
+                          colors: [
+                            AppColors.amethyst,
+                            AppColors.cosmicAmethyst,
+                          ],
                         ),
                         boxShadow: [
                           BoxShadow(

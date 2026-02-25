@@ -101,12 +101,12 @@ class MoodTrendsScreen extends ConsumerWidget {
                             ? 'No observations recorded'
                             : 'Henüz gözlem kaydedilmedi',
                         style: AppTypography.displayFont.copyWith(
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 20,
-                            ),
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
+                        ),
                       ),
                       const SizedBox(height: AppConstants.spacingSm),
                       Text(
@@ -259,7 +259,11 @@ class MoodTrendsScreen extends ConsumerWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.lock_outline, size: 20, color: AppColors.starGold),
+                      Icon(
+                        Icons.lock_outline,
+                        size: 20,
+                        color: AppColors.starGold,
+                      ),
                       const SizedBox(height: 2),
                       GradientText(
                         isEn

@@ -354,11 +354,12 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                                         GradientText(
                                           '$_phaseCountdown',
                                           variant: GradientTextVariant.aurora,
-                                          style: AppTypography.displayFont.copyWith(
-                                            fontSize: 40,
-                                            fontWeight: FontWeight.w300,
-                                            letterSpacing: 2,
-                                          ),
+                                          style: AppTypography.displayFont
+                                              .copyWith(
+                                                fontSize: 40,
+                                                fontWeight: FontWeight.w300,
+                                                letterSpacing: 2,
+                                              ),
                                         ),
                                       ] else
                                         Icon(
@@ -411,7 +412,9 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: AppColors.error.withValues(alpha: 0.3),
+                                      color: AppColors.error.withValues(
+                                        alpha: 0.3,
+                                      ),
                                       blurRadius: 12,
                                       offset: const Offset(0, 4),
                                     ),
@@ -436,7 +439,10 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                             onPressed: _start,
                             expanded: true,
                             gradient: LinearGradient(
-                              colors: [AppColors.auroraStart, AppColors.auroraEnd],
+                              colors: [
+                                AppColors.auroraStart,
+                                AppColors.auroraEnd,
+                              ],
                             ),
                           ),
                         const SizedBox(height: 24),

@@ -34,10 +34,10 @@ class GradientButton extends StatelessWidget {
     this.isLoading = false,
     this.width,
     this.expanded = false,
-  })  : gradient = const LinearGradient(
-          colors: [AppColors.starGold, AppColors.celestialGold],
-        ),
-        foregroundColor = AppColors.deepSpace;
+  }) : gradient = const LinearGradient(
+         colors: [AppColors.starGold, AppColors.celestialGold],
+       ),
+       foregroundColor = AppColors.deepSpace;
 
   @override
   Widget build(BuildContext context) {

@@ -234,9 +234,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                 ? '${results.length} result${results.length != 1 ? 's' : ''}'
                 : '${results.length} sonu\u00e7',
             variant: GradientTextVariant.aurora,
-            style: AppTypography.elegantAccent(
-              fontSize: 13,
-            ),
+            style: AppTypography.elegantAccent(fontSize: 13),
           ).animate().fadeIn(duration: 200.ms, delay: 80.ms),
           const SizedBox(height: AppConstants.spacingSm),
           Expanded(

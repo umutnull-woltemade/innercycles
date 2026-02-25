@@ -143,7 +143,9 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
       savedNote = result;
 
       // Attach pending reminder if set during creation
-      if (_hasPendingReminder && _pendingReminderDate != null && savedNote != null) {
+      if (_hasPendingReminder &&
+          _pendingReminderDate != null &&
+          savedNote != null) {
         await service.addReminder(
           noteId: savedNote.id,
           scheduledAt: _pendingReminderDate!,
@@ -230,7 +232,9 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
   }
 
   Future<void> _removeReminder(
-      NoteToSelfService service, String reminderId) async {
+    NoteToSelfService service,
+    String reminderId,
+  ) async {
     HapticService.buttonPress();
     await service.removeReminder(reminderId);
     setState(() {
@@ -293,7 +297,8 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
     HapticService.buttonPress();
     setState(() {
       _hasPendingReminder = true;
-      _pendingReminderMessage = _reminderMessageController.text.trim().isNotEmpty
+      _pendingReminderMessage =
+          _reminderMessageController.text.trim().isNotEmpty
           ? _reminderMessageController.text.trim()
           : null;
       _showReminderForm = false;
@@ -302,7 +307,9 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
   }
 
   String _formatReminderDate(DateTime dt, bool isEn) {
-    final months = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
+    final months = isEn
+        ? CommonStrings.monthsShortEn
+        : CommonStrings.monthsShortTr;
     final h = dt.hour.toString().padLeft(2, '0');
     final m = dt.minute.toString().padLeft(2, '0');
     return '${dt.day} ${months[dt.month - 1]} ${dt.year}, $h:$m';
@@ -323,594 +330,642 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
         _showDiscardDialog();
       },
       child: Scaffold(
-      body: CosmicBackground(
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          behavior: HitTestBehavior.opaque,
-          child: serviceAsync.when(
-            loading: () => const CosmicLoadingIndicator(),
-            error: (_, _) => Center(
-              child: Text(
-                isEn ? 'Something went wrong' : 'Bir \u015feyler ters gitti',
-                style: AppTypography.decorativeScript(
-                  color: isDark ? Colors.white70 : Colors.black54,
+        body: CosmicBackground(
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            behavior: HitTestBehavior.opaque,
+            child: serviceAsync.when(
+              loading: () => const CosmicLoadingIndicator(),
+              error: (_, _) => Center(
+                child: Text(
+                  isEn ? 'Something went wrong' : 'Bir \u015feyler ters gitti',
+                  style: AppTypography.decorativeScript(
+                    color: isDark ? Colors.white70 : Colors.black54,
+                  ),
                 ),
               ),
-            ),
-            data: (service) {
-              _loadNote(service);
-              return CustomScrollView(
-                physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics(),
-                ),
-                slivers: [
-                  GlassSliverAppBar(
-                    title: _isCreateMode
-                        ? (isEn ? 'New Note' : 'Yeni Not')
-                        : (isEn ? 'Edit Note' : 'Notu D\u00fczenle'),
-                    useGradientTitle: true,
-                    gradientVariant: GradientTextVariant.gold,
-                    actions: [
-                      // Save
-                      GestureDetector(
-                        onTap: () => _save(service, isPremium),
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 8),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                AppColors.auroraStart,
-                                AppColors.auroraEnd,
-                              ],
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Text(
-                            isEn ? 'Save' : 'Kaydet',
-                            style: AppTypography.displayFont.copyWith(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+              data: (service) {
+                _loadNote(service);
+                return CustomScrollView(
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
                   ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // ═══════════════════════════════════════
-                          // TITLE INPUT + PIN
-                          // ═══════════════════════════════════════
-                          Row(
-                            children: [
-                              Expanded(
-                                child: TextField(
-                                  controller: _titleController,
-                                  style: AppTypography.displayFont.copyWith(
-                                    fontSize: 26,
-                                    fontWeight: FontWeight.w600,
-                                    color: isDark
-                                        ? AppColors.textPrimary
-                                        : AppColors.lightTextPrimary,
-                                  ),
-                                  decoration: InputDecoration(
-                                    hintText: isEn ? 'Title' : 'Ba\u015fl\u0131k',
-                                    hintStyle: AppTypography.displayFont.copyWith(
-                                      fontSize: 26,
-                                      fontWeight: FontWeight.w600,
-                                      color: isDark
-                                          ? Colors.white.withValues(alpha: 0.2)
-                                          : Colors.black.withValues(alpha: 0.15),
-                                    ),
-                                    border: InputBorder.none,
-                                  ),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  HapticService.buttonPress();
-                                  setState(() => _isPinned = !_isPinned);
-                                },
-                                child: Icon(
-                                  _isPinned
-                                      ? Icons.push_pin
-                                      : Icons.push_pin_outlined,
-                                  size: 20,
-                                  color: _isPinned
-                                      ? AppColors.starGold
-                                      : (isDark ? Colors.white38 : Colors.black26),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          // Subtle divider
-                          Container(
-                            height: 1,
-                            margin: const EdgeInsets.symmetric(vertical: 4),
+                  slivers: [
+                    GlassSliverAppBar(
+                      title: _isCreateMode
+                          ? (isEn ? 'New Note' : 'Yeni Not')
+                          : (isEn ? 'Edit Note' : 'Notu D\u00fczenle'),
+                      useGradientTitle: true,
+                      gradientVariant: GradientTextVariant.gold,
+                      actions: [
+                        // Save
+                        GestureDetector(
+                          onTap: () => _save(service, isPremium),
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 8),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 8,
+                            ),
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
-                                  Colors.transparent,
-                                  (isDark ? Colors.white : Colors.black)
-                                      .withValues(alpha: 0.08),
-                                  Colors.transparent,
+                                  AppColors.auroraStart,
+                                  AppColors.auroraEnd,
                                 ],
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Text(
+                              isEn ? 'Save' : 'Kaydet',
+                              style: AppTypography.displayFont.copyWith(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
                               ),
                             ),
                           ),
-
-                          const SizedBox(height: 8),
-
-                          // ═══════════════════════════════════════
-                          // CONTENT INPUT
-                          // ═══════════════════════════════════════
-                          TextField(
-                            controller: _contentController,
-                            maxLines: null,
-                            minLines: 8,
-                            style: AppTypography.subtitle(
-                              fontSize: 16,
-                              color: isDark
-                                  ? Colors.white.withValues(alpha: 0.9)
-                                  : Colors.black87,
-                              height: 1.6,
+                        ),
+                      ],
+                    ),
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // ═══════════════════════════════════════
+                            // TITLE INPUT + PIN
+                            // ═══════════════════════════════════════
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: TextField(
+                                    controller: _titleController,
+                                    style: AppTypography.displayFont.copyWith(
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.w600,
+                                      color: isDark
+                                          ? AppColors.textPrimary
+                                          : AppColors.lightTextPrimary,
+                                    ),
+                                    decoration: InputDecoration(
+                                      hintText: isEn
+                                          ? 'Title'
+                                          : 'Ba\u015fl\u0131k',
+                                      hintStyle: AppTypography.displayFont
+                                          .copyWith(
+                                            fontSize: 26,
+                                            fontWeight: FontWeight.w600,
+                                            color: isDark
+                                                ? Colors.white.withValues(
+                                                    alpha: 0.2,
+                                                  )
+                                                : Colors.black.withValues(
+                                                    alpha: 0.15,
+                                                  ),
+                                          ),
+                                      border: InputBorder.none,
+                                    ),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    HapticService.buttonPress();
+                                    setState(() => _isPinned = !_isPinned);
+                                  },
+                                  child: Icon(
+                                    _isPinned
+                                        ? Icons.push_pin
+                                        : Icons.push_pin_outlined,
+                                    size: 20,
+                                    color: _isPinned
+                                        ? AppColors.starGold
+                                        : (isDark
+                                              ? Colors.white38
+                                              : Colors.black26),
+                                  ),
+                                ),
+                              ],
                             ),
-                            decoration: InputDecoration(
-                              hintText: isEn
-                                  ? 'Write your thoughts...'
-                                  : 'D\u00fc\u015f\u00fcncelerini yaz...',
-                              hintStyle: AppTypography.subtitle(
+
+                            // Subtle divider
+                            Container(
+                              height: 1,
+                              margin: const EdgeInsets.symmetric(vertical: 4),
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Colors.transparent,
+                                    (isDark ? Colors.white : Colors.black)
+                                        .withValues(alpha: 0.08),
+                                    Colors.transparent,
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            const SizedBox(height: 8),
+
+                            // ═══════════════════════════════════════
+                            // CONTENT INPUT
+                            // ═══════════════════════════════════════
+                            TextField(
+                              controller: _contentController,
+                              maxLines: null,
+                              minLines: 8,
+                              style: AppTypography.subtitle(
                                 fontSize: 16,
                                 color: isDark
-                                    ? Colors.white.withValues(alpha: 0.2)
-                                    : Colors.black.withValues(alpha: 0.15),
+                                    ? Colors.white.withValues(alpha: 0.9)
+                                    : Colors.black87,
+                                height: 1.6,
                               ),
-                              border: InputBorder.none,
-                            ),
-                          ),
-
-                          // Word count
-                          Padding(
-                            padding: const EdgeInsets.only(top: 4),
-                            child: Text(
-                              _wordCount == 0
-                                  ? ''
-                                  : (isEn
-                                      ? '$_wordCount words'
-                                      : '$_wordCount kelime'),
-                              style: AppTypography.elegantAccent(
-                                fontSize: 11,
-                                color: isDark ? Colors.white24 : Colors.black.withValues(alpha: 0.2),
-                              ),
-                            ),
-                          ),
-
-                          const SizedBox(height: 24),
-
-                          // ═══════════════════════════════════════
-                          // TAGS SECTION
-                          // ═══════════════════════════════════════
-                          _GlassSection(
-                            isDark: isDark,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(
-                                      CupertinoIcons.tag,
-                                      size: 15,
-                                      color: AppColors.amethyst,
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      isEn ? 'Tags' : 'Etiketler',
-                                      style: AppTypography.elegantAccent(
-                                        fontSize: 14,
-                                        color: isDark
-                                            ? Colors.white70
-                                            : Colors.black54,
-                                      ),
-                                    ),
-                                  ],
+                              decoration: InputDecoration(
+                                hintText: isEn
+                                    ? 'Write your thoughts...'
+                                    : 'D\u00fc\u015f\u00fcncelerini yaz...',
+                                hintStyle: AppTypography.subtitle(
+                                  fontSize: 16,
+                                  color: isDark
+                                      ? Colors.white.withValues(alpha: 0.2)
+                                      : Colors.black.withValues(alpha: 0.15),
                                 ),
-                                if (_tags.isNotEmpty) ...[
-                                  const SizedBox(height: 10),
-                                  Wrap(
-                                    spacing: 8,
-                                    runSpacing: 6,
-                                    children: _tags
-                                        .map((tag) => _RemovableTagChip(
-                                              tag: tag,
-                                              isDark: isDark,
-                                              onRemove: () => setState(
-                                                  () => _tags.remove(tag)),
-                                            ))
-                                        .toList(),
-                                  ),
-                                ],
-                                const SizedBox(height: 10),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextField(
-                                        controller: _tagController,
-                                        style: AppTypography.subtitle(
-                                          fontSize: 14,
-                                          color: isDark
-                                              ? Colors.white
-                                              : Colors.black87,
-                                        ),
-                                        decoration: InputDecoration(
-                                          hintText: isEn
-                                              ? 'Add tag...'
-                                              : 'Etiket ekle...',
-                                          hintStyle: AppTypography.subtitle(
-                                            color: isDark
-                                                ? Colors.white24
-                                                : Colors.black.withValues(alpha: 0.2),
-                                          ),
-                                          isDense: true,
-                                          filled: true,
-                                          fillColor: (isDark
-                                                  ? Colors.white
-                                                  : Colors.black)
-                                              .withValues(alpha: 0.05),
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: BorderSide.none,
-                                          ),
-                                          contentPadding:
-                                              const EdgeInsets.symmetric(
-                                            horizontal: 12,
-                                            vertical: 10,
-                                          ),
-                                        ),
-                                        onSubmitted: (_) => _addTag(),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    GestureDetector(
-                                      onTap: _addTag,
-                                      child: Container(
-                                        width: 38,
-                                        height: 38,
-                                        decoration: BoxDecoration(
-                                          color: AppColors.amethyst
-                                              .withValues(alpha: 0.1),
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Icon(
-                                          CupertinoIcons.plus,
-                                          size: 18,
-                                          color: AppColors.amethyst,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          // Mood badge
-                          if (_existingNote?.moodAtCreation != null) ...[
-                            const SizedBox(height: 12),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 14, vertical: 8),
-                              decoration: BoxDecoration(
-                                color:
-                                    AppColors.amethyst.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(20),
+                                border: InputBorder.none,
                               ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
+                            ),
+
+                            // Word count
+                            Padding(
+                              padding: const EdgeInsets.only(top: 4),
+                              child: Text(
+                                _wordCount == 0
+                                    ? ''
+                                    : (isEn
+                                          ? '$_wordCount words'
+                                          : '$_wordCount kelime'),
+                                style: AppTypography.elegantAccent(
+                                  fontSize: 11,
+                                  color: isDark
+                                      ? Colors.white24
+                                      : Colors.black.withValues(alpha: 0.2),
+                                ),
+                              ),
+                            ),
+
+                            const SizedBox(height: 24),
+
+                            // ═══════════════════════════════════════
+                            // TAGS SECTION
+                            // ═══════════════════════════════════════
+                            _GlassSection(
+                              isDark: isDark,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    _existingNote!.moodAtCreation!,
-                                    style: AppTypography.subtitle(fontSize: 18),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    isEn
-                                        ? 'Mood when created'
-                                        : 'Olu\u015fturuldu\u011fundaki ruh hali',
-                                    style: AppTypography.elegantAccent(
-                                      fontSize: 12,
-                                      color: isDark
-                                          ? Colors.white54
-                                          : Colors.black45,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-
-                          // ═══════════════════════════════════════
-                          // REMINDERS SECTION (both create & edit)
-                          // ═══════════════════════════════════════
-                          const SizedBox(height: 20),
-                          _GlassSection(
-                            isDark: isDark,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          CupertinoIcons.bell,
-                                          size: 15,
-                                          color: AppColors.starGold,
-                                        ),
-                                        const SizedBox(width: 8),
-                                        Text(
-                                          isEn
-                                              ? 'Remind Me'
-                                              : 'Hat\u0131rlat',
-                                          style: AppTypography.elegantAccent(
-                                            fontSize: 14,
-                                            color: isDark
-                                                ? Colors.white70
-                                                : Colors.black54,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        HapticService.buttonPress();
-                                        setState(() => _showReminderForm =
-                                            !_showReminderForm);
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 12, vertical: 6),
-                                        decoration: BoxDecoration(
-                                          color: AppColors.starGold
-                                              .withValues(alpha: 0.1),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Icon(
-                                              _showReminderForm
-                                                  ? CupertinoIcons.minus
-                                                  : CupertinoIcons.plus,
-                                              size: 14,
-                                              color: AppColors.starGold,
-                                            ),
-                                            const SizedBox(width: 4),
-                                            Text(
-                                              isEn ? 'Add' : 'Ekle',
-                                              style: AppTypography.elegantAccent(
-                                                fontSize: 12,
-                                                color: AppColors.starGold,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-
-                                // Pending reminder indicator (create mode)
-                                if (_isCreateMode && _hasPendingReminder && _pendingReminderDate != null) ...[
-                                  const SizedBox(height: 12),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12, vertical: 10),
-                                    decoration: BoxDecoration(
-                                      color: AppColors.starGold
-                                          .withValues(alpha: 0.08),
-                                      borderRadius: BorderRadius.circular(14),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          CupertinoIcons.bell_fill,
-                                          size: 16,
-                                          color: AppColors.starGold,
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                _formatReminderDate(
-                                                    _pendingReminderDate!,
-                                                    isEn),
-                                                style: AppTypography.subtitle(
-                                                  fontSize: 13,
-                                                  color: isDark
-                                                      ? Colors.white
-                                                      : Colors.black87,
-                                                ),
-                                              ),
-                                              Text(
-                                                isEn
-                                                    ? 'Will be set when you save'
-                                                    : 'Kaydetti\u011finde ayarlanacak',
-                                                style: AppTypography.elegantAccent(
-                                                  fontSize: 11,
-                                                  color: isDark
-                                                      ? Colors.white54
-                                                      : Colors.black45,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            HapticService.buttonPress();
-                                            setState(() {
-                                              _hasPendingReminder = false;
-                                              _pendingReminderDate = null;
-                                              _pendingReminderMessage = null;
-                                            });
-                                          },
-                                          child: Icon(
-                                            CupertinoIcons.xmark_circle,
-                                            size: 18,
-                                            color: isDark
-                                                ? Colors.white38
-                                                : Colors.black26,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-
-                                // Existing reminders (edit mode)
-                                if (!_isCreateMode && _reminders.isNotEmpty) ...[
-                                  const SizedBox(height: 12),
-                                  ..._reminders.map((r) => _ReminderRow(
-                                        reminder: r,
-                                        isEn: isEn,
-                                        isDark: isDark,
-                                        onDelete: () => _removeReminder(
-                                            service, r.id),
-                                      )),
-                                ],
-
-                                // No reminders hint
-                                if (!_showReminderForm &&
-                                    _reminders.isEmpty &&
-                                    !(_isCreateMode && _hasPendingReminder)) ...[
-                                  const SizedBox(height: 10),
-                                  Text(
-                                    isEn
-                                        ? 'Set a date & time to get notified about this note'
-                                        : 'Bu not hakk\u0131nda bildirim almak i\u00e7in tarih ve saat belirle',
-                                    style: AppTypography.elegantAccent(
-                                      fontSize: 12,
-                                      color: isDark
-                                          ? Colors.white30
-                                          : Colors.black26,
-                                    ),
-                                  ),
-                                ],
-
-                                // Add reminder form
-                                if (_showReminderForm) ...[
-                                  const SizedBox(height: 12),
-                                  _ReminderForm(
-                                    isEn: isEn,
-                                    isDark: isDark,
-                                    isPremium: isPremium,
-                                    reminderDate: _isCreateMode
-                                        ? _pendingReminderDate
-                                        : _reminderDate,
-                                    frequency: _isCreateMode
-                                        ? _pendingReminderFrequency
-                                        : _reminderFrequency,
-                                    messageController:
-                                        _reminderMessageController,
-                                    onPickDate: _pickReminderDate,
-                                    onFrequencyChanged: (f) {
-                                      if (_isCreateMode) {
-                                        setState(
-                                            () => _pendingReminderFrequency = f);
-                                      } else {
-                                        setState(
-                                            () => _reminderFrequency = f);
-                                      }
-                                    },
-                                    onSave: _isCreateMode
-                                        ? _setPendingReminder
-                                        : () => _addReminder(service, isPremium),
-                                  ),
-                                ],
-                              ],
-                            ),
-                          ),
-
-                          // ═══════════════════════════════════════
-                          // DELETE BUTTON
-                          // ═══════════════════════════════════════
-                          if (!_isCreateMode) ...[
-                            const SizedBox(height: 32),
-                            Center(
-                              child: GestureDetector(
-                                onTap: () async {
-                                  final confirmed =
-                                      await GlassDialog.confirm(
-                                    context,
-                                    title: isEn
-                                        ? 'Delete Note?'
-                                        : 'Not Silinsin mi?',
-                                    message: isEn
-                                        ? 'This action cannot be undone.'
-                                        : 'Bu işlem geri alınamaz.',
-                                    cancelLabel: isEn ? 'Cancel' : 'İptal',
-                                    confirmLabel: isEn ? 'Delete' : 'Sil',
-                                    isDestructive: true,
-                                  );
-                                  if (confirmed == true) _delete(service);
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 10),
-                                  decoration: BoxDecoration(
-                                    color: Colors.redAccent
-                                        .withValues(alpha: 0.08),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
+                                  Row(
                                     children: [
-                                      const Icon(
-                                        CupertinoIcons.trash,
-                                        size: 16,
-                                        color: Colors.redAccent,
+                                      Icon(
+                                        CupertinoIcons.tag,
+                                        size: 15,
+                                        color: AppColors.amethyst,
                                       ),
                                       const SizedBox(width: 8),
                                       Text(
-                                        isEn ? 'Delete Note' : 'Notu Sil',
-                                        style: AppTypography.subtitle(
+                                        isEn ? 'Tags' : 'Etiketler',
+                                        style: AppTypography.elegantAccent(
                                           fontSize: 14,
-                                          color: Colors.redAccent,
+                                          color: isDark
+                                              ? Colors.white70
+                                              : Colors.black54,
                                         ),
                                       ),
                                     ],
                                   ),
-                                ),
+                                  if (_tags.isNotEmpty) ...[
+                                    const SizedBox(height: 10),
+                                    Wrap(
+                                      spacing: 8,
+                                      runSpacing: 6,
+                                      children: _tags
+                                          .map(
+                                            (tag) => _RemovableTagChip(
+                                              tag: tag,
+                                              isDark: isDark,
+                                              onRemove: () => setState(
+                                                () => _tags.remove(tag),
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
+                                    ),
+                                  ],
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: TextField(
+                                          controller: _tagController,
+                                          style: AppTypography.subtitle(
+                                            fontSize: 14,
+                                            color: isDark
+                                                ? Colors.white
+                                                : Colors.black87,
+                                          ),
+                                          decoration: InputDecoration(
+                                            hintText: isEn
+                                                ? 'Add tag...'
+                                                : 'Etiket ekle...',
+                                            hintStyle: AppTypography.subtitle(
+                                              color: isDark
+                                                  ? Colors.white24
+                                                  : Colors.black.withValues(
+                                                      alpha: 0.2,
+                                                    ),
+                                            ),
+                                            isDense: true,
+                                            filled: true,
+                                            fillColor:
+                                                (isDark
+                                                        ? Colors.white
+                                                        : Colors.black)
+                                                    .withValues(alpha: 0.05),
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              borderSide: BorderSide.none,
+                                            ),
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                                  horizontal: 12,
+                                                  vertical: 10,
+                                                ),
+                                          ),
+                                          onSubmitted: (_) => _addTag(),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      GestureDetector(
+                                        onTap: _addTag,
+                                        child: Container(
+                                          width: 38,
+                                          height: 38,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.amethyst
+                                                .withValues(alpha: 0.1),
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Icon(
+                                            CupertinoIcons.plus,
+                                            size: 18,
+                                            color: AppColors.amethyst,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
 
-                          const SizedBox(height: 60),
-                        ],
-                      ).animate().fadeIn(duration: 350.ms),
+                            // Mood badge
+                            if (_existingNote?.moodAtCreation != null) ...[
+                              const SizedBox(height: 12),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 14,
+                                  vertical: 8,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: AppColors.amethyst.withValues(
+                                    alpha: 0.1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      _existingNote!.moodAtCreation!,
+                                      style: AppTypography.subtitle(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      isEn
+                                          ? 'Mood when created'
+                                          : 'Olu\u015fturuldu\u011fundaki ruh hali',
+                                      style: AppTypography.elegantAccent(
+                                        fontSize: 12,
+                                        color: isDark
+                                            ? Colors.white54
+                                            : Colors.black45,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+
+                            // ═══════════════════════════════════════
+                            // REMINDERS SECTION (both create & edit)
+                            // ═══════════════════════════════════════
+                            const SizedBox(height: 20),
+                            _GlassSection(
+                              isDark: isDark,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            CupertinoIcons.bell,
+                                            size: 15,
+                                            color: AppColors.starGold,
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Text(
+                                            isEn
+                                                ? 'Remind Me'
+                                                : 'Hat\u0131rlat',
+                                            style: AppTypography.elegantAccent(
+                                              fontSize: 14,
+                                              color: isDark
+                                                  ? Colors.white70
+                                                  : Colors.black54,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          HapticService.buttonPress();
+                                          setState(
+                                            () => _showReminderForm =
+                                                !_showReminderForm,
+                                          );
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 12,
+                                            vertical: 6,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: AppColors.starGold
+                                                .withValues(alpha: 0.1),
+                                            borderRadius: BorderRadius.circular(
+                                              20,
+                                            ),
+                                          ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(
+                                                _showReminderForm
+                                                    ? CupertinoIcons.minus
+                                                    : CupertinoIcons.plus,
+                                                size: 14,
+                                                color: AppColors.starGold,
+                                              ),
+                                              const SizedBox(width: 4),
+                                              Text(
+                                                isEn ? 'Add' : 'Ekle',
+                                                style:
+                                                    AppTypography.elegantAccent(
+                                                      fontSize: 12,
+                                                      color: AppColors.starGold,
+                                                    ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  // Pending reminder indicator (create mode)
+                                  if (_isCreateMode &&
+                                      _hasPendingReminder &&
+                                      _pendingReminderDate != null) ...[
+                                    const SizedBox(height: 12),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 10,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: AppColors.starGold.withValues(
+                                          alpha: 0.08,
+                                        ),
+                                        borderRadius: BorderRadius.circular(14),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            CupertinoIcons.bell_fill,
+                                            size: 16,
+                                            color: AppColors.starGold,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  _formatReminderDate(
+                                                    _pendingReminderDate!,
+                                                    isEn,
+                                                  ),
+                                                  style: AppTypography.subtitle(
+                                                    fontSize: 13,
+                                                    color: isDark
+                                                        ? Colors.white
+                                                        : Colors.black87,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  isEn
+                                                      ? 'Will be set when you save'
+                                                      : 'Kaydetti\u011finde ayarlanacak',
+                                                  style:
+                                                      AppTypography.elegantAccent(
+                                                        fontSize: 11,
+                                                        color: isDark
+                                                            ? Colors.white54
+                                                            : Colors.black45,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              HapticService.buttonPress();
+                                              setState(() {
+                                                _hasPendingReminder = false;
+                                                _pendingReminderDate = null;
+                                                _pendingReminderMessage = null;
+                                              });
+                                            },
+                                            child: Icon(
+                                              CupertinoIcons.xmark_circle,
+                                              size: 18,
+                                              color: isDark
+                                                  ? Colors.white38
+                                                  : Colors.black26,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+
+                                  // Existing reminders (edit mode)
+                                  if (!_isCreateMode &&
+                                      _reminders.isNotEmpty) ...[
+                                    const SizedBox(height: 12),
+                                    ..._reminders.map(
+                                      (r) => _ReminderRow(
+                                        reminder: r,
+                                        isEn: isEn,
+                                        isDark: isDark,
+                                        onDelete: () =>
+                                            _removeReminder(service, r.id),
+                                      ),
+                                    ),
+                                  ],
+
+                                  // No reminders hint
+                                  if (!_showReminderForm &&
+                                      _reminders.isEmpty &&
+                                      !(_isCreateMode &&
+                                          _hasPendingReminder)) ...[
+                                    const SizedBox(height: 10),
+                                    Text(
+                                      isEn
+                                          ? 'Set a date & time to get notified about this note'
+                                          : 'Bu not hakk\u0131nda bildirim almak i\u00e7in tarih ve saat belirle',
+                                      style: AppTypography.elegantAccent(
+                                        fontSize: 12,
+                                        color: isDark
+                                            ? Colors.white30
+                                            : Colors.black26,
+                                      ),
+                                    ),
+                                  ],
+
+                                  // Add reminder form
+                                  if (_showReminderForm) ...[
+                                    const SizedBox(height: 12),
+                                    _ReminderForm(
+                                      isEn: isEn,
+                                      isDark: isDark,
+                                      isPremium: isPremium,
+                                      reminderDate: _isCreateMode
+                                          ? _pendingReminderDate
+                                          : _reminderDate,
+                                      frequency: _isCreateMode
+                                          ? _pendingReminderFrequency
+                                          : _reminderFrequency,
+                                      messageController:
+                                          _reminderMessageController,
+                                      onPickDate: _pickReminderDate,
+                                      onFrequencyChanged: (f) {
+                                        if (_isCreateMode) {
+                                          setState(
+                                            () => _pendingReminderFrequency = f,
+                                          );
+                                        } else {
+                                          setState(
+                                            () => _reminderFrequency = f,
+                                          );
+                                        }
+                                      },
+                                      onSave: _isCreateMode
+                                          ? _setPendingReminder
+                                          : () => _addReminder(
+                                              service,
+                                              isPremium,
+                                            ),
+                                    ),
+                                  ],
+                                ],
+                              ),
+                            ),
+
+                            // ═══════════════════════════════════════
+                            // DELETE BUTTON
+                            // ═══════════════════════════════════════
+                            if (!_isCreateMode) ...[
+                              const SizedBox(height: 32),
+                              Center(
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    final confirmed = await GlassDialog.confirm(
+                                      context,
+                                      title: isEn
+                                          ? 'Delete Note?'
+                                          : 'Not Silinsin mi?',
+                                      message: isEn
+                                          ? 'This action cannot be undone.'
+                                          : 'Bu işlem geri alınamaz.',
+                                      cancelLabel: isEn ? 'Cancel' : 'İptal',
+                                      confirmLabel: isEn ? 'Delete' : 'Sil',
+                                      isDestructive: true,
+                                    );
+                                    if (confirmed == true) _delete(service);
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 10,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.redAccent.withValues(
+                                        alpha: 0.08,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const Icon(
+                                          CupertinoIcons.trash,
+                                          size: 16,
+                                          color: Colors.redAccent,
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Text(
+                                          isEn ? 'Delete Note' : 'Notu Sil',
+                                          style: AppTypography.subtitle(
+                                            fontSize: 14,
+                                            color: Colors.redAccent,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+
+                            const SizedBox(height: 60),
+                          ],
+                        ).animate().fadeIn(duration: 350.ms),
+                      ),
                     ),
-                  ),
-                ],
-              );
-            },
+                  ],
+                );
+              },
+            ),
           ),
         ),
-      ),
       ),
     );
   }
@@ -1000,7 +1055,9 @@ class _RemovableTagChip extends StatelessWidget {
             child: Icon(
               CupertinoIcons.xmark_circle_fill,
               size: 16,
-              color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.3),
+              color: (isDark ? Colors.white : Colors.black).withValues(
+                alpha: 0.3,
+              ),
             ),
           ),
         ],
@@ -1028,8 +1085,9 @@ class _ReminderRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final freq =
-        isEn ? reminder.frequency.displayNameEn() : reminder.frequency.displayNameTr();
+    final freq = isEn
+        ? reminder.frequency.displayNameEn()
+        : reminder.frequency.displayNameTr();
     final dateStr = _formatDate(reminder.scheduledAt, isEn);
 
     return Container(
@@ -1074,7 +1132,11 @@ class _ReminderRow extends StatelessWidget {
           ),
           GestureDetector(
             onTap: onDelete,
-            child: const Icon(CupertinoIcons.xmark_circle, size: 18, color: Colors.redAccent),
+            child: const Icon(
+              CupertinoIcons.xmark_circle,
+              size: 18,
+              color: Colors.redAccent,
+            ),
           ),
         ],
       ),
@@ -1082,7 +1144,9 @@ class _ReminderRow extends StatelessWidget {
   }
 
   String _formatDate(DateTime dt, bool isEn) {
-    final months = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
+    final months = isEn
+        ? CommonStrings.monthsShortEn
+        : CommonStrings.monthsShortTr;
     final h = dt.hour.toString().padLeft(2, '0');
     final m = dt.minute.toString().padLeft(2, '0');
     return '${dt.day} ${months[dt.month - 1]} ${dt.year}, $h:$m';
@@ -1133,20 +1197,25 @@ class _ReminderForm extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               decoration: BoxDecoration(
-                color: (isDark ? Colors.white : Colors.black)
-                    .withValues(alpha: 0.04),
+                color: (isDark ? Colors.white : Colors.black).withValues(
+                  alpha: 0.04,
+                ),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
                 children: [
-                  Icon(CupertinoIcons.calendar, size: 16, color: AppColors.starGold),
+                  Icon(
+                    CupertinoIcons.calendar,
+                    size: 16,
+                    color: AppColors.starGold,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     reminderDate != null
                         ? _formatDate(reminderDate!, isEn)
                         : (isEn
-                            ? 'Pick date & time'
-                            : 'Tarih ve saat se\u00e7'),
+                              ? 'Pick date & time'
+                              : 'Tarih ve saat se\u00e7'),
                     style: AppTypography.subtitle(
                       fontSize: 14,
                       color: reminderDate != null
@@ -1179,13 +1248,16 @@ class _ReminderForm extends StatelessWidget {
               return GestureDetector(
                 onTap: isLocked ? null : () => onFrequencyChanged(f),
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: isSelected
                         ? AppColors.starGold.withValues(alpha: 0.2)
-                        : (isDark ? Colors.white : Colors.black)
-                            .withValues(alpha: 0.05),
+                        : (isDark ? Colors.white : Colors.black).withValues(
+                            alpha: 0.05,
+                          ),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
@@ -1222,17 +1294,24 @@ class _ReminderForm extends StatelessWidget {
               hintText: isEn
                   ? 'Custom message (optional)'
                   : '\u00d6zel mesaj (iste\u011fe ba\u011fl\u0131)',
-              hintStyle: AppTypography.subtitle(color: isDark ? Colors.white24 : Colors.black.withValues(alpha: 0.2)),
+              hintStyle: AppTypography.subtitle(
+                color: isDark
+                    ? Colors.white24
+                    : Colors.black.withValues(alpha: 0.2),
+              ),
               isDense: true,
               filled: true,
-              fillColor:
-                  (isDark ? Colors.white : Colors.black).withValues(alpha: 0.04),
+              fillColor: (isDark ? Colors.white : Colors.black).withValues(
+                alpha: 0.04,
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide.none,
               ),
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 10,
+              ),
             ),
           ),
 
@@ -1252,8 +1331,9 @@ class _ReminderForm extends StatelessWidget {
                         )
                       : null,
                   color: reminderDate == null
-                      ? (isDark ? Colors.white : Colors.black)
-                          .withValues(alpha: 0.08)
+                      ? (isDark ? Colors.white : Colors.black).withValues(
+                          alpha: 0.08,
+                        )
                       : null,
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -1277,7 +1357,9 @@ class _ReminderForm extends StatelessWidget {
   }
 
   String _formatDate(DateTime dt, bool isEn) {
-    final months = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
+    final months = isEn
+        ? CommonStrings.monthsShortEn
+        : CommonStrings.monthsShortTr;
     final h = dt.hour.toString().padLeft(2, '0');
     final m = dt.minute.toString().padLeft(2, '0');
     return '${dt.day} ${months[dt.month - 1]} ${dt.year}, $h:$m';

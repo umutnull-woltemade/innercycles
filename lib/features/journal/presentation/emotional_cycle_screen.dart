@@ -229,12 +229,12 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                     Text(
                       isEn ? 'Your Cycles Are Forming' : 'Döngülerin Oluşuyor',
                       style: AppTypography.modernAccent(
-                            fontSize: 24,
-                            color: isDark
-                                ? AppColors.textPrimary
-                                : AppColors.lightTextPrimary,
-                            fontWeight: FontWeight.w700,
-                          ),
+                        fontSize: 24,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                        fontWeight: FontWeight.w700,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 12),

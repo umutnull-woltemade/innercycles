@@ -61,7 +61,10 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
           onPressed: () => context.push(Routes.birthdayAdd),
           backgroundColor: Colors.transparent,
           elevation: 0,
-          child: const Icon(Icons.person_add_rounded, color: AppColors.deepSpace),
+          child: const Icon(
+            Icons.person_add_rounded,
+            color: AppColors.deepSpace,
+          ),
         ),
       ),
       body: CosmicBackground(
@@ -106,153 +109,159 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: isEn ? 'Birthday Agenda' : 'Do\u{011F}um G\u{00FC}n\u{00FC} Ajandas\u{0131}',
+            title: isEn
+                ? 'Birthday Agenda'
+                : 'Do\u{011F}um G\u{00FC}n\u{00FC} Ajandas\u{0131}',
           ),
-        SliverPadding(
-          padding: const EdgeInsets.all(16),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate([
-              // Empty state
-              if (isEmpty) ...[
-                _EmptyState(
+          SliverPadding(
+            padding: const EdgeInsets.all(16),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                // Empty state
+                if (isEmpty) ...[
+                  _EmptyState(
+                    isDark: isDark,
+                    isEn: isEn,
+                    onImport: () => context.push(Routes.birthdayImport),
+                    onAdd: () => context.push(Routes.birthdayAdd),
+                  ),
+                  const SizedBox(height: 40),
+                ],
+
+                // 1. Today banner
+                if (todayBirthdays.isNotEmpty) ...[
+                  _TodayBanner(
+                    contacts: todayBirthdays,
+                    isDark: isDark,
+                    isEn: isEn,
+                    onTap: (id) => context.push(
+                      Routes.birthdayDetail.replaceFirst(':id', id),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+
+                // 2. Month navigator
+                _MonthNav(
+                  year: _selectedYear,
+                  month: _selectedMonth,
+                  isDark: isDark,
+                  isEn: isEn,
+                  onPrevious: () {
+                    final minYear = DateTime.now().year - 1;
+                    HapticFeedback.selectionClick();
+                    setState(() {
+                      _selectedMonth--;
+                      if (_selectedMonth < 1) {
+                        if (_selectedYear > minYear) {
+                          _selectedMonth = 12;
+                          _selectedYear--;
+                        } else {
+                          _selectedMonth = 1;
+                        }
+                      }
+                      _selectedDay = null;
+                    });
+                  },
+                  onNext: () {
+                    final maxYear = DateTime.now().year + 1;
+                    HapticFeedback.selectionClick();
+                    setState(() {
+                      _selectedMonth++;
+                      if (_selectedMonth > 12) {
+                        if (_selectedYear < maxYear) {
+                          _selectedMonth = 1;
+                          _selectedYear++;
+                        } else {
+                          _selectedMonth = 12;
+                        }
+                      }
+                      _selectedDay = null;
+                    });
+                  },
+                  onToday: () {
+                    HapticFeedback.selectionClick();
+                    setState(() {
+                      final now = DateTime.now();
+                      _selectedYear = now.year;
+                      _selectedMonth = now.month;
+                      _selectedDay = null;
+                    });
+                  },
+                ),
+                const SizedBox(height: 16),
+
+                // 3. Calendar grid
+                _BirthdayCalendarGrid(
+                  year: _selectedYear,
+                  month: _selectedMonth,
+                  birthdayMap: birthdayMap,
+                  selectedDay: _selectedDay,
+                  isDark: isDark,
+                  isEn: isEn,
+                  onDayTap: (day) {
+                    HapticFeedback.lightImpact();
+                    setState(() {
+                      _selectedDay = _selectedDay == day ? null : day;
+                    });
+                  },
+                ),
+                const SizedBox(height: 16),
+
+                // 4. Selected day detail
+                if (_selectedDay != null) ...[
+                  _SelectedDayDetail(
+                    day: _selectedDay!,
+                    month: _selectedMonth,
+                    birthdayMap: birthdayMap,
+                    isDark: isDark,
+                    isEn: isEn,
+                    onContactTap: (id) => context.push(
+                      Routes.birthdayDetail.replaceFirst(':id', id),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                ],
+
+                // 5. Upcoming birthdays
+                if (upcoming.isNotEmpty) ...[
+                  GradientText(
+                    isEn
+                        ? 'Upcoming Birthdays'
+                        : 'Yakla\u{015F}an Do\u{011F}um G\u{00FC}nleri',
+                    variant: GradientTextVariant.gold,
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  ...upcoming.map(
+                    (contact) => _UpcomingCard(
+                      contact: contact,
+                      isDark: isDark,
+                      isEn: isEn,
+                      onTap: () => context.push(
+                        Routes.birthdayDetail.replaceFirst(':id', contact.id),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+
+                // 6. Action buttons
+                _ActionButtons(
                   isDark: isDark,
                   isEn: isEn,
                   onImport: () => context.push(Routes.birthdayImport),
                   onAdd: () => context.push(Routes.birthdayAdd),
                 ),
+
                 const SizedBox(height: 40),
-              ],
-
-              // 1. Today banner
-              if (todayBirthdays.isNotEmpty) ...[
-                _TodayBanner(
-                  contacts: todayBirthdays,
-                  isDark: isDark,
-                  isEn: isEn,
-                  onTap: (id) => context.push(
-                    Routes.birthdayDetail.replaceFirst(':id', id),
-                  ),
-                ),
-                const SizedBox(height: 20),
-              ],
-
-              // 2. Month navigator
-              _MonthNav(
-                year: _selectedYear,
-                month: _selectedMonth,
-                isDark: isDark,
-                isEn: isEn,
-                onPrevious: () {
-                  final minYear = DateTime.now().year - 1;
-                  HapticFeedback.selectionClick();
-                  setState(() {
-                    _selectedMonth--;
-                    if (_selectedMonth < 1) {
-                      if (_selectedYear > minYear) {
-                        _selectedMonth = 12;
-                        _selectedYear--;
-                      } else {
-                        _selectedMonth = 1;
-                      }
-                    }
-                    _selectedDay = null;
-                  });
-                },
-                onNext: () {
-                  final maxYear = DateTime.now().year + 1;
-                  HapticFeedback.selectionClick();
-                  setState(() {
-                    _selectedMonth++;
-                    if (_selectedMonth > 12) {
-                      if (_selectedYear < maxYear) {
-                        _selectedMonth = 1;
-                        _selectedYear++;
-                      } else {
-                        _selectedMonth = 12;
-                      }
-                    }
-                    _selectedDay = null;
-                  });
-                },
-                onToday: () {
-                  HapticFeedback.selectionClick();
-                  setState(() {
-                    final now = DateTime.now();
-                    _selectedYear = now.year;
-                    _selectedMonth = now.month;
-                    _selectedDay = null;
-                  });
-                },
-              ),
-              const SizedBox(height: 16),
-
-              // 3. Calendar grid
-              _BirthdayCalendarGrid(
-                year: _selectedYear,
-                month: _selectedMonth,
-                birthdayMap: birthdayMap,
-                selectedDay: _selectedDay,
-                isDark: isDark,
-                isEn: isEn,
-                onDayTap: (day) {
-                  HapticFeedback.lightImpact();
-                  setState(() {
-                    _selectedDay = _selectedDay == day ? null : day;
-                  });
-                },
-              ),
-              const SizedBox(height: 16),
-
-              // 4. Selected day detail
-              if (_selectedDay != null) ...[
-                _SelectedDayDetail(
-                  day: _selectedDay!,
-                  month: _selectedMonth,
-                  birthdayMap: birthdayMap,
-                  isDark: isDark,
-                  isEn: isEn,
-                  onContactTap: (id) => context.push(
-                    Routes.birthdayDetail.replaceFirst(':id', id),
-                  ),
-                ),
-                const SizedBox(height: 16),
-              ],
-
-              // 5. Upcoming birthdays
-              if (upcoming.isNotEmpty) ...[
-                GradientText(
-                  isEn ? 'Upcoming Birthdays' : 'Yakla\u{015F}an Do\u{011F}um G\u{00FC}nleri',
-                  variant: GradientTextVariant.gold,
-                  style: AppTypography.displayFont.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                ...upcoming.map((contact) => _UpcomingCard(
-                  contact: contact,
-                  isDark: isDark,
-                  isEn: isEn,
-                  onTap: () => context.push(
-                    Routes.birthdayDetail.replaceFirst(':id', contact.id),
-                  ),
-                )),
-                const SizedBox(height: 20),
-              ],
-
-              // 6. Action buttons
-              _ActionButtons(
-                isDark: isDark,
-                isEn: isEn,
-                onImport: () => context.push(Routes.birthdayImport),
-                onAdd: () => context.push(Routes.birthdayAdd),
-              ),
-
-              const SizedBox(height: 40),
-            ]),
+              ]),
+            ),
           ),
-        ),
-      ],
+        ],
       ),
     );
   }
@@ -288,7 +297,9 @@ class _TodayBanner extends StatelessWidget {
               const AppSymbol.card('\u{1F382}'),
               const SizedBox(width: 10),
               GradientText(
-                isEn ? 'Today\'s Birthdays!' : 'Bug\u{00FC}nk\u{00FC} Do\u{011F}um G\u{00FC}nleri!',
+                isEn
+                    ? 'Today\'s Birthdays!'
+                    : 'Bug\u{00FC}nk\u{00FC} Do\u{011F}um G\u{00FC}nleri!',
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 18,
@@ -370,7 +381,9 @@ class _MonthNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final monthNames = isEn ? CommonStrings.monthsFullEn : CommonStrings.monthsFullTr;
+    final monthNames = isEn
+        ? CommonStrings.monthsFullEn
+        : CommonStrings.monthsFullTr;
     final now = DateTime.now();
     final isCurrentMonth = year == now.year && month == now.month;
 
@@ -380,7 +393,9 @@ class _MonthNav extends StatelessWidget {
         IconButton(
           icon: Icon(
             Icons.chevron_left_rounded,
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+            color: isDark
+                ? AppColors.textSecondary
+                : AppColors.lightTextSecondary,
           ),
           onPressed: onPrevious,
         ),
@@ -391,7 +406,10 @@ class _MonthNav extends StatelessWidget {
               GradientText(
                 '${monthNames[month - 1]} $year',
                 variant: GradientTextVariant.gold,
-                style: AppTypography.displayFont.copyWith(fontSize: 18, fontWeight: FontWeight.w600),
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               if (!isCurrentMonth)
                 Padding(
@@ -410,7 +428,9 @@ class _MonthNav extends StatelessWidget {
         IconButton(
           icon: Icon(
             Icons.chevron_right_rounded,
-            color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+            color: isDark
+                ? AppColors.textSecondary
+                : AppColors.lightTextSecondary,
           ),
           onPressed: onNext,
         ),
@@ -460,20 +480,22 @@ class _BirthdayCalendarGrid extends StatelessWidget {
                 (isEn
                         ? ['M', 'T', 'W', 'T', 'F', 'S', 'S']
                         : ['Pt', 'Sa', '\u{00C7}a', 'Pe', 'Cu', 'Ct', 'Pa'])
-                    .map((d) => Expanded(
-                          child: Center(
-                            child: Text(
-                              d,
-                              style: AppTypography.elegantAccent(
-                                fontSize: 11,
-                                letterSpacing: 1.0,
-                                color: isDark
-                                    ? AppColors.textMuted
-                                    : AppColors.lightTextMuted,
-                              ),
+                    .map(
+                      (d) => Expanded(
+                        child: Center(
+                          child: Text(
+                            d,
+                            style: AppTypography.elegantAccent(
+                              fontSize: 11,
+                              letterSpacing: 1.0,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
                             ),
                           ),
-                        ))
+                        ),
+                      ),
+                    )
                     .toList(),
           ),
           const SizedBox(height: 8),
@@ -492,7 +514,8 @@ class _BirthdayCalendarGrid extends StatelessWidget {
                   final dateKey =
                       '${month.toString().padLeft(2, '0')}-${dayIndex.toString().padLeft(2, '0')}';
                   final dayContacts = birthdayMap[dateKey] ?? [];
-                  final isToday = year == today.year &&
+                  final isToday =
+                      year == today.year &&
                       month == today.month &&
                       dayIndex == today.day;
                   final isSelected = dayIndex == selectedDay;
@@ -507,19 +530,21 @@ class _BirthdayCalendarGrid extends StatelessWidget {
                           color: isSelected
                               ? AppColors.starGold.withValues(alpha: 0.12)
                               : isToday
-                                  ? AppColors.auroraStart.withValues(alpha: 0.08)
-                                  : (isDark
-                                        ? Colors.white.withValues(alpha: 0.03)
-                                        : Colors.black.withValues(alpha: 0.03)),
+                              ? AppColors.auroraStart.withValues(alpha: 0.08)
+                              : (isDark
+                                    ? Colors.white.withValues(alpha: 0.03)
+                                    : Colors.black.withValues(alpha: 0.03)),
                           borderRadius: BorderRadius.circular(8),
                           border: isSelected
                               ? Border.all(color: AppColors.starGold, width: 2)
                               : isToday
-                                  ? Border.all(
-                                      color: AppColors.auroraStart.withValues(alpha: 0.4),
-                                      width: 1.5,
-                                    )
-                                  : null,
+                              ? Border.all(
+                                  color: AppColors.auroraStart.withValues(
+                                    alpha: 0.4,
+                                  ),
+                                  width: 1.5,
+                                )
+                              : null,
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -544,16 +569,18 @@ class _BirthdayCalendarGrid extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: dayContacts
                                     .take(3)
-                                    .map((c) => Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 1,
-                                          ),
-                                          child: BirthdayAvatar(
-                                            photoPath: c.photoPath,
-                                            name: c.name,
-                                            size: 20,
-                                          ),
-                                        ))
+                                    .map(
+                                      (c) => Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 1,
+                                        ),
+                                        child: BirthdayAvatar(
+                                          photoPath: c.photoPath,
+                                          name: c.name,
+                                          size: 20,
+                                        ),
+                                      ),
+                                    )
                                     .toList(),
                               ),
                               if (dayContacts.length > 3)
@@ -824,7 +851,10 @@ class _EmptyState extends StatelessWidget {
                 ? 'Never Miss a Birthday'
                 : 'Hi\u{00E7} Do\u{011F}um G\u{00FC}n\u{00FC} Ka\u{00E7}\u{0131}rma',
             variant: GradientTextVariant.gold,
-            style: AppTypography.displayFont.copyWith(fontSize: 20, fontWeight: FontWeight.w700),
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
           ),
           const SizedBox(height: 8),
           Text(
@@ -895,7 +925,11 @@ class _ActionButtons extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.download_rounded, color: AppColors.deepSpace, size: 20),
+                const Icon(
+                  Icons.download_rounded,
+                  color: AppColors.deepSpace,
+                  size: 20,
+                ),
                 const SizedBox(width: 8),
                 Text(
                   isEn ? 'Import from Facebook' : 'Facebook\'tan Aktar',
@@ -928,7 +962,11 @@ class _ActionButtons extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.person_add_rounded, color: AppColors.starGold, size: 20),
+                Icon(
+                  Icons.person_add_rounded,
+                  color: AppColors.starGold,
+                  size: 20,
+                ),
                 const SizedBox(width: 8),
                 Text(
                   isEn ? 'Add Manually' : 'Manuel Ekle',

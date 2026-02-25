@@ -941,8 +941,9 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
               decoration: BoxDecoration(
                 color: (isDark ? AppColors.cosmicPurple : Colors.white)
                     .withValues(alpha: isDark ? 0.85 : 0.92),
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(24)),
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(24),
+                ),
                 border: Border(
                   top: BorderSide(
                     color: AppColors.auroraStart.withValues(alpha: 0.3),
@@ -951,190 +952,190 @@ class _HabitDetailSheetState extends State<_HabitDetailSheet> {
                 ),
               ),
               child: SingleChildScrollView(
-            controller: scrollController,
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Drag handle
-                Center(
-                  child: Container(
-                    width: 36,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          AppColors.auroraStart.withValues(alpha: 0.6),
-                          AppColors.auroraEnd.withValues(alpha: 0.6),
-                        ],
-                      ),
-                      borderRadius: BorderRadius.circular(2),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-
-                // Category + Duration header
-                Row(
+                controller: scrollController,
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppSymbol(
-                      HabitSuggestionService.categoryEmoji(habit.category),
-                      size: AppSymbolSize.lg,
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            isEn
-                                ? HabitSuggestionService.categoryDisplayNameEn(
-                                    habit.category,
-                                  )
-                                : HabitSuggestionService.categoryDisplayNameTr(
-                                    habit.category,
-                                  ),
-                            style: AppTypography.elegantAccent(
-                              fontSize: 12,
-                              color: AppColors.auroraStart,
-                              letterSpacing: 1.0,
-                            ),
+                    // Drag handle
+                    Center(
+                      child: Container(
+                        width: 36,
+                        height: 4,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              AppColors.auroraStart.withValues(alpha: 0.6),
+                              AppColors.auroraEnd.withValues(alpha: 0.6),
+                            ],
                           ),
-                          Text(
-                            '${habit.durationMinutes} ${isEn ? 'minutes' : 'dakika'}',
-                            style: AppTypography.subtitle(
-                              fontSize: 11,
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
-                            ),
-                          ),
-                        ],
+                          borderRadius: BorderRadius.circular(2),
+                        ),
                       ),
                     ),
-                    // Bookmark button
-                    IconButton(
-                      tooltip: _isBookmarked
-                          ? (isEn ? 'Remove bookmark' : 'Kaydı kaldır')
-                          : (isEn ? 'Bookmark' : 'Kaydet'),
-                      icon: Icon(
-                        _isBookmarked
-                            ? Icons.bookmark_rounded
-                            : Icons.bookmark_border_rounded,
-                        color: _isBookmarked
-                            ? AppColors.starGold
-                            : (isDark
-                                  ? AppColors.textSecondary
-                                  : AppColors.lightTextSecondary),
-                      ),
-                      onPressed: () async {
-                        HapticFeedback.lightImpact();
-                        final result = await widget.service.toggleBookmark(
-                          habit.id,
-                        );
-                        if (!mounted) return;
-                        setState(() => _isBookmarked = result);
-                        widget.onChanged();
-                      },
+                    const SizedBox(height: 20),
+
+                    // Category + Duration header
+                    Row(
+                      children: [
+                        AppSymbol(
+                          HabitSuggestionService.categoryEmoji(habit.category),
+                          size: AppSymbolSize.lg,
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                isEn
+                                    ? HabitSuggestionService.categoryDisplayNameEn(
+                                        habit.category,
+                                      )
+                                    : HabitSuggestionService.categoryDisplayNameTr(
+                                        habit.category,
+                                      ),
+                                style: AppTypography.elegantAccent(
+                                  fontSize: 12,
+                                  color: AppColors.auroraStart,
+                                  letterSpacing: 1.0,
+                                ),
+                              ),
+                              Text(
+                                '${habit.durationMinutes} ${isEn ? 'minutes' : 'dakika'}',
+                                style: AppTypography.subtitle(
+                                  fontSize: 11,
+                                  color: isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        // Bookmark button
+                        IconButton(
+                          tooltip: _isBookmarked
+                              ? (isEn ? 'Remove bookmark' : 'Kaydı kaldır')
+                              : (isEn ? 'Bookmark' : 'Kaydet'),
+                          icon: Icon(
+                            _isBookmarked
+                                ? Icons.bookmark_rounded
+                                : Icons.bookmark_border_rounded,
+                            color: _isBookmarked
+                                ? AppColors.starGold
+                                : (isDark
+                                      ? AppColors.textSecondary
+                                      : AppColors.lightTextSecondary),
+                          ),
+                          onPressed: () async {
+                            HapticFeedback.lightImpact();
+                            final result = await widget.service.toggleBookmark(
+                              habit.id,
+                            );
+                            if (!mounted) return;
+                            setState(() => _isBookmarked = result);
+                            widget.onChanged();
+                          },
+                        ),
+                      ],
                     ),
-                  ],
-                ),
 
-                const SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
-                // Title
-                Text(
-                  isEn ? habit.titleEn : habit.titleTr,
-                  style: AppTypography.displayFont.copyWith(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
-                  ),
-                ),
+                    // Title
+                    Text(
+                      isEn ? habit.titleEn : habit.titleTr,
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w700,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
 
-                const SizedBox(height: 12),
+                    const SizedBox(height: 12),
 
-                // Description
-                Text(
-                  isEn ? habit.descriptionEn : habit.descriptionTr,
-                  style: AppTypography.decorativeScript(
-                    fontSize: 15,
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
-                  ),
-                ),
+                    // Description
+                    Text(
+                      isEn ? habit.descriptionEn : habit.descriptionTr,
+                      style: AppTypography.decorativeScript(
+                        fontSize: 15,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
 
-                const SizedBox(height: 24),
+                    const SizedBox(height: 24),
 
-                // Action buttons
-                Row(
-                  children: [
-                    Expanded(
-                      child: _ActionButton(
-                        label: _isTried
-                            ? (isEn ? 'Tried' : 'Denendi')
-                            : (isEn
-                                  ? 'Mark as Tried'
-                                  : 'Denendi Olarak İşaretle'),
-                        icon: _isTried
-                            ? Icons.check_rounded
-                            : Icons.touch_app_rounded,
-                        color: AppColors.auroraStart,
-                        isDark: isDark,
-                        isActive: _isTried,
-                        onTap: _isTried
-                            ? null
-                            : () async {
-                                HapticFeedback.mediumImpact();
-                                await widget.service.markAsTried(habit.id);
+                    // Action buttons
+                    Row(
+                      children: [
+                        Expanded(
+                          child: _ActionButton(
+                            label: _isTried
+                                ? (isEn ? 'Tried' : 'Denendi')
+                                : (isEn
+                                      ? 'Mark as Tried'
+                                      : 'Denendi Olarak İşaretle'),
+                            icon: _isTried
+                                ? Icons.check_rounded
+                                : Icons.touch_app_rounded,
+                            color: AppColors.auroraStart,
+                            isDark: isDark,
+                            isActive: _isTried,
+                            onTap: _isTried
+                                ? null
+                                : () async {
+                                    HapticFeedback.mediumImpact();
+                                    await widget.service.markAsTried(habit.id);
+                                    if (!mounted) return;
+                                    setState(() => _isTried = true);
+                                    widget.onChanged();
+                                  },
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: _ActionButton(
+                            label: _isAdopted
+                                ? (isEn ? 'Adopted' : 'Benimsendi')
+                                : (isEn
+                                      ? 'Adopt this Habit'
+                                      : 'Bu Alışkanlığı Benimse'),
+                            icon: _isAdopted
+                                ? Icons.check_circle_rounded
+                                : Icons.favorite_border_rounded,
+                            color: AppColors.success,
+                            isDark: isDark,
+                            isActive: _isAdopted,
+                            onTap: () async {
+                              HapticFeedback.mediumImpact();
+                              if (_isAdopted) {
+                                await widget.service.removeAdopted(habit.id);
                                 if (!mounted) return;
-                                setState(() => _isTried = true);
-                                widget.onChanged();
-                              },
-                      ),
+                                setState(() => _isAdopted = false);
+                              } else {
+                                await widget.service.markAsAdopted(habit.id);
+                                if (!mounted) return;
+                                setState(() {
+                                  _isAdopted = true;
+                                  _isTried = true;
+                                });
+                              }
+                              widget.onChanged();
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: _ActionButton(
-                        label: _isAdopted
-                            ? (isEn ? 'Adopted' : 'Benimsendi')
-                            : (isEn
-                                  ? 'Adopt this Habit'
-                                  : 'Bu Alışkanlığı Benimse'),
-                        icon: _isAdopted
-                            ? Icons.check_circle_rounded
-                            : Icons.favorite_border_rounded,
-                        color: AppColors.success,
-                        isDark: isDark,
-                        isActive: _isAdopted,
-                        onTap: () async {
-                          HapticFeedback.mediumImpact();
-                          if (_isAdopted) {
-                            await widget.service.removeAdopted(habit.id);
-                            if (!mounted) return;
-                            setState(() => _isAdopted = false);
-                          } else {
-                            await widget.service.markAsAdopted(habit.id);
-                            if (!mounted) return;
-                            setState(() {
-                              _isAdopted = true;
-                              _isTried = true;
-                            });
-                          }
-                          widget.onChanged();
-                        },
-                      ),
-                    ),
+
+                    const SizedBox(height: 32),
                   ],
                 ),
-
-                const SizedBox(height: 32),
-              ],
-            ),
-          ),
+              ),
             ),
           ),
         );

@@ -75,7 +75,9 @@ class BirthdayDetailScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final monthNames = isEn ? CommonStrings.monthsFullEn : CommonStrings.monthsFullTr;
+    final monthNames = isEn
+        ? CommonStrings.monthsFullEn
+        : CommonStrings.monthsFullTr;
 
     return CustomScrollView(
       physics: const BouncingScrollPhysics(
@@ -88,7 +90,9 @@ class BirthdayDetailScreen extends ConsumerWidget {
             IconButton(
               icon: Icon(
                 Icons.edit_rounded,
-                color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
               ),
               onPressed: () => context.push(
                 Routes.birthdayEdit.replaceFirst(':id', contact.id),
@@ -102,17 +106,20 @@ class BirthdayDetailScreen extends ConsumerWidget {
             delegate: SliverChildListDelegate([
               // 1. Photo Hero
               Center(
-                child: BirthdayAvatar(
-                  photoPath: contact.photoPath,
-                  name: contact.name,
-                  size: 120,
-                  showBirthdayCake: contact.isBirthdayToday,
-                ),
-              ).animate().fadeIn(duration: 300.ms).scale(
-                begin: const Offset(0.9, 0.9),
-                end: const Offset(1, 1),
-                duration: 300.ms,
-              ),
+                    child: BirthdayAvatar(
+                      photoPath: contact.photoPath,
+                      name: contact.name,
+                      size: 120,
+                      showBirthdayCake: contact.isBirthdayToday,
+                    ),
+                  )
+                  .animate()
+                  .fadeIn(duration: 300.ms)
+                  .scale(
+                    begin: const Offset(0.9, 0.9),
+                    end: const Offset(1, 1),
+                    duration: 300.ms,
+                  ),
               const SizedBox(height: 16),
 
               // 2. Name + Age
@@ -129,7 +136,9 @@ class BirthdayDetailScreen extends ConsumerWidget {
               if (contact.age != null)
                 Center(
                   child: Text(
-                    isEn ? '${contact.age} years old' : '${contact.age} ya\u{015F}\u{0131}nda',
+                    isEn
+                        ? '${contact.age} years old'
+                        : '${contact.age} ya\u{015F}\u{0131}nda',
                     style: AppTypography.decorativeScript(
                       fontSize: 14,
                       color: isDark
@@ -225,7 +234,9 @@ class BirthdayDetailScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     GradientText(
-                      isEn ? 'Reminders' : 'Hat\u{0131}rlat\u{0131}c\u{0131}lar',
+                      isEn
+                          ? 'Reminders'
+                          : 'Hat\u{0131}rlat\u{0131}c\u{0131}lar',
                       variant: GradientTextVariant.gold,
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 14,
@@ -236,10 +247,14 @@ class BirthdayDetailScreen extends ConsumerWidget {
                     _toggleRow(
                       isDark,
                       icon: Icons.cake_rounded,
-                      label: isEn ? 'Birthday notification' : 'Do\u{011F}um g\u{00FC}n\u{00FC} bildirimi',
+                      label: isEn
+                          ? 'Birthday notification'
+                          : 'Do\u{011F}um g\u{00FC}n\u{00FC} bildirimi',
                       value: contact.notificationsEnabled,
                       onChanged: (v) => _updateNotificationSetting(
-                        ref, contact, notificationsEnabled: v,
+                        ref,
+                        contact,
+                        notificationsEnabled: v,
                       ),
                     ),
                     const SizedBox(height: 6),
@@ -249,7 +264,9 @@ class BirthdayDetailScreen extends ConsumerWidget {
                       label: isEn ? 'Day before' : 'Bir g\u{00FC}n \u{00F6}nce',
                       value: contact.dayBeforeReminder,
                       onChanged: (v) => _updateNotificationSetting(
-                        ref, contact, dayBeforeReminder: v,
+                        ref,
+                        contact,
+                        dayBeforeReminder: v,
                       ),
                     ),
                   ],
@@ -261,7 +278,11 @@ class BirthdayDetailScreen extends ConsumerWidget {
               Center(
                 child: TextButton.icon(
                   onPressed: () => _confirmDelete(context, ref, contact, isEn),
-                  icon: Icon(Icons.delete_outline_rounded, color: AppColors.error, size: 18),
+                  icon: Icon(
+                    Icons.delete_outline_rounded,
+                    color: AppColors.error,
+                    size: 18,
+                  ),
                   label: Text(
                     isEn ? 'Delete Contact' : 'Ki\u{015F}iyi Sil',
                     style: AppTypography.modernAccent(
@@ -295,9 +316,14 @@ class BirthdayDetailScreen extends ConsumerWidget {
           const SizedBox(height: 12),
           if (isToday) ...[
             GradientText(
-              isEn ? 'Happy Birthday!' : 'Do\u{011F}um G\u{00FC}n\u{00FC} Kutlu Olsun!',
+              isEn
+                  ? 'Happy Birthday!'
+                  : 'Do\u{011F}um G\u{00FC}n\u{00FC} Kutlu Olsun!',
               variant: GradientTextVariant.gold,
-              style: AppTypography.displayFont.copyWith(fontSize: 22, fontWeight: FontWeight.w700),
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 22,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ] else ...[
             Text(
@@ -305,14 +331,18 @@ class BirthdayDetailScreen extends ConsumerWidget {
               style: AppTypography.displayFont.copyWith(
                 fontSize: 48,
                 fontWeight: FontWeight.w700,
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
               ),
             ),
             Text(
               isEn ? 'days left' : 'g\u{00FC}n kald\u{0131}',
               style: AppTypography.decorativeScript(
                 fontSize: 16,
-                color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
               ),
             ),
           ],
@@ -333,7 +363,9 @@ class BirthdayDetailScreen extends ConsumerWidget {
         Icon(
           icon,
           size: 16,
-          color: value ? AppColors.starGold : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+          color: value
+              ? AppColors.starGold
+              : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
         ),
         const SizedBox(width: 8),
         Expanded(
@@ -341,7 +373,9 @@ class BirthdayDetailScreen extends ConsumerWidget {
             label,
             style: AppTypography.subtitle(
               fontSize: 13,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
           ),
         ),
@@ -397,8 +431,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
       isDestructive: true,
       onConfirm: () async {
         try {
-          final service =
-              await ref.read(birthdayContactServiceProvider.future);
+          final service = await ref.read(birthdayContactServiceProvider.future);
           await service.deleteContact(contact.id);
           await NotificationService().cancelBirthdayNotification(contact.id);
           ref.invalidate(birthdayContactServiceProvider);

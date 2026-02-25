@@ -97,45 +97,49 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         _showDiscardDialog();
       },
       child: Scaffold(
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: CosmicBackground(
-          child: CustomScrollView(
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-          slivers: [
-            GlassSliverAppBar(
-              title: _isEditing
-                  ? (isEn ? 'Edit Birthday' : 'Do\u{011F}um G\u{00FC}n\u{00FC} D\u{00FC}zenle')
-                  : (isEn ? 'Add Birthday' : 'Do\u{011F}um G\u{00FC}n\u{00FC} Ekle'),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.all(16),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate([
-                  _buildPhotoSection(isDark, isEn),
-                  const SizedBox(height: 20),
-                  _buildNameField(isDark, isEn),
-                  const SizedBox(height: 20),
-                  _buildDateSection(isDark, isEn),
-                  const SizedBox(height: 20),
-                  _buildRelationshipSection(isDark, isEn),
-                  const SizedBox(height: 20),
-                  _buildNoteField(isDark, isEn),
-                  const SizedBox(height: 20),
-                  _buildNotificationToggles(isDark, isEn),
-                  const SizedBox(height: 32),
-                  _buildSaveButton(isDark, isEn),
-                  const SizedBox(height: 40),
-                ]),
+        body: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: CosmicBackground(
+            child: CustomScrollView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
               ),
+              slivers: [
+                GlassSliverAppBar(
+                  title: _isEditing
+                      ? (isEn
+                            ? 'Edit Birthday'
+                            : 'Do\u{011F}um G\u{00FC}n\u{00FC} D\u{00FC}zenle')
+                      : (isEn
+                            ? 'Add Birthday'
+                            : 'Do\u{011F}um G\u{00FC}n\u{00FC} Ekle'),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.all(16),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate([
+                      _buildPhotoSection(isDark, isEn),
+                      const SizedBox(height: 20),
+                      _buildNameField(isDark, isEn),
+                      const SizedBox(height: 20),
+                      _buildDateSection(isDark, isEn),
+                      const SizedBox(height: 20),
+                      _buildRelationshipSection(isDark, isEn),
+                      const SizedBox(height: 20),
+                      _buildNoteField(isDark, isEn),
+                      const SizedBox(height: 20),
+                      _buildNotificationToggles(isDark, isEn),
+                      const SizedBox(height: 32),
+                      _buildSaveButton(isDark, isEn),
+                      const SizedBox(height: 40),
+                    ]),
+                  ),
+                ),
+              ],
             ),
-          ],
           ),
         ),
-      ),
       ),
     );
   }
@@ -175,7 +179,9 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
             ),
             const SizedBox(height: 8),
             Text(
-              isEn ? 'Tap to change photo' : 'Foto\u{011F}raf\u{0131} de\u{011F}i\u{015F}tirmek i\u{00E7}in dokun',
+              isEn
+                  ? 'Tap to change photo'
+                  : 'Foto\u{011F}raf\u{0131} de\u{011F}i\u{015F}tirmek i\u{00E7}in dokun',
               style: AppTypography.elegantAccent(
                 fontSize: 12,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -255,7 +261,9 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
   // ═════════════════════════════════════════════════════════════════════════
 
   Widget _buildDateSection(bool isDark, bool isEn) {
-    final monthNames = isEn ? CommonStrings.monthsFullEn : CommonStrings.monthsFullTr;
+    final monthNames = isEn
+        ? CommonStrings.monthsFullEn
+        : CommonStrings.monthsFullTr;
 
     final daysInMonth = DateTime(2024, _selectedMonth + 1, 0).day;
     if (_selectedDay > daysInMonth) _selectedDay = daysInMonth;
@@ -280,10 +288,14 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                   child: DropdownButton<int>(
                     value: _selectedMonth,
                     isExpanded: true,
-                    dropdownColor: isDark ? AppColors.surfaceDark : Colors.white,
+                    dropdownColor: isDark
+                        ? AppColors.surfaceDark
+                        : Colors.white,
                     style: AppTypography.subtitle(
                       fontSize: 14,
-                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
                     ),
                     items: List.generate(12, (i) {
                       return DropdownMenuItem(
@@ -292,10 +304,11 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                       );
                     }),
                     onChanged: (v) {
-                      if (v != null) setState(() {
-                        _selectedMonth = v;
-                        _hasChanges = true;
-                      });
+                      if (v != null)
+                        setState(() {
+                          _selectedMonth = v;
+                          _hasChanges = true;
+                        });
                       HapticFeedback.selectionClick();
                     },
                   ),
@@ -312,10 +325,14 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                   child: DropdownButton<int>(
                     value: _selectedDay,
                     isExpanded: true,
-                    dropdownColor: isDark ? AppColors.surfaceDark : Colors.white,
+                    dropdownColor: isDark
+                        ? AppColors.surfaceDark
+                        : Colors.white,
                     style: AppTypography.subtitle(
                       fontSize: 14,
-                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
                     ),
                     items: List.generate(daysInMonth, (i) {
                       return DropdownMenuItem(
@@ -324,10 +341,11 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                       );
                     }),
                     onChanged: (v) {
-                      if (v != null) setState(() {
-                        _selectedDay = v;
-                        _hasChanges = true;
-                      });
+                      if (v != null)
+                        setState(() {
+                          _selectedDay = v;
+                          _hasChanges = true;
+                        });
                       HapticFeedback.selectionClick();
                     },
                   ),
@@ -347,15 +365,23 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                   child: DropdownButton<int?>(
                     value: _selectedYear,
                     isExpanded: true,
-                    dropdownColor: isDark ? AppColors.surfaceDark : Colors.white,
+                    dropdownColor: isDark
+                        ? AppColors.surfaceDark
+                        : Colors.white,
                     style: AppTypography.subtitle(
                       fontSize: 14,
-                      color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
                     ),
                     hint: Text(
-                      isEn ? 'Year (optional)' : 'Y\u{0131}l (iste\u{011F}e ba\u{011F}l\u{0131})',
+                      isEn
+                          ? 'Year (optional)'
+                          : 'Y\u{0131}l (iste\u{011F}e ba\u{011F}l\u{0131})',
                       style: AppTypography.subtitle(
-                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
                       ),
                     ),
                     items: [
@@ -364,7 +390,9 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                         child: Text(
                           isEn ? 'Not specified' : 'Belirtilmemi\u{015F}',
                           style: AppTypography.subtitle(
-                            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
                           ),
                         ),
                       ),
@@ -451,13 +479,18 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(rel.emoji, style: AppTypography.subtitle(fontSize: 14)),
+                    Text(
+                      rel.emoji,
+                      style: AppTypography.subtitle(fontSize: 14),
+                    ),
                     const SizedBox(width: 6),
                     Text(
                       isEn ? rel.displayNameEn : rel.displayNameTr,
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
-                        fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+                        fontWeight: isSelected
+                            ? FontWeight.w600
+                            : FontWeight.w400,
                         color: isSelected
                             ? AppColors.starGold
                             : (isDark
@@ -484,7 +517,9 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          isEn ? 'Note (Optional)' : 'Not (\u{0130}ste\u{011F}e Ba\u{011F}l\u{0131})',
+          isEn
+              ? 'Note (Optional)'
+              : 'Not (\u{0130}ste\u{011F}e Ba\u{011F}l\u{0131})',
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(fontSize: 14, letterSpacing: 1.5),
         ),
@@ -534,7 +569,9 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         const SizedBox(height: 10),
         _toggleRow(
           isDark,
-          label: isEn ? 'Birthday notification' : 'Do\u{011F}um g\u{00FC}n\u{00FC} bildirimi',
+          label: isEn
+              ? 'Birthday notification'
+              : 'Do\u{011F}um g\u{00FC}n\u{00FC} bildirimi',
           value: _notificationsEnabled,
           onChanged: (v) => setState(() {
             _notificationsEnabled = v;
@@ -544,7 +581,9 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         const SizedBox(height: 8),
         _toggleRow(
           isDark,
-          label: isEn ? 'Day before reminder' : 'Bir g\u{00FC}n \u{00F6}nce hat\u{0131}rlat',
+          label: isEn
+              ? 'Day before reminder'
+              : 'Bir g\u{00FC}n \u{00F6}nce hat\u{0131}rlat',
           value: _dayBeforeReminder,
           onChanged: (v) => setState(() {
             _dayBeforeReminder = v;
@@ -569,7 +608,9 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
             label,
             style: AppTypography.subtitle(
               fontSize: 14,
-              color: isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
           ),
         ),
@@ -631,7 +672,9 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                     fontWeight: FontWeight.w700,
                     color: canSave
                         ? AppColors.deepSpace
-                        : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+                        : (isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted),
                   ),
                 ),
         ),
@@ -644,8 +687,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
     setState(() => _isSaving = true);
 
     try {
-      final service =
-          await ref.read(birthdayContactServiceProvider.future);
+      final service = await ref.read(birthdayContactServiceProvider.future);
 
       BirthdayContact saved;
       final trimmedNote = _noteController.text.trim();

@@ -230,9 +230,7 @@ class _PromptCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: PremiumCard(
-        style: isCompleted
-            ? PremiumCardStyle.gold
-            : PremiumCardStyle.subtle,
+        style: isCompleted ? PremiumCardStyle.gold : PremiumCardStyle.subtle,
         padding: const EdgeInsets.all(16),
         borderRadius: 14,
         child: Column(
@@ -270,17 +268,18 @@ class _PromptCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     isEn ? prompt.titleEn : prompt.titleTr,
-                    style: AppTypography.modernAccent(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                    ).copyWith(
-                      decoration: isCompleted
-                          ? TextDecoration.lineThrough
-                          : null,
-                    ),
+                    style:
+                        AppTypography.modernAccent(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                        ).copyWith(
+                          decoration: isCompleted
+                              ? TextDecoration.lineThrough
+                              : null,
+                        ),
                   ),
                 ),
               ],

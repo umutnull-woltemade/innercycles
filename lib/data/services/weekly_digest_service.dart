@@ -84,10 +84,12 @@ class WeeklyDigestData {
 
   factory WeeklyDigestData.fromJson(Map<String, dynamic> json) {
     return WeeklyDigestData(
-      weekStart: DateTime.tryParse(json['weekStart']?.toString() ?? '') ??
+      weekStart:
+          DateTime.tryParse(json['weekStart']?.toString() ?? '') ??
           DateTime.now(),
       weekEnd:
-          DateTime.tryParse(json['weekEnd']?.toString() ?? '') ?? DateTime.now(),
+          DateTime.tryParse(json['weekEnd']?.toString() ?? '') ??
+          DateTime.now(),
       entriesThisWeek: json['entriesThisWeek'] as int? ?? 0,
       entriesLastWeek: json['entriesLastWeek'] as int? ?? 0,
       avgMoodRating: (json['avgMoodRating'] as num? ?? 0).toDouble(),
@@ -97,15 +99,15 @@ class WeeklyDigestData {
               orElse: () => FocusArea.energy,
             )
           : null,
-      topFocusAreaPercentage:
-          (json['topFocusAreaPercentage'] as num? ?? 0).toDouble(),
+      topFocusAreaPercentage: (json['topFocusAreaPercentage'] as num? ?? 0)
+          .toDouble(),
       streakDays: json['streakDays'] as int? ?? 0,
       moodTrend: MoodTrendDirection.values.firstWhere(
         (e) => e.name == json['moodTrend'],
         orElse: () => MoodTrendDirection.stable,
       ),
-      moodTrendChangePercent:
-          (json['moodTrendChangePercent'] as num? ?? 0).toDouble(),
+      moodTrendChangePercent: (json['moodTrendChangePercent'] as num? ?? 0)
+          .toDouble(),
       bestDay: json['bestDay'] != null
           ? DateTime.tryParse(json['bestDay'].toString())
           : null,
@@ -233,7 +235,11 @@ class WeeklyDigestService {
   final JournalService _journalService;
   List<WeeklyDigest> _legacyDigests = [];
 
-  WeeklyDigestService._(this._prefs, this._journalService, PatternEngineService? _) {
+  WeeklyDigestService._(
+    this._prefs,
+    this._journalService,
+    PatternEngineService? _,
+  ) {
     _loadLegacyDigests();
   }
 
@@ -267,9 +273,14 @@ class WeeklyDigestService {
     final prevWeekEnd = weekStart.subtract(const Duration(days: 1));
 
     // Fetch entries
-    final weekEntries = _journalService.getEntriesByDateRange(weekStart, weekEnd);
-    final prevWeekEntries =
-        _journalService.getEntriesByDateRange(prevWeekStart, prevWeekEnd);
+    final weekEntries = _journalService.getEntriesByDateRange(
+      weekStart,
+      weekEnd,
+    );
+    final prevWeekEntries = _journalService.getEntriesByDateRange(
+      prevWeekStart,
+      prevWeekEnd,
+    );
 
     final entriesThisWeek = weekEntries.length;
     final entriesLastWeek = prevWeekEntries.length;
@@ -277,7 +288,8 @@ class WeeklyDigestService {
     // Average mood rating (1-5 scale)
     double avgMoodRating = 0;
     if (weekEntries.isNotEmpty) {
-      avgMoodRating = weekEntries
+      avgMoodRating =
+          weekEntries
               .map((e) => e.overallRating)
               .reduce((a, b) => a + b)
               .toDouble() /
@@ -292,8 +304,7 @@ class WeeklyDigestService {
       areaCounts[e.focusArea] = (areaCounts[e.focusArea] ?? 0) + 1;
       areaRatingSums[e.focusArea] =
           (areaRatingSums[e.focusArea] ?? 0) + e.overallRating;
-      areaRatingCounts[e.focusArea] =
-          (areaRatingCounts[e.focusArea] ?? 0) + 1;
+      areaRatingCounts[e.focusArea] = (areaRatingCounts[e.focusArea] ?? 0) + 1;
     }
 
     FocusArea? topArea;
@@ -331,7 +342,8 @@ class WeeklyDigestService {
       }
       double bestAvg = 0;
       for (final dateEntries in byDate.entries) {
-        final dayAvg = dateEntries.value
+        final dayAvg =
+            dateEntries.value
                 .map((e) => e.overallRating)
                 .reduce((a, b) => a + b) /
             dateEntries.value.length;
@@ -422,7 +434,8 @@ class WeeklyDigestService {
 
     double avgMood = 0;
     if (weekEntries.isNotEmpty) {
-      avgMood = weekEntries
+      avgMood =
+          weekEntries
               .map((e) => e.overallRating)
               .reduce((a, b) => a + b)
               .toDouble() /
@@ -510,7 +523,8 @@ class WeeklyDigestService {
   ) {
     if (thisWeek.isEmpty) return (MoodTrendDirection.stable, 0);
 
-    final thisAvg = thisWeek
+    final thisAvg =
+        thisWeek
             .map((e) => e.overallRating)
             .reduce((a, b) => a + b)
             .toDouble() /
@@ -518,7 +532,8 @@ class WeeklyDigestService {
 
     if (lastWeek.isEmpty) return (MoodTrendDirection.stable, 0);
 
-    final lastAvg = lastWeek
+    final lastAvg =
+        lastWeek
             .map((e) => e.overallRating)
             .reduce((a, b) => a + b)
             .toDouble() /

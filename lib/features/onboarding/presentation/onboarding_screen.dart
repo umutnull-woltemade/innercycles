@@ -569,16 +569,16 @@ class _IdentityPageState extends State<_IdentityPage>
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFFD89B64).withValues(
-                  alpha: (60 * _glowController.value + 20) / 255,
-                ),
+                color: const Color(
+                  0xFFD89B64,
+                ).withValues(alpha: (60 * _glowController.value + 20) / 255),
                 blurRadius: 50 + (25 * _glowController.value),
                 spreadRadius: 8 + (12 * _glowController.value),
               ),
               BoxShadow(
-                color: const Color(0xFF8B7BA8).withValues(
-                  alpha: (40 * _glowController.value + 15) / 255,
-                ),
+                color: const Color(
+                  0xFF8B7BA8,
+                ).withValues(alpha: (40 * _glowController.value + 15) / 255),
                 blurRadius: 70 + (30 * _glowController.value),
                 spreadRadius: 5,
               ),
@@ -1381,9 +1381,7 @@ class _FeatureHighlight extends StatelessWidget {
                 color.withValues(alpha: 0.05),
               ],
             ),
-            border: Border.all(
-              color: color.withValues(alpha: 0.3),
-            ),
+            border: Border.all(color: color.withValues(alpha: 0.3)),
           ),
           child: Icon(icon, size: 28, color: color),
         ),
@@ -1420,7 +1418,10 @@ class _FeatureRow extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: AppTypography.decorativeScript(fontSize: 14, color: Colors.white70),
+              style: AppTypography.decorativeScript(
+                fontSize: 14,
+                color: Colors.white70,
+              ),
             ),
           ),
         ],

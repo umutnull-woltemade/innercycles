@@ -378,8 +378,7 @@ class NotificationLifecycleService {
     final lastMilestoneStr = _prefs.getString(_keyLastMilestoneDate);
     if (lastMilestoneStr != null) {
       final lastMilestone = DateTime.tryParse(lastMilestoneStr);
-      if (lastMilestone != null &&
-          now.difference(lastMilestone).inDays == 1) {
+      if (lastMilestone != null && now.difference(lastMilestone).inDays == 1) {
         return LifecycleNotificationType.shareReminder;
       }
     }

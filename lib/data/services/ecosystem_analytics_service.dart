@@ -209,7 +209,9 @@ class EcosystemAnalyticsService {
             .map((e) => AnalyticsEvent.fromJson(e as Map<String, dynamic>))
             .toList();
       } catch (e) {
-        debugPrint('EcosystemAnalyticsService._loadEvents: JSON decode failed: $e');
+        debugPrint(
+          'EcosystemAnalyticsService._loadEvents: JSON decode failed: $e',
+        );
         _events = [];
       }
     }

@@ -140,9 +140,7 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
           child: GradientText(
             L10nService.get('screens.admin_login.title', language),
             variant: GradientTextVariant.gold,
-            style: Theme.of(
-              context,
-            ).textTheme.headlineMedium,
+            style: Theme.of(context).textTheme.headlineMedium,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),

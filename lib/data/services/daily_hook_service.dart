@@ -588,7 +588,8 @@ class DailyHookService {
           newTimestamps.add(timestamps[i]);
         }
       } catch (e) {
-        if (kDebugMode) debugPrint('DailyHook: drop malformed cleanup entry: $e');
+        if (kDebugMode)
+          debugPrint('DailyHook: drop malformed cleanup entry: $e');
       }
     }
 

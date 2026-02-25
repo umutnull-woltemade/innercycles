@@ -107,30 +107,35 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                 children: [
                   // Page indicator
                   Semantics(
-                    label: '${isEn ? 'Slide' : 'Slayt'} ${_currentPage + 1} / 5',
+                    label:
+                        '${isEn ? 'Slide' : 'Slayt'} ${_currentPage + 1} / 5',
                     child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-                    child: Row(
-                      children: List.generate(5, (i) {
-                        final isActive = i <= _currentPage;
-                        return Expanded(
-                          child: Container(
-                            height: 3,
-                            margin: const EdgeInsets.symmetric(horizontal: 3),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(2),
-                              color: isActive
-                                  ? AppColors.starGold
-                                  : (isDark
-                                      ? Colors.white.withValues(alpha: 0.1)
-                                      : Colors.black.withValues(alpha: 0.08)),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 40,
+                        vertical: 12,
+                      ),
+                      child: Row(
+                        children: List.generate(5, (i) {
+                          final isActive = i <= _currentPage;
+                          return Expanded(
+                            child: Container(
+                              height: 3,
+                              margin: const EdgeInsets.symmetric(horizontal: 3),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(2),
+                                color: isActive
+                                    ? AppColors.starGold
+                                    : (isDark
+                                          ? Colors.white.withValues(alpha: 0.1)
+                                          : Colors.black.withValues(
+                                              alpha: 0.08,
+                                            )),
+                              ),
                             ),
-                          ),
-                        );
-                      }),
+                          );
+                        }),
+                      ),
                     ),
-                  ),
                   ),
                   // Close button
                   Align(
@@ -158,11 +163,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                         _Slide2Focus(data: data, isEn: isEn, isDark: isDark),
                         _Slide3BestDay(data: data, isEn: isEn, isDark: isDark),
                         _Slide4Insight(data: data, isEn: isEn, isDark: isDark),
-                        _Slide5Share(
-                          data: data,
-                          isEn: isEn,
-                          isDark: isDark,
-                        ),
+                        _Slide5Share(data: data, isEn: isEn, isDark: isDark),
                       ],
                     ),
                   ),
@@ -306,11 +307,11 @@ class _Slide5Share extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AppSymbol.hero('\u{2728}').animate().scale(
-                begin: const Offset(0.5, 0.5),
-                end: const Offset(1, 1),
-                duration: 600.ms,
-                curve: Curves.elasticOut,
-              ),
+            begin: const Offset(0.5, 0.5),
+            end: const Offset(1, 1),
+            duration: 600.ms,
+            curve: Curves.elasticOut,
+          ),
           const SizedBox(height: 24),
           GradientText(
             isEn ? 'Your month at a glance' : 'Ayına bir bakış',
@@ -330,9 +331,7 @@ class _Slide5Share extends StatelessWidget {
                 template: template,
                 isEn: isEn,
                 journalDays: data.totalEntries,
-                moodValues: data.dailyRatings
-                    .where((r) => r > 0)
-                    .toList(),
+                moodValues: data.dailyRatings.where((r) => r > 0).toList(),
               );
               ShareCardSheet.show(
                 context,
@@ -374,11 +373,11 @@ class _SlideBase extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AppSymbol.hero(emoji).animate().scale(
-                begin: const Offset(0.5, 0.5),
-                end: const Offset(1, 1),
-                duration: 600.ms,
-                curve: Curves.elasticOut,
-              ),
+            begin: const Offset(0.5, 0.5),
+            end: const Offset(1, 1),
+            duration: 600.ms,
+            curve: Curves.elasticOut,
+          ),
           const SizedBox(height: 32),
           GradientText(
             title,
@@ -396,8 +395,9 @@ class _SlideBase extends StatelessWidget {
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 16,
-              color:
-                  isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
           ).animate().fadeIn(delay: 350.ms, duration: 400.ms),
         ],

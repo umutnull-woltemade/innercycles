@@ -56,8 +56,11 @@ class ShareCardRenderer extends StatelessWidget {
     final accent = ShareCardTemplates.accentColor(template);
 
     // Use mood gradient override if available, otherwise use template default
-    final gradientColors = data.moodGradientOverride ??
-        (isDark ? template.gradientColors : _lightVariant(template.gradientColors));
+    final gradientColors =
+        data.moodGradientOverride ??
+        (isDark
+            ? template.gradientColors
+            : _lightVariant(template.gradientColors));
 
     final card = Container(
       width: _cardWidth,
@@ -852,10 +855,13 @@ class _CyclePositionLayout extends StatelessWidget {
     final cycleDay = data.chartValues != null && data.chartValues!.isNotEmpty
         ? data.chartValues![0]
         : 12.0;
-    final cycleLength = data.chartValues != null && data.chartValues!.length >= 2
+    final cycleLength =
+        data.chartValues != null && data.chartValues!.length >= 2
         ? data.chartValues![1]
         : 28.0;
-    final progress = cycleLength > 0 ? (cycleDay / cycleLength).clamp(0.0, 1.0) : 0.0;
+    final progress = cycleLength > 0
+        ? (cycleDay / cycleLength).clamp(0.0, 1.0)
+        : 0.0;
 
     final arcSize = cardWidth * 0.55;
 
@@ -917,13 +923,22 @@ class _CyclePositionLayout extends StatelessWidget {
                           fontSize: arcSize * 0.22,
                           fontWeight: FontWeight.w900,
                           foreground: Paint()
-                            ..shader = LinearGradient(
-                              colors: [accent, accent.withValues(alpha: 0.6)],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                            ).createShader(
-                              Rect.fromLTWH(0, 0, arcSize * 0.3, arcSize * 0.25),
-                            ),
+                            ..shader =
+                                LinearGradient(
+                                  colors: [
+                                    accent,
+                                    accent.withValues(alpha: 0.6),
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                ).createShader(
+                                  Rect.fromLTWH(
+                                    0,
+                                    0,
+                                    arcSize * 0.3,
+                                    arcSize * 0.25,
+                                  ),
+                                ),
                           height: 1.0,
                         ),
                       ),

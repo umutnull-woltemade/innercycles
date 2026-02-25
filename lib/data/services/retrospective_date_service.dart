@@ -52,7 +52,10 @@ class RetrospectiveDateService {
     return _dates.where((d) => !d.hasJournalEntry).toList();
   }
 
-  Future<void> linkJournalEntry(String retrospectiveId, String journalEntryId) async {
+  Future<void> linkJournalEntry(
+    String retrospectiveId,
+    String journalEntryId,
+  ) async {
     final index = _dates.indexWhere((d) => d.id == retrospectiveId);
     if (index == -1) return;
     _dates[index] = _dates[index].copyWith(

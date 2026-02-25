@@ -287,7 +287,10 @@ final dreamCountProvider = FutureProvider<int>((ref) async {
 /// Journal Service provider - async initialization
 final journalServiceProvider = FutureProvider<JournalService>((ref) async {
   final service = await JournalService.init();
-  SyncService.registerMergeHandler('journal_entries', service.mergeRemoteEntries);
+  SyncService.registerMergeHandler(
+    'journal_entries',
+    service.mergeRemoteEntries,
+  );
   return service;
 });
 
@@ -486,9 +489,7 @@ final weeklyDigestServiceProvider = FutureProvider<WeeklyDigestService>((
 });
 
 /// Pre-computed weekly digest data for the current week
-final weeklyDigestDataProvider = FutureProvider<WeeklyDigestData?>((
-  ref,
-) async {
+final weeklyDigestDataProvider = FutureProvider<WeeklyDigestData?>((ref) async {
   final service = await ref.watch(weeklyDigestServiceProvider.future);
   if (!service.hasDataForWeek(DateTime.now())) return null;
   return service.generateDigest(DateTime.now());
@@ -654,9 +655,9 @@ final crossCorrelationsProvider = FutureProvider<List<CrossCorrelation>>((
 
 final gratitudeMoodComparisonProvider =
     FutureProvider<GratitudeMoodComparison?>((ref) async {
-  final engine = await ref.watch(patternEngineServiceProvider.future);
-  return engine.getGratitudeMoodComparison();
-});
+      final engine = await ref.watch(patternEngineServiceProvider.future);
+      return engine.getGratitudeMoodComparison();
+    });
 
 // =============================================================================
 // QUIZ ENGINE SERVICE PROVIDER
@@ -778,20 +779,22 @@ final emotionalCycleAnalysisProvider = FutureProvider<EmotionalCycleAnalysis>((
 // CYCLE SYNC PROVIDERS (Hormonal Cycle Tracking)
 // =============================================================================
 
-final cycleSyncServiceProvider = FutureProvider<CycleSyncService>((
-  ref,
-) async {
+final cycleSyncServiceProvider = FutureProvider<CycleSyncService>((ref) async {
   final service = await CycleSyncService.init();
-  SyncService.registerMergeHandler('cycle_period_logs', service.mergeRemoteLogs);
+  SyncService.registerMergeHandler(
+    'cycle_period_logs',
+    service.mergeRemoteLogs,
+  );
   return service;
 });
 
-final cycleCorrelationServiceProvider =
-    FutureProvider<CycleCorrelationService>((ref) async {
-  final cycleSyncService = await ref.watch(cycleSyncServiceProvider.future);
-  final journalService = await ref.watch(journalServiceProvider.future);
-  return CycleCorrelationService(cycleSyncService, journalService);
-});
+final cycleCorrelationServiceProvider = FutureProvider<CycleCorrelationService>(
+  (ref) async {
+    final cycleSyncService = await ref.watch(cycleSyncServiceProvider.future);
+    final journalService = await ref.watch(journalServiceProvider.future);
+    return CycleCorrelationService(cycleSyncService, journalService);
+  },
+);
 
 // =============================================================================
 // SHADOW WORK PROVIDERS (Guided Shadow Journal)
@@ -815,29 +818,29 @@ final shadowWorkServiceProvider = FutureProvider<ShadowWorkService>((
 
 final dreamJournalCorrelationServiceProvider =
     FutureProvider<DreamJournalCorrelationService>((ref) async {
-  final dreamService = await ref.watch(dreamJournalServiceProvider.future);
-  final journalService = await ref.watch(journalServiceProvider.future);
-  return await DreamJournalCorrelationService.init(
-    dreamService: dreamService,
-    journalService: journalService,
-  );
-});
+      final dreamService = await ref.watch(dreamJournalServiceProvider.future);
+      final journalService = await ref.watch(journalServiceProvider.future);
+      return await DreamJournalCorrelationService.init(
+        dreamService: dreamService,
+        journalService: journalService,
+      );
+    });
 
 final dreamMoodCorrelationsProvider =
     FutureProvider<List<DreamMoodCorrelation>>((ref) async {
-  final service = await ref.watch(
-    dreamJournalCorrelationServiceProvider.future,
-  );
-  return service.analyzeDreamMoodCorrelations();
-});
+      final service = await ref.watch(
+        dreamJournalCorrelationServiceProvider.future,
+      );
+      return service.analyzeDreamMoodCorrelations();
+    });
 
 final topDreamMoodCorrelationsProvider =
     FutureProvider<List<DreamMoodCorrelation>>((ref) async {
-  final service = await ref.watch(
-    dreamJournalCorrelationServiceProvider.future,
-  );
-  return service.getTopCorrelations(5);
-});
+      final service = await ref.watch(
+        dreamJournalCorrelationServiceProvider.future,
+      );
+      return service.getTopCorrelations(5);
+    });
 
 // =============================================================================
 // TELEMETRY SERVICE PROVIDER
@@ -853,8 +856,8 @@ final telemetryServiceProvider = FutureProvider<TelemetryService>((ref) async {
 
 final progressiveUnlockServiceProvider =
     FutureProvider<ProgressiveUnlockService>((ref) async {
-  return await ProgressiveUnlockService.init();
-});
+      return await ProgressiveUnlockService.init();
+    });
 
 // =============================================================================
 // LIFE EVENT SERVICE PROVIDER
@@ -875,18 +878,27 @@ final lifeEventCountProvider = FutureProvider<int>((ref) async {
 // BIRTHDAY CONTACT SERVICE PROVIDER
 // =============================================================================
 
-final birthdayContactServiceProvider = FutureProvider<BirthdayContactService>((ref) async {
+final birthdayContactServiceProvider = FutureProvider<BirthdayContactService>((
+  ref,
+) async {
   final service = await BirthdayContactService.init();
-  SyncService.registerMergeHandler('birthday_contacts', service.mergeRemoteContacts);
+  SyncService.registerMergeHandler(
+    'birthday_contacts',
+    service.mergeRemoteContacts,
+  );
   return service;
 });
 
-final todayBirthdaysProvider = FutureProvider<List<BirthdayContact>>((ref) async {
+final todayBirthdaysProvider = FutureProvider<List<BirthdayContact>>((
+  ref,
+) async {
   final service = await ref.watch(birthdayContactServiceProvider.future);
   return service.getTodayBirthdays();
 });
 
-final upcomingBirthdaysProvider = FutureProvider<List<BirthdayContact>>((ref) async {
+final upcomingBirthdaysProvider = FutureProvider<List<BirthdayContact>>((
+  ref,
+) async {
   final service = await ref.watch(birthdayContactServiceProvider.future);
   return service.getUpcomingBirthdays(withinDays: 30);
 });
@@ -902,8 +914,8 @@ final birthdayContactCountProvider = FutureProvider<int>((ref) async {
 
 final retrospectiveDateServiceProvider =
     FutureProvider<RetrospectiveDateService>((ref) async {
-  return await RetrospectiveDateService.init();
-});
+      return await RetrospectiveDateService.init();
+    });
 
 // =============================================================================
 // MONTHLY WRAPPED SERVICE PROVIDER
@@ -929,7 +941,10 @@ final notesToSelfServiceProvider = FutureProvider<NoteToSelfService>((
 ) async {
   final service = await NoteToSelfService.init();
   SyncService.registerMergeHandler('notes_to_self', service.mergeRemoteNotes);
-  SyncService.registerMergeHandler('note_reminders', service.mergeRemoteReminders);
+  SyncService.registerMergeHandler(
+    'note_reminders',
+    service.mergeRemoteReminders,
+  );
   return service;
 });
 

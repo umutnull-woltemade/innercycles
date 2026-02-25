@@ -281,7 +281,8 @@ class _AppInitializerState extends State<AppInitializer> {
       try {
         final lifecycleService = await NotificationLifecycleService.init();
         final journalService = await JournalService.init();
-        await lifecycleService.recordActivity(); // Record app open for re-engagement timer
+        await lifecycleService
+            .recordActivity(); // Record app open for re-engagement timer
         await lifecycleService.evaluate(journalService);
         if (kDebugMode) {
           debugPrint('✓ NotificationLifecycleService initialized');
@@ -322,10 +323,12 @@ class _AppInitializerState extends State<AppInitializer> {
         // (only if Supabase was initialized — requires valid URL in .env)
         try {
           final supabaseUrl = dotenv.env['SUPABASE_URL'] ?? '';
-          final currentUser = (supabaseUrl.isNotEmpty && !supabaseUrl.contains('placeholder'))
+          final currentUser =
+              (supabaseUrl.isNotEmpty && !supabaseUrl.contains('placeholder'))
               ? Supabase.instance.client.auth.currentUser
               : null;
-          if (currentUser != null && await DataMigrationService.needsMigration()) {
+          if (currentUser != null &&
+              await DataMigrationService.needsMigration()) {
             if (kDebugMode) {
               debugPrint('🔄 Starting data migration to Supabase...');
             }

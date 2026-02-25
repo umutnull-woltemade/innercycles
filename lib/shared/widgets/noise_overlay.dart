@@ -10,11 +10,7 @@ class NoiseOverlay extends StatelessWidget {
   final double opacity;
   final Widget child;
 
-  const NoiseOverlay({
-    super.key,
-    this.opacity = 0.03,
-    required this.child,
-  });
+  const NoiseOverlay({super.key, this.opacity = 0.03, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +23,7 @@ class NoiseOverlay extends StatelessWidget {
           child: IgnorePointer(
             child: RepaintBoundary(
               child: CustomPaint(
-                painter: _NoisePainter(
-                  opacity: opacity,
-                  isDark: isDark,
-                ),
+                painter: _NoisePainter(opacity: opacity, isDark: isDark),
                 willChange: false,
               ),
             ),
@@ -45,10 +38,7 @@ class _NoisePainter extends CustomPainter {
   final double opacity;
   final bool isDark;
 
-  const _NoisePainter({
-    required this.opacity,
-    required this.isDark,
-  });
+  const _NoisePainter({required this.opacity, required this.isDark});
 
   @override
   void paint(Canvas canvas, Size size) {

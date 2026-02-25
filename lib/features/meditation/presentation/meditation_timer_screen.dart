@@ -296,61 +296,66 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                     liveRegion: _isRunning,
                                     label: hasStarted
                                         ? (isEn
-                                            ? '${_formatTime(_remainingSeconds)} remaining'
-                                            : '${_formatTime(_remainingSeconds)} kaldı')
+                                              ? '${_formatTime(_remainingSeconds)} remaining'
+                                              : '${_formatTime(_remainingSeconds)} kaldı')
                                         : (isEn
-                                            ? '$_selectedMinutes minutes selected'
-                                            : '$_selectedMinutes dakika seçildi'),
+                                              ? '$_selectedMinutes minutes selected'
+                                              : '$_selectedMinutes dakika seçildi'),
                                     child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      if (hasStarted) ...[
-                                        Text(
-                                          _formatTime(_remainingSeconds),
-                                          style: AppTypography.displayFont.copyWith(
-                                            fontSize: 44,
-                                            fontWeight: FontWeight.w300,
-                                            color: isDark
-                                                ? Colors.white
-                                                : AppColors.lightTextPrimary,
-                                            letterSpacing: 2,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        if (hasStarted) ...[
+                                          Text(
+                                            _formatTime(_remainingSeconds),
+                                            style: AppTypography.displayFont
+                                                .copyWith(
+                                                  fontSize: 44,
+                                                  fontWeight: FontWeight.w300,
+                                                  color: isDark
+                                                      ? Colors.white
+                                                      : AppColors
+                                                            .lightTextPrimary,
+                                                  letterSpacing: 2,
+                                                ),
                                           ),
-                                        ),
-                                        Text(
-                                          _isRunning
-                                              ? (isEn
-                                                    ? 'Be present'
-                                                    : 'Anda kal')
-                                              : (isEn
-                                                    ? 'Paused'
-                                                    : 'Duraklatıldı'),
-                                          style: AppTypography.decorativeScript(
-                                            fontSize: 14,
+                                          Text(
+                                            _isRunning
+                                                ? (isEn
+                                                      ? 'Be present'
+                                                      : 'Anda kal')
+                                                : (isEn
+                                                      ? 'Paused'
+                                                      : 'Duraklatıldı'),
+                                            style:
+                                                AppTypography.decorativeScript(
+                                                  fontSize: 14,
+                                                  color: AppColors.cosmicPurple
+                                                      .withValues(alpha: 0.8),
+                                                ),
+                                          ),
+                                        ] else ...[
+                                          Icon(
+                                            Icons.self_improvement,
+                                            size: 56,
                                             color: AppColors.cosmicPurple
-                                                .withValues(alpha: 0.8),
+                                                .withValues(alpha: 0.5),
                                           ),
-                                        ),
-                                      ] else ...[
-                                        Icon(
-                                          Icons.self_improvement,
-                                          size: 56,
-                                          color: AppColors.cosmicPurple
-                                              .withValues(alpha: 0.5),
-                                        ),
-                                        const SizedBox(height: 8),
-                                        Text(
-                                          '$_selectedMinutes ${isEn ? 'min' : 'dk'}',
-                                          style: AppTypography.modernAccent(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w600,
-                                            color: isDark
-                                                ? AppColors.textSecondary
-                                                : AppColors.lightTextSecondary,
+                                          const SizedBox(height: 8),
+                                          Text(
+                                            '$_selectedMinutes ${isEn ? 'min' : 'dk'}',
+                                            style: AppTypography.modernAccent(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w600,
+                                              color: isDark
+                                                  ? AppColors.textSecondary
+                                                  : AppColors
+                                                        .lightTextSecondary,
+                                            ),
                                           ),
-                                        ),
+                                        ],
                                       ],
-                                    ],
-                                  )),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -379,11 +384,16 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                       // Controls
                       if (!hasStarted)
                         GradientButton(
-                          label: isEn ? 'Begin Meditation' : 'Meditasyona Başla',
+                          label: isEn
+                              ? 'Begin Meditation'
+                              : 'Meditasyona Başla',
                           onPressed: _start,
                           expanded: true,
                           gradient: const LinearGradient(
-                            colors: [AppColors.cosmicPurple, AppColors.auroraEnd],
+                            colors: [
+                              AppColors.cosmicPurple,
+                              AppColors.auroraEnd,
+                            ],
                           ),
                         )
                       else
@@ -412,8 +422,16 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                 expanded: true,
                                 gradient: LinearGradient(
                                   colors: _isRunning
-                                      ? [AppColors.warning, AppColors.warning.withValues(alpha: 0.8)]
-                                      : [AppColors.cosmicPurple, AppColors.auroraEnd],
+                                      ? [
+                                          AppColors.warning,
+                                          AppColors.warning.withValues(
+                                            alpha: 0.8,
+                                          ),
+                                        ]
+                                      : [
+                                          AppColors.cosmicPurple,
+                                          AppColors.auroraEnd,
+                                        ],
                                 ),
                               ),
                             ),

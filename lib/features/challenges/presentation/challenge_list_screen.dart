@@ -114,8 +114,8 @@ class ChallengeListScreen extends ConsumerWidget {
                                 isDark: isDark,
                                 isEn: isEn,
                                 onIncrement: () async {
-                                  final justCompleted =
-                                      await service.incrementProgress(c.id);
+                                  final justCompleted = await service
+                                      .incrementProgress(c.id);
                                   if (!context.mounted) return;
                                   ref.invalidate(
                                     growthChallengeServiceProvider,
@@ -344,8 +344,11 @@ class _ChallengeCard extends StatelessWidget {
         child: Row(
           children: [
             isLocked
-                ? Icon(Icons.lock_rounded, size: 24,
-                    color: isDark ? Colors.white30 : Colors.black26)
+                ? Icon(
+                    Icons.lock_rounded,
+                    size: 24,
+                    color: isDark ? Colors.white30 : Colors.black26,
+                  )
                 : AppSymbol(challenge.emoji, size: AppSymbolSize.md),
             const SizedBox(width: 12),
             Expanded(

@@ -342,16 +342,17 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
         selected: isSelected,
         label: Text(
           label,
-          style: AppTypography.subtitle(
-            fontSize: 13,
-            color: isSelected
-                ? Colors.white
-                : (isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary),
-          ).copyWith(
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-          ),
+          style:
+              AppTypography.subtitle(
+                fontSize: 13,
+                color: isSelected
+                    ? Colors.white
+                    : (isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary),
+              ).copyWith(
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+              ),
         ),
         onSelected: (_) {
           HapticFeedback.selectionClick();
@@ -502,10 +503,12 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
           child: Container(
             padding: const EdgeInsets.fromLTRB(24, 12, 24, 40),
             decoration: BoxDecoration(
-              color: (isDark ? AppColors.surfaceDark : Colors.white)
-                  .withValues(alpha: isDark ? 0.85 : 0.92),
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(24)),
+              color: (isDark ? AppColors.surfaceDark : Colors.white).withValues(
+                alpha: isDark ? 0.85 : 0.92,
+              ),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(24),
+              ),
               border: Border(
                 top: BorderSide(
                   color: AppColors.auroraStart.withValues(alpha: 0.3),
@@ -595,7 +598,10 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                         variant: GradientTextVariant.aurora,
                         expanded: true,
                         fontSize: 15,
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 13,
+                        ),
                         onPressed: () {
                           HapticFeedback.lightImpact();
                           service.markSkipped(prompt.id);

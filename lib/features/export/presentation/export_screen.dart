@@ -206,7 +206,10 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                       icon: Icons.copy_outlined,
                       variant: GradientTextVariant.aurora,
                       expanded: true,
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 14,
+                      ),
                       onPressed: _isExporting
                           ? null
                           : () => _copyToClipboard(isPremium, isEn),

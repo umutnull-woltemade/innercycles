@@ -41,7 +41,7 @@ class SyncService {
 
   /// Registered merge handlers for pull sync (table → merge callback)
   static final Map<String, Future<void> Function(List<Map<String, dynamic>>)>
-      _mergeHandlers = {};
+  _mergeHandlers = {};
 
   /// Periodic sync timer
   static Timer? _periodicSyncTimer;
@@ -258,7 +258,9 @@ class SyncService {
           debugPrint('SyncService: Merged ${rows.length} rows for $tableName');
         }
       } else if (kDebugMode) {
-        debugPrint('SyncService: No merge handler for $tableName (${data.length} rows skipped)');
+        debugPrint(
+          'SyncService: No merge handler for $tableName (${data.length} rows skipped)',
+        );
       }
 
       await setLastSyncTime(tableName, DateTime.now());

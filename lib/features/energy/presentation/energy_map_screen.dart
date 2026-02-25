@@ -54,7 +54,9 @@ class EnergyMapScreen extends ConsumerWidget {
                     error: (e, s) => SliverToBoxAdapter(
                       child: Center(
                         child: Text(
-                          isEn ? 'Could not load. Your local data is unaffected.' : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                          isEn
+                              ? 'Could not load. Your local data is unaffected.'
+                              : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
                           style: AppTypography.subtitle(
                             fontSize: 14,
                             color: isDark

@@ -75,10 +75,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
           child: Column(
             children: [
               // Step indicator
-              _StepIndicator(
-                currentStep: _currentStep,
-                isDark: isDark,
-              ),
+              _StepIndicator(currentStep: _currentStep, isDark: isDark),
               Expanded(
                 child: PageView(
                   controller: _pageController,
@@ -203,8 +200,8 @@ class _StepIndicator extends StatelessWidget {
                   color: isActive
                       ? AppColors.starGold
                       : (isDark
-                          ? Colors.white.withValues(alpha: 0.1)
-                          : Colors.black.withValues(alpha: 0.08)),
+                            ? Colors.white.withValues(alpha: 0.1)
+                            : Colors.black.withValues(alpha: 0.08)),
                 ),
               ),
             );
@@ -238,16 +235,14 @@ class _WelcomeStep extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AppSymbol.hero('\u{1F4D6}').animate().scale(
-                begin: const Offset(0.5, 0.5),
-                end: const Offset(1, 1),
-                duration: 600.ms,
-                curve: Curves.elasticOut,
-              ),
+            begin: const Offset(0.5, 0.5),
+            end: const Offset(1, 1),
+            duration: 600.ms,
+            curve: Curves.elasticOut,
+          ),
           const SizedBox(height: 32),
           GradientText(
-            isEn
-                ? 'Your story didn\'t start today'
-                : 'Hikayen bugün başlamadı',
+            isEn ? 'Your story didn\'t start today' : 'Hikayen bugün başlamadı',
             variant: GradientTextVariant.aurora,
             textAlign: TextAlign.center,
             style: AppTypography.displayFont.copyWith(
@@ -263,8 +258,9 @@ class _WelcomeStep extends StatelessWidget {
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 16,
-              color:
-                  isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
           ).animate().fadeIn(delay: 350.ms, duration: 400.ms),
           const SizedBox(height: 48),
@@ -345,62 +341,67 @@ class _DaySelectionStep extends StatelessWidget {
                     children: presets.map((preset) {
                       final selected = selectedPresets.contains(preset.key);
                       return Semantics(
-                        label: '${preset.name(isEn)}, ${selected ? (isEn ? 'selected' : 'seçili') : (isEn ? 'not selected' : 'seçili değil')}',
+                        label:
+                            '${preset.name(isEn)}, ${selected ? (isEn ? 'selected' : 'seçili') : (isEn ? 'not selected' : 'seçili değil')}',
                         button: true,
                         selected: selected,
                         child: GestureDetector(
-                        onTap: () {
-                          HapticService.selectionTap();
-                          onToggle(preset.key);
-                        },
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 8,
-                          ),
-                          decoration: BoxDecoration(
-                            color: selected
-                                ? AppColors.starGold.withValues(alpha: 0.2)
-                                : (isDark
-                                    ? AppColors.surfaceDark.withValues(alpha: 0.5)
-                                    : AppColors.lightSurfaceVariant),
-                            borderRadius: BorderRadius.circular(
-                              AppConstants.radiusFull,
+                          onTap: () {
+                            HapticService.selectionTap();
+                            onToggle(preset.key);
+                          },
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 8,
                             ),
-                            border: Border.all(
+                            decoration: BoxDecoration(
                               color: selected
-                                  ? AppColors.starGold
-                                  : Colors.transparent,
-                              width: 1.5,
+                                  ? AppColors.starGold.withValues(alpha: 0.2)
+                                  : (isDark
+                                        ? AppColors.surfaceDark.withValues(
+                                            alpha: 0.5,
+                                          )
+                                        : AppColors.lightSurfaceVariant),
+                              borderRadius: BorderRadius.circular(
+                                AppConstants.radiusFull,
+                              ),
+                              border: Border.all(
+                                color: selected
+                                    ? AppColors.starGold
+                                    : Colors.transparent,
+                                width: 1.5,
+                              ),
                             ),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              AppSymbol(preset.emoji, size: AppSymbolSize.sm),
-                              const SizedBox(width: 6),
-                              Flexible(
-                                child: Text(
-                                  preset.name(isEn),
-                                  style: AppTypography.elegantAccent(
-                                    fontSize: 13,
-                                    color: selected
-                                        ? AppColors.starGold
-                                        : (isDark
-                                            ? AppColors.textPrimary
-                                            : AppColors.lightTextPrimary),
-                                  ).copyWith(
-                                    fontWeight: selected
-                                        ? FontWeight.w600
-                                        : FontWeight.normal,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                AppSymbol(preset.emoji, size: AppSymbolSize.sm),
+                                const SizedBox(width: 6),
+                                Flexible(
+                                  child: Text(
+                                    preset.name(isEn),
+                                    style:
+                                        AppTypography.elegantAccent(
+                                          fontSize: 13,
+                                          color: selected
+                                              ? AppColors.starGold
+                                              : (isDark
+                                                    ? AppColors.textPrimary
+                                                    : AppColors
+                                                          .lightTextPrimary),
+                                        ).copyWith(
+                                          fontWeight: selected
+                                              ? FontWeight.w600
+                                              : FontWeight.normal,
+                                        ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
                       );
                     }).toList(),
                   ),
@@ -485,74 +486,74 @@ class _DateEntryStep extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 12),
                 child: PremiumCard(
-                style: PremiumCardStyle.subtle,
-                borderRadius: AppConstants.radiusMd,
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        AppSymbol.card(preset.emoji),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            preset.name(isEn),
-                            style: AppTypography.displayFont.copyWith(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
+                  style: PremiumCardStyle.subtle,
+                  borderRadius: AppConstants.radiusMd,
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          AppSymbol.card(preset.emoji),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              preset.name(isEn),
+                              style: AppTypography.displayFont.copyWith(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: isDark
+                                    ? AppColors.textPrimary
+                                    : AppColors.lightTextPrimary,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      preset.prompt(isEn),
-                      style: AppTypography.decorativeScript(
-                        fontSize: 13,
-                        color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
+                        ],
                       ),
-                    ),
-                    const SizedBox(height: 12),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: GradientOutlinedButton(
-                            label: date != null
-                                ? '${date.day}.${date.month}.${date.year}'
-                                : (isEn ? 'Pick a date' : 'Tarih seç'),
-                            icon: Icons.calendar_today,
-                            variant: GradientTextVariant.gold,
-                            expanded: true,
-                            fontSize: 13,
-                            onPressed: () async {
-                              final picked = await ThemedPicker.showDate(
-                                context,
-                                initialDate: date ?? DateTime.now(),
-                                firstDate: DateTime(1950),
-                                lastDate: DateTime.now(),
-                              );
-                              if (picked != null) {
-                                onDateChanged(preset.key, picked);
-                              }
-                            },
-                          ),
+                      const SizedBox(height: 8),
+                      Text(
+                        preset.prompt(isEn),
+                        style: AppTypography.decorativeScript(
+                          fontSize: 13,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: GradientOutlinedButton(
+                              label: date != null
+                                  ? '${date.day}.${date.month}.${date.year}'
+                                  : (isEn ? 'Pick a date' : 'Tarih seç'),
+                              icon: Icons.calendar_today,
+                              variant: GradientTextVariant.gold,
+                              expanded: true,
+                              fontSize: 13,
+                              onPressed: () async {
+                                final picked = await ThemedPicker.showDate(
+                                  context,
+                                  initialDate: date ?? DateTime.now(),
+                                  firstDate: DateTime(1950),
+                                  lastDate: DateTime.now(),
+                                );
+                                if (picked != null) {
+                                  onDateChanged(preset.key, picked);
+                                }
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
               ).animate().fadeIn(
-                    delay: Duration(milliseconds: 80 * index),
-                    duration: 300.ms,
-                  );
+                delay: Duration(milliseconds: 80 * index),
+                duration: 300.ms,
+              );
             },
           ),
         ),
@@ -603,16 +604,14 @@ class _SummaryStep extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AppSymbol.hero('\u{2728}').animate().scale(
-                begin: const Offset(0.3, 0.3),
-                end: const Offset(1, 1),
-                duration: 600.ms,
-                curve: Curves.elasticOut,
-              ),
+            begin: const Offset(0.3, 0.3),
+            end: const Offset(1, 1),
+            duration: 600.ms,
+            curve: Curves.elasticOut,
+          ),
           const SizedBox(height: 32),
           GradientText(
-            isEn
-                ? '$savedCount memories saved'
-                : '$savedCount anı kaydedildi',
+            isEn ? '$savedCount memories saved' : '$savedCount anı kaydedildi',
             variant: GradientTextVariant.aurora,
             textAlign: TextAlign.center,
             style: AppTypography.displayFont.copyWith(
@@ -628,8 +627,9 @@ class _SummaryStep extends StatelessWidget {
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 16,
-              color:
-                  isDark ? AppColors.textSecondary : AppColors.lightTextSecondary,
+              color: isDark
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
           ).animate().fadeIn(delay: 350.ms, duration: 400.ms),
           const SizedBox(height: 48),

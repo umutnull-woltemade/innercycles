@@ -50,18 +50,18 @@ class AppSymbol extends StatelessWidget {
 
   /// xs size, no glow — for chips & inline labels.
   const AppSymbol.inline(this.emoji, {super.key, this.accentOverride})
-      : size = AppSymbolSize.xs,
-        _showGlow = false;
+    : size = AppSymbolSize.xs,
+      _showGlow = false;
 
   /// md size, subtle glow — for card-level display.
   const AppSymbol.card(this.emoji, {super.key, this.accentOverride})
-      : size = AppSymbolSize.md,
-        _showGlow = true;
+    : size = AppSymbolSize.md,
+      _showGlow = true;
 
   /// xl size, prominent glow — for hero / full-screen display.
   const AppSymbol.hero(this.emoji, {super.key, this.accentOverride})
-      : size = AppSymbolSize.xl,
-        _showGlow = true;
+    : size = AppSymbolSize.xl,
+      _showGlow = true;
 
   bool get showGlow => _showGlow ?? size.defaultGlow;
 
@@ -81,10 +81,7 @@ class AppSymbol extends StatelessWidget {
             _accent.withValues(alpha: 0.05),
           ],
         ),
-        border: Border.all(
-          color: _accent.withValues(alpha: 0.12),
-          width: 0.5,
-        ),
+        border: Border.all(color: _accent.withValues(alpha: 0.12), width: 0.5),
         boxShadow: showGlow
             ? [
                 BoxShadow(
@@ -276,7 +273,12 @@ Widget symbolFor(
 }) {
   final iconData = _materialReplacements[emoji];
   if (iconData == null) {
-    return AppSymbol(emoji, size: size, showGlow: showGlow, accentOverride: accent);
+    return AppSymbol(
+      emoji,
+      size: size,
+      showGlow: showGlow,
+      accentOverride: accent,
+    );
   }
 
   final resolvedAccent = accent ?? AppSymbol.accentForEmoji(emoji);

@@ -65,9 +65,7 @@ class TelemetryService {
     required bool hasNote,
     required bool hasPhoto,
   }) async {
-    await track('entry_completed', {
-      'duration_seconds': durationSeconds,
-    });
+    await track('entry_completed', {'duration_seconds': durationSeconds});
   }
 
   Future<void> entryAbandoned({
@@ -89,11 +87,17 @@ class TelemetryService {
     await track('cycle_sync_opened');
   }
 
-  Future<void> paywallShown({required String triggerPoint, required int entriesCount}) async {
+  Future<void> paywallShown({
+    required String triggerPoint,
+    required int entriesCount,
+  }) async {
     await track('paywall_shown', {'entries_count': entriesCount});
   }
 
-  Future<void> paywallConverted({required String plan, required String triggerPoint}) async {
+  Future<void> paywallConverted({
+    required String plan,
+    required String triggerPoint,
+  }) async {
     await track('paywall_converted');
   }
 
@@ -161,7 +165,8 @@ class TelemetryService {
   double get avgEntryDuration {
     final count = eventCount('entry_completed');
     if (count == 0) return 0;
-    final total = _prefs.getDouble('telemetry_sum_entry_completed_duration_seconds') ?? 0;
+    final total =
+        _prefs.getDouble('telemetry_sum_entry_completed_duration_seconds') ?? 0;
     return total / count;
   }
 

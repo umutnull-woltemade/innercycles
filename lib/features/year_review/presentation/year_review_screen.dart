@@ -95,162 +95,146 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
-          child:
-              CupertinoScrollbar(
-                    child: CustomScrollView(
-                      physics: const BouncingScrollPhysics(
-                        parent: AlwaysScrollableScrollPhysics(),
+          child: CupertinoScrollbar(
+            child: CustomScrollView(
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
+              slivers: [
+                GlassSliverAppBar(
+                  title: isEn ? 'Year Synthesis' : 'Yıl Sentezi',
+                ),
+                // Year selector
+                SliverToBoxAdapter(
+                  child: yearsAsync.when(
+                    loading: () => const SizedBox(height: 48),
+                    error: (_, _) => Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(32),
+                        child: Text(
+                          isEn
+                              ? 'Could not load. Your local data is unaffected.'
+                              : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                          style: AppTypography.subtitle(
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        ),
                       ),
-                      slivers: [
-                        GlassSliverAppBar(
-                          title: isEn
-                              ? 'Year Synthesis'
-                              : 'Yıl Sentezi',
-                        ),
-                        // Year selector
-                        SliverToBoxAdapter(
-                          child: yearsAsync.when(
-                            loading: () => const SizedBox(height: 48),
-                            error: (_, _) => Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(32),
-                                child: Text(
-                                  isEn
-                                      ? 'Could not load. Your local data is unaffected.'
-                                      : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                                  style: AppTypography.subtitle(
-                                    color: isDark
-                                        ? AppColors.textMuted
-                                        : AppColors.lightTextMuted,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            data: (years) {
-                              if (years.isEmpty) {
-                                return _EmptyState(isDark: isDark, isEn: isEn);
-                              }
-                              if (years.length > 1) {
-                                return _YearSelector(
-                                  years: years,
-                                  selectedYear: selectedYear,
-                                  isDark: isDark,
-                                  onYearSelected: (year) {
-                                    ref
-                                            .read(selectedYearProvider.notifier)
-                                            .state =
-                                        year;
-                                  },
-                                );
-                              }
-                              return const SizedBox(height: 8);
-                            },
-                          ),
-                        ),
-                        // Review content
-                        SliverPadding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          sliver: reviewAsync.when(
-                            loading: () => const SliverToBoxAdapter(
-                              child: Padding(
-                                padding: EdgeInsets.only(top: 80),
-                                child: Center(child: CosmicLoadingIndicator()),
-                              ),
-                            ),
-                            error: (_, _) => SliverToBoxAdapter(
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 80),
-                                child: Center(
-                                  child: Text(
-                                    isEn
-                                        ? 'Could not load. Your local data is unaffected.'
-                                        : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                                    style: AppTypography.subtitle(
-                                      color: isDark
-                                          ? AppColors.textMuted
-                                          : AppColors.lightTextMuted,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            data: (review) {
-                              if (review == null) {
-                                if (selectedYear == null) {
-                                  return SliverToBoxAdapter(
-                                    child: _EmptyState(
-                                      isDark: isDark,
-                                      isEn: isEn,
-                                    ),
-                                  );
-                                }
-                                return SliverToBoxAdapter(
-                                  child: _NotEnoughData(
-                                    isDark: isDark,
-                                    isEn: isEn,
-                                  ),
-                                );
-                              }
-                              return SliverList(
-                                delegate: SliverChildListDelegate([
-                                  const SizedBox(height: 8),
-                                  _HeroCard(
-                                    review: review,
-                                    isDark: isDark,
-                                    isEn: isEn,
-                                  ).glassReveal(context: context),
-                                  const SizedBox(height: 20),
-                                  _MoodJourneyCard(
-                                    review: review,
-                                    isDark: isDark,
-                                    isEn: isEn,
-                                  ).glassListItem(context: context, index: 1),
-                                  const SizedBox(height: 20),
-                                  _FocusAreasCard(
-                                    review: review,
-                                    isDark: isDark,
-                                    isEn: isEn,
-                                  ).glassListItem(context: context, index: 2),
-                                  const SizedBox(height: 20),
-                                  _GrowthScoreCard(
-                                    review: review,
-                                    isDark: isDark,
-                                    isEn: isEn,
-                                  ).glassListItem(context: context, index: 3),
-                                  const SizedBox(height: 20),
-                                  _HighlightsCard(
-                                    review: review,
-                                    isDark: isDark,
-                                    isEn: isEn,
-                                  ).glassListItem(context: context, index: 4),
-                                  const SizedBox(height: 20),
-                                  _ShareableSummaryCard(
-                                    review: review,
-                                    isDark: isDark,
-                                    isEn: isEn,
-                                  ).glassListItem(context: context, index: 5),
-                                  ContentDisclaimer(
-                                    language: isEn
-                                        ? AppLanguage.en
-                                        : AppLanguage.tr,
-                                  ),
-                                  ToolEcosystemFooter(
-                                    currentToolId: 'yearReview',
-                                    isEn: isEn,
-                                    isDark: isDark,
-                                  ),
-                                  const SizedBox(height: 40),
-                                ]),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
                     ),
-                  )
-                  .animate()
-                  .fadeIn(duration: 400.ms)
-                  .slideY(begin: 0.05, duration: 400.ms),
+                    data: (years) {
+                      if (years.isEmpty) {
+                        return _EmptyState(isDark: isDark, isEn: isEn);
+                      }
+                      if (years.length > 1) {
+                        return _YearSelector(
+                          years: years,
+                          selectedYear: selectedYear,
+                          isDark: isDark,
+                          onYearSelected: (year) {
+                            ref.read(selectedYearProvider.notifier).state =
+                                year;
+                          },
+                        );
+                      }
+                      return const SizedBox(height: 8);
+                    },
+                  ),
+                ),
+                // Review content
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  sliver: reviewAsync.when(
+                    loading: () => const SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 80),
+                        child: Center(child: CosmicLoadingIndicator()),
+                      ),
+                    ),
+                    error: (_, _) => SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 80),
+                        child: Center(
+                          child: Text(
+                            isEn
+                                ? 'Could not load. Your local data is unaffected.'
+                                : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                            style: AppTypography.subtitle(
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    data: (review) {
+                      if (review == null) {
+                        if (selectedYear == null) {
+                          return SliverToBoxAdapter(
+                            child: _EmptyState(isDark: isDark, isEn: isEn),
+                          );
+                        }
+                        return SliverToBoxAdapter(
+                          child: _NotEnoughData(isDark: isDark, isEn: isEn),
+                        );
+                      }
+                      return SliverList(
+                        delegate: SliverChildListDelegate([
+                          const SizedBox(height: 8),
+                          _HeroCard(
+                            review: review,
+                            isDark: isDark,
+                            isEn: isEn,
+                          ).glassReveal(context: context),
+                          const SizedBox(height: 20),
+                          _MoodJourneyCard(
+                            review: review,
+                            isDark: isDark,
+                            isEn: isEn,
+                          ).glassListItem(context: context, index: 1),
+                          const SizedBox(height: 20),
+                          _FocusAreasCard(
+                            review: review,
+                            isDark: isDark,
+                            isEn: isEn,
+                          ).glassListItem(context: context, index: 2),
+                          const SizedBox(height: 20),
+                          _GrowthScoreCard(
+                            review: review,
+                            isDark: isDark,
+                            isEn: isEn,
+                          ).glassListItem(context: context, index: 3),
+                          const SizedBox(height: 20),
+                          _HighlightsCard(
+                            review: review,
+                            isDark: isDark,
+                            isEn: isEn,
+                          ).glassListItem(context: context, index: 4),
+                          const SizedBox(height: 20),
+                          _ShareableSummaryCard(
+                            review: review,
+                            isDark: isDark,
+                            isEn: isEn,
+                          ).glassListItem(context: context, index: 5),
+                          ContentDisclaimer(
+                            language: isEn ? AppLanguage.en : AppLanguage.tr,
+                          ),
+                          ToolEcosystemFooter(
+                            currentToolId: 'yearReview',
+                            isEn: isEn,
+                            isDark: isDark,
+                          ),
+                          const SizedBox(height: 40),
+                        ]),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms),
         ),
       ),
     );

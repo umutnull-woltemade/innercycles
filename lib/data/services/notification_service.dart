@@ -579,7 +579,13 @@ class NotificationService {
   // ============== Birthday Notifications ==============
 
   /// Construct a birthday DateTime safely, handling Feb 29 in non-leap years.
-  static DateTime _safeBirthdayDate(int year, int month, int day, int hour, int minute) {
+  static DateTime _safeBirthdayDate(
+    int year,
+    int month,
+    int day,
+    int hour,
+    int minute,
+  ) {
     if (month == 2 && day == 29) {
       final isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
       if (!isLeap) return DateTime(year, 2, 28, hour, minute);
@@ -596,9 +602,21 @@ class NotificationService {
 
     final notifId = 50000 + (contact.id.hashCode.abs() % 800);
     final now = DateTime.now();
-    var birthday = _safeBirthdayDate(now.year, contact.birthdayMonth, contact.birthdayDay, 9, 0);
+    var birthday = _safeBirthdayDate(
+      now.year,
+      contact.birthdayMonth,
+      contact.birthdayDay,
+      9,
+      0,
+    );
     if (birthday.isBefore(now)) {
-      birthday = _safeBirthdayDate(now.year + 1, contact.birthdayMonth, contact.birthdayDay, 9, 0);
+      birthday = _safeBirthdayDate(
+        now.year + 1,
+        contact.birthdayMonth,
+        contact.birthdayDay,
+        9,
+        0,
+      );
     }
 
     final scheduledTz = tz.TZDateTime.from(birthday, tz.local);
@@ -615,7 +633,9 @@ class NotificationService {
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'birthday_reminders',
-          _isEn ? 'Birthday Reminders' : 'Do\u{011F}um G\u{00FC}n\u{00FC} Hat\u{0131}rlat\u{0131}c\u{0131}lar\u{0131}',
+          _isEn
+              ? 'Birthday Reminders'
+              : 'Do\u{011F}um G\u{00FC}n\u{00FC} Hat\u{0131}rlat\u{0131}c\u{0131}lar\u{0131}',
           channelDescription: _isEn
               ? 'Birthday reminder notifications'
               : 'Do\u{011F}um g\u{00FC}n\u{00FC} hat\u{0131}rlat\u{0131}c\u{0131} bildirimleri',
@@ -653,7 +673,9 @@ class NotificationService {
           notificationDetails: NotificationDetails(
             android: AndroidNotificationDetails(
               'birthday_reminders',
-              _isEn ? 'Birthday Reminders' : 'Do\u{011F}um G\u{00FC}n\u{00FC} Hat\u{0131}rlat\u{0131}c\u{0131}lar\u{0131}',
+              _isEn
+                  ? 'Birthday Reminders'
+                  : 'Do\u{011F}um G\u{00FC}n\u{00FC} Hat\u{0131}rlat\u{0131}c\u{0131}lar\u{0131}',
               channelDescription: _isEn
                   ? 'Birthday reminder notifications'
                   : 'Do\u{011F}um g\u{00FC}n\u{00FC} hat\u{0131}rlat\u{0131}c\u{0131} bildirimleri',
@@ -736,8 +758,7 @@ class NotificationService {
       moonPhaseEnabled: prefs.getBool(_keyMoonPhaseEnabled) ?? false,
       wellnessRemindersEnabled: prefs.getBool(_keyWellnessEnabled) ?? false,
       eveningReflectionEnabled: prefs.getBool(_keyEveningEnabled) ?? false,
-      journalPromptEnabled:
-          prefs.getBool(_keyJournalPromptEnabled) ?? false,
+      journalPromptEnabled: prefs.getBool(_keyJournalPromptEnabled) ?? false,
       journalPromptTimeMinutes: prefs.getInt(_keyJournalPromptTime),
     );
   }

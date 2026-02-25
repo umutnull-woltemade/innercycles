@@ -180,8 +180,11 @@ class LifeEventService with SupabaseSyncMixin {
 
       final event = LifeEvent(
         id: id,
-        date: DateTime.tryParse(row['date']?.toString() ?? '') ?? DateTime.now(),
-        createdAt: DateTime.tryParse(row['created_at']?.toString() ?? '') ?? DateTime.now(),
+        date:
+            DateTime.tryParse(row['date']?.toString() ?? '') ?? DateTime.now(),
+        createdAt:
+            DateTime.tryParse(row['created_at']?.toString() ?? '') ??
+            DateTime.now(),
         type: LifeEventType.values.firstWhere(
           (e) => e.name == row['type'],
           orElse: () => LifeEventType.custom,
@@ -189,7 +192,8 @@ class LifeEventService with SupabaseSyncMixin {
         eventKey: row['event_key'] as String?,
         title: row['title'] as String? ?? '',
         note: row['note'] as String?,
-        emotionTags: (row['emotion_tags'] as List<dynamic>?)
+        emotionTags:
+            (row['emotion_tags'] as List<dynamic>?)
                 ?.map((e) => e.toString())
                 .toList() ??
             [],

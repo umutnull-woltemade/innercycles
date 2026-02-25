@@ -37,20 +37,25 @@ class DataMigrationService {
     try {
       final profiles = StorageService.loadAllProfiles();
       if (profiles.isNotEmpty) {
-        final rows = profiles.map((p) => {
-          'id': p.id,
-          'user_id': userId,
-          'display_name': p.name,
-          'avatar_emoji': p.avatarEmoji,
-          'birth_date': '${p.birthDate.year}-${p.birthDate.month.toString().padLeft(2, '0')}-${p.birthDate.day.toString().padLeft(2, '0')}',
-          'birth_time': p.birthTime,
-          'birth_place': p.birthPlace,
-          'birth_latitude': p.birthLatitude,
-          'birth_longitude': p.birthLongitude,
-          'is_primary': p.isPrimary,
-          'relationship': p.relationship,
-          'settings': <String, dynamic>{},
-        }).toList();
+        final rows = profiles
+            .map(
+              (p) => {
+                'id': p.id,
+                'user_id': userId,
+                'display_name': p.name,
+                'avatar_emoji': p.avatarEmoji,
+                'birth_date':
+                    '${p.birthDate.year}-${p.birthDate.month.toString().padLeft(2, '0')}-${p.birthDate.day.toString().padLeft(2, '0')}',
+                'birth_time': p.birthTime,
+                'birth_place': p.birthPlace,
+                'birth_latitude': p.birthLatitude,
+                'birth_longitude': p.birthLongitude,
+                'is_primary': p.isPrimary,
+                'relationship': p.relationship,
+                'settings': <String, dynamic>{},
+              },
+            )
+            .toList();
         await supabase.from('user_profiles').upsert(rows);
         migrated += rows.length;
       }
@@ -65,16 +70,20 @@ class DataMigrationService {
       final journalService = await JournalService.init();
       final entries = journalService.getAllEntries();
       if (entries.isNotEmpty) {
-        final rows = entries.map((e) => {
-          'id': e.id,
-          'user_id': userId,
-          'date': e.dateKey,
-          'focus_area': e.focusArea.name,
-          'overall_rating': e.overallRating,
-          'sub_ratings': e.subRatings,
-          'note': e.note,
-          'image_path': e.imagePath,
-        }).toList();
+        final rows = entries
+            .map(
+              (e) => {
+                'id': e.id,
+                'user_id': userId,
+                'date': e.dateKey,
+                'focus_area': e.focusArea.name,
+                'overall_rating': e.overallRating,
+                'sub_ratings': e.subRatings,
+                'note': e.note,
+                'image_path': e.imagePath,
+              },
+            )
+            .toList();
         // Batch in chunks of 50
         for (var i = 0; i < rows.length; i += 50) {
           final chunk = rows.sublist(i, (i + 50).clamp(0, rows.length));
@@ -93,28 +102,33 @@ class DataMigrationService {
       final dreamService = await DreamJournalService.init();
       final dreams = await dreamService.getAllDreams();
       if (dreams.isNotEmpty) {
-        final rows = dreams.map((d) => {
-          'id': d.id,
-          'user_id': userId,
-          'dream_date': '${d.dreamDate.year}-${d.dreamDate.month.toString().padLeft(2, '0')}-${d.dreamDate.day.toString().padLeft(2, '0')}',
-          'title': d.title,
-          'content': d.content,
-          'detected_symbols': d.detectedSymbols,
-          'user_tags': d.userTags,
-          'dominant_emotion': d.dominantEmotion.name,
-          'emotional_intensity': d.emotionalIntensity,
-          'is_recurring': d.isRecurring,
-          'is_lucid': d.isLucid,
-          'is_nightmare': d.isNightmare,
-          'moon_phase': d.moonPhase.name,
-          'interpretation': d.interpretation?.toJson(),
-          'metadata': d.metadata,
-          'characters': d.characters ?? <String>[],
-          'locations': d.locations ?? <String>[],
-          'clarity': d.clarity,
-          'sleep_quality': d.sleepQuality,
-          'dream_series_id': d.dreamSeriesId,
-        }).toList();
+        final rows = dreams
+            .map(
+              (d) => {
+                'id': d.id,
+                'user_id': userId,
+                'dream_date':
+                    '${d.dreamDate.year}-${d.dreamDate.month.toString().padLeft(2, '0')}-${d.dreamDate.day.toString().padLeft(2, '0')}',
+                'title': d.title,
+                'content': d.content,
+                'detected_symbols': d.detectedSymbols,
+                'user_tags': d.userTags,
+                'dominant_emotion': d.dominantEmotion.name,
+                'emotional_intensity': d.emotionalIntensity,
+                'is_recurring': d.isRecurring,
+                'is_lucid': d.isLucid,
+                'is_nightmare': d.isNightmare,
+                'moon_phase': d.moonPhase.name,
+                'interpretation': d.interpretation?.toJson(),
+                'metadata': d.metadata,
+                'characters': d.characters ?? <String>[],
+                'locations': d.locations ?? <String>[],
+                'clarity': d.clarity,
+                'sleep_quality': d.sleepQuality,
+                'dream_series_id': d.dreamSeriesId,
+              },
+            )
+            .toList();
         for (var i = 0; i < rows.length; i += 50) {
           final chunk = rows.sublist(i, (i + 50).clamp(0, rows.length));
           await supabase.from('dream_entries').upsert(chunk);
@@ -132,13 +146,18 @@ class DataMigrationService {
       final moodService = await MoodCheckinService.init();
       final moods = moodService.getAllEntries();
       if (moods.isNotEmpty) {
-        final rows = moods.map((m) => {
-          'id': m.id,
-          'user_id': userId,
-          'date': '${m.date.year}-${m.date.month.toString().padLeft(2, '0')}-${m.date.day.toString().padLeft(2, '0')}',
-          'mood': m.mood,
-          'emoji': m.emoji,
-        }).toList();
+        final rows = moods
+            .map(
+              (m) => {
+                'id': m.id,
+                'user_id': userId,
+                'date':
+                    '${m.date.year}-${m.date.month.toString().padLeft(2, '0')}-${m.date.day.toString().padLeft(2, '0')}',
+                'mood': m.mood,
+                'emoji': m.emoji,
+              },
+            )
+            .toList();
         for (var i = 0; i < rows.length; i += 50) {
           final chunk = rows.sublist(i, (i + 50).clamp(0, rows.length));
           await supabase.from('mood_entries').upsert(chunk);
@@ -156,30 +175,38 @@ class DataMigrationService {
       final noteService = await NoteToSelfService.init();
       final notes = noteService.getAllNotes();
       if (notes.isNotEmpty) {
-        final noteRows = notes.map((n) => {
-          'id': n.id,
-          'user_id': userId,
-          'title': n.title,
-          'content': n.content,
-          'is_pinned': n.isPinned,
-          'tags': n.tags,
-          'linked_journal_entry_id': n.linkedJournalEntryId,
-          'mood_at_creation': n.moodAtCreation,
-        }).toList();
+        final noteRows = notes
+            .map(
+              (n) => {
+                'id': n.id,
+                'user_id': userId,
+                'title': n.title,
+                'content': n.content,
+                'is_pinned': n.isPinned,
+                'tags': n.tags,
+                'linked_journal_entry_id': n.linkedJournalEntryId,
+                'mood_at_creation': n.moodAtCreation,
+              },
+            )
+            .toList();
         await supabase.from('notes_to_self').upsert(noteRows);
         migrated += noteRows.length;
 
         // Reminders
         final allReminders = noteService.getAllReminders();
         if (allReminders.isNotEmpty) {
-          final reminderRows = allReminders.map((r) => {
-            'id': r.id,
-            'note_id': r.noteId,
-            'scheduled_at': r.scheduledAt.toIso8601String(),
-            'frequency': r.frequency.name,
-            'is_active': r.isActive,
-            'custom_message': r.customMessage,
-          }).toList();
+          final reminderRows = allReminders
+              .map(
+                (r) => {
+                  'id': r.id,
+                  'note_id': r.noteId,
+                  'scheduled_at': r.scheduledAt.toIso8601String(),
+                  'frequency': r.frequency.name,
+                  'is_active': r.isActive,
+                  'custom_message': r.customMessage,
+                },
+              )
+              .toList();
           await supabase.from('note_reminders').upsert(reminderRows);
           migrated += reminderRows.length;
         }
@@ -195,18 +222,22 @@ class DataMigrationService {
       final lifeService = await LifeEventService.init();
       final events = lifeService.getAllEvents();
       if (events.isNotEmpty) {
-        final rows = events.map((e) => {
-          'id': e.id,
-          'user_id': userId,
-          'date': e.dateKey,
-          'type': e.type.name,
-          'event_key': e.eventKey,
-          'title': e.title,
-          'note': e.note,
-          'emotion_tags': e.emotionTags,
-          'image_path': e.imagePath,
-          'intensity': e.intensity,
-        }).toList();
+        final rows = events
+            .map(
+              (e) => {
+                'id': e.id,
+                'user_id': userId,
+                'date': e.dateKey,
+                'type': e.type.name,
+                'event_key': e.eventKey,
+                'title': e.title,
+                'note': e.note,
+                'emotion_tags': e.emotionTags,
+                'image_path': e.imagePath,
+                'intensity': e.intensity,
+              },
+            )
+            .toList();
         await supabase.from('life_events').upsert(rows);
         migrated += rows.length;
       }
@@ -221,16 +252,20 @@ class DataMigrationService {
       final cycleService = await CycleSyncService.init();
       final logs = cycleService.getAllLogs();
       if (logs.isNotEmpty) {
-        final rows = logs.map((l) => {
-          'id': l.id,
-          'user_id': userId,
-          'period_start_date': l.dateKey,
-          'period_end_date': l.periodEndDate != null
-              ? '${l.periodEndDate!.year}-${l.periodEndDate!.month.toString().padLeft(2, '0')}-${l.periodEndDate!.day.toString().padLeft(2, '0')}'
-              : null,
-          'flow_intensity': l.flowIntensity?.name,
-          'symptoms': l.symptoms,
-        }).toList();
+        final rows = logs
+            .map(
+              (l) => {
+                'id': l.id,
+                'user_id': userId,
+                'period_start_date': l.dateKey,
+                'period_end_date': l.periodEndDate != null
+                    ? '${l.periodEndDate!.year}-${l.periodEndDate!.month.toString().padLeft(2, '0')}-${l.periodEndDate!.day.toString().padLeft(2, '0')}'
+                    : null,
+                'flow_intensity': l.flowIntensity?.name,
+                'symptoms': l.symptoms,
+              },
+            )
+            .toList();
         await supabase.from('cycle_period_logs').upsert(rows);
         migrated += rows.length;
       }
@@ -245,21 +280,25 @@ class DataMigrationService {
       final birthdayService = await BirthdayContactService.init();
       final contacts = birthdayService.getAllContacts();
       if (contacts.isNotEmpty) {
-        final rows = contacts.map((c) => {
-          'id': c.id,
-          'user_id': userId,
-          'name': c.name,
-          'birthday_month': c.birthdayMonth,
-          'birthday_day': c.birthdayDay,
-          'birth_year': c.birthYear,
-          'photo_path': c.photoPath,
-          'avatar_emoji': c.avatarEmoji,
-          'relationship': c.relationship.name,
-          'note': c.note,
-          'source': c.source.name,
-          'notifications_enabled': c.notificationsEnabled,
-          'day_before_reminder': c.dayBeforeReminder,
-        }).toList();
+        final rows = contacts
+            .map(
+              (c) => {
+                'id': c.id,
+                'user_id': userId,
+                'name': c.name,
+                'birthday_month': c.birthdayMonth,
+                'birthday_day': c.birthdayDay,
+                'birth_year': c.birthYear,
+                'photo_path': c.photoPath,
+                'avatar_emoji': c.avatarEmoji,
+                'relationship': c.relationship.name,
+                'note': c.note,
+                'source': c.source.name,
+                'notifications_enabled': c.notificationsEnabled,
+                'day_before_reminder': c.dayBeforeReminder,
+              },
+            )
+            .toList();
         for (var i = 0; i < rows.length; i += 50) {
           final chunk = rows.sublist(i, (i + 50).clamp(0, rows.length));
           await supabase.from('birthday_contacts').upsert(chunk);
@@ -287,13 +326,12 @@ class DataMigrationService {
     }
 
     if (kDebugMode) {
-      debugPrint('Migration complete: $migrated records, ${errors.length} errors');
+      debugPrint(
+        'Migration complete: $migrated records, ${errors.length} errors',
+      );
     }
 
-    return MigrationResult(
-      migrated: migrated,
-      errors: errors,
-    );
+    return MigrationResult(migrated: migrated, errors: errors);
   }
 }
 

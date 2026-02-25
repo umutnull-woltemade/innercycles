@@ -33,10 +33,7 @@ class AppErrorWidget extends StatelessWidget {
       );
     }
 
-    final title = _safeL10n(
-      'widgets.app_error.title',
-      'Something went wrong',
-    );
+    final title = _safeL10n('widgets.app_error.title', 'Something went wrong');
     final subtitle = _safeL10n(
       'widgets.app_error.subtitle',
       'Don\'t worry, your data is safe. Try going back to the home screen.',
@@ -64,10 +61,7 @@ class AppErrorWidget extends StatelessWidget {
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: [
-                        AppColors.starGold,
-                        AppColors.celestialGold,
-                      ],
+                      colors: [AppColors.starGold, AppColors.celestialGold],
                     ),
                   ),
                   child: const Center(
@@ -156,22 +150,22 @@ class AppErrorWidget extends StatelessWidget {
                     child: Container(
                       width: 200,
                       height: 48,
-                    decoration: BoxDecoration(
-                      color: AppColors.starGold,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      buttonText,
-                      style: const TextStyle(
-                        color: AppColors.deepSpace,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        decoration: TextDecoration.none,
+                      decoration: BoxDecoration(
+                        color: AppColors.starGold,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        buttonText,
+                        style: const TextStyle(
+                          color: AppColors.deepSpace,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          decoration: TextDecoration.none,
+                        ),
                       ),
                     ),
                   ),
-                ),
                 ),
 
                 const SizedBox(height: 16),
@@ -182,30 +176,30 @@ class AppErrorWidget extends StatelessWidget {
                     label: 'Reload Page',
                     button: true,
                     child: GestureDetector(
-                    onTap: () {
-                      if (kDebugMode) {
-                        debugPrint(
-                          'User requested page reload from error widget',
-                        );
-                      }
-                    },
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(minHeight: 44),
-                      child: Center(
-                        child: Text(
-                          _safeL10n(
-                            'widgets.app_error.reload_page',
-                            'Reload Page',
-                          ),
-                          style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.6),
-                            fontSize: 14,
-                            decoration: TextDecoration.none,
+                      onTap: () {
+                        if (kDebugMode) {
+                          debugPrint(
+                            'User requested page reload from error widget',
+                          );
+                        }
+                      },
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(minHeight: 44),
+                        child: Center(
+                          child: Text(
+                            _safeL10n(
+                              'widgets.app_error.reload_page',
+                              'Reload Page',
+                            ),
+                            style: TextStyle(
+                              color: Colors.white.withValues(alpha: 0.6),
+                              fontSize: 14,
+                              decoration: TextDecoration.none,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
                   ),
               ],
             ),

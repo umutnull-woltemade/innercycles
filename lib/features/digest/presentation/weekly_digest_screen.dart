@@ -42,8 +42,7 @@ class WeeklyDigestScreen extends ConsumerStatefulWidget {
   const WeeklyDigestScreen({super.key});
 
   @override
-  ConsumerState<WeeklyDigestScreen> createState() =>
-      _WeeklyDigestScreenState();
+  ConsumerState<WeeklyDigestScreen> createState() => _WeeklyDigestScreenState();
 }
 
 class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
@@ -55,8 +54,9 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
   // ==========================================================================
 
   Future<void> _shareDigest(bool isEn) async {
-    final boundary = _repaintKey.currentContext?.findRenderObject()
-        as RenderRepaintBoundary?;
+    final boundary =
+        _repaintKey.currentContext?.findRenderObject()
+            as RenderRepaintBoundary?;
     if (boundary == null) return;
 
     setState(() => _isSharing = true);
@@ -64,8 +64,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
 
     try {
       final image = await boundary.toImage(pixelRatio: 3.0);
-      final byteData =
-          await image.toByteData(format: ui.ImageByteFormat.png);
+      final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       if (byteData == null) {
         if (mounted) setState(() => _isSharing = false);
         return;
@@ -81,10 +80,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           : 'InnerCycles haftalık değerlendirmem #InnerCycles #HaftalıkDeğerlendirme';
 
       await SharePlus.instance.share(
-        ShareParams(
-          files: [XFile(file.path)],
-          text: shareText,
-        ),
+        ShareParams(files: [XFile(file.path)], text: shareText),
       );
     } catch (e) {
       if (kDebugMode) debugPrint('WeeklyDigest: share error: $e');
@@ -267,7 +263,9 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           actions: [
             Semantics(
               button: true,
-              label: isEn ? 'Share weekly debrief' : 'Haftalık değerlendirmeyi paylaş',
+              label: isEn
+                  ? 'Share weekly debrief'
+                  : 'Haftalık değerlendirmeyi paylaş',
               child: IconButton(
                 onPressed: _isSharing ? null : () => _shareDigest(isEn),
                 icon: _isSharing
@@ -399,9 +397,9 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                       const SizedBox(height: AppConstants.spacingLg),
 
                       // Watermark
-                      _buildWatermark(isDark)
-                          .animate()
-                          .fadeIn(delay: 800.ms, duration: 500.ms),
+                      _buildWatermark(
+                        isDark,
+                      ).animate().fadeIn(delay: 800.ms, duration: 500.ms),
                     ],
                   ),
                 ),
@@ -412,7 +410,9 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
               const SizedBox(height: AppConstants.spacingMd),
 
               // Disclaimer (outside RepaintBoundary)
-              ContentDisclaimer(language: isEn ? AppLanguage.en : AppLanguage.tr),
+              ContentDisclaimer(
+                language: isEn ? AppLanguage.en : AppLanguage.tr,
+              ),
               const SizedBox(height: 40),
             ]),
           ),
@@ -479,51 +479,47 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
         '${dateFormat.format(data.weekStart)} - ${dateFormat.format(data.weekEnd)}';
 
     return Semantics(
-      label: isEn
-          ? 'Week of $range'
-          : '$range Haftasi',
+      label: isEn ? 'Week of $range' : '$range Haftasi',
       child: Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(AppConstants.spacingXl),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.auroraStart.withValues(alpha: isDark ? 0.15 : 0.08),
-            AppColors.auroraEnd.withValues(alpha: isDark ? 0.1 : 0.05),
+        width: double.infinity,
+        padding: const EdgeInsets.all(AppConstants.spacingXl),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.auroraStart.withValues(alpha: isDark ? 0.15 : 0.08),
+              AppColors.auroraEnd.withValues(alpha: isDark ? 0.1 : 0.05),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
+        ),
+        child: Column(
+          children: [
+            Text(
+              isEn ? 'Week of' : 'Haftasi',
+              style: AppTypography.elegantAccent(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              range,
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 20,
+                color: AppColors.starGold,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 0.5,
+              ),
+            ),
           ],
         ),
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.2),
-        ),
       ),
-      child: Column(
-        children: [
-          Text(
-            isEn ? 'Week of' : 'Haftasi',
-            style: AppTypography.elegantAccent(
-              fontSize: 13,
-              fontWeight: FontWeight.w500,
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            range,
-            style: AppTypography.displayFont.copyWith(
-              fontSize: 20,
-              color: AppColors.starGold,
-              fontWeight: FontWeight.w800,
-              letterSpacing: 0.5,
-            ),
-          ),
-        ],
-      ),
-    ),
     );
   }
 
@@ -571,76 +567,76 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           ? '${data.entriesThisWeek} entries this week. $comparisonText'
           : '${data.entriesThisWeek} kayıt bu hafta. $comparisonText',
       child: Container(
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
+        padding: const EdgeInsets.all(AppConstants.spacingLg),
+        decoration: BoxDecoration(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.15)
-              : Colors.black.withValues(alpha: 0.05),
+              ? AppColors.surfaceDark.withValues(alpha: 0.85)
+              : AppColors.lightCard,
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          border: Border.all(
+            color: isDark
+                ? Colors.white.withValues(alpha: 0.15)
+                : Colors.black.withValues(alpha: 0.05),
+          ),
         ),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 52,
-            height: 52,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.auroraStart.withValues(alpha: 0.15),
-              border: Border.all(
-                color: AppColors.auroraStart.withValues(alpha: 0.3),
-              ),
-            ),
-            child: Center(
-              child: Text(
-                '${data.entriesThisWeek}',
-                style: AppTypography.displayFont.copyWith(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w900,
-                  color: AppColors.auroraStart,
+        child: Row(
+          children: [
+            Container(
+              width: 52,
+              height: 52,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.auroraStart.withValues(alpha: 0.15),
+                border: Border.all(
+                  color: AppColors.auroraStart.withValues(alpha: 0.3),
                 ),
               ),
-            ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GradientText(
-                  isEn ? 'Entries This Week' : 'Bu Haftaki Kayitlar',
-                  variant: GradientTextVariant.gold,
-                  style: AppTypography.elegantAccent(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
+              child: Center(
+                child: Text(
+                  '${data.entriesThisWeek}',
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w900,
+                    color: AppColors.auroraStart,
                   ),
                 ),
-                const SizedBox(height: 4),
-                Row(
-                  children: [
-                    Icon(comparisonIcon, size: 14, color: comparisonColor),
-                    const SizedBox(width: 4),
-                    Flexible(
-                      child: Text(
-                        comparisonText,
-                        style: AppTypography.subtitle(
-                          fontSize: 13,
-                          color: comparisonColor,
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GradientText(
+                    isEn ? 'Entries This Week' : 'Bu Haftaki Kayitlar',
+                    variant: GradientTextVariant.gold,
+                    style: AppTypography.elegantAccent(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      Icon(comparisonIcon, size: 14, color: comparisonColor),
+                      const SizedBox(width: 4),
+                      Flexible(
+                        child: Text(
+                          comparisonText,
+                          style: AppTypography.subtitle(
+                            fontSize: 13,
+                            color: comparisonColor,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
     );
   }
 
@@ -703,73 +699,73 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           ? 'Top focus area: $areaName, ${pct.toStringAsFixed(0)} percent'
           : 'En çok odaklanılan alan: $areaName, yüzde ${pct.toStringAsFixed(0)}',
       child: Container(
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(color: color.withValues(alpha: 0.2)),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: color.withValues(alpha: 0.15),
-              border: Border.all(color: color.withValues(alpha: 0.3)),
+        padding: const EdgeInsets.all(AppConstants.spacingLg),
+        decoration: BoxDecoration(
+          color: isDark
+              ? AppColors.surfaceDark.withValues(alpha: 0.85)
+              : AppColors.lightCard,
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          border: Border.all(color: color.withValues(alpha: 0.2)),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: color.withValues(alpha: 0.15),
+                border: Border.all(color: color.withValues(alpha: 0.3)),
+              ),
+              child: Icon(Icons.pie_chart_outline, color: color, size: 24),
             ),
-            child: Icon(Icons.pie_chart_outline, color: color, size: 24),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  isEn ? 'Top Focus Area' : 'En Çok Odaklanılan Alan',
-                  style: AppTypography.elegantAccent(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    isEn ? 'Top Focus Area' : 'En Çok Odaklanılan Alan',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  areaName,
-                  style: AppTypography.displayFont.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                    color: color,
+                  const SizedBox(height: 4),
+                  Text(
+                    areaName,
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                      color: color,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          // Percentage badge
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(AppConstants.radiusMd),
-              border: Border.all(color: color.withValues(alpha: 0.3)),
-            ),
-            child: Text(
-              '${pct.toStringAsFixed(0)}%',
-              style: AppTypography.modernAccent(
-                fontSize: 16,
-                fontWeight: FontWeight.w800,
-                color: color,
+                ],
               ),
             ),
-          ),
-        ],
+            // Percentage badge
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                border: Border.all(color: color.withValues(alpha: 0.3)),
+              ),
+              child: Text(
+                '${pct.toStringAsFixed(0)}%',
+                style: AppTypography.modernAccent(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                  color: color,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
     );
   }
 
@@ -795,69 +791,69 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           ? 'Mood trend ${changeStr.isNotEmpty ? changeStr : ''}: ${message.$1}'
           : 'Ruh hali eğilimi ${changeStr.isNotEmpty ? changeStr : ''}: ${message.$2}',
       child: Container(
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(color: color.withValues(alpha: 0.2)),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: color.withValues(alpha: 0.15),
+        padding: const EdgeInsets.all(AppConstants.spacingLg),
+        decoration: BoxDecoration(
+          color: isDark
+              ? AppColors.surfaceDark.withValues(alpha: 0.85)
+              : AppColors.lightCard,
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          border: Border.all(color: color.withValues(alpha: 0.2)),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: color.withValues(alpha: 0.15),
+              ),
+              child: Icon(icon, size: 26, color: color),
             ),
-            child: Icon(icon, size: 26, color: color),
-          ),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    GradientText(
-                      isEn ? 'Mood Trend' : 'Ruh Hali Egilimi',
-                      variant: GradientTextVariant.gold,
-                      style: AppTypography.elegantAccent(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    if (changeStr.isNotEmpty) ...[
-                      const SizedBox(width: 6),
-                      Text(
-                        changeStr,
-                        style: AppTypography.modernAccent(
-                          fontSize: 13,
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      GradientText(
+                        isEn ? 'Mood Trend' : 'Ruh Hali Egilimi',
+                        variant: GradientTextVariant.gold,
+                        style: AppTypography.elegantAccent(
+                          fontSize: 15,
                           fontWeight: FontWeight.w600,
-                          color: color,
                         ),
                       ),
+                      if (changeStr.isNotEmpty) ...[
+                        const SizedBox(width: 6),
+                        Text(
+                          changeStr,
+                          style: AppTypography.modernAccent(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: color,
+                          ),
+                        ),
+                      ],
                     ],
-                  ],
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  isEn ? message.$1 : message.$2,
-                  style: AppTypography.decorativeScript(
-                    fontSize: 13,
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
                   ),
-                ),
-              ],
+                  const SizedBox(height: 4),
+                  Text(
+                    isEn ? message.$1 : message.$2,
+                    style: AppTypography.decorativeScript(
+                      fontSize: 13,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
     );
   }
 
@@ -880,82 +876,80 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           ? 'Best day: $dayName, $dateStr. Average rating: ${data.bestDayRating} out of 5'
           : 'En iyi gün: $dayName, $dateStr. Ortalama puan: ${data.bestDayRating} üzeri 5',
       child: Container(
-      padding: const EdgeInsets.all(AppConstants.spacingXl),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppColors.starGold.withValues(alpha: isDark ? 0.12 : 0.06),
-            AppColors.auroraStart.withValues(alpha: isDark ? 0.08 : 0.04),
-          ],
+        padding: const EdgeInsets.all(AppConstants.spacingXl),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.starGold.withValues(alpha: isDark ? 0.12 : 0.06),
+              AppColors.auroraStart.withValues(alpha: isDark ? 0.08 : 0.04),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          border: Border.all(color: AppColors.starGold.withValues(alpha: 0.2)),
         ),
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.starGold.withValues(alpha: 0.2),
-        ),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 56,
-            height: 56,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.starGold.withValues(alpha: 0.15),
-              border: Border.all(
-                color: AppColors.starGold.withValues(alpha: 0.3),
+        child: Row(
+          children: [
+            Container(
+              width: 56,
+              height: 56,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.starGold.withValues(alpha: 0.15),
+                border: Border.all(
+                  color: AppColors.starGold.withValues(alpha: 0.3),
+                ),
+              ),
+              child: const Icon(
+                Icons.emoji_events_outlined,
+                color: AppColors.starGold,
+                size: 28,
               ),
             ),
-            child: const Icon(
-              Icons.emoji_events_outlined,
-              color: AppColors.starGold,
-              size: 28,
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    isEn ? 'Best Day' : 'En İyi Gün',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '$dayName, $dateStr',
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    isEn
+                        ? 'Average rating: ${data.bestDayRating}/5'
+                        : 'Ortalama puan: ${data.bestDayRating}/5',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 12,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  isEn ? 'Best Day' : 'En İyi Gün',
-                  style: AppTypography.elegantAccent(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  '$dayName, $dateStr',
-                  style: AppTypography.displayFont.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.starGold,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  isEn
-                      ? 'Average rating: ${data.bestDayRating}/5'
-                      : 'Ortalama puan: ${data.bestDayRating}/5',
-                  style: AppTypography.elegantAccent(
-                    fontSize: 12,
-                    color: isDark
-                        ? AppColors.textMuted
-                        : AppColors.lightTextMuted,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
     );
   }
 
@@ -1008,68 +1002,68 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
                   ? '$label: ${avg.toStringAsFixed(1)} out of 5, $count entries'
                   : '$label: 5 üzerinden ${avg.toStringAsFixed(1)}, $count kayıt',
               child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6),
-              child: Row(
-                children: [
-                  Container(
-                    width: 8,
-                    height: 8,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: color,
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 8,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: color,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  SizedBox(
-                    width: 80,
-                    child: Text(
-                      label,
-                      style: AppTypography.subtitle(
+                    const SizedBox(width: 8),
+                    SizedBox(
+                      width: 80,
+                      child: Text(
+                        label,
+                        style: AppTypography.subtitle(
+                          fontSize: 13,
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(4),
+                        child: LinearProgressIndicator(
+                          value: (avg / 5).clamp(0, 1),
+                          backgroundColor: isDark
+                              ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                              : AppColors.lightSurfaceVariant,
+                          valueColor: AlwaysStoppedAnimation(color),
+                          minHeight: 8,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      avg.toStringAsFixed(1),
+                      style: AppTypography.modernAccent(
                         fontSize: 13,
+                        fontWeight: FontWeight.w700,
                         color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
-                      child: LinearProgressIndicator(
-                        value: (avg / 5).clamp(0, 1),
-                        backgroundColor: isDark
-                            ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                            : AppColors.lightSurfaceVariant,
-                        valueColor: AlwaysStoppedAnimation(color),
-                        minHeight: 8,
+                    const SizedBox(width: 4),
+                    Text(
+                      '($count)',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 11,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                        letterSpacing: 0.5,
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    avg.toStringAsFixed(1),
-                    style: AppTypography.modernAccent(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                    ),
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    '($count)',
-                    style: AppTypography.elegantAccent(
-                      fontSize: 11,
-                      color: isDark
-                          ? AppColors.textMuted
-                          : AppColors.lightTextMuted,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
             );
           }),
         ],
@@ -1092,57 +1086,55 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
           ? 'Weekly insight: ${data.highlightInsightEn}'
           : 'Haftalık içgörü: ${data.highlightInsightTr}',
       child: Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(AppConstants.spacingXl),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            AppColors.amethyst.withValues(alpha: isDark ? 0.1 : 0.05),
-            AppColors.auroraEnd.withValues(alpha: isDark ? 0.08 : 0.04),
+        width: double.infinity,
+        padding: const EdgeInsets.all(AppConstants.spacingXl),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppColors.amethyst.withValues(alpha: isDark ? 0.1 : 0.05),
+              AppColors.auroraEnd.withValues(alpha: isDark ? 0.08 : 0.04),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          border: Border.all(color: AppColors.amethyst.withValues(alpha: 0.2)),
+        ),
+        child: Column(
+          children: [
+            const ExcludeSemantics(
+              child: Icon(
+                Icons.auto_awesome,
+                color: AppColors.starGold,
+                size: 28,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              isEn ? 'Weekly Insight' : 'Haftalık İçgörü',
+              style: AppTypography.elegantAccent(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: isDark
+                    ? AppColors.textSecondary
+                    : AppColors.lightTextSecondary,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              isEn ? data.highlightInsightEn : data.highlightInsightTr,
+              textAlign: TextAlign.center,
+              style: AppTypography.decorativeScript(
+                fontSize: 17,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ],
         ),
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(
-          color: AppColors.amethyst.withValues(alpha: 0.2),
-        ),
       ),
-      child: Column(
-        children: [
-          const ExcludeSemantics(
-            child: Icon(
-            Icons.auto_awesome,
-            color: AppColors.starGold,
-            size: 28,
-          ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            isEn ? 'Weekly Insight' : 'Haftalık İçgörü',
-            style: AppTypography.elegantAccent(
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.textSecondary
-                  : AppColors.lightTextSecondary,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            isEn ? data.highlightInsightEn : data.highlightInsightTr,
-            textAlign: TextAlign.center,
-            style: AppTypography.decorativeScript(
-              fontSize: 17,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
-    ),
     );
   }
 
@@ -1223,62 +1215,62 @@ class _StatCard extends StatelessWidget {
     return Semantics(
       label: '$label: $value$sublabel',
       child: Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: AppConstants.spacingLg,
-        horizontal: AppConstants.spacingMd,
-      ),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceDark.withValues(alpha: 0.85)
-            : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-        border: Border.all(color: color.withValues(alpha: 0.2)),
-      ),
-      child: Column(
-        children: [
-          ExcludeSemantics(child: Icon(icon, size: 22, color: color)),
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            textBaseline: TextBaseline.alphabetic,
-            children: [
-              Text(
-                value,
-                style: AppTypography.displayFont.copyWith(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                  color: isDark
-                      ? AppColors.textPrimary
-                      : AppColors.lightTextPrimary,
+        padding: const EdgeInsets.symmetric(
+          vertical: AppConstants.spacingLg,
+          horizontal: AppConstants.spacingMd,
+        ),
+        decoration: BoxDecoration(
+          color: isDark
+              ? AppColors.surfaceDark.withValues(alpha: 0.85)
+              : AppColors.lightCard,
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          border: Border.all(color: color.withValues(alpha: 0.2)),
+        ),
+        child: Column(
+          children: [
+            ExcludeSemantics(child: Icon(icon, size: 22, color: color)),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
+              children: [
+                Text(
+                  value,
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w900,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                  ),
                 ),
-              ),
-              Text(
-                sublabel,
-                style: AppTypography.elegantAccent(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  color: isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted,
-                  letterSpacing: 0.5,
+                Text(
+                  sublabel,
+                  style: AppTypography.elegantAccent(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                    letterSpacing: 0.5,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: AppTypography.elegantAccent(
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              letterSpacing: 0.5,
+              ],
             ),
-          ),
-        ],
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: AppTypography.elegantAccent(
+                fontSize: 11,
+                fontWeight: FontWeight.w500,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                letterSpacing: 0.5,
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
     );
   }
 }

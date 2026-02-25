@@ -42,10 +42,7 @@ class ContentRotationService {
 
   /// Get N upcoming prompts (for preview/scheduling).
   static List<ReflectionPrompt> getUpcomingPrompts(int count) {
-    return List.generate(
-      count,
-      (i) => getPromptForOffset(i),
-    );
+    return List.generate(count, (i) => getPromptForOffset(i));
   }
 
   /// Get today's focus area (rotates through all 7 areas weekly).
@@ -70,37 +67,130 @@ class ContentRotationService {
     final index = _dateSeed(today);
 
     const insights = [
-      (en: 'Patterns reveal what words cannot.', tr: 'Örüntüler, kelimelerin söyleyemediğini ortaya çıkarır.'),
-      (en: 'Your journal remembers what you forget.', tr: 'Günlüğün, unuttuklarını hatırlar.'),
-      (en: 'Awareness is the first step to change.', tr: 'Farkındalık, değişimin ilk adımıdır.'),
-      (en: 'Every entry adds depth to your self-portrait.', tr: 'Her giriş, öz portrenize derinlik katar.'),
-      (en: 'Cycles repeat until understood.', tr: 'Döngüler anlaşılana kadar tekrarlar.'),
-      (en: 'The space between stimulus and response is freedom.', tr: 'Uyaran ile tepki arasındaki boşluk özgürlüktür.'),
-      (en: 'What you track, you transform.', tr: 'Takip ettiğini dönüştürürsün.'),
-      (en: 'Emotions are data, not directives.', tr: 'Duygular veri, yönerge değil.'),
-      (en: 'Growth happens in the spaces between entries.', tr: 'Büyüme, girişler arasındaki boşluklarda gerçekleşir.'),
-      (en: 'Your future self will thank you for recording today.', tr: 'Gelecekteki sen, bugünü kaydettiğin için teşekkür edecek.'),
-      (en: 'Notice without judgment. Observe without fixing.', tr: 'Yargılamadan fark et. Düzeltmeden gözlemle.'),
-      (en: 'Small reflections compound into deep insight.', tr: 'Küçük yansımalar derin içgörüye dönüşür.'),
-      (en: 'The rhythm of your emotions tells a story.', tr: 'Duygularının ritmi bir hikaye anlatır.'),
-      (en: 'What repeats in your journal repeats in your life.', tr: 'Günlüğünde tekrarlanan, hayatında tekrarlanır.'),
-      (en: 'Seven entries. First pattern. Keep going.', tr: 'Yedi giriş. İlk örüntü. Devam et.'),
-      (en: 'Dreams speak in symbols. Your journal decodes them.', tr: 'Rüyalar sembollerle konuşur. Günlüğün onları çözer.'),
-      (en: 'The quietest insights arrive after consistency.', tr: 'En sessiz içgörüler tutarlılıktan sonra gelir.'),
-      (en: 'Your emotional landscape is uniquely yours.', tr: 'Duygusal manzaran sana özgüdür.'),
-      (en: 'Reflection is not looking back — it is looking inward.', tr: 'Yansıma geriye bakmak değil, içe bakmaktır.'),
-      (en: 'Each day writes a new chapter. What will yours say?', tr: 'Her gün yeni bir bölüm yazar. Seninki ne diyecek?'),
-      (en: 'Trust the process. Patterns emerge with patience.', tr: 'Sürece güven. Örüntüler sabırla ortaya çıkar.'),
-      (en: 'Your mood is a compass, not a cage.', tr: 'Ruh halin bir pusula, kafes değil.'),
-      (en: 'The data of your days holds the wisdom of your years.', tr: 'Günlerinin verisi, yıllarının bilgeliğini barındırır.'),
-      (en: 'Notice what energizes you. Notice what drains you.', tr: 'Seni neyin enerjilendiğini fark et. Neyin tükettiğini fark et.'),
-      (en: 'Stillness is not stagnation. It is integration.', tr: 'Durgunluk durağanlık değil, bütünleşmedir.'),
-      (en: 'Your cycles are not flaws — they are rhythms.', tr: 'Döngülerin kusur değil — ritimdir.'),
-      (en: 'One honest sentence outweighs a thousand vague ones.', tr: 'Bir dürüst cümle, bin belirsiz cümleden ağır basar.'),
-      (en: 'The journal does not judge. Neither should you.', tr: 'Günlük yargılamaz. Sen de yargılamamalısın.'),
-      (en: 'Maps are made by those who walk.', tr: 'Haritalar yürüyenler tarafından yapılır.'),
-      (en: 'Insight is not given. It is earned through attention.', tr: 'İçgörü verilmez. Dikkatle kazanılır.'),
-      (en: 'Your emotions have seasons too.', tr: 'Senin duygularının da mevsimleri var.'),
+      (
+        en: 'Patterns reveal what words cannot.',
+        tr: 'Örüntüler, kelimelerin söyleyemediğini ortaya çıkarır.',
+      ),
+      (
+        en: 'Your journal remembers what you forget.',
+        tr: 'Günlüğün, unuttuklarını hatırlar.',
+      ),
+      (
+        en: 'Awareness is the first step to change.',
+        tr: 'Farkındalık, değişimin ilk adımıdır.',
+      ),
+      (
+        en: 'Every entry adds depth to your self-portrait.',
+        tr: 'Her giriş, öz portrenize derinlik katar.',
+      ),
+      (
+        en: 'Cycles repeat until understood.',
+        tr: 'Döngüler anlaşılana kadar tekrarlar.',
+      ),
+      (
+        en: 'The space between stimulus and response is freedom.',
+        tr: 'Uyaran ile tepki arasındaki boşluk özgürlüktür.',
+      ),
+      (
+        en: 'What you track, you transform.',
+        tr: 'Takip ettiğini dönüştürürsün.',
+      ),
+      (
+        en: 'Emotions are data, not directives.',
+        tr: 'Duygular veri, yönerge değil.',
+      ),
+      (
+        en: 'Growth happens in the spaces between entries.',
+        tr: 'Büyüme, girişler arasındaki boşluklarda gerçekleşir.',
+      ),
+      (
+        en: 'Your future self will thank you for recording today.',
+        tr: 'Gelecekteki sen, bugünü kaydettiğin için teşekkür edecek.',
+      ),
+      (
+        en: 'Notice without judgment. Observe without fixing.',
+        tr: 'Yargılamadan fark et. Düzeltmeden gözlemle.',
+      ),
+      (
+        en: 'Small reflections compound into deep insight.',
+        tr: 'Küçük yansımalar derin içgörüye dönüşür.',
+      ),
+      (
+        en: 'The rhythm of your emotions tells a story.',
+        tr: 'Duygularının ritmi bir hikaye anlatır.',
+      ),
+      (
+        en: 'What repeats in your journal repeats in your life.',
+        tr: 'Günlüğünde tekrarlanan, hayatında tekrarlanır.',
+      ),
+      (
+        en: 'Seven entries. First pattern. Keep going.',
+        tr: 'Yedi giriş. İlk örüntü. Devam et.',
+      ),
+      (
+        en: 'Dreams speak in symbols. Your journal decodes them.',
+        tr: 'Rüyalar sembollerle konuşur. Günlüğün onları çözer.',
+      ),
+      (
+        en: 'The quietest insights arrive after consistency.',
+        tr: 'En sessiz içgörüler tutarlılıktan sonra gelir.',
+      ),
+      (
+        en: 'Your emotional landscape is uniquely yours.',
+        tr: 'Duygusal manzaran sana özgüdür.',
+      ),
+      (
+        en: 'Reflection is not looking back — it is looking inward.',
+        tr: 'Yansıma geriye bakmak değil, içe bakmaktır.',
+      ),
+      (
+        en: 'Each day writes a new chapter. What will yours say?',
+        tr: 'Her gün yeni bir bölüm yazar. Seninki ne diyecek?',
+      ),
+      (
+        en: 'Trust the process. Patterns emerge with patience.',
+        tr: 'Sürece güven. Örüntüler sabırla ortaya çıkar.',
+      ),
+      (
+        en: 'Your mood is a compass, not a cage.',
+        tr: 'Ruh halin bir pusula, kafes değil.',
+      ),
+      (
+        en: 'The data of your days holds the wisdom of your years.',
+        tr: 'Günlerinin verisi, yıllarının bilgeliğini barındırır.',
+      ),
+      (
+        en: 'Notice what energizes you. Notice what drains you.',
+        tr: 'Seni neyin enerjilendiğini fark et. Neyin tükettiğini fark et.',
+      ),
+      (
+        en: 'Stillness is not stagnation. It is integration.',
+        tr: 'Durgunluk durağanlık değil, bütünleşmedir.',
+      ),
+      (
+        en: 'Your cycles are not flaws — they are rhythms.',
+        tr: 'Döngülerin kusur değil — ritimdir.',
+      ),
+      (
+        en: 'One honest sentence outweighs a thousand vague ones.',
+        tr: 'Bir dürüst cümle, bin belirsiz cümleden ağır basar.',
+      ),
+      (
+        en: 'The journal does not judge. Neither should you.',
+        tr: 'Günlük yargılamaz. Sen de yargılamamalısın.',
+      ),
+      (
+        en: 'Maps are made by those who walk.',
+        tr: 'Haritalar yürüyenler tarafından yapılır.',
+      ),
+      (
+        en: 'Insight is not given. It is earned through attention.',
+        tr: 'İçgörü verilmez. Dikkatle kazanılır.',
+      ),
+      (
+        en: 'Your emotions have seasons too.',
+        tr: 'Senin duygularının da mevsimleri var.',
+      ),
     ];
 
     return insights[index % insights.length];

@@ -167,9 +167,8 @@ class NoteToSelf {
     title: json['title'] as String? ?? '',
     content: json['content'] as String? ?? '',
     isPinned: json['isPinned'] as bool? ?? false,
-    tags: (json['tags'] as List<dynamic>?)
-            ?.map((e) => e.toString())
-            .toList() ??
+    tags:
+        (json['tags'] as List<dynamic>?)?.map((e) => e.toString()).toList() ??
         [],
     linkedJournalEntryId: json['linkedJournalEntryId'] as String?,
     moodAtCreation: json['moodAtCreation'] as String?,

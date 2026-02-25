@@ -103,8 +103,8 @@ class _NotificationScheduleScreenState
 
   Future<void> _toggleJournalPrompt(bool enabled) async {
     if (enabled) {
-      final time = _settings?.journalPromptTime ??
-          const TimeOfDay(hour: 10, minute: 0);
+      final time =
+          _settings?.journalPromptTime ?? const TimeOfDay(hour: 10, minute: 0);
       await _notificationService.scheduleJournalPromptNotification(
         hour: time.hour,
         minute: time.minute,
@@ -117,10 +117,9 @@ class _NotificationScheduleScreenState
   }
 
   Future<void> _pickJournalPromptTime() async {
-    final current = _settings?.journalPromptTime ??
-        const TimeOfDay(hour: 10, minute: 0);
-    final picked =
-        await ThemedPicker.showTime(context, initialTime: current);
+    final current =
+        _settings?.journalPromptTime ?? const TimeOfDay(hour: 10, minute: 0);
+    final picked = await ThemedPicker.showTime(context, initialTime: current);
     if (picked != null && mounted) {
       await _notificationService.scheduleJournalPromptNotification(
         hour: picked.hour,
@@ -212,11 +211,9 @@ class _NotificationScheduleScreenState
                                 'A fresh journaling question to inspire your writing',
                             subtitleTr:
                                 'Yazmanıza ilham verecek günlük bir soru',
-                            enabled:
-                                _settings?.journalPromptEnabled ?? false,
+                            enabled: _settings?.journalPromptEnabled ?? false,
                             onToggle: _toggleJournalPrompt,
-                            timeWidget:
-                                _settings?.journalPromptEnabled == true
+                            timeWidget: _settings?.journalPromptEnabled == true
                                 ? _buildJournalPromptTimePicker(isDark, isEn)
                                 : null,
                           ).animate().fadeIn(duration: 300.ms, delay: 120.ms),
@@ -487,11 +484,7 @@ class _NotificationScheduleScreenState
                     ),
                   ),
                   const SizedBox(width: 4),
-                  Icon(
-                    Icons.access_time,
-                    size: 16,
-                    color: AppColors.auroraEnd,
-                  ),
+                  Icon(Icons.access_time, size: 16, color: AppColors.auroraEnd),
                 ],
               ),
             ],

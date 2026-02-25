@@ -31,8 +31,7 @@ class LifeTimelineScreen extends ConsumerStatefulWidget {
   const LifeTimelineScreen({super.key});
 
   @override
-  ConsumerState<LifeTimelineScreen> createState() =>
-      _LifeTimelineScreenState();
+  ConsumerState<LifeTimelineScreen> createState() => _LifeTimelineScreenState();
 }
 
 class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
@@ -95,8 +94,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
           '${event.date.year}-${event.date.month.toString().padLeft(2, '0')}';
       grouped.putIfAbsent(key, () => []).add(event);
     }
-    final sortedKeys = grouped.keys.toList()
-      ..sort((a, b) => b.compareTo(a));
+    final sortedKeys = grouped.keys.toList()..sort((a, b) => b.compareTo(a));
 
     return CustomScrollView(
       physics: const BouncingScrollPhysics(
@@ -150,12 +148,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
   Widget _buildFilterChips(bool isDark, bool isEn) {
     return Row(
       children: [
-        _filterChip(
-          null,
-          isEn ? 'All' : 'Tümü',
-          AppColors.auroraStart,
-          isDark,
-        ),
+        _filterChip(null, isEn ? 'All' : 'Tümü', AppColors.auroraStart, isDark),
         const SizedBox(width: 8),
         _filterChip(
           LifeEventType.positive,
@@ -216,16 +209,13 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     );
   }
 
-  Widget _buildMonthHeader(
-    String monthKey,
-    int count,
-    bool isDark,
-    bool isEn,
-  ) {
+  Widget _buildMonthHeader(String monthKey, int count, bool isDark, bool isEn) {
     final parts = monthKey.split('-');
     final year = parts[0];
     final monthIndex = int.tryParse(parts[1]) ?? 1;
-    final monthNames = isEn ? CommonStrings.monthsFullEn : CommonStrings.monthsFullTr;
+    final monthNames = isEn
+        ? CommonStrings.monthsFullEn
+        : CommonStrings.monthsFullTr;
 
     return Row(
       children: [
@@ -277,9 +267,8 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: GestureDetector(
-        onTap: () => context.push(
-          Routes.lifeEventDetail.replaceFirst(':id', event.id),
-        ),
+        onTap: () =>
+            context.push(Routes.lifeEventDetail.replaceFirst(':id', event.id)),
         child: PremiumCard(
           style: PremiumCardStyle.subtle,
           borderRadius: 14,
@@ -294,9 +283,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                   color: accentColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Center(
-                  child: AppSymbol(emoji, size: AppSymbolSize.sm),
-                ),
+                child: Center(child: AppSymbol(emoji, size: AppSymbolSize.sm)),
               ),
               const SizedBox(width: 12),
               // Title + date + emotions
@@ -439,40 +426,40 @@ class _AnimatedFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        height: 56,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [AppColors.starGold, AppColors.celestialGold],
-          ),
-          borderRadius: BorderRadius.circular(28),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.starGold.withValues(alpha: 0.3),
-              blurRadius: 16,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.add_rounded, size: 20, color: AppColors.deepSpace),
-            const SizedBox(width: 8),
-            Text(
-              isEn ? 'New Event' : 'Yeni Olay',
-              style: AppTypography.displayFont.copyWith(
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-                color: AppColors.deepSpace,
+          onTap: onPressed,
+          child: Container(
+            height: 56,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [AppColors.starGold, AppColors.celestialGold],
               ),
+              borderRadius: BorderRadius.circular(28),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.starGold.withValues(alpha: 0.3),
+                  blurRadius: 16,
+                  offset: const Offset(0, 6),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    )
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.add_rounded, size: 20, color: AppColors.deepSpace),
+                const SizedBox(width: 8),
+                Text(
+                  isEn ? 'New Event' : 'Yeni Olay',
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.deepSpace,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        )
         .animate()
         .fadeIn(duration: 400.ms, delay: 300.ms)
         .slideY(begin: 0.3, end: 0, duration: 400.ms, curve: Curves.easeOut);

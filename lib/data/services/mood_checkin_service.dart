@@ -80,7 +80,12 @@ class MoodCheckinService with SupabaseSyncMixin {
           e.date.day == today.day,
     );
 
-    final entry = MoodEntry(id: _uuid.v4(), date: today, mood: mood, emoji: emoji);
+    final entry = MoodEntry(
+      id: _uuid.v4(),
+      date: today,
+      mood: mood,
+      emoji: emoji,
+    );
     _entries.insert(0, entry);
 
     // Keep last 90 days
@@ -90,7 +95,8 @@ class MoodCheckinService with SupabaseSyncMixin {
     // Sync to Supabase
     queueSync('UPSERT', entry.id, {
       'id': entry.id,
-      'date': '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}',
+      'date':
+          '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}',
       'mood': mood,
       'emoji': emoji,
     });
@@ -156,7 +162,8 @@ class MoodCheckinService with SupabaseSyncMixin {
 
       final entry = MoodEntry(
         id: id,
-        date: DateTime.tryParse(row['date']?.toString() ?? '') ?? DateTime.now(),
+        date:
+            DateTime.tryParse(row['date']?.toString() ?? '') ?? DateTime.now(),
         mood: row['mood'] as int? ?? 3,
         emoji: row['emoji'] as String? ?? '',
       );

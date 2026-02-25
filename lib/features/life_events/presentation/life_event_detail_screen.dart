@@ -197,8 +197,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                     child: _infoCard(
                       icon: Icons.speed_rounded,
                       label: isEn ? 'Intensity' : 'Yoğunluk',
-                      value: intensityLabels[
-                          (event.intensity - 1).clamp(0, 4)],
+                      value: intensityLabels[(event.intensity - 1).clamp(0, 4)],
                       isDark: isDark,
                     ),
                   ),
@@ -234,8 +233,9 @@ class LifeEventDetailScreen extends ConsumerWidget {
                               vertical: 6,
                             ),
                             decoration: BoxDecoration(
-                              color: AppColors.auroraStart
-                                  .withValues(alpha: 0.12),
+                              color: AppColors.auroraStart.withValues(
+                                alpha: 0.12,
+                              ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
@@ -346,7 +346,9 @@ class LifeEventDetailScreen extends ConsumerWidget {
     final confirmed = await GlassDialog.confirm(
       context,
       title: isEn ? 'Delete Event?' : 'Olayı Sil?',
-      message: isEn ? 'This action cannot be undone.' : 'Bu işlem geri alınamaz.',
+      message: isEn
+          ? 'This action cannot be undone.'
+          : 'Bu işlem geri alınamaz.',
       cancelLabel: isEn ? 'Cancel' : 'İptal',
       confirmLabel: isEn ? 'Delete' : 'Sil',
       isDestructive: true,

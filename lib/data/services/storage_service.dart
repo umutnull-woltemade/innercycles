@@ -238,7 +238,8 @@ class StorageService {
           'user_id': userId,
           'display_name': profile.name,
           'avatar_emoji': profile.avatarEmoji,
-          'birth_date': '${profile.birthDate.year}-${profile.birthDate.month.toString().padLeft(2, '0')}-${profile.birthDate.day.toString().padLeft(2, '0')}',
+          'birth_date':
+              '${profile.birthDate.year}-${profile.birthDate.month.toString().padLeft(2, '0')}-${profile.birthDate.day.toString().padLeft(2, '0')}',
           'birth_time': profile.birthTime,
           'birth_place': profile.birthPlace,
           'birth_latitude': profile.birthLatitude,
@@ -277,7 +278,8 @@ class StorageService {
         id: id,
         name: row['display_name'] as String?,
         avatarEmoji: row['avatar_emoji'] as String?,
-        birthDate: DateTime.tryParse(row['birth_date']?.toString() ?? '') ??
+        birthDate:
+            DateTime.tryParse(row['birth_date']?.toString() ?? '') ??
             DateTime(2000, 1, 1),
         birthTime: row['birth_time'] as String?,
         birthPlace: row['birth_place'] as String?,

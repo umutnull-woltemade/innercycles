@@ -649,7 +649,8 @@ class DreamJournalService with SupabaseSyncMixin {
     // Sync to Supabase
     queueSync('UPSERT', entry.id, {
       'id': entry.id,
-      'dream_date': '${entry.dreamDate.year}-${entry.dreamDate.month.toString().padLeft(2, '0')}-${entry.dreamDate.day.toString().padLeft(2, '0')}',
+      'dream_date':
+          '${entry.dreamDate.year}-${entry.dreamDate.month.toString().padLeft(2, '0')}-${entry.dreamDate.day.toString().padLeft(2, '0')}',
       'title': entry.title,
       'content': entry.content,
       'detected_symbols': entry.detectedSymbols,
@@ -745,15 +746,21 @@ class DreamJournalService with SupabaseSyncMixin {
       // Build DreamEntry from Supabase column names (snake_case)
       final entry = DreamEntry(
         id: id,
-        dreamDate: DateTime.tryParse(row['dream_date']?.toString() ?? '') ?? DateTime.now(),
-        recordedAt: DateTime.tryParse(row['created_at']?.toString() ?? '') ?? DateTime.now(),
+        dreamDate:
+            DateTime.tryParse(row['dream_date']?.toString() ?? '') ??
+            DateTime.now(),
+        recordedAt:
+            DateTime.tryParse(row['created_at']?.toString() ?? '') ??
+            DateTime.now(),
         title: row['title'] as String? ?? '',
         content: row['content'] as String? ?? '',
-        detectedSymbols: (row['detected_symbols'] as List<dynamic>?)
+        detectedSymbols:
+            (row['detected_symbols'] as List<dynamic>?)
                 ?.map((e) => e.toString())
                 .toList() ??
             [],
-        userTags: (row['user_tags'] as List<dynamic>?)
+        userTags:
+            (row['user_tags'] as List<dynamic>?)
                 ?.map((e) => e.toString())
                 .toList() ??
             [],
@@ -771,14 +778,15 @@ class DreamJournalService with SupabaseSyncMixin {
         ),
         interpretation: row['interpretation'] is Map
             ? FullDreamInterpretation.fromJson(
-                Map<String, dynamic>.from(row['interpretation'] as Map))
+                Map<String, dynamic>.from(row['interpretation'] as Map),
+              )
             : null,
         characters: (row['characters'] as List<dynamic>?)
-                ?.map((e) => e.toString())
-                .toList(),
+            ?.map((e) => e.toString())
+            .toList(),
         locations: (row['locations'] as List<dynamic>?)
-                ?.map((e) => e.toString())
-                .toList(),
+            ?.map((e) => e.toString())
+            .toList(),
         metadata: row['metadata'] is Map
             ? Map<String, dynamic>.from(row['metadata'] as Map)
             : null,
@@ -1853,7 +1861,8 @@ class DreamJournalService with SupabaseSyncMixin {
         (key, value) => MapEntry(key, PersonalSymbolEntry.fromJson(value)),
       );
     } catch (e) {
-      if (kDebugMode) debugPrint('DreamJournal: decode personal dictionary: $e');
+      if (kDebugMode)
+        debugPrint('DreamJournal: decode personal dictionary: $e');
       return {};
     }
   }

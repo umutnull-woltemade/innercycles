@@ -86,69 +86,73 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
           // Header - tap to expand
           Semantics(
             label: isEn
-                ? (_isExpanded ? 'Collapse sleep quality' : 'Expand sleep quality')
-                : (_isExpanded ? 'Uyku kalitesini daralt' : 'Uyku kalitesini genişlet'),
+                ? (_isExpanded
+                      ? 'Collapse sleep quality'
+                      : 'Expand sleep quality')
+                : (_isExpanded
+                      ? 'Uyku kalitesini daralt'
+                      : 'Uyku kalitesini genişlet'),
             button: true,
             child: InkWell(
-            onTap: () => setState(() => _isExpanded = !_isExpanded),
-            borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-            child: Padding(
-              padding: const EdgeInsets.all(AppConstants.spacingLg),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.bedtime_outlined,
-                    size: 20,
-                    color: isDark
-                        ? AppColors.auroraEnd
-                        : AppColors.lightAuroraEnd,
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: GradientText(
-                      isEn ? 'Sleep Quality' : 'Uyku Kalitesi',
-                      variant: GradientTextVariant.aurora,
-                      style: AppTypography.displayFont.copyWith(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                      ),
+              onTap: () => setState(() => _isExpanded = !_isExpanded),
+              borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+              child: Padding(
+                padding: const EdgeInsets.all(AppConstants.spacingLg),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.bedtime_outlined,
+                      size: 20,
+                      color: isDark
+                          ? AppColors.auroraEnd
+                          : AppColors.lightAuroraEnd,
                     ),
-                  ),
-                  if (_selectedQuality > 0)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 2,
-                      ),
-                      decoration: BoxDecoration(
-                        color: _qualityColor(
-                          _selectedQuality,
-                        ).withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Text(
-                        '$_selectedQuality/5',
-                        style: AppTypography.modernAccent(
-                          fontSize: 12,
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: GradientText(
+                        isEn ? 'Sleep Quality' : 'Uyku Kalitesi',
+                        variant: GradientTextVariant.aurora,
+                        style: AppTypography.displayFont.copyWith(
+                          fontSize: 15,
                           fontWeight: FontWeight.w600,
-                          color: _qualityColor(_selectedQuality),
                         ),
                       ),
                     ),
-                  const SizedBox(width: 4),
-                  Icon(
-                    _isExpanded
-                        ? Icons.keyboard_arrow_up
-                        : Icons.keyboard_arrow_down,
-                    size: 20,
-                    color: isDark
-                        ? AppColors.textMuted
-                        : AppColors.lightTextMuted,
-                  ),
-                ],
+                    if (_selectedQuality > 0)
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          color: _qualityColor(
+                            _selectedQuality,
+                          ).withValues(alpha: 0.2),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          '$_selectedQuality/5',
+                          style: AppTypography.modernAccent(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: _qualityColor(_selectedQuality),
+                          ),
+                        ),
+                      ),
+                    const SizedBox(width: 4),
+                    Icon(
+                      _isExpanded
+                          ? Icons.keyboard_arrow_up
+                          : Icons.keyboard_arrow_down,
+                      size: 20,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
           ),
 
           // Expandable content
@@ -221,8 +225,12 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
                                 _qualityIcon(quality),
                                 size: 24,
                                 color: isActive
-                                    ? (isDark ? Colors.white : AppColors.deepSpace)
-                                    : (isDark ? Colors.white54 : Colors.black38),
+                                    ? (isDark
+                                          ? Colors.white
+                                          : AppColors.deepSpace)
+                                    : (isDark
+                                          ? Colors.white54
+                                          : Colors.black38),
                               ),
                             ),
                           ),

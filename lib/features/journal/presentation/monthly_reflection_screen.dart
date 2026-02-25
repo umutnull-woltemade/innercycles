@@ -638,48 +638,50 @@ class _MonthlyReflectionScreenState
                   ? '$label: ${e.value.toStringAsFixed(1)} out of 5'
                   : '$label: 5 üzerinden ${e.value.toStringAsFixed(1)}',
               child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6),
-              child: ExcludeSemantics(
-                child: Row(
-                children: [
-                  SizedBox(
-                    width: 90,
-                    child: Text(
-                      label,
-                      style: AppTypography.subtitle(
-                        fontSize: 14,
-                        color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: ExcludeSemantics(
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 90,
+                        child: Text(
+                          label,
+                          style: AppTypography.subtitle(
+                            fontSize: 14,
+                            color: isDark
+                                ? AppColors.textSecondary
+                                : AppColors.lightTextSecondary,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
-                      child: LinearProgressIndicator(
-                        value: e.value / 5,
-                        backgroundColor: isDark
-                            ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                            : AppColors.lightSurfaceVariant,
-                        valueColor: AlwaysStoppedAnimation(AppColors.starGold),
-                        minHeight: 8,
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(4),
+                          child: LinearProgressIndicator(
+                            value: e.value / 5,
+                            backgroundColor: isDark
+                                ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                                : AppColors.lightSurfaceVariant,
+                            valueColor: AlwaysStoppedAnimation(
+                              AppColors.starGold,
+                            ),
+                            minHeight: 8,
+                          ),
+                        ),
                       ),
-                    ),
+                      const SizedBox(width: 12),
+                      Text(
+                        e.value.toStringAsFixed(1),
+                        style: AppTypography.modernAccent(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.starGold,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 12),
-                  Text(
-                    e.value.toStringAsFixed(1),
-                    style: AppTypography.modernAccent(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.starGold,
-                    ),
-                  ),
-                ],
+                ),
               ),
-              ),
-            ),
             );
           }),
         ],

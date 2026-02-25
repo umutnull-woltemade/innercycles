@@ -109,7 +109,8 @@ class LifeEvent {
     eventKey: json['eventKey'] as String?,
     title: json['title'] as String? ?? '',
     note: json['note'] as String?,
-    emotionTags: (json['emotionTags'] as List<dynamic>?)
+    emotionTags:
+        (json['emotionTags'] as List<dynamic>?)
             ?.map((e) => e.toString())
             .toList() ??
         [],

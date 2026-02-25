@@ -71,17 +71,22 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
 
     if (_searchQuery.isNotEmpty) {
       filtered = filtered
-          .where((n) =>
-              n.title.toLowerCase().contains(_searchQuery) ||
-              n.content.toLowerCase().contains(_searchQuery) ||
-              n.tags.any((t) => t.toLowerCase().contains(_searchQuery)))
+          .where(
+            (n) =>
+                n.title.toLowerCase().contains(_searchQuery) ||
+                n.content.toLowerCase().contains(_searchQuery) ||
+                n.tags.any((t) => t.toLowerCase().contains(_searchQuery)),
+          )
           .toList();
     }
 
     if (_selectedTag != null) {
       filtered = filtered
           .where(
-              (n) => n.tags.any((t) => t.toLowerCase() == _selectedTag!.toLowerCase()))
+            (n) => n.tags.any(
+              (t) => t.toLowerCase() == _selectedTag!.toLowerCase(),
+            ),
+          )
           .toList();
     }
 
@@ -105,7 +110,9 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
             error: (_, _) => Center(
               child: Text(
                 isEn ? 'Something went wrong' : 'Bir \u015feyler ters gitti',
-                style: AppTypography.decorativeScript(color: isDark ? Colors.white70 : Colors.black54),
+                style: AppTypography.decorativeScript(
+                  color: isDark ? Colors.white70 : Colors.black54,
+                ),
               ),
             ),
             data: (allNotes) {
@@ -159,7 +166,9 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                           borderRadius: BorderRadius.circular(14),
                           border: _isSearchActive
                               ? Border.all(
-                                  color: AppColors.auroraStart.withValues(alpha: 0.3),
+                                  color: AppColors.auroraStart.withValues(
+                                    alpha: 0.3,
+                                  ),
                                   width: 1,
                                 )
                               : null,
@@ -174,7 +183,9 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                             color: isDark ? Colors.white : Colors.black87,
                           ),
                           decoration: InputDecoration(
-                            hintText: isEn ? 'Search notes...' : 'Notlarda ara...',
+                            hintText: isEn
+                                ? 'Search notes...'
+                                : 'Notlarda ara...',
                             hintStyle: AppTypography.subtitle(
                               color: isDark ? Colors.white30 : Colors.black26,
                             ),
@@ -190,7 +201,9 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                                     icon: Icon(
                                       CupertinoIcons.xmark_circle_fill,
                                       size: 18,
-                                      color: isDark ? Colors.white38 : Colors.black38,
+                                      color: isDark
+                                          ? Colors.white38
+                                          : Colors.black38,
                                     ),
                                     onPressed: _clearSearch,
                                   )
@@ -228,18 +241,21 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                                     setState(() => _selectedTag = null),
                               ),
                               const SizedBox(width: 8),
-                              ...allTags.map((tag) => Padding(
-                                    padding: const EdgeInsets.only(right: 8),
-                                    child: _TagChip(
-                                      label: tag,
-                                      isSelected: _selectedTag == tag,
-                                      isDark: isDark,
-                                      onTap: () => setState(() {
-                                        _selectedTag =
-                                            _selectedTag == tag ? null : tag;
-                                      }),
-                                    ),
-                                  )),
+                              ...allTags.map(
+                                (tag) => Padding(
+                                  padding: const EdgeInsets.only(right: 8),
+                                  child: _TagChip(
+                                    label: tag,
+                                    isSelected: _selectedTag == tag,
+                                    isDark: isDark,
+                                    onTap: () => setState(() {
+                                      _selectedTag = _selectedTag == tag
+                                          ? null
+                                          : tag;
+                                    }),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -279,16 +295,20 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                     ),
                     SliverList(
                       delegate: SliverChildBuilderDelegate(
-                        (context, index) => _NoteCard(
-                          note: pinned[index],
-                          isEn: isEn,
-                          isDark: isDark,
-                          onTap: () => _openNote(pinned[index].id),
-                          onDelete: () => _deleteNote(pinned[index].id),
-                        )
-                            .animate()
-                            .fadeIn(delay: (140 + index * 60).ms, duration: 350.ms)
-                            .slideX(begin: -0.02, end: 0, duration: 350.ms),
+                        (context, index) =>
+                            _NoteCard(
+                                  note: pinned[index],
+                                  isEn: isEn,
+                                  isDark: isDark,
+                                  onTap: () => _openNote(pinned[index].id),
+                                  onDelete: () => _deleteNote(pinned[index].id),
+                                )
+                                .animate()
+                                .fadeIn(
+                                  delay: (140 + index * 60).ms,
+                                  duration: 350.ms,
+                                )
+                                .slideX(begin: -0.02, end: 0, duration: 350.ms),
                         childCount: pinned.length,
                       ),
                     ),
@@ -299,31 +319,37 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                   // ═══════════════════════════════════════════════════
                   if (unpinned.isNotEmpty) ...[
                     SliverToBoxAdapter(
-                      child: _SectionHeader(
-                        icon: CupertinoIcons.clock,
-                        iconColor: AppColors.auroraStart,
-                        label: isEn ? 'Recent' : 'Son Notlar',
-                        isDark: isDark,
-                      ).animate().fadeIn(
-                          duration: 300.ms,
-                          delay: pinned.isNotEmpty ? 200.ms : 120.ms),
+                      child:
+                          _SectionHeader(
+                            icon: CupertinoIcons.clock,
+                            iconColor: AppColors.auroraStart,
+                            label: isEn ? 'Recent' : 'Son Notlar',
+                            isDark: isDark,
+                          ).animate().fadeIn(
+                            duration: 300.ms,
+                            delay: pinned.isNotEmpty ? 200.ms : 120.ms,
+                          ),
                     ),
                     SliverList(
                       delegate: SliverChildBuilderDelegate(
-                        (context, index) => _NoteCard(
-                          note: unpinned[index],
-                          isEn: isEn,
-                          isDark: isDark,
-                          onTap: () => _openNote(unpinned[index].id),
-                          onDelete: () => _deleteNote(unpinned[index].id),
-                        )
-                            .animate()
-                            .fadeIn(
-                                delay: ((pinned.isNotEmpty ? 220 : 140) +
-                                        index * 60)
-                                    .ms,
-                                duration: 350.ms)
-                            .slideX(begin: -0.02, end: 0, duration: 350.ms),
+                        (context, index) =>
+                            _NoteCard(
+                                  note: unpinned[index],
+                                  isEn: isEn,
+                                  isDark: isDark,
+                                  onTap: () => _openNote(unpinned[index].id),
+                                  onDelete: () =>
+                                      _deleteNote(unpinned[index].id),
+                                )
+                                .animate()
+                                .fadeIn(
+                                  delay:
+                                      ((pinned.isNotEmpty ? 220 : 140) +
+                                              index * 60)
+                                          .ms,
+                                  duration: 350.ms,
+                                )
+                                .slideX(begin: -0.02, end: 0, duration: 350.ms),
                         childCount: unpinned.length,
                       ),
                     ),
@@ -358,7 +384,9 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
     final confirmed = await GlassDialog.confirm(
       context,
       title: isEn ? 'Delete Note?' : 'Not Silinsin mi?',
-      message: isEn ? 'This action cannot be undone.' : 'Bu işlem geri alınamaz.',
+      message: isEn
+          ? 'This action cannot be undone.'
+          : 'Bu işlem geri alınamaz.',
       cancelLabel: isEn ? 'Cancel' : 'İptal',
       confirmLabel: isEn ? 'Delete' : 'Sil',
       isDestructive: true,
@@ -462,10 +490,7 @@ class _StatPill extends StatelessWidget {
           const SizedBox(width: 5),
           Text(
             '$value $label',
-            style: AppTypography.subtitle(
-              fontSize: 11,
-              color: color,
-            ),
+            style: AppTypography.subtitle(fontSize: 11, color: color),
           ),
         ],
       ),
@@ -581,7 +606,11 @@ class _EmptyState extends StatelessWidget {
                   ),
                 ],
               ),
-            ).animate().scale(begin: const Offset(0.8, 0.8), duration: 600.ms, curve: Curves.elasticOut),
+            ).animate().scale(
+              begin: const Offset(0.8, 0.8),
+              duration: 600.ms,
+              curve: Curves.elasticOut,
+            ),
             const SizedBox(height: 20),
             Text(
               isEn
@@ -590,7 +619,9 @@ class _EmptyState extends StatelessWidget {
               style: AppTypography.displayFont.copyWith(
                 fontSize: 24,
                 fontWeight: FontWeight.w600,
-                color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
               ),
               textAlign: TextAlign.center,
             ),
@@ -607,43 +638,51 @@ class _EmptyState extends StatelessWidget {
             ),
             const SizedBox(height: 28),
             GestureDetector(
-              onTap: onCreate,
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColors.auroraStart,
-                      AppColors.auroraEnd,
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(14),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.auroraStart.withValues(alpha: 0.25),
-                      blurRadius: 16,
-                      offset: const Offset(0, 6),
+                  onTap: onCreate,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 28,
+                      vertical: 14,
                     ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(CupertinoIcons.plus, size: 18, color: Colors.white),
-                    const SizedBox(width: 8),
-                    Text(
-                      isEn ? 'Write your first note' : '\u0130lk notunu yaz',
-                      style: AppTypography.displayFont.copyWith(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [AppColors.auroraStart, AppColors.auroraEnd],
                       ),
+                      borderRadius: BorderRadius.circular(14),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.auroraStart.withValues(alpha: 0.25),
+                          blurRadius: 16,
+                          offset: const Offset(0, 6),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-            ).animate().fadeIn(delay: 200.ms, duration: 400.ms).slideY(begin: 0.1, end: 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(
+                          CupertinoIcons.plus,
+                          size: 18,
+                          color: Colors.white,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          isEn
+                              ? 'Write your first note'
+                              : '\u0130lk notunu yaz',
+                          style: AppTypography.displayFont.copyWith(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+                .animate()
+                .fadeIn(delay: 200.ms, duration: 400.ms)
+                .slideY(begin: 0.1, end: 0),
           ],
         ),
       ),
@@ -687,7 +726,11 @@ class _NoteCard extends StatelessWidget {
           color: Colors.redAccent.withValues(alpha: 0.15),
           borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         ),
-        child: const Icon(CupertinoIcons.trash, color: Colors.redAccent, size: 22),
+        child: const Icon(
+          CupertinoIcons.trash,
+          color: Colors.redAccent,
+          size: 22,
+        ),
       ),
       child: GestureDetector(
         onTap: onTap,
@@ -698,106 +741,116 @@ class _NoteCard extends StatelessWidget {
             borderRadius: AppConstants.radiusMd,
             padding: const EdgeInsets.all(16),
             child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Title row with pin
-              Row(
-                children: [
-                  if (note.isPinned)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 6),
-                      child: Icon(
-                        CupertinoIcons.pin_fill,
-                        size: 13,
-                        color: AppColors.starGold,
-                      ),
-                    ),
-                  Expanded(
-                    child: Text(
-                      note.title.isEmpty
-                          ? (isEn ? 'Untitled' : 'Ba\u015fl\u0131ks\u0131z')
-                          : note.title,
-                      style: AppTypography.displayFont.copyWith(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    _formatDate(note.updatedAt, isEn),
-                    style: AppTypography.elegantAccent(
-                      fontSize: 11,
-                      color: isDark ? Colors.white30 : Colors.black26,
-                    ),
-                  ),
-                ],
-              ),
-
-              // Preview
-              if (note.content.isNotEmpty) ...[
-                const SizedBox(height: 6),
-                Text(
-                  note.preview,
-                  style: AppTypography.decorativeScript(
-                    fontSize: 13,
-                    color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-
-              // Tags + mood row
-              if (note.tags.isNotEmpty || note.moodAtCreation != null) ...[
-                const SizedBox(height: 10),
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Title row with pin
                 Row(
                   children: [
-                    if (note.moodAtCreation != null)
+                    if (note.isPinned)
                       Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: Text(
-                          note.moodAtCreation!,
-                          style: AppTypography.subtitle(fontSize: 16),
+                        padding: const EdgeInsets.only(right: 6),
+                        child: Icon(
+                          CupertinoIcons.pin_fill,
+                          size: 13,
+                          color: AppColors.starGold,
                         ),
                       ),
-                    ...note.tags.take(3).map((tag) => Container(
-                          margin: const EdgeInsets.only(right: 6),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 3),
-                          decoration: BoxDecoration(
-                            color: AppColors.auroraStart.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Text(
-                            tag,
-                            style: AppTypography.subtitle(
-                              fontSize: 10,
-                              color: isDark
-                                  ? AppColors.auroraStart
-                                  : AppColors.lightAuroraStart,
-                            ),
-                          ),
-                        )),
-                    if (note.tags.length > 3)
-                      Text(
-                        '+${note.tags.length - 3}',
-                        style: AppTypography.elegantAccent(
-                          fontSize: 10,
-                          color: isDark ? Colors.white38 : Colors.black26,
+                    Expanded(
+                      child: Text(
+                        note.title.isEmpty
+                            ? (isEn ? 'Untitled' : 'Ba\u015fl\u0131ks\u0131z')
+                            : note.title,
+                        style: AppTypography.displayFont.copyWith(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
                         ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      _formatDate(note.updatedAt, isEn),
+                      style: AppTypography.elegantAccent(
+                        fontSize: 11,
+                        color: isDark ? Colors.white30 : Colors.black26,
+                      ),
+                    ),
                   ],
                 ),
+
+                // Preview
+                if (note.content.isNotEmpty) ...[
+                  const SizedBox(height: 6),
+                  Text(
+                    note.preview,
+                    style: AppTypography.decorativeScript(
+                      fontSize: 13,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+
+                // Tags + mood row
+                if (note.tags.isNotEmpty || note.moodAtCreation != null) ...[
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      if (note.moodAtCreation != null)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: Text(
+                            note.moodAtCreation!,
+                            style: AppTypography.subtitle(fontSize: 16),
+                          ),
+                        ),
+                      ...note.tags
+                          .take(3)
+                          .map(
+                            (tag) => Container(
+                              margin: const EdgeInsets.only(right: 6),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 3,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.auroraStart.withValues(
+                                  alpha: 0.1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                tag,
+                                style: AppTypography.subtitle(
+                                  fontSize: 10,
+                                  color: isDark
+                                      ? AppColors.auroraStart
+                                      : AppColors.lightAuroraStart,
+                                ),
+                              ),
+                            ),
+                          ),
+                      if (note.tags.length > 3)
+                        Text(
+                          '+${note.tags.length - 3}',
+                          style: AppTypography.elegantAccent(
+                            fontSize: 10,
+                            color: isDark ? Colors.white38 : Colors.black26,
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
               ],
-            ],
+            ),
           ),
-        ),
         ),
       ),
     );
@@ -818,7 +871,9 @@ class _NoteCard extends StatelessWidget {
     if (diff.inDays < 7) {
       return isEn ? '${diff.inDays}d' : '${diff.inDays}g';
     }
-    final months = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
+    final months = isEn
+        ? CommonStrings.monthsShortEn
+        : CommonStrings.monthsShortTr;
     return '${dt.day} ${months[dt.month - 1]}';
   }
 }
@@ -867,7 +922,9 @@ class _TagChip extends StatelessWidget {
           style: isSelected
               ? AppTypography.elegantAccent(
                   fontSize: 12,
-                  color: isDark ? AppColors.auroraStart : AppColors.lightAuroraStart,
+                  color: isDark
+                      ? AppColors.auroraStart
+                      : AppColors.lightAuroraStart,
                 )
               : AppTypography.elegantAccent(
                   fontSize: 12,
@@ -897,40 +954,40 @@ class _AnimatedFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        height: 56,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [AppColors.auroraStart, AppColors.auroraEnd],
-          ),
-          borderRadius: BorderRadius.circular(28),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.auroraStart.withValues(alpha: 0.3),
-              blurRadius: 16,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(CupertinoIcons.plus, size: 20, color: Colors.white),
-            const SizedBox(width: 8),
-            Text(
-              isEn ? 'New Note' : 'Yeni Not',
-              style: AppTypography.displayFont.copyWith(
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
+          onTap: onPressed,
+          child: Container(
+            height: 56,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [AppColors.auroraStart, AppColors.auroraEnd],
               ),
+              borderRadius: BorderRadius.circular(28),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.auroraStart.withValues(alpha: 0.3),
+                  blurRadius: 16,
+                  offset: const Offset(0, 6),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    )
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(CupertinoIcons.plus, size: 20, color: Colors.white),
+                const SizedBox(width: 8),
+                Text(
+                  isEn ? 'New Note' : 'Yeni Not',
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        )
         .animate()
         .fadeIn(duration: 400.ms, delay: 300.ms)
         .slideY(begin: 0.3, end: 0, duration: 400.ms, curve: Curves.easeOut);

@@ -115,7 +115,9 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
       child: Row(
         children: [
           IconButton(
-            tooltip: lang == AppLanguage.tr ? 'Ayarlara dön' : 'Back to settings',
+            tooltip: lang == AppLanguage.tr
+                ? 'Ayarlara dön'
+                : 'Back to settings',
             onPressed: () => context.go(Routes.settings),
             icon: Icon(
               Icons.chevron_left,
@@ -477,9 +479,9 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
         GradientText(
           title,
           variant: GradientTextVariant.gold,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w600,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
         ),
       ],
     );
@@ -1291,7 +1293,9 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
               color: isDark
                   ? AppColors.surfaceDark.withValues(alpha: 0.85)
                   : AppColors.lightSurface.withValues(alpha: 0.92),
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(24),
+              ),
               border: Border(
                 top: BorderSide(
                   color: AppColors.starGold.withValues(alpha: 0.3),
@@ -1324,9 +1328,7 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen>
                   GradientText(
                     snapshot.title,
                     variant: GradientTextVariant.gold,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(height: AppConstants.spacingMd),
                   Text(

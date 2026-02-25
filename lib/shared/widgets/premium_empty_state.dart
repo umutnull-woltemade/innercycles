@@ -68,14 +68,12 @@ class PremiumEmptyState extends StatelessWidget {
                 ),
               ],
             ),
-          )
-              .animate()
-              .scale(
-                begin: const Offset(0.8, 0.8),
-                end: const Offset(1, 1),
-                duration: 600.ms,
-                curve: Curves.elasticOut,
-              ),
+          ).animate().scale(
+            begin: const Offset(0.8, 0.8),
+            end: const Offset(1, 1),
+            duration: 600.ms,
+            curve: Curves.elasticOut,
+          ),
 
           const SizedBox(height: 20),
 
@@ -106,14 +104,13 @@ class PremiumEmptyState extends StatelessWidget {
           if (ctaLabel != null && onCtaPressed != null) ...[
             const SizedBox(height: 24),
             _GradientCTA(
-              label: ctaLabel!,
-              onPressed: onCtaPressed!,
-              accent: accent,
-            ).animate().fadeIn(delay: 200.ms, duration: 400.ms).slideY(
-                  begin: 0.1,
-                  end: 0,
-                  duration: 400.ms,
-                ),
+                  label: ctaLabel!,
+                  onPressed: onCtaPressed!,
+                  accent: accent,
+                )
+                .animate()
+                .fadeIn(delay: 200.ms, duration: 400.ms)
+                .slideY(begin: 0.1, end: 0, duration: 400.ms),
           ],
         ],
       ),
@@ -156,36 +153,36 @@ class _GradientCTA extends StatelessWidget {
           constraints: const BoxConstraints(minHeight: 44),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [accent, accent.withValues(alpha: 0.7)],
-          ),
-          borderRadius: BorderRadius.circular(14),
-          boxShadow: [
-            BoxShadow(
-              color: accent.withValues(alpha: 0.25),
-              blurRadius: 16,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(Icons.add_rounded, size: 18, color: Colors.white),
-            const SizedBox(width: 8),
-            Text(
-              label,
-              style: AppTypography.modernAccent(
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [accent, accent.withValues(alpha: 0.7)],
               ),
+              borderRadius: BorderRadius.circular(14),
+              boxShadow: [
+                BoxShadow(
+                  color: accent.withValues(alpha: 0.25),
+                  blurRadius: 16,
+                  offset: const Offset(0, 6),
+                ),
+              ],
             ),
-          ],
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.add_rounded, size: 18, color: Colors.white),
+                const SizedBox(width: 8),
+                Text(
+                  label,
+                  style: AppTypography.modernAccent(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
-      ),
       ),
     );
   }

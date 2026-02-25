@@ -226,8 +226,11 @@ class JournalService with SupabaseSyncMixin {
 
       final entry = JournalEntry(
         id: id,
-        date: DateTime.tryParse(row['date']?.toString() ?? '') ?? DateTime.now(),
-        createdAt: DateTime.tryParse(row['created_at']?.toString() ?? '') ?? DateTime.now(),
+        date:
+            DateTime.tryParse(row['date']?.toString() ?? '') ?? DateTime.now(),
+        createdAt:
+            DateTime.tryParse(row['created_at']?.toString() ?? '') ??
+            DateTime.now(),
         focusArea: FocusArea.values.firstWhere(
           (f) => f.name == row['focus_area'],
           orElse: () => FocusArea.emotions,
@@ -235,7 +238,9 @@ class JournalService with SupabaseSyncMixin {
         overallRating: row['overall_rating'] as int? ?? 3,
         subRatings: row['sub_ratings'] is Map
             ? Map<String, int>.from(
-                (row['sub_ratings'] as Map).map((k, v) => MapEntry(k.toString(), v as int)),
+                (row['sub_ratings'] as Map).map(
+                  (k, v) => MapEntry(k.toString(), v as int),
+                ),
               )
             : {},
         note: row['note'] as String?,

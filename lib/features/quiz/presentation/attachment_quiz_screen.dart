@@ -822,7 +822,10 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
         onPressed: _restartQuiz,
         child: Text(
           isEn ? 'Retake Quiz' : 'Testi Tekrarla',
-          style: AppTypography.elegantAccent(fontSize: 15, color: AppColors.textSecondary),
+          style: AppTypography.elegantAccent(
+            fontSize: 15,
+            color: AppColors.textSecondary,
+          ),
         ),
       ),
     ).animate().fadeIn(duration: 500.ms, delay: 1000.ms);

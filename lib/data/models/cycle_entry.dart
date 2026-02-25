@@ -131,25 +131,25 @@ class CyclePeriodLog {
     // Migrate old timestamp IDs to UUID
     final id = _isTimestampId(rawId) ? const Uuid().v4() : rawId!;
     return CyclePeriodLog(
-    id: id,
-    periodStartDate:
-        DateTime.tryParse(json['periodStartDate']?.toString() ?? '') ??
-        DateTime.now(),
-    periodEndDate: json['periodEndDate'] != null
-        ? DateTime.tryParse(json['periodEndDate'].toString())
-        : null,
-    flowIntensity: json['flowIntensity'] != null
-        ? FlowIntensity.values.firstWhere(
-            (e) => e.name == json['flowIntensity'],
-            orElse: () => FlowIntensity.medium,
-          )
-        : null,
-    symptoms:
-        (json['symptoms'] as List<dynamic>?)
-            ?.map((e) => e.toString())
-            .toList() ??
-        [],
-  );
+      id: id,
+      periodStartDate:
+          DateTime.tryParse(json['periodStartDate']?.toString() ?? '') ??
+          DateTime.now(),
+      periodEndDate: json['periodEndDate'] != null
+          ? DateTime.tryParse(json['periodEndDate'].toString())
+          : null,
+      flowIntensity: json['flowIntensity'] != null
+          ? FlowIntensity.values.firstWhere(
+              (e) => e.name == json['flowIntensity'],
+              orElse: () => FlowIntensity.medium,
+            )
+          : null,
+      symptoms:
+          (json['symptoms'] as List<dynamic>?)
+              ?.map((e) => e.toString())
+              .toList() ??
+          [],
+    );
   }
 
   String get dateKey =>

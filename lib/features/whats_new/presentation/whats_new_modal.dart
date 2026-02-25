@@ -52,7 +52,8 @@ class WhatsNewModal {
       emoji: '\u{1F30A}', // wave
       titleEn: 'Emotional Cycle Detection',
       titleTr: 'Duygusal D\u00f6ng\u00fc Tespiti',
-      descEn: 'Discover recurring emotional patterns across your journal entries.',
+      descEn:
+          'Discover recurring emotional patterns across your journal entries.',
       descTr:
           'G\u00fcnl\u00fck kay\u0131tlar\u0131n\u0131zda tekrarlayan duygusal kal\u0131plar\u0131 ke\u015ffedin.',
     ),
@@ -162,10 +163,12 @@ class _WhatsNewSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bgColor = isDark ? AppColors.surfaceDark : AppColors.lightSurface;
-    final textColor =
-        isDark ? AppColors.textPrimary : AppColors.lightTextPrimary;
-    final subtextColor =
-        isDark ? AppColors.textSecondary : AppColors.lightTextSecondary;
+    final textColor = isDark
+        ? AppColors.textPrimary
+        : AppColors.lightTextPrimary;
+    final subtextColor = isDark
+        ? AppColors.textSecondary
+        : AppColors.lightTextSecondary;
     final mutedColor = isDark ? AppColors.textMuted : AppColors.lightTextMuted;
 
     return ClipRRect(
@@ -173,124 +176,128 @@ class _WhatsNewSheet extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
         child: Container(
-      constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * 0.8,
-      ),
-      decoration: BoxDecoration(
-        color: bgColor.withValues(alpha: isDark ? 0.85 : 0.92),
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-        border: Border(
-          top: BorderSide(
-            color: AppColors.auroraStart.withValues(alpha: 0.3),
-            width: 1.5,
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.8,
           ),
-        ),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // ---- Drag handle ----
-          const SizedBox(height: 12),
-          Container(
-            width: 40,
-            height: 4,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.auroraStart.withValues(alpha: 0.6),
-                  AppColors.auroraEnd.withValues(alpha: 0.6),
-                ],
+          decoration: BoxDecoration(
+            color: bgColor.withValues(alpha: isDark ? 0.85 : 0.92),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+            border: Border(
+              top: BorderSide(
+                color: AppColors.auroraStart.withValues(alpha: 0.3),
+                width: 1.5,
               ),
-              borderRadius: BorderRadius.circular(2),
             ),
           ),
-          const SizedBox(height: 20),
-
-          // ---- Header ----
-          GradientText(
-            isEn ? "What's New" : 'Yenilikler',
-            variant: GradientTextVariant.aurora,
-            style: AppTypography.displayFont.copyWith(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          )
-              .animate()
-              .fadeIn(duration: 400.ms)
-              .slideY(begin: -0.2, duration: 400.ms, curve: Curves.easeOut),
-          const SizedBox(height: 4),
-          Text(
-            isEn ? 'Latest features and improvements' : 'Son \u00f6zellikler ve iyile\u015ftirmeler',
-            style: AppTypography.decorativeScript(fontSize: 14, color: subtextColor),
-          )
-              .animate()
-              .fadeIn(delay: 100.ms, duration: 400.ms),
-          const SizedBox(height: 20),
-
-          // ---- Feature list ----
-          Flexible(
-            child: ListView.separated(
-              shrinkWrap: true,
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              itemCount: WhatsNewModal._features.length,
-              separatorBuilder: (_, _) => Divider(
-                height: 1,
-                color: mutedColor.withValues(alpha: 0.15),
-              ),
-              itemBuilder: (_, index) {
-                final f = WhatsNewModal._features[index];
-                return _FeatureTile(
-                  emoji: f.emoji,
-                  title: isEn ? f.titleEn : f.titleTr,
-                  description: isEn ? f.descEn : f.descTr,
-                  textColor: textColor,
-                  subtextColor: subtextColor,
-                  delay: Duration(milliseconds: 150 + index * 80),
-                );
-              },
-            ),
-          ),
-
-          // ---- "Got it" button ----
-          Padding(
-            padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
-            child: SizedBox(
-              width: double.infinity,
-              height: 52,
-              child: DecoratedBox(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // ---- Drag handle ----
+              const SizedBox(height: 12),
+              Container(
+                width: 40,
+                height: 4,
                 decoration: BoxDecoration(
-                  gradient: AppColors.primaryGradient,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.auroraStart.withValues(alpha: 0.6),
+                      AppColors.auroraEnd.withValues(alpha: 0.6),
+                    ],
                   ),
-                  child: Text(
-                    isEn ? 'Got it' : 'Anla\u015f\u0131ld\u0131',
-                    style: AppTypography.subtitle(
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
-                  ),
+                  borderRadius: BorderRadius.circular(2),
                 ),
               ),
-            )
-                .animate()
-                .fadeIn(delay: 500.ms, duration: 400.ms)
-                .slideY(
-                  begin: 0.15,
-                  delay: 500.ms,
-                  duration: 400.ms,
-                  curve: Curves.easeOut,
+              const SizedBox(height: 20),
+
+              // ---- Header ----
+              GradientText(
+                    isEn ? "What's New" : 'Yenilikler',
+                    variant: GradientTextVariant.aurora,
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                  .animate()
+                  .fadeIn(duration: 400.ms)
+                  .slideY(begin: -0.2, duration: 400.ms, curve: Curves.easeOut),
+              const SizedBox(height: 4),
+              Text(
+                isEn
+                    ? 'Latest features and improvements'
+                    : 'Son \u00f6zellikler ve iyile\u015ftirmeler',
+                style: AppTypography.decorativeScript(
+                  fontSize: 14,
+                  color: subtextColor,
                 ),
+              ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
+              const SizedBox(height: 20),
+
+              // ---- Feature list ----
+              Flexible(
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  itemCount: WhatsNewModal._features.length,
+                  separatorBuilder: (_, _) => Divider(
+                    height: 1,
+                    color: mutedColor.withValues(alpha: 0.15),
+                  ),
+                  itemBuilder: (_, index) {
+                    final f = WhatsNewModal._features[index];
+                    return _FeatureTile(
+                      emoji: f.emoji,
+                      title: isEn ? f.titleEn : f.titleTr,
+                      description: isEn ? f.descEn : f.descTr,
+                      textColor: textColor,
+                      subtextColor: subtextColor,
+                      delay: Duration(milliseconds: 150 + index * 80),
+                    );
+                  },
+                ),
+              ),
+
+              // ---- "Got it" button ----
+              Padding(
+                padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
+                child:
+                    SizedBox(
+                          width: double.infinity,
+                          height: 52,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: AppColors.primaryGradient,
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: TextButton(
+                              onPressed: () => Navigator.of(context).pop(),
+                              style: TextButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                              ),
+                              child: Text(
+                                isEn ? 'Got it' : 'Anla\u015f\u0131ld\u0131',
+                                style: AppTypography.subtitle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                        .animate()
+                        .fadeIn(delay: 500.ms, duration: 400.ms)
+                        .slideY(
+                          begin: 0.15,
+                          delay: 500.ms,
+                          duration: 400.ms,
+                          curve: Curves.easeOut,
+                        ),
+              ),
+              SizedBox(height: MediaQuery.of(context).padding.bottom + 16),
+            ],
           ),
-          SizedBox(height: MediaQuery.of(context).padding.bottom + 16),
-        ],
-      ),
         ),
       ),
     );
@@ -321,55 +328,63 @@ class _FeatureTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Emoji circle
-          Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  AppColors.auroraStart.withValues(alpha: 0.15),
-                  AppColors.auroraEnd.withValues(alpha: 0.08),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            alignment: Alignment.center,
-            child: AppSymbol(emoji, size: AppSymbolSize.sm),
-          ),
-          const SizedBox(width: 14),
-          // Text content
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: AppTypography.displayFont.copyWith(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    color: textColor,
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Emoji circle
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppColors.auroraStart.withValues(alpha: 0.15),
+                      AppColors.auroraEnd.withValues(alpha: 0.08),
+                    ],
                   ),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                const SizedBox(height: 3),
-                Text(
-                  description,
-                  style: AppTypography.decorativeScript(fontSize: 13, color: subtextColor),
+                alignment: Alignment.center,
+                child: AppSymbol(emoji, size: AppSymbolSize.sm),
+              ),
+              const SizedBox(width: 14),
+              // Text content
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: textColor,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      description,
+                      style: AppTypography.decorativeScript(
+                        fontSize: 13,
+                        color: subtextColor,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-    )
+        )
         .animate()
         .fadeIn(delay: delay, duration: 350.ms)
-        .slideX(begin: 0.05, delay: delay, duration: 350.ms, curve: Curves.easeOut);
+        .slideX(
+          begin: 0.05,
+          delay: delay,
+          duration: 350.ms,
+          curve: Curves.easeOut,
+        );
   }
 }

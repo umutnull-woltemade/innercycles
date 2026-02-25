@@ -816,7 +816,10 @@ class _GenericQuizScreenState extends ConsumerState<GenericQuizScreen> {
         onPressed: () => context.go(Routes.quizHub),
         child: Text(
           isEn ? 'Back to All Quizzes' : 'Tüm Testlere Dön',
-          style: AppTypography.elegantAccent(fontSize: 15, color: AppColors.textSecondary),
+          style: AppTypography.elegantAccent(
+            fontSize: 15,
+            color: AppColors.textSecondary,
+          ),
         ),
       ),
     ).animate().fadeIn(duration: 500.ms, delay: 900.ms);

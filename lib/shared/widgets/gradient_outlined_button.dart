@@ -51,7 +51,8 @@ class GradientOutlinedButton extends StatelessWidget {
           gradient: gradient,
           strokeWidth: 1.5,
           borderRadius: borderRadius,
-          padding: padding ??
+          padding:
+              padding ??
               const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           child: Row(
             mainAxisSize: expanded ? MainAxisSize.max : MainAxisSize.min,
@@ -61,7 +62,10 @@ class GradientOutlinedButton extends StatelessWidget {
                 ShaderMask(
                   blendMode: BlendMode.srcIn,
                   shaderCallback: (bounds) => gradient.createShader(bounds),
-                  child: Icon(icon, size: fontSize != null ? fontSize! + 4 : 20),
+                  child: Icon(
+                    icon,
+                    size: fontSize != null ? fontSize! + 4 : 20,
+                  ),
                 ),
                 const SizedBox(width: 8),
               ],

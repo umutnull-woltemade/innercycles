@@ -430,7 +430,10 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
         indicatorWeight: 3,
         labelColor: CosmicPalette.starGold,
         unselectedLabelColor: AppColors.textSecondary,
-        labelStyle: AppTypography.modernAccent(fontSize: 13, fontWeight: FontWeight.w600),
+        labelStyle: AppTypography.modernAccent(
+          fontSize: 13,
+          fontWeight: FontWeight.w600,
+        ),
         unselectedLabelStyle: AppTypography.subtitle(fontSize: 13),
         dividerColor: Colors.transparent,
         tabs: categories.map((cat) {
@@ -794,8 +797,7 @@ class _SymbolDetailSheet extends StatelessWidget {
                 CosmicPalette.bgDeepSpace.withValues(alpha: 0.95),
               ],
             ),
-            borderRadius:
-                const BorderRadius.vertical(top: Radius.circular(24)),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
             border: Border(
               top: BorderSide(
                 color: AppColors.amethyst.withValues(alpha: 0.4),
@@ -804,156 +806,158 @@ class _SymbolDetailSheet extends StatelessWidget {
             ),
           ),
           child: Column(
-        children: [
-          // Handle
-          Container(
-            margin: const EdgeInsets.only(top: 12),
-            width: 40,
-            height: 4,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.amethyst.withValues(alpha: 0.6),
-                  AppColors.cosmicAmethyst.withValues(alpha: 0.6),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(2),
-            ),
-          ),
-
-          // Header
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              children: [
-                Container(
-                  width: 64,
-                  height: 64,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    gradient: RadialGradient(
-                      colors: [
-                        CosmicPalette.starGold.withValues(alpha: 0.3),
-                        Colors.transparent,
-                      ],
-                    ),
-                    shape: BoxShape.circle,
+            children: [
+              // Handle
+              Container(
+                margin: const EdgeInsets.only(top: 12),
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.amethyst.withValues(alpha: 0.6),
+                      AppColors.cosmicAmethyst.withValues(alpha: 0.6),
+                    ],
                   ),
-                  child: AppSymbol.hero(symbol.emoji),
+                  borderRadius: BorderRadius.circular(2),
                 ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        symbol.symbolTr,
-                        style: AppTypography.displayFont.copyWith(
+              ),
+
+              // Header
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 64,
+                      height: 64,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        gradient: RadialGradient(
+                          colors: [
+                            CosmicPalette.starGold.withValues(alpha: 0.3),
+                            Colors.transparent,
+                          ],
+                        ),
+                        shape: BoxShape.circle,
+                      ),
+                      child: AppSymbol.hero(symbol.emoji),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            symbol.symbolTr,
+                            style: AppTypography.displayFont.copyWith(
                               fontSize: 20,
                               color: AppColors.textPrimary,
                               fontWeight: FontWeight.bold,
                             ),
-                      ),
-                      const SizedBox(height: 4),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: CosmicPalette.amethyst.withValues(alpha: 0.2),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            AppSymbol.inline(symbol.category.emoji),
-                            const SizedBox(width: 4),
-                            Text(
-                              symbol.category.label,
-                              style: AppTypography.elegantAccent(
-                                fontSize: 12,
-                                color: CosmicPalette.lavender,
-                              ),
+                          ),
+                          const SizedBox(height: 4),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
                             ),
-                          ],
-                        ),
+                            decoration: BoxDecoration(
+                              color: CosmicPalette.amethyst.withValues(
+                                alpha: 0.2,
+                              ),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                AppSymbol.inline(symbol.category.emoji),
+                                const SizedBox(width: 4),
+                                Text(
+                                  symbol.category.label,
+                                  style: AppTypography.elegantAccent(
+                                    fontSize: 12,
+                                    color: CosmicPalette.lavender,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-
-          // Content
-          Expanded(
-            child: ListView(
-              physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics(),
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              children: [
-                // Universal meanings
-                _buildSection(
-                  context,
-                  title: L10nService.get(
-                    'screens.dream_glossary.sections.universal_meanings',
-                    language,
+
+              // Content
+              Expanded(
+                child: ListView(
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
                   ),
-                  emoji: '\u{1F30D}',
-                  content: symbol.universalMeanings
-                      .map((m) => '\u{2022} $m')
-                      .join('\n'),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  children: [
+                    // Universal meanings
+                    _buildSection(
+                      context,
+                      title: L10nService.get(
+                        'screens.dream_glossary.sections.universal_meanings',
+                        language,
+                      ),
+                      emoji: '\u{1F30D}',
+                      content: symbol.universalMeanings
+                          .map((m) => '\u{2022} $m')
+                          .join('\n'),
+                    ),
+
+                    // Light aspect
+                    _buildSection(
+                      context,
+                      title: L10nService.get(
+                        'screens.dream_glossary.sections.light_aspect',
+                        language,
+                      ),
+                      emoji: '\u{2728}',
+                      content: symbol.lightAspect,
+                      color: CosmicPalette.starGold,
+                    ),
+
+                    // Shadow aspect
+                    _buildSection(
+                      context,
+                      title: L10nService.get(
+                        'screens.dream_glossary.sections.shadow_aspect',
+                        language,
+                      ),
+                      emoji: '\u{1F311}',
+                      content: symbol.shadowAspect,
+                      color: CosmicPalette.amethyst,
+                    ),
+
+                    // Cultural interpretations
+                    _buildCulturalSection(context),
+
+                    // Psychological interpretations
+                    _buildPsychologicalSection(context),
+
+                    // Related symbols
+                    if (symbol.relatedSymbols.isNotEmpty)
+                      _buildRelatedSymbols(context),
+
+                    const SizedBox(height: 20),
+
+                    // "I dreamed this" button
+                    _buildDreamedButton(context),
+
+                    const SizedBox(height: 40),
+                  ],
                 ),
-
-                // Light aspect
-                _buildSection(
-                  context,
-                  title: L10nService.get(
-                    'screens.dream_glossary.sections.light_aspect',
-                    language,
-                  ),
-                  emoji: '\u{2728}',
-                  content: symbol.lightAspect,
-                  color: CosmicPalette.starGold,
-                ),
-
-                // Shadow aspect
-                _buildSection(
-                  context,
-                  title: L10nService.get(
-                    'screens.dream_glossary.sections.shadow_aspect',
-                    language,
-                  ),
-                  emoji: '\u{1F311}',
-                  content: symbol.shadowAspect,
-                  color: CosmicPalette.amethyst,
-                ),
-
-                // Cultural interpretations
-                _buildCulturalSection(context),
-
-                // Psychological interpretations
-                _buildPsychologicalSection(context),
-
-                // Related symbols
-                if (symbol.relatedSymbols.isNotEmpty)
-                  _buildRelatedSymbols(context),
-
-                const SizedBox(height: 20),
-
-                // "I dreamed this" button
-                _buildDreamedButton(context),
-
-                const SizedBox(height: 40),
-              ],
-            ),
+              ),
+            ],
           ),
-          ],
         ),
       ),
-    ),
     );
   }
 
@@ -1421,105 +1425,109 @@ class _PersonalDictionarySheet extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
         child: Container(
-      height: screenHeight * 0.7,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            CosmicPalette.bgCosmic.withValues(alpha: 0.92),
-            CosmicPalette.bgDeepSpace.withValues(alpha: 0.95),
-          ],
-        ),
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-        border: Border(
-          top: BorderSide(
-            color: AppColors.amethyst.withValues(alpha: 0.4),
-            width: 1.5,
-          ),
-        ),
-      ),
-      child: Column(
-        children: [
-          // Handle
-          Container(
-            margin: const EdgeInsets.only(top: 12),
-            width: 40,
-            height: 4,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.amethyst.withValues(alpha: 0.6),
-                  AppColors.cosmicAmethyst.withValues(alpha: 0.6),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(2),
-            ),
-          ),
-
-          // Header
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              children: [
-                const AppSymbol('\u{1F4D4}', size: AppSymbolSize.lg),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        L10nService.get(
-                          'screens.dream_glossary.personal_dictionary_sheet.title',
-                          language,
-                        ),
-                        style: AppTypography.displayFont.copyWith(
-                          fontSize: 22,
-                          color: AppColors.textPrimary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        L10nService.get(
-                          'screens.dream_glossary.personal_dictionary_sheet.symbol_count',
-                          language,
-                        ).replaceAll('{count}', '${dreamedSymbols.length}'),
-                        style: AppTypography.subtitle(
-                          fontSize: 12,
-                          color: CosmicPalette.starGold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+          height: screenHeight * 0.7,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                CosmicPalette.bgCosmic.withValues(alpha: 0.92),
+                CosmicPalette.bgDeepSpace.withValues(alpha: 0.95),
               ],
             ),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+            border: Border(
+              top: BorderSide(
+                color: AppColors.amethyst.withValues(alpha: 0.4),
+                width: 1.5,
+              ),
+            ),
           ),
-
-          // Content
-          Expanded(
-            child: dreamedSymbols.isEmpty
-                ? _buildEmptyState(context)
-                : ListView.builder(
-                    physics: const BouncingScrollPhysics(
-                      parent: AlwaysScrollableScrollPhysics(),
-                    ),
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    itemCount: dreamedSymbols.length,
-                    itemBuilder: (context, index) {
-                      final entry = dreamedSymbols[index];
-                      final symbol = DreamSymbolsDatabase.findSymbol(
-                        entry.symbolId,
-                      );
-                      if (symbol == null) return const SizedBox.shrink();
-
-                      return _buildDreamedSymbolCard(context, symbol, entry);
-                    },
+          child: Column(
+            children: [
+              // Handle
+              Container(
+                margin: const EdgeInsets.only(top: 12),
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.amethyst.withValues(alpha: 0.6),
+                      AppColors.cosmicAmethyst.withValues(alpha: 0.6),
+                    ],
                   ),
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+
+              // Header
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  children: [
+                    const AppSymbol('\u{1F4D4}', size: AppSymbolSize.lg),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            L10nService.get(
+                              'screens.dream_glossary.personal_dictionary_sheet.title',
+                              language,
+                            ),
+                            style: AppTypography.displayFont.copyWith(
+                              fontSize: 22,
+                              color: AppColors.textPrimary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            L10nService.get(
+                              'screens.dream_glossary.personal_dictionary_sheet.symbol_count',
+                              language,
+                            ).replaceAll('{count}', '${dreamedSymbols.length}'),
+                            style: AppTypography.subtitle(
+                              fontSize: 12,
+                              color: CosmicPalette.starGold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // Content
+              Expanded(
+                child: dreamedSymbols.isEmpty
+                    ? _buildEmptyState(context)
+                    : ListView.builder(
+                        physics: const BouncingScrollPhysics(
+                          parent: AlwaysScrollableScrollPhysics(),
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        itemCount: dreamedSymbols.length,
+                        itemBuilder: (context, index) {
+                          final entry = dreamedSymbols[index];
+                          final symbol = DreamSymbolsDatabase.findSymbol(
+                            entry.symbolId,
+                          );
+                          if (symbol == null) return const SizedBox.shrink();
+
+                          return _buildDreamedSymbolCard(
+                            context,
+                            symbol,
+                            entry,
+                          );
+                        },
+                      ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ),
+        ),
       ),
     );
   }
@@ -1612,17 +1620,17 @@ class _PersonalDictionarySheet extends StatelessWidget {
                               language,
                             ).replaceAll('{count}', '${entry.count}'),
                             style: AppTypography.subtitle(
-                                fontSize: 12,
-                                color: CosmicPalette.starGold,
-                              ),
+                              fontSize: 12,
+                              color: CosmicPalette.starGold,
+                            ),
                           ),
                           const SizedBox(width: 12),
                           Text(
                             _formatDate(entry.lastDreamed),
                             style: AppTypography.subtitle(
-                                fontSize: 12,
-                                color: AppColors.textMuted,
-                              ),
+                              fontSize: 12,
+                              color: AppColors.textMuted,
+                            ),
                           ),
                         ],
                       ),

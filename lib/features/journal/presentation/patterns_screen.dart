@@ -196,7 +196,11 @@ class PatternsScreen extends ConsumerWidget {
                                   : '7 Kayıttan Sonra Kalıplar Açılır',
                               variant: GradientTextVariant.gold,
                               textAlign: TextAlign.center,
-                              style: AppTypography.modernAccent(fontSize: 15, fontWeight: FontWeight.w700, letterSpacing: 0.3),
+                              style: AppTypography.modernAccent(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 0.3,
+                              ),
                             ),
                             const SizedBox(height: 12),
                             Text(
@@ -204,11 +208,11 @@ class PatternsScreen extends ConsumerWidget {
                                   ? 'You have $current entries. $needed more to go!'
                                   : '$current kaydınız var. $needed tane daha!',
                               style: AppTypography.subtitle(
-                                    fontSize: 16,
-                                    color: isDark
-                                        ? AppColors.textSecondary
-                                        : AppColors.lightTextSecondary,
-                                  ),
+                                fontSize: 16,
+                                color: isDark
+                                    ? AppColors.textSecondary
+                                    : AppColors.lightTextSecondary,
+                              ),
                               textAlign: TextAlign.center,
                             ),
                             const SizedBox(height: 32),
@@ -307,8 +311,9 @@ class PatternsScreen extends ConsumerWidget {
         crossCorrelationsAsync.whenOrNull(data: (list) => list) ?? [];
 
     // Extract gratitude-mood comparison (null if loading/error/insufficient data)
-    final gratitudeMood =
-        gratitudeMoodAsync.whenOrNull(data: (comparison) => comparison);
+    final gratitudeMood = gratitudeMoodAsync.whenOrNull(
+      data: (comparison) => comparison,
+    );
 
     return CupertinoScrollbar(
       child: CustomScrollView(
@@ -621,69 +626,71 @@ class PatternsScreen extends ConsumerWidget {
                   ? '$label: ${entry.value.toStringAsFixed(1)} out of 5'
                   : '$label: 5 üzerinden ${entry.value.toStringAsFixed(1)}',
               child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6),
-              child: ExcludeSemantics(
-                child: Row(
-                children: [
-                  // Health status dot
-                  if (dimensionHealth != null) ...[
-                    Container(
-                      width: 8,
-                      height: 8,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: _healthStatusColor(dimensionHealth.status),
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: ExcludeSemantics(
+                  child: Row(
+                    children: [
+                      // Health status dot
+                      if (dimensionHealth != null) ...[
+                        Container(
+                          width: 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _healthStatusColor(dimensionHealth.status),
+                          ),
+                        ),
+                        const SizedBox(width: 6),
+                      ],
+                      SizedBox(
+                        width: dimensionHealth != null ? 76 : 90,
+                        child: Text(
+                          label,
+                          style: AppTypography.subtitle(
+                            fontSize: 14,
+                            color: isDark
+                                ? AppColors.textSecondary
+                                : AppColors.lightTextSecondary,
+                          ),
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 6),
-                  ],
-                  SizedBox(
-                    width: dimensionHealth != null ? 76 : 90,
-                    child: Text(
-                      label,
-                      style: AppTypography.subtitle(
-                        fontSize: 14,
-                        color: isDark
-                            ? AppColors.textSecondary
-                            : AppColors.lightTextSecondary,
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(4),
+                          child: LinearProgressIndicator(
+                            value: entry.value / 5,
+                            backgroundColor: isDark
+                                ? AppColors.surfaceLight.withValues(alpha: 0.3)
+                                : AppColors.lightSurfaceVariant,
+                            valueColor: AlwaysStoppedAnimation(
+                              AppColors.starGold,
+                            ),
+                            minHeight: 8,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
-                      child: LinearProgressIndicator(
-                        value: entry.value / 5,
-                        backgroundColor: isDark
-                            ? AppColors.surfaceLight.withValues(alpha: 0.3)
-                            : AppColors.lightSurfaceVariant,
-                        valueColor: AlwaysStoppedAnimation(AppColors.starGold),
-                        minHeight: 8,
+                      const SizedBox(width: 8),
+                      Text(
+                        entry.value.toStringAsFixed(1),
+                        style: AppTypography.modernAccent(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                        ),
                       ),
-                    ),
+                      const SizedBox(width: 4),
+                      if (diff.abs() > 0.1)
+                        Icon(
+                          diff > 0 ? Icons.arrow_upward : Icons.arrow_downward,
+                          size: 14,
+                          color: diff > 0 ? AppColors.success : AppColors.error,
+                        ),
+                    ],
                   ),
-                  const SizedBox(width: 8),
-                  Text(
-                    entry.value.toStringAsFixed(1),
-                    style: AppTypography.modernAccent(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                    ),
-                  ),
-                  const SizedBox(width: 4),
-                  if (diff.abs() > 0.1)
-                    Icon(
-                      diff > 0 ? Icons.arrow_upward : Icons.arrow_downward,
-                      size: 14,
-                      color: diff > 0 ? AppColors.success : AppColors.error,
-                    ),
-                ],
+                ),
               ),
-              ),
-            ),
             );
           }),
         ],
@@ -951,8 +958,9 @@ class PatternsScreen extends ConsumerWidget {
     bool isEn,
   ) {
     final isPositiveLift = comparison.lift > 0.2;
-    final accentColor =
-        isPositiveLift ? AppColors.success : AppColors.auroraStart;
+    final accentColor = isPositiveLift
+        ? AppColors.success
+        : AppColors.auroraStart;
 
     return PremiumCard(
       style: PremiumCardStyle.subtle,
@@ -1131,10 +1139,7 @@ class _CycleArcsPainter extends CustomPainter {
       final labelPainter = TextPainter(
         text: TextSpan(
           text: isEn ? area.displayNameEn : area.displayNameTr,
-          style: AppTypography.subtitle(
-            fontSize: 10,
-            color: _colors[i],
-          ),
+          style: AppTypography.subtitle(fontSize: 10, color: _colors[i]),
         ),
         textDirection: TextDirection.ltr,
       )..layout();

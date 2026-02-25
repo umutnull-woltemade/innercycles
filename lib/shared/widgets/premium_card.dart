@@ -273,10 +273,7 @@ class _InnerShadowPainter extends CustomPainter {
   final double borderRadius;
   final bool isDark;
 
-  const _InnerShadowPainter({
-    required this.borderRadius,
-    required this.isDark,
-  });
+  const _InnerShadowPainter({required this.borderRadius, required this.isDark});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -288,8 +285,9 @@ class _InnerShadowPainter extends CustomPainter {
 
     // Top highlight
     final highlightPaint = Paint()
-      ..color = (isDark ? Colors.white : Colors.white)
-          .withValues(alpha: isDark ? 0.06 : 0.4)
+      ..color = (isDark ? Colors.white : Colors.white).withValues(
+        alpha: isDark ? 0.06 : 0.4,
+      )
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6);
     canvas.drawRRect(
       RRect.fromRectAndRadius(
@@ -316,8 +314,7 @@ class _InnerShadowPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _InnerShadowPainter oldDelegate) =>
-      oldDelegate.borderRadius != borderRadius ||
-      oldDelegate.isDark != isDark;
+      oldDelegate.borderRadius != borderRadius || oldDelegate.isDark != isDark;
 }
 
 /// Lightweight inline noise painter (fewer dots than full NoiseOverlay).
@@ -337,7 +334,9 @@ class _NoiseMicroPainter extends CustomPainter {
       final x = rng.nextDouble() * size.width;
       final y = rng.nextDouble() * size.height;
       final r = 0.4 + rng.nextDouble() * 0.8;
-      paint.color = baseColor.withValues(alpha: 0.015 + rng.nextDouble() * 0.025);
+      paint.color = baseColor.withValues(
+        alpha: 0.015 + rng.nextDouble() * 0.025,
+      );
       canvas.drawCircle(Offset(x, y), r, paint);
     }
   }

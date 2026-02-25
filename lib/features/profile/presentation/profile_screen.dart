@@ -556,212 +556,222 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             }
 
             return ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(24),
+              ),
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                 child: Container(
-              height: MediaQuery.of(context).size.height * 0.8,
-              decoration: BoxDecoration(
-                color: (isDark ? AppColors.surfaceDark : AppColors.lightSurface)
-                    .withValues(alpha: isDark ? 0.85 : 0.92),
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-                border: Border(
-                  top: BorderSide(
-                    color: AppColors.auroraStart.withValues(alpha: 0.3),
-                    width: 1.5,
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  decoration: BoxDecoration(
+                    color:
+                        (isDark
+                                ? AppColors.surfaceDark
+                                : AppColors.lightSurface)
+                            .withValues(alpha: isDark ? 0.85 : 0.92),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(24),
+                    ),
+                    border: Border(
+                      top: BorderSide(
+                        color: AppColors.auroraStart.withValues(alpha: 0.3),
+                        width: 1.5,
+                      ),
+                    ),
+                  ),
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      // Gradient drag handle
+                      Center(
+                        child: Container(
+                          width: 40,
+                          height: 4,
+                          margin: const EdgeInsets.only(bottom: 12),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                AppColors.auroraStart.withValues(alpha: 0.6),
+                                AppColors.auroraEnd.withValues(alpha: 0.6),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text(
+                              L10nService.get('common.cancel', language),
+                              style: AppTypography.modernAccent(
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
+                              ),
+                            ),
+                          ),
+                          GradientText(
+                            L10nService.get('input.select_city', language),
+                            variant: GradientTextVariant.aurora,
+                            style: AppTypography.displayFont.copyWith(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(width: 60),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      TextField(
+                        style: AppTypography.subtitle(
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: L10nService.get(
+                            'input.search_city',
+                            language,
+                          ),
+                          hintStyle: AppTypography.subtitle(
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                          filled: true,
+                          fillColor: isDark
+                              ? AppColors.surfaceLight.withValues(alpha: 0.12)
+                              : AppColors.lightSurfaceVariant,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        onChanged: (value) {
+                          setModalState(() => searchQuery = value);
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          FilterChip(
+                            label: Text(
+                              L10nService.get('input.turkey_kktc', language),
+                              style: AppTypography.modernAccent(
+                                fontSize: 13,
+                                color: showTurkeyOnly
+                                    ? Colors.white
+                                    : (isDark
+                                          ? AppColors.textSecondary
+                                          : AppColors.lightTextSecondary),
+                              ),
+                            ),
+                            selected: showTurkeyOnly,
+                            selectedColor: AppColors.auroraStart,
+                            checkmarkColor: Colors.white,
+                            backgroundColor: isDark
+                                ? AppColors.surfaceLight.withValues(alpha: 0.12)
+                                : AppColors.lightSurfaceVariant,
+                            side: BorderSide(
+                              color: showTurkeyOnly
+                                  ? AppColors.auroraStart.withValues(alpha: 0.5)
+                                  : (isDark
+                                        ? Colors.white.withValues(alpha: 0.08)
+                                        : Colors.black.withValues(alpha: 0.06)),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            onSelected: (selected) {
+                              setModalState(() => showTurkeyOnly = selected);
+                            },
+                          ),
+                          FilterChip(
+                            label: Text(
+                              L10nService.get('input.whole_world', language),
+                              style: AppTypography.modernAccent(
+                                fontSize: 13,
+                                color: !showTurkeyOnly
+                                    ? Colors.white
+                                    : (isDark
+                                          ? AppColors.textSecondary
+                                          : AppColors.lightTextSecondary),
+                              ),
+                            ),
+                            selected: !showTurkeyOnly,
+                            selectedColor: AppColors.auroraStart,
+                            checkmarkColor: Colors.white,
+                            backgroundColor: isDark
+                                ? AppColors.surfaceLight.withValues(alpha: 0.12)
+                                : AppColors.lightSurfaceVariant,
+                            side: BorderSide(
+                              color: !showTurkeyOnly
+                                  ? AppColors.auroraStart.withValues(alpha: 0.5)
+                                  : (isDark
+                                        ? Colors.white.withValues(alpha: 0.08)
+                                        : Colors.black.withValues(alpha: 0.06)),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            onSelected: (selected) {
+                              setModalState(() => showTurkeyOnly = !selected);
+                            },
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Expanded(
+                        child: ListView.builder(
+                          physics: const BouncingScrollPhysics(
+                            parent: AlwaysScrollableScrollPhysics(),
+                          ),
+                          itemCount: filteredCities.length,
+                          itemBuilder: (context, index) {
+                            final city = filteredCities[index];
+                            return ListTile(
+                              leading: Icon(
+                                Icons.location_city,
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
+                              ),
+                              title: Text(
+                                city.name,
+                                style: AppTypography.subtitle(
+                                  color: isDark
+                                      ? AppColors.textPrimary
+                                      : AppColors.lightTextPrimary,
+                                ),
+                              ),
+                              subtitle: Text(
+                                city.country,
+                                style: AppTypography.elegantAccent(
+                                  fontSize: 13,
+                                  color: isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted,
+                                ),
+                              ),
+                              onTap: () => Navigator.pop(context, city),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  // Gradient drag handle
-                  Center(
-                    child: Container(
-                      width: 40,
-                      height: 4,
-                      margin: const EdgeInsets.only(bottom: 12),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            AppColors.auroraStart.withValues(alpha: 0.6),
-                            AppColors.auroraEnd.withValues(alpha: 0.6),
-                          ],
-                        ),
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: Text(
-                          L10nService.get('common.cancel', language),
-                          style: AppTypography.modernAccent(
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
-                        ),
-                      ),
-                      GradientText(
-                        L10nService.get('input.select_city', language),
-                        variant: GradientTextVariant.aurora,
-                        style: AppTypography.displayFont.copyWith(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(width: 60),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  TextField(
-                    style: AppTypography.subtitle(
-                      color: isDark
-                          ? AppColors.textPrimary
-                          : AppColors.lightTextPrimary,
-                    ),
-                    decoration: InputDecoration(
-                      hintText: L10nService.get('input.search_city', language),
-                      hintStyle: AppTypography.subtitle(
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                      filled: true,
-                      fillColor: isDark
-                          ? AppColors.surfaceLight.withValues(alpha: 0.12)
-                          : AppColors.lightSurfaceVariant,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                    onChanged: (value) {
-                      setModalState(() => searchQuery = value);
-                    },
-                  ),
-                  const SizedBox(height: 12),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: [
-                      FilterChip(
-                        label: Text(
-                          L10nService.get('input.turkey_kktc', language),
-                          style: AppTypography.modernAccent(
-                            fontSize: 13,
-                            color: showTurkeyOnly
-                                ? Colors.white
-                                : (isDark
-                                      ? AppColors.textSecondary
-                                      : AppColors.lightTextSecondary),
-                          ),
-                        ),
-                        selected: showTurkeyOnly,
-                        selectedColor: AppColors.auroraStart,
-                        checkmarkColor: Colors.white,
-                        backgroundColor: isDark
-                            ? AppColors.surfaceLight.withValues(alpha: 0.12)
-                            : AppColors.lightSurfaceVariant,
-                        side: BorderSide(
-                          color: showTurkeyOnly
-                              ? AppColors.auroraStart.withValues(alpha: 0.5)
-                              : (isDark
-                                    ? Colors.white.withValues(alpha: 0.08)
-                                    : Colors.black.withValues(alpha: 0.06)),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        onSelected: (selected) {
-                          setModalState(() => showTurkeyOnly = selected);
-                        },
-                      ),
-                      FilterChip(
-                        label: Text(
-                          L10nService.get('input.whole_world', language),
-                          style: AppTypography.modernAccent(
-                            fontSize: 13,
-                            color: !showTurkeyOnly
-                                ? Colors.white
-                                : (isDark
-                                      ? AppColors.textSecondary
-                                      : AppColors.lightTextSecondary),
-                          ),
-                        ),
-                        selected: !showTurkeyOnly,
-                        selectedColor: AppColors.auroraStart,
-                        checkmarkColor: Colors.white,
-                        backgroundColor: isDark
-                            ? AppColors.surfaceLight.withValues(alpha: 0.12)
-                            : AppColors.lightSurfaceVariant,
-                        side: BorderSide(
-                          color: !showTurkeyOnly
-                              ? AppColors.auroraStart.withValues(alpha: 0.5)
-                              : (isDark
-                                    ? Colors.white.withValues(alpha: 0.08)
-                                    : Colors.black.withValues(alpha: 0.06)),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        onSelected: (selected) {
-                          setModalState(() => showTurkeyOnly = !selected);
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Expanded(
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(
-                        parent: AlwaysScrollableScrollPhysics(),
-                      ),
-                      itemCount: filteredCities.length,
-                      itemBuilder: (context, index) {
-                        final city = filteredCities[index];
-                        return ListTile(
-                          leading: Icon(
-                            Icons.location_city,
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
-                          title: Text(
-                            city.name,
-                            style: AppTypography.subtitle(
-                              color: isDark
-                                  ? AppColors.textPrimary
-                                  : AppColors.lightTextPrimary,
-                            ),
-                          ),
-                          subtitle: Text(
-                            city.country,
-                            style: AppTypography.elegantAccent(
-                              fontSize: 13,
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
-                            ),
-                          ),
-                          onTap: () => Navigator.pop(context, city),
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
               ),
             );
           },

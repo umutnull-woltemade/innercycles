@@ -76,10 +76,7 @@ class CosmicCard extends StatelessWidget {
                 ),
               ),
             )
-          : Padding(
-              padding: padding ?? const EdgeInsets.all(16),
-              child: child,
-            ),
+          : Padding(padding: padding ?? const EdgeInsets.all(16), child: child),
     );
   }
 

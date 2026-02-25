@@ -594,7 +594,11 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         GradientText(
           isEn ? 'Milestones' : 'Kilometre Taşları',
           variant: GradientTextVariant.gold,
-          style: AppTypography.modernAccent(fontSize: 15, fontWeight: FontWeight.w700, letterSpacing: 0.3),
+          style: AppTypography.modernAccent(
+            fontSize: 15,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0.3,
+          ),
         ),
         const SizedBox(height: AppConstants.spacingMd),
         GridView.builder(
@@ -876,7 +880,11 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         GradientText(
           isEn ? 'Explore Growth Tools' : 'Büyüme Araçlarını Keşfet',
           variant: GradientTextVariant.aurora,
-          style: AppTypography.modernAccent(fontSize: 15, fontWeight: FontWeight.w700, letterSpacing: 0.3),
+          style: AppTypography.modernAccent(
+            fontSize: 15,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0.3,
+          ),
         ),
         const SizedBox(height: AppConstants.spacingMd),
         GridView.builder(
@@ -1006,7 +1014,11 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
           GradientText(
             isEn ? 'This Month' : 'Bu Ay',
             variant: GradientTextVariant.gold,
-            style: AppTypography.modernAccent(fontSize: 15, fontWeight: FontWeight.w700, letterSpacing: 0.3),
+            style: AppTypography.modernAccent(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.3,
+            ),
           ),
           const SizedBox(height: AppConstants.spacingLg),
           _buildSummaryRow(

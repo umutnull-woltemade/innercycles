@@ -633,10 +633,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.shareInsight,
         redirect: (_, _) => Routes.shareCardGallery,
       ),
-      GoRoute(
-        path: Routes.glossary,
-        redirect: (_, _) => Routes.dreamGlossary,
-      ),
+      GoRoute(path: Routes.glossary, redirect: (_, _) => Routes.dreamGlossary),
 
       // ════════════════════════════════════════════════════════════════
       // PERSONALITY & COMPATIBILITY
@@ -680,10 +677,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       // LEGACY DREAM REDIRECTS (Turkish backward compatibility)
       // ════════════════════════════════════════════════════════════════
       ...Routes.legacyRouteRedirects.entries.map(
-        (entry) => GoRoute(
-          path: entry.key,
-          redirect: (context, state) => entry.value,
-        ),
+        (entry) =>
+            GoRoute(path: entry.key, redirect: (context, state) => entry.value),
       ),
     ],
   );
