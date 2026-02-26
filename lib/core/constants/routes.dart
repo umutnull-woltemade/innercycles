@@ -202,6 +202,14 @@ class Routes {
   static const String appLock = '/app-lock';
 
   // ════════════════════════════════════════════════════════════════
+  // PRIVATE VAULT
+  // ════════════════════════════════════════════════════════════════
+  static const String vaultPin = '/vault/pin';
+  static const String vault = '/vault';
+  static const String vaultPhotoAlbum = '/vault/photos';
+  static const String vaultPhotoViewer = '/vault/photos/:id';
+
+  // ════════════════════════════════════════════════════════════════
   // TAB ROUTES (BottomNavigationBar shell)
   // ════════════════════════════════════════════════════════════════
   static const String today = '/today';

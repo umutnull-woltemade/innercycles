@@ -67,6 +67,8 @@ import '../models/journal_entry.dart';
 import '../models/note_to_self.dart';
 import '../models/cross_correlation_result.dart';
 import '../services/sync_service.dart';
+import '../services/vault_service.dart';
+import '../models/vault_photo.dart';
 
 // =============================================================================
 // USER PROFILE PROVIDERS
@@ -963,4 +965,34 @@ final upcomingRemindersProvider = FutureProvider<List<NoteReminder>>((
 ) async {
   final service = await ref.watch(notesToSelfServiceProvider.future);
   return service.getUpcomingReminders(hours: 48);
+});
+
+// =============================================================================
+// VAULT SERVICE PROVIDER (Private Content Vault)
+// =============================================================================
+
+final vaultServiceProvider = FutureProvider<VaultService>((ref) async {
+  return await VaultService.init();
+});
+
+final vaultPhotosProvider = FutureProvider<List<VaultPhoto>>((ref) async {
+  final service = await ref.watch(vaultServiceProvider.future);
+  return service.getAllPhotos();
+});
+
+final vaultPhotoCountProvider = FutureProvider<int>((ref) async {
+  final service = await ref.watch(vaultServiceProvider.future);
+  return service.photoCount;
+});
+
+final privateJournalEntriesProvider = FutureProvider<List<JournalEntry>>((
+  ref,
+) async {
+  final service = await ref.watch(journalServiceProvider.future);
+  return service.getPrivateEntries();
+});
+
+final privateNotesProvider = FutureProvider<List<NoteToSelf>>((ref) async {
+  final service = await ref.watch(notesToSelfServiceProvider.future);
+  return service.getPrivateNotes();
 });

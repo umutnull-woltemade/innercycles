@@ -52,6 +52,7 @@ class NoteToSelfService with SupabaseSyncMixin {
     String? linkedJournalEntryId,
     String? moodAtCreation,
     required bool isPremium,
+    bool isPrivate = false,
   }) async {
     if (!isPremium && _notes.length >= freeNoteLimit) {
       return null;
@@ -68,6 +69,7 @@ class NoteToSelfService with SupabaseSyncMixin {
       tags: tags,
       linkedJournalEntryId: linkedJournalEntryId,
       moodAtCreation: moodAtCreation,
+      isPrivate: isPrivate,
     );
 
     _notes.add(note);
@@ -82,6 +84,7 @@ class NoteToSelfService with SupabaseSyncMixin {
       'tags': note.tags,
       'linked_journal_entry_id': note.linkedJournalEntryId,
       'mood_at_creation': note.moodAtCreation,
+      'is_private': note.isPrivate,
     });
 
     return note;
@@ -103,6 +106,7 @@ class NoteToSelfService with SupabaseSyncMixin {
       'title': updated.title,
       'content': updated.content,
       'is_pinned': updated.isPinned,
+      'is_private': updated.isPrivate,
       'tags': updated.tags,
       'linked_journal_entry_id': updated.linkedJournalEntryId,
       'mood_at_creation': updated.moodAtCreation,
@@ -132,13 +136,25 @@ class NoteToSelfService with SupabaseSyncMixin {
     return _notes.where((n) => n.id == id).firstOrNull;
   }
 
+  /// Get all non-private notes, sorted by date descending
   List<NoteToSelf> getAllNotes() {
-    final sorted = List<NoteToSelf>.from(_notes)
-      ..sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
+    final sorted = List<NoteToSelf>.from(
+      _notes.where((n) => !n.isPrivate),
+    )..sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
     return List.unmodifiable(sorted);
   }
 
-  int get noteCount => _notes.length;
+  /// Get only private (vault) notes, sorted by date descending
+  List<NoteToSelf> getPrivateNotes() {
+    return List.unmodifiable(
+      List<NoteToSelf>.from(_notes.where((n) => n.isPrivate))
+        ..sort((a, b) => b.updatedAt.compareTo(a.updatedAt)),
+    );
+  }
+
+  int get noteCount => _notes.where((n) => !n.isPrivate).length;
+
+  int get privateNoteCount => _notes.where((n) => n.isPrivate).length;
 
   // ══════════════════════════════════════════════════════════════════════════
   // FILTERS

@@ -107,6 +107,7 @@ class NoteToSelf {
   final List<String> tags;
   final String? linkedJournalEntryId;
   final String? moodAtCreation;
+  final bool isPrivate; // vault-protected note
 
   const NoteToSelf({
     required this.id,
@@ -118,6 +119,7 @@ class NoteToSelf {
     this.tags = const [],
     this.linkedJournalEntryId,
     this.moodAtCreation,
+    this.isPrivate = false,
   });
 
   NoteToSelf copyWith({
@@ -130,6 +132,7 @@ class NoteToSelf {
     List<String>? tags,
     String? linkedJournalEntryId,
     String? moodAtCreation,
+    bool? isPrivate,
   }) {
     return NoteToSelf(
       id: id ?? this.id,
@@ -141,6 +144,7 @@ class NoteToSelf {
       tags: tags ?? this.tags,
       linkedJournalEntryId: linkedJournalEntryId ?? this.linkedJournalEntryId,
       moodAtCreation: moodAtCreation ?? this.moodAtCreation,
+      isPrivate: isPrivate ?? this.isPrivate,
     );
   }
 
@@ -154,6 +158,7 @@ class NoteToSelf {
     'tags': tags,
     'linkedJournalEntryId': linkedJournalEntryId,
     'moodAtCreation': moodAtCreation,
+    'isPrivate': isPrivate,
   };
 
   factory NoteToSelf.fromJson(Map<String, dynamic> json) => NoteToSelf(
@@ -172,6 +177,7 @@ class NoteToSelf {
         [],
     linkedJournalEntryId: json['linkedJournalEntryId'] as String?,
     moodAtCreation: json['moodAtCreation'] as String?,
+    isPrivate: json['isPrivate'] as bool? ?? false,
   );
 
   /// Preview text: first line of content, truncated

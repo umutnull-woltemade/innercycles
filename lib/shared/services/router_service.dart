@@ -36,6 +36,8 @@ import '../../features/settings/presentation/notification_schedule_screen.dart';
 import '../../features/export/presentation/export_screen.dart';
 import '../../features/streak/presentation/streak_stats_screen.dart';
 import '../../features/app_lock/presentation/app_lock_screen.dart';
+import '../../features/vault/presentation/vault_pin_screen.dart';
+import '../../features/vault/presentation/vault_screen.dart';
 import '../../features/notes/presentation/notes_list_screen.dart';
 import '../../features/notes/presentation/note_detail_screen.dart';
 import '../../features/admin/presentation/admin_login_screen.dart';
@@ -392,6 +394,22 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.appLock,
         builder: (context, state) => const AppLockScreen(),
+      ),
+
+      // ════════════════════════════════════════════════════════════════
+      // PRIVATE VAULT
+      // ════════════════════════════════════════════════════════════════
+      GoRoute(
+        path: Routes.vaultPin,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          final mode = extra?['mode'] as String?;
+          return VaultPinScreen(mode: mode);
+        },
+      ),
+      GoRoute(
+        path: Routes.vault,
+        builder: (context, state) => const VaultScreen(),
       ),
 
       // ════════════════════════════════════════════════════════════════

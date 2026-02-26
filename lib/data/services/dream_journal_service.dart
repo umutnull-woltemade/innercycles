@@ -712,6 +712,23 @@ class DreamJournalService with SupabaseSyncMixin {
     return dreams.where((d) => d.dreamDate.isAfter(cutoff)).toList();
   }
 
+  /// Full-text search across dream title, content, userTags, detectedSymbols
+  Future<List<DreamEntry>> searchDreams(String query) async {
+    final q = query.toLowerCase();
+    final dreams = await getAllDreams();
+    return dreams
+        .where(
+          (d) =>
+              d.title.toLowerCase().contains(q) ||
+              d.content.toLowerCase().contains(q) ||
+              d.userTags.any((t) => t.toLowerCase().contains(q)) ||
+              d.detectedSymbols.any((s) => s.toLowerCase().contains(q)) ||
+              d.dominantEmotion.name.toLowerCase().contains(q),
+        )
+        .toList()
+      ..sort((a, b) => b.dreamDate.compareTo(a.dreamDate));
+  }
+
   /// Update existing dream
   Future<void> updateDream(DreamEntry dream) async {
     await saveDream(dream);

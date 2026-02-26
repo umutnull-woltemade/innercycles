@@ -131,6 +131,8 @@ class JournalEntry {
   final Map<String, int> subRatings; // key -> 1-5
   final String? note;
   final String? imagePath; // local file path to attached photo
+  final List<String> tags; // user-defined tags
+  final bool isPrivate; // vault-protected entry
 
   const JournalEntry({
     required this.id,
@@ -141,6 +143,8 @@ class JournalEntry {
     this.subRatings = const {},
     this.note,
     this.imagePath,
+    this.tags = const [],
+    this.isPrivate = false,
   });
 
   JournalEntry copyWith({
@@ -152,6 +156,8 @@ class JournalEntry {
     Map<String, int>? subRatings,
     String? note,
     String? imagePath,
+    List<String>? tags,
+    bool? isPrivate,
   }) {
     return JournalEntry(
       id: id ?? this.id,
@@ -162,6 +168,8 @@ class JournalEntry {
       subRatings: subRatings ?? this.subRatings,
       note: note ?? this.note,
       imagePath: imagePath ?? this.imagePath,
+      tags: tags ?? this.tags,
+      isPrivate: isPrivate ?? this.isPrivate,
     );
   }
 
@@ -174,6 +182,8 @@ class JournalEntry {
     'subRatings': subRatings,
     'note': note,
     'imagePath': imagePath,
+    'tags': tags,
+    'isPrivate': isPrivate,
   };
 
   factory JournalEntry.fromJson(Map<String, dynamic> json) => JournalEntry(
@@ -199,6 +209,11 @@ class JournalEntry {
         : {},
     note: json['note'] as String?,
     imagePath: json['imagePath'] as String?,
+    tags: (json['tags'] as List<dynamic>?)
+            ?.map((e) => e.toString())
+            .toList() ??
+        const [],
+    isPrivate: json['isPrivate'] as bool? ?? false,
   );
 
   /// Date key for grouping entries by day (yyyy-MM-dd)

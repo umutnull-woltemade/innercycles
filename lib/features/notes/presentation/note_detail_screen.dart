@@ -23,6 +23,7 @@ import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_dialog.dart';
+import '../../../shared/widgets/private_toggle.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 
 class NoteDetailScreen extends ConsumerStatefulWidget {
@@ -41,6 +42,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
   final _reminderMessageController = TextEditingController();
 
   bool _isPinned = false;
+  bool _isPrivate = false;
   List<String> _tags = [];
   NoteToSelf? _existingNote;
   List<NoteReminder> _reminders = [];
@@ -106,6 +108,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
         _titleController.text = note.title;
         _contentController.text = note.content;
         _isPinned = note.isPinned;
+        _isPrivate = note.isPrivate;
         _tags = List.from(note.tags);
         _reminders = service.getRemindersForNote(note.id);
       }
@@ -131,6 +134,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
         tags: _tags,
         isPinned: _isPinned,
         isPremium: isPremium,
+        isPrivate: _isPrivate,
       );
       if (result == null && mounted) {
         await showContextualPaywall(
@@ -161,6 +165,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
             : title,
         content: content,
         isPinned: _isPinned,
+        isPrivate: _isPrivate,
         tags: _tags,
       );
       await service.updateNote(updated);
@@ -169,6 +174,7 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
     ref.invalidate(allNotesProvider);
     ref.invalidate(pinnedNotesProvider);
     ref.invalidate(upcomingRemindersProvider);
+    ref.invalidate(privateNotesProvider);
 
     if (mounted) {
       _hasChanges = false;
@@ -897,6 +903,22 @@ class _NoteDetailScreenState extends ConsumerState<NoteDetailScreen> {
                                   ],
                                 ],
                               ),
+                            ),
+
+                            // ═══════════════════════════════════════
+                            // PRIVATE VAULT TOGGLE
+                            // ═══════════════════════════════════════
+                            const SizedBox(height: 20),
+                            PrivateToggle(
+                              isPrivate: _isPrivate,
+                              onChanged: (v) {
+                                setState(() {
+                                  _isPrivate = v;
+                                  _hasChanges = true;
+                                });
+                              },
+                              isEn: isEn,
+                              isDark: isDark,
                             ),
 
                             // ═══════════════════════════════════════

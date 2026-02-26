@@ -118,7 +118,7 @@ class ProfileHubScreen extends ConsumerWidget {
                       ),
                     ).animate().fadeIn(delay: 300.ms, duration: 400.ms),
                     const SizedBox(height: AppConstants.spacingSm),
-                    ..._buildSettingsLinks(context, isDark, isEn),
+                    ..._buildSettingsLinks(context, isDark, isEn, ref),
 
                     const SizedBox(height: AppConstants.spacingHuge),
                   ]),
@@ -221,6 +221,7 @@ class ProfileHubScreen extends ConsumerWidget {
     BuildContext context,
     bool isDark,
     bool isEn,
+    WidgetRef ref,
   ) {
     final links = [
       _SettingsLink(
@@ -232,6 +233,11 @@ class ProfileHubScreen extends ConsumerWidget {
         '\u{1F512}',
         isEn ? 'App Lock' : 'Uygulama Kilidi',
         Routes.appLock,
+      ),
+      _SettingsLink(
+        '\u{1F510}',
+        isEn ? 'Private Vault' : 'Gizli Kasa',
+        Routes.vaultPin,
       ),
       _SettingsLink('\u{2B50}', 'Premium', Routes.premium),
       _SettingsLink(
@@ -254,7 +260,20 @@ class ProfileHubScreen extends ConsumerWidget {
         child: _SettingsLinkTile(
           link: link,
           isDark: isDark,
-          onTap: () => context.push(link.route),
+          onTap: () async {
+            if (link.route == Routes.vaultPin) {
+              // Smart routing: setup mode if no vault, verify mode if exists
+              final vaultService = await ref.read(vaultServiceProvider.future);
+              if (!context.mounted) return;
+              if (vaultService.isVaultSetUp) {
+                context.push(Routes.vaultPin);
+              } else {
+                context.push(Routes.vaultPin, extra: {'mode': 'setup'});
+              }
+            } else {
+              context.push(link.route);
+            }
+          },
         ),
       ).animate().fadeIn(
         delay: Duration(milliseconds: 250 + index * 40),

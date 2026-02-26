@@ -45,6 +45,8 @@ class JournalService with SupabaseSyncMixin {
     Map<String, int> subRatings = const {},
     String? note,
     String? imagePath,
+    List<String> tags = const [],
+    bool isPrivate = false,
   }) async {
     final entry = JournalEntry(
       id: _uuid.v4(),
@@ -55,6 +57,8 @@ class JournalService with SupabaseSyncMixin {
       subRatings: subRatings.map((k, v) => MapEntry(k, v.clamp(1, 5))),
       note: note,
       imagePath: imagePath,
+      tags: tags,
+      isPrivate: isPrivate,
     );
 
     _entries.add(entry);
@@ -70,6 +74,8 @@ class JournalService with SupabaseSyncMixin {
       'sub_ratings': entry.subRatings,
       'note': entry.note,
       'image_path': entry.imagePath,
+      'tags': entry.tags,
+      'is_private': entry.isPrivate,
     });
 
     return entry;
@@ -90,13 +96,22 @@ class JournalService with SupabaseSyncMixin {
     return _entries.where((e) => e.id == id).firstOrNull;
   }
 
-  /// Get all entries, sorted by date descending (cached)
+  /// Get all non-private entries, sorted by date descending (cached)
   List<JournalEntry> getAllEntries() {
     if (_sortedCache != null) return List.unmodifiable(_sortedCache!);
-    final sorted = List<JournalEntry>.from(_entries)
-      ..sort((a, b) => b.date.compareTo(a.date));
+    final sorted = List<JournalEntry>.from(
+      _entries.where((e) => !e.isPrivate),
+    )..sort((a, b) => b.date.compareTo(a.date));
     _sortedCache = sorted;
     return List.unmodifiable(sorted);
+  }
+
+  /// Get only private (vault) entries, sorted by date descending
+  List<JournalEntry> getPrivateEntries() {
+    return List.unmodifiable(
+      List<JournalEntry>.from(_entries.where((e) => e.isPrivate))
+        ..sort((a, b) => b.date.compareTo(a.date)),
+    );
   }
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -139,6 +154,57 @@ class JournalService with SupabaseSyncMixin {
   List<JournalEntry> getRecentEntries(int count) {
     final sorted = getAllEntries();
     return sorted.take(count).toList();
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // SEARCH & TAGS
+  // ══════════════════════════════════════════════════════════════════════════
+
+  /// Full-text search across note content, tags, and focus area display names
+  List<JournalEntry> searchEntries(String query) {
+    final q = query.toLowerCase();
+    return _entries
+        .where(
+          (e) =>
+              (e.note?.toLowerCase().contains(q) ?? false) ||
+              e.tags.any((t) => t.toLowerCase().contains(q)) ||
+              e.focusArea.displayNameEn.toLowerCase().contains(q) ||
+              e.focusArea.displayNameTr.toLowerCase().contains(q) ||
+              e.focusArea.name.toLowerCase().contains(q),
+        )
+        .toList()
+      ..sort((a, b) => b.date.compareTo(a.date));
+  }
+
+  /// Get all unique tags across all journal entries
+  List<String> getAllTags() {
+    final tagSet = <String>{};
+    for (final entry in _entries) {
+      tagSet.addAll(entry.tags);
+    }
+    return tagSet.toList()..sort();
+  }
+
+  /// Get entries by specific tag
+  List<JournalEntry> getEntriesByTag(String tag) {
+    final t = tag.toLowerCase();
+    return _entries
+        .where((e) => e.tags.any((et) => et.toLowerCase() == t))
+        .toList()
+      ..sort((a, b) => b.date.compareTo(a.date));
+  }
+
+  /// Get most frequently used tags (for suggestions)
+  List<String> getFrequentTags({int limit = 10}) {
+    final tagCounts = <String, int>{};
+    for (final entry in _entries) {
+      for (final tag in entry.tags) {
+        tagCounts[tag] = (tagCounts[tag] ?? 0) + 1;
+      }
+    }
+    final sorted = tagCounts.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    return sorted.take(limit).map((e) => e.key).toList();
   }
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -245,6 +311,10 @@ class JournalService with SupabaseSyncMixin {
             : {},
         note: row['note'] as String?,
         imagePath: row['image_path'] as String?,
+        tags: (row['tags'] as List<dynamic>?)
+                ?.map((e) => e.toString())
+                .toList() ??
+            const [],
       );
 
       final existingIdx = _entries.indexWhere((e) => e.id == id);

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,7 +14,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import '../../../core/constants/app_constants.dart';
 import '../../../data/services/haptic_service.dart';
-import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/themed_picker.dart';
@@ -31,11 +31,14 @@ import '../../../data/content/share_card_templates.dart';
 import '../../../shared/widgets/share_card_sheet.dart';
 
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../data/services/premium_service.dart';
 import '../../gratitude/presentation/gratitude_section.dart';
 import '../../sleep/presentation/sleep_section.dart';
+import '../../../shared/widgets/private_toggle.dart';
+import 'widgets/post_save_engagement_sheet.dart';
 import 'widgets/voice_input_button.dart';
 
 class DailyEntryScreen extends ConsumerStatefulWidget {
@@ -62,7 +65,10 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   int _overallRating = 3;
   final Map<String, int> _subRatings = {};
   final _noteController = TextEditingController();
+  final _tagController = TextEditingController();
+  final List<String> _tags = [];
   bool _isSaving = false;
+  bool _isPrivate = false;
   String? _selectedImagePath;
   Timer? _autosaveTimer;
 
@@ -102,6 +108,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     _saveDraft();
     _noteController.removeListener(_scheduleDraftSave);
     _noteController.dispose();
+    _tagController.dispose();
     super.dispose();
   }
 
@@ -120,6 +127,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         'subRatings': _subRatings,
         'note': _noteController.text,
         'image': _selectedImagePath,
+        'tags': _tags,
       };
       await prefs.setString(_draftKey, jsonEncode(draft));
     } catch (e) {
@@ -151,6 +159,9 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         final note = draft['note'] as String? ?? '';
         if (note.isNotEmpty) _noteController.text = note;
         _selectedImagePath = draft['image'] as String?;
+        _tags.clear();
+        final savedTags = draft['tags'] as List<dynamic>? ?? [];
+        _tags.addAll(savedTags.map((e) => e.toString()));
       });
     } catch (e) {
       if (kDebugMode) debugPrint('DailyEntry: draft load failed: $e');
@@ -235,6 +246,16 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         _buildNoteField(isDark, isEn),
                         const SizedBox(height: AppConstants.spacingXl),
 
+                        // Tags (optional)
+                        _buildSectionLabel(
+                          context,
+                          isDark,
+                          isEn ? 'Tags (optional)' : 'Etiketler (opsiyonel)',
+                        ),
+                        const SizedBox(height: AppConstants.spacingMd),
+                        _buildTagSection(isDark, isEn),
+                        const SizedBox(height: AppConstants.spacingXl),
+
                         // Photo attachment
                         if (!kIsWeb) ...[
                           _buildSectionLabel(
@@ -257,6 +278,17 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         // Sleep quality section (collapsible)
                         SleepSection(date: _selectedDate),
                         const SizedBox(height: AppConstants.spacingXl),
+
+                        // Private vault toggle
+                        if (!kIsWeb)
+                          PrivateToggle(
+                            isPrivate: _isPrivate,
+                            onChanged: (v) => setState(() => _isPrivate = v),
+                            isEn: isEn,
+                            isDark: isDark,
+                          ),
+                        if (!kIsWeb)
+                          const SizedBox(height: AppConstants.spacingXl),
 
                         // Save button
                         _buildSaveButton(isDark, isEn),
@@ -750,6 +782,143 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     ).glassListItem(context: context, index: 4);
   }
 
+  void _addTag() {
+    final tag = _tagController.text.trim();
+    if (tag.isNotEmpty && !_tags.contains(tag)) {
+      HapticService.buttonPress();
+      setState(() => _tags.add(tag));
+      _tagController.clear();
+      _scheduleDraftSave();
+    }
+  }
+
+  Widget _buildTagSection(bool isDark, bool isEn) {
+    return GlassPanel(
+      elevation: GlassElevation.g2,
+      borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+      padding: const EdgeInsets.all(AppConstants.spacingLg),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Existing tags as removable chips
+          if (_tags.isNotEmpty) ...[
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: _tags
+                  .map(
+                    (tag) => Container(
+                      padding: const EdgeInsets.only(
+                        left: 12,
+                        right: 5,
+                        top: 6,
+                        bottom: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.starGold.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            tag,
+                            style: AppTypography.subtitle(
+                              fontSize: 13,
+                              color: AppColors.starGold,
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() => _tags.remove(tag));
+                              _scheduleDraftSave();
+                            },
+                            child: Icon(
+                              Icons.close_rounded,
+                              size: 16,
+                              color: (isDark ? Colors.white : Colors.black)
+                                  .withValues(alpha: 0.3),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+            const SizedBox(height: 10),
+          ],
+          // Tag input row
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _tagController,
+                  style: AppTypography.subtitle(
+                    fontSize: 14,
+                    color: isDark ? Colors.white : Colors.black87,
+                  ),
+                  decoration: InputDecoration(
+                    hintText: isEn ? 'Add tag...' : 'Etiket ekle...',
+                    hintStyle: AppTypography.subtitle(
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                    isDense: true,
+                    filled: true,
+                    fillColor: (isDark ? Colors.white : Colors.black)
+                        .withValues(alpha: 0.05),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 10,
+                    ),
+                  ),
+                  onSubmitted: (_) => _addTag(),
+                ),
+              ),
+              const SizedBox(width: 8),
+              GestureDetector(
+                onTap: _addTag,
+                child: Container(
+                  width: 38,
+                  height: 38,
+                  decoration: BoxDecoration(
+                    color: AppColors.starGold.withValues(alpha: 0.1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.add_rounded,
+                    size: 18,
+                    color: AppColors.starGold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          // Smart tag suggestions from frequent tags
+          _TagSuggestions(
+            currentTags: _tags,
+            isDark: isDark,
+            isEn: isEn,
+            onTagSelected: (tag) {
+              if (!_tags.contains(tag)) {
+                HapticService.buttonPress();
+                setState(() => _tags.add(tag));
+                _scheduleDraftSave();
+              }
+            },
+          ),
+        ],
+      ),
+    ).glassListItem(context: context, index: 4);
+  }
+
   Widget _buildPhotoPicker(bool isDark, bool isEn) {
     if (_selectedImagePath != null) {
       return GlassPanel(
@@ -957,6 +1126,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         subRatings: Map.from(_subRatings),
         note: _noteController.text.isNotEmpty ? _noteController.text : null,
         imagePath: _selectedImagePath,
+        tags: List<String>.from(_tags),
+        isPrivate: _isPrivate,
       );
 
       if (!mounted) return;
@@ -980,6 +1151,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       // Invalidate providers to refresh data
       ref.invalidate(todayJournalEntryProvider);
       ref.invalidate(journalStreakProvider);
+      if (_isPrivate) ref.invalidate(privateJournalEntriesProvider);
 
       // Track output for SmartRouter (feeds rule R3)
       ref
@@ -1019,6 +1191,12 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         );
       });
 
+      // Check for first-ever entry celebration
+      final entryCount = service.entryCount;
+      if (entryCount == 1 && mounted) {
+        await _showFirstEntryCelebration();
+      }
+
       // Check for streak milestone celebration (D3, D7, D14, etc.)
       await _checkStreakMilestone();
 
@@ -1027,25 +1205,13 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
 
       if (mounted) {
         HapticService.entryCompleted();
-        final isEn = ref.read(languageProvider) == AppLanguage.en;
-        final entryCount = service.entryCount;
-        final suggestion = _getPostSaveSuggestion(entryCount, isEn);
+        final streak = service.getCurrentStreak();
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              suggestion != null
-                  ? '${isEn ? 'Saved!' : 'Kaydedildi!'} ${suggestion.$1}'
-                  : (isEn ? 'Entry saved!' : 'Kaydedildi!'),
-            ),
-            behavior: SnackBarBehavior.floating,
-            action: suggestion != null
-                ? SnackBarAction(
-                    label: isEn ? 'Explore' : 'Keşfet',
-                    onPressed: () => context.push(suggestion.$2),
-                  )
-                : null,
-          ),
+        // Show engagement bottom sheet instead of simple SnackBar
+        PostSaveEngagementSheet.show(
+          context,
+          entryCount: entryCount,
+          currentStreak: streak,
         );
       }
     } catch (e) {
@@ -1139,6 +1305,96 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     } catch (e) {
       if (kDebugMode) debugPrint('DailyEntry: widget update error: $e');
     }
+  }
+
+  Future<void> _showFirstEntryCelebration() async {
+    if (!mounted) return;
+    final isEn = ref.read(languageProvider) == AppLanguage.en;
+    HapticFeedback.heavyImpact();
+
+    await showDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierColor: Colors.black54,
+      builder: (ctx) {
+        final isDark = Theme.of(ctx).brightness == Brightness.dark;
+        return Center(
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 32),
+            padding: const EdgeInsets.all(28),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: isDark
+                    ? [AppColors.cosmicPurple, AppColors.deepSpace]
+                    : [
+                        AppColors.lightSurface,
+                        AppColors.lightSurfaceVariant,
+                      ],
+              ),
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(
+                color: AppColors.starGold.withValues(alpha: 0.3),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.starGold.withValues(alpha: 0.15),
+                  blurRadius: 40,
+                  spreadRadius: 4,
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('\u{1F31F}', style: const TextStyle(fontSize: 56))
+                    .animate()
+                    .scale(
+                      begin: const Offset(0.3, 0.3),
+                      end: const Offset(1, 1),
+                      duration: 500.ms,
+                      curve: Curves.elasticOut,
+                    )
+                    .shimmer(delay: 500.ms, duration: 1200.ms),
+                const SizedBox(height: 16),
+                GradientText(
+                  isEn ? 'Your Journey Begins' : 'Yolculuğun Başlıyor',
+                  variant: GradientTextVariant.gold,
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+                const SizedBox(height: 12),
+                Text(
+                  isEn
+                      ? 'You just wrote your first reflection.\nEvery great story starts with a single page.'
+                      : 'İlk yansımanı yazdın.\nHer büyük hikaye tek bir sayfayla başlar.',
+                  style: AppTypography.decorativeScript(
+                    fontSize: 16,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                  textAlign: TextAlign.center,
+                ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+                const SizedBox(height: 24),
+                GradientButton.gold(
+                  label: isEn ? 'Continue' : 'Devam Et',
+                  onPressed: () => Navigator.of(ctx).pop(),
+                ).animate().fadeIn(delay: 600.ms, duration: 300.ms),
+              ],
+            ),
+          ).animate().scale(
+                begin: const Offset(0.8, 0.8),
+                end: const Offset(1, 1),
+                duration: 400.ms,
+                curve: Curves.easeOutBack,
+              ),
+        );
+      },
+    );
   }
 
   Future<void> _checkStreakMilestone() async {
@@ -1261,30 +1517,6 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
     }
   }
 
-  /// Returns a contextual (message, route) suggestion based on entry count,
-  /// or null if no suggestion is appropriate.
-  (String, String)? _getPostSaveSuggestion(int entryCount, bool isEn) {
-    if (entryCount == 7) {
-      return (
-        isEn ? 'See how your cycles flow' : 'Döngülerini keşfet',
-        Routes.emotionalCycles,
-      );
-    }
-    if (entryCount == 14) {
-      return (
-        isEn ? 'Check your mood trends' : 'Ruh hali trendlerini kontrol et',
-        Routes.moodTrends,
-      );
-    }
-    if (entryCount > 5 && entryCount % 5 == 0) {
-      return (
-        isEn ? 'Your patterns are emerging' : 'Örüntülerin belirginleşiyor',
-        Routes.journalPatterns,
-      );
-    }
-    return null;
-  }
-
   IconData _getAreaIcon(FocusArea area) {
     switch (area) {
       case FocusArea.energy:
@@ -1329,6 +1561,76 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
             'Pazar',
           ];
     return days[date.weekday - 1];
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TAG SUGGESTIONS - Shows frequent tags as quick-add chips
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _TagSuggestions extends ConsumerWidget {
+  final List<String> currentTags;
+  final bool isDark;
+  final bool isEn;
+  final ValueChanged<String> onTagSelected;
+
+  const _TagSuggestions({
+    required this.currentTags,
+    required this.isDark,
+    required this.isEn,
+    required this.onTagSelected,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final serviceAsync = ref.watch(journalServiceProvider);
+    return serviceAsync.when(
+      data: (service) {
+        final suggestions = service
+            .getFrequentTags(limit: 8)
+            .where((t) => !currentTags.contains(t))
+            .toList();
+        if (suggestions.isEmpty) return const SizedBox.shrink();
+        return Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Wrap(
+            spacing: 6,
+            runSpacing: 6,
+            children: suggestions
+                .map(
+                  (tag) => GestureDetector(
+                    onTap: () => onTagSelected(tag),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 5,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(
+                          color: (isDark ? Colors.white : Colors.black)
+                              .withValues(alpha: 0.1),
+                        ),
+                      ),
+                      child: Text(
+                        '+ $tag',
+                        style: AppTypography.subtitle(
+                          fontSize: 12,
+                          color: isDark
+                              ? AppColors.textMuted
+                              : AppColors.lightTextMuted,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        );
+      },
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+    );
   }
 }
 

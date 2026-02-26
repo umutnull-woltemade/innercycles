@@ -419,7 +419,39 @@ class _HomeHeader extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 8),
+              // Search icon
+              Semantics(
+                label: isEn ? 'Search' : 'Ara',
+                button: true,
+                child: GestureDetector(
+                  onTap: () {
+                    HapticService.buttonPress();
+                    context.push(Routes.search);
+                  },
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: (isDark
+                              ? AppColors.starGold
+                              : AppColors.lightStarGold)
+                          .withValues(alpha: 0.08),
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.search_rounded,
+                        size: 20,
+                        color: isDark
+                            ? AppColors.starGold
+                            : AppColors.lightStarGold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
               // Avatar circle → Settings
               Semantics(
                 label: isEn ? 'Profile & Settings' : 'Profil ve Ayarlar',
