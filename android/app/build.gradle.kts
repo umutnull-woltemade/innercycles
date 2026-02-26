@@ -21,6 +21,13 @@ android {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
+    // Use JDK 17 toolchain — auto-downloads if not locally available
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.venusone.innercycles"

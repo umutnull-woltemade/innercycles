@@ -792,22 +792,25 @@ class _FirstCyclePage extends StatelessWidget {
                             : null,
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(16),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 14,
+                        ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
                               _focusIcons[area],
-                              size: 36,
+                              size: 32,
                               color: isSelected
                                   ? color
                                   : color.withValues(alpha: 0.71),
                             ),
-                            const SizedBox(height: 12),
+                            const SizedBox(height: 8),
                             Text(
                               isEn ? area.displayNameEn : area.displayNameTr,
                               style: AppTypography.elegantAccent(
-                                fontSize: 20,
+                                fontSize: 19,
                                 fontWeight: FontWeight.w600,
                                 color: isSelected
                                     ? Colors.white
@@ -816,19 +819,21 @@ class _FirstCyclePage extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 4),
-                            Text(
-                              isEn
-                                  ? (_focusDescEn[area] ?? '')
-                                  : (_focusDescTr[area] ?? ''),
-                              style: AppTypography.decorativeScript(
-                                fontSize: 15,
-                                color: AppColors.textMuted.withValues(
-                                  alpha: 0.71,
+                            Flexible(
+                              child: Text(
+                                isEn
+                                    ? (_focusDescEn[area] ?? '')
+                                    : (_focusDescTr[area] ?? ''),
+                                style: AppTypography.decorativeScript(
+                                  fontSize: 14,
+                                  color: AppColors.textMuted.withValues(
+                                    alpha: 0.71,
+                                  ),
                                 ),
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                               ),
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
                             ),
                           ],
                         ),
