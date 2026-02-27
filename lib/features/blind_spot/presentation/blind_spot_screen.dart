@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
@@ -41,29 +42,65 @@ class BlindSpotScreen extends ConsumerWidget {
           child: blindSpotAsync.when(
             loading: () => const CosmicLoadingIndicator(),
             error: (e, s) => Center(
-              child: Text(
-                isEn
-                    ? 'Could not load. Your local data is unaffected.'
-                    : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                style: AppTypography.subtitle(
-                  color: isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted,
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    isEn
+                        ? 'Could not load. Your local data is unaffected.'
+                        : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                    textAlign: TextAlign.center,
+                    style: AppTypography.subtitle(
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(blindSpotServiceProvider),
+                    icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
+                    label: Text(
+                      isEn ? 'Retry' : 'Tekrar Dene',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             data: (blindSpotService) => journalAsync.when(
               loading: () => const CosmicLoadingIndicator(),
               error: (e, s) => Center(
-                child: Text(
-                  isEn
-                      ? 'Could not load. Your local data is unaffected.'
-                      : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                  style: AppTypography.subtitle(
-                    color: isDark
-                        ? AppColors.textMuted
-                        : AppColors.lightTextMuted,
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      isEn
+                          ? 'Could not load. Your local data is unaffected.'
+                          : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                      textAlign: TextAlign.center,
+                      style: AppTypography.subtitle(
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    TextButton.icon(
+                      onPressed: () =>
+                          ref.invalidate(journalServiceProvider),
+                      icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
+                      label: Text(
+                        isEn ? 'Retry' : 'Tekrar Dene',
+                        style: AppTypography.elegantAccent(
+                          fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               data: (journalService) {
@@ -158,73 +195,75 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
       backgroundColor: widget.isDark
           ? AppColors.surfaceDark
           : AppColors.lightCard,
-      child: CustomScrollView(
-        physics: const BouncingScrollPhysics(
-          parent: AlwaysScrollableScrollPhysics(),
-        ),
-        slivers: [
-          GlassSliverAppBar(
-            title: widget.isEn
-                ? 'What Your Journal Reveals'
-                : 'Günlüğün Ne Ortaya Çıkarıyor',
+      child: CupertinoScrollbar(
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
           ),
-          if (!widget.hasEnough)
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: _NotEnoughData(
-                isDark: widget.isDark,
-                isEn: widget.isEn,
-                entryCount: widget.entries.length,
-              ),
-            )
-          else if (_isGenerating || _report == null)
-            const SliverFillRemaining(
-              hasScrollBody: false,
-              child: CosmicLoadingIndicator(),
-            )
-          else if (_report case final report?)
-            SliverPadding(
-              padding: const EdgeInsets.all(16),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate([
-                  _OverallInsightCard(
-                    report: report,
-                    isDark: widget.isDark,
-                    isEn: widget.isEn,
-                  ),
-                  const SizedBox(height: 20),
-                  _BlindSpotsList(
-                    spots: report.blindSpots,
-                    isDark: widget.isDark,
-                    isEn: widget.isEn,
-                  ),
-                  const SizedBox(height: 20),
-                  _GrowthSuggestionsCard(
-                    report: report,
-                    isDark: widget.isDark,
-                    isEn: widget.isEn,
-                  ),
-                  const SizedBox(height: 24),
-                  ContentDisclaimer(
-                    language: widget.isEn ? AppLanguage.en : AppLanguage.tr,
-                  ),
-                  const SizedBox(height: 20),
-                  _ShareInsightsButton(
-                    spotCount: report.blindSpots.length,
-                    isDark: widget.isDark,
-                    isEn: widget.isEn,
-                  ),
-                  const SizedBox(height: 24),
-                  ToolEcosystemFooter(
-                    currentToolId: 'blindSpot',
-                    isEn: widget.isEn,
-                    isDark: widget.isDark,
-                  ),
-                  const SizedBox(height: 40),
-                ]),
-              ),
+          slivers: [
+            GlassSliverAppBar(
+              title: widget.isEn
+                  ? 'What Your Journal Reveals'
+                  : 'Günlüğün Ne Ortaya Çıkarıyor',
             ),
-        ],
+            if (!widget.hasEnough)
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: _NotEnoughData(
+                  isDark: widget.isDark,
+                  isEn: widget.isEn,
+                  entryCount: widget.entries.length,
+                ),
+              )
+            else if (_isGenerating || _report == null)
+              const SliverFillRemaining(
+                hasScrollBody: false,
+                child: CosmicLoadingIndicator(),
+              )
+            else if (_report case final report?)
+              SliverPadding(
+                padding: const EdgeInsets.all(16),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate([
+                    _OverallInsightCard(
+                      report: report,
+                      isDark: widget.isDark,
+                      isEn: widget.isEn,
+                    ),
+                    const SizedBox(height: 20),
+                    _BlindSpotsList(
+                      spots: report.blindSpots,
+                      isDark: widget.isDark,
+                      isEn: widget.isEn,
+                    ),
+                    const SizedBox(height: 20),
+                    _GrowthSuggestionsCard(
+                      report: report,
+                      isDark: widget.isDark,
+                      isEn: widget.isEn,
+                    ),
+                    const SizedBox(height: 24),
+                    ContentDisclaimer(
+                      language: widget.isEn ? AppLanguage.en : AppLanguage.tr,
+                    ),
+                    const SizedBox(height: 20),
+                    _ShareInsightsButton(
+                      spotCount: report.blindSpots.length,
+                      isDark: widget.isDark,
+                      isEn: widget.isEn,
+                    ),
+                    const SizedBox(height: 24),
+                    ToolEcosystemFooter(
+                      currentToolId: 'blindSpot',
+                      isEn: widget.isEn,
+                      isDark: widget.isDark,
+                    ),
+                    const SizedBox(height: 40),
+                  ]),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -870,9 +909,9 @@ class _ShareInsightsButton extends StatelessWidget {
         HapticFeedback.mediumImpact();
         final text = isEn
             ? 'I uncovered $spotCount emotional blind spots through self-reflection with InnerCycles.\n\n'
-                  'Discover your hidden patterns:\nhttps://apps.apple.com/app/innercycles/id6758612716'
+                  'Discover your hidden patterns:\nhttps://apps.apple.com/app/innercycles/id6758612716\n#InnerCycles #SelfDiscovery'
             : 'InnerCycles ile öz yansıma yaparak $spotCount duygusal kör noktamı keşfettim.\n\n'
-                  'Gizli kalıplarını keşfet:\nhttps://apps.apple.com/app/innercycles/id6758612716';
+                  'Gizli kalıplarını keşfet:\nhttps://apps.apple.com/app/innercycles/id6758612716\n#InnerCycles';
         SharePlus.instance.share(ShareParams(text: text));
       },
     );

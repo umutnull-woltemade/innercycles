@@ -42,7 +42,7 @@ import '../services/notification_lifecycle_service.dart';
 import '../services/voice_journal_service.dart';
 import '../services/pattern_engine_service.dart';
 import '../services/year_review_service.dart';
-// referral_service removed (killed feature)
+// referral + intro offer providers defined in their service files
 import '../services/context_module_service.dart';
 import '../services/habit_suggestion_service.dart';
 import '../services/monthly_theme_service.dart';
@@ -458,12 +458,8 @@ final guidedProgramServiceProvider = FutureProvider<GuidedProgramService>((
 
 final seasonalReflectionServiceProvider =
     FutureProvider<SeasonalReflectionService>((ref) async {
-      return SeasonalReflectionService.init();
+      return await SeasonalReflectionService.init();
     });
-
-// =============================================================================
-// EXPORT SERVICE PROVIDER
-// =============================================================================
 
 // =============================================================================
 // GROWTH CHALLENGE PROVIDER
@@ -686,7 +682,9 @@ final yearReviewServiceProvider = FutureProvider<YearReviewService>((
 // REFERRAL SERVICE PROVIDER
 // =============================================================================
 
-// referralServiceProvider removed (killed feature)
+// Referral + Introductory Offer providers are defined in their service files:
+// - referralServiceProvider → referral_service.dart
+// - introductoryOfferProvider → introductory_offer_service.dart
 
 // =============================================================================
 // CONTEXT MODULE SERVICE PROVIDER

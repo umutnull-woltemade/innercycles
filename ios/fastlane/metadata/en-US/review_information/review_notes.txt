@@ -1,0 +1,26 @@
+InnerCycles is a personal journaling app for mood tracking, self-reflection, and emotional pattern recognition. No login is required — users can start journaling immediately.
+
+HOW TO TEST:
+1. Launch the app and complete the brief onboarding (enter name, select focus areas).
+2. On the home screen, create a journal entry. After saving, a first-entry celebration appears.
+3. Explore Dream Journal, Mood Tracking, and Pattern insights from the home feed.
+4. Open Settings to see profile, notification preferences, and Premium subscription options.
+5. Check iOS Widgets: add InnerCycles widgets from the Home Screen editor.
+
+SIGN-IN: Optional. Users may sign in with Apple for cloud backup. All core features work without an account.
+
+SUBSCRIPTIONS: InnerCycles Premium is offered as Monthly ($7.99) and Annual ($29.99) auto-renewing subscriptions, plus a Lifetime ($79.99) one-time purchase, via RevenueCat/StoreKit 2. Free users have full access to journaling, dream logging, and basic pattern insights; Premium unlocks AI reflections, advanced patterns, and an ad-free experience.
+
+ATT PROMPT: The app requests App Tracking Transparency permission to serve personalized ads via Google AdMob. If the user declines, only non-personalized ads are shown. Premium subscribers see no ads.
+
+CONTENT: Reflective prompts and insights are generated from a curated content database combined with AI-assisted content generation. AI-generated content is clearly labeled, safety-filtered to remove predictive or diagnostic language. No user-generated content is displayed to other users. The app does not provide medical, psychological, or predictive advice. Full AI usage policy at https://umutnull-woltemade.github.io/innercycles/ai-policy.html.
+
+BIRTH DATE: Birth date is collected solely for age verification and birthday-themed reflection prompts. No astrological calculations are performed.
+
+iOS WIDGETS: 5 widget types available (Daily Reflection, Mood Insight, Weekly Mood Grid, Cycle Position, Lock Screen). Data flows via App Groups (group.com.venusone.innercycles) and MethodChannel bridge.
+
+APPLE WATCH: Companion app for quick mood logging. Data synced via WatchConnectivity.
+
+PRIVACY: No personal data is shared with third parties beyond analytics (Apple App Analytics) and ads (AdMob). Full privacy policy at https://umutnull-woltemade.github.io/innercycles/privacy.html.
+
+CONTACT: support@innercycles.app

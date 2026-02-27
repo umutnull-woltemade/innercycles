@@ -1,22 +1,31 @@
 # ════════════════════════════════════════════════════════════════════════════
-# APP STORE METADATA - InnerCycles (Anti-Similarity Rewrite February 2026)
+# APP STORE METADATA - InnerCycles (ASO-Optimized February 2026)
 # ════════════════════════════════════════════════════════════════════════════
 # Copy these values into App Store Connect.
 # Title + Subtitle + Keyword Field are all indexed by Apple's algorithm.
-# Screenshot captions are now also indexed via OCR (June 2025 change).
+# Screenshot captions are also indexed via OCR (June 2025 change).
+# RULE: Never repeat keywords across title, subtitle, and keyword field.
+# Apple's algorithm is additive — it auto-combines tokens across all fields.
 # ════════════════════════════════════════════════════════════════════════════
 
 # ── TITLE (30 char max) ──────────────────────────────────────────────────
-title: "InnerCycles - Cycle Mapping"  # 28 chars — owns "cycle mapping" category
+title: "InnerCycles - Daily Journal"  # 29 chars — captures #1 keyword "journal"
 
 # ── SUBTITLE (30 char max) ───────────────────────────────────────────────
-subtitle: "Emotional Cycle Intelligence"  # 30 chars — owns "cycle intelligence"
+subtitle: "Mood Tracker & Self Reflection"  # 30 chars — captures "mood", "tracker", "self", "reflection"
 
 # ── KEYWORD FIELD (100 char max, comma-separated, no spaces) ─────────────
 # Do NOT repeat words from title/subtitle. Apple auto-combines tokens.
 # Singular forms only — Apple auto-indexes plurals.
-keywords: "journal,pattern,dream,archaeology,recurrence,archetype,shadow,mood,tracker,wellness,self,awareness,habit,sleep,growth,insight"
-# 100 chars — "cycle", "mapping", "emotional", "intelligence" already in title/subtitle
+# "journal", "daily", "mood", "tracker", "self", "reflection" already in title/subtitle.
+keywords: "diary,dream,streak,wellness,mindfulness,pattern,gratitude,habit,mental,health,emotion,insight,prompt"
+# 100 chars — 13 unique terms, none repeat title/subtitle
+
+# ── SPANISH (MEXICO) LOCALE HACK ────────────────────────────────────────
+# US App Store indexes BOTH en-US and es-MX. Populate es-MX with additional
+# English keywords to effectively double indexable keyword space (160→320 chars).
+es_mx_keywords: "wellbeing,self-help,therapy,anxiety,stress,happiness,positivity,affirmation,breathe,relax,log,note"
+# 98 chars — 12 additional terms
 
 # ── CATEGORY ─────────────────────────────────────────────────────────────
 primary_category: "Lifestyle"
@@ -24,93 +33,111 @@ secondary_category: "Health & Fitness"
 
 # ── SCREENSHOT CAPTIONS (keyword-rich for OCR indexing) ──────────────────
 screenshot_captions:
-  1: "Cycle position 3 of 7 — here's what happened last time"
-  2: "This emotional pattern has recurred 4 times since October"
-  3: "Dream archaeology: this symbol appeared in 6 of your last 20 dreams"
-  4: "Archetype shift detected: Seeker to Explorer"
-  5: "Cycle-positioned journal entry mapped against past patterns"
-  6: "Emotional cycle visualizer — see your rhythms across months"
-  7: "Shadow-light integration: 62% of fear themes resolved"
-  8: "Monthly cycle report: 3 patterns identified, 1 breaking"
-  9: "Cyclical intelligence cards — share your pattern insights"
-  10: "Private by architecture — your cycle data is encrypted and under your control"
+  1: "Your emotions have a rhythm — see patterns you never noticed before"
+  2: "Build a journaling streak — track your progress, celebrate milestones"
+  3: "Dreams decoded — record, search, and understand your dreams"
+  4: "AI-powered insights — discover what your entries reveal about you"
+  5: "Your mood, visualized — spot trends across days, weeks, and months"
+  6: "Widgets on your Home Screen — streak, prompts, and mood at a glance"
+  7: "Beautiful dark and light themes — designed to feel calm and personal"
+  8: "Never forget a birthday — your personal birthday agenda, built in"
+  9: "Quick mood log from your wrist — Apple Watch companion included"
+  10: "Private. Secure. Yours. — your journal stays on your device"
+
+# ── PROMOTIONAL TEXT (170 chars, can be updated without review) ──────────
+promotional_text: "New: AI-powered reflections, streak tracking, and iOS widgets. Understand yourself better, one entry at a time."
+# 111 chars — feature-forward, benefit-driven
 
 # ── DESCRIPTION (iOS — not indexed, optimized for conversion) ────────────
 description: |
-  Map the emotional cycles you repeat without realizing it.
+  Understand yourself better, one entry at a time.
 
-  InnerCycles is a cyclical intelligence system — not a mood diary. It detects recurring emotional patterns across your journal entries, dreams, and check-ins. Over time, it shows you where you are in your emotional rhythms — and what you wrote last time you felt this way.
+  InnerCycles is your personal space for daily journaling, mood tracking, and self-reflection. Discover patterns in your emotions, track your streaks, and grow with AI-powered insights — all in a beautifully designed, private journaling experience.
 
-  HOW IT WORKS:
+  Whether you journal every morning, track your moods throughout the day, or want to remember your dreams, InnerCycles adapts to your rhythm and helps you see the bigger picture of your inner life.
 
-  Every journal entry, dream, and emotional check-in feeds a pattern recurrence engine. The system identifies when you re-enter familiar emotional territory and surfaces past entries from similar cycle positions.
+  — DAILY JOURNALING —
+  • Write freely with guided prompts or open entries
+  • Track focus areas: energy, emotions, decisions, social life
+  • Build lasting streaks with gentle reminders
+  • Review monthly patterns and personal insights
 
-  - Cycle-Mapped Journaling — Each entry is plotted on your emotional timeline with recurrence detection
-  - Dream Archaeology — Record dreams and track recurring symbols, story arcs, shadow integration, and archetype patterns across your dream history
-  - Recurrence Detection Engine — Identifies when emotional patterns repeat across weeks and months
-  - Archetype Progression — Tracks how your dominant personality archetype evolves based on what you write, dream, and explore
-  - Shadow-Light Integration — Tracks your relationship with difficult emotions through journaling milestones
-  - Wellness Rhythm Tracking — Observe energy patterns across physical, emotional, and intellectual dimensions over time
-  - Cycle Position Reports — Weekly and monthly reports showing where you are in recurring patterns
-  - Private & Secure — Your data is encrypted, with optional cloud sync under your control
+  — MOOD TRACKING —
+  • Log your mood in seconds with beautiful visual tracking
+  • Spot emotional patterns over days, weeks, and months
+  • Understand what influences how you feel
 
-  WHO IT'S FOR:
+  — DREAM JOURNAL —
+  • Record dreams before they fade
+  • Track recurring themes and symbols
+  • Build a searchable dream archive
 
-  People who notice they repeat the same emotional patterns but cannot see why. People who want structure around their inner life — not motivational quotes, but a system that maps what recurs and when.
+  — AI-POWERED REFLECTIONS —
+  • Receive personalized insights based on your entries
+  • Discover connections you might have missed
+  • Gentle, private, and never judgmental
 
-  START FREE TODAY
+  — MORE FEATURES —
+  • Birthday Agenda: Never forget important dates
+  • iOS Widgets: See your streak and prompts at a glance
+  • Apple Watch: Quick mood logging from your wrist
+  • Beautiful dark and light themes with pastel aesthetics
+  • Full privacy: your data stays on your device
+  • Available in English, Turkish, German, and French
 
-  Download InnerCycles and see the cycles you have been living inside.
+  — WHY INNERCYCLES? —
+  Unlike simple diary apps, InnerCycles uses pattern recognition to help you understand your cycles — emotional, creative, social, and personal. Past entries suggest trends. You notice what matters. Growth happens naturally.
 
-  INNERCYCLES PREMIUM:
-  - Full recurrence detection engine
-  - Unlimited dream archaeology sessions
-  - Monthly cycle position reports
-  - Advanced archetype progression tracking
-  - Shadow-light integration dashboard
-  - Cyclical intelligence card templates
-  - Ad-free experience
+  Start your journaling practice today. Your future self will thank you.
+
+  — INNERCYCLES PREMIUM —
+  • AI-powered reflections and insights
+  • Advanced pattern detection
+  • Unlimited entries and dream logs
+  • Monthly and annual reflection reports
+  • Ad-free experience
 
   Subscriptions: Monthly or Annual plans available. Payment charged to iTunes Account at confirmation of purchase. Subscription auto-renews unless turned off at least 24 hours before the end of the current period. Manage subscriptions in Account Settings.
 
   Privacy Policy: https://umutnull-woltemade.github.io/innercycles/privacy.html
   Terms of Use: https://umutnull-woltemade.github.io/innercycles/terms.html
 
-# ── PROMOTIONAL TEXT (170 chars, can be updated without review) ──────────
-promotional_text: "New: Recurrence Detection Engine + Dream Archaeology + Archetype Progression. Map the emotional cycles you repeat — see your cycle position in 7 days."
-
 # ── WHAT'S NEW (for next update) ─────────────────────────────────────────
 whats_new: |
   What's New in InnerCycles:
-  - Recurrence Detection — See when emotional patterns repeat across weeks
-  - Dream Archaeology — Track recurring symbols and story arcs across dreams
-  - Archetype Progression — Watch your dominant archetype evolve over time
-  - Cycle Position Reports — Know where you are in your recurring patterns
-  - Shadow-Light Dashboard — Measure emotional integration milestones
-  - Enhanced Cyclical Intelligence — Deeper pattern connections
+  - First-entry celebration with animated milestone
+  - iOS Home Screen and Lock Screen widgets
+  - Apple Watch companion for quick mood logging
+  - AI-powered reflections for deeper insights
+  - Birthday Agenda with notifications
+  - Enhanced streak tracking with milestone celebrations
+  - Improved readability and pastel design refresh
   - Bug fixes and performance improvements
 
 # ── REVIEW NOTES (paste into App Store Connect → App Review Information) ──
 review_notes: |
-  InnerCycles is a cyclical pattern intelligence app built around journaling. No login is required — users can start journaling immediately.
+  InnerCycles is a personal journaling app for mood tracking, self-reflection, and emotional pattern recognition. No login is required — users can start journaling immediately.
 
   HOW TO TEST:
-  1. Launch the app and complete the brief onboarding (enter name, optional birth date).
-  2. On the home screen, create a journal entry to begin feeding the cycle engine.
-  3. Explore Dream Archaeology, Cycle-Mapped Journaling, and Pattern Reports from the home cards.
+  1. Launch the app and complete the brief onboarding (enter name, select focus areas).
+  2. On the home screen, create a journal entry. After saving, a first-entry celebration appears.
+  3. Explore Dream Journal, Mood Tracking, and Pattern insights from the home feed.
   4. Open Settings to see profile, notification preferences, and Premium subscription options.
+  5. Check iOS Widgets: add InnerCycles widgets from the Home Screen editor.
 
   SIGN-IN: Optional. Users may sign in with Apple for cloud backup. All core features work without an account.
 
-  SUBSCRIPTIONS: InnerCycles Premium is offered as Monthly and Annual auto-renewing subscriptions via RevenueCat/StoreKit 2. Free users have full access to journaling, dream logging, and basic cycle awareness; Premium unlocks full recurrence detection, unlimited dream archaeology, and an ad-free experience.
+  SUBSCRIPTIONS: InnerCycles Premium is offered as Monthly ($7.99) and Annual ($29.99) auto-renewing subscriptions, plus a Lifetime ($79.99) one-time purchase, via RevenueCat/StoreKit 2. Free users have full access to journaling, dream logging, and basic pattern insights; Premium unlocks AI reflections, advanced patterns, and an ad-free experience.
 
   ATT PROMPT: The app requests App Tracking Transparency permission to serve personalized ads via Google AdMob. If the user declines, only non-personalized ads are shown. Premium subscribers see no ads.
 
-  CONTENT: Reflective prompts, dream symbol definitions, and cycle analysis text are generated locally from a curated content database combined with AI-assisted content generation. AI-generated content is clearly labeled, safety-filtered to remove predictive or diagnostic language, and reviewed by human editors. No user-generated content is displayed to other users. The app does not provide medical, psychological, or predictive advice. Full AI usage policy at https://umutnull-woltemade.github.io/innercycles/ai-policy.html.
+  CONTENT: Reflective prompts and insights are generated from a curated content database combined with AI-assisted content generation. AI-generated content is clearly labeled, safety-filtered to remove predictive or diagnostic language. No user-generated content is displayed to other users. The app does not provide medical, psychological, or predictive advice. Full AI usage policy at https://umutnull-woltemade.github.io/innercycles/ai-policy.html.
 
-  ARCHETYPE SYSTEM: The app uses a personality archetype framework (Pioneer, Builder, Communicator, etc.) inspired by narrative psychology and personality typing systems like the Enneagram and MBTI. These are NOT zodiac signs. The initial archetype is assigned via an onboarding quiz based on self-reported preferences. The system tracks how a user's dominant archetype evolves over time based on what they write and explore.
+  BIRTH DATE: Birth date is collected solely for age verification and birthday-themed reflection prompts. No astrological calculations are performed.
 
-  BIRTH DATE: Birth date is collected solely for age verification and birthday-themed reflection prompts (e.g., "birthday reflection" on the user's birthday). Birth time and city fields exist for timezone-aware notification scheduling and are fully optional. No astrological calculations are performed.
+  iOS WIDGETS: 5 widget types available (Daily Reflection, Mood Insight, Weekly Mood Grid, Cycle Position, Lock Screen). Data flows via App Groups (group.com.venusone.innercycles) and MethodChannel bridge.
+
+  APPLE WATCH: Companion app for quick mood logging. Data synced via WatchConnectivity.
 
   PRIVACY: No personal data is shared with third parties beyond analytics (Apple App Analytics) and ads (AdMob). Full privacy policy at https://umutnull-woltemade.github.io/innercycles/privacy.html.
 
@@ -118,26 +145,42 @@ review_notes: |
 
 # ── LOCALIZED METADATA (Turkish) ─────────────────────────────────────────
 tr:
-  title: "InnerCycles - Döngü Haritası"  # 30 chars
-  subtitle: "Duygusal Döngü Zekası"  # 22 chars
-  keywords: "günlük,örüntü,rüya,arkeoloji,tekrar,arketip,gölge,ruh,hali,farkındalık,benlik,bakım,duygu,döngü,büyüme"
+  title: "InnerCycles - Günlük"  # 21 chars
+  subtitle: "Ruh Hali Takibi & Günlük"  # 25 chars — captures "ruh hali", "takibi", "günlük"
+  keywords: "günlük,rüya,seri,sağlık,farkındalık,örüntü,minnettarlık,alışkanlık,duygu,içgörü,yazma,huzur,kişisel"
   description: |
-    Fark etmeden tekrarladığın duygusal döngüleri haritalandır.
+    Kendini daha iyi anla, her giriş bir adım.
 
-    InnerCycles bir döngüsel zeka sistemidir — basit bir günlük değil. Günlük yazıların, rüyaların ve duygusal kayıtların üzerinden tekrarlayan örüntüleri tespit eder. Zamanla sana döngü pozisyonunu gösterir: şu an neredesin, daha önce neredeydin ve o zaman ne olmuştu.
+    InnerCycles, günlük yazma, ruh hali takibi ve kendini keşfetme için kişisel alanın. Duygularındaki örüntüleri keşfet, serini takip et ve yapay zeka destekli içgörülerle kendini geliştir.
 
     ÖZELLİKLER:
-    - Döngü Haritalı Günlük — Her kayıt duygusal zaman çizelgene yerleştirilir
-    - Rüya Arkeolojisi — 1000+ sembol veritabanıyla tekrarlayan rüya örüntülerini takip et
-    - Tekrar Tespit Motoru — Duygusal döngülerin ne zaman tekrarladığını belirler
-    - Arketip İlerlemesi — 12 arketip çerçevesinde kişilik evrimini izle
-    - Gölge-Işık Entegrasyonu — Duygusal gölge çalışmasını ve entegrasyon kilometre taşlarını ölç
-    - Döngü Pozisyon Raporları — Tekrarlayan örüntülerdeki yerini gör
-    - Özel & Güvenli — Verilerin şifrelenir, isteğe bağlı bulut senkronizasyonu senin kontrolünde
+    - Rehberli sorularla günlük yazma
+    - Ruh hali takibi ve duygusal örüntü tespiti
+    - Rüya günlüğü ve arşivi
+    - Yapay zeka destekli yansımalar
+    - Doğum günü ajandası ve bildirimleri
+    - iOS Widget'ları ve Apple Watch desteği
+    - Seri takibi ve kutlama anları
+    - Karanlık ve aydınlık temalar
 
-    Ücretsiz başla. İçinde yaşadığın döngüleri gör.
+    Ücretsiz başla. Bugün yazma pratiğine başla.
 
-    Abonelik Bilgileri: Ödeme, satın alma onayında Apple Kimliği hesabınızdan tahsil edilir. Abonelik, mevcut dönemin bitiminden en az 24 saat önce iptal edilmediği takdirde otomatik olarak yenilenir. Gizlilik Politikası: https://umutnull-woltemade.github.io/innercycles/privacy.html | Kullanım Koşulları: https://umutnull-woltemade.github.io/innercycles/terms.html
+    Abonelik Bilgileri: Ödeme, satın alma onayında Apple Kimliği hesabınızdan tahsil edilir. Abonelik, mevcut dönemin bitiminden en az 24 saat önce iptal edilmediği takdirde otomatik olarak yenilenir.
+
+    Gizlilik Politikası: https://umutnull-woltemade.github.io/innercycles/privacy.html
+    Kullanım Koşulları: https://umutnull-woltemade.github.io/innercycles/terms.html
+
+# ── LOCALIZED METADATA (German) ──────────────────────────────────────────
+de:
+  title: "InnerCycles - Tagebuch"  # 22 chars
+  subtitle: "Stimmungstracker & Tagebuch"  # 28 chars
+  keywords: "Tagebuch,Traum,Serie,Wellness,Achtsamkeit,Muster,Dankbarkeit,Gewohnheit,Gefühle,Einsicht,Schreiben,Meditation,Gesundheit,Ruhe"
+
+# ── LOCALIZED METADATA (French) ──────────────────────────────────────────
+fr:
+  title: "InnerCycles - Journal"  # 22 chars
+  subtitle: "Suivi d'Humeur & Journal"  # 25 chars
+  keywords: "journal intime,rêve,série,bien-être,pleine conscience,schéma,gratitude,habitude,émotion,insight,écriture,méditation,santé,calme"
 
 # ── APP STORE CONNECT PRIVACY NUTRITION LABELS ────────────────────────────
 # Paste these values into App Store Connect → App Privacy → Data Types

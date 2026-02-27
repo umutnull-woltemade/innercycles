@@ -12,26 +12,35 @@ import '../../../data/providers/app_providers.dart';
 import '../../../shared/widgets/gradient_outlined_button.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../data/content/share_card_templates.dart';
+import '../../../data/models/share_card_models.dart';
+import '../../../shared/widgets/share_card_sheet.dart';
 
 /// Full-screen celebration modal for streak milestones (D3, D7, D14, etc.)
 class MilestoneCelebrationModal extends StatefulWidget {
   final int streakDays;
   final bool isEn;
+  final bool isPremium;
 
   const MilestoneCelebrationModal({
     super.key,
     required this.streakDays,
     required this.isEn,
+    this.isPremium = false,
   });
 
   /// Show the celebration modal. Call after saving an entry.
-  static void show(BuildContext context, int days, bool isEn) {
+  static void show(BuildContext context, int days, bool isEn, {bool isPremium = false}) {
     HapticFeedback.heavyImpact();
     showDialog(
       context: context,
       barrierDismissible: true,
       barrierColor: Colors.black54,
-      builder: (_) => MilestoneCelebrationModal(streakDays: days, isEn: isEn),
+      builder: (_) => MilestoneCelebrationModal(
+        streakDays: days,
+        isEn: isEn,
+        isPremium: isPremium,
+      ),
     );
   }
 
@@ -46,8 +55,28 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
 
   int get streakDays => widget.streakDays;
   bool get isEn => widget.isEn;
+  bool get isPremium => widget.isPremium;
 
   Future<void> _shareCard() async {
+    // Open the visual share card gallery for a higher-quality, branded share
+    if (!mounted) return;
+    Navigator.of(context).pop(); // close celebration first
+    if (!context.mounted) return;
+    await ShareCardSheet.show(
+      context,
+      template: ShareCardTemplates.streakFlame,
+      data: ShareCardData(
+        headline: _title,
+        subtitle: _message,
+        statValue: '$streakDays',
+        statLabel: isEn ? 'day streak' : 'günlük seri',
+      ),
+      isEn: isEn,
+    );
+  }
+
+  // ignore: unused_element
+  Future<void> _shareCardLegacy() async {
     setState(() => _isSharing = true);
     try {
       final boundary =
@@ -285,6 +314,53 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                           ),
                         ],
                       ),
+
+                      // Premium nudge for free users at 7-day streak
+                      if (!isPremium && streakDays == 7) ...[
+                        const SizedBox(height: 16),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 10,
+                          ),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                AppColors.starGold.withValues(alpha: 0.08),
+                                AppColors.celestialGold.withValues(alpha: 0.04),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: AppColors.starGold.withValues(alpha: 0.15),
+                              width: 0.5,
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.auto_awesome_rounded,
+                                size: 16,
+                                color: AppColors.starGold,
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  isEn
+                                      ? 'Unlock deeper insights with Premium'
+                                      : 'Premium ile daha derin içgörüler keşfet',
+                                  style: AppTypography.subtitle(
+                                    fontSize: 12,
+                                    color: isDark
+                                        ? AppColors.starGold.withValues(alpha: 0.8)
+                                        : AppColors.starGold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ).animate(delay: 450.ms).fadeIn(duration: 400.ms),
+                      ],
 
                       const SizedBox(height: 20),
 

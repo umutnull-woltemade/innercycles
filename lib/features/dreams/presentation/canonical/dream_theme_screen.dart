@@ -72,9 +72,9 @@ final Map<String, _ThemeConfig> _themeConfigs = {
     id: 'falling',
     questionKey: 'dreams.canonical.falling_question',
     accentColor: AppColors.starGold,
-    darkGradientEnd: const Color(0xFF1A0A2E),
-    lightGradientStart: const Color(0xFFFAF8FF),
-    lightGradientEnd: const Color(0xFFF0E8FF),
+    darkGradientEnd: const Color(0xFF2D2119),
+    lightGradientStart: const Color(0xFFFBF7F4),
+    lightGradientEnd: const Color(0xFFF5EDE6),
     sections: const [
       _SectionDef(
         titleKey: 'dreams.canonical.sections.short_answer',
@@ -119,9 +119,9 @@ final Map<String, _ThemeConfig> _themeConfigs = {
     id: 'water',
     questionKey: 'dreams.canonical.water_question',
     accentColor: AppColors.purpleAccent,
-    darkGradientEnd: const Color(0xFF0A1A2E),
-    lightGradientStart: const Color(0xFFF8FAFF),
-    lightGradientEnd: const Color(0xFFE8F0FF),
+    darkGradientEnd: const Color(0xFF1E1A15),
+    lightGradientStart: const Color(0xFFFBF7F4),
+    lightGradientEnd: const Color(0xFFEDE3D9),
     sections: const [
       _SectionDef(
         titleKey: 'dreams.canonical.sections.short_answer',
@@ -167,9 +167,9 @@ final Map<String, _ThemeConfig> _themeConfigs = {
     id: 'recurring',
     questionKey: 'dreams.canonical.recurring_question',
     accentColor: AppColors.amethyst,
-    darkGradientEnd: AppColors.cosmicPurple,
-    lightGradientStart: const Color(0xFFFAF8FF),
-    lightGradientEnd: const Color(0xFFF5F0FF),
+    darkGradientEnd: AppColors.nebulaPurple,
+    lightGradientStart: const Color(0xFFFBF7F4),
+    lightGradientEnd: const Color(0xFFF5EDE6),
     sections: const [
       _SectionDef(
         titleKey: 'dreams.canonical.sections.short_answer',
@@ -216,7 +216,7 @@ final Map<String, _ThemeConfig> _themeConfigs = {
     id: 'running',
     questionKey: 'dreams.canonical.running_question',
     accentColor: AppColors.streakOrange,
-    darkGradientEnd: const Color(0xFF1A1018),
+    darkGradientEnd: const Color(0xFF2D1E18),
     lightGradientStart: const Color(0xFFFFF8F5),
     lightGradientEnd: const Color(0xFFFFF0EB),
     sections: const [
@@ -263,9 +263,9 @@ final Map<String, _ThemeConfig> _themeConfigs = {
     id: 'losing-someone',
     questionKey: 'dreams.canonical.losing_question',
     accentColor: AppColors.mediumSlateBlue,
-    darkGradientEnd: AppColors.cosmicPurple,
-    lightGradientStart: const Color(0xFFF8F5FF),
-    lightGradientEnd: const Color(0xFFF0E8FF),
+    darkGradientEnd: AppColors.nebulaPurple,
+    lightGradientStart: const Color(0xFFFBF7F4),
+    lightGradientEnd: const Color(0xFFF5EDE6),
     sections: const [
       _SectionDef(
         titleKey: 'dreams.canonical.sections.short_answer',
@@ -309,10 +309,10 @@ final Map<String, _ThemeConfig> _themeConfigs = {
   'flying': _ThemeConfig(
     id: 'flying',
     questionKey: 'dreams.canonical.flying_question',
-    accentColor: AppColors.chartBlue,
-    darkGradientEnd: const Color(0xFF0A1A2E),
-    lightGradientStart: const Color(0xFFF5FAFF),
-    lightGradientEnd: const Color(0xFFE8F4FF),
+    accentColor: AppColors.auroraStart,
+    darkGradientEnd: const Color(0xFF1E1A15),
+    lightGradientStart: const Color(0xFFFBF7F4),
+    lightGradientEnd: const Color(0xFFEDE3D9),
     sections: const [
       _SectionDef(
         titleKey: 'dreams.canonical.sections.short_answer',
@@ -356,10 +356,10 @@ final Map<String, _ThemeConfig> _themeConfigs = {
   'darkness': _ThemeConfig(
     id: 'darkness',
     questionKey: 'dreams.canonical.darkness_question',
-    accentColor: const Color(0xFF546E7A),
-    darkGradientEnd: const Color(0xFF0D1520),
-    lightGradientStart: const Color(0xFFF5F7F9),
-    lightGradientEnd: const Color(0xFFECF0F3),
+    accentColor: AppColors.moonSilver,
+    darkGradientEnd: const Color(0xFF1A1510),
+    lightGradientStart: const Color(0xFFFBF7F4),
+    lightGradientEnd: const Color(0xFFEDE3D9),
     sections: const [
       _SectionDef(
         titleKey: 'dreams.canonical.sections.short_answer',
@@ -405,9 +405,9 @@ final Map<String, _ThemeConfig> _themeConfigs = {
     id: 'someone-from-past',
     questionKey: 'dreams.canonical.past_question',
     accentColor: AppColors.amethyst,
-    darkGradientEnd: const Color(0xFF1A0A20),
-    lightGradientStart: const Color(0xFFFAF5FC),
-    lightGradientEnd: const Color(0xFFF5E8F8),
+    darkGradientEnd: const Color(0xFF2D2119),
+    lightGradientStart: const Color(0xFFFBF7F4),
+    lightGradientEnd: const Color(0xFFF5EDE6),
     sections: const [
       _SectionDef(
         titleKey: 'dreams.canonical.sections.short_answer',
@@ -595,10 +595,10 @@ final Map<String, _ThemeConfig> _themeConfigs = {
   'unable-to-fly': _ThemeConfig(
     id: 'unable-to-fly',
     questionKey: 'dreams.canonical.unable_to_fly_question',
-    accentColor: const Color(0xFF90A4AE),
-    darkGradientEnd: const Color(0xFF101820),
-    lightGradientStart: const Color(0xFFF5F8FA),
-    lightGradientEnd: const Color(0xFFECF2F5),
+    accentColor: AppColors.moonSilver,
+    darkGradientEnd: const Color(0xFF1E1A15),
+    lightGradientStart: const Color(0xFFFBF7F4),
+    lightGradientEnd: const Color(0xFFEDE3D9),
     sections: const [
       _SectionDef(
         titleKey: 'dreams.canonical.sections.short_answer',
@@ -653,15 +653,26 @@ class DreamThemeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
     final config = _themeConfigs[themeId];
     if (config == null) {
       return Scaffold(
-        body: Center(child: Text('Unknown dream theme: $themeId')),
+        body: CosmicBackground(
+          child: Center(
+            child: Text(
+              isEn ? 'Dream theme not found' : 'Rüya teması bulunamadı',
+              style: AppTypography.subtitle(
+                color: isDark
+                    ? AppColors.textMuted
+                    : AppColors.lightTextMuted,
+              ),
+            ),
+          ),
+        ),
       );
     }
-
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final language = ref.watch(languageProvider);
     final color = config.accentColor;
 
     return Scaffold(
@@ -688,7 +699,7 @@ class DreamThemeScreen extends ConsumerWidget {
                     tooltip: L10nService.get('common.back', language),
                     icon: Icon(
                       Icons.chevron_left,
-                      color: isDark ? Colors.white70 : AppColors.textDark,
+                      color: isDark ? AppColors.textMuted : AppColors.textDark,
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -807,7 +818,7 @@ class DreamThemeScreen extends ConsumerWidget {
                   '•',
                   style: AppTypography.elegantAccent(
                     fontSize: 14,
-                    color: isDark ? Colors.white54 : AppColors.textLight,
+                    color: isDark ? AppColors.textMuted : AppColors.textLight,
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -816,7 +827,7 @@ class DreamThemeScreen extends ConsumerWidget {
                     bullet,
                     style: AppTypography.decorativeScript(
                       fontSize: 15,
-                      color: isDark ? Colors.white70 : AppColors.textDark,
+                      color: isDark ? AppColors.textMuted : AppColors.textDark,
                     ),
                   ),
                 ),

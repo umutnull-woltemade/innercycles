@@ -41,7 +41,7 @@ class ContentDisclaimer extends StatelessWidget {
         child: Text(
           text,
           style: AppTypography.decorativeScript(
-            fontSize: 10,
+            fontSize: 11,
             color: isDark
                 ? Colors.white54
                 : AppColors.textLight.withValues(alpha: 0.6),

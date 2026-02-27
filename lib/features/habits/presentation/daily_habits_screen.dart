@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -57,13 +58,34 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
         child: serviceAsync.when(
           loading: () => const CosmicLoadingIndicator(),
           error: (_, _) => Center(
-            child: Text(
-              CommonStrings.somethingWentWrong(language),
-              style: AppTypography.subtitle(
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  CommonStrings.somethingWentWrong(language),
+                  textAlign: TextAlign.center,
+                  style: AppTypography.subtitle(
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton.icon(
+                  onPressed: () =>
+                      ref.invalidate(habitSuggestionServiceProvider),
+                  icon: Icon(Icons.refresh_rounded,
+                      size: 16, color: AppColors.starGold),
+                  label: Text(
+                    isEn ? 'Retry' : 'Tekrar Dene',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           data: (service) => _buildContent(context, service, isDark, isEn),
@@ -82,104 +104,108 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
     final completedCount = service.todayCompletedCount;
     final totalAdopted = adoptedHabits.length;
 
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      slivers: [
-        GlassSliverAppBar(title: isEn ? 'Routine Tracker' : 'Rutin Takipçisi'),
-        SliverPadding(
-          padding: const EdgeInsets.all(16),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate([
-              if (adoptedHabits.isEmpty) ...[
-                _EmptyState(isDark: isDark, isEn: isEn),
-              ] else ...[
-                // Progress header
-                _ProgressHeader(
-                  completed: completedCount,
-                  total: totalAdopted,
-                  isDark: isDark,
-                  isEn: isEn,
-                ),
-                const SizedBox(height: 20),
+    return CupertinoScrollbar(
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
+        slivers: [
+          GlassSliverAppBar(
+            title: isEn ? 'Routine Tracker' : 'Rutin Takipçisi',
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(16),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                if (adoptedHabits.isEmpty) ...[
+                  _EmptyState(isDark: isDark, isEn: isEn),
+                ] else ...[
+                  // Progress header
+                  _ProgressHeader(
+                    completed: completedCount,
+                    total: totalAdopted,
+                    isDark: isDark,
+                    isEn: isEn,
+                  ),
+                  const SizedBox(height: 20),
 
-                // Habit check-off cards
-                ...adoptedHabits.asMap().entries.map((entry) {
-                  final index = entry.key;
-                  final habit = entry.value;
-                  final isChecked = service.isCheckedToday(habit.id);
-                  final streak = service.getHabitStreak(habit.id);
-                  final weekData = service.getWeekCompletions(habit.id);
+                  // Habit check-off cards
+                  ...adoptedHabits.asMap().entries.map((entry) {
+                    final index = entry.key;
+                    final habit = entry.value;
+                    final isChecked = service.isCheckedToday(habit.id);
+                    final streak = service.getHabitStreak(habit.id);
+                    final weekData = service.getWeekCompletions(habit.id);
 
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: _HabitCheckCard(
-                      habit: habit,
-                      isChecked: isChecked,
-                      streak: streak,
-                      weekData: weekData,
-                      isDark: isDark,
-                      isEn: isEn,
-                      onToggle: () async {
-                        HapticFeedback.mediumImpact();
-                        if (isChecked) {
-                          await service.uncheckToday(habit.id);
-                        } else {
-                          await service.checkOffToday(habit.id);
-                        }
-                        if (!mounted) return;
-                        setState(() {});
-                      },
-                    ),
-                  ).animate().fadeIn(
-                    duration: 300.ms,
-                    delay: Duration(milliseconds: (60 * index).clamp(0, 400)),
-                  );
-                }),
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: _HabitCheckCard(
+                        habit: habit,
+                        isChecked: isChecked,
+                        streak: streak,
+                        weekData: weekData,
+                        isDark: isDark,
+                        isEn: isEn,
+                        onToggle: () async {
+                          HapticFeedback.mediumImpact();
+                          if (isChecked) {
+                            await service.uncheckToday(habit.id);
+                          } else {
+                            await service.checkOffToday(habit.id);
+                          }
+                          if (!mounted) return;
+                          setState(() {});
+                        },
+                      ),
+                    ).animate().fadeIn(
+                      duration: 300.ms,
+                      delay: Duration(milliseconds: (60 * index).clamp(0, 400)),
+                    );
+                  }),
 
-                const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-                // Browse more habits link
-                Center(
-                  child: Semantics(
-                    label: isEn
-                        ? 'Browse all habits'
-                        : 'Tüm alışkanlıkları gözat',
-                    button: true,
-                    child: GestureDetector(
-                      onTap: () => context.push(Routes.habitSuggestions),
-                      behavior: HitTestBehavior.opaque,
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(minHeight: 44),
-                        child: Center(
-                          child: Text(
-                            isEn
-                                ? 'Browse all habits'
-                                : 'Tüm alışkanlıkları gözat',
-                            style: AppTypography.elegantAccent(
-                              fontSize: 14,
-                              color: AppColors.auroraStart,
-                              letterSpacing: 1.0,
+                  // Browse more habits link
+                  Center(
+                    child: Semantics(
+                      label: isEn
+                          ? 'Browse all habits'
+                          : 'Tüm alışkanlıkları gözat',
+                      button: true,
+                      child: GestureDetector(
+                        onTap: () => context.push(Routes.habitSuggestions),
+                        behavior: HitTestBehavior.opaque,
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(minHeight: 44),
+                          child: Center(
+                            child: Text(
+                              isEn
+                                  ? 'Browse all habits'
+                                  : 'Tüm alışkanlıkları gözat',
+                              style: AppTypography.elegantAccent(
+                                fontSize: 14,
+                                color: AppColors.auroraStart,
+                                letterSpacing: 1.0,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
 
-              ToolEcosystemFooter(
-                currentToolId: 'dailyHabits',
-                isEn: isEn,
-                isDark: isDark,
-              ),
-              const SizedBox(height: 40),
-            ]),
+                ToolEcosystemFooter(
+                  currentToolId: 'dailyHabits',
+                  isEn: isEn,
+                  isDark: isDark,
+                ),
+                const SizedBox(height: 40),
+              ]),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -495,7 +521,7 @@ class _EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.playlist_add_check_rounded,
-      title: isEn ? 'No habits adopted yet' : 'Henüz benimsenen alışkanlık yok',
+      title: isEn ? 'Your habit routine starts here' : 'Alışkanlık rutinin burada başlıyor',
       description: isEn
           ? 'Browse the habit library and adopt habits to track them daily'
           : 'Alışkanlık kütüphanesine göz at ve günlük takip için alışkanlık benimse',

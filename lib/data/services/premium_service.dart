@@ -10,6 +10,7 @@ import '../providers/app_providers.dart';
 import 'ad_service.dart';
 import 'analytics_service.dart';
 import 'l10n_service.dart';
+import 'referral_service.dart';
 import 'storage_service.dart';
 
 /// Premium subscription tiers
@@ -542,14 +543,14 @@ class PremiumNotifier extends Notifier<PremiumState> {
           break;
         case PurchasesErrorCode.purchaseNotAllowedError:
           errorMessage = isEn
-              ? 'Purchase not allowed'
-              : 'Satın almaya izin verilmiyor';
+              ? 'Purchases are not allowed on this device'
+              : 'Bu cihazda satın almaya izin verilmiyor';
           break;
         case PurchasesErrorCode.purchaseInvalidError:
-          errorMessage = isEn ? 'Invalid purchase' : 'Geçersiz satın alma';
+          errorMessage = isEn ? 'This purchase couldn\'t be completed' : 'Bu satın alma tamamlanamadı';
           break;
         case PurchasesErrorCode.productNotAvailableForPurchaseError:
-          errorMessage = isEn ? 'Product not available' : 'Ürün mevcut değil';
+          errorMessage = isEn ? 'This product is not available right now' : 'Bu ürün şu anda mevcut değil';
           break;
         case PurchasesErrorCode.networkError:
           errorMessage = isEn
@@ -630,8 +631,8 @@ class PremiumNotifier extends Notifier<PremiumState> {
       state = state.copyWith(
         isLoading: false,
         errorMessage: isEn
-            ? 'Restore failed. Please try again.'
-            : 'Geri yükleme başarısız. Lütfen tekrar deneyin.',
+            ? 'Couldn\'t restore purchases. Please try again.'
+            : 'Satın alımlar geri yüklenemedi. Lütfen tekrar deneyin.',
       );
       return false;
     }
@@ -811,9 +812,16 @@ final premiumProvider = NotifierProvider<PremiumNotifier, PremiumState>(() {
   return PremiumNotifier();
 });
 
-/// Quick access to premium status
+/// Quick access to premium status (RevenueCat OR referral reward)
 final isPremiumUserProvider = Provider<bool>((ref) {
-  return ref.watch(premiumProvider).isPremium;
+  final revenueCatPremium = ref.watch(premiumProvider).isPremium;
+  if (revenueCatPremium) return true;
+
+  // Check referral premium (7-day rewards from invite codes)
+  final referralAsync = ref.watch(referralServiceProvider);
+  final hasReferralPremium =
+      referralAsync.whenOrNull(data: (s) => s.hasReferralPremium) ?? false;
+  return hasReferralPremium;
 });
 
 // isLifetimeUserProvider removed (unused)

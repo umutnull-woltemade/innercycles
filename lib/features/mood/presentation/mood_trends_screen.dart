@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -12,6 +13,7 @@ import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../data/services/mood_checkin_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
@@ -41,14 +43,34 @@ class MoodTrendsScreen extends ConsumerWidget {
           error: (_, _) => Center(
             child: Padding(
               padding: const EdgeInsets.all(32),
-              child: Text(
-                CommonStrings.somethingWentWrong(language),
-                textAlign: TextAlign.center,
-                style: AppTypography.decorativeScript(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    CommonStrings.somethingWentWrong(language),
+                    textAlign: TextAlign.center,
+                    style: AppTypography.decorativeScript(
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(moodCheckinServiceProvider),
+                    icon: Icon(Icons.refresh_rounded,
+                        size: 16, color: AppColors.starGold),
+                    label: Text(
+                      isEn ? 'Retry' : 'Tekrar Dene',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -69,7 +91,7 @@ class MoodTrendsScreen extends ConsumerWidget {
   ) {
     final allEntries = service.getAllEntries();
 
-    // Empty state for new users with zero check-ins
+    // Empty state — inline mood check-in so users can start right here
     if (allEntries.isEmpty) {
       return CupertinoScrollbar(
         child: CustomScrollView(
@@ -85,44 +107,11 @@ class MoodTrendsScreen extends ConsumerWidget {
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(AppConstants.spacingXl),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.show_chart_rounded,
-                        size: 56,
-                        color: isDark
-                            ? AppColors.textMuted
-                            : AppColors.lightTextMuted,
-                      ),
-                      const SizedBox(height: AppConstants.spacingLg),
-                      Text(
-                        isEn
-                            ? 'No observations recorded'
-                            : 'Henüz gözlem kaydedilmedi',
-                        style: AppTypography.displayFont.copyWith(
-                          color: isDark
-                              ? AppColors.textPrimary
-                              : AppColors.lightTextPrimary,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20,
-                        ),
-                      ),
-                      const SizedBox(height: AppConstants.spacingSm),
-                      Text(
-                        isEn
-                            ? 'No observations recorded. Check in from the home screen to begin.'
-                            : 'Henüz gözlem kaydedilmedi. Başlamak için ana ekrandan giriş yapın.',
-                        textAlign: TextAlign.center,
-                        style: AppTypography.subtitle(
-                          fontSize: 14,
-                          color: isDark
-                              ? AppColors.textMuted
-                              : AppColors.lightTextMuted,
-                          height: 1.5,
-                        ),
-                      ),
-                    ],
+                  child: _EmptyStateMoodCheckin(
+                    service: service,
+                    ref: ref,
+                    isDark: isDark,
+                    isEn: isEn,
                   ),
                 ),
               ),
@@ -146,7 +135,13 @@ class MoodTrendsScreen extends ConsumerWidget {
     }
     final maxCount = distribution.values.fold(0, (a, b) => a > b ? a : b);
 
-    return CupertinoScrollbar(
+    return RefreshIndicator(
+      color: AppColors.starGold,
+      onRefresh: () async {
+        ref.invalidate(moodCheckinServiceProvider);
+        await Future.delayed(const Duration(milliseconds: 300));
+      },
+      child: CupertinoScrollbar(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
           parent: AlwaysScrollableScrollPhysics(),
@@ -171,6 +166,9 @@ class MoodTrendsScreen extends ConsumerWidget {
 
                 // Week view (FREE)
                 _buildWeekCard(context, isDark, isEn, weekMoods, now),
+                const SizedBox(height: 8),
+                // Share mood summary
+                _buildShareMoodRow(isDark, isEn, avg7, weekMoods, allEntries.length),
                 const SizedBox(height: AppConstants.spacingLg),
 
                 // Distribution chart (PREMIUM — blurred for free)
@@ -219,7 +217,7 @@ class MoodTrendsScreen extends ConsumerWidget {
           ),
         ],
       ),
-    ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms);
+    )).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms);
   }
 
   Widget _buildPremiumSection(
@@ -417,6 +415,52 @@ class MoodTrendsScreen extends ConsumerWidget {
             }),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildShareMoodRow(
+    bool isDark,
+    bool isEn,
+    double avg7,
+    List<MoodEntry?> weekMoods,
+    int totalLogs,
+  ) {
+    if (totalLogs < 3) return const SizedBox.shrink();
+
+    return Align(
+      alignment: Alignment.centerRight,
+      child: GestureDetector(
+        onTap: () {
+          HapticService.buttonPress();
+          final filledDays = weekMoods.where((m) => m != null).length;
+          final emojis = weekMoods
+              .map((m) => m?.emoji ?? '·')
+              .join(' ');
+          final msg = isEn
+              ? 'My mood this week: $emojis\n7-day average: ${avg7.toStringAsFixed(1)}/5 ($filledDays days tracked)\n\nTracking my emotional patterns with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles #MoodTracking'
+              : 'Bu haftaki ruh halim: $emojis\n7 günlük ortalama: ${avg7.toStringAsFixed(1)}/5 ($filledDays gün takip)\n\nInnerCycles ile duygusal örüntülerimi takip ediyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
+          SharePlus.instance.share(ShareParams(text: msg));
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.share_rounded,
+              size: 14,
+              color: AppColors.starGold.withValues(alpha: 0.7),
+            ),
+            const SizedBox(width: 4),
+            Text(
+              isEn ? 'Share week' : 'Haftayı paylaş',
+              style: AppTypography.elegantAccent(
+                fontSize: 12,
+                color: AppColors.starGold.withValues(alpha: 0.7),
+                letterSpacing: 0.5,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -650,7 +694,7 @@ class MoodTrendsScreen extends ConsumerWidget {
             isDark,
             isEn,
             icon: Icons.psychology_rounded,
-            color: const Color(0xFF9C27B0),
+            color: AppColors.amethyst,
             titleEn: 'Shadow Work',
             titleTr: 'Gölge Çalışması',
             subtitleEn: 'Explore hidden emotional patterns',
@@ -802,6 +846,150 @@ class _StatTile extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// INLINE MOOD CHECK-IN — Replaces empty state with actionable UI
+// ════════════════════════════════════════════════════════════════════════════
+
+class _EmptyStateMoodCheckin extends StatelessWidget {
+  final MoodCheckinService service;
+  final WidgetRef ref;
+  final bool isDark;
+  final bool isEn;
+
+  const _EmptyStateMoodCheckin({
+    required this.service,
+    required this.ref,
+    required this.isDark,
+    required this.isEn,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Animated icon
+        Container(
+          width: 80,
+          height: 80,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: RadialGradient(
+              colors: [
+                AppColors.amethyst.withValues(alpha: 0.15),
+                AppColors.amethyst.withValues(alpha: 0.03),
+              ],
+            ),
+          ),
+          child: Icon(
+            Icons.insights_rounded,
+            size: 40,
+            color: AppColors.amethyst.withValues(alpha: 0.7),
+          ),
+        )
+            .animate()
+            .scale(
+              begin: const Offset(0.8, 0.8),
+              end: const Offset(1, 1),
+              duration: 600.ms,
+              curve: Curves.elasticOut,
+            ),
+
+        const SizedBox(height: 20),
+
+        GradientText(
+          isEn
+              ? 'Start your first check-in'
+              : 'İlk check-in\'ini yap',
+          variant: GradientTextVariant.amethyst,
+          textAlign: TextAlign.center,
+          style: AppTypography.displayFont.copyWith(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+          ),
+        ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
+
+        const SizedBox(height: 8),
+
+        Text(
+          isEn
+              ? 'Tap how you feel — your dashboard lights up from here'
+              : 'Nasıl hissettiğine dokun — panelin buradan canlanır',
+          textAlign: TextAlign.center,
+          style: AppTypography.decorativeScript(
+            fontSize: 14,
+            color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+          ),
+        ).animate().fadeIn(delay: 150.ms, duration: 400.ms),
+
+        const SizedBox(height: 32),
+
+        // Inline mood options
+        GlassPanel(
+          elevation: GlassElevation.g2,
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingLg,
+            vertical: 20,
+          ),
+          borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+          child: Column(
+            children: [
+              Text(
+                isEn
+                    ? 'How are you feeling right now?'
+                    : 'Şu an nasıl hissediyorsun?',
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: isDark
+                      ? AppColors.textPrimary
+                      : AppColors.lightTextPrimary,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: MoodCheckinService.moodOptions.map((option) {
+                  final (mood, emoji, labelEn, labelTr) = option;
+                  return Semantics(
+                    label: isEn ? labelEn : labelTr,
+                    button: true,
+                    child: GestureDetector(
+                      onTap: () async {
+                        HapticService.moodSelected();
+                        await service.logMood(mood, emoji);
+                        ref.invalidate(moodCheckinServiceProvider);
+                      },
+                      child: Column(
+                        children: [
+                          AppSymbol.card(emoji),
+                          const SizedBox(height: 4),
+                          Text(
+                            isEn ? labelEn : labelTr,
+                            style: AppTypography.elegantAccent(
+                              fontSize: 10,
+                              color: isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+        )
+            .animate()
+            .fadeIn(delay: 200.ms, duration: 400.ms)
+            .slideY(begin: 0.1, end: 0, duration: 400.ms),
+      ],
     );
   }
 }

@@ -56,13 +56,37 @@ class ChallengeListScreen extends ConsumerWidget {
                       child: Center(
                         child: Padding(
                           padding: const EdgeInsets.all(32),
-                          child: Text(
-                            CommonStrings.somethingWentWrong(language),
-                            style: AppTypography.subtitle(
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
-                            ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                CommonStrings.somethingWentWrong(language),
+                                textAlign: TextAlign.center,
+                                style: AppTypography.subtitle(
+                                  color: isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              TextButton.icon(
+                                onPressed: () =>
+                                    ref.invalidate(growthChallengeServiceProvider),
+                                icon: Icon(
+                                  Icons.refresh_rounded,
+                                  size: 16,
+                                  color: AppColors.starGold,
+                                ),
+                                label: Text(
+                                  isEn ? 'Retry' : 'Tekrar Dene',
+                                  style: AppTypography.elegantAccent(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.starGold,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -237,7 +261,7 @@ class _StatsBar extends StatelessWidget {
           ),
           _StatItem(
             value: '$completed',
-            label: isEn ? 'Done' : 'Bitti',
+            label: isEn ? 'Completed' : 'Tamamlanan',
             color: AppColors.success,
             isDark: isDark,
           ),

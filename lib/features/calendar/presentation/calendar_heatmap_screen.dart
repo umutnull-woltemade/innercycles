@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -80,13 +81,33 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
         child: serviceAsync.when(
           loading: () => const CosmicLoadingIndicator(),
           error: (_, _) => Center(
-            child: Text(
-              CommonStrings.somethingWentWrong(language),
-              style: AppTypography.subtitle(
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  CommonStrings.somethingWentWrong(language),
+                  textAlign: TextAlign.center,
+                  style: AppTypography.subtitle(
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton.icon(
+                  onPressed: () => ref.invalidate(journalServiceProvider),
+                  icon: Icon(Icons.refresh_rounded,
+                      size: 16, color: AppColors.starGold),
+                  label: Text(
+                    isEn ? 'Retry' : 'Tekrar Dene',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           data: (service) {
@@ -145,138 +166,140 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
     final monthCount = monthEntries.length;
     final streak = service.getCurrentStreak();
 
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      slivers: [
-        GlassSliverAppBar(
-          title: isEn ? 'Heatmap Timeline' : 'Isı Haritası Zaman Çizelgesi',
+    return CupertinoScrollbar(
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
         ),
-        SliverPadding(
-          padding: const EdgeInsets.all(16),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate([
-              // Stats row
-              _StatsRow(
-                totalEntries: totalEntries,
-                monthCount: monthCount,
-                streak: streak,
-                isDark: isDark,
-                isEn: isEn,
-              ),
-              const SizedBox(height: 20),
-
-              // Month navigator
-              _MonthNavigator(
-                year: _selectedYear,
-                month: _selectedMonth,
-                isDark: isDark,
-                isEn: isEn,
-                onPrevious: () {
-                  if (!isPremium) {
-                    showContextualPaywall(
-                      context,
-                      ref,
-                      paywallContext: PaywallContext.patterns,
-                    );
-                    return;
-                  }
-                  HapticFeedback.selectionClick();
-                  setState(() {
-                    _selectedMonth--;
-                    if (_selectedMonth < 1) {
-                      _selectedMonth = 12;
-                      _selectedYear--;
-                    }
-                    _selectedDateKey = null;
-                  });
-                },
-                onNext: () {
-                  final now = DateTime.now();
-                  if (_selectedYear > now.year ||
-                      (_selectedYear == now.year &&
-                          _selectedMonth >= now.month)) {
-                    return;
-                  }
-                  HapticFeedback.selectionClick();
-                  setState(() {
-                    _selectedMonth++;
-                    if (_selectedMonth > 12) {
-                      _selectedMonth = 1;
-                      _selectedYear++;
-                    }
-                    _selectedDateKey = null;
-                  });
-                },
-              ),
-              const SizedBox(height: 16),
-
-              // Calendar grid
-              _CalendarGrid(
-                year: _selectedYear,
-                month: _selectedMonth,
-                entryMap: entryMap,
-                lifeEventMap: lifeEventMap,
-                selectedDateKey: _selectedDateKey,
-                isDark: isDark,
-                isEn: isEn,
-                onDayTap: (dateKey) {
-                  HapticFeedback.lightImpact();
-                  setState(() {
-                    _selectedDateKey = _selectedDateKey == dateKey
-                        ? null
-                        : dateKey;
-                  });
-                },
-              ),
-              const SizedBox(height: 12),
-
-              // Legend
-              _Legend(isDark: isDark, isEn: isEn),
-              const SizedBox(height: 20),
-
-              // Selected day detail
-              if (_selectedDateKey != null) ...[
-                _DayDetail(
-                  dateKey: _selectedDateKey!,
-                  entry: entryMap[_selectedDateKey],
-                  lifeEvents: lifeEventMap[_selectedDateKey] ?? [],
+        slivers: [
+          GlassSliverAppBar(
+            title: isEn ? 'Heatmap Timeline' : 'Isı Haritası Zaman Çizelgesi',
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(16),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                // Stats row
+                _StatsRow(
+                  totalEntries: totalEntries,
+                  monthCount: monthCount,
+                  streak: streak,
                   isDark: isDark,
                   isEn: isEn,
-                  onViewEntry: (id) => context.push(
-                    Routes.journalEntryDetail.replaceFirst(':id', id),
-                  ),
-                  onCreateEntry: () => context.go(Routes.journal),
-                  onAddLifeEvent: () => context.push(
-                    '${Routes.lifeEventNew}?date=$_selectedDateKey',
-                  ),
-                  onViewLifeEvent: (id) => context.push(
-                    Routes.lifeEventDetail.replaceFirst(':id', id),
-                  ),
                 ),
                 const SizedBox(height: 20),
-              ],
 
-              // Year heatmap (mini) — PREMIUM
-              if (isPremium)
-                _YearHeatmap(
+                // Month navigator
+                _MonthNavigator(
                   year: _selectedYear,
-                  entryMap: entryMap,
+                  month: _selectedMonth,
                   isDark: isDark,
                   isEn: isEn,
-                )
-              else
-                _PremiumYearOverlay(isDark: isDark, isEn: isEn),
+                  onPrevious: () {
+                    if (!isPremium) {
+                      showContextualPaywall(
+                        context,
+                        ref,
+                        paywallContext: PaywallContext.patterns,
+                      );
+                      return;
+                    }
+                    HapticFeedback.selectionClick();
+                    setState(() {
+                      _selectedMonth--;
+                      if (_selectedMonth < 1) {
+                        _selectedMonth = 12;
+                        _selectedYear--;
+                      }
+                      _selectedDateKey = null;
+                    });
+                  },
+                  onNext: () {
+                    final now = DateTime.now();
+                    if (_selectedYear > now.year ||
+                        (_selectedYear == now.year &&
+                            _selectedMonth >= now.month)) {
+                      return;
+                    }
+                    HapticFeedback.selectionClick();
+                    setState(() {
+                      _selectedMonth++;
+                      if (_selectedMonth > 12) {
+                        _selectedMonth = 1;
+                        _selectedYear++;
+                      }
+                      _selectedDateKey = null;
+                    });
+                  },
+                ),
+                const SizedBox(height: 16),
 
-              ContentDisclaimer(
-                language: isEn ? AppLanguage.en : AppLanguage.tr,
-              ),
-              const SizedBox(height: 40),
-            ]),
+                // Calendar grid
+                _CalendarGrid(
+                  year: _selectedYear,
+                  month: _selectedMonth,
+                  entryMap: entryMap,
+                  lifeEventMap: lifeEventMap,
+                  selectedDateKey: _selectedDateKey,
+                  isDark: isDark,
+                  isEn: isEn,
+                  onDayTap: (dateKey) {
+                    HapticFeedback.lightImpact();
+                    setState(() {
+                      _selectedDateKey = _selectedDateKey == dateKey
+                          ? null
+                          : dateKey;
+                    });
+                  },
+                ),
+                const SizedBox(height: 12),
+
+                // Legend
+                _Legend(isDark: isDark, isEn: isEn),
+                const SizedBox(height: 20),
+
+                // Selected day detail
+                if (_selectedDateKey != null) ...[
+                  _DayDetail(
+                    dateKey: _selectedDateKey!,
+                    entry: entryMap[_selectedDateKey],
+                    lifeEvents: lifeEventMap[_selectedDateKey] ?? [],
+                    isDark: isDark,
+                    isEn: isEn,
+                    onViewEntry: (id) => context.push(
+                      Routes.journalEntryDetail.replaceFirst(':id', id),
+                    ),
+                    onCreateEntry: () => context.go(Routes.journal),
+                    onAddLifeEvent: () => context.push(
+                      '${Routes.lifeEventNew}?date=$_selectedDateKey',
+                    ),
+                    onViewLifeEvent: (id) => context.push(
+                      Routes.lifeEventDetail.replaceFirst(':id', id),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+
+                // Year heatmap (mini) — PREMIUM
+                if (isPremium)
+                  _YearHeatmap(
+                    year: _selectedYear,
+                    entryMap: entryMap,
+                    isDark: isDark,
+                    isEn: isEn,
+                  )
+                else
+                  _PremiumYearOverlay(isDark: isDark, isEn: isEn),
+
+                ContentDisclaimer(
+                  language: isEn ? AppLanguage.en : AppLanguage.tr,
+                ),
+                const SizedBox(height: 40),
+              ]),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

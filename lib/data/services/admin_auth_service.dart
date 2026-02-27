@@ -111,7 +111,7 @@ class AdminAuthService {
     if (isLockedOut) {
       final remaining = remainingLockoutTime;
       return AdminAuthResult.lockedOut(
-        'Too many attempts. Try again in ${remaining.inMinutes} minutes.',
+        'Please wait ${remaining.inMinutes} minutes before trying again.',
       );
     }
 

@@ -379,7 +379,21 @@ class _ArchetypeQuizScreenState extends ConsumerState<ArchetypeQuizScreen> {
 
   Widget _buildResult(bool isDark, bool isEn) {
     if (_result == null) {
-      return const Center(child: CosmicLoadingIndicator());
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const CosmicLoadingIndicator(),
+            const SizedBox(height: 12),
+            Text(
+              isEn ? 'Discovering your archetype...' : 'Arketipini keşfediyoruz...',
+              style: AppTypography.subtitle(
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
+            ),
+          ],
+        ),
+      );
     }
 
     final archetype = _result!;

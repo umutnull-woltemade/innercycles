@@ -5,14 +5,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
+import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/routes.dart';
 import '../../../data/services/haptic_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
@@ -26,7 +28,10 @@ import '../../../data/services/review_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../data/services/widget_data_service.dart';
+import '../../../data/services/notification_service.dart';
 import '../../streak/presentation/milestone_celebration_modal.dart';
+import '../../milestones/presentation/badge_celebration_modal.dart';
+import '../../../data/services/milestone_service.dart';
 import '../../../data/content/share_card_templates.dart';
 import '../../../shared/widgets/share_card_sheet.dart';
 
@@ -75,6 +80,66 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   /// Stores the note text before a voice session starts, so partial
   /// results can be appended without duplicating previous voice output.
   String _textBeforeVoice = '';
+
+  /// Returns a time-of-day contextual hint for the note field.
+  /// Uses a pool of 5 hints per time window, selected by date hash for daily consistency.
+  String _contextualHint(bool isEn) {
+    final now = DateTime.now();
+    final hour = now.hour;
+
+    const morningEn = [
+      'Good morning. What\'s on your mind today?',
+      'A new day. What intention would you like to set?',
+      'The morning is yours. What matters most today?',
+      'Before the day takes over — what are you feeling?',
+      'Good morning. What did you dream about?',
+    ];
+    const morningTr = [
+      'Günaydın. Bugün aklında ne var?',
+      'Yeni bir gün. Hangi niyeti belirlemek istersin?',
+      'Sabah senin. Bugün en çok ne önemli?',
+      'Gün seni ele geçirmeden — ne hissediyorsun?',
+      'Günaydın. Ne rüya gördün?',
+    ];
+    const afternoonEn = [
+      'How\'s your day going so far?',
+      'Pause for a moment. How are you really doing?',
+      'Midday check-in — anything you want to capture?',
+      'What\'s been the highlight of your day so far?',
+      'Take a breath. What do you notice right now?',
+    ];
+    const afternoonTr = [
+      'Günün şu ana kadar nasıl geçiyor?',
+      'Bir an dur. Gerçekten nasılsın?',
+      'Öğle kontrolü — kaydetmek istediğin bir şey var mı?',
+      'Bugünün en güzel anı ne oldu?',
+      'Bir nefes al. Şu an ne fark ediyorsun?',
+    ];
+    const eveningEn = [
+      'How was your day? Any reflections before it ends?',
+      'The day is winding down. What stood out?',
+      'Evening reflection — what are you grateful for today?',
+      'Before you rest, what would you like to remember?',
+      'How are you feeling as the day closes?',
+    ];
+    const eveningTr = [
+      'Bugün nasıl geçti? Bitmeden düşüncelerin var mı?',
+      'Gün sona eriyor. Ne öne çıktı?',
+      'Akşam yansıması — bugün neye minnettarsın?',
+      'Dinlenmeden önce neyi hatırlamak istersin?',
+      'Gün kapanırken kendini nasıl hissediyorsun?',
+    ];
+
+    final pool = hour < 12
+        ? (isEn ? morningEn : morningTr)
+        : hour < 17
+            ? (isEn ? afternoonEn : afternoonTr)
+            : (isEn ? eveningEn : eveningTr);
+
+    // Deterministic daily selection: hash of date so hint is consistent per day
+    final dayHash = now.year * 366 + now.month * 31 + now.day;
+    return pool[dayHash % pool.length];
+  }
 
   @override
   void initState() {
@@ -191,6 +256,8 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
           child: SafeArea(
             child: CupertinoScrollbar(
               child: CustomScrollView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
                 physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
@@ -695,6 +762,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 controller: _noteController,
                 maxLines: 4,
                 maxLength: 2000,
+                textCapitalization: TextCapitalization.sentences,
                 style: AppTypography.subtitle(
                   color: isDark
                       ? AppColors.textPrimary
@@ -703,9 +771,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 decoration: InputDecoration(
                   hintText:
                       widget.journalPrompt ??
-                      (isEn
-                          ? 'How was your day? Any reflections...'
-                          : 'Bugün nasıl geçti? Düşüncelerin...'),
+                      _contextualHint(isEn),
                   hintStyle: AppTypography.decorativeScript(
                     fontSize: 16,
                     color: isDark
@@ -775,6 +841,30 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                   ],
                 ),
               ),
+              // Word count
+              if (_noteController.text.trim().isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: AppConstants.spacingLg,
+                    bottom: AppConstants.spacingSm,
+                  ),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      () {
+                        final words = _noteController.text.trim().split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
+                        return isEn ? '$words words' : '$words kelime';
+                      }(),
+                      style: AppTypography.elegantAccent(
+                        fontSize: 11,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ),
+                ),
             ],
           ),
         ),
@@ -855,12 +945,13 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
               Expanded(
                 child: TextField(
                   controller: _tagController,
+                  textCapitalization: TextCapitalization.words,
                   style: AppTypography.subtitle(
                     fontSize: 14,
                     color: isDark ? Colors.white : Colors.black87,
                   ),
                   decoration: InputDecoration(
-                    hintText: isEn ? 'Add tag...' : 'Etiket ekle...',
+                    hintText: isEn ? 'e.g. Work, Personal' : 'ör. İş, Kişisel',
                     hintStyle: AppTypography.subtitle(
                       color: isDark
                           ? AppColors.textMuted
@@ -1056,7 +1147,11 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
   }
 
   Widget _buildSaveButton(bool isDark, bool isEn) {
-    return GestureDetector(
+    return Semantics(
+      label: isEn ? 'Save Entry' : 'Kaydı Kaydet',
+      button: true,
+      enabled: !_isSaving,
+      child: GestureDetector(
       onTap: _isSaving ? null : _saveEntry,
       child: Container(
         width: double.infinity,
@@ -1112,7 +1207,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 ),
         ),
       ),
-    ).glassListItem(context: context, index: 5);
+    )).glassListItem(context: context, index: 5);
   }
 
   Future<void> _saveEntry() async {
@@ -1164,6 +1259,11 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       // Update notification lifecycle with new activity
       _updateNotificationLifecycle(service);
 
+      // Cancel streak-at-risk notification — user journaled today
+      try {
+        await NotificationService().cancelStreakAtRisk();
+      } catch (_) {}
+
       // Check for review prompt at engagement milestones
       _checkReviewTrigger(service);
 
@@ -1197,8 +1297,14 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         await _showFirstEntryCelebration();
       }
 
+      // Check for entry count milestones (10, 25, 50, 100, 500)
+      await _checkEntryMilestone(entryCount);
+
       // Check for streak milestone celebration (D3, D7, D14, etc.)
       await _checkStreakMilestone();
+
+      // Check for full badge system milestones (30 badges)
+      await _checkBadgeMilestones();
 
       // Check for streak share nudge (every 5 entries, non-milestone)
       await _checkStreakShareNudge();
@@ -1380,9 +1486,213 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                   textAlign: TextAlign.center,
                 ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
                 const SizedBox(height: 24),
-                GradientButton.gold(
-                  label: isEn ? 'Continue' : 'Devam Et',
-                  onPressed: () => Navigator.of(ctx).pop(),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Share button
+                    GestureDetector(
+                      onTap: () {
+                        HapticFeedback.lightImpact();
+                        final text = isEn
+                            ? 'Just started my journaling journey with InnerCycles! '
+                              '\u{1F31F}\n\nEvery great story starts with a single page.\n\n'
+                              '${AppConstants.appStoreUrl}\n'
+                              '#InnerCycles #Journaling #DayOne'
+                            : 'InnerCycles ile günlük yolculuğuma başladım! '
+                              '\u{1F31F}\n\nHer büyük hikaye tek bir sayfayla başlar.\n\n'
+                              '${AppConstants.appStoreUrl}\n'
+                              '#InnerCycles #Günlük #İlkGün';
+                        SharePlus.instance.share(ShareParams(text: text));
+                      },
+                      child: Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.starGold.withValues(alpha: 0.15),
+                          border: Border.all(
+                            color: AppColors.starGold.withValues(alpha: 0.3),
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.share_rounded,
+                          size: 20,
+                          color: AppColors.starGold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    // Continue button
+                    Expanded(
+                      child: GradientButton.gold(
+                        label: isEn ? 'Continue' : 'Devam Et',
+                        onPressed: () => Navigator.of(ctx).pop(),
+                        expanded: true,
+                      ),
+                    ),
+                  ],
+                ).animate().fadeIn(delay: 600.ms, duration: 300.ms),
+              ],
+            ),
+          ).animate().scale(
+                begin: const Offset(0.8, 0.8),
+                end: const Offset(1, 1),
+                duration: 400.ms,
+                curve: Curves.easeOutBack,
+              ),
+        );
+      },
+    );
+  }
+
+  static const _entryMilestones = {10, 25, 50, 100, 250, 500};
+
+  Future<void> _checkEntryMilestone(int entryCount) async {
+    if (!_entryMilestones.contains(entryCount)) return;
+
+    // Only celebrate once per milestone
+    final prefs = await SharedPreferences.getInstance();
+    final celebrated = prefs.getStringList('entry_milestones_celebrated') ?? [];
+    if (celebrated.contains('$entryCount')) return;
+
+    celebrated.add('$entryCount');
+    await prefs.setStringList('entry_milestones_celebrated', celebrated);
+
+    if (!mounted) return;
+    await _showEntryMilestoneCelebration(entryCount);
+  }
+
+  Future<void> _showEntryMilestoneCelebration(int count) async {
+    if (!mounted) return;
+    final isEn = ref.read(languageProvider) == AppLanguage.en;
+    HapticFeedback.heavyImpact();
+
+    final emoji = count >= 500
+        ? '\u{1F451}' // crown
+        : count >= 100
+            ? '\u{1F3C6}' // trophy
+            : count >= 50
+                ? '\u{2B50}' // star
+                : '\u{1F4D6}'; // open book
+
+    final title = isEn
+        ? '$count Entries!'
+        : '$count Kayıt!';
+
+    final message = isEn
+        ? count >= 100
+            ? 'You\'ve built an incredible reflection practice.\nYour journal is a treasure.'
+            : 'Every entry adds depth to your story.\nKeep going — your patterns are emerging.'
+        : count >= 100
+            ? 'İnanılmaz bir yansıma pratiği oluşturdun.\nGünlüğün bir hazine.'
+            : 'Her kayıt hikayene derinlik katıyor.\nDevam et — kalıpların ortaya çıkıyor.';
+
+    await showDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierColor: Colors.black54,
+      builder: (ctx) {
+        final isDark = Theme.of(ctx).brightness == Brightness.dark;
+        return Center(
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 32),
+            padding: const EdgeInsets.all(28),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: isDark
+                    ? [AppColors.cosmicPurple, AppColors.deepSpace]
+                    : [AppColors.lightSurface, AppColors.lightSurfaceVariant],
+              ),
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(
+                color: AppColors.starGold.withValues(alpha: 0.3),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.starGold.withValues(alpha: 0.15),
+                  blurRadius: 40,
+                  spreadRadius: 4,
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(emoji, style: const TextStyle(fontSize: 56))
+                    .animate()
+                    .scale(
+                      begin: const Offset(0.3, 0.3),
+                      end: const Offset(1, 1),
+                      duration: 500.ms,
+                      curve: Curves.elasticOut,
+                    )
+                    .shimmer(delay: 500.ms, duration: 1200.ms),
+                const SizedBox(height: 16),
+                GradientText(
+                  title,
+                  variant: GradientTextVariant.gold,
+                  style: AppTypography.displayFont.copyWith(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+                const SizedBox(height: 12),
+                Text(
+                  message,
+                  style: AppTypography.decorativeScript(
+                    fontSize: 16,
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                  textAlign: TextAlign.center,
+                ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
+                const SizedBox(height: 24),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        HapticFeedback.lightImpact();
+                        final text = isEn
+                            ? 'Just wrote my ${count}th journal entry with InnerCycles! '
+                              '$emoji\n\nBuilding a reflection practice, one entry at a time.\n\n'
+                              '${AppConstants.appStoreUrl}\n'
+                              '#InnerCycles #Journaling #Milestone'
+                            : 'InnerCycles ile $count. günlük kaydımı yazdım! '
+                              '$emoji\n\nBir yansıma pratiği oluşturuyorum.\n\n'
+                              '${AppConstants.appStoreUrl}\n'
+                              '#InnerCycles #Günlük #Kilometre Taşı';
+                        SharePlus.instance.share(ShareParams(text: text));
+                      },
+                      child: Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.starGold.withValues(alpha: 0.15),
+                          border: Border.all(
+                            color: AppColors.starGold.withValues(alpha: 0.3),
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.share_rounded,
+                          size: 20,
+                          color: AppColors.starGold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: GradientButton.gold(
+                        label: isEn ? 'Continue' : 'Devam Et',
+                        onPressed: () => Navigator.of(ctx).pop(),
+                        expanded: true,
+                      ),
+                    ),
+                  ],
                 ).animate().fadeIn(delay: 600.ms, duration: 300.ms),
               ],
             ),
@@ -1411,6 +1721,116 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       }
     } catch (e) {
       if (kDebugMode) debugPrint('DailyEntry: streak milestone error: $e');
+    }
+  }
+
+  /// Check all 30 badge milestones and celebrate newly earned ones.
+  Future<void> _checkBadgeMilestones() async {
+    try {
+      final milestoneService = await ref.read(milestoneServiceProvider.future);
+      final journalService = await ref.read(journalServiceProvider.future);
+      final allEntries = journalService.getAllEntries();
+      final streak = journalService.getCurrentStreak();
+
+      final params = MilestoneCheckParams(
+        journalCount: allEntries.length,
+        streakDays: streak,
+        longestStreak: streak,
+        focusAreasUsed: allEntries.map((e) => e.focusArea.name).toSet(),
+        deepEntryCount: allEntries.where((e) => e.overallRating >= 8).length,
+        sharedInsight: false, // tracked elsewhere
+      );
+
+      final newBadges = await milestoneService.checkAndAward(params);
+
+      // Filter out streak badges (already handled by _checkStreakMilestone)
+      final nonStreakBadges = newBadges
+          .where((m) => m.category != MilestoneCategory.streak)
+          .toList();
+
+      if (nonStreakBadges.isNotEmpty && mounted) {
+        final isEn = ref.read(languageProvider) == AppLanguage.en;
+        await BadgeCelebrationModal.showSequential(
+          context,
+          nonStreakBadges,
+          isEn,
+        );
+
+        // Badge unlock is a peak positive moment — ideal for review prompt
+        _triggerReviewAfterBadge(allEntries.length);
+
+        // Referral nudge at peak positive moment
+        _showReferralNudgeAfterBadge(isEn);
+      }
+
+      // Deep engagement: 25+ entries is a strong retention signal
+      if (allEntries.length >= 25) {
+        _triggerReviewForDeepEngagement(allEntries.length);
+      }
+    } catch (e) {
+      if (kDebugMode) debugPrint('DailyEntry: badge milestone error: $e');
+    }
+  }
+
+  /// Prompt review after a badge celebration (peak positive emotion).
+  Future<void> _triggerReviewAfterBadge(int entryCount) async {
+    try {
+      final reviewService = await ref.read(reviewServiceProvider.future);
+      await reviewService.checkAndPromptReview(
+        ReviewTrigger.badgeUnlocked,
+        journalEntryCount: entryCount,
+      );
+    } catch (e) {
+      if (kDebugMode) debugPrint('DailyEntry: badge review trigger error: $e');
+    }
+  }
+
+  /// Prompt review when user reaches 25+ entries (deep engagement).
+  Future<void> _triggerReviewForDeepEngagement(int entryCount) async {
+    try {
+      final reviewService = await ref.read(reviewServiceProvider.future);
+      await reviewService.checkAndPromptReview(
+        ReviewTrigger.deepEngagement,
+        journalEntryCount: entryCount,
+      );
+    } catch (e) {
+      if (kDebugMode) debugPrint('DailyEntry: deep engagement review error: $e');
+    }
+  }
+
+  /// Show a subtle referral nudge after badge celebration.
+  /// Only shows once, at the first badge unlock, if user hasn't used referral.
+  Future<void> _showReferralNudgeAfterBadge(bool isEn) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      if (prefs.getBool('badge_referral_nudge_shown') == true) return;
+      await prefs.setBool('badge_referral_nudge_shown', true);
+
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            isEn
+                ? 'Loving InnerCycles? Invite a friend — you both get 7 days Premium!'
+                : 'InnerCycles\'ı beğeniyor musun? Bir arkadaşını davet et — ikiniz de 7 gün Premium kazanın!',
+          ),
+          action: SnackBarAction(
+            label: isEn ? 'Invite' : 'Davet Et',
+            textColor: AppColors.starGold,
+            onPressed: () {
+              if (mounted) context.push(Routes.referralProgram);
+            },
+          ),
+          duration: const Duration(seconds: 6),
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      );
+    } catch (e) {
+      if (kDebugMode) debugPrint('DailyEntry: referral nudge error: $e');
     }
   }
 

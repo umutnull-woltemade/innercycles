@@ -12,29 +12,29 @@ class GlassTokens {
   // ═══════════════════════════════════════════════════════════════════════════
 
   // Dark mode surfaces
-  static const Color darkSurface = Color(0xFF0D0D1A);
-  static const Color darkElevated = Color(0xFF1A1A2E);
+  static const Color darkSurface = Color(0xFF1E1714);
+  static const Color darkElevated = Color(0xFF2D241F);
   static const Color darkOverlay = Color(0x40FFFFFF);
   static const Color darkBorder = Color(0x30FFFFFF);
 
   // Light mode surfaces
-  static const Color lightSurface = Color(0xFFF8F9FC);
+  static const Color lightSurface = Color(0xFFFBF7F4);
   static const Color lightElevated = Color(0xFFFFFFFF);
   static const Color lightOverlay = Color(0x20000000);
   static const Color lightBorder = Color(0x18000000);
 
   // Accent
-  static const Color starGold = Color(0xFFFFD700);
-  static const Color celestialGold = Color(0xFFF4C430);
-  static const Color amethyst = Color(0xFF9B59B6);
-  static const Color auroraStart = Color(0xFF667EEA);
-  static const Color auroraEnd = Color(0xFF764BA2);
-  static const Color cosmic = Color(0xFF667EEA);
+  static const Color starGold = Color(0xFFC8553D);
+  static const Color celestialGold = Color(0xFFD4704A);
+  static const Color amethyst = Color(0xFF8B6F5E);
+  static const Color auroraStart = Color(0xFFD4A07A);
+  static const Color auroraEnd = Color(0xFF8B6F5E);
+  static const Color cosmic = Color(0xFFD4A07A);
 
   // Glow colors (for border gradients)
-  static const Color glowGold = Color(0x40FFD700);
-  static const Color glowAmethyst = Color(0x409B59B6);
-  static const Color glowCosmic = Color(0x40667EEA);
+  static const Color glowGold = Color(0x40C8553D);
+  static const Color glowAmethyst = Color(0x408B6F5E);
+  static const Color glowCosmic = Color(0x40C8553D);
 
   // ═══════════════════════════════════════════════════════════════════════════
   // BLUR SCALE
@@ -94,8 +94,8 @@ class GlassTokens {
   // TYPOGRAPHY
   // ═══════════════════════════════════════════════════════════════════════════
 
-  static const String fontFamily = 'SF Pro Display';
-  static const String fontFamilyFallback = 'Helvetica Neue';
+  static const String fontFamily = 'Josefin Sans';
+  static const String fontFamilyFallback = 'Nunito';
 
   static const double fontHero = 32;
   static const double fontTitle = 24;

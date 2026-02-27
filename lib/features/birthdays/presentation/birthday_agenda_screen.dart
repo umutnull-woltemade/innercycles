@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -59,6 +60,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
         ),
         child: FloatingActionButton(
           onPressed: () => context.push(Routes.birthdayAdd),
+          tooltip: isEn ? 'Add birthday' : 'Doğum günü ekle',
           backgroundColor: Colors.transparent,
           elevation: 0,
           child: const Icon(
@@ -71,13 +73,34 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
         child: serviceAsync.when(
           loading: () => const CosmicLoadingIndicator(),
           error: (_, _) => Center(
-            child: Text(
-              isEn ? 'Something went wrong' : 'Bir \u{015F}eyler ters gitti',
-              style: AppTypography.subtitle(
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  isEn ? 'Couldn\'t load your birthdays' : 'Doğum günlerin yüklenemedi',
+                  textAlign: TextAlign.center,
+                  style: AppTypography.subtitle(
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton.icon(
+                  onPressed: () =>
+                      ref.invalidate(birthdayContactServiceProvider),
+                  icon: Icon(Icons.refresh_rounded,
+                      size: 16, color: AppColors.starGold),
+                  label: Text(
+                    isEn ? 'Retry' : 'Tekrar Dene',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           data: (service) => _buildContent(context, service, isDark, isEn),
@@ -98,170 +121,172 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
     final upcoming = service.getUpcomingBirthdays(withinDays: 30);
     final isEmpty = allContacts.isEmpty;
 
-    return RefreshIndicator(
-      color: AppColors.starGold,
-      onRefresh: () async {
-        ref.invalidate(birthdayContactServiceProvider);
-      },
-      child: CustomScrollView(
-        physics: const BouncingScrollPhysics(
-          parent: AlwaysScrollableScrollPhysics(),
-        ),
-        slivers: [
-          GlassSliverAppBar(
-            title: isEn
-                ? 'Birthday Agenda'
-                : 'Do\u{011F}um G\u{00FC}n\u{00FC} Ajandas\u{0131}',
+    return CupertinoScrollbar(
+      child: RefreshIndicator(
+        color: AppColors.starGold,
+        onRefresh: () async {
+          ref.invalidate(birthdayContactServiceProvider);
+        },
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
           ),
-          SliverPadding(
-            padding: const EdgeInsets.all(16),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate([
-                // Empty state
-                if (isEmpty) ...[
-                  _EmptyState(
+          slivers: [
+            GlassSliverAppBar(
+              title: isEn
+                  ? 'Birthday Agenda'
+                  : 'Do\u{011F}um G\u{00FC}n\u{00FC} Ajandas\u{0131}',
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.all(16),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
+                  // Empty state
+                  if (isEmpty) ...[
+                    _EmptyState(
+                      isDark: isDark,
+                      isEn: isEn,
+                      onImport: () => context.push(Routes.birthdayImport),
+                      onAdd: () => context.push(Routes.birthdayAdd),
+                    ),
+                    const SizedBox(height: 40),
+                  ],
+
+                  // 1. Today banner
+                  if (todayBirthdays.isNotEmpty) ...[
+                    _TodayBanner(
+                      contacts: todayBirthdays,
+                      isDark: isDark,
+                      isEn: isEn,
+                      onTap: (id) => context.push(
+                        Routes.birthdayDetail.replaceFirst(':id', id),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+
+                  // 2. Month navigator
+                  _MonthNav(
+                    year: _selectedYear,
+                    month: _selectedMonth,
+                    isDark: isDark,
+                    isEn: isEn,
+                    onPrevious: () {
+                      final minYear = DateTime.now().year - 1;
+                      HapticFeedback.selectionClick();
+                      setState(() {
+                        _selectedMonth--;
+                        if (_selectedMonth < 1) {
+                          if (_selectedYear > minYear) {
+                            _selectedMonth = 12;
+                            _selectedYear--;
+                          } else {
+                            _selectedMonth = 1;
+                          }
+                        }
+                        _selectedDay = null;
+                      });
+                    },
+                    onNext: () {
+                      final maxYear = DateTime.now().year + 1;
+                      HapticFeedback.selectionClick();
+                      setState(() {
+                        _selectedMonth++;
+                        if (_selectedMonth > 12) {
+                          if (_selectedYear < maxYear) {
+                            _selectedMonth = 1;
+                            _selectedYear++;
+                          } else {
+                            _selectedMonth = 12;
+                          }
+                        }
+                        _selectedDay = null;
+                      });
+                    },
+                    onToday: () {
+                      HapticFeedback.selectionClick();
+                      setState(() {
+                        final now = DateTime.now();
+                        _selectedYear = now.year;
+                        _selectedMonth = now.month;
+                        _selectedDay = null;
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 16),
+
+                  // 3. Calendar grid
+                  _BirthdayCalendarGrid(
+                    year: _selectedYear,
+                    month: _selectedMonth,
+                    birthdayMap: birthdayMap,
+                    selectedDay: _selectedDay,
+                    isDark: isDark,
+                    isEn: isEn,
+                    onDayTap: (day) {
+                      HapticFeedback.lightImpact();
+                      setState(() {
+                        _selectedDay = _selectedDay == day ? null : day;
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 16),
+
+                  // 4. Selected day detail
+                  if (_selectedDay != null) ...[
+                    _SelectedDayDetail(
+                      day: _selectedDay!,
+                      month: _selectedMonth,
+                      birthdayMap: birthdayMap,
+                      isDark: isDark,
+                      isEn: isEn,
+                      onContactTap: (id) => context.push(
+                        Routes.birthdayDetail.replaceFirst(':id', id),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                  ],
+
+                  // 5. Upcoming birthdays
+                  if (upcoming.isNotEmpty) ...[
+                    GradientText(
+                      isEn
+                          ? 'Upcoming Birthdays'
+                          : 'Yakla\u{015F}an Do\u{011F}um G\u{00FC}nleri',
+                      variant: GradientTextVariant.gold,
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    ...upcoming.map(
+                      (contact) => _UpcomingCard(
+                        contact: contact,
+                        isDark: isDark,
+                        isEn: isEn,
+                        onTap: () => context.push(
+                          Routes.birthdayDetail.replaceFirst(':id', contact.id),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+
+                  // 6. Action buttons
+                  _ActionButtons(
                     isDark: isDark,
                     isEn: isEn,
                     onImport: () => context.push(Routes.birthdayImport),
                     onAdd: () => context.push(Routes.birthdayAdd),
                   ),
+
                   const SizedBox(height: 40),
-                ],
-
-                // 1. Today banner
-                if (todayBirthdays.isNotEmpty) ...[
-                  _TodayBanner(
-                    contacts: todayBirthdays,
-                    isDark: isDark,
-                    isEn: isEn,
-                    onTap: (id) => context.push(
-                      Routes.birthdayDetail.replaceFirst(':id', id),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                ],
-
-                // 2. Month navigator
-                _MonthNav(
-                  year: _selectedYear,
-                  month: _selectedMonth,
-                  isDark: isDark,
-                  isEn: isEn,
-                  onPrevious: () {
-                    final minYear = DateTime.now().year - 1;
-                    HapticFeedback.selectionClick();
-                    setState(() {
-                      _selectedMonth--;
-                      if (_selectedMonth < 1) {
-                        if (_selectedYear > minYear) {
-                          _selectedMonth = 12;
-                          _selectedYear--;
-                        } else {
-                          _selectedMonth = 1;
-                        }
-                      }
-                      _selectedDay = null;
-                    });
-                  },
-                  onNext: () {
-                    final maxYear = DateTime.now().year + 1;
-                    HapticFeedback.selectionClick();
-                    setState(() {
-                      _selectedMonth++;
-                      if (_selectedMonth > 12) {
-                        if (_selectedYear < maxYear) {
-                          _selectedMonth = 1;
-                          _selectedYear++;
-                        } else {
-                          _selectedMonth = 12;
-                        }
-                      }
-                      _selectedDay = null;
-                    });
-                  },
-                  onToday: () {
-                    HapticFeedback.selectionClick();
-                    setState(() {
-                      final now = DateTime.now();
-                      _selectedYear = now.year;
-                      _selectedMonth = now.month;
-                      _selectedDay = null;
-                    });
-                  },
-                ),
-                const SizedBox(height: 16),
-
-                // 3. Calendar grid
-                _BirthdayCalendarGrid(
-                  year: _selectedYear,
-                  month: _selectedMonth,
-                  birthdayMap: birthdayMap,
-                  selectedDay: _selectedDay,
-                  isDark: isDark,
-                  isEn: isEn,
-                  onDayTap: (day) {
-                    HapticFeedback.lightImpact();
-                    setState(() {
-                      _selectedDay = _selectedDay == day ? null : day;
-                    });
-                  },
-                ),
-                const SizedBox(height: 16),
-
-                // 4. Selected day detail
-                if (_selectedDay != null) ...[
-                  _SelectedDayDetail(
-                    day: _selectedDay!,
-                    month: _selectedMonth,
-                    birthdayMap: birthdayMap,
-                    isDark: isDark,
-                    isEn: isEn,
-                    onContactTap: (id) => context.push(
-                      Routes.birthdayDetail.replaceFirst(':id', id),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                ],
-
-                // 5. Upcoming birthdays
-                if (upcoming.isNotEmpty) ...[
-                  GradientText(
-                    isEn
-                        ? 'Upcoming Birthdays'
-                        : 'Yakla\u{015F}an Do\u{011F}um G\u{00FC}nleri',
-                    variant: GradientTextVariant.gold,
-                    style: AppTypography.displayFont.copyWith(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  ...upcoming.map(
-                    (contact) => _UpcomingCard(
-                      contact: contact,
-                      isDark: isDark,
-                      isEn: isEn,
-                      onTap: () => context.push(
-                        Routes.birthdayDetail.replaceFirst(':id', contact.id),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                ],
-
-                // 6. Action buttons
-                _ActionButtons(
-                  isDark: isDark,
-                  isEn: isEn,
-                  onImport: () => context.push(Routes.birthdayImport),
-                  onAdd: () => context.push(Routes.birthdayAdd),
-                ),
-
-                const SizedBox(height: 40),
-              ]),
+                ]),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -397,6 +422,7 @@ class _MonthNav extends StatelessWidget {
                 ? AppColors.textSecondary
                 : AppColors.lightTextSecondary,
           ),
+          tooltip: isEn ? 'Previous month' : 'Önceki ay',
           onPressed: onPrevious,
         ),
         GestureDetector(
@@ -432,6 +458,7 @@ class _MonthNav extends StatelessWidget {
                 ? AppColors.textSecondary
                 : AppColors.lightTextSecondary,
           ),
+          tooltip: isEn ? 'Next month' : 'Sonraki ay',
           onPressed: onNext,
         ),
       ],
@@ -680,6 +707,8 @@ class _SelectedDayDetail extends StatelessWidget {
                       children: [
                         Text(
                           contact.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: AppTypography.modernAccent(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
@@ -692,6 +721,8 @@ class _SelectedDayDetail extends StatelessWidget {
                         Text(
                           '${contact.relationship.emoji} ${isEn ? contact.relationship.displayNameEn : contact.relationship.displayNameTr}'
                           '${contact.age != null ? ' \u{2022} ${contact.age} ${isEn ? "years" : "ya\u{015F}"}' : ''}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: AppTypography.elegantAccent(
                             fontSize: 12,
                             color: isDark

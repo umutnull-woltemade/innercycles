@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart' show CupertinoActivityIndicator;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +18,7 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/gradient_text.dart';
 import '../../../shared/widgets/ecosystem_widgets.dart';
+import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/tool_ecosystem_footer.dart';
 import '../../../core/constants/routes.dart';
 import 'package:go_router/go_router.dart';
@@ -145,13 +146,34 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
           child: serviceAsync.when(
             loading: () => const CosmicLoadingIndicator(),
             error: (_, _) => Center(
-              child: Text(
-                isEn ? 'Failed to load dreams' : 'Rüyalar yüklenemedi',
-                style: AppTypography.decorativeScript(
-                  color: isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted,
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    isEn ? 'Failed to load dreams' : 'Rüyalar yüklenemedi',
+                    textAlign: TextAlign.center,
+                    style: AppTypography.decorativeScript(
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(dreamJournalServiceProvider),
+                    icon: Icon(Icons.refresh_rounded,
+                        size: 16, color: AppColors.starGold),
+                    label: Text(
+                      isEn ? 'Retry' : 'Tekrar Dene',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             data: (service) {
@@ -168,7 +190,17 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
               final recurringCount = dreams.where((d) => d.isRecurring).length;
               final lucidCount = dreams.where((d) => d.isLucid).length;
 
-              return CustomScrollView(
+              return RefreshIndicator(
+                color: AppColors.starGold,
+                onRefresh: () async {
+                  ref.invalidate(dreamJournalServiceProvider);
+                  await Future.delayed(const Duration(milliseconds: 300));
+                  await _loadDreams();
+                },
+                child: CupertinoScrollbar(
+                  child: CustomScrollView(
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
                     physics: const BouncingScrollPhysics(
                       parent: AlwaysScrollableScrollPhysics(),
                     ),
@@ -227,6 +259,28 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                         ),
                       ),
 
+                      // Dream count
+                      if (!_isLoading && dreams.isNotEmpty)
+                        SliverToBoxAdapter(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: AppConstants.spacingLg,
+                            ),
+                            child: Text(
+                              isEn
+                                  ? '${dreams.length} dreams'
+                                  : '${dreams.length} rüya',
+                              style: AppTypography.elegantAccent(
+                                fontSize: 13,
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                          ),
+                        ),
+
                       // Loading indicator
                       if (_isLoading)
                         const SliverToBoxAdapter(
@@ -241,12 +295,12 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                           hasScrollBody: false,
                           child: ToolEmptyState(
                             icon: Icons.nightlight_round,
-                            titleEn: 'No dreams logged',
-                            titleTr: 'Henüz rüya kaydedilmedi',
+                            titleEn: 'Your dream journal awaits',
+                            titleTr: 'Rüya günlüğün seni bekliyor',
                             descriptionEn:
-                                'No dreams logged. The glossary is available when you are.',
+                                'Start capturing your dreams — the glossary is ready when you are.',
                             descriptionTr:
-                                'Henüz rüya kaydedilmedi. Sözlük hazır olduğunda seni bekliyor.',
+                                'Rüyalarını kaydetmeye başla — sözlük hazır olduğunda burada.',
                             onStartTemplate: () =>
                                 context.push(Routes.dreamInterpretation),
                             isEn: isEn,
@@ -291,15 +345,71 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                                     context,
                                     index,
                                   ) {
+                                    final dream = monthDreams[index];
                                     return Padding(
                                       padding: const EdgeInsets.only(
                                         bottom: AppConstants.spacingSm,
                                       ),
-                                      child: _DreamCard(
-                                        dream: monthDreams[index],
-                                        isDark: isDark,
-                                        isEn: isEn,
-                                        formatDate: _formatDate,
+                                      child: Dismissible(
+                                        key: ValueKey(dream.id),
+                                        direction: DismissDirection.endToStart,
+                                        confirmDismiss: (_) async {
+                                          final confirmed = await GlassDialog.confirm(
+                                            context,
+                                            title: isEn
+                                                ? 'Delete Dream?'
+                                                : 'Rüya Silinsin mi?',
+                                            message: isEn
+                                                ? 'This dream entry will be permanently deleted.'
+                                                : 'Bu rüya kaydı kalıcı olarak silinecek.',
+                                            confirmLabel: isEn
+                                                ? 'Delete'
+                                                : 'Sil',
+                                            cancelLabel: isEn
+                                                ? 'Cancel'
+                                                : 'İptal',
+                                            isDestructive: true,
+                                          );
+                                          if (confirmed == true) {
+                                            final service = ref
+                                                .read(
+                                                  dreamJournalServiceProvider,
+                                                )
+                                                .valueOrNull;
+                                            if (service != null) {
+                                              await service.deleteDream(
+                                                dream.id,
+                                              );
+                                              await _loadDreams();
+                                            }
+                                          }
+                                          return false;
+                                        },
+                                        background: Container(
+                                          alignment: Alignment.centerRight,
+                                          padding: const EdgeInsets.only(
+                                            right: 28,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: AppColors.error.withValues(
+                                              alpha: 0.15,
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                              AppConstants.radiusMd,
+                                            ),
+                                          ),
+                                          child: const Icon(
+                                            Icons.delete_outline,
+                                            color: AppColors.error,
+                                            size: 22,
+                                          ),
+                                        ),
+                                        child: _DreamCard(
+                                          dream: dream,
+                                          isDark: isDark,
+                                          isEn: isEn,
+                                          formatDate: _formatDate,
+                                        ),
                                       ),
                                     );
                                   }, childCount: monthDreams.length),
@@ -328,10 +438,9 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                         child: SizedBox(height: AppConstants.spacingHuge),
                       ),
                     ],
-                  )
-                  .animate()
-                  .fadeIn(duration: 400.ms)
-                  .slideY(begin: 0.02, duration: 400.ms);
+                  ),
+                ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.02, duration: 400.ms),
+              );
             },
           ),
         ),
@@ -369,11 +478,12 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
       child: TextField(
         controller: _searchController,
         onChanged: _onSearchChanged,
+        textInputAction: TextInputAction.search,
         style: AppTypography.subtitle(
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: isEn ? 'Search dreams...' : 'Rüyalarda ara...',
+          hintText: isEn ? 'Search by symbol or theme...' : 'Sembol veya temaya göre ara...',
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -477,99 +587,105 @@ class _DreamCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GlassPanel(
-      elevation: GlassElevation.g2,
-      padding: const EdgeInsets.all(AppConstants.spacingLg),
-      borderRadius: BorderRadius.circular(AppConstants.radiusLg),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Title row with indicators
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  dream.title,
-                  style: AppTypography.displayFont.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: isDark
-                        ? AppColors.textPrimary
-                        : AppColors.lightTextPrimary,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              if (dream.isRecurring || dream.isLucid || dream.isNightmare)
-                Padding(
-                  padding: const EdgeInsets.only(left: AppConstants.spacingSm),
-                  child: _buildIndicators(),
-                ),
-            ],
-          ),
-          const SizedBox(height: AppConstants.spacingXs),
-
-          // Date
-          Text(
-            formatDate(dream.dreamDate, isEn),
-            style: AppTypography.elegantAccent(
-              fontSize: 13,
-              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-            ),
-          ),
-
-          // Content preview
-          if (dream.content.isNotEmpty) ...[
-            const SizedBox(height: AppConstants.spacingSm),
-            Text(
-              dream.content,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: AppTypography.decorativeScript(
-                fontSize: 14,
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
-            ),
-          ],
-
-          // Detected symbols as tags
-          if (dream.detectedSymbols.isNotEmpty) ...[
-            const SizedBox(height: AppConstants.spacingSm),
-            Wrap(
-              spacing: 6,
-              runSpacing: 4,
-              children: dream.detectedSymbols.take(5).map((symbol) {
-                return Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 3,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.starGold.withValues(alpha: 0.12),
-                    borderRadius: BorderRadius.circular(
-                      AppConstants.radiusFull,
-                    ),
-                    border: Border.all(
-                      color: AppColors.starGold.withValues(alpha: 0.25),
-                      width: 0.5,
-                    ),
-                  ),
+    return Semantics(
+      button: true,
+      label: '${dream.title}, ${formatDate(dream.dreamDate, isEn)}',
+      child: GlassPanel(
+        elevation: GlassElevation.g2,
+        padding: const EdgeInsets.all(AppConstants.spacingLg),
+        borderRadius: BorderRadius.circular(AppConstants.radiusLg),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Title row with indicators
+            Row(
+              children: [
+                Expanded(
                   child: Text(
-                    symbol,
-                    style: AppTypography.elegantAccent(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.starGold,
+                    dream.title,
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: isDark
+                          ? AppColors.textPrimary
+                          : AppColors.lightTextPrimary,
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                );
-              }).toList(),
+                ),
+                if (dream.isRecurring || dream.isLucid || dream.isNightmare)
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: AppConstants.spacingSm,
+                    ),
+                    child: _buildIndicators(),
+                  ),
+              ],
             ),
+            const SizedBox(height: AppConstants.spacingXs),
+
+            // Date
+            Text(
+              formatDate(dream.dreamDate, isEn),
+              style: AppTypography.elegantAccent(
+                fontSize: 13,
+                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+              ),
+            ),
+
+            // Content preview
+            if (dream.content.isNotEmpty) ...[
+              const SizedBox(height: AppConstants.spacingSm),
+              Text(
+                dream.content,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: AppTypography.decorativeScript(
+                  fontSize: 14,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
+              ),
+            ],
+
+            // Detected symbols as tags
+            if (dream.detectedSymbols.isNotEmpty) ...[
+              const SizedBox(height: AppConstants.spacingSm),
+              Wrap(
+                spacing: 6,
+                runSpacing: 4,
+                children: dream.detectedSymbols.take(5).map((symbol) {
+                  return Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 3,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.starGold.withValues(alpha: 0.12),
+                      borderRadius: BorderRadius.circular(
+                        AppConstants.radiusFull,
+                      ),
+                      border: Border.all(
+                        color: AppColors.starGold.withValues(alpha: 0.25),
+                        width: 0.5,
+                      ),
+                    ),
+                    child: Text(
+                      symbol,
+                      style: AppTypography.elegantAccent(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

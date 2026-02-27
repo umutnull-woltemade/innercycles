@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:math' show cos, sin, pi;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,7 +21,9 @@ import '../../../data/models/user_profile.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/auth_service.dart';
 import '../../../data/services/l10n_service.dart';
+import '../../../data/services/mood_checkin_service.dart';
 import '../../../data/services/notification_service.dart';
+import '../../../data/services/referral_service.dart';
 import '../../../data/services/storage_service.dart';
 // birth_date_picker removed (birthday deferred to settings)
 import '../../../shared/widgets/app_symbol.dart';
@@ -32,12 +36,13 @@ import '../../../shared/widgets/cosmic_loading_indicator.dart';
 // Quiz data moved to standalone ArchetypeQuizScreen (post-onboarding)
 
 // ════════════════════════════════════════════════════════════════════════════
-// ONBOARDING SCREEN — 4-Step Focused Flow
+// ONBOARDING SCREEN — 5-Step Focused Flow
 // ════════════════════════════════════════════════════════════════════════════
 //   Page 0: Welcome — Branding + 3 feature highlights
 //   Page 1: Identity — Name + Apple Sign-In
 //   Page 2: First Cycle — Focus area selection
-//   Page 3: Permission + Start — Notifications + CTA
+//   Page 3: First Mood — Quick mood check-in (seeds data for trends)
+//   Page 4: Permission + Start — Notifications + CTA
 // ════════════════════════════════════════════════════════════════════════════
 
 class OnboardingScreen extends ConsumerStatefulWidget {
@@ -53,10 +58,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   String? _userName;
   FocusArea? _selectedFocusArea;
+  int? _selectedMood;
+  String? _selectedMoodEmoji;
   bool _notificationsRequested = false;
   bool _isCompleting = false;
+  String _referralCode = '';
 
-  static const int _totalPages = 4; // 1 welcome + 3 setup
+  static const int _totalPages = 5; // 1 welcome + 4 setup
   static const int _valuePropCount = 1;
 
   @override
@@ -69,8 +77,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     HapticFeedback.lightImpact();
     _pageController.animateToPage(
       page,
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.easeOutCubic,
+      duration: const Duration(milliseconds: 550),
+      curve: Curves.easeInOutCubic,
     );
   }
 
@@ -79,6 +87,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       _goToPage(_currentPage + 1);
     } else {
       _completeOnboarding();
+    }
+  }
+
+  void _previousPage() {
+    if (_currentPage > 0) {
+      _goToPage(_currentPage - 1);
     }
   }
 
@@ -104,11 +118,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     if (_isCompleting) return;
     _isCompleting = true;
 
-    HapticFeedback.selectionClick();
+    HapticFeedback.heavyImpact();
 
-    if (_userName != null && _userName!.isNotEmpty) {
+    try {
       final profile = UserProfile(
-        name: _userName,
+        name: (_userName != null && _userName!.isNotEmpty) ? _userName : null,
         birthDate: DateTime(2000, 1, 1),
       );
 
@@ -124,8 +138,31 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         await prefs.setString('preferred_focus_area', _selectedFocusArea!.name);
       }
 
+      // Save mood check-in from onboarding so screens have data immediately
+      if (_selectedMood != null && _selectedMoodEmoji != null) {
+        try {
+          final moodService = await MoodCheckinService.init();
+          await moodService.logMood(_selectedMood!, _selectedMoodEmoji!);
+          ref.invalidate(moodCheckinServiceProvider);
+        } catch (_) {}
+      }
+
+      // Apply referral code if entered during onboarding
+      if (_referralCode.trim().isNotEmpty) {
+        try {
+          final referralService = await ReferralService.init();
+          await referralService.applyCode(_referralCode.trim());
+        } catch (_) {}
+      }
+
       await Future.delayed(const Duration(milliseconds: 100));
 
+      if (mounted) {
+        context.go(Routes.today);
+      }
+    } catch (e) {
+      // Ensure user can still enter the app even if persistence fails
+      _isCompleting = false;
       if (mounted) {
         context.go(Routes.today);
       }
@@ -133,17 +170,17 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   bool _canProceed() {
-    if (_currentPage < _valuePropCount) return true;
-    switch (_currentPage - _valuePropCount) {
-      case 0: // Identity
-        return _userName != null && _userName!.isNotEmpty;
-      case 1: // Focus area
-        return _selectedFocusArea != null;
-      case 2: // Permission + start
-        return true;
-      default:
-        return true;
-    }
+    // All pages allow proceeding — skip is always possible
+    return true;
+  }
+
+  bool get _isOnSkippableStep {
+    if (_currentPage < _valuePropCount) return false;
+    final step = _currentPage - _valuePropCount;
+    if (step == 0) return _userName == null || _userName!.isEmpty;
+    if (step == 1) return _selectedFocusArea == null;
+    if (step == 2) return _selectedMood == null;
+    return false;
   }
 
   @override
@@ -158,37 +195,54 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         child: SafeArea(
           child: Column(
             children: [
+              // Back button — visible after first page
+              if (_currentPage > 0)
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8, top: 4),
+                    child: IconButton(
+                      onPressed: _previousPage,
+                      icon: const Icon(Icons.arrow_back_ios_rounded, size: 20),
+                      color: AppColors.textMuted,
+                      tooltip: language == AppLanguage.en ? 'Back' : 'Geri',
+                    ),
+                  ),
+                ),
               Expanded(
-                child: PageView(
+                child: PageView.builder(
                   controller: _pageController,
                   physics: const NeverScrollableScrollPhysics(),
+                  itemCount: _totalPages,
                   onPageChanged: (index) {
                     setState(() => _currentPage = index);
                   },
-                  children: [
-                    // Page 0: Welcome + Feature Highlights
-                    _WelcomePage(language: language),
-                    // Page 1: Identity — Name + Apple Sign-In
-                    _IdentityPage(
-                      userName: _userName,
-                      onNameChanged: (name) => setState(() => _userName = name),
-                      onContinue: _nextPage,
-                      language: language,
-                    ),
-                    // Page 2: Focus Area Selection
-                    _FirstCyclePage(
-                      selectedFocusArea: _selectedFocusArea,
-                      onFocusAreaSelected: (area) =>
-                          setState(() => _selectedFocusArea = area),
-                      language: language,
-                    ),
-                    // Page 3: Permissions + Start
-                    _PermissionStartPage(
-                      notificationsRequested: _notificationsRequested,
-                      onRequestNotifications: _requestNotifications,
-                      language: language,
-                    ),
-                  ],
+                  itemBuilder: (context, index) {
+                    return AnimatedBuilder(
+                      animation: _pageController,
+                      builder: (context, child) {
+                        double value = 0;
+                        if (_pageController.position.haveDimensions) {
+                          value = (_pageController.page! - index)
+                              .clamp(-1.0, 1.0);
+                        }
+                        return Transform.translate(
+                          offset: Offset(
+                            value *
+                                MediaQuery.of(context).size.width *
+                                0.3,
+                            0,
+                          ),
+                          child: Opacity(
+                            opacity:
+                                (1 - value.abs() * 0.4).clamp(0.0, 1.0),
+                            child: child,
+                          ),
+                        );
+                      },
+                      child: _buildPage(index, language),
+                    );
+                  },
                 ),
               ),
               _buildBottomSection(language),
@@ -199,11 +253,50 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     );
   }
 
+  Widget _buildPage(int index, AppLanguage language) {
+    switch (index) {
+      case 0:
+        return _WelcomePage(language: language);
+      case 1:
+        return _IdentityPage(
+          userName: _userName,
+          onNameChanged: (name) => setState(() => _userName = name),
+          onContinue: _nextPage,
+          language: language,
+        );
+      case 2:
+        return _FirstCyclePage(
+          selectedFocusArea: _selectedFocusArea,
+          onFocusAreaSelected: (area) =>
+              setState(() => _selectedFocusArea = area),
+          language: language,
+        );
+      case 3:
+        return _FirstMoodPage(
+          selectedMood: _selectedMood,
+          selectedEmoji: _selectedMoodEmoji,
+          onMoodSelected: (mood, emoji) => setState(() {
+            _selectedMood = mood;
+            _selectedMoodEmoji = emoji;
+          }),
+          language: language,
+        );
+      case 4:
+        return _PermissionStartPage(
+          notificationsRequested: _notificationsRequested,
+          onRequestNotifications: _requestNotifications,
+          onReferralCodeChanged: (code) => _referralCode = code,
+          language: language,
+        );
+      default:
+        return const SizedBox.shrink();
+    }
+  }
+
   Widget _buildBottomSection(AppLanguage language) {
     final isEn = language == AppLanguage.en;
     final isLastPage = _currentPage == _totalPages - 1;
     final isLastValueProp = _currentPage == _valuePropCount - 1;
-    final isInValueProps = _currentPage < _valuePropCount;
 
     // Determine button label
     String buttonLabel;
@@ -219,52 +312,88 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       buttonIcon = Icons.arrow_forward;
     }
 
-    // Value prop pages use their own dot indicator set (4 dots),
-    // original steps use theirs (5 dots)
-    final int dotCount;
-    final int activeDot;
-    if (isInValueProps) {
-      dotCount = _valuePropCount;
-      activeDot = _currentPage;
-    } else {
-      dotCount = _totalPages - _valuePropCount;
-      activeDot = _currentPage - _valuePropCount;
-    }
-
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
       child: Column(
         children: [
-          // Dot indicators — scoped to current phase
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(dotCount, (index) {
-              final isActive = activeDot == index;
-              final isPast = index < activeDot;
-              return AnimatedContainer(
-                duration: const Duration(milliseconds: 250),
-                margin: const EdgeInsets.symmetric(horizontal: 4),
-                width: isActive ? 28 : 8,
-                height: 8,
+          // Progress bar
+          Column(
+            children: [
+              Container(
+                width: 140,
+                height: 3,
                 decoration: BoxDecoration(
-                  color: isActive
-                      ? AppColors.starGold
-                      : isPast
-                      ? AppColors.starGold.withValues(alpha: 0.47)
-                      : AppColors.surfaceLight.withValues(alpha: 0.31),
-                  borderRadius: BorderRadius.circular(4),
+                  color: AppColors.surfaceLight.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(1.5),
                 ),
-              );
-            }),
+                child: FractionallySizedBox(
+                  alignment: Alignment.centerLeft,
+                  widthFactor: (_currentPage + 1) / _totalPages,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeOutCubic,
+                    decoration: BoxDecoration(
+                      gradient: AppColors.goldGradient,
+                      borderRadius: BorderRadius.circular(1.5),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                '${_currentPage + 1} / $_totalPages',
+                style: AppTypography.elegantAccent(
+                  fontSize: 12,
+                  color: AppColors.textMuted,
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 20),
-          // CTA button
-          GradientButton(
-            label: buttonLabel,
-            icon: buttonIcon,
-            width: double.infinity,
-            onPressed: _canProceed() ? _nextPage : null,
-          ),
+          // CTA button — gold on final page with shimmer
+          if (isLastPage)
+            GradientButton.gold(
+              label: buttonLabel,
+              icon: buttonIcon,
+              width: double.infinity,
+              onPressed: _canProceed() ? _nextPage : null,
+            )
+                .animate()
+                .fadeIn(duration: 400.ms)
+                .then(delay: 600.ms)
+                .shimmer(
+                  duration: 2000.ms,
+                  color: AppColors.celestialGold.withValues(alpha: 0.2),
+                )
+                .animate(
+                  onPlay: (controller) => controller.repeat(),
+                )
+                .shimmer(
+                  delay: 4000.ms,
+                  duration: 2000.ms,
+                  color: AppColors.celestialGold.withValues(alpha: 0.15),
+                )
+          else
+            GradientButton(
+              label: buttonLabel,
+              icon: buttonIcon,
+              width: double.infinity,
+              onPressed: _canProceed() ? _nextPage : null,
+            ),
+          // Skip link for steps that require input
+          if (_isOnSkippableStep) ...[
+            const SizedBox(height: 12),
+            GestureDetector(
+              onTap: _nextPage,
+              child: Text(
+                isEn ? 'Skip for now' : 'Şimdilik atla',
+                style: AppTypography.elegantAccent(
+                  fontSize: 14,
+                  color: AppColors.textMuted,
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );
@@ -522,7 +651,23 @@ class _IdentityPageState extends State<_IdentityPage>
             textAlign: TextAlign.center,
           ).glassListItem(context: context, index: 1),
 
-          const SizedBox(height: 36),
+          const SizedBox(height: 28),
+
+          // Warm greeting
+          GradientText(
+            widget.language == AppLanguage.en
+                ? 'Let\'s start with your name'
+                : 'İsminle başlayalım',
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 26,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.5,
+            ),
+            variant: GradientTextVariant.amethyst,
+            textAlign: TextAlign.center,
+          ).glassListItem(context: context, index: 1),
+
+          const SizedBox(height: 20),
 
           // Name input — primary action
           _NameInput(
@@ -569,16 +714,14 @@ class _IdentityPageState extends State<_IdentityPage>
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: const Color(
-                  0xFFD89B64,
-                ).withValues(alpha: (60 * _glowController.value + 20) / 255),
+                color: AppColors.auroraStart
+                    .withValues(alpha: (60 * _glowController.value + 20) / 255),
                 blurRadius: 50 + (25 * _glowController.value),
                 spreadRadius: 8 + (12 * _glowController.value),
               ),
               BoxShadow(
-                color: const Color(
-                  0xFF8B7BA8,
-                ).withValues(alpha: (40 * _glowController.value + 15) / 255),
+                color: AppColors.amethyst
+                    .withValues(alpha: (40 * _glowController.value + 15) / 255),
                 blurRadius: 70 + (30 * _glowController.value),
                 spreadRadius: 5,
               ),
@@ -698,17 +841,17 @@ class _FirstCyclePage extends StatelessWidget {
   };
 
   static const Map<FocusArea, Color> _focusColors = {
-    FocusArea.energy: Color(0xFFFF6B6B),
-    FocusArea.emotions: AppColors.amethyst,
-    FocusArea.focus: AppColors.auroraStart,
-    FocusArea.social: Color(0xFF4ECDC4),
+    FocusArea.energy: AppColors.starGold,
+    FocusArea.emotions: AppColors.chartPink,
+    FocusArea.focus: AppColors.chartBlue,
+    FocusArea.social: AppColors.chartPurple,
   };
 
   @override
   Widget build(BuildContext context) {
     final isEn = language == AppLanguage.en;
 
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -730,8 +873,8 @@ class _FirstCyclePage extends StatelessWidget {
 
           Text(
             isEn
-                ? 'Which part of your inner world are you most curious about?'
-                : 'İç dünyanın hangi köşesi seni en çok meraklandırıyor?',
+                ? 'There\'s no wrong answer — follow your curiosity'
+                : 'Yanlış cevap yok — merakını takip et',
             style: AppTypography.decorativeScript(
               fontSize: 19,
               color: AppColors.textMuted,
@@ -741,12 +884,12 @@ class _FirstCyclePage extends StatelessWidget {
           const SizedBox(height: 32),
 
           // 2x2 Focus Area Grid
-          Expanded(
-            child: GridView.count(
+          GridView.count(
               crossAxisCount: 2,
               mainAxisSpacing: 14,
               crossAxisSpacing: 14,
-              childAspectRatio: 0.9,
+              childAspectRatio: 0.85,
+              shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               children: _focusAreas.asMap().entries.map((entry) {
                 final index = entry.key;
@@ -759,10 +902,14 @@ class _FirstCyclePage extends StatelessWidget {
                   label: isEn ? area.displayNameEn : area.displayNameTr,
                   child: GestureDetector(
                     onTap: () {
-                      HapticFeedback.lightImpact();
+                      HapticFeedback.selectionClick();
                       onFocusAreaSelected(area);
                     },
-                    child: AnimatedContainer(
+                    child: AnimatedScale(
+                      scale: isSelected ? 1.03 : 1.0,
+                      duration: const Duration(milliseconds: 250),
+                      curve: Curves.easeOutBack,
+                      child: AnimatedContainer(
                       duration: const Duration(milliseconds: 250),
                       curve: Curves.easeOutCubic,
                       decoration: BoxDecoration(
@@ -839,11 +986,13 @@ class _FirstCyclePage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    ),
                   ),
                 ).glassListItem(context: context, index: index);
               }).toList(),
             ),
-          ),
+
+          const SizedBox(height: 14),
 
           // Info note
           GlassPanel(
@@ -879,17 +1028,19 @@ class _FirstCyclePage extends StatelessWidget {
 // Birthday and Archetype Quiz pages removed — deferred to settings/post-onboarding
 
 // ════════════════════════════════════════════════════════════════════════════
-// STEP 4: PERMISSION + START
+// STEP 2: FIRST MOOD CHECK-IN — Seeds data so trends aren't empty
 // ════════════════════════════════════════════════════════════════════════════
 
-class _PermissionStartPage extends StatelessWidget {
-  final bool notificationsRequested;
-  final VoidCallback onRequestNotifications;
+class _FirstMoodPage extends StatelessWidget {
+  final int? selectedMood;
+  final String? selectedEmoji;
+  final void Function(int mood, String emoji) onMoodSelected;
   final AppLanguage language;
 
-  const _PermissionStartPage({
-    required this.notificationsRequested,
-    required this.onRequestNotifications,
+  const _FirstMoodPage({
+    required this.selectedMood,
+    required this.selectedEmoji,
+    required this.onMoodSelected,
     required this.language,
   });
 
@@ -900,12 +1051,255 @@ class _PermissionStartPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: Column(
+        children: [
+          const Spacer(flex: 2),
+
+          // Emoji hero — shows selected mood or placeholder with glow
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 500),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              boxShadow: selectedEmoji != null
+                  ? [
+                      BoxShadow(
+                        color: AppColors.amethyst.withValues(alpha: 0.12),
+                        blurRadius: 50,
+                        spreadRadius: 10,
+                      ),
+                    ]
+                  : null,
+            ),
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, anim) => ScaleTransition(
+                scale: anim,
+                child: child,
+              ),
+              child: Text(
+                selectedEmoji ?? '🌿',
+                key: ValueKey(selectedEmoji),
+                style: const TextStyle(fontSize: 76),
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 20),
+
+          GradientText(
+            isEn ? 'How are you feeling right now?' : 'Şu an nasıl hissediyorsun?',
+            style: AppTypography.displayFont.copyWith(
+              fontSize: 26,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.5,
+            ),
+            variant: GradientTextVariant.amethyst,
+            textAlign: TextAlign.center,
+          ).glassEntrance(context: context),
+
+          const SizedBox(height: 8),
+
+          Text(
+            isEn
+                ? 'Your first check-in — this powers your mood dashboard'
+                : 'İlk check-in\'in — bu ruh hali panelini besler',
+            style: AppTypography.decorativeScript(
+              fontSize: 15,
+              color: AppColors.textMuted,
+            ),
+            textAlign: TextAlign.center,
+          ).glassListItem(context: context, index: 0),
+
+          const SizedBox(height: 40),
+
+          // Mood options row
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: MoodCheckinService.moodOptions.asMap().entries.map((entry) {
+              final index = entry.key;
+              final (mood, emoji, labelEn, labelTr) = entry.value;
+              final isSelected = selectedMood == mood;
+
+              return Semantics(
+                label: isEn ? labelEn : labelTr,
+                button: true,
+                selected: isSelected,
+                child: GestureDetector(
+                  onTap: () {
+                    HapticFeedback.selectionClick();
+                    onMoodSelected(mood, emoji);
+                  },
+                  child: AnimatedScale(
+                    scale: isSelected ? 1.12 : 1.0,
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.easeOutBack,
+                    child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 250),
+                    curve: Curves.easeOutCubic,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 10,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: isSelected
+                          ? AppColors.amethyst.withValues(alpha: 0.15)
+                          : Colors.transparent,
+                      border: isSelected
+                          ? Border.all(
+                              color: AppColors.amethyst.withValues(alpha: 0.4),
+                              width: 1.5,
+                            )
+                          : null,
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          emoji,
+                          style: TextStyle(
+                            fontSize: isSelected ? 36 : 30,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          isEn ? labelEn : labelTr,
+                          style: AppTypography.elegantAccent(
+                            fontSize: 11,
+                            color: isSelected
+                                ? AppColors.textPrimary
+                                : AppColors.textMuted,
+                            fontWeight: isSelected
+                                ? FontWeight.w600
+                                : FontWeight.normal,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ),
+                ),
+              ).glassListItem(context: context, index: index + 1);
+            }).toList(),
+          ),
+
+          const Spacer(flex: 3),
+
+          // Info note
+          GlassPanel(
+            elevation: GlassElevation.g1,
+            borderRadius: BorderRadius.circular(10),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            child: Row(
+              children: [
+                Icon(Icons.auto_graph_rounded, size: 16, color: AppColors.textMuted),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    isEn
+                        ? 'Check in daily to see patterns emerge'
+                        : 'Her gün kayıt yap, kalıpların ortaya çıksın',
+                    style: AppTypography.subtitle(
+                      fontSize: 14,
+                      color: AppColors.textMuted,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ).glassListItem(context: context, index: 6),
+
+          const SizedBox(height: 8),
+        ],
+      ),
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// STEP 3: PERMISSION + START
+// ════════════════════════════════════════════════════════════════════════════
+
+class _PermissionStartPage extends StatefulWidget {
+  final bool notificationsRequested;
+  final VoidCallback onRequestNotifications;
+  final ValueChanged<String> onReferralCodeChanged;
+  final AppLanguage language;
+
+  const _PermissionStartPage({
+    required this.notificationsRequested,
+    required this.onRequestNotifications,
+    required this.onReferralCodeChanged,
+    required this.language,
+  });
+
+  @override
+  State<_PermissionStartPage> createState() => _PermissionStartPageState();
+}
+
+class _PermissionStartPageState extends State<_PermissionStartPage> {
+  bool _showReferralInput = false;
+  final _codeController = TextEditingController();
+
+  @override
+  void dispose() {
+    _codeController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isEn = widget.language == AppLanguage.en;
+    final notificationsRequested = widget.notificationsRequested;
+    final onRequestNotifications = widget.onRequestNotifications;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Spacer(),
+          const SizedBox(height: 16),
 
-          // Success icon — premium double-ring design
-          Container(
+          // Success icon — premium double-ring design + particle burst
+          SizedBox(
+            width: 140,
+            height: 140,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                // Particle burst dots
+                ...List.generate(8, (i) {
+                  final angle = (i / 8) * 2 * pi;
+                  final dx = cos(angle) * 55;
+                  final dy = sin(angle) * 55;
+                  return Container(
+                    width: 4,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.starGold.withValues(alpha: 0.5),
+                    ),
+                  )
+                      .animate(delay: (200 + i * 50).ms)
+                      .scale(
+                        begin: const Offset(0, 0),
+                        end: const Offset(1, 1),
+                        duration: 300.ms,
+                      )
+                      .moveX(
+                        end: dx,
+                        duration: 500.ms,
+                        curve: Curves.easeOut,
+                      )
+                      .moveY(
+                        end: dy,
+                        duration: 500.ms,
+                        curve: Curves.easeOut,
+                      )
+                      .fadeOut(delay: 350.ms, duration: 200.ms);
+                }),
+                // Main icon
+                Container(
             width: 100,
             height: 100,
             decoration: BoxDecoration(
@@ -1014,6 +1408,9 @@ class _PermissionStartPage extends StatelessWidget {
               ),
             ),
           ).glassReveal(context: context),
+              ],
+            ),
+          ),
 
           const SizedBox(height: 20),
 
@@ -1200,7 +1597,123 @@ class _PermissionStartPage extends StatelessWidget {
             ),
           ).glassListItem(context: context, index: 4),
 
-          const Spacer(),
+          const SizedBox(height: 20),
+
+          // Referral code — collapsible section
+          GestureDetector(
+            onTap: () => setState(() => _showReferralInput = !_showReferralInput),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.card_giftcard_rounded,
+                  size: 16,
+                  color: AppColors.starGold.withValues(alpha: 0.7),
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  isEn
+                      ? 'Have an invite code?'
+                      : 'Davet kodun var mı?',
+                  style: AppTypography.subtitle(
+                    fontSize: 14,
+                    color: AppColors.starGold.withValues(alpha: 0.8),
+                  ),
+                ),
+                const SizedBox(width: 4),
+                AnimatedRotation(
+                  turns: _showReferralInput ? 0.5 : 0,
+                  duration: const Duration(milliseconds: 200),
+                  child: Icon(
+                    Icons.keyboard_arrow_down_rounded,
+                    size: 18,
+                    color: AppColors.starGold.withValues(alpha: 0.6),
+                  ),
+                ),
+              ],
+            ),
+          ).glassListItem(context: context, index: 5),
+
+          AnimatedCrossFade(
+            firstChild: const SizedBox.shrink(),
+            secondChild: Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: GlassPanel(
+                elevation: GlassElevation.g2,
+                borderRadius: BorderRadius.circular(14),
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    Text(
+                      isEn
+                          ? 'Enter your friend\'s code for 7 days free Premium'
+                          : 'Arkadaşının kodunu gir, 7 gün ücretsiz Premium kazan',
+                      style: AppTypography.subtitle(
+                        fontSize: 13,
+                        color: AppColors.textSecondary,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 12),
+                    SizedBox(
+                      height: 48,
+                      child: TextField(
+                        controller: _codeController,
+                        textCapitalization: TextCapitalization.characters,
+                        textAlign: TextAlign.center,
+                        style: AppTypography.elegantAccent(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.textPrimary,
+                          letterSpacing: 4,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: isEn ? 'ABCD1234' : 'ABCD1234',
+                          hintStyle: AppTypography.subtitle(
+                            fontSize: 18,
+                            color: AppColors.textMuted.withValues(alpha: 0.3),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white.withValues(alpha: 0.05),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(
+                              color: AppColors.starGold.withValues(alpha: 0.2),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(
+                              color: AppColors.starGold.withValues(alpha: 0.15),
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(
+                              color: AppColors.starGold.withValues(alpha: 0.5),
+                            ),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 12,
+                          ),
+                        ),
+                        maxLength: 8,
+                        buildCounter: (_, {required currentLength, required isFocused, maxLength}) => null,
+                        onChanged: (value) => widget.onReferralCodeChanged(value),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            crossFadeState: _showReferralInput
+                ? CrossFadeState.showSecond
+                : CrossFadeState.showFirst,
+            duration: const Duration(milliseconds: 250),
+          ),
+
+          const SizedBox(height: 24),
 
           // Disclaimer
           GlassPanel(
@@ -1213,7 +1726,7 @@ class _PermissionStartPage extends StatelessWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    L10nService.get('disclaimer.reflection_only', language),
+                    L10nService.get('disclaimer.reflection_only', widget.language),
                     style: AppTypography.subtitle(
                       fontSize: 13,
                       color: AppColors.textMuted,
@@ -1226,6 +1739,7 @@ class _PermissionStartPage extends StatelessWidget {
 
           const SizedBox(height: 8),
         ],
+        ),
       ),
     );
   }
@@ -1251,38 +1765,56 @@ class _WelcomePage extends StatelessWidget {
         children: [
           const Spacer(flex: 2),
 
-          // Logo with ambient glow
-          Container(
-            width: 120,
-            height: 120,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: RadialGradient(
-                colors: [
-                  AppColors.starGold.withValues(alpha: 0.18),
-                  AppColors.starGold.withValues(alpha: 0.04),
-                  Colors.transparent,
-                ],
-                stops: const [0.0, 0.6, 1.0],
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.starGold.withValues(alpha: 0.2),
-                  blurRadius: 40,
-                  spreadRadius: 10,
+          // Logo with pulsing outer ring + ambient glow
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              // Pulsing outer ring
+              Container(
+                width: 130,
+                height: 130,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: AppColors.starGold.withValues(alpha: 0.15),
+                    width: 1,
+                  ),
                 ),
-              ],
-            ),
-            child: const Icon(
-              Icons.auto_awesome,
-              size: 56,
-              color: AppColors.starGold,
-            ),
+              ).glassPulse(context: context, scale: 1.05),
+              // Inner icon
+              Container(
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(
+                    colors: [
+                      AppColors.starGold.withValues(alpha: 0.18),
+                      AppColors.starGold.withValues(alpha: 0.04),
+                      Colors.transparent,
+                    ],
+                    stops: const [0.0, 0.6, 1.0],
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.starGold.withValues(alpha: 0.2),
+                      blurRadius: 40,
+                      spreadRadius: 10,
+                    ),
+                  ],
+                ),
+                child: const Icon(
+                  Icons.self_improvement,
+                  size: 56,
+                  color: AppColors.starGold,
+                ),
+              ),
+            ],
           ).glassReveal(context: context),
 
           const SizedBox(height: 28),
 
-          // App name
+          // App name with shimmer
           GradientText(
             'InnerCycles',
             style: AppTypography.displayFont.copyWith(
@@ -1293,18 +1825,25 @@ class _WelcomePage extends StatelessWidget {
             ),
             variant: GradientTextVariant.gold,
             textAlign: TextAlign.center,
-          ).glassEntrance(
-            context: context,
-            delay: const Duration(milliseconds: 200),
-          ),
+          )
+              .glassEntrance(
+                context: context,
+                delay: const Duration(milliseconds: 200),
+              )
+              .animate()
+              .then(delay: 800.ms)
+              .shimmer(
+                duration: 2000.ms,
+                color: AppColors.celestialGold.withValues(alpha: 0.15),
+              ),
 
           const SizedBox(height: 14),
 
           // Tagline
           Text(
             isEn
-                ? 'Understand the patterns you repeat'
-                : 'Tekrarladığın kalıpları anla',
+                ? 'Your story. Your patterns. Your clarity.'
+                : 'Senin hikayen. Senin kalıpların. Senin netliğin.',
             style: AppTypography.decorativeScript(
               fontSize: 16,
               color: AppColors.textSecondary,
@@ -1346,6 +1885,38 @@ class _WelcomePage extends StatelessWidget {
           ).glassEntrance(
             context: context,
             delay: const Duration(milliseconds: 600),
+          ),
+
+          const SizedBox(height: 32),
+
+          // Privacy callout
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.lock_rounded,
+                  size: 14,
+                  color: AppColors.starGold.withValues(alpha: 0.6),
+                ),
+                const SizedBox(width: 6),
+                Flexible(
+                  child: Text(
+                    isEn
+                        ? 'Private & secure. Your journal stays on your device.'
+                        : 'Gizli ve güvenli. Günlüğün cihazında kalır.',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      color: AppColors.textMuted,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ).glassEntrance(
+            context: context,
+            delay: const Duration(milliseconds: 800),
           ),
 
           const Spacer(flex: 3),
@@ -1497,7 +2068,7 @@ class _NameInput extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: colorScheme.primary),
+          borderSide: const BorderSide(color: AppColors.starGold),
         ),
       ),
     );

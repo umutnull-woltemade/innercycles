@@ -139,6 +139,7 @@ class _RetrospectiveScreenState extends ConsumerState<RetrospectiveScreen> {
         _savedIds.add(saved.id);
       }
     }
+    if (!mounted) return;
     _goToStep(3);
   }
 

@@ -8,6 +8,7 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
@@ -43,14 +44,34 @@ class MilestoneScreen extends ConsumerWidget {
           error: (_, _) => Center(
             child: Padding(
               padding: const EdgeInsets.all(32),
-              child: Text(
-                CommonStrings.somethingWentWrong(language),
-                textAlign: TextAlign.center,
-                style: AppTypography.subtitle(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    CommonStrings.somethingWentWrong(language),
+                    textAlign: TextAlign.center,
+                    style: AppTypography.subtitle(
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(milestoneServiceProvider),
+                    icon: Icon(Icons.refresh_rounded,
+                        size: 16, color: AppColors.starGold),
+                    label: Text(
+                      isEn ? 'Retry' : 'Tekrar Dene',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -95,68 +116,70 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
         ? allMilestones
         : allMilestones.where((m) => m.category == _selectedCategory).toList();
 
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      slivers: [
-        GlassSliverAppBar(title: isEn ? 'Milestones' : 'Rozetler'),
-
-        // ── Progress Card ─────────────────────────────────────────────
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-            child: _buildProgressCard()
-                .animate()
-                .fadeIn(duration: 400.ms)
-                .slideY(begin: 0.08, duration: 400.ms, curve: Curves.easeOut),
-          ),
+    return CupertinoScrollbar(
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
         ),
+        slivers: [
+          GlassSliverAppBar(title: isEn ? 'Milestones' : 'Rozetler'),
 
-        // ── Filter Chips ──────────────────────────────────────────────
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
-            child: _buildFilterChips().animate().fadeIn(
-              delay: 100.ms,
-              duration: 300.ms,
+          // ── Progress Card ─────────────────────────────────────────────
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+              child: _buildProgressCard()
+                  .animate()
+                  .fadeIn(duration: 400.ms)
+                  .slideY(begin: 0.08, duration: 400.ms, curve: Curves.easeOut),
             ),
           ),
-        ),
 
-        // ── Badge Grid ────────────────────────────────────────────────
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          sliver: SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: 0.78,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
+          // ── Filter Chips ──────────────────────────────────────────────
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+              child: _buildFilterChips().animate().fadeIn(
+                delay: 100.ms,
+                duration: 300.ms,
+              ),
             ),
-            delegate: SliverChildBuilderDelegate((context, index) {
-              final milestone = filtered[index];
-              final earned = service.isEarned(milestone.id);
-              return _buildBadgeTile(milestone, earned, index);
-            }, childCount: filtered.length),
           ),
-        ),
 
-        // Footer
-        SliverToBoxAdapter(
-          child: Padding(
+          // ── Badge Grid ────────────────────────────────────────────────
+          SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: ToolEcosystemFooter(
-              currentToolId: 'milestones',
-              isEn: isEn,
-              isDark: isDark,
+            sliver: SliverGrid(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: 0.78,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final milestone = filtered[index];
+                final earned = service.isEarned(milestone.id);
+                return _buildBadgeTile(milestone, earned, index);
+              }, childCount: filtered.length),
             ),
           ),
-        ),
 
-        // Bottom spacing
-        const SliverToBoxAdapter(child: SizedBox(height: 40)),
-      ],
+          // Footer
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: ToolEcosystemFooter(
+                currentToolId: 'milestones',
+                isEn: isEn,
+                isDark: isDark,
+              ),
+            ),
+          ),
+
+          // Bottom spacing
+          const SliverToBoxAdapter(child: SizedBox(height: 40)),
+        ],
+      ),
     );
   }
 
@@ -679,7 +702,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
                             ),
                           ),
                           child: Text(
-                            isEn ? 'Close' : 'Kapat',
+                            isEn ? 'Done' : 'Tamam',
                             style: AppTypography.modernAccent(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,

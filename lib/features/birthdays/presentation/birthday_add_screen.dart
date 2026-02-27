@@ -5,6 +5,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -100,43 +101,46 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         body: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: CosmicBackground(
-            child: CustomScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics(),
-              ),
-              slivers: [
-                GlassSliverAppBar(
-                  title: _isEditing
-                      ? (isEn
-                            ? 'Edit Birthday'
-                            : 'Do\u{011F}um G\u{00FC}n\u{00FC} D\u{00FC}zenle')
-                      : (isEn
-                            ? 'Add Birthday'
-                            : 'Do\u{011F}um G\u{00FC}n\u{00FC} Ekle'),
+            child: CupertinoScrollbar(
+              child: CustomScrollView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
                 ),
-                SliverPadding(
-                  padding: const EdgeInsets.all(16),
-                  sliver: SliverList(
-                    delegate: SliverChildListDelegate([
-                      _buildPhotoSection(isDark, isEn),
-                      const SizedBox(height: 20),
-                      _buildNameField(isDark, isEn),
-                      const SizedBox(height: 20),
-                      _buildDateSection(isDark, isEn),
-                      const SizedBox(height: 20),
-                      _buildRelationshipSection(isDark, isEn),
-                      const SizedBox(height: 20),
-                      _buildNoteField(isDark, isEn),
-                      const SizedBox(height: 20),
-                      _buildNotificationToggles(isDark, isEn),
-                      const SizedBox(height: 32),
-                      _buildSaveButton(isDark, isEn),
-                      const SizedBox(height: 40),
-                    ]),
+                slivers: [
+                  GlassSliverAppBar(
+                    title: _isEditing
+                        ? (isEn
+                              ? 'Edit Birthday'
+                              : 'Do\u{011F}um G\u{00FC}n\u{00FC} D\u{00FC}zenle')
+                        : (isEn
+                              ? 'Add Birthday'
+                              : 'Do\u{011F}um G\u{00FC}n\u{00FC} Ekle'),
                   ),
-                ),
-              ],
+                  SliverPadding(
+                    padding: const EdgeInsets.all(16),
+                    sliver: SliverList(
+                      delegate: SliverChildListDelegate([
+                        _buildPhotoSection(isDark, isEn),
+                        const SizedBox(height: 20),
+                        _buildNameField(isDark, isEn),
+                        const SizedBox(height: 20),
+                        _buildDateSection(isDark, isEn),
+                        const SizedBox(height: 20),
+                        _buildRelationshipSection(isDark, isEn),
+                        const SizedBox(height: 20),
+                        _buildNoteField(isDark, isEn),
+                        const SizedBox(height: 20),
+                        _buildNotificationToggles(isDark, isEn),
+                        const SizedBox(height: 32),
+                        _buildSaveButton(isDark, isEn),
+                        const SizedBox(height: 40),
+                      ]),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -168,9 +172,12 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
 
   Widget _buildPhotoSection(bool isDark, bool isEn) {
     return Center(
-      child: GestureDetector(
-        onTap: _pickImage,
-        child: Column(
+      child: Semantics(
+        button: true,
+        label: isEn ? 'Change photo' : 'Fotoğrafı değiştir',
+        child: GestureDetector(
+          onTap: _pickImage,
+          child: Column(
           children: [
             BirthdayAvatar(
               photoPath: _imagePath,
@@ -190,6 +197,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
           ],
         ),
       ),
+      ),
     ).animate().fadeIn(duration: 300.ms);
   }
 
@@ -207,6 +215,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
     final fileName =
         'birthday_${DateTime.now().millisecondsSinceEpoch}${p.extension(picked.path)}';
     final savedFile = await File(picked.path).copy('${appDir.path}/$fileName');
+    if (!mounted) return;
     setState(() {
       _imagePath = savedFile.path;
       _hasChanges = true;
@@ -230,11 +239,13 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         TextField(
           controller: _nameController,
           onChanged: (_) => setState(() => _hasChanges = true),
+          textCapitalization: TextCapitalization.words,
+          keyboardType: TextInputType.name,
           style: AppTypography.subtitle(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
           decoration: InputDecoration(
-            hintText: isEn ? 'Enter name...' : '\u{0130}sim girin...',
+            hintText: isEn ? 'Friend\'s name' : 'Arkada\u{015F}\u{0131}n\u{0131}n ad\u{0131}',
             hintStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -528,6 +539,7 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
           controller: _noteController,
           onChanged: (_) => setState(() => _hasChanges = true),
           maxLines: 3,
+          textCapitalization: TextCapitalization.sentences,
           style: AppTypography.subtitle(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),
@@ -655,18 +667,11 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
         ),
         child: Center(
           child: _isSaving
-              ? const SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    color: AppColors.deepSpace,
-                  ),
-                )
+              ? const CupertinoActivityIndicator(radius: 10)
               : Text(
                   _isEditing
-                      ? (isEn ? 'Update' : 'G\u{00FC}ncelle')
-                      : (isEn ? 'Save' : 'Kaydet'),
+                      ? (isEn ? 'Update Contact' : 'Kişiyi G\u{00FC}ncelle')
+                      : (isEn ? 'Save Contact' : 'Kişiyi Kaydet'),
                   style: AppTypography.modernAccent(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
@@ -747,8 +752,8 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
           SnackBar(
             content: Text(
               isEn
-                  ? 'Could not save. Please try again.'
-                  : 'Kaydedilemedi. L\u{00FC}tfen tekrar deneyin.',
+                  ? 'Couldn\'t save this contact. Please try again.'
+                  : 'Ki\u{015F}i kaydedilemedi. L\u{00FC}tfen tekrar deneyin.',
             ),
           ),
         );

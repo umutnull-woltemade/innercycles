@@ -29,6 +29,12 @@ enum ReviewTrigger {
 
   /// Viewed a monthly report
   monthlyReport,
+
+  /// Unlocked a badge milestone (high positive emotion)
+  badgeUnlocked,
+
+  /// Reached 25+ entries (deep engagement)
+  deepEngagement,
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -149,6 +155,11 @@ class ReviewService {
       case ReviewTrigger.monthlyReport:
         // Monthly report is always valid when triggered
         return true;
+      case ReviewTrigger.badgeUnlocked:
+        // Badge unlock is a peak positive moment
+        return true;
+      case ReviewTrigger.deepEngagement:
+        return journalEntryCount >= 25;
     }
   }
 

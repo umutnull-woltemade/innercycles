@@ -54,7 +54,38 @@ platform :ios do
     delete_keychain(name: "fastlane_keychain")
   end
 
-  desc "Promote TestFlight build to App Store"
+  desc "Upload metadata only to App Store Connect (no binary)"
+  lane :upload_metadata do
+    api_key = app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+      key_filepath: "fastlane/AuthKey.p8",
+      in_house: false,
+    )
+
+    deliver(
+      api_key: api_key,
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      skip_metadata: false,
+      submit_for_review: false,
+      automatic_release: false,
+      force: true,
+      metadata_path: "fastlane/metadata",
+      app_identifier: ENV["IOS_BUNDLE_ID"] || "com.venusone.innercycles",
+      primary_category: "Lifestyle",
+      secondary_category: "Health & Fitness",
+      primary_first_sub_category: "Self-Improvement",
+      primary_second_sub_category: "Journals & Diaries",
+      privacy_url: "https://umutnull-woltemade.github.io/innercycles/privacy.html",
+      support_url: "https://umutnull-woltemade.github.io/innercycles/support.html",
+      marketing_url: "https://umutnull-woltemade.github.io/innercycles/",
+    )
+
+    UI.success("Metadata uploaded to App Store Connect")
+  end
+
+  desc "Promote TestFlight build to App Store with metadata"
   lane :release do |options|
     api_key = app_store_connect_api_key(
       key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
@@ -67,11 +98,37 @@ platform :ios do
       api_key: api_key,
       skip_binary_upload: true,
       skip_screenshots: true,
-      skip_metadata: true,
+      skip_metadata: false,
       submit_for_review: false,
       automatic_release: false,
+      force: true,
+      metadata_path: "fastlane/metadata",
       app_identifier: ENV["IOS_BUNDLE_ID"] || "com.venusone.innercycles",
+      primary_category: "Lifestyle",
+      secondary_category: "Health & Fitness",
+      primary_first_sub_category: "Self-Improvement",
+      primary_second_sub_category: "Journals & Diaries",
+      privacy_url: "https://umutnull-woltemade.github.io/innercycles/privacy.html",
+      support_url: "https://umutnull-woltemade.github.io/innercycles/support.html",
+      marketing_url: "https://umutnull-woltemade.github.io/innercycles/",
     )
+  end
+
+  desc "Full pipeline: build + TestFlight + metadata upload"
+  lane :ship do |options|
+    version   = options[:version]      || "1.0.0"
+    build_num = options[:build_number] || "1"
+    changelog = options[:changelog]    || "Bug fixes and improvements."
+
+    beta(
+      version: version,
+      build_number: build_num,
+      changelog: changelog,
+    )
+
+    upload_metadata
+
+    UI.success("v#{version}+#{build_num} shipped to TestFlight with metadata!")
   end
 
   # ---- Helpers ----

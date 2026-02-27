@@ -80,6 +80,7 @@ class BirthdayAvatar extends StatelessWidget {
           width: size,
           height: size,
           fit: BoxFit.cover,
+          semanticLabel: 'Photo of $name',
           errorBuilder: (_, _, _) => _buildInitials(isDark),
         ),
       );

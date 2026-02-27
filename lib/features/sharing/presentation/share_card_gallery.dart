@@ -18,10 +18,8 @@ import '../../../data/content/share_card_templates.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/emotional_cycle_service.dart';
-import '../../../data/services/first_taste_service.dart';
 import '../../../data/services/instagram_share_service.dart';
 import '../../../data/services/premium_service.dart';
-import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import 'widgets/share_card_renderer.dart';
@@ -103,41 +101,9 @@ class _ShareCardGalleryScreenState
   // =========================================================================
 
   Future<void> _onShare(bool isEn, AppLanguage language) async {
-    // GUARDRAIL: Double-check entitlement with RevenueCat before sharing
-    final isPremium = ref.read(premiumProvider).isPremium;
-    if (isPremium) {
-      final verified = await ref
-          .read(premiumProvider.notifier)
-          .verifyEntitlementForFeature();
-      if (!verified && mounted) {
-        await showContextualPaywall(
-          context,
-          ref,
-          paywallContext: PaywallContext.general,
-        );
-        return;
-      }
-    }
-    if (!isPremium) {
-      final firstTaste = ref
-          .read(firstTasteServiceProvider)
-          .whenOrNull(data: (s) => s);
-      final allowFree =
-          firstTaste?.shouldAllowFree(FirstTasteFeature.shareCards) ?? false;
-      if (!allowFree) {
-        // Free uses exhausted — show paywall
-        if (!mounted) return;
-        await showContextualPaywall(
-          context,
-          ref,
-          paywallContext: PaywallContext.general,
-        );
-        return;
-      }
-      // Record the use
-      firstTaste?.recordUse(FirstTasteFeature.shareCards);
-    }
-
+    // Share cards are now FREE for all users (viral growth strategy).
+    // Free users get a "Made with InnerCycles" watermark on their cards.
+    // Premium users get clean cards without promotional watermark.
     if (!mounted) return;
 
     final boundary =
@@ -231,7 +197,7 @@ class _ShareCardGalleryScreenState
           icon: Icon(
             Icons.chevron_left,
             size: 28,
-            color: isDark ? Colors.white70 : Colors.black87,
+            color: isDark ? AppColors.textMuted : AppColors.lightTextPrimary,
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
@@ -421,6 +387,7 @@ class _ShareCardGalleryScreenState
       cycleAnalysis: cycleAnalysis,
     );
     final isStory = template.layoutType == ShareCardLayout.cyclePosition;
+    final isPremium = ref.watch(premiumProvider).isPremium;
 
     return SafeArea(
       child: Column(
@@ -460,6 +427,7 @@ class _ShareCardGalleryScreenState
                           data: data,
                           repaintKey: _repaintKey,
                           isDark: isDark,
+                          isPremium: isPremium,
                           displaySize: isStory ? 220 : 360,
                         )
                         .animate()

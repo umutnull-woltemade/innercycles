@@ -686,7 +686,7 @@ class _ContextualPaywallSheetState
       case PaywallContext.shadowWork:
         return _PaywallConfig(
           icon: Icons.psychology_rounded,
-          accentColor: const Color(0xFF9C27B0),
+          accentColor: AppColors.amethyst,
           headline: isEn
               ? 'Explore your hidden patterns'
               : 'Gizli kalıplarını keşfet',

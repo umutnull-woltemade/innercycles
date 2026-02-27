@@ -48,14 +48,37 @@ class PatternsScreen extends ConsumerWidget {
             error: (_, _) => Center(
               child: Padding(
                 padding: const EdgeInsets.all(32),
-                child: Text(
-                  CommonStrings.somethingWentWrong(language),
-                  textAlign: TextAlign.center,
-                  style: AppTypography.subtitle(
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      CommonStrings.somethingWentWrong(language),
+                      textAlign: TextAlign.center,
+                      style: AppTypography.subtitle(
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    TextButton.icon(
+                      onPressed: () =>
+                          ref.invalidate(patternEngineServiceProvider),
+                      icon: Icon(
+                        Icons.refresh_rounded,
+                        size: 16,
+                        color: AppColors.starGold,
+                      ),
+                      label: Text(
+                        isEn ? 'Retry' : 'Tekrar Dene',
+                        style: AppTypography.elegantAccent(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.starGold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -1204,7 +1227,7 @@ class _ShadowWorkSuggestion extends StatelessWidget {
               children: [
                 const Icon(
                   Icons.psychology_rounded,
-                  color: Color(0xFF9C27B0),
+                  color: AppColors.amethyst,
                   size: 28,
                 ),
                 const SizedBox(width: 12),

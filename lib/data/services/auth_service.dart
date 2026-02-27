@@ -163,7 +163,7 @@ class AuthService {
       if (message.contains('invalid_grant') || message.contains('expired')) {
         throw const AppleAuthException(
           AppleAuthErrorType.tokenFailed,
-          'Session expired. Please try again.',
+          'Your session expired. Please sign in again.',
         );
       }
       if (message.contains('network') ||
@@ -310,7 +310,7 @@ class AuthService {
               }
               throw const AppleAuthException(
                 AppleAuthErrorType.timeout,
-                'Sign in request timed out. Please try again.',
+                'Sign in is taking longer than expected. Please try again.',
               );
             },
           );
@@ -320,7 +320,7 @@ class AuthService {
       }
       throw const AppleAuthException(
         AppleAuthErrorType.timeout,
-        'Sign in request timed out. Please try again.',
+        'Sign in is taking longer than expected. Please try again.',
       );
     } on SocketException catch (e) {
       if (kDebugMode) {
@@ -374,14 +374,14 @@ class AuthService {
               }
               throw const AppleAuthException(
                 AppleAuthErrorType.timeout,
-                'Server authentication timed out. Please try again.',
+                'Server is taking longer than expected. Please try again.',
               );
             },
           );
     } on TimeoutException {
       throw const AppleAuthException(
         AppleAuthErrorType.timeout,
-        'Server authentication timed out. Please try again.',
+        'Server is taking longer than expected. Please try again.',
       );
     } on SocketException {
       throw const AppleAuthException(

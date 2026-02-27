@@ -85,14 +85,34 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
             error: (_, _) => Center(
               child: Padding(
                 padding: const EdgeInsets.all(32),
-                child: Text(
-                  CommonStrings.somethingWentWrong(language),
-                  textAlign: TextAlign.center,
-                  style: AppTypography.subtitle(
-                    color: isDark
-                        ? AppColors.textMuted
-                        : AppColors.lightTextMuted,
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      CommonStrings.somethingWentWrong(language),
+                      textAlign: TextAlign.center,
+                      style: AppTypography.subtitle(
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    TextButton.icon(
+                      onPressed: () =>
+                          ref.invalidate(journalServiceProvider),
+                      icon: Icon(Icons.refresh_rounded,
+                          size: 16, color: AppColors.starGold),
+                      label: Text(
+                        isEn ? 'Retry' : 'Tekrar Dene',
+                        style: AppTypography.elegantAccent(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.starGold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -1136,11 +1156,11 @@ class _GrowthDashboardScreenState extends ConsumerState<GrowthDashboardScreen> {
         ? 'My InnerCycles Growth Score: $score/100\n'
               'Current streak: $streak days\n'
               'Total entries: $totalEntries\n\n'
-              'Track your personal growth with InnerCycles!'
+              '${AppConstants.appStoreUrl}\n#InnerCycles #GrowthScore'
         : 'InnerCycles Büyüme Puanım: $score/100\n'
               'Mevcut seri: $streak gün\n'
               'Toplam kayıt: $totalEntries\n\n'
-              'InnerCycles ile kişisel büyümeni takip et!';
+              '${AppConstants.appStoreUrl}\n#InnerCycles';
 
     SharePlus.instance.share(ShareParams(text: text));
   }

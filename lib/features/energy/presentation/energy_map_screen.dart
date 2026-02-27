@@ -9,6 +9,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/models/journal_entry.dart';
@@ -53,16 +55,41 @@ class EnergyMapScreen extends ConsumerWidget {
                     ),
                     error: (e, s) => SliverToBoxAdapter(
                       child: Center(
-                        child: Text(
-                          isEn
-                              ? 'Could not load. Your local data is unaffected.'
-                              : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                          style: AppTypography.subtitle(
-                            fontSize: 14,
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const SizedBox(height: 40),
+                            Text(
+                              isEn
+                                  ? 'Could not load. Your local data is unaffected.'
+                                  : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                              textAlign: TextAlign.center,
+                              style: AppTypography.subtitle(
+                                fontSize: 14,
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            TextButton.icon(
+                              onPressed: () =>
+                                  ref.invalidate(energyMapProvider),
+                              icon: Icon(
+                                Icons.refresh_rounded,
+                                size: 16,
+                                color: AppColors.starGold,
+                              ),
+                              label: Text(
+                                isEn ? 'Retry' : 'Tekrar Dene',
+                                style: AppTypography.elegantAccent(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.starGold,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -633,11 +660,13 @@ class _EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.grid_view_rounded,
-      title: isEn ? 'Nothing recorded yet' : 'Henüz kayıt yok',
+      title: isEn ? 'Your energy map is taking shape' : 'Enerji haritan şekilleniyor',
       description: isEn
           ? 'Add at least 5 entries to see your energy map'
           : 'Enerji haritanı görmek için en az 5 kayıt ekle',
       gradientVariant: GradientTextVariant.aurora,
+      ctaLabel: isEn ? 'Write First Entry' : 'İlk Kaydı Yaz',
+      onCtaPressed: () => context.go(Routes.journal),
     );
   }
 }

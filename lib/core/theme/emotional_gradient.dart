@@ -13,19 +13,19 @@ class EmotionalGradient {
 
   /// Generate a gradient color list based on mood value (1.0-5.0).
   ///
-  /// - 1.0-2.0 → Deep indigo/amethyst (introspective)
+  /// - 1.0-2.0 → Deep warm/brown (introspective)
   /// - 2.0-3.0 → Warm amber/sunset (transitional)
-  /// - 3.0-4.0 → Soft gold/aurora (balanced)
-  /// - 4.0-5.0 → Bright rose/sunrise (energized)
+  /// - 3.0-4.0 → Soft terracotta/caramel (balanced)
+  /// - 4.0-5.0 → Warm peach/sunrise (energized)
   static List<Color> emotionalGradient(double moodValue) {
     final mood = moodValue.clamp(1.0, 5.0);
 
     if (mood <= 2.0) {
-      // Introspective: deep indigo → amethyst
+      // Introspective: deep warm → brown
       final t = (mood - 1.0); // 0.0 → 1.0
       return [
         Color.lerp(AppColors.deepSpace, AppColors.nebulaPurple, t)!,
-        Color.lerp(AppColors.cosmicPurple, AppColors.amethyst, t)!,
+        Color.lerp(AppColors.amethyst, AppColors.celestialGold, t)!,
         Color.lerp(AppColors.nebulaPurple, AppColors.twilightEnd, t)!,
       ];
     } else if (mood <= 3.0) {
@@ -57,7 +57,7 @@ class EmotionalGradient {
 
   /// Seasonal gradient tone shift based on month (1-12).
   ///
-  /// - Winter (Dec-Feb): cool indigo/silver
+  /// - Winter (Dec-Feb): warm charcoal/brown
   /// - Spring (Mar-May): aurora green/gold
   /// - Summer (Jun-Aug): warm sunrise/gold
   /// - Autumn (Sep-Nov): amber/crimson
@@ -65,7 +65,7 @@ class EmotionalGradient {
     final m = month.clamp(1, 12);
 
     if (m == 12 || m <= 2) {
-      // Winter — cool, reflective
+      // Winter — warm, reflective
       return [
         AppColors.deepSpace,
         AppColors.twilightStart,

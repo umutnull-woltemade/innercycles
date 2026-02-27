@@ -2,16 +2,22 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
+import 'core/theme/app_typography.dart';
+import 'shared/widgets/gradient_text.dart';
 import 'shared/services/router_service.dart';
 import 'shared/widgets/app_error_widget.dart';
 import 'data/services/ad_service.dart';
 import 'data/services/storage_service.dart';
+import 'package:go_router/go_router.dart';
+import 'core/constants/routes.dart';
 import 'data/services/notification_service.dart';
 import 'data/services/notification_lifecycle_service.dart';
 import 'data/services/daily_hook_service.dart';
@@ -31,8 +37,6 @@ import 'data/services/progressive_unlock_service.dart';
 import 'data/providers/app_providers.dart';
 import 'data/services/premium_service.dart';
 import 'data/models/user_profile.dart';
-// cosmic_loading_indicator import removed — loading states use basic widgets
-// to avoid requiring MaterialApp ancestor before InnerCyclesApp mounts.
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SAFE STARTUP PATTERN - Prevents white screen on Flutter Web
@@ -82,13 +86,30 @@ class AppInitializer extends StatefulWidget {
   State<AppInitializer> createState() => _AppInitializerState();
 }
 
-class _AppInitializerState extends State<AppInitializer> {
+class _AppInitializerState extends State<AppInitializer>
+    with TickerProviderStateMixin {
   late Future<_InitResult> _initFuture;
+  bool _initDone = false;
+  bool _splashFadingOut = false;
+  _InitResult? _cachedResult;
 
   @override
   void initState() {
     super.initState();
     _initFuture = _initializeApp();
+  }
+
+  void _onInitComplete(_InitResult result) {
+    _cachedResult = result;
+    // Keep splash visible 300ms more, then fade out over 500ms
+    Future.delayed(const Duration(milliseconds: 300), () {
+      if (!mounted) return;
+      setState(() => _splashFadingOut = true);
+      Future.delayed(const Duration(milliseconds: 500), () {
+        if (!mounted) return;
+        setState(() => _initDone = true);
+      });
+    });
   }
 
   Future<_InitResult> _initializeApp() async {
@@ -277,6 +298,57 @@ class _AppInitializerState extends State<AppInitializer> {
         }
       }
 
+      // Schedule streak-at-risk or streak-recovery notification
+      try {
+        final journalSvc = await JournalService.init();
+        final notif = NotificationService();
+        if (!journalSvc.hasLoggedToday()) {
+          final streak = journalSvc.getCurrentStreak();
+          if (streak >= 2) {
+            // Active streak at risk — remind at 8:30 PM
+            await notif.scheduleStreakAtRisk(currentStreak: streak);
+          } else if (streak == 0 && journalSvc.entryCount >= 3) {
+            // Streak just broke — gentle recovery nudge tomorrow 10 AM
+            // Use entry count as proxy for past engagement
+            await notif.scheduleStreakRecovery(
+              lostStreak: journalSvc.entryCount > 30 ? 7 : 3,
+            );
+          }
+        } else {
+          // Already journaled today — cancel pending streak alerts
+          await notif.cancelStreakAtRisk();
+          await notif.cancelStreakRecovery();
+        }
+      } catch (e) {
+        if (kDebugMode) {
+          debugPrint('⚠️ Streak notification scheduling failed: $e');
+        }
+      }
+
+      // Check for "On This Day" memory anniversary entries
+      try {
+        final journalSvc2 = await JournalService.init();
+        final allEntries = journalSvc2.getAllEntries();
+        final now = DateTime.now();
+        int? yearsAgo;
+        for (final entry in allEntries) {
+          if (entry.date.month == now.month &&
+              entry.date.day == now.day &&
+              entry.date.year < now.year) {
+            yearsAgo = now.year - entry.date.year;
+            break; // Use the most recent anniversary
+          }
+        }
+        if (yearsAgo != null) {
+          await NotificationService()
+              .scheduleOnThisDayMemory(yearsAgo: yearsAgo);
+        }
+      } catch (e) {
+        if (kDebugMode) {
+          debugPrint('⚠️ On This Day notification failed: $e');
+        }
+      }
+
       // Initialize notification lifecycle service (MOBILE ONLY)
       try {
         final lifecycleService = await NotificationLifecycleService.init();
@@ -426,42 +498,7 @@ class _AppInitializerState extends State<AppInitializer> {
     return FutureBuilder<_InitResult>(
       future: _initFuture,
       builder: (context, snapshot) {
-        // LOADING STATE - Always show visible UI
-        // Uses Container (not Scaffold) to avoid needing MaterialApp ancestor.
-        if (snapshot.connectionState != ConnectionState.done) {
-          return Container(
-            color: AppColors.deepSpace,
-            child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    width: 32,
-                    height: 32,
-                    child: CircularProgressIndicator(
-                      color: AppColors.starGold,
-                      strokeWidth: 2.5,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'InnerCycles',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w300,
-                      letterSpacing: 2,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        }
-
         // ERROR STATE - Show error message (never white screen)
-        // Uses Container (not Scaffold) to avoid needing MaterialApp ancestor.
         if (snapshot.hasError) {
           return Container(
             color: AppColors.deepSpace,
@@ -503,39 +540,227 @@ class _AppInitializerState extends State<AppInitializer> {
           );
         }
 
-        // SUCCESS - Launch the real app with providers
-        if (snapshot.data == null) {
-          return Container(
-            color: AppColors.deepSpace,
-            child: Center(
-              child: CircularProgressIndicator(
-                color: AppColors.starGold,
-                strokeWidth: 2.5,
+        // Trigger crossfade once init completes
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.data != null &&
+            _cachedResult == null) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            _onInitComplete(snapshot.data!);
+          });
+        }
+
+        // Show app if splash has fully faded out
+        if (_initDone && _cachedResult != null) {
+          final result = _cachedResult!;
+          if (kDebugMode) {
+            debugPrint('🎨 Launching InnerCycles with providers...');
+          }
+          return ProviderScope(
+            overrides: [
+              languageProvider.overrideWith((ref) => result.language),
+              themeModeProvider.overrideWith((ref) => result.themeMode),
+              onboardingCompleteProvider.overrideWith(
+                (ref) => result.onboardingComplete,
               ),
-            ),
+              if (result.profile != null)
+                userProfileProvider.overrideWith(
+                  () => _InitializedUserProfileNotifier(result.profile!),
+                ),
+            ],
+            child: const InnerCyclesApp(),
           );
         }
-        final result = snapshot.data!;
 
-        if (kDebugMode) {
-          debugPrint('🎨 Launching InnerCycles with providers...');
-        }
-
-        return ProviderScope(
-          overrides: [
-            languageProvider.overrideWith((ref) => result.language),
-            themeModeProvider.overrideWith((ref) => result.themeMode),
-            onboardingCompleteProvider.overrideWith(
-              (ref) => result.onboardingComplete,
-            ),
-            if (result.profile != null)
-              userProfileProvider.overrideWith(
-                () => _InitializedUserProfileNotifier(result.profile!),
-              ),
-          ],
-          child: const InnerCyclesApp(),
+        // CINEMATIC SPLASH — shown during loading + crossfade out
+        return AnimatedOpacity(
+          opacity: _splashFadingOut ? 0.0 : 1.0,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+          child: const _CinematicSplash(),
         );
       },
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CINEMATIC SPLASH — Animated loading screen
+// ═══════════════════════════════════════════════════════════════════════════
+
+class _CinematicSplash extends StatefulWidget {
+  const _CinematicSplash();
+
+  @override
+  State<_CinematicSplash> createState() => _CinematicSplashState();
+}
+
+class _CinematicSplashState extends State<_CinematicSplash>
+    with TickerProviderStateMixin {
+  late final AnimationController _bgController;
+  late final AnimationController _glowController;
+
+  @override
+  void initState() {
+    super.initState();
+    _bgController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    )..forward();
+    _glowController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _bgController.dispose();
+    _glowController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final reduceMotion =
+        PlatformDispatcher.instance.accessibilityFeatures.disableAnimations;
+
+    return AnimatedBuilder(
+      animation: _bgController,
+      builder: (context, child) {
+        return Container(
+          decoration: BoxDecoration(
+            gradient: RadialGradient(
+              center: const Alignment(0, -0.3),
+              radius: 1.2,
+              colors: [
+                Color.lerp(
+                  AppColors.deepSpace,
+                  const Color(0xFF2D241F),
+                  _bgController.value,
+                )!,
+                AppColors.deepSpace,
+              ],
+            ),
+          ),
+          child: child,
+        );
+      },
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Logo icon with ambient glow
+            AnimatedBuilder(
+              animation: _glowController,
+              builder: (context, child) {
+                return Container(
+                  width: 120,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.auroraStart.withValues(
+                          alpha: 0.08 + 0.04 * _glowController.value,
+                        ),
+                        blurRadius: 50 + 20 * _glowController.value,
+                        spreadRadius: 8 + 8 * _glowController.value,
+                      ),
+                    ],
+                  ),
+                  child: child,
+                );
+              },
+              child: Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: const LinearGradient(
+                    colors: [AppColors.amethyst, AppColors.starGold],
+                  ),
+                ),
+                child: const Icon(
+                  Icons.self_improvement,
+                  color: Colors.white,
+                  size: 40,
+                ),
+              ),
+            )
+                .animate(target: reduceMotion ? 1 : 1)
+                .fadeIn(
+                  delay: reduceMotion ? Duration.zero : 200.ms,
+                  duration: reduceMotion ? Duration.zero : 700.ms,
+                )
+                .scale(
+                  begin: reduceMotion ? const Offset(1, 1) : const Offset(0.7, 0.7),
+                  curve: Curves.elasticOut,
+                  delay: reduceMotion ? Duration.zero : 200.ms,
+                  duration: reduceMotion ? Duration.zero : 700.ms,
+                ),
+
+            const SizedBox(height: 24),
+
+            // App name
+            GradientText(
+              'InnerCycles',
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 38,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 3,
+                height: 1.2,
+                decoration: TextDecoration.none,
+              ),
+              variant: GradientTextVariant.gold,
+              textAlign: TextAlign.center,
+            )
+                .animate(target: reduceMotion ? 1 : 1)
+                .fadeIn(
+                  delay: reduceMotion ? Duration.zero : 500.ms,
+                  duration: reduceMotion ? Duration.zero : 600.ms,
+                )
+                .slideY(
+                  begin: reduceMotion ? 0 : 0.12,
+                  delay: reduceMotion ? Duration.zero : 500.ms,
+                  duration: reduceMotion ? Duration.zero : 600.ms,
+                ),
+
+            const SizedBox(height: 10),
+
+            // Tagline
+            Text(
+              'Your inner world, written.',
+              style: AppTypography.decorativeScript(
+                fontSize: 14,
+                color: AppColors.textMuted,
+              ).copyWith(decoration: TextDecoration.none),
+              textAlign: TextAlign.center,
+            )
+                .animate(target: reduceMotion ? 1 : 1)
+                .fadeIn(
+                  delay: reduceMotion ? Duration.zero : 800.ms,
+                  duration: reduceMotion ? Duration.zero : 500.ms,
+                ),
+
+            const SizedBox(height: 48),
+
+            // Loading indicator
+            SizedBox(
+              width: 22,
+              height: 22,
+              child: CircularProgressIndicator(
+                color: AppColors.starGold,
+                strokeWidth: 2,
+              ),
+            )
+                .animate(target: reduceMotion ? 1 : 1)
+                .fadeIn(
+                  delay: reduceMotion ? Duration.zero : 1200.ms,
+                  duration: reduceMotion ? Duration.zero : 400.ms,
+                ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -584,6 +809,9 @@ class InnerCyclesApp extends ConsumerStatefulWidget {
 
 class _InnerCyclesAppState extends ConsumerState<InnerCyclesApp>
     with WidgetsBindingObserver {
+  static const _quickActionChannel =
+      MethodChannel('com.venusone.innercycles/quickactions');
+
   @override
   void initState() {
     super.initState();
@@ -593,6 +821,33 @@ class _InnerCyclesAppState extends ConsumerState<InnerCyclesApp>
     ErrorWidget.builder = (FlutterErrorDetails details) {
       return AppErrorWidget(details: details);
     };
+
+    // Listen for iOS Home Screen quick actions (3D Touch / long press)
+    _quickActionChannel.setMethodCallHandler((call) async {
+      if (call.method == 'quickAction') {
+        final action = call.arguments as String?;
+        // Delay to ensure router is ready
+        await Future.delayed(const Duration(milliseconds: 500));
+        if (!mounted) return;
+        _handleQuickAction(action);
+      }
+    });
+  }
+
+  void _handleQuickAction(String? action) {
+    final ctx = navigatorKey.currentContext;
+    if (ctx == null) return;
+    switch (action) {
+      case 'com.venusone.innercycles.newentry':
+        GoRouter.of(ctx).go(Routes.journal);
+        break;
+      case 'com.venusone.innercycles.checkmood':
+        GoRouter.of(ctx).go(Routes.today);
+        break;
+      case 'com.venusone.innercycles.viewstreak':
+        GoRouter.of(ctx).push(Routes.streakStats);
+        break;
+    }
   }
 
   @override

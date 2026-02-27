@@ -1,107 +1,107 @@
 import 'package:flutter/material.dart';
 
-/// Cosmic color palette for the InnerCycles app
+/// Warm Sand + Terracotta palette for the InnerCycles app
 class CosmicPalette {
   CosmicPalette._();
 
-  // === PRIMARY PURPLES ===
-  static const Color cosmicPurple = Color(0xFF2D1B4E);
-  static const Color amethyst = Color(0xFF6B4C9A);
-  static const Color lavender = Color(0xFF9D7EC2);
-  static const Color violetMist = Color(0xFFB8A0D2);
-  static const Color orchid = Color(0xFFDA70D6);
+  // === WARM BROWNS ===
+  static const Color cosmicPurple = Color(0xFF3D3229);
+  static const Color amethyst = Color(0xFF8B6F5E);
+  static const Color lavender = Color(0xFFA08574);
+  static const Color violetMist = Color(0xFFB8A99A);
+  static const Color orchid = Color(0xFFD4704A);
 
-  // === CELESTIAL GOLDS ===
-  static const Color starGold = Color(0xFFFFD700);
-  static const Color antiqueGold = Color(0xFFD4AF37);
-  static const Color champagne = Color(0xFFF7E7CE);
-  static const Color amber = Color(0xFFFFBF00);
-  static const Color bronzeGlow = Color(0xFFCD7F32);
+  // === TERRACOTTA SPECTRUM ===
+  static const Color starGold = Color(0xFFC8553D);
+  static const Color antiqueGold = Color(0xFFD4704A);
+  static const Color champagne = Color(0xFFF5EDE6);
+  static const Color amber = Color(0xFFBF8D6A);
+  static const Color bronzeGlow = Color(0xFF8B6F5E);
 
-  // === NIGHT SKY BLUES ===
-  static const Color midnightBlue = Color(0xFF0D1B2A);
-  static const Color cosmicNavy = Color(0xFF1B2838);
-  static const Color nebulaTeal = Color(0xFF1A535C);
-  static const Color stardustBlue = Color(0xFF4A6FA5);
-  static const Color etherealCyan = Color(0xFF7FDBFF);
+  // === WARM DARKS ===
+  static const Color midnightBlue = Color(0xFF1E1714);
+  static const Color cosmicNavy = Color(0xFF2D241F);
+  static const Color nebulaTeal = Color(0xFF5A4A3E);
+  static const Color stardustBlue = Color(0xFFA08574);
+  static const Color etherealCyan = Color(0xFFD4A07A);
 
-  // === COSMIC ACCENTS ===
-  static const Color starlightWhite = Color(0xFFF8F6FF);
-  static const Color moonSilver = Color(0xFFE8E4EF);
-  static const Color nebulaRose = Color(0xFFE8B4BC);
-  static const Color auroraGreen = Color(0xFF4FFFB0);
+  // === WARM ACCENTS ===
+  static const Color starlightWhite = Color(0xFFFBF7F4);
+  static const Color moonSilver = Color(0xFFE8D5C4);
+  static const Color nebulaRose = Color(0xFFE8D5C4);
+  static const Color auroraGreen = Color(0xFFD4A07A);
   static const Color solarOrange = Color(0xFFFF6B35);
 
   // === BACKGROUNDS ===
-  static const Color bgDeepSpace = Color(0xFF0A0A14);
-  static const Color bgNightSky = Color(0xFF12121C);
-  static const Color bgCosmic = Color(0xFF1A1A2E);
-  static const Color bgElevated = Color(0xFF252536);
+  static const Color bgDeepSpace = Color(0xFF1E1714);
+  static const Color bgNightSky = Color(0xFF241E19);
+  static const Color bgCosmic = Color(0xFF2D241F);
+  static const Color bgElevated = Color(0xFF3D322B);
   static const Color bgLight = Color(
-    0xFFE8E0F0,
-  ); // Softer lavender-gray background
+    0xFFF5EDE6,
+  ); // Warm sand background
   static const Color bgLightElevated = Color(
-    0xFFF0EBF5,
-  ); // Slightly darker cards
+    0xFFEDE3D9,
+  ); // Sand variant cards
 
   // === TEXT COLORS ===
   static const Color textPrimary = Color(
-    0xFFFFFFFF,
-  ); // Pure white for maximum visibility
+    0xFFF2EBE4,
+  ); // Warm white for maximum visibility
   static const Color textSecondary = Color(
-    0xFFD4C8E8,
-  ); // Lighter lavender for better contrast
+    0xFFA08574,
+  ); // Warm taupe for better contrast
   static const Color textMuted = Color(
-    0xFF9A8AAF,
-  ); // Lighter muted for better readability
-  static const Color textGold = Color(0xFFFFD700);
+    0xFF8A7D74,
+  ); // Warm gray for better readability
+  static const Color textGold = Color(0xFFC8553D);
   static const Color textDark = Color(
-    0xFF1A1020,
-  ); // Darker for light mode visibility
+    0xFF3D3229,
+  ); // Espresso for light mode visibility
   static const Color textDarkSecondary = Color(
-    0xFF3A3050,
-  ); // Darker secondary text
+    0xFF8B6F5E,
+  ); // Warm brown secondary text
 
   // === ENERGY ACCENT COLORS ===
   static const Color accentWarm = Color(0xFFFF6B35);
   static const Color accentEarth = Color(0xFF4A7C59);
-  static const Color accentCool = Color(0xFF7FDBFF);
-  static const Color accentDeep = Color(0xFF4A6FA5);
+  static const Color accentCool = Color(0xFFD4A07A);
+  static const Color accentDeep = Color(0xFF8B6F5E);
 
   // === EXTENDED PALETTE ===
-  static const Color paletteGold = Color(0xFFFFD700);
-  static const Color paletteSilver = Color(0xFFE8E4EF);
-  static const Color paletteGray = Color(0xFFB8B8B8);
-  static const Color paletteRose = Color(0xFFE8B4BC);
+  static const Color paletteGold = Color(0xFFC8553D);
+  static const Color paletteSilver = Color(0xFFE8D5C4);
+  static const Color paletteGray = Color(0xFFB8A99A);
+  static const Color paletteRose = Color(0xFFE8D5C4);
   static const Color paletteOrange = Color(0xFFFF6B35);
-  static const Color paletteAmber = Color(0xFFD4AF37);
+  static const Color paletteAmber = Color(0xFFD4704A);
   static const Color paletteBrown = Color(0xFF8B7355);
-  static const Color paletteCyan = Color(0xFF7FDBFF);
-  static const Color paletteNavy = Color(0xFF4A6FA5);
-  static const Color paletteViolet = Color(0xFF6B4C9A);
+  static const Color paletteCyan = Color(0xFFD4A07A);
+  static const Color paletteNavy = Color(0xFFA08574);
+  static const Color paletteViolet = Color(0xFF8B6F5E);
 
   // === GRADIENTS ===
   static const List<Color> cosmicGradient = [
-    Color(0xFF2D1B4E),
-    Color(0xFF0D1B2A),
+    Color(0xFF3D3229),
+    Color(0xFF1E1714),
   ];
 
   static const List<Color> auroraGradient = [
-    Color(0xFF6B4C9A),
-    Color(0xFF4A6FA5),
-    Color(0xFF4FFFB0),
+    Color(0xFF8B6F5E),
+    Color(0xFFA08574),
+    Color(0xFFD4A07A),
   ];
 
   static const List<Color> goldGradient = [
-    Color(0xFFFFD700),
-    Color(0xFFD4AF37),
-    Color(0xFFCD7F32),
+    Color(0xFFC8553D),
+    Color(0xFFD4704A),
+    Color(0xFF8B6F5E),
   ];
 
   static const List<Color> nightSkyGradient = [
-    Color(0xFF0A0A14),
-    Color(0xFF1A1A2E),
-    Color(0xFF2D1B4E),
+    Color(0xFF1E1714),
+    Color(0xFF2D241F),
+    Color(0xFF3D3229),
   ];
 
   // === SHADOWS ===
@@ -168,11 +168,11 @@ class CosmicPalette {
   );
 
   static ColorScheme get lightScheme => ColorScheme.light(
-    primary: cosmicPurple, // Darker primary for better contrast
+    primary: cosmicPurple,
     onPrimary: Colors.white,
     primaryContainer: amethyst,
     onPrimaryContainer: Colors.white,
-    secondary: bronzeGlow, // Darker gold
+    secondary: bronzeGlow,
     onSecondary: Colors.white,
     secondaryContainer: champagne,
     onSecondaryContainer: textDark,
@@ -184,7 +184,7 @@ class CosmicPalette {
     onSurface: textDark,
     surfaceContainerHighest: bgLightElevated,
     onSurfaceVariant: textDarkSecondary,
-    outline: amethyst, // Darker outline
+    outline: amethyst,
     shadow: cosmicPurple.withValues(alpha: 0.2),
   );
 }

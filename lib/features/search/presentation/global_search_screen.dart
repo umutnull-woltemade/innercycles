@@ -205,6 +205,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                                             ? AppColors.textMuted
                                             : AppColors.lightTextMuted,
                                       ),
+                                      tooltip: isEn ? 'Clear search' : 'Aramayı temizle',
                                       onPressed: () {
                                         _searchController.clear();
                                         setState(() {
@@ -563,7 +564,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
           ),
           const SizedBox(height: AppConstants.spacingLg),
           Text(
-            isEn ? 'No results found' : 'Sonu\u00e7 bulunamad\u0131',
+            isEn ? 'Nothing matched — try different words' : 'Eşleşen sonuç yok — farklı kelimeler dene',
             style: AppTypography.subtitle(
               fontSize: 16,
               color: isDark
@@ -800,7 +801,7 @@ class _JournalResultTile extends StatelessWidget {
       case FocusArea.decisions:
         return Colors.green;
       case FocusArea.social:
-        return Colors.purple;
+        return AppColors.chartPurple;
     }
   }
 }
@@ -823,7 +824,7 @@ class _NoteResultTile extends StatelessWidget {
         : note.content;
 
     return GestureDetector(
-      onTap: () => context.push(Routes.noteDetail, extra: note.id),
+      onTap: () => context.push(Routes.noteDetail, extra: {'noteId': note.id}),
       child: PremiumCard(
         style: PremiumCardStyle.subtle,
         padding: const EdgeInsets.all(14),

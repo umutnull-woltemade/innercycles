@@ -57,15 +57,40 @@ class ProgramListScreen extends ConsumerWidget {
                     ),
                     error: (_, _) => SliverToBoxAdapter(
                       child: Center(
-                        child: Text(
-                          isEn
-                              ? 'Could not load. Your local data is unaffected.'
-                              : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                          style: AppTypography.subtitle(
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const SizedBox(height: 40),
+                            Text(
+                              isEn
+                                  ? 'Could not load. Your local data is unaffected.'
+                                  : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                              textAlign: TextAlign.center,
+                              style: AppTypography.subtitle(
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            TextButton.icon(
+                              onPressed: () =>
+                                  ref.invalidate(guidedProgramServiceProvider),
+                              icon: Icon(
+                                Icons.refresh_rounded,
+                                size: 16,
+                                color: AppColors.starGold,
+                              ),
+                              label: Text(
+                                isEn ? 'Retry' : 'Tekrar Dene',
+                                style: AppTypography.elegantAccent(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.starGold,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

@@ -6,7 +6,6 @@
 // "tends to", "you may notice", "patterns suggest".
 // ════════════════════════════════════════════════════════════════════════════
 
-import 'dart:ui';
 import '../../core/theme/app_colors.dart';
 import '../models/quiz_models.dart';
 
@@ -1385,7 +1384,7 @@ class QuizContent {
         nameEn: 'The Observer (Freeze)',
         nameTr: 'Gözlemci (Don)',
         emoji: '\u{2744}',
-        color: Color(0xFF95A5A6),
+        color: AppColors.amethyst,
         descriptionEn:
             'Under stress, you may tend to go still — mentally or physically pausing as your system takes in information. This response pattern often reflects deep processing and careful analysis before action.',
         descriptionTr:

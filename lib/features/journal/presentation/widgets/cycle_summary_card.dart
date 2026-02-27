@@ -190,8 +190,8 @@ class CycleSummaryCard extends StatelessWidget {
                   const SizedBox(width: 6),
                   Text(
                     isEn
-                        ? 'No entries yet for $areaName'
-                        : '$areaName için henüz kayıt yok',
+                        ? 'Start tracking $areaName to see patterns here'
+                        : 'Burada örüntüleri görmek için $areaName takibine başla',
                     style: AppTypography.decorativeScript(
                       fontSize: 12,
                       color: isDark

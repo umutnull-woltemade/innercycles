@@ -171,14 +171,14 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
           icon: Icon(
             Icons.chevron_left,
             size: 28,
-            color: isDark ? Colors.white70 : Colors.black87,
+            color: isDark ? AppColors.textMuted : AppColors.lightTextPrimary,
           ),
           onPressed: () => context.pop(),
         ),
         title: Text(
           L10nService.get('insight.title', language),
           style: AppTypography.displayFont.copyWith(
-            color: isDark ? Colors.white : Colors.black87,
+            color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontWeight: FontWeight.w600,
             fontSize: 20,
           ),
@@ -279,7 +279,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
                           )
                         : AppTypography.decorativeScript(
                             fontSize: 15,
-                            color: isDark ? Colors.white70 : Colors.black87,
+                            color: isDark ? AppColors.textMuted : AppColors.lightTextPrimary,
                           ),
                   ),
                 ),
@@ -397,7 +397,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
                 onSubmitted: (_) => _sendMessage(),
                 style: AppTypography.subtitle(
                   fontSize: 15,
-                  color: isDark ? Colors.white : Colors.black87,
+                  color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                 ),
                 decoration: InputDecoration(
                   hintText: L10nService.get('insight.input_hint', language),

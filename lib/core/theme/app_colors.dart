@@ -1,54 +1,54 @@
 import 'package:flutter/material.dart';
 
-/// Cosmic color palette for the InnerCycles app
+/// Warm Sand + Terracotta color palette for the InnerCycles app
 class AppColors {
   AppColors._();
 
-  // Primary cosmic colors (dark mode)
-  static const Color deepSpace = Color(0xFF0D0D1A);
-  static const Color cosmicPurple = Color(0xFF1A1A2E);
-  static const Color nebulaPurple = Color(0xFF16213E);
-  static const Color amethystBlue = Color(0xFF0F3460);
+  // Primary warm colors (dark mode)
+  static const Color deepSpace = Color(0xFF1E1714);
+  static const Color cosmicPurple = Color(0xFF2D241F);
+  static const Color nebulaPurple = Color(0xFF3D322B);
+  static const Color amethystBlue = Color(0xFF5A4A3E);
 
   // Accent colors
-  static const Color starGold = Color(0xFFFFD700);
-  static const Color celestialGold = Color(0xFFF4C430);
-  static const Color moonSilver = Color(0xFFC0C0C0);
+  static const Color starGold = Color(0xFFC8553D);
+  static const Color celestialGold = Color(0xFFD4704A);
+  static const Color moonSilver = Color(0xFFB8A99A);
   static const Color stardust = Color(0xFFE8E4E1);
-  static const Color amethyst = Color(0xFF9B59B6);
+  static const Color amethyst = Color(0xFF8B6F5E);
 
   // Gradient colors
-  static const Color auroraStart = Color(0xFF667EEA);
-  static const Color auroraEnd = Color(0xFF764BA2);
-  static const Color sunriseStart = Color(0xFFF093FB);
-  static const Color sunriseEnd = Color(0xFFF5576C);
-  static const Color twilightStart = Color(0xFF4776E6);
-  static const Color twilightEnd = Color(0xFF8E54E9);
+  static const Color auroraStart = Color(0xFFD4A07A);
+  static const Color auroraEnd = Color(0xFF8B6F5E);
+  static const Color sunriseStart = Color(0xFFE8D5C4);
+  static const Color sunriseEnd = Color(0xFFC8553D);
+  static const Color twilightStart = Color(0xFFD4A07A);
+  static const Color twilightEnd = Color(0xFF8B6F5E);
 
   // Category accent colors
   static const Color warmAccent = Color(0xFFE74C3C);
   static const Color greenAccent = Color(0xFF27AE60);
   static const Color blueAccent = Color(0xFF3498DB);
-  static const Color purpleAccent = Color(0xFF9B59B6);
+  static const Color purpleAccent = Color(0xFF8B6F5E);
 
   // Text colors (dark mode)
-  static const Color textPrimary = Color(0xFFF5F5F5);
-  static const Color textSecondary = Color(0xFFB8B8D1);
-  static const Color textMuted = Color(0xFF8A8AA8);
+  static const Color textPrimary = Color(0xFFF2EBE4);
+  static const Color textSecondary = Color(0xFFA08574);
+  static const Color textMuted = Color(0xFF8A7D74);
 
   // Text colors (for theme-aware usage)
-  static const Color textDark = Color(0xFF1A1A2E);
-  static const Color textLight = Color(0xFF8A8AA8);
+  static const Color textDark = Color(0xFF3D3229);
+  static const Color textLight = Color(0xFF8A7D74);
 
-  // Cosmic accent
-  static const Color cosmic = Color(0xFF667EEA);
-  static const Color cosmicAmethyst = Color(0xFF8E54E9);
-  static const Color gold = Color(0xFFFFD700);
+  // Warm accent
+  static const Color cosmic = Color(0xFFD4A07A);
+  static const Color cosmicAmethyst = Color(0xFF8B6F5E);
+  static const Color gold = Color(0xFFC8553D);
 
   // Surface colors (dark mode)
-  static const Color surfaceDark = Color(0xFF1E1E2E);
-  static const Color surfaceLight = Color(0xFF2D2D44);
-  static const Color cardBackground = Color(0xFF252540);
+  static const Color surfaceDark = Color(0xFF2D241F);
+  static const Color surfaceLight = Color(0xFF3D322B);
+  static const Color cardBackground = Color(0xFF352C25);
 
   // Status colors
   static const Color success = Color(0xFF2ECC71);
@@ -68,20 +68,20 @@ class AppColors {
   // ========== LIGHT MODE COLORS ==========
 
   // Light mode backgrounds
-  static const Color lightBackground = Color(0xFFF8F9FC);
-  static const Color lightSurface = Color(0xFFFFFFFF);
-  static const Color lightSurfaceVariant = Color(0xFFF0F2F8);
-  static const Color lightCard = Color(0xFFFFFFFF);
+  static const Color lightBackground = Color(0xFFFBF7F4);
+  static const Color lightSurface = Color(0xFFF5EDE6);
+  static const Color lightSurfaceVariant = Color(0xFFEDE3D9);
+  static const Color lightCard = Color(0xFFF5EDE6);
 
   // Light mode text
-  static const Color lightTextPrimary = Color(0xFF1A1A2E);
-  static const Color lightTextSecondary = Color(0xFF4A4A6A);
-  static const Color lightTextMuted = Color(0xFF6B6B8A);
+  static const Color lightTextPrimary = Color(0xFF3D3229);
+  static const Color lightTextSecondary = Color(0xFF8B6F5E);
+  static const Color lightTextMuted = Color(0xFFB8A99A);
 
   // Light mode accent (slightly darker for better contrast)
-  static const Color lightAuroraStart = Color(0xFF5A6FD6);
-  static const Color lightAuroraEnd = Color(0xFF6B4199);
-  static const Color lightStarGold = Color(0xFFD4A800);
+  static const Color lightAuroraStart = Color(0xFFBF8D6A);
+  static const Color lightAuroraEnd = Color(0xFF7A5F4E);
+  static const Color lightStarGold = Color(0xFFC8553D);
 
   // Common gradients
   static const LinearGradient primaryGradient = LinearGradient(
@@ -119,16 +119,16 @@ class AppColors {
   static const RadialGradient cosmicGlow = RadialGradient(
     center: Alignment.center,
     radius: 1.0,
-    colors: [Color(0x30667EEA), Color(0x00667EEA)],
+    colors: [Color(0x30D4A07A), Color(0x00D4A07A)],
   );
 
   // ========== CHAT / INSIGHT COLORS ==========
-  static const Color chatAccent = Color(0xFF4A90A4);
-  static const Color chatAccentDark = Color(0xFF357A8C);
-  static const Color chatBubbleUser = Color(0xFF2D5A7B);
-  static const Color chatSurface = Color(0xFF1C2128);
-  static const Color chatInputArea = Color(0xFF161B22);
-  static const Color chatInputField = Color(0xFF0D1117);
+  static const Color chatAccent = Color(0xFFA08574);
+  static const Color chatAccentDark = Color(0xFF6B5A4D);
+  static const Color chatBubbleUser = Color(0xFF4A3D33);
+  static const Color chatSurface = Color(0xFF2D241F);
+  static const Color chatInputArea = Color(0xFF241E19);
+  static const Color chatInputField = Color(0xFF1A1510);
 
   static const LinearGradient chatAccentGradient = LinearGradient(
     begin: Alignment.topLeft,
@@ -154,6 +154,6 @@ class AppColors {
   // ========== FEATURE-SPECIFIC ACCENT COLORS ==========
   static const Color exportGreen = Color(0xFF66BB6A);
   static const Color streakOrange = Color(0xFFFF6B35);
-  static const Color mediumSlateBlue = Color(0xFF7B68EE);
-  static const Color lavender = Color(0xFFE6E6FA);
+  static const Color mediumSlateBlue = Color(0xFFA08574);
+  static const Color lavender = Color(0xFFE8D5C4);
 }

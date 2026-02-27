@@ -112,6 +112,7 @@ class _CheckinView extends StatelessWidget {
                 button: true,
                 child: GestureDetector(
                   onTap: () => onSelect(mood, emoji),
+                  behavior: HitTestBehavior.opaque,
                   child: Column(
                     children: [
                       AppSymbol.card(emoji),

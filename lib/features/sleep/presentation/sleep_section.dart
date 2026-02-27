@@ -62,6 +62,7 @@ class _SleepSectionState extends ConsumerState<SleepSection> {
       quality: _selectedQuality,
       note: _noteController.text,
     );
+    if (!mounted) return;
     ref.invalidate(sleepSummaryProvider);
     ref.invalidate(todaySleepProvider);
   }

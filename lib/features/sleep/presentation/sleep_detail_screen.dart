@@ -6,8 +6,11 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/constants/common_strings.dart';
@@ -34,104 +37,127 @@ class SleepDetailScreen extends ConsumerWidget {
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
-          child: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            slivers: [
-              GlassSliverAppBar(
-                title: isEn ? 'Sleep Quality' : 'Uyku Kalitesi',
+          child: CupertinoScrollbar(
+            child: CustomScrollView(
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
               ),
-              SliverPadding(
-                padding: const EdgeInsets.all(16),
-                sliver: sleepAsync.when(
-                  loading: () => const SliverToBoxAdapter(
-                    child: Center(child: CosmicLoadingIndicator()),
-                  ),
-                  error: (_, _) => SliverToBoxAdapter(
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(32),
-                        child: Text(
-                          CommonStrings.somethingWentWrong(language),
-                          style: AppTypography.decorativeScript(
-                            fontSize: 14,
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
+              slivers: [
+                GlassSliverAppBar(
+                  title: isEn ? 'Sleep Quality' : 'Uyku Kalitesi',
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.all(16),
+                  sliver: sleepAsync.when(
+                    loading: () => const SliverToBoxAdapter(
+                      child: Center(child: CosmicLoadingIndicator()),
+                    ),
+                    error: (_, _) => SliverToBoxAdapter(
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(32),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                CommonStrings.somethingWentWrong(language),
+                                textAlign: TextAlign.center,
+                                style: AppTypography.decorativeScript(
+                                  fontSize: 14,
+                                  color: isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              TextButton.icon(
+                                onPressed: () =>
+                                    ref.invalidate(sleepServiceProvider),
+                                icon: Icon(Icons.refresh_rounded,
+                                    size: 16, color: AppColors.starGold),
+                                label: Text(
+                                  isEn ? 'Retry' : 'Tekrar Dene',
+                                  style: AppTypography.elegantAccent(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.starGold,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  data: (service) {
-                    final summary = service.getWeeklySummary();
-                    final entries = service.getAllEntries();
-                    final last7 = _getLast7Days(service);
+                    data: (service) {
+                      final summary = service.getWeeklySummary();
+                      final entries = service.getAllEntries();
+                      final last7 = _getLast7Days(service);
 
-                    if (summary.nightsLogged == 0) {
-                      return SliverToBoxAdapter(
-                        child: _EmptyState(isDark: isDark, isEn: isEn),
-                      );
-                    }
+                      if (summary.nightsLogged == 0) {
+                        return SliverToBoxAdapter(
+                          child: _EmptyState(isDark: isDark, isEn: isEn),
+                        );
+                      }
 
-                    return SliverList(
-                      delegate: SliverChildListDelegate([
-                        // Summary stats
-                        _SummaryCard(
-                          summary: summary,
-                          isDark: isDark,
-                          isEn: isEn,
-                        ),
-                        const SizedBox(height: 20),
-
-                        // Weekly chart
-                        _WeeklyChart(days: last7, isDark: isDark, isEn: isEn),
-                        const SizedBox(height: 24),
-
-                        // Trend card
-                        if (summary.trendDirection != null)
-                          _TrendCard(
-                            trend: summary.trendDirection!,
+                      return SliverList(
+                        delegate: SliverChildListDelegate([
+                          // Summary stats
+                          _SummaryCard(
+                            summary: summary,
                             isDark: isDark,
                             isEn: isEn,
                           ),
-                        if (summary.trendDirection != null)
+                          const SizedBox(height: 20),
+
+                          // Weekly chart
+                          _WeeklyChart(days: last7, isDark: isDark, isEn: isEn),
                           const SizedBox(height: 24),
 
-                        // Tips
-                        _SleepTips(isDark: isDark, isEn: isEn),
-                        const SizedBox(height: 24),
-
-                        // Recent entries
-                        if (entries.isNotEmpty) ...[
-                          GradientText(
-                            isEn ? 'Recent Nights' : 'Son Geceler',
-                            variant: GradientTextVariant.gold,
-                            style: AppTypography.displayFont.copyWith(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
+                          // Trend card
+                          if (summary.trendDirection != null)
+                            _TrendCard(
+                              trend: summary.trendDirection!,
+                              isDark: isDark,
+                              isEn: isEn,
                             ),
-                          ),
-                          const SizedBox(height: 12),
-                          ...entries
-                              .take(14)
-                              .map(
-                                (entry) => _NightCard(
-                                  entry: entry,
-                                  isDark: isDark,
-                                  isEn: isEn,
-                                ),
-                              ),
-                        ],
+                          if (summary.trendDirection != null)
+                            const SizedBox(height: 24),
 
-                        const SizedBox(height: 40),
-                      ]),
-                    );
-                  },
+                          // Tips
+                          _SleepTips(isDark: isDark, isEn: isEn),
+                          const SizedBox(height: 24),
+
+                          // Recent entries
+                          if (entries.isNotEmpty) ...[
+                            GradientText(
+                              isEn ? 'Recent Nights' : 'Son Geceler',
+                              variant: GradientTextVariant.gold,
+                              style: AppTypography.displayFont.copyWith(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            ...entries
+                                .take(14)
+                                .map(
+                                  (entry) => _NightCard(
+                                    entry: entry,
+                                    isDark: isDark,
+                                    isEn: isEn,
+                                  ),
+                                ),
+                          ],
+
+                          const SizedBox(height: 40),
+                        ]),
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -585,11 +611,13 @@ class _EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.bedtime_outlined,
-      title: isEn ? 'No sleep data yet' : 'Henüz uyku verisi yok',
+      title: isEn ? 'Your sleep story is waiting to begin' : 'Uyku hikayen başlamayı bekliyor',
       description: isEn
           ? 'Log your sleep quality in your daily journal'
           : 'Günlük kayıtınızda uyku kalitenizi kaydedin',
       gradientVariant: GradientTextVariant.amethyst,
+      ctaLabel: isEn ? 'Write Journal Entry' : 'Günlük Kaydı Yaz',
+      onCtaPressed: () => context.go(Routes.journal),
     );
   }
 }

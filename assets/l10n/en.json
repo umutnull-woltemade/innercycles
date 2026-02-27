@@ -61,12 +61,12 @@
     "text_copied": "Text copied! You can share on social media.",
     "open_instagram": "Open Instagram",
     "explore_more": "Explore More",
-    "something_went_wrong": "Something went wrong",
-    "error_loading": "Error loading",
-    "no_entries_yet": "No entries yet",
+    "something_went_wrong": "We hit a snag — please try again",
+    "error_loading": "Couldn't load this content",
+    "no_entries_yet": "Nothing here yet — ready when you are",
     "try_again": "Try again",
-    "could_not_share_try_again": "Could not share. Try again.",
-    "error_loading_program": "Error loading program"
+    "could_not_share_try_again": "Couldn't share right now. Please try again.",
+    "error_loading_program": "Couldn't load this program"
   },
   "greetings": {
     "night": "Still up? Good time to write.",

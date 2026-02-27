@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
@@ -9,6 +10,7 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/affirmation_service.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -57,15 +59,38 @@ class _AffirmationLibraryScreenState
           error: (_, _) => Center(
             child: Padding(
               padding: const EdgeInsets.all(32),
-              child: Text(
-                CommonStrings.somethingWentWrong(language),
-                textAlign: TextAlign.center,
-                style: AppTypography.decorativeScript(
-                  fontSize: 14,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    CommonStrings.somethingWentWrong(language),
+                    textAlign: TextAlign.center,
+                    style: AppTypography.decorativeScript(
+                      fontSize: 14,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(affirmationServiceProvider),
+                    icon: Icon(
+                      Icons.refresh_rounded,
+                      size: 16,
+                      color: AppColors.starGold,
+                    ),
+                    label: Text(
+                      isEn ? 'Retry' : 'Tekrar Dene',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -233,6 +258,7 @@ class _AffirmationLibraryScreenState
   Widget _buildFilterChips(AffirmationService service, bool isDark, bool isEn) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
+      physics: const BouncingScrollPhysics(),
       child: Row(
         children: [
           // All chip
@@ -395,7 +421,20 @@ class _AffirmationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GlassPanel(
+    return GestureDetector(
+      onLongPress: () {
+        final text = isEn ? affirmation.textEn : affirmation.textTr;
+        Clipboard.setData(ClipboardData(text: text));
+        HapticService.buttonPress();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(isEn ? 'Affirmation copied' : 'Olumlama kopyalandı'),
+            duration: const Duration(seconds: 1),
+            backgroundColor: AppColors.success,
+          ),
+        );
+      },
+      child: GlassPanel(
       elevation: GlassElevation.g2,
       borderRadius: BorderRadius.circular(AppConstants.radiusMd),
       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -464,6 +503,7 @@ class _AffirmationTile extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }

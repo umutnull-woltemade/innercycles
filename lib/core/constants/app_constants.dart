@@ -15,7 +15,7 @@ class AppConstants {
       'https://umutnull-woltemade.github.io/innercycles/terms.html';
   static const String supportEmail = 'support@innercycles.app';
   static const String appStoreUrl =
-      'https://apps.apple.com/app/innercycles/id6742044874';
+      'https://apps.apple.com/app/innercycles/id6758612716';
 
   // RevenueCat API Keys — loaded from .env at runtime
   static String get revenueCatAppleApiKey =>

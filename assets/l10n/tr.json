@@ -61,11 +61,11 @@
     "text_copied": "Metin kopyalandı! Sosyal medyada paylaşabilirsin.",
     "open_instagram": "Instagram'ı Aç",
     "explore_more": "Daha Fazla Keşfet",
-    "something_went_wrong": "Bir şeyler yanlış gitti",
-    "error_loading": "Yüklenemedi",
-    "no_entries_yet": "Henüz giriş yok",
+    "something_went_wrong": "Bir aksaklık oluştu — lütfen tekrar dene",
+    "error_loading": "Bu içerik yüklenemedi",
+    "no_entries_yet": "Henüz bir şey yok — hazır olduğunda burada",
     "try_again": "Tekrar dene",
-    "could_not_share_try_again": "Paylaşılamadı. Tekrar dene.",
+    "could_not_share_try_again": "Şu an paylaşılamadı. Lütfen tekrar dene.",
     "error_loading_program": "Program yüklenemedi"
   },
   "greetings": {

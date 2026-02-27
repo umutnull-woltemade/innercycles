@@ -18,8 +18,9 @@ import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
+import '../../../shared/widgets/glass_dialog.dart';
 import '../../../shared/widgets/premium_card.dart';
-import '../../../shared/widgets/ecosystem_widgets.dart';
+import '../../../shared/widgets/premium_empty_state.dart';
 
 class ArchiveScreen extends ConsumerStatefulWidget {
   const ArchiveScreen({super.key});
@@ -76,14 +77,37 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
               error: (_, _) => Center(
                 child: Padding(
                   padding: const EdgeInsets.all(32),
-                  child: Text(
-                    CommonStrings.somethingWentWrong(language),
-                    textAlign: TextAlign.center,
-                    style: AppTypography.subtitle(
-                      color: isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary,
-                    ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        CommonStrings.somethingWentWrong(language),
+                        textAlign: TextAlign.center,
+                        style: AppTypography.subtitle(
+                          color: isDark
+                              ? AppColors.textSecondary
+                              : AppColors.lightTextSecondary,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      TextButton.icon(
+                        onPressed: () =>
+                            ref.invalidate(journalServiceProvider),
+                        icon: Icon(
+                          Icons.refresh_rounded,
+                          size: 16,
+                          color: AppColors.starGold,
+                        ),
+                        label: Text(
+                          isEn ? 'Retry' : 'Tekrar Dene',
+                          style: AppTypography.elegantAccent(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.starGold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -103,7 +127,14 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                   return true;
                 }).toList();
 
-                return CupertinoScrollbar(
+                return RefreshIndicator(
+                  color: AppColors.starGold,
+                  onRefresh: () async {
+                    _lastService = null;
+                    ref.invalidate(journalServiceProvider);
+                    await Future.delayed(const Duration(milliseconds: 300));
+                  },
+                  child: CupertinoScrollbar(
                   child: CustomScrollView(
                     physics: const BouncingScrollPhysics(
                       parent: AlwaysScrollableScrollPhysics(),
@@ -150,17 +181,14 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                       if (entries.isEmpty)
                         SliverFillRemaining(
                           hasScrollBody: false,
-                          child: ToolEmptyState(
+                          child: PremiumEmptyState(
                             icon: Icons.book_outlined,
-                            titleEn: 'No entries yet',
-                            titleTr: 'Henüz kayıt yok',
-                            descriptionEn:
-                                'Your journal entries will appear here as you build your personal cycle map.',
-                            descriptionTr:
-                                'Kişisel döngü haritanı oluşturdukça günlük kayıtların burada görünecek.',
-                            onStartTemplate: () => context.go(Routes.journal),
-                            isEn: isEn,
-                            isDark: isDark,
+                            title: isEn ? 'Your journal is a blank page — ready when you are' : 'Günlüğün boş bir sayfa — hazır olduğunda burada',
+                            description: isEn
+                                ? 'Your journal entries will appear here as you build your personal cycle map.'
+                                : 'Kişisel döngü haritanı oluşturdukça günlük kayıtların burada görünecek.',
+                            ctaLabel: isEn ? 'Write First Entry' : 'İlk Kaydını Yaz',
+                            onCtaPressed: () => context.go(Routes.journal),
                           ),
                         )
                       else
@@ -171,11 +199,52 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                               context,
                               index,
                             ) {
-                              return _buildEntryCard(
-                                context,
-                                entries[index],
-                                isDark,
-                                isEn,
+                              final entry = entries[index];
+                              return Dismissible(
+                                key: ValueKey(entry.id),
+                                direction: DismissDirection.endToStart,
+                                confirmDismiss: (_) async {
+                                  final confirmed = await GlassDialog.confirm(
+                                    context,
+                                    title: isEn ? 'Delete Entry?' : 'Kayıt Silinsin mi?',
+                                    message: isEn
+                                        ? 'This journal entry will be permanently deleted.'
+                                        : 'Bu günlük kaydı kalıcı olarak silinecek.',
+                                    confirmLabel: isEn ? 'Delete' : 'Sil',
+                                    cancelLabel: isEn ? 'Cancel' : 'İptal',
+                                    isDestructive: true,
+                                  );
+                                  if (confirmed == true) {
+                                    final service = ref.read(journalServiceProvider).valueOrNull;
+                                    if (service != null) {
+                                      await service.deleteEntry(entry.id);
+                                      _lastService = null;
+                                      if (mounted) setState(() {
+                                        _cachedEntries = ref.read(journalServiceProvider).valueOrNull?.getAllEntries() ?? [];
+                                      });
+                                    }
+                                  }
+                                  return false;
+                                },
+                                background: Container(
+                                  alignment: Alignment.centerRight,
+                                  padding: const EdgeInsets.only(right: 28),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.error.withValues(alpha: 0.15),
+                                    borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+                                  ),
+                                  child: const Icon(
+                                    Icons.delete_outline,
+                                    color: AppColors.error,
+                                    size: 22,
+                                  ),
+                                ),
+                                child: _buildEntryCard(
+                                  context,
+                                  entry,
+                                  isDark,
+                                  isEn,
+                                ),
                               ).animate().fadeIn(
                                 delay: Duration(
                                   milliseconds: 50 * (index % 10),
@@ -187,6 +256,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                         ),
                       const SliverToBoxAdapter(child: SizedBox(height: 40)),
                     ],
+                  ),
                   ),
                 );
               },
@@ -212,6 +282,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
       ),
       child: TextField(
         controller: _searchController,
+        textInputAction: TextInputAction.search,
         onChanged: (v) {
           _searchDebounce?.cancel();
           _searchDebounce = Timer(const Duration(milliseconds: 300), () {
@@ -222,7 +293,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: isEn ? 'Search notes...' : 'Notlarda ara...',
+          hintText: isEn ? 'Search by date, mood, or text...' : 'Tarih, ruh hali veya metne göre ara...',
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
@@ -230,6 +301,22 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
             Icons.search,
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),
+          suffixIcon: _searchQuery.isNotEmpty
+              ? IconButton(
+                  tooltip: isEn ? 'Clear search' : 'Aramayı temizle',
+                  icon: Icon(
+                    Icons.cancel,
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                    size: 18,
+                  ),
+                  onPressed: () {
+                    _searchController.clear();
+                    setState(() => _searchQuery = '');
+                  },
+                )
+              : null,
           border: InputBorder.none,
           contentPadding: const EdgeInsets.symmetric(
             horizontal: AppConstants.spacingMd,
@@ -403,6 +490,20 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                             color: isDark
                                 ? AppColors.textSecondary
                                 : AppColors.lightTextSecondary,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          () {
+                            final words = entry.note!.trim().split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
+                            return isEn ? '$words words' : '$words kelime';
+                          }(),
+                          style: AppTypography.elegantAccent(
+                            fontSize: 11,
+                            color: isDark
+                                ? AppColors.textMuted.withValues(alpha: 0.6)
+                                : AppColors.lightTextMuted.withValues(alpha: 0.6),
+                            letterSpacing: 0.5,
                           ),
                         ),
                       ],

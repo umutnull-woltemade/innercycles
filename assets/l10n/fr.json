@@ -61,12 +61,12 @@
     "text_copied": "Text copied! You can share on social media.",
     "open_instagram": "Open Instagram",
     "explore_more": "Explore More",
-    "something_went_wrong": "Une erreur est survenue",
-    "error_loading": "Erreur de chargement",
-    "no_entries_yet": "Aucune entrée pour le moment",
+    "something_went_wrong": "Un petit souci — veuillez réessayer",
+    "error_loading": "Impossible de charger ce contenu",
+    "no_entries_yet": "Rien ici pour l'instant — prêt quand vous l'êtes",
     "try_again": "Réessayer",
-    "could_not_share_try_again": "Impossible de partager. Réessayer.",
-    "error_loading_program": "Erreur de chargement du programme"
+    "could_not_share_try_again": "Impossible de partager pour le moment. Veuillez réessayer.",
+    "error_loading_program": "Impossible de charger ce programme"
   },
   "greetings": {
     "night": "Encore debout ? Bon moment pour écrire.",

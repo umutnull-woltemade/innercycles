@@ -15,6 +15,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -216,30 +217,32 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
   // ==========================================================================
 
   Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      slivers: [
-        GlassSliverAppBar(
-          title: isEn ? 'Weekly Debrief' : 'Haftalık Değerlendirme',
+    return CupertinoScrollbar(
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
         ),
-        SliverFillRemaining(
-          hasScrollBody: false,
-          child: Center(
-            child: PremiumEmptyState(
-              icon: Icons.calendar_view_week_outlined,
-              title: isEn
-                  ? 'No entries this week yet'
-                  : 'Bu hafta henüz kayıt yok',
-              description: isEn
-                  ? 'Start journaling to see your weekly digest with mood trends, patterns, and insights.'
-                  : 'Ruh hali eğilimleri, kalıplar ve içgörüler içeren haftalık özetini görmek için günlük tutmaya başla.',
-              gradientVariant: GradientTextVariant.gold,
+        slivers: [
+          GlassSliverAppBar(
+            title: isEn ? 'Weekly Debrief' : 'Haftalık Değerlendirme',
+          ),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Center(
+              child: PremiumEmptyState(
+                icon: Icons.calendar_view_week_outlined,
+                title: isEn
+                    ? 'No entries this week yet'
+                    : 'Bu hafta henüz kayıt yok',
+                description: isEn
+                    ? 'Start journaling to see your weekly digest with mood trends, patterns, and insights.'
+                    : 'Ruh hali eğilimleri, kalıplar ve içgörüler içeren haftalık özetini görmek için günlük tutmaya başla.',
+                gradientVariant: GradientTextVariant.gold,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -253,171 +256,166 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     bool isDark,
     bool isEn,
   ) {
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      slivers: [
-        GlassSliverAppBar(
-          title: isEn ? 'Weekly Debrief' : 'Haftalık Değerlendirme',
-          actions: [
-            Semantics(
-              button: true,
-              label: isEn
-                  ? 'Share weekly debrief'
-                  : 'Haftalık değerlendirmeyi paylaş',
-              child: IconButton(
-                onPressed: _isSharing ? null : () => _shareDigest(isEn),
-                icon: _isSharing
-                    ? const SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          color: AppColors.starGold,
-                        ),
-                      )
-                    : const Icon(Icons.ios_share, color: AppColors.starGold),
-                tooltip: isEn ? 'Share' : 'Paylaş',
-              ),
-            ),
-          ],
+    return CupertinoScrollbar(
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
         ),
-        SliverPadding(
-          padding: const EdgeInsets.all(AppConstants.spacingLg),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate([
-              RepaintBoundary(
-                key: _repaintKey,
-                child: Container(
-                  color: isDark
-                      ? AppColors.deepSpace
-                      : AppColors.lightBackground,
-                  child: Column(
-                    children: [
-                      // 1) Week header
-                      _buildWeekHeader(context, data, isDark, isEn)
-                          .animate()
-                          .fadeIn(duration: 500.ms)
-                          .slideY(
-                            begin: 0.1,
-                            duration: 500.ms,
-                            curve: Curves.easeOut,
-                          ),
-                      const SizedBox(height: AppConstants.spacingLg),
-
-                      // 2) Entry count + comparison
-                      _buildEntryComparison(context, data, isDark, isEn)
-                          .animate()
-                          .fadeIn(delay: 100.ms, duration: 500.ms)
-                          .slideY(
-                            begin: 0.1,
-                            delay: 100.ms,
-                            duration: 500.ms,
-                            curve: Curves.easeOut,
-                          ),
-                      const SizedBox(height: AppConstants.spacingMd),
-
-                      // 3) Stats row: Avg mood, Streak, Top Area
-                      _buildStatsRow(context, data, isDark, isEn)
-                          .animate()
-                          .fadeIn(delay: 200.ms, duration: 500.ms)
-                          .slideY(
-                            begin: 0.1,
-                            delay: 200.ms,
-                            duration: 500.ms,
-                            curve: Curves.easeOut,
-                          ),
-                      const SizedBox(height: AppConstants.spacingLg),
-
-                      // 4) Top focus area with percentage
-                      if (data.topFocusArea != null)
-                        _buildTopFocusArea(context, data, isDark, isEn)
-                            .animate()
-                            .fadeIn(delay: 300.ms, duration: 500.ms)
-                            .slideY(
-                              begin: 0.1,
-                              delay: 300.ms,
-                              duration: 500.ms,
-                              curve: Curves.easeOut,
-                            ),
-                      if (data.topFocusArea != null)
-                        const SizedBox(height: AppConstants.spacingLg),
-
-                      // 5) Mood trend
-                      _buildMoodTrend(context, data, isDark, isEn)
-                          .animate()
-                          .fadeIn(delay: 400.ms, duration: 500.ms)
-                          .slideY(
-                            begin: 0.1,
-                            delay: 400.ms,
-                            duration: 500.ms,
-                            curve: Curves.easeOut,
-                          ),
-                      const SizedBox(height: AppConstants.spacingLg),
-
-                      // 6) Best day highlight
-                      if (data.bestDay != null)
-                        _buildBestDay(context, data, isDark, isEn)
-                            .animate()
-                            .fadeIn(delay: 500.ms, duration: 500.ms)
-                            .slideY(
-                              begin: 0.1,
-                              delay: 500.ms,
-                              duration: 500.ms,
-                              curve: Curves.easeOut,
-                            ),
-                      if (data.bestDay != null)
-                        const SizedBox(height: AppConstants.spacingLg),
-
-                      // 7) Focus area breakdown
-                      if (data.areaAverages.isNotEmpty)
-                        _buildAreaBreakdown(context, data, isDark, isEn)
-                            .animate()
-                            .fadeIn(delay: 600.ms, duration: 500.ms)
-                            .slideY(
-                              begin: 0.1,
-                              delay: 600.ms,
-                              duration: 500.ms,
-                              curve: Curves.easeOut,
-                            ),
-                      if (data.areaAverages.isNotEmpty)
-                        const SizedBox(height: AppConstants.spacingLg),
-
-                      // 8) Highlight insight
-                      _buildHighlightInsight(context, data, isDark, isEn)
-                          .animate()
-                          .fadeIn(delay: 700.ms, duration: 500.ms)
-                          .slideY(
-                            begin: 0.1,
-                            delay: 700.ms,
-                            duration: 500.ms,
-                            curve: Curves.easeOut,
-                          ),
-                      const SizedBox(height: AppConstants.spacingLg),
-
-                      // Watermark
-                      _buildWatermark(
-                        isDark,
-                      ).animate().fadeIn(delay: 800.ms, duration: 500.ms),
-                    ],
-                  ),
+        slivers: [
+          GlassSliverAppBar(
+            title: isEn ? 'Weekly Debrief' : 'Haftalık Değerlendirme',
+            actions: [
+              Semantics(
+                button: true,
+                label: isEn
+                    ? 'Share weekly debrief'
+                    : 'Haftalık değerlendirmeyi paylaş',
+                child: IconButton(
+                  onPressed: _isSharing ? null : () => _shareDigest(isEn),
+                  icon: _isSharing
+                      ? const CupertinoActivityIndicator(radius: 10)
+                      : const Icon(Icons.ios_share, color: AppColors.starGold),
+                  tooltip: isEn ? 'Share' : 'Paylaş',
                 ),
               ),
-
-              // Monthly Wrapped CTA
-              _buildMonthlyWrappedLink(context, isDark, isEn),
-              const SizedBox(height: AppConstants.spacingMd),
-
-              // Disclaimer (outside RepaintBoundary)
-              ContentDisclaimer(
-                language: isEn ? AppLanguage.en : AppLanguage.tr,
-              ),
-              const SizedBox(height: 40),
-            ]),
+            ],
           ),
-        ),
-      ],
+          SliverPadding(
+            padding: const EdgeInsets.all(AppConstants.spacingLg),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                RepaintBoundary(
+                  key: _repaintKey,
+                  child: Container(
+                    color: isDark
+                        ? AppColors.deepSpace
+                        : AppColors.lightBackground,
+                    child: Column(
+                      children: [
+                        // 1) Week header
+                        _buildWeekHeader(context, data, isDark, isEn)
+                            .animate()
+                            .fadeIn(duration: 500.ms)
+                            .slideY(
+                              begin: 0.1,
+                              duration: 500.ms,
+                              curve: Curves.easeOut,
+                            ),
+                        const SizedBox(height: AppConstants.spacingLg),
+
+                        // 2) Entry count + comparison
+                        _buildEntryComparison(context, data, isDark, isEn)
+                            .animate()
+                            .fadeIn(delay: 100.ms, duration: 500.ms)
+                            .slideY(
+                              begin: 0.1,
+                              delay: 100.ms,
+                              duration: 500.ms,
+                              curve: Curves.easeOut,
+                            ),
+                        const SizedBox(height: AppConstants.spacingMd),
+
+                        // 3) Stats row: Avg mood, Streak, Top Area
+                        _buildStatsRow(context, data, isDark, isEn)
+                            .animate()
+                            .fadeIn(delay: 200.ms, duration: 500.ms)
+                            .slideY(
+                              begin: 0.1,
+                              delay: 200.ms,
+                              duration: 500.ms,
+                              curve: Curves.easeOut,
+                            ),
+                        const SizedBox(height: AppConstants.spacingLg),
+
+                        // 4) Top focus area with percentage
+                        if (data.topFocusArea != null)
+                          _buildTopFocusArea(context, data, isDark, isEn)
+                              .animate()
+                              .fadeIn(delay: 300.ms, duration: 500.ms)
+                              .slideY(
+                                begin: 0.1,
+                                delay: 300.ms,
+                                duration: 500.ms,
+                                curve: Curves.easeOut,
+                              ),
+                        if (data.topFocusArea != null)
+                          const SizedBox(height: AppConstants.spacingLg),
+
+                        // 5) Mood trend
+                        _buildMoodTrend(context, data, isDark, isEn)
+                            .animate()
+                            .fadeIn(delay: 400.ms, duration: 500.ms)
+                            .slideY(
+                              begin: 0.1,
+                              delay: 400.ms,
+                              duration: 500.ms,
+                              curve: Curves.easeOut,
+                            ),
+                        const SizedBox(height: AppConstants.spacingLg),
+
+                        // 6) Best day highlight
+                        if (data.bestDay != null)
+                          _buildBestDay(context, data, isDark, isEn)
+                              .animate()
+                              .fadeIn(delay: 500.ms, duration: 500.ms)
+                              .slideY(
+                                begin: 0.1,
+                                delay: 500.ms,
+                                duration: 500.ms,
+                                curve: Curves.easeOut,
+                              ),
+                        if (data.bestDay != null)
+                          const SizedBox(height: AppConstants.spacingLg),
+
+                        // 7) Focus area breakdown
+                        if (data.areaAverages.isNotEmpty)
+                          _buildAreaBreakdown(context, data, isDark, isEn)
+                              .animate()
+                              .fadeIn(delay: 600.ms, duration: 500.ms)
+                              .slideY(
+                                begin: 0.1,
+                                delay: 600.ms,
+                                duration: 500.ms,
+                                curve: Curves.easeOut,
+                              ),
+                        if (data.areaAverages.isNotEmpty)
+                          const SizedBox(height: AppConstants.spacingLg),
+
+                        // 8) Highlight insight
+                        _buildHighlightInsight(context, data, isDark, isEn)
+                            .animate()
+                            .fadeIn(delay: 700.ms, duration: 500.ms)
+                            .slideY(
+                              begin: 0.1,
+                              delay: 700.ms,
+                              duration: 500.ms,
+                              curve: Curves.easeOut,
+                            ),
+                        const SizedBox(height: AppConstants.spacingLg),
+
+                        // Watermark
+                        _buildWatermark(
+                          isDark,
+                        ).animate().fadeIn(delay: 800.ms, duration: 500.ms),
+                      ],
+                    ),
+                  ),
+                ),
+
+                // Monthly Wrapped CTA
+                _buildMonthlyWrappedLink(context, isDark, isEn),
+                const SizedBox(height: AppConstants.spacingMd),
+
+                // Disclaimer (outside RepaintBoundary)
+                ContentDisclaimer(
+                  language: isEn ? AppLanguage.en : AppLanguage.tr,
+                ),
+                const SizedBox(height: 40),
+              ]),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

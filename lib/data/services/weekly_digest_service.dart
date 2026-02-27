@@ -652,7 +652,7 @@ class WeeklyDigestService {
 
   (String, String) _legacyAnalyzeMoodTrend(List<JournalEntry> entries) {
     if (entries.length < 2) {
-      return ('Nothing recorded yet', 'Henüz kayıt yok');
+      return ('Not enough entries to show a trend yet', 'Eğilim göstermek için henüz yeterli kayıt yok');
     }
 
     final sorted = entries.toList()..sort((a, b) => a.date.compareTo(b.date));

@@ -52,13 +52,34 @@ class RitualsScreen extends ConsumerWidget {
                       child: Center(
                         child: Padding(
                           padding: const EdgeInsets.all(32),
-                          child: Text(
-                            CommonStrings.somethingWentWrong(language),
-                            style: AppTypography.subtitle(
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
-                            ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                CommonStrings.somethingWentWrong(language),
+                                textAlign: TextAlign.center,
+                                style: AppTypography.subtitle(
+                                  color: isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              TextButton.icon(
+                                onPressed: () =>
+                                    ref.invalidate(ritualStacksProvider),
+                                icon: Icon(Icons.refresh_rounded,
+                                    size: 16, color: AppColors.starGold),
+                                label: Text(
+                                  isEn ? 'Retry' : 'Tekrar Dene',
+                                  style: AppTypography.elegantAccent(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.starGold,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -112,7 +133,7 @@ class _EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.playlist_add_check_rounded,
-      title: isEn ? 'No rituals yet' : 'Henüz ritüel yok',
+      title: isEn ? 'Your ritual practice starts here' : 'Ritüel pratiğin burada başlıyor',
       description: isEn
           ? 'Create your first daily ritual to start tracking habits'
           : 'Alışkanlıkları takip etmek için ilk ritüelini oluştur',

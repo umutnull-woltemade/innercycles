@@ -108,11 +108,32 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
           child: notesAsync.when(
             loading: () => const CosmicLoadingIndicator(),
             error: (_, _) => Center(
-              child: Text(
-                isEn ? 'Something went wrong' : 'Bir \u015feyler ters gitti',
-                style: AppTypography.decorativeScript(
-                  color: isDark ? Colors.white70 : Colors.black54,
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    isEn ? 'Couldn\'t load your notes' : 'Notların yüklenemedi',
+                    textAlign: TextAlign.center,
+                    style: AppTypography.decorativeScript(
+                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(allNotesProvider),
+                    icon: Icon(Icons.refresh_rounded,
+                        size: 16, color: AppColors.starGold),
+                    label: Text(
+                      isEn ? 'Retry' : 'Tekrar Dene',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             data: (allNotes) {
@@ -129,234 +150,248 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                 allTags.addAll(note.tags);
               }
 
-              return CustomScrollView(
-                physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics(),
-                ),
-                slivers: [
-                  GlassSliverAppBar(
-                    title: isEn ? 'Notes' : 'Notlar',
-                    showBackButton: false,
+              return CupertinoScrollbar(
+                child: CustomScrollView(
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
                   ),
-
-                  // ═══════════════════════════════════════════════════
-                  // STATS HEADER
-                  // ═══════════════════════════════════════════════════
-                  if (allNotes.isNotEmpty)
-                    SliverToBoxAdapter(
-                      child: _NotesStatsBar(
-                        total: allNotes.length,
-                        pinnedCount: allNotes.where((n) => n.isPinned).length,
-                        tagCount: allTags.length,
-                        isDark: isDark,
-                        isEn: isEn,
-                      ).animate().fadeIn(duration: 400.ms),
+                  slivers: [
+                    GlassSliverAppBar(
+                      title: isEn ? 'Notes' : 'Notlar',
+                      showBackButton: false,
                     ),
 
-                  // ═══════════════════════════════════════════════════
-                  // SEARCH BAR
-                  // ═══════════════════════════════════════════════════
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 12, 20, 4),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: (isDark ? Colors.white : Colors.black)
-                              .withValues(alpha: 0.06),
-                          borderRadius: BorderRadius.circular(14),
-                          border: _isSearchActive
-                              ? Border.all(
-                                  color: AppColors.auroraStart.withValues(
-                                    alpha: 0.3,
-                                  ),
-                                  width: 1,
-                                )
-                              : null,
-                        ),
-                        child: TextField(
-                          controller: _searchController,
-                          focusNode: _searchFocus,
-                          onChanged: _onSearchChanged,
-                          onTap: () => setState(() => _isSearchActive = true),
-                          style: AppTypography.subtitle(
-                            fontSize: 14,
-                            color: isDark ? Colors.white : Colors.black87,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: isEn
-                                ? 'Search notes...'
-                                : 'Notlarda ara...',
-                            hintStyle: AppTypography.subtitle(
-                              color: isDark ? Colors.white30 : Colors.black26,
-                            ),
-                            prefixIcon: Icon(
-                              CupertinoIcons.search,
-                              size: 18,
-                              color: _isSearchActive
-                                  ? AppColors.auroraStart
-                                  : (isDark ? Colors.white38 : Colors.black38),
-                            ),
-                            suffixIcon: _searchQuery.isNotEmpty
-                                ? IconButton(
-                                    icon: Icon(
-                                      CupertinoIcons.xmark_circle_fill,
-                                      size: 18,
-                                      color: isDark
-                                          ? Colors.white38
-                                          : Colors.black38,
-                                    ),
-                                    onPressed: _clearSearch,
-                                  )
-                                : null,
-                            isDense: true,
-                            filled: false,
-                            border: InputBorder.none,
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 13,
-                            ),
-                          ),
-                        ),
+                    // ═══════════════════════════════════════════════════
+                    // STATS HEADER
+                    // ═══════════════════════════════════════════════════
+                    if (allNotes.isNotEmpty)
+                      SliverToBoxAdapter(
+                        child: _NotesStatsBar(
+                          total: allNotes.length,
+                          pinnedCount: allNotes.where((n) => n.isPinned).length,
+                          tagCount: allTags.length,
+                          isDark: isDark,
+                          isEn: isEn,
+                        ).animate().fadeIn(duration: 400.ms),
                       ),
-                    ).animate().fadeIn(duration: 350.ms, delay: 50.ms),
-                  ),
 
-                  // ═══════════════════════════════════════════════════
-                  // TAG FILTER CHIPS
-                  // ═══════════════════════════════════════════════════
-                  if (allTags.isNotEmpty)
+                    // ═══════════════════════════════════════════════════
+                    // SEARCH BAR
+                    // ═══════════════════════════════════════════════════
                     SliverToBoxAdapter(
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 4),
-                        child: SizedBox(
-                          height: 36,
-                          child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: [
-                              _TagChip(
-                                label: isEn ? 'All' : 'T\u00fcm\u00fc',
-                                isSelected: _selectedTag == null,
-                                isDark: isDark,
-                                onTap: () =>
-                                    setState(() => _selectedTag = null),
+                        padding: const EdgeInsets.fromLTRB(20, 12, 20, 4),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: (isDark ? Colors.white : Colors.black)
+                                .withValues(alpha: 0.06),
+                            borderRadius: BorderRadius.circular(14),
+                            border: _isSearchActive
+                                ? Border.all(
+                                    color: AppColors.auroraStart.withValues(
+                                      alpha: 0.3,
+                                    ),
+                                    width: 1,
+                                  )
+                                : null,
+                          ),
+                          child: TextField(
+                            controller: _searchController,
+                            focusNode: _searchFocus,
+                            onChanged: _onSearchChanged,
+                            onTap: () => setState(() => _isSearchActive = true),
+                            style: AppTypography.subtitle(
+                              fontSize: 14,
+                              color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: isEn
+                                  ? 'Search notes...'
+                                  : 'Notlarda ara...',
+                              hintStyle: AppTypography.subtitle(
+                                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                               ),
-                              const SizedBox(width: 8),
-                              ...allTags.map(
-                                (tag) => Padding(
-                                  padding: const EdgeInsets.only(right: 8),
-                                  child: _TagChip(
-                                    label: tag,
-                                    isSelected: _selectedTag == tag,
-                                    isDark: isDark,
-                                    onTap: () => setState(() {
-                                      _selectedTag = _selectedTag == tag
-                                          ? null
-                                          : tag;
-                                    }),
-                                  ),
-                                ),
+                              prefixIcon: Icon(
+                                CupertinoIcons.search,
+                                size: 18,
+                                color: _isSearchActive
+                                    ? AppColors.auroraStart
+                                    : (isDark
+                                          ? AppColors.textMuted
+                                          : AppColors.lightTextMuted),
                               ),
-                            ],
+                              suffixIcon: _searchQuery.isNotEmpty
+                                  ? IconButton(
+                                      icon: Icon(
+                                        CupertinoIcons.xmark_circle_fill,
+                                        size: 18,
+                                        color: isDark
+                                            ? AppColors.textMuted
+                                            : AppColors.lightTextMuted,
+                                      ),
+                                      tooltip: isEn ? 'Clear search' : 'Aramayı temizle',
+                                      onPressed: _clearSearch,
+                                    )
+                                  : null,
+                              isDense: true,
+                              filled: false,
+                              border: InputBorder.none,
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 13,
+                              ),
+                            ),
                           ),
                         ),
-                      ).animate().fadeIn(duration: 350.ms, delay: 100.ms),
+                      ).animate().fadeIn(duration: 350.ms, delay: 50.ms),
                     ),
 
-                  const SliverToBoxAdapter(child: SizedBox(height: 8)),
-
-                  // ═══════════════════════════════════════════════════
-                  // EMPTY STATE
-                  // ═══════════════════════════════════════════════════
-                  if (filtered.isEmpty)
-                    SliverFillRemaining(
-                      hasScrollBody: false,
-                      child: _EmptyState(
-                        hasNotes: allNotes.isNotEmpty,
-                        isEn: isEn,
-                        isDark: isDark,
-                        onCreate: () {
-                          HapticService.buttonPress();
-                          context.push(Routes.noteCreate);
-                        },
-                      ),
-                    ),
-
-                  // ═══════════════════════════════════════════════════
-                  // PINNED SECTION
-                  // ═══════════════════════════════════════════════════
-                  if (pinned.isNotEmpty) ...[
-                    SliverToBoxAdapter(
-                      child: _SectionHeader(
-                        icon: CupertinoIcons.pin_fill,
-                        iconColor: AppColors.starGold,
-                        label: isEn ? 'Pinned' : 'Sabitlenmi\u015f',
-                        isDark: isDark,
-                      ).animate().fadeIn(duration: 300.ms, delay: 120.ms),
-                    ),
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) =>
-                            _NoteCard(
-                                  note: pinned[index],
-                                  isEn: isEn,
+                    // ═══════════════════════════════════════════════════
+                    // TAG FILTER CHIPS
+                    // ═══════════════════════════════════════════════════
+                    if (allTags.isNotEmpty)
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 4),
+                          child: SizedBox(
+                            height: 36,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                _TagChip(
+                                  label: isEn ? 'All' : 'T\u00fcm\u00fc',
+                                  isSelected: _selectedTag == null,
                                   isDark: isDark,
-                                  onTap: () => _openNote(pinned[index].id),
-                                  onDelete: () => _deleteNote(pinned[index].id),
-                                )
-                                .animate()
-                                .fadeIn(
-                                  delay: (140 + index * 60).ms,
-                                  duration: 350.ms,
-                                )
-                                .slideX(begin: -0.02, end: 0, duration: 350.ms),
-                        childCount: pinned.length,
-                      ),
-                    ),
-                  ],
-
-                  // ═══════════════════════════════════════════════════
-                  // RECENT SECTION
-                  // ═══════════════════════════════════════════════════
-                  if (unpinned.isNotEmpty) ...[
-                    SliverToBoxAdapter(
-                      child:
-                          _SectionHeader(
-                            icon: CupertinoIcons.clock,
-                            iconColor: AppColors.auroraStart,
-                            label: isEn ? 'Recent' : 'Son Notlar',
-                            isDark: isDark,
-                          ).animate().fadeIn(
-                            duration: 300.ms,
-                            delay: pinned.isNotEmpty ? 200.ms : 120.ms,
+                                  onTap: () =>
+                                      setState(() => _selectedTag = null),
+                                ),
+                                const SizedBox(width: 8),
+                                ...allTags.map(
+                                  (tag) => Padding(
+                                    padding: const EdgeInsets.only(right: 8),
+                                    child: _TagChip(
+                                      label: tag,
+                                      isSelected: _selectedTag == tag,
+                                      isDark: isDark,
+                                      onTap: () => setState(() {
+                                        _selectedTag = _selectedTag == tag
+                                            ? null
+                                            : tag;
+                                      }),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                    ),
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) =>
-                            _NoteCard(
-                                  note: unpinned[index],
-                                  isEn: isEn,
-                                  isDark: isDark,
-                                  onTap: () => _openNote(unpinned[index].id),
-                                  onDelete: () =>
-                                      _deleteNote(unpinned[index].id),
-                                )
-                                .animate()
-                                .fadeIn(
-                                  delay:
-                                      ((pinned.isNotEmpty ? 220 : 140) +
-                                              index * 60)
-                                          .ms,
-                                  duration: 350.ms,
-                                )
-                                .slideX(begin: -0.02, end: 0, duration: 350.ms),
-                        childCount: unpinned.length,
+                        ).animate().fadeIn(duration: 350.ms, delay: 100.ms),
                       ),
-                    ),
-                  ],
 
-                  const SliverToBoxAdapter(child: SizedBox(height: 100)),
-                ],
+                    const SliverToBoxAdapter(child: SizedBox(height: 8)),
+
+                    // ═══════════════════════════════════════════════════
+                    // EMPTY STATE
+                    // ═══════════════════════════════════════════════════
+                    if (filtered.isEmpty)
+                      SliverFillRemaining(
+                        hasScrollBody: false,
+                        child: _EmptyState(
+                          hasNotes: allNotes.isNotEmpty,
+                          isEn: isEn,
+                          isDark: isDark,
+                          onCreate: () {
+                            HapticService.buttonPress();
+                            context.push(Routes.noteCreate);
+                          },
+                        ),
+                      ),
+
+                    // ═══════════════════════════════════════════════════
+                    // PINNED SECTION
+                    // ═══════════════════════════════════════════════════
+                    if (pinned.isNotEmpty) ...[
+                      SliverToBoxAdapter(
+                        child: _SectionHeader(
+                          icon: CupertinoIcons.pin_fill,
+                          iconColor: AppColors.starGold,
+                          label: isEn ? 'Pinned' : 'Sabitlenmi\u015f',
+                          isDark: isDark,
+                        ).animate().fadeIn(duration: 300.ms, delay: 120.ms),
+                      ),
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) =>
+                              _NoteCard(
+                                    note: pinned[index],
+                                    isEn: isEn,
+                                    isDark: isDark,
+                                    onTap: () => _openNote(pinned[index].id),
+                                    onDelete: () =>
+                                        _deleteNote(pinned[index].id),
+                                  )
+                                  .animate()
+                                  .fadeIn(
+                                    delay: (140 + index * 60).ms,
+                                    duration: 350.ms,
+                                  )
+                                  .slideX(
+                                    begin: -0.02,
+                                    end: 0,
+                                    duration: 350.ms,
+                                  ),
+                          childCount: pinned.length,
+                        ),
+                      ),
+                    ],
+
+                    // ═══════════════════════════════════════════════════
+                    // RECENT SECTION
+                    // ═══════════════════════════════════════════════════
+                    if (unpinned.isNotEmpty) ...[
+                      SliverToBoxAdapter(
+                        child:
+                            _SectionHeader(
+                              icon: CupertinoIcons.clock,
+                              iconColor: AppColors.auroraStart,
+                              label: isEn ? 'Recent' : 'Son Notlar',
+                              isDark: isDark,
+                            ).animate().fadeIn(
+                              duration: 300.ms,
+                              delay: pinned.isNotEmpty ? 200.ms : 120.ms,
+                            ),
+                      ),
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) =>
+                              _NoteCard(
+                                    note: unpinned[index],
+                                    isEn: isEn,
+                                    isDark: isDark,
+                                    onTap: () => _openNote(unpinned[index].id),
+                                    onDelete: () =>
+                                        _deleteNote(unpinned[index].id),
+                                  )
+                                  .animate()
+                                  .fadeIn(
+                                    delay:
+                                        ((pinned.isNotEmpty ? 220 : 140) +
+                                                index * 60)
+                                            .ms,
+                                    duration: 350.ms,
+                                  )
+                                  .slideX(
+                                    begin: -0.02,
+                                    end: 0,
+                                    duration: 350.ms,
+                                  ),
+                          childCount: unpinned.length,
+                        ),
+                      ),
+                    ],
+
+                    const SliverToBoxAdapter(child: SizedBox(height: 100)),
+                  ],
+                ),
               );
             },
           ),
@@ -385,8 +420,8 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
       context,
       title: isEn ? 'Delete Note?' : 'Not Silinsin mi?',
       message: isEn
-          ? 'This action cannot be undone.'
-          : 'Bu işlem geri alınamaz.',
+          ? 'This note will be permanently deleted.'
+          : 'Bu not kalıcı olarak silinecek.',
       cancelLabel: isEn ? 'Cancel' : 'İptal',
       confirmLabel: isEn ? 'Delete' : 'Sil',
       isDestructive: true,
@@ -476,7 +511,7 @@ class _StatPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = accentColor ?? (isDark ? Colors.white54 : Colors.black45);
+    final color = accentColor ?? (isDark ? AppColors.textMuted : AppColors.lightTextMuted);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
@@ -560,7 +595,7 @@ class _EmptyState extends StatelessWidget {
       // Filtered empty
       return PremiumEmptyState(
         icon: CupertinoIcons.search,
-        title: isEn ? 'No matching notes' : 'Eşleşen not bulunamadı',
+        title: isEn ? 'No notes matched your search' : 'Aramanızla eşleşen not bulunamadı',
         description: isEn
             ? 'Try a different search term'
             : 'Farklı bir arama terimi deneyin',
@@ -723,12 +758,12 @@ class _NoteCard extends StatelessWidget {
         padding: const EdgeInsets.only(right: 28),
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
         decoration: BoxDecoration(
-          color: Colors.redAccent.withValues(alpha: 0.15),
+          color: AppColors.error.withValues(alpha: 0.15),
           borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         ),
         child: const Icon(
           CupertinoIcons.trash,
-          color: Colors.redAccent,
+          color: AppColors.error,
           size: 22,
         ),
       ),
@@ -776,7 +811,7 @@ class _NoteCard extends StatelessWidget {
                       _formatDate(note.updatedAt, isEn),
                       style: AppTypography.elegantAccent(
                         fontSize: 11,
-                        color: isDark ? Colors.white30 : Colors.black26,
+                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                       ),
                     ),
                   ],
@@ -928,7 +963,7 @@ class _TagChip extends StatelessWidget {
                 )
               : AppTypography.elegantAccent(
                   fontSize: 12,
-                  color: isDark ? Colors.white60 : Colors.black45,
+                  color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                 ),
         ),
       ),

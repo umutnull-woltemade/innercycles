@@ -10,6 +10,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
+import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
@@ -379,7 +381,7 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                         const SizedBox(height: 24),
 
                         // Cycle counter
-                        if (_completedCycles > 0)
+                        if (_completedCycles > 0) ...[
                           Text(
                             isEn
                                 ? '$_completedCycles ${_completedCycles == 1 ? 'cycle' : 'cycles'} completed'
@@ -389,6 +391,41 @@ class _BreathingTimerScreenState extends ConsumerState<BreathingTimerScreen>
                               color: AppColors.success,
                             ),
                           ),
+                          if (!_isRunning && _completedCycles >= 2) ...[
+                            const SizedBox(height: 8),
+                            GestureDetector(
+                              onTap: () {
+                                HapticService.buttonPress();
+                                final presetName = isEn
+                                    ? _preset.nameEn()
+                                    : _preset.nameTr();
+                                final msg = isEn
+                                    ? 'Just completed $_completedCycles cycles of $presetName breathing on InnerCycles. Feeling centered.\n\n${AppConstants.appStoreUrl}\n#InnerCycles #Breathing #Mindfulness'
+                                    : 'InnerCycles\'da $_completedCycles döngü $presetName nefes egzersizi tamamladım. Kendimi merkezde hissediyorum.\n\n${AppConstants.appStoreUrl}\n#InnerCycles';
+                                SharePlus.instance.share(ShareParams(text: msg));
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.share_rounded,
+                                    size: 14,
+                                    color: AppColors.starGold.withValues(alpha: 0.7),
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    isEn ? 'Share session' : 'Oturumu paylaş',
+                                    style: AppTypography.elegantAccent(
+                                      fontSize: 12,
+                                      color: AppColors.starGold.withValues(alpha: 0.7),
+                                      letterSpacing: 0.5,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ],
 
                         const Spacer(),
 

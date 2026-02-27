@@ -13,7 +13,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
@@ -61,16 +63,34 @@ class ArchetypeScreen extends ConsumerWidget {
                     ),
                     error: (e, s) => SliverToBoxAdapter(
                       child: Center(
-                        child: Text(
-                          isEn
-                              ? 'Could not load. Your local data is unaffected.'
-                              : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                          style: AppTypography.decorativeScript(
-                            fontSize: 14,
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const SizedBox(height: 40),
+                            Text(
+                              isEn
+                                  ? 'Could not load. Your local data is unaffected.'
+                                  : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                              textAlign: TextAlign.center,
+                              style: AppTypography.decorativeScript(
+                                fontSize: 14,
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            TextButton.icon(
+                              onPressed: () => ref.invalidate(archetypeServiceProvider),
+                              icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
+                              label: Text(
+                                isEn ? 'Retry' : 'Tekrar Dene',
+                                style: AppTypography.elegantAccent(
+                                  fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -81,16 +101,34 @@ class ArchetypeScreen extends ConsumerWidget {
                         ),
                         error: (e, s) => SliverToBoxAdapter(
                           child: Center(
-                            child: Text(
-                              isEn
-                                  ? 'Could not load. Your local data is unaffected.'
-                                  : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                              style: AppTypography.decorativeScript(
-                                fontSize: 14,
-                                color: isDark
-                                    ? AppColors.textMuted
-                                    : AppColors.lightTextMuted,
-                              ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const SizedBox(height: 40),
+                                Text(
+                                  isEn
+                                      ? 'Could not load. Your local data is unaffected.'
+                                      : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                                  textAlign: TextAlign.center,
+                                  style: AppTypography.decorativeScript(
+                                    fontSize: 14,
+                                    color: isDark
+                                        ? AppColors.textMuted
+                                        : AppColors.lightTextMuted,
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                TextButton.icon(
+                                  onPressed: () => ref.invalidate(journalServiceProvider),
+                                  icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
+                                  label: Text(
+                                    isEn ? 'Retry' : 'Tekrar Dene',
+                                    style: AppTypography.elegantAccent(
+                                      fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -313,7 +351,7 @@ class _StrengthsShadowSection extends StatelessWidget {
               Icon(
                 Icons.nights_stay_outlined,
                 size: 18,
-                color: AppColors.cosmicPurple.withValues(
+                color: AppColors.amethyst.withValues(
                   alpha: isDark ? 1.0 : 0.7,
                 ),
               ),
@@ -802,11 +840,13 @@ class _EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.psychology_outlined,
-      title: isEn ? 'Nothing recorded yet' : 'Henüz kayıt yok',
+      title: isEn ? 'Your archetype is waiting to emerge' : 'Arketipin ortaya çıkmayı bekliyor',
       description: isEn
           ? 'Add at least 3 entries to surface your dominant archetype'
           : 'Baskın arketipini ortaya çıkarmak için en az 3 kayıt ekle',
       gradientVariant: GradientTextVariant.amethyst,
+      ctaLabel: isEn ? 'Write First Entry' : 'İlk Kaydı Yaz',
+      onCtaPressed: () => context.go(Routes.journal),
     );
   }
 }
@@ -833,16 +873,16 @@ class _ShareArchetypeButton extends StatelessWidget {
       icon: Icons.share_rounded,
       expanded: true,
       gradient: const LinearGradient(
-        colors: [AppColors.amethyst, AppColors.cosmicPurple],
+        colors: [AppColors.amethyst, AppColors.starGold],
       ),
       onPressed: () {
         HapticFeedback.mediumImpact();
         final name = isEn ? archetype.nameEn : archetype.nameTr;
         final text = isEn
             ? 'My emotional archetype is "$name" — discovered through self-reflection with InnerCycles.\n\n'
-                  'What\'s yours? Try it free:\nhttps://apps.apple.com/app/innercycles/id6758612716'
+                  'What\'s yours? Try it free:\nhttps://apps.apple.com/app/innercycles/id6758612716\n#InnerCycles #Archetype #SelfDiscovery'
             : 'Duygusal arketipim "$name" — InnerCycles ile kendimi keşfederek buldum.\n\n'
-                  'Seninki ne? Ücretsiz dene:\nhttps://apps.apple.com/app/innercycles/id6758612716';
+                  'Seninki ne? Ücretsiz dene:\nhttps://apps.apple.com/app/innercycles/id6758612716\n#InnerCycles';
         SharePlus.instance.share(ShareParams(text: text));
       },
     );

@@ -15,6 +15,7 @@ import '../../../data/services/l10n_service.dart';
 import '../../../data/services/paywall_experiment_service.dart';
 import '../../../data/services/paywall_service.dart';
 import '../../../data/services/premium_service.dart';
+import '../../../data/services/introductory_offer_service.dart';
 import '../../../data/services/url_launcher_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
@@ -52,7 +53,12 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   _buildHeader(context),
-                  const SizedBox(height: AppConstants.spacingXl),
+                  const SizedBox(height: AppConstants.spacingMd),
+
+                  // Introductory offer countdown (72hr, 50% off)
+                  _buildIntroOfferBanner(context),
+
+                  const SizedBox(height: AppConstants.spacingMd),
 
                   // Paywall toggle (debug only)
                   if (kDebugMode) ...[
@@ -69,6 +75,10 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
                     // Free vs Pro comparison table
                     _buildComparisonTable(context),
+                    const SizedBox(height: AppConstants.spacingMd),
+
+                    // Social proof
+                    _buildSocialProof(context),
                     const SizedBox(height: AppConstants.spacingXl),
 
                     // Plan selection with anchoring
@@ -111,7 +121,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         Row(
           children: [
             IconButton(
-              tooltip: language == AppLanguage.en ? 'Close' : 'Kapat',
+              tooltip: language == AppLanguage.en ? 'Back to App' : 'Uygulamaya Dön',
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.close, color: AppColors.textPrimary),
             ),
@@ -153,6 +163,93 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           ),
         ).animate().fadeIn(duration: 500.ms, delay: 100.ms),
       ],
+    );
+  }
+
+  // ════════════════════════════════════════════════════════════════════════════
+  // INTRODUCTORY OFFER BANNER (72hr countdown)
+  // ════════════════════════════════════════════════════════════════════════════
+
+  Widget _buildIntroOfferBanner(BuildContext context) {
+    final offerAsync = ref.watch(introductoryOfferProvider);
+    return offerAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (service) {
+        if (!service.isOfferActive) return const SizedBox.shrink();
+
+        final language = ref.watch(languageProvider);
+        final isEn = language == AppLanguage.en;
+        final parts = service.countdownParts;
+
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                AppColors.starGold.withValues(alpha: 0.15),
+                AppColors.celestialGold.withValues(alpha: 0.08),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: AppColors.starGold.withValues(alpha: 0.3),
+            ),
+          ),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('\u{1F525}', style: TextStyle(fontSize: 18)),
+                  const SizedBox(width: 8),
+                  Text(
+                    isEn
+                        ? '50% OFF — New User Special'
+                        : '%50 İNDİRİM — Yeni Kullanıcı Özel',
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    isEn ? 'Offer expires in ' : 'Teklif bitiyor: ',
+                    style: AppTypography.subtitle(
+                      fontSize: 13,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                  Text(
+                    '${parts.hours}:${parts.minutes}:${parts.seconds}',
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 6),
+              Text(
+                isEn
+                    ? 'Yearly plan: \$14.99/yr (normally \$29.99)'
+                    : 'Yıllık plan: \$14.99/yıl (normalde \$29.99)',
+                style: AppTypography.subtitle(
+                  fontSize: 12,
+                  color: AppColors.textMuted,
+                ),
+              ),
+            ],
+          ),
+        ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.1, end: 0);
+      },
     );
   }
 
@@ -387,6 +484,41 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         ],
       ),
     ).animate().fadeIn(duration: 500.ms, delay: 200.ms);
+  }
+
+  // ════════════════════════════════════════════════════════════════════════════
+  // SOCIAL PROOF — Build trust before pricing
+  // ════════════════════════════════════════════════════════════════════════════
+
+  Widget _buildSocialProof(BuildContext context) {
+    final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Icons.people_outline_rounded,
+          size: 16,
+          color: isDark
+              ? AppColors.textMuted.withValues(alpha: 0.7)
+              : AppColors.lightTextMuted.withValues(alpha: 0.7),
+        ),
+        const SizedBox(width: 6),
+        Text(
+          isEn
+              ? 'Trusted by thousands of journalers'
+              : 'Binlerce günlük yazarı tarafından tercih ediliyor',
+          style: AppTypography.elegantAccent(
+            fontSize: 14,
+            color: isDark
+                ? AppColors.textMuted.withValues(alpha: 0.7)
+                : AppColors.lightTextMuted.withValues(alpha: 0.7),
+          ),
+        ),
+      ],
+    ).animate().fadeIn(duration: 400.ms, delay: 300.ms);
   }
 
   // ════════════════════════════════════════════════════════════════════════════
@@ -688,6 +820,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                   children: [
                     IconButton(
                       onPressed: () => Navigator.of(context).pop(),
+                      tooltip: ref.read(languageProvider) == AppLanguage.en ? 'Close' : 'Kapat',
                       icon: const Icon(
                         Icons.close,
                         color: AppColors.textPrimary,
@@ -847,7 +980,11 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
   Widget _buildRestoreButton(BuildContext context, PremiumState premiumState) {
     final language = ref.watch(languageProvider);
-    return TextButton(
+    final isEn = language == AppLanguage.en;
+    return Semantics(
+      label: isEn ? 'Restore Purchases' : 'Satın Alımları Geri Yükle',
+      button: true,
+      child: TextButton(
       onPressed: premiumState.isLoading
           ? null
           : () async {
@@ -881,7 +1018,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           color: AppColors.textSecondary,
         ).copyWith(decoration: TextDecoration.underline),
       ),
-    );
+    ));
   }
 
   Widget _buildTerms(BuildContext context) {

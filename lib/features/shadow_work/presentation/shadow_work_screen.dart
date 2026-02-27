@@ -8,6 +8,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/constants/app_constants.dart';
@@ -81,102 +82,125 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             child: shadowAsync.when(
               loading: () => const Center(child: CosmicLoadingIndicator()),
               error: (_, _) => Center(
-                child: Text(
-                  isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
-                  style: AppTypography.decorativeScript(
-                    fontSize: 14,
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      isEn ? 'Couldn\'t load your shadow work' : 'Gölge çalışman yüklenemedi',
+                      textAlign: TextAlign.center,
+                      style: AppTypography.decorativeScript(
+                        fontSize: 14,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    TextButton.icon(
+                      onPressed: () =>
+                          ref.invalidate(shadowWorkServiceProvider),
+                      icon: Icon(Icons.refresh_rounded,
+                          size: 16, color: AppColors.starGold),
+                      label: Text(
+                        isEn ? 'Retry' : 'Tekrar Dene',
+                        style: AppTypography.elegantAccent(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.starGold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               data: (shadowService) {
-                return CustomScrollView(
-                  physics: const BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics(),
-                  ),
-                  slivers: [
-                    GlassSliverAppBar(
-                      title: isEn ? 'Shadow Work' : 'Gölge Çalışması',
+                return CupertinoScrollbar(
+                  child: CustomScrollView(
+                    physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics(),
                     ),
-                    SliverPadding(
-                      padding: const EdgeInsets.all(AppConstants.spacingLg),
-                      sliver: SliverList(
-                        delegate: SliverChildListDelegate([
-                          // Hero Section
-                          _buildHeroSection(
-                            context,
-                            shadowService,
-                            isDark,
-                            isEn,
-                          ).glassReveal(context: context),
-                          const SizedBox(height: AppConstants.spacingLg),
-
-                          // Archetype Selector
-                          _buildArchetypeSelector(
-                            context,
-                            isDark,
-                            isEn,
-                          ).glassListItem(context: context, index: 1),
-                          const SizedBox(height: AppConstants.spacingLg),
-
-                          // Today's Prompt
-                          _buildPromptCard(
-                            context,
-                            shadowService,
-                            isDark,
-                            isEn,
-                          ).glassListItem(context: context, index: 2),
-                          const SizedBox(height: AppConstants.spacingLg),
-
-                          // Response Area (when writing)
-                          if (_isWriting) ...[
-                            _buildResponseArea(
+                    slivers: [
+                      GlassSliverAppBar(
+                        title: isEn ? 'Shadow Work' : 'Gölge Çalışması',
+                      ),
+                      SliverPadding(
+                        padding: const EdgeInsets.all(AppConstants.spacingLg),
+                        sliver: SliverList(
+                          delegate: SliverChildListDelegate([
+                            // Hero Section
+                            _buildHeroSection(
                               context,
                               shadowService,
                               isDark,
                               isEn,
-                            ).glassListItem(context: context, index: 3),
+                            ).glassReveal(context: context),
                             const SizedBox(height: AppConstants.spacingLg),
-                          ],
 
-                          // Archetype Stats (PREMIUM)
-                          if (shadowService.hasData)
-                            _buildPremiumGate(
+                            // Archetype Selector
+                            _buildArchetypeSelector(
                               context,
                               isDark,
                               isEn,
-                              isPremium,
-                              child: _buildArchetypeStats(
+                            ).glassListItem(context: context, index: 1),
+                            const SizedBox(height: AppConstants.spacingLg),
+
+                            // Today's Prompt
+                            _buildPromptCard(
+                              context,
+                              shadowService,
+                              isDark,
+                              isEn,
+                            ).glassListItem(context: context, index: 2),
+                            const SizedBox(height: AppConstants.spacingLg),
+
+                            // Response Area (when writing)
+                            if (_isWriting) ...[
+                              _buildResponseArea(
                                 context,
                                 shadowService,
                                 isDark,
                                 isEn,
-                              ),
-                            ).glassListItem(context: context, index: 4),
-                          if (shadowService.hasData)
-                            const SizedBox(height: AppConstants.spacingLg),
+                              ).glassListItem(context: context, index: 3),
+                              const SizedBox(height: AppConstants.spacingLg),
+                            ],
 
-                          // Recent Entries (PREMIUM)
-                          if (shadowService.hasData)
-                            _buildPremiumGate(
-                              context,
-                              isDark,
-                              isEn,
-                              isPremium,
-                              child: _buildRecentEntries(
+                            // Archetype Stats (PREMIUM)
+                            if (shadowService.hasData)
+                              _buildPremiumGate(
                                 context,
-                                shadowService,
                                 isDark,
                                 isEn,
-                              ),
-                            ).glassListItem(context: context, index: 5),
-                          const SizedBox(height: AppConstants.spacingXl),
-                        ]),
+                                isPremium,
+                                child: _buildArchetypeStats(
+                                  context,
+                                  shadowService,
+                                  isDark,
+                                  isEn,
+                                ),
+                              ).glassListItem(context: context, index: 4),
+                            if (shadowService.hasData)
+                              const SizedBox(height: AppConstants.spacingLg),
+
+                            // Recent Entries (PREMIUM)
+                            if (shadowService.hasData)
+                              _buildPremiumGate(
+                                context,
+                                isDark,
+                                isEn,
+                                isPremium,
+                                child: _buildRecentEntries(
+                                  context,
+                                  shadowService,
+                                  isDark,
+                                  isEn,
+                                ),
+                              ).glassListItem(context: context, index: 5),
+                            const SizedBox(height: AppConstants.spacingXl),
+                          ]),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               },
             ),
@@ -700,7 +724,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            isEn ? 'Entry saved' : 'Giriş kaydedildi',
+                            isEn ? 'Shadow work entry saved' : 'Gölge çalışması kaydedildi',
                           ),
                           backgroundColor: AppColors.success,
                           behavior: SnackBarBehavior.floating,
@@ -1131,6 +1155,6 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
   // CONSTANTS
   // ═══════════════════════════════════════════════════════════════════════
 
-  static const Color _shadowPurple = Color(0xFF9C27B0);
-  static const Color _shadowGold = Color(0xFFFFD54F);
+  static const Color _shadowPurple = AppColors.amethyst;
+  static const Color _shadowGold = AppColors.starGold;
 }

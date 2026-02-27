@@ -8,6 +8,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -41,14 +42,35 @@ class PromptLibraryScreen extends ConsumerWidget {
         child: serviceAsync.when(
           loading: () => const CosmicLoadingIndicator(),
           error: (_, _) => Center(
-            child: Text(
-              CommonStrings.somethingWentWrong(language),
-              style: AppTypography.decorativeScript(
-                fontSize: 14,
-                color: isDark
-                    ? AppColors.textPrimary
-                    : AppColors.lightTextPrimary,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  CommonStrings.somethingWentWrong(language),
+                  textAlign: TextAlign.center,
+                  style: AppTypography.decorativeScript(
+                    fontSize: 14,
+                    color: isDark
+                        ? AppColors.textPrimary
+                        : AppColors.lightTextPrimary,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton.icon(
+                  onPressed: () =>
+                      ref.invalidate(journalPromptServiceProvider),
+                  icon: Icon(Icons.refresh_rounded,
+                      size: 16, color: AppColors.starGold),
+                  label: Text(
+                    isEn ? 'Retry' : 'Tekrar Dene',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           data: (service) => _PromptLibraryContent(
@@ -103,81 +125,83 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
     final totalCount = JournalPromptService.allPrompts.length;
 
     return SafeArea(
-      child: CustomScrollView(
-        physics: const BouncingScrollPhysics(
-          parent: AlwaysScrollableScrollPhysics(),
-        ),
-        slivers: [
-          GlassSliverAppBar(
-            title: isEn ? 'Prompt Library' : 'İlham Kütüphanesi',
+      child: CupertinoScrollbar(
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
           ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Completion progress bar
-                  _buildProgressBar(
-                        completionPercent,
-                        completedCount,
-                        totalCount,
+          slivers: [
+            GlassSliverAppBar(
+              title: isEn ? 'Prompt Library' : 'İlham Kütüphanesi',
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Completion progress bar
+                    _buildProgressBar(
+                          completionPercent,
+                          completedCount,
+                          totalCount,
+                        )
+                        .animate()
+                        .fadeIn(duration: 400.ms)
+                        .slideY(begin: -0.1, end: 0, duration: 400.ms),
+                    const SizedBox(height: 16),
+
+                    // Today's prompt card
+                    _buildDailyPromptCard(dailyPrompt)
+                        .animate()
+                        .fadeIn(duration: 500.ms, delay: 100.ms)
+                        .slideY(begin: 0.05, end: 0, duration: 500.ms),
+                    const SizedBox(height: 16),
+
+                    // Category filter chips
+                    _buildCategoryChips(),
+                    const SizedBox(height: 8),
+                  ],
+                ),
+              ),
+            ),
+
+            // Prompts list
+            SliverPadding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  final prompt = _filteredPrompts[index];
+                  return _buildPromptCard(prompt, index)
+                      .animate()
+                      .fadeIn(
+                        duration: 300.ms,
+                        delay: Duration(milliseconds: 50 * (index % 10)),
                       )
-                      .animate()
-                      .fadeIn(duration: 400.ms)
-                      .slideY(begin: -0.1, end: 0, duration: 400.ms),
-                  const SizedBox(height: 16),
-
-                  // Today's prompt card
-                  _buildDailyPromptCard(dailyPrompt)
-                      .animate()
-                      .fadeIn(duration: 500.ms, delay: 100.ms)
-                      .slideY(begin: 0.05, end: 0, duration: 500.ms),
-                  const SizedBox(height: 16),
-
-                  // Category filter chips
-                  _buildCategoryChips(),
-                  const SizedBox(height: 8),
-                ],
+                      .slideX(
+                        begin: 0.03,
+                        end: 0,
+                        duration: 300.ms,
+                        delay: Duration(milliseconds: 50 * (index % 10)),
+                      );
+                }, childCount: _filteredPrompts.length),
               ),
             ),
-          ),
 
-          // Prompts list
-          SliverPadding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                final prompt = _filteredPrompts[index];
-                return _buildPromptCard(prompt, index)
-                    .animate()
-                    .fadeIn(
-                      duration: 300.ms,
-                      delay: Duration(milliseconds: 50 * (index % 10)),
-                    )
-                    .slideX(
-                      begin: 0.03,
-                      end: 0,
-                      duration: 300.ms,
-                      delay: Duration(milliseconds: 50 * (index % 10)),
-                    );
-              }, childCount: _filteredPrompts.length),
-            ),
-          ),
-
-          // Tool ecosystem footer
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-              child: ToolEcosystemFooter(
-                currentToolId: 'promptLibrary',
-                isEn: isEn,
-                isDark: isDark,
+            // Tool ecosystem footer
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                child: ToolEcosystemFooter(
+                  currentToolId: 'promptLibrary',
+                  isEn: isEn,
+                  isDark: isDark,
+                ),
               ),
             ),
-          ),
-          const SliverToBoxAdapter(child: SizedBox(height: 40)),
-        ],
+            const SliverToBoxAdapter(child: SizedBox(height: 40)),
+          ],
+        ),
       ),
     );
   }

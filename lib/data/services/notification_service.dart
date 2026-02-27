@@ -51,6 +51,9 @@ class NotificationService {
   static const int fullMoonId = 8;
   static const int eveningReflectionId = 9;
   static const int journalPromptId = 10;
+  static const int streakRecoveryId = 11;
+  static const int onThisDayId = 12;
+  static const int referralRewardId = 13;
 
   // Preference keys
   static const String _keyDailyEnabled = 'notification_daily_enabled';
@@ -175,12 +178,25 @@ class NotificationService {
       case 'challenge_completed':
         route = Routes.challenges;
         break;
+      case 'streak_risk':
+        route = Routes.journal;
+        break;
+      case 'streak_recovery':
+        route = Routes.journal;
+        break;
+      case 'on_this_day':
+        route = Routes.memories;
+        break;
+      case 'referral_reward':
+        route = Routes.referralProgram;
+        break;
       default:
         if (payload.startsWith('birthday:')) {
           final contactId = payload.substring('birthday:'.length);
           route = Routes.birthdayDetail.replaceFirst(':id', contactId);
         } else if (payload.startsWith('note_reminder:')) {
-          route = Routes.noteDetail;
+          final noteId = payload.substring('note_reminder:'.length);
+          route = '${Routes.noteDetail}?noteId=$noteId';
         } else {
           route = Routes.today;
         }
@@ -387,6 +403,228 @@ class NotificationService {
     return TimeOfDay(hour: minutes ~/ 60, minute: minutes % 60);
   }
 
+  // ============== Streak-at-Risk Notifications ==============
+
+  /// Schedule a streak-at-risk reminder for 8:30 PM if user hasn't journaled.
+  /// Call this on app launch — it schedules for today at 20:30.
+  /// Should be canceled when user saves a journal entry.
+  Future<void> scheduleStreakAtRisk({required int currentStreak}) async {
+    // Only notify if they have an active streak worth protecting
+    if (currentStreak < 2) return;
+
+    _isEn = await _readIsEn();
+
+    final now = DateTime.now();
+    var scheduledTime = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      20,
+      30,
+    );
+
+    // If 8:30 PM already passed, don't schedule
+    if (scheduledTime.isBefore(now)) return;
+
+    await _notifications.zonedSchedule(
+      id: journalStreakId,
+      title: _isEn
+          ? '🔥 Your $currentStreak-day streak is at risk'
+          : '🔥 $currentStreak günlük serin risk altında',
+      body: _isEn
+          ? 'A quick check-in keeps your momentum going.'
+          : 'Hızlı bir kayıt ivmeni sürdürür.',
+      scheduledDate: scheduledTime,
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'streak_risk',
+          _isEn ? 'Streak Reminders' : 'Seri Hatırlatıcıları',
+          channelDescription: _isEn
+              ? 'Alerts when your journaling streak is about to reset'
+              : 'Günlük serin sıfırlanmak üzereyken uyarılar',
+          importance: Importance.high,
+          priority: Priority.high,
+          icon: '@mipmap/ic_launcher',
+          color: AppColors.starGold,
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      payload: 'streak_risk',
+    );
+  }
+
+  /// Cancel streak-at-risk notification (call after user journals today).
+  Future<void> cancelStreakAtRisk() async {
+    await _notifications.cancel(id: journalStreakId);
+  }
+
+  // ============== Streak Recovery Notifications ==============
+
+  /// Schedule a gentle re-engagement notification for tomorrow at 10:00 AM
+  /// when the user just broke their streak. Encourages them to start fresh.
+  Future<void> scheduleStreakRecovery({required int lostStreak}) async {
+    if (lostStreak < 2) return;
+
+    _isEn = await _readIsEn();
+
+    final now = DateTime.now();
+    final tomorrow = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day + 1,
+      10,
+      0,
+    );
+
+    await _notifications.zonedSchedule(
+      id: streakRecoveryId,
+      title: _isEn
+          ? 'Every streak starts at Day 1'
+          : 'Her seri 1. günden başlar',
+      body: _isEn
+          ? 'Your $lostStreak-day streak ended, but a fresh start is one entry away.'
+          : '$lostStreak günlük serin sona erdi ama yeni bir başlangıç bir kayıt uzağında.',
+      scheduledDate: tomorrow,
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'streak_recovery',
+          _isEn ? 'Streak Recovery' : 'Seri Kurtarma',
+          channelDescription: _isEn
+              ? 'Encouragement to start a new streak'
+              : 'Yeni bir seri başlatmak için teşvik',
+          importance: Importance.defaultImportance,
+          priority: Priority.defaultPriority,
+          icon: '@mipmap/ic_launcher',
+          color: AppColors.starGold,
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      payload: 'streak_recovery',
+    );
+  }
+
+  /// Cancel streak recovery notification.
+  Future<void> cancelStreakRecovery() async {
+    await _notifications.cancel(id: streakRecoveryId);
+  }
+
+  // ============== On This Day Memory Notifications ==============
+
+  /// Schedule a nostalgia notification for today at 11 AM when user has
+  /// entries from the same date in a previous year.
+  Future<void> scheduleOnThisDayMemory({required int yearsAgo}) async {
+    _isEn = await _readIsEn();
+
+    final now = DateTime.now();
+    var scheduledTime = tz.TZDateTime(tz.local, now.year, now.month, now.day, 11, 0);
+
+    // If 11 AM already passed, skip
+    if (scheduledTime.isBefore(now)) return;
+
+    await _notifications.zonedSchedule(
+      id: onThisDayId,
+      title: _isEn
+          ? '📖 A memory from $yearsAgo year${yearsAgo == 1 ? '' : 's'} ago'
+          : '📖 $yearsAgo yıl önceki bir anı',
+      body: _isEn
+          ? 'See what you wrote on this day. Your past self has a message.'
+          : 'Bugün ne yazdığına bak. Geçmişteki sen bir mesaj bırakmış.',
+      scheduledDate: scheduledTime,
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'on_this_day',
+          _isEn ? 'On This Day' : 'Bu Günde',
+          channelDescription: _isEn
+              ? 'Memories from past journal entries'
+              : 'Geçmiş günlük kayıtlarından anılar',
+          importance: Importance.defaultImportance,
+          priority: Priority.defaultPriority,
+          icon: '@mipmap/ic_launcher',
+          color: AppColors.starGold,
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      payload: 'on_this_day',
+    );
+  }
+
+  // ============== Referral Reward Notifications ==============
+
+  /// Show immediate notification when a referral reward is earned.
+  Future<void> showReferralRewardNotification({
+    required int totalReferrals,
+  }) async {
+    _isEn = await _readIsEn();
+
+    String title;
+    String body;
+
+    if (totalReferrals >= 10) {
+      title = _isEn
+          ? '\u{1F48E} Lifetime Premium Unlocked!'
+          : '\u{1F48E} Ömür Boyu Premium Açıldı!';
+      body = _isEn
+          ? '10 friends joined! You\'ve earned Lifetime Premium. Thank you for spreading the word!'
+          : '10 arkadaş katıldı! Ömür Boyu Premium kazandın. Paylaştığın için teşekkürler!';
+    } else if (totalReferrals >= 3) {
+      title = _isEn
+          ? '\u{2B50} 1 Month Free Premium!'
+          : '\u{2B50} 1 Ay Ücretsiz Premium!';
+      body = _isEn
+          ? '$totalReferrals friends joined! You\'ve earned 1 month of free Premium.'
+          : '$totalReferrals arkadaş katıldı! 1 ay ücretsiz Premium kazandın.';
+    } else {
+      title = _isEn
+          ? '\u{1F381} Referral Reward: +7 Days Premium!'
+          : '\u{1F381} Davet Ödülü: +7 Gün Premium!';
+      body = _isEn
+          ? 'A friend joined with your code! You both earned 7 days of Premium.'
+          : 'Bir arkadaşın kodunla katıldı! İkiniz de 7 gün Premium kazandınız.';
+    }
+
+    await _notifications.show(
+      id: referralRewardId,
+      title: title,
+      body: body,
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          'referral_rewards',
+          _isEn ? 'Referral Rewards' : 'Davet Ödülleri',
+          channelDescription: _isEn
+              ? 'Notifications when friends join with your code'
+              : 'Arkadaşların kodunla katıldığında bildirimler',
+          importance: Importance.high,
+          priority: Priority.high,
+          icon: '@mipmap/ic_launcher',
+          color: AppColors.starGold,
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+        ),
+      ),
+      payload: 'referral_reward',
+    );
+  }
+
   // ============== Moon Cycle Awareness Notifications ==============
 
   /// Schedule moon cycle mindfulness reminders
@@ -426,8 +664,7 @@ class NotificationService {
     await _notifications.show(
       id: newMoonId,
       title: _isEn ? '🌑 New Moon' : '🌑 Yeni Ay',
-      body:
-          message ??
+      body: message ??
           (_isEn
               ? 'A time for new beginnings and setting intentions.'
               : 'Yeni başlangıçlar ve niyet belirleme zamanı.'),
@@ -441,7 +678,7 @@ class NotificationService {
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
-          color: AppColors.cosmicPurple,
+          color: AppColors.starGold,
         ),
         iOS: const DarwinNotificationDetails(
           presentAlert: true,
@@ -459,8 +696,7 @@ class NotificationService {
     await _notifications.show(
       id: fullMoonId,
       title: _isEn ? '🌕 Full Moon' : '🌕 Dolunay',
-      body:
-          message ??
+      body: message ??
           (_isEn
               ? 'A time for reflection and gratitude.'
               : 'Yansıma ve şükran zamanı.'),
@@ -474,7 +710,7 @@ class NotificationService {
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',
-          color: const Color(0xFFF5F5DC),
+          color: AppColors.celestialGold,
         ),
         iOS: const DarwinNotificationDetails(
           presentAlert: true,

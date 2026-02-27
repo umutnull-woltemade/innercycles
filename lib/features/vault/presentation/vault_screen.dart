@@ -45,54 +45,60 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: CustomScrollView(
-          physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
-          slivers: [
-            GlassSliverAppBar(
-              title: isEn ? 'Private Vault' : 'Gizli Kasa',
-              useGradientTitle: true,
-              gradientVariant: GradientTextVariant.amethyst,
-              actions: [
-                GestureDetector(
-                  onTap: () => _showVaultSettings(isEn, isDark),
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 12),
-                    child: Icon(
-                      CupertinoIcons.gear,
-                      size: 22,
-                      color: isDark ? Colors.white70 : Colors.black54,
+        child: CupertinoScrollbar(
+          child: CustomScrollView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
+            slivers: [
+              GlassSliverAppBar(
+                title: isEn ? 'Private Vault' : 'Gizli Kasa',
+                useGradientTitle: true,
+                gradientVariant: GradientTextVariant.amethyst,
+                actions: [
+                  Semantics(
+                    button: true,
+                    label: isEn ? 'Vault settings' : 'Kasa ayarları',
+                    child: GestureDetector(
+                      onTap: () => _showVaultSettings(isEn, isDark),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Icon(
+                          CupertinoIcons.gear,
+                          size: 22,
+                          color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Tab bar
-                    _buildTabBar(isEn, isDark),
-                    const SizedBox(height: 20),
-                  ],
+                ],
+              ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Tab bar
+                      _buildTabBar(isEn, isDark),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
                 ),
               ),
-            ),
 
-            // Content based on tab
-            _buildContent(
-              isEn,
-              isDark,
-              privateJournals,
-              privateNotes,
-              vaultPhotos,
-            ),
+              // Content based on tab
+              _buildContent(
+                isEn,
+                isDark,
+                privateJournals,
+                privateNotes,
+                vaultPhotos,
+              ),
 
-            const SliverToBoxAdapter(child: SizedBox(height: 100)),
-          ],
+              const SliverToBoxAdapter(child: SizedBox(height: 100)),
+            ],
+          ),
         ),
       ),
       floatingActionButton: _selectedTab == 3
@@ -117,19 +123,27 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
           final isActive = _selectedTab == i;
           return Padding(
             padding: EdgeInsets.only(right: i < tabs.length - 1 ? 8 : 0),
-            child: GestureDetector(
-              onTap: () {
-                HapticService.buttonPress();
-                setState(() => _selectedTab = i);
-              },
-              child: AnimatedContainer(
+            child: Semantics(
+              button: true,
+              selected: isActive,
+              label: tabs[i],
+              child: GestureDetector(
+                onTap: () {
+                  HapticService.buttonPress();
+                  setState(() => _selectedTab = i);
+                },
+                child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   color: isActive
                       ? AppColors.amethyst.withValues(alpha: 0.2)
-                      : (isDark ? Colors.white : Colors.black)
-                          .withValues(alpha: 0.05),
+                      : (isDark ? Colors.white : Colors.black).withValues(
+                          alpha: 0.05,
+                        ),
                   borderRadius: BorderRadius.circular(20),
                   border: isActive
                       ? Border.all(
@@ -139,14 +153,22 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
                 ),
                 child: Text(
                   tabs[i],
-                  style: AppTypography.subtitle(
-                    fontSize: 13,
-                    color: isActive
-                        ? AppColors.amethyst
-                        : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
-                  ).copyWith(fontWeight: isActive ? FontWeight.w600 : FontWeight.w400),
+                  style:
+                      AppTypography.subtitle(
+                        fontSize: 13,
+                        color: isActive
+                            ? AppColors.amethyst
+                            : (isDark
+                                  ? AppColors.textMuted
+                                  : AppColors.lightTextMuted),
+                      ).copyWith(
+                        fontWeight: isActive
+                            ? FontWeight.w600
+                            : FontWeight.w400,
+                      ),
                 ),
               ),
+            ),
             ),
           );
         }),
@@ -166,7 +188,10 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     final photos = photosAsync.valueOrNull ?? [];
 
     // Check if everything is empty
-    if (_selectedTab == 0 && journals.isEmpty && notes.isEmpty && photos.isEmpty) {
+    if (_selectedTab == 0 &&
+        journals.isEmpty &&
+        notes.isEmpty &&
+        photos.isEmpty) {
       return SliverToBoxAdapter(child: _buildEmptyState(isEn, isDark));
     }
     if (_selectedTab == 1 && journals.isEmpty) {
@@ -184,11 +209,13 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     // Journals
     if (_selectedTab == 0 || _selectedTab == 1) {
       if (journals.isNotEmpty) {
-        items.add(_buildSectionHeader(
-          isEn ? 'Private Journals' : 'Gizli Günlükler',
-          '${journals.length}',
-          isDark,
-        ));
+        items.add(
+          _buildSectionHeader(
+            isEn ? 'Private Journals' : 'Gizli Günlükler',
+            '${journals.length}',
+            isDark,
+          ),
+        );
         for (final entry in journals) {
           items.add(_buildJournalCard(entry, isEn, isDark));
         }
@@ -198,11 +225,13 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     // Notes
     if (_selectedTab == 0 || _selectedTab == 2) {
       if (notes.isNotEmpty) {
-        items.add(_buildSectionHeader(
-          isEn ? 'Private Notes' : 'Gizli Notlar',
-          '${notes.length}',
-          isDark,
-        ));
+        items.add(
+          _buildSectionHeader(
+            isEn ? 'Private Notes' : 'Gizli Notlar',
+            '${notes.length}',
+            isDark,
+          ),
+        );
         for (final note in notes) {
           items.add(_buildNoteCard(note, isEn, isDark));
         }
@@ -212,11 +241,13 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
     // Photos
     if (_selectedTab == 0 || _selectedTab == 3) {
       if (photos.isNotEmpty) {
-        items.add(_buildSectionHeader(
-          isEn ? 'Private Photos' : 'Gizli Fotoğraflar',
-          '${photos.length}',
-          isDark,
-        ));
+        items.add(
+          _buildSectionHeader(
+            isEn ? 'Private Photos' : 'Gizli Fotoğraflar',
+            '${photos.length}',
+            isDark,
+          ),
+        );
         items.add(_buildPhotoGrid(photos, isDark));
       }
     }
@@ -251,7 +282,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
             style: AppTypography.displayFont.copyWith(
               fontSize: 20,
               fontWeight: FontWeight.w600,
-              color: isDark ? Colors.white70 : Colors.black54,
+              color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
           ),
           const SizedBox(height: 8),
@@ -307,15 +338,15 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
   Widget _buildJournalCard(JournalEntry entry, bool isEn, bool isDark) {
     final dayName = _dayName(entry.date, isEn);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
-    final areaName = isEn ? entry.focusArea.displayNameEn : entry.focusArea.displayNameTr;
+    final areaName = isEn
+        ? entry.focusArea.displayNameEn
+        : entry.focusArea.displayNameTr;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: GestureDetector(
         onTap: () {
-          context.push(
-            Routes.journalEntryDetail.replaceFirst(':id', entry.id),
-          );
+          context.push(Routes.journalEntryDetail.replaceFirst(':id', entry.id));
         },
         child: GlassPanel(
           elevation: GlassElevation.g2,
@@ -332,7 +363,10 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [AppColors.amethyst, AppColors.amethyst.withValues(alpha: 0.3)],
+                    colors: [
+                      AppColors.amethyst,
+                      AppColors.amethyst.withValues(alpha: 0.3),
+                    ],
                   ),
                 ),
               ),
@@ -345,7 +379,9 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
                       '$dayName, $dateStr',
                       style: AppTypography.subtitle(
                         fontSize: 14,
-                        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
                       ).copyWith(fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 2),
@@ -353,7 +389,9 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
                       '$areaName  ${entry.overallRating}/5',
                       style: AppTypography.subtitle(
                         fontSize: 12,
-                        color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
                       ),
                     ),
                     if (entry.note != null && entry.note!.isNotEmpty) ...[
@@ -406,7 +444,10 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [AppColors.starGold, AppColors.starGold.withValues(alpha: 0.3)],
+                    colors: [
+                      AppColors.starGold,
+                      AppColors.starGold.withValues(alpha: 0.3),
+                    ],
                   ),
                 ),
               ),
@@ -416,10 +457,14 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      note.title.isNotEmpty ? note.title : (isEn ? 'Untitled' : 'Başlıksız'),
+                      note.title.isNotEmpty
+                          ? note.title
+                          : (isEn ? 'Untitled' : 'Başlıksız'),
                       style: AppTypography.subtitle(
                         fontSize: 14,
-                        color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
+                        color: isDark
+                            ? AppColors.textPrimary
+                            : AppColors.lightTextPrimary,
                       ).copyWith(fontWeight: FontWeight.w600),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -442,7 +487,11 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
               if (note.isPinned)
                 Padding(
                   padding: const EdgeInsets.only(right: 8),
-                  child: Icon(Icons.push_pin, size: 14, color: AppColors.starGold),
+                  child: Icon(
+                    Icons.push_pin,
+                    size: 14,
+                    color: AppColors.starGold,
+                  ),
                 ),
               Icon(
                 CupertinoIcons.chevron_right,
@@ -477,7 +526,9 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
               File(photo.filePath),
               fit: BoxFit.cover,
               errorBuilder: (_, _, _) => Container(
-                color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.05),
+                color: isDark
+                    ? Colors.white10
+                    : Colors.black.withValues(alpha: 0.05),
                 child: Icon(
                   CupertinoIcons.photo,
                   color: isDark ? Colors.white24 : Colors.black26,
@@ -491,11 +542,9 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
   }
 
   void _showPhotoViewer(VaultPhoto photo, bool isDark) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => _FullScreenPhoto(photo: photo),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => _FullScreenPhoto(photo: photo)));
   }
 
   Future<void> _showPhotoOptions(VaultPhoto photo) async {
@@ -504,11 +553,11 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
 
     final confirmed = await GlassDialog.confirm(
       context,
-      title: isEn ? 'Delete Photo' : 'Fotoğrafı Sil',
+      title: isEn ? 'Delete Photo?' : 'Fotoğrafı Sil?',
       message: isEn
           ? 'This photo will be permanently deleted from your vault.'
           : 'Bu fotoğraf kasandan kalıcı olarak silinecek.',
-      cancelLabel: isEn ? 'Cancel' : 'Vazgeç',
+      cancelLabel: isEn ? 'Cancel' : 'İptal',
       confirmLabel: isEn ? 'Delete' : 'Sil',
       isDestructive: true,
     );
@@ -533,6 +582,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
 
     final vaultService = await ref.read(vaultServiceProvider.future);
     await vaultService.addPhoto(sourcePath: picked.path);
+    if (!mounted) return;
     ref.invalidate(vaultPhotosProvider);
     ref.invalidate(vaultPhotoCountProvider);
   }
@@ -578,7 +628,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
         ],
         cancelButton: CupertinoActionSheetAction(
           onPressed: () => Navigator.pop(ctx),
-          child: Text(isEn ? 'Cancel' : 'Vazgeç'),
+          child: Text(isEn ? 'Cancel' : 'İptal'),
         ),
       ),
     );

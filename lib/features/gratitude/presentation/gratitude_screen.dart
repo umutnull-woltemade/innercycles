@@ -6,6 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
@@ -75,138 +76,168 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           behavior: HitTestBehavior.opaque,
           child: SafeArea(
-            child: CustomScrollView(
-              physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics(),
-              ),
-              slivers: [
-                GlassSliverAppBar(
-                  title: isEn ? 'Gratitude Journal' : 'Şükran Günlüğü',
+            child: CupertinoScrollbar(
+              child: CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
                 ),
-                SliverPadding(
-                  padding: const EdgeInsets.all(16),
-                  sliver: serviceAsync.when(
-                    loading: () => const SliverToBoxAdapter(
-                      child: Center(child: CosmicLoadingIndicator()),
-                    ),
-                    error: (_, _) => SliverToBoxAdapter(
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(32),
-                          child: Text(
-                            CommonStrings.somethingWentWrong(language),
-                            style: AppTypography.decorativeScript(
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
+                slivers: [
+                  GlassSliverAppBar(
+                    title: isEn ? 'Gratitude Journal' : 'Şükran Günlüğü',
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.all(16),
+                    sliver: serviceAsync.when(
+                      loading: () => const SliverToBoxAdapter(
+                        child: Center(child: CosmicLoadingIndicator()),
+                      ),
+                      error: (_, _) => SliverToBoxAdapter(
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(32),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  CommonStrings.somethingWentWrong(language),
+                                  textAlign: TextAlign.center,
+                                  style: AppTypography.decorativeScript(
+                                    color: isDark
+                                        ? AppColors.textMuted
+                                        : AppColors.lightTextMuted,
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                TextButton.icon(
+                                  onPressed: () =>
+                                      ref.invalidate(gratitudeServiceProvider),
+                                  icon: Icon(Icons.refresh_rounded,
+                                      size: 16, color: AppColors.starGold),
+                                  label: Text(
+                                    isEn ? 'Retry' : 'Tekrar Dene',
+                                    style: AppTypography.elegantAccent(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.starGold,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    data: (service) {
-                      final today = service.getTodayEntry();
-                      final summary = service.getWeeklySummary();
-                      if (!identical(service, _lastService)) {
-                        _lastService = service;
-                        _cachedEntries = service.getAllEntries();
-                      }
-                      final allEntries = _cachedEntries;
-
-                      // Pre-fill if today has entries
-                      if (today != null && _controllers[0].text.isEmpty) {
-                        for (var i = 0; i < today.items.length && i < 3; i++) {
-                          _controllers[i].text = today.items[i];
+                      data: (service) {
+                        final today = service.getTodayEntry();
+                        final summary = service.getWeeklySummary();
+                        if (!identical(service, _lastService)) {
+                          _lastService = service;
+                          _cachedEntries = service.getAllEntries();
                         }
-                      }
+                        final allEntries = _cachedEntries;
 
-                      return SliverList(
-                        delegate: SliverChildListDelegate([
-                          // Weekly stats
-                          _WeeklyStats(
-                            summary: summary,
-                            isDark: isDark,
-                            isEn: isEn,
-                          ),
-                          const SizedBox(height: 20),
+                        // Pre-fill if today has entries
+                        if (today != null && _controllers[0].text.isEmpty) {
+                          for (
+                            var i = 0;
+                            i < today.items.length && i < 3;
+                            i++
+                          ) {
+                            _controllers[i].text = today.items[i];
+                          }
+                        }
 
-                          // Today's entry
-                          _TodaySection(
-                            controllers: _controllers,
-                            hasEntry: today != null,
-                            isDark: isDark,
-                            isEn: isEn,
-                            onSave: () async {
-                              final items = _controllers
-                                  .map((c) => c.text.trim())
-                                  .where((s) => s.isNotEmpty)
-                                  .toList();
-                              if (items.isEmpty) return;
-                              await service.saveGratitude(
-                                date: DateTime.now(),
-                                items: items,
-                              );
-                              if (!context.mounted) return;
-                              ref.invalidate(gratitudeServiceProvider);
-                              ref
-                                  .read(smartRouterServiceProvider)
-                                  .whenData(
-                                    (s) => s.recordOutput('gratitude', 'entry'),
-                                  );
-                              ref
-                                  .read(ecosystemAnalyticsServiceProvider)
-                                  .whenData(
-                                    (s) =>
-                                        s.trackToolOutput('gratitude', 'entry'),
-                                  );
-                              HapticFeedback.mediumImpact();
-                            },
-                          ),
-                          const SizedBox(height: 24),
-
-                          // Theme cloud
-                          if (summary.topThemes.isNotEmpty) ...[
-                            _ThemeCloud(
-                              themes: summary.topThemes,
+                        return SliverList(
+                          delegate: SliverChildListDelegate([
+                            // Weekly stats
+                            _WeeklyStats(
+                              summary: summary,
                               isDark: isDark,
                               isEn: isEn,
                             ),
-                            const SizedBox(height: 24),
-                          ],
+                            const SizedBox(height: 20),
 
-                          // History
-                          if (allEntries.isNotEmpty) ...[
-                            GradientText(
-                              isEn ? 'History' : 'Geçmiş',
-                              variant: GradientTextVariant.gold,
-                              style: AppTypography.displayFont.copyWith(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
-                              ),
+                            // Today's entry
+                            _TodaySection(
+                              controllers: _controllers,
+                              hasEntry: today != null,
+                              isDark: isDark,
+                              isEn: isEn,
+                              onSave: () async {
+                                final items = _controllers
+                                    .map((c) => c.text.trim())
+                                    .where((s) => s.isNotEmpty)
+                                    .toList();
+                                if (items.isEmpty) return;
+                                await service.saveGratitude(
+                                  date: DateTime.now(),
+                                  items: items,
+                                );
+                                if (!context.mounted) return;
+                                ref.invalidate(gratitudeServiceProvider);
+                                ref
+                                    .read(smartRouterServiceProvider)
+                                    .whenData(
+                                      (s) =>
+                                          s.recordOutput('gratitude', 'entry'),
+                                    );
+                                ref
+                                    .read(ecosystemAnalyticsServiceProvider)
+                                    .whenData(
+                                      (s) => s.trackToolOutput(
+                                        'gratitude',
+                                        'entry',
+                                      ),
+                                    );
+                                HapticFeedback.mediumImpact();
+                              },
                             ),
-                            const SizedBox(height: 12),
-                            ...allEntries
-                                .take(20)
-                                .map(
-                                  (entry) => _HistoryCard(
-                                    entry: entry,
-                                    isDark: isDark,
-                                  ),
-                                ),
-                          ],
+                            const SizedBox(height: 24),
 
-                          ToolEcosystemFooter(
-                            currentToolId: 'gratitude',
-                            isEn: isEn,
-                            isDark: isDark,
-                          ),
-                          const SizedBox(height: 40),
-                        ]),
-                      );
-                    },
+                            // Theme cloud
+                            if (summary.topThemes.isNotEmpty) ...[
+                              _ThemeCloud(
+                                themes: summary.topThemes,
+                                isDark: isDark,
+                                isEn: isEn,
+                              ),
+                              const SizedBox(height: 24),
+                            ],
+
+                            // History
+                            if (allEntries.isNotEmpty) ...[
+                              GradientText(
+                                isEn ? 'History' : 'Geçmiş',
+                                variant: GradientTextVariant.gold,
+                                style: AppTypography.displayFont.copyWith(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              ...allEntries
+                                  .take(20)
+                                  .map(
+                                    (entry) => _HistoryCard(
+                                      entry: entry,
+                                      isDark: isDark,
+                                    ),
+                                  ),
+                            ],
+
+                            ToolEcosystemFooter(
+                              currentToolId: 'gratitude',
+                              isEn: isEn,
+                              isDark: isDark,
+                            ),
+                            const SizedBox(height: 40),
+                          ]),
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

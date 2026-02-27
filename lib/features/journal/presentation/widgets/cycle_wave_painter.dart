@@ -18,20 +18,20 @@ import '../../../../data/services/emotional_cycle_service.dart';
 
 /// Color palette for each focus area dimension
 const Map<FocusArea, Color> kAreaColors = {
-  FocusArea.energy: Color(0xFFFF6B6B), // Warm coral red
-  FocusArea.focus: Color(0xFF4ECDC4), // Teal cyan
-  FocusArea.emotions: AppColors.chartPurple, // Soft purple
-  FocusArea.decisions: Color(0xFFFFD93D), // Warm gold
-  FocusArea.social: Color(0xFF6BCB77), // Fresh green
+  FocusArea.energy: AppColors.starGold, // Terracotta
+  FocusArea.focus: AppColors.chartBlue, // Soft blue
+  FocusArea.emotions: AppColors.chartPink, // Warm pink
+  FocusArea.decisions: AppColors.chartGreen, // Sage green
+  FocusArea.social: AppColors.chartPurple, // Soft purple
 };
 
-/// Secondary gradient color for each area (lighter)
+/// Secondary gradient color for each area (lighter wash for fill under curves)
 const Map<FocusArea, Color> kAreaGradientEnd = {
-  FocusArea.energy: Color(0xFFFF9A9E),
-  FocusArea.focus: Color(0xFFA8EDEA),
-  FocusArea.emotions: Color(0xFFF3E5F5),
-  FocusArea.decisions: Color(0xFFFFF9C4),
-  FocusArea.social: Color(0xFFC8E6C9),
+  FocusArea.energy: Color(0xFFE8C4B8), // Light terracotta wash
+  FocusArea.focus: Color(0xFFBDE3F0), // Light blue wash
+  FocusArea.emotions: Color(0xFFF5D5E0), // Light pink wash
+  FocusArea.decisions: Color(0xFFCDE8CD), // Light green wash
+  FocusArea.social: Color(0xFFE8D5F0), // Light purple wash
 };
 
 /// Interactive wave chart widget with touch support and animation

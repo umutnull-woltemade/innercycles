@@ -5,15 +5,19 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
+import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/models/personality_archetype.dart' as archetype;
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/services/first_taste_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
+import '../../../data/services/review_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_text.dart';
@@ -616,6 +620,11 @@ class _DreamInterpretationScreenState
         .whenData(
           (s) => s.trackToolOutput('dreamInterpretation', 'interpretation'),
         );
+
+    // Prompt for App Store review after dream interpretation
+    ref.read(reviewServiceProvider.future).then((reviewService) {
+      reviewService.checkAndPromptReview(ReviewTrigger.dreamInterpretation);
+    }).catchError((_) {});
 
     _scrollToBottom();
   }
@@ -1728,6 +1737,7 @@ ${_getPersonalAdvice(sign)}''';
         children: [
           IconButton(
             onPressed: () => context.pop(),
+            tooltip: ref.read(languageProvider) == AppLanguage.en ? 'Back' : 'Geri',
             icon: Icon(
               Icons.chevron_left,
               color: isDark
@@ -1803,6 +1813,35 @@ ${_getPersonalAdvice(sign)}''';
               ],
             ),
           ),
+          // Share interpretation
+          if (_messages.any((m) => !m.isUser))
+            IconButton(
+              onPressed: () {
+                HapticService.buttonPress();
+                final isEn = ref.read(languageProvider) == AppLanguage.en;
+                final interpretations = _messages
+                    .where((m) => !m.isUser && m.text.isNotEmpty)
+                    .map((m) => m.text)
+                    .join('\n\n');
+                if (interpretations.isEmpty) return;
+                final snippet = interpretations.length > 300
+                    ? '${interpretations.substring(0, 300)}...'
+                    : interpretations;
+                final msg = isEn
+                    ? 'My dream reflection:\n\n$snippet\n\nExploring dreams with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles #DreamJournal'
+                    : 'Rüya yansımam:\n\n$snippet\n\nInnerCycles ile rüyaları keşfediyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
+                SharePlus.instance.share(ShareParams(text: msg));
+              },
+              icon: Icon(
+                Icons.share_rounded,
+                color: AppColors.starGold.withValues(alpha: 0.7),
+                size: 20,
+              ),
+              tooltip: L10nService.get(
+                'dreams.symbols_found',
+                ref.watch(languageProvider),
+              ),
+            ),
           // Quick symbols button
           IconButton(
             onPressed: () => _showDreamSymbolsSheet(context),
@@ -1820,6 +1859,7 @@ ${_getPersonalAdvice(sign)}''';
   Widget _buildChatArea(bool isDark) {
     return ListView.builder(
       controller: _scrollController,
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       physics: const BouncingScrollPhysics(
         parent: AlwaysScrollableScrollPhysics(),
       ),
@@ -2003,7 +2043,7 @@ ${_getPersonalAdvice(sign)}''';
                   ),
                   padding: const EdgeInsets.all(14),
                   glowColor: isUser
-                      ? AppColors.cosmicPurple.withValues(alpha: 0.2)
+                      ? AppColors.starGold.withValues(alpha: 0.2)
                       : AppColors.amethyst.withValues(alpha: 0.2),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -2076,6 +2116,36 @@ ${_getPersonalAdvice(sign)}''';
                                 fontStyle: FontStyle.normal,
                               ),
                       ),
+                      // Copy button for non-user messages
+                      if (!isUser && message.text.isNotEmpty) ...[
+                        const SizedBox(height: 8),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: GestureDetector(
+                            onTap: () {
+                              Clipboard.setData(ClipboardData(text: message.text));
+                              HapticService.buttonPress();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(isEn ? 'Copied' : 'Kopyalandı'),
+                                  duration: const Duration(seconds: 1),
+                                  backgroundColor: AppColors.success,
+                                ),
+                              );
+                            },
+                            child: Tooltip(
+                              message: isEn ? 'Copy' : 'Kopyala',
+                              child: Icon(
+                                Icons.content_copy_rounded,
+                                size: 14,
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ],
                   ),
                 ),
@@ -2374,7 +2444,7 @@ ${_getPersonalAdvice(sign)}''';
                               gradient: LinearGradient(
                                 colors: [
                                   AppColors.amethyst,
-                                  AppColors.cosmicPurple,
+                                  AppColors.starGold,
                                 ],
                               ),
                               shape: BoxShape.circle,

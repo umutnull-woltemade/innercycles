@@ -4,6 +4,7 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +15,7 @@ import '../../../core/theme/app_typography.dart';
 import '../../../data/content/life_event_presets.dart';
 import '../../../data/models/life_event.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../data/services/life_event_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/app_symbol.dart';
@@ -50,13 +52,35 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
         child: serviceAsync.when(
           loading: () => const CosmicLoadingIndicator(),
           error: (_, _) => Center(
-            child: Text(
-              isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
-              style: AppTypography.subtitle(
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  isEn ? 'Couldn\'t load your timeline' : 'Zaman çizelgen yüklenemedi',
+                  style: AppTypography.subtitle(
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton.icon(
+                  onPressed: () => ref.invalidate(lifeEventServiceProvider),
+                  icon: Icon(
+                    Icons.refresh_rounded,
+                    size: 16,
+                    color: AppColors.starGold,
+                  ),
+                  label: Text(
+                    isEn ? 'Retry' : 'Tekrar Dene',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           data: (service) =>
@@ -96,52 +120,62 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
     }
     final sortedKeys = grouped.keys.toList()..sort((a, b) => b.compareTo(a));
 
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      slivers: [
-        GlassSliverAppBar(
-          title: isEn ? 'Life Timeline' : 'Yaşam Zaman Çizelgesi',
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.all(16),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate([
-              // Filter chips
-              _buildFilterChips(isDark, isEn),
-              const SizedBox(height: 16),
-
-              if (events.isEmpty)
-                _buildEmptyState(isDark, isEn)
-              else ...[
-                for (int i = 0; i < sortedKeys.length; i++) ...[
-                  _buildMonthHeader(
-                    sortedKeys[i],
-                    grouped[sortedKeys[i]]!.length,
-                    isDark,
-                    isEn,
-                  ),
-                  const SizedBox(height: 8),
-                  ...grouped[sortedKeys[i]]!.map(
-                    (event) => _buildEventCard(context, event, isDark, isEn),
-                  ),
-                  const SizedBox(height: 16),
-                ],
-              ],
-
-              // Premium gate message
-              if (!isPremium && service.eventCount > events.length)
-                _buildPremiumGate(context, isDark, isEn),
-
-              ContentDisclaimer(
-                language: isEn ? AppLanguage.en : AppLanguage.tr,
-              ),
-              const SizedBox(height: 80),
-            ]),
+    return CupertinoScrollbar(
+      child: RefreshIndicator(
+        color: AppColors.starGold,
+        onRefresh: () async {
+          ref.invalidate(lifeEventServiceProvider);
+          await Future.delayed(const Duration(milliseconds: 300));
+        },
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
           ),
+          slivers: [
+            GlassSliverAppBar(
+              title: isEn ? 'Life Timeline' : 'Yaşam Zaman Çizelgesi',
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.all(16),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
+                  // Filter chips
+                  _buildFilterChips(isDark, isEn),
+                  const SizedBox(height: 16),
+
+                  if (events.isEmpty)
+                    _buildEmptyState(isDark, isEn)
+                  else ...[
+                    for (int i = 0; i < sortedKeys.length; i++) ...[
+                      _buildMonthHeader(
+                        sortedKeys[i],
+                        grouped[sortedKeys[i]]!.length,
+                        isDark,
+                        isEn,
+                      ),
+                      const SizedBox(height: 8),
+                      ...grouped[sortedKeys[i]]!.map(
+                        (event) =>
+                            _buildEventCard(context, event, isDark, isEn),
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                  ],
+
+                  // Premium gate message
+                  if (!isPremium && service.eventCount > events.length)
+                    _buildPremiumGate(context, isDark, isEn),
+
+                  ContentDisclaimer(
+                    language: isEn ? AppLanguage.en : AppLanguage.tr,
+                  ),
+                  const SizedBox(height: 80),
+                ]),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
@@ -266,56 +300,55 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
-      child: GestureDetector(
-        onTap: () =>
-            context.push(Routes.lifeEventDetail.replaceFirst(':id', event.id)),
-        child: PremiumCard(
-          style: PremiumCardStyle.subtle,
-          borderRadius: 14,
-          padding: const EdgeInsets.all(14),
-          child: Row(
-            children: [
-              // Emoji + accent line
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  color: accentColor.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(12),
+      child: Semantics(
+        button: true,
+        label: '${event.title}, $formatted',
+        child: GestureDetector(
+          onTap: () {
+            HapticService.selectionTap();
+            context.push(
+              Routes.lifeEventDetail.replaceFirst(':id', event.id),
+            );
+          },
+          child: PremiumCard(
+            style: PremiumCardStyle.subtle,
+            borderRadius: 14,
+            padding: const EdgeInsets.all(14),
+            child: Row(
+              children: [
+                // Emoji + accent line
+                Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: accentColor.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Center(
+                    child: AppSymbol(emoji, size: AppSymbolSize.sm),
+                  ),
                 ),
-                child: Center(child: AppSymbol(emoji, size: AppSymbolSize.sm)),
-              ),
-              const SizedBox(width: 12),
-              // Title + date + emotions
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      event.title,
-                      style: AppTypography.displayFont.copyWith(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
-                    ),
-                    const SizedBox(height: 3),
-                    Row(
-                      children: [
-                        Text(
-                          formatted,
-                          style: AppTypography.elegantAccent(
-                            fontSize: 11,
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
+                const SizedBox(width: 12),
+                // Title + date + emotions
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        event.title,
+                        style: AppTypography.displayFont.copyWith(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
                         ),
-                        if (event.emotionTags.isNotEmpty) ...[
+                      ),
+                      const SizedBox(height: 3),
+                      Row(
+                        children: [
                           Text(
-                            '  \u{2022}  ',
+                            formatted,
                             style: AppTypography.elegantAccent(
                               fontSize: 11,
                               color: isDark
@@ -323,55 +356,71 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                                   : AppColors.lightTextMuted,
                             ),
                           ),
-                          Flexible(
-                            child: Text(
-                              event.emotionTags.take(2).join(', '),
-                              overflow: TextOverflow.ellipsis,
+                          if (event.emotionTags.isNotEmpty) ...[
+                            Text(
+                              '  \u{2022}  ',
                               style: AppTypography.elegantAccent(
                                 fontSize: 11,
-                                color: accentColor.withValues(alpha: 0.8),
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
                               ),
                             ),
-                          ),
+                            Flexible(
+                              child: Text(
+                                event.emotionTags.take(2).join(', '),
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTypography.elegantAccent(
+                                  fontSize: 11,
+                                  color: accentColor.withValues(alpha: 0.8),
+                                ),
+                              ),
+                            ),
+                          ],
                         ],
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              // Photo thumbnail
-              if (event.imagePath != null)
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.file(
-                    File(event.imagePath!),
-                    width: 40,
-                    height: 40,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, _, _) => const SizedBox.shrink(),
+                      ),
+                    ],
                   ),
                 ),
-              const SizedBox(width: 4),
-              Icon(
-                Icons.chevron_right_rounded,
-                size: 18,
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
-            ],
+                // Photo thumbnail
+                if (event.imagePath != null)
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.file(
+                      File(event.imagePath!),
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.cover,
+                      semanticLabel: isEn ? 'Event photo' : 'Olay fotoğrafı',
+                      errorBuilder: (_, _, _) => const SizedBox.shrink(),
+                    ),
+                  ),
+                const SizedBox(width: 4),
+                Icon(
+                  Icons.chevron_right_rounded,
+                  size: 18,
+                  color: isDark
+                      ? AppColors.textMuted
+                      : AppColors.lightTextMuted,
+                ),
+              ],
+            ),
           ),
-        ),
-      ).animate().fadeIn(duration: 200.ms, delay: 80.ms),
+        ).animate().fadeIn(duration: 200.ms, delay: 80.ms),
+      ),
     );
   }
 
   Widget _buildEmptyState(bool isDark, bool isEn) {
     return PremiumEmptyState(
       icon: Icons.auto_awesome_rounded,
-      title: isEn ? 'No life events yet' : 'Henüz yaşam olayı yok',
+      title: isEn ? 'Your timeline awaits its first chapter' : 'Zaman çizelgen ilk bölümünü bekliyor',
       description: isEn
           ? 'Start recording the moments that shape your story'
           : 'Hikayenizi şekillendiren anları kaydetmeye başlayın',
       gradientVariant: GradientTextVariant.gold,
+      ctaLabel: isEn ? 'Add Life Event' : 'Yaşam Olayı Ekle',
+      onCtaPressed: () => context.push(Routes.lifeEventNew),
     );
   }
 
@@ -425,38 +474,41 @@ class _AnimatedFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-          onTap: onPressed,
-          child: Container(
-            height: 56,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [AppColors.starGold, AppColors.celestialGold],
-              ),
-              borderRadius: BorderRadius.circular(28),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.starGold.withValues(alpha: 0.3),
-                  blurRadius: 16,
-                  offset: const Offset(0, 6),
+    return Tooltip(
+          message: isEn ? 'Add life event' : 'Yaşam olayı ekle',
+          child: GestureDetector(
+            onTap: onPressed,
+            child: Container(
+              height: 56,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [AppColors.starGold, AppColors.celestialGold],
                 ),
-              ],
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.add_rounded, size: 20, color: AppColors.deepSpace),
-                const SizedBox(width: 8),
-                Text(
-                  isEn ? 'New Event' : 'Yeni Olay',
-                  style: AppTypography.displayFont.copyWith(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.deepSpace,
+                borderRadius: BorderRadius.circular(28),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.starGold.withValues(alpha: 0.3),
+                    blurRadius: 16,
+                    offset: const Offset(0, 6),
                   ),
-                ),
-              ],
+                ],
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.add_rounded, size: 20, color: AppColors.deepSpace),
+                  const SizedBox(width: 8),
+                  Text(
+                    isEn ? 'New Event' : 'Yeni Olay',
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.deepSpace,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         )

@@ -208,7 +208,7 @@ class _EmotionalVocabularyScreenState
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: isEn ? 'Search emotions...' : 'Duygu ara...',
+          hintText: isEn ? 'Find a feeling...' : 'Bir duygu bul...',
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),

@@ -3,10 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
+import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../data/services/streak_service.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -162,6 +165,46 @@ class _StreakCardContent extends StatelessWidget {
               if (stats.currentStreak > 0) ...[
                 const SizedBox(height: 14),
                 _StreakChain(isDark: isDark, isEn: isEn),
+              ],
+
+              // Share streak button (show when streak >= 3)
+              if (stats.currentStreak >= 3) ...[
+                const SizedBox(height: 10),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Semantics(
+                    label: isEn ? 'Share your streak' : 'Serini paylaş',
+                    button: true,
+                    child: GestureDetector(
+                    onTap: () {
+                      HapticService.buttonPress();
+                      final msg = isEn
+                          ? '\u{1F525} ${stats.currentStreak}-day reflection streak on InnerCycles! Journaling daily is changing how I see my patterns.\n\n${AppConstants.appStoreUrl}\n#InnerCycles #Streak #Journaling'
+                          : '\u{1F525} InnerCycles\'da ${stats.currentStreak} günlük yansıma serisi! Her gün günlük tutmak örüntülerimi görme şeklimi değiştiriyor.\n\n${AppConstants.appStoreUrl}\n#InnerCycles';
+                      SharePlus.instance.share(ShareParams(text: msg));
+                    },
+                    behavior: HitTestBehavior.opaque,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.share_rounded,
+                          size: 14,
+                          color: AppColors.starGold.withValues(alpha: 0.7),
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          isEn ? 'Share streak' : 'Seriyi paylaş',
+                          style: AppTypography.elegantAccent(
+                            fontSize: 13,
+                            color: AppColors.starGold.withValues(alpha: 0.7),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ),
+                ),
               ],
 
               // Progress to next milestone
@@ -612,12 +655,42 @@ class StreakMilestoneCelebration {
                   ).animate().fadeIn(delay: 400.ms, duration: 400.ms),
                   const SizedBox(height: 28),
 
+                  // Share achievement
+                  GestureDetector(
+                    onTap: () {
+                      HapticService.buttonPress();
+                      final msg = isEn
+                          ? '\u{1F3C6} Just hit a $milestone-day reflection streak on InnerCycles! Self-discovery through daily journaling.\n\n${AppConstants.appStoreUrl}\n#InnerCycles #Milestone #Journaling'
+                          : '\u{1F3C6} InnerCycles\'da $milestone günlük yansıma serisi hedefe ulaştım! Günlük tutarak kendini keşfet.\n\n${AppConstants.appStoreUrl}\n#InnerCycles';
+                      SharePlus.instance.share(ShareParams(text: msg));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.share_rounded,
+                          size: 16,
+                          color: AppColors.starGold.withValues(alpha: 0.7),
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          isEn ? 'Share Achievement' : 'Başarını Paylaş',
+                          style: AppTypography.elegantAccent(
+                            fontSize: 15,
+                            color: AppColors.starGold.withValues(alpha: 0.7),
+                          ).copyWith(fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
+                  ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
+                  const SizedBox(height: 12),
+
                   // CTA
                   GradientButton.gold(
                     label: isEn ? 'Keep Going' : 'Devam Et',
                     onPressed: () => Navigator.pop(ctx),
                     expanded: true,
-                  ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
+                  ).animate().fadeIn(delay: 600.ms, duration: 400.ms),
                 ],
               ),
             ),

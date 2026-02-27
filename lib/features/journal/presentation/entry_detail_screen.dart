@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
@@ -14,6 +15,7 @@ import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
@@ -40,14 +42,37 @@ class EntryDetailScreen extends ConsumerWidget {
             error: (_, _) => Center(
               child: Padding(
                 padding: const EdgeInsets.all(32),
-                child: Text(
-                  CommonStrings.somethingWentWrong(language),
-                  textAlign: TextAlign.center,
-                  style: AppTypography.subtitle(
-                    color: isDark
-                        ? AppColors.textSecondary
-                        : AppColors.lightTextSecondary,
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      CommonStrings.somethingWentWrong(language),
+                      textAlign: TextAlign.center,
+                      style: AppTypography.subtitle(
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    TextButton.icon(
+                      onPressed: () =>
+                          ref.invalidate(journalServiceProvider),
+                      icon: Icon(
+                        Icons.refresh_rounded,
+                        size: 16,
+                        color: AppColors.starGold,
+                      ),
+                      label: Text(
+                        isEn ? 'Retry' : 'Tekrar Dene',
+                        style: AppTypography.elegantAccent(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.starGold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -97,6 +122,26 @@ class EntryDetailScreen extends ConsumerWidget {
           GlassSliverAppBar(
             title: dateStr,
             actions: [
+              IconButton(
+                onPressed: () {
+                  HapticService.buttonPress();
+                  final stars = '★' * entry.overallRating +
+                      '☆' * (5 - entry.overallRating);
+                  final noteSnippet = entry.note != null && entry.note!.isNotEmpty
+                      ? '\n"${entry.note!.length > 100 ? '${entry.note!.substring(0, 100)}...' : entry.note!}"'
+                      : '';
+                  final msg = isEn
+                      ? '$areaLabel — $stars$noteSnippet\n\nReflecting with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles #Journaling'
+                      : '$areaLabel — $stars$noteSnippet\n\nInnerCycles ile yansıma yapıyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
+                  SharePlus.instance.share(ShareParams(text: msg));
+                },
+                tooltip: isEn ? 'Share entry' : 'Kaydı paylaş',
+                icon: Icon(
+                  Icons.share_rounded,
+                  color: AppColors.starGold,
+                  size: 20,
+                ),
+              ),
               IconButton(
                 onPressed: () => _confirmDelete(context, ref, entry.id, isEn),
                 tooltip: isEn ? 'Delete entry' : 'Kaydı sil',
@@ -151,6 +196,7 @@ class EntryDetailScreen extends ConsumerWidget {
               ]),
             ),
           ),
+          const SliverToBoxAdapter(child: SizedBox(height: 80)),
         ],
       ),
     ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.05, duration: 400.ms);
@@ -337,14 +383,27 @@ class EntryDetailScreen extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: AppConstants.spacingMd),
-          Text(
-            note,
-            style: AppTypography.decorativeScript(
-              fontSize: 17,
-              color: isDark
-                  ? AppColors.textPrimary
-                  : AppColors.lightTextPrimary,
-              fontStyle: FontStyle.normal,
+          GestureDetector(
+            onLongPress: () {
+              Clipboard.setData(ClipboardData(text: note));
+              HapticService.buttonPress();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(isEn ? 'Entry copied to clipboard' : 'Kayıt panoya kopyalandı'),
+                  duration: const Duration(seconds: 1),
+                  backgroundColor: AppColors.success,
+                ),
+              );
+            },
+            child: Text(
+              note,
+              style: AppTypography.decorativeScript(
+                fontSize: 17,
+                color: isDark
+                    ? AppColors.textPrimary
+                    : AppColors.lightTextPrimary,
+                fontStyle: FontStyle.normal,
+              ),
             ),
           ),
         ],
@@ -362,8 +421,8 @@ class EntryDetailScreen extends ConsumerWidget {
       context,
       title: isEn ? 'Delete Entry?' : 'Kaydı Sil?',
       message: isEn
-          ? 'This action cannot be undone.'
-          : 'Bu işlem geri alınamaz.',
+          ? 'This journal entry will be permanently deleted.'
+          : 'Bu günlük kaydı kalıcı olarak silinecek.',
       cancelLabel: isEn ? 'Cancel' : 'İptal',
       confirmLabel: isEn ? 'Delete' : 'Sil',
       isDestructive: true,

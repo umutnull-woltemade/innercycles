@@ -3,6 +3,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -111,58 +112,65 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
       },
       child: Scaffold(
         body: CosmicBackground(
-          child: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            slivers: [
-              GlassSliverAppBar(
-                title: _isEditing
-                    ? (isEn ? 'Edit Life Event' : 'Yaşam Olayını Düzenle')
-                    : (isEn ? 'New Life Event' : 'Yeni Yaşam Olayı'),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.all(16),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    // 1. Event Type Selector
-                    _buildTypeSelector(isDark, isEn),
-                    const SizedBox(height: 20),
-
-                    // 2. Preset Picker or Custom Title
-                    if (_selectedType != LifeEventType.custom)
-                      _buildPresetPicker(isDark, isEn)
-                    else
-                      _buildCustomTitle(isDark, isEn),
-                    const SizedBox(height: 20),
-
-                    // 3. Date Picker
-                    _buildDatePicker(context, isDark, isEn),
-                    const SizedBox(height: 20),
-
-                    // 4. Emotion Tags
-                    _buildEmotionTags(isDark, isEn),
-                    const SizedBox(height: 20),
-
-                    // 5. Intensity Slider
-                    _buildIntensitySlider(isDark, isEn),
-                    const SizedBox(height: 20),
-
-                    // 6. Reflection Note
-                    _buildReflectionNote(isDark, isEn),
-                    const SizedBox(height: 20),
-
-                    // 7. Photo Upload
-                    _buildPhotoSection(isDark, isEn),
-                    const SizedBox(height: 24),
-
-                    // 8. Save Button
-                    _buildSaveButton(isDark, isEn),
-                    const SizedBox(height: 40),
-                  ]),
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            child: CupertinoScrollbar(
+              child: CustomScrollView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
                 ),
+                slivers: [
+                  GlassSliverAppBar(
+                    title: _isEditing
+                        ? (isEn ? 'Edit Life Event' : 'Yaşam Olayını Düzenle')
+                        : (isEn ? 'New Life Event' : 'Yeni Yaşam Olayı'),
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.all(16),
+                    sliver: SliverList(
+                      delegate: SliverChildListDelegate([
+                        // 1. Event Type Selector
+                        _buildTypeSelector(isDark, isEn),
+                        const SizedBox(height: 20),
+
+                        // 2. Preset Picker or Custom Title
+                        if (_selectedType != LifeEventType.custom)
+                          _buildPresetPicker(isDark, isEn)
+                        else
+                          _buildCustomTitle(isDark, isEn),
+                        const SizedBox(height: 20),
+
+                        // 3. Date Picker
+                        _buildDatePicker(context, isDark, isEn),
+                        const SizedBox(height: 20),
+
+                        // 4. Emotion Tags
+                        _buildEmotionTags(isDark, isEn),
+                        const SizedBox(height: 20),
+
+                        // 5. Intensity Slider
+                        _buildIntensitySlider(isDark, isEn),
+                        const SizedBox(height: 20),
+
+                        // 6. Reflection Note
+                        _buildReflectionNote(isDark, isEn),
+                        const SizedBox(height: 20),
+
+                        // 7. Photo Upload
+                        _buildPhotoSection(isDark, isEn),
+                        const SizedBox(height: 24),
+
+                        // 8. Save Button
+                        _buildSaveButton(isDark, isEn),
+                        const SizedBox(height: 40),
+                      ]),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
@@ -382,6 +390,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
         TextField(
           controller: _titleController,
           maxLength: 100,
+          textCapitalization: TextCapitalization.words,
           style: AppTypography.subtitle(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontSize: 15,
@@ -429,7 +438,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
           firstDate: DateTime(2000),
           lastDate: DateTime.now(),
         );
-        if (picked != null) {
+        if (picked != null && mounted) {
           setState(() => _selectedDate = picked);
         }
       },
@@ -669,6 +678,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
           controller: _noteController,
           maxLines: 4,
           maxLength: 500,
+          textCapitalization: TextCapitalization.sentences,
           style: AppTypography.subtitle(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontSize: 14,
@@ -723,17 +733,22 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
               height: 160,
               width: double.infinity,
               fit: BoxFit.cover,
+              semanticLabel: isEn ? 'Event photo' : 'Olay fotoğrafı',
               errorBuilder: (_, _, _) => const SizedBox.shrink(),
             ),
           ),
           const SizedBox(height: 8),
           GestureDetector(
             onTap: () => setState(() => _imagePath = null),
-            child: Text(
-              isEn ? 'Remove photo' : 'Fotoğrafı kaldır',
-              style: AppTypography.modernAccent(
-                fontSize: 12,
-                color: AppColors.error,
+            behavior: HitTestBehavior.opaque,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: Text(
+                isEn ? 'Remove photo' : 'Fotoğrafı kaldır',
+                style: AppTypography.modernAccent(
+                  fontSize: 12,
+                  color: AppColors.error,
+                ),
               ),
             ),
           ),
@@ -796,6 +811,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
     final fileName =
         'life_event_${DateTime.now().millisecondsSinceEpoch}${p.extension(picked.path)}';
     final savedFile = await File(picked.path).copy('${appDir.path}/$fileName');
+    if (!mounted) return;
     setState(() {
       _imagePath = savedFile.path;
       _hasChanges = true;
@@ -825,14 +841,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
         ),
         child: Center(
           child: _isSaving
-              ? SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    color: AppColors.deepSpace,
-                  ),
-                )
+              ? const CupertinoActivityIndicator(radius: 10)
               : Text(
                   _isEditing
                       ? (isEn ? 'Update Event' : 'Olayı Güncelle')

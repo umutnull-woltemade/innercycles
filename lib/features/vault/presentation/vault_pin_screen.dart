@@ -91,6 +91,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
     final language = ref.read(languageProvider);
     final isEn = language == AppLanguage.en;
 
+    if (!mounted) return;
     switch (_currentMode) {
       case _PinMode.setup:
         _firstPin = _pin;
@@ -121,7 +122,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
             _pin = '';
             _firstPin = '';
             _currentMode = _PinMode.setup;
-            _error = isEn ? 'PINs don\'t match. Try again.' : 'PIN\'ler eşleşmedi. Tekrar dene.';
+            _error = isEn ? 'Those don\'t match — no worries, try again.' : 'Eşleşmedi — sorun değil, tekrar dene.';
           });
         }
         break;
@@ -140,7 +141,7 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
           HapticService.error();
           setState(() {
             _pin = '';
-            _error = isEn ? 'Wrong PIN' : 'Yanlış PIN';
+            _error = isEn ? 'That PIN didn\'t match. Try again.' : 'PIN eşleşmedi. Tekrar dene.';
           });
         }
         break;
@@ -220,8 +221,9 @@ class _VaultPinScreenState extends ConsumerState<VaultPinScreen> {
                   child: IconButton(
                     icon: Icon(
                       CupertinoIcons.chevron_back,
-                      color: isDark ? Colors.white70 : Colors.black54,
+                      color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                     ),
+                    tooltip: isEn ? 'Back' : 'Geri',
                     onPressed: () => context.pop(),
                   ),
                 ),

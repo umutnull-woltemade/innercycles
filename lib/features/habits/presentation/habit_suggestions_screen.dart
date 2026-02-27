@@ -5,6 +5,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
@@ -63,13 +64,34 @@ class _HabitSuggestionsScreenState
         child: serviceAsync.when(
           loading: () => const CosmicLoadingIndicator(),
           error: (_, _) => Center(
-            child: Text(
-              CommonStrings.somethingWentWrong(language),
-              style: AppTypography.subtitle(
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  CommonStrings.somethingWentWrong(language),
+                  textAlign: TextAlign.center,
+                  style: AppTypography.subtitle(
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton.icon(
+                  onPressed: () =>
+                      ref.invalidate(habitSuggestionServiceProvider),
+                  icon: Icon(Icons.refresh_rounded,
+                      size: 16, color: AppColors.starGold),
+                  label: Text(
+                    isEn ? 'Retry' : 'Tekrar Dene',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           data: (service) => _buildContent(context, service, isDark, isEn),
@@ -96,169 +118,185 @@ class _HabitSuggestionsScreenState
       habits = service.getAllHabits();
     }
 
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      slivers: [
-        // ═══ APP BAR ═══
-        GlassSliverAppBar(
-          title: isEn ? 'Micro-Habits' : 'Mikro Alışkanlıklar',
-          largeTitleMode: true,
-          actions: [
-            // Bookmark filter toggle
-            IconButton(
-              tooltip: _showBookmarksOnly
-                  ? (isEn ? 'Show all habits' : 'Tüm alışkanlıkları göster')
-                  : (isEn ? 'Show bookmarks' : 'Kaydedilenleri göster'),
-              icon: Icon(
-                _showBookmarksOnly
-                    ? Icons.bookmark_rounded
-                    : Icons.bookmark_border_rounded,
-                color: _showBookmarksOnly
-                    ? AppColors.starGold
-                    : (isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary),
+    return CupertinoScrollbar(
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
+        slivers: [
+          // ═══ APP BAR ═══
+          GlassSliverAppBar(
+            title: isEn ? 'Micro-Habits' : 'Mikro Alışkanlıklar',
+            largeTitleMode: true,
+            actions: [
+              // Bookmark filter toggle
+              IconButton(
+                tooltip: _showBookmarksOnly
+                    ? (isEn ? 'Show all habits' : 'Tüm alışkanlıkları göster')
+                    : (isEn ? 'Show bookmarks' : 'Kaydedilenleri göster'),
+                icon: Icon(
+                  _showBookmarksOnly
+                      ? Icons.bookmark_rounded
+                      : Icons.bookmark_border_rounded,
+                  color: _showBookmarksOnly
+                      ? AppColors.starGold
+                      : (isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary),
+                ),
+                onPressed: () {
+                  HapticFeedback.lightImpact();
+                  setState(() {
+                    _showBookmarksOnly = !_showBookmarksOnly;
+                    if (_showBookmarksOnly) _selectedCategory = null;
+                  });
+                },
               ),
-              onPressed: () {
-                HapticFeedback.lightImpact();
-                setState(() {
-                  _showBookmarksOnly = !_showBookmarksOnly;
-                  if (_showBookmarksOnly) _selectedCategory = null;
-                });
-              },
-            ),
-            const SizedBox(width: 8),
-          ],
-        ),
-
-        // ═══ DAILY SPOTLIGHT ═══
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
-            child: _DailySpotlightCard(
-              habit: dailyHabit,
-              service: service,
-              isDark: isDark,
-              isEn: isEn,
-              onTap: () =>
-                  _showHabitDetail(context, dailyHabit, service, isDark, isEn),
-              onRefresh: () => setState(() {}),
-            ),
+              const SizedBox(width: 8),
+            ],
           ),
-        ),
 
-        // ═══ PROGRESS BAR ═══
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: _ProgressBar(service: service, isDark: isDark, isEn: isEn),
-          ),
-        ),
-
-        // ═══ CATEGORY CHIPS ═══
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  _CategoryChip(
-                    label: isEn ? 'All' : 'Tümü',
-                    emoji: '✨',
-                    isSelected:
-                        _selectedCategory == null && !_showBookmarksOnly,
-                    isDark: isDark,
-                    onTap: () {
-                      HapticFeedback.lightImpact();
-                      setState(() {
-                        _selectedCategory = null;
-                        _showBookmarksOnly = false;
-                      });
-                    },
-                  ),
-                  ...HabitSuggestionService.categories.map((cat) {
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: _CategoryChip(
-                        label: isEn
-                            ? HabitSuggestionService.categoryDisplayNameEn(cat)
-                            : HabitSuggestionService.categoryDisplayNameTr(cat),
-                        emoji: HabitSuggestionService.categoryEmoji(cat),
-                        isSelected: _selectedCategory == cat,
-                        isDark: isDark,
-                        onTap: () {
-                          HapticFeedback.lightImpact();
-                          setState(() {
-                            _selectedCategory = cat;
-                            _showBookmarksOnly = false;
-                          });
-                        },
-                      ),
-                    );
-                  }),
-                ],
-              ),
-            ),
-          ),
-        ),
-
-        // ═══ HABIT CARDS ═══
-        if (habits.isEmpty)
+          // ═══ DAILY SPOTLIGHT ═══
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(40),
-              child: Center(
-                child: Text(
-                  isEn
-                      ? 'No bookmarked habits yet'
-                      : 'Henüz kayıtlı alışkanlık yok',
-                  style: AppTypography.subtitle(
-                    color: isDark
-                        ? AppColors.textMuted
-                        : AppColors.lightTextMuted,
-                  ),
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+              child: _DailySpotlightCard(
+                habit: dailyHabit,
+                service: service,
+                isDark: isDark,
+                isEn: isEn,
+                onTap: () => _showHabitDetail(
+                  context,
+                  dailyHabit,
+                  service,
+                  isDark,
+                  isEn,
+                ),
+                onRefresh: () => setState(() {}),
+              ),
+            ),
+          ),
+
+          // ═══ PROGRESS BAR ═══
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: _ProgressBar(service: service, isDark: isDark, isEn: isEn),
+            ),
+          ),
+
+          // ═══ CATEGORY CHIPS ═══
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    _CategoryChip(
+                      label: isEn ? 'All' : 'Tümü',
+                      emoji: '✨',
+                      isSelected:
+                          _selectedCategory == null && !_showBookmarksOnly,
+                      isDark: isDark,
+                      onTap: () {
+                        HapticFeedback.lightImpact();
+                        setState(() {
+                          _selectedCategory = null;
+                          _showBookmarksOnly = false;
+                        });
+                      },
+                    ),
+                    ...HabitSuggestionService.categories.map((cat) {
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: _CategoryChip(
+                          label: isEn
+                              ? HabitSuggestionService.categoryDisplayNameEn(
+                                  cat,
+                                )
+                              : HabitSuggestionService.categoryDisplayNameTr(
+                                  cat,
+                                ),
+                          emoji: HabitSuggestionService.categoryEmoji(cat),
+                          isSelected: _selectedCategory == cat,
+                          isDark: isDark,
+                          onTap: () {
+                            HapticFeedback.lightImpact();
+                            setState(() {
+                              _selectedCategory = cat;
+                              _showBookmarksOnly = false;
+                            });
+                          },
+                        ),
+                      );
+                    }),
+                  ],
                 ),
               ),
             ),
-          )
-        else
-          SliverPadding(
-            padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                final habit = habits[index];
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: _HabitCard(
-                    habit: habit,
-                    service: service,
-                    isDark: isDark,
-                    isEn: isEn,
-                    onTap: () =>
-                        _showHabitDetail(context, habit, service, isDark, isEn),
-                    onRefresh: () => setState(() {}),
+          ),
+
+          // ═══ HABIT CARDS ═══
+          if (habits.isEmpty)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(40),
+                child: Center(
+                  child: Text(
+                    isEn
+                        ? 'Your bookmark list is ready for habits'
+                        : 'Yer işareti listen alışkanlıkları bekliyor',
+                    style: AppTypography.subtitle(
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
                   ),
-                ).animate().fadeIn(
-                  duration: 300.ms,
-                  delay: Duration(milliseconds: (50 * index).clamp(0, 400)),
-                );
-              }, childCount: habits.length),
+                ),
+              ),
+            )
+          else
+            SliverPadding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  final habit = habits[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: _HabitCard(
+                      habit: habit,
+                      service: service,
+                      isDark: isDark,
+                      isEn: isEn,
+                      onTap: () => _showHabitDetail(
+                        context,
+                        habit,
+                        service,
+                        isDark,
+                        isEn,
+                      ),
+                      onRefresh: () => setState(() {}),
+                    ),
+                  ).animate().fadeIn(
+                    duration: 300.ms,
+                    delay: Duration(milliseconds: (50 * index).clamp(0, 400)),
+                  );
+                }, childCount: habits.length),
+              ),
+            ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
+              child: ToolEcosystemFooter(
+                currentToolId: 'habitSuggestions',
+                isEn: isEn,
+                isDark: isDark,
+              ),
             ),
           ),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
-            child: ToolEcosystemFooter(
-              currentToolId: 'habitSuggestions',
-              isEn: isEn,
-              isDark: isDark,
-            ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

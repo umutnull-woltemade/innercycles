@@ -4,6 +4,7 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -46,33 +47,35 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
 
     return Scaffold(
       body: CosmicBackground(
-        child: CustomScrollView(
-          physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
-          slivers: [
-            GlassSliverAppBar(
-              title: isEn
-                  ? 'Import Birthdays'
-                  : 'Do\u{011F}um G\u{00FC}nlerini Aktar',
+        child: CupertinoScrollbar(
+          child: CustomScrollView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
             ),
-            SliverPadding(
-              padding: const EdgeInsets.all(16),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate([
-                  switch (_step) {
-                    _ImportStep.instructions => _buildInstructions(
-                      isDark,
-                      isEn,
-                    ),
-                    _ImportStep.preview => _buildPreview(isDark, isEn),
-                    _ImportStep.success => _buildSuccess(isDark, isEn),
-                  },
-                  const SizedBox(height: 40),
-                ]),
+            slivers: [
+              GlassSliverAppBar(
+                title: isEn
+                    ? 'Import Birthdays'
+                    : 'Do\u{011F}um G\u{00FC}nlerini Aktar',
               ),
-            ),
-          ],
+              SliverPadding(
+                padding: const EdgeInsets.all(16),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate([
+                    switch (_step) {
+                      _ImportStep.instructions => _buildInstructions(
+                        isDark,
+                        isEn,
+                      ),
+                      _ImportStep.preview => _buildPreview(isDark, isEn),
+                      _ImportStep.success => _buildSuccess(isDark, isEn),
+                    },
+                    const SizedBox(height: 40),
+                  ]),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -186,14 +189,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
             ),
             child: Center(
               child: _isLoading
-                  ? const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: AppColors.deepSpace,
-                      ),
-                    )
+                  ? const CupertinoActivityIndicator(radius: 10)
                   : Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -229,12 +225,14 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
         type: FileType.custom,
         allowedExtensions: ['json'],
       );
-      if (result == null || result.files.single.path == null) {
-        setState(() => _isLoading = false);
+      if (result == null ||
+          result.files.isEmpty ||
+          result.files.first.path == null) {
+        if (mounted) setState(() => _isLoading = false);
         return;
       }
 
-      final file = File(result.files.single.path!);
+      final file = File(result.files.first.path!);
       final content = await file.readAsString();
       final contacts = FacebookBirthdayImportService.parseJsonExport(content);
 
@@ -245,8 +243,8 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
           SnackBar(
             content: Text(
               isEn
-                  ? 'No birthday data found in this file'
-                  : 'Bu dosyada do\u{011F}um g\u{00FC}n\u{00FC} verisi bulunamad\u{0131}',
+                  ? 'No birthdays found in this file. Try a different export or add manually.'
+                  : 'Bu dosyada do\u{011F}um g\u{00FC}n\u{00FC} bulunamad\u{0131}. Farkl\u{0131} bir dosya dene veya manuel ekle.',
             ),
           ),
         );
@@ -268,8 +266,8 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
           SnackBar(
             content: Text(
               isEn
-                  ? 'Could not read this file. Please check the format.'
-                  : 'Dosya okunamad\u{0131}. L\u{00FC}tfen format\u{0131} kontrol edin.',
+                  ? 'Couldn\'t read this file. Make sure it\'s a valid Facebook export (.json).'
+                  : 'Dosya okunamad\u{0131}. Ge\u{00E7}erli bir Facebook d\u{0131}\u{015F}a aktar\u{0131}m\u{0131} (.json) oldu\u{011F}undan emin ol.',
             ),
           ),
         );
@@ -289,16 +287,21 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            GradientText(
-              isEn
-                  ? '${_parsedContacts.length} Birthdays Found'
-                  : '${_parsedContacts.length} Do\u{011F}um G\u{00FC}n\u{00FC} Bulundu',
-              variant: GradientTextVariant.gold,
-              style: AppTypography.displayFont.copyWith(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+            Flexible(
+              child: GradientText(
+                isEn
+                    ? '${_parsedContacts.length} Birthdays Found'
+                    : '${_parsedContacts.length} Do\u{011F}um G\u{00FC}n\u{00FC} Bulundu',
+                variant: GradientTextVariant.gold,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: AppTypography.displayFont.copyWith(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
+            const SizedBox(width: 8),
             TextButton(
               onPressed: () {
                 setState(() {
@@ -435,14 +438,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
             ),
             child: Center(
               child: _isLoading
-                  ? const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: AppColors.deepSpace,
-                      ),
-                    )
+                  ? const CupertinoActivityIndicator(radius: 10)
                   : Text(
                       isEn
                           ? 'Import ${_selectedIndices.length} Contacts'
@@ -481,6 +477,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
 
       ref.invalidate(birthdayContactServiceProvider);
 
+      if (!mounted) return;
       setState(() {
         _importedCount = imported.length;
         _step = _ImportStep.success;
@@ -494,8 +491,8 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
           SnackBar(
             content: Text(
               isEn
-                  ? 'Import failed. Please try again.'
-                  : 'Aktarma ba\u{015F}ar\u{0131}s\u{0131}z. L\u{00FC}tfen tekrar deneyin.',
+                  ? 'Birthday import failed. Please check your file and try again.'
+                  : 'Do\u{011F}um g\u{00FC}n\u{00FC} aktarma ba\u{015F}ar\u{0131}s\u{0131}z. Dosyan\u{0131} kontrol edip tekrar dene.',
             ),
           ),
         );

@@ -28,6 +28,9 @@ class ShareCardRenderer extends StatelessWidget {
   final GlobalKey? repaintKey;
   final bool isDark;
 
+  /// Whether the user has premium (hides watermark badge)
+  final bool isPremium;
+
   /// Display size on screen (will be captured at 3x for 1080x1080)
   final double displaySize;
 
@@ -37,6 +40,7 @@ class ShareCardRenderer extends StatelessWidget {
     required this.data,
     this.repaintKey,
     this.isDark = true,
+    this.isPremium = false,
     this.displaySize = 360,
   });
 
@@ -157,7 +161,7 @@ class ShareCardRenderer extends StatelessWidget {
               bottom: 0,
               left: 0,
               right: 0,
-              child: _BottomWatermark(accent: accent),
+              child: _BottomWatermark(accent: accent, isPremium: isPremium),
             ),
           ],
         ),
@@ -228,7 +232,7 @@ class _GradientBackground extends StatelessWidget {
               ? colors
               : colors.isNotEmpty
               ? [colors.first, colors.first.withValues(alpha: 0.8)]
-              : [AppColors.cosmicPurple, AppColors.nebulaPurple],
+              : [AppColors.amethyst, AppColors.nebulaPurple],
         ),
       ),
     );
@@ -791,7 +795,8 @@ class _StatPill extends StatelessWidget {
 
 class _BottomWatermark extends StatelessWidget {
   final Color accent;
-  const _BottomWatermark({required this.accent});
+  final bool isPremium;
+  const _BottomWatermark({required this.accent, this.isPremium = false});
 
   @override
   Widget build(BuildContext context) {
@@ -812,20 +817,59 @@ class _BottomWatermark extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 14),
+        const SizedBox(height: 10),
         Padding(
-          padding: const EdgeInsets.only(bottom: 18, right: 20),
-          child: Align(
-            alignment: Alignment.bottomRight,
-            child: Text(
-              'InnerCycles',
-              style: AppTypography.elegantAccent(
-                fontSize: 11,
-                color: AppColors.textMuted,
-                letterSpacing: 1.2,
-              ),
-            ),
-          ),
+          padding: const EdgeInsets.only(bottom: 14, left: 20, right: 20),
+          child: isPremium
+              // Premium: clean minimal branding
+              ? Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    'InnerCycles',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 11,
+                      color: AppColors.textMuted,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                )
+              // Free: promotional watermark — every share = free ad
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Download CTA
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: accent.withValues(alpha: 0.12),
+                        border: Border.all(
+                          color: accent.withValues(alpha: 0.25),
+                        ),
+                      ),
+                      child: Text(
+                        'Try InnerCycles — Free',
+                        style: AppTypography.elegantAccent(
+                          fontSize: 9,
+                          color: accent,
+                          letterSpacing: 0.4,
+                        ),
+                      ),
+                    ),
+                    // Brand name
+                    Text(
+                      'Made with InnerCycles',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 10,
+                        color: AppColors.textMuted,
+                        letterSpacing: 0.8,
+                      ),
+                    ),
+                  ],
+                ),
         ),
       ],
     );

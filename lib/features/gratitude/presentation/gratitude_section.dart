@@ -197,6 +197,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                     child: TextField(
                       controller: _controllers[index],
                       maxLength: 150,
+                      textCapitalization: TextCapitalization.sentences,
                       style: AppTypography.subtitle(
                         fontSize: 14,
                         color: isDark
@@ -282,6 +283,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
         .toList();
     if (items.isNotEmpty) {
       await service.saveGratitude(date: widget.date, items: items);
+      if (!mounted) return;
       ref.invalidate(todayGratitudeProvider);
       ref.invalidate(gratitudeSummaryProvider);
     }

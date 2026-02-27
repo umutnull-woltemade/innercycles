@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/providers/app_providers.dart';
@@ -52,22 +54,46 @@ class WellnessDetailScreen extends ConsumerWidget {
                         error: (_, _) => Center(
                           child: Padding(
                             padding: const EdgeInsets.all(32),
-                            child: Text(
-                              isEn
-                                  ? 'Could not load. Your local data is unaffected.'
-                                  : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                              style: AppTypography.decorativeScript(
-                                fontSize: 14,
-                                color: isDark
-                                    ? AppColors.textMuted
-                                    : AppColors.lightTextMuted,
-                              ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  isEn
+                                      ? 'Could not load. Your local data is unaffected.'
+                                      : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                                  textAlign: TextAlign.center,
+                                  style: AppTypography.decorativeScript(
+                                    fontSize: 14,
+                                    color: isDark
+                                        ? AppColors.textMuted
+                                        : AppColors.lightTextMuted,
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                TextButton.icon(
+                                  onPressed: () =>
+                                      ref.invalidate(wellnessScoreProvider),
+                                  icon: Icon(
+                                    Icons.refresh_rounded,
+                                    size: 16,
+                                    color: AppColors.starGold,
+                                  ),
+                                  label: Text(
+                                    isEn ? 'Retry' : 'Tekrar Dene',
+                                    style: AppTypography.elegantAccent(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.starGold,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
                         data: (score) {
                           if (score == null) {
-                            return _buildEmptyState(isDark, isEn);
+                            return _buildEmptyState(context, isDark, isEn);
                           }
                           return _ScoreHero(
                             score: score,
@@ -136,14 +162,16 @@ class WellnessDetailScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildEmptyState(bool isDark, bool isEn) {
+  Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
     return PremiumEmptyState(
       icon: Icons.favorite_outline,
-      title: isEn ? 'No score yet' : 'Henüz skor yok',
+      title: isEn ? 'Your wellness score is building' : 'Sağlık skorun oluşuyor',
       description: isEn
           ? 'Log a cycle entry, gratitude, or sleep to see your cycle score'
           : 'Döngü skorunu görmek için döngü kaydı, şükran veya uyku kaydı oluştur',
       gradientVariant: GradientTextVariant.aurora,
+      ctaLabel: isEn ? 'Write Journal Entry' : 'Günlük Kaydı Yaz',
+      onCtaPressed: () => context.go(Routes.journal),
     );
   }
 

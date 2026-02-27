@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -204,17 +205,22 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ),
         ),
         const SizedBox(width: AppConstants.spacingMd),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GradientText(
-              profile.name ?? profile.displayEmoji,
-              variant: GradientTextVariant.gold,
-              style: AppTypography.displayFont.copyWith(
-                fontSize: 22,
-                fontWeight: FontWeight.w700,
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GradientText(
+                profile.name ?? profile.displayEmoji,
+                variant: GradientTextVariant.gold,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.sacramento(
+                  fontSize: 34,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 1.0,
+                  height: 1.1,
+                ),
               ),
-            ),
             if (profile.age > 0) ...[
               const SizedBox(height: 4),
               Container(
@@ -237,6 +243,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               ),
             ],
           ],
+          ),
         ),
       ],
     ).glassReveal(context: context);
@@ -345,6 +352,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         const SizedBox(height: 6),
         TextField(
           controller: controller,
+          keyboardType: TextInputType.name,
+          textCapitalization: TextCapitalization.words,
+          textInputAction: TextInputAction.done,
           style: AppTypography.subtitle(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
           ),

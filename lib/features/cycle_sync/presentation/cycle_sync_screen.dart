@@ -5,6 +5,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
@@ -43,87 +44,110 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
           child: cycleSyncAsync.when(
             loading: () => const Center(child: CosmicLoadingIndicator()),
             error: (_, _) => Center(
-              child: Text(
-                isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
-                style: AppTypography.subtitle(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    isEn ? 'Couldn\'t load your cycle data' : 'Döngü verilerin yüklenemedi',
+                    textAlign: TextAlign.center,
+                    style: AppTypography.subtitle(
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(cycleSyncServiceProvider),
+                    icon: Icon(Icons.refresh_rounded,
+                        size: 16, color: AppColors.starGold),
+                    label: Text(
+                      isEn ? 'Retry' : 'Tekrar Dene',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             data: (cycleService) {
-              return CustomScrollView(
-                physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics(),
-                ),
-                slivers: [
-                  GlassSliverAppBar(
-                    title: isEn ? 'Cycle Sync' : 'Döngü Senkronu',
+              return CupertinoScrollbar(
+                child: CustomScrollView(
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
                   ),
-                  SliverPadding(
-                    padding: const EdgeInsets.all(AppConstants.spacingLg),
-                    sliver: SliverList(
-                      delegate: SliverChildListDelegate([
-                        // Cycle Day Indicator
-                        _buildCycleDayCard(
-                          context,
-                          cycleService,
-                          isDark,
-                          isEn,
-                        ).glassReveal(context: context),
-                        const SizedBox(height: AppConstants.spacingLg),
+                  slivers: [
+                    GlassSliverAppBar(
+                      title: isEn ? 'Cycle Sync' : 'Döngü Senkronu',
+                    ),
+                    SliverPadding(
+                      padding: const EdgeInsets.all(AppConstants.spacingLg),
+                      sliver: SliverList(
+                        delegate: SliverChildListDelegate([
+                          // Cycle Day Indicator
+                          _buildCycleDayCard(
+                            context,
+                            cycleService,
+                            isDark,
+                            isEn,
+                          ).glassReveal(context: context),
+                          const SizedBox(height: AppConstants.spacingLg),
 
-                        // Phase Info Card
-                        _buildPhaseCard(
-                          context,
-                          cycleService,
-                          isDark,
-                          isEn,
-                        ).glassListItem(context: context, index: 1),
-                        const SizedBox(height: AppConstants.spacingLg),
+                          // Phase Info Card
+                          _buildPhaseCard(
+                            context,
+                            cycleService,
+                            isDark,
+                            isEn,
+                          ).glassListItem(context: context, index: 1),
+                          const SizedBox(height: AppConstants.spacingLg),
 
-                        // Phase-Aware Prompt (PREMIUM)
-                        if (cycleService.hasData)
+                          // Phase-Aware Prompt (PREMIUM)
+                          if (cycleService.hasData)
+                            _buildPremiumGate(
+                              context,
+                              isDark,
+                              isEn,
+                              isPremium,
+                              paywallContext: PaywallContext.cycleSync,
+                              child: _buildPhasePromptCard(
+                                context,
+                                cycleService,
+                                isDark,
+                                isEn,
+                              ),
+                            ).glassListItem(context: context, index: 2),
+                          if (cycleService.hasData)
+                            const SizedBox(height: AppConstants.spacingLg),
+
+                          // Correlation Insight (PREMIUM)
                           _buildPremiumGate(
                             context,
                             isDark,
                             isEn,
                             isPremium,
                             paywallContext: PaywallContext.cycleSync,
-                            child: _buildPhasePromptCard(
-                              context,
-                              cycleService,
-                              isDark,
-                              isEn,
-                            ),
-                          ).glassListItem(context: context, index: 2),
-                        if (cycleService.hasData)
+                            child: _buildCorrelationCard(context, isDark, isEn),
+                          ).glassListItem(context: context, index: 3),
                           const SizedBox(height: AppConstants.spacingLg),
 
-                        // Correlation Insight (PREMIUM)
-                        _buildPremiumGate(
-                          context,
-                          isDark,
-                          isEn,
-                          isPremium,
-                          paywallContext: PaywallContext.cycleSync,
-                          child: _buildCorrelationCard(context, isDark, isEn),
-                        ).glassListItem(context: context, index: 3),
-                        const SizedBox(height: AppConstants.spacingLg),
-
-                        // Phase Timeline
-                        _buildPhaseTimeline(
-                          context,
-                          cycleService,
-                          isDark,
-                          isEn,
-                        ).glassListItem(context: context, index: 4),
-                        const SizedBox(height: AppConstants.spacingXl),
-                      ]),
+                          // Phase Timeline
+                          _buildPhaseTimeline(
+                            context,
+                            cycleService,
+                            isDark,
+                            isEn,
+                          ).glassListItem(context: context, index: 4),
+                          const SizedBox(height: AppConstants.spacingXl),
+                        ]),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             },
           ),

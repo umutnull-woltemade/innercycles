@@ -104,7 +104,7 @@ class _WebPainter extends CustomPainter {
         AppColors.deepSpace,
         AppColors.cosmicPurple,
         AppColors.nebulaPurple,
-        Color(0xFF0F0F1A),
+        Color(0xFF1A1510),
       ],
       const [0.0, 0.3, 0.7, 1.0],
     );
@@ -137,7 +137,7 @@ class _AbstractDarkBackgroundState extends State<_AbstractDarkBackground>
     _Orb(
       center: Offset(0.22, 0.18),
       radius: 140,
-      color: Color(0xFFB695C0), // soft pastel lavender
+      color: Color(0xFFD4A07A), // warm caramel
       speed: 0.35,
       phase: 0,
       driftRadius: 35,
@@ -145,7 +145,7 @@ class _AbstractDarkBackgroundState extends State<_AbstractDarkBackground>
     _Orb(
       center: Offset(0.78, 0.32),
       radius: 120,
-      color: Color(0xFF7EA8BE), // pastel steel blue
+      color: Color(0xFFA08574), // warm taupe
       speed: 0.3,
       phase: 1.2,
       driftRadius: 30,
@@ -161,7 +161,7 @@ class _AbstractDarkBackgroundState extends State<_AbstractDarkBackground>
     _Orb(
       center: Offset(0.82, 0.78),
       radius: 110,
-      color: Color(0xFFC9B8D8), // pale amethyst
+      color: Color(0xFFE8D5C4), // peach mist
       speed: 0.3,
       phase: 3.8,
       driftRadius: 25,
@@ -326,9 +326,9 @@ class _AbstractPainter extends CustomPainter {
       [
         AppColors.deepSpace,
         AppColors.cosmicPurple,
-        const Color(0xFF141428),
+        const Color(0xFF241E19),
         AppColors.nebulaPurple,
-        const Color(0xFF0F0F1A),
+        const Color(0xFF1A1510),
       ],
       [0.0, 0.25, 0.5, 0.75, 1.0],
     );
@@ -336,20 +336,20 @@ class _AbstractPainter extends CustomPainter {
   }
 
   void _drawColorWashes(Canvas canvas, Size size) {
-    // Warm pastel lavender wash — top left
+    // Warm brown wash — top left
     _drawWash(
       canvas,
       Offset(size.width * 0.25, size.height * 0.12),
       size.width * 0.55,
-      const Color(0xFF8B6AAE), // soft lavender
+      const Color(0xFF8B6F5E), // warm brown
       0.10,
     );
-    // Warm rose gold wash — center right
+    // Warm muted wash — center right
     _drawWash(
       canvas,
       Offset(size.width * 0.78, size.height * 0.38),
       size.width * 0.45,
-      const Color(0xFF7B5C6B), // dusty rose
+      const Color(0xFF7A5F4E), // warm muted
       0.08,
     );
     // Warm amber wash — bottom
@@ -360,12 +360,12 @@ class _AbstractPainter extends CustomPainter {
       const Color(0xFF6B5B3E), // warm amber
       0.07,
     );
-    // Soft teal accent — bottom right
+    // Warm dark olive accent — bottom right
     _drawWash(
       canvas,
       Offset(size.width * 0.7, size.height * 0.85),
       size.width * 0.35,
-      const Color(0xFF3A6B6E), // sage teal
+      const Color(0xFF5A4A3E), // warm dark olive
       0.06,
     );
   }
@@ -497,11 +497,11 @@ class _FlowingPattern {
     final paint = Paint()..style = PaintingStyle.stroke;
 
     const tints = [
-      Color(0xFFB695C0), // pastel lavender
-      Color(0xFF7EA8BE), // pastel blue
+      Color(0xFFD4A07A), // warm caramel
+      Color(0xFFA08574), // warm taupe
       Color(0xFFD4A07A), // warm peach
       AppColors.starGold,
-      Color(0xFFE8B4B8), // rose gold
+      Color(0xFFE8D5C4), // peach mist
       Colors.white,
     ];
 
@@ -568,21 +568,21 @@ class _LightPatternPainter extends CustomPainter {
       canvas,
       Offset(size.width * 0.2, size.height * 0.12),
       size.width * 0.55,
-      const Color(0xFFE8D5F5),
+      const Color(0xFFE8D5C4), // peach mist
       0.07,
     );
     _drawSoftWash(
       canvas,
       Offset(size.width * 0.82, size.height * 0.45),
       size.width * 0.4,
-      const Color(0xFFF5E6D0),
+      const Color(0xFFF5E6D0), // warm peach (already warm)
       0.05,
     );
     _drawSoftWash(
       canvas,
       Offset(size.width * 0.35, size.height * 0.78),
       size.width * 0.45,
-      const Color(0xFFD5E5F5),
+      const Color(0xFFD5CCB8), // warm beige
       0.04,
     );
 

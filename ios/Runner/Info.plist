@@ -287,6 +287,33 @@
 	<string>InnerCycles uses your photo library to attach photos to journal entries.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>InnerCycles saves share cards to your photo library when you choose to save them.</string>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.venusone.innercycles.newentry</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>New Entry</string>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeCompose</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.venusone.innercycles.checkmood</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Check Mood</string>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeTime</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.venusone.innercycles.viewstreak</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>View Streak</string>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeFavorite</string>
+		</dict>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

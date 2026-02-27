@@ -19,7 +19,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-const OPENAI_API_KEY = Deno.env.get('OPENAI_API_KEY')!;
+const OPENAI_API_KEY = Deno.env.get('OPENAI_API_KEY');
 
 // Topics per language
 const TOPICS: Record<string, string[]> = {
@@ -38,6 +38,22 @@ const TOPICS: Record<string, string[]> = {
     'öz-şefkat',
     'farkındalık anları',
     'şükran pratiği',
+  ],
+  de: [
+    'Morgenintention setzen',
+    'emotionale Achtsamkeit',
+    'persönliches Wachstum',
+    'Selbstmitgefühl',
+    'Achtsamkeitsmomente',
+    'Dankbarkeitspraxis',
+  ],
+  fr: [
+    'intention du matin',
+    'conscience émotionnelle',
+    'croissance personnelle',
+    'auto-compassion',
+    'moments de pleine conscience',
+    'pratique de gratitude',
   ],
 };
 
@@ -60,6 +76,24 @@ KATI KURALLAR:
 3. ASLA fal dili kullanma
 4. Şimdiki an farkındalığına ve kişisel gelişime odaklan
 5. Önerileri 1-2 cümle ile sınırla`,
+
+  de: `Du bist ein achtsamer Generator für Reflexionsanregungen. Erstelle nachdenkliche, offene Anregungen zur Selbstreflexion.
+
+STRENGE REGELN:
+1. Erwähne NIEMALS Astrologie, Horoskope, Sternzeichen oder Geburtskarten
+2. Mache NIEMALS Vorhersagen über die Zukunft
+3. Verwende NIEMALS Wahrsage-Sprache
+4. Konzentriere dich auf Achtsamkeit und persönliches Wachstum
+5. Halte Anregungen auf 1-2 Sätze`,
+
+  fr: `Tu es un générateur de réflexions attentives. Génère des invitations ouvertes et réfléchies qui encouragent l'auto-réflexion.
+
+RÈGLES STRICTES:
+1. Ne mentionne JAMAIS l'astrologie, les horoscopes, le zodiaque ou les cartes natales
+2. Ne fais JAMAIS de prédictions sur l'avenir
+3. N'utilise JAMAIS un langage de divination
+4. Concentre-toi sur la pleine conscience et la croissance personnelle
+5. Limite les invitations à 1-2 phrases`,
 };
 
 // Forbidden patterns
@@ -73,6 +107,16 @@ const FORBIDDEN_PATTERNS: Record<string, RegExp[]> = {
     /\b(astroloji|burç|doğum haritası|yıldız haritası)\b/gi,
     /\b(kehanet|fal|kader|alın yazısı)\b/gi,
     /\b(geleceğiniz|olacak|yıldızlar söylüyor)\b/gi,
+  ],
+  de: [
+    /\b(Astrologie|Horoskop|Sternzeichen|Geburtskarte|Natalchart)\b/gi,
+    /\b(Vorhersage|Prophezeiung|Wahrsagen|Schicksal)\b/gi,
+    /\b(Ihre Zukunft|wird passieren|Sterne sagen)\b/gi,
+  ],
+  fr: [
+    /\b(astrologie|horoscope|zodiaque|carte natale)\b/gi,
+    /\b(prédiction|prophétie|divination|destin|fortune)\b/gi,
+    /\b(votre avenir|va se passer|les étoiles disent)\b/gi,
   ],
 };
 
@@ -102,7 +146,7 @@ async function generateWithOpenAI(
       Authorization: `Bearer ${OPENAI_API_KEY}`,
     },
     body: JSON.stringify({
-      model: 'gpt-4-turbo-preview',
+      model: 'gpt-4o-mini',
       messages: [
         { role: 'system', content: SYSTEM_PROMPTS[language] || SYSTEM_PROMPTS.en },
         {
@@ -110,7 +154,11 @@ async function generateWithOpenAI(
           content:
             language === 'en'
               ? `Generate a reflection prompt about: ${topic}`
-              : `Şu konu hakkında bir yansıma önerisi üret: ${topic}`,
+              : language === 'tr'
+              ? `Şu konu hakkında bir yansıma önerisi üret: ${topic}`
+              : language === 'de'
+              ? `Erstelle eine Reflexionsanregung zum Thema: ${topic}`
+              : `Génère une invitation à la réflexion sur : ${topic}`,
         },
       ],
       temperature: 0.8,
@@ -133,13 +181,21 @@ async function generateWithOpenAI(
 
 serve(async (req: Request) => {
   try {
+    // Check for API key
+    if (!OPENAI_API_KEY) {
+      return new Response(
+        JSON.stringify({ error: 'OPENAI_API_KEY not configured. Set it via: supabase secrets set OPENAI_API_KEY=sk-...' }),
+        { status: 503, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
     // Parse request
     const { language = 'en', count = 5, topic } = await req.json();
 
     // Validate
-    if (!['en', 'tr'].includes(language)) {
+    if (!['en', 'tr', 'de', 'fr'].includes(language)) {
       return new Response(
-        JSON.stringify({ error: 'Invalid language. Use "en" or "tr".' }),
+        JSON.stringify({ error: 'Invalid language. Use "en", "tr", "de", or "fr".' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }

@@ -47,20 +47,55 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
                   sliver: serviceAsync.when(
-                    loading: () => const SliverToBoxAdapter(
-                      child: Center(child: CosmicLoadingIndicator()),
+                    loading: () => SliverToBoxAdapter(
+                      child: Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const CosmicLoadingIndicator(),
+                            const SizedBox(height: 12),
+                            Text(
+                              isEn ? 'Loading reflections...' : 'Yansımalar yükleniyor...',
+                              style: AppTypography.subtitle(
+                                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                     error: (_, _) => SliverToBoxAdapter(
                       child: Center(
                         child: Padding(
                           padding: const EdgeInsets.all(32),
-                          child: Text(
-                            CommonStrings.somethingWentWrong(language),
-                            style: AppTypography.subtitle(
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
-                            ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                CommonStrings.somethingWentWrong(language),
+                                textAlign: TextAlign.center,
+                                style: AppTypography.subtitle(
+                                  color: isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              TextButton.icon(
+                                onPressed: () => ref.invalidate(
+                                    seasonalReflectionServiceProvider),
+                                icon: Icon(Icons.refresh_rounded,
+                                    size: 16, color: AppColors.starGold),
+                                label: Text(
+                                  isEn ? 'Retry' : 'Tekrar Dene',
+                                  style: AppTypography.elegantAccent(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.starGold,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

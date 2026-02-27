@@ -19,13 +19,18 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'dart:io';
 
+import 'package:go_router/go_router.dart';
+
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/common_strings.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/journal_entry.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/journal_service.dart';
+import 'package:flutter/cupertino.dart';
 import '../../../shared/widgets/cosmic_background.dart';
+import '../../../shared/widgets/cosmic_loading_indicator.dart';
 import '../../../shared/widgets/glass_sliver_app_bar.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/gradient_text.dart';
@@ -275,17 +280,38 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
     return Scaffold(
       body: CosmicBackground(
         child: journalAsync.when(
-          loading: () => const Center(
-            child: CircularProgressIndicator(color: AppColors.starGold),
-          ),
+          loading: () => const Center(child: CosmicLoadingIndicator()),
           error: (_, _) => Center(
-            child: Text(
-              isEn ? 'Something went wrong' : 'Bir hata oluştu',
-              style: AppTypography.subtitle(
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  isEn ? 'Couldn\'t load your annual report' : 'Yıllık raporun yüklenemedi',
+                  style: AppTypography.subtitle(
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton.icon(
+                  onPressed: () =>
+                      ref.invalidate(journalServiceProvider),
+                  icon: Icon(
+                    Icons.refresh_rounded,
+                    size: 16,
+                    color: AppColors.starGold,
+                  ),
+                  label: Text(
+                    isEn ? 'Retry' : 'Tekrar Dene',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           data: (service) {
@@ -325,12 +351,14 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               child: PremiumEmptyState(
                 icon: Icons.auto_stories_outlined,
                 title: isEn
-                    ? 'No entries for $year yet'
-                    : '$year için henüz kayıt yok',
+                    ? 'Start journaling to unlock your $year story'
+                    : '$year hikayeni açmak için yazmaya başla',
                 description: isEn
-                    ? 'Start journaling to see your year in review.'
-                    : 'Yıllık raporunu görmek için günlük yazmaya başla.',
+                    ? 'Your year-in-review will come alive with each entry you write.'
+                    : 'Yıllık raporun yazdığın her kayıtla hayat bulacak.',
                 gradientVariant: GradientTextVariant.gold,
+                ctaLabel: isEn ? 'Write First Entry' : 'İlk Kaydı Yaz',
+                onCtaPressed: () => context.go(Routes.journal),
               ),
             ),
           ),
@@ -361,14 +389,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               IconButton(
                 onPressed: _isSharing ? null : () => _shareReport(isEn),
                 icon: _isSharing
-                    ? const SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          color: AppColors.starGold,
-                        ),
-                      )
+                    ? const CupertinoActivityIndicator(radius: 10)
                     : const Icon(Icons.ios_share, color: AppColors.starGold),
                 tooltip: isEn ? 'Share' : 'Paylaş',
               ),

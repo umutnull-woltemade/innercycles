@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
@@ -46,180 +47,208 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
-          child: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            slivers: [
-              GlassSliverAppBar(
-                title: isEn ? 'Export Data' : 'Verileri Dışa Aktar',
+          child: CupertinoScrollbar(
+            child: CustomScrollView(
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
               ),
-              SliverPadding(
-                padding: const EdgeInsets.all(20),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    // Info card
-                    _InfoCard(isDark: isDark, isEn: isEn, isPremium: isPremium),
-                    const SizedBox(height: 24),
+              slivers: [
+                GlassSliverAppBar(
+                  title: isEn ? 'Export Data' : 'Verileri Dışa Aktar',
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.all(20),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate([
+                      // Info card
+                      _InfoCard(
+                        isDark: isDark,
+                        isEn: isEn,
+                        isPremium: isPremium,
+                      ),
+                      const SizedBox(height: 24),
 
-                    // Entry count
-                    exportAsync.when(
-                      data: (service) => Column(
-                        children: [
-                          _EntryCountCard(
-                            count: service.totalEntries,
-                            isDark: isDark,
-                            isEn: isEn,
-                            isPremium: isPremium,
-                          ),
-                          // Locked entries CTA for free users
-                          if (!isPremium && service.totalEntries > 7) ...[
-                            const SizedBox(height: 12),
-                            _LockedEntriesCta(
-                              totalEntries: service.totalEntries,
-                              lockedEntries: service.totalEntries - 7,
+                      // Entry count
+                      exportAsync.when(
+                        data: (service) => Column(
+                          children: [
+                            _EntryCountCard(
+                              count: service.totalEntries,
                               isDark: isDark,
                               isEn: isEn,
-                              onUnlock: () => showContextualPaywall(
-                                context,
-                                ref,
-                                paywallContext: PaywallContext.export,
-                                entryCount: service.totalEntries,
-                              ),
+                              isPremium: isPremium,
                             ),
+                            // Locked entries CTA for free users
+                            if (!isPremium && service.totalEntries > 7) ...[
+                              const SizedBox(height: 12),
+                              _LockedEntriesCta(
+                                totalEntries: service.totalEntries,
+                                lockedEntries: service.totalEntries - 7,
+                                isDark: isDark,
+                                isEn: isEn,
+                                onUnlock: () => showContextualPaywall(
+                                  context,
+                                  ref,
+                                  paywallContext: PaywallContext.export,
+                                  entryCount: service.totalEntries,
+                                ),
+                              ),
+                            ],
                           ],
-                        ],
-                      ),
-                      loading: () => const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                        child: Center(child: CosmicLoadingIndicator(size: 24)),
-                      ),
-                      error: (e, s) => Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: Center(
-                          child: Text(
-                            isEn
-                                ? 'Could not load. Your local data is unaffected.'
-                                : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                            style: AppTypography.subtitle(
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
+                        ),
+                        loading: () => const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          child: Center(
+                            child: CosmicLoadingIndicator(size: 24),
+                          ),
+                        ),
+                        error: (e, s) => Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  isEn
+                                      ? 'Could not load. Your local data is unaffected.'
+                                      : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                                  textAlign: TextAlign.center,
+                                  style: AppTypography.subtitle(
+                                    color: isDark
+                                        ? AppColors.textMuted
+                                        : AppColors.lightTextMuted,
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                TextButton.icon(
+                                  onPressed: () =>
+                                      ref.invalidate(exportServiceProvider),
+                                  icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
+                                  label: Text(
+                                    isEn ? 'Retry' : 'Tekrar Dene',
+                                    style: AppTypography.elegantAccent(
+                                      fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 24),
+                      const SizedBox(height: 24),
 
-                    // Format selector
-                    Text(
-                      isEn ? 'Export Format' : 'Dışa Aktarma Formatı',
-                      style: AppTypography.displayFont.copyWith(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
+                      // Format selector
+                      Text(
+                        isEn ? 'Export Format' : 'Dışa Aktarma Formatı',
+                        style: AppTypography.displayFont.copyWith(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 12),
+                      const SizedBox(height: 12),
 
-                    _FormatOption(
-                      format: ExportFormat.text,
-                      title: isEn ? 'Plain Text' : 'Düz Metin',
-                      subtitle: isEn
-                          ? 'Human-readable format'
-                          : 'Okunabilir format',
-                      icon: Icons.text_snippet_outlined,
-                      isSelected: _selectedFormat == ExportFormat.text,
-                      isLocked: false,
-                      isDark: isDark,
-                      onTap: () =>
-                          setState(() => _selectedFormat = ExportFormat.text),
-                    ),
-                    const SizedBox(height: 8),
-
-                    _FormatOption(
-                      format: ExportFormat.csv,
-                      title: 'CSV',
-                      subtitle: isEn
-                          ? 'Spreadsheet compatible'
-                          : 'Tablo uyumlu',
-                      icon: Icons.table_chart_outlined,
-                      isSelected: _selectedFormat == ExportFormat.csv,
-                      isLocked: !isPremium,
-                      isDark: isDark,
-                      onTap: isPremium
-                          ? () => setState(
-                              () => _selectedFormat = ExportFormat.csv,
-                            )
-                          : () => showContextualPaywall(
-                              context,
-                              ref,
-                              paywallContext: PaywallContext.export,
-                              entryCount: exportAsync.valueOrNull?.totalEntries,
-                            ),
-                    ),
-                    const SizedBox(height: 8),
-
-                    _FormatOption(
-                      format: ExportFormat.json,
-                      title: 'JSON',
-                      subtitle: isEn
-                          ? 'Developer-friendly format'
-                          : 'Geliştirici dostu format',
-                      icon: Icons.data_object_outlined,
-                      isSelected: _selectedFormat == ExportFormat.json,
-                      isLocked: !isPremium,
-                      isDark: isDark,
-                      onTap: isPremium
-                          ? () => setState(
-                              () => _selectedFormat = ExportFormat.json,
-                            )
-                          : () => showContextualPaywall(
-                              context,
-                              ref,
-                              paywallContext: PaywallContext.export,
-                              entryCount: exportAsync.valueOrNull?.totalEntries,
-                            ),
-                    ),
-
-                    const SizedBox(height: 32),
-
-                    // Export button
-                    GradientButton.gold(
-                      label: isEn ? 'Export & Share' : 'Dışa Aktar ve Paylaş',
-                      icon: Icons.file_download_outlined,
-                      onPressed: _isExporting
-                          ? null
-                          : () => _doExport(isPremium, isEn),
-                      isLoading: _isExporting,
-                      expanded: true,
-                    ),
-
-                    const SizedBox(height: 16),
-
-                    // Copy to clipboard button
-                    GradientOutlinedButton(
-                      label: isEn ? 'Copy to Clipboard' : 'Panoya Kopyala',
-                      icon: Icons.copy_outlined,
-                      variant: GradientTextVariant.aurora,
-                      expanded: true,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 14,
+                      _FormatOption(
+                        format: ExportFormat.text,
+                        title: isEn ? 'Plain Text' : 'Düz Metin',
+                        subtitle: isEn
+                            ? 'Human-readable format'
+                            : 'Okunabilir format',
+                        icon: Icons.text_snippet_outlined,
+                        isSelected: _selectedFormat == ExportFormat.text,
+                        isLocked: false,
+                        isDark: isDark,
+                        onTap: () =>
+                            setState(() => _selectedFormat = ExportFormat.text),
                       ),
-                      onPressed: _isExporting
-                          ? null
-                          : () => _copyToClipboard(isPremium, isEn),
-                    ),
+                      const SizedBox(height: 8),
 
-                    const SizedBox(height: 40),
-                  ]),
+                      _FormatOption(
+                        format: ExportFormat.csv,
+                        title: 'CSV',
+                        subtitle: isEn
+                            ? 'Spreadsheet compatible'
+                            : 'Tablo uyumlu',
+                        icon: Icons.table_chart_outlined,
+                        isSelected: _selectedFormat == ExportFormat.csv,
+                        isLocked: !isPremium,
+                        isDark: isDark,
+                        onTap: isPremium
+                            ? () => setState(
+                                () => _selectedFormat = ExportFormat.csv,
+                              )
+                            : () => showContextualPaywall(
+                                context,
+                                ref,
+                                paywallContext: PaywallContext.export,
+                                entryCount:
+                                    exportAsync.valueOrNull?.totalEntries,
+                              ),
+                      ),
+                      const SizedBox(height: 8),
+
+                      _FormatOption(
+                        format: ExportFormat.json,
+                        title: 'JSON',
+                        subtitle: isEn
+                            ? 'Developer-friendly format'
+                            : 'Geliştirici dostu format',
+                        icon: Icons.data_object_outlined,
+                        isSelected: _selectedFormat == ExportFormat.json,
+                        isLocked: !isPremium,
+                        isDark: isDark,
+                        onTap: isPremium
+                            ? () => setState(
+                                () => _selectedFormat = ExportFormat.json,
+                              )
+                            : () => showContextualPaywall(
+                                context,
+                                ref,
+                                paywallContext: PaywallContext.export,
+                                entryCount:
+                                    exportAsync.valueOrNull?.totalEntries,
+                              ),
+                      ),
+
+                      const SizedBox(height: 32),
+
+                      // Export button
+                      GradientButton.gold(
+                        label: isEn ? 'Export & Share' : 'Dışa Aktar ve Paylaş',
+                        icon: Icons.file_download_outlined,
+                        onPressed: _isExporting
+                            ? null
+                            : () => _doExport(isPremium, isEn),
+                        isLoading: _isExporting,
+                        expanded: true,
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      // Copy to clipboard button
+                      GradientOutlinedButton(
+                        label: isEn ? 'Copy to Clipboard' : 'Panoya Kopyala',
+                        icon: Icons.copy_outlined,
+                        variant: GradientTextVariant.aurora,
+                        expanded: true,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 14,
+                        ),
+                        onPressed: _isExporting
+                            ? null
+                            : () => _copyToClipboard(isPremium, isEn),
+                      ),
+
+                      const SizedBox(height: 40),
+                    ]),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -296,7 +325,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(isEn ? 'Copied to clipboard' : 'Panoya kopyalandı'),
+          content: Text(isEn ? 'Export data copied to clipboard' : 'Dışa aktarma verileri panoya kopyalandı'),
           backgroundColor: AppColors.success,
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(

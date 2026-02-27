@@ -61,12 +61,12 @@
     "text_copied": "Text copied! You can share on social media.",
     "open_instagram": "Open Instagram",
     "explore_more": "Explore More",
-    "something_went_wrong": "Etwas ist schiefgelaufen",
-    "error_loading": "Fehler beim Laden",
-    "no_entries_yet": "Noch keine Einträge",
+    "something_went_wrong": "Da ist etwas schiefgelaufen — bitte versuche es erneut",
+    "error_loading": "Inhalt konnte nicht geladen werden",
+    "no_entries_yet": "Noch nichts hier — bereit, wenn du es bist",
     "try_again": "Erneut versuchen",
-    "could_not_share_try_again": "Teilen fehlgeschlagen. Erneut versuchen.",
-    "error_loading_program": "Fehler beim Laden des Programms"
+    "could_not_share_try_again": "Konnte gerade nicht geteilt werden. Bitte erneut versuchen.",
+    "error_loading_program": "Programm konnte nicht geladen werden"
   },
   "greetings": {
     "night": "Noch wach? Gute Zeit zum Schreiben.",

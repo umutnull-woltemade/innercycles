@@ -11,8 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
@@ -111,15 +113,39 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                     error: (_, _) => Center(
                       child: Padding(
                         padding: const EdgeInsets.all(32),
-                        child: Text(
-                          isEn
-                              ? 'Could not load. Your local data is unaffected.'
-                              : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                          style: AppTypography.subtitle(
-                            color: isDark
-                                ? AppColors.textMuted
-                                : AppColors.lightTextMuted,
-                          ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              isEn
+                                  ? 'Could not load. Your local data is unaffected.'
+                                  : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                              textAlign: TextAlign.center,
+                              style: AppTypography.subtitle(
+                                color: isDark
+                                    ? AppColors.textMuted
+                                    : AppColors.lightTextMuted,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            TextButton.icon(
+                              onPressed: () =>
+                                  ref.invalidate(availableYearsProvider),
+                              icon: Icon(
+                                Icons.refresh_rounded,
+                                size: 16,
+                                color: AppColors.starGold,
+                              ),
+                              label: Text(
+                                isEn ? 'Retry' : 'Tekrar Dene',
+                                style: AppTypography.elegantAccent(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.starGold,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -156,15 +182,39 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 80),
                         child: Center(
-                          child: Text(
-                            isEn
-                                ? 'Could not load. Your local data is unaffected.'
-                                : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                            style: AppTypography.subtitle(
-                              color: isDark
-                                  ? AppColors.textMuted
-                                  : AppColors.lightTextMuted,
-                            ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                isEn
+                                    ? 'Could not load. Your local data is unaffected.'
+                                    : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                                textAlign: TextAlign.center,
+                                style: AppTypography.subtitle(
+                                  color: isDark
+                                      ? AppColors.textMuted
+                                      : AppColors.lightTextMuted,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              TextButton.icon(
+                                onPressed: () =>
+                                    ref.invalidate(yearReviewProvider),
+                                icon: Icon(
+                                  Icons.refresh_rounded,
+                                  size: 16,
+                                  color: AppColors.starGold,
+                                ),
+                                label: Text(
+                                  isEn ? 'Retry' : 'Tekrar Dene',
+                                  style: AppTypography.elegantAccent(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.starGold,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -366,6 +416,8 @@ class _NotEnoughData extends StatelessWidget {
           ? 'You need at least 7 journal entries to generate a review.'
           : 'Değerlendirme oluşturmak için en az 7 kayıt gerekli.',
       gradientVariant: GradientTextVariant.gold,
+      ctaLabel: isEn ? 'Start Journaling' : 'Günlük Yazmaya Başla',
+      onCtaPressed: () => context.go(Routes.journal),
     );
   }
 }
@@ -1156,7 +1208,7 @@ class _HighlightsCard extends StatelessWidget {
                 text: isEn
                     ? 'You logged an impressive ${parts[1]} entries'
                     : 'Etkileyici bir şekilde ${parts[1]} kayıt oluşturdunuz',
-                color: AppColors.cosmicPurple.withValues(alpha: 1.0),
+                color: AppColors.amethyst,
               ),
             );
           }

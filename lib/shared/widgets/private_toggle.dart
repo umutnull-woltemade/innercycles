@@ -44,7 +44,7 @@ class PrivateToggle extends ConsumerWidget {
             ),
             actions: [
               CupertinoDialogAction(
-                child: Text(isEn ? 'Cancel' : 'Vazgeç'),
+                child: Text(isEn ? 'Cancel' : 'İptal'),
                 onPressed: () => Navigator.pop(ctx, false),
               ),
               CupertinoDialogAction(

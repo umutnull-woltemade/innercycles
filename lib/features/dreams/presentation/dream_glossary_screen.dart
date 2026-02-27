@@ -380,6 +380,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
         child: TextField(
           controller: _searchController,
           focusNode: _searchFocusNode,
+          textInputAction: TextInputAction.search,
           style: AppTypography.subtitle(color: AppColors.textPrimary),
           onChanged: _onSearchChanged,
           decoration: InputDecoration(
@@ -464,9 +465,11 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
             const SizedBox(height: 16),
             Text(
               L10nService.get('screens.dream_glossary.no_results', language),
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(color: AppColors.textSecondary),
+              style: AppTypography.displayFont.copyWith(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: AppColors.textSecondary,
+              ),
             ),
             const SizedBox(height: 8),
             Text(
@@ -474,9 +477,10 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
                 'screens.dream_glossary.try_different_search',
                 language,
               ),
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
+              style: AppTypography.decorativeScript(
+                fontSize: 13,
+                color: AppColors.textMuted,
+              ),
             ),
           ],
         ),
@@ -485,6 +489,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
 
     return ListView.builder(
       controller: _scrollController,
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       physics: const BouncingScrollPhysics(
         parent: AlwaysScrollableScrollPhysics(),
       ),

@@ -227,7 +227,7 @@ class _QuizCard extends StatelessWidget {
                               ),
                             ),
                             child: Text(
-                              isEn ? 'Done' : 'Tamam',
+                              isEn ? 'Completed' : 'Tamamlandı',
                               style: AppTypography.elegantAccent(
                                 fontSize: 11,
                                 color: AppColors.auroraStart,

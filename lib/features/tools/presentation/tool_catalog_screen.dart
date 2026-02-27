@@ -134,6 +134,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
           behavior: HitTestBehavior.opaque,
           child: CupertinoScrollbar(
             child: CustomScrollView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics(),
               ),
@@ -205,12 +206,13 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
       ),
       child: TextField(
         controller: _searchController,
+        textInputAction: TextInputAction.search,
         onChanged: (v) => setState(() => _searchQuery = v.trim().toLowerCase()),
         style: AppTypography.subtitle(
           color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
         ),
         decoration: InputDecoration(
-          hintText: isEn ? 'Search tools...' : 'Ara\u00e7 ara...',
+          hintText: isEn ? 'Search by name or category...' : 'Ad veya kategoriye g\u00f6re ara...',
           hintStyle: AppTypography.subtitle(
             color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
           ),

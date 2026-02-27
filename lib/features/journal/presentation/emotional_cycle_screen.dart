@@ -102,14 +102,37 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
           child: cycleServiceAsync.when(
             loading: () => const CosmicLoadingIndicator(),
             error: (_, _) => Center(
-              child: Text(
-                isEn ? 'Unable to load data' : 'Veri yüklenemedi',
-                style: AppTypography.decorativeScript(
-                  fontSize: 15,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    isEn ? 'Unable to load data' : 'Veri yüklenemedi',
+                    style: AppTypography.decorativeScript(
+                      fontSize: 15,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(emotionalCycleServiceProvider),
+                    icon: Icon(
+                      Icons.refresh_rounded,
+                      size: 16,
+                      color: AppColors.starGold,
+                    ),
+                    label: Text(
+                      isEn ? 'Retry' : 'Tekrar Dene',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             data: (cycleService) {

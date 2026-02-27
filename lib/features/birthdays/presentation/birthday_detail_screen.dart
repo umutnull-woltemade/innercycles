@@ -6,13 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../data/models/birthday_contact.dart';
 import '../../../data/providers/app_providers.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../data/services/notification_service.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../shared/widgets/birthday_avatar.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/cosmic_loading_indicator.dart';
@@ -38,13 +43,38 @@ class BirthdayDetailScreen extends ConsumerWidget {
         child: serviceAsync.when(
           loading: () => const Center(child: CosmicLoadingIndicator()),
           error: (_, _) => Center(
-            child: Text(
-              isEn ? 'Something went wrong' : 'Bir \u{015F}eyler ters gitti',
-              style: AppTypography.subtitle(
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  isEn
+                      ? 'Couldn\'t load this contact'
+                      : 'Bu kişi yüklenemedi',
+                  style: AppTypography.subtitle(
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton.icon(
+                  onPressed: () =>
+                      ref.invalidate(birthdayContactServiceProvider),
+                  icon: Icon(
+                    Icons.refresh_rounded,
+                    size: 16,
+                    color: AppColors.starGold,
+                  ),
+                  label: Text(
+                    isEn ? 'Retry' : 'Tekrar Dene',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           data: (service) {
@@ -79,122 +109,195 @@ class BirthdayDetailScreen extends ConsumerWidget {
         ? CommonStrings.monthsFullEn
         : CommonStrings.monthsFullTr;
 
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      slivers: [
-        GlassSliverAppBar(
-          title: contact.name,
-          actions: [
-            IconButton(
-              icon: Icon(
-                Icons.edit_rounded,
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
-              onPressed: () => context.push(
-                Routes.birthdayEdit.replaceFirst(':id', contact.id),
-              ),
-            ),
-          ],
+    return CupertinoScrollbar(
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
         ),
-        SliverPadding(
-          padding: const EdgeInsets.all(16),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate([
-              // 1. Photo Hero
-              Center(
-                    child: BirthdayAvatar(
-                      photoPath: contact.photoPath,
-                      name: contact.name,
-                      size: 120,
-                      showBirthdayCake: contact.isBirthdayToday,
-                    ),
-                  )
-                  .animate()
-                  .fadeIn(duration: 300.ms)
-                  .scale(
-                    begin: const Offset(0.9, 0.9),
-                    end: const Offset(1, 1),
-                    duration: 300.ms,
-                  ),
-              const SizedBox(height: 16),
-
-              // 2. Name + Age
-              Center(
-                child: GradientText(
-                  contact.name,
-                  variant: GradientTextVariant.gold,
-                  style: AppTypography.displayFont.copyWith(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                  ),
+        slivers: [
+          GlassSliverAppBar(
+            title: contact.name,
+            actions: [
+              IconButton(
+                tooltip: isEn ? 'Share birthday' : 'Doğum gününü paylaş',
+                icon: Icon(
+                  Icons.share_rounded,
+                  color: AppColors.starGold,
+                  size: 20,
                 ),
+                onPressed: () {
+                  HapticService.buttonPress();
+                  final dateStr =
+                      '${monthNames[contact.birthdayMonth - 1]} ${contact.birthdayDay}';
+                  final msg = isEn
+                      ? '${contact.name}\'s birthday is on $dateStr! \u{1F382}\n\nNever miss a birthday with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles'
+                      : '${contact.name} doğum günü: $dateStr! \u{1F382}\n\nInnerCycles ile hiçbir doğum gününü kaçırma.\n${AppConstants.appStoreUrl}\n#InnerCycles';
+                  SharePlus.instance.share(ShareParams(text: msg));
+                },
               ),
-              if (contact.age != null)
+              IconButton(
+                tooltip: isEn ? 'Edit birthday' : 'Doğum gününü düzenle',
+                icon: Icon(
+                  Icons.edit_rounded,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
+                onPressed: () {
+                  HapticService.buttonPress();
+                  context.push(
+                    Routes.birthdayEdit.replaceFirst(':id', contact.id),
+                  );
+                },
+              ),
+            ],
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(16),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                // 1. Photo Hero
                 Center(
-                  child: Text(
-                    isEn
-                        ? '${contact.age} years old'
-                        : '${contact.age} ya\u{015F}\u{0131}nda',
-                    style: AppTypography.decorativeScript(
-                      fontSize: 14,
-                      color: isDark
-                          ? AppColors.textSecondary
-                          : AppColors.lightTextSecondary,
+                      child: BirthdayAvatar(
+                        photoPath: contact.photoPath,
+                        name: contact.name,
+                        size: 120,
+                        showBirthdayCake: contact.isBirthdayToday,
+                      ),
+                    )
+                    .animate()
+                    .fadeIn(duration: 300.ms)
+                    .scale(
+                      begin: const Offset(0.9, 0.9),
+                      end: const Offset(1, 1),
+                      duration: 300.ms,
+                    ),
+                const SizedBox(height: 16),
+
+                // 2. Name + Age
+                Center(
+                  child: GradientText(
+                    contact.name,
+                    variant: GradientTextVariant.gold,
+                    style: AppTypography.displayFont.copyWith(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),
-              const SizedBox(height: 8),
-              Center(
-                child: Text(
-                  '${monthNames[contact.birthdayMonth - 1]} ${contact.birthdayDay}'
-                  '${contact.birthYear != null ? ', ${contact.birthYear}' : ''}',
-                  style: AppTypography.elegantAccent(
-                    fontSize: 14,
-                    color: isDark
-                        ? AppColors.textMuted
-                        : AppColors.lightTextMuted,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              // 3. Countdown Card
-              _buildCountdownCard(contact, isDark, isEn),
-              const SizedBox(height: 16),
-
-              // 4. Relationship Badge
-              PremiumCard(
-                style: PremiumCardStyle.subtle,
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  children: [
-                    Text(
-                      contact.relationship.emoji,
-                      style: AppTypography.subtitle(fontSize: 24),
-                    ),
-                    const SizedBox(width: 12),
-                    Text(
+                if (contact.age != null)
+                  Center(
+                    child: Text(
                       isEn
-                          ? contact.relationship.displayNameEn
-                          : contact.relationship.displayNameTr,
-                      style: AppTypography.displayFont.copyWith(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
+                          ? '${contact.age} years old'
+                          : '${contact.age} ya\u{015F}\u{0131}nda',
+                      style: AppTypography.decorativeScript(
+                        fontSize: 14,
                         color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
                       ),
                     ),
-                  ],
+                  ),
+                const SizedBox(height: 8),
+                Center(
+                  child: Text(
+                    '${monthNames[contact.birthdayMonth - 1]} ${contact.birthdayDay}'
+                    '${contact.birthYear != null ? ', ${contact.birthYear}' : ''}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTypography.elegantAccent(
+                      fontSize: 14,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                  ),
                 ),
-              ).animate().fadeIn(duration: 300.ms, delay: 200.ms),
+                const SizedBox(height: 20),
 
-              // 5. Personal Note
-              if (contact.note != null && contact.note!.isNotEmpty) ...[
+                // 3. Countdown Card
+                _buildCountdownCard(contact, isDark, isEn),
+                const SizedBox(height: 16),
+
+                // 4. Relationship Badge
+                PremiumCard(
+                  style: PremiumCardStyle.subtle,
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      Text(
+                        contact.relationship.emoji,
+                        style: AppTypography.subtitle(fontSize: 24),
+                      ),
+                      const SizedBox(width: 12),
+                      Text(
+                        isEn
+                            ? contact.relationship.displayNameEn
+                            : contact.relationship.displayNameTr,
+                        style: AppTypography.displayFont.copyWith(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ).animate().fadeIn(duration: 300.ms, delay: 200.ms),
+
+                // 5. Personal Note
+                if (contact.note != null && contact.note!.isNotEmpty) ...[
+                  const SizedBox(height: 16),
+                  PremiumCard(
+                    style: PremiumCardStyle.subtle,
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GradientText(
+                          isEn ? 'Note' : 'Not',
+                          variant: GradientTextVariant.gold,
+                          style: AppTypography.displayFont.copyWith(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Semantics(
+                          label: isEn ? 'Long press to copy note' : 'Notu kopyalamak için basılı tut',
+                          child: GestureDetector(
+                          onLongPress: () {
+                            Clipboard.setData(
+                              ClipboardData(text: contact.note!),
+                            );
+                            HapticService.buttonPress();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(isEn ? 'Birthday note copied' : 'Doğum günü notu kopyalandı'),
+                                duration: const Duration(seconds: 1),
+                                backgroundColor: AppColors.success,
+                              ),
+                            );
+                          },
+                          child: Text(
+                            contact.note!,
+                            style: AppTypography.decorativeScript(
+                              fontSize: 14,
+                              color: isDark
+                                  ? AppColors.textSecondary
+                                  : AppColors.lightTextSecondary,
+                            ),
+                          ),
+                        ),
+                        ),
+                      ],
+                    ),
+                  ).animate().fadeIn(duration: 300.ms, delay: 250.ms),
+                ],
+
+                // 6. Notification info
                 const SizedBox(height: 16),
                 PremiumCard(
                   style: PremiumCardStyle.subtle,
@@ -203,7 +306,9 @@ class BirthdayDetailScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GradientText(
-                        isEn ? 'Note' : 'Not',
+                        isEn
+                            ? 'Reminders'
+                            : 'Hat\u{0131}rlat\u{0131}c\u{0131}lar',
                         variant: GradientTextVariant.gold,
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 14,
@@ -211,92 +316,65 @@ class BirthdayDetailScreen extends ConsumerWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Text(
-                        contact.note!,
-                        style: AppTypography.decorativeScript(
-                          fontSize: 14,
-                          color: isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary,
+                      _toggleRow(
+                        isDark,
+                        icon: Icons.cake_rounded,
+                        label: isEn
+                            ? 'Birthday notification'
+                            : 'Do\u{011F}um g\u{00FC}n\u{00FC} bildirimi',
+                        value: contact.notificationsEnabled,
+                        onChanged: (v) => _updateNotificationSetting(
+                          ref,
+                          contact,
+                          notificationsEnabled: v,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      _toggleRow(
+                        isDark,
+                        icon: Icons.notifications_active_rounded,
+                        label: isEn
+                            ? 'Day before'
+                            : 'Bir g\u{00FC}n \u{00F6}nce',
+                        value: contact.dayBeforeReminder,
+                        onChanged: (v) => _updateNotificationSetting(
+                          ref,
+                          contact,
+                          dayBeforeReminder: v,
                         ),
                       ),
                     ],
                   ),
-                ).animate().fadeIn(duration: 300.ms, delay: 250.ms),
-              ],
+                ).animate().fadeIn(duration: 300.ms, delay: 300.ms),
 
-              // 6. Notification info
-              const SizedBox(height: 16),
-              PremiumCard(
-                style: PremiumCardStyle.subtle,
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GradientText(
-                      isEn
-                          ? 'Reminders'
-                          : 'Hat\u{0131}rlat\u{0131}c\u{0131}lar',
-                      variant: GradientTextVariant.gold,
-                      style: AppTypography.displayFont.copyWith(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    _toggleRow(
-                      isDark,
-                      icon: Icons.cake_rounded,
-                      label: isEn
-                          ? 'Birthday notification'
-                          : 'Do\u{011F}um g\u{00FC}n\u{00FC} bildirimi',
-                      value: contact.notificationsEnabled,
-                      onChanged: (v) => _updateNotificationSetting(
-                        ref,
-                        contact,
-                        notificationsEnabled: v,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    _toggleRow(
-                      isDark,
-                      icon: Icons.notifications_active_rounded,
-                      label: isEn ? 'Day before' : 'Bir g\u{00FC}n \u{00F6}nce',
-                      value: contact.dayBeforeReminder,
-                      onChanged: (v) => _updateNotificationSetting(
-                        ref,
-                        contact,
-                        dayBeforeReminder: v,
-                      ),
-                    ),
-                  ],
-                ),
-              ).animate().fadeIn(duration: 300.ms, delay: 300.ms),
-
-              // 7. Delete button
-              const SizedBox(height: 24),
-              Center(
-                child: TextButton.icon(
-                  onPressed: () => _confirmDelete(context, ref, contact, isEn),
-                  icon: Icon(
-                    Icons.delete_outline_rounded,
-                    color: AppColors.error,
-                    size: 18,
-                  ),
-                  label: Text(
-                    isEn ? 'Delete Contact' : 'Ki\u{015F}iyi Sil',
-                    style: AppTypography.modernAccent(
+                // 7. Delete button
+                const SizedBox(height: 24),
+                Center(
+                  child: TextButton.icon(
+                    onPressed: () {
+                      HapticService.buttonPress();
+                      _confirmDelete(context, ref, contact, isEn);
+                    },
+                    icon: Icon(
+                      Icons.delete_outline_rounded,
                       color: AppColors.error,
-                      fontWeight: FontWeight.w500,
+                      size: 18,
+                    ),
+                    label: Text(
+                      isEn ? 'Delete Contact' : 'Ki\u{015F}iyi Sil',
+                      style: AppTypography.modernAccent(
+                        color: AppColors.error,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 40),
-            ]),
+                const SizedBox(height: 40),
+              ]),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -422,7 +500,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
   ) {
     GlassDialog.confirm(
       context,
-      title: isEn ? 'Delete Contact' : 'Ki\u{015F}iyi Sil',
+      title: isEn ? 'Delete Contact?' : 'Ki\u{015F}iyi Sil?',
       message: isEn
           ? 'Are you sure you want to delete ${contact.name}?'
           : '${contact.name} ki\u{015F}isini silmek istedi\u{011F}inizden emin misiniz?',
@@ -442,8 +520,8 @@ class BirthdayDetailScreen extends ConsumerWidget {
               SnackBar(
                 content: Text(
                   isEn
-                      ? 'Could not delete. Please try again.'
-                      : 'Silinemedi. L\u{00FC}tfen tekrar deneyin.',
+                      ? 'Couldn\'t delete this contact. Please try again.'
+                      : 'Ki\u{015F}i silinemedi. L\u{00FC}tfen tekrar deneyin.',
                 ),
               ),
             );

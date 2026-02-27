@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -10,6 +11,7 @@ import '../../../core/theme/app_typography.dart';
 import '../../../core/theme/liquid_glass/glass_panel.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../data/services/streak_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -36,15 +38,38 @@ class StreakStatsScreen extends ConsumerWidget {
           error: (_, _) => Center(
             child: Padding(
               padding: const EdgeInsets.all(32),
-              child: Text(
-                CommonStrings.somethingWentWrong(language),
-                textAlign: TextAlign.center,
-                style: AppTypography.decorativeScript(
-                  fontSize: 14,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    CommonStrings.somethingWentWrong(language),
+                    textAlign: TextAlign.center,
+                    style: AppTypography.decorativeScript(
+                      fontSize: 14,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(streakServiceProvider),
+                    icon: Icon(
+                      Icons.refresh_rounded,
+                      size: 16,
+                      color: AppColors.starGold,
+                    ),
+                    label: Text(
+                      isEn ? 'Retry' : 'Tekrar Dene',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -190,6 +215,37 @@ class StreakStatsScreen extends ConsumerWidget {
                 fontSize: 12,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                 letterSpacing: 0.5,
+              ),
+            ),
+          ],
+          if (stats.currentStreak >= 3) ...[
+            const SizedBox(height: 16),
+            GestureDetector(
+              onTap: () {
+                HapticService.buttonPress();
+                final msg = isEn
+                    ? '\u{1F525} I\'m on a ${stats.currentStreak}-day reflection streak on InnerCycles! Journaling daily is changing how I understand myself.\n\n${AppConstants.appStoreUrl}\n#InnerCycles #Streak #Journaling'
+                    : '\u{1F525} InnerCycles\'da ${stats.currentStreak} günlük yansıma serisindeyim! Günlük yazmak kendimi anlama şeklimi değiştiriyor.\n\n${AppConstants.appStoreUrl}\n#InnerCycles';
+                SharePlus.instance.share(ShareParams(text: msg));
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.share_rounded,
+                    size: 16,
+                    color: AppColors.starGold.withValues(alpha: 0.7),
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    isEn ? 'Share your streak' : 'Serini paylaş',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      color: AppColors.starGold.withValues(alpha: 0.8),
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

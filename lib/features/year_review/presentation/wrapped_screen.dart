@@ -12,8 +12,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../core/constants/common_strings.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_typography.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -83,18 +85,47 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
         child: wrappedAsync.when(
           loading: () => const Center(child: CosmicLoadingIndicator()),
           error: (e, _) => Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.error_outline, color: AppColors.textMuted, size: 48),
-                const SizedBox(height: 16),
-                Text(
-                  isEn
-                      ? 'Not enough entries for your Wrapped yet'
-                      : 'Wrapped için henüz yeterli kayıt yok',
-                  style: AppTypography.subtitle(color: AppColors.textSecondary),
-                ),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.auto_awesome, color: AppColors.starGold, size: 48),
+                  const SizedBox(height: 16),
+                  Text(
+                    isEn
+                        ? 'Not enough entries for your Wrapped yet'
+                        : 'Wrapped için henüz yeterli kayıt yok',
+                    style: AppTypography.subtitle(
+                      color: AppColors.textSecondary,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    isEn
+                        ? 'Keep journaling — your story is building'
+                        : 'Yazmaya devam et — hikayen şekilleniyor',
+                    style: AppTypography.subtitle(
+                      fontSize: 13,
+                      color: AppColors.textMuted,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () => context.go(Routes.journal),
+                    child: Text(
+                      isEn ? 'Write an entry →' : 'Kayıt yaz →',
+                      style: AppTypography.modernAccent(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           data: (data) {
@@ -178,6 +209,7 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                         color: AppColors.textSecondary,
                         size: 24,
                       ),
+                      tooltip: isEn ? 'Close' : 'Kapat',
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                   ),

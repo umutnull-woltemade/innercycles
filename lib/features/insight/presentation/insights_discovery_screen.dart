@@ -9,6 +9,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -68,16 +69,37 @@ class _InsightsDiscoveryScreenState
           child: serviceAsync.when(
             loading: () => const CosmicLoadingIndicator(),
             error: (_, _) => Center(
-              child: Text(
-                isEn
-                    ? 'Could not load. Your local data is unaffected.'
-                    : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
-                style: AppTypography.decorativeScript(
-                  fontSize: 14,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    isEn
+                        ? 'Could not load. Your local data is unaffected.'
+                        : 'Yüklenemedi. Yerel verileriniz etkilenmedi.',
+                    textAlign: TextAlign.center,
+                    style: AppTypography.decorativeScript(
+                      fontSize: 14,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(contextModuleServiceProvider),
+                    icon: Icon(Icons.refresh_rounded,
+                        size: 16, color: AppColors.starGold),
+                    label: Text(
+                      isEn ? 'Retry' : 'Tekrar Dene',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             data: (service) => _buildContent(context, service, isDark, isEn),
@@ -96,109 +118,113 @@ class _InsightsDiscoveryScreenState
     final daily = service.getDailyModule();
     final modules = _getFilteredModules(service);
 
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      slivers: [
-        // App Bar
-        GlassSliverAppBar(
-          title: isEn ? 'Discover Insights' : 'İçgörüleri Keşfet',
-          actions: [
-            // Bookmark filter toggle
-            IconButton(
-              tooltip: _showBookmarksOnly
-                  ? (isEn ? 'Show all insights' : 'Tüm içgörüleri göster')
-                  : (isEn ? 'Show bookmarks' : 'Kaydedilenleri göster'),
-              icon: Icon(
-                _showBookmarksOnly
-                    ? Icons.bookmark_rounded
-                    : Icons.bookmark_border_rounded,
-                color: _showBookmarksOnly
-                    ? AppColors.starGold
-                    : (isDark ? AppColors.textMuted : AppColors.lightTextMuted),
+    return CupertinoScrollbar(
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
+        slivers: [
+          // App Bar
+          GlassSliverAppBar(
+            title: isEn ? 'Discover Insights' : 'İçgörüleri Keşfet',
+            actions: [
+              // Bookmark filter toggle
+              IconButton(
+                tooltip: _showBookmarksOnly
+                    ? (isEn ? 'Show all insights' : 'Tüm içgörüleri göster')
+                    : (isEn ? 'Show bookmarks' : 'Kaydedilenleri göster'),
+                icon: Icon(
+                  _showBookmarksOnly
+                      ? Icons.bookmark_rounded
+                      : Icons.bookmark_border_rounded,
+                  color: _showBookmarksOnly
+                      ? AppColors.starGold
+                      : (isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted),
+                ),
+                onPressed: () {
+                  HapticFeedback.lightImpact();
+                  setState(() => _showBookmarksOnly = !_showBookmarksOnly);
+                },
               ),
-              onPressed: () {
-                HapticFeedback.lightImpact();
-                setState(() => _showBookmarksOnly = !_showBookmarksOnly);
-              },
-            ),
-          ],
-        ),
-
-        // Reading progress
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 4, 20, 16),
-            child: _buildProgressBar(service, isDark, isEn),
+            ],
           ),
-        ),
 
-        // Daily spotlight card
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: _buildDailySpotlight(daily, service, isDark, isEn),
-          ),
-        ),
-
-        // Category filter chips
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 12),
-            child: _buildCategoryChips(isDark, isEn),
-          ),
-        ),
-
-        // Module list
-        if (modules.isEmpty)
+          // Reading progress
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(40),
-              child: Center(
-                child: Text(
-                  isEn ? 'No insights found' : 'İçgörü bulunamadı',
-                  style: AppTypography.decorativeScript(
-                    fontSize: 14,
-                    color: isDark
-                        ? AppColors.textMuted
-                        : AppColors.lightTextMuted,
+              padding: const EdgeInsets.fromLTRB(20, 4, 20, 16),
+              child: _buildProgressBar(service, isDark, isEn),
+            ),
+          ),
+
+          // Daily spotlight card
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: _buildDailySpotlight(daily, service, isDark, isEn),
+            ),
+          ),
+
+          // Category filter chips
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 12),
+              child: _buildCategoryChips(isDark, isEn),
+            ),
+          ),
+
+          // Module list
+          if (modules.isEmpty)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(40),
+                child: Center(
+                  child: Text(
+                    isEn ? 'No insights found' : 'İçgörü bulunamadı',
+                    style: AppTypography.decorativeScript(
+                      fontSize: 14,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
                   ),
                 ),
               ),
+            )
+          else
+            SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final module = modules[index];
+                return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 6,
+                      ),
+                      child: _buildModuleCard(module, service, isDark, isEn),
+                    )
+                    .animate()
+                    .fadeIn(duration: 400.ms, delay: (index * 60).ms)
+                    .slideY(begin: 0.05, duration: 400.ms);
+              }, childCount: modules.length),
             ),
-          )
-        else
-          SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-              final module = modules[index];
-              return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 6,
-                    ),
-                    child: _buildModuleCard(module, service, isDark, isEn),
-                  )
-                  .animate()
-                  .fadeIn(duration: 400.ms, delay: (index * 60).ms)
-                  .slideY(begin: 0.05, duration: 400.ms);
-            }, childCount: modules.length),
-          ),
 
-        // Related tools
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: ToolEcosystemFooter(
-              currentToolId: 'insightsDiscovery',
-              isEn: isEn,
-              isDark: isDark,
+          // Related tools
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: ToolEcosystemFooter(
+                currentToolId: 'insightsDiscovery',
+                isEn: isEn,
+                isDark: isDark,
+              ),
             ),
           ),
-        ),
-        // Bottom padding
-        const SliverToBoxAdapter(child: SizedBox(height: 40)),
-      ],
+          // Bottom padding
+          const SliverToBoxAdapter(child: SizedBox(height: 40)),
+        ],
+      ),
     );
   }
 

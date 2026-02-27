@@ -4,13 +4,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/content/monthly_themes_content.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/first_taste_service.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../data/services/pattern_engine_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../../shared/widgets/cosmic_background.dart';
@@ -24,6 +28,7 @@ import '../../../core/theme/app_typography.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../data/services/smart_router_service.dart';
 import '../../../data/services/ecosystem_analytics_service.dart';
+import '../../../data/services/review_service.dart';
 
 class MonthlyReflectionScreen extends ConsumerStatefulWidget {
   const MonthlyReflectionScreen({super.key});
@@ -54,6 +59,10 @@ class _MonthlyReflectionScreenState
           .whenData(
             (s) => s.trackToolOpen('monthlyReflection', source: 'direct'),
           );
+      // Prompt for App Store review after viewing monthly report
+      ref.read(reviewServiceProvider.future).then((reviewService) {
+        reviewService.checkAndPromptReview(ReviewTrigger.monthlyReport);
+      }).catchError((_) {});
     });
   }
 
@@ -90,14 +99,37 @@ class _MonthlyReflectionScreenState
             error: (_, _) => Center(
               child: Padding(
                 padding: const EdgeInsets.all(32),
-                child: Text(
-                  CommonStrings.somethingWentWrong(language),
-                  textAlign: TextAlign.center,
-                  style: AppTypography.decorativeScript(
-                    color: isDark
-                        ? AppColors.textMuted
-                        : AppColors.lightTextMuted,
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      CommonStrings.somethingWentWrong(language),
+                      textAlign: TextAlign.center,
+                      style: AppTypography.decorativeScript(
+                        color: isDark
+                            ? AppColors.textMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    TextButton.icon(
+                      onPressed: () =>
+                          ref.invalidate(patternEngineServiceProvider),
+                      icon: Icon(
+                        Icons.refresh_rounded,
+                        size: 16,
+                        color: AppColors.starGold,
+                      ),
+                      label: Text(
+                        isEn ? 'Retry' : 'Tekrar Dene',
+                        style: AppTypography.elegantAccent(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.starGold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -115,6 +147,33 @@ class _MonthlyReflectionScreenState
                   slivers: [
                     GlassSliverAppBar(
                       title: isEn ? 'Monthly Reflection' : 'Aylık Yansıma',
+                      actions: [
+                        if (summary.totalEntries > 0)
+                          IconButton(
+                            onPressed: () {
+                              HapticService.buttonPress();
+                              final monthNames = isEn
+                                  ? CommonStrings.monthsShortEn
+                                  : CommonStrings.monthsShortTr;
+                              final monthLabel = monthNames[_selectedMonth - 1];
+                              final strongest = summary.strongestArea != null
+                                  ? (isEn
+                                      ? summary.strongestArea!.displayNameEn
+                                      : summary.strongestArea!.displayNameTr)
+                                  : null;
+                              final msg = isEn
+                                  ? 'My $monthLabel $_selectedYear reflection:\n${summary.totalEntries} entries${strongest != null ? '\nStrongest area: $strongest' : ''}\n\nTracking my patterns with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles #MonthlyReflection'
+                                  : '$monthLabel $_selectedYear yansımam:\n${summary.totalEntries} kayıt${strongest != null ? '\nEn güçlü alan: $strongest' : ''}\n\nInnerCycles ile örüntülerimi takip ediyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
+                              SharePlus.instance.share(ShareParams(text: msg));
+                            },
+                            icon: Icon(
+                              Icons.share_rounded,
+                              color: AppColors.starGold,
+                              size: 20,
+                            ),
+                            tooltip: isEn ? 'Share monthly summary' : 'Aylık özeti paylaş',
+                          ),
+                      ],
                     ),
                     SliverPadding(
                       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -404,13 +463,26 @@ class _MonthlyReflectionScreenState
                 const SizedBox(height: 12),
                 Text(
                   isEn
-                      ? 'No entries for this month yet.'
-                      : 'Bu ay için henüz kayıt yok.',
+                      ? 'This month is waiting for your first reflection'
+                      : 'Bu ay ilk yansımanı bekliyor',
                   style: AppTypography.decorativeScript(
                     fontSize: 14,
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                GestureDetector(
+                  onTap: () => context.go(Routes.journal),
+                  behavior: HitTestBehavior.opaque,
+                  child: Text(
+                    isEn ? 'Write your first entry →' : 'İlk kaydını yaz →',
+                    style: AppTypography.modernAccent(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold,
+                    ),
                   ),
                 ),
               ],

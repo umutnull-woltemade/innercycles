@@ -145,6 +145,25 @@ import WidgetKit
     }
   }
 
+  // MARK: - Quick Actions (3D Touch / Home Screen Long Press)
+
+  override func application(
+    _ application: UIApplication,
+    performActionFor shortcutItem: UIApplicationShortcutItem,
+    completionHandler: @escaping (Bool) -> Void
+  ) {
+    guard let controller = window?.rootViewController as? FlutterViewController else {
+      completionHandler(false)
+      return
+    }
+    let channel = FlutterMethodChannel(
+      name: "com.venusone.innercycles/quickactions",
+      binaryMessenger: controller.binaryMessenger
+    )
+    channel.invokeMethod("quickAction", arguments: shortcutItem.type)
+    completionHandler(true)
+  }
+
   // MARK: - Notification Handling
 
   // Handle notification when app is in foreground

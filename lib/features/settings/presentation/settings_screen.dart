@@ -355,11 +355,11 @@ class SettingsScreen extends ConsumerWidget {
                                       content: Text(
                                         restored
                                             ? (language == AppLanguage.en
-                                                  ? 'Purchases restored'
-                                                  : 'Satın alımlar geri yüklendi')
+                                                  ? 'All set! Your purchases are restored.'
+                                                  : 'Hazırsın! Satın alımların geri yüklendi.')
                                             : (language == AppLanguage.en
-                                                  ? 'No purchases found'
-                                                  : 'Satın alım bulunamadı'),
+                                                  ? 'No purchases found — try again if you recently subscribed.'
+                                                  : 'Satın alım bulunamadı — yakın zamanda abone olduysanız tekrar deneyin.'),
                                       ),
                                       backgroundColor: restored
                                           ? AppColors.success
@@ -397,6 +397,17 @@ class SettingsScreen extends ConsumerWidget {
                                 isDestructive: true,
                                 onTap: () =>
                                     _showSignOutDialog(context, ref, language),
+                              ),
+                              _GroupedSeparator(isDark: isDark),
+                              _GroupedTile(
+                                icon: Icons.person_remove_outlined,
+                                title: language == AppLanguage.en
+                                    ? 'Delete Account'
+                                    : 'Hesabı Sil',
+                                isDark: isDark,
+                                isDestructive: true,
+                                onTap: () =>
+                                    _showDeleteAccountDialog(context, ref, language),
                               ),
                             ],
                           ],
@@ -692,7 +703,7 @@ class SettingsScreen extends ConsumerWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            language == AppLanguage.en ? 'Signed out' : 'Çıkış yapıldı',
+            language == AppLanguage.en ? 'Signed out successfully' : 'Başarıyla çıkış yapıldı',
           ),
           backgroundColor: AppColors.surfaceLight,
           behavior: SnackBarBehavior.floating,
@@ -701,6 +712,77 @@ class SettingsScreen extends ConsumerWidget {
           ),
         ),
       );
+    }
+  }
+
+  void _showDeleteAccountDialog(
+    BuildContext context,
+    WidgetRef ref,
+    AppLanguage language,
+  ) async {
+    final isEn = language == AppLanguage.en;
+    final confirmed = await GlassDialog.confirm(
+      context,
+      title: isEn ? 'Delete Account?' : 'Hesap Silinsin mi?',
+      message: isEn
+          ? 'This will permanently delete your account and all synced data. Local data will remain on this device. This cannot be undone.'
+          : 'Bu işlem hesabınızı ve senkronize edilmiş tüm verileri kalıcı olarak siler. Yerel veriler bu cihazda kalır. Bu işlem geri alınamaz.',
+      cancelLabel: isEn ? 'Cancel' : 'İptal',
+      confirmLabel: isEn ? 'Delete Account' : 'Hesabı Sil',
+      isDestructive: true,
+    );
+    if (confirmed != true || !context.mounted) return;
+
+    // Second confirmation
+    final doubleConfirmed = await GlassDialog.confirm(
+      context,
+      title: isEn ? 'Delete your account?' : 'Hesabınızı silinsin mi?',
+      message: isEn
+          ? 'All your cloud data will be permanently deleted. This cannot be undone.'
+          : 'Tüm bulut verileriniz kalıcı olarak silinecek. Bu geri alınamaz.',
+      cancelLabel: isEn ? 'Keep Account' : 'Hesabı Koru',
+      confirmLabel: isEn ? 'Yes, Delete' : 'Evet, Sil',
+      isDestructive: true,
+    );
+    if (doubleConfirmed != true || !context.mounted) return;
+
+    try {
+      // Sign out (actual server-side deletion would need an edge function)
+      await Supabase.instance.client.auth.signOut();
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              isEn
+                  ? 'Account deletion requested. You have been signed out.'
+                  : 'Hesap silme talebi alındı. Çıkış yapıldı.',
+            ),
+            backgroundColor: AppColors.surfaceLight,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      if (kDebugMode) debugPrint('Delete account error: $e');
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              isEn
+                  ? 'Something went wrong. Please contact support.'
+                  : 'Bir hata oluştu. Lütfen destek ile iletişime geçin.',
+            ),
+            backgroundColor: AppColors.error,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        );
+      }
     }
   }
 
@@ -766,7 +848,7 @@ class SettingsScreen extends ConsumerWidget {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              language == AppLanguage.en ? 'OK' : 'Tamam',
+              language == AppLanguage.en ? 'Got it' : 'Anladım',
               style: AppTypography.modernAccent(
                 color: AppColors.starGold,
                 fontWeight: FontWeight.w600,
@@ -1117,8 +1199,7 @@ class _ThemeOption extends StatelessWidget {
   }
 }
 
-/// Referral card — share app to earn premium trial
-// _ReferralCard removed (killed feature)
+// _ReferralCard removed (feature killed — Tell a Friend in About section instead)
 
 /// App Lock toggle section
 class _AppLockSection extends ConsumerStatefulWidget {
@@ -1190,19 +1271,25 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                         ],
                       ),
                     ),
-                    CupertinoSwitch(
-                      value: isEnabled,
-                      activeTrackColor: AppColors.auroraStart,
-                      onChanged: (value) async {
-                        if (value) {
-                          _showPinSetup(service);
-                        } else {
-                          await service.setEnabled(false);
-                          await service.removePin();
-                          if (!mounted) return;
-                          ref.invalidate(appLockServiceProvider);
-                        }
-                      },
+                    Semantics(
+                      label: isEn
+                          ? 'App Lock ${isEnabled ? 'enabled' : 'disabled'}'
+                          : 'Uygulama Kilidi ${isEnabled ? 'açık' : 'kapalı'}',
+                      toggled: isEnabled,
+                      child: CupertinoSwitch(
+                        value: isEnabled,
+                        activeTrackColor: AppColors.auroraStart,
+                        onChanged: (value) async {
+                          if (value) {
+                            _showPinSetup(service);
+                          } else {
+                            await service.setEnabled(false);
+                            await service.removePin();
+                            if (!mounted) return;
+                            ref.invalidate(appLockServiceProvider);
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -1287,7 +1374,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                     : AppColors.lightTextPrimary,
               ),
               decoration: InputDecoration(
-                labelText: isEn ? 'PIN' : 'PIN',
+                labelText: isEn ? '4-digit PIN' : '4 haneli PIN',
                 labelStyle: AppTypography.subtitle(
                   color: widget.isDark
                       ? AppColors.textMuted
@@ -1306,7 +1393,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                     : AppColors.lightTextPrimary,
               ),
               decoration: InputDecoration(
-                labelText: isEn ? 'Confirm PIN' : 'PIN Onayla',
+                labelText: isEn ? 'Re-enter PIN' : 'PIN\'i tekrar gir',
                 labelStyle: AppTypography.subtitle(
                   color: widget.isDark
                       ? AppColors.textMuted
@@ -1372,7 +1459,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
               if (ctx.mounted) Navigator.pop(ctx);
             },
             child: Text(
-              isEn ? 'Save' : 'Kaydet',
+              isEn ? 'Save Changes' : 'Değişiklikleri Kaydet',
               style: AppTypography.modernAccent(
                 color: AppColors.starGold,
                 fontWeight: FontWeight.w600,

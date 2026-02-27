@@ -33,14 +33,34 @@ class SleepTrendsScreen extends ConsumerWidget {
           error: (_, _) => Center(
             child: Padding(
               padding: const EdgeInsets.all(32),
-              child: Text(
-                CommonStrings.somethingWentWrong(language),
-                textAlign: TextAlign.center,
-                style: AppTypography.subtitle(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    CommonStrings.somethingWentWrong(language),
+                    textAlign: TextAlign.center,
+                    style: AppTypography.subtitle(
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(sleepServiceProvider),
+                    icon: Icon(Icons.refresh_rounded,
+                        size: 16, color: AppColors.starGold),
+                    label: Text(
+                      isEn ? 'Retry' : 'Tekrar Dene',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -67,16 +87,43 @@ class SleepTrendsScreen extends ConsumerWidget {
         slivers: [
           GlassSliverAppBar(title: isEn ? 'Sleep Trends' : 'Uyku Trendleri'),
           SliverFillRemaining(
+            hasScrollBody: false,
             child: Center(
-              child: Text(
-                isEn
-                    ? 'No sleep data yet.\nLog your first night\'s sleep!'
-                    : 'Henüz uyku verisi yok.\nİlk uyku kaydını oluştur!',
-                textAlign: TextAlign.center,
-                style: AppTypography.subtitle(
-                  color: isDark
-                      ? AppColors.textMuted
-                      : AppColors.lightTextMuted,
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.bedtime_outlined,
+                      size: 48,
+                      color: isDark
+                          ? AppColors.textMuted
+                          : AppColors.lightTextMuted,
+                    ),
+                    const SizedBox(height: 16),
+                    GradientText(
+                      isEn ? 'No sleep data yet' : 'Henüz uyku verisi yok',
+                      variant: GradientTextVariant.aurora,
+                      style: AppTypography.displayFont.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      isEn
+                          ? 'Log your first night\'s sleep to see trends and patterns.'
+                          : 'Trendleri ve kalıpları görmek için ilk uyku kaydını oluştur.',
+                      textAlign: TextAlign.center,
+                      style: AppTypography.decorativeScript(
+                        fontSize: 14,
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

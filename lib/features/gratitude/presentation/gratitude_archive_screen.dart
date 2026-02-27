@@ -34,14 +34,37 @@ class GratitudeArchiveScreen extends ConsumerWidget {
           error: (_, _) => Center(
             child: Padding(
               padding: const EdgeInsets.all(32),
-              child: Text(
-                CommonStrings.somethingWentWrong(language),
-                textAlign: TextAlign.center,
-                style: AppTypography.subtitle(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    CommonStrings.somethingWentWrong(language),
+                    textAlign: TextAlign.center,
+                    style: AppTypography.subtitle(
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(gratitudeServiceProvider),
+                    icon: Icon(
+                      Icons.refresh_rounded,
+                      size: 16,
+                      color: AppColors.starGold,
+                    ),
+                    label: Text(
+                      isEn ? 'Retry' : 'Tekrar Dene',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -71,8 +94,8 @@ class GratitudeArchiveScreen extends ConsumerWidget {
             hasScrollBody: false,
             child: ToolEmptyState(
               icon: Icons.favorite_border,
-              titleEn: 'No gratitude entries yet',
-              titleTr: 'Henüz şükran kaydı yok',
+              titleEn: 'Your gratitude garden is ready to bloom',
+              titleTr: 'Şükran bahçen çiçek açmaya hazır',
               descriptionEn:
                   'Start your gratitude practice to see your appreciation patterns grow.',
               descriptionTr:

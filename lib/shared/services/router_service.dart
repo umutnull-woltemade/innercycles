@@ -49,7 +49,7 @@ import '../../features/milestones/presentation/milestone_screen.dart';
 import '../../features/year_review/presentation/year_review_screen.dart';
 import '../../features/year_review/presentation/wrapped_screen.dart';
 import '../../features/habits/presentation/daily_habits_screen.dart';
-// partner_sync_screen + referral_screen imports removed (killed features)
+import '../../features/referral/presentation/referral_screen.dart';
 import '../../features/journal/presentation/annual_report_screen.dart';
 import '../../features/retrospective/presentation/retrospective_screen.dart';
 import '../../features/digest/presentation/monthly_wrapped_screen.dart';
@@ -135,7 +135,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       }
 
       // MOBILE: Guard - redirect to onboarding if not completed
-      final onboardingDone = StorageService.loadOnboardingComplete();
+      // TODO: TEMP SKIP FOR SCREENSHOT - REVERT THIS
+      final onboardingDone = true; // StorageService.loadOnboardingComplete();
       if (!onboardingDone) {
         return Routes.onboarding;
       }
@@ -149,11 +150,25 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/', redirect: (_, _) => Routes.today),
       GoRoute(
         path: Routes.disclaimer,
-        builder: (context, state) => const DisclaimerScreen(),
+        pageBuilder: (context, state) => CustomTransitionPage(
+          child: const DisclaimerScreen(),
+          transitionsBuilder: (ctx, anim, secAnim, child) => FadeTransition(
+            opacity: CurvedAnimation(parent: anim, curve: Curves.easeInOut),
+            child: child,
+          ),
+          transitionDuration: const Duration(milliseconds: 500),
+        ),
       ),
       GoRoute(
         path: Routes.onboarding,
-        builder: (context, state) => const OnboardingScreen(),
+        pageBuilder: (context, state) => CustomTransitionPage(
+          child: const OnboardingScreen(),
+          transitionsBuilder: (ctx, anim, secAnim, child) => FadeTransition(
+            opacity: CurvedAnimation(parent: anim, curve: Curves.easeInOut),
+            child: child,
+          ),
+          transitionDuration: const Duration(milliseconds: 600),
+        ),
       ),
       GoRoute(
         path: Routes.archetypeQuiz,
@@ -379,7 +394,9 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.noteDetail,
         builder: (context, state) {
           final extra = state.extra as Map<String, dynamic>?;
-          final noteId = extra?['noteId'] as String? ?? '';
+          final noteId = extra?['noteId'] as String? ??
+              state.uri.queryParameters['noteId'] ??
+              '';
           return NoteDetailScreen(noteId: noteId);
         },
       ),
@@ -681,7 +698,20 @@ final routerProvider = Provider<GoRouter>((ref) {
       // ════════════════════════════════════════════════════════════════
       // DEEP LINK ROUTES (innercycles:// scheme)
       // ════════════════════════════════════════════════════════════════
-      // deepLinkInvite removed (referral killed)
+      GoRoute(
+        path: Routes.referralProgram,
+        builder: (context, state) {
+          final code = state.uri.queryParameters['code'];
+          return ReferralScreen(initialCode: code);
+        },
+      ),
+      GoRoute(
+        path: Routes.deepLinkInvite,
+        redirect: (context, state) {
+          final code = state.pathParameters['code'] ?? '';
+          return '${Routes.referralProgram}?code=$code';
+        },
+      ),
       GoRoute(
         path: Routes.deepLinkShare,
         redirect: (context, state) {

@@ -6,178 +6,267 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
-import '../../../core/theme/cosmic_palette.dart';
 import '../../../shared/widgets/cosmic_background.dart';
 import '../../../shared/widgets/gradient_button.dart';
 import '../../../shared/widgets/gradient_text.dart';
+import '../../../shared/widgets/premium_card.dart';
+import '../../../core/theme/liquid_glass/glass_animations.dart';
 import '../../../data/services/l10n_service.dart';
 import '../../../data/services/storage_service.dart';
 import '../../../data/providers/app_providers.dart';
 
-/// First-launch disclaimer screen for App Store compliance.
-/// Shows entertainment/educational purpose disclaimer before onboarding.
+/// First-launch welcome screen for App Store compliance.
+/// Redesigned as a warm, premium welcome with embedded compliance content.
 class DisclaimerScreen extends ConsumerWidget {
   const DisclaimerScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
+    final isEn = language == AppLanguage.en;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textColor =
+        isDark ? AppColors.textSecondary : AppColors.lightTextSecondary;
 
     return Scaffold(
       body: CosmicBackground(
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(24),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Column(
               children: [
-                const Spacer(flex: 1),
-                // Icon - Custom cosmic symbol
+                const SizedBox(height: 48),
+
+                // ── Hero section ──
+                // Outer pulsing ring
                 Container(
-                  width: 72,
-                  height: 72,
+                  width: 100,
+                  height: 100,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    gradient: LinearGradient(
-                      colors: [AppColors.cosmicPurple, CosmicPalette.amethyst],
+                    border: Border.all(
+                      color: AppColors.starGold.withValues(alpha: 0.15),
+                      width: 1,
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.cosmicPurple.withValues(alpha: 0.4),
-                        blurRadius: 20,
-                        spreadRadius: 2,
+                  ),
+                  child: Center(
+                    // Inner icon circle
+                    child: Container(
+                      width: 88,
+                      height: 88,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: const LinearGradient(
+                          colors: [AppColors.amethyst, AppColors.starGold],
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color:
+                                AppColors.auroraStart.withValues(alpha: 0.15),
+                            blurRadius: 50,
+                            spreadRadius: 8,
+                          ),
+                        ],
                       ),
-                    ],
+                      child: const Icon(
+                        Icons.self_improvement,
+                        color: Colors.white,
+                        size: 44,
+                      ),
+                    ),
                   ),
-                  child: const Icon(
-                    Icons.auto_awesome,
-                    color: Colors.white,
-                    size: 36,
-                  ),
-                ).animate().scale(
-                  begin: const Offset(0.5, 0.5),
-                  curve: Curves.elasticOut,
-                  duration: 600.ms,
-                ),
-                const SizedBox(height: 24),
-                // Title
+                )
+                    .glassPulse(context: context, scale: 1.04)
+                    .animate()
+                    .scale(
+                      begin: const Offset(0.5, 0.5),
+                      curve: Curves.elasticOut,
+                      duration: 700.ms,
+                    )
+                    .fadeIn(duration: 500.ms),
+
+                const SizedBox(height: 28),
+
+                // ── Title ──
                 GradientText(
-                  L10nService.get('disclaimer.before_using', language),
+                  isEn
+                      ? 'Welcome to InnerCycles'
+                      : 'InnerCycles\'a Hoş Geldin',
                   style: AppTypography.displayFont.copyWith(
-                    fontSize: 28,
+                    fontSize: 30,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.5,
                   ),
                   variant: GradientTextVariant.gold,
                   textAlign: TextAlign.center,
-                ).animate().fadeIn(duration: 400.ms),
+                )
+                    .animate()
+                    .fadeIn(delay: 300.ms, duration: 600.ms)
+                    .slideY(begin: 0.08, delay: 300.ms, duration: 600.ms),
+
+                const SizedBox(height: 10),
+
+                // ── Subtitle ──
+                Text(
+                  isEn
+                      ? 'A private space for reflection, not prediction.'
+                      : 'Tahmin değil, yansıma için özel bir alan.',
+                  style: AppTypography.decorativeScript(
+                    fontSize: 15,
+                    color: textColor,
+                  ),
+                  textAlign: TextAlign.center,
+                ).animate().fadeIn(delay: 500.ms, duration: 500.ms),
+
                 const SizedBox(height: 32),
-                // Body content
-                _buildDisclaimerContent(context, language),
-                const Spacer(flex: 2),
-                // Continue button
-                GradientButton(
+
+                // ── Card 0: Journal ──
+                PremiumCard(
+                  style: PremiumCardStyle.subtle,
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(Icons.edit_note,
+                          color: AppColors.amethyst, size: 22),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Text(
+                          isEn
+                              ? 'InnerCycles is a personal journaling tool for self-reflection and pattern awareness.'
+                              : L10nService.get('disclaimer.text_1', language),
+                          style: AppTypography.subtitle(
+                            fontSize: 15,
+                            color: textColor,
+                            height: 1.6,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+                    .animate()
+                    .fadeIn(delay: 600.ms, duration: 400.ms)
+                    .slideX(begin: 0.1, delay: 600.ms, duration: 400.ms),
+
+                const SizedBox(height: 12),
+
+                // ── Card 1: Insights ──
+                PremiumCard(
+                  style: PremiumCardStyle.subtle,
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(Icons.insights_outlined,
+                          color: AppColors.auroraStart, size: 22),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Text(
+                          isEn
+                              ? 'All insights are based solely on your own journal entries. This app does not make predictions about your future.'
+                              : L10nService.get('disclaimer.text_2', language),
+                          style: AppTypography.subtitle(
+                            fontSize: 15,
+                            color: textColor,
+                            height: 1.6,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+                    .animate()
+                    .fadeIn(delay: 720.ms, duration: 400.ms)
+                    .slideX(begin: 0.1, delay: 720.ms, duration: 400.ms),
+
+                const SizedBox(height: 12),
+
+                // ── Card 2: Info ──
+                PremiumCard(
+                  style: PremiumCardStyle.subtle,
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(Icons.info_outline,
+                          color: AppColors.starGold, size: 22),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Text(
+                          isEn
+                              ? 'This is for personal reflection only. It is not medical, psychological, or professional advice.'
+                              : L10nService.get('disclaimer.text_3', language),
+                          style: AppTypography.subtitle(
+                            fontSize: 15,
+                            color: textColor,
+                            height: 1.6,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+                    .animate()
+                    .fadeIn(delay: 840.ms, duration: 400.ms)
+                    .slideX(begin: 0.1, delay: 840.ms, duration: 400.ms),
+
+                const SizedBox(height: 36),
+
+                // ── CTA Button ──
+                GradientButton.gold(
                   label: L10nService.get('common.continue', language),
                   icon: Icons.arrow_forward,
                   width: double.infinity,
                   onPressed: () async {
                     HapticFeedback.mediumImpact();
-                    // Persist disclaimer acceptance for App Store compliance
                     await StorageService.saveDisclaimerAccepted(true);
                     if (context.mounted) {
                       context.go(Routes.onboarding);
                     }
                   },
-                ).animate().fadeIn(delay: 600.ms, duration: 400.ms),
-                const SizedBox(height: 16),
+                )
+                    .animate()
+                    .fadeIn(delay: 1000.ms, duration: 400.ms)
+                    .slideY(begin: 0.2, delay: 1000.ms, duration: 500.ms)
+                    .then()
+                    .shimmer(
+                      delay: 400.ms,
+                      duration: 1500.ms,
+                      color: AppColors.celestialGold.withValues(alpha: 0.25),
+                    ),
+
+                const SizedBox(height: 20),
+
+                // ── Privacy line ──
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.lock_rounded,
+                      size: 12,
+                      color: AppColors.textMuted.withValues(alpha: 0.6),
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      isEn
+                          ? 'Your data stays on your device'
+                          : 'Verilerin cihazında kalır',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 12,
+                        color: AppColors.textMuted,
+                      ),
+                    ),
+                  ],
+                ).animate().fadeIn(delay: 1200.ms, duration: 400.ms),
+
+                const SizedBox(height: 32),
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildDisclaimerContent(BuildContext context, AppLanguage language) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final textColor = isDark
-        ? AppColors.textSecondary
-        : AppColors.lightTextSecondary;
-
-    // Use English for App Store review (explicit "no predictions" statement)
-    // Localized content as fallback for user experience
-    final isEnglish = language == AppLanguage.en;
-
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceLight.withValues(alpha: 0.1)
-            : AppColors.lightSurfaceVariant.withValues(alpha: 0.78),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? AppColors.surfaceLight.withValues(alpha: 0.2)
-              : AppColors.lightSurfaceVariant,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildParagraph(
-            context,
-            isEnglish
-                ? 'InnerCycles is a personal journaling tool for self-reflection and pattern awareness.'
-                : L10nService.get('disclaimer.text_1', language),
-            textColor,
-            icon: Icons.edit_note,
-          ),
-          const SizedBox(height: 16),
-          _buildParagraph(
-            context,
-            isEnglish
-                ? 'All insights are based solely on your own journal entries. This app does not make predictions about your future.'
-                : L10nService.get('disclaimer.text_2', language),
-            textColor,
-            icon: Icons.insights_outlined,
-          ),
-          const SizedBox(height: 16),
-          _buildParagraph(
-            context,
-            isEnglish
-                ? 'This is for personal reflection only. It is not medical, psychological, or professional advice.'
-                : L10nService.get('disclaimer.text_3', language),
-            textColor,
-            icon: Icons.info_outline,
-          ),
-        ],
-      ),
-    ).animate().fadeIn(delay: 200.ms, duration: 400.ms).slideY(begin: 0.1);
-  }
-
-  Widget _buildParagraph(
-    BuildContext context,
-    String text,
-    Color textColor, {
-    IconData? icon,
-  }) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (icon != null) ...[
-          Icon(icon, color: AppColors.starGold, size: 20),
-          const SizedBox(width: 12),
-        ],
-        Expanded(
-          child: Text(
-            text,
-            style: AppTypography.subtitle(
-              fontSize: 15,
-              color: textColor,
-              height: 1.6,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

@@ -9,12 +9,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/constants/common_strings.dart';
 import '../../../data/providers/app_providers.dart';
 import '../../../data/services/growth_challenge_service.dart';
+import '../../../data/services/haptic_service.dart';
 import '../../../data/services/premium_service.dart';
 import '../../premium/presentation/contextual_paywall_modal.dart';
 import '../../../shared/widgets/app_symbol.dart';
@@ -61,11 +63,34 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
         child: challengeAsync.when(
           loading: () => const CosmicLoadingIndicator(),
           error: (_, _) => Center(
-            child: Text(
-              CommonStrings.somethingWentWrong(language),
-              style: AppTypography.subtitle(
-                color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  CommonStrings.somethingWentWrong(language),
+                  textAlign: TextAlign.center,
+                  style: AppTypography.subtitle(
+                    color: isDark
+                        ? AppColors.textMuted
+                        : AppColors.lightTextMuted,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton.icon(
+                  onPressed: () =>
+                      ref.invalidate(growthChallengeServiceProvider),
+                  icon: Icon(Icons.refresh_rounded,
+                      size: 16, color: AppColors.starGold),
+                  label: Text(
+                    isEn ? 'Retry' : 'Tekrar Dene',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           data: (service) => _buildContent(service, isDark, isEn),
@@ -88,7 +113,13 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
       return progress == null && !service.isCompleted(c.id);
     }).toList();
 
-    return CupertinoScrollbar(
+    return RefreshIndicator(
+      color: AppColors.starGold,
+      onRefresh: () async {
+        ref.invalidate(growthChallengeServiceProvider);
+        await Future.delayed(const Duration(milliseconds: 300));
+      },
+      child: CupertinoScrollbar(
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(
           parent: AlwaysScrollableScrollPhysics(),
@@ -188,6 +219,7 @@ class _ChallengeHubScreenState extends ConsumerState<ChallengeHubScreen> {
             ),
           ),
         ],
+      ),
       ),
     );
   }
@@ -336,7 +368,7 @@ class _StatsBar extends StatelessWidget {
           ),
           _StatItem(
             value: '$completed',
-            label: isEn ? 'Done' : 'Bitti',
+            label: isEn ? 'Completed' : 'Tamamlanan',
             color: AppColors.success,
             isDark: isDark,
           ),
@@ -435,6 +467,26 @@ class _ActiveChallengeCard extends StatelessWidget {
                             : AppColors.lightTextSecondary,
                       ),
                     ),
+                    if (progress.currentCount > 0 && !progress.isCompleted) ...[
+                      const SizedBox(height: 2),
+                      () {
+                        final elapsed = DateTime.now().difference(progress.startedAt).inDays.clamp(1, 999);
+                        final rate = progress.currentCount / elapsed;
+                        final remaining = progress.targetCount - progress.currentCount;
+                        final daysLeft = rate > 0 ? (remaining / rate).ceil() : 0;
+                        return Text(
+                          isEn
+                              ? '~$daysLeft days left'
+                              : '~$daysLeft gün kaldı',
+                          style: AppTypography.elegantAccent(
+                            fontSize: 11,
+                            color: isDark
+                                ? AppColors.textMuted
+                                : AppColors.lightTextMuted,
+                          ),
+                        );
+                      }(),
+                    ],
                   ],
                 ),
               ),
@@ -484,7 +536,12 @@ class _AvailableChallengeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PremiumCard(
+    return Semantics(
+      button: true,
+      label: isEn
+          ? 'Start challenge: ${challenge.titleEn}'
+          : 'Göreve başla: ${challenge.titleTr}',
+      child: PremiumCard(
       style: PremiumCardStyle.subtle,
       borderRadius: AppConstants.radiusLg,
       padding: const EdgeInsets.all(AppConstants.spacingMd),
@@ -551,6 +608,7 @@ class _AvailableChallengeCard extends StatelessWidget {
           ),
         ],
       ),
+      ),
     );
   }
 }
@@ -586,6 +644,24 @@ class _CompletedChallengeTile extends StatelessWidget {
                 color: isDark
                     ? AppColors.textSecondary
                     : AppColors.lightTextSecondary,
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              HapticService.buttonPress();
+              final title = isEn ? challenge.titleEn : challenge.titleTr;
+              final msg = isEn
+                  ? 'I completed the "$title" challenge on InnerCycles! Personal growth through daily reflection.\n\n${AppConstants.appStoreUrl}\n#InnerCycles #ChallengeComplete'
+                  : '"$title" görevini InnerCycles\'da tamamladım! Günlük yansıma ile kişisel gelişim.\n\n${AppConstants.appStoreUrl}\n#InnerCycles';
+              SharePlus.instance.share(ShareParams(text: msg));
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: Icon(
+                Icons.share_rounded,
+                size: 16,
+                color: AppColors.starGold.withValues(alpha: 0.7),
               ),
             ),
           ),

@@ -52,14 +52,35 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
           child: serviceAsync.when(
             loading: () => const CosmicLoadingIndicator(),
             error: (_, _) => Center(
-              child: Text(
-                isEn ? 'Something went wrong' : 'Bir hata oluştu',
-                style: AppTypography.decorativeScript(
-                  fontSize: 14,
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    isEn ? 'Couldn\'t load your memories' : 'Anıların yüklenemedi',
+                    textAlign: TextAlign.center,
+                    style: AppTypography.decorativeScript(
+                      fontSize: 14,
+                      color: isDark
+                          ? AppColors.textSecondary
+                          : AppColors.lightTextSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(journalServiceProvider),
+                    icon: Icon(Icons.refresh_rounded,
+                        size: 16, color: AppColors.starGold),
+                    label: Text(
+                      isEn ? 'Retry' : 'Tekrar Dene',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             data: (service) {
@@ -211,12 +232,14 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                         child: PremiumEmptyState(
                           icon: Icons.auto_stories_rounded,
                           title: isEn
-                              ? 'No entries this month'
-                              : 'Bu ayda kayıt yok',
+                              ? 'This month is a blank canvas'
+                              : 'Bu ay boş bir tuval',
                           description: isEn
                               ? 'Your memories from this period will appear here'
                               : 'Bu döneme ait anıların burada görünecek',
                           gradientVariant: GradientTextVariant.gold,
+                          ctaLabel: isEn ? 'Write an Entry' : 'Kayıt Yaz',
+                          onCtaPressed: () => context.go(Routes.journal),
                         ),
                       )
                     else
@@ -433,6 +456,7 @@ class _OnThisDayCard extends StatelessWidget {
                   File(entry.imagePath!),
                   fit: BoxFit.cover,
                   cacheWidth: 400,
+                  semanticLabel: isEn ? 'Memory photo' : 'Anı fotoğrafı',
                   errorBuilder: (_, _, _) => _placeholderIcon(),
                 ),
               )
@@ -636,6 +660,7 @@ class _MemoryCard extends StatelessWidget {
                   File(entry.imagePath!),
                   fit: BoxFit.cover,
                   cacheWidth: 800,
+                  semanticLabel: isEn ? 'Memory photo' : 'Anı fotoğrafı',
                   errorBuilder: (_, _, _) => Container(
                     color: isDark
                         ? AppColors.surfaceDark
@@ -686,7 +711,7 @@ class _MemoryCard extends StatelessWidget {
                                 areaLabel,
                                 style: AppTypography.elegantAccent(
                                   fontSize: 12,
-                                  color: Colors.white70,
+                                  color: AppColors.textMuted,
                                   letterSpacing: 0.5,
                                 ),
                               ),

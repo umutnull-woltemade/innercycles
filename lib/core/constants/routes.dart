@@ -167,7 +167,8 @@ class Routes {
   // ════════════════════════════════════════════════════════════════
   // ANNUAL REPORT
   // ════════════════════════════════════════════════════════════════
-  // partner + referral + deepLinkInvite removed (killed features)
+  static const String referralProgram = '/referral';
+  static const String deepLinkInvite = '/invite/:code';
   static const String annualReport = '/annual-report';
 
   // ════════════════════════════════════════════════════════════════
@@ -206,8 +207,7 @@ class Routes {
   // ════════════════════════════════════════════════════════════════
   static const String vaultPin = '/vault/pin';
   static const String vault = '/vault';
-  static const String vaultPhotoAlbum = '/vault/photos';
-  static const String vaultPhotoViewer = '/vault/photos/:id';
+  // vaultPhotoAlbum + vaultPhotoViewer removed (photos displayed inline in vault)
 
   // ════════════════════════════════════════════════════════════════
   // TAB ROUTES (BottomNavigationBar shell)

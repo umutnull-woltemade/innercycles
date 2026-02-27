@@ -55,13 +55,37 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
           child: wrappedAsync.when(
             loading: () => const Center(child: CosmicLoadingIndicator()),
             error: (_, _) => Center(
-              child: Text(
-                isEn ? 'Not enough data yet' : 'Henüz yeterli veri yok',
-                style: AppTypography.subtitle(
-                  color: isDark
-                      ? AppColors.textSecondary
-                      : AppColors.lightTextSecondary,
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: Text(
+                      isEn ? 'Keep journaling to build your monthly story' : 'Aylık hikayeni oluşturmak için yazmaya devam et',
+                      textAlign: TextAlign.center,
+                      style: AppTypography.subtitle(
+                        color: isDark
+                            ? AppColors.textSecondary
+                            : AppColors.lightTextSecondary,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () =>
+                        ref.invalidate(monthlyWrappedServiceProvider),
+                    icon: Icon(Icons.refresh_rounded,
+                        size: 16, color: AppColors.starGold),
+                    label: Text(
+                      isEn ? 'Retry' : 'Tekrar Dene',
+                      style: AppTypography.elegantAccent(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.starGold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             data: (service) {
@@ -149,6 +173,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
                         ),
+                        tooltip: isEn ? 'Close' : 'Kapat',
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                     ),

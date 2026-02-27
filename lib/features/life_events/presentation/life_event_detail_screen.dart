@@ -4,9 +4,13 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_typography.dart';
@@ -39,13 +43,35 @@ class LifeEventDetailScreen extends ConsumerWidget {
         child: serviceAsync.when(
           loading: () => const Center(child: CosmicLoadingIndicator()),
           error: (_, _) => Center(
-            child: Text(
-              isEn ? 'Something went wrong' : 'Bir şeyler ters gitti',
-              style: AppTypography.subtitle(
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  isEn ? 'Couldn\'t load this event' : 'Bu olay yüklenemedi',
+                  style: AppTypography.subtitle(
+                    color: isDark
+                        ? AppColors.textSecondary
+                        : AppColors.lightTextSecondary,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton.icon(
+                  onPressed: () => ref.invalidate(lifeEventServiceProvider),
+                  icon: Icon(
+                    Icons.refresh_rounded,
+                    size: 16,
+                    color: AppColors.starGold,
+                  ),
+                  label: Text(
+                    isEn ? 'Retry' : 'Tekrar Dene',
+                    style: AppTypography.elegantAccent(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.starGold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           data: (service) {
@@ -92,206 +118,250 @@ class LifeEventDetailScreen extends ConsumerWidget {
         '${event.date.month.toString().padLeft(2, '0')}/'
         '${event.date.year}';
 
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      slivers: [
-        GlassSliverAppBar(
-          title: isEn ? 'Life Event' : 'Yaşam Olayı',
-          actions: [
-            IconButton(
-              icon: Icon(
-                Icons.edit_rounded,
-                color: isDark
-                    ? AppColors.textSecondary
-                    : AppColors.lightTextSecondary,
-              ),
-              onPressed: () => context.push(
-                Routes.lifeEventEdit.replaceFirst(':id', event.id),
-              ),
-            ),
-            IconButton(
-              icon: Icon(Icons.delete_outline_rounded, color: AppColors.error),
-              onPressed: () => _confirmDelete(context, ref, event, isEn),
-            ),
-          ],
+    return CupertinoScrollbar(
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
         ),
-        SliverPadding(
-          padding: const EdgeInsets.all(16),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate([
-              // Photo header
-              if (event.imagePath != null) ...[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Image.file(
-                    File(event.imagePath!),
-                    height: 200,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, _, _) => const SizedBox.shrink(),
-                  ),
-                ).animate().fadeIn(duration: 400.ms),
-                const SizedBox(height: 16),
-              ],
-
-              // Emoji + Title + Type badge
-              PremiumCard(
-                style: PremiumCardStyle.gold,
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    AppSymbol.hero(emoji),
-                    const SizedBox(height: 12),
-                    Text(
-                      event.title,
-                      textAlign: TextAlign.center,
-                      style: AppTypography.displayFont.copyWith(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w700,
-                        color: isDark
-                            ? AppColors.textPrimary
-                            : AppColors.lightTextPrimary,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 5,
-                      ),
-                      decoration: BoxDecoration(
-                        color: accentColor.withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Text(
-                        isEn
-                            ? event.type.displayNameEn
-                            : event.type.displayNameTr,
-                        style: AppTypography.elegantAccent(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: accentColor,
-                        ),
-                      ),
-                    ),
-                  ],
+        slivers: [
+          GlassSliverAppBar(
+            title: isEn ? 'Life Event' : 'Yaşam Olayı',
+            actions: [
+              IconButton(
+                tooltip: isEn ? 'Share event' : 'Olayı paylaş',
+                icon: Icon(
+                  Icons.share_rounded,
+                  color: AppColors.starGold,
+                  size: 20,
                 ),
-              ).animate().fadeIn(duration: 300.ms),
-              const SizedBox(height: 16),
-
-              // Date + Intensity row
-              Row(
-                children: [
-                  Expanded(
-                    child: _infoCard(
-                      icon: Icons.calendar_today_rounded,
-                      label: isEn ? 'Date' : 'Tarih',
-                      value: formatted,
-                      isDark: isDark,
+                onPressed: () {
+                  HapticService.buttonPress();
+                  final noteSnippet =
+                      event.note != null && event.note!.isNotEmpty
+                      ? '\n"${event.note!.length > 80 ? '${event.note!.substring(0, 80)}...' : event.note!}"'
+                      : '';
+                  final msg = isEn
+                      ? '${event.title} — $formatted$noteSnippet\n\nReflecting with InnerCycles.\n${AppConstants.appStoreUrl}\n#InnerCycles #LifeEvent'
+                      : '${event.title} — $formatted$noteSnippet\n\nInnerCycles ile yansıma yapıyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
+                  SharePlus.instance.share(ShareParams(text: msg));
+                },
+              ),
+              IconButton(
+                tooltip: isEn ? 'Edit event' : 'Olayı düzenle',
+                icon: Icon(
+                  Icons.edit_rounded,
+                  color: isDark
+                      ? AppColors.textSecondary
+                      : AppColors.lightTextSecondary,
+                ),
+                onPressed: () {
+                  HapticService.buttonPress();
+                  context.push(
+                    Routes.lifeEventEdit.replaceFirst(':id', event.id),
+                  );
+                },
+              ),
+              IconButton(
+                tooltip: isEn ? 'Delete event' : 'Olayı sil',
+                icon: Icon(
+                  Icons.delete_outline_rounded,
+                  color: AppColors.error,
+                ),
+                onPressed: () => _confirmDelete(context, ref, event, isEn),
+              ),
+            ],
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(16),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                // Photo header
+                if (event.imagePath != null) ...[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Image.file(
+                      File(event.imagePath!),
+                      height: 200,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      semanticLabel: isEn ? 'Event photo' : 'Olay fotoğrafı',
+                      errorBuilder: (_, _, _) => const SizedBox.shrink(),
                     ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: _infoCard(
-                      icon: Icons.speed_rounded,
-                      label: isEn ? 'Intensity' : 'Yoğunluk',
-                      value: intensityLabels[(event.intensity - 1).clamp(0, 4)],
-                      isDark: isDark,
-                    ),
-                  ),
+                  ).animate().fadeIn(duration: 400.ms),
+                  const SizedBox(height: 16),
                 ],
-              ).animate().fadeIn(duration: 300.ms, delay: 100.ms),
-              const SizedBox(height: 16),
 
-              // Emotion tags
-              if (event.emotionTags.isNotEmpty) ...[
+                // Emoji + Title + Type badge
                 PremiumCard(
-                  style: PremiumCardStyle.subtle,
-                  borderRadius: 14,
-                  padding: const EdgeInsets.all(16),
+                  style: PremiumCardStyle.gold,
+                  padding: const EdgeInsets.all(20),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GradientText(
-                        isEn ? 'Emotions' : 'Duygular',
-                        variant: GradientTextVariant.amethyst,
-                        style: AppTypography.elegantAccent(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: event.emotionTags.map((tag) {
-                          return Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 6,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.auroraStart.withValues(
-                                alpha: 0.12,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Text(
-                              tag,
-                              style: AppTypography.elegantAccent(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.auroraStart,
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ],
-                  ),
-                ).animate().fadeIn(duration: 300.ms, delay: 150.ms),
-                const SizedBox(height: 16),
-              ],
-
-              // Reflection note
-              if (event.note case final note? when note.isNotEmpty) ...[
-                PremiumCard(
-                  style: PremiumCardStyle.subtle,
-                  borderRadius: 14,
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      GradientText(
-                        isEn ? 'Reflection' : 'Düşünceler',
-                        variant: GradientTextVariant.amethyst,
-                        style: AppTypography.elegantAccent(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
+                      AppSymbol.hero(emoji),
+                      const SizedBox(height: 12),
+                      Text(
+                        event.title,
+                        textAlign: TextAlign.center,
+                        style: AppTypography.displayFont.copyWith(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700,
+                          color: isDark
+                              ? AppColors.textPrimary
+                              : AppColors.lightTextPrimary,
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Text(
-                        note,
-                        style: AppTypography.decorativeScript(
-                          fontSize: 15,
-                          color: isDark
-                              ? AppColors.textSecondary
-                              : AppColors.lightTextSecondary,
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 5,
+                        ),
+                        decoration: BoxDecoration(
+                          color: accentColor.withValues(alpha: 0.15),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          isEn
+                              ? event.type.displayNameEn
+                              : event.type.displayNameTr,
+                          style: AppTypography.elegantAccent(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: accentColor,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ).animate().fadeIn(duration: 300.ms, delay: 200.ms),
-              ],
+                ).animate().fadeIn(duration: 300.ms),
+                const SizedBox(height: 16),
 
-              const SizedBox(height: 40),
-            ]),
+                // Date + Intensity row
+                Row(
+                  children: [
+                    Expanded(
+                      child: _infoCard(
+                        icon: Icons.calendar_today_rounded,
+                        label: isEn ? 'Date' : 'Tarih',
+                        value: formatted,
+                        isDark: isDark,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: _infoCard(
+                        icon: Icons.speed_rounded,
+                        label: isEn ? 'Intensity' : 'Yoğunluk',
+                        value:
+                            intensityLabels[(event.intensity - 1).clamp(0, 4)],
+                        isDark: isDark,
+                      ),
+                    ),
+                  ],
+                ).animate().fadeIn(duration: 300.ms, delay: 100.ms),
+                const SizedBox(height: 16),
+
+                // Emotion tags
+                if (event.emotionTags.isNotEmpty) ...[
+                  PremiumCard(
+                    style: PremiumCardStyle.subtle,
+                    borderRadius: 14,
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GradientText(
+                          isEn ? 'Emotions' : 'Duygular',
+                          variant: GradientTextVariant.amethyst,
+                          style: AppTypography.elegantAccent(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: event.emotionTags.map((tag) {
+                            return Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 6,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.auroraStart.withValues(
+                                  alpha: 0.12,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                tag,
+                                style: AppTypography.elegantAccent(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.auroraStart,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ),
+                  ).animate().fadeIn(duration: 300.ms, delay: 150.ms),
+                  const SizedBox(height: 16),
+                ],
+
+                // Reflection note
+                if (event.note case final note? when note.isNotEmpty) ...[
+                  PremiumCard(
+                    style: PremiumCardStyle.subtle,
+                    borderRadius: 14,
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GradientText(
+                          isEn ? 'Reflection' : 'Düşünceler',
+                          variant: GradientTextVariant.amethyst,
+                          style: AppTypography.elegantAccent(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        GestureDetector(
+                          onLongPress: () {
+                            Clipboard.setData(ClipboardData(text: note));
+                            HapticService.buttonPress();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(isEn ? 'Event copied to clipboard' : 'Olay panoya kopyalandı'),
+                                duration: const Duration(seconds: 1),
+                                backgroundColor: AppColors.success,
+                              ),
+                            );
+                          },
+                          child: Text(
+                            note,
+                            style: AppTypography.decorativeScript(
+                              fontSize: 15,
+                              color: isDark
+                                  ? AppColors.textSecondary
+                                  : AppColors.lightTextSecondary,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ).animate().fadeIn(duration: 300.ms, delay: 200.ms),
+                ],
+
+                const SizedBox(height: 40),
+              ]),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -324,6 +394,8 @@ class LifeEventDetailScreen extends ConsumerWidget {
           const SizedBox(height: 2),
           Text(
             value,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -347,8 +419,8 @@ class LifeEventDetailScreen extends ConsumerWidget {
       context,
       title: isEn ? 'Delete Event?' : 'Olayı Sil?',
       message: isEn
-          ? 'This action cannot be undone.'
-          : 'Bu işlem geri alınamaz.',
+          ? 'This life event will be permanently deleted.'
+          : 'Bu yaşam olayı kalıcı olarak silinecek.',
       cancelLabel: isEn ? 'Cancel' : 'İptal',
       confirmLabel: isEn ? 'Delete' : 'Sil',
       isDestructive: true,

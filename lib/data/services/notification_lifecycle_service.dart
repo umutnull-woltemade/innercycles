@@ -628,11 +628,22 @@ class NotificationLifecycleService {
         );
 
       case LifecycleNotificationType.reEngagement7Day:
+        final pool7En = [
+          'It\'s been a little while — even one sentence counts.',
+          'Sometimes the best entries come after a break. Welcome back.',
+          'Your patterns are waiting. Pick up where you left off.',
+          'A quick check-in is all it takes to restart your momentum.',
+        ];
+        final pool7Tr = [
+          'Biraz zaman geçti — tek bir cümle bile yeterli.',
+          'Bazen en iyi kayıtlar bir aradan sonra gelir. Tekrar hoş geldin.',
+          'Örüntülerin seni bekliyor. Kaldığın yerden devam et.',
+          'Kısa bir kayıt ivmeni yeniden başlatmaya yeter.',
+        ];
+        final idx7 = DateTime.now().day % pool7En.length;
         return _NotificationContent(
           title: isEn ? 'One Sentence Counts' : 'Bir Cümle Yeter',
-          body: isEn
-              ? 'It\'s been a little while — even one sentence counts.'
-              : 'Biraz zaman geçti — tek bir cümle bile yeterli.',
+          body: isEn ? pool7En[idx7] : pool7Tr[idx7],
         );
 
       case LifecycleNotificationType.reEngagement14Day:
@@ -644,11 +655,22 @@ class NotificationLifecycleService {
         );
 
       case LifecycleNotificationType.reEngagement30Day:
+        final pool30En = [
+          'Sometimes the best entries come after a break. Welcome back.',
+          'Your patterns are waiting. Pick up where you left off.',
+          'A quick check-in is all it takes to restart your momentum.',
+          'No pressure — just a moment for yourself.',
+        ];
+        final pool30Tr = [
+          'Bazen en iyi kayıtlar bir aradan sonra gelir. Tekrar hoş geldin.',
+          'Örüntülerin seni bekliyor. Kaldığın yerden devam et.',
+          'Kısa bir kayıt ivmeni yeniden başlatmaya yeter.',
+          'Baskı yok — sadece kendin için bir an.',
+        ];
+        final idx30 = DateTime.now().day % pool30En.length;
         return _NotificationContent(
           title: isEn ? 'Welcome Back?' : 'Tekrar Hoş Geldin?',
-          body: isEn
-              ? 'Sometimes the best entries come after a break. Welcome back?'
-              : 'Bazen en güzel kayıtlar aradan sonra gelir. Tekrar hoş geldin?',
+          body: isEn ? pool30En[idx30] : pool30Tr[idx30],
         );
 
       case LifecycleNotificationType.wrappedReady:

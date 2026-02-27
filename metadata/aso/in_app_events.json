@@ -1,0 +1,145 @@
+{
+  "in_app_events": [
+    {
+      "id": "spring_reflection_2026",
+      "reference_name": "Spring Reflection Challenge",
+      "badge": "challenge",
+      "event_purpose": "attract_new_users",
+      "start_date": "2026-03-20",
+      "end_date": "2026-04-03",
+      "en": {
+        "name": "Spring Reflection Challenge",
+        "short_description": "14 days of guided journaling to welcome the new season.",
+        "long_description": "Start fresh this spring with our 14-day guided reflection challenge. Each day brings a new prompt designed to help you set intentions, recognize patterns, and plant seeds for personal growth. Track your streak and celebrate your progress.",
+        "event_card_image_text": "14-Day Spring Reflection Challenge"
+      },
+      "tr": {
+        "name": "Bahar Yansıma Mücadelesi",
+        "short_description": "Yeni mevsimi karşılamak için 14 günlük rehberli günlük yazma.",
+        "long_description": "Bu baharda 14 günlük rehberli yansıma mücadelemizle taze bir başlangıç yap. Her gün niyetler belirlemenize, örüntüleri fark etmenize ve kişisel büyüme için tohumlar ekmenize yardımcı olan yeni bir soru getirir.",
+        "event_card_image_text": "14 Günlük Bahar Yansıma Mücadelesi"
+      }
+    },
+    {
+      "id": "ramadan_reflection_2026",
+      "reference_name": "Ramadan Reflection",
+      "badge": "event",
+      "event_purpose": "attract_new_users",
+      "start_date": "2026-02-17",
+      "end_date": "2026-03-20",
+      "en": {
+        "name": "Ramadan Daily Reflection",
+        "short_description": "A mindful journaling companion for the holy month.",
+        "long_description": "Use InnerCycles as your daily reflection companion during Ramadan. Journal your gratitude, track your mood throughout the month, and discover patterns in your spiritual growth. Build a meaningful journaling habit that lasts beyond the season.",
+        "event_card_image_text": "Ramadan Daily Reflection Journal"
+      },
+      "tr": {
+        "name": "Ramazan Günlük Yansıması",
+        "short_description": "Mübarek ay için bilinçli bir günlük yazma arkadaşı.",
+        "long_description": "Ramazan boyunca InnerCycles'ı günlük yansıma arkadaşınız olarak kullanın. Şükranınızı yazın, ay boyunca ruh halinizi takip edin ve manevi büyümenizde örüntüleri keşfedin.",
+        "event_card_image_text": "Ramazan Günlük Yansıma Günlüğü"
+      }
+    },
+    {
+      "id": "30day_journal_challenge",
+      "reference_name": "30-Day Journal Challenge",
+      "badge": "challenge",
+      "event_purpose": "attract_new_users",
+      "start_date": "2026-04-01",
+      "end_date": "2026-05-01",
+      "en": {
+        "name": "30-Day Journaling Challenge",
+        "short_description": "Build a lasting journaling habit in 30 days.",
+        "long_description": "Transform your inner life in just 30 days. Our guided journaling challenge gives you a new prompt each day, tracks your streak, and celebrates milestones along the way. After 30 days, you'll have a rich archive of self-discovery and a habit that sticks.",
+        "event_card_image_text": "30-Day Journaling Challenge"
+      },
+      "tr": {
+        "name": "30 Günlük Günlük Mücadelesi",
+        "short_description": "30 günde kalıcı bir günlük yazma alışkanlığı oluştur.",
+        "long_description": "İç dünyanızı sadece 30 günde dönüştürün. Rehberli günlük mücadelemiz her gün yeni bir soru sunar, serinizi takip eder ve yol boyunca dönüm noktalarını kutlar.",
+        "event_card_image_text": "30 Günlük Günlük Mücadelesi"
+      }
+    },
+    {
+      "id": "mental_health_awareness_2026",
+      "reference_name": "Mental Health Awareness Month",
+      "badge": "event",
+      "event_purpose": "attract_new_users",
+      "start_date": "2026-05-01",
+      "end_date": "2026-05-31",
+      "en": {
+        "name": "Mental Health Awareness Month",
+        "short_description": "Journaling for emotional wellbeing this May.",
+        "long_description": "May is Mental Health Awareness Month. Start your self-reflection journey with InnerCycles. Track your moods, recognize emotional patterns, and build a daily journaling practice that supports your mental wellbeing. Your mind deserves the same care as your body.",
+        "event_card_image_text": "Mental Health Awareness: Journal for Wellbeing"
+      },
+      "tr": {
+        "name": "Ruh Sağlığı Farkındalık Ayı",
+        "short_description": "Bu Mayıs'ta duygusal iyi oluş için günlük yazma.",
+        "long_description": "Mayıs Ruh Sağlığı Farkındalık Ayı. InnerCycles ile kendini yansıtma yolculuğuna başla. Ruh halini takip et, duygusal örüntüleri fark et ve ruhsal iyi oluşunu destekleyen günlük bir yazma pratiği oluştur.",
+        "event_card_image_text": "Ruh Sağlığı Farkındalığı: İyi Oluş İçin Günlük"
+      }
+    },
+    {
+      "id": "summer_solstice_2026",
+      "reference_name": "Summer Solstice Reflection",
+      "badge": "event",
+      "event_purpose": "attract_new_users",
+      "start_date": "2026-06-19",
+      "end_date": "2026-07-03",
+      "en": {
+        "name": "Summer Solstice Reflection",
+        "short_description": "Reflect on your year so far at the halfway mark.",
+        "long_description": "The longest day marks the year's halfway point. Use this moment to reflect on your journey so far — what patterns have emerged? What have you learned about yourself? InnerCycles helps you see the bigger picture with mood trends, pattern insights, and guided prompts.",
+        "event_card_image_text": "Summer Solstice: Your Mid-Year Reflection"
+      },
+      "tr": {
+        "name": "Yaz Gündönümü Yansıması",
+        "short_description": "Yılın yarısında şimdiye kadarki yolculuğunu yansıt.",
+        "long_description": "Yılın en uzun günü yarı yıl noktasını işaret eder. Bu anı şimdiye kadarki yolculuğunuz üzerine düşünmek için kullanın — hangi örüntüler ortaya çıktı? Kendiniz hakkında ne öğrendiniz?",
+        "event_card_image_text": "Yaz Gündönümü: Yıl Ortası Yansımanız"
+      }
+    },
+    {
+      "id": "gratitude_november_2026",
+      "reference_name": "30 Days of Gratitude",
+      "badge": "challenge",
+      "event_purpose": "attract_new_users",
+      "start_date": "2026-11-01",
+      "end_date": "2026-11-30",
+      "en": {
+        "name": "30 Days of Gratitude",
+        "short_description": "A daily gratitude journaling practice for November.",
+        "long_description": "This November, cultivate gratitude through daily journaling. Each day, reflect on what you're thankful for, track how gratitude affects your mood, and discover patterns in what brings you joy. Research shows regular gratitude practice improves wellbeing — and InnerCycles makes it beautiful.",
+        "event_card_image_text": "30 Days of Gratitude Challenge"
+      },
+      "tr": {
+        "name": "30 Gün Minnettarlık",
+        "short_description": "Kasım ayı için günlük minnettarlık yazma pratiği.",
+        "long_description": "Bu Kasım, günlük yazarak minnettarlığı geliştirin. Her gün neye minnettar olduğunuzu yansıtın, minnettarlığın ruh halinizi nasıl etkilediğini takip edin ve size neşe getiren şeylerdeki örüntüleri keşfedin.",
+        "event_card_image_text": "30 Gün Minnettarlık Mücadelesi"
+      }
+    },
+    {
+      "id": "new_year_reflection_2027",
+      "reference_name": "New Year Reflection",
+      "badge": "event",
+      "event_purpose": "attract_new_users",
+      "start_date": "2026-12-28",
+      "end_date": "2027-01-14",
+      "en": {
+        "name": "New Year, New Journal",
+        "short_description": "Start 2027 with clarity through guided reflection.",
+        "long_description": "Begin the new year with intention. Our New Year reflection series guides you through reviewing your past year, recognizing growth patterns, setting meaningful intentions, and building a daily journaling habit. Start writing your story today.",
+        "event_card_image_text": "New Year 2027: Start Your Journaling Journey"
+      },
+      "tr": {
+        "name": "Yeni Yıl, Yeni Günlük",
+        "short_description": "Rehberli yansımayla 2027'ye netlikle başla.",
+        "long_description": "Yeni yıla niyetle başlayın. Yeni yıl yansıma serimiz geçen yılınızı gözden geçirmeniz, büyüme örüntülerini fark etmeniz, anlamlı niyetler belirlemeniz ve günlük yazma alışkanlığı oluşturmanız için size rehberlik eder.",
+        "event_card_image_text": "Yeni Yıl 2027: Günlük Yolculuğuna Başla"
+      }
+    }
+  ],
+  "notes": "Submit these via App Store Connect → In-App Events. Each event needs a card image (1920x1080), badge image (1080x1080), and detail page image (1920x1080). Events appear in search results and editorial features, significantly increasing visibility."
+}

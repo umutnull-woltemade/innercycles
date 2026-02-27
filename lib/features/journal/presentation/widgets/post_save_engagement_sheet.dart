@@ -189,7 +189,10 @@ class PostSaveEngagementSheet extends ConsumerWidget {
               // Dismiss button
               GestureDetector(
                 onTap: () => Navigator.of(context).pop(),
-                child: Text(
+                behavior: HitTestBehavior.opaque,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Text(
                   isEn ? 'Back to Home' : 'Ana Sayfa\u0027ya D\u00f6n',
                   style: AppTypography.subtitle(
                     fontSize: 14,
@@ -197,6 +200,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
                   ),
+                ),
                 ),
               ).animate().fadeIn(delay: 400.ms, duration: 300.ms),
             ],
@@ -246,6 +250,18 @@ class PostSaveEngagementSheet extends ConsumerWidget {
             ? '$entryCount entries analyzed'
             : '$entryCount kay\u0131t analiz edildi',
         route: Routes.journalPatterns,
+      ));
+    }
+
+    // Invite friends (only after meaningful engagement)
+    if (entryCount >= 10) {
+      suggestions.add(_Suggestion(
+        icon: Icons.card_giftcard_rounded,
+        title: isEn ? 'Invite a friend' : 'Bir arkada\u015f\u0131n\u0131 davet et',
+        subtitle: isEn
+            ? 'You both get 7 days Premium free'
+            : '\u0130kiniz de 7 g\u00fcn \u00fccretsiz Premium kazan\u0131n',
+        route: Routes.referralProgram,
       ));
     }
 

@@ -57,9 +57,30 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
             child: serviceAsync.when(
               loading: () => const CosmicLoadingIndicator(),
               error: (_, _) => Center(
-                child: Text(
-                  CommonStrings.errorLoadingProgram(language),
-                  style: AppTypography.subtitle(color: AppColors.textMuted),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      CommonStrings.errorLoadingProgram(language),
+                      textAlign: TextAlign.center,
+                      style: AppTypography.subtitle(color: AppColors.textMuted),
+                    ),
+                    const SizedBox(height: 12),
+                    TextButton.icon(
+                      onPressed: () =>
+                          ref.invalidate(guidedProgramServiceProvider),
+                      icon: Icon(Icons.refresh_rounded,
+                          size: 16, color: AppColors.starGold),
+                      label: Text(
+                        isEn ? 'Retry' : 'Tekrar Dene',
+                        style: AppTypography.elegantAccent(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.starGold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               data: (service) {
@@ -167,7 +188,7 @@ class _ActiveProgramScreenState extends ConsumerState<ActiveProgramScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            isEn ? 'Day $dayNumber completed!' : '$dayNumber. gün tamamlandı!',
+            isEn ? 'Day $dayNumber complete — keep the momentum going!' : '$dayNumber. gün tamam — ivmeni sürdür!',
           ),
           backgroundColor: AppColors.success,
           behavior: SnackBarBehavior.floating,

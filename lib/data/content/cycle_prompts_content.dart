@@ -68,6 +68,27 @@ class CyclePromptsContent {
           'Enerjin düşükse, bugün seni besleyecek küçük bir konfor ne olabilir?',
       phase: CyclePhase.menstrual,
     ),
+    CyclePrompt(
+      promptEn: 'What are you ready to release from this cycle?',
+      promptTr: 'Bu döngüden neyi bırakmaya hazırsın?',
+      phase: CyclePhase.menstrual,
+    ),
+    CyclePrompt(
+      promptEn: 'Where in your body do you hold tension right now?',
+      promptTr: 'Şu an bedeninde gerginliği nerede tutuyorsun?',
+      phase: CyclePhase.menstrual,
+    ),
+    CyclePrompt(
+      promptEn: 'What would deep rest look like for you today?',
+      promptTr: 'Bugün senin için derin dinlenme neye benzerdi?',
+      phase: CyclePhase.menstrual,
+    ),
+    CyclePrompt(
+      promptEn:
+          'If you could ask your body one question, what would it be?',
+      promptTr: 'Bedenine bir soru sorabilsen, ne sorardın?',
+      phase: CyclePhase.menstrual,
+    ),
 
     // ═══════════════════════════════════════════════════════════════════
     // FOLLICULAR PHASE - Rising Energy
@@ -99,6 +120,26 @@ class CyclePromptsContent {
           'How does it feel when your motivation returns? Notice the shift.',
       promptTr:
           'Motivasyonun geri döndüğünde nasıl hissediyorsun? Değişimi fark et.',
+      phase: CyclePhase.follicular,
+    ),
+    CyclePrompt(
+      promptEn: 'What skill or habit do you want to build while your energy is fresh?',
+      promptTr: 'Enerjin tazeyken hangi beceri veya alışkanlığı geliştirmek istiyorsun?',
+      phase: CyclePhase.follicular,
+    ),
+    CyclePrompt(
+      promptEn: 'What does your most confident self look like this week?',
+      promptTr: 'Bu hafta en özgüvenli halin neye benziyor?',
+      phase: CyclePhase.follicular,
+    ),
+    CyclePrompt(
+      promptEn: 'If you could plan the perfect day, what would it include?',
+      promptTr: 'Mükemmel bir gün planlayabilsen, neler içerirdi?',
+      phase: CyclePhase.follicular,
+    ),
+    CyclePrompt(
+      promptEn: 'What small experiment could you try today?',
+      promptTr: 'Bugün hangi küçük deneyi yapabilirsin?',
       phase: CyclePhase.follicular,
     ),
 
@@ -133,6 +174,26 @@ class CyclePromptsContent {
       promptTr: 'Başkaları tarafından gerçekten görüldüğünü hissettiren ne?',
       phase: CyclePhase.ovulatory,
     ),
+    CyclePrompt(
+      promptEn: 'What relationship in your life deserves more of your attention right now?',
+      promptTr: 'Hayatında hangi ilişki şu an daha fazla ilgini hak ediyor?',
+      phase: CyclePhase.ovulatory,
+    ),
+    CyclePrompt(
+      promptEn: 'When you feel magnetic, what qualities are you radiating?',
+      promptTr: 'Kendini çekici hissettiğinde hangi nitelikleri yayıyorsun?',
+      phase: CyclePhase.ovulatory,
+    ),
+    CyclePrompt(
+      promptEn: 'What bold step have you been considering? This might be the time.',
+      promptTr: 'Düşündüğün cesur bir adım var mı? Şimdi tam zamanı olabilir.',
+      phase: CyclePhase.ovulatory,
+    ),
+    CyclePrompt(
+      promptEn: 'How can you celebrate yourself today, even in a small way?',
+      promptTr: 'Bugün kendini küçük de olsa nasıl kutlayabilirsin?',
+      phase: CyclePhase.ovulatory,
+    ),
 
     // ═══════════════════════════════════════════════════════════════════
     // LUTEAL PHASE - Reflection & Inward Turn
@@ -165,6 +226,26 @@ class CyclePromptsContent {
       promptEn:
           'What truth becomes clearer when you slow down and listen inward?',
       promptTr: 'Yavaşlayıp içine kulak verdiğinde hangi gerçek netleşiyor?',
+      phase: CyclePhase.luteal,
+    ),
+    CyclePrompt(
+      promptEn: 'What unspoken need is asking for your attention?',
+      promptTr: 'Dile getirilmemiş hangi ihtiyaç ilgini istiyor?',
+      phase: CyclePhase.luteal,
+    ),
+    CyclePrompt(
+      promptEn: 'What does your inner voice keep whispering that you have not acted on?',
+      promptTr: 'İç sesin ne fısıldıyor da henüz harekete geçmedin?',
+      phase: CyclePhase.luteal,
+    ),
+    CyclePrompt(
+      promptEn: 'If frustration appears, what might it be protecting you from?',
+      promptTr: 'Hayal kırıklığı beliriyorsa, seni neden koruyor olabilir?',
+      phase: CyclePhase.luteal,
+    ),
+    CyclePrompt(
+      promptEn: 'What would you say to yourself if you were your own best friend?',
+      promptTr: 'Kendi en iyi arkadaşın olsan kendine ne söylerdin?',
       phase: CyclePhase.luteal,
     ),
   ];
