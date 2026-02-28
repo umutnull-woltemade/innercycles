@@ -285,7 +285,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  isEn ? "Today's Prompt" : 'Günün İlhamı',
+                  L10nService.get('prompts.todays_prompt', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     color: AppColors.starGold,

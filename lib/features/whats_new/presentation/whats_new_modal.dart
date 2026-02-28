@@ -213,7 +213,7 @@ class _WhatsNewSheet extends StatelessWidget {
 
               // ---- Header ----
               GradientText(
-                    isEn ? "What's New" : 'Yenilikler',
+                    L10nService.get('whats_new.title', isEn ? AppLanguage.en : AppLanguage.tr),
                     variant: GradientTextVariant.aurora,
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 24,

@@ -213,7 +213,7 @@ class _AffirmationLibraryScreenState
           Icon(Icons.auto_awesome, size: 28, color: AppColors.starGold),
           const SizedBox(height: AppConstants.spacingMd),
           GradientText(
-            isEn ? "Today's Affirmation" : 'Günün Olumlaması',
+            L10nService.get('affirmation.todays_affirmation', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 13,

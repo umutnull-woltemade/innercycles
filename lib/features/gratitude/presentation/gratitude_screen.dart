@@ -369,7 +369,7 @@ class _TodaySection extends StatelessWidget {
               Icon(Icons.favorite_outline, size: 18, color: AppColors.starGold),
               const SizedBox(width: 8),
               GradientText(
-                isEn ? "Today's Gratitude" : 'Bugünkü Şükran',
+                L10nService.get('gratitude.todays_gratitude', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 17,

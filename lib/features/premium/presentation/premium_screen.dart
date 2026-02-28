@@ -121,7 +121,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
         Row(
           children: [
             IconButton(
-              tooltip: language == AppLanguage.en ? 'Back to App' : 'Uygulamaya Dön',
+              tooltip: L10nService.get('premium.back_to_app', language),
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.close, color: AppColors.textPrimary),
             ),

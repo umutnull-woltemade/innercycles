@@ -54,7 +54,7 @@ class SettingsScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: language == AppLanguage.en ? 'Settings' : 'Ayarlar',
+                  title: L10nService.get('settings.title', language),
                   largeTitleMode: true,
                 ),
                 SliverPadding(
@@ -66,7 +66,7 @@ class SettingsScreen extends ConsumerWidget {
                     delegate: SliverChildListDelegate([
                       // ═══ APPEARANCE SECTION ═══
                       _SectionHeader(
-                        title: (language == AppLanguage.en ? 'Theme' : 'Tema')
+                        title: L10nService.get('settings.theme_title', language)
                             .toUpperCase(),
                         isDark: isDark,
                       ),
@@ -114,7 +114,7 @@ class SettingsScreen extends ConsumerWidget {
 
                       // ═══ LANGUAGE SECTION ═══
                       _SectionHeader(
-                        title: (language == AppLanguage.en ? 'Language' : 'Dil')
+                        title: L10nService.get('settings.language_title', language)
                             .toUpperCase(),
                         isDark: isDark,
                       ),
@@ -658,7 +658,7 @@ class SettingsScreen extends ConsumerWidget {
       context,
       title: L10nService.get('settings.clear_data_confirm', language),
       message: L10nService.get('settings.clear_data_warning', language),
-      cancelLabel: language == AppLanguage.en ? 'Cancel' : 'İptal',
+      cancelLabel: L10nService.get('common.cancel', language),
       confirmLabel: L10nService.get('settings.delete', language),
       isDestructive: true,
     );
@@ -686,12 +686,10 @@ class SettingsScreen extends ConsumerWidget {
   ) async {
     final confirmed = await GlassDialog.confirm(
       context,
-      title: language == AppLanguage.en ? 'Sign Out?' : 'Çıkış Yap?',
-      message: language == AppLanguage.en
-          ? 'Your data is saved locally and will sync when you sign back in.'
-          : 'Verileriniz yerel olarak kaydedilir ve tekrar giriş yaptığınızda senkronize edilir.',
-      cancelLabel: language == AppLanguage.en ? 'Cancel' : 'İptal',
-      confirmLabel: language == AppLanguage.en ? 'Sign Out' : 'Çıkış Yap',
+      title: L10nService.get('settings.sign_out_title', language),
+      message: L10nService.get('settings.sign_out_message', language),
+      cancelLabel: L10nService.get('common.cancel', language),
+      confirmLabel: L10nService.get('settings.sign_out_confirm', language),
       isDestructive: true,
     );
     if (confirmed != true || !context.mounted) return;
@@ -705,7 +703,7 @@ class SettingsScreen extends ConsumerWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            language == AppLanguage.en ? 'Signed out successfully' : 'Başarıyla çıkış yapıldı',
+            L10nService.get('settings.sign_out_success', language),
           ),
           backgroundColor: AppColors.surfaceLight,
           behavior: SnackBarBehavior.floating,
@@ -904,7 +902,7 @@ class SettingsScreen extends ConsumerWidget {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              language == AppLanguage.en ? 'Got it' : 'Anladım',
+              L10nService.get('settings.got_it', language),
               style: AppTypography.modernAccent(
                 color: AppColors.starGold,
                 fontWeight: FontWeight.w600,

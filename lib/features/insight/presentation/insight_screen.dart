@@ -167,7 +167,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          tooltip: language == AppLanguage.en ? 'Back' : 'Geri',
+          tooltip: L10nService.get('common.back', language),
           icon: Icon(
             Icons.chevron_left,
             size: 28,
@@ -420,7 +420,7 @@ class _InsightScreenState extends ConsumerState<InsightScreen>
           ),
           const SizedBox(width: 12),
           Semantics(
-            label: language == AppLanguage.en ? 'Send message' : 'Mesaj gönder',
+            label: L10nService.get('insight.send_message', language),
             button: true,
             child: GestureDetector(
               onTap: _sendMessage,

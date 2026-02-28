@@ -301,7 +301,7 @@ class _DreamGlossaryScreenState extends ConsumerState<DreamGlossaryScreen>
         children: [
           IconButton(
             onPressed: () => context.pop(),
-            tooltip: language == AppLanguage.en ? 'Back' : 'Geri',
+            tooltip: L10nService.get('common.back', language),
             icon: const Icon(Icons.chevron_left, color: AppColors.textPrimary),
           ),
           const SizedBox(width: 8),

@@ -878,7 +878,8 @@
     "pricing": {
       "monthly": "$7.99/mo",
       "yearly_monthly": "$2.50/mo"
-    }
+    },
+    "back_to_app": "Back to App"
   },
   "progressive_unlock": {
     "dream_journal": "Dream Journal",
@@ -1588,7 +1589,8 @@
       "tap_to_read": "Tap to read",
       "todays_insight": "Today\\'s Insight",
       "why_this_matters": "Why This Matters"
-    }
+    },
+    "send_message": "Send message"
   },
   "elements": {
     "fire": "Fire",
@@ -1668,7 +1670,14 @@
       "syncing": "Syncing...",
       "this_will_permanently_delete_your_accoun": "This will permanently delete your account and all synced data. Local data will remain on this device. This cannot be undone.",
       "yes_delete": "Yes, Delete"
-    }
+    },
+    "theme_title": "Theme",
+    "language_title": "Language",
+    "sign_out_title": "Sign Out?",
+    "sign_out_confirm": "Sign Out",
+    "sign_out_message": "Your data is saved locally and will sync when you sign back in.",
+    "sign_out_success": "Signed out successfully",
+    "got_it": "Got it"
   },
   "reflection": {
     "title": "Insight",
@@ -3986,7 +3995,8 @@
     },
     "library": {
       "filter_label": "Filter: {label}"
-    }
+    },
+    "todays_affirmation": "Today's Affirmation"
   },
   "app_lock": {
     "app_lock": {
@@ -4519,7 +4529,8 @@
     },
     "archive": {
       "entry_count": "{count} entries"
-    }
+    },
+    "todays_gratitude": "Today's Gratitude"
   },
   "growth": {
     "growth_dashboard": {
@@ -5033,7 +5044,8 @@
       "start_writing": "Start Writing",
       "start_writing_1": "Start Writing",
       "your_progress": "Your Progress"
-    }
+    },
+    "todays_prompt": "Today's Prompt"
   },
   "referral": {
     "referral": {
@@ -5076,7 +5088,8 @@
       "your_past_is_now_part_of_your_journey_co": "Your past is now part of your journey. Come back anytime to write about these days.",
       "your_story_didnt_start_today": "Your story didn\\'t start today"
     },
-    "memories_saved": "{count} memories saved"
+    "memories_saved": "{count} memories saved",
+    "step_indicator": "Step {current} of {total}"
   },
   "search": {
     "global_search": {
@@ -5137,7 +5150,8 @@
       "you_have_unsaved_text_are_you_sure_you_w": "You have unsaved text. Are you sure you want to go back?",
       "your_shadow_map": "Your Shadow Map"
     },
-    "days_ago": "{count} days ago"
+    "days_ago": "{count} days ago",
+    "todays_prompt": "Today's Prompt"
   },
   "shared": {
     "ecosystems": {
@@ -5183,7 +5197,11 @@
       "share": "Share",
       "share_cards": "Share Cards",
       "shared_successfully": "Shared successfully!"
-    }
+    },
+    "category_label": "Category: {name}",
+    "preview_card": "Preview {name} card",
+    "day_of_cycle": "Day {day} of {length}",
+    "of_total": "of {total}"
   },
   "sleep": {
     "sleep": {
@@ -5488,7 +5506,8 @@
     "whats_new": {
       "got_it": "Got it",
       "latest_features_and_improvements": "Latest features and improvements"
-    }
+    },
+    "title": "What's New"
   },
   "year_review": {
     "wrapped": {
@@ -5560,5 +5579,12 @@
     "connections_header": "Your entries suggest the following dream-mood connections:",
     "connection_item": "- When \"{theme}\" appears in your dreams, {direction} the next day ({before} -> {after}, based on {samples} entries, delta {delta}).",
     "patterns_note": "These patterns may evolve as you log more entries."
+  },
+  "notification_settings": {
+    "daily_insight": "Daily Insight",
+    "off": "Off",
+    "wellness_reminders": "Wellness Reminders",
+    "reminder_at": "Reminder at {time}",
+    "wellness_subtitle": "Wellness and reflection prompts"
   }
 }

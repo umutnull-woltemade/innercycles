@@ -162,7 +162,7 @@ const List<GranularEmotion> allGranularEmotions = [
     descriptionEn:
         'A warm recognition of something good in your life that you do not take for granted.',
     descriptionTr:
-        'Hayatınızda hafife almadığınız güzel bir şeyin sıcak farkındalığı.',
+        'Hayatında hafife almadığın güzel bir şeyin sıcak farkındalığı.',
     bodySensationEn: 'Warmth in the chest, gentle smile, open hands',
     bodySensationTr: 'Göğüste sıcaklık, hafif gülümseme, açık eller',
     emoji: '🙏',
@@ -176,9 +176,9 @@ const List<GranularEmotion> allGranularEmotions = [
     descriptionEn:
         'A buzzing anticipation for something you are looking forward to.',
     descriptionTr:
-        'Sabırsızlıkla beklediğiniz bir şey için vızıldayan bir beklenti.',
+        'Sabırsızlıkla beklediğin bir şey için vızıldayan bir beklenti.',
     bodySensationEn: 'Butterfly feeling in stomach, restless energy, wide eyes',
-    bodySensationTr: 'Mide de kelebek hissi, yerinde duramama, açık gözler',
+    bodySensationTr: 'Midede kelebek hissi, yerinde duramama, açık gözler',
     emoji: '🤩',
   ),
   GranularEmotion(
@@ -190,7 +190,7 @@ const List<GranularEmotion> allGranularEmotions = [
     descriptionEn:
         'A sense of accomplishment and self-respect for something you did or who you are.',
     descriptionTr:
-        'Yaptığınız bir şey veya kim olduğunuz için başarı ve öz saygı duygusu.',
+        'Yaptığın bir şey veya kim olduğun için başarı ve öz saygı duygusu.',
     bodySensationEn: 'Upright posture, lifted chin, expansive chest',
     bodySensationTr: 'Dik duruş, kaldırılmış çene, genişlemiş göğüs',
     emoji: '💪',
@@ -263,7 +263,7 @@ const List<GranularEmotion> allGranularEmotions = [
     nameTr: 'Hayal Kırıklığı',
     descriptionEn:
         'The gap between what you expected and what actually happened.',
-    descriptionTr: 'Beklentileriniz ile gerçekte olanlar arasındaki boşluk.',
+    descriptionTr: 'Beklentilerin ile gerçekte olanlar arasındaki boşluk.',
     bodySensationEn: 'Sinking feeling in stomach, dropped shoulders',
     bodySensationTr: 'Midede çökme hissi, düşmüş omuzlar',
     emoji: '😞',
@@ -277,7 +277,7 @@ const List<GranularEmotion> allGranularEmotions = [
     descriptionEn:
         'A deep sorrow for something or someone you have lost. This is a natural, necessary process.',
     descriptionTr:
-        'Kaybettiğiniz bir şey veya biri için derin bir üzüntü. Bu doğal ve gerekli bir süreçtir.',
+        'Kaybettiğin bir şey veya biri için derin bir üzüntü. Bu doğal ve gerekli bir süreçtir.',
     bodySensationEn:
         'Heaviness everywhere, tightness in the throat, waves of tears',
     bodySensationTr: 'Her yerde ağırlık, boğazda sıkılma, gözyaşı dalgaları',
@@ -379,7 +379,7 @@ const List<GranularEmotion> allGranularEmotions = [
     descriptionEn:
         'The protective fire that rises when something important to you has been violated.',
     descriptionTr:
-        'Sizin için önemli bir şey ihlal edildiğinde yükselen koruyucu ateş.',
+        'Senin için önemli bir şey ihlal edildiğinde yükselen koruyucu ateş.',
     bodySensationEn: 'Heat in the face, tension in arms, protective stance',
     bodySensationTr: 'Yüzde sıcaklık, kollarda gerilim, koruyucu duruş',
     emoji: '🛡️',
@@ -393,7 +393,7 @@ const List<GranularEmotion> allGranularEmotions = [
     descriptionEn:
         'A painful awareness that someone has something you deeply want for yourself.',
     descriptionTr:
-        'Birinin kendiniz için derinden istediğiniz bir şeye sahip olduğunun acı verici farkındalığı.',
+        'Birinin kendin için derinden istediğin bir şeye sahip olduğunun acı verici farkındalığı.',
     bodySensationEn: 'Sinking stomach, comparing thoughts, inner discomfort',
     bodySensationTr: 'Çöken mide, karşılaştıran düşünceler, iç huzursuzluk',
     emoji: '😒',
@@ -455,7 +455,7 @@ const List<GranularEmotion> allGranularEmotions = [
     descriptionEn:
         'Doubting your own worth, abilities, or place — often triggered by comparison or rejection.',
     descriptionTr:
-        'Kendi değerinizi, yeteneklerinizi veya yerinizi sorgulamak — genellikle karşılaştırma veya reddedilme tarafından tetiklenir.',
+        'Kendi değerini, yeteneklerini veya yerini sorgulamak — genellikle karşılaştırma veya reddedilme tarafından tetiklenir.',
     bodySensationEn: 'Hunched posture, avoiding eye contact, shrinking feeling',
     bodySensationTr:
         'Kamburlaşmış duruş, göz temasından kaçınma, küçülme hissi',
@@ -470,7 +470,7 @@ const List<GranularEmotion> allGranularEmotions = [
     descriptionEn:
         'A heavy anticipation of something you believe will be painful or harmful.',
     descriptionTr:
-        'Acı verici veya zararlı olacağına inandığınız bir şeyin ağır beklentisi.',
+        'Acı verici veya zararlı olacağına inandığın bir şeyin ağır beklentisi.',
     bodySensationEn: 'Pit in stomach, cold hands, frozen feeling',
     bodySensationTr: 'Mide çukurunda boşluk, soğuk eller, donmuş hissetme',
     emoji: '😨',
@@ -484,7 +484,7 @@ const List<GranularEmotion> allGranularEmotions = [
     descriptionEn:
         'A painful feeling of being fundamentally flawed, not just that you did something wrong.',
     descriptionTr:
-        'Temel olarak kusurlu olma hissi, sadece yanlış bir şey yaptığınız değil.',
+        'Temel olarak kusurlu olma hissi, sadece yanlış bir şey yaptığın değil.',
     bodySensationEn: 'Heat in face, desire to disappear, hunched posture',
     bodySensationTr: 'Yüzde sıcaklık, yok olma isteği, kamburlaşmış duruş',
     emoji: '😣',
@@ -514,7 +514,7 @@ const List<GranularEmotion> allGranularEmotions = [
     descriptionEn:
         'A state of wonder when something exceeds your expectations in a positive way.',
     descriptionTr:
-        'Bir şey beklentilerinizi olumlu bir şekilde aştığında hayranlık durumu.',
+        'Bir şey beklentilerini olumlu bir şekilde aştığında hayranlık durumu.',
     bodySensationEn: 'Jaw drop, goosebumps, expanded awareness',
     bodySensationTr: 'Çene düşmesi, tüyler diken diken, genişlemiş farkındalık',
     emoji: '🤯',
@@ -556,7 +556,7 @@ const List<GranularEmotion> allGranularEmotions = [
     descriptionEn:
         'A surge of creative energy sparked by something you witnessed or experienced.',
     descriptionTr:
-        'Tanık olduğunuz veya deneyimlediğiniz bir şeyin ateşlediği yaratıcı enerji dalgası.',
+        'Tanık olduğun veya deneyimlediğin bir şeyin ateşlediği yaratıcı enerji dalgası.',
     bodySensationEn: 'Tingling excitement, urge to create, mental clarity',
     bodySensationTr: 'Karıncalanan heyecan, yaratma dürtüsü, zihinsel netlik',
     emoji: '💡',
@@ -603,7 +603,7 @@ const List<GranularEmotion> allGranularEmotions = [
     descriptionEn:
         'A grounded stability where you feel connected to yourself and your values.',
     descriptionTr:
-        'Kendinize ve değerlerinize bağlı hissettiğiniz topraklanmış bir istikrar.',
+        'Kendine ve değerlerine bağlı hissettiğin topraklanmış bir istikrar.',
     bodySensationEn: 'Feet on ground, balanced posture, clear mind',
     bodySensationTr: 'Yerde ayaklar, dengeli duruş, berrak zihin',
     emoji: '🧘',
@@ -631,7 +631,7 @@ const List<GranularEmotion> allGranularEmotions = [
     descriptionEn:
         'Feeling seen and welcomed as you are, without needing to perform or prove.',
     descriptionTr:
-        'Performans göstermeye veya kanıtlamaya gerek duymadan olduğunuz gibi görüldüğünüzü ve kabul edildiğinizi hissetmek.',
+        'Performans göstermeye veya kanıtlamaya gerek duymadan olduğun gibi görüldüğünü ve kabul edildiğini hissetmek.',
     bodySensationEn: 'Relaxed face, open body, warmth in the heart',
     bodySensationTr: 'Gevşemiş yüz, açık beden, kalpte sıcaklık',
     emoji: '🤗',

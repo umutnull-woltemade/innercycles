@@ -457,7 +457,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               const SizedBox(width: 8),
               Expanded(
                 child: GradientText(
-                  isEn ? "Today's Prompt" : 'Günün Sorusu',
+                  L10nService.get('shadow_work.todays_prompt', isEn ? AppLanguage.en : AppLanguage.tr),
                   variant: GradientTextVariant.amethyst,
                   style: AppTypography.elegantAccent(
                     fontSize: 14,

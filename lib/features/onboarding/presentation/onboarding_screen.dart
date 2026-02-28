@@ -206,7 +206,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       onPressed: _previousPage,
                       icon: const Icon(Icons.arrow_back_ios_rounded, size: 20),
                       color: AppColors.textMuted,
-                      tooltip: language == AppLanguage.en ? 'Back' : 'Geri',
+                      tooltip: L10nService.get('common.back', language),
                     ),
                   ),
                 ),

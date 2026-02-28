@@ -16,6 +16,8 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/models/share_card_models.dart';
 import '../../../../data/content/share_card_templates.dart';
+import '../../../../data/providers/app_providers.dart';
+import '../../../../data/services/l10n_service.dart';
 import '../../../../shared/widgets/app_symbol.dart';
 
 // ============================================================================
@@ -931,7 +933,7 @@ class _CyclePositionLayout extends StatelessWidget {
             border: Border.all(color: accent.withValues(alpha: 0.3)),
           ),
           child: Text(
-            data.detail ?? (isEn ? 'Day ${cycleDay.toInt()} of ${cycleLength.toInt()}' : 'Gün ${cycleDay.toInt()} / ${cycleLength.toInt()}'),
+            data.detail ?? L10nService.getWithParams('sharing.day_of_cycle', isEn ? AppLanguage.en : AppLanguage.tr, params: {'day': '${cycleDay.toInt()}', 'length': '${cycleLength.toInt()}'}),
             style: AppTypography.elegantAccent(
               fontSize: 12,
               color: accent,
@@ -996,7 +998,7 @@ class _CyclePositionLayout extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        isEn ? 'of ${cycleLength.toInt()}' : '/ ${cycleLength.toInt()}',
+                        L10nService.getWithParams('sharing.of_total', isEn ? AppLanguage.en : AppLanguage.tr, params: {'total': '${cycleLength.toInt()}'}),
                         style: AppTypography.subtitle(
                           fontSize: 14,
                           color: AppColors.textMuted,

@@ -188,7 +188,7 @@ class _StepIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: isEn ? 'Step ${currentStep + 1} of 4' : 'Adım ${currentStep + 1} / 4',
+      label: L10nService.getWithParams('retrospective.step_indicator', isEn ? AppLanguage.en : AppLanguage.tr, params: {'current': '${currentStep + 1}', 'total': '4'}),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
         child: Row(

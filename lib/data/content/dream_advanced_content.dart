@@ -12,8 +12,8 @@ class LucidRuyaRehberi {
   static const List<LucidTechnique> teknikler = [
     LucidTechnique(
       id: 'reality-check',
-      name: 'Gerçeklik Kontrolü',
-      nameTr: 'Reality Check',
+      name: 'Reality Check',
+      nameTr: 'Gerçeklik Kontrolü',
       difficulty: 'Başlangıç',
       description:
           'Gün içinde düzenli olarak "Rüyada mıyım?" sorusunu sor ve gerçeklik testleri yap.',
@@ -36,7 +36,7 @@ class LucidRuyaRehberi {
     LucidTechnique(
       id: 'wild',
       name: 'WILD',
-      nameTr: 'Wake Initiated Lucid Dream',
+      nameTr: 'Uyanıkken Başlatılan Lucid Rüya',
       difficulty: 'İleri',
       description:
           'Uyanıkken doğrudan rüyaya geçiş. Bilinç kaybetmeden rüya haline giriş.',
@@ -60,7 +60,7 @@ class LucidRuyaRehberi {
     LucidTechnique(
       id: 'mild',
       name: 'MILD',
-      nameTr: 'Mnemonic Induction of Lucid Dreams',
+      nameTr: 'Anımsatıcı Lucid Rüya Telkini',
       difficulty: 'Orta',
       description: 'Uyumadan önce niyet kurarak rüyada farkındalık tetiklemek.',
       steps: [
@@ -82,7 +82,7 @@ class LucidRuyaRehberi {
     LucidTechnique(
       id: 'wbtb',
       name: 'WBTB',
-      nameTr: 'Wake Back to Bed',
+      nameTr: 'Uyanıp Tekrar Yatma',
       difficulty: 'Orta',
       description:
           'Gece ortasında uyanıp, kısa süre sonra tekrar uyumak. REM dönemini hedefler.',
@@ -104,7 +104,7 @@ class LucidRuyaRehberi {
     LucidTechnique(
       id: 'ssild',
       name: 'SSILD',
-      nameTr: 'Senses Initiated Lucid Dream',
+      nameTr: 'Duyularla Başlatılan Lucid Rüya',
       difficulty: 'Orta',
       description:
           'Duyulara odaklanarak bilinçaltını tetiklemek. WBTB ile birlikte kullanılır.',

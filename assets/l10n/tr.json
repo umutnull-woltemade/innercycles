@@ -878,7 +878,8 @@
     "pricing": {
       "monthly": "$7,99/ay",
       "yearly_monthly": "$2,50/ay"
-    }
+    },
+    "back_to_app": "Uygulamaya Dön"
   },
   "progressive_unlock": {
     "dream_journal": "Rüya Günlüğü",
@@ -1588,7 +1589,8 @@
       "tap_to_read": "Okumak için dokun",
       "todays_insight": "Bugünün İçgörüsü",
       "why_this_matters": "Neden Önemli"
-    }
+    },
+    "send_message": "Mesaj gönder"
   },
   "elements": {
     "fire": "Ateş",
@@ -1668,7 +1670,14 @@
       "syncing": "Senkronize ediliyor...",
       "this_will_permanently_delete_your_accoun": "Bu işlem hesabınızı ve senkronize edilmiş tüm verileri kalıcı olarak siler. Yerel veriler bu cihazda kalır. Bu işlem geri alınamaz.",
       "yes_delete": "Evet, Sil"
-    }
+    },
+    "theme_title": "Tema",
+    "language_title": "Dil",
+    "sign_out_title": "Çıkış Yap?",
+    "sign_out_confirm": "Çıkış Yap",
+    "sign_out_message": "Verileriniz yerel olarak kaydedilir ve tekrar giriş yaptığınızda senkronize edilir.",
+    "sign_out_success": "Başarıyla çıkış yapıldı",
+    "got_it": "Anladım"
   },
   "reflection": {
     "title": "Kişisel İçgörü",
@@ -3986,7 +3995,8 @@
     },
     "library": {
       "filter_label": "Filtre: {label}"
-    }
+    },
+    "todays_affirmation": "Günün Olumlaması"
   },
   "app_lock": {
     "app_lock": {
@@ -4519,7 +4529,8 @@
     },
     "archive": {
       "entry_count": "{count} kayıt"
-    }
+    },
+    "todays_gratitude": "Bugünkü Şükran"
   },
   "growth": {
     "growth_dashboard": {
@@ -5033,7 +5044,8 @@
       "start_writing": "Yazmaya Başla",
       "start_writing_1": "Yazmaya Başla",
       "your_progress": "İlerlemeniz"
-    }
+    },
+    "todays_prompt": "Günün İlhamı"
   },
   "referral": {
     "referral": {
@@ -5076,7 +5088,8 @@
       "your_past_is_now_part_of_your_journey_co": "Geçmişin artık yolculuğunun bir parçası. Bu günler hakkında yazmak için istediğin zaman geri dön.",
       "your_story_didnt_start_today": "Hikayen bugün başlamadı"
     },
-    "memories_saved": "{count} anı kaydedildi"
+    "memories_saved": "{count} anı kaydedildi",
+    "step_indicator": "Adım {current} / {total}"
   },
   "search": {
     "global_search": {
@@ -5137,7 +5150,8 @@
       "you_have_unsaved_text_are_you_sure_you_w": "Kaydedilmemi\\u{015F} metniniz var. Geri d\\u{00F6}nmek istedi\\u{011F}inizden emin misiniz?",
       "your_shadow_map": "Gölge Haritan"
     },
-    "days_ago": "{count} gün önce"
+    "days_ago": "{count} gün önce",
+    "todays_prompt": "Günün Sorusu"
   },
   "shared": {
     "ecosystems": {
@@ -5183,7 +5197,11 @@
       "share": "Paylaş",
       "share_cards": "Paylaşım Kartları",
       "shared_successfully": "Başarıyla paylaşıldı!"
-    }
+    },
+    "category_label": "Kategori: {name}",
+    "preview_card": "{name} kartını önizle",
+    "day_of_cycle": "Gün {day} / {length}",
+    "of_total": "/ {total}"
   },
   "sleep": {
     "sleep": {
@@ -5488,7 +5506,8 @@
     "whats_new": {
       "got_it": "Anla\\u015f\\u0131ld\\u0131",
       "latest_features_and_improvements": "Son \\u00f6zellikler ve iyile\\u015ftirmeler"
-    }
+    },
+    "title": "Yenilikler"
   },
   "year_review": {
     "wrapped": {
@@ -5560,5 +5579,12 @@
     "connections_header": "Kayıtların aşağıdaki rüya-ruh hali bağlantılarını gösteriyor:",
     "connection_item": "- Rüyalarında \"{theme}\" göründüğünde, ertesi gün {direction} ({before} -> {after}, {samples} kayda dayanarak, değişim {delta}).",
     "patterns_note": "Bu örüntüler daha fazla kayıt ekledikçe gelişebilir."
+  },
+  "notification_settings": {
+    "daily_insight": "Günlük İçgörü",
+    "off": "Kapalı",
+    "wellness_reminders": "Sağlık Hatırlatmaları",
+    "reminder_at": "Hatırlatma: {time}",
+    "wellness_subtitle": "Öz bakım ve yansıma uyarıları"
   }
 }

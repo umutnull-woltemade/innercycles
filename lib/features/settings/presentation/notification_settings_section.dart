@@ -157,12 +157,10 @@ class _NotificationSettingsSectionState
               context,
               isDark,
               icon: Icons.auto_awesome_outlined,
-              title: isEnglish ? 'Daily Insight' : 'Günlük İçgörü',
+              title: L10nService.get('notification_settings.daily_insight', language),
               subtitle: _dailyInsightEnabled
-                  ? (isEnglish
-                        ? 'Reminder at ${_dailyHour.toString().padLeft(2, '0')}:${_dailyMinute.toString().padLeft(2, '0')}'
-                        : 'Hatırlatma: ${_dailyHour.toString().padLeft(2, '0')}:${_dailyMinute.toString().padLeft(2, '0')}')
-                  : (isEnglish ? 'Off' : 'Kapalı'),
+                  ? L10nService.getWithParams('notification_settings.reminder_at', language, params: {'time': '${_dailyHour.toString().padLeft(2, '0')}:${_dailyMinute.toString().padLeft(2, '0')}'})
+                  : L10nService.get('notification_settings.off', language),
               value: _dailyInsightEnabled,
               onChanged: _toggleDailyInsight,
               onTap: _dailyInsightEnabled ? _selectDailyTime : null,
@@ -179,10 +177,8 @@ class _NotificationSettingsSectionState
               context,
               isDark,
               icon: Icons.spa_outlined,
-              title: isEnglish ? 'Wellness Reminders' : 'Sağlık Hatırlatmaları',
-              subtitle: isEnglish
-                  ? 'Wellness and reflection prompts'
-                  : 'Öz bakım ve yansıma uyarıları',
+              title: L10nService.get('notification_settings.wellness_reminders', language),
+              subtitle: L10nService.get('notification_settings.wellness_subtitle', language),
               value: _wellnessRemindersEnabled,
               onChanged: _toggleWellnessReminders,
             ),

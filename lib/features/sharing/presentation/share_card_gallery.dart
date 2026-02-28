@@ -247,7 +247,7 @@ class _ShareCardGalleryScreenState
           return Semantics(
             button: true,
             selected: isSelected,
-            label: isEn ? 'Category: ${category.label(isEn)}' : 'Kategori: ${category.label(isEn)}',
+            label: L10nService.getWithParams('sharing.category_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'name': category.label(isEn)}),
             child: GestureDetector(
               onTap: () {
                 HapticFeedback.selectionClick();
@@ -338,7 +338,7 @@ class _ShareCardGalleryScreenState
 
         return Semantics(
           button: true,
-          label: isEn ? 'Preview ${template.title(isEn)} card' : '${template.title(isEn)} kartını önizle',
+          label: L10nService.getWithParams('sharing.preview_card', isEn ? AppLanguage.en : AppLanguage.tr, params: {'name': template.title(isEn)}),
           child: GestureDetector(
             onTap: () {
               HapticFeedback.lightImpact();
