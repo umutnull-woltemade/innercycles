@@ -92,7 +92,7 @@ class PromptLibraryScreen extends ConsumerWidget {
 class _PromptLibraryContent extends StatefulWidget {
   final JournalPromptService service;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;  bool get isEn => language.isEn;
 
   const _PromptLibraryContent({
     required this.service,

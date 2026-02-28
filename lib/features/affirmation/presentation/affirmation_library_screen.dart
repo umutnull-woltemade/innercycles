@@ -313,7 +313,7 @@ class _FilterChip extends StatelessWidget {
   final String label;
   final bool isSelected;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;  bool get isEn => language.isEn;
   final IconData? icon;
   final VoidCallback onTap;
 
@@ -390,7 +390,7 @@ class _AffirmationTile extends StatelessWidget {
   final Affirmation affirmation;
   final bool isFavorite;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;  bool get isEn => language.isEn;
   final VoidCallback onToggleFavorite;
 
   const _AffirmationTile({

@@ -523,7 +523,7 @@ class _ThumbnailCard extends StatelessWidget {
   final ShareCardData data;
   final Color accent;
   final bool isDark;
-  final bool isEn;
+  final AppLanguage language;  bool get isEn => language.isEn;
 
   const _ThumbnailCard({
     required this.template,
