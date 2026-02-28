@@ -1031,7 +1031,7 @@
       "error_try_again": "An error occurred. Please try again.",
       "interpretation_failed": "Could not generate interpretation.",
       "share_another": "If you want to share another dream, I'm ready to listen.",
-      "welcome_message": "Hello, I am Dream Trace. I'm here to explore your dreams through the lens of your {signName} archetype.\n\nDescribe your dream in detail. What did you see? How did you feel? The more you share about the symbols, colors, and emotions in your dream, the deeper the reflection will be.\n\n",
+      "welcome_message": "Hello, I am Dream Trace. I'm here to explore your dreams through the lens of your {archetypeName} archetype.\n\nDescribe your dream in detail. What did you see? How did you feel? The more you share about the symbols, colors, and emotions in your dream, the deeper the reflection will be.\n\n",
       "prompts": {
         "water_breathing": "I was swimming in the sea but I could breathe underwater",
         "rain_running": "I was running in heavy rain but not getting wet",
@@ -2214,7 +2214,7 @@
       "which_dreams_this_sign_sees": "What dreams do people of this archetype see most?",
       "special_message_for_today": "Special Message for Today",
       "cosmic_guidance": "Get personal guidance.",
-      "beyond_your_sun_sign": "What's beyond your core archetype?",
+      "beyond_your_core_archetype": "What's beyond your core archetype?",
       "where_is_your_ruler": "Where is your guiding trait now?",
       "reading_aligned_with_energy": "A reflection aligned with your energy.",
       "compatibility_with": "Compatibility Profile",

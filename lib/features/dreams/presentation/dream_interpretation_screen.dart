@@ -520,12 +520,12 @@ class _DreamInterpretationScreenState
   void _addWelcomeMessage() {
     final sign = _resolveArchetype();
     final language = ref.read(languageProvider);
-    final signName = sign.localizedName(language);
+    final archetypeName = sign.localizedName(language);
 
     final welcomeText = L10nService.get(
       'widgets.dreams.welcome_message',
       language,
-    ).replaceAll('{signName}', signName);
+    ).replaceAll('{archetypeName}', archetypeName);
 
     setState(() {
       _messages.add(
@@ -774,7 +774,7 @@ class _DreamInterpretationScreenState
 
   String _getWaterInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
-    final signName = sign.localizedName(language).toUpperCase();
+    final archetypeName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
 
     // Map sign to JSON key
@@ -792,7 +792,7 @@ class _DreamInterpretationScreenState
       final title = L10nService.getWithParams(
         'widgets.dreams.interpretations.water.title',
         language,
-        params: {'archetype': signName},
+        params: {'archetype': archetypeName},
       );
       final divider = L10nService.get(
         'widgets.dreams.interpretations.water.divider',
@@ -853,7 +853,7 @@ $practice''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.water.title',
       language,
-      params: {'archetype': signName},
+      params: {'archetype': archetypeName},
     );
     final divider = L10nService.get(
       'widgets.dreams.interpretations.water.divider',
@@ -902,7 +902,7 @@ $practice''';
 
   String _getFlyingInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
-    final signName = sign.localizedName(language).toUpperCase();
+    final archetypeName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
     final elementKey = _getElementKey(sign.element);
     final elementMessage = L10nService.get(
@@ -913,7 +913,7 @@ $practice''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.flying.title',
       language,
-      params: {'archetype': signName},
+      params: {'archetype': archetypeName},
     );
     final basicLabel = L10nService.get(
       'widgets.dreams.interpretations.flying.basic_meaning_label',
@@ -926,7 +926,7 @@ $practice''';
     final specialLabel = L10nService.getWithParams(
       'widgets.dreams.interpretations.flying.special_interpretation_label',
       language,
-      params: {'archetype': signName},
+      params: {'archetype': archetypeName},
     );
     final specialInterpretation = L10nService.get(
       'widgets.dreams.interpretations.flying.special_interpretation',
@@ -1003,13 +1003,13 @@ $cosmicMessage''';
 
   String _getFallingInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
-    final signName = sign.localizedName(language).toUpperCase();
+    final archetypeName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
 
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.falling.title',
       language,
-      params: {'archetype': signName},
+      params: {'archetype': archetypeName},
     );
     final basicLabel = L10nService.get(
       'widgets.dreams.interpretations.falling.basic_meaning_label',
@@ -1063,7 +1063,7 @@ $cosmicMessage''';
 $basicLabel
 $basicMeaning
 
-$signName
+$archetypeName
 $specialInterpretation
 
 $psychLabel
@@ -1081,12 +1081,12 @@ $cosmicMessage''';
 
   String _getDeathInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
-    final signName = sign.localizedName(language).toUpperCase();
+    final archetypeName = sign.localizedName(language).toUpperCase();
 
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.death.title',
       language,
-      params: {'archetype': signName},
+      params: {'archetype': archetypeName},
     );
     final notScaryLabel = L10nService.get(
       'widgets.dreams.interpretations.death.not_scary_label',
@@ -1140,7 +1140,7 @@ $cosmicMessage''';
 $notScaryLabel
 $notScary
 
-$signName
+$archetypeName
 $specialInterpretation
 
 $psychLabel
@@ -1158,13 +1158,13 @@ $cosmicMessage''';
 
   String _getChaseInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
-    final signName = sign.localizedName(language).toUpperCase();
+    final archetypeName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
 
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.chase.title',
       language,
-      params: {'archetype': signName},
+      params: {'archetype': archetypeName},
     );
     final basicLabel = L10nService.get(
       'widgets.dreams.interpretations.chase.basic_meaning_label',
@@ -1218,7 +1218,7 @@ $cosmicMessage''';
 $basicLabel
 $basicMeaning
 
-$signName
+$archetypeName
 $specialInterpretation
 
 $psychLabel
@@ -1236,13 +1236,13 @@ $cosmicMessage''';
 
   String _getAnimalInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
-    final signName = sign.localizedName(language).toUpperCase();
+    final archetypeName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
 
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.animal.title',
       language,
-      params: {'archetype': signName},
+      params: {'archetype': archetypeName},
     );
     final basicLabel = L10nService.get(
       'widgets.dreams.interpretations.animal.basic_meaning_label',
@@ -1296,7 +1296,7 @@ $cosmicMessage''';
 $basicLabel
 $basicMeaning
 
-$signName
+$archetypeName
 $specialInterpretation
 
 $symbolsLabel
@@ -1314,13 +1314,13 @@ $cosmicMessage''';
 
   String _getHouseInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
-    final signName = sign.localizedName(language).toUpperCase();
+    final archetypeName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
 
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.house.title',
       language,
-      params: {'archetype': signName},
+      params: {'archetype': archetypeName},
     );
     final basicLabel = L10nService.get(
       'widgets.dreams.interpretations.house.basic_meaning_label',
@@ -1374,7 +1374,7 @@ $cosmicMessage''';
 $basicLabel
 $basicMeaning
 
-$signName
+$archetypeName
 $specialInterpretation
 
 $roomLabel
@@ -1392,7 +1392,7 @@ $cosmicMessage''';
 
   String _getLoveInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
-    final signName = sign.localizedName(language).toUpperCase();
+    final archetypeName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
     final elementKey = _getElementKey(sign.element);
     final elementMessage = L10nService.get(
@@ -1403,7 +1403,7 @@ $cosmicMessage''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.love.title',
       language,
-      params: {'archetype': signName},
+      params: {'archetype': archetypeName},
     );
     final basicLabel = L10nService.get(
       'widgets.dreams.interpretations.love.basic_meaning_label',
@@ -1465,7 +1465,7 @@ $cosmicMessage''';
 $basicLabel
 $basicMeaning
 
-$signName
+$archetypeName
 $specialInterpretation
 
 $typesLabel
@@ -1486,7 +1486,7 @@ $cosmicMessage''';
 
   String _getMoneyInterpretation(archetype.PersonalityArchetype sign) {
     final language = ref.read(languageProvider);
-    final signName = sign.localizedName(language).toUpperCase();
+    final archetypeName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
     final elementKey = _getElementKey(sign.element);
     final elementMessage = L10nService.get(
@@ -1497,7 +1497,7 @@ $cosmicMessage''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.money.title',
       language,
-      params: {'archetype': signName},
+      params: {'archetype': archetypeName},
     );
     final basicLabel = L10nService.get(
       'widgets.dreams.interpretations.money.basic_meaning_label',
@@ -1559,7 +1559,7 @@ $cosmicMessage''';
 $basicLabel
 $basicMeaning
 
-$signName
+$archetypeName
 $specialInterpretation
 
 $typesLabel
@@ -1583,7 +1583,7 @@ $cosmicMessage''';
     String dreamText,
   ) {
     final language = ref.read(languageProvider);
-    final signName = sign.localizedName(language).toUpperCase();
+    final archetypeName = sign.localizedName(language).toUpperCase();
     final elementName = sign.element.localizedName(language);
     final elementKey = _getElementKey(sign.element);
     final elementMessage = L10nService.get(
@@ -1594,7 +1594,7 @@ $cosmicMessage''';
     final title = L10nService.getWithParams(
       'widgets.dreams.interpretations.generic.title',
       language,
-      params: {'archetype': signName},
+      params: {'archetype': archetypeName},
     );
     final subconLabel = L10nService.get(
       'widgets.dreams.interpretations.generic.subconscious_label',
@@ -1641,7 +1641,7 @@ $cosmicMessage''';
     final adviceLabel = L10nService.getWithParams(
       'widgets.dreams.interpretations.generic.advice_label',
       language,
-      params: {'archetype': signName},
+      params: {'archetype': archetypeName},
     );
 
     return '''$title

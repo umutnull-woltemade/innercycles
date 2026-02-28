@@ -1031,7 +1031,7 @@
       "error_try_again": "Bir sorun oluştu. Lütfen tekrar dene.",
       "interpretation_failed": "Yorum oluşturulamadı.",
       "share_another": "Başka bir rüya paylaşmak istersen, dinlemeye hazırım.",
-      "welcome_message": "Merhaba, ben Rüya İzi. {signName} kişilik arketipinin perspektifinden rüyalarını keşfetmek için buradayım.\n\nGördüğün rüyayı detaylı bir şekilde anlat. Ne gördün? Neler hissettin? Rüyandaki semboller, renkler ve duygular hakkında ne kadar çok bilgi verirsen, keşfimiz o kadar zengin olur.\n\n",
+      "welcome_message": "Merhaba, ben Rüya İzi. {archetypeName} kişilik arketipinin perspektifinden rüyalarını keşfetmek için buradayım.\n\nGördüğün rüyayı detaylı bir şekilde anlat. Ne gördün? Neler hissettin? Rüyandaki semboller, renkler ve duygular hakkında ne kadar çok bilgi verirsen, keşfimiz o kadar zengin olur.\n\n",
       "prompts": {
         "water_breathing": "Denizde yüzüyordum ama suyun altında nefes alabiliyordum",
         "rain_running": "Şiddetli yağmur altında koşuyordum ama ıslanmıyordum",
@@ -2214,7 +2214,7 @@
       "which_dreams_this_sign_sees": "Bu arketipta insanlar en çok hangi rüyaları görür?",
       "special_message_for_today": "Bugün Sana Özel Mesaj",
       "cosmic_guidance": "Kişisel rehberlik al.",
-      "beyond_your_sun_sign": "{archetype} temel kimliğinin ötesinde ne var?",
+      "beyond_your_core_archetype": "{archetype} temel kimliğinin ötesinde ne var?",
       "where_is_your_ruler": "Yönlendirici özelliğin şu an nerede?",
       "reading_aligned_with_energy": "{archetype} enerjisiyle uyumlu bir okuma.",
       "compatibility_with": "{archetype} ile Uyumun",

@@ -827,7 +827,7 @@
       "error_try_again": "An error occurred. Please try again.",
       "interpretation_failed": "Could not generate interpretation.",
       "share_another": "If you want to share another dream, I'm ready to listen.",
-      "welcome_message": "Bonjour, je suis Dream Trace. Je suis ici pour explorer vos rêves à travers le prisme de votre archétype de personnalité {signName}.\n\nDécrivez votre rêve en détail. Qu'avez-vous vu? Comment vous êtes-vous senti? Plus vous partagez de symboles, couleurs et émotions, plus la réflexion sera profonde.\n\n",
+      "welcome_message": "Bonjour, je suis Dream Trace. Je suis ici pour explorer vos rêves à travers le prisme de votre archétype de personnalité {archetypeName}.\n\nDécrivez votre rêve en détail. Qu'avez-vous vu? Comment vous êtes-vous senti? Plus vous partagez de symboles, couleurs et émotions, plus la réflexion sera profonde.\n\n",
       "prompts": {
         "water_breathing": "I was swimming in the sea but I could breathe underwater",
         "rain_running": "I was running in heavy rain but not getting wet",
@@ -1917,7 +1917,7 @@
       "which_dreams_this_sign_sees": "Quels rêves les personnes de cet archétype font-elles le plus ?",
       "special_message_for_today": "Message spécial pour aujourd'hui",
       "cosmic_guidance": "Recevez une guidance personnelle.",
-      "beyond_your_sun_sign": "Qu'y a-t-il au-delà de votre identité {archetype}?",
+      "beyond_your_core_archetype": "Qu'y a-t-il au-delà de votre identité {archetype}?",
       "where_is_your_ruler": "Quel est votre trait dominant maintenant ?",
       "reading_aligned_with_energy": "Une lecture alignée avec l'énergie {archetype}.",
       "compatibility_with": "Compatibilité avec {archetype}",
