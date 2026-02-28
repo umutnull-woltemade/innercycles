@@ -745,7 +745,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
             padding: const EdgeInsets.only(right: AppConstants.spacingSm),
             child: Semantics(
               label:
-                  '$label ${isVisible ? (isEn ? "visible" : "görünür") : (isEn ? "hidden" : "gizli")}',
+                  '$label ${isVisible ? L10nService.get('common.accessibility.visible', isEn ? AppLanguage.en : AppLanguage.tr) : L10nService.get('common.accessibility.hidden', isEn ? AppLanguage.en : AppLanguage.tr)}',
               toggled: isVisible,
               button: true,
               child: GestureDetector(

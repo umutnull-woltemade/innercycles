@@ -92,7 +92,12 @@
       "day_sat": "Sat",
       "day_sun": "Sun",
       "format_en": "{day}, {month} {date}"
-    }
+    },
+    "accessibility": {
+      "visible": "visible",
+      "hidden": "hidden"
+    },
+    "years": "years"
   },
   "greetings": {
     "night": "Still up? Good time to write.",
@@ -5383,7 +5388,9 @@
       "mood_meh": "Meh",
       "mood_okay": "Okay",
       "mood_good": "Good",
-      "mood_great": "Great"
+      "mood_great": "Great",
+      "streak_label": "{count} Streak",
+      "entries_label": "{count} Entries"
     },
     "social_proof": {
       "milestone_100": "{count} entries — your story keeps growing",

@@ -92,7 +92,12 @@
       "day_sat": "Cmt",
       "day_sun": "Paz",
       "format_en": "{day}, {date} {month}"
-    }
+    },
+    "accessibility": {
+      "visible": "görünür",
+      "hidden": "gizli"
+    },
+    "years": "yaş"
   },
   "greetings": {
     "night": "Hâlâ ayakta mısın? Yazmak için iyi bir zaman.",
@@ -5383,7 +5388,9 @@
       "mood_meh": "Düşük",
       "mood_okay": "İdare",
       "mood_good": "İyi",
-      "mood_great": "Harika"
+      "mood_great": "Harika",
+      "streak_label": "{count} Seri",
+      "entries_label": "{count} Kayıt"
     },
     "social_proof": {
       "milestone_100": "{count} kayıt — hikayen büyümeye devam ediyor",

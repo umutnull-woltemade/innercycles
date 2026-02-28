@@ -78,7 +78,7 @@ class MoodStatsStrip extends ConsumerWidget {
                 child: _StripPill(
                   icon: Icons.local_fire_department_rounded,
                   iconColor: AppColors.streakOrange,
-                  label: '$streakCount ${isEn ? "Streak" : "Seri"}',
+                  label: L10nService.getWithParams('today.mood_stats.streak_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$streakCount'}),
                   isDark: isDark,
                   onTap: () {
                     HapticService.selectionTap();
@@ -92,7 +92,7 @@ class MoodStatsStrip extends ConsumerWidget {
                 child: _StripPill(
                   icon: Icons.auto_stories_rounded,
                   iconColor: AppColors.amethyst,
-                  label: '$entryCount ${isEn ? "Entries" : "Kayıt"}',
+                  label: L10nService.getWithParams('today.mood_stats.entries_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$entryCount'}),
                   isDark: isDark,
                   onTap: () {
                     HapticService.selectionTap();

@@ -713,7 +713,7 @@ class _SelectedDayDetail extends StatelessWidget {
                         const SizedBox(height: 2),
                         Text(
                           '${contact.relationship.emoji} ${contact.relationship.localizedName(isEn)}'
-                          '${contact.age != null ? ' \u{2022} ${contact.age} ${isEn ? "years" : "ya\u{015F}"}' : ''}',
+                          '${contact.age != null ? ' \u{2022} ${contact.age} ${L10nService.get('common.years', isEn ? AppLanguage.en : AppLanguage.tr)}' : ''}',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: AppTypography.elegantAccent(
