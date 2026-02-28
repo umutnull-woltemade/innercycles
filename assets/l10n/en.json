@@ -1680,7 +1680,11 @@
     "sign_out_success": "Signed out successfully",
     "got_it": "Got it",
     "app_lock_enabled": "App Lock enabled",
-    "app_lock_disabled": "App Lock disabled"
+    "app_lock_disabled": "App Lock disabled",
+    "purchases_restored": "All set! Your purchases are restored.",
+    "no_purchases_found": "No purchases found — try again if you recently subscribed.",
+    "no_active_session": "No active session. Please sign in first.",
+    "account_deleted": "Account and all data permanently deleted."
   },
   "reflection": {
     "title": "Insight",
@@ -4705,7 +4709,34 @@
       "you_just_wrote_your_first_reflectionneve": "You just wrote your first reflection.\\nEvery great story starts with a single page.",
       "your_journey_begins": "Your Journey Begins",
       "word_count": "{count} words",
-      "day_streak": "{count} day streak"
+      "day_streak": "{count} day streak",
+      "rating_labels": [
+        "Low",
+        "Below Avg",
+        "Average",
+        "Good",
+        "Excellent"
+      ],
+      "day_names": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "save_error": "Entry not saved. Try again — your text is preserved.",
+      "first_entry_share": "Just started my journaling journey with InnerCycles!",
+      "first_entry_subtitle": "Every great story starts with a single page.",
+      "first_entry_hashtags": "#InnerCycles #Journaling #DayOne",
+      "milestone_title": "{count} Entries!",
+      "milestone_message": "Every entry adds depth to your story.\nKeep going — your patterns are emerging.",
+      "milestone_message_100": "You've built an incredible reflection practice.\nYour journal is a treasure.",
+      "milestone_share": "Just wrote my {count}th journal entry with InnerCycles!",
+      "milestone_share_sub": "Building a reflection practice, one entry at a time.",
+      "milestone_hashtags": "#InnerCycles #Journaling #Milestone",
+      "streak_nudge": "{streak}-day streak! Share your progress?"
     },
     "emotional_cycle": {
       "access_full_30day_view": "Access Full 30-Day View",

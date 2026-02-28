@@ -1680,7 +1680,11 @@
     "sign_out_success": "Başarıyla çıkış yapıldı",
     "got_it": "Anladım",
     "app_lock_enabled": "Uygulama Kilidi açık",
-    "app_lock_disabled": "Uygulama Kilidi kapalı"
+    "app_lock_disabled": "Uygulama Kilidi kapalı",
+    "purchases_restored": "Hazırsın! Satın alımların geri yüklendi.",
+    "no_purchases_found": "Satın alım bulunamadı — yakın zamanda abone olduysan tekrar dene.",
+    "no_active_session": "Aktif oturum yok. Lütfen önce giriş yap.",
+    "account_deleted": "Hesabın ve tüm verilerin kalıcı olarak silindi."
   },
   "reflection": {
     "title": "Kişisel İçgörü",
@@ -4705,7 +4709,34 @@
       "you_just_wrote_your_first_reflectionneve": "İlk yansımanı yazdın.\\nHer büyük hikaye tek bir sayfayla başlar.",
       "your_journey_begins": "Yolculuğun Başlıyor",
       "word_count": "{count} kelime",
-      "day_streak": "{count} gün seri"
+      "day_streak": "{count} gün seri",
+      "rating_labels": [
+        "Düşük",
+        "Ortanın Altı",
+        "Orta",
+        "İyi",
+        "Mükemmel"
+      ],
+      "day_names": [
+        "Pazartesi",
+        "Salı",
+        "Çarşamba",
+        "Perşembe",
+        "Cuma",
+        "Cumartesi",
+        "Pazar"
+      ],
+      "save_error": "Giriş kaydedilemedi. Tekrar dene — yazın korunuyor.",
+      "first_entry_share": "InnerCycles ile günlük yolculuğuma başladım!",
+      "first_entry_subtitle": "Her büyük hikaye tek bir sayfayla başlar.",
+      "first_entry_hashtags": "#InnerCycles #Günlük #İlkGün",
+      "milestone_title": "{count} Kayıt!",
+      "milestone_message": "Her kayıt hikayene derinlik katıyor.\nDevam et — kalıpların ortaya çıkıyor.",
+      "milestone_message_100": "İnanılmaz bir yansıma pratiği oluşturdun.\nGünlüğün bir hazine.",
+      "milestone_share": "InnerCycles ile {count}. günlük kaydımı yazdım!",
+      "milestone_share_sub": "Bir yansıma pratiği oluşturuyorum.",
+      "milestone_hashtags": "#InnerCycles #Günlük #KilometreTaşı",
+      "streak_nudge": "{streak} günlük seri! İlerlemeni paylaş?"
     },
     "emotional_cycle": {
       "access_full_30day_view": "Tam 30 Günlük Görünüme Eriş",
