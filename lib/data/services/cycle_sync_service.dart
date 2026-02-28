@@ -317,7 +317,7 @@ class CycleSyncService with SupabaseSyncMixin {
   /// Whether the user has logged at least one period
   bool get hasData => _periodLogs.isNotEmpty;
 
-  /// Whether there's enough data for cycle predictions
+  /// Whether there's enough data for cycle analysis
   bool get hasEnoughData => _periodLogs.length >= 2;
 
   /// Get the most recent period log

@@ -907,9 +907,9 @@
       "health": "Tıbbi tavsiye değildir. Sağlık konularında uzmana danışın",
       "self_awareness": "Öz Farkındalık bir öz-refleksiyon aracıdır, tahmin değil",
       "card_insight": "Refleksiyon okumaları sadece kişisel içgörü içindir",
-      "number_patterns": "Sayı örüntüleri sembolik perspektifler sunar",
+      "number_patterns": "Sayı örüntüleri yalnızca kişisel yansıtma amaçlıdır",
       "insight": "Bu içgörüler kişisel refleksiyon içindir",
-      "reflection": "Bunu kendini keşfetme aracı olarak kullan",
+      "reflection": "Yalnızca kişisel yansıtma ve öz-farkındalık amaçlıdır",
       "compatibility": "Uyumluluk içgörüleri yalnızca kişisel yansıma ve kendini anlama amaçlıdır."
     },
     "dream_share_card": {
@@ -1498,9 +1498,9 @@
       "general": "Yalnızca öz-yansıtma ve kişisel farkındalık amaçlıdır.",
       "dreams": "Rüya yorumları kişisel keşif içindir, profesyonel yorum değildir.",
       "health": "Tıbbi tavsiye değildir. Sağlık profesyonellerine danışın.",
-      "self_awareness": "Yalnızca öz-yansıtma amaçlıdır. Tahmin tavsiyesi değildir.",
-      "card_insight": "Sadece düşünme amaçlıdır. Tahmin değildir.",
-      "number_patterns": "Sadece öz-keşif amaçlıdır. Tahmin değildir.",
+      "self_awareness": "Yalnızca öz-farkındalık ve yansıtma amaçlıdır. Profesyonel tavsiye değildir.",
+      "card_insight": "Sadece yansıtma amaçlıdır. Profesyonel tavsiye değildir.",
+      "number_patterns": "Sadece kalıp keşfi amaçlıdır. Profesyonel tavsiye değildir.",
       "insight": "Sadece kişisel düşünme amaçlıdır. Profesyonel tavsiye değildir.",
       "reflection": "Burası öz-yansıtma alanıdır, tahmin veya tavsiye değil."
     },

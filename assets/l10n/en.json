@@ -907,9 +907,9 @@
       "health": "Not medical advice. Consult professionals for health concerns",
       "self_awareness": "Cycle awareness is a tool for pattern recognition and self-understanding",
       "card_insight": "Archetype insights are for personal cycle mapping only",
-      "number_patterns": "Number patterns offer symbolic cycle perspectives",
+      "number_patterns": "Number patterns are for personal reflection only",
       "insight": "These cycle insights are for personal pattern awareness",
-      "reflection": "Use this as a cyclical intelligence tool",
+      "reflection": "For personal reflection and self-awareness only",
       "compatibility": "Compatibility insights are for personal reflection and self-understanding only."
     },
     "dream_share_card": {
@@ -1498,9 +1498,9 @@
       "general": "For personal cycle awareness and pattern recognition only.",
       "dreams": "Dream archaeology is for personal pattern exploration, not professional interpretation.",
       "health": "Not medical advice. Consult healthcare professionals.",
-      "self_awareness": "For cyclical self-awareness only. Not suggestive advice.",
-      "card_insight": "For archetype reflection only. Not suggestive.",
-      "number_patterns": "For cycle exploration only. Not suggestive.",
+      "self_awareness": "For self-awareness and reflection only. Not professional advice.",
+      "card_insight": "For archetype reflection only. Not professional advice.",
+      "number_patterns": "For pattern exploration only. Not professional advice.",
       "insight": "For personal cycle awareness only. Not professional advice.",
       "reflection": "This is a space for pattern recognition, not advice."
     },
