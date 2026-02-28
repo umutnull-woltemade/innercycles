@@ -1326,9 +1326,9 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                       ),
                     ),
                     Semantics(
-                      label: isEn
-                          ? 'App Lock ${isEnabled ? 'enabled' : 'disabled'}'
-                          : 'Uygulama Kilidi ${isEnabled ? 'açık' : 'kapalı'}',
+                      label: isEnabled
+                          ? L10nService.get('settings.app_lock_enabled', isEn ? AppLanguage.en : AppLanguage.tr)
+                          : L10nService.get('settings.app_lock_disabled', isEn ? AppLanguage.en : AppLanguage.tr),
                       toggled: isEnabled,
                       child: CupertinoSwitch(
                         value: isEnabled,

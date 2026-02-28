@@ -859,7 +859,7 @@ class _BottomWatermark extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        isEn ? 'Try InnerCycles — Free' : 'InnerCycles\'i Dene — Ücretsiz',
+                        L10nService.get('sharing.try_innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 9,
                           color: accent,
@@ -869,7 +869,7 @@ class _BottomWatermark extends StatelessWidget {
                     ),
                     // Brand name
                     Text(
-                      isEn ? 'Made with InnerCycles' : 'InnerCycles ile yapıldı',
+                      L10nService.get('sharing.made_with', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 10,
                         color: AppColors.textMuted,

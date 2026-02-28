@@ -1737,7 +1737,7 @@ ${_getPersonalAdvice(sign)}''';
         children: [
           IconButton(
             onPressed: () => context.pop(),
-            tooltip: ref.read(languageProvider) == AppLanguage.en ? 'Back' : 'Geri',
+            tooltip: L10nService.get('common.back', ref.read(languageProvider)),
             icon: Icon(
               Icons.chevron_left,
               color: isDark

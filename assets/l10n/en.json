@@ -97,7 +97,8 @@
       "visible": "visible",
       "hidden": "hidden"
     },
-    "years": "years"
+    "years": "years",
+    "home": "Home"
   },
   "greetings": {
     "night": "Still up? Good time to write.",
@@ -1677,7 +1678,9 @@
     "sign_out_confirm": "Sign Out",
     "sign_out_message": "Your data is saved locally and will sync when you sign back in.",
     "sign_out_success": "Signed out successfully",
-    "got_it": "Got it"
+    "got_it": "Got it",
+    "app_lock_enabled": "App Lock enabled",
+    "app_lock_disabled": "App Lock disabled"
   },
   "reflection": {
     "title": "Insight",
@@ -5201,7 +5204,9 @@
     "category_label": "Category: {name}",
     "preview_card": "Preview {name} card",
     "day_of_cycle": "Day {day} of {length}",
-    "of_total": "of {total}"
+    "of_total": "of {total}",
+    "try_innercycles": "Try InnerCycles — Free",
+    "made_with": "Made with InnerCycles"
   },
   "sleep": {
     "sleep": {
@@ -5586,5 +5591,9 @@
     "wellness_reminders": "Wellness Reminders",
     "reminder_at": "Reminder at {time}",
     "wellness_subtitle": "Wellness and reflection prompts"
+  },
+  "error": {
+    "page_not_found": "Page Not Found",
+    "reload_page": "Reload Page"
   }
 }

@@ -196,7 +196,7 @@ class AppErrorWidget extends StatelessWidget {
                 // Secondary action - reload page (web only)
                 if (kIsWeb)
                   Semantics(
-                    label: _isEn ? 'Reload Page' : 'Sayfayı Yenile',
+                    label: L10nService.get('error.reload_page', _isEn ? AppLanguage.en : AppLanguage.tr),
                     button: true,
                     child: GestureDetector(
                       onTap: () {

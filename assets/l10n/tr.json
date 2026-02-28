@@ -97,7 +97,8 @@
       "visible": "görünür",
       "hidden": "gizli"
     },
-    "years": "yaş"
+    "years": "yaş",
+    "home": "Ana Sayfa"
   },
   "greetings": {
     "night": "Hâlâ ayakta mısın? Yazmak için iyi bir zaman.",
@@ -1677,7 +1678,9 @@
     "sign_out_confirm": "Çıkış Yap",
     "sign_out_message": "Verileriniz yerel olarak kaydedilir ve tekrar giriş yaptığınızda senkronize edilir.",
     "sign_out_success": "Başarıyla çıkış yapıldı",
-    "got_it": "Anladım"
+    "got_it": "Anladım",
+    "app_lock_enabled": "Uygulama Kilidi açık",
+    "app_lock_disabled": "Uygulama Kilidi kapalı"
   },
   "reflection": {
     "title": "Kişisel İçgörü",
@@ -5201,7 +5204,9 @@
     "category_label": "Kategori: {name}",
     "preview_card": "{name} kartını önizle",
     "day_of_cycle": "Gün {day} / {length}",
-    "of_total": "/ {total}"
+    "of_total": "/ {total}",
+    "try_innercycles": "InnerCycles'i Dene — Ücretsiz",
+    "made_with": "InnerCycles ile yapıldı"
   },
   "sleep": {
     "sleep": {
@@ -5586,5 +5591,9 @@
     "wellness_reminders": "Sağlık Hatırlatmaları",
     "reminder_at": "Hatırlatma: {time}",
     "wellness_subtitle": "Öz bakım ve yansıma uyarıları"
+  },
+  "error": {
+    "page_not_found": "Sayfa Bulunamadı",
+    "reload_page": "Sayfayı Yenile"
   }
 }
