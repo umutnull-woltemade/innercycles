@@ -62,14 +62,12 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
               as RenderRepaintBoundary?;
       if (boundary == null) return;
 
-      final shareText = widget.isEn
-          ? '${widget.data.headline} — InnerCycles\n\nDiscover your patterns: ${AppConstants.appStoreUrl}'
-          : '${widget.data.headline} — InnerCycles\n\nÖrüntülerini keşfet: ${AppConstants.appStoreUrl}';
+      final shareText = L10nService.getWithParams('sharing.share_card_text', widget.isEn ? AppLanguage.en : AppLanguage.tr, params: {'headline': widget.data.headline, 'appStoreUrl': AppConstants.appStoreUrl});
 
       await InstagramShareService.shareCosmicContent(
         boundary: boundary,
         shareText: shareText,
-        hashtags: widget.isEn ? '#InnerCycles #SelfReflection' : '#InnerCycles #ÖzYansıma',
+        hashtags: L10nService.get('sharing.hashtags_self_reflection', widget.isEn ? AppLanguage.en : AppLanguage.tr),
         language: widget.isEn ? AppLanguage.en : AppLanguage.tr,
       );
 

@@ -98,7 +98,8 @@
       "hidden": "hidden"
     },
     "years": "years",
-    "home": "Home"
+    "home": "Home",
+    "dismiss": "Dismiss"
   },
   "greetings": {
     "night": "Still up? Good time to write.",
@@ -5237,7 +5238,12 @@
     "day_of_cycle": "Day {day} of {length}",
     "of_total": "of {total}",
     "try_innercycles": "Try InnerCycles — Free",
-    "made_with": "Made with InnerCycles"
+    "made_with": "Made with InnerCycles",
+    "hashtags_journaling": "#InnerCycles #Journaling #SelfAwareness",
+    "hashtags_self_reflection": "#InnerCycles #SelfReflection",
+    "hashtags_challenge_complete": "#InnerCycles #ChallengeComplete",
+    "share_challenge_text": "{emoji} {title} completed! — InnerCycles\nDiscover your patterns: {appStoreUrl}",
+    "share_card_text": "{headline} — InnerCycles\nDiscover your patterns: {appStoreUrl}"
   },
   "sleep": {
     "sleep": {

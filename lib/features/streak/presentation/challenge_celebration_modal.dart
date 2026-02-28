@@ -59,10 +59,8 @@ class _ChallengeCelebrationModalState extends State<ChallengeCelebrationModal> {
       final title = isEn ? challenge.titleEn : challenge.titleTr;
       await InstagramShareService.shareCosmicContent(
         boundary: boundary,
-        shareText: isEn
-            ? '${challenge.emoji} $title completed! — InnerCycles\n\nDiscover your patterns: ${AppConstants.appStoreUrl}'
-            : '${challenge.emoji} $title tamamlandı! — InnerCycles\n\nÖrüntülerini keşfet: ${AppConstants.appStoreUrl}',
-        hashtags: isEn ? '#InnerCycles #ChallengeComplete' : '#InnerCycles #GörevTamamlandı',
+        shareText: L10nService.getWithParams('sharing.share_challenge_text', isEn ? AppLanguage.en : AppLanguage.tr, params: {'emoji': challenge.emoji, 'title': title, 'appStoreUrl': AppConstants.appStoreUrl}),
+        hashtags: L10nService.get('sharing.hashtags_challenge_complete', isEn ? AppLanguage.en : AppLanguage.tr),
         language: isEn ? AppLanguage.en : AppLanguage.tr,
       );
     } finally {

@@ -92,7 +92,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
     showGeneralDialog(
       context: context,
       barrierDismissible: true,
-      barrierLabel: isEn ? 'Dismiss' : 'Kapat',
+      barrierLabel: L10nService.get('common.dismiss', isEn ? AppLanguage.en : AppLanguage.tr),
       barrierColor: Colors.black54,
       transitionDuration: const Duration(milliseconds: 300),
       transitionBuilder: (ctx, anim, _, child) =>
@@ -242,7 +242,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
     showGeneralDialog(
       context: context,
       barrierDismissible: true,
-      barrierLabel: isEn ? 'Dismiss' : 'Kapat',
+      barrierLabel: L10nService.get('common.dismiss', isEn ? AppLanguage.en : AppLanguage.tr),
       barrierColor: Colors.black54,
       transitionDuration: const Duration(milliseconds: 300),
       transitionBuilder: (ctx, anim, _, child) =>

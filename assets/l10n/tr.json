@@ -98,7 +98,8 @@
       "hidden": "gizli"
     },
     "years": "yaş",
-    "home": "Ana Sayfa"
+    "home": "Ana Sayfa",
+    "dismiss": "Kapat"
   },
   "greetings": {
     "night": "Hâlâ ayakta mısın? Yazmak için iyi bir zaman.",
@@ -5237,7 +5238,12 @@
     "day_of_cycle": "Gün {day} / {length}",
     "of_total": "/ {total}",
     "try_innercycles": "InnerCycles'i Dene — Ücretsiz",
-    "made_with": "InnerCycles ile yapıldı"
+    "made_with": "InnerCycles ile yapıldı",
+    "hashtags_journaling": "#InnerCycles #Günlük #Farkındalık",
+    "hashtags_self_reflection": "#InnerCycles #ÖzYansıma",
+    "hashtags_challenge_complete": "#InnerCycles #GörevTamamlandı",
+    "share_challenge_text": "{emoji} {title} tamamlandı! — InnerCycles\nÖrüntülerini keşfet: {appStoreUrl}",
+    "share_card_text": "{headline} — InnerCycles\nÖrüntülerini keşfet: {appStoreUrl}"
   },
   "sleep": {
     "sleep": {

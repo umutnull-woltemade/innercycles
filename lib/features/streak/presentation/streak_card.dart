@@ -552,7 +552,7 @@ class StreakMilestoneCelebration {
     await showGeneralDialog(
       context: context,
       barrierDismissible: true,
-      barrierLabel: isEn ? 'Dismiss' : 'Kapat',
+      barrierLabel: L10nService.get('common.dismiss', isEn ? AppLanguage.en : AppLanguage.tr),
       barrierColor: Colors.black54,
       transitionDuration: const Duration(milliseconds: 400),
       transitionBuilder: (ctx, anim, secondAnim, child) {
