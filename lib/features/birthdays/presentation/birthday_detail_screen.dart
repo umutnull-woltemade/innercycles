@@ -48,7 +48,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  L10nService.get('birthdays.birthday_detail.couldnt_load_this_contact', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('birthdays.birthday_detail.couldnt_load_this_contact', language),
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textSecondary
@@ -65,7 +65,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                     color: AppColors.starGold,
                   ),
                   label: Text(
-                    L10nService.get('birthdays.birthday_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('birthdays.birthday_detail.retry', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -81,7 +81,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
             if (contact == null) {
               return Center(
                 child: Text(
-                  L10nService.get('birthdays.birthday_detail.contact_not_found', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('birthdays.birthday_detail.contact_not_found', language),
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textMuted

@@ -100,7 +100,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                           color: AppColors.starGold,
                         ),
                         label: Text(
-                          L10nService.get('journal.archive.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('journal.archive.retry', language),
                           style: AppTypography.elegantAccent(
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
@@ -141,7 +141,7 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                       parent: AlwaysScrollableScrollPhysics(),
                     ),
                     slivers: [
-                      GlassSliverAppBar(title: L10nService.get('journal.archive.archive', isEn ? AppLanguage.en : AppLanguage.tr)),
+                      GlassSliverAppBar(title: L10nService.get('journal.archive.archive', language)),
                       // Search bar
                       SliverToBoxAdapter(
                         child: Padding(
@@ -184,9 +184,9 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                           hasScrollBody: false,
                           child: PremiumEmptyState(
                             icon: Icons.book_outlined,
-                            title: L10nService.get('journal.archive.your_journal_is_a_blank_page_ready_when', isEn ? AppLanguage.en : AppLanguage.tr),
-                            description: L10nService.get('journal.archive.your_journal_entries_will_appear_here_as', isEn ? AppLanguage.en : AppLanguage.tr),
-                            ctaLabel: L10nService.get('journal.archive.write_first_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+                            title: L10nService.get('journal.archive.your_journal_is_a_blank_page_ready_when', language),
+                            description: L10nService.get('journal.archive.your_journal_entries_will_appear_here_as', language),
+                            ctaLabel: L10nService.get('journal.archive.write_first_entry', language),
                             onCtaPressed: () => context.go(Routes.journal),
                           ),
                         )
@@ -205,10 +205,10 @@ class _ArchiveScreenState extends ConsumerState<ArchiveScreen> {
                                 confirmDismiss: (_) async {
                                   final confirmed = await GlassDialog.confirm(
                                     context,
-                                    title: L10nService.get('journal.archive.delete_entry', isEn ? AppLanguage.en : AppLanguage.tr),
-                                    message: L10nService.get('journal.archive.this_journal_entry_will_be_permanently_d', isEn ? AppLanguage.en : AppLanguage.tr),
-                                    confirmLabel: L10nService.get('journal.archive.delete', isEn ? AppLanguage.en : AppLanguage.tr),
-                                    cancelLabel: L10nService.get('journal.archive.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+                                    title: L10nService.get('journal.archive.delete_entry', language),
+                                    message: L10nService.get('journal.archive.this_journal_entry_will_be_permanently_d', language),
+                                    confirmLabel: L10nService.get('journal.archive.delete', language),
+                                    cancelLabel: L10nService.get('journal.archive.cancel', language),
                                     isDestructive: true,
                                   );
                                   if (confirmed == true) {

@@ -45,7 +45,7 @@ class SleepDetailScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('sleep.sleep_detail.sleep_quality', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('sleep.sleep_detail.sleep_quality', language),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -77,7 +77,7 @@ class SleepDetailScreen extends ConsumerWidget {
                                 icon: Icon(Icons.refresh_rounded,
                                     size: 16, color: AppColors.starGold),
                                 label: Text(
-                                  L10nService.get('sleep.sleep_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  L10nService.get('sleep.sleep_detail.retry', language),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
@@ -132,7 +132,7 @@ class SleepDetailScreen extends ConsumerWidget {
                           // Recent entries
                           if (entries.isNotEmpty) ...[
                             GradientText(
-                              L10nService.get('sleep.sleep_detail.recent_nights', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('sleep.sleep_detail.recent_nights', language),
                               variant: GradientTextVariant.gold,
                               style: AppTypography.displayFont.copyWith(
                                 fontSize: 16,

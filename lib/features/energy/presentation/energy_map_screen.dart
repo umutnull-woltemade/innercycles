@@ -46,7 +46,7 @@ class EnergyMapScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('energy.energy_map.energy_profile', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('energy.energy_map.energy_profile', language),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -61,7 +61,7 @@ class EnergyMapScreen extends ConsumerWidget {
                           children: [
                             const SizedBox(height: 40),
                             Text(
-                              L10nService.get('energy.energy_map.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('energy.energy_map.could_not_load_your_local_data_is_unaffe', language),
                               textAlign: TextAlign.center,
                               style: AppTypography.subtitle(
                                 fontSize: 14,
@@ -80,7 +80,7 @@ class EnergyMapScreen extends ConsumerWidget {
                                 color: AppColors.starGold,
                               ),
                               label: Text(
-                                L10nService.get('energy.energy_map.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                L10nService.get('energy.energy_map.retry', language),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,

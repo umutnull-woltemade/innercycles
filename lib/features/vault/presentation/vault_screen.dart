@@ -53,13 +53,13 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: L10nService.get('vault.vault.private_vault', isEn ? AppLanguage.en : AppLanguage.tr),
+                title: L10nService.get('vault.vault.private_vault', language),
                 useGradientTitle: true,
                 gradientVariant: GradientTextVariant.amethyst,
                 actions: [
                   Semantics(
                     button: true,
-                    label: L10nService.get('vault.vault.vault_settings', isEn ? AppLanguage.en : AppLanguage.tr),
+                    label: L10nService.get('vault.vault.vault_settings', language),
                     child: GestureDetector(
                       onTap: () => _showVaultSettings(isEn, isDark),
                       child: Padding(
@@ -546,14 +546,13 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
 
   Future<void> _showPhotoOptions(VaultPhoto photo) async {
     final language = ref.read(languageProvider);
-    final isEn = language == AppLanguage.en;
 
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('vault.vault.delete_photo', isEn ? AppLanguage.en : AppLanguage.tr),
-      message: L10nService.get('vault.vault.this_photo_will_be_permanently_deleted_f', isEn ? AppLanguage.en : AppLanguage.tr),
-      cancelLabel: L10nService.get('vault.vault.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
-      confirmLabel: L10nService.get('vault.vault.delete', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('vault.vault.delete_photo', language),
+      message: L10nService.get('vault.vault.this_photo_will_be_permanently_deleted_f', language),
+      cancelLabel: L10nService.get('vault.vault.cancel', language),
+      confirmLabel: L10nService.get('vault.vault.delete', language),
       isDestructive: true,
     );
 

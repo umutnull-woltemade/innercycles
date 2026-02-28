@@ -113,7 +113,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    L10nService.get('notes.notes_list.couldnt_load_your_notes', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('notes.notes_list.couldnt_load_your_notes', language),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -126,7 +126,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('notes.notes_list.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('notes.notes_list.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -160,7 +160,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                   ),
                   slivers: [
                     GlassSliverAppBar(
-                      title: L10nService.get('notes.notes_list.notes', isEn ? AppLanguage.en : AppLanguage.tr),
+                      title: L10nService.get('notes.notes_list.notes', language),
                       showBackButton: false,
                     ),
 
@@ -208,7 +208,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                               color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
                             ),
                             decoration: InputDecoration(
-                              hintText: L10nService.get('notes.notes_list.search_notes', isEn ? AppLanguage.en : AppLanguage.tr),
+                              hintText: L10nService.get('notes.notes_list.search_notes', language),
                               hintStyle: AppTypography.subtitle(
                                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                               ),
@@ -230,7 +230,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                                             ? AppColors.textMuted
                                             : AppColors.lightTextMuted,
                                       ),
-                                      tooltip: L10nService.get('notes.notes_list.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
+                                      tooltip: L10nService.get('notes.notes_list.clear_search', language),
                                       onPressed: _clearSearch,
                                     )
                                   : null,
@@ -260,7 +260,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                               scrollDirection: Axis.horizontal,
                               children: [
                                 _TagChip(
-                                  label: L10nService.get('notes.notes_list.all', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  label: L10nService.get('notes.notes_list.all', language),
                                   isSelected: _selectedTag == null,
                                   isDark: isDark,
                                   onTap: () =>
@@ -315,7 +315,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                         child: _SectionHeader(
                           icon: CupertinoIcons.pin_fill,
                           iconColor: AppColors.starGold,
-                          label: L10nService.get('notes.notes_list.pinned', isEn ? AppLanguage.en : AppLanguage.tr),
+                          label: L10nService.get('notes.notes_list.pinned', language),
                           isDark: isDark,
                         ).animate().fadeIn(duration: 300.ms, delay: 120.ms),
                       ),
@@ -354,7 +354,7 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
                             _SectionHeader(
                               icon: CupertinoIcons.clock,
                               iconColor: AppColors.auroraStart,
-                              label: L10nService.get('notes.notes_list.recent', isEn ? AppLanguage.en : AppLanguage.tr),
+                              label: L10nService.get('notes.notes_list.recent', language),
                               isDark: isDark,
                             ).animate().fadeIn(
                               duration: 300.ms,
@@ -415,14 +415,13 @@ class _NotesListScreenState extends ConsumerState<NotesListScreen> {
 
   Future<void> _deleteNote(String noteId) async {
     final language = ref.read(languageProvider);
-    final isEn = language == AppLanguage.en;
 
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('notes.notes_list.delete_note', isEn ? AppLanguage.en : AppLanguage.tr),
-      message: L10nService.get('notes.notes_list.this_note_will_be_permanently_deleted', isEn ? AppLanguage.en : AppLanguage.tr),
-      cancelLabel: L10nService.get('notes.notes_list.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
-      confirmLabel: L10nService.get('notes.notes_list.delete', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('notes.notes_list.delete_note', language),
+      message: L10nService.get('notes.notes_list.this_note_will_be_permanently_deleted', language),
+      cancelLabel: L10nService.get('notes.notes_list.cancel', language),
+      confirmLabel: L10nService.get('notes.notes_list.delete', language),
       isDestructive: true,
     );
 

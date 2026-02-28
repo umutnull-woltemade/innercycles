@@ -62,7 +62,7 @@ class StreakStatsScreen extends ConsumerWidget {
                       color: AppColors.starGold,
                     ),
                     label: Text(
-                      L10nService.get('streak.streak_stats.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('streak.streak_stats.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,

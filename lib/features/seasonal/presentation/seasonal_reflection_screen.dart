@@ -43,7 +43,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('seasonal.seasonal_reflection.seasonal_reflections', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('seasonal.seasonal_reflection.seasonal_reflections', language),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -56,7 +56,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                             const CosmicLoadingIndicator(),
                             const SizedBox(height: 12),
                             Text(
-                              L10nService.get('seasonal.seasonal_reflection.loading_reflections', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('seasonal.seasonal_reflection.loading_reflections', language),
                               style: AppTypography.subtitle(
                                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
                               ),
@@ -88,7 +88,7 @@ class SeasonalReflectionScreen extends ConsumerWidget {
                                 icon: Icon(Icons.refresh_rounded,
                                     size: 16, color: AppColors.starGold),
                                 label: Text(
-                                  L10nService.get('seasonal.seasonal_reflection.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  L10nService.get('seasonal.seasonal_reflection.retry', language),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,

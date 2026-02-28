@@ -296,7 +296,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                 ),
                 slivers: [
                   GlassSliverAppBar(
-                    title: L10nService.get('journal.daily_entry.log_your_day', isEn ? AppLanguage.en : AppLanguage.tr),
+                    title: L10nService.get('journal.daily_entry.log_your_day', language),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -312,7 +312,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         _buildSectionLabel(
                           context,
                           isDark,
-                          L10nService.get('journal.daily_entry.focus_area', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('journal.daily_entry.focus_area', language),
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
                         _buildFocusAreaSelector(isDark, isEn),
@@ -322,7 +322,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         _buildSectionLabel(
                           context,
                           isDark,
-                          L10nService.get('journal.daily_entry.overall_rating', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('journal.daily_entry.overall_rating', language),
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
                         _buildRatingSlider(isDark, isEn, _overallRating, (v) {
@@ -342,7 +342,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         _buildSectionLabel(
                           context,
                           isDark,
-                          L10nService.get('journal.daily_entry.notes_optional', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('journal.daily_entry.notes_optional', language),
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
                         _CyclePhasePromptHint(isEn: isEn, isDark: isDark),
@@ -353,7 +353,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                         _buildSectionLabel(
                           context,
                           isDark,
-                          L10nService.get('journal.daily_entry.tags_optional', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('journal.daily_entry.tags_optional', language),
                         ),
                         const SizedBox(height: AppConstants.spacingMd),
                         _buildTagSection(isDark, isEn),
@@ -364,7 +364,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                           _buildSectionLabel(
                             context,
                             isDark,
-                            L10nService.get('journal.daily_entry.photo_optional', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('journal.daily_entry.photo_optional', language),
                           ),
                           const SizedBox(height: AppConstants.spacingMd),
                           _buildPhotoPicker(isDark, isEn),

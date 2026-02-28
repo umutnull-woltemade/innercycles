@@ -54,7 +54,7 @@ class ArchetypeScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('archetype.archetype.your_archetype', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('archetype.archetype.your_archetype', language),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -69,7 +69,7 @@ class ArchetypeScreen extends ConsumerWidget {
                           children: [
                             const SizedBox(height: 40),
                             Text(
-                              L10nService.get('archetype.archetype.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('archetype.archetype.could_not_load_your_local_data_is_unaffe', language),
                               textAlign: TextAlign.center,
                               style: AppTypography.decorativeScript(
                                 fontSize: 14,
@@ -83,7 +83,7 @@ class ArchetypeScreen extends ConsumerWidget {
                               onPressed: () => ref.invalidate(archetypeServiceProvider),
                               icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
                               label: Text(
-                                L10nService.get('archetype.archetype.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                L10nService.get('archetype.archetype.retry', language),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
                                 ),
@@ -105,7 +105,7 @@ class ArchetypeScreen extends ConsumerWidget {
                               children: [
                                 const SizedBox(height: 40),
                                 Text(
-                                  L10nService.get('archetype.archetype.could_not_load_your_local_data_is_unaffe_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  L10nService.get('archetype.archetype.could_not_load_your_local_data_is_unaffe_1', language),
                                   textAlign: TextAlign.center,
                                   style: AppTypography.decorativeScript(
                                     fontSize: 14,
@@ -119,7 +119,7 @@ class ArchetypeScreen extends ConsumerWidget {
                                   onPressed: () => ref.invalidate(journalServiceProvider),
                                   icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
                                   label: Text(
-                                    L10nService.get('archetype.archetype.retry_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                                    L10nService.get('archetype.archetype.retry_1', language),
                                     style: AppTypography.elegantAccent(
                                       fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
                                     ),

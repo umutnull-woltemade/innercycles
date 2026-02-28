@@ -83,7 +83,7 @@ class _AffirmationLibraryScreenState
                       color: AppColors.starGold,
                     ),
                     label: Text(
-                      L10nService.get('affirmation.affirmation_library.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('affirmation.affirmation_library.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,

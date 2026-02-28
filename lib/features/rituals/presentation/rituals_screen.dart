@@ -42,7 +42,7 @@ class RitualsScreen extends ConsumerWidget {
                 parent: AlwaysScrollableScrollPhysics(),
               ),
               slivers: [
-                GlassSliverAppBar(title: L10nService.get('rituals.rituals.my_rituals', isEn ? AppLanguage.en : AppLanguage.tr)),
+                GlassSliverAppBar(title: L10nService.get('rituals.rituals.my_rituals', language)),
                 SliverPadding(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
                   sliver: stacksAsync.when(
@@ -72,7 +72,7 @@ class RitualsScreen extends ConsumerWidget {
                                 icon: Icon(Icons.refresh_rounded,
                                     size: 16, color: AppColors.starGold),
                                 label: Text(
-                                  L10nService.get('rituals.rituals.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  L10nService.get('rituals.rituals.retry', language),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,

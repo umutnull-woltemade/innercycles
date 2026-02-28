@@ -55,7 +55,7 @@ class _BirthdayImportScreenState extends ConsumerState<BirthdayImportScreen> {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: L10nService.get('birthdays.birthday_import.import_birthdays', isEn ? AppLanguage.en : AppLanguage.tr),
+                title: L10nService.get('birthdays.birthday_import.import_birthdays', language),
               ),
               SliverPadding(
                 padding: const EdgeInsets.all(16),

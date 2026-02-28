@@ -49,7 +49,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    L10nService.get('cycle_sync.cycle_sync.couldnt_load_your_cycle_data', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('cycle_sync.cycle_sync.couldnt_load_your_cycle_data', language),
                     textAlign: TextAlign.center,
                     style: AppTypography.subtitle(
                       color: isDark
@@ -64,7 +64,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('cycle_sync.cycle_sync.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('cycle_sync.cycle_sync.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -83,7 +83,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   ),
                   slivers: [
                     GlassSliverAppBar(
-                      title: L10nService.get('cycle_sync.cycle_sync.cycle_sync', isEn ? AppLanguage.en : AppLanguage.tr),
+                      title: L10nService.get('cycle_sync.cycle_sync.cycle_sync', language),
                     ),
                     SliverPadding(
                       padding: const EdgeInsets.all(AppConstants.spacingLg),

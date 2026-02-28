@@ -42,7 +42,7 @@ class WellnessDetailScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('wellness.wellness_detail.wellness_score', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('wellness.wellness_detail.wellness_score', language),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -59,7 +59,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  L10nService.get('wellness.wellness_detail.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  L10nService.get('wellness.wellness_detail.could_not_load_your_local_data_is_unaffe', language),
                                   textAlign: TextAlign.center,
                                   style: AppTypography.decorativeScript(
                                     fontSize: 14,
@@ -78,7 +78,7 @@ class WellnessDetailScreen extends ConsumerWidget {
                                     color: AppColors.starGold,
                                   ),
                                   label: Text(
-                                    L10nService.get('wellness.wellness_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                    L10nService.get('wellness.wellness_detail.retry', language),
                                     style: AppTypography.elegantAccent(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w600,

@@ -47,7 +47,7 @@ class BlindSpotScreen extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    L10nService.get('blind_spot.blind_spot.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('blind_spot.blind_spot.could_not_load_your_local_data_is_unaffe', language),
                     textAlign: TextAlign.center,
                     style: AppTypography.subtitle(
                       color: isDark
@@ -61,7 +61,7 @@ class BlindSpotScreen extends ConsumerWidget {
                         ref.invalidate(blindSpotServiceProvider),
                     icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('blind_spot.blind_spot.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('blind_spot.blind_spot.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
                       ),
@@ -77,7 +77,7 @@ class BlindSpotScreen extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      L10nService.get('blind_spot.blind_spot.could_not_load_your_local_data_is_unaffe_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('blind_spot.blind_spot.could_not_load_your_local_data_is_unaffe_1', language),
                       textAlign: TextAlign.center,
                       style: AppTypography.subtitle(
                         color: isDark
@@ -91,7 +91,7 @@ class BlindSpotScreen extends ConsumerWidget {
                           ref.invalidate(journalServiceProvider),
                       icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
                       label: Text(
-                        L10nService.get('blind_spot.blind_spot.retry_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('blind_spot.blind_spot.retry_1', language),
                         style: AppTypography.elegantAccent(
                           fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
                         ),

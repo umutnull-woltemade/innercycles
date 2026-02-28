@@ -67,7 +67,7 @@ class _EmotionalVocabularyScreenState
                       ),
                       slivers: [
                         GlassSliverAppBar(
-                          title: L10nService.get('mood.emotional_vocabulary.emotional_vocabulary', isEn ? AppLanguage.en : AppLanguage.tr),
+                          title: L10nService.get('mood.emotional_vocabulary.emotional_vocabulary', language),
                         ),
                         SliverPadding(
                           padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -129,7 +129,7 @@ class _EmotionalVocabularyScreenState
                                           height: AppConstants.spacingMd,
                                         ),
                                         Text(
-                                          L10nService.get('mood.emotional_vocabulary.no_emotions_found', isEn ? AppLanguage.en : AppLanguage.tr),
+                                          L10nService.get('mood.emotional_vocabulary.no_emotions_found', language),
                                           style: AppTypography.decorativeScript(
                                             fontSize: 15,
                                             color: isDark

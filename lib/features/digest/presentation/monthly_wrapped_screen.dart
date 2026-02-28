@@ -62,7 +62,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32),
                     child: Text(
-                      L10nService.get('digest.monthly_wrapped.keep_journaling_to_build_your_monthly_st', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('digest.monthly_wrapped.keep_journaling_to_build_your_monthly_st', language),
                       textAlign: TextAlign.center,
                       style: AppTypography.subtitle(
                         color: isDark
@@ -78,7 +78,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('digest.monthly_wrapped.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('digest.monthly_wrapped.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -106,7 +106,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                         AppSymbol('\u{1F4CA}', size: AppSymbolSize.xl),
                         const SizedBox(height: 16),
                         Text(
-                          L10nService.get('digest.monthly_wrapped.keep_journaling_your_monthly_wrapped_wil', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('digest.monthly_wrapped.keep_journaling_your_monthly_wrapped_wil', language),
                           textAlign: TextAlign.center,
                           style: AppTypography.decorativeScript(
                             fontSize: 16,
@@ -118,7 +118,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                         const SizedBox(height: 24),
                         TextButton(
                           onPressed: () => Navigator.of(context).pop(),
-                          child: Text(L10nService.get('digest.monthly_wrapped.go_back', isEn ? AppLanguage.en : AppLanguage.tr)),
+                          child: Text(L10nService.get('digest.monthly_wrapped.go_back', language)),
                         ),
                       ],
                     ),
@@ -131,7 +131,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                   // Page indicator
                   Semantics(
                     label:
-                        '${L10nService.get('digest.monthly_wrapped.slide', isEn ? AppLanguage.en : AppLanguage.tr)} ${_currentPage + 1} / 5',
+                        '${L10nService.get('digest.monthly_wrapped.slide', language)} ${_currentPage + 1} / 5',
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 40,
@@ -172,7 +172,7 @@ class _MonthlyWrappedScreenState extends ConsumerState<MonthlyWrappedScreen> {
                               ? AppColors.textMuted
                               : AppColors.lightTextMuted,
                         ),
-                        tooltip: L10nService.get('digest.monthly_wrapped.close', isEn ? AppLanguage.en : AppLanguage.tr),
+                        tooltip: L10nService.get('digest.monthly_wrapped.close', language),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                     ),

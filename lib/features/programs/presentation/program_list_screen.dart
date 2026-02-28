@@ -48,7 +48,7 @@ class ProgramListScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('programs.program_list.guided_programs', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('programs.program_list.guided_programs', language),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -63,7 +63,7 @@ class ProgramListScreen extends ConsumerWidget {
                           children: [
                             const SizedBox(height: 40),
                             Text(
-                              L10nService.get('programs.program_list.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('programs.program_list.could_not_load_your_local_data_is_unaffe', language),
                               textAlign: TextAlign.center,
                               style: AppTypography.subtitle(
                                 color: isDark
@@ -81,7 +81,7 @@ class ProgramListScreen extends ConsumerWidget {
                                 color: AppColors.starGold,
                               ),
                               label: Text(
-                                L10nService.get('programs.program_list.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                L10nService.get('programs.program_list.retry', language),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
@@ -99,7 +99,7 @@ class ProgramListScreen extends ConsumerWidget {
                         delegate: SliverChildListDelegate([
                           // Intro text
                           Text(
-                            L10nService.get('programs.program_list.structured_reflection_journeys_to_deepen', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('programs.program_list.structured_reflection_journeys_to_deepen', language),
                             style: AppTypography.decorativeScript(
                               fontSize: 14,
                               color: isDark
@@ -112,7 +112,7 @@ class ProgramListScreen extends ConsumerWidget {
                           // Active programs section
                           if (service.activeProgramCount > 0) ...[
                             GradientText(
-                              L10nService.get('programs.program_list.in_progress', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('programs.program_list.in_progress', language),
                               variant: GradientTextVariant.aurora,
                               style: AppTypography.displayFont.copyWith(
                                 fontSize: 16,
@@ -144,7 +144,7 @@ class ProgramListScreen extends ConsumerWidget {
 
                           // All programs
                           GradientText(
-                            L10nService.get('programs.program_list.all_programs', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('programs.program_list.all_programs', language),
                             variant: GradientTextVariant.gold,
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 16,

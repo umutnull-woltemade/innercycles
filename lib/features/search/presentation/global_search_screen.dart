@@ -183,7 +183,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                                   : AppColors.lightTextPrimary,
                             ),
                             decoration: InputDecoration(
-                              hintText: L10nService.get('search.global_search.search_entries_notes_dreams', isEn ? AppLanguage.en : AppLanguage.tr),
+                              hintText: L10nService.get('search.global_search.search_entries_notes_dreams', language),
                               hintStyle: AppTypography.subtitle(
                                 color: isDark
                                     ? AppColors.textMuted
@@ -204,7 +204,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                                             ? AppColors.textMuted
                                             : AppColors.lightTextMuted,
                                       ),
-                                      tooltip: L10nService.get('search.global_search.clear_search', isEn ? AppLanguage.en : AppLanguage.tr),
+                                      tooltip: L10nService.get('search.global_search.clear_search', language),
                                       onPressed: () {
                                         _searchController.clear();
                                         setState(() {
@@ -231,7 +231,7 @@ class _GlobalSearchScreenState extends ConsumerState<GlobalSearchScreen> {
                       ),
                       const SizedBox(width: AppConstants.spacingSm),
                       IconButton(
-                        tooltip: L10nService.get('search.global_search.close_search', isEn ? AppLanguage.en : AppLanguage.tr),
+                        tooltip: L10nService.get('search.global_search.close_search', language),
                         onPressed: () => Navigator.of(context).pop(),
                         icon: Icon(
                           Icons.close_rounded,

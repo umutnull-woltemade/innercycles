@@ -148,7 +148,7 @@ class _NotificationScheduleScreenState
                   ),
                   slivers: [
                     GlassSliverAppBar(
-                      title: L10nService.get('settings.notification_schedule.notifications', isEn ? AppLanguage.en : AppLanguage.tr),
+                      title: L10nService.get('settings.notification_schedule.notifications', language),
                     ),
                     SliverPadding(
                       padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -241,7 +241,7 @@ class _NotificationScheduleScreenState
 
                           // Info text
                           Text(
-                            L10nService.get('settings.notification_schedule.notifications_help_you_build_a_consisten', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('settings.notification_schedule.notifications_help_you_build_a_consisten', language),
                             style: AppTypography.decorativeScript(
                               fontSize: 13,
                               color: isDark

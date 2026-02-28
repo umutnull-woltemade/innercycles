@@ -45,7 +45,7 @@ class QuizHubScreen extends ConsumerWidget {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: L10nService.get('quiz.quiz_hub.selfreflection_quizzes', isEn ? AppLanguage.en : AppLanguage.tr),
+                title: L10nService.get('quiz.quiz_hub.selfreflection_quizzes', language),
               ),
               SliverPadding(
                 padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -53,7 +53,7 @@ class QuizHubScreen extends ConsumerWidget {
                   delegate: SliverChildListDelegate([
                     // Header description
                     Text(
-                          L10nService.get('quiz.quiz_hub.explore_different_aspects_of_yourself_th', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('quiz.quiz_hub.explore_different_aspects_of_yourself_th', language),
                           style: AppTypography.decorativeScript(
                             fontSize: 15,
                             color: AppColors.textSecondary,

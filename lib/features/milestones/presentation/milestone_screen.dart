@@ -64,7 +64,7 @@ class MilestoneScreen extends ConsumerWidget {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('milestones.milestone.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('milestones.milestone.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,

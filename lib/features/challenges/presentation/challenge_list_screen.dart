@@ -45,7 +45,7 @@ class ChallengeListScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('challenges.challenge_list.growth_challenges', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('challenges.challenge_list.growth_challenges', language),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -79,7 +79,7 @@ class ChallengeListScreen extends ConsumerWidget {
                                   color: AppColors.starGold,
                                 ),
                                 label: Text(
-                                  L10nService.get('challenges.challenge_list.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  L10nService.get('challenges.challenge_list.retry', language),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
@@ -126,7 +126,7 @@ class ChallengeListScreen extends ConsumerWidget {
                           // Active challenges
                           if (active.isNotEmpty) ...[
                             _SectionTitle(
-                              title: L10nService.get('challenges.challenge_list.in_progress', isEn ? AppLanguage.en : AppLanguage.tr),
+                              title: L10nService.get('challenges.challenge_list.in_progress', language),
                               isDark: isDark,
                             ),
                             const SizedBox(height: 10),
@@ -161,7 +161,7 @@ class ChallengeListScreen extends ConsumerWidget {
 
                           // Available challenges
                           _SectionTitle(
-                            title: L10nService.get('challenges.challenge_list.available', isEn ? AppLanguage.en : AppLanguage.tr),
+                            title: L10nService.get('challenges.challenge_list.available', language),
                             isDark: isDark,
                           ),
                           const SizedBox(height: 10),
@@ -194,7 +194,7 @@ class ChallengeListScreen extends ConsumerWidget {
                           if (completed.isNotEmpty) ...[
                             const SizedBox(height: 20),
                             _SectionTitle(
-                              title: L10nService.get('challenges.challenge_list.completed', isEn ? AppLanguage.en : AppLanguage.tr),
+                              title: L10nService.get('challenges.challenge_list.completed', language),
                               isDark: isDark,
                             ),
                             const SizedBox(height: 10),

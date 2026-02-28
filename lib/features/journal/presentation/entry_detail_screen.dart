@@ -65,7 +65,7 @@ class EntryDetailScreen extends ConsumerWidget {
                         color: AppColors.starGold,
                       ),
                       label: Text(
-                        L10nService.get('journal.entry_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('journal.entry_detail.retry', language),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -82,7 +82,7 @@ class EntryDetailScreen extends ConsumerWidget {
               if (entry == null) {
                 return Center(
                   child: Text(
-                    L10nService.get('journal.entry_detail.entry_not_found', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('journal.entry_detail.entry_not_found', language),
                     style: AppTypography.subtitle(
                       color: isDark
                           ? AppColors.textPrimary

@@ -141,7 +141,7 @@ class _ToolCatalogScreenState extends ConsumerState<ToolCatalogScreen> {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('tools.tool_catalog.tools', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('tools.tool_catalog.tools', language),
                   showBackButton: false,
                 ),
                 SliverPadding(

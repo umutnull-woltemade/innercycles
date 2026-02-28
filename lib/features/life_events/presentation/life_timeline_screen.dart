@@ -57,7 +57,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  L10nService.get('life_events.life_timeline.couldnt_load_your_timeline', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('life_events.life_timeline.couldnt_load_your_timeline', language),
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textSecondary
@@ -73,7 +73,7 @@ class _LifeTimelineScreenState extends ConsumerState<LifeTimelineScreen> {
                     color: AppColors.starGold,
                   ),
                   label: Text(
-                    L10nService.get('life_events.life_timeline.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('life_events.life_timeline.retry', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,

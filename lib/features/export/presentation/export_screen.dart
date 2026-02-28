@@ -55,7 +55,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('export.export.export_data', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('export.export.export_data', language),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(20),
@@ -110,7 +110,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  L10nService.get('export.export.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  L10nService.get('export.export.could_not_load_your_local_data_is_unaffe', language),
                                   textAlign: TextAlign.center,
                                   style: AppTypography.subtitle(
                                     color: isDark
@@ -124,7 +124,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                                       ref.invalidate(exportServiceProvider),
                                   icon: Icon(Icons.refresh_rounded, size: 16, color: AppColors.starGold),
                                   label: Text(
-                                    L10nService.get('export.export.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                    L10nService.get('export.export.retry', language),
                                     style: AppTypography.elegantAccent(
                                       fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.starGold,
                                     ),
@@ -139,7 +139,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
 
                       // Format selector
                       Text(
-                        L10nService.get('export.export.export_format', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('export.export.export_format', language),
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -152,8 +152,8 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
 
                       _FormatOption(
                         format: ExportFormat.text,
-                        title: L10nService.get('export.export.plain_text', isEn ? AppLanguage.en : AppLanguage.tr),
-                        subtitle: L10nService.get('export.export.humanreadable_format', isEn ? AppLanguage.en : AppLanguage.tr),
+                        title: L10nService.get('export.export.plain_text', language),
+                        subtitle: L10nService.get('export.export.humanreadable_format', language),
                         icon: Icons.text_snippet_outlined,
                         isSelected: _selectedFormat == ExportFormat.text,
                         isLocked: false,
@@ -166,7 +166,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                       _FormatOption(
                         format: ExportFormat.csv,
                         title: 'CSV',
-                        subtitle: L10nService.get('export.export.spreadsheet_compatible', isEn ? AppLanguage.en : AppLanguage.tr),
+                        subtitle: L10nService.get('export.export.spreadsheet_compatible', language),
                         icon: Icons.table_chart_outlined,
                         isSelected: _selectedFormat == ExportFormat.csv,
                         isLocked: !isPremium,
@@ -188,7 +188,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
                       _FormatOption(
                         format: ExportFormat.json,
                         title: 'JSON',
-                        subtitle: L10nService.get('export.export.developerfriendly_format', isEn ? AppLanguage.en : AppLanguage.tr),
+                        subtitle: L10nService.get('export.export.developerfriendly_format', language),
                         icon: Icons.data_object_outlined,
                         isSelected: _selectedFormat == ExportFormat.json,
                         isLocked: !isPremium,
@@ -210,7 +210,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
 
                       // Export button
                       GradientButton.gold(
-                        label: L10nService.get('export.export.export_share', isEn ? AppLanguage.en : AppLanguage.tr),
+                        label: L10nService.get('export.export.export_share', language),
                         icon: Icons.file_download_outlined,
                         onPressed: _isExporting
                             ? null
@@ -223,7 +223,7 @@ class _ExportScreenState extends ConsumerState<ExportScreen> {
 
                       // Copy to clipboard button
                       GradientOutlinedButton(
-                        label: L10nService.get('export.export.copy_to_clipboard', isEn ? AppLanguage.en : AppLanguage.tr),
+                        label: L10nService.get('export.export.copy_to_clipboard', language),
                         icon: Icons.copy_outlined,
                         variant: GradientTextVariant.aurora,
                         expanded: true,

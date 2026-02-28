@@ -327,7 +327,7 @@ class _ContextualPaywallSheetState
 
                   // Risk reversal
                   Text(
-                    L10nService.get('premium.contextual_paywall.cancel_anytime_your_entries_are_always_y', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('premium.contextual_paywall.cancel_anytime_your_entries_are_always_y', language),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       color: Colors.white.withValues(alpha: 0.55),
@@ -351,7 +351,7 @@ class _ContextualPaywallSheetState
                       Navigator.pop(context, false);
                     },
                     child: Text(
-                      L10nService.get('premium.contextual_paywall.not_now', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('premium.contextual_paywall.not_now', language),
                       style: AppTypography.elegantAccent(
                         color: Colors.white.withValues(alpha: 0.7),
                         fontSize: 13,

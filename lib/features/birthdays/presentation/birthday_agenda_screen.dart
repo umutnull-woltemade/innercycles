@@ -61,7 +61,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
         ),
         child: FloatingActionButton(
           onPressed: () => context.push(Routes.birthdayAdd),
-          tooltip: L10nService.get('birthdays.birthday_agenda.add_birthday', isEn ? AppLanguage.en : AppLanguage.tr),
+          tooltip: L10nService.get('birthdays.birthday_agenda.add_birthday', language),
           backgroundColor: Colors.transparent,
           elevation: 0,
           child: const Icon(
@@ -78,7 +78,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  L10nService.get('birthdays.birthday_agenda.couldnt_load_your_birthdays', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('birthdays.birthday_agenda.couldnt_load_your_birthdays', language),
                   textAlign: TextAlign.center,
                   style: AppTypography.subtitle(
                     color: isDark
@@ -93,7 +93,7 @@ class _BirthdayAgendaScreenState extends ConsumerState<BirthdayAgendaScreen> {
                   icon: Icon(Icons.refresh_rounded,
                       size: 16, color: AppColors.starGold),
                   label: Text(
-                    L10nService.get('birthdays.birthday_agenda.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('birthdays.birthday_agenda.retry', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,

@@ -84,7 +84,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                 ),
                 slivers: [
                   GlassSliverAppBar(
-                    title: L10nService.get('gratitude.gratitude.gratitude_journal', isEn ? AppLanguage.en : AppLanguage.tr),
+                    title: L10nService.get('gratitude.gratitude.gratitude_journal', language),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.all(16),
@@ -115,7 +115,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                                   icon: Icon(Icons.refresh_rounded,
                                       size: 16, color: AppColors.starGold),
                                   label: Text(
-                                    L10nService.get('gratitude.gratitude.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                    L10nService.get('gratitude.gratitude.retry', language),
                                     style: AppTypography.elegantAccent(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w600,
@@ -208,7 +208,7 @@ class _GratitudeScreenState extends ConsumerState<GratitudeScreen> {
                             // History
                             if (allEntries.isNotEmpty) ...[
                               GradientText(
-                                L10nService.get('gratitude.gratitude.history', isEn ? AppLanguage.en : AppLanguage.tr),
+                                L10nService.get('gratitude.gratitude.history', language),
                                 variant: GradientTextVariant.gold,
                                 style: AppTypography.displayFont.copyWith(
                                   fontSize: 18,

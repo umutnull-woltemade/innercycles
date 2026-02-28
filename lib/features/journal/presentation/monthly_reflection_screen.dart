@@ -122,7 +122,7 @@ class _MonthlyReflectionScreenState
                         color: AppColors.starGold,
                       ),
                       label: Text(
-                        L10nService.get('journal.monthly_reflection.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('journal.monthly_reflection.retry', language),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -147,7 +147,7 @@ class _MonthlyReflectionScreenState
                   ),
                   slivers: [
                     GlassSliverAppBar(
-                      title: L10nService.get('journal.monthly_reflection.monthly_reflection', isEn ? AppLanguage.en : AppLanguage.tr),
+                      title: L10nService.get('journal.monthly_reflection.monthly_reflection', language),
                       actions: [
                         if (summary.totalEntries > 0)
                           IconButton(
@@ -171,7 +171,7 @@ class _MonthlyReflectionScreenState
                               color: AppColors.starGold,
                               size: 20,
                             ),
-                            tooltip: L10nService.get('journal.monthly_reflection.share_monthly_summary', isEn ? AppLanguage.en : AppLanguage.tr),
+                            tooltip: L10nService.get('journal.monthly_reflection.share_monthly_summary', language),
                           ),
                       ],
                     ),

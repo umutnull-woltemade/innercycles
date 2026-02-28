@@ -93,7 +93,7 @@ class LibraryHubScreen extends ConsumerWidget {
             ),
             slivers: [
               GlassSliverAppBar(
-                title: L10nService.get('library.library_hub.library', isEn ? AppLanguage.en : AppLanguage.tr),
+                title: L10nService.get('library.library_hub.library', language),
                 showBackButton: false,
               ),
               SliverPadding(
@@ -102,7 +102,7 @@ class LibraryHubScreen extends ConsumerWidget {
                   delegate: SliverChildListDelegate([
                     // Header text
                     Text(
-                      L10nService.get('library.library_hub.your_personal_data_vault', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('library.library_hub.your_personal_data_vault', language),
                       style: AppTypography.subtitle(
                         fontSize: 14,
                         color: isDark

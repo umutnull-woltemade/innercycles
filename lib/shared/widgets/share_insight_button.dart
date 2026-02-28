@@ -31,7 +31,7 @@ class ShareInsightButton extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Semantics(
-      label: L10nService.get('shared.share_insight_button.share_this_insight', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('shared.share_insight_button.share_this_insight', language),
       button: true,
       child: GestureDetector(
         onTap: () {

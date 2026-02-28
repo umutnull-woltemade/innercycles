@@ -58,7 +58,7 @@ class ProfileHubScreen extends ConsumerWidget {
         .round()
         .clamp(0, 100);
 
-    final name = profile?.name ?? (L10nService.get('profile.profile_hub.explorer', isEn ? AppLanguage.en : AppLanguage.tr));
+    final name = profile?.name ?? (L10nService.get('profile.profile_hub.explorer', language));
 
     return Scaffold(
       body: CosmicBackground(
@@ -72,7 +72,7 @@ class ProfileHubScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('profile.profile_hub.profile', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('profile.profile_hub.profile', language),
                   showBackButton: false,
                   largeTitleMode: true,
                 ),

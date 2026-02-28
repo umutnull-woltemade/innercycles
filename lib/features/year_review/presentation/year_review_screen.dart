@@ -105,7 +105,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('year_review.year_review.year_synthesis', isEn ? AppLanguage.en : AppLanguage.tr),
+                  title: L10nService.get('year_review.year_review.year_synthesis', language),
                 ),
                 // Year selector
                 SliverToBoxAdapter(
@@ -118,7 +118,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              L10nService.get('year_review.year_review.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('year_review.year_review.could_not_load_your_local_data_is_unaffe', language),
                               textAlign: TextAlign.center,
                               style: AppTypography.subtitle(
                                 color: isDark
@@ -136,7 +136,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                                 color: AppColors.starGold,
                               ),
                               label: Text(
-                                L10nService.get('year_review.year_review.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                                L10nService.get('year_review.year_review.retry', language),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
@@ -185,7 +185,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                L10nService.get('year_review.year_review.could_not_load_your_local_data_is_unaffe_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                                L10nService.get('year_review.year_review.could_not_load_your_local_data_is_unaffe_1', language),
                                 textAlign: TextAlign.center,
                                 style: AppTypography.subtitle(
                                   color: isDark
@@ -203,7 +203,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                                   color: AppColors.starGold,
                                 ),
                                 label: Text(
-                                  L10nService.get('year_review.year_review.retry_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  L10nService.get('year_review.year_review.retry_1', language),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,

@@ -76,7 +76,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                 ),
                 slivers: [
                   GlassSliverAppBar(
-                    title: L10nService.get('rituals.ritual_create.create_ritual', isEn ? AppLanguage.en : AppLanguage.tr),
+                    title: L10nService.get('rituals.ritual_create.create_ritual', language),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -84,7 +84,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                       delegate: SliverChildListDelegate([
                         // Time selector
                         Text(
-                          L10nService.get('rituals.ritual_create.when', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('rituals.ritual_create.when', language),
                           style: AppTypography.elegantAccent(
                             fontSize: 14,
                             color: isDark
@@ -175,7 +175,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
 
                         // Name field
                         Text(
-                          L10nService.get('rituals.ritual_create.name', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('rituals.ritual_create.name', language),
                           style: AppTypography.elegantAccent(
                             fontSize: 14,
                             color: isDark
@@ -198,7 +198,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                                   : AppColors.lightTextPrimary,
                             ),
                             decoration: InputDecoration(
-                              hintText: L10nService.get('rituals.ritual_create.eg_morning_routine', isEn ? AppLanguage.en : AppLanguage.tr),
+                              hintText: L10nService.get('rituals.ritual_create.eg_morning_routine', language),
                               hintStyle: AppTypography.subtitle(
                                 color: isDark
                                     ? AppColors.textMuted
@@ -230,7 +230,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                             ),
                             if (_itemControllers.length < maxItems)
                               IconButton(
-                                tooltip: L10nService.get('rituals.ritual_create.add_step', isEn ? AppLanguage.en : AppLanguage.tr),
+                                tooltip: L10nService.get('rituals.ritual_create.add_step', language),
                                 onPressed: () {
                                   setState(() {
                                     _itemControllers.add(
@@ -312,7 +312,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
                                       ),
                                       if (_itemControllers.length > 1)
                                         IconButton(
-                                          tooltip: L10nService.get('rituals.ritual_create.remove_step', isEn ? AppLanguage.en : AppLanguage.tr),
+                                          tooltip: L10nService.get('rituals.ritual_create.remove_step', language),
                                           onPressed: () {
                                             setState(() {
                                               _itemControllers[i].dispose();
@@ -340,7 +340,7 @@ class _RitualCreateScreenState extends ConsumerState<RitualCreateScreen> {
 
                         // Save button
                         GradientButton.gold(
-                          label: L10nService.get('rituals.ritual_create.create_ritual_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                          label: L10nService.get('rituals.ritual_create.create_ritual_1', language),
                           onPressed: _isSaving ? null : _save,
                           isLoading: _isSaving,
                           expanded: true,

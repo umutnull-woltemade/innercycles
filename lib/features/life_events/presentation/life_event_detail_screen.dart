@@ -48,7 +48,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  L10nService.get('life_events.life_event_detail.couldnt_load_this_event', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('life_events.life_event_detail.couldnt_load_this_event', language),
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textSecondary
@@ -64,7 +64,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                     color: AppColors.starGold,
                   ),
                   label: Text(
-                    L10nService.get('life_events.life_event_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('life_events.life_event_detail.retry', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -80,7 +80,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
             if (event == null) {
               return Center(
                 child: Text(
-                  L10nService.get('life_events.life_event_detail.event_not_found', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('life_events.life_event_detail.event_not_found', language),
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textMuted

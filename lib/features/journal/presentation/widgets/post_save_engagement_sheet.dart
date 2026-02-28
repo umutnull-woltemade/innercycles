@@ -111,7 +111,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GradientText(
-                          L10nService.get('journal.post_save_engagement.saved', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('journal.post_save_engagement.saved', language),
                           variant: GradientTextVariant.gold,
                           style: AppTypography.elegantAccent(
                             fontSize: 20,
@@ -145,7 +145,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  L10nService.get('journal.post_save_engagement.what_else_would_you_like_to_capture', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('journal.post_save_engagement.what_else_would_you_like_to_capture', language),
                   style: AppTypography.subtitle(
                     fontSize: 14,
                     color: isDark
@@ -192,7 +192,7 @@ class PostSaveEngagementSheet extends ConsumerWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Text(
-                  L10nService.get('journal.post_save_engagement.back_to_home', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('journal.post_save_engagement.back_to_home', language),
                   style: AppTypography.subtitle(
                     fontSize: 14,
                     color: isDark

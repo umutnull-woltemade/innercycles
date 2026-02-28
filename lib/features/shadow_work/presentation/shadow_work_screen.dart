@@ -87,7 +87,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      L10nService.get('shadow_work.shadow_work.couldnt_load_your_shadow_work', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('shadow_work.shadow_work.couldnt_load_your_shadow_work', language),
                       textAlign: TextAlign.center,
                       style: AppTypography.decorativeScript(
                         fontSize: 14,
@@ -103,7 +103,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                       icon: Icon(Icons.refresh_rounded,
                           size: 16, color: AppColors.starGold),
                       label: Text(
-                        L10nService.get('shadow_work.shadow_work.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('shadow_work.shadow_work.retry', language),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -122,7 +122,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                     ),
                     slivers: [
                       GlassSliverAppBar(
-                        title: L10nService.get('shadow_work.shadow_work.shadow_work', isEn ? AppLanguage.en : AppLanguage.tr),
+                        title: L10nService.get('shadow_work.shadow_work.shadow_work', language),
                       ),
                       SliverPadding(
                         padding: const EdgeInsets.all(AppConstants.spacingLg),
@@ -1027,13 +1027,12 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
 
   void _showDiscardDialog() async {
     final language = ref.read(languageProvider);
-    final isEn = language == AppLanguage.en;
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('shadow_work.shadow_work.discard_changes', isEn ? AppLanguage.en : AppLanguage.tr),
-      message: L10nService.get('shadow_work.shadow_work.you_have_unsaved_text_are_you_sure_you_w', isEn ? AppLanguage.en : AppLanguage.tr),
-      cancelLabel: L10nService.get('shadow_work.shadow_work.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
-      confirmLabel: L10nService.get('shadow_work.shadow_work.discard', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('shadow_work.shadow_work.discard_changes', language),
+      message: L10nService.get('shadow_work.shadow_work.you_have_unsaved_text_are_you_sure_you_w', language),
+      cancelLabel: L10nService.get('shadow_work.shadow_work.cancel', language),
+      confirmLabel: L10nService.get('shadow_work.shadow_work.discard', language),
       isDestructive: true,
     );
     if (confirmed == true && mounted) {

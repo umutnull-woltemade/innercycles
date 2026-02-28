@@ -94,7 +94,7 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                   Icon(Icons.auto_awesome, color: AppColors.starGold, size: 48),
                   const SizedBox(height: 16),
                   Text(
-                    L10nService.get('year_review.wrapped.not_enough_entries_for_your_wrapped_yet', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('year_review.wrapped.not_enough_entries_for_your_wrapped_yet', language),
                     style: AppTypography.subtitle(
                       color: AppColors.textSecondary,
                     ),
@@ -102,7 +102,7 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    L10nService.get('year_review.wrapped.keep_journaling_your_story_is_building', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('year_review.wrapped.keep_journaling_your_story_is_building', language),
                     style: AppTypography.subtitle(
                       fontSize: 13,
                       color: AppColors.textMuted,
@@ -113,7 +113,7 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                   GestureDetector(
                     onTap: () => context.go(Routes.journal),
                     child: Text(
-                      L10nService.get('year_review.wrapped.write_an_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('year_review.wrapped.write_an_entry', language),
                       style: AppTypography.modernAccent(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -138,7 +138,7 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      L10nService.get('year_review.wrapped.keep_journaling_to_unlock_your_wrapped', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('year_review.wrapped.keep_journaling_to_unlock_your_wrapped', language),
                       style: AppTypography.subtitle(
                         color: AppColors.textSecondary,
                       ),
@@ -204,7 +204,7 @@ class _WrappedScreenState extends ConsumerState<WrappedScreen> {
                         color: AppColors.textSecondary,
                         size: 24,
                       ),
-                      tooltip: L10nService.get('year_review.wrapped.close', isEn ? AppLanguage.en : AppLanguage.tr),
+                      tooltip: L10nService.get('year_review.wrapped.close', language),
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                   ),

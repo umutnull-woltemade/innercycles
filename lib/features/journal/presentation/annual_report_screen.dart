@@ -277,7 +277,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  L10nService.get('journal.annual_report.couldnt_load_your_annual_report', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('journal.annual_report.couldnt_load_your_annual_report', language),
                   style: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textSecondary
@@ -294,7 +294,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                     color: AppColors.starGold,
                   ),
                   label: Text(
-                    L10nService.get('journal.annual_report.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('journal.annual_report.retry', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,

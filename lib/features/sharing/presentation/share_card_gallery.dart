@@ -183,7 +183,7 @@ class _ShareCardGalleryScreenState
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          L10nService.get('sharing.share_gallery.share_cards', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('sharing.share_gallery.share_cards', language),
           style: AppTypography.displayFont.copyWith(
             color: isDark ? AppColors.textPrimary : AppColors.lightTextPrimary,
             fontWeight: FontWeight.w600,
@@ -192,7 +192,7 @@ class _ShareCardGalleryScreenState
         ),
         centerTitle: true,
         leading: IconButton(
-          tooltip: L10nService.get('sharing.share_gallery.back', isEn ? AppLanguage.en : AppLanguage.tr),
+          tooltip: L10nService.get('sharing.share_gallery.back', language),
           icon: Icon(
             Icons.chevron_left,
             size: 28,

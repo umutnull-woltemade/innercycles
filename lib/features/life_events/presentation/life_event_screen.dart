@@ -125,8 +125,8 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                 slivers: [
                   GlassSliverAppBar(
                     title: _isEditing
-                        ? (L10nService.get('life_events.life_event.edit_life_event', isEn ? AppLanguage.en : AppLanguage.tr))
-                        : (L10nService.get('life_events.life_event.new_life_event', isEn ? AppLanguage.en : AppLanguage.tr)),
+                        ? (L10nService.get('life_events.life_event.edit_life_event', language))
+                        : (L10nService.get('life_events.life_event.new_life_event', language)),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.all(16),
@@ -180,13 +180,12 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
 
   void _showDiscardDialog() async {
     final language = ref.read(languageProvider);
-    final isEn = language == AppLanguage.en;
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('life_events.life_event.discard_changes', isEn ? AppLanguage.en : AppLanguage.tr),
-      message: L10nService.get('life_events.life_event.you_have_unsaved_changes_are_you_sure_yo', isEn ? AppLanguage.en : AppLanguage.tr),
-      cancelLabel: L10nService.get('life_events.life_event.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
-      confirmLabel: L10nService.get('life_events.life_event.discard', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('life_events.life_event.discard_changes', language),
+      message: L10nService.get('life_events.life_event.you_have_unsaved_changes_are_you_sure_yo', language),
+      cancelLabel: L10nService.get('life_events.life_event.cancel', language),
+      confirmLabel: L10nService.get('life_events.life_event.discard', language),
       isDestructive: true,
     );
     if (confirmed == true && mounted) {

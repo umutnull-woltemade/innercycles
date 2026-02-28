@@ -107,7 +107,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    L10nService.get('journal.emotional_cycle.unable_to_load_data', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('journal.emotional_cycle.unable_to_load_data', language),
                     style: AppTypography.decorativeScript(
                       fontSize: 15,
                       color: isDark
@@ -125,7 +125,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
                       color: AppColors.starGold,
                     ),
                     label: Text(
-                      L10nService.get('journal.emotional_cycle.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('journal.emotional_cycle.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,

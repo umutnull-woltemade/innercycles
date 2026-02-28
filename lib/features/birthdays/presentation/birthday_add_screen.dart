@@ -112,8 +112,8 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
                 slivers: [
                   GlassSliverAppBar(
                     title: _isEditing
-                        ? (L10nService.get('birthdays.birthday_add.edit_birthday', isEn ? AppLanguage.en : AppLanguage.tr))
-                        : (L10nService.get('birthdays.birthday_add.add_birthday', isEn ? AppLanguage.en : AppLanguage.tr)),
+                        ? (L10nService.get('birthdays.birthday_add.edit_birthday', language))
+                        : (L10nService.get('birthdays.birthday_add.add_birthday', language)),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.all(16),
@@ -147,13 +147,12 @@ class _BirthdayAddScreenState extends ConsumerState<BirthdayAddScreen> {
 
   void _showDiscardDialog() async {
     final language = ref.read(languageProvider);
-    final isEn = language == AppLanguage.en;
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('birthdays.birthday_add.discard_changes', isEn ? AppLanguage.en : AppLanguage.tr),
-      message: L10nService.get('birthdays.birthday_add.you_have_unsaved_changes_are_you_sure_yo', isEn ? AppLanguage.en : AppLanguage.tr),
-      cancelLabel: L10nService.get('birthdays.birthday_add.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
-      confirmLabel: L10nService.get('birthdays.birthday_add.discard', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('birthdays.birthday_add.discard_changes', language),
+      message: L10nService.get('birthdays.birthday_add.you_have_unsaved_changes_are_you_sure_yo', language),
+      cancelLabel: L10nService.get('birthdays.birthday_add.cancel', language),
+      confirmLabel: L10nService.get('birthdays.birthday_add.discard', language),
       isDestructive: true,
     );
     if (confirmed == true && mounted) {

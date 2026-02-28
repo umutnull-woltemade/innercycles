@@ -71,7 +71,7 @@ class PatternsScreen extends ConsumerWidget {
                         color: AppColors.starGold,
                       ),
                       label: Text(
-                        L10nService.get('journal.patterns.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('journal.patterns.retry', language),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,

@@ -57,7 +57,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    L10nService.get('memories.memories.couldnt_load_your_memories', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('memories.memories.couldnt_load_your_memories', language),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       fontSize: 14,
@@ -73,7 +73,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('memories.memories.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('memories.memories.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -137,7 +137,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                     parent: AlwaysScrollableScrollPhysics(),
                   ),
                   slivers: [
-                    GlassSliverAppBar(title: L10nService.get('memories.memories.memories', isEn ? AppLanguage.en : AppLanguage.tr)),
+                    GlassSliverAppBar(title: L10nService.get('memories.memories.memories', language)),
                     // Stats header
                     SliverToBoxAdapter(
                       child: Padding(
@@ -164,7 +164,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                             bottom: AppConstants.spacingMd,
                           ),
                           child: GradientText(
-                            L10nService.get('memories.memories.on_this_day', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('memories.memories.on_this_day', language),
                             variant: GradientTextVariant.gold,
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 17,
@@ -230,10 +230,10 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                       SliverToBoxAdapter(
                         child: PremiumEmptyState(
                           icon: Icons.auto_stories_rounded,
-                          title: L10nService.get('memories.memories.this_month_is_a_blank_canvas', isEn ? AppLanguage.en : AppLanguage.tr),
-                          description: L10nService.get('memories.memories.your_memories_from_this_period_will_appe', isEn ? AppLanguage.en : AppLanguage.tr),
+                          title: L10nService.get('memories.memories.this_month_is_a_blank_canvas', language),
+                          description: L10nService.get('memories.memories.your_memories_from_this_period_will_appe', language),
                           gradientVariant: GradientTextVariant.gold,
-                          ctaLabel: L10nService.get('memories.memories.write_an_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+                          ctaLabel: L10nService.get('memories.memories.write_an_entry', language),
                           onCtaPressed: () => context.go(Routes.journal),
                         ),
                       )

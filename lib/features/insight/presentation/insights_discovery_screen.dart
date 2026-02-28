@@ -74,7 +74,7 @@ class _InsightsDiscoveryScreenState
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    L10nService.get('insight.insights_discovery.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('insight.insights_discovery.could_not_load_your_local_data_is_unaffe', language),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       fontSize: 14,
@@ -90,7 +90,7 @@ class _InsightsDiscoveryScreenState
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('insight.insights_discovery.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('insight.insights_discovery.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -704,7 +704,7 @@ class _InsightsDiscoveryScreenState
                             ),
                             const SizedBox(width: 6),
                             GradientText(
-                              L10nService.get('insight.insights_discovery.why_this_matters', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('insight.insights_discovery.why_this_matters', language),
                               variant: GradientTextVariant.gold,
                               style: AppTypography.elegantAccent(
                                 fontSize: 13,
@@ -778,7 +778,7 @@ class _InsightsDiscoveryScreenState
                   if (module.relatedModuleIds.isNotEmpty) ...[
                     const SizedBox(height: 24),
                     GradientText(
-                      L10nService.get('insight.insights_discovery.related_insights', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('insight.insights_discovery.related_insights', language),
                       variant: GradientTextVariant.gold,
                       style: AppTypography.elegantAccent(
                         fontSize: 14,

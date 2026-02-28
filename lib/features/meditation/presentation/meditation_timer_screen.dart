@@ -132,12 +132,11 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
     });
 
     final language = ref.read(languageProvider);
-    final isEn = language == AppLanguage.en;
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          L10nService.get('meditation.meditation_timer.session_complete_well_done', isEn ? AppLanguage.en : AppLanguage.tr),
+          L10nService.get('meditation.meditation_timer.session_complete_well_done', language),
         ),
         backgroundColor: AppColors.success,
         duration: const Duration(seconds: 3),
@@ -170,7 +169,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                 parent: AlwaysScrollableScrollPhysics(),
               ),
               slivers: [
-                GlassSliverAppBar(title: L10nService.get('meditation.meditation_timer.meditation', isEn ? AppLanguage.en : AppLanguage.tr)),
+                GlassSliverAppBar(title: L10nService.get('meditation.meditation_timer.meditation', language)),
                 SliverFillRemaining(
                   hasScrollBody: false,
                   child: Padding(
@@ -180,7 +179,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                         // Duration selector
                         if (!hasStarted) ...[
                           GradientText(
-                            L10nService.get('meditation.meditation_timer.choose_duration', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('meditation.meditation_timer.choose_duration', language),
                             variant: GradientTextVariant.aurora,
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 18,
@@ -325,8 +324,8 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                             ),
                                             Text(
                                               _isRunning
-                                                  ? (L10nService.get('meditation.meditation_timer.be_present', isEn ? AppLanguage.en : AppLanguage.tr))
-                                                  : (L10nService.get('meditation.meditation_timer.paused', isEn ? AppLanguage.en : AppLanguage.tr)),
+                                                  ? (L10nService.get('meditation.meditation_timer.be_present', language))
+                                                  : (L10nService.get('meditation.meditation_timer.paused', language)),
                                               style:
                                                   AppTypography.decorativeScript(
                                                     fontSize: 14,
@@ -344,7 +343,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                             ),
                                             const SizedBox(height: 8),
                                             Text(
-                                              '$_selectedMinutes ${L10nService.get('meditation.meditation_timer.min', isEn ? AppLanguage.en : AppLanguage.tr)}',
+                                              '$_selectedMinutes ${L10nService.get('meditation.meditation_timer.min', language)}',
                                               style: AppTypography.modernAccent(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.w600,
@@ -370,7 +369,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                         // Motivational text
                         if (_isRunning)
                           Text(
-                            L10nService.get('meditation.meditation_timer.focus_on_your_breath', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('meditation.meditation_timer.focus_on_your_breath', language),
                             style: AppTypography.decorativeScript(
                               fontSize: 16,
                               color: isDark
@@ -384,7 +383,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                         // Controls
                         if (!hasStarted)
                           GradientButton(
-                            label: L10nService.get('meditation.meditation_timer.begin_meditation', isEn ? AppLanguage.en : AppLanguage.tr),
+                            label: L10nService.get('meditation.meditation_timer.begin_meditation', language),
                             onPressed: _start,
                             expanded: true,
                             gradient: const LinearGradient(
@@ -401,7 +400,7 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                                 child: SizedBox(
                                   height: 56,
                                   child: GradientOutlinedButton(
-                                    label: L10nService.get('meditation.meditation_timer.reset', isEn ? AppLanguage.en : AppLanguage.tr),
+                                    label: L10nService.get('meditation.meditation_timer.reset', language),
                                     variant: GradientTextVariant.aurora,
                                     expanded: true,
                                     fontSize: 16,
@@ -414,8 +413,8 @@ class _MeditationTimerScreenState extends ConsumerState<MeditationTimerScreen>
                               Expanded(
                                 child: GradientButton(
                                   label: _isRunning
-                                      ? (L10nService.get('meditation.meditation_timer.pause', isEn ? AppLanguage.en : AppLanguage.tr))
-                                      : (L10nService.get('meditation.meditation_timer.resume', isEn ? AppLanguage.en : AppLanguage.tr)),
+                                      ? (L10nService.get('meditation.meditation_timer.pause', language))
+                                      : (L10nService.get('meditation.meditation_timer.resume', language)),
                                   onPressed: _isRunning ? _pause : _resume,
                                   expanded: true,
                                   gradient: LinearGradient(

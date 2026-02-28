@@ -92,7 +92,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
     showGeneralDialog(
       context: context,
       barrierDismissible: true,
-      barrierLabel: L10nService.get('common.dismiss', isEn ? AppLanguage.en : AppLanguage.tr),
+      barrierLabel: L10nService.get('common.dismiss', language),
       barrierColor: Colors.black54,
       transitionDuration: const Duration(milliseconds: 300),
       transitionBuilder: (ctx, anim, _, child) =>
@@ -122,7 +122,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  L10nService.get('today.today_feed.welcome_back', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('today.today_feed.welcome_back', language),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 22,
                     fontWeight: FontWeight.w700,
@@ -159,7 +159,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        L10nService.get('today.today_feed.write_an_entry', isEn ? AppLanguage.en : AppLanguage.tr),
+                        L10nService.get('today.today_feed.write_an_entry', language),
                         style: AppTypography.modernAccent(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -173,7 +173,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 GestureDetector(
                   onTap: () => Navigator.pop(ctx),
                   child: Text(
-                    L10nService.get('today.today_feed.maybe_later', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('today.today_feed.maybe_later', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 14,
                       color: isDark
@@ -220,12 +220,12 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     final label = milestone >= 365
-        ? (L10nService.get('today.today_feed.1_year', isEn ? AppLanguage.en : AppLanguage.tr))
+        ? (L10nService.get('today.today_feed.1_year', language))
         : milestone >= 180
-            ? (L10nService.get('today.today_feed.6_months', isEn ? AppLanguage.en : AppLanguage.tr))
+            ? (L10nService.get('today.today_feed.6_months', language))
             : milestone >= 90
-                ? (L10nService.get('today.today_feed.3_months', isEn ? AppLanguage.en : AppLanguage.tr))
-                : (L10nService.get('today.today_feed.1_month', isEn ? AppLanguage.en : AppLanguage.tr));
+                ? (L10nService.get('today.today_feed.3_months', language))
+                : (L10nService.get('today.today_feed.1_month', language));
 
     final emoji = milestone >= 365
         ? '\u{1F389}'
@@ -242,7 +242,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
     showGeneralDialog(
       context: context,
       barrierDismissible: true,
-      barrierLabel: L10nService.get('common.dismiss', isEn ? AppLanguage.en : AppLanguage.tr),
+      barrierLabel: L10nService.get('common.dismiss', language),
       barrierColor: Colors.black54,
       transitionDuration: const Duration(milliseconds: 300),
       transitionBuilder: (ctx, anim, _, child) =>
@@ -339,7 +339,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                           ),
                           child: Center(
                             child: Text(
-                              L10nService.get('today.today_feed.continue', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('today.today_feed.continue', language),
                               style: AppTypography.modernAccent(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,

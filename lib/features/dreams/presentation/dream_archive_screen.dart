@@ -151,7 +151,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    L10nService.get('dreams.dream_archive.failed_to_load_dreams', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('dreams.dream_archive.failed_to_load_dreams', language),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       color: isDark
@@ -166,7 +166,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('dreams.dream_archive.retry', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('dreams.dream_archive.retry', language),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -207,7 +207,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                     ),
                     slivers: [
                       GlassSliverAppBar(
-                        title: L10nService.get('dreams.dream_archive.dream_archive', isEn ? AppLanguage.en : AppLanguage.tr),
+                        title: L10nService.get('dreams.dream_archive.dream_archive', language),
                       ),
 
                       // Stats row
@@ -223,7 +223,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                             children: [
                               Expanded(
                                 child: _StatTile(
-                                  label: L10nService.get('dreams.dream_archive.total', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  label: L10nService.get('dreams.dream_archive.total', language),
                                   value: '$totalDreams',
                                   isDark: isDark,
                                 ),
@@ -231,7 +231,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                               const SizedBox(width: AppConstants.spacingSm),
                               Expanded(
                                 child: _StatTile(
-                                  label: L10nService.get('dreams.dream_archive.recurring', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  label: L10nService.get('dreams.dream_archive.recurring', language),
                                   value: '$recurringCount',
                                   isDark: isDark,
                                 ),
@@ -239,7 +239,7 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                               const SizedBox(width: AppConstants.spacingSm),
                               Expanded(
                                 child: _StatTile(
-                                  label: L10nService.get('dreams.dream_archive.lucid', isEn ? AppLanguage.en : AppLanguage.tr),
+                                  label: L10nService.get('dreams.dream_archive.lucid', language),
                                   value: '$lucidCount',
                                   isDark: isDark,
                                 ),
@@ -357,10 +357,10 @@ class _DreamArchiveScreenState extends ConsumerState<DreamArchiveScreen> {
                                         confirmDismiss: (_) async {
                                           final confirmed = await GlassDialog.confirm(
                                             context,
-                                            title: L10nService.get('dreams.dream_archive.delete_dream', isEn ? AppLanguage.en : AppLanguage.tr),
-                                            message: L10nService.get('dreams.dream_archive.this_dream_entry_will_be_permanently_del', isEn ? AppLanguage.en : AppLanguage.tr),
-                                            confirmLabel: L10nService.get('dreams.dream_archive.delete', isEn ? AppLanguage.en : AppLanguage.tr),
-                                            cancelLabel: L10nService.get('dreams.dream_archive.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+                                            title: L10nService.get('dreams.dream_archive.delete_dream', language),
+                                            message: L10nService.get('dreams.dream_archive.this_dream_entry_will_be_permanently_del', language),
+                                            confirmLabel: L10nService.get('dreams.dream_archive.delete', language),
+                                            cancelLabel: L10nService.get('dreams.dream_archive.cancel', language),
                                             isDestructive: true,
                                           );
                                           if (confirmed == true) {

@@ -104,7 +104,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
               const SizedBox(height: 16),
 
               Text(
-                L10nService.get('app_lock.app_lock.enter_pin', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('app_lock.app_lock.enter_pin', language),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 20,
                   color: isDark
@@ -117,7 +117,7 @@ class _AppLockScreenState extends ConsumerState<AppLockScreen> {
 
               if (_showError)
                 Text(
-                  L10nService.get('app_lock.app_lock.incorrect_pin', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('app_lock.app_lock.incorrect_pin', language),
                   style: AppTypography.subtitle(
                     color: AppColors.error,
                     fontSize: 14,
