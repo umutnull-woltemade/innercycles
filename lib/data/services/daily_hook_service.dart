@@ -423,6 +423,7 @@ class DailyHookService {
     await _prefs.setString(_lastHookDateKey, DateTime.now().toIso8601String());
 
     // Track category engagement
+    if (_hooks.isEmpty) return;
     final hook = _hooks.firstWhere(
       (h) => h.id == hookId,
       orElse: () => _hooks.first,
