@@ -597,7 +597,9 @@ final patternHealthReportProvider = FutureProvider<PatternHealthReport>((
 final voiceJournalServiceProvider = FutureProvider<VoiceJournalService>((
   ref,
 ) async {
-  return await VoiceJournalService.init();
+  final service = await VoiceJournalService.init();
+  ref.onDispose(() => service.dispose());
+  return service;
 });
 
 // =============================================================================
