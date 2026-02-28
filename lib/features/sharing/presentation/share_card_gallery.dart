@@ -427,6 +427,7 @@ class _ShareCardGalleryScreenState
                           repaintKey: _repaintKey,
                           isDark: isDark,
                           isPremium: isPremium,
+                          isEn: isEn,
                           displaySize: isStory ? 220 : 360,
                         )
                         .animate()

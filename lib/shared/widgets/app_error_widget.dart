@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
@@ -12,16 +14,31 @@ class AppErrorWidget extends StatelessWidget {
 
   const AppErrorWidget({super.key, required this.details});
 
-  /// Safely fetch an L10n string, falling back to [fallback] if
-  /// L10nService hasn't been initialized yet.
-  String _safeL10n(String key, String fallback) {
+  /// Detect user language from platform locale (no ProviderScope needed).
+  AppLanguage get _platformLanguage {
     try {
-      final value = L10nService.get(key, AppLanguage.en);
+      final locale = ui.PlatformDispatcher.instance.locale;
+      if (locale.languageCode == 'tr') return AppLanguage.tr;
+      if (locale.languageCode == 'de') return AppLanguage.de;
+      if (locale.languageCode == 'fr') return AppLanguage.fr;
+    } catch (_) {}
+    return AppLanguage.en;
+  }
+
+  bool get _isEn => _platformLanguage == AppLanguage.en;
+
+  /// Safely fetch an L10n string, falling back to [fallback] / [fallbackTr]
+  /// if L10nService hasn't been initialized yet.
+  String _safeL10n(String key, String fallback, {String? fallbackTr}) {
+    try {
+      final value = L10nService.get(key, _platformLanguage);
       // L10nService returns [$key] when the key is missing
-      if (value.startsWith('[') && value.endsWith(']')) return fallback;
+      if (value.startsWith('[') && value.endsWith(']')) {
+        return _isEn ? fallback : (fallbackTr ?? fallback);
+      }
       return value;
     } catch (_) {
-      return fallback;
+      return _isEn ? fallback : (fallbackTr ?? fallback);
     }
   }
 
@@ -33,14 +50,20 @@ class AppErrorWidget extends StatelessWidget {
       );
     }
 
-    final title = _safeL10n('widgets.app_error.title', 'Something went wrong');
+    final title = _safeL10n(
+      'widgets.app_error.title',
+      'Something went wrong',
+      fallbackTr: 'Bir şeyler ters gitti',
+    );
     final subtitle = _safeL10n(
       'widgets.app_error.subtitle',
       'Don\'t worry, your data is safe. Try going back to the home screen.',
+      fallbackTr: 'Endişelenme, verilerin güvende. Ana ekrana dönmeyi dene.',
     );
     final buttonText = _safeL10n(
       'widgets.app_error.back_to_home',
       'Back to Home',
+      fallbackTr: 'Ana Sayfaya Dön',
     );
 
     return Container(
@@ -173,7 +196,7 @@ class AppErrorWidget extends StatelessWidget {
                 // Secondary action - reload page (web only)
                 if (kIsWeb)
                   Semantics(
-                    label: 'Reload Page',
+                    label: _isEn ? 'Reload Page' : 'Sayfayı Yenile',
                     button: true,
                     child: GestureDetector(
                       onTap: () {
@@ -190,6 +213,7 @@ class AppErrorWidget extends StatelessWidget {
                             _safeL10n(
                               'widgets.app_error.reload_page',
                               'Reload Page',
+                              fallbackTr: 'Sayfayı Yenile',
                             ),
                             style: TextStyle(
                               color: Colors.white.withValues(alpha: 0.6),

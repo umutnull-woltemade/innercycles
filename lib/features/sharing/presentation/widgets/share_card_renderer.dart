@@ -31,6 +31,9 @@ class ShareCardRenderer extends StatelessWidget {
   /// Whether the user has premium (hides watermark badge)
   final bool isPremium;
 
+  /// Whether the current language is English (false = Turkish)
+  final bool isEn;
+
   /// Display size on screen (will be captured at 3x for 1080x1080)
   final double displaySize;
 
@@ -41,6 +44,7 @@ class ShareCardRenderer extends StatelessWidget {
     this.repaintKey,
     this.isDark = true,
     this.isPremium = false,
+    this.isEn = true,
     this.displaySize = 360,
   });
 
@@ -142,7 +146,7 @@ class ShareCardRenderer extends StatelessWidget {
             Positioned(
               top: 20,
               right: 20,
-              child: _BadgePill(text: template.badge(true), color: accent),
+              child: _BadgePill(text: template.badge(isEn), color: accent),
             ),
 
             // Main content by layout type
@@ -161,7 +165,7 @@ class ShareCardRenderer extends StatelessWidget {
               bottom: 0,
               left: 0,
               right: 0,
-              child: _BottomWatermark(accent: accent, isPremium: isPremium),
+              child: _BottomWatermark(accent: accent, isPremium: isPremium, isEn: isEn),
             ),
           ],
         ),
@@ -196,6 +200,7 @@ class ShareCardRenderer extends StatelessWidget {
           data: data,
           accent: accent,
           cardWidth: _cardWidth,
+          isEn: isEn,
         );
     }
   }
@@ -796,7 +801,8 @@ class _StatPill extends StatelessWidget {
 class _BottomWatermark extends StatelessWidget {
   final Color accent;
   final bool isPremium;
-  const _BottomWatermark({required this.accent, this.isPremium = false});
+  final bool isEn;
+  const _BottomWatermark({required this.accent, this.isPremium = false, this.isEn = true});
 
   @override
   Widget build(BuildContext context) {
@@ -851,7 +857,7 @@ class _BottomWatermark extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'Try InnerCycles — Free',
+                        isEn ? 'Try InnerCycles — Free' : 'InnerCycles\'i Dene — Ücretsiz',
                         style: AppTypography.elegantAccent(
                           fontSize: 9,
                           color: accent,
@@ -861,7 +867,7 @@ class _BottomWatermark extends StatelessWidget {
                     ),
                     // Brand name
                     Text(
-                      'Made with InnerCycles',
+                      isEn ? 'Made with InnerCycles' : 'InnerCycles ile yapıldı',
                       style: AppTypography.elegantAccent(
                         fontSize: 10,
                         color: AppColors.textMuted,
@@ -885,12 +891,14 @@ class _CyclePositionLayout extends StatelessWidget {
   final ShareCardData data;
   final Color accent;
   final double cardWidth;
+  final bool isEn;
 
   const _CyclePositionLayout({
     required this.template,
     required this.data,
     required this.accent,
     required this.cardWidth,
+    this.isEn = true,
   });
 
   @override
@@ -923,7 +931,7 @@ class _CyclePositionLayout extends StatelessWidget {
             border: Border.all(color: accent.withValues(alpha: 0.3)),
           ),
           child: Text(
-            data.detail ?? 'Day ${cycleDay.toInt()} of ${cycleLength.toInt()}',
+            data.detail ?? (isEn ? 'Day ${cycleDay.toInt()} of ${cycleLength.toInt()}' : 'Gün ${cycleDay.toInt()} / ${cycleLength.toInt()}'),
             style: AppTypography.elegantAccent(
               fontSize: 12,
               color: accent,
@@ -988,7 +996,7 @@ class _CyclePositionLayout extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'of ${cycleLength.toInt()}',
+                        isEn ? 'of ${cycleLength.toInt()}' : '/ ${cycleLength.toInt()}',
                         style: AppTypography.subtitle(
                           fontSize: 14,
                           color: AppColors.textMuted,

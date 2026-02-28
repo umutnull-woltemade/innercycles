@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/constants/routes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -1891,6 +1892,34 @@ class _WelcomePage extends StatelessWidget {
             context: context,
             delay: const Duration(milliseconds: 800),
           ),
+
+          // KVKK data consent notice (Turkish users only)
+          if (language == AppLanguage.tr) ...[
+            const SizedBox(height: 12),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                L10nService.get('onboarding.onboarding.kvkk_consent', language),
+                textAlign: TextAlign.center,
+                style: AppTypography.elegantAccent(
+                  fontSize: 11,
+                  color: AppColors.textMuted.withValues(alpha: 0.7),
+                ),
+              ),
+            ),
+            const SizedBox(height: 4),
+            GestureDetector(
+              onTap: () => launchUrl(Uri.parse('https://umutnull-woltemade.github.io/innercycles/privacy.html')),
+              child: Text(
+                L10nService.get('onboarding.onboarding.privacy_policy_link', language),
+                textAlign: TextAlign.center,
+                style: AppTypography.elegantAccent(
+                  fontSize: 11,
+                  color: AppColors.starGold,
+                ),
+              ),
+            ),
+          ],
 
           const Spacer(flex: 3),
         ],
