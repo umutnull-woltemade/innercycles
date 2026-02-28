@@ -1,3 +1,5 @@
+import '../../data/providers/app_providers.dart';
+import '../../data/services/l10n_service.dart';
 // ════════════════════════════════════════════════════════════════════════════
 // ROUTER SERVICE - InnerCycles Navigation (Survival Release)
 // ════════════════════════════════════════════════════════════════════════════

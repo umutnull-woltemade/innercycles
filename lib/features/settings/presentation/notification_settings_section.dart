@@ -105,7 +105,6 @@ class _NotificationSettingsSectionState
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
-    final isEnglish = language == AppLanguage.en;
 
     if (!_isInitialized) {
       return const Center(child: CosmicLoadingIndicator());
