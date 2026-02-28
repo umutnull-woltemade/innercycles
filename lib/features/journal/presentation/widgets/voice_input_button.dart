@@ -145,14 +145,12 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
 
   String _getUnavailableMessage() {
     final language = ref.read(languageProvider);
-    final isEn = language == AppLanguage.en;
-    return L10nService.get('journal.voice_input_button.voice_input_is_not_available_on_this_dev', isEn ? AppLanguage.en : AppLanguage.tr);
+    return L10nService.get('journal.voice_input_button.voice_input_is_not_available_on_this_dev', language);
   }
 
   String _getPermissionMessage() {
     final language = ref.read(languageProvider);
-    final isEn = language == AppLanguage.en;
-    return L10nService.get('journal.voice_input_button.microphone_permission_is_required_for_vo', isEn ? AppLanguage.en : AppLanguage.tr);
+    return L10nService.get('journal.voice_input_button.microphone_permission_is_required_for_vo', language);
   }
 
   void _showError(String message) {
@@ -190,12 +188,11 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
 
   Widget _buildLockedButton(bool isDark) {
     final language = ref.read(languageProvider);
-    final isEn = language == AppLanguage.en;
     final mutedColor = isDark ? AppColors.textMuted : AppColors.lightTextMuted;
     return GestureDetector(
       onTap: _toggleListening,
       child: Semantics(
-        label: L10nService.get('journal.voice_input_button.voice_input_premium', isEn ? AppLanguage.en : AppLanguage.tr),
+        label: L10nService.get('journal.voice_input_button.voice_input_premium', language),
         button: true,
         child: SizedBox(
           width: widget.size,
@@ -247,6 +244,7 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
   }
 
   Widget _buildMicButton(bool isDark) {
+    final language = ref.read(languageProvider);
     final color = _isListening
         ? AppColors.error
         : (isDark ? AppColors.starGold : AppColors.starGold);
@@ -256,15 +254,12 @@ class _VoiceInputButtonState extends ConsumerState<VoiceInputButton> {
         : (isDark
               ? AppColors.surfaceLight.withValues(alpha: 0.5)
               : AppColors.lightSurfaceVariant);
-
-    final language = ref.read(languageProvider);
-    final isEn = language == AppLanguage.en;
     Widget button = GestureDetector(
       onTap: _isAvailable ? _toggleListening : null,
       child: Semantics(
         label: _isListening
-            ? (L10nService.get('journal.voice_input_button.stop_voice_input', isEn ? AppLanguage.en : AppLanguage.tr))
-            : (L10nService.get('journal.voice_input_button.start_voice_input', isEn ? AppLanguage.en : AppLanguage.tr)),
+            ? (L10nService.get('journal.voice_input_button.stop_voice_input', language))
+            : (L10nService.get('journal.voice_input_button.start_voice_input', language)),
         button: true,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),

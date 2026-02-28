@@ -34,6 +34,8 @@ extension RitualTimeExtension on RitualTime {
     }
   }
 
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+
   String get icon {
     switch (this) {
       case RitualTime.morning:

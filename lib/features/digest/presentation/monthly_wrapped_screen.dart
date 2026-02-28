@@ -244,7 +244,7 @@ class _Slide2Focus extends StatelessWidget {
 
   String _areaName(FocusArea? area, bool isEn) {
     if (area == null) return L10nService.get('digest.monthly_wrapped.balanced', isEn ? AppLanguage.en : AppLanguage.tr);
-    return isEn ? area.displayNameEn : area.displayNameTr;
+    return area.localizedName(isEn);
   }
 
   @override

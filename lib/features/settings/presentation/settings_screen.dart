@@ -725,10 +725,10 @@ class SettingsScreen extends ConsumerWidget {
     final isEn = language == AppLanguage.en;
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('settings.settings.delete_account', isEn ? AppLanguage.en : AppLanguage.tr),
-      message: L10nService.get('settings.settings.this_will_permanently_delete_your_accoun', isEn ? AppLanguage.en : AppLanguage.tr),
-      cancelLabel: L10nService.get('settings.settings.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
-      confirmLabel: L10nService.get('settings.settings.delete_account_1', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('settings.settings.delete_account', language),
+      message: L10nService.get('settings.settings.this_will_permanently_delete_your_accoun', language),
+      cancelLabel: L10nService.get('settings.settings.cancel', language),
+      confirmLabel: L10nService.get('settings.settings.delete_account_1', language),
       isDestructive: true,
     );
     if (confirmed != true || !context.mounted) return;
@@ -736,10 +736,10 @@ class SettingsScreen extends ConsumerWidget {
     // Second confirmation
     final doubleConfirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('settings.settings.delete_your_account', isEn ? AppLanguage.en : AppLanguage.tr),
-      message: L10nService.get('settings.settings.all_your_cloud_data_will_be_permanently', isEn ? AppLanguage.en : AppLanguage.tr),
-      cancelLabel: L10nService.get('settings.settings.keep_account', isEn ? AppLanguage.en : AppLanguage.tr),
-      confirmLabel: L10nService.get('settings.settings.yes_delete', isEn ? AppLanguage.en : AppLanguage.tr),
+      title: L10nService.get('settings.settings.delete_your_account', language),
+      message: L10nService.get('settings.settings.all_your_cloud_data_will_be_permanently', language),
+      cancelLabel: L10nService.get('settings.settings.keep_account', language),
+      confirmLabel: L10nService.get('settings.settings.yes_delete', language),
       isDestructive: true,
     );
     if (doubleConfirmed != true || !context.mounted) return;
@@ -808,7 +808,7 @@ class SettingsScreen extends ConsumerWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                L10nService.get('settings.settings.account_deletion_requested_you_have_been', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('settings.settings.account_deletion_requested_you_have_been', language),
               ),
               backgroundColor: AppColors.surfaceLight,
               behavior: SnackBarBehavior.floating,
@@ -829,7 +829,7 @@ class SettingsScreen extends ConsumerWidget {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              L10nService.get('settings.settings.something_went_wrong_please_contact_supp', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('settings.settings.something_went_wrong_please_contact_supp', language),
             ),
             backgroundColor: AppColors.error,
             behavior: SnackBarBehavior.floating,
@@ -1016,6 +1016,7 @@ class _SyncStatusTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     final syncAsync = ref.watch(syncStatusProvider);
     final pendingCount = ref.watch(pendingSyncCountProvider);
 
@@ -1031,23 +1032,23 @@ class _SyncStatusTile extends ConsumerWidget {
     switch (status) {
       case SyncStatus.syncing:
         icon = Icons.sync;
-        label = L10nService.get('settings.settings.syncing', isEn ? AppLanguage.en : AppLanguage.tr);
+        label = L10nService.get('settings.settings.syncing', language);
         color = AppColors.auroraStart;
       case SyncStatus.synced:
         icon = Icons.cloud_done_outlined;
-        label = L10nService.get('settings.settings.synced', isEn ? AppLanguage.en : AppLanguage.tr);
+        label = L10nService.get('settings.settings.synced', language);
         color = AppColors.success;
       case SyncStatus.error:
         icon = Icons.cloud_off_outlined;
-        label = L10nService.get('settings.settings.sync_error', isEn ? AppLanguage.en : AppLanguage.tr);
+        label = L10nService.get('settings.settings.sync_error', language);
         color = AppColors.error;
       case SyncStatus.offline:
         icon = Icons.cloud_off_outlined;
-        label = L10nService.get('settings.settings.offline', isEn ? AppLanguage.en : AppLanguage.tr);
+        label = L10nService.get('settings.settings.offline', language);
         color = isDark ? AppColors.textMuted : AppColors.lightTextMuted;
       case SyncStatus.idle:
         icon = Icons.cloud_outlined;
-        label = L10nService.get('settings.settings.ready', isEn ? AppLanguage.en : AppLanguage.tr);
+        label = L10nService.get('settings.settings.ready', language);
         color = isDark ? AppColors.textMuted : AppColors.lightTextMuted;
     }
 
@@ -1272,7 +1273,8 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
   @override
   Widget build(BuildContext context) {
     final lockAsync = ref.watch(appLockServiceProvider);
-    final isEn = widget.language == AppLanguage.en;
+    final language = widget.language;
+    final isEn = language == AppLanguage.en;
 
     return lockAsync.when(
       loading: () => const SizedBox.shrink(),
@@ -1305,7 +1307,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            L10nService.get('settings.settings.app_lock', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('settings.settings.app_lock', language),
                             style: AppTypography.subtitle(
                               fontSize: 17,
                               color: widget.isDark
@@ -1314,7 +1316,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                             ),
                           ),
                           Text(
-                            L10nService.get('settings.settings.require_pin_or_biometrics_to_open', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('settings.settings.require_pin_or_biometrics_to_open', language),
                             style: AppTypography.elegantAccent(
                               fontSize: 13,
                               color: widget.isDark
@@ -1351,7 +1353,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
               if (isEnabled) ...[
                 _GroupedSeparator(isDark: widget.isDark),
                 Semantics(
-                  label: L10nService.get('settings.settings.change_pin', isEn ? AppLanguage.en : AppLanguage.tr),
+                  label: L10nService.get('settings.settings.change_pin', language),
                   button: true,
                   child: GestureDetector(
                     behavior: HitTestBehavior.opaque,
@@ -1373,7 +1375,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                           const SizedBox(width: 16),
                           Expanded(
                             child: Text(
-                              L10nService.get('settings.settings.change_pin_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                              L10nService.get('settings.settings.change_pin_1', language),
                               style: AppTypography.subtitle(
                                 fontSize: 17,
                                 color: widget.isDark
@@ -1405,14 +1407,14 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
   }
 
   void _showPinSetup(AppLockService service) {
-    final isEn = widget.language == AppLanguage.en;
+    final language = widget.language;
     final controller = TextEditingController();
     final confirmController = TextEditingController();
 
     showDialog(
       context: context,
       builder: (ctx) => GlassDialog(
-        title: L10nService.get('settings.settings.set_4digit_pin', isEn ? AppLanguage.en : AppLanguage.tr),
+        title: L10nService.get('settings.settings.set_4digit_pin', language),
         gradientVariant: GradientTextVariant.gold,
         contentWidget: Column(
           mainAxisSize: MainAxisSize.min,
@@ -1428,7 +1430,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                     : AppColors.lightTextPrimary,
               ),
               decoration: InputDecoration(
-                labelText: L10nService.get('settings.settings.4digit_pin', isEn ? AppLanguage.en : AppLanguage.tr),
+                labelText: L10nService.get('settings.settings.4digit_pin', language),
                 labelStyle: AppTypography.subtitle(
                   color: widget.isDark
                       ? AppColors.textMuted
@@ -1447,7 +1449,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                     : AppColors.lightTextPrimary,
               ),
               decoration: InputDecoration(
-                labelText: L10nService.get('settings.settings.reenter_pin', isEn ? AppLanguage.en : AppLanguage.tr),
+                labelText: L10nService.get('settings.settings.reenter_pin', language),
                 labelStyle: AppTypography.subtitle(
                   color: widget.isDark
                       ? AppColors.textMuted
@@ -1461,7 +1463,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
           TextButton(
             onPressed: () => Navigator.pop(ctx),
             child: Text(
-              L10nService.get('settings.settings.cancel_1', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('settings.settings.cancel_1', language),
               style: AppTypography.subtitle(
                 color: widget.isDark
                     ? AppColors.textMuted
@@ -1478,7 +1480,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
-                      L10nService.get('settings.settings.pin_must_be_4_digits', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('settings.settings.pin_must_be_4_digits', language),
                     ),
                     backgroundColor: AppColors.warning,
                     behavior: SnackBarBehavior.floating,
@@ -1494,7 +1496,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
-                      L10nService.get('settings.settings.pins_do_not_match', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('settings.settings.pins_do_not_match', language),
                     ),
                     backgroundColor: AppColors.warning,
                     behavior: SnackBarBehavior.floating,
@@ -1513,7 +1515,7 @@ class _AppLockSectionState extends ConsumerState<_AppLockSection> {
               if (ctx.mounted) Navigator.pop(ctx);
             },
             child: Text(
-              L10nService.get('settings.settings.save_changes', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('settings.settings.save_changes', widget.language),
               style: AppTypography.modernAccent(
                 color: AppColors.starGold,
                 fontWeight: FontWeight.w600,

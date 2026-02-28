@@ -10,14 +10,25 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #e0e0e0;
+            background: #1E1714;
+            color: #F2EBE4;
             min-height: 100vh;
         }
-        h1 { color: #bb86fc; }
-        h2 { color: #03dac6; margin-top: 30px; }
-        p, li { line-height: 1.8; }
-        a { color: #bb86fc; }
+        h1 { color: #C8553D; }
+        h2 { color: #D4704A; margin-top: 30px; }
+        h3 { color: #8B6F5E; margin-top: 20px; }
+        p, li { line-height: 1.8; color: #E8DED4; }
+        a { color: #C8553D; }
+        strong { color: #F2EBE4; }
+        .kvkk-notice {
+            background: rgba(200, 85, 61, 0.15);
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 4px solid #C8553D;
+            margin: 20px 0;
+        }
+        .kvkk-notice p, .kvkk-notice li { color: #F2EBE4; }
+        hr { border-color: #3D322B; }
     </style>
 </head>
 <body>
@@ -59,6 +70,15 @@
     <h2>Data Storage</h2>
     <p>Your personal profile and journal entries are stored primarily on your device. If you sign in with Apple, your data is also synced to our cloud database (Supabase) for cross-device backup. Guest users' data remains on-device only. We use industry-standard encryption to protect your data in both storage modes.</p>
 
+    <h2>Data Deletion</h2>
+    <p>You can permanently delete your account and all associated data at any time from within the app (Settings &gt; Account &gt; Delete Account). When you request deletion:</p>
+    <ul>
+        <li>All journal entries, mood logs, dream entries, notes, life events, and profile data are permanently removed from our servers</li>
+        <li>Your authentication account is deleted</li>
+        <li>This action is irreversible — deleted data cannot be recovered</li>
+        <li>Local data on your device is also cleared upon deletion</li>
+    </ul>
+
     <h2>Third-Party Services</h2>
     <p>We use the following third-party services:</p>
     <ul>
@@ -78,7 +98,46 @@
         <li>Request deletion of your data</li>
         <li>Opt-out of personalized advertising</li>
         <li>Export your data</li>
+        <li>Withdraw consent at any time</li>
     </ul>
+
+    <h2>Turkish Data Protection (KVKK)</h2>
+    <div class="kvkk-notice">
+        <p><strong>6698 Sayılı Kişisel Verilerin Korunması Kanunu (KVKK) Kapsamında Bilgilendirme</strong></p>
+        <p>Türkiye'deki kullanıcılarımız için, kişisel verileriniz 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında işlenmektedir.</p>
+    </div>
+
+    <h3>Veri Sorumlusu</h3>
+    <p>InnerCycles uygulaması adına veri sorumlusu olarak hareket etmekteyiz. İletişim bilgileri bu sayfanın sonunda yer almaktadır.</p>
+
+    <h3>Kişisel Verilerin İşlenme Amaçları</h3>
+    <p>Kişisel verileriniz aşağıdaki amaçlarla işlenmektedir:</p>
+    <ul>
+        <li>Uygulama hizmetlerinin sunulması ve kişiselleştirilmesi</li>
+        <li>Kullanıcı hesabının oluşturulması ve yönetimi</li>
+        <li>Abonelik işlemlerinin gerçekleştirilmesi</li>
+        <li>Uygulama performansının iyileştirilmesi</li>
+        <li>Yasal yükümlülüklerin yerine getirilmesi</li>
+    </ul>
+
+    <h3>KVKK Kapsamındaki Haklarınız</h3>
+    <p>KVKK'nın 11. maddesi uyarınca aşağıdaki haklara sahipsiniz:</p>
+    <ul>
+        <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+        <li>Kişisel verileriniz işlenmişse buna ilişkin bilgi talep etme</li>
+        <li>Kişisel verilerinizin işlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+        <li>Yurt içinde veya yurt dışında kişisel verilerinizin aktarıldığı üçüncü kişileri bilme</li>
+        <li>Kişisel verilerinizin eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme</li>
+        <li>KVKK'nın 7. maddesinde öngörülen şartlar çerçevesinde kişisel verilerinizin silinmesini veya yok edilmesini isteme</li>
+        <li>İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme</li>
+        <li>Kişisel verilerinizin kanuna aykırı olarak işlenmesi sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme</li>
+    </ul>
+
+    <h3>Veri Aktarımı</h3>
+    <p>Verileriniz, uygulama hizmetlerinin sunulması amacıyla yurt dışında bulunan sunucularda (ABD — Supabase altyapısı) işlenebilmektedir. Bu aktarım, açık rızanız doğrultusunda ve KVKK'nın 9. maddesi kapsamında gerçekleştirilmektedir.</p>
+
+    <h3>Başvuru</h3>
+    <p>KVKK kapsamındaki taleplerinizi <a href="mailto:support@innercycles.app">support@innercycles.app</a> adresine iletebilirsiniz. Başvurularınız en geç 30 gün içinde sonuçlandırılacaktır.</p>
 
     <h2>Children's Privacy</h2>
     <p>InnerCycles is not intended for children under 13. We do not knowingly collect information from children under 13.</p>
@@ -89,10 +148,9 @@
     <h2>Contact Us</h2>
     <p>If you have questions about this Privacy Policy, please contact us at:</p>
     <p>Email: <a href="mailto:support@innercycles.app">support@innercycles.app</a></p>
-    <p>Privacy Policy: <a href="privacy.html">Privacy Policy</a></p>
-    <p>Terms of Service: <a href="terms.html">Terms of Service</a></p>
+    <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
 
-    <hr style="margin-top: 40px; border-color: #333;">
-    <p style="text-align: center; color: #888;">&copy; 2026 InnerCycles. All rights reserved.</p>
+    <hr style="margin-top: 40px;">
+    <p style="text-align: center; color: #8B6F5E;">&copy; 2026 InnerCycles. All rights reserved.</p>
 </body>
 </html>

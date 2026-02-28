@@ -199,7 +199,7 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
           ),
           slivers: [
             GlassSliverAppBar(
-              title: L10nService.get('blind_spot.blind_spot.what_your_journal_reveals', widget.isEn ? AppLanguage.en : AppLanguage.tr),
+              title: L10nService.get('blind_spot.blind_spot.what_your_journal_reveals', (widget.isEn ? AppLanguage.en : AppLanguage.tr)),
             ),
             if (!widget.hasEnough)
               SliverFillRemaining(
@@ -239,7 +239,7 @@ class _BlindSpotBodyState extends State<_BlindSpotBody> {
                     ),
                     const SizedBox(height: 24),
                     ContentDisclaimer(
-                      language: widget.isEn ? AppLanguage.en : AppLanguage.tr,
+                      language: (widget.isEn ? AppLanguage.en : AppLanguage.tr),
                     ),
                     const SizedBox(height: 20),
                     _ShareInsightsButton(

@@ -335,7 +335,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
           final selected = _selectedCategory == cat;
           final label = cat == null
               ? (L10nService.get('milestones.milestone.all', isEn ? AppLanguage.en : AppLanguage.tr))
-              : (isEn ? cat.displayNameEn : cat.displayNameTr);
+              : (cat.localizedName(isEn));
 
           return Padding(
             padding: const EdgeInsets.only(right: 8),
@@ -541,9 +541,7 @@ class _MilestoneBodyState extends State<_MilestoneBody> {
     final description = isEn
         ? milestone.descriptionEn
         : milestone.descriptionTr;
-    final categoryName = isEn
-        ? milestone.category.displayNameEn
-        : milestone.category.displayNameTr;
+    final categoryName = milestone.category.localizedName(isEn);
 
     showDialog(
       context: context,

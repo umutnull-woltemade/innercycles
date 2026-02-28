@@ -204,7 +204,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                   const Text('\u{1F525}', style: TextStyle(fontSize: 18)),
                   const SizedBox(width: 8),
                   Text(
-                    L10nService.get('premium.premium.50_off_new_user_special', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('premium.premium.50_off_new_user_special', language),
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -218,7 +218,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    L10nService.get('premium.premium.offer_expires_in', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('premium.premium.offer_expires_in', language),
                     style: AppTypography.subtitle(
                       fontSize: 13,
                       color: AppColors.textSecondary,
@@ -1009,9 +1009,8 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
 
   Widget _buildRestoreButton(BuildContext context, PremiumState premiumState) {
     final language = ref.watch(languageProvider);
-    final isEn = language == AppLanguage.en;
     return Semantics(
-      label: L10nService.get('premium.premium.restore_purchases', isEn ? AppLanguage.en : AppLanguage.tr),
+      label: L10nService.get('premium.premium.restore_purchases', language),
       button: true,
       child: TextButton(
       onPressed: premiumState.isLoading
@@ -1074,7 +1073,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Semantics(
-                label: L10nService.get('premium.premium.privacy_policy', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('premium.premium.privacy_policy', language),
                 link: true,
                 child: GestureDetector(
                   onTap: () =>
@@ -1113,7 +1112,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                 ),
               ),
               Semantics(
-                label: L10nService.get('premium.premium.terms_of_service', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('premium.premium.terms_of_service', language),
                 link: true,
                 child: GestureDetector(
                   onTap: () =>

@@ -681,7 +681,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
     bool isEn,
   ) {
     final area = data.topFocusArea!;
-    final areaName = isEn ? area.displayNameEn : area.displayNameTr;
+    final areaName = area.localizedName(isEn);
     final color = _focusAreaColor(area);
     final pct = data.topFocusAreaPercentage;
 
@@ -986,7 +986,7 @@ class _WeeklyDigestScreenState extends ConsumerState<WeeklyDigestScreen> {
             final avg = entry.value;
             final count = data.areaCounts[area] ?? 0;
             final color = _focusAreaColor(area);
-            final label = isEn ? area.displayNameEn : area.displayNameTr;
+            final label = area.localizedName(isEn);
 
             return Semantics(
               label: isEn

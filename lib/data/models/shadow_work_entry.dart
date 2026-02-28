@@ -55,7 +55,10 @@ enum ShadowArchetype {
       case ShadowArchetype.caretaker:
         return 'Bakıcı';
     }
+
   }
+
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 
   String get descriptionEn {
     switch (this) {
@@ -148,6 +151,9 @@ enum ShadowDepth {
         return 'Derin';
     }
   }
+
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+
 }
 
 /// A single shadow work journal entry

@@ -295,7 +295,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  isEn ? phase.displayNameEn : phase.displayNameTr,
+                  phase.localizedName(isEn),
                   style: AppTypography.modernAccent(
                     color: phaseColor,
                     fontWeight: FontWeight.w600,
@@ -771,7 +771,7 @@ class _CycleSyncScreenState extends ConsumerState<CycleSyncScreen> {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    isEn ? phase.displayNameEn : phase.displayNameTr,
+                    phase.localizedName(isEn),
                     style: AppTypography.subtitle(
                       fontSize: 12,
                       color: isDark

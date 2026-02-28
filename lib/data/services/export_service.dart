@@ -76,7 +76,7 @@ class ExportService {
     for (final entry in entries) {
       buffer.writeln('${L10nService.get('data.services.export.date', isEn ? AppLanguage.en : AppLanguage.tr)}: ${entry.dateKey}');
       buffer.writeln(
-        '${L10nService.get('data.services.export.focus', isEn ? AppLanguage.en : AppLanguage.tr)}: ${isEn ? entry.focusArea.displayNameEn : entry.focusArea.displayNameTr}',
+        '${L10nService.get('data.services.export.focus', isEn ? AppLanguage.en : AppLanguage.tr)}: ${entry.focusArea.localizedName(isEn)}',
       );
       buffer.writeln(
         '${L10nService.get('data.services.export.rating', isEn ? AppLanguage.en : AppLanguage.tr)}: ${entry.overallRating}/5',

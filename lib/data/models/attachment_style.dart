@@ -44,7 +44,10 @@ enum AttachmentStyle {
       case AttachmentStyle.fearfulAvoidant:
         return 'Korkulu-Kaçıngan';
     }
+
   }
+
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 
   // ══════════════════════════════════════════════════════════════════════════
   // DESCRIPTIONS

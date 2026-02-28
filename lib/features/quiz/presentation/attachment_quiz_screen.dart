@@ -571,7 +571,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
 
               // Style name
               Text(
-                isEn ? style.displayNameEn : style.displayNameTr,
+                style.localizedName(isEn),
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 20,
                   color: style.color,
@@ -664,7 +664,7 @@ class _AttachmentQuizScreenState extends ConsumerState<AttachmentQuizScreen> {
           children: [
             Expanded(
               child: Text(
-                isEn ? style.displayNameEn : style.displayNameTr,
+                style.localizedName(isEn),
                 style: AppTypography.subtitle(
                   fontSize: 14,
                   color: isDark

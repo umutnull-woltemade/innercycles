@@ -97,48 +97,26 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
   }
 
   String get _title {
-    if (isEn) {
-      switch (streakDays) {
-        case 3:
-          return '3-Day Streak';
-        case 7:
-          return 'One Full Week';
-        case 14:
-          return 'Two Weeks Strong';
-        case 30:
-          return '30-Day Practice';
-        case 60:
-          return '60 Days Deep';
-        case 90:
-          return 'Quarter Year';
-        case 180:
-          return 'Half Year';
-        case 365:
-          return 'One Full Year';
-        default:
-          return '$streakDays Days';
-      }
-    } else {
-      switch (streakDays) {
-        case 3:
-          return '3 Günlük Seri';
-        case 7:
-          return 'Tam Bir Hafta';
-        case 14:
-          return 'İki Hafta Güçlü';
-        case 30:
-          return '30 Günlük Pratik';
-        case 60:
-          return '60 Gün Derinlikte';
-        case 90:
-          return 'Çeyrek Yıl';
-        case 180:
-          return 'Yarım Yıl';
-        case 365:
-          return 'Tam Bir Yıl';
-        default:
-          return '$streakDays Gün';
-      }
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+    switch (streakDays) {
+      case 3:
+        return L10nService.get('streak.milestone.title_3', lang);
+      case 7:
+        return L10nService.get('streak.milestone.title_7', lang);
+      case 14:
+        return L10nService.get('streak.milestone.title_14', lang);
+      case 30:
+        return L10nService.get('streak.milestone.title_30', lang);
+      case 60:
+        return L10nService.get('streak.milestone.title_60', lang);
+      case 90:
+        return L10nService.get('streak.milestone.title_90', lang);
+      case 180:
+        return L10nService.get('streak.milestone.title_180', lang);
+      case 365:
+        return L10nService.get('streak.milestone.title_365', lang);
+      default:
+        return L10nService.getWithParams('streak.milestone.title_default', lang, params: {'count': '$streakDays'});
     }
   }
 
@@ -151,9 +129,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Semantics(
-      label: isEn
-          ? '$streakDays day streak milestone celebration'
-          : '$streakDays günlük seri kutlaması',
+      label: L10nService.getWithParams('streak.milestone.celebration_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$streakDays'}),
       child: Dialog(
         backgroundColor: Colors.transparent,
         elevation: 0,

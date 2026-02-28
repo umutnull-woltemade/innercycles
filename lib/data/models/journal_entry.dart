@@ -38,7 +38,10 @@ enum FocusArea {
       case FocusArea.social:
         return 'Yörünge';
     }
+
   }
+
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 
   /// Sub-rating keys for this focus area
   List<String> get subRatingKeys {

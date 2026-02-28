@@ -270,9 +270,7 @@ class CycleCorrelationService {
 
     if (topInsight == null) return null;
 
-    final areaName = isEn
-        ? topInsight.focusArea.displayNameEn
-        : topInsight.focusArea.displayNameTr;
+    final areaName = topInsight.focusArea.localizedName(isEn);
     final strongPhase = topInsight.strongestPhase;
     final weakPhase = topInsight.weakestPhase;
 

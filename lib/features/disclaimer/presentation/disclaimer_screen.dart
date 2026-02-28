@@ -130,7 +130,7 @@ class DisclaimerScreen extends ConsumerWidget {
                         child: Text(
                           isEn
                               ? 'InnerCycles is a personal journaling tool for self-reflection and pattern awareness.'
-                              : L10nService.get('disclaimer.text_1', language),
+                              : L10nService.get('disclaimer.text_1', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.subtitle(
                             fontSize: 15,
                             color: textColor,
@@ -161,7 +161,7 @@ class DisclaimerScreen extends ConsumerWidget {
                         child: Text(
                           isEn
                               ? 'All insights are based solely on your own journal entries. This app does not make predictions about your future.'
-                              : L10nService.get('disclaimer.text_2', language),
+                              : L10nService.get('disclaimer.text_2', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.subtitle(
                             fontSize: 15,
                             color: textColor,
@@ -192,7 +192,7 @@ class DisclaimerScreen extends ConsumerWidget {
                         child: Text(
                           isEn
                               ? 'This is for personal reflection only. It is not medical, psychological, or professional advice.'
-                              : L10nService.get('disclaimer.text_3', language),
+                              : L10nService.get('disclaimer.text_3', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.subtitle(
                             fontSize: 15,
                             color: textColor,
@@ -211,7 +211,7 @@ class DisclaimerScreen extends ConsumerWidget {
 
                 // ── CTA Button ──
                 GradientButton.gold(
-                  label: L10nService.get('common.continue', language),
+                  label: L10nService.get('common.continue', isEn ? AppLanguage.en : AppLanguage.tr),
                   icon: Icons.arrow_forward,
                   width: double.infinity,
                   onPressed: () async {

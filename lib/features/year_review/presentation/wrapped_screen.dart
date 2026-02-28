@@ -699,7 +699,7 @@ class _FocusAreaCard extends StatelessWidget {
                       SizedBox(
                         width: 80,
                         child: Text(
-                          isEn ? area.displayNameEn : area.displayNameTr,
+                          area.localizedName(isEn),
                           style: AppTypography.subtitle(
                             fontSize: 13,
                             color: AppColors.textSecondary,

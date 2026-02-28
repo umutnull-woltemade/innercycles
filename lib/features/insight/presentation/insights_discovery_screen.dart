@@ -399,7 +399,7 @@ class _InsightsDiscoveryScreenState
             (cat) => Padding(
               padding: const EdgeInsets.only(right: 8),
               child: _buildChip(
-                label: isEn ? cat.displayNameEn : cat.displayNameTr,
+                label: cat.localizedName(isEn),
                 isSelected: _selectedCategory == cat,
                 isDark: isDark,
                 onTap: () => setState(() => _selectedCategory = cat),
@@ -895,7 +895,7 @@ class _InsightsDiscoveryScreenState
           Icon(_categoryIcon(category), size: 12, color: color),
           const SizedBox(width: 4),
           Text(
-            isEn ? category.displayNameEn : category.displayNameTr,
+            category.localizedName(isEn),
             style: AppTypography.elegantAccent(
               fontSize: 11,
               fontWeight: FontWeight.w500,
@@ -918,7 +918,7 @@ class _InsightsDiscoveryScreenState
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
-        isEn ? depth.displayNameEn : depth.displayNameTr,
+        depth.localizedName(isEn),
         style: AppTypography.elegantAccent(
           fontSize: 10,
           fontWeight: FontWeight.w500,

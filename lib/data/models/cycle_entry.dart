@@ -37,7 +37,10 @@ enum CyclePhase {
       case CyclePhase.luteal:
         return 'Luteal';
     }
+
   }
+
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 
   String get descriptionEn {
     switch (this) {

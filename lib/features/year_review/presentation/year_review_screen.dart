@@ -266,7 +266,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                             isEn: isEn,
                           ).glassListItem(context: context, index: 5),
                           ContentDisclaimer(
-                            language: isEn ? AppLanguage.en : AppLanguage.tr,
+                            language: language,
                           ),
                           ToolEcosystemFooter(
                             currentToolId: 'yearReview',
@@ -762,7 +762,7 @@ class _FocusAreasCard extends StatelessWidget {
             final ratio = count / maxCount;
             final color = _areaColors[area] ?? AppColors.starGold;
             final pct = ((count / review.totalEntries) * 100).round();
-            final label = isEn ? area.displayNameEn : area.displayNameTr;
+            final label = area.localizedName(isEn);
 
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
@@ -1233,9 +1233,7 @@ class _ShareableSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final topAreaName = isEn
-        ? review.topFocusArea.displayNameEn
-        : review.topFocusArea.displayNameTr;
+    final topAreaName = review.topFocusArea.localizedName(isEn);
 
     return GlassPanel(
       elevation: GlassElevation.g3,

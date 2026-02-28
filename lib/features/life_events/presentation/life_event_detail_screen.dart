@@ -222,9 +222,7 @@ class LifeEventDetailScreen extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
-                          isEn
-                              ? event.type.displayNameEn
-                              : event.type.displayNameTr,
+                          event.type.localizedName(isEn),
                           style: AppTypography.elegantAccent(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,

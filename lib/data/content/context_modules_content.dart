@@ -49,6 +49,8 @@ enum ContextModuleCategory {
         return 'Günlük Bilimi';
     }
   }
+
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 }
 
 enum ContextModuleDepth {
@@ -77,6 +79,8 @@ enum ContextModuleDepth {
         return 'İleri';
     }
   }
+
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

@@ -273,7 +273,7 @@ class _TodayFeedScreenState extends ConsumerState<TodayFeedScreen> {
                 Text(emoji, style: const TextStyle(fontSize: 56)),
                 const SizedBox(height: 16),
                 Text(
-                  L10nService.getWithParams('today.anniversary_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'label': label}),
+                  L10nService.getWithParams('today.anniversary_label', language, params: {'label': label}),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 24,
                     fontWeight: FontWeight.w700,

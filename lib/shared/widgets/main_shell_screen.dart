@@ -17,10 +17,10 @@ import '../../core/theme/app_typography.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/services/haptic_service.dart';
 import '../../data/providers/app_providers.dart';
+import '../../data/services/l10n_service.dart';
 import '../../data/services/ecosystem_analytics_service.dart';
 import '../../data/services/premium_service.dart';
 import '../../features/whats_new/presentation/whats_new_modal.dart';
-import '../../data/services/l10n_service.dart';
 
 class MainShellScreen extends ConsumerStatefulWidget {
   final StatefulNavigationShell navigationShell;

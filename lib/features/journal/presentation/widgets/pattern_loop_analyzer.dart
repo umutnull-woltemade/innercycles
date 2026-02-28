@@ -194,6 +194,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
 
   @override
   Widget build(BuildContext context) {
+    final isEn = widget.isEn;
     final loop = widget.loop;
     final color = _reinforcementColor(loop.reinforcementType);
     final areaColor = kAreaColors[loop.primaryArea] ?? AppColors.auroraStart;
@@ -248,9 +249,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                               ),
                               const SizedBox(width: 6),
                               Text(
-                                widget.isEn
-                                    ? loop.primaryArea.displayNameEn
-                                    : loop.primaryArea.displayNameTr,
+                                widget.loop.primaryArea.localizedName(isEn),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 11,
                                   fontWeight: FontWeight.w500,
@@ -270,9 +269,7 @@ class _PatternLoopCardState extends State<_PatternLoopCard> {
                                   ),
                                 ),
                                 Text(
-                                  widget.isEn
-                                      ? secondary.displayNameEn
-                                      : secondary.displayNameTr,
+                                  secondary.localizedName(isEn),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 11,
                                     fontWeight: FontWeight.w500,

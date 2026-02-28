@@ -35,9 +35,7 @@ class CycleSummaryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = kAreaColors[summary.area] ?? AppColors.auroraStart;
     final hasData = summary.rawPoints.isNotEmpty;
-    final areaName = isEn
-        ? summary.area.displayNameEn
-        : summary.area.displayNameTr;
+    final areaName = summary.area.localizedName(isEn);
 
     return PremiumCard(
       style: PremiumCardStyle.subtle,

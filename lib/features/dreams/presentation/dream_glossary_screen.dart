@@ -735,9 +735,10 @@ class _SymbolCard extends StatelessWidget {
           TextSpan(text: text.substring(0, index)),
           TextSpan(
             text: text.substring(index, index + query.length),
-            style: TextStyle(
-              backgroundColor: CosmicPalette.starGold.withValues(alpha: 0.3),
+            style: AppTypography.subtitle(
               color: CosmicPalette.starGold,
+            ).copyWith(
+              backgroundColor: CosmicPalette.starGold.withValues(alpha: 0.3),
             ),
           ),
           TextSpan(text: text.substring(index + query.length)),

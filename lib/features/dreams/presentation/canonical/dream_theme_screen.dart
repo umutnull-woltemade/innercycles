@@ -655,14 +655,13 @@ class DreamThemeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final language = ref.watch(languageProvider);
-    final isEn = language == AppLanguage.en;
     final config = _themeConfigs[themeId];
     if (config == null) {
       return Scaffold(
         body: CosmicBackground(
           child: Center(
             child: Text(
-              L10nService.get('dreams.canonical.dream_theme.dream_theme_not_found', isEn ? AppLanguage.en : AppLanguage.tr),
+              L10nService.get('dreams.canonical.dream_theme.dream_theme_not_found', language),
               style: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textMuted

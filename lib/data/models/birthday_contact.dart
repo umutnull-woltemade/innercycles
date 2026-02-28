@@ -23,7 +23,10 @@ enum BirthdayContactSource {
       case BirthdayContactSource.facebook:
         return 'Facebook';
     }
+
   }
+
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 }
 
 /// Relationship type for a birthday contact
@@ -68,6 +71,8 @@ enum BirthdayRelationship {
         return 'Diğer';
     }
   }
+
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 
   String get emoji {
     switch (this) {

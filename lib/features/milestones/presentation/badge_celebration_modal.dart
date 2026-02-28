@@ -101,9 +101,7 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final name = isEn ? milestone.nameEn : milestone.nameTr;
     final desc = isEn ? milestone.descriptionEn : milestone.descriptionTr;
-    final category = isEn
-        ? milestone.category.displayNameEn
-        : milestone.category.displayNameTr;
+    final category = milestone.category.localizedName(isEn);
 
     return Semantics(
       label: isEn

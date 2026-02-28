@@ -461,7 +461,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     AppLanguage language,
     bool isDark,
   ) {
-    final isEn = language == AppLanguage.en;
     return GlassPanel(
       elevation: GlassElevation.g3,
       borderRadius: BorderRadius.circular(AppConstants.radiusLg),
@@ -475,7 +474,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               Icon(Icons.auto_awesome, color: AppColors.starGold, size: 20),
               const SizedBox(width: AppConstants.spacingSm),
               GradientText(
-                L10nService.get('profile.profile.your_progress', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('profile.profile.your_progress', language),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 18,
@@ -486,7 +485,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ),
           const SizedBox(height: AppConstants.spacingMd),
           Text(
-            L10nService.get('profile.profile.explore_your_patterns_track_your_growth', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('profile.profile.explore_your_patterns_track_your_growth', language),
             style: AppTypography.subtitle(
               fontSize: 12,
               color: isDark
@@ -498,7 +497,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           const SizedBox(height: AppConstants.spacingLg),
           // Navigate to Signal Dashboard (CORE Insights)
           GradientOutlinedButton(
-            label: L10nService.get('profile.profile.view_insights', isEn ? AppLanguage.en : AppLanguage.tr),
+            label: L10nService.get('profile.profile.view_insights', language),
             icon: Icons.insights,
             variant: GradientTextVariant.aurora,
             expanded: true,

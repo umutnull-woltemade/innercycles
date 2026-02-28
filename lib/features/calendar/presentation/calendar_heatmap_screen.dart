@@ -961,9 +961,7 @@ class _DayDetail extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    isEn
-                        ? e.focusArea.displayNameEn
-                        : e.focusArea.displayNameTr,
+                    e.focusArea.localizedName(isEn),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       color: isDark

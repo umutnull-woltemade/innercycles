@@ -136,37 +136,22 @@ class MoodStatsStrip extends ConsumerWidget {
           data: (service) => service.getAllEntries().length,
         ) ??
         0;
-    return '$count ${isEn ? "Mood" : "Ruh"}';
+    return L10nService.getWithParams('today.mood_stats.mood_count', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$count'});
   }
 
   String _moodLabel(int mood) {
-    if (isEn) {
-      switch (mood) {
-        case 1:
-          return 'Low';
-        case 2:
-          return 'Meh';
-        case 3:
-          return 'Okay';
-        case 4:
-          return 'Good';
-        case 5:
-          return 'Great';
-        default:
-          return '';
-      }
-    }
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
     switch (mood) {
       case 1:
-        return 'Zor';
+        return L10nService.get('today.mood_stats.mood_low', lang);
       case 2:
-        return 'Düşük';
+        return L10nService.get('today.mood_stats.mood_meh', lang);
       case 3:
-        return 'İdare';
+        return L10nService.get('today.mood_stats.mood_okay', lang);
       case 4:
-        return 'İyi';
+        return L10nService.get('today.mood_stats.mood_good', lang);
       case 5:
-        return 'Harika';
+        return L10nService.get('today.mood_stats.mood_great', lang);
       default:
         return '';
     }

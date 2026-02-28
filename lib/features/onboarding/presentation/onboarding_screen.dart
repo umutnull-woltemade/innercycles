@@ -294,7 +294,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   Widget _buildBottomSection(AppLanguage language) {
-    final isEn = language == AppLanguage.en;
     final isLastPage = _currentPage == _totalPages - 1;
     final isLastValueProp = _currentPage == _valuePropCount - 1;
 
@@ -305,7 +304,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       buttonLabel = L10nService.get('common.start_journey', language);
       buttonIcon = Icons.auto_awesome;
     } else if (isLastValueProp) {
-      buttonLabel = L10nService.get('onboarding.onboarding.get_started', isEn ? AppLanguage.en : AppLanguage.tr);
+      buttonLabel = L10nService.get('onboarding.onboarding.get_started', language);
       buttonIcon = Icons.arrow_forward;
     } else {
       buttonLabel = L10nService.get('common.continue', language);
@@ -386,7 +385,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             GestureDetector(
               onTap: _nextPage,
               child: Text(
-                L10nService.get('onboarding.onboarding.skip_for_now', isEn ? AppLanguage.en : AppLanguage.tr),
+                L10nService.get('onboarding.onboarding.skip_for_now', language),
                 style: AppTypography.elegantAccent(
                   fontSize: 14,
                   color: AppColors.textMuted,
@@ -860,7 +859,7 @@ class _FirstCyclePage extends StatelessWidget {
 
           // Title
           GradientText(
-            L10nService.get('onboarding.onboarding.pick_your_starting_signal', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('onboarding.onboarding.pick_your_starting_signal', language),
             style: AppTypography.displayFont.copyWith(
               fontSize: 28,
               fontWeight: FontWeight.w600,
@@ -872,7 +871,7 @@ class _FirstCyclePage extends StatelessWidget {
           const SizedBox(height: 8),
 
           Text(
-            L10nService.get('onboarding.onboarding.theres_no_wrong_answer_follow_your_curio', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('onboarding.onboarding.theres_no_wrong_answer_follow_your_curio', language),
             style: AppTypography.decorativeScript(
               fontSize: 19,
               color: AppColors.textMuted,
@@ -897,7 +896,7 @@ class _FirstCyclePage extends StatelessWidget {
 
                 return Semantics(
                   button: true,
-                  label: isEn ? area.displayNameEn : area.displayNameTr,
+                  label: area.localizedName(isEn),
                   child: GestureDetector(
                     onTap: () {
                       HapticFeedback.selectionClick();
@@ -953,7 +952,7 @@ class _FirstCyclePage extends StatelessWidget {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              isEn ? area.displayNameEn : area.displayNameTr,
+                              area.localizedName(isEn),
                               style: AppTypography.elegantAccent(
                                 fontSize: 19,
                                 fontWeight: FontWeight.w600,
@@ -1003,7 +1002,7 @@ class _FirstCyclePage extends StatelessWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    L10nService.get('onboarding.onboarding.all_signals_unlock_as_you_journal', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('onboarding.onboarding.all_signals_unlock_as_you_journal', language),
                     style: AppTypography.subtitle(
                       fontSize: 14,
                       color: AppColors.textMuted,
@@ -1082,7 +1081,7 @@ class _FirstMoodPage extends StatelessWidget {
           const SizedBox(height: 20),
 
           GradientText(
-            L10nService.get('onboarding.onboarding.how_are_you_feeling_right_now', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('onboarding.onboarding.how_are_you_feeling_right_now', language),
             style: AppTypography.displayFont.copyWith(
               fontSize: 26,
               fontWeight: FontWeight.w600,
@@ -1095,7 +1094,7 @@ class _FirstMoodPage extends StatelessWidget {
           const SizedBox(height: 8),
 
           Text(
-            L10nService.get('onboarding.onboarding.your_first_checkin_this_powers_your_mood', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('onboarding.onboarding.your_first_checkin_this_powers_your_mood', language),
             style: AppTypography.decorativeScript(
               fontSize: 15,
               color: AppColors.textMuted,
@@ -1188,7 +1187,7 @@ class _FirstMoodPage extends StatelessWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    L10nService.get('onboarding.onboarding.check_in_daily_to_see_patterns_emerge', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('onboarding.onboarding.check_in_daily_to_see_patterns_emerge', language),
                     style: AppTypography.subtitle(
                       fontSize: 14,
                       color: AppColors.textMuted,
@@ -1239,7 +1238,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isEn = widget.language == AppLanguage.en;
+    final language = widget.language;
     final notificationsRequested = widget.notificationsRequested;
     final onRequestNotifications = widget.onRequestNotifications;
 
@@ -1407,7 +1406,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
           const SizedBox(height: 20),
 
           GradientText(
-            L10nService.get('onboarding.onboarding.youre_all_set', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('onboarding.onboarding.youre_all_set', language),
             style: AppTypography.displayFont.copyWith(
               fontSize: 30,
               fontWeight: FontWeight.w600,
@@ -1419,7 +1418,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
           const SizedBox(height: 12),
 
           Text(
-            L10nService.get('onboarding.onboarding.one_last_thing_stay_on_track_with_gentle', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('onboarding.onboarding.one_last_thing_stay_on_track_with_gentle', language),
             style: AppTypography.decorativeScript(
               fontSize: 16,
               color: AppColors.textSecondary,
@@ -1465,7 +1464,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          L10nService.get('onboarding.onboarding.daily_reflection_reminder', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('onboarding.onboarding.daily_reflection_reminder', language),
                           style: AppTypography.elegantAccent(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
@@ -1475,7 +1474,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          L10nService.get('onboarding.onboarding.a_gentle_nudge_at_900_am', isEn ? AppLanguage.en : AppLanguage.tr),
+                          L10nService.get('onboarding.onboarding.a_gentle_nudge_at_900_am', language),
                           style: AppTypography.decorativeScript(
                             fontSize: 15,
                             color: AppColors.textMuted,
@@ -1486,7 +1485,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
                   ),
                   Semantics(
                     button: true,
-                    label: L10nService.get('onboarding.onboarding.enable_notifications', isEn ? AppLanguage.en : AppLanguage.tr),
+                    label: L10nService.get('onboarding.onboarding.enable_notifications', language),
                     child: GestureDetector(
                       onTap: notificationsRequested
                           ? null
@@ -1550,7 +1549,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  L10nService.get('onboarding.onboarding.whats_included', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('onboarding.onboarding.whats_included', language),
                   style: AppTypography.elegantAccent(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -1561,19 +1560,19 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
                 const SizedBox(height: 14),
                 _FeatureRow(
                   icon: Icons.edit_note,
-                  text: L10nService.get('onboarding.onboarding.daily_reflection_journal', isEn ? AppLanguage.en : AppLanguage.tr),
+                  text: L10nService.get('onboarding.onboarding.daily_reflection_journal', language),
                 ),
                 _FeatureRow(
                   icon: Icons.nights_stay,
-                  text: L10nService.get('onboarding.onboarding.dream_journal', isEn ? AppLanguage.en : AppLanguage.tr),
+                  text: L10nService.get('onboarding.onboarding.dream_journal', language),
                 ),
                 _FeatureRow(
                   icon: Icons.auto_graph,
-                  text: L10nService.get('onboarding.onboarding.pattern_recognition', isEn ? AppLanguage.en : AppLanguage.tr),
+                  text: L10nService.get('onboarding.onboarding.pattern_recognition', language),
                 ),
                 _FeatureRow(
                   icon: Icons.library_books,
-                  text: L10nService.get('onboarding.onboarding.symbol_glossary', isEn ? AppLanguage.en : AppLanguage.tr),
+                  text: L10nService.get('onboarding.onboarding.symbol_glossary', language),
                 ),
               ],
             ),
@@ -1594,7 +1593,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  L10nService.get('onboarding.onboarding.have_an_invite_code', isEn ? AppLanguage.en : AppLanguage.tr),
+                  L10nService.get('onboarding.onboarding.have_an_invite_code', language),
                   style: AppTypography.subtitle(
                     fontSize: 14,
                     color: AppColors.starGold.withValues(alpha: 0.8),
@@ -1625,7 +1624,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
                 child: Column(
                   children: [
                     Text(
-                      L10nService.get('onboarding.onboarding.enter_your_friends_code_for_7_days_free', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('onboarding.onboarding.enter_your_friends_code_for_7_days_free', language),
                       style: AppTypography.subtitle(
                         fontSize: 13,
                         color: AppColors.textSecondary,
@@ -1646,7 +1645,7 @@ class _PermissionStartPageState extends State<_PermissionStartPage> {
                           letterSpacing: 4,
                         ),
                         decoration: InputDecoration(
-                          hintText: L10nService.get('onboarding.onboarding.abcd1234', isEn ? AppLanguage.en : AppLanguage.tr),
+                          hintText: L10nService.get('onboarding.onboarding.abcd1234', language),
                           hintStyle: AppTypography.subtitle(
                             fontSize: 18,
                             color: AppColors.textMuted.withValues(alpha: 0.3),
@@ -1819,7 +1818,7 @@ class _WelcomePage extends StatelessWidget {
 
           // Tagline
           Text(
-            L10nService.get('onboarding.onboarding.your_story_your_patterns_your_clarity', isEn ? AppLanguage.en : AppLanguage.tr),
+            L10nService.get('onboarding.onboarding.your_story_your_patterns_your_clarity', language),
             style: AppTypography.decorativeScript(
               fontSize: 16,
               color: AppColors.textSecondary,
@@ -1879,7 +1878,7 @@ class _WelcomePage extends StatelessWidget {
                 const SizedBox(width: 6),
                 Flexible(
                   child: Text(
-                    L10nService.get('onboarding.onboarding.private_secure_your_journal_stays_on_you', isEn ? AppLanguage.en : AppLanguage.tr),
+                    L10nService.get('onboarding.onboarding.private_secure_your_journal_stays_on_you', language),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       color: AppColors.textMuted,

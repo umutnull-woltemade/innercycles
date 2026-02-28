@@ -231,9 +231,7 @@ class BirthdayDetailScreen extends ConsumerWidget {
                       ),
                       const SizedBox(width: 12),
                       Text(
-                        isEn
-                            ? contact.relationship.displayNameEn
-                            : contact.relationship.displayNameTr,
+                        contact.relationship.localizedName(isEn),
                         style: AppTypography.displayFont.copyWith(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,

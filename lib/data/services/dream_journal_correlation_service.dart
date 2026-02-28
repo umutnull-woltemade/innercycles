@@ -11,6 +11,8 @@
 import 'dart:math';
 import 'dream_journal_service.dart';
 import 'journal_service.dart';
+import 'l10n_service.dart';
+import '../providers/app_providers.dart';
 
 // ════════════════════════════════════════════════════════════════════════════
 // DATA MODEL
@@ -241,58 +243,32 @@ class DreamJournalCorrelationService {
   /// dream-mood correlations. Uses safe language ("Your entries suggest...")
   /// and respects [isEn] for English/Turkish output.
   Future<String> generateInsight({required bool isEn}) async {
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
     final correlations = await getTopCorrelations(3);
 
     if (correlations.isEmpty) {
-      return isEn
-          ? 'Not enough overlapping dream and journal data yet. '
-                'Keep recording to activate dream-mood insights.'
-          : 'Henüz yeterli rüya ve günlük verisi yok. '
-                'Rüya-ruh hali içgörüleri için kayıt yapmaya devam et.';
+      return L10nService.get('dream_correlation.not_enough_data', lang);
     }
 
     final buffer = StringBuffer();
-
-    if (isEn) {
-      buffer.writeln(
-        'Your entries suggest the following dream-mood connections:',
-      );
-    } else {
-      buffer.writeln(
-        'Kayıtların aşağıdaki rüya-ruh hali bağlantılarını gösteriyor:',
-      );
-    }
+    buffer.writeln(L10nService.get('dream_correlation.connections_header', lang));
 
     for (final c in correlations) {
       final deltaStr = c.delta.abs().toStringAsFixed(1);
-
-      if (isEn) {
-        buffer.writeln(
-          '- When "${c.theme}" appears in your dreams, '
-          '${c.direction.labelEn()} the next day '
-          '(${c.avgMoodBefore.toStringAsFixed(1)} -> '
-          '${c.avgMoodAfter.toStringAsFixed(1)}, '
-          'based on ${c.sampleSize} entries, '
-          'delta $deltaStr).',
-        );
-      } else {
-        buffer.writeln(
-          '- Rüyalarında "${c.theme}" göründüğünde, '
-          'ertesi gün ${c.direction.labelTr()} '
-          '(${c.avgMoodBefore.toStringAsFixed(1)} -> '
-          '${c.avgMoodAfter.toStringAsFixed(1)}, '
-          '${c.sampleSize} kayda dayanarak, '
-          'değişim $deltaStr).',
-        );
-      }
+      final direction = isEn ? c.direction.labelEn() : c.direction.labelTr();
+      buffer.writeln(
+        L10nService.getWithParams('dream_correlation.connection_item', lang, params: {
+          'theme': c.theme,
+          'direction': direction,
+          'before': c.avgMoodBefore.toStringAsFixed(1),
+          'after': c.avgMoodAfter.toStringAsFixed(1),
+          'samples': '${c.sampleSize}',
+          'delta': deltaStr,
+        }),
+      );
     }
 
-    // Add a general note
-    if (isEn) {
-      buffer.write('These patterns may evolve as you log more entries.');
-    } else {
-      buffer.write('Bu örüntüler daha fazla kayıt ekledikçe gelişebilir.');
-    }
+    buffer.write(L10nService.get('dream_correlation.patterns_note', lang));
 
     return buffer.toString().trim();
   }

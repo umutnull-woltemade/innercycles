@@ -474,9 +474,7 @@ class _OnThisDayCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      isEn
-                          ? entry.focusArea.displayNameEn
-                          : entry.focusArea.displayNameTr,
+                      entry.focusArea.localizedName(isEn),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: AppTypography.elegantAccent(
@@ -635,9 +633,7 @@ class _MemoryCard extends StatelessWidget {
 
   Widget _buildPhotoCard(BuildContext context) {
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
-    final areaLabel = isEn
-        ? entry.focusArea.displayNameEn
-        : entry.focusArea.displayNameTr;
+    final areaLabel = entry.focusArea.localizedName(isEn);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),
@@ -739,9 +735,7 @@ class _MemoryCard extends StatelessWidget {
 
   Widget _buildTextCard(BuildContext context) {
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
-    final areaLabel = isEn
-        ? entry.focusArea.displayNameEn
-        : entry.focusArea.displayNameTr;
+    final areaLabel = entry.focusArea.localizedName(isEn);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: AppConstants.spacingMd),

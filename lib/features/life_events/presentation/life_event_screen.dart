@@ -254,7 +254,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        isEn ? type.displayNameEn : type.displayNameTr,
+                        type.localizedName(isEn),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: isSelected
@@ -407,7 +407,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
             ),
-            counterStyle: TextStyle(
+            counterStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               fontSize: 10,
             ),
@@ -693,7 +693,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
             ),
-            counterStyle: TextStyle(
+            counterStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
               fontSize: 10,
             ),

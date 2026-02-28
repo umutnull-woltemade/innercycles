@@ -357,9 +357,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                   });
                 },
                 child: Semantics(
-                  label: isEn
-                      ? archetype.displayNameEn
-                      : archetype.displayNameTr,
+                  label: archetype.localizedName(isEn),
                   selected: isSelected,
                   button: true,
                   child: AnimatedContainer(
@@ -381,7 +379,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                       ),
                     ),
                     child: Text(
-                      isEn ? archetype.displayNameEn : archetype.displayNameTr,
+                      archetype.localizedName(isEn),
                       style:
                           AppTypography.subtitle(
                             fontSize: 12,
@@ -474,9 +472,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  isEn
-                      ? prompt.depth.displayNameEn
-                      : prompt.depth.displayNameTr,
+                  prompt.depth.localizedName(isEn),
                   style: AppTypography.subtitle(
                     fontSize: 10,
                     color: _shadowPurple,
@@ -588,7 +584,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
             ),
             decoration: InputDecoration(
               hintText: L10nService.get('shadow_work.shadow_work.write_freely_without_judgment', isEn ? AppLanguage.en : AppLanguage.tr),
-              hintStyle: TextStyle(
+              hintStyle: AppTypography.subtitle(
                 color: isDark
                     ? AppColors.textSecondary.withValues(alpha: 0.5)
                     : AppColors.lightTextSecondary.withValues(alpha: 0.5),
@@ -831,15 +827,13 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
               padding: const EdgeInsets.only(bottom: 8),
               child: Semantics(
                 label:
-                    '${isEn ? archetype.displayNameEn : archetype.displayNameTr}: $count',
+                    '${archetype.localizedName(isEn)}: $count',
                 child: Row(
                   children: [
                     SizedBox(
                       width: 90,
                       child: Text(
-                        isEn
-                            ? archetype.displayNameEn
-                            : archetype.displayNameTr,
+                        archetype.localizedName(isEn),
                         style: AppTypography.subtitle(
                           fontSize: 11,
                           color: isDark
@@ -978,9 +972,7 @@ class _ShadowWorkScreenState extends ConsumerState<ShadowWorkScreen> {
                           children: [
                             Expanded(
                               child: Text(
-                                isEn
-                                    ? entry.archetype.displayNameEn
-                                    : entry.archetype.displayNameTr,
+                                entry.archetype.localizedName(isEn),
                                 style: AppTypography.subtitle(
                                   fontSize: 12,
                                   color: _shadowPurple,

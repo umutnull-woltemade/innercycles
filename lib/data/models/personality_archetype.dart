@@ -431,16 +431,15 @@ extension ElementExtension on Element {
 
   /// Get localized element name based on app language
   String localizedName(AppLanguage language) {
-    final isEn = language == AppLanguage.en;
     switch (this) {
       case Element.fire:
-        return L10nService.get('data.models.personality_archetype.fire', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.personality_archetype.fire', language);
       case Element.earth:
-        return L10nService.get('data.models.personality_archetype.earth', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.personality_archetype.earth', language);
       case Element.air:
-        return L10nService.get('data.models.personality_archetype.air', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.personality_archetype.air', language);
       case Element.water:
-        return L10nService.get('data.models.personality_archetype.water', isEn ? AppLanguage.en : AppLanguage.tr);
+        return L10nService.get('data.models.personality_archetype.water', language);
     }
   }
 

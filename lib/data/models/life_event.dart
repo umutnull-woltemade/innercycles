@@ -28,7 +28,10 @@ enum LifeEventType {
       case LifeEventType.custom:
         return 'Kişisel';
     }
+
   }
+
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 }
 
 /// A life event representing a significant moment in the user's timeline

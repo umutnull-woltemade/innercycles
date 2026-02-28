@@ -57,6 +57,8 @@ enum AffirmationCategory {
     }
   }
 
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
+
   String get iconData {
     switch (this) {
       case AffirmationCategory.selfWorth:

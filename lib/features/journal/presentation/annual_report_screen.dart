@@ -586,7 +586,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
             final area = entry.key;
             final pct = entry.value;
             final color = _focusAreaColor(area);
-            final areaName = isEn ? area.displayNameEn : area.displayNameTr;
+            final areaName = area.localizedName(isEn);
 
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),

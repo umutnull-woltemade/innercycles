@@ -106,9 +106,7 @@ class EntryDetailScreen extends ConsumerWidget {
     bool isDark,
     bool isEn,
   ) {
-    final areaLabel = isEn
-        ? entry.focusArea.displayNameEn
-        : entry.focusArea.displayNameTr;
+    final areaLabel = entry.focusArea.localizedName(isEn);
     final names = isEn
         ? entry.focusArea.subRatingNamesEn
         : entry.focusArea.subRatingNamesTr;

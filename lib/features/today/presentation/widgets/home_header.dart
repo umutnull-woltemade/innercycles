@@ -34,15 +34,12 @@ class HomeHeader extends StatelessWidget {
 
   String _getFormattedDate() {
     final now = DateTime.now();
-    const dayNamesEn = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    const dayNamesTr = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
-    final monthsEn = CommonStrings.monthsShortEn;
-    final monthsTr = CommonStrings.monthsShortTr;
-    final dayIndex = now.weekday - 1;
-    if (isEn) {
-      return '${dayNamesEn[dayIndex]}, ${monthsEn[now.month - 1]} ${now.day}';
-    }
-    return '${dayNamesTr[dayIndex]}, ${now.day} ${monthsTr[now.month - 1]}';
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+    final dayKeys = ['common.date.day_mon', 'common.date.day_tue', 'common.date.day_wed', 'common.date.day_thu', 'common.date.day_fri', 'common.date.day_sat', 'common.date.day_sun'];
+    final dayName = L10nService.get(dayKeys[now.weekday - 1], lang);
+    final months = isEn ? CommonStrings.monthsShortEn : CommonStrings.monthsShortTr;
+    final monthName = months[now.month - 1];
+    return L10nService.getWithParams('common.date.format_en', lang, params: {'day': dayName, 'month': monthName, 'date': '${now.day}'});
   }
 
   String _getInitials() {

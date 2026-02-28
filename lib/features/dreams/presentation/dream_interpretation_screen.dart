@@ -2127,14 +2127,14 @@ ${_getPersonalAdvice(sign)}''';
                               HapticService.buttonPress();
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text(L10nService.get('dreams.dream_interpretation.copied', isEn ? AppLanguage.en : AppLanguage.tr)),
+                                  content: Text(L10nService.get('dreams.dream_interpretation.copied', language)),
                                   duration: const Duration(seconds: 1),
                                   backgroundColor: AppColors.success,
                                 ),
                               );
                             },
                             child: Tooltip(
-                              message: L10nService.get('dreams.dream_interpretation.copy', isEn ? AppLanguage.en : AppLanguage.tr),
+                              message: L10nService.get('dreams.dream_interpretation.copy', language),
                               child: Icon(
                                 Icons.content_copy_rounded,
                                 size: 14,
@@ -2171,6 +2171,7 @@ ${_getPersonalAdvice(sign)}''';
   }
 
   Widget _buildLockedPerspectivesCard(int lockedCount, bool isEn, bool isDark) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: Stack(
@@ -2187,7 +2188,7 @@ ${_getPersonalAdvice(sign)}''';
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      L10nService.get('dreams.dream_interpretation.psychological_perspectivennyour', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('dreams.dream_interpretation.psychological_perspectivennyour', language),
                       style: AppTypography.decorativeScript(
                         fontSize: 13,
                         color: isDark
@@ -2249,7 +2250,7 @@ ${_getPersonalAdvice(sign)}''';
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      L10nService.get('dreams.dream_interpretation.see_your_dream_through_every_lens', isEn ? AppLanguage.en : AppLanguage.tr),
+                      L10nService.get('dreams.dream_interpretation.see_your_dream_through_every_lens', language),
                       textAlign: TextAlign.center,
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
@@ -2260,7 +2261,7 @@ ${_getPersonalAdvice(sign)}''';
                     ),
                     const SizedBox(height: 12),
                     Semantics(
-                      label: L10nService.get('dreams.dream_interpretation.access_all_perspectives', isEn ? AppLanguage.en : AppLanguage.tr),
+                      label: L10nService.get('dreams.dream_interpretation.access_all_perspectives', language),
                       button: true,
                       child: GestureDetector(
                         onTap: () => showContextualPaywall(
@@ -2292,7 +2293,7 @@ ${_getPersonalAdvice(sign)}''';
                             ],
                           ),
                           child: Text(
-                            L10nService.get('dreams.dream_interpretation.access_all_perspectives_1', isEn ? AppLanguage.en : AppLanguage.tr),
+                            L10nService.get('dreams.dream_interpretation.access_all_perspectives_1', language),
                             style: AppTypography.modernAccent(
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
@@ -2359,6 +2360,7 @@ ${_getPersonalAdvice(sign)}''';
   }
 
   Widget _buildInputArea(bool isDark, {bool isEn = true}) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -2425,7 +2427,7 @@ ${_getPersonalAdvice(sign)}''';
               ),
               const SizedBox(width: 10),
               Semantics(
-                label: L10nService.get('dreams.dream_interpretation.send_message', isEn ? AppLanguage.en : AppLanguage.tr),
+                label: L10nService.get('dreams.dream_interpretation.send_message', language),
                 button: true,
                 child:
                     GestureDetector(

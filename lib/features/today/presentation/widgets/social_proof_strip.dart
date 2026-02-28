@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../data/providers/app_providers.dart';
+import '../../../../data/services/l10n_service.dart';
 
 /// Personal milestone strip showing the user's own journaling progress.
 class SocialProofStrip extends ConsumerWidget {
@@ -59,22 +60,24 @@ class SocialProofStrip extends ConsumerWidget {
 
   /// Personal milestone message based on user's own entry count.
   String _milestoneMessage(int count) {
-    if (isEn) {
-      if (count >= 100) return '$count entries — your story keeps growing';
-      if (count >= 50) return '$count entries — half a hundred reflections';
-      if (count >= 30) return '$count entries — a month of insight';
-      if (count >= 14) return '$count entries — two weeks of reflection';
-      if (count >= 7) return '$count entries — one week strong';
-      if (count >= 3) return '$count entries — building a habit';
-      return '$count entry — your journey begins';
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
+    final params = {'count': '$count'};
+    String key;
+    if (count >= 100) {
+      key = 'today.social_proof.milestone_100';
+    } else if (count >= 50) {
+      key = 'today.social_proof.milestone_50';
+    } else if (count >= 30) {
+      key = 'today.social_proof.milestone_30';
+    } else if (count >= 14) {
+      key = 'today.social_proof.milestone_14';
+    } else if (count >= 7) {
+      key = 'today.social_proof.milestone_7';
+    } else if (count >= 3) {
+      key = 'today.social_proof.milestone_3';
     } else {
-      if (count >= 100) return '$count kayıt — hikayen büyümeye devam ediyor';
-      if (count >= 50) return '$count kayıt — elli yansıma';
-      if (count >= 30) return '$count kayıt — bir aylık içgörü';
-      if (count >= 14) return '$count kayıt — iki haftalık yansıma';
-      if (count >= 7) return '$count kayıt — bir hafta güçlü';
-      if (count >= 3) return '$count kayıt — alışkanlık oluşuyor';
-      return '$count kayıt — yolculuğun başlıyor';
+      key = 'today.social_proof.milestone_1';
     }
+    return L10nService.getWithParams(key, lang, params: params);
   }
 }

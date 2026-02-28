@@ -172,7 +172,7 @@ class _EmotionalVocabularyScreenState
             (family) => Padding(
               padding: const EdgeInsets.only(right: 8),
               child: _FamilyChip(
-                label: isEn ? family.displayNameEn : family.displayNameTr,
+                label: family.localizedName(isEn),
                 emoji: family.emoji,
                 isSelected: _selectedFamily == family,
                 isDark: isDark,
@@ -376,9 +376,7 @@ class _EmotionCardState extends State<_EmotionCard> {
                                 ),
                               ),
                               child: Text(
-                                isEn
-                                    ? e.intensity.displayNameEn
-                                    : e.intensity.displayNameTr,
+                                e.intensity.localizedName(isEn),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w600,
@@ -389,9 +387,7 @@ class _EmotionCardState extends State<_EmotionCard> {
                             ),
                             const SizedBox(width: 6),
                             Text(
-                              isEn
-                                  ? e.family.displayNameEn
-                                  : e.family.displayNameTr,
+                              e.family.localizedName(isEn),
                               style: AppTypography.elegantAccent(
                                 fontSize: 11,
                                 color: isDark

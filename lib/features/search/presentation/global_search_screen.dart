@@ -688,7 +688,7 @@ class _JournalResultTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final areaName =
-        isEn ? entry.focusArea.displayNameEn : entry.focusArea.displayNameTr;
+        entry.focusArea.localizedName(isEn);
     final dateStr =
         '${entry.date.day}.${entry.date.month}.${entry.date.year}';
     final preview = entry.note?.length != null && entry.note!.length > 80

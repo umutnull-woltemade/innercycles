@@ -688,7 +688,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
     if (_selectedPoint == null) return const SizedBox.shrink();
     final point = _selectedPoint!;
     final color = kAreaColors[point.area] ?? AppColors.auroraStart;
-    final areaName = isEn ? point.area.displayNameEn : point.area.displayNameTr;
+    final areaName = point.area.localizedName(isEn);
     final dateStr = '${point.date.day}/${point.date.month}/${point.date.year}';
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -740,7 +740,7 @@ class _EmotionalCycleScreenState extends ConsumerState<EmotionalCycleScreen>
         children: FocusArea.values.map((area) {
           final isVisible = _visibleAreas.contains(area);
           final color = kAreaColors[area] ?? AppColors.auroraStart;
-          final label = isEn ? area.displayNameEn : area.displayNameTr;
+          final label = area.localizedName(isEn);
           return Padding(
             padding: const EdgeInsets.only(right: AppConstants.spacingSm),
             child: Semantics(

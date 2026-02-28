@@ -33,7 +33,10 @@ enum ReminderFrequency {
       case ReminderFrequency.monthly:
         return 'Aylık';
     }
+
   }
+
+  String localizedName(bool isEn) => isEn ? displayNameEn() : displayNameTr();
 }
 
 /// A reminder attached to a note

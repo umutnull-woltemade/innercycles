@@ -337,9 +337,7 @@ class _VaultScreenState extends ConsumerState<VaultScreen> {
   Widget _buildJournalCard(JournalEntry entry, bool isEn, bool isDark) {
     final dayName = _dayName(entry.date, isEn);
     final dateStr = '${entry.date.day}.${entry.date.month}.${entry.date.year}';
-    final areaName = isEn
-        ? entry.focusArea.displayNameEn
-        : entry.focusArea.displayNameTr;
+    final areaName = entry.focusArea.localizedName(isEn);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),

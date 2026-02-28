@@ -55,6 +55,8 @@ enum MilestoneCategory {
         return 'Gelişim';
     }
   }
+
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 }
 
 /// A single milestone definition

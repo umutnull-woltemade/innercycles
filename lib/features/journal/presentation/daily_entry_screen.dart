@@ -463,7 +463,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
       runSpacing: AppConstants.spacingSm,
       children: FocusArea.values.map((area) {
         final isSelected = area == _selectedArea;
-        final label = isEn ? area.displayNameEn : area.displayNameTr;
+        final label = area.localizedName(isEn);
         final icon = _getAreaIcon(area);
 
         return Semantics(
@@ -781,7 +781,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
                   ),
                   contentPadding: const EdgeInsets.all(AppConstants.spacingLg),
                   border: InputBorder.none,
-                  counterStyle: TextStyle(
+                  counterStyle: AppTypography.subtitle(
                     color: isDark
                         ? AppColors.textMuted
                         : AppColors.lightTextMuted,
@@ -1385,9 +1385,7 @@ class _DailyEntryScreenState extends ConsumerState<DailyEntryScreen> {
         moodEmoji: moodEmoji,
         moodLabel: moodLabel,
         dailyPrompt: L10nService.get('journal.daily_entry.how_did_your_day_feel', isEn ? AppLanguage.en : AppLanguage.tr),
-        focusArea: isEn
-            ? _selectedArea.displayNameEn
-            : _selectedArea.displayNameTr,
+        focusArea: _selectedArea.localizedName(isEn),
         streakDays: streak,
         moodRating: _overallRating,
       );

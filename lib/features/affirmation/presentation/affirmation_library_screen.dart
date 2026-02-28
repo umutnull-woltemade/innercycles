@@ -240,9 +240,7 @@ class _AffirmationLibraryScreenState
               borderRadius: BorderRadius.circular(AppConstants.radiusFull),
             ),
             child: Text(
-              isEn
-                  ? today.category.displayNameEn
-                  : today.category.displayNameTr,
+              today.category.localizedName(isEn),
               style: AppTypography.elegantAccent(
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
@@ -294,7 +292,7 @@ class _AffirmationLibraryScreenState
             (cat) => Padding(
               padding: const EdgeInsets.only(right: 8),
               child: _FilterChip(
-                label: isEn ? cat.displayNameEn : cat.displayNameTr,
+                label: cat.localizedName(isEn),
                 isSelected: _selectedCategory == cat && !_showFavoritesOnly,
                 isDark: isDark,
                 isEn: isEn,
@@ -463,9 +461,7 @@ class _AffirmationTile extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  isEn
-                      ? affirmation.category.displayNameEn
-                      : affirmation.category.displayNameTr,
+                  affirmation.category.localizedName(isEn),
                   style: AppTypography.elegantAccent(
                     fontSize: 11,
                     color: isDark
