@@ -18,18 +18,18 @@ enum ShareCardCategory {
   wisdom,
   reflection;
 
-  String label(AppLanguage language) {
+  String label(bool isEn) {
     switch (this) {
       case ShareCardCategory.identity:
-        return L10nService.get('data.models.share_models.identity', language);
+        return L10nService.get('data.models.share_models.identity', isEn ? AppLanguage.en : AppLanguage.tr);
       case ShareCardCategory.pattern:
-        return L10nService.get('data.models.share_models.patterns', language);
+        return L10nService.get('data.models.share_models.patterns', isEn ? AppLanguage.en : AppLanguage.tr);
       case ShareCardCategory.achievement:
-        return L10nService.get('data.models.share_models.achievements', language);
+        return L10nService.get('data.models.share_models.achievements', isEn ? AppLanguage.en : AppLanguage.tr);
       case ShareCardCategory.wisdom:
-        return L10nService.get('data.models.share_models.wisdom', language);
+        return L10nService.get('data.models.share_models.wisdom', isEn ? AppLanguage.en : AppLanguage.tr);
       case ShareCardCategory.reflection:
-        return L10nService.get('data.models.share_models.reflection', language);
+        return L10nService.get('data.models.share_models.reflection', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 
@@ -83,8 +83,8 @@ class ShareCardTemplate {
     required this.badgeTr,
   });
 
-  String title(AppLanguage language) => language.isEn ? titleEn : titleTr;
-  String badge(AppLanguage language) => language.isEn ? badgeEn : badgeTr;
+  String title(bool isEn) => isEn ? titleEn : titleTr;
+  String badge(bool isEn) => isEn ? badgeEn : badgeTr;
 }
 
 /// User-specific data that gets injected into a template at render time

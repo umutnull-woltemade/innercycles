@@ -22,28 +22,27 @@ import '../../data/services/l10n_service.dart';
 class ShareCardSheet extends StatefulWidget {
   final ShareCardTemplate template;
   final ShareCardData data;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const ShareCardSheet({
     super.key,
     required this.template,
     required this.data,
-    required this.language,
+    required this.isEn,
   });
 
   static Future<void> show(
     BuildContext context, {
     required ShareCardTemplate template,
     required ShareCardData data,
-    required AppLanguage language,
+    required bool isEn,
   }) {
     return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (_) =>
-          ShareCardSheet(template: template, data: data, language: language),
+          ShareCardSheet(template: template, data: data, isEn: isEn),
     );
   }
 
@@ -71,7 +70,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
         boundary: boundary,
         shareText: shareText,
         hashtags: '#InnerCycles #SelfReflection',
-        language: widget.language,
+        language: widget.isEn ? AppLanguage.en : AppLanguage.tr,
       );
 
       if (mounted) Navigator.of(context).pop();
@@ -241,7 +240,7 @@ class _ShareCardSheetState extends State<ShareCardSheet> {
 
                 // Share button
                 GradientButton(
-                  label: L10nService.get('shared.share.share', widget.language),
+                  label: L10nService.get('shared.share.share', widget.isEn ? AppLanguage.en : AppLanguage.tr),
                   icon: Icons.share_rounded,
                   onPressed: _isSharing ? null : _share,
                   isLoading: _isSharing,

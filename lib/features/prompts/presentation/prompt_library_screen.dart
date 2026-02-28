@@ -63,7 +63,7 @@ class PromptLibraryScreen extends ConsumerWidget {
                   icon: Icon(Icons.refresh_rounded,
                       size: 16, color: AppColors.starGold),
                   label: Text(
-                    L10nService.get('prompts.prompt_library.retry', language),
+                    L10nService.get('prompts.prompt_library.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -77,7 +77,7 @@ class PromptLibraryScreen extends ConsumerWidget {
           data: (service) => _PromptLibraryContent(
             service: service,
             isDark: isDark,
-            language: language,
+            isEn: isEn,
           ),
         ),
       ),
@@ -92,13 +92,12 @@ class PromptLibraryScreen extends ConsumerWidget {
 class _PromptLibraryContent extends StatefulWidget {
   final JournalPromptService service;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _PromptLibraryContent({
     required this.service,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -134,7 +133,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
           ),
           slivers: [
             GlassSliverAppBar(
-              title: L10nService.get('prompts.prompt_library.prompt_library', language),
+              title: L10nService.get('prompts.prompt_library.prompt_library', isEn ? AppLanguage.en : AppLanguage.tr),
             ),
             SliverToBoxAdapter(
               child: Padding(
@@ -196,7 +195,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                 child: ToolEcosystemFooter(
                   currentToolId: 'promptLibrary',
-                  language: language,
+                  isEn: isEn,
                   isDark: isDark,
                 ),
               ),
@@ -224,7 +223,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GradientText(
-                L10nService.get('prompts.prompt_library.your_progress', language),
+                L10nService.get('prompts.prompt_library.your_progress', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 16,
@@ -286,7 +285,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  L10nService.get('prompts.todays_prompt', language),
+                  L10nService.get('prompts.todays_prompt', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.elegantAccent(
                     fontSize: 12,
                     color: AppColors.starGold,
@@ -324,7 +323,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
           ),
           const SizedBox(height: 14),
           GradientButton.gold(
-            label: L10nService.get('prompts.prompt_library.start_writing', language),
+            label: L10nService.get('prompts.prompt_library.start_writing', isEn ? AppLanguage.en : AppLanguage.tr),
             onPressed: () {
               HapticFeedback.mediumImpact();
               service.markCompleted(prompt.id);
@@ -350,7 +349,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
           parent: AlwaysScrollableScrollPhysics(),
         ),
         children: [
-          _buildChip(null, L10nService.get('prompts.prompt_library.all', language)),
+          _buildChip(null, L10nService.get('prompts.prompt_library.all', isEn ? AppLanguage.en : AppLanguage.tr)),
           ...PromptCategory.values.map(
             (cat) => _buildChip(cat, _categoryLabel(cat)),
           ),
@@ -588,7 +587,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            L10nService.get('prompts.prompt_library.completed', language),
+                            L10nService.get('prompts.prompt_library.completed', isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.elegantAccent(
                               fontSize: 12,
                               color: AppColors.success,
@@ -620,7 +619,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                     // Skip button
                     Expanded(
                       child: GradientOutlinedButton(
-                        label: L10nService.get('prompts.prompt_library.skip', language),
+                        label: L10nService.get('prompts.prompt_library.skip', isEn ? AppLanguage.en : AppLanguage.tr),
                         variant: GradientTextVariant.aurora,
                         expanded: true,
                         fontSize: 15,
@@ -641,7 +640,7 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
                     Expanded(
                       flex: 2,
                       child: GradientButton.gold(
-                        label: L10nService.get('prompts.prompt_library.start_writing_1', language),
+                        label: L10nService.get('prompts.prompt_library.start_writing_1', isEn ? AppLanguage.en : AppLanguage.tr),
                         onPressed: () {
                           HapticFeedback.mediumImpact();
                           service.markCompleted(prompt.id);
@@ -671,13 +670,13 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
     switch (depth) {
       case PromptDepth.surface:
         color = AppColors.success;
-        label = L10nService.get('prompts.prompt_library.light', language);
+        label = L10nService.get('prompts.prompt_library.light', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptDepth.medium:
         color = AppColors.warning;
-        label = L10nService.get('prompts.prompt_library.medium', language);
+        label = L10nService.get('prompts.prompt_library.medium', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptDepth.deep:
         color = AppColors.amethyst;
-        label = L10nService.get('prompts.prompt_library.deep', language);
+        label = L10nService.get('prompts.prompt_library.deep', isEn ? AppLanguage.en : AppLanguage.tr);
     }
 
     return Container(
@@ -700,21 +699,21 @@ class _PromptLibraryContentState extends State<_PromptLibraryContent> {
   String _categoryLabel(PromptCategory category) {
     switch (category) {
       case PromptCategory.selfDiscovery:
-        return L10nService.get('prompts.prompt_library.cycle_awareness', language);
+        return L10nService.get('prompts.prompt_library.cycle_awareness', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptCategory.relationships:
-        return L10nService.get('prompts.prompt_library.relationships', language);
+        return L10nService.get('prompts.prompt_library.relationships', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptCategory.gratitude:
-        return L10nService.get('prompts.prompt_library.gratitude', language);
+        return L10nService.get('prompts.prompt_library.gratitude', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptCategory.emotions:
-        return L10nService.get('prompts.prompt_library.emotions', language);
+        return L10nService.get('prompts.prompt_library.emotions', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptCategory.goals:
-        return L10nService.get('prompts.prompt_library.goals', language);
+        return L10nService.get('prompts.prompt_library.goals', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptCategory.recovery:
-        return L10nService.get('prompts.prompt_library.recovery', language);
+        return L10nService.get('prompts.prompt_library.recovery', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptCategory.creativity:
-        return L10nService.get('prompts.prompt_library.creativity', language);
+        return L10nService.get('prompts.prompt_library.creativity', isEn ? AppLanguage.en : AppLanguage.tr);
       case PromptCategory.mindfulness:
-        return L10nService.get('prompts.prompt_library.mindfulness', language);
+        return L10nService.get('prompts.prompt_library.mindfulness', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 }

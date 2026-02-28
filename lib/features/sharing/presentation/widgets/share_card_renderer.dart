@@ -34,8 +34,7 @@ class ShareCardRenderer extends StatelessWidget {
   final bool isPremium;
 
   /// Whether the current language is English (false = Turkish)
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   /// Display size on screen (will be captured at 3x for 1080x1080)
   final double displaySize;
@@ -47,7 +46,7 @@ class ShareCardRenderer extends StatelessWidget {
     this.repaintKey,
     this.isDark = true,
     this.isPremium = false,
-    this.language = true,
+    this.isEn = true,
     this.displaySize = 360,
   });
 
@@ -168,7 +167,7 @@ class ShareCardRenderer extends StatelessWidget {
               bottom: 0,
               left: 0,
               right: 0,
-              child: _BottomWatermark(accent: accent, isPremium: isPremium, language: language),
+              child: _BottomWatermark(accent: accent, isPremium: isPremium, isEn: isEn),
             ),
           ],
         ),
@@ -203,7 +202,7 @@ class ShareCardRenderer extends StatelessWidget {
           data: data,
           accent: accent,
           cardWidth: _cardWidth,
-          language: language,
+          isEn: isEn,
         );
     }
   }
@@ -804,9 +803,8 @@ class _StatPill extends StatelessWidget {
 class _BottomWatermark extends StatelessWidget {
   final Color accent;
   final bool isPremium;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
-  const _BottomWatermark({required this.accent, this.isPremium = false, this.language = true});
+  final bool isEn;
+  const _BottomWatermark({required this.accent, this.isPremium = false, this.isEn = true});
 
   @override
   Widget build(BuildContext context) {
@@ -861,7 +859,7 @@ class _BottomWatermark extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        L10nService.get('sharing.try_innercycles', language),
+                        L10nService.get('sharing.try_innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 9,
                           color: accent,
@@ -871,7 +869,7 @@ class _BottomWatermark extends StatelessWidget {
                     ),
                     // Brand name
                     Text(
-                      L10nService.get('sharing.made_with', language),
+                      L10nService.get('sharing.made_with', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 10,
                         color: AppColors.textMuted,
@@ -895,15 +893,14 @@ class _CyclePositionLayout extends StatelessWidget {
   final ShareCardData data;
   final Color accent;
   final double cardWidth;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _CyclePositionLayout({
     required this.template,
     required this.data,
     required this.accent,
     required this.cardWidth,
-    this.language = true,
+    this.isEn = true,
   });
 
   @override
@@ -936,7 +933,7 @@ class _CyclePositionLayout extends StatelessWidget {
             border: Border.all(color: accent.withValues(alpha: 0.3)),
           ),
           child: Text(
-            data.detail ?? L10nService.getWithParams('sharing.day_of_cycle', language, params: {'day': '${cycleDay.toInt()}', 'length': '${cycleLength.toInt()}'}),
+            data.detail ?? L10nService.getWithParams('sharing.day_of_cycle', isEn ? AppLanguage.en : AppLanguage.tr, params: {'day': '${cycleDay.toInt()}', 'length': '${cycleLength.toInt()}'}),
             style: AppTypography.elegantAccent(
               fontSize: 12,
               color: accent,
@@ -1001,7 +998,7 @@ class _CyclePositionLayout extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        L10nService.getWithParams('sharing.of_total', language, params: {'total': '${cycleLength.toInt()}'}),
+                        L10nService.getWithParams('sharing.of_total', isEn ? AppLanguage.en : AppLanguage.tr, params: {'total': '${cycleLength.toInt()}'}),
                         style: AppTypography.subtitle(
                           fontSize: 14,
                           color: AppColors.textMuted,

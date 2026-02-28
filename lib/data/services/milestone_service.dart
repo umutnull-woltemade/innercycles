@@ -1,4 +1,3 @@
-import 'package:innercycles/data/providers/app_providers.dart';
 // ════════════════════════════════════════════════════════════════════════════
 // MILESTONE SERVICE - InnerCycles Gamification & Badge System
 // ════════════════════════════════════════════════════════════════════════════
@@ -57,7 +56,7 @@ enum MilestoneCategory {
     }
   }
 
-  String localizedName(AppLanguage language) => language.isEn ? displayNameEn : displayNameTr;
+  String localizedName(bool isEn) => isEn ? displayNameEn : displayNameTr;
 }
 
 /// A single milestone definition

@@ -1,4 +1,3 @@
-import 'package:innercycles/data/providers/app_providers.dart';
 // ════════════════════════════════════════════════════════════════════════════
 // CYCLE CORRELATION SERVICE - Hormonal × Emotional Pattern Analysis
 // ════════════════════════════════════════════════════════════════════════════
@@ -256,7 +255,7 @@ class CycleCorrelationService {
   // ═══════════════════════════════════════════════════════════════════════
 
   /// Generate bilingual insight message for the current phase
-  String? getCurrentPhaseInsight(AppLanguage language) {
+  String? getCurrentPhaseInsight(bool isEn) {
     final phase = _cycleSyncService.getCurrentPhase();
     if (phase == null) return null;
 

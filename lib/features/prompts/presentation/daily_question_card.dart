@@ -22,13 +22,12 @@ import '../../../shared/widgets/share_card_sheet.dart';
 import '../../../data/services/l10n_service.dart';
 
 class DailyQuestionCard extends ConsumerWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
 
   const DailyQuestionCard({
     super.key,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 
@@ -43,7 +42,7 @@ class DailyQuestionCard extends ConsumerWidget {
 
         return Semantics(
           label:
-              '${L10nService.get('prompts.daily_question.question_of_the_day', language)}: $questionText',
+              '${L10nService.get('prompts.daily_question.question_of_the_day', isEn ? AppLanguage.en : AppLanguage.tr)}: $questionText',
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
             child: PremiumCard(
@@ -77,7 +76,7 @@ class DailyQuestionCard extends ConsumerWidget {
                   const SizedBox(height: 14),
                   // Label — small caps
                   Text(
-                    L10nService.get('prompts.daily_question.question_of_the_day_1', language),
+                    L10nService.get('prompts.daily_question.question_of_the_day_1', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 10,
                       color: AppColors.amethyst.withValues(alpha: 0.6),
@@ -90,7 +89,7 @@ class DailyQuestionCard extends ConsumerWidget {
                     children: [
                       Expanded(
                         child: GradientOutlinedButton(
-                          label: L10nService.get('prompts.daily_question.write', language),
+                          label: L10nService.get('prompts.daily_question.write', isEn ? AppLanguage.en : AppLanguage.tr),
                           icon: Icons.edit_note_rounded,
                           variant: GradientTextVariant.aurora,
                           fontSize: 13,
@@ -111,7 +110,7 @@ class DailyQuestionCard extends ConsumerWidget {
                       const SizedBox(width: 10),
                       Expanded(
                         child: GradientOutlinedButton(
-                          label: L10nService.get('prompts.daily_question.share', language),
+                          label: L10nService.get('prompts.daily_question.share', isEn ? AppLanguage.en : AppLanguage.tr),
                           icon: Icons.share_rounded,
                           variant: GradientTextVariant.amethyst,
                           fontSize: 13,
@@ -126,14 +125,14 @@ class DailyQuestionCard extends ConsumerWidget {
                                 ShareCardTemplates.questionOfTheDay;
                             final cardData = ShareCardTemplates.buildData(
                               template: template,
-                              language: language,
+                              isEn: isEn,
                               reflectionText: questionText,
                             );
                             ShareCardSheet.show(
                               context,
                               template: template,
                               data: cardData,
-                              language: language,
+                              isEn: isEn,
                             );
                           },
                         ),

@@ -12,13 +12,12 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class MoodStatsStrip extends ConsumerWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
 
   const MoodStatsStrip({
     super.key,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 
@@ -44,7 +43,7 @@ class MoodStatsStrip extends ConsumerWidget {
     final moodEmoji = todayMood?.emoji;
     final moodText = todayMood != null
         ? _moodLabel(todayMood.mood)
-        : (L10nService.get('today.mood_stats_strip.check_in', language));
+        : (L10nService.get('today.mood_stats_strip.check_in', isEn ? AppLanguage.en : AppLanguage.tr));
     final hasNoMood = todayMood == null;
 
     return Padding(
@@ -79,7 +78,7 @@ class MoodStatsStrip extends ConsumerWidget {
                 child: _StripPill(
                   icon: Icons.local_fire_department_rounded,
                   iconColor: AppColors.streakOrange,
-                  label: L10nService.getWithParams('today.mood_stats.streak_label', language, params: {'count': '$streakCount'}),
+                  label: L10nService.getWithParams('today.mood_stats.streak_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$streakCount'}),
                   isDark: isDark,
                   onTap: () {
                     HapticService.selectionTap();
@@ -93,7 +92,7 @@ class MoodStatsStrip extends ConsumerWidget {
                 child: _StripPill(
                   icon: Icons.auto_stories_rounded,
                   iconColor: AppColors.amethyst,
-                  label: L10nService.getWithParams('today.mood_stats.entries_label', language, params: {'count': '$entryCount'}),
+                  label: L10nService.getWithParams('today.mood_stats.entries_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$entryCount'}),
                   isDark: isDark,
                   onTap: () {
                     HapticService.selectionTap();
@@ -137,11 +136,11 @@ class MoodStatsStrip extends ConsumerWidget {
           data: (service) => service.getAllEntries().length,
         ) ??
         0;
-    return L10nService.getWithParams('today.mood_stats.mood_count', language, params: {'count': '$count'});
+    return L10nService.getWithParams('today.mood_stats.mood_count', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$count'});
   }
 
   String _moodLabel(int mood) {
-    final lang = language;
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
     switch (mood) {
       case 1:
         return L10nService.get('today.mood_stats.mood_low', lang);

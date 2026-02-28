@@ -14,18 +14,18 @@ enum ImportantDateCategory {
   growth,
   reflective;
 
-  String label(AppLanguage language) {
+  String label(bool isEn) {
     switch (this) {
       case ImportantDateCategory.personalMilestone:
-        return L10nService.get('data.content.important_date_presets.personal_milestones', language);
+        return L10nService.get('data.content.important_date_presets.personal_milestones', isEn ? AppLanguage.en : AppLanguage.tr);
       case ImportantDateCategory.relationship:
-        return L10nService.get('data.content.important_date_presets.relationships', language);
+        return L10nService.get('data.content.important_date_presets.relationships', isEn ? AppLanguage.en : AppLanguage.tr);
       case ImportantDateCategory.challenge:
-        return L10nService.get('data.content.important_date_presets.challenges', language);
+        return L10nService.get('data.content.important_date_presets.challenges', isEn ? AppLanguage.en : AppLanguage.tr);
       case ImportantDateCategory.growth:
-        return L10nService.get('data.content.important_date_presets.growth', language);
+        return L10nService.get('data.content.important_date_presets.growth', isEn ? AppLanguage.en : AppLanguage.tr);
       case ImportantDateCategory.reflective:
-        return L10nService.get('data.content.important_date_presets.reflective', language);
+        return L10nService.get('data.content.important_date_presets.reflective', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 }
@@ -49,8 +49,8 @@ class ImportantDatePreset {
     required this.category,
   });
 
-  String name(AppLanguage language) => language.isEn ? nameEn : nameTr;
-  String prompt(AppLanguage language) => language.isEn ? promptEn : promptTr;
+  String name(bool isEn) => isEn ? nameEn : nameTr;
+  String prompt(bool isEn) => isEn ? promptEn : promptTr;
 }
 
 class ImportantDatePresets {

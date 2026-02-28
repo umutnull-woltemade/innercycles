@@ -125,8 +125,8 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                 slivers: [
                   GlassSliverAppBar(
                     title: _isEditing
-                        ? (L10nService.get('life_events.life_event.edit_life_event', language))
-                        : (L10nService.get('life_events.life_event.new_life_event', language)),
+                        ? (L10nService.get('life_events.life_event.edit_life_event', isEn ? AppLanguage.en : AppLanguage.tr))
+                        : (L10nService.get('life_events.life_event.new_life_event', isEn ? AppLanguage.en : AppLanguage.tr)),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.all(16),
@@ -183,10 +183,10 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
     final isEn = language == AppLanguage.en;
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('life_events.life_event.discard_changes', language),
-      message: L10nService.get('life_events.life_event.you_have_unsaved_changes_are_you_sure_yo', language),
-      cancelLabel: L10nService.get('life_events.life_event.cancel', language),
-      confirmLabel: L10nService.get('life_events.life_event.discard', language),
+      title: L10nService.get('life_events.life_event.discard_changes', isEn ? AppLanguage.en : AppLanguage.tr),
+      message: L10nService.get('life_events.life_event.you_have_unsaved_changes_are_you_sure_yo', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('life_events.life_event.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('life_events.life_event.discard', isEn ? AppLanguage.en : AppLanguage.tr),
       isDestructive: true,
     );
     if (confirmed == true && mounted) {
@@ -198,12 +198,12 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 1. EVENT TYPE SELECTOR
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildTypeSelector(bool isDark, AppLanguage language) {
+  Widget _buildTypeSelector(bool isDark, bool isEn) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('life_events.life_event.event_type', language),
+          L10nService.get('life_events.life_event.event_type', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 14,
@@ -282,7 +282,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 2. PRESET PICKER
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildPresetPicker(bool isDark, AppLanguage language) {
+  Widget _buildPresetPicker(bool isDark, bool isEn) {
     final presets = _selectedType == LifeEventType.positive
         ? LifeEventPresets.positive
         : LifeEventPresets.challenging;
@@ -291,7 +291,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('life_events.life_event.select_event', language),
+          L10nService.get('life_events.life_event.select_event', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 14,
@@ -373,12 +373,12 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 2b. CUSTOM TITLE
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildCustomTitle(bool isDark, AppLanguage language) {
+  Widget _buildCustomTitle(bool isDark, bool isEn) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('life_events.life_event.event_title', language),
+          L10nService.get('life_events.life_event.event_title', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 14,
@@ -395,7 +395,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             fontSize: 15,
           ),
           decoration: InputDecoration(
-            hintText: L10nService.get('life_events.life_event.describe_your_life_event', language),
+            hintText: L10nService.get('life_events.life_event.describe_your_life_event', isEn ? AppLanguage.en : AppLanguage.tr),
             hintStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -421,7 +421,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 3. DATE PICKER
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildDatePicker(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildDatePicker(BuildContext context, bool isDark, bool isEn) {
     final formatted =
         '${_selectedDate.day.toString().padLeft(2, '0')}/'
         '${_selectedDate.month.toString().padLeft(2, '0')}/'
@@ -485,7 +485,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 4. EMOTION TAGS
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildEmotionTags(bool isDark, AppLanguage language) {
+  Widget _buildEmotionTags(bool isDark, bool isEn) {
     const emotions = [
       'joy',
       'pride',
@@ -522,7 +522,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
         Row(
           children: [
             GradientText(
-              L10nService.get('life_events.life_event.emotion_tags', language),
+              L10nService.get('life_events.life_event.emotion_tags', isEn ? AppLanguage.en : AppLanguage.tr),
               variant: GradientTextVariant.amethyst,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 14,
@@ -600,7 +600,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 5. INTENSITY SLIDER
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildIntensitySlider(bool isDark, AppLanguage language) {
+  Widget _buildIntensitySlider(bool isDark, bool isEn) {
     final labels = isEn
         ? ['Subtle', 'Mild', 'Moderate', 'Strong', 'Life-Changing']
         : ['Hafif', 'Az', 'Orta', 'Güçlü', 'Hayat Değiştiren'];
@@ -611,7 +611,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
         Row(
           children: [
             GradientText(
-              L10nService.get('life_events.life_event.intensity', language),
+              L10nService.get('life_events.life_event.intensity', isEn ? AppLanguage.en : AppLanguage.tr),
               variant: GradientTextVariant.gold,
               style: AppTypography.displayFont.copyWith(
                 fontSize: 14,
@@ -658,12 +658,12 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 6. REFLECTION NOTE
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildReflectionNote(bool isDark, AppLanguage language) {
+  Widget _buildReflectionNote(bool isDark, bool isEn) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('life_events.life_event.reflection', language),
+          L10nService.get('life_events.life_event.reflection', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.amethyst,
           style: AppTypography.elegantAccent(
             fontSize: 14,
@@ -681,7 +681,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             fontSize: 14,
           ),
           decoration: InputDecoration(
-            hintText: L10nService.get('life_events.life_event.how_did_this_event_shape_you', language),
+            hintText: L10nService.get('life_events.life_event.how_did_this_event_shape_you', isEn ? AppLanguage.en : AppLanguage.tr),
             hintStyle: AppTypography.subtitle(
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
             ),
@@ -707,12 +707,12 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 7. PHOTO UPLOAD
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildPhotoSection(bool isDark, AppLanguage language) {
+  Widget _buildPhotoSection(bool isDark, bool isEn) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('life_events.life_event.photo_optional', language),
+          L10nService.get('life_events.life_event.photo_optional', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 14,
@@ -728,7 +728,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
               height: 160,
               width: double.infinity,
               fit: BoxFit.cover,
-              semanticLabel: L10nService.get('life_events.life_event.event_photo', language),
+              semanticLabel: L10nService.get('life_events.life_event.event_photo', isEn ? AppLanguage.en : AppLanguage.tr),
               errorBuilder: (_, _, _) => const SizedBox.shrink(),
             ),
           ),
@@ -739,7 +739,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Text(
-                L10nService.get('life_events.life_event.remove_photo', language),
+                L10nService.get('life_events.life_event.remove_photo', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.modernAccent(
                   fontSize: 12,
                   color: AppColors.error,
@@ -776,7 +776,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    L10nService.get('life_events.life_event.add_a_photo', language),
+                    L10nService.get('life_events.life_event.add_a_photo', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 12,
                       color: isDark
@@ -817,7 +817,7 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
   // 8. SAVE BUTTON
   // ═════════════════════════════════════════════════════════════════════════
 
-  Widget _buildSaveButton(bool isDark, AppLanguage language) {
+  Widget _buildSaveButton(bool isDark, bool isEn) {
     final title = _selectedPreset != null
         ? (isEn ? _selectedPreset!.nameEn : _selectedPreset!.nameTr)
         : _titleController.text.trim();
@@ -839,8 +839,8 @@ class _LifeEventScreenState extends ConsumerState<LifeEventScreen> {
               ? const CupertinoActivityIndicator(radius: 10)
               : Text(
                   _isEditing
-                      ? (L10nService.get('life_events.life_event.update_event', language))
-                      : (L10nService.get('life_events.life_event.save_event', language)),
+                      ? (L10nService.get('life_events.life_event.update_event', isEn ? AppLanguage.en : AppLanguage.tr))
+                      : (L10nService.get('life_events.life_event.save_event', isEn ? AppLanguage.en : AppLanguage.tr)),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,

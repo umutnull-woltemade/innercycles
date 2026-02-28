@@ -43,7 +43,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Semantics(
-              label: L10nService.get('streak.streak_recovery.start_a_new_streak', language),
+              label: L10nService.get('streak.streak_recovery.start_a_new_streak', isEn ? AppLanguage.en : AppLanguage.tr),
               button: true,
               child: GestureDetector(
                 onTap: () {
@@ -104,7 +104,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              L10nService.get('streak.streak_recovery.one_entry_to_start_a_new_one', language),
+                              L10nService.get('streak.streak_recovery.one_entry_to_start_a_new_one', isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.decorativeScript(
                                 fontSize: 12,
                                 color: AppColors.warning,
@@ -127,7 +127,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
             // Streak freeze upsell for non-premium users
             if (!isPremium)
               Semantics(
-                label: L10nService.get('streak.streak_recovery.access_streak_freeze', language),
+                label: L10nService.get('streak.streak_recovery.access_streak_freeze', isEn ? AppLanguage.en : AppLanguage.tr),
                 button: true,
                 child: GestureDetector(
                   onTap: () => showContextualPaywall(
@@ -162,7 +162,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text(
-                            L10nService.get('streak.streak_recovery.premium_streak_freezes_could_have_saved', language),
+                            L10nService.get('streak.streak_recovery.premium_streak_freezes_could_have_saved', isEn ? AppLanguage.en : AppLanguage.tr),
                             style: AppTypography.decorativeScript(
                               fontSize: 12,
                               color: AppColors.streakOrange,
@@ -170,7 +170,7 @@ class StreakRecoveryBanner extends ConsumerWidget {
                           ),
                         ),
                         Text(
-                          L10nService.get('streak.streak_recovery.learn_more', language),
+                          L10nService.get('streak.streak_recovery.learn_more', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.elegantAccent(
                             fontSize: 11,
                             color: AppColors.streakOrange.withValues(

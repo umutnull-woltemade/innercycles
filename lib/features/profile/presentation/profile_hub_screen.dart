@@ -58,7 +58,7 @@ class ProfileHubScreen extends ConsumerWidget {
         .round()
         .clamp(0, 100);
 
-    final name = profile?.name ?? (L10nService.get('profile.profile_hub.explorer', language));
+    final name = profile?.name ?? (L10nService.get('profile.profile_hub.explorer', isEn ? AppLanguage.en : AppLanguage.tr));
 
     return Scaffold(
       body: CosmicBackground(
@@ -72,7 +72,7 @@ class ProfileHubScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('profile.profile_hub.profile', language),
+                  title: L10nService.get('profile.profile_hub.profile', isEn ? AppLanguage.en : AppLanguage.tr),
                   showBackButton: false,
                   largeTitleMode: true,
                 ),
@@ -85,7 +85,7 @@ class ProfileHubScreen extends ConsumerWidget {
                         name: name,
                         isPremium: isPremium,
                         isDark: isDark,
-                        language: language,
+                        isEn: isEn,
                         growthScore: growthScore,
                       ),
                       const SizedBox(height: AppConstants.spacingXl),
@@ -98,28 +98,28 @@ class ProfileHubScreen extends ConsumerWidget {
                         challenges: completedChallenges,
                         totalWords: totalWords,
                         isDark: isDark,
-                        language: language,
+                        isEn: isEn,
                       ).glassListItem(context: context, index: 1),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Tools: suggested + category tabs + grid
                       ProfileToolsGrid(
                         isDark: isDark,
-                        language: language,
+                        isEn: isEn,
                       ).glassListItem(context: context, index: 2),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Invite & Earn (Referral)
                       ProfileReferralSection(
                         isDark: isDark,
-                        language: language,
+                        isEn: isEn,
                       ).glassListItem(context: context, index: 3),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Rate Us
                       ProfileRateSection(
                         isDark: isDark,
-                        language: language,
+                        isEn: isEn,
                         totalEntries: totalEntries,
                       ).glassListItem(context: context, index: 4),
                       const SizedBox(height: AppConstants.spacingXl),
@@ -127,14 +127,14 @@ class ProfileHubScreen extends ConsumerWidget {
                       // Vault & Security
                       ProfileVaultSection(
                         isDark: isDark,
-                        language: language,
+                        isEn: isEn,
                       ).glassListItem(context: context, index: 5),
                       const SizedBox(height: AppConstants.spacingXl),
 
                       // Settings & Account
                       ProfileSettingsSection(
                         isDark: isDark,
-                        language: language,
+                        isEn: isEn,
                         isPremium: isPremium,
                       ).glassListItem(context: context, index: 6),
                       const SizedBox(height: AppConstants.spacingHuge),

@@ -1711,7 +1711,7 @@ ${_getPersonalAdvice(sign)}''';
               Expanded(child: _buildChatArea(isDark)),
               _buildInputArea(
                 isDark,
-                language: ref.watch(languageProvider),
+                isEn: ref.watch(languageProvider) == AppLanguage.en,
               ),
             ],
           ),
@@ -2170,8 +2170,8 @@ ${_getPersonalAdvice(sign)}''';
     ).glassListItem(context: context, index: index);
   }
 
-  Widget _buildLockedPerspectivesCard(int lockedCount, AppLanguage language, bool isDark) {
-    final language = language;
+  Widget _buildLockedPerspectivesCard(int lockedCount, bool isEn, bool isDark) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: Stack(
@@ -2359,8 +2359,8 @@ ${_getPersonalAdvice(sign)}''';
     );
   }
 
-  Widget _buildInputArea(bool isDark, {AppLanguage language = AppLanguage.en}) {
-    final language = language;
+  Widget _buildInputArea(bool isDark, {bool isEn = true}) {
+    final language = isEn ? AppLanguage.en : AppLanguage.tr;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(

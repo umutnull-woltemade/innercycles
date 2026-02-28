@@ -19,8 +19,7 @@ class ProfileHeroSection extends StatefulWidget {
   final String name;
   final bool isPremium;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final int growthScore;
 
   const ProfileHeroSection({
@@ -28,7 +27,7 @@ class ProfileHeroSection extends StatefulWidget {
     required this.name,
     required this.isPremium,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.growthScore,
   });
 
@@ -192,7 +191,7 @@ class _ProfileHeroSectionState extends State<ProfileHeroSection>
                   Positioned(
                     bottom: 4,
                     child: Text(
-                      L10nService.get('profile.profile_hero.growth_score', widget.language),
+                      L10nService.get('profile.profile_hero.growth_score', widget.isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,

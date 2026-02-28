@@ -19,15 +19,14 @@ import '../../../../data/providers/app_providers.dart';
 class ShiftOutlookCard extends StatelessWidget {
   final ShiftOutlook outlook;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final VoidCallback? onTapDetails;
 
   const ShiftOutlookCard({
     super.key,
     required this.outlook,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     this.onTapDetails,
   });
 
@@ -66,7 +65,7 @@ class ShiftOutlookCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      L10nService.get('journal.shift_outlook.shift_outlook', language),
+                      L10nService.get('journal.shift_outlook.shift_outlook', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.displayFont.copyWith(
                         fontSize: 16,
                         color: isDark
@@ -76,7 +75,7 @@ class ShiftOutlookCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${isEn ? window.confidence.labelEn() : window.confidence.labelTr()} ${L10nService.get('journal.shift_outlook.confidence', language)}',
+                      '${isEn ? window.confidence.labelEn() : window.confidence.labelTr()} ${L10nService.get('journal.shift_outlook.confidence', isEn ? AppLanguage.en : AppLanguage.tr)}',
                       style: AppTypography.elegantAccent(
                         fontSize: 11,
                         color: _confidenceColor(window.confidence),
@@ -99,7 +98,7 @@ class ShiftOutlookCard extends StatelessWidget {
                   border: Border.all(color: phaseColor.withValues(alpha: 0.3)),
                 ),
                 child: Text(
-                  '~${window.estimatedDaysUntilShift}${L10nService.get('common.unit.days_abbr', language)}',
+                  '~${window.estimatedDaysUntilShift}${L10nService.get('common.unit.days_abbr', isEn ? AppLanguage.en : AppLanguage.tr)}',
                   style: AppTypography.modernAccent(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
@@ -168,7 +167,7 @@ class ShiftOutlookCard extends StatelessWidget {
           if (outlook.activeSignals.isNotEmpty) ...[
             const SizedBox(height: AppConstants.spacingMd),
             Text(
-              L10nService.get('journal.shift_outlook.supporting_signals', language),
+              L10nService.get('journal.shift_outlook.supporting_signals', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.modernAccent(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
@@ -289,7 +288,7 @@ class ShiftOutlookCard extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              L10nService.get('journal.shift_outlook.not_enough_data_for_shift_outlook_yet', language),
+              L10nService.get('journal.shift_outlook.not_enough_data_for_shift_outlook_yet', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.decorativeScript(
                 fontSize: 14,
                 color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,

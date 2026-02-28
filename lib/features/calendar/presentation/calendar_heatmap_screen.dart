@@ -100,7 +100,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                   icon: Icon(Icons.refresh_rounded,
                       size: 16, color: AppColors.starGold),
                   label: Text(
-                    L10nService.get('calendar.calendar_heatmap.retry', language),
+                    L10nService.get('calendar.calendar_heatmap.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -133,7 +133,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
     JournalService service,
     LifeEventService? lifeEventService,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     bool isPremium,
   ) {
     // Cache entryMap — only rebuild when service instance changes
@@ -174,7 +174,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: L10nService.get('calendar.calendar_heatmap.heatmap_timeline', language),
+            title: L10nService.get('calendar.calendar_heatmap.heatmap_timeline', isEn ? AppLanguage.en : AppLanguage.tr),
           ),
           SliverPadding(
             padding: const EdgeInsets.all(16),
@@ -186,7 +186,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                   monthCount: monthCount,
                   streak: streak,
                   isDark: isDark,
-                  language: language,
+                  isEn: isEn,
                 ),
                 const SizedBox(height: 20),
 
@@ -195,7 +195,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                   year: _selectedYear,
                   month: _selectedMonth,
                   isDark: isDark,
-                  language: language,
+                  isEn: isEn,
                   onPrevious: () {
                     if (!isPremium) {
                       showContextualPaywall(
@@ -243,7 +243,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                   lifeEventMap: lifeEventMap,
                   selectedDateKey: _selectedDateKey,
                   isDark: isDark,
-                  language: language,
+                  isEn: isEn,
                   onDayTap: (dateKey) {
                     HapticFeedback.lightImpact();
                     setState(() {
@@ -256,7 +256,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                 const SizedBox(height: 12),
 
                 // Legend
-                _Legend(isDark: isDark, language: language),
+                _Legend(isDark: isDark, isEn: isEn),
                 const SizedBox(height: 20),
 
                 // Selected day detail
@@ -266,7 +266,7 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                     entry: entryMap[_selectedDateKey],
                     lifeEvents: lifeEventMap[_selectedDateKey] ?? [],
                     isDark: isDark,
-                    language: language,
+                    isEn: isEn,
                     onViewEntry: (id) => context.push(
                       Routes.journalEntryDetail.replaceFirst(':id', id),
                     ),
@@ -287,13 +287,13 @@ class _CalendarHeatmapScreenState extends ConsumerState<CalendarHeatmapScreen> {
                     year: _selectedYear,
                     entryMap: entryMap,
                     isDark: isDark,
-                    language: language,
+                    isEn: isEn,
                   )
                 else
-                  _PremiumYearOverlay(isDark: isDark, language: language),
+                  _PremiumYearOverlay(isDark: isDark, isEn: isEn),
 
                 ContentDisclaimer(
-                  language: language,
+                  language: isEn ? AppLanguage.en : AppLanguage.tr,
                 ),
                 const SizedBox(height: 40),
               ]),
@@ -314,15 +314,14 @@ class _StatsRow extends StatelessWidget {
   final int monthCount;
   final int streak;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _StatsRow({
     required this.totalEntries,
     required this.monthCount,
     required this.streak,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -330,19 +329,19 @@ class _StatsRow extends StatelessWidget {
     return Row(
       children: [
         _StatPill(
-          label: L10nService.get('calendar.calendar_heatmap.total', language),
+          label: L10nService.get('calendar.calendar_heatmap.total', isEn ? AppLanguage.en : AppLanguage.tr),
           value: '$totalEntries',
           isDark: isDark,
         ),
         const SizedBox(width: 10),
         _StatPill(
-          label: L10nService.get('calendar.calendar_heatmap.this_month', language),
+          label: L10nService.get('calendar.calendar_heatmap.this_month', isEn ? AppLanguage.en : AppLanguage.tr),
           value: '$monthCount',
           isDark: isDark,
         ),
         const SizedBox(width: 10),
         _StatPill(
-          label: L10nService.get('calendar.calendar_heatmap.streak', language),
+          label: L10nService.get('calendar.calendar_heatmap.streak', isEn ? AppLanguage.en : AppLanguage.tr),
           value: '$streak',
           isDark: isDark,
           accent: true,
@@ -413,8 +412,7 @@ class _MonthNavigator extends StatelessWidget {
   final int year;
   final int month;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final VoidCallback onPrevious;
   final VoidCallback onNext;
 
@@ -422,7 +420,7 @@ class _MonthNavigator extends StatelessWidget {
     required this.year,
     required this.month,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onPrevious,
     required this.onNext,
   });
@@ -466,7 +464,7 @@ class _MonthNavigator extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
-          tooltip: L10nService.get('calendar.calendar_heatmap.previous_month', language),
+          tooltip: L10nService.get('calendar.calendar_heatmap.previous_month', isEn ? AppLanguage.en : AppLanguage.tr),
           icon: Icon(
             Icons.chevron_left_rounded,
             color: isDark
@@ -484,7 +482,7 @@ class _MonthNavigator extends StatelessWidget {
           ),
         ),
         IconButton(
-          tooltip: L10nService.get('calendar.calendar_heatmap.next_month', language),
+          tooltip: L10nService.get('calendar.calendar_heatmap.next_month', isEn ? AppLanguage.en : AppLanguage.tr),
           icon: Icon(
             Icons.chevron_right_rounded,
             color: isCurrentMonth
@@ -512,8 +510,7 @@ class _CalendarGrid extends StatelessWidget {
   final Map<String, List<LifeEvent>> lifeEventMap;
   final String? selectedDateKey;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final ValueChanged<String> onDayTap;
 
   const _CalendarGrid({
@@ -523,7 +520,7 @@ class _CalendarGrid extends StatelessWidget {
     required this.lifeEventMap,
     this.selectedDateKey,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onDayTap,
   });
 
@@ -604,8 +601,8 @@ class _CalendarGrid extends StatelessWidget {
                     child: Semantics(
                       label:
                           '${date.day}/${date.month}'
-                          '${hasJournal ? (L10nService.get('calendar.calendar_heatmap._has_entry', language)) : ''}'
-                          '${dayLifeEvents.isNotEmpty ? (L10nService.get('calendar.calendar_heatmap._life_event', language)) : ''}',
+                          '${hasJournal ? (L10nService.get('calendar.calendar_heatmap._has_entry', isEn ? AppLanguage.en : AppLanguage.tr)) : ''}'
+                          '${dayLifeEvents.isNotEmpty ? (L10nService.get('calendar.calendar_heatmap._life_event', isEn ? AppLanguage.en : AppLanguage.tr)) : ''}',
                       button: !isFuture,
                       child: GestureDetector(
                         onTap: isFuture ? null : () => onDayTap(dateKey),
@@ -748,10 +745,9 @@ class _CalendarGrid extends StatelessWidget {
 
 class _Legend extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
-  const _Legend({required this.isDark, required this.language});
+  const _Legend({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
@@ -765,7 +761,7 @@ class _Legend extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              L10nService.get('calendar.calendar_heatmap.less', language),
+              L10nService.get('calendar.calendar_heatmap.less', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 10,
                 color: mutedColor,
@@ -785,7 +781,7 @@ class _Legend extends StatelessWidget {
             }),
             const SizedBox(width: 6),
             Text(
-              L10nService.get('calendar.calendar_heatmap.more', language),
+              L10nService.get('calendar.calendar_heatmap.more', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 10,
                 color: mutedColor,
@@ -800,21 +796,21 @@ class _Legend extends StatelessWidget {
           children: [
             _legendDot(
               AppColors.auroraStart,
-              L10nService.get('calendar.calendar_heatmap.journal', language),
+              L10nService.get('calendar.calendar_heatmap.journal', isEn ? AppLanguage.en : AppLanguage.tr),
               mutedColor,
               dotSize,
             ),
             const SizedBox(width: 14),
             _legendDot(
               AppColors.starGold,
-              L10nService.get('calendar.calendar_heatmap.positive', language),
+              L10nService.get('calendar.calendar_heatmap.positive', isEn ? AppLanguage.en : AppLanguage.tr),
               mutedColor,
               dotSize,
             ),
             const SizedBox(width: 14),
             _legendDot(
               AppColors.amethyst,
-              L10nService.get('calendar.calendar_heatmap.challenging', language),
+              L10nService.get('calendar.calendar_heatmap.challenging', isEn ? AppLanguage.en : AppLanguage.tr),
               mutedColor,
               dotSize,
             ),
@@ -852,8 +848,7 @@ class _DayDetail extends StatelessWidget {
   final JournalEntry? entry;
   final List<LifeEvent> lifeEvents;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final ValueChanged<String> onViewEntry;
   final VoidCallback onCreateEntry;
   final VoidCallback onAddLifeEvent;
@@ -864,7 +859,7 @@ class _DayDetail extends StatelessWidget {
     this.entry,
     this.lifeEvents = const [],
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onViewEntry,
     required this.onCreateEntry,
     required this.onAddLifeEvent,
@@ -1018,7 +1013,7 @@ class _DayDetail extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    L10nService.get('calendar.calendar_heatmap.view_entry', language),
+                    L10nService.get('calendar.calendar_heatmap.view_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.subtitle(
                       fontSize: 11,
                       color: AppColors.auroraStart,
@@ -1059,7 +1054,7 @@ class _DayDetail extends StatelessWidget {
             Icon(Icons.add_rounded, size: 16, color: AppColors.auroraStart),
             const SizedBox(width: 6),
             Text(
-              L10nService.get('calendar.calendar_heatmap.log_this_day', language),
+              L10nService.get('calendar.calendar_heatmap.log_this_day', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 12,
                 color: AppColors.auroraStart,
@@ -1161,7 +1156,7 @@ class _DayDetail extends StatelessWidget {
             ),
             const SizedBox(width: 6),
             Text(
-              L10nService.get('calendar.calendar_heatmap.add_life_event', language),
+              L10nService.get('calendar.calendar_heatmap.add_life_event', isEn ? AppLanguage.en : AppLanguage.tr),
               style: AppTypography.elegantAccent(
                 fontSize: 12,
                 color: AppColors.starGold,
@@ -1200,14 +1195,13 @@ class _YearHeatmap extends StatelessWidget {
   final int year;
   final Map<String, JournalEntry> entryMap;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _YearHeatmap({
     required this.year,
     required this.entryMap,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -1242,7 +1236,7 @@ class _YearHeatmap extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            '$year ${L10nService.get('calendar.calendar_heatmap.overview', language)}',
+            '$year ${L10nService.get('calendar.calendar_heatmap.overview', isEn ? AppLanguage.en : AppLanguage.tr)}',
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 14,
@@ -1321,10 +1315,9 @@ class _YearHeatmap extends StatelessWidget {
 
 class _PremiumYearOverlay extends ConsumerWidget {
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
-  const _PremiumYearOverlay({required this.isDark, required this.language});
+  const _PremiumYearOverlay({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -1336,7 +1329,7 @@ class _PremiumYearOverlay extends ConsumerWidget {
           Icon(Icons.calendar_today, size: 32, color: AppColors.starGold),
           const SizedBox(height: 12),
           GradientText(
-            L10nService.get('calendar.calendar_heatmap.year_heatmap', language),
+            L10nService.get('calendar.calendar_heatmap.year_heatmap', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
@@ -1345,7 +1338,7 @@ class _PremiumYearOverlay extends ConsumerWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            L10nService.get('calendar.calendar_heatmap.see_your_full_year_at_a_glance_with_pro', language),
+            L10nService.get('calendar.calendar_heatmap.see_your_full_year_at_a_glance_with_pro', isEn ? AppLanguage.en : AppLanguage.tr),
             textAlign: TextAlign.center,
             style: AppTypography.decorativeScript(
               fontSize: 13,
@@ -1375,7 +1368,7 @@ class _PremiumYearOverlay extends ConsumerWidget {
                 ],
               ),
               child: Text(
-                L10nService.get('calendar.calendar_heatmap.upgrade_to_pro', language),
+                L10nService.get('calendar.calendar_heatmap.upgrade_to_pro', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.modernAccent(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,

@@ -538,22 +538,22 @@ class PremiumNotifier extends Notifier<PremiumState> {
       String errorMessage;
       switch (e) {
         case PurchasesErrorCode.purchaseCancelledError:
-          errorMessage = L10nService.get('data.services.premium.purchase_cancelled', language);
+          errorMessage = L10nService.get('data.services.premium.purchase_cancelled', isEn ? AppLanguage.en : AppLanguage.tr);
           break;
         case PurchasesErrorCode.purchaseNotAllowedError:
-          errorMessage = L10nService.get('data.services.premium.purchases_are_not_allowed_on_this_device', language);
+          errorMessage = L10nService.get('data.services.premium.purchases_are_not_allowed_on_this_device', isEn ? AppLanguage.en : AppLanguage.tr);
           break;
         case PurchasesErrorCode.purchaseInvalidError:
-          errorMessage = L10nService.get('data.services.premium.this_purchase_couldnt_be_completed', language);
+          errorMessage = L10nService.get('data.services.premium.this_purchase_couldnt_be_completed', isEn ? AppLanguage.en : AppLanguage.tr);
           break;
         case PurchasesErrorCode.productNotAvailableForPurchaseError:
-          errorMessage = L10nService.get('data.services.premium.this_product_is_not_available_right_now', language);
+          errorMessage = L10nService.get('data.services.premium.this_product_is_not_available_right_now', isEn ? AppLanguage.en : AppLanguage.tr);
           break;
         case PurchasesErrorCode.networkError:
-          errorMessage = L10nService.get('data.services.premium.could_not_connect_your_local_data_is_una', language);
+          errorMessage = L10nService.get('data.services.premium.could_not_connect_your_local_data_is_una', isEn ? AppLanguage.en : AppLanguage.tr);
           break;
         default:
-          errorMessage = L10nService.get('data.services.premium.something_went_wrong_your_account_was_no', language);
+          errorMessage = L10nService.get('data.services.premium.something_went_wrong_your_account_was_no', isEn ? AppLanguage.en : AppLanguage.tr);
       }
 
       state = state.copyWith(isLoading: false, errorMessage: errorMessage);
@@ -609,7 +609,7 @@ class PremiumNotifier extends Notifier<PremiumState> {
       if (!state.isPremium) {
         final isEn = StorageService.loadLanguage() == AppLanguage.en;
         state = state.copyWith(
-          errorMessage: L10nService.get('data.services.premium.no_purchases_found_to_restore', language),
+          errorMessage: L10nService.get('data.services.premium.no_purchases_found_to_restore', isEn ? AppLanguage.en : AppLanguage.tr),
         );
       }
 
@@ -621,7 +621,7 @@ class PremiumNotifier extends Notifier<PremiumState> {
       final isEn = StorageService.loadLanguage() == AppLanguage.en;
       state = state.copyWith(
         isLoading: false,
-        errorMessage: L10nService.get('data.services.premium.couldnt_restore_purchases_please_try_aga', language),
+        errorMessage: L10nService.get('data.services.premium.couldnt_restore_purchases_please_try_aga', isEn ? AppLanguage.en : AppLanguage.tr),
       );
       return false;
     }

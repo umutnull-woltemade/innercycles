@@ -65,7 +65,7 @@ class EntryDetailScreen extends ConsumerWidget {
                         color: AppColors.starGold,
                       ),
                       label: Text(
-                        L10nService.get('journal.entry_detail.retry', language),
+                        L10nService.get('journal.entry_detail.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -82,7 +82,7 @@ class EntryDetailScreen extends ConsumerWidget {
               if (entry == null) {
                 return Center(
                   child: Text(
-                    L10nService.get('journal.entry_detail.entry_not_found', language),
+                    L10nService.get('journal.entry_detail.entry_not_found', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.subtitle(
                       color: isDark
                           ? AppColors.textPrimary
@@ -104,7 +104,7 @@ class EntryDetailScreen extends ConsumerWidget {
     WidgetRef ref,
     JournalEntry entry,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final areaLabel = entry.focusArea.localizedName(isEn);
     final names = isEn
@@ -134,7 +134,7 @@ class EntryDetailScreen extends ConsumerWidget {
                       : '$areaLabel — $stars$noteSnippet\n\nInnerCycles ile yansıma yapıyorum.\n${AppConstants.appStoreUrl}\n#InnerCycles';
                   SharePlus.instance.share(ShareParams(text: msg));
                 },
-                tooltip: L10nService.get('journal.entry_detail.share_entry', language),
+                tooltip: L10nService.get('journal.entry_detail.share_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                 icon: Icon(
                   Icons.share_rounded,
                   color: AppColors.starGold,
@@ -143,7 +143,7 @@ class EntryDetailScreen extends ConsumerWidget {
               ),
               IconButton(
                 onPressed: () => _confirmDelete(context, ref, entry.id, isEn),
-                tooltip: L10nService.get('journal.entry_detail.delete_entry', language),
+                tooltip: L10nService.get('journal.entry_detail.delete_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                 icon: Icon(Icons.delete_outline, color: AppColors.error),
               ),
             ],
@@ -168,7 +168,7 @@ class EntryDetailScreen extends ConsumerWidget {
                     names,
                     entry,
                     isDark,
-                    language: language,
+                    isEn: isEn,
                   ).glassListItem(context: context, index: 1),
                 if (entry.subRatings.isNotEmpty)
                   const SizedBox(height: AppConstants.spacingLg),
@@ -262,7 +262,7 @@ class EntryDetailScreen extends ConsumerWidget {
     Map<String, String> names,
     JournalEntry entry,
     bool isDark, {
-    AppLanguage language = AppLanguage.en,
+    bool isEn = true,
   }) {
     return GlassPanel(
       elevation: GlassElevation.g2,
@@ -330,7 +330,7 @@ class EntryDetailScreen extends ConsumerWidget {
     BuildContext context,
     String imagePath,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final file = File(imagePath);
     try {
@@ -349,7 +349,7 @@ class EntryDetailScreen extends ConsumerWidget {
           width: double.infinity,
           fit: BoxFit.cover,
           cacheWidth: 800,
-          semanticLabel: L10nService.get('journal.entry_detail.journal_entry_photo', language),
+          semanticLabel: L10nService.get('journal.entry_detail.journal_entry_photo', isEn ? AppLanguage.en : AppLanguage.tr),
           errorBuilder: (_, _, _) => const SizedBox.shrink(),
         ),
       ),
@@ -360,7 +360,7 @@ class EntryDetailScreen extends ConsumerWidget {
     BuildContext context,
     String note,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     return GlassPanel(
       elevation: GlassElevation.g2,
@@ -371,7 +371,7 @@ class EntryDetailScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            (L10nService.get('journal.entry_detail.notes', language)).toUpperCase(),
+            (L10nService.get('journal.entry_detail.notes', isEn ? AppLanguage.en : AppLanguage.tr)).toUpperCase(),
             variant: GradientTextVariant.gold,
             style: AppTypography.elegantAccent(
               fontSize: 14,
@@ -386,7 +386,7 @@ class EntryDetailScreen extends ConsumerWidget {
               HapticService.buttonPress();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(L10nService.get('journal.entry_detail.entry_copied_to_clipboard', language)),
+                  content: Text(L10nService.get('journal.entry_detail.entry_copied_to_clipboard', isEn ? AppLanguage.en : AppLanguage.tr)),
                   duration: const Duration(seconds: 1),
                   backgroundColor: AppColors.success,
                 ),
@@ -412,14 +412,14 @@ class EntryDetailScreen extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
     String id,
-    AppLanguage language,
+    bool isEn,
   ) async {
     final confirmed = await GlassDialog.confirm(
       context,
-      title: L10nService.get('journal.entry_detail.delete_entry_1', language),
-      message: L10nService.get('journal.entry_detail.this_journal_entry_will_be_permanently_d', language),
-      cancelLabel: L10nService.get('journal.entry_detail.cancel', language),
-      confirmLabel: L10nService.get('journal.entry_detail.delete', language),
+      title: L10nService.get('journal.entry_detail.delete_entry_1', isEn ? AppLanguage.en : AppLanguage.tr),
+      message: L10nService.get('journal.entry_detail.this_journal_entry_will_be_permanently_d', isEn ? AppLanguage.en : AppLanguage.tr),
+      cancelLabel: L10nService.get('journal.entry_detail.cancel', isEn ? AppLanguage.en : AppLanguage.tr),
+      confirmLabel: L10nService.get('journal.entry_detail.delete', isEn ? AppLanguage.en : AppLanguage.tr),
       isDestructive: true,
     );
     if (confirmed != true) return;

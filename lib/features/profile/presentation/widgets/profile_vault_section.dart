@@ -17,13 +17,12 @@ import '../../../../data/services/l10n_service.dart';
 
 class ProfileVaultSection extends ConsumerWidget {
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const ProfileVaultSection({
     super.key,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -32,7 +31,7 @@ class ProfileVaultSection extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('profile.profile_vault.vault_security', language),
+          L10nService.get('profile.profile_vault.vault_security', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.amethyst,
           style: AppTypography.elegantAccent(
             fontSize: 17,
@@ -49,7 +48,7 @@ class ProfileVaultSection extends ConsumerWidget {
               // Private Vault
               _VaultRow(
                 emoji: '\u{1F510}',
-                label: L10nService.get('profile.profile_vault.private_vault', language),
+                label: L10nService.get('profile.profile_vault.private_vault', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
                 onTap: () => _navigateToVault(context, ref),
               ),
@@ -72,7 +71,7 @@ class ProfileVaultSection extends ConsumerWidget {
               // App Lock
               _VaultRow(
                 emoji: '\u{1F512}',
-                label: L10nService.get('profile.profile_vault.app_lock', language),
+                label: L10nService.get('profile.profile_vault.app_lock', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
                 onTap: () => context.push(Routes.appLock),
               ),

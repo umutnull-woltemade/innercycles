@@ -17,8 +17,7 @@ class ProfileStatsDashboard extends StatelessWidget {
   final int challenges;
   final int totalWords;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const ProfileStatsDashboard({
     super.key,
@@ -28,7 +27,7 @@ class ProfileStatsDashboard extends StatelessWidget {
     required this.challenges,
     this.totalWords = 0,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -45,13 +44,13 @@ class ProfileStatsDashboard extends StatelessWidget {
           _StatColumn(
             emoji: '\u{1F525}',
             value: '$streak',
-            label: L10nService.get('profile.profile_stats_dashboard.streak', language),
+            label: L10nService.get('profile.profile_stats_dashboard.streak', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.streakOrange,
           ),
           _StatColumn(
             emoji: '\u{1F4D3}',
             value: '$entries',
-            label: L10nService.get('profile.profile_stats_dashboard.entries', language),
+            label: L10nService.get('profile.profile_stats_dashboard.entries', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.auroraStart,
           ),
           _StatColumn(
@@ -59,13 +58,13 @@ class ProfileStatsDashboard extends StatelessWidget {
             value: totalWords >= 1000
                 ? '${(totalWords / 1000).toStringAsFixed(1)}K'
                 : '$totalWords',
-            label: L10nService.get('profile.profile_stats_dashboard.words', language),
+            label: L10nService.get('profile.profile_stats_dashboard.words', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.starGold,
           ),
           _StatColumn(
             emoji: '\u{1F3C6}',
             value: '$challenges',
-            label: L10nService.get('profile.profile_stats_dashboard.done', language),
+            label: L10nService.get('profile.profile_stats_dashboard.done', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.amethyst,
           ),
         ],

@@ -57,7 +57,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    L10nService.get('memories.memories.couldnt_load_your_memories', language),
+                    L10nService.get('memories.memories.couldnt_load_your_memories', isEn ? AppLanguage.en : AppLanguage.tr),
                     textAlign: TextAlign.center,
                     style: AppTypography.decorativeScript(
                       fontSize: 14,
@@ -73,7 +73,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                     icon: Icon(Icons.refresh_rounded,
                         size: 16, color: AppColors.starGold),
                     label: Text(
-                      L10nService.get('memories.memories.retry', language),
+                      L10nService.get('memories.memories.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -137,7 +137,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                     parent: AlwaysScrollableScrollPhysics(),
                   ),
                   slivers: [
-                    GlassSliverAppBar(title: L10nService.get('memories.memories.memories', language)),
+                    GlassSliverAppBar(title: L10nService.get('memories.memories.memories', isEn ? AppLanguage.en : AppLanguage.tr)),
                     // Stats header
                     SliverToBoxAdapter(
                       child: Padding(
@@ -149,7 +149,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                           photoEntries: photoEntries,
                           firstDate: firstDateStr,
                           isDark: isDark,
-                          language: language,
+                          isEn: isEn,
                         ),
                       ).animate().fadeIn(duration: 300.ms),
                     ),
@@ -164,7 +164,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                             bottom: AppConstants.spacingMd,
                           ),
                           child: GradientText(
-                            L10nService.get('memories.memories.on_this_day', language),
+                            L10nService.get('memories.memories.on_this_day', isEn ? AppLanguage.en : AppLanguage.tr),
                             variant: GradientTextVariant.gold,
                             style: AppTypography.displayFont.copyWith(
                               fontSize: 17,
@@ -188,7 +188,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                                 child: _OnThisDayCard(
                                   entry: onThisDayEntries[index],
                                   isDark: isDark,
-                                  language: language,
+                                  isEn: isEn,
                                   onTap: () => _navigateToEntry(
                                     context,
                                     onThisDayEntries[index],
@@ -218,7 +218,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                           months: months,
                           selectedMonth: selectedMonth,
                           isDark: isDark,
-                          language: language,
+                          isEn: isEn,
                           onMonthSelected: (month) {
                             setState(() => _selectedMonth = month);
                           },
@@ -230,10 +230,10 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                       SliverToBoxAdapter(
                         child: PremiumEmptyState(
                           icon: Icons.auto_stories_rounded,
-                          title: L10nService.get('memories.memories.this_month_is_a_blank_canvas', language),
-                          description: L10nService.get('memories.memories.your_memories_from_this_period_will_appe', language),
+                          title: L10nService.get('memories.memories.this_month_is_a_blank_canvas', isEn ? AppLanguage.en : AppLanguage.tr),
+                          description: L10nService.get('memories.memories.your_memories_from_this_period_will_appe', isEn ? AppLanguage.en : AppLanguage.tr),
                           gradientVariant: GradientTextVariant.gold,
-                          ctaLabel: L10nService.get('memories.memories.write_an_entry', language),
+                          ctaLabel: L10nService.get('memories.memories.write_an_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                           onCtaPressed: () => context.go(Routes.journal),
                         ),
                       )
@@ -249,7 +249,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
                             return _MemoryCard(
                               entry: entry,
                               isDark: isDark,
-                              language: language,
+                              isEn: isEn,
                               onTap: () => _navigateToEntry(context, entry),
                             ).animate().fadeIn(
                               delay: Duration(milliseconds: 50 * (index % 10)),
@@ -269,10 +269,10 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
     );
   }
 
-  Widget _buildEmptyState(BuildContext context, bool isDark, AppLanguage language) {
+  Widget _buildEmptyState(BuildContext context, bool isDark, bool isEn) {
     return CustomScrollView(
       slivers: [
-        GlassSliverAppBar(title: L10nService.get('memories.memories.memories_1', language)),
+        GlassSliverAppBar(title: L10nService.get('memories.memories.memories_1', isEn ? AppLanguage.en : AppLanguage.tr)),
         SliverFillRemaining(
           hasScrollBody: false,
           child: ToolEmptyState(
@@ -284,7 +284,7 @@ class _MemoriesScreenState extends ConsumerState<MemoriesScreen> {
             descriptionTr:
                 'An\u0131lar\u0131n\u0131 olu\u015fturmak i\u00e7in g\u00fcnl\u00fck yazmaya ba\u015fla.',
             onStartTemplate: () => context.go(Routes.journal),
-            language: language,
+            isEn: isEn,
             isDark: isDark,
           ),
         ),
@@ -320,15 +320,14 @@ class _MemoriesStatsHeader extends StatelessWidget {
   final int photoEntries;
   final String firstDate;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _MemoriesStatsHeader({
     required this.totalEntries,
     required this.photoEntries,
     required this.firstDate,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -342,19 +341,19 @@ class _MemoriesStatsHeader extends StatelessWidget {
         children: [
           _MiniStat(
             value: '$totalEntries',
-            label: L10nService.get('memories.memories.entries', language),
+            label: L10nService.get('memories.memories.entries', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.auroraStart,
             isDark: isDark,
           ),
           _MiniStat(
             value: '$photoEntries',
-            label: L10nService.get('memories.memories.photos', language),
+            label: L10nService.get('memories.memories.photos', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.starGold,
             isDark: isDark,
           ),
           _MiniStat(
             value: firstDate,
-            label: L10nService.get('memories.memories.since', language),
+            label: L10nService.get('memories.memories.since', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.success,
             isDark: isDark,
             isSmallValue: true,
@@ -413,14 +412,13 @@ class _MiniStat extends StatelessWidget {
 class _OnThisDayCard extends StatelessWidget {
   final JournalEntry entry;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final VoidCallback onTap;
 
   const _OnThisDayCard({
     required this.entry,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onTap,
   });
 
@@ -453,7 +451,7 @@ class _OnThisDayCard extends StatelessWidget {
                   File(entry.imagePath!),
                   fit: BoxFit.cover,
                   cacheWidth: 400,
-                  semanticLabel: L10nService.get('memories.memories.memory_photo', language),
+                  semanticLabel: L10nService.get('memories.memories.memory_photo', isEn ? AppLanguage.en : AppLanguage.tr),
                   errorBuilder: (_, _, _) => _placeholderIcon(),
                 ),
               )
@@ -524,15 +522,14 @@ class _MonthSelector extends StatelessWidget {
   final List<DateTime> months;
   final DateTime selectedMonth;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final ValueChanged<DateTime> onMonthSelected;
 
   const _MonthSelector({
     required this.months,
     required this.selectedMonth,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onMonthSelected,
   });
 
@@ -597,7 +594,7 @@ class _MonthSelector extends StatelessWidget {
     );
   }
 
-  String _monthLabel(DateTime month, AppLanguage language) {
+  String _monthLabel(DateTime month, bool isEn) {
     final names = isEn
         ? CommonStrings.monthsShortEn
         : CommonStrings.monthsShortTr;
@@ -615,14 +612,13 @@ class _MonthSelector extends StatelessWidget {
 class _MemoryCard extends StatelessWidget {
   final JournalEntry entry;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final VoidCallback onTap;
 
   const _MemoryCard({
     required this.entry,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onTap,
   });
 
@@ -655,7 +651,7 @@ class _MemoryCard extends StatelessWidget {
                   File(entry.imagePath!),
                   fit: BoxFit.cover,
                   cacheWidth: 800,
-                  semanticLabel: L10nService.get('memories.memories.memory_photo_1', language),
+                  semanticLabel: L10nService.get('memories.memories.memory_photo_1', isEn ? AppLanguage.en : AppLanguage.tr),
                   errorBuilder: (_, _, _) => Container(
                     color: isDark
                         ? AppColors.surfaceDark

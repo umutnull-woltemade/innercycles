@@ -45,7 +45,7 @@ class ChallengeListScreen extends ConsumerWidget {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('challenges.challenge_list.growth_challenges', language),
+                  title: L10nService.get('challenges.challenge_list.growth_challenges', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16),
@@ -79,7 +79,7 @@ class ChallengeListScreen extends ConsumerWidget {
                                   color: AppColors.starGold,
                                 ),
                                 label: Text(
-                                  L10nService.get('challenges.challenge_list.retry', language),
+                                  L10nService.get('challenges.challenge_list.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
@@ -119,14 +119,14 @@ class ChallengeListScreen extends ConsumerWidget {
                             completed: completed.length,
                             total: challenges.length,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ),
                           const SizedBox(height: 20),
 
                           // Active challenges
                           if (active.isNotEmpty) ...[
                             _SectionTitle(
-                              title: L10nService.get('challenges.challenge_list.in_progress', language),
+                              title: L10nService.get('challenges.challenge_list.in_progress', isEn ? AppLanguage.en : AppLanguage.tr),
                               isDark: isDark,
                             ),
                             const SizedBox(height: 10),
@@ -137,7 +137,7 @@ class ChallengeListScreen extends ConsumerWidget {
                                 isCompleted: false,
                                 isPremium: isPremium,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                                 onIncrement: () async {
                                   final justCompleted = await service
                                       .incrementProgress(c.id);
@@ -161,7 +161,7 @@ class ChallengeListScreen extends ConsumerWidget {
 
                           // Available challenges
                           _SectionTitle(
-                            title: L10nService.get('challenges.challenge_list.available', language),
+                            title: L10nService.get('challenges.challenge_list.available', isEn ? AppLanguage.en : AppLanguage.tr),
                             isDark: isDark,
                           ),
                           const SizedBox(height: 10),
@@ -172,7 +172,7 @@ class ChallengeListScreen extends ConsumerWidget {
                               isCompleted: false,
                               isPremium: isPremium,
                               isDark: isDark,
-                              language: language,
+                              isEn: isEn,
                               onStart: () async {
                                 if (c.isPremium && !isPremium) {
                                   showContextualPaywall(
@@ -194,7 +194,7 @@ class ChallengeListScreen extends ConsumerWidget {
                           if (completed.isNotEmpty) ...[
                             const SizedBox(height: 20),
                             _SectionTitle(
-                              title: L10nService.get('challenges.challenge_list.completed', language),
+                              title: L10nService.get('challenges.challenge_list.completed', isEn ? AppLanguage.en : AppLanguage.tr),
                               isDark: isDark,
                             ),
                             const SizedBox(height: 10),
@@ -205,14 +205,14 @@ class ChallengeListScreen extends ConsumerWidget {
                                 isCompleted: true,
                                 isPremium: isPremium,
                                 isDark: isDark,
-                                language: language,
+                                isEn: isEn,
                               ),
                             ),
                           ],
 
                           ToolEcosystemFooter(
                             currentToolId: 'challengeList',
-                            language: language,
+                            isEn: isEn,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),
@@ -235,15 +235,14 @@ class _StatsBar extends StatelessWidget {
   final int completed;
   final int total;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _StatsBar({
     required this.active,
     required this.completed,
     required this.total,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -257,19 +256,19 @@ class _StatsBar extends StatelessWidget {
         children: [
           _StatItem(
             value: '$active',
-            label: L10nService.get('challenges.challenge_list.active', language),
+            label: L10nService.get('challenges.challenge_list.active', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.starGold,
             isDark: isDark,
           ),
           _StatItem(
             value: '$completed',
-            label: L10nService.get('challenges.challenge_list.completed_1', language),
+            label: L10nService.get('challenges.challenge_list.completed_1', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.success,
             isDark: isDark,
           ),
           _StatItem(
             value: '$total',
-            label: L10nService.get('challenges.challenge_list.total', language),
+            label: L10nService.get('challenges.challenge_list.total', isEn ? AppLanguage.en : AppLanguage.tr),
             color: AppColors.auroraStart,
             isDark: isDark,
           ),
@@ -341,8 +340,7 @@ class _ChallengeCard extends StatelessWidget {
   final bool isCompleted;
   final bool isPremium;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final VoidCallback? onStart;
   final VoidCallback? onIncrement;
 
@@ -352,7 +350,7 @@ class _ChallengeCard extends StatelessWidget {
     required this.isCompleted,
     required this.isPremium,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     this.onStart,
     this.onIncrement,
   });
@@ -469,7 +467,7 @@ class _ChallengeCard extends StatelessWidget {
             const SizedBox(width: 8),
             if (hasProgress && onIncrement != null)
               Semantics(
-                label: L10nService.get('challenges.challenge_list.increment_progress', language),
+                label: L10nService.get('challenges.challenge_list.increment_progress', isEn ? AppLanguage.en : AppLanguage.tr),
                 button: true,
                 child: GestureDetector(
                   onTap: onIncrement,
@@ -497,7 +495,7 @@ class _ChallengeCard extends StatelessWidget {
               )
             else if (!isCompleted && !hasProgress && onStart != null)
               Semantics(
-                label: L10nService.get('challenges.challenge_list.start_challenge', language),
+                label: L10nService.get('challenges.challenge_list.start_challenge', isEn ? AppLanguage.en : AppLanguage.tr),
                 button: true,
                 child: GestureDetector(
                   onTap: onStart,
@@ -513,7 +511,7 @@ class _ChallengeCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
-                        L10nService.get('challenges.challenge_list.start', language),
+                        L10nService.get('challenges.challenge_list.start', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
                           fontSize: 12,
                           color: AppColors.auroraStart,

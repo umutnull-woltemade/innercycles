@@ -18,24 +18,23 @@ import '../../../data/providers/app_providers.dart';
 /// Shows confetti particles, animated emoji, haptic feedback.
 class BadgeCelebrationModal extends StatefulWidget {
   final Milestone milestone;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const BadgeCelebrationModal({
     super.key,
     required this.milestone,
-    required this.language,
+    required this.isEn,
   });
 
   /// Show the celebration modal for a newly earned badge.
-  static void show(BuildContext context, Milestone milestone, AppLanguage language) {
+  static void show(BuildContext context, Milestone milestone, bool isEn) {
     HapticFeedback.heavyImpact();
     showDialog(
       context: context,
       barrierDismissible: true,
       barrierColor: Colors.black54,
       builder: (_) =>
-          BadgeCelebrationModal(milestone: milestone, language: language),
+          BadgeCelebrationModal(milestone: milestone, isEn: isEn),
     );
   }
 
@@ -43,7 +42,7 @@ class BadgeCelebrationModal extends StatefulWidget {
   static Future<void> showSequential(
     BuildContext context,
     List<Milestone> milestones,
-    AppLanguage language,
+    bool isEn,
   ) async {
     for (final m in milestones) {
       if (!context.mounted) return;
@@ -52,7 +51,7 @@ class BadgeCelebrationModal extends StatefulWidget {
         context: context,
         barrierDismissible: true,
         barrierColor: Colors.black54,
-        builder: (_) => BadgeCelebrationModal(milestone: m, language: language),
+        builder: (_) => BadgeCelebrationModal(milestone: m, isEn: isEn),
       );
     }
   }
@@ -292,7 +291,7 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
                             children: [
                               Expanded(
                                 child: GradientOutlinedButton(
-                                  label: L10nService.get('milestones.badge_celebration.share', language),
+                                  label: L10nService.get('milestones.badge_celebration.share', isEn ? AppLanguage.en : AppLanguage.tr),
                                   icon: Icons.share_rounded,
                                   variant: GradientTextVariant.gold,
                                   expanded: true,
@@ -308,7 +307,7 @@ class _BadgeCelebrationModalState extends State<BadgeCelebrationModal>
                               const SizedBox(width: 12),
                               Expanded(
                                 child: GradientButton.gold(
-                                  label: L10nService.get('milestones.badge_celebration.keep_going', language),
+                                  label: L10nService.get('milestones.badge_celebration.keep_going', isEn ? AppLanguage.en : AppLanguage.tr),
                                   onPressed: () =>
                                       Navigator.of(context).pop(),
                                   expanded: true,

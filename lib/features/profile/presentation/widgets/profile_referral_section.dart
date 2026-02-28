@@ -14,13 +14,12 @@ import '../../../../data/providers/app_providers.dart';
 
 class ProfileReferralSection extends ConsumerWidget {
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const ProfileReferralSection({
     super.key,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -31,7 +30,7 @@ class ProfileReferralSection extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GradientText(
-          L10nService.get('profile.profile_referral.invite_earn', language),
+          L10nService.get('profile.profile_referral.invite_earn', isEn ? AppLanguage.en : AppLanguage.tr),
           variant: GradientTextVariant.gold,
           style: AppTypography.elegantAccent(
             fontSize: 17,
@@ -42,7 +41,7 @@ class ProfileReferralSection extends ConsumerWidget {
         const SizedBox(height: AppConstants.spacingMd),
         Semantics(
           button: true,
-          label: L10nService.get('profile.profile_referral.open_referral_program', language),
+          label: L10nService.get('profile.profile_referral.open_referral_program', isEn ? AppLanguage.en : AppLanguage.tr),
           child: GestureDetector(
             onTap: () => context.push(Routes.referralProgram),
             behavior: HitTestBehavior.opaque,
@@ -58,7 +57,7 @@ class ProfileReferralSection extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          L10nService.get('profile.profile_referral.invite_friends_get_premium', language),
+                          L10nService.get('profile.profile_referral.invite_friends_get_premium', isEn ? AppLanguage.en : AppLanguage.tr),
                           style: AppTypography.subtitle(
                             fontSize: 14,
                             color: isDark
@@ -77,7 +76,7 @@ class ProfileReferralSection extends ConsumerWidget {
                                   ? (isEn
                                       ? '$count friend${count == 1 ? '' : 's'} invited'
                                       : '$count arkadaş davet edildi')
-                                  : (L10nService.get('profile.profile_referral.7_days_free_for_each_friend', language)),
+                                  : (L10nService.get('profile.profile_referral.7_days_free_for_each_friend', isEn ? AppLanguage.en : AppLanguage.tr)),
                               style: AppTypography.subtitle(
                                 fontSize: 12,
                                 color: isDark

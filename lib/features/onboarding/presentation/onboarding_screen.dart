@@ -1841,21 +1841,21 @@ class _WelcomePage extends StatelessWidget {
                 color: AppColors.amethyst,
                 labelEn: 'Emotional\nCycles',
                 labelTr: 'Duygusal\nDöngüler',
-                language: language,
+                isEn: isEn,
               ),
               _FeatureHighlight(
                 icon: Icons.nights_stay_rounded,
                 color: AppColors.auroraStart,
                 labelEn: 'Dream\nJournal',
                 labelTr: 'Rüya\nGünlüğü',
-                language: language,
+                isEn: isEn,
               ),
               _FeatureHighlight(
                 icon: Icons.auto_graph_rounded,
                 color: AppColors.chartPink,
                 labelEn: 'Pattern\nInsights',
                 labelTr: 'Kalıp\nİçgörüler',
-                language: language,
+                isEn: isEn,
               ),
             ],
           ).glassEntrance(
@@ -1933,15 +1933,14 @@ class _FeatureHighlight extends StatelessWidget {
   final Color color;
   final String labelEn;
   final String labelTr;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _FeatureHighlight({
     required this.icon,
     required this.color,
     required this.labelEn,
     required this.labelTr,
-    required this.language,
+    required this.isEn,
   });
 
   @override

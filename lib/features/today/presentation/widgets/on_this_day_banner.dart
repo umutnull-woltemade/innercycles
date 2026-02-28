@@ -13,13 +13,12 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class OnThisDayBanner extends ConsumerWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
 
   const OnThisDayBanner({
     super.key,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 
@@ -49,7 +48,7 @@ class OnThisDayBanner extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
           child: Semantics(
             button: true,
-            label: L10nService.get('today.on_this_day.view_memories_from_this_day', language),
+            label: L10nService.get('today.on_this_day.view_memories_from_this_day', isEn ? AppLanguage.en : AppLanguage.tr),
             child: TapScale(
               onTap: () => context.push(Routes.memories),
               child: PremiumCard(

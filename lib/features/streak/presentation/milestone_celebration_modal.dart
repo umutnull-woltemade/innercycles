@@ -17,19 +17,18 @@ import '../../../data/services/l10n_service.dart';
 /// Full-screen celebration modal for streak milestones (D3, D7, D14, etc.)
 class MilestoneCelebrationModal extends StatefulWidget {
   final int streakDays;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isPremium;
 
   const MilestoneCelebrationModal({
     super.key,
     required this.streakDays,
-    required this.language,
+    required this.isEn,
     this.isPremium = false,
   });
 
   /// Show the celebration modal. Call after saving an entry.
-  static void show(BuildContext context, int days, AppLanguage language, {bool isPremium = false}) {
+  static void show(BuildContext context, int days, bool isEn, {bool isPremium = false}) {
     HapticFeedback.heavyImpact();
     showDialog(
       context: context,
@@ -37,7 +36,7 @@ class MilestoneCelebrationModal extends StatefulWidget {
       barrierColor: Colors.black54,
       builder: (_) => MilestoneCelebrationModal(
         streakDays: days,
-        language: language,
+        isEn: isEn,
         isPremium: isPremium,
       ),
     );
@@ -68,9 +67,9 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
         headline: _title,
         subtitle: _message,
         statValue: '$streakDays',
-        statLabel: L10nService.get('streak.milestone_celebration.day_streak', language),
+        statLabel: L10nService.get('streak.milestone_celebration.day_streak', isEn ? AppLanguage.en : AppLanguage.tr),
       ),
-      language: language,
+      isEn: isEn,
     );
   }
 
@@ -98,7 +97,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
   }
 
   String get _title {
-    final lang = language;
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
     switch (streakDays) {
       case 3:
         return L10nService.get('streak.milestone.title_3', lang);
@@ -130,7 +129,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Semantics(
-      label: L10nService.getWithParams('streak.milestone.celebration_label', language, params: {'count': '$streakDays'}),
+      label: L10nService.getWithParams('streak.milestone.celebration_label', isEn ? AppLanguage.en : AppLanguage.tr, params: {'count': '$streakDays'}),
       child: Dialog(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -299,7 +298,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
-                                  L10nService.get('streak.milestone_celebration.unlock_deeper_insights_with_premium', language),
+                                  L10nService.get('streak.milestone_celebration.unlock_deeper_insights_with_premium', isEn ? AppLanguage.en : AppLanguage.tr),
                                   style: AppTypography.subtitle(
                                     fontSize: 12,
                                     color: isDark
@@ -321,7 +320,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                               // Share button
                               Expanded(
                                 child: GradientOutlinedButton(
-                                  label: L10nService.get('streak.milestone_celebration.share', language),
+                                  label: L10nService.get('streak.milestone_celebration.share', isEn ? AppLanguage.en : AppLanguage.tr),
                                   icon: _isSharing ? null : Icons.share_rounded,
                                   variant: GradientTextVariant.gold,
                                   expanded: true,
@@ -338,7 +337,7 @@ class _MilestoneCelebrationModalState extends State<MilestoneCelebrationModal> {
                               // Keep Going button
                               Expanded(
                                 child: GradientButton.gold(
-                                  label: L10nService.get('streak.milestone_celebration.keep_going', language),
+                                  label: L10nService.get('streak.milestone_celebration.keep_going', isEn ? AppLanguage.en : AppLanguage.tr),
                                   onPressed: () => Navigator.of(context).pop(),
                                   expanded: true,
                                 ),

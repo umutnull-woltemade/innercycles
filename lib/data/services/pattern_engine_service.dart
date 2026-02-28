@@ -211,7 +211,7 @@ class PatternEngineService {
 
   /// Detect micro-patterns from as few as 3 entries.
   /// Returns a single human-readable insight string (EN/TR).
-  String? detectMicroPattern({required AppLanguage language}) {
+  String? detectMicroPattern({required bool isEn}) {
     if (!hasMicroPatternData()) return null;
 
     final entries = _journalService.getAllEntries();
@@ -240,10 +240,10 @@ class PatternEngineService {
       final last3 = entries.sublist(entries.length - 3);
       final r3 = last3.map((e) => e.overallRating).toList();
       if (r3[0] < r3[1] && r3[1] < r3[2]) {
-        return L10nService.get('data.services.pattern_engine.your_recent_entries_show_an_upward_trend', language);
+        return L10nService.get('data.services.pattern_engine.your_recent_entries_show_an_upward_trend', isEn ? AppLanguage.en : AppLanguage.tr);
       }
       if (r3[0] > r3[1] && r3[1] > r3[2]) {
-        return L10nService.get('data.services.pattern_engine.your_last_few_entries_show_a_dip_a_good', language);
+        return L10nService.get('data.services.pattern_engine.your_last_few_entries_show_a_dip_a_good', isEn ? AppLanguage.en : AppLanguage.tr);
       }
     }
 
@@ -258,18 +258,18 @@ class PatternEngineService {
     return null;
   }
 
-  static String _areaName(FocusArea area, AppLanguage language) {
+  static String _areaName(FocusArea area, bool isEn) {
     switch (area) {
       case FocusArea.energy:
-        return L10nService.get('data.services.pattern_engine.energy', language);
+        return L10nService.get('data.services.pattern_engine.energy', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.focus:
-        return L10nService.get('data.services.pattern_engine.focus', language);
+        return L10nService.get('data.services.pattern_engine.focus', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.emotions:
-        return L10nService.get('data.services.pattern_engine.emotions', language);
+        return L10nService.get('data.services.pattern_engine.emotions', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.decisions:
-        return L10nService.get('data.services.pattern_engine.decisions', language);
+        return L10nService.get('data.services.pattern_engine.decisions', isEn ? AppLanguage.en : AppLanguage.tr);
       case FocusArea.social:
-        return L10nService.get('data.services.pattern_engine.social', language);
+        return L10nService.get('data.services.pattern_engine.social', isEn ? AppLanguage.en : AppLanguage.tr);
     }
   }
 

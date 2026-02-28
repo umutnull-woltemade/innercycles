@@ -111,7 +111,7 @@ class WhatsNewModal {
 
   /// Check if the modal should be shown and display it if needed.
   /// Call this after the app is fully loaded and the navigator context is valid.
-  static Future<void> showIfNeeded(BuildContext context, AppLanguage language) async {
+  static Future<void> showIfNeeded(BuildContext context, bool isEn) async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final lastSeen = prefs.getString(_prefKey);
@@ -138,7 +138,7 @@ class WhatsNewModal {
   // Modal presentation
   // -------------------------------------------------------------------------
 
-  static Future<void> _show(BuildContext context, AppLanguage language) {
+  static Future<void> _show(BuildContext context, bool isEn) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return showModalBottomSheet<void>(
@@ -146,7 +146,7 @@ class WhatsNewModal {
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (sheetContext) {
-        return _WhatsNewSheet(language: language, isDark: isDark);
+        return _WhatsNewSheet(isEn: isEn, isDark: isDark);
       },
     );
   }
@@ -157,11 +157,10 @@ class WhatsNewModal {
 // ---------------------------------------------------------------------------
 
 class _WhatsNewSheet extends StatelessWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
 
-  const _WhatsNewSheet({required this.language, required this.isDark});
+  const _WhatsNewSheet({required this.isEn, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
@@ -214,7 +213,7 @@ class _WhatsNewSheet extends StatelessWidget {
 
               // ---- Header ----
               GradientText(
-                    L10nService.get('whats_new.title', language),
+                    L10nService.get('whats_new.title', isEn ? AppLanguage.en : AppLanguage.tr),
                     variant: GradientTextVariant.aurora,
                     style: AppTypography.displayFont.copyWith(
                       fontSize: 24,
@@ -226,7 +225,7 @@ class _WhatsNewSheet extends StatelessWidget {
                   .slideY(begin: -0.2, duration: 400.ms, curve: Curves.easeOut),
               const SizedBox(height: 4),
               Text(
-                L10nService.get('whats_new.whats_new.latest_features_and_improvements', language),
+                L10nService.get('whats_new.whats_new.latest_features_and_improvements', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.decorativeScript(
                   fontSize: 14,
                   color: subtextColor,
@@ -278,7 +277,7 @@ class _WhatsNewSheet extends StatelessWidget {
                                 ),
                               ),
                               child: Text(
-                                L10nService.get('whats_new.whats_new.got_it', language),
+                                L10nService.get('whats_new.whats_new.got_it', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.subtitle(
                                   fontSize: 16,
                                   color: Colors.white,

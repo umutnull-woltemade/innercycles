@@ -1,4 +1,3 @@
-import 'package:innercycles/data/providers/app_providers.dart';
 // ════════════════════════════════════════════════════════════════════════════
 // MONTHLY WRAPPED SERVICE - Aylık Özet Engine
 // ════════════════════════════════════════════════════════════════════════════
@@ -35,7 +34,7 @@ class MonthlyWrappedData {
     required this.month,
   });
 
-  String personalInsight(AppLanguage language) =>
+  String personalInsight(bool isEn) =>
       isEn ? personalInsightEn : personalInsightTr;
 }
 

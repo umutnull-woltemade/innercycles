@@ -105,7 +105,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
               ),
               slivers: [
                 GlassSliverAppBar(
-                  title: L10nService.get('year_review.year_review.year_synthesis', language),
+                  title: L10nService.get('year_review.year_review.year_synthesis', isEn ? AppLanguage.en : AppLanguage.tr),
                 ),
                 // Year selector
                 SliverToBoxAdapter(
@@ -118,7 +118,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              L10nService.get('year_review.year_review.could_not_load_your_local_data_is_unaffe', language),
+                              L10nService.get('year_review.year_review.could_not_load_your_local_data_is_unaffe', isEn ? AppLanguage.en : AppLanguage.tr),
                               textAlign: TextAlign.center,
                               style: AppTypography.subtitle(
                                 color: isDark
@@ -136,7 +136,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                                 color: AppColors.starGold,
                               ),
                               label: Text(
-                                L10nService.get('year_review.year_review.retry', language),
+                                L10nService.get('year_review.year_review.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
@@ -150,7 +150,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                     ),
                     data: (years) {
                       if (years.isEmpty) {
-                        return _EmptyState(isDark: isDark, language: language);
+                        return _EmptyState(isDark: isDark, isEn: isEn);
                       }
                       if (years.length > 1) {
                         return _YearSelector(
@@ -185,7 +185,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                L10nService.get('year_review.year_review.could_not_load_your_local_data_is_unaffe_1', language),
+                                L10nService.get('year_review.year_review.could_not_load_your_local_data_is_unaffe_1', isEn ? AppLanguage.en : AppLanguage.tr),
                                 textAlign: TextAlign.center,
                                 style: AppTypography.subtitle(
                                   color: isDark
@@ -203,7 +203,7 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                                   color: AppColors.starGold,
                                 ),
                                 label: Text(
-                                  L10nService.get('year_review.year_review.retry_1', language),
+                                  L10nService.get('year_review.year_review.retry_1', isEn ? AppLanguage.en : AppLanguage.tr),
                                   style: AppTypography.elegantAccent(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
@@ -220,11 +220,11 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                       if (review == null) {
                         if (selectedYear == null) {
                           return SliverToBoxAdapter(
-                            child: _EmptyState(isDark: isDark, language: language),
+                            child: _EmptyState(isDark: isDark, isEn: isEn),
                           );
                         }
                         return SliverToBoxAdapter(
-                          child: _NotEnoughData(isDark: isDark, language: language),
+                          child: _NotEnoughData(isDark: isDark, isEn: isEn),
                         );
                       }
                       return SliverList(
@@ -233,44 +233,44 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
                           _HeroCard(
                             review: review,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ).glassReveal(context: context),
                           const SizedBox(height: 20),
                           _MoodJourneyCard(
                             review: review,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ).glassListItem(context: context, index: 1),
                           const SizedBox(height: 20),
                           _FocusAreasCard(
                             review: review,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ).glassListItem(context: context, index: 2),
                           const SizedBox(height: 20),
                           _GrowthScoreCard(
                             review: review,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ).glassListItem(context: context, index: 3),
                           const SizedBox(height: 20),
                           _HighlightsCard(
                             review: review,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ).glassListItem(context: context, index: 4),
                           const SizedBox(height: 20),
                           _ShareableSummaryCard(
                             review: review,
                             isDark: isDark,
-                            language: language,
+                            isEn: isEn,
                           ).glassListItem(context: context, index: 5),
                           ContentDisclaimer(
                             language: language,
                           ),
                           ToolEcosystemFooter(
                             currentToolId: 'yearReview',
-                            language: language,
+                            isEn: isEn,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 40),
@@ -379,17 +379,16 @@ class _YearSelector extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
-  const _EmptyState({required this.isDark, required this.language});
+  const _EmptyState({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.auto_awesome,
-      title: L10nService.get('year_review.year_review.your_year_synthesis_is_ready', language),
-      description: L10nService.get('year_review.year_review.keep_recording_to_activate_your_annual_s', language),
+      title: L10nService.get('year_review.year_review.your_year_synthesis_is_ready', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('year_review.year_review.keep_recording_to_activate_your_annual_s', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.gold,
     );
   }
@@ -397,19 +396,18 @@ class _EmptyState extends StatelessWidget {
 
 class _NotEnoughData extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
-  const _NotEnoughData({required this.isDark, required this.language});
+  const _NotEnoughData({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.lock_outline,
-      title: L10nService.get('year_review.year_review.not_enough_entries_for_this_year', language),
-      description: L10nService.get('year_review.year_review.you_need_at_least_7_journal_entries_to_g', language),
+      title: L10nService.get('year_review.year_review.not_enough_entries_for_this_year', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('year_review.year_review.you_need_at_least_7_journal_entries_to_g', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.gold,
-      ctaLabel: L10nService.get('year_review.year_review.start_journaling', language),
+      ctaLabel: L10nService.get('year_review.year_review.start_journaling', isEn ? AppLanguage.en : AppLanguage.tr),
       onCtaPressed: () => context.go(Routes.journal),
     );
   }
@@ -422,13 +420,12 @@ class _NotEnoughData extends StatelessWidget {
 class _HeroCard extends StatelessWidget {
   final YearReview review;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _HeroCard({
     required this.review,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -469,7 +466,7 @@ class _HeroCard extends StatelessWidget {
             children: [
               _StatColumn(
                 value: '${review.totalEntries}',
-                label: L10nService.get('year_review.year_review.entries', language),
+                label: L10nService.get('year_review.year_review.entries', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
               ),
               Container(
@@ -481,7 +478,7 @@ class _HeroCard extends StatelessWidget {
               ),
               _StatColumn(
                 value: '${review.totalJournalingDays}',
-                label: L10nService.get('year_review.year_review.days', language),
+                label: L10nService.get('year_review.year_review.days', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
               ),
               Container(
@@ -493,7 +490,7 @@ class _HeroCard extends StatelessWidget {
               ),
               _StatColumn(
                 value: review.averageMood.toStringAsFixed(1),
-                label: L10nService.get('year_review.year_review.avg_mood', language),
+                label: L10nService.get('year_review.year_review.avg_mood', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
               ),
               Container(
@@ -505,7 +502,7 @@ class _HeroCard extends StatelessWidget {
               ),
               _StatColumn(
                 value: '${review.streakBest}',
-                label: L10nService.get('year_review.year_review.best_streak', language),
+                label: L10nService.get('year_review.year_review.best_streak', isEn ? AppLanguage.en : AppLanguage.tr),
                 isDark: isDark,
               ),
             ],
@@ -561,13 +558,12 @@ class _StatColumn extends StatelessWidget {
 class _MoodJourneyCard extends StatelessWidget {
   final YearReview review;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _MoodJourneyCard({
     required this.review,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   static const _monthLabelsEn = [
@@ -611,7 +607,7 @@ class _MoodJourneyCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('year_review.year_review.mood_trajectory', language),
+            L10nService.get('year_review.year_review.mood_trajectory', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
@@ -620,7 +616,7 @@ class _MoodJourneyCard extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            L10nService.get('year_review.year_review.monthly_average_mood_15', language),
+            L10nService.get('year_review.year_review.monthly_average_mood_15', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -713,13 +709,12 @@ class _MoodJourneyCard extends StatelessWidget {
 class _FocusAreasCard extends StatelessWidget {
   final YearReview review;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _FocusAreasCard({
     required this.review,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   static const _areaColors = {
@@ -745,7 +740,7 @@ class _FocusAreasCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('year_review.year_review.focus_areas', language),
+            L10nService.get('year_review.year_review.focus_areas', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
@@ -754,7 +749,7 @@ class _FocusAreasCard extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            L10nService.get('year_review.year_review.time_spent_per_area', language),
+            L10nService.get('year_review.year_review.time_spent_per_area', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -826,23 +821,22 @@ class _FocusAreasCard extends StatelessWidget {
 class _GrowthScoreCard extends StatelessWidget {
   final YearReview review;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _GrowthScoreCard({
     required this.review,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
   Widget build(BuildContext context) {
     final score = review.growthScore;
     final label = score >= 70
-        ? (L10nService.get('year_review.year_review.strong_growth', language))
+        ? (L10nService.get('year_review.year_review.strong_growth', isEn ? AppLanguage.en : AppLanguage.tr))
         : score >= 50
-        ? (L10nService.get('year_review.year_review.steady_progress', language))
-        : (L10nService.get('year_review.year_review.room_to_grow', language));
+        ? (L10nService.get('year_review.year_review.steady_progress', isEn ? AppLanguage.en : AppLanguage.tr))
+        : (L10nService.get('year_review.year_review.room_to_grow', isEn ? AppLanguage.en : AppLanguage.tr));
 
     return GlassPanel(
       elevation: GlassElevation.g2,
@@ -851,7 +845,7 @@ class _GrowthScoreCard extends StatelessWidget {
       child: Column(
         children: [
           GradientText(
-            L10nService.get('year_review.year_review.growth_score', language),
+            L10nService.get('year_review.year_review.growth_score', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
@@ -860,7 +854,7 @@ class _GrowthScoreCard extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            L10nService.get('year_review.year_review.based_on_your_mood_improvement_trend', language),
+            L10nService.get('year_review.year_review.based_on_your_mood_improvement_trend', isEn ? AppLanguage.en : AppLanguage.tr),
             style: AppTypography.elegantAccent(
               fontSize: 13,
               color: isDark ? AppColors.textMuted : AppColors.lightTextMuted,
@@ -995,13 +989,12 @@ class _GrowthCirclePainter extends CustomPainter {
 class _HighlightsCard extends StatelessWidget {
   final YearReview review;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _HighlightsCard({
     required this.review,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -1017,7 +1010,7 @@ class _HighlightsCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GradientText(
-            L10nService.get('year_review.year_review.highlights', language),
+            L10nService.get('year_review.year_review.highlights', isEn ? AppLanguage.en : AppLanguage.tr),
             variant: GradientTextVariant.gold,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
@@ -1187,7 +1180,7 @@ class _HighlightsCard extends StatelessWidget {
           results.add(
             _Highlight(
               icon: Icons.star,
-              text: L10nService.get('year_review.year_review.you_journaled_every_single_day', language),
+              text: L10nService.get('year_review.year_review.you_journaled_every_single_day', isEn ? AppLanguage.en : AppLanguage.tr),
               color: AppColors.starGold,
             ),
           );
@@ -1230,13 +1223,12 @@ class _Highlight {
 class _ShareableSummaryCard extends StatelessWidget {
   final YearReview review;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _ShareableSummaryCard({
     required this.review,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -1251,7 +1243,7 @@ class _ShareableSummaryCard extends StatelessWidget {
       child: Column(
         children: [
           GradientText(
-            L10nService.getWithParams('year_review.my_year_summary', language, params: {'year': '${review.year}'}),
+            L10nService.getWithParams('year_review.my_year_summary', isEn ? AppLanguage.en : AppLanguage.tr, params: {'year': '${review.year}'}),
             variant: GradientTextVariant.aurora,
             style: AppTypography.displayFont.copyWith(
               fontSize: 16,
@@ -1289,7 +1281,7 @@ class _ShareableSummaryCard extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           GradientOutlinedButton(
-            label: L10nService.get('year_review.year_review.share_summary', language),
+            label: L10nService.get('year_review.year_review.share_summary', isEn ? AppLanguage.en : AppLanguage.tr),
             icon: Icons.share,
             variant: GradientTextVariant.gold,
             expanded: true,

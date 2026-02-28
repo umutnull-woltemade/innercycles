@@ -15,13 +15,12 @@ import '../../../../shared/widgets/tap_scale.dart';
 import '../../../../data/services/l10n_service.dart';
 
 class HeroJournalCard extends ConsumerWidget {
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final bool isDark;
 
   const HeroJournalCard({
     super.key,
-    required this.language,
+    required this.isEn,
     required this.isDark,
   });
 
@@ -72,7 +71,7 @@ class HeroJournalCard extends ConsumerWidget {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      L10nService.get('today.hero_journal.daily_reflection', language),
+                      L10nService.get('today.hero_journal.daily_reflection', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
@@ -86,7 +85,7 @@ class HeroJournalCard extends ConsumerWidget {
                     // Gold CTA button
                     Semantics(
                       button: true,
-                      label: L10nService.get('today.hero_journal.start_writing_journal_entry', language),
+                      label: L10nService.get('today.hero_journal.start_writing_journal_entry', isEn ? AppLanguage.en : AppLanguage.tr),
                       child: TapScale(
                         onTap: () {
                           HapticService.buttonPress();
@@ -135,7 +134,7 @@ class HeroJournalCard extends ConsumerWidget {
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                L10nService.get('today.hero_journal.start_writing', language),
+                                L10nService.get('today.hero_journal.start_writing', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.modernAccent(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w700,
@@ -152,21 +151,21 @@ class HeroJournalCard extends ConsumerWidget {
                     // Share link
                     Semantics(
                       button: true,
-                      label: L10nService.get('today.hero_journal.share_this_question', language),
+                      label: L10nService.get('today.hero_journal.share_this_question', isEn ? AppLanguage.en : AppLanguage.tr),
                       child: TapScale(
                         onTap: () {
                           HapticService.buttonPress();
                           final template = ShareCardTemplates.questionOfTheDay;
                           final cardData = ShareCardTemplates.buildData(
                             template: template,
-                            language: language,
+                            isEn: isEn,
                             reflectionText: questionText,
                           );
                           ShareCardSheet.show(
                             context,
                             template: template,
                             data: cardData,
-                            language: language,
+                            isEn: isEn,
                           );
                         },
                         child: Padding(
@@ -183,7 +182,7 @@ class HeroJournalCard extends ConsumerWidget {
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                L10nService.get('today.hero_journal.share_this_question_1', language),
+                                L10nService.get('today.hero_journal.share_this_question_1', isEn ? AppLanguage.en : AppLanguage.tr),
                                 style: AppTypography.elegantAccent(
                                   fontSize: 14,
                                   color: isDark
@@ -208,7 +207,7 @@ class HeroJournalCard extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Semantics(
             button: true,
-            label: L10nService.get('today.hero_journal.start_journaling', language),
+            label: L10nService.get('today.hero_journal.start_journaling', isEn ? AppLanguage.en : AppLanguage.tr),
             child: GestureDetector(
               onTap: () {
                 HapticService.buttonPress();
@@ -245,7 +244,7 @@ class HeroJournalCard extends ConsumerWidget {
                     const SizedBox(width: 10),
                     Flexible(
                       child: Text(
-                        L10nService.get('today.hero_journal.start_journaling_1', language),
+                        L10nService.get('today.hero_journal.start_journaling_1', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.modernAccent(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,

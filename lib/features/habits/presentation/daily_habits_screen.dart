@@ -78,7 +78,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                   icon: Icon(Icons.refresh_rounded,
                       size: 16, color: AppColors.starGold),
                   label: Text(
-                    L10nService.get('habits.daily_habits.retry', language),
+                    L10nService.get('habits.daily_habits.retry', isEn ? AppLanguage.en : AppLanguage.tr),
                     style: AppTypography.elegantAccent(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -99,7 +99,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
     BuildContext context,
     HabitSuggestionService service,
     bool isDark,
-    AppLanguage language,
+    bool isEn,
   ) {
     final adoptedHabits = service.getAdoptedHabits();
     final completedCount = service.todayCompletedCount;
@@ -112,21 +112,21 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
         ),
         slivers: [
           GlassSliverAppBar(
-            title: L10nService.get('habits.daily_habits.routine_tracker', language),
+            title: L10nService.get('habits.daily_habits.routine_tracker', isEn ? AppLanguage.en : AppLanguage.tr),
           ),
           SliverPadding(
             padding: const EdgeInsets.all(16),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 if (adoptedHabits.isEmpty) ...[
-                  _EmptyState(isDark: isDark, language: language),
+                  _EmptyState(isDark: isDark, isEn: isEn),
                 ] else ...[
                   // Progress header
                   _ProgressHeader(
                     completed: completedCount,
                     total: totalAdopted,
                     isDark: isDark,
-                    language: language,
+                    isEn: isEn,
                   ),
                   const SizedBox(height: 20),
 
@@ -146,7 +146,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                         streak: streak,
                         weekData: weekData,
                         isDark: isDark,
-                        language: language,
+                        isEn: isEn,
                         onToggle: () async {
                           HapticFeedback.mediumImpact();
                           if (isChecked) {
@@ -169,7 +169,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                   // Browse more habits link
                   Center(
                     child: Semantics(
-                      label: L10nService.get('habits.daily_habits.browse_all_habits', language),
+                      label: L10nService.get('habits.daily_habits.browse_all_habits', isEn ? AppLanguage.en : AppLanguage.tr),
                       button: true,
                       child: GestureDetector(
                         onTap: () => context.push(Routes.habitSuggestions),
@@ -178,7 +178,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
                           constraints: const BoxConstraints(minHeight: 44),
                           child: Center(
                             child: Text(
-                              L10nService.get('habits.daily_habits.browse_all_habits_1', language),
+                              L10nService.get('habits.daily_habits.browse_all_habits_1', isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.elegantAccent(
                                 fontSize: 14,
                                 color: AppColors.auroraStart,
@@ -194,7 +194,7 @@ class _DailyHabitsScreenState extends ConsumerState<DailyHabitsScreen> {
 
                 ToolEcosystemFooter(
                   currentToolId: 'dailyHabits',
-                  language: language,
+                  isEn: isEn,
                   isDark: isDark,
                 ),
                 const SizedBox(height: 40),
@@ -215,14 +215,13 @@ class _ProgressHeader extends StatelessWidget {
   final int completed;
   final int total;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _ProgressHeader({
     required this.completed,
     required this.total,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -237,7 +236,7 @@ class _ProgressHeader extends StatelessWidget {
         children: [
           allDone
               ? Text(
-                  L10nService.get('habits.daily_habits.all_done_for_today', language),
+                  L10nService.get('habits.daily_habits.all_done_for_today', isEn ? AppLanguage.en : AppLanguage.tr),
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -245,7 +244,7 @@ class _ProgressHeader extends StatelessWidget {
                   ),
                 )
               : GradientText(
-                  L10nService.get('habits.daily_habits.todays_progress', language),
+                  L10nService.get('habits.daily_habits.todays_progress', isEn ? AppLanguage.en : AppLanguage.tr),
                   variant: GradientTextVariant.gold,
                   style: AppTypography.displayFont.copyWith(
                     fontSize: 16,
@@ -306,8 +305,7 @@ class _HabitCheckCard extends StatelessWidget {
   final int streak;
   final List<bool> weekData;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
   final VoidCallback onToggle;
 
   const _HabitCheckCard({
@@ -316,7 +314,7 @@ class _HabitCheckCard extends StatelessWidget {
     required this.streak,
     required this.weekData,
     required this.isDark,
-    required this.language,
+    required this.isEn,
     required this.onToggle,
   });
 
@@ -333,8 +331,8 @@ class _HabitCheckCard extends StatelessWidget {
               // Check circle
               Semantics(
                 label: isChecked
-                    ? (L10nService.get('habits.daily_habits.mark_incomplete', language))
-                    : (L10nService.get('habits.daily_habits.mark_complete', language)),
+                    ? (L10nService.get('habits.daily_habits.mark_incomplete', isEn ? AppLanguage.en : AppLanguage.tr))
+                    : (L10nService.get('habits.daily_habits.mark_complete', isEn ? AppLanguage.en : AppLanguage.tr)),
                 button: true,
                 child: GestureDetector(
                   onTap: onToggle,
@@ -398,7 +396,7 @@ class _HabitCheckCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      '${HabitSuggestionService.categoryEmoji(habit.category)} ${habit.durationMinutes} ${L10nService.get('habits.daily_habits.min', language)}',
+                      '${HabitSuggestionService.categoryEmoji(habit.category)} ${habit.durationMinutes} ${L10nService.get('habits.daily_habits.min', isEn ? AppLanguage.en : AppLanguage.tr)}',
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: isDark
@@ -510,19 +508,18 @@ class _HabitCheckCard extends StatelessWidget {
 
 class _EmptyState extends StatelessWidget {
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
-  const _EmptyState({required this.isDark, required this.language});
+  const _EmptyState({required this.isDark, required this.isEn});
 
   @override
   Widget build(BuildContext context) {
     return PremiumEmptyState(
       icon: Icons.playlist_add_check_rounded,
-      title: L10nService.get('habits.daily_habits.your_habit_routine_starts_here', language),
-      description: L10nService.get('habits.daily_habits.browse_the_habit_library_and_adopt_habit', language),
+      title: L10nService.get('habits.daily_habits.your_habit_routine_starts_here', isEn ? AppLanguage.en : AppLanguage.tr),
+      description: L10nService.get('habits.daily_habits.browse_the_habit_library_and_adopt_habit', isEn ? AppLanguage.en : AppLanguage.tr),
       gradientVariant: GradientTextVariant.gold,
-      ctaLabel: L10nService.get('habits.daily_habits.browse_habits', language),
+      ctaLabel: L10nService.get('habits.daily_habits.browse_habits', isEn ? AppLanguage.en : AppLanguage.tr),
       onCtaPressed: () => context.push(Routes.habitSuggestions),
     );
   }

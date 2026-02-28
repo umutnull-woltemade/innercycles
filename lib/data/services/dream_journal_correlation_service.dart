@@ -242,8 +242,8 @@ class DreamJournalCorrelationService {
   /// Generate a human-readable insight string summarizing the strongest
   /// dream-mood correlations. Uses safe language ("Your entries suggest...")
   /// and respects [isEn] for English/Turkish output.
-  Future<String> generateInsight({required AppLanguage language}) async {
-    final lang = language;
+  Future<String> generateInsight({required bool isEn}) async {
+    final lang = isEn ? AppLanguage.en : AppLanguage.tr;
     final correlations = await getTopCorrelations(3);
 
     if (correlations.isEmpty) {

@@ -79,7 +79,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
     );
   }
 
-  Widget _buildSection(bool isDark, AppLanguage language, GratitudeService service) {
+  Widget _buildSection(bool isDark, bool isEn, GratitudeService service) {
     return PremiumCard(
       style: PremiumCardStyle.subtle,
       child: Column(
@@ -120,7 +120,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             GradientText(
-                              L10nService.get('gratitude.gratitude.gratitude', language),
+                              L10nService.get('gratitude.gratitude.gratitude', isEn ? AppLanguage.en : AppLanguage.tr),
                               variant: GradientTextVariant.gold,
                               style: AppTypography.displayFont.copyWith(
                                 fontSize: 15,
@@ -128,7 +128,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                               ),
                             ),
                             Text(
-                              L10nService.get('gratitude.gratitude.what_went_well_today', language),
+                              L10nService.get('gratitude.gratitude.what_went_well_today', isEn ? AppLanguage.en : AppLanguage.tr),
                               style: AppTypography.decorativeScript(
                                 fontSize: 12,
                                 color: isDark
@@ -172,7 +172,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
 
   Widget _buildGratitudeFields(
     bool isDark,
-    AppLanguage language,
+    bool isEn,
     GratitudeService service,
   ) {
     return Padding(
@@ -204,7 +204,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                             : AppColors.lightTextPrimary,
                       ),
                       decoration: InputDecoration(
-                        hintText: L10nService.get('gratitude.gratitude.im_grateful_for', language),
+                        hintText: L10nService.get('gratitude.gratitude.im_grateful_for', isEn ? AppLanguage.en : AppLanguage.tr),
                         hintStyle: AppTypography.subtitle(
                           fontSize: 14,
                           color: isDark
@@ -234,7 +234,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
               },
               icon: Icon(Icons.add, size: 18, color: AppColors.success),
               label: Text(
-                L10nService.get('gratitude.gratitude.add_another', language),
+                L10nService.get('gratitude.gratitude.add_another', isEn ? AppLanguage.en : AppLanguage.tr),
                 style: AppTypography.elegantAccent(
                   fontSize: 13,
                   color: AppColors.success,
@@ -256,7 +256,7 @@ class _GratitudeSectionState extends ConsumerState<GratitudeSection> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      L10nService.get('gratitude.gratitude.premium_add_up_to_3_gratitude_items_them', language),
+                      L10nService.get('gratitude.gratitude.premium_add_up_to_3_gratitude_items_them', isEn ? AppLanguage.en : AppLanguage.tr),
                       style: AppTypography.elegantAccent(
                         fontSize: 12,
                         color: AppColors.starGold,
@@ -304,7 +304,7 @@ class GratitudeSummaryCard extends ConsumerWidget {
         return _GratitudeSummaryContent(
           summary: summary,
           isDark: isDark,
-          language: language,
+          isEn: isEn,
         );
       },
     );
@@ -314,13 +314,12 @@ class GratitudeSummaryCard extends ConsumerWidget {
 class _GratitudeSummaryContent extends StatelessWidget {
   final GratitudeSummary summary;
   final bool isDark;
-  final AppLanguage language;
-  bool get isEn => language.isEn;
+  final bool isEn;
 
   const _GratitudeSummaryContent({
     required this.summary,
     required this.isDark,
-    required this.language,
+    required this.isEn,
   });
 
   @override
@@ -336,7 +335,7 @@ class _GratitudeSummaryContent extends StatelessWidget {
               Icon(Icons.favorite_rounded, size: 18, color: AppColors.success),
               const SizedBox(width: 8),
               GradientText(
-                L10nService.get('gratitude.gratitude.this_weeks_gratitude', language),
+                L10nService.get('gratitude.gratitude.this_weeks_gratitude', isEn ? AppLanguage.en : AppLanguage.tr),
                 variant: GradientTextVariant.gold,
                 style: AppTypography.displayFont.copyWith(
                   fontSize: 14,
