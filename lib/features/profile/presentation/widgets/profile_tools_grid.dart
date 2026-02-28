@@ -631,7 +631,7 @@ class _ProfileToolCard extends StatelessWidget {
                                 child: Text(
                                   'PRO',
                                   style: AppTypography.elegantAccent(
-                                    fontSize: 9,
+                                    fontSize: 11,
                                     fontWeight: FontWeight.w700,
                                     color: Colors.white,
                                     letterSpacing: 0.5,

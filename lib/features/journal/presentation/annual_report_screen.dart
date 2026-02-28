@@ -730,7 +730,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                           Text(
                             avg.toStringAsFixed(1),
                             style: AppTypography.elegantAccent(
-                              fontSize: 8,
+                              fontSize: 10,
                               fontWeight: FontWeight.w600,
                               color: isDark
                                   ? AppColors.textMuted
@@ -771,7 +771,7 @@ class _AnnualReportScreenState extends ConsumerState<AnnualReportScreen> {
                         Text(
                           _monthName(month, isEn),
                           style: AppTypography.elegantAccent(
-                            fontSize: 9,
+                            fontSize: 10,
                             fontWeight: FontWeight.w500,
                             color: isDark
                                 ? AppColors.textMuted

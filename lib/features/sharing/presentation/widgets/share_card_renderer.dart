@@ -861,7 +861,7 @@ class _BottomWatermark extends StatelessWidget {
                       child: Text(
                         L10nService.get('sharing.try_innercycles', isEn ? AppLanguage.en : AppLanguage.tr),
                         style: AppTypography.elegantAccent(
-                          fontSize: 9,
+                          fontSize: 11,
                           color: accent,
                           letterSpacing: 0.4,
                         ),

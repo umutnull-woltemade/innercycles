@@ -242,7 +242,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                     : 'Yıllık plan: \$14.99/yıl (normalde \$29.99)',
                 style: AppTypography.subtitle(
                   fontSize: 12,
-                  color: AppColors.textMuted,
+                  color: AppColors.textSecondary,
                 ),
               ),
               const SizedBox(height: 4),
@@ -252,7 +252,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
                     : 'Tanıtım döneminden sonra \$29.99/yıl olarak otomatik yenilenir',
                 style: AppTypography.subtitle(
                   fontSize: 10,
-                  color: AppColors.textMuted.withValues(alpha: 0.7),
+                  color: AppColors.textSecondary,
                 ),
               ),
             ],
@@ -511,8 +511,8 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
           Icons.auto_awesome_rounded,
           size: 16,
           color: isDark
-              ? AppColors.textMuted.withValues(alpha: 0.7)
-              : AppColors.lightTextMuted.withValues(alpha: 0.7),
+              ? AppColors.textSecondary
+              : AppColors.lightTextSecondary,
         ),
         const SizedBox(width: 6),
         Flexible(
@@ -523,8 +523,8 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
             style: AppTypography.elegantAccent(
               fontSize: 14,
               color: isDark
-                  ? AppColors.textMuted.withValues(alpha: 0.7)
-                  : AppColors.lightTextMuted.withValues(alpha: 0.7),
+                  ? AppColors.textSecondary
+                  : AppColors.lightTextSecondary,
             ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -661,7 +661,7 @@ class _PremiumScreenState extends ConsumerState<PremiumScreen> {
     return Text(
       L10nService.get('premium.risk_reversal', language),
       textAlign: TextAlign.center,
-      style: AppTypography.subtitle(fontSize: 12, color: AppColors.textMuted),
+      style: AppTypography.subtitle(fontSize: 12, color: AppColors.textSecondary),
     );
   }
 

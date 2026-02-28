@@ -609,7 +609,7 @@ class _BirthdayCalendarGrid extends StatelessWidget {
                                 Text(
                                   '+${dayContacts.length - 3}',
                                   style: AppTypography.elegantAccent(
-                                    fontSize: 8,
+                                    fontSize: 10,
                                     color: AppColors.starGold,
                                   ),
                                 ),
